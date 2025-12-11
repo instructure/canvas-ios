@@ -149,6 +149,12 @@ const createHighlightElement = ({
   span.setAttribute("data-text-start", notebookTextSelection.textPosition.start.toString());
   span.setAttribute("data-text-end", notebookTextSelection.textPosition.end.toString());
 
+  const labelType = notebookTextSelection.labelType || (notebookTextSelection.borderStyle === "solid" ? "important" : "unclear");
+  const accessibilityPrefix = notebookTextSelection.accessibilityPrefix || "This text is";
+  span.setAttribute("role", "button");
+  span.setAttribute("tabindex", "0");
+  span.setAttribute("aria-label", `${accessibilityPrefix} ${labelType}. ${textContent}`);
+
   return span;
 };
 

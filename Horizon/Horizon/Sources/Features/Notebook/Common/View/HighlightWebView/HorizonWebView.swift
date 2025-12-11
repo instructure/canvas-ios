@@ -26,6 +26,7 @@ import WebKit
 final class HorizonWebView: CoreWebView {
 
     // MARK: - Private
+    ///We use this flag to prevent any scrolling after the initial scroll to the highlighted note, such as when a note is added or deleted.
     private var shouldScrollToHighlightedNote = true
 
     private var courseNotebookNotes: [CourseNotebookNote] = [] {
@@ -121,9 +122,7 @@ final class HorizonWebView: CoreWebView {
             }
             return customActions
         }
-        set {
-            super.accessibilityCustomActions = newValue
-        }
+        set { super.accessibilityCustomActions = newValue }
     }
 
     override func buildMenu(with builder: any UIMenuBuilder) {
@@ -339,7 +338,9 @@ extension CourseNotebookNote {
             borderStyle: label.borderStyle,
             range: highlightData.range.rangeSelector,
             selectedText: highlightData.selectedText,
-            textPosition: highlightData.textPosition.textPositionSelector
+            textPosition: highlightData.textPosition.textPositionSelector,
+            labelType: label.label.lowercased(),
+            accessibilityPrefix: String(localized: "This text is", bundle: .horizon)
         )
     }
 
