@@ -26,7 +26,7 @@ import WebKit
 final class HorizonWebView: CoreWebView {
 
     // MARK: - Private
-    ///We use this flag to prevent any scrolling after the initial scroll to the highlighted note, such as when a note is added or deleted.
+    /// We use this flag to prevent any scrolling after the initial scroll to the highlighted note, such as when a note is added or deleted.
     private var shouldScrollToHighlightedNote = true
 
     private var courseNotebookNotes: [CourseNotebookNote] = [] {
