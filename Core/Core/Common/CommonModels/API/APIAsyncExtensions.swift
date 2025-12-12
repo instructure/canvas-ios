@@ -20,27 +20,27 @@ import Foundation
 
 public extension API {
     // TODO: convert to use native async/await
-    @discardableResult
-    func makeRequest<Request: APIRequestable>(
-        _ requestable: Request,
-        refreshToken: Bool = true
-    ) async throws -> (Request.Response, HTTPURLResponse?) {
-        try await withCheckedThrowingContinuation { continuation in
-            makeRequest(requestable) { response, urlResponse, error in
-                if let response {
-                    continuation.resume(returning: (response, urlResponse as? HTTPURLResponse))
-                } else if let error {
-                    continuation.resume(throwing: error)
-                } else if Request.Response.self is APINoContent.Type {
-                        // swiftlint:disable:next force_cast
-                    continuation.resume(returning: (APINoContent() as! Request.Response,
-                                                    urlResponse as? HTTPURLResponse))
-                } else {
-                    continuation.resume(throwing: NSError.instructureError("No response or error received."))
-                }
-            }
-        }
-    }
+    //    @discardableResult
+    //    func makeRequest<Request: APIRequestable>(
+    //        _ requestable: Request,
+    //        refreshToken: Bool = true
+    //    ) async throws -> (Request.Response, HTTPURLResponse?) {
+    //        try await withCheckedThrowingContinuation { continuation in
+    //            makeRequest(requestable) { response, urlResponse, error in
+    //                if let response {
+    //                    continuation.resume(returning: (response, urlResponse as? HTTPURLResponse))
+    //                } else if let error {
+    //                    continuation.resume(throwing: error)
+    //                } else if Request.Response.self is APINoContent.Type {
+    //                        // swiftlint:disable:next force_cast
+    //                    continuation.resume(returning: (APINoContent() as! Request.Response,
+    //                                                    urlResponse as? HTTPURLResponse))
+    //                } else {
+    //                    continuation.resume(throwing: NSError.instructureError("No response or error received."))
+    //                }
+    //            }
+    //        }
+    //    }
 
     // TODO: convert to use native async/await
     @discardableResult
@@ -50,14 +50,48 @@ public extension API {
     ) async throws -> (Request.Response, URLResponse) {
         try await withCheckedThrowingContinuation { continuation in
             makeRequest(requestable) { response, urlResponse, error in
-                if let error {
-                    continuation.resume(throwing: error)
-                } else if let response, let urlResponse {
+                if let response, let urlResponse {
                     continuation.resume(returning: (response, urlResponse))
                 } else {
-                    continuation.resume(throwing: NSError.instructureError("No response or error received."))
+                    let error = AsyncAPIError.responseIsMissing(urlResponse: urlResponse, error: error)
+                    continuation.resume(throwing: error)
                 }
             }
         }
+    }
+
+    func exhaustWithHttpResponse<Request: APIRequestable>(_ requestable: Request) async throws ->
+    (body: Request.Response, urlResponse: HTTPURLResponse) where Request.Response: RangeReplaceableCollection {
+        let (response, urlResponse): (Request.Response, URLResponse) = try await exhaust(requestable)
+
+        if let httpResponse = urlResponse as? HTTPURLResponse {
+            return (response, httpResponse)
+        } else {
+            throw AsyncAPIError.urlResponseIsNotHTTPURLResponse(urlResponse: urlResponse)
+        }
+    }
+
+    func exhaust<R>(_ requestable: R) async throws -> (R.Response, URLResponse)
+    where R: APIRequestable, R.Response: RangeReplaceableCollection {
+        try await exhaust(requestable, result: nil)
+    }
+
+    private func exhaust<R>(_ requestable: R, result: R.Response?) async throws -> (R.Response, URLResponse) where R: APIRequestable, R.Response: RangeReplaceableCollection {
+        let (response, urlResponse) = try await makeRequest(requestable)
+
+        let result = if let result { result + response } else { response }
+
+        if let next = requestable.getNext(from: urlResponse) {
+            return try await exhaust(next, result: result)
+        }
+
+        return (result, urlResponse)
+    }
+}
+
+extension API {
+    public enum AsyncAPIError: Error {
+        case responseIsMissing(urlResponse: URLResponse?, error: Error?)
+        case urlResponseIsNotHTTPURLResponse(urlResponse: URLResponse)
     }
 }

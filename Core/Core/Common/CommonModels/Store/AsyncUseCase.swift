@@ -19,65 +19,15 @@
 import CoreData
 import Foundation
 
-public protocol AsyncUseCase {
-    associatedtype Model: NSManagedObject = NSManagedObject
-    associatedtype Response: Codable
-
-    var scope: Scope { get }
-    var cacheKey: String? { get }
-    var ttl: TimeInterval { get }
-
+public protocol AsyncAPIUseCases: UseCase {
     func makeRequest(environment: AppEnvironment) async throws -> (Response, URLResponse)
-    func reset(context: NSManagedObjectContext)
-    func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext)
-    func getNext(from response: URLResponse) -> GetNextRequest<Response>?
-    func modified(for env: AppEnvironment) -> Self
+}
+
+public protocol AsyncUseCase: UseCase {
+    func makeRequest(environment: AppEnvironment) async throws -> (Response, URLResponse)
 }
 
 public extension AsyncUseCase {
-    var scope: Scope {
-        return Scope.all(orderBy: "objectID")
-    }
-
-    var ttl: TimeInterval {
-        return 60 * 60 * 2 // 2 hours
-    }
-
-    func getNext(from _: URLResponse) -> GetNextRequest<Response>? {
-        return nil
-    }
-
-    func reset(context _: NSManagedObjectContext) {
-            // no-op
-    }
-
-    func modified(for env: AppEnvironment) -> Self {
-        self
-    }
-}
-
-public extension AsyncUseCase {
-    /// Cache expiration check used by the legacy `Store`.
-    func hasExpired(in client: NSManagedObjectContext) -> Bool {
-        guard let cacheKey = cacheKey, !ProcessInfo.isUITest else { return true }
-        var expired = true
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(TTL.key), cacheKey)
-        if let cache: TTL = client.fetch(predicate).first,
-           let lastRefresh = cache.lastRefresh {
-            expired = lastRefresh + ttl < Clock.now
-        }
-        return expired
-    }
-
-        /// Private helper method, used by both closure based and reactive `fetch()` methods.
-    func updateTTL(in client: NSManagedObjectContext) {
-        guard let cacheKey = cacheKey else { return }
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(TTL.key), cacheKey)
-        let cache: TTL = client.fetch(predicate).first ?? client.insert()
-        cache.key = cacheKey
-        cache.lastRefresh = Clock.now
-    }
-
     // Cache expiration check used by the `ReactiveStore`.
     func hasCacheExpired(environment: AppEnvironment = .shared) async throws -> Bool {
         try await environment.database.performWriteTask { context in
@@ -115,15 +65,15 @@ public extension AsyncUseCase {
     }
 }
 
-public protocol AsyncAPIUseCase: AsyncUseCase {
-    associatedtype Request: APIRequestable
-    var request: Request { get }
+public protocol AsyncAPIUseCase: AsyncUseCase, APIUseCase {
+//    associatedtype Request: APIRequestable
+//    var request: Request { get }
 }
 
 public extension AsyncAPIUseCase {
-    func getNext(from response: URLResponse) -> GetNextRequest<Request.Response>? {
-        return request.getNext(from: response)
-    }
+//    func getNext(from response: URLResponse) -> GetNextRequest<Request.Response>? {
+//        request.getNext(from: response)
+//    }
 }
 
 public extension AsyncAPIUseCase where Response == Request.Response {
@@ -131,6 +81,8 @@ public extension AsyncAPIUseCase where Response == Request.Response {
         try await environment.api.makeRequest(request)
     }
 }
+
+public protocol AsyncCollectionUseCase: AsyncAPIUseCase, CollectionUseCase { }
 
 public struct AsyncGetNextUseCase<U: AsyncUseCase>: AsyncAPIUseCase {
     public typealias Model = U.Model
@@ -155,3 +107,21 @@ public struct AsyncGetNextUseCase<U: AsyncUseCase>: AsyncAPIUseCase {
         parent.write(response: response, urlResponse: urlResponse, to: client)
     }
 }
+//
+//public extension AsyncUseCase where Model: WriteableModel, Model.JSON == Response {
+//    func write(response: Model.JSON?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
+//        guard let response = response else {
+//            return
+//        }
+//        Model.save(response, in: client)
+//    }
+//}
+//
+//public extension AsyncUseCase where Model: WriteableModel, Response: Collection, Model.JSON == Response.Element {
+//    func write(response: [Model.JSON]?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
+//        guard let response = response else {
+//            return
+//        }
+//        Model.save(response, in: client)
+//    }
+//}

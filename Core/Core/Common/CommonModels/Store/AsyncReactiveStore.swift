@@ -53,21 +53,23 @@ public class AsyncReactiveStore<U: AsyncUseCase> {
                 context: context
             )
         } else {
-            try await ignoreCache ?
-            Self.fetchEntitiesFromAPI(
-                useCase: useCase,
-                loadAllPages: loadAllPages,
-                fetchRequest: request,
-                context: context,
-                environment: environment
-            ) :
-            Self.fetchEntitiesFromCache(
-                useCase: useCase,
-                fetchRequest: request,
-                loadAllPages: loadAllPages,
-                context: context,
-                environment: environment
-            )
+            if ignoreCache {
+                try await Self.fetchEntitiesFromAPI(
+                    useCase: useCase,
+                    loadAllPages: loadAllPages,
+                    fetchRequest: request,
+                    context: context,
+                    environment: environment
+                    )
+            } else {
+                try await Self.fetchEntitiesFromCache(
+                    useCase: useCase,
+                    fetchRequest: request,
+                    loadAllPages: loadAllPages,
+                    context: context,
+                    environment: environment
+                )
+            }
         }
     }
 
@@ -132,7 +134,7 @@ public class AsyncReactiveStore<U: AsyncUseCase> {
         let nextPageUseCase = getNextPage(useCase: useCase, nextResponse: nextResponse)
 
         if let nextPageUseCase {
-            let _ = try await Self.fetchEntitiesFromAPI(
+            _ = try await Self.fetchEntitiesFromAPI(
                 useCase: useCase,
                 getNextUseCase: nextPageUseCase,
                 loadAllPages: true,
