@@ -130,9 +130,9 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         .sheet(isPresented: $model.isImagePickerVisible) {
             AttachmentPickerAssembly.makeImagePicker(onSelect: model.addFile)
         }
-        .sheet(isPresented: $model.isTakePhotoVisible) {
+        .fullScreenCover(isPresented: $model.isTakePhotoVisible) {
             AttachmentPickerAssembly.makeImageRecorder(onSelect: model.addFile)
-                .interactiveDismissDisabled()
+                .ignoresSafeArea()
         }
         .sheet(isPresented: $model.isAudioRecordVisible) {
             AttachmentPickerAssembly.makeAudioRecorder(env: model.env, onSelect: model.addFile)
