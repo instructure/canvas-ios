@@ -41,7 +41,6 @@ struct LearnerDashboardScreen: View {
         .navigationBarDashboard()
         .navigationBarItems(leading: profileMenuButton)
         .navigationTitle(String(localized: "Dashboard", bundle: .student))
-        .navigationBarTitleDisplayMode(.inline)
     }
 
     private var profileMenuButton: some View {
