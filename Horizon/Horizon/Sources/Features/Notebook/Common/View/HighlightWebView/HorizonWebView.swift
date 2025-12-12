@@ -26,6 +26,7 @@ import WebKit
 final class HorizonWebView: CoreWebView {
 
     // MARK: - Private
+    private var shouldScrollToHighlightedNote = true
 
     private var courseNotebookNotes: [CourseNotebookNote] = [] {
         didSet {
@@ -34,15 +35,22 @@ final class HorizonWebView: CoreWebView {
                     webView: self,
                     notebookTextSelections: courseNotebookNotes.compactMap { $0.notebookTextSelection }
                 )
+                if let scrollToNoteID = scrollToNoteID, shouldScrollToHighlightedNote {
+                    if let note = courseNotebookNotes.first(where: { $0.id == scrollToNoteID }),
+                       let textSelection = note.notebookTextSelection {
+                        try? await Task.sleep(for: .milliseconds(500)) // Wait for highlights to be applied
+                        await highlightWebFeature?.scrollToHighlight(webView: self, notebookTextSelection: textSelection)
+                        shouldScrollToHighlightedNote = false
+                    }
+                }
             }
         }
     }
     private var subscriptions = Set<AnyCancellable>()
     private var highlightWebFeature: HighlightWebFeature?
     private let actionDefinitions = [
-        (label: CourseNoteLabel.confusing, title: String(localized: "Confusing", bundle: .horizon)),
-        (label: CourseNoteLabel.important, title: String(localized: "Important", bundle: .horizon)),
-        (label: CourseNoteLabel.other, title: String(localized: "Add a Note", bundle: .horizon))
+        (label: CourseNoteLabel.important, title: String(localized: "Mark important", bundle: .horizon)),
+        (label: CourseNoteLabel.unclear, title: String(localized: "Mark unclear", bundle: .horizon))
     ]
 
     // MARK: - Dependencies
@@ -54,6 +62,7 @@ final class HorizonWebView: CoreWebView {
     private let moduleType: ModuleItemType?
     private let router: Router
     private let viewController: WeakViewController?
+    private let scrollToNoteID: String?
 
     // MARK: - Init
 
@@ -62,8 +71,9 @@ final class HorizonWebView: CoreWebView {
         pageURL: String,
         moduleType: ModuleItemType,
         viewController: WeakViewController,
+        scrollToNoteID: String? = nil,
         router: Router = AppEnvironment.shared.router,
-        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive(pageSize: 10000)
+        courseNoteInteractor: CourseNoteInteractor = CourseNoteInteractorLive()
     ) {
         self.courseID = courseID
         self.pageURL = pageURL
@@ -71,15 +81,13 @@ final class HorizonWebView: CoreWebView {
         self.router = router
         self.courseNoteInteractor = courseNoteInteractor
         self.viewController = viewController
+        self.scrollToNoteID = scrollToNoteID
 
         let highlightWebFeature = HighlightWebFeature()
 
         self.highlightWebFeature = highlightWebFeature
 
         super.init(features: [highlightWebFeature, .enableZoom])
-
-        self.courseNoteInteractor.set(courseID: courseID, pageURL: pageURL)
-
         listenForSelectionChange()
         listenForHighlightTaps()
     }
@@ -93,7 +101,7 @@ final class HorizonWebView: CoreWebView {
         self.moduleType = nil
         self.viewController = nil
         self.highlightWebFeature = nil
-
+        self.scrollToNoteID = nil
         super.init(coder: coder)
     }
 
@@ -158,30 +166,43 @@ final class HorizonWebView: CoreWebView {
             return
         }
 
-        self.courseNoteInteractor.set(courseID: courseID, pageURL: pageURL)
-        self.courseNoteInteractor.get()
-            .sink(
-                receiveCompletion: { _ in },
-                receiveValue: { [weak self] courseNotebookNotes in
-                    self?.applyHighlights(courseNotebookNotes)
-                }
-            )
-            .store(in: &subscriptions)
+        self.courseNoteInteractor.getNotes(
+            for: pageURL,
+            ignoreCache: false,
+            keepObserving: true,
+            filter: .init(courseId: courseID)
+        )
+        .sink(
+            receiveCompletion: { _ in },
+            receiveValue: { [weak self] notes in
+                self?.applyHighlights(notes)
+            }
+        )
+        .store(in: &subscriptions)
     }
 
     private func listenForHighlightTaps() {
         highlightWebFeature?.listenForHighlightTaps()
             .sink { _ in
             } receiveValue: { [weak self] notebookTextSelection in
-                guard let self = self,
-                    let viewController = self.viewController
-                else {
-                    return
-                }
+                guard let self = self, let viewController = self.viewController else { return }
                 if let courseNotebookNote = self.courseNotebookNotes.first(where: {
                     $0.notebookTextSelection == notebookTextSelection
                 }) {
-                    router.route(to: "/notebook/note", userInfo: ["note": courseNotebookNote], from: viewController)
+                    let editNotebookView = EditNotebookAssembly.makeViewNoteViewController(
+                        courseNotebookNote: courseNotebookNote
+                    ) { isNoteUpdated in
+                        if isNoteUpdated {
+                            NotificationCenter
+                                .default
+                                .post(name: .showToastAlert, object: String(localized: "Note saved", bundle: .horizon))
+                        }
+                    }
+                    router.show(
+                        editNotebookView,
+                        from: viewController,
+                        options: .modal(.pageSheet, isDismissable: false)
+                    )
                 }
             }
             .store(in: &subscriptions)
@@ -215,6 +236,8 @@ final class HorizonWebView: CoreWebView {
         }
 
         courseNoteInteractor.add(
+            courseID: courseID,
+            pageURL: pageURL,
             content: "",
             labels: [label],
             notebookHighlight: notebookHighlight
@@ -257,7 +280,7 @@ extension CourseNotebookNote {
         return NotebookTextSelection(
             backgroundColor: label.backgroundColorCSS,
             borderColor: label.borderColorCSS,
-            iconSVG: label.iconSVG,
+            borderStyle: label.borderStyle,
             range: highlightData.range.rangeSelector,
             selectedText: highlightData.selectedText,
             textPosition: highlightData.textPosition.textPositionSelector

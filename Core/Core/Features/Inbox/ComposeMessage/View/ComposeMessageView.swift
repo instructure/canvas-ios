@@ -124,7 +124,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 								.preference(key: ViewSizeKey.self, value: -reader.frame(in: .named("scroll")).origin.y)
 						}
 					)
-					.navigationBarItems(leading: legacyCancelButton, trailing: legacyExtraSendButton)
+					.navigationBarItems(leading: cancelButton, trailing: legacyExtraSendButton)
 					.navigationBarStyle(.modal)
 			}
 			.onPreferenceChange(ViewSizeKey.self) { offset in
@@ -224,7 +224,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 			Button {
 				model.didTapSend.accept(controller)
 			} label: {
-				Image.arrowUpLine
+				Image.arrowUpSolid
                     .resizable()
 			}
 			.buttonStyle(.glassProminent)
@@ -250,28 +250,16 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .frame(height: 0.5)
     }
 
-	@available(iOS, introduced: 26, message: "Legacy version exists")
 	private var cancelButton: some View {
 		Button {
 			model.didTapCancel.accept(controller)
 		} label: {
 			Text("Cancel", bundle: .core)
 				.font(.regular16)
+                .foregroundStyleBelow26(Color.accentColor)
 				.accessibilityIdentifier("ComposeMessage.cancel")
 		}
 	}
-
-	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
-    private var legacyCancelButton: some View {
-        Button {
-            model.didTapCancel.accept(controller)
-        } label: {
-            Text("Cancel", bundle: .core)
-                .font(.regular16)
-                .foregroundColor(.accentColor)
-                .accessibilityIdentifier("ComposeMessage.cancel")
-        }
-    }
 
    @ViewBuilder
     private var sendButton: some View {

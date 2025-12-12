@@ -18,6 +18,20 @@
 
 import Foundation
 import Combine
+import CombineSchedulers
+
+enum TodoInteractorError: Error, Equatable {
+    /// Thrown when deleted Course entities are detected in the courses array during filtering.
+    /// This occurs due to a race condition where GetDashboardCourses deletes courses via
+    /// deleteCoursesNotInResponse() while TodoInteractor is processing them.
+    /// The retry mechanism with forced cache refresh resolves this by fetching fresh data.
+    case deletedCoursesDetected
+
+    /// Thrown when duplicate canvasContextIDs are detected in the courses array.
+    /// This can occur when courses have nil/empty IDs due to deletion or data corruption.
+    /// The retry mechanism with forced cache refresh resolves this by fetching fresh data.
+    case duplicateCourseIdsDetected
+}
 
 public protocol TodoInteractor {
     /// The current list of todo groups, grouped by day and filtered according to user preferences.
@@ -58,42 +72,41 @@ public final class TodoInteractorLive: TodoInteractor {
     private let env: AppEnvironment
     private let sessionDefaults: SessionDefaults
     private let coursesStore: ReactiveStore<GetCourses>
+    private let contextColorsStore: ReactiveStore<GetCustomColors>
     private let alwaysExcludeCompleted: Bool
+    private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
 
-    public init(alwaysExcludeCompleted: Bool, sessionDefaults: SessionDefaults, env: AppEnvironment) {
+    public init(
+        alwaysExcludeCompleted: Bool,
+        sessionDefaults: SessionDefaults,
+        env: AppEnvironment,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
         self.sessionDefaults = sessionDefaults
         self.alwaysExcludeCompleted = alwaysExcludeCompleted
         self.env = env
+        self.scheduler = scheduler
         self.coursesStore = ReactiveStore(useCase: GetCourses(), environment: env)
+        self.contextColorsStore = ReactiveStore(useCase: GetCustomColors(), environment: env)
     }
 
     // MARK: - Public Methods
 
     public func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Error> {
-        let plannableStore = makePlannablesStore()
-
-        return Publishers.Zip(
-            plannableStore.getEntities(ignoreCache: ignorePlannablesCache, loadAllPages: true),
-            coursesStore.getEntities(ignoreCache: ignoreCoursesCache)
-        )
-        .handleEvents(receiveOutput: { [weak self] plannables, courses in
-            self?.filterAndGroupTodos(plannables: plannables, courses: courses)
-            self?.logFilterAnalytics()
-        })
-        .mapToVoid()
-        .eraseToAnyPublisher()
+        refresh(ignorePlannablesCache: ignorePlannablesCache, ignoreCoursesCache: ignoreCoursesCache, retryCount: 0)
     }
 
     public func isCacheExpired() -> AnyPublisher<Bool, Never> {
         let plannablesUseCase = GetPlannables.makeTodoFetchUseCase()
 
-        return Publishers.Zip(
+        return Publishers.Zip3(
             plannablesUseCase.hasCacheExpired(environment: env),
-            coursesStore.useCase.hasCacheExpired(environment: env)
+            coursesStore.useCase.hasCacheExpired(environment: env),
+            contextColorsStore.useCase.hasCacheExpired(environment: env)
         )
-        .map { plannablesExpired, coursesExpired in
-            plannablesExpired || coursesExpired
+        .map { plannablesExpired, coursesExpired, colorsExpired in
+            plannablesExpired || coursesExpired || colorsExpired
         }
         .eraseToAnyPublisher()
     }
@@ -122,13 +135,60 @@ public final class TodoInteractorLive: TodoInteractor {
 
     // MARK: - Private Methods
 
+    private func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool, retryCount: Int) -> AnyPublisher<Void, Error> {
+        let plannableStore = makePlannablesStore()
+
+        return Publishers.Zip3(
+            plannableStore.getEntities(ignoreCache: ignorePlannablesCache, loadAllPages: true),
+            coursesStore.getEntities(ignoreCache: ignoreCoursesCache),
+            contextColorsStore.getEntities(ignoreCache: ignoreCoursesCache)
+        )
+        .tryMap { [weak self] plannables, courses, _ in
+            guard let self else { return }
+            try self.filterAndGroupTodos(plannables: plannables, courses: courses)
+            self.logFilterAnalytics()
+        }
+        .catch { [weak self] error -> AnyPublisher<Void, Error> in
+            let shouldRetry = error as? TodoInteractorError == .deletedCoursesDetected ||
+                              error as? TodoInteractorError == .duplicateCourseIdsDetected
+
+            guard let self,
+                  retryCount < 2,
+                  shouldRetry else {
+                return Fail(error: error).eraseToAnyPublisher()
+            }
+
+            return Just(())
+                .delay(for: .seconds(0.5), scheduler: scheduler)
+                .flatMap { [weak self] _ in
+                    self?.refresh(
+                        ignorePlannablesCache: ignorePlannablesCache,
+                        ignoreCoursesCache: true,
+                        retryCount: retryCount + 1
+                    ) ?? Publishers.noInstanceFailure()
+                }
+                .eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
+    }
+
     private func makePlannablesStore() -> ReactiveStore<GetPlannables> {
         ReactiveStore(useCase: GetPlannables.makeTodoFetchUseCase(), environment: env)
     }
 
-    private func filterAndGroupTodos(plannables: [Plannable], courses: [Course]) {
+    private func filterAndGroupTodos(plannables: [Plannable], courses: [Course]) throws {
         let filterOptions = sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
-        let coursesByCanvasContextIds = Dictionary(uniqueKeysWithValues: courses.map { ($0.canvasContextID, $0) })
+
+        let hasDeletedCourses = courses.contains { $0.isDeleted }
+        if hasDeletedCourses {
+            Logger.shared.error("TodoInteractor - Deleted courses detected. Retrying with force refresh.")
+            throw TodoInteractorError.deletedCoursesDetected
+        }
+
+        let coursesByCanvasContextIds = try Dictionary(courses.map { ($0.canvasContextID, $0) }) { _, _ in
+            Logger.shared.error("TodoInteractor - Duplicate course IDs detected. Retrying with force refresh.")
+            throw TodoInteractorError.duplicateCourseIdsDetected
+        }
 
         let shouldKeepCompletedItemsVisible = filterOptions.visibilityOptions.contains(.showCompleted)
 

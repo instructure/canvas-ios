@@ -16,14 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import UIKit
 
-struct NotebookSectionHeading: View {
-    let title: String
-
-    var body: some View {
-        Text(title)
-            .huiTypography(.labelLargeBold)
-            .frame(maxWidth: .infinity, alignment: .leading)
+extension UIScreen {
+    /// Reasonable approximation of points per inch for iOS devices.
+    /// iPads: ~132, iPhones: ~163 (varies slightly by device model).
+    public var pointsPerInch: CGFloat {
+        UIDevice.current.userInterfaceIdiom == .pad ? 132 : 163
     }
 }

@@ -19,15 +19,21 @@
 import HorizonUI
 import SwiftUI
 
-struct NotebookTitle: View {
+struct NotebookEmptyView: View {
     var body: some View {
-        HStack {
-            HorizonUI.icons.menuBookNotebook
-                .frame(width: 24, height: 24)
-
-            Text("Notebook", bundle: .horizon)
-                .huiTypography(.h3)
+        VStack(spacing: .huiSpaces.space8) {
+            Text("Start capturing your notes")
+                .foregroundStyle(Color.huiColors.text.body)
+                .huiTypography(.h2)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Text("Your notes from learning materials will appear here. Highlight key ideas, reflections, or questions as you learn—they'll all be saved in your Notebook for easy review later.")
+                .foregroundStyle(Color.huiColors.text.dataPoint)
+                .huiTypography(.p1)
+                .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .frame(maxWidth: .infinity)
     }
+}
+
+#Preview {
+    NotebookEmptyView()
 }

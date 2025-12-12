@@ -214,8 +214,6 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         fileTypesSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.allowedExtensions"
         submissionTypesSection?.subHeader.accessibilityIdentifier = "AssignmentDetails.submissionTypes"
 
-        submitAssignmentButton.layer.cornerRadius = 25
-
         // Localization
         updateDueSection(dueSection1, with: nil)
         updateDueSection(dueSection2, with: nil)
@@ -295,9 +293,25 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-		if #unavailable(iOS 26) {
-			navigationController?.navigationBar.useContextColor(presenter?.courses.first?.color)
-		}
+        if #unavailable(iOS 26) {
+            navigationController?.navigationBar.useContextColor(presenter?.courses.first?.color)
+        }
+
+        if #available(iOS 26, *) {
+            submitAssignmentButton.layer.cornerRadius = 25
+
+            NSLayoutConstraint.activate([
+                submitAssignmentButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+                submitAssignmentButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+                submitAssignmentButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                submitAssignmentButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                submitAssignmentButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                submitAssignmentButton.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

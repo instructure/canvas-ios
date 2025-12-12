@@ -97,7 +97,8 @@ struct PageDetailsView: View {
                     isScrollTopReached: $isShowHeader,
                     context: viewModel.context,
                     pageURL: pageURL,
-                    itemID: itemID
+                    itemID: itemID,
+                    scrollToNoteID: viewModel.scrollToNoteID
                 )
                 if let model = viewModel.markAsDoneViewModel, viewModel.isMarkedAsDoneButtonVisible {
                     MarkAsDoneButton(

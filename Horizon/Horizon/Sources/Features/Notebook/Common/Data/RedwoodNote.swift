@@ -32,6 +32,28 @@ public class RedwoodNote: NewRedwoodNote {
         case id, courseId, objectId, objectType, userText, reaction, updatedAt, highlightData
     }
 
+    public init(
+        id: String,
+        updatedAt: Date,
+        courseId: String,
+        objectId: String,
+        objectType: String,
+        userText: String,
+        reaction: [String]? = nil,
+        highlightData: NotebookHighlight? = nil
+    ) {
+        self.id = id
+        self.updatedAt = updatedAt
+        super.init(
+            courseId: courseId,
+            objectId: objectId,
+            objectType: objectType,
+            userText: userText,
+            reaction: reaction,
+            highlightData: highlightData
+        )
+    }
+
     // Custom DateFormatter to handle the date format
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()

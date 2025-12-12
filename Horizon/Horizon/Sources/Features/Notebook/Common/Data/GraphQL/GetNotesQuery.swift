@@ -20,13 +20,12 @@ import Core
 import Foundation
 import Combine
 
-class GetNotesQuery: APIGraphQLRequestable {
+final class GetNotesQuery: APIGraphQLPagedRequestable {
+    typealias Response = RedwoodFetchNotesQueryResponse
+
     public let variables: GetNotesQueryInput
-
-    var path: String {
-        "/graphql"
-    }
-
+    public static let operationName: String = "FetchNotes"
+    var path: String { "/graphql" }
     var headers: [String: String?] {
         [
             "x-apollo-operation-name": "FetchNotes",
@@ -34,55 +33,22 @@ class GetNotesQuery: APIGraphQLRequestable {
         ]
     }
 
-    public init(
-        after: String,
-        reactions: [String]? = nil,
-        courseId: String? = nil,
-        objectId: String? = nil
-    ) {
-        let filter = GetNotesQuery.NoteFilterInput.build(
-            courseId: courseId,
-            objectId: objectId,
-            reactions: reactions
-        )
-
-        self.variables = GetNotesQueryInput(
-            after: after,
-            filter: filter
-        )
+    // For geting all notes
+    public init() {
+        self.variables = GetNotesQueryInput(before: nil, filter: nil)
     }
 
-    public init(
-        before: String,
-        reactions: [String]? = nil,
-        courseId: String? = nil,
-        objectId: String? = nil
-    ) {
+    public init(filter: NotebookQueryFilter) {
         self.variables = GetNotesQueryInput(
-            before: before,
+            before: filter.startCursor,
             filter: GetNotesQuery.NoteFilterInput.build(
-                courseId: courseId,
-                objectId: objectId,
-                reactions: reactions
+                courseId: filter.courseId,
+                objectId: filter.pageId,
+                reactions: filter.reactions
             )
         )
     }
 
-    public init(
-        reactions: [String]? = nil,
-        courseId: String? = nil,
-        objectId: String? = nil
-    ) {
-        self.variables = GetNotesQueryInput(
-            filter: GetNotesQuery.NoteFilterInput.build(
-                courseId: courseId,
-                objectId: objectId,
-                reactions: reactions
-            )
-        )
-    }
-
-    public static let operationName: String = "FetchNotes"
     public static var query: String {
         """
         query FetchNotes($filter: NoteFilterInput, $first: Float, $last: Float, $after: String, $before: String) {
@@ -101,6 +67,8 @@ class GetNotesQuery: APIGraphQLRequestable {
                     }
                 }
                 pageInfo {
+                    endCursor
+                    startCursor
                     hasNextPage
                     hasPreviousPage
                 }
@@ -109,10 +77,19 @@ class GetNotesQuery: APIGraphQLRequestable {
         """
     }
 
-    typealias Response = RedwoodFetchNotesQueryResponse
+    func nextPageRequest(from response: RedwoodFetchNotesQueryResponse) -> GetNotesQuery? {
+        guard response.data.notes.pageInfo.hasPreviousPage else {
+            return nil
+        }
+        return GetNotesQuery(filter: .init(startCursor: response.data.notes.pageInfo.startCursor))
+    }
+}
 
+// MARK: - Filter Models
+
+extension GetNotesQuery {
     struct GetNotesQueryInput: Codable, Equatable {
-        private static let pageSize: Float = 1000
+        private static let pageSize: Float = 100 // Max value is 1000
 
         let after: String?
         let before: String?
@@ -121,33 +98,13 @@ class GetNotesQuery: APIGraphQLRequestable {
         let last: Float?
 
         // this is used to navigate to the previous page
-        init(before: String, filter: NoteFilterInput? = nil) {
+        init(before: String?, filter: NoteFilterInput? = nil) {
             self.before = before
             self.filter = filter
             self.last = GetNotesQueryInput.pageSize
 
             self.after = nil
             self.first = nil
-        }
-
-        // this is used to navigate to the next page
-        init(after: String, filter: NoteFilterInput? = nil) {
-            self.after = after
-            self.filter = filter
-            self.first = GetNotesQueryInput.pageSize
-
-            self.before = nil
-            self.last = nil
-        }
-
-        // this is used to fetch the first page
-        init(filter: NoteFilterInput? = nil) {
-            self.filter = filter
-            self.first = GetNotesQueryInput.pageSize
-            self.last = GetNotesQueryInput.pageSize
-
-            self.after = nil
-            self.before = nil
         }
     }
 
@@ -171,14 +128,19 @@ class GetNotesQuery: APIGraphQLRequestable {
             objectId: String? = nil,
             reactions: [String]? = nil
         ) -> NoteFilterInput? {
-            if courseId == nil && (reactions == nil || reactions?.isEmpty == true) {
+            let isEmptyCourse = (courseId == nil)
+            let isEmptyReactions = (reactions == nil || reactions?.isEmpty == true)
+            let isEmptyObjectId = (objectId == nil)
+
+            // If all filters are empty → return nil
+            if isEmptyCourse && isEmptyReactions && isEmptyObjectId {
                 return nil
             }
 
             return .init(
                 courseId: courseId,
                 reactions: reactions,
-                learningObject: GetNotesQuery.LearningObjectFilter.build(id: objectId)
+                learningObject: LearningObjectFilter.build(id: objectId)
             )
         }
     }
@@ -198,30 +160,5 @@ class GetNotesQuery: APIGraphQLRequestable {
             }
             return .init(type: APIModuleItemType.page.rawValue, id: id)
         }
-    }
-}
-
-// MARK: - Codeables
-
-public struct RedwoodFetchNotesQueryResponse: Codable {
-    let data: ResponseData
-
-    public struct ResponseData: Codable {
-        let notes: ResponseNotes
-    }
-
-    public struct ResponseNotes: Codable {
-        let edges: [ResponseEdge]
-        let pageInfo: PageInfo
-    }
-
-    public struct ResponseEdge: Codable {
-        let node: RedwoodNote
-        let cursor: String
-    }
-
-    public struct PageInfo: Codable {
-        let hasNextPage: Bool
-        let hasPreviousPage: Bool
     }
 }

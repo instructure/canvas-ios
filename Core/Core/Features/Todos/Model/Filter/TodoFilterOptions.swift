@@ -21,8 +21,8 @@ import Foundation
 public struct TodoFilterOptions: Codable, Equatable {
     public static let `default` = TodoFilterOptions(
         visibilityOptions: [],
-        dateRangeStart: .lastWeek,
-        dateRangeEnd: .nextWeek
+        dateRangeStart: .fourWeeksAgo,
+        dateRangeEnd: .thisWeek
     )
 
     public let visibilityOptions: Set<TodoVisibilityOption>

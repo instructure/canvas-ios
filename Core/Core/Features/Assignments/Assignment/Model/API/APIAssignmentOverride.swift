@@ -22,7 +22,7 @@ import Foundation
 public struct APIAssignmentOverride: Codable, Equatable {
     let id: ID
     let assignment_id: ID
-    let title: String
+    let title: String?
 
     // Targets
     let course_section_id: ID?

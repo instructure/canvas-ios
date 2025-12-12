@@ -86,12 +86,16 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
                 title: viewModel.navigationTitle,
                 subtitle: viewModel.navigationSubtitle
             )
+            // There's an attributed graph cycle (caused by UINavigationBar.useContextColor) that prevents
+            // the screen from moving from loading to data state. Adding this ID will treat the view as
+            // completely new when the state changes and allowing the view to re-render.
+            .id(viewModel.state)
             .navBarItems(trailing: navBarTrailingItems)
             .navigationBarStyle(.color(viewModel.navigationBarColor))
             .onFirstAppear {
                 setupStatusBarStyleUpdates()
-                    // When speedgrader is opened from a discussion
-                    // the router automatically adds a done button
+                // When speedgrader is opened from a discussion
+                // the router automatically adds a done button
                 controller.value.navigationItem.leadingItemGroups = []
             }
         }

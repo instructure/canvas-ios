@@ -132,6 +132,7 @@ struct DropdownMenu: View {
 struct DropdownMenuItem: Identifiable, Equatable {
     let id: String
     let name: String
+    var key: String = ""
 }
 
 #Preview {
