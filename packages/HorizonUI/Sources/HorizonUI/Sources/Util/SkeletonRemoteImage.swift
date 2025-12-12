@@ -134,6 +134,7 @@ public struct SkeletonRemoteImage<Content: View, Placeholder: View>: View {
         return await withCheckedContinuation { continuation in
             DispatchQueue.main.async {
                 let configuration = WKWebViewConfiguration()
+                configuration.defaultWebpagePreferences.allowsContentJavaScript = false
                 let webView = WKWebView(frame: CGRect(origin: .zero, size: size), configuration: configuration)
                 webView.isOpaque = false
                 webView.backgroundColor = .clear
