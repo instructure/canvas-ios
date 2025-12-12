@@ -113,6 +113,7 @@ private struct NotebookLabelView: View {
         HStack(spacing: .huiSpaces.space4) {
             label.image
             Text(label.markNoteName)
+                .frame(maxWidth: .infinity, alignment: .leading)
             Spacer()
 
         }
@@ -120,6 +121,5 @@ private struct NotebookLabelView: View {
         .padding(.leading, .huiSpaces.space12)
         .foregroundStyle(isSelected ? label.color : Color.huiColors.text.body)
         .background(isSelected ? label.backgroundColor : Color.clear)
-        .fixedSize(horizontal: true, vertical: false)
     }
 }

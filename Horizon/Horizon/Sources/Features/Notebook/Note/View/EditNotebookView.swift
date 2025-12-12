@@ -114,6 +114,9 @@ struct EditNotebookView: View {
                 String(localized: "Note content is %@", bundle: .horizon),
                 viewModel.note.isEmpty ? String(localized: "Empty. You can write a note.") : viewModel.note
             ))
+        .accessibilityAction {
+            isTextFieldFocused = true
+        }
     }
 
     // MARK: - Navigation Bar
@@ -127,7 +130,7 @@ struct EditNotebookView: View {
             ) {
                 viewModel.close(viewController)
             }
-            .accessibilityHint(Text(String(localized: "Double tap to dismiss the screen")))
+            .accessibilityHint(Text(String(localized: "Close")))
 
             Spacer()
 

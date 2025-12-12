@@ -21,6 +21,7 @@ import SwiftUI
 
 struct SelectionPopover: View {
     let items: [DropdownMenuItem]
+    let accessibilityLabel: String
     let selectedItem: DropdownMenuItem?
     let accessibilityHint: String
     let onSelect: (DropdownMenuItem) -> Void
@@ -29,7 +30,7 @@ struct SelectionPopover: View {
         DropDownButton(status: selectedItem?.name ?? "") {
             isListVisiable.toggle()
         }
-        .accessibilityLabel(Text(selectedItem?.name ?? ""))
+        .accessibilityLabel(accessibilityLabel)
         .accessibilityHint(Text(accessibilityHint))
         .popover(isPresented: $isListVisiable, attachmentAnchor: .point(.bottom), arrowEdge: .top) {
             listView
