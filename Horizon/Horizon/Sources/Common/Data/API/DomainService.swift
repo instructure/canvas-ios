@@ -91,17 +91,11 @@ final class DomainService: DomainServiceProtocol {
 }
 
 enum DomainServiceOption: String {
-    case cedar
     case journey
-    case pine
     case redwood
     var service: String {
         rawValue
     }
 
-    var workflows: [DomainServiceOption] {
-        self == .journey ?
-        [self, .pine] :
-        [self]
-    }
+    var workflows: [DomainServiceOption] { [self] }
 }
