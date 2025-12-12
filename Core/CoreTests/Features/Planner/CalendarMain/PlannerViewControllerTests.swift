@@ -74,7 +74,9 @@ class PlannerViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
-        XCTAssertEqual(nav.navigationBar.barTintColor!.hexString, Brand.shared.navBackground.hexString)
+        if #unavailable(iOS 26) {
+            XCTAssertEqual(nav.navigationBar.barTintColor!.hexString, Brand.shared.navBackground.hexString)
+        }
 
         _ = controller.profileButton.target?.perform(controller.profileButton.action)
         XCTAssert(router.lastRoutedTo("/profile", withOptions: .modal()))

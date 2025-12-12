@@ -22,8 +22,11 @@ import XCTest
 class UIBarButtonItemExtensionsTests: XCTestCase {
 
     func testBackButton() {
-        let config = UIImage.SymbolConfiguration(weight: .semibold)
-        let backImage = UIImage(systemName: "chevron.backward", withConfiguration: config)
+        let backImage = if #available(iOS 26, *) {
+            UIImage(systemName: "chevron.backward")
+        } else {
+            UIImage(systemName: "chevron.backward", withConfiguration: UIImage.SymbolConfiguration(weight: .semibold))
+        }
 
         var actionCallsCount = 0
         let testee = UIBarButtonItem.back { actionCallsCount += 1 }

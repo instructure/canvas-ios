@@ -32,16 +32,28 @@ struct SubmissionListScreen: View {
     }
 
     var body: some View {
-        InstUI.BaseScreen(
-            state: viewModel.state,
-            refreshAction: { completion in
-                viewModel.refresh(completion)
-            },
-            content: { _ in listView }
-        )
-        .toolbar(content: { toolbarContent })
-        .navigationTitle(Text("Submissions", bundle: .teacher))
-        .navigationBarStyle(.color(viewModel.course?.color))
+        if #available(iOS 26, *) {
+            InstUI.BaseScreen(
+                state: viewModel.state,
+                refreshAction: { completion in
+                    viewModel.refresh(completion)
+                },
+                content: { _ in listView }
+            )
+            .toolbar { toolbarContent }
+            .navigationTitle(Text("Submissions", bundle: .teacher))
+        } else {
+            InstUI.BaseScreen(
+                state: viewModel.state,
+                refreshAction: { completion in
+                    viewModel.refresh(completion)
+                },
+                content: { _ in listView }
+            )
+            .toolbar { toolbarContent }
+            .navigationTitle(Text("Submissions", bundle: .teacher))
+            .navigationBarStyle(.color(viewModel.course?.color))
+        }
     }
 
     private var listView: some View {
@@ -93,24 +105,35 @@ struct SubmissionListScreen: View {
     private var toolbarContent: some ToolbarContent {
 
         ToolbarItemGroup(placement: .topBarTrailing) {
-
-            InstUI
-                .NavigationBarButton
-                .filterIcon(
-                    isBackgroundContextColor: true,
-                    isSolid: viewModel.isFilterActive,
-                    action: {
-                        viewModel.showFilterScreen(from: controller)
-                    }
-                )
-                .tint(Color.textLightest)
+            if #available(iOS 26, *) {
+                InstUI
+                    .NavigationBarButton
+                    .filterIcon(
+                        isSolid: viewModel.isFilterActive,
+                        action: {
+                            viewModel.showFilterScreen(from: controller)
+                        }
+                    )
+                    .tint(Color.textLightest)
+            } else {
+                InstUI
+                    .NavigationBarButton
+                    .filterIcon(
+                        isBackgroundContextColor: true,
+                        isSolid: viewModel.isFilterActive,
+                        action: {
+                            viewModel.showFilterScreen(from: controller)
+                        }
+                    )
+                    .tint(Color.textLightest)
+            }
 
             Button {
                 viewModel.openPostPolicy(from: controller)
             } label: {
                 Image.eyeLine
             }
-            .tint(Color.textLightest)
+            .tintBelow26(Color.textLightest)
             .accessibilityLabel(Text("Post settings", bundle: .teacher))
             .accessibilityIdentifier("SubmissionsList.postPolicyButton")
 
@@ -119,7 +142,7 @@ struct SubmissionListScreen: View {
             } label: {
                 Image.emailLine
             }
-            .tint(Color.textLightest)
+            .tintBelow26(Color.textLightest)
             .accessibility(label: Text("Send message to users", bundle: .teacher))
         }
     }

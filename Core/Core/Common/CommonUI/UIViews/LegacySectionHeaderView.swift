@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2019-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,20 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import UIKit
 
-public struct ListWithoutVerticalScrollIndicator<Content: View>: View {
-    private let scrollIndicatorWidth: CGFloat = 6
-    private let content: () -> Content
+@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+public class LegacySectionHeaderView: UITableViewHeaderFooterView {
+    @IBOutlet weak public var titleLabel: UILabel!
+    @IBOutlet weak var bgView: UIView!
 
-    public init(content: @escaping () -> Content) {
-        self.content = content
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+		bgView.backgroundColor = .backgroundLight
     }
 
-    public var body: some View {
-        List {
-            content().padding(.horizontal, scrollIndicatorWidth)
-        }
-        .padding(.horizontal, -scrollIndicatorWidth)
+    public static func create(title: String, section: Int) -> LegacySectionHeaderView {
+        let view = loadFromXib()
+        view.titleLabel.text = title
+        return view
     }
 }

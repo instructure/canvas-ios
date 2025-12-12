@@ -32,8 +32,14 @@ class LTIViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.nameLabel.text, "LTI Tool")
         XCTAssertTrue(controller.spinnerView.isHidden)
-        XCTAssertEqual(controller.titleSubtitleView.title, "External Tool")
-        XCTAssertNil(controller.titleSubtitleView.subtitle)
+
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "External Tool")
+            XCTAssertNil(controller.navigationItem.subtitle)
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.title, "External Tool")
+            XCTAssertNil(controller.titleSubtitleView.subtitle)
+        }
         task.resume()
         XCTAssertEqual(controller.nameLabel.text, "So Descriptive")
 
@@ -61,7 +67,12 @@ class LTIViewControllerTests: CoreTestCase {
         let controller = LTIViewController.create(env: environment, tools: tools)
         api.mock(controller.courses!, value: course)
         controller.view.layoutIfNeeded()
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Fancy Course")
+
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.subtitle, "Fancy Course")
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Fancy Course")
+        }
     }
 
     func testTextsWhenIsQuizLTI() {

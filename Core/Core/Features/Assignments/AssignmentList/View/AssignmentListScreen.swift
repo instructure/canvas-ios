@@ -36,33 +36,60 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        VStack(spacing: 0) {
-            switch viewModel.state {
-            case .empty, .error:
-                gradingPeriodTitle
-                emptyPanda
-            case .loading:
-                loadingView
-            case .data:
-                gradingPeriodTitle
-                assignmentList
-            }
-        }
-        .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
-        .tint(viewModel.courseColor?.asColor)
-        .navigationBarTitleView(
-            title: String(localized: "Assignments", bundle: .core),
-            subtitle: viewModel.courseName
-        )
-        .navigationBarGenericBackButton()
-        .navBarItems(
-            trailing: .filterIcon(isBackgroundContextColor: true, isSolid: viewModel.isFilterIconSolid) {
-                viewModel.navigateToPreferences(viewController: controller)
-            }
-        )
-        .navigationBarStyle(.color(viewModel.courseColor))
-        .onAppear(perform: viewModel.viewDidAppear)
-        .onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
+		if #available(iOS 26, *) {
+			VStack(spacing: 0) {
+				switch viewModel.state {
+				case .empty, .error:
+					gradingPeriodTitle
+					emptyPanda
+				case .loading:
+					loadingView
+				case .data:
+					assignmentList
+				}
+			}
+			.navigationTitle(.init("Assignments", bundle: .core))
+			.optionalNavigationSubtitle(viewModel.courseName)
+			.background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+			.tint(viewModel.courseColor?.asColor)
+			.toolbar {
+				ToolbarItem(placement: .topBarTrailing) {
+					InstUI.NavigationBarButton.filterIcon(isSolid: viewModel.isFilterIconSolid) {
+						viewModel.navigateToPreferences(viewController: controller)
+					}
+				}
+			}
+			.onAppear(perform: viewModel.viewDidAppear)
+			.onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
+		} else {
+			VStack(spacing: 0) {
+				switch viewModel.state {
+				case .empty, .error:
+					gradingPeriodTitle
+					emptyPanda
+				case .loading:
+					loadingView
+				case .data:
+					gradingPeriodTitle
+					assignmentList
+				}
+			}
+			.background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+			.tint(viewModel.courseColor?.asColor)
+			.navigationBarTitleView(
+				title: String(localized: "Assignments", bundle: .core),
+				subtitle: viewModel.courseName
+			)
+			.navigationBarGenericBackButton()
+			.navBarItems(
+				trailing: .filterIcon(isBackgroundContextColor: true, isSolid: viewModel.isFilterIconSolid) {
+					viewModel.navigateToPreferences(viewController: controller)
+				}
+			)
+			.navigationBarStyle(.color(viewModel.courseColor))
+			.onAppear(perform: viewModel.viewDidAppear)
+			.onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
+		}
     }
 
     private var gradingPeriodTitle: some View {

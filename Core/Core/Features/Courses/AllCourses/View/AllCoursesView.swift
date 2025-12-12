@@ -29,29 +29,54 @@ public struct AllCoursesView: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        GeometryReader { geometry in
-            RefreshableScrollView {
-                VStack(spacing: 0) {
-                    let width = geometry.size.width
-                    let height = geometry.size.height
-                    switch viewModel.state {
-                    case .loading:
-                        loadingView(minWidth: width, minHeight: height)
-                    case let .data(sections):
-                        sectionsView(sections: sections)
-                    case .empty:
-                        emptyView(width: width, height: height)
-                    case .error:
-                        errorView(width: width, height: height)
+        if #available(iOS 26, *) {
+            GeometryReader { geometry in
+                RefreshableScrollView {
+                    VStack(spacing: 0) {
+                        let width = geometry.size.width
+                        let height = geometry.size.height
+                        switch viewModel.state {
+                        case .loading:
+                            loadingView(minWidth: width, minHeight: height)
+                        case let .data(sections):
+                            sectionsView(sections: sections)
+                        case .empty:
+                            emptyView(width: width, height: height)
+                        case .error:
+                            errorView(width: width, height: height)
+                        }
                     }
+                } refreshAction: { endRefreshing in
+                    viewModel.refresh(completion: endRefreshing)
                 }
-            } refreshAction: { endRefreshing in
-                viewModel.refresh(completion: endRefreshing)
             }
+            .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+            .navigationTitle(.init("All Courses", bundle: .core))
+        } else {
+            GeometryReader { geometry in
+                RefreshableScrollView {
+                    VStack(spacing: 0) {
+                        let width = geometry.size.width
+                        let height = geometry.size.height
+                        switch viewModel.state {
+                        case .loading:
+                            loadingView(minWidth: width, minHeight: height)
+                        case let .data(sections):
+                            sectionsView(sections: sections)
+                        case .empty:
+                            emptyView(width: width, height: height)
+                        case .error:
+                            errorView(width: width, height: height)
+                        }
+                    }
+                } refreshAction: { endRefreshing in
+                    viewModel.refresh(completion: endRefreshing)
+                }
+            }
+            .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+            .navigationBarTitleView(String(localized: "All Courses", bundle: .core))
+            .navigationBarStyle(.global)
         }
-        .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
-        .navigationBarTitleView(String(localized: "All Courses", bundle: .core))
-        .navigationBarStyle(.global)
     }
 
     @ViewBuilder
@@ -65,8 +90,10 @@ public struct AllCoursesView: View, ScreenViewTrackable {
 
     @ViewBuilder
     func sectionsView(sections: AllCoursesSections) -> some View {
+        let pinnedViews: PinnedScrollableViews = if #available(iOS 26, *) { .init() } else { .sectionHeaders }
+
         ScrollViewReader { scrollView in
-            LazyVStack(alignment: sections.isEmpty ? .center : .leading, spacing: 0, pinnedViews: .sectionHeaders) {
+            LazyVStack(alignment: sections.isEmpty ? .center : .leading, spacing: 0, pinnedViews: pinnedViews) {
                 let binding = Binding {
                     viewModel.filter.value
                 } set: { newValue, _ in
@@ -92,7 +119,7 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                 }
             }
             .frame(maxWidth: .infinity)
-            .onFirstAppear { scrollView.scrollTo(0, anchor: .top) }
+            .onFirstAppear { if #unavailable(iOS 26) { scrollView.scrollTo(0, anchor: .top) }}
         }
     }
 

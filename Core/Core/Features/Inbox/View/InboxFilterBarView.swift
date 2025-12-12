@@ -38,64 +38,126 @@ public struct InboxFilterBarView: View {
         .background(Color.backgroundLightest)
     }
 
+    @ViewBuilder
     private var courseFilterButton: some View {
-        Button {
-            if model.isShowingScopeSelector {
-                return
-            }
+        if #available(iOS 26, *) {
+            Menu {
+                Section(.init("Filter by", bundle: .core)) {
+                    Button(.init("All Courses", bundle: .core)) {
+                        model.courseDidChange.send(nil)
+                    }
 
-            if !model.courses.isEmpty {
-                model.isShowingCourseSelector.toggle()
+                    ForEach(model.courses, id: \.courseId) { course in
+                        Button(course.name) {
+                            model.courseDidChange.send(course)
+                        }
+                    }
+                }
+            } label: {
+                HStack(spacing: 6) {
+                    Text(model.course)
+                        .lineLimit(1)
+                        .font(.semibold22)
+                        .foregroundColor(.textDarkest)
+                    Image
+                        .arrowOpenDownSolid
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 17)
+                }
+                .foregroundColor(.textDarkest)
             }
-        } label: {
-            HStack(spacing: 6) {
-                Text(model.course)
-                    .lineLimit(1)
-                    .font(.semibold22)
-                    .foregroundColor(.textDarkest)
-                Image
-                    .arrowOpenDownSolid
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 17)
+            .accessibilityLabel(Text("Filter messages by course", bundle: .core))
+            .accessibilityHint(Text(model.course))
+            .accessibilityIdentifier("Inbox.filterByCourse")
+        } else {
+            Button {
+                if model.isShowingScopeSelector {
+                    return
+                }
+
+                if !model.courses.isEmpty {
+                    model.isShowingCourseSelector.toggle()
+                }
+            } label: {
+                HStack(spacing: 6) {
+                    Text(model.course)
+                        .lineLimit(1)
+                        .font(.semibold22)
+                        .foregroundColor(.textDarkest)
+                    Image
+                        .arrowOpenDownSolid
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 17)
+                }
+                .foregroundColor(.textDarkest)
             }
-            .foregroundColor(.textDarkest)
+            .actionSheet(isPresented: $model.isShowingCourseSelector) {
+                ActionSheet(title: Text("Filter by", bundle: .core), buttons: courseFilterButtons)
+            }
+            .accessibilityLabel(Text("Filter messages by course", bundle: .core))
+            .accessibilityHint(Text(model.course))
+            .accessibilityIdentifier("Inbox.filterByCourse")
         }
-        .actionSheet(isPresented: $model.isShowingCourseSelector) {
-            ActionSheet(title: Text("Filter by", bundle: .core), buttons: courseFilterButtons)
-        }
-        .accessibilityLabel(Text("Filter messages by course", bundle: .core))
-        .accessibilityHint(Text(model.course))
-        .accessibilityIdentifier("Inbox.filterByCourse")
     }
 
+    @ViewBuilder
     private var scopeFilterButton: some View {
-        Button {
-            if model.isShowingCourseSelector {
-                return
+        if #available(iOS 26, *) {
+            Menu {
+                Section(.init("Filter by", bundle: .core)) {
+                    ForEach(model.scopes, id: \.localizedName) { scope in
+                        Button(scope.localizedName) {
+                            model.scopeDidChange.send(scope)
+                        }
+                    }
+                }
+            } label: {
+                HStack(spacing: 5) {
+                    Text(model.scope.localizedName)
+                        .lineLimit(1)
+                        .font(.regular16)
+                    Image
+                        .arrowOpenDownSolid
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 13)
+                        .accessibilityHidden(true)
+                }
+                .foregroundColor(Color(Brand.shared.linkColor))
             }
+            .accessibilityLabel(Text("Filter messages by type", bundle: .core))
+            .accessibilityHint(Text(model.scope.localizedName))
+            .accessibilityIdentifier("Inbox.filterByType")
+        } else {
+            Button {
+                if model.isShowingCourseSelector {
+                    return
+                }
 
-            model.isShowingScopeSelector.toggle()
-        } label: {
-            HStack(spacing: 5) {
-                Text(model.scope.localizedName)
-                    .lineLimit(1)
-                    .font(.regular16)
-                Image
-                    .arrowOpenDownSolid
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 13)
-                    .accessibilityHidden(true)
+                model.isShowingScopeSelector.toggle()
+            } label: {
+                HStack(spacing: 5) {
+                    Text(model.scope.localizedName)
+                        .lineLimit(1)
+                        .font(.regular16)
+                    Image
+                        .arrowOpenDownSolid
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 13)
+                        .accessibilityHidden(true)
+                }
+                .foregroundColor(Color(Brand.shared.linkColor))
             }
-            .foregroundColor(Color(Brand.shared.linkColor))
+            .actionSheet(isPresented: $model.isShowingScopeSelector) {
+                ActionSheet(title: Text("Filter by", bundle: .core), buttons: scopeFilterButtons)
+            }
+            .accessibilityLabel(Text("Filter messages by type", bundle: .core))
+            .accessibilityHint(Text(model.scope.localizedName))
+            .accessibilityIdentifier("Inbox.filterByType")
         }
-        .actionSheet(isPresented: $model.isShowingScopeSelector) {
-            ActionSheet(title: Text("Filter by", bundle: .core), buttons: scopeFilterButtons)
-        }
-        .accessibilityLabel(Text("Filter messages by type", bundle: .core))
-        .accessibilityHint(Text(model.scope.localizedName))
-        .accessibilityIdentifier("Inbox.filterByType")
     }
 
     private var scopeFilterButtons: [ActionSheet.Button] {

@@ -18,6 +18,7 @@
 
 import SwiftUI
 
+@available(iOS, introduced: 26, message: "Legacy version exists")
 struct CourseDetailsHeaderView: View {
     @ObservedObject private var viewModel: CourseDetailsHeaderViewModel
     private let width: CGFloat
@@ -28,7 +29,7 @@ struct CourseDetailsHeaderView: View {
     }
 
     public var body: some View {
-        ZStack {
+		ZStack(alignment: .bottomLeading) {
             Color(viewModel.courseColor)
                 .frame(width: width, height: viewModel.height)
             if let url = viewModel.imageURL {
@@ -36,7 +37,7 @@ struct CourseDetailsHeaderView: View {
                     .opacity(viewModel.imageOpacity)
                     .accessibility(hidden: true)
             }
-            VStack(spacing: 3) {
+			VStack(alignment: .leading, spacing: 3) {
                 Text(viewModel.courseName)
                     .font(.semibold23)
                     .accessibility(identifier: "course-details.title-lbl")
@@ -44,6 +45,7 @@ struct CourseDetailsHeaderView: View {
                         color: viewModel.courseTitleShadow.color,
                         radius: viewModel.courseTitleShadow.radius
                     )
+                    .multilineTextAlignment(.leading)
                 Text(viewModel.termName)
                     .font(.semibold14)
                     .accessibility(identifier: "course-details.subtitle-lbl")
@@ -51,20 +53,20 @@ struct CourseDetailsHeaderView: View {
                         color: viewModel.courseTitleShadow.color,
                         radius: viewModel.courseTitleShadow.radius
                     )
+                    .multilineTextAlignment(.leading)
             }
             .padding()
             .multilineTextAlignment(.center)
             .foregroundColor(.textLightest)
             .opacity(viewModel.titleOpacity)
         }
-        .frame(height: viewModel.height)
+        .frame(width: width, height: viewModel.height)
         .clipped()
-        .offset(x: 0, y: viewModel.verticalOffset)
     }
 }
 
 #if DEBUG
-
+@available(iOS, introduced: 26, message: "Legacy version exists")
 struct CourseDetailsHeaderView_Previews: PreviewProvider {
     private static let env = AppEnvironment.shared
     private static let context = env.globalDatabase.viewContext

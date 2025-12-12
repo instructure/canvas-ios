@@ -35,6 +35,14 @@ class UITableViewExtensionsTests: XCTestCase {
         XCTAssertNotNil(cell)
     }
 
+    func testRegisterLegacyHeaderWithNib() {
+        let table = UITableView(frame: .zero)
+        table.registerHeaderFooterView(LegacySectionHeaderView.self)
+        let header: LegacySectionHeaderView = table.dequeueHeaderFooter(LegacySectionHeaderView.self)
+        XCTAssertNotNil(header)
+    }
+
+    @available(iOS 26, *)
     func testRegisterHeaderWithNib() {
         let table = UITableView(frame: .zero)
         table.registerHeaderFooterView(SectionHeaderView.self)
