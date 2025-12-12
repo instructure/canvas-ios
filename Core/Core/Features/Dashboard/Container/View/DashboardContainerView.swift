@@ -158,6 +158,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         }
         .frame(width: 44, height: 44).padding(.trailing, -6)
         .accessibilityLabel(Text("Dashboard Options", bundle: .core))
+        .identifier("Dashboard.optionsButton")
         .confirmationDialog("", isPresented: $isShowingKebabDialog) {
             Button {
                 if offlineModeViewModel.isOffline {
@@ -168,6 +169,8 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
             } label: {
                 Text("Manage Offline Content", bundle: .core)
             }
+            .identifier("Dashboard.manageOfflineButton")
+
             Button {
                 guard controller.value.presentedViewController == nil else {
                     controller.value.presentedViewController?.dismiss(animated: true)
@@ -177,6 +180,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
             } label: {
                 Text("Dashboard Settings", bundle: .core)
             }
+            .identifier("Dashboard.settingsButton")
         }
     }
 
@@ -195,7 +199,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         }
         .frame(width: 44, height: 44).padding(.trailing, -6)
         .accessibilityLabel(Text("Dashboard settings", bundle: .core))
-        .accessibilityIdentifier("Dashboard.settingsButton")
+        .identifier("Dashboard.settingsButton")
     }
 
     // MARK: Nav Bar Buttons -
