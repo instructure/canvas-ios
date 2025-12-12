@@ -204,6 +204,8 @@ struct NotebookTextSelection: Codable, Equatable {
     let range: RangeSelector
     let selectedText: String
     let textPosition: TextPositionSelector
+    let labelType: String?
+    let accessibilityPrefix: String?
 
     struct RangeSelector: Codable, Equatable {
         let startContainer: String
