@@ -85,7 +85,14 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         let tabBarImage: UIImage
         let tabBarImageSelected: UIImage?
 
-        if AppEnvironment.shared.k5.isK5Enabled {
+        if ExperimentalFeature.studentLearnerDashboard.isEnabled {
+            let dashboard = CoreHostingController(LearnerDashboardAssembly.makeScreen())
+            result = DashboardContainerViewController(rootViewController: dashboard) { CoreSplitViewController() }
+
+            tabBarTitle = String(localized: "Dashboard", bundle: .student, comment: "Tab title, max character count is 14")
+            tabBarImage = .dashboardTab
+            tabBarImageSelected = .dashboardTabActive
+        } else if AppEnvironment.shared.k5.isK5Enabled {
             let dashboard = CoreNavigationController(rootViewController: CoreHostingController(K5DashboardView()))
             // This causes issues with hosted SwiftUI views. If appears at multiple places maybe worth disabling globally in CoreNavigationController.
             dashboard.interactivePopGestureRecognizer?.isEnabled = false

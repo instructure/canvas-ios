@@ -96488,6 +96488,9 @@
         }
       }
     },
+    "Profile Menu, Closed" : {
+
+    },
     "Questions:" : {
       "localizations" : {
         "ar" : {
@@ -143259,6 +143262,9 @@
         }
       }
     },
+    "Welcome to Canvas!" : {
+
+    },
     "Whoops!" : {
       "comment" : "Error Title",
       "extractionState" : "manual",
@@ -146417,6 +146423,9 @@
           }
         }
       }
+    },
+    "You don't have any courses yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity." : {
+
     },
     "You don't have permission to masquerade as this user or there is no user with that ID" : {
       "comment" : "Masquerade error message",
