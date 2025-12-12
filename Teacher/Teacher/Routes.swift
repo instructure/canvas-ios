@@ -181,8 +181,6 @@ let router = Router(routes: [
             context: context,
             assignmentId: assignmentId,
             userId: url.queryValue(for: "student_id"),
-            filter: [],
-            sortMode: .studentSortableName,
             env: env
         )
     },
@@ -196,15 +194,17 @@ let router = Router(routes: [
 
         let filter = GetSubmissions.Filter(urlComponents: url).nilIfEmpty
 
-        let sortMode = url
-            .queryValue(for: "sort")
-            .flatMap({ GetSubmissions.SortMode(rawValue: $0) }) ?? .studentSortableName
+        let filterForNeedsGrading = url.queryValue(for: "filter") == "needs_grading"
+
+        let sortMode = url.queryValue(for: "sort")
+            .flatMap { GetSubmissions.SortMode(rawValue: $0) }
 
         return SpeedGraderAssembly.makeSpeedGraderViewController(
             context: context,
             assignmentId: assignmentId,
             userId: userId,
             filter: filter,
+            filterForNeedsGrading: filterForNeedsGrading,
             sortMode: sortMode,
             env: env
         )

@@ -26,9 +26,10 @@ enum SpeedGraderAssembly {
     static func makeSpeedGraderViewController(
         context: Context,
         assignmentId: String,
-        userId: String?,
-        filter: GetSubmissions.Filter?,
-        sortMode: GetSubmissions.SortMode,
+        userId: String? = nil,
+        filter: GetSubmissions.Filter? = nil,
+        filterForNeedsGrading: Bool = false,
+        sortMode: GetSubmissions.SortMode? = nil,
         env: AppEnvironment
     ) -> UIViewController {
         let normalizedUserId = SpeedGraderUserIdNormalization.normalizeUserId(userId)
@@ -44,7 +45,8 @@ enum SpeedGraderAssembly {
             assignmentID: assignmentId,
             userID: normalizedUserId,
             filter: filter,
-            sortMode: sortMode,
+            filterForNeedsGrading: filterForNeedsGrading,
+            sortMode: sortMode ?? .studentSortableName,
             gradeStatusInteractor: gradeStatusInteractor,
             submissionWordCountInteractor: submissionWordCountInteractor,
             customGradebookColumnsInteractor: customGradebookColumnsInteractor,

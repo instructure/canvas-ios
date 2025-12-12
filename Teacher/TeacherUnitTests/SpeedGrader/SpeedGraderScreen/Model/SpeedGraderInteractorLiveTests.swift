@@ -143,6 +143,40 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
         XCTAssertEqual(submissionsIDs, ["2", "1", "4", "3"])
     }
 
+    func test_dataState_filterForNeedsGrading() throws {
+        // GIVEN
+        let getEnrollments = GetEnrollments(context: testData.context)
+        api.mock(getEnrollments, value: [
+            .make(id: "1", course_id: "1", enrollment_state: .active, user_id: "1"),
+            .make(id: "2", course_id: "1", enrollment_state: .active, user_id: "2"),
+            .make(id: "3", course_id: "1", enrollment_state: .active, user_id: "3"),
+            .make(id: "4", course_id: "1", enrollment_state: .active, user_id: "4")
+        ])
+
+        let getSubmission = GetSubmissions(context: testData.context, assignmentID: testData.assignmentId)
+        api.mock(getSubmission, value: [
+            .make(id: "1", submission_history: [], submission_type: .online_upload, submitted_at: nil, user_id: "1", workflow_state: .unsubmitted),
+            .make(id: "2", submission_history: [], submission_type: .online_upload, user_id: "2", workflow_state: .pending_review),
+            .make(id: "3", score: 98, submission_history: [], submission_type: .online_upload, user_id: "3", workflow_state: .graded),
+            .make(id: "4", submission_history: [], submission_type: .online_upload, user_id: "4", workflow_state: .submitted)
+        ])
+
+        // WHEN
+        testee = makeInteractor(userId: "speedgrader", filterForNeedsGrading: true)
+        testee.load()
+
+        // THEN
+        let publisher = testee.state.filter { $0 != .loading }
+        XCTAssertSingleOutputEquals(publisher, .data)
+
+        let receivedData = try XCTUnwrap(testee.data)
+        XCTAssertEqual(receivedData.submissions.count, 2)
+        XCTAssertEqual(receivedData.focusedSubmissionIndex, 0)
+
+        let submissionsIDs = receivedData.submissions.map(\.id)
+        XCTAssertEqual(submissionsIDs, ["2", "4"])
+    }
+
     // MARK: - Error States
 
     func test_errorState_unexpectedError() {
@@ -194,13 +228,15 @@ class SpeedGraderInteractorLiveTests: TeacherTestCase {
 
     private func makeInteractor(
         userId: String = testData.userId,
-        filter: GetSubmissions.Filter? = nil
+        filter: GetSubmissions.Filter? = nil,
+        filterForNeedsGrading: Bool = false
     ) -> SpeedGraderInteractorLive {
         SpeedGraderInteractorLive(
             context: testData.context,
             assignmentID: testData.assignmentId,
             userID: userId,
             filter: filter,
+            filterForNeedsGrading: filterForNeedsGrading,
             sortMode: .studentSortableName,
             gradeStatusInteractor: gradeStatusInteractorMock,
             submissionWordCountInteractor: submissionWordCountInteractor,
