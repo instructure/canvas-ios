@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2023-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,13 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
 
-public struct DSPlannerNote: Codable {
-    public let id: String
-    public let title: String
-    public let details: String?
-    public let todo_date: Date
-    public let user_id: String?
-    public let course_id: String?
+public class OldToDoHelper: BaseHelper {
+    public static var navBar: XCUIElement { app.find(type: .navigationBar) }
+    public static var toDoBackButton: XCUIElement { navBar.find(label: "To-do", type: .button) }
+
+    public static func cell(id: String) -> XCUIElement {
+        return app.find(id: "to-do.list.\(id).row")
+    }
+
+    public static func cellItemTitle(cell itemCell: XCUIElement) -> XCUIElement {
+        return itemCell.find(type: .staticText)
+    }
+
+    public enum TabBar {
+        public static var todoTab: XCUIElement { app.find(id: "TabBar.todoTab", type: .button) }
+    }
 }
