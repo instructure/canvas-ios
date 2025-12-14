@@ -65,7 +65,7 @@ public class HTMLParserLive: HTMLParser {
         let fileURLs = Array(Set(findRegexMatches(content, pattern: fileRegex)))
         let relativeURLs = findRegexMatches(content, pattern: relativeURLRegex, groupCount: 2).filter { url in url.host ==  nil }
         let rootURL = getRootURL(courseId: courseId, resourceId: resourceId)
-        let fileParser: AnyPublisher<[(URL, String)], Error> = fileURLs.publisher // Download the files to local Documents folder, return the (original link - local link) tuple
+        let fileParser: AnyPublisher<[(URL, String)], Never> = fileURLs.publisher // Download the files to local Documents folder, return the (original link - local link) tuple
             .flatMap(maxPublishers: .max(5)) { [envResolver] url in // Replace File Links with valid access urls
                 if url.pathComponents.contains("files") && !url.containsQueryItem(named: "verifier") {
                     let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
@@ -78,27 +78,30 @@ public class HTMLParserLive: HTMLParser {
                     .map { files in
                         (files.first?.url ?? url, url)
                     }
+                    .replaceError(with: (url, url))
                     .eraseToAnyPublisher()
                 } else if url.pathComponents.contains("files") {
                     if !url.pathComponents.contains("download") {
-                        return Just((url.appendingPathComponent("download"), url)).setFailureType(to: Error.self).eraseToAnyPublisher()
+                        return Just((url.appendingPathComponent("download"), url)).eraseToAnyPublisher()
                     } else {
-                        return Just((url, url)).setFailureType(to: Error.self).eraseToAnyPublisher()
+                        return Just((url, url)).eraseToAnyPublisher()
                     }
                 } else {
-                    return Just((url, url)).setFailureType(to: Error.self).eraseToAnyPublisher()
+                    return Just((url, url)).eraseToAnyPublisher()
                 }
             }
             .flatMap { [interactor] (fileURL, originalURL) in
                 return interactor.downloadFile(fileURL, courseId: courseId, resourceId: resourceId)
-                    .map {
-                        return (originalURL, $0)
+                    .map { urlPath -> (URL, String)? in
+                        return (originalURL, urlPath)
                     }
+                    .replaceError(with: nil)
             }
+            .compactMap({ $0 })
             .collect()
             .eraseToAnyPublisher()
 
-        let imageParser: AnyPublisher<[(URL, String)], Error> =  imageURLs.publisher
+        let imageParser: AnyPublisher<[(URL, String)], Never> =  imageURLs.publisher
             .flatMap(maxPublishers: .max(5)) { [envResolver] url in // Replace File Links with valid access urls
                 if url.pathComponents.contains("files") && !url.containsQueryItem(named: "verifier") {
                     let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
@@ -111,9 +114,10 @@ public class HTMLParserLive: HTMLParser {
                     .map { files in
                         (files.first?.url ?? url, url)
                     }
+                    .replaceError(with: (url, url))
                     .eraseToAnyPublisher()
                 } else {
-                    return Just((url, url)).setFailureType(to: Error.self).eraseToAnyPublisher()
+                    return Just((url, url)).eraseToAnyPublisher()
                 }
             }
             .flatMap { [interactor] (fileURL, originalURL) in // Download images to local Documents folder, return the (original link - local link) tuple
@@ -123,45 +127,43 @@ public class HTMLParserLive: HTMLParser {
                     resourceId: resourceId,
                     documentsDirectory: URL.Directories.documents
                 )
-                    .map {
-                        return (originalURL, $0)
-                    }
-
+                .map { url -> (URL, String)? in
+                    return (originalURL, url)
+                }
+                .replaceError(with: nil)
             }
+            .compactMap({ $0 })
             .collect() // Wait for all image download to finish and handle as an array
             .eraseToAnyPublisher()
 
-        return Publishers.Zip(
-            fileParser,
-            imageParser
-        )
-        .map { (fileURLs, imageURLs) in
-            return fileURLs + imageURLs
-        }
-        .map { [content] urls in
-            // Replace relative path links with baseURL based absolute links. This is
-            // to normalize all url's for the next step that works with absolute URLs.
-            var newContent = content
-            relativeURLs.forEach { relativeURL in
-                if let baseURL {
-                    let newURL = baseURL.appendingPathComponent(relativeURL.path)
-                    newContent = newContent.replacingOccurrences(of: relativeURL.absoluteString, with: newURL.absoluteString)
+        return Publishers.Zip(fileParser, imageParser)
+            .map { (fileURLs, imageURLs) in
+                return fileURLs + imageURLs
+            }
+            .map { [content] urls in
+                // Replace relative path links with baseURL based absolute links. This is
+                // to normalize all url's for the next step that works with absolute URLs.
+                var newContent = content
+                relativeURLs.forEach { relativeURL in
+                    if let baseURL {
+                        let newURL = baseURL.appendingPathComponent(relativeURL.path)
+                        newContent = newContent.replacingOccurrences(of: relativeURL.absoluteString, with: newURL.absoluteString)
+                    }
                 }
+                return (newContent, urls)
             }
-            return (newContent, urls)
-        }
-        .map { (content: String, urls: [(URL, String)]) in
-            // Replace all original links with the local ones, return the replaced string content
-            var newContent = content
-            urls.forEach { (originalURL, offlineURL) in
-                newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: offlineURL)
+            .map { (content: String, urls: [(URL, String)]) in
+                // Replace all original links with the local ones, return the replaced string content
+                var newContent = content
+                urls.forEach { (originalURL, offlineURL) in
+                    newContent = newContent.replacingOccurrences(of: originalURL.absoluteString, with: offlineURL)
+                }
+                return newContent
             }
-            return newContent
-        }
-        .flatMap { [interactor, rootURL] content in // Save html parsed html string content to file. It will be loaded in offline mode)
-            return interactor.saveBaseContent(content: content, folderURL: rootURL)
-        }
-        .eraseToAnyPublisher()
+            .flatMap { [interactor, rootURL] content in // Save html parsed html string content to file. It will be loaded in offline mode)
+                return interactor.saveBaseContent(content: content, folderURL: rootURL)
+            }
+            .eraseToAnyPublisher()
     }
 
     private func findRegexMatches(_ content: String, pattern: NSRegularExpression, groupCount: Int = 1) -> [URL] {
