@@ -87,6 +87,7 @@ class URLResponseExtensionsTests: XCTestCase {
         // Given
         let httpResponse = HTTPURLResponse(url: URL(string: "https://instructure.com")!, statusCode: 429, httpVersion: "HTTP/2.0", headerFields: [:])!
         let data = "429 Too Many Requests (Rate Limit Exceeded)".data(using: .utf8)
+
         let base = DispatchTime.now()
         let limit = base + .seconds(1) + .milliseconds(500)
 
