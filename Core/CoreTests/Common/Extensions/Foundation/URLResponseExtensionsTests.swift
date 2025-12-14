@@ -83,6 +83,44 @@ class URLResponseExtensionsTests: XCTestCase {
         XCTAssertTrue(httpResponse.exceededLimit(responseData: data))
     }
 
+    func testRetrialTimeOnRateLimitExceeded() throws {
+        // Given
+        let httpResponse = HTTPURLResponse(url: URL(string: "https://instructure.com")!, statusCode: 429, httpVersion: "HTTP/2.0", headerFields: [:])!
+        let data = "429 Too Many Requests (Rate Limit Exceeded)".data(using: .utf8)
+        let base = DispatchTime.now()
+        let limit = base + .seconds(1) + .milliseconds(500)
+
+        // When
+        let retrialTimes = [
+            try XCTUnwrap(httpResponse.retrialTimeOnRateLimitExceeded(responseData: data)),
+            try XCTUnwrap(httpResponse.retrialTimeOnRateLimitExceeded(responseData: data)),
+            try XCTUnwrap(httpResponse.retrialTimeOnRateLimitExceeded(responseData: data)),
+            try XCTUnwrap(httpResponse.retrialTimeOnRateLimitExceeded(responseData: data))
+        ]
+
+        // Then
+        if case .nanoseconds(let interval) = base.distance(to: limit) {
+            for time in retrialTimes {
+                if case .nanoseconds(let nanoseconds) = base.distance(to: time) {
+                    XCTAssertTrue(nanoseconds <= interval)
+                } else {
+                    XCTFail("Time must be checked against limit")
+                }
+            }
+        } else {
+            XCTFail("All times must be checked against limit")
+        }
+
+        for i in 0 ..< retrialTimes.count {
+            let time = retrialTimes[i]
+
+            for j in 0 ..< retrialTimes.count where j != i {
+                let anotherTime = retrialTimes[j]
+                XCTAssertNotEqual(time, anotherTime)
+            }
+        }
+    }
+
     func testExceededLimitWithoutData() {
         let httpResponse = HTTPURLResponse(url: URL(string: "https://instructure.com")!, statusCode: 403, httpVersion: "HTTP/2.0", headerFields: [:])!
 
