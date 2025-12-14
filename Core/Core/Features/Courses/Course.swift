@@ -123,11 +123,18 @@ final public class Course: NSManagedObject, WriteableModel {
         model.gradingStandardId = item.grading_standard_id?.value
         model.hideFinalGrades = item.hide_final_grades ?? false
         model.isCourseDeleted = item.workflow_state == .deleted
-        model.isPastEnrollment = (
-            item.workflow_state == .completed ||
-            (item.end_at ?? .distantFuture) < Clock.now ||
-            (item.term?.end_at ?? .distantFuture) < Clock.now
-        )
+        model.isPastEnrollment = {
+            if item.workflow_state == .completed { return true }
+
+            // If course end date is set, use that to determine if the course
+            // is past enrollment, otherwise fall back to term end date.
+            if let endDate = item.end_at {
+                return endDate < Clock.now
+            } else {
+                return (item.term?.end_at ?? .distantFuture) < Clock.now
+            }
+        }()
+
         model.isHomeroomCourse = item.homeroom_course ?? false
         model.isPublished = item.workflow_state == .available || item.workflow_state == .completed
         model.termName = item.term?.name
