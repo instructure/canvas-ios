@@ -82,6 +82,7 @@ class APITests: XCTestCase {
     override func setUp() {
         super.setUp()
         API.resetMocks(useMocks: false)
+        LoginSession.clearAll()
         AppEnvironment.shared.userDidLogin(session: .make())
     }
 
