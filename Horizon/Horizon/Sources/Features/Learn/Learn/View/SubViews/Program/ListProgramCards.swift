@@ -131,7 +131,7 @@ struct ListProgramCards: View {
         .accessibilityFocused(focusedID, equals: program.id)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(program.accessibilityLabelText(status: status, isLinear: isLinear))
-        .accessibilityHint(program.accessiblityHintString(status: status))
+        .accessibilityHint(program.accessibilityHintString(status: status))
     }
 }
 

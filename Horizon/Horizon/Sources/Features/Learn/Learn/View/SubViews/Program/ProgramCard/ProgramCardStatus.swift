@@ -67,11 +67,11 @@ enum ProgramCardStatus {
 
     var name: String {
         switch self {
-        case .active: String(localized: "Not started yet")
-        case .completed: String(localized: "Completed")
-        case .inProgress: String(localized: "Inprogress")
-        case .locked: String(localized: "Locked")
-        case .notEnrolled: String(localized: "Not Enrolled")
+        case .active: String(localized: "Not started yet", bundle: .horizon)
+        case .completed: String(localized: "Completed", bundle: .horizon)
+        case .inProgress: String(localized: "In Progress", bundle: .horizon)
+        case .locked: String(localized: "Locked", bundle: .horizon)
+        case .notEnrolled: String(localized: "Not Enrolled", bundle: .horizon)
         }
     }
 }

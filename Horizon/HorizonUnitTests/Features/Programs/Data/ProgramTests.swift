@@ -148,7 +148,7 @@ final class ProgramTests: XCTestCase {
         let expectedCourseName = String(format: "Course name is %@. ", programCourse.name)
         let expectedStatus = String(format: "Status %@. ", status.name)
         let expectedProgress = String(format: "Progress: %d percent complete. ", 75)
-        let expectedEstimatedTime = String(format: "Estimated time is %@. ", programCourse.estimatedTime ?? "")
+        let expectedEstimatedTime = String(format: "Estimated time %@. ", programCourse.estimatedTime ?? "")
         let expectedOptional = "Optional course"
         let expected = expectedCourseName + expectedStatus + expectedProgress + expectedEstimatedTime + expectedOptional
         XCTAssertEqual(programCourse.accessibilityLabelText(status: status, isLinear: isLinear), expected)
@@ -156,7 +156,7 @@ final class ProgramTests: XCTestCase {
 
     func testAccessibilityHint_notEnrolled() {
         let testee = createProgramCourse()
-        let result = testee.accessiblityHintString(status: .notEnrolled)
+        let result = testee.accessibilityHintString(status: .notEnrolled)
         XCTAssertEqual(
             result,
             "Double tap to enroll course",
@@ -166,7 +166,7 @@ final class ProgramTests: XCTestCase {
 
     func testAccessibilityHint_locked() {
         let testee = createProgramCourse()
-        let result = testee.accessiblityHintString(status: .locked)
+        let result = testee.accessibilityHintString(status: .locked)
         XCTAssertEqual(
             result,
             "This course is dimmed",
@@ -176,7 +176,7 @@ final class ProgramTests: XCTestCase {
 
     func testAccessibilityHint_default() {
         let testee = createProgramCourse()
-        let result = testee.accessiblityHintString(status: .completed)
+        let result = testee.accessibilityHintString(status: .completed)
         XCTAssertEqual(
             result,
             "Double tap to open course",

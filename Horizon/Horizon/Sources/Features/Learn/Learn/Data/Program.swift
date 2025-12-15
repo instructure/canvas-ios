@@ -94,15 +94,15 @@ struct Program: Identifiable {
         }
 
         if let description {
-            text += String(format: String(localized: "Description %@. "), description)
+            text += String(format: String(localized: "Description %@. ", bundle: .horizon), description)
         }
 
         if let date {
-            text += String(format: String(localized: "Date %@. "), date)
+            text += String(format: String(localized: "Date %@. ", bundle: .horizon), date)
         }
 
         if let estimatedTime {
-            text += String(format: String(localized: "Estimated time %@. "), estimatedTime)
+            text += String(format: String(localized: "Estimated time %@. ", bundle: .horizon), estimatedTime)
         }
         if !isLinear, !isOptionalProgram {
             text += String(
@@ -170,14 +170,14 @@ struct ProgramCourse: Identifiable, Equatable {
         }
 
         if let estimatedTime = estimatedTime {
-            accessibilityParts += String(format: String(localized: "Estimated time is %@. "), estimatedTime)
+            accessibilityParts += String(format: String(localized: "Estimated time %@. ", bundle: .horizon), estimatedTime)
         }
         accessibilityParts.append(isRequired ? String(localized: "Required course") : String(localized: "Optional course"))
 
         return accessibilityParts
     }
 
-    func accessiblityHintString(status: ProgramCardStatus) -> String {
+    func accessibilityHintString(status: ProgramCardStatus) -> String {
         switch status {
         case .notEnrolled: String(localized: "Double tap to enroll course")
         case .locked: String(localized: "This course is dimmed")

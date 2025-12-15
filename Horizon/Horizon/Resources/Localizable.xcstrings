@@ -39996,9 +39996,6 @@
     "Estimated time %@. " : {
 
     },
-    "Estimated time is %@. " : {
-
-    },
     "Excused" : {
       "localizations" : {
         "ar" : {
@@ -49009,9 +49006,6 @@
           }
         }
       }
-    },
-    "Inprogress" : {
-
     },
     "Instructions" : {
       "localizations" : {
