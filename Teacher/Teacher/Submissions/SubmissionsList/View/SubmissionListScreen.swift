@@ -52,7 +52,7 @@ struct SubmissionListScreen: View {
             if anonymizeStudents == false {
                 Section {
                     SearchView(viewModel: viewModel)
-                }
+                } 
             }
             ForEach($viewModel.sections) { $section in
                 Section {
