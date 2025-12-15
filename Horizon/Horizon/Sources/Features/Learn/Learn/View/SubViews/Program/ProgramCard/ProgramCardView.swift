@@ -57,9 +57,6 @@ struct ProgramCardView: View {
         }
         .padding(.huiSpaces.space16)
         .background(cardBackground)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(programCourse.accessibilityLabelText(status: status, isLinear: isLinear))
-        .accessibilityHint(programCourse.accessiblityHintString(status: status))
     }
     // MARK: - Components
     private var titleView: some View {
