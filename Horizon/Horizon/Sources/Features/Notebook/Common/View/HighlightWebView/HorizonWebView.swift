@@ -154,6 +154,10 @@ final class HorizonWebView: CoreWebView {
     override func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         super.webView(webView, didFinish: navigation)
         listenForHighlights()
+        UIAccessibility.post(
+            notification: .announcement,
+            argument: String(localized: "Select the highlighted text, then swipe up or down to mark the note as important or unclear.")
+        )
     }
 
     // MARK: - Private
