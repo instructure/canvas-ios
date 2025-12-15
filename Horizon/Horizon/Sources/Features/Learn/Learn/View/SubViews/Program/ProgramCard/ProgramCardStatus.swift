@@ -67,7 +67,7 @@ enum ProgramCardStatus {
 
     var name: String {
         switch self {
-        case .active: String(localized: "No started yet")
+        case .active: String(localized: "Not started yet")
         case .completed: String(localized: "Completed")
         case .inProgress: String(localized: "Inprogress")
         case .locked: String(localized: "Locked")
