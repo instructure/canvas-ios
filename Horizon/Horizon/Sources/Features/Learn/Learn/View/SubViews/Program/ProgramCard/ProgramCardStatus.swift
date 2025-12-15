@@ -64,4 +64,14 @@ enum ProgramCardStatus {
             return false
         }
     }
+
+    var name: String {
+        switch self {
+        case .active: String(localized: "No started yet")
+        case .completed: String(localized: "Completed")
+        case .inProgress: String(localized: "Inprogress")
+        case .locked: String(localized: "Locked")
+        case .notEnrolled: String(localized: "Not Enrolled")
+        }
+    }
 }

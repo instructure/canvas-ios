@@ -51,6 +51,7 @@ struct ProgramCardLockedView: View {
                 )
             }
         }
+        .accessibilityHidden(true)
     }
 }
 

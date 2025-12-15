@@ -25,6 +25,7 @@ struct ListProgramCards: View {
     let programs: [ProgramCourse]
     let isLoading: Bool
     let isLinear: Bool
+    let focusedID: AccessibilityFocusState<String?>.Binding
     let onTapSelect: (ProgramCourse) -> Void
     let onTapEnroll: (ProgramCourse) -> Void
 
@@ -67,14 +68,23 @@ struct ListProgramCards: View {
                     lastPoint: lastPoint,
                     lastCompletedPoint: lastCompletedPoint
                 )
+                .accessibilityHidden(true)
             }
 
             VStack(spacing: .huiSpaces.space16) {
                 ForEach(programs) { program in
+                    let status = ProgramCardStatus(
+                        completionPercent: program.completionPercent,
+                        status: program.status
+                    )
                     Button {
-                        onTapSelect(program)
+                        if status == .notEnrolled, UIAccessibility.isVoiceOverRunning {
+                            onTapEnroll(program)
+                        } else {
+                            onTapSelect(program)
+                        }
                     } label: {
-                        contentView(for: program)
+                        contentView(for: program, status: status)
                     }
                     .buttonStyle(.plain)
                 }
@@ -84,10 +94,10 @@ struct ListProgramCards: View {
     }
 
     // MARK: - Subviews
-    private func contentView(for program: ProgramCourse) -> some View {
+    private func contentView(for program: ProgramCourse, status: ProgramCardStatus) -> some View {
         HStack(spacing: .huiSpaces.space8) {
-            if isLinear { ProgramIndexCircleView(program: program) }
-            programCard(for: program)
+            if isLinear { ProgramIndexCircleView(program: program).accessibilityHidden(true) }
+            programCard(for: program, status: status)
         }
         .readingFrame(coordinateSpace: .named(Constants.coordinateSpaceID)) { frame in
             guard isLinear else { return }
@@ -106,20 +116,22 @@ struct ListProgramCards: View {
         }
     }
 
-    private func programCard(for program: ProgramCourse) -> some View {
+    @ViewBuilder
+    private func programCard(for program: ProgramCourse, status: ProgramCardStatus) -> some View {
         ProgramCardView(
-            courseName: program.name,
+            programCourse: program,
             isLinear: isLinear,
-            isSelfEnrolled: program.isSelfEnrolled,
-            isRequired: program.isRequired,
-            isLoading: .constant(selectedCourse?.id == program.id ? isLoading : false),
-            estimatedTime: program.estimatedTime,
-            courseStatus: program.status,
-            completionPercent: program.completionPercent
+            status: status,
+            isLoading: .constant(selectedCourse?.id == program.id ? isLoading : false)
         ) {
             selectedCourse = program
             onTapEnroll(program)
         }
+        .identifier(program.id)
+        .accessibilityFocused(focusedID, equals: program.id)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(program.accessibilityLabelText(status: status, isLinear: isLinear))
+        .accessibilityHint(program.accessiblityHintString(status: status))
     }
 }
 

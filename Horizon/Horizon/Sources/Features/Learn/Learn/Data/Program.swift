@@ -69,6 +69,54 @@ struct Program: Identifiable {
     var hasEnrolledCourse: Bool {
         courses.contains { $0.status == ProgramCourse.Status.enrolled.rawValue }
     }
+
+    var accessibilityHeader: String {
+        var description = String.localizedStringWithFormat(
+            String(localized: "Selected program is %@. ", bundle: .horizon),
+            name
+        )
+
+        description += String(localized: "Double tap to select another program. ", bundle: .horizon)
+        return description
+    }
+
+    var accessibilityDescription: String {
+        var text: String = ""
+        if  isOptionalProgram == false {
+            if completionPercent == 0 {
+                text += String(localized: "The program hasn’t started yet. ")
+            } else {
+                text += String.localizedStringWithFormat(
+                    String(localized: "Progress: %d percent complete. ", bundle: .horizon),
+                    Int(round(completionPercent * 100))
+                )
+            }
+        }
+
+        if let description {
+            text += String(format: String(localized: "Description %@. "), description)
+        }
+
+        if let date {
+            text += String(format: String(localized: "Date %@. "), date)
+        }
+
+        if let estimatedTime {
+            text += String(format: String(localized: "Estimated time %@. "), estimatedTime)
+        }
+        if !isLinear, !isOptionalProgram {
+            text += String(
+                format: String(localized: "Complete %d of %d courses. ", bundle: .horizon),
+                countOfRemeaningCourses,
+                courses.count
+            )
+        }
+
+        let type = isLinear ? String(localized: "Linear") : String(localized: "Non Linear")
+        let status = isOptionalProgram ? String(localized: "Optional") : String(localized: "Required")
+        text += String(format: "%@ and %@ Program.", type, status)
+        return text
+    }
 }
 
 struct ProgramCourse: Identifiable, Equatable {
@@ -97,6 +145,44 @@ struct ProgramCourse: Identifiable, Equatable {
 
     var courseStatus: ProgramCourse.Status {
         Status(rawValue: status) ?? .enrolled
+    }
+
+    func ordinalString(from number: Int) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .ordinal
+        return formatter.string(from: NSNumber(value: number)) ?? "\(number)"
+    }
+
+     func accessibilityLabelText(status: ProgramCardStatus, isLinear: Bool) -> String {
+        var accessibilityParts = ""
+        if isLinear, isRequired {
+            accessibilityParts += String(format: String(localized: "%@ Course %@. "), ordinalString(from: index), name)
+        } else {
+            accessibilityParts += String(format: String(localized: "Course name is %@. "), name)
+        }
+        accessibilityParts += String(format: String(localized: "Status %@. "), status.name)
+
+         if status == .inProgress {
+             accessibilityParts += String.localizedStringWithFormat(
+                 String(localized: "Progress: %d percent complete. ", bundle: .horizon),
+                 Int(round(completionPercent * 100))
+             )
+        }
+
+        if let estimatedTime = estimatedTime {
+            accessibilityParts += String(format: String(localized: "Estimated time is %@. "), estimatedTime)
+        }
+        accessibilityParts.append(isRequired ? String(localized: "Required course") : String(localized: "Optional course"))
+
+        return accessibilityParts
+    }
+
+    func accessiblityHintString(status: ProgramCardStatus) -> String {
+        switch status {
+        case .notEnrolled: String(localized: "Double tap to enroll course")
+        case .locked: String(localized: "This course is dimmed")
+        default: String(localized: "Double tap to open course")
+        }
     }
 }
 
