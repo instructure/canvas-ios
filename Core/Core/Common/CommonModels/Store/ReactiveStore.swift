@@ -26,10 +26,10 @@ public enum StoreError: Error {
 }
 
 public class ReactiveStore<U: UseCase> {
-    private let offlineModeInteractor: OfflineModeInteractor?
+    fileprivate let offlineModeInteractor: OfflineModeInteractor?
     internal let useCase: U
-    private let context: NSManagedObjectContext
-    private let environment: AppEnvironment
+    fileprivate let context: NSManagedObjectContext
+    fileprivate let environment: AppEnvironment
 
     // MARK: - Init
 
@@ -263,5 +263,220 @@ public class ReactiveStore<U: UseCase> {
             context: context
         )
         .eraseToAnyPublisher()
+    }
+}
+
+extension ReactiveStore where U: AsyncUseCase {
+    public func getEntites(ignoreCache: Bool = false, loadAllPages: Bool = true) async throws -> [U.Model] {
+        let scope = useCase.scope
+        let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
+        request.predicate = scope.predicate
+        request.sortDescriptors = scope.order
+
+        return if offlineModeInteractor?.isOfflineModeEnabled() == true {
+            try await Self.fetchEntitiesFromDatabase(
+                fetchRequest: request,
+                context: context
+            )
+        } else {
+            if ignoreCache {
+                try await Self.fetchEntitiesFromAPI(
+                    useCase: useCase,
+                    loadAllPages: loadAllPages,
+                    fetchRequest: request,
+                    context: context,
+                    environment: environment
+                    )
+            } else {
+                try await Self.fetchEntitiesFromCache(
+                    useCase: useCase,
+                    fetchRequest: request,
+                    loadAllPages: loadAllPages,
+                    context: context,
+                    environment: environment
+                )
+            }
+        }
+    }
+
+    public func getEntites(ignoreCache: Bool = false, loadAllPages: Bool = true) async throws -> AsyncStream<[U.Model]> {
+        let scope = useCase.scope
+        let request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
+        request.predicate = scope.predicate
+        request.sortDescriptors = scope.order
+
+        return if offlineModeInteractor?.isOfflineModeEnabled() == true {
+            Self.fetchEntitiesFromDatabase(
+                fetchRequest: request,
+                context: context
+            )
+        } else {
+            if ignoreCache {
+                try await Self.fetchEntitiesFromAPI(
+                    useCase: useCase,
+                    loadAllPages: loadAllPages,
+                    fetchRequest: request,
+                    context: context,
+                    environment: environment
+                    )
+            } else {
+                try await Self.fetchEntitiesFromCache(
+                    useCase: useCase,
+                    fetchRequest: request,
+                    loadAllPages: loadAllPages,
+                    context: context,
+                    environment: environment
+                )
+            }
+        }
+    }
+
+    private static func fetchEntitiesFromCache<T: NSManagedObject>(
+        useCase: U,
+        fetchRequest: NSFetchRequest<T>,
+        loadAllPages: Bool,
+        context: NSManagedObjectContext,
+        environment: AppEnvironment
+    ) async throws -> [T] {
+        let hasExpired = try await useCase.hasCacheExpired(environment: environment)
+
+        return if hasExpired {
+            try await Self.fetchEntitiesFromAPI(
+                useCase: useCase,
+                loadAllPages: loadAllPages,
+                fetchRequest: fetchRequest,
+                context: context,
+                environment: environment
+            )
+        } else {
+            try await Self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest, context: context)
+        }
+    }
+
+    private static func fetchEntitiesFromCache<T: NSManagedObject>(
+        useCase: U,
+        fetchRequest: NSFetchRequest<T>,
+        loadAllPages: Bool,
+        context: NSManagedObjectContext,
+        environment: AppEnvironment
+    ) async throws -> AsyncStream<[T]> {
+        let hasExpired = try await useCase.hasCacheExpired(environment: environment)
+
+        return if hasExpired {
+            try await Self.fetchEntitiesFromAPI(
+                useCase: useCase,
+                loadAllPages: loadAllPages,
+                fetchRequest: fetchRequest,
+                context: context,
+                environment: environment
+            )
+        } else {
+            Self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest, context: context)
+        }
+    }
+
+    private static func fetchEntitiesFromAPI<T: NSManagedObject>(
+        useCase: U,
+        getNextUseCase: AsyncGetNextUseCase<U>? = nil,
+        loadAllPages: Bool,
+        fetchRequest: NSFetchRequest<T>,
+        context: NSManagedObjectContext,
+        environment: AppEnvironment
+    ) async throws -> [T] {
+        let urlResponse = if let getNextUseCase {
+            try await getNextUseCase.fetch(environment: environment)
+        } else {
+            try await useCase.fetch(environment: environment)
+        }
+
+        let nextResponse = urlResponse.flatMap { useCase.getNext(from: $0) }
+        try await Self.fetchAllPagesIfNeeded(
+            useCase: useCase,
+            loadAllPages: loadAllPages,
+            nextResponse: nextResponse,
+            fetchRequest: fetchRequest,
+            context: context,
+            environment: environment
+        )
+
+        return try await Self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest, context: context)
+    }
+
+    private static func fetchEntitiesFromAPI<T: NSManagedObject>(
+        useCase: U,
+        getNextUseCase: AsyncGetNextUseCase<U>? = nil,
+        loadAllPages: Bool,
+        fetchRequest: NSFetchRequest<T>,
+        context: NSManagedObjectContext,
+        environment: AppEnvironment
+    ) async throws -> AsyncStream<[T]> {
+        let urlResponse = if let getNextUseCase {
+            try await getNextUseCase.fetch(environment: environment)
+        } else {
+            try await useCase.fetch(environment: environment)
+        }
+
+        let nextResponse = urlResponse.flatMap { useCase.getNext(from: $0) }
+        try await Self.fetchAllPagesIfNeeded(
+            useCase: useCase,
+            loadAllPages: loadAllPages,
+            nextResponse: nextResponse,
+            fetchRequest: fetchRequest,
+            context: context,
+            environment: environment
+        )
+
+        return Self.fetchEntitiesFromDatabase(fetchRequest: fetchRequest, context: context)
+    }
+
+    private static func fetchAllPagesIfNeeded<T: NSManagedObject>(
+        useCase: U,
+        loadAllPages: Bool,
+        nextResponse: GetNextRequest<U.Response>?,
+        fetchRequest: NSFetchRequest<T>,
+        context: NSManagedObjectContext,
+        environment: AppEnvironment
+    ) async throws {
+        guard loadAllPages else { return }
+        let nextPageUseCase = getNextPage(useCase: useCase, nextResponse: nextResponse)
+
+        if let nextPageUseCase {
+            // fetchEntitiesFromAPI is ambiguous
+            let _: [T] = try await Self.fetchEntitiesFromAPI(
+                useCase: useCase,
+                getNextUseCase: nextPageUseCase,
+                loadAllPages: true,
+                fetchRequest: fetchRequest,
+                context: context,
+                environment: environment
+            )
+        }
+    }
+
+    private static func getNextPage(
+        useCase: U,
+        nextResponse: GetNextRequest<U.Response>?
+    ) -> AsyncGetNextUseCase<U>? {
+        if let nextResponse {
+            AsyncGetNextUseCase(parent: useCase, request: nextResponse)
+        } else {
+            nil
+        }
+    }
+
+    private static func fetchEntitiesFromDatabase<T: NSManagedObject>(
+        fetchRequest: NSFetchRequest<T>,
+        context: NSManagedObjectContext
+    ) async throws -> [T] {
+        try await FetchedResultsPublisher(request: fetchRequest, context: context)
+            .asyncPublisher()
+    }
+
+    private static func fetchEntitiesFromDatabase<T: NSManagedObject>(
+        fetchRequest: NSFetchRequest<T>,
+        context: NSManagedObjectContext
+    ) -> AsyncStream<[T]> {
+        FetchedResultsPublisher(request: fetchRequest, context: context)
+            .asyncStream()
     }
 }

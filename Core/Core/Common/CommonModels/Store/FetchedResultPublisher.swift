@@ -44,6 +44,18 @@ public final class FetchedResultsPublisher<ResultType>: Publisher where ResultTy
             context: context
         ))
     }
+
+    public func asyncStream() -> AsyncStream<Output> {
+        AsyncStream { continuation in
+            let cancellable = self.sink { _ in
+                continuation.finish()
+            } receiveValue: {
+                continuation.yield($0)
+            }
+
+            continuation.onTermination = { _ in cancellable.cancel() }
+        }
+    }
 }
 
 final class FetchedResultsSubscription

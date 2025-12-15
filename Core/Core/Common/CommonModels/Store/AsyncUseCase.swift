@@ -20,29 +20,25 @@ import CoreData
 import Foundation
 
 public protocol AsyncAPIUseCases: UseCase {
-    func makeRequest(environment: AppEnvironment) async throws -> (Response, URLResponse)
+    func makeRequest(environment: AppEnvironment) async throws -> (Response, URLResponse?)
 }
 
 public protocol AsyncUseCase: UseCase {
-    func makeRequest(environment: AppEnvironment) async throws -> (Response, URLResponse)
+    func makeRequest(environment: AppEnvironment) async throws -> (Response, URLResponse?)
 }
 
 public extension AsyncUseCase {
-    // Cache expiration check used by the `ReactiveStore`.
     func hasCacheExpired(environment: AppEnvironment = .shared) async throws -> Bool {
         try await environment.database.performWriteTask { context in
             self.hasExpired(in: context)
         }
     }
 
-    /// Reactive `fetch()`, used by the `ReactiveStore` and directly from other places.
-    /// Returns the URLResponse after writing to the database.
-    func fetch(environment: AppEnvironment = .shared) async throws -> URLResponse {
+    func fetch(environment: AppEnvironment = .shared) async throws -> URLResponse? {
         try await executeFetch(environment: environment).1
     }
 
-    /// Private helper method that executes the fetch and write logic.
-    private func executeFetch(environment: AppEnvironment) async throws -> (Response, URLResponse) {
+    private func executeFetch(environment: AppEnvironment) async throws -> (Response, URLResponse?) {
         let (response, urlResponse) = try await makeRequest(environment: environment)
 
         return try await environment.database.performWriteTask { context in
@@ -65,19 +61,10 @@ public extension AsyncUseCase {
     }
 }
 
-public protocol AsyncAPIUseCase: AsyncUseCase, APIUseCase {
-//    associatedtype Request: APIRequestable
-//    var request: Request { get }
-}
-
-public extension AsyncAPIUseCase {
-//    func getNext(from response: URLResponse) -> GetNextRequest<Request.Response>? {
-//        request.getNext(from: response)
-//    }
-}
+public protocol AsyncAPIUseCase: AsyncUseCase, APIUseCase { }
 
 public extension AsyncAPIUseCase where Response == Request.Response {
-    func makeRequest(environment: AppEnvironment) async throws -> (Response, URLResponse) {
+    func makeRequest(environment: AppEnvironment) async throws -> (Response, URLResponse?) {
         try await environment.api.makeRequest(request)
     }
 }
@@ -107,21 +94,3 @@ public struct AsyncGetNextUseCase<U: AsyncUseCase>: AsyncAPIUseCase {
         parent.write(response: response, urlResponse: urlResponse, to: client)
     }
 }
-//
-//public extension AsyncUseCase where Model: WriteableModel, Model.JSON == Response {
-//    func write(response: Model.JSON?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
-//        guard let response = response else {
-//            return
-//        }
-//        Model.save(response, in: client)
-//    }
-//}
-//
-//public extension AsyncUseCase where Model: WriteableModel, Response: Collection, Model.JSON == Response.Element {
-//    func write(response: [Model.JSON]?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
-//        guard let response = response else {
-//            return
-//        }
-//        Model.save(response, in: client)
-//    }
-//}
