@@ -87,7 +87,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 				.background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
 				.navigationBarTitleView(viewModel.navigationBarTitle)
 				.navigationBarGenericBackButton()
-				.navigationBarItems(trailing: viewModel.showSettings ? legacySettingsButton : nil)
+				.navigationBarItems(trailing: viewModel.showSettings ? settingsButton : nil)
 				.navigationBarStyle(.color(viewModel.courseColor))
 				.onAppear {
 					viewModel.viewDidAppear()
@@ -99,28 +99,18 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
 		}
     }
 
-	@ViewBuilder
-	@available(iOS, introduced: 26, message: "Legacy version exists")
-	private var settingsButton: some View {
-		Button {
-			if let url = viewModel.settingsRoute {
-				env.router.route(to: url, from: controller, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
-			}
-		} label: {
-			Image.settingsSolid
-		}
-		.accessibility(label: Text("Edit course settings", bundle: .core))
-	}
-
     @ViewBuilder
-	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
-    private var legacySettingsButton: some View {
+    private var settingsButton: some View {
         Button {
             if let url = viewModel.settingsRoute {
                 env.router.route(to: url, from: controller, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
             }
         } label: {
-            Image.settingsLine.foregroundColor(.textLightest)
+            if #available(iOS 26, *) {
+                Image.settingsSolid
+            } else {
+                Image.settingsLine.foregroundColor(.textLightest)
+            }
         }
         .accessibility(label: Text("Edit course settings", bundle: .core))
     }

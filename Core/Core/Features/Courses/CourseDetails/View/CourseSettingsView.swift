@@ -35,98 +35,50 @@ public struct CourseSettingsView: View, ScreenViewTrackable {
 
     public var body: some View {
         if #available(iOS 26, *) {
-            GeometryReader { geometry in
-                switch viewModel.state {
-                case .loading:
-                    ProgressView()
-                        .progressViewStyle(.indeterminateCircle())
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                case .ready, .saving:
-                    editor(width: geometry.size.width)
-                }
-            }
-            .navigationTitle(.init("Customize Course", bundle: .core))
-            .optionalNavigationSubtitle(viewModel.courseName)
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button(action: cancelTapped) {
-                        Text("Cancel", bundle: .core)
-                            .fontWeight(.regular)
-                    }
-                }
-
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button(action: doneTapped) {
-                        Text("Done", bundle: .core)
-                            .bold()
-                    }
-                    .disabled(viewModel.state != .ready)
-                }
-            }
-            .onAppear(perform: viewModel.viewDidAppear)
-            .alert(isPresented: $viewModel.showError) {
-                Alert(title: Text(viewModel.errorText ?? String(localized: "Something went wrong", bundle: .core)))
-            }
+            states
+                .navigationTitle(.init("Customize Course", bundle: .core))
+                .optionalNavigationSubtitle(viewModel.courseName)
         } else {
-            GeometryReader { geometry in
-                switch viewModel.state {
-                case .loading:
-                    ProgressView()
-                        .progressViewStyle(.indeterminateCircle())
-                        .frame(maxWidth: .infinity, maxHeight: .infinity)
-                case .ready, .saving:
-                    legacyEditor(width: geometry.size.width)
-                }
-            }
-            .navigationBarTitleView(
-                title: String(localized: "Customize Course", bundle: .core),
-                subtitle: viewModel.courseName
-            )
-            .navBarItems(
-                leading: {
-                    Button(action: cancelTapped) {
-                        Text("Cancel", bundle: .core).fontWeight(.regular)
-                    }
-                },
-                trailing: {
-                    Button(action: doneTapped) {
-                        Text("Done", bundle: .core).bold()
-                    }
-                    .disabled(viewModel.state != .ready)
-                }
-            )
-            .navigationBarStyle(.modal)
-            .onAppear(perform: viewModel.viewDidAppear)
-            .alert(isPresented: $viewModel.showError) {
-                Alert(title: Text(viewModel.errorText ?? String(localized: "Something went wrong", bundle: .core)))
-            }
+            states
+                .navigationBarTitleView(
+                    title: String(localized: "Customize Course", bundle: .core),
+                    subtitle: viewModel.courseName
+                )
+                .navigationBarStyle(.modal)
         }
     }
 
-    @available(iOS, introduced: 26, message: "Legacy version exists")
+    private var states: some View {
+        GeometryReader { geometry in
+            switch viewModel.state {
+            case .loading:
+                ProgressView()
+                    .progressViewStyle(.indeterminateCircle())
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+            case .ready, .saving:
+                editor(width: geometry.size.width)
+            }
+        }
+        .navBarItems(
+            leading: {
+                Button(action: cancelTapped) {
+                    Text("Cancel", bundle: .core).fontWeight(.regular)
+                }
+            },
+            trailing: {
+                Button(action: doneTapped) {
+                    Text("Done", bundle: .core).bold()
+                }
+                .disabled(viewModel.state != .ready)
+            }
+        )
+        .onAppear(perform: viewModel.viewDidAppear)
+        .alert(isPresented: $viewModel.showError) {
+            Alert(title: Text(viewModel.errorText ?? String(localized: "Something went wrong", bundle: .core)))
+        }
+    }
+
     private func editor(width: CGFloat) -> some View {
-        EditorForm(isSpinning: viewModel.state == .saving) {
-            let height: CGFloat = 235
-            ZStack {
-                Color(viewModel.courseColor ?? .textDark).frame(width: width, height: height)
-                if let url = viewModel.imageURL {
-                    RemoteImage(url, width: width, height: height, shouldHandleAnimatedGif: true)
-                        .opacity(viewModel.hideColorOverlay == true ? 1 : 0.4)
-                        .accessibility(hidden: true)
-                }
-            }
-            .frame(height: height)
-            .clipped()
-
-            nameRow
-            Divider()
-            defaultViewButtonRow
-            Divider()
-        }
-    }
-
-    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
-    private func legacyEditor(width: CGFloat) -> some View {
         EditorForm(isSpinning: viewModel.state == .saving) {
             let height: CGFloat = 235
             ZStack {

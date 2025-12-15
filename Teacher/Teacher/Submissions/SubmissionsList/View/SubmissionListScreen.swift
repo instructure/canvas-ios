@@ -33,27 +33,23 @@ struct SubmissionListScreen: View {
 
     var body: some View {
         if #available(iOS 26, *) {
-            InstUI.BaseScreen(
-                state: viewModel.state,
-                refreshAction: { completion in
-                    viewModel.refresh(completion)
-                },
-                content: { _ in listView }
-            )
-            .toolbar { toolbarContent }
-            .navigationTitle(Text("Submissions", bundle: .teacher))
+            content
         } else {
-            InstUI.BaseScreen(
-                state: viewModel.state,
-                refreshAction: { completion in
-                    viewModel.refresh(completion)
-                },
-                content: { _ in listView }
-            )
-            .toolbar { toolbarContent }
-            .navigationTitle(Text("Submissions", bundle: .teacher))
-            .navigationBarStyle(.color(viewModel.course?.color))
+            content
+                .navigationBarStyle(.color(viewModel.course?.color))
         }
+    }
+
+    private var content: some View {
+        InstUI.BaseScreen(
+            state: viewModel.state,
+            refreshAction: { completion in
+                viewModel.refresh(completion)
+            },
+            content: { _ in listView }
+        )
+        .toolbar { toolbarContent }
+        .navigationTitle(Text("Submissions", bundle: .teacher))
     }
 
     private var listView: some View {

@@ -29,59 +29,41 @@ public struct MessageDetailsView: View {
 
     public var body: some View {
 		if #available(iOS 26, *) {
-			RefreshableScrollView {
-				switch model.state {
-				case .loading:
-					loadingIndicator
-				case .data:
-					detailsView
-				case .empty, .error:
-					VStack(alignment: .center, spacing: 0) {
-						Text("There was an error loading the message. Pull to refresh to try again.", bundle: .core)
-							.multilineTextAlignment(.center)
-							.padding(.horizontal, 12)
-					}
-					.padding(.horizontal, 12)
-					.padding(.vertical, 24)
-				}
-			}
-			refreshAction: { onComplete in
-				model.refreshDidTrigger.send {
-					onComplete()
-				}
-			}
-			.background(Color.backgroundLightest)
-			.navigationTitle(model.title)
-			.snackBar(viewModel: model.snackBarViewModel)
-			.toolbar { moreButton }
+            content
+                .navigationTitle(model.title)
+                .snackBar(viewModel: model.snackBarViewModel)
+                .toolbar { moreButton }
 		} else {
-			RefreshableScrollView {
-				switch model.state {
-				case .loading:
-					loadingIndicator
-				case .data:
-					detailsView
-				case .empty, .error:
-					VStack(alignment: .center, spacing: 0) {
-						Text("There was an error loading the message. Pull to refresh to try again.", bundle: .core)
-							.multilineTextAlignment(.center)
-							.padding(.horizontal, 12)
-					}
-					.padding(.horizontal, 12)
-					.padding(.vertical, 24)
-				}
-			}
-			refreshAction: { onComplete in
-				model.refreshDidTrigger.send {
-					onComplete()
-				}
-			}
-			.background(Color.backgroundLightest)
-			.navigationBarTitleView(model.title)
-			.navigationBarItems(trailing: legacyMoreButton)
-			.navigationBarStyle(.global)
-			.snackBar(viewModel: model.snackBarViewModel)
+			content
+                .navigationBarTitleView(model.title)
+                .navigationBarItems(trailing: legacyMoreButton)
+                .navigationBarStyle(.global)
 		}
+    }
+
+    private var content: some View {
+        RefreshableScrollView {
+            switch model.state {
+            case .loading:
+                loadingIndicator
+            case .data:
+                detailsView
+            case .empty, .error:
+                VStack(alignment: .center, spacing: 0) {
+                    Text("There was an error loading the message. Pull to refresh to try again.", bundle: .core)
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 12)
+                }
+                .padding(.horizontal, 12)
+                .padding(.vertical, 24)
+            }
+        } refreshAction: { onComplete in
+            model.refreshDidTrigger.send {
+                onComplete()
+            }
+        }
+        .background(Color.backgroundLightest)
+        .snackBar(viewModel: model.snackBarViewModel)
     }
 
     private var loadingIndicator: some View {
@@ -226,7 +208,6 @@ public struct MessageDetailsView: View {
                     .frame(height: 0.5)
 
                 if #available(iOS 26, *) {
-
                     MessageView(model: message,
                                 isReplyButtonVisible: model.isReplyButtonVisible,
                                 isStudentAccessRestricted: model.isStudentAccessRestricted,

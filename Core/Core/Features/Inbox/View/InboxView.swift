@@ -36,97 +36,64 @@ public struct InboxView: View, ScreenViewTrackable {
 
     public var body: some View {
 		if #available(iOS 26, *) {
-			VStack(spacing: 0) {
-				InboxFilterBarView(model: model)
-				Color.borderMedium
-					.frame(height: 0.5)
-				if case .loading = model.state {
-					loadingIndicator
-				} else {
-					GeometryReader { geometry in
-						List {
-							switch model.state {
-							case .data:
-								messagesList
-									.listRowBackground(SwiftUI.EmptyView())
-								nextPageLoadingIndicator(geometry: geometry)
-									.onAppear {
-										model.contentDidScrollToBottom.send()
-									}
-							case .empty:
-								panda(geometry: geometry, data: model.emptyState)
-							case .error:
-								panda(geometry: geometry, data: model.errorState)
-							case .loading:
-								SwiftUI.EmptyView()
-							}
-						}
-						.refreshable {
-							await withCheckedContinuation { continuation in
-								model.refreshDidTrigger.send {
-									continuation.resume()
-								}
-							}
-						}
-						.listStyle(PlainListStyle())
-						.animation(.default, value: model.messages)
-					}
-				}
-			}
-			.background(Color.backgroundLightest)
-			.toolbar {
-				if model.isShowMenuButton {
-					ToolbarItem(placement: .topBarLeading) {
-						menuButton
-					}
-				}
+			content
+                .toolbar {
+                    if model.isShowMenuButton {
+                        ToolbarItem(placement: .topBarLeading) {
+                            menuButton
+                        }
+                    }
 
-				ToolbarItem(placement: .topBarTrailing) {
-					newMessageButton
-				}
-			}
+                    ToolbarItem(placement: .topBarTrailing) {
+                        newMessageButton
+                    }
+                }
 		} else {
-			VStack(spacing: 0) {
-				InboxFilterBarView(model: model)
-				Color.borderMedium
-					.frame(height: 0.5)
-				if case .loading = model.state {
-					loadingIndicator
-				} else {
-					GeometryReader { geometry in
-						List {
-							switch model.state {
-							case .data:
-								messagesList
-									.listRowBackground(SwiftUI.EmptyView())
-								nextPageLoadingIndicator(geometry: geometry)
-									.onAppear {
-										model.contentDidScrollToBottom.send()
-									}
-							case .empty:
-								panda(geometry: geometry, data: model.emptyState)
-							case .error:
-								panda(geometry: geometry, data: model.errorState)
-							case .loading:
-								SwiftUI.EmptyView()
-							}
-						}
-						.refreshable {
-							await withCheckedContinuation { continuation in
-								model.refreshDidTrigger.send {
-									continuation.resume()
-								}
-							}
-						}
-						.listStyle(PlainListStyle())
-						.animation(.default, value: model.messages)
-					}
-				}
-			}
-			.background(Color.backgroundLightest)
-			.navigationBarItems(leading: model.isShowMenuButton ? legacyMenuButton : nil, trailing: legacyNewMessageButton)
-			.navigationBarStyle(.global)
+            content
+                .navigationBarItems(leading: model.isShowMenuButton ? legacyMenuButton : nil, trailing: legacyNewMessageButton)
+                .navigationBarStyle(.global)
 		}
+    }
+
+    private var content: some View {
+        VStack(spacing: 0) {
+            InboxFilterBarView(model: model)
+            Color.borderMedium
+                .frame(height: 0.5)
+            if case .loading = model.state {
+                loadingIndicator
+            } else {
+                GeometryReader { geometry in
+                    List {
+                        switch model.state {
+                        case .data:
+                            messagesList
+                                .listRowBackground(SwiftUI.EmptyView())
+                            nextPageLoadingIndicator(geometry: geometry)
+                                .onAppear {
+                                    model.contentDidScrollToBottom.send()
+                                }
+                        case .empty:
+                            panda(geometry: geometry, data: model.emptyState)
+                        case .error:
+                            panda(geometry: geometry, data: model.errorState)
+                        case .loading:
+                            SwiftUI.EmptyView()
+                        }
+                    }
+                    .refreshable {
+                        await withCheckedContinuation { continuation in
+                            model.refreshDidTrigger.send {
+                                continuation.resume()
+                            }
+                        }
+                    }
+                    .listStyle(PlainListStyle())
+                    .animation(.default, value: model.messages)
+                }
+            }
+        }
+        .background(Color.backgroundLightest)
     }
 
     private var messagesList: some View {

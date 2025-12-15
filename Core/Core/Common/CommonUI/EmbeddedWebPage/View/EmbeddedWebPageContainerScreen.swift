@@ -41,41 +41,32 @@ public struct EmbeddedWebPageContainerScreen: View {
 
     public var body: some View {
         if #available(iOS 26, *) {
-            WebSession(url: viewModel.url) { sessionURL in
-                WebView(
-                    url: sessionURL,
-                    features: features,
-                    canToggleTheme: true,
-                    configuration: viewModel.webViewConfig
-                )
-                .onProvisionalNavigationStarted { webView, navigation in
-                    viewModel.webView(webView, didStartProvisionalNavigation: navigation)
-                }
+            webSession
                 .navBarItems(leading: viewModel.leadingNavigationButton)
-                .onAppear {
-                    viewModel.viewController = viewController.value
-                }
-            }
-            .navigationTitle(viewModel.navTitle)
-            .optionalNavigationSubtitle(viewModel.subTitle)
+                .navigationTitle(viewModel.navTitle)
+                .optionalNavigationSubtitle(viewModel.subTitle)
         } else {
-            WebSession(url: viewModel.url) { sessionURL in
-                WebView(
-                    url: sessionURL,
-                    features: features,
-                    canToggleTheme: true,
-                    configuration: viewModel.webViewConfig
-                )
-                .onProvisionalNavigationStarted { webView, navigation in
-                    viewModel.webView(webView, didStartProvisionalNavigation: navigation)
-                }
+            webSession
                 .navBarItems(leading: viewModel.leadingNavigationButton)
-                .onAppear {
-                    viewModel.viewController = viewController.value
-                }
+                .navigationBarTitleView(title: viewModel.navTitle, subtitle: viewModel.subTitle)
+                .navigationBarStyle(.color(viewModel.contextColor))
+        }
+    }
+
+    private var webSession: some View {
+        WebSession(url: viewModel.url) { sessionURL in
+            WebView(
+                url: sessionURL,
+                features: features,
+                canToggleTheme: true,
+                configuration: viewModel.webViewConfig
+            )
+            .onProvisionalNavigationStarted { webView, navigation in
+                viewModel.webView(webView, didStartProvisionalNavigation: navigation)
             }
-            .navigationBarTitleView(title: viewModel.navTitle, subtitle: viewModel.subTitle)
-            .navigationBarStyle(.color(viewModel.contextColor))
+            .onAppear {
+                viewModel.viewController = viewController.value
+            }
         }
     }
 }

@@ -36,6 +36,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
 
     public var screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/")
 
+    @available(iOS, deprecated: 26)
     @State private var isShowingKebabDialog = false
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
     @StateObject private var offlineSyncCardViewModel = DashboardOfflineSyncProgressCardAssembly.makeViewModel()

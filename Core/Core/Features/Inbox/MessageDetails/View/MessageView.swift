@@ -86,9 +86,11 @@ public struct MessageView: View {
                     .accessibilityIdentifier("MessageDetails.date")
             }
             Spacer()
+
             if isReplyButtonVisible {
                 replyIconButton
             }
+            
             Menu {
                 if isReplyButtonVisible {
                     Button(.init("Reply", bundle: .core), image: .replyLine, action: replyDidTap)
@@ -102,18 +104,18 @@ public struct MessageView: View {
                         )
                         .accessibilityIdentifier("MessageDetails.replyAll")
                     }
+                }
 
-                    Button(.init("Forward", bundle: .core), image: .forwardLine, action: forwardDidTap)
-                        .accessibilityIdentifier("MessageDetails.forward")
+                Button(.init("Forward", bundle: .core), image: .forwardLine, action: forwardDidTap)
+                    .accessibilityIdentifier("MessageDetails.forward")
 
-                    if !isStudentAccessRestricted {
-                        Button(
-                            .init("Delete Message", bundle: .core),
-                            image: .trashLine,
-                            action: deleteDidTap
-                        )
-                        .accessibilityIdentifier("MessageDetails.delete")
-                    }
+                if !isStudentAccessRestricted {
+                    Button(
+                        .init("Delete Message", bundle: .core),
+                        image: .trashLine,
+                        action: deleteDidTap
+                    )
+                    .accessibilityIdentifier("MessageDetails.delete")
                 }
             } label: {
                 Image

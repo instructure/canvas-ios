@@ -1,15 +1,16 @@
 {
   "images" : [
     {
-      "filename" : "arrow-up 2v.svg",
-      "idiom" : "universal"
+      "idiom" : "universal",
+      "filename" : "arrowUp.svg"
     }
   ],
   "info" : {
-    "author" : "xcode",
-    "version" : 1
+    "version" : 1,
+    "author" : "xcode"
   },
   "properties" : {
-    "template-rendering-intent" : "template"
+    "template-rendering-intent" : "template",
+    "preserves-vector-representation" : true
   }
 }

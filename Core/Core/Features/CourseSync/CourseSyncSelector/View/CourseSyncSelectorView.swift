@@ -100,6 +100,7 @@ struct CourseSyncSelectorView: View {
                     VStack(spacing: 0) {
                         GeometryReader { geometry in
                             ScrollView {
+                                // Not collapsable above iOS 26
                                 CourseSyncDiskSpaceInfoView(
                                     viewModel: diskSpaceViewModel,
                                     scrollOffset: scrollOffset ?? 0

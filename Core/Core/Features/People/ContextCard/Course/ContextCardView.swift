@@ -27,31 +27,29 @@ public struct ContextCardView: View {
     }
 
     public var body: some View {
-		if #available(iOS 26, *) {
-			contextCard
-				.background(Color.backgroundLightest)
-				.optionalNavigationTitle(model.user.first?.name)
-				.optionalNavigationSubtitle(model.course.first?.name)
-				.toolbar {
-					emailButton
-				}
-				.navigationBarStyle(model.isModal ? .modal : .color(nil))
-				.onAppear {
-					model.viewAppeared()
-				}
-		} else {
-			contextCard
-				.background(Color.backgroundLightest)
-				.navigationBarTitleView(
-					title: model.user.first?.name ?? "",
-					subtitle: model.course.first?.name
-				)
-				.navigationBarItems(trailing: legacyEmailButton)
-				.navigationBarStyle(model.isModal ? .modal : .color(nil))
-				.onAppear {
-					model.viewAppeared()
-				}
-		}
+        SwiftUI.Group {
+            if #available(iOS 26, *) {
+                contextCard
+                    .optionalNavigationTitle(model.user.first?.name)
+                    .optionalNavigationSubtitle(model.course.first?.name)
+                    .toolbar {
+                        emailButton
+                    }
+                    .navigationBarStyle(model.isModal ? .modal : .color(nil))
+            } else {
+                contextCard
+                    .navigationBarTitleView(
+                        title: model.user.first?.name ?? "",
+                        subtitle: model.course.first?.name
+                    )
+                    .navigationBarItems(trailing: legacyEmailButton)
+                    .navigationBarStyle(model.isModal ? .modal : .color(nil))
+            }
+        }
+        .background(Color.backgroundLightest)
+        .onAppear {
+            model.viewAppeared()
+        }
     }
 
 	@available(iOS, introduced: 26, message: "Legacy version exists")

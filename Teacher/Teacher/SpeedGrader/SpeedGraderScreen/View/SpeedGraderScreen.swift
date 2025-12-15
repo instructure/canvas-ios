@@ -47,56 +47,51 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
 
     var body: some View {
         if #available(iOS 26, *) {
-            InstUI.BaseScreen(state: viewModel.state, config: screenConfig) { proxy in
-                PagesViewControllerWrapper(
-                    dataSource: viewModel,
-                    delegate: viewModel,
-                    onViewControllerCreate: {
-                        viewModel.didShowPagesViewController.send($0)
+            content
+                .navigationTitle(viewModel.navigationTitle)
+                .navigationSubtitle(viewModel.navigationSubtitle)
+                .toolbar {
+                    if viewModel.isPostPolicyButtonVisible {
+                        postPolicySettingsButton
                     }
-                )
-                .frame(width: proxy.size.width, height: proxy.size.height)
-            }
-            .navigationTitle(viewModel.navigationTitle)
-            .navigationSubtitle(viewModel.navigationSubtitle)
-            .toolbar {
-                if viewModel.isPostPolicyButtonVisible {
-                    postPolicySettingsButton
+                    doneButton
                 }
-                doneButton
-            }
-            .onFirstAppear {
+                .onFirstAppear {
                     // When speedgrader is opened from a discussion
                     // the router automatically adds a done button
-                controller.value.navigationItem.leadingItemGroups = []
-            }
+                    controller.value.navigationItem.leadingItemGroups = []
+                }
         } else {
-            InstUI.BaseScreen(state: viewModel.state, config: screenConfig) { proxy in
-                PagesViewControllerWrapper(
-                    dataSource: viewModel,
-                    delegate: viewModel,
-                    onViewControllerCreate: {
-                        viewModel.didShowPagesViewController.send($0)
-                    }
+            content
+                .navigationBarTitleView(
+                    title: viewModel.navigationTitle,
+                    subtitle: viewModel.navigationSubtitle
                 )
-                .frame(width: proxy.size.width, height: proxy.size.height)
-            }
-            .navigationBarTitleView(
-                title: viewModel.navigationTitle,
-                subtitle: viewModel.navigationSubtitle
+                // There's an attributed graph cycle (caused by UINavigationBar.useContextColor) that prevents
+                // the screen from moving from loading to data state. Adding this ID will treat the view as
+                // completely new when the state changes and allowing the view to re-render.
+                .id(viewModel.state)
+                .navBarItems(trailing: navBarTrailingItems)
+                .navigationBarStyle(.color(viewModel.navigationBarColor))
+                .onFirstAppear {
+                    setupStatusBarStyleUpdates()
+                    // When speedgrader is opened from a discussion
+                    // the router automatically adds a done button
+                    controller.value.navigationItem.leadingItemGroups = []
+                }
+        }
+    }
+
+    private var content: some View {
+        InstUI.BaseScreen(state: viewModel.state, config: screenConfig) { proxy in
+            PagesViewControllerWrapper(
+                dataSource: viewModel,
+                delegate: viewModel,
+                onViewControllerCreate: {
+                    viewModel.didShowPagesViewController.send($0)
+                }
             )
-            // There's an attributed graph cycle (caused by UINavigationBar.useContextColor) that prevents
-            // the screen from moving from loading to data state. Adding this ID will treat the view as
-            // completely new when the state changes and allowing the view to re-render.
-            .id(viewModel.state)
-            .navBarItems(trailing: navBarTrailingItems)
-            .navigationBarStyle(.color(viewModel.navigationBarColor))
-            .onFirstAppear {
-                setupStatusBarStyleUpdates()
-                // When speedgrader is opened from a discussion
-                // the router automatically adds a done button
-                controller.value.navigationItem.leadingItemGroups = []
-            }
+            .frame(width: proxy.size.width, height: proxy.size.height)
         }
     }
 

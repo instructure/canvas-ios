@@ -125,15 +125,12 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
     public override func viewDidLoad() {
         super.viewDidLoad()
 
+        let navigationTitle = isAnnouncement ? String(localized: "Announcement Details", bundle: .core) : String(localized: "Discussion Details", bundle: .core)
+
         if #available(iOS 26, *) {
-            navigationItem.title = isAnnouncement
-                ? String(localized: "Announcement Details", bundle: .core)
-                : String(localized: "Discussion Details", bundle: .core)
+            navigationItem.title = navigationTitle
         } else {
-            setupTitleViewInNavbar(title: isAnnouncement
-                                   ? String(localized: "Announcement Details", bundle: .core)
-                                   : String(localized: "Discussion Details", bundle: .core)
-            )
+            setupTitleViewInNavbar(title: navigationTitle)
         }
 
         courseSectionsView.isHidden = true
@@ -169,15 +166,13 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         webView.handle("moreOptions") { [weak self] message in self?.handleMoreOptions(message) }
         webView.handle("ready") { [weak self] _ in self?.ready() }
 
+        let showRepliesNavigationTitle = isAnnouncement ? String(localized: "Announcement Replies", bundle: .core) : String(localized: "Discussion Replies", bundle: .core)
+
         if showRepliesToEntryID != nil {
             if #available(iOS 26, *) {
-                navigationItem.title = isAnnouncement
-                    ? String(localized: "Announcement Replies", bundle: .core)
-                    : String(localized: "Discussion Replies", bundle: .core)
+                navigationItem.title = showRepliesNavigationTitle
             } else {
-                titleSubtitleView.title = isAnnouncement
-                    ? String(localized: "Announcement Replies", bundle: .core)
-                    : String(localized: "Discussion Replies", bundle: .core)
+                titleSubtitleView.title = showRepliesNavigationTitle
             }
             navigationItem.rightBarButtonItem = nil
         }
@@ -249,26 +244,17 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         }
         spinnerView.color = color
         refreshControl.color = color
-        if #available(iOS 26, *) {
-            navigationItem.title = showRepliesToEntryID != nil ? (
-                isAnnouncement
-                    ? String(localized: "Announcement Replies", bundle: .core)
-                    : String(localized: "Discussion Replies", bundle: .core)
-            ) : (
-                isAnnouncement
-                    ? String(localized: "Announcement Details", bundle: .core)
-                    : String(localized: "Discussion Details", bundle: .core)
-            )
+
+        let navigationTitle = if showRepliesToEntryID != nil  {
+            isAnnouncement ? String(localized: "Announcement Replies", bundle: .core) : String(localized: "Discussion Replies", bundle: .core)
         } else {
-            titleSubtitleView.title = showRepliesToEntryID != nil ? (
-                isAnnouncement
-                    ? String(localized: "Announcement Replies", bundle: .core)
-                    : String(localized: "Discussion Replies", bundle: .core)
-            ) : (
-                isAnnouncement
-                    ? String(localized: "Announcement Details", bundle: .core)
-                    : String(localized: "Discussion Details", bundle: .core)
-            )
+            isAnnouncement ? String(localized: "Announcement Details", bundle: .core) : String(localized: "Discussion Details", bundle: .core)
+        }
+
+        if #available(iOS 26, *) {
+            navigationItem.title = navigationTitle
+        } else {
+            titleSubtitleView.title = navigationTitle
         }
 
         if #available(iOS 26, *) {

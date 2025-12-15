@@ -104,60 +104,52 @@ public struct InboxFilterBarView: View {
 
     @ViewBuilder
     private var scopeFilterButton: some View {
-        if #available(iOS 26, *) {
-            Menu {
-                Section(.init("Filter by", bundle: .core)) {
-                    ForEach(model.scopes, id: \.localizedName) { scope in
-                        Button(scope.localizedName) {
-                            model.scopeDidChange.send(scope)
+        SwiftUI.Group {
+            if #available(iOS 26, *) {
+                Menu {
+                    Section(.init("Filter by", bundle: .core)) {
+                        ForEach(model.scopes, id: \.localizedName) { scope in
+                            Button(scope.localizedName) {
+                                model.scopeDidChange.send(scope)
+                            }
                         }
                     }
+                } label: {
+                    scopeFilterLabel
                 }
-            } label: {
-                HStack(spacing: 5) {
-                    Text(model.scope.localizedName)
-                        .lineLimit(1)
-                        .font(.regular16)
-                    Image
-                        .arrowOpenDownSolid
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 13)
-                        .accessibilityHidden(true)
-                }
-                .foregroundColor(Color(Brand.shared.linkColor))
-            }
-            .accessibilityLabel(Text("Filter messages by type", bundle: .core))
-            .accessibilityHint(Text(model.scope.localizedName))
-            .accessibilityIdentifier("Inbox.filterByType")
-        } else {
-            Button {
-                if model.isShowingCourseSelector {
-                    return
-                }
+            } else {
+                Button {
+                    if model.isShowingCourseSelector {
+                        return
+                    }
 
-                model.isShowingScopeSelector.toggle()
-            } label: {
-                HStack(spacing: 5) {
-                    Text(model.scope.localizedName)
-                        .lineLimit(1)
-                        .font(.regular16)
-                    Image
-                        .arrowOpenDownSolid
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 13)
-                        .accessibilityHidden(true)
+                    model.isShowingScopeSelector.toggle()
+                } label: {
+                    scopeFilterLabel
                 }
-                .foregroundColor(Color(Brand.shared.linkColor))
+                .actionSheet(isPresented: $model.isShowingScopeSelector) {
+                    ActionSheet(title: Text("Filter by", bundle: .core), buttons: scopeFilterButtons)
+                }
             }
-            .actionSheet(isPresented: $model.isShowingScopeSelector) {
-                ActionSheet(title: Text("Filter by", bundle: .core), buttons: scopeFilterButtons)
-            }
-            .accessibilityLabel(Text("Filter messages by type", bundle: .core))
-            .accessibilityHint(Text(model.scope.localizedName))
-            .accessibilityIdentifier("Inbox.filterByType")
         }
+        .accessibilityLabel(Text("Filter messages by type", bundle: .core))
+        .accessibilityHint(Text(model.scope.localizedName))
+        .accessibilityIdentifier("Inbox.filterByType")
+    }
+
+    private var scopeFilterLabel: some View {
+        HStack(spacing: 5) {
+            Text(model.scope.localizedName)
+                .lineLimit(1)
+                .font(.regular16)
+            Image
+                .arrowOpenDownSolid
+                .resizable()
+                .scaledToFit()
+                .frame(width: 13)
+                .accessibilityHidden(true)
+        }
+        .foregroundColor(Color(Brand.shared.linkColor))
     }
 
     private var scopeFilterButtons: [ActionSheet.Button] {

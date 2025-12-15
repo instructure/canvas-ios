@@ -46,124 +46,71 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-		if #available(iOS 26, *) {
-			InstUI.BaseScreen(state: model.state, config: model.screenConfig) { geometry in
-				baseScreenView(geometry)
-					.font(.regular12)
-					.foregroundColor(.textDarkest)
-					.background(
-						GeometryReader { reader in
-							Color
-								.backgroundLightest
-								.onTapGesture {
-									model.clearSearchedRecipients()
-									focusedInput = nil
-								}
-								.preference(key: ViewSizeKey.self, value: -reader.frame(in: .named("scroll")).origin.y)
-						}
-					)
-					.toolbar {
-						ToolbarItem(placement: .topBarLeading) {
-							cancelButton
-						}
+        InstUI.BaseScreen(state: model.state, config: model.screenConfig) { geometry in
+            baseScreenView(geometry)
+                .font(.regular12)
+                .foregroundColor(.textDarkest)
+                .background(
+                    GeometryReader { reader in
+                        Color
+                            .backgroundLightest
+                            .onTapGesture {
+                                model.clearSearchedRecipients()
+                                focusedInput = nil
+                            }
+                            .preference(key: ViewSizeKey.self, value: -reader.frame(in: .named("scroll")).origin.y)
+                    }
+                )
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        cancelButton
+                    }
 
-						ToolbarItem(placement: .topBarTrailing) {
-							extraSendButton
-						}
-					}
-			}
-			.onPreferenceChange(ViewSizeKey.self) { offset in
-				model.showExtraSendButton = offset > headerHeight
-			}
-			.coordinateSpace(name: "scroll")
-			.background(Color.backgroundLightest)
-			.fileImporter(
-				isPresented: $model.isFilePickerVisible,
-				allowedContentTypes: [.item],
-				allowsMultipleSelection: false
-			) { result in
-				switch result {
-				case .success(let urls):
-					model.addFiles(urls: urls)
-				case .failure:
-					break
-				}
-			}
-			.sheet(isPresented: $model.isImagePickerVisible) {
-				AttachmentPickerAssembly.makeImagePicker(onSelect: model.addFile)
-			}
-			.sheet(isPresented: $model.isTakePhotoVisible) {
-				AttachmentPickerAssembly.makeImageRecorder(onSelect: model.addFile)
-					.interactiveDismissDisabled()
-			}
-			.sheet(isPresented: $model.isAudioRecordVisible) {
-				AttachmentPickerAssembly.makeAudioRecorder(env: model.env, onSelect: model.addFile)
-					.interactiveDismissDisabled()
-			}
-			.confirmationAlert(
-				isPresented: $model.isShowingCancelDialog,
-				presenting: model.confirmAlert
-			)
-			.confirmationAlert(
-				isPresented: $model.isShowingErrorDialog,
-				presenting: model.errorAlert
-			)
-		} else {
-			InstUI.BaseScreen(state: model.state, config: model.screenConfig) { geometry in
-				baseScreenView(geometry)
-					.font(.regular12)
-					.foregroundColor(.textDarkest)
-					.background(
-						GeometryReader { reader in
-							Color
-								.backgroundLightest
-								.onTapGesture {
-									model.clearSearchedRecipients()
-									focusedInput = nil
-								}
-								.preference(key: ViewSizeKey.self, value: -reader.frame(in: .named("scroll")).origin.y)
-						}
-					)
-					.navigationBarItems(leading: cancelButton, trailing: legacyExtraSendButton)
-					.navigationBarStyle(.modal)
-			}
-			.onPreferenceChange(ViewSizeKey.self) { offset in
-				model.showExtraSendButton = offset > headerHeight
-			}
-			.coordinateSpace(name: "scroll")
-			.background(Color.backgroundLightest)
-			.fileImporter(
-				isPresented: $model.isFilePickerVisible,
-				allowedContentTypes: [.item],
-				allowsMultipleSelection: false
-			) { result in
-				switch result {
-				case .success(let urls):
-					model.addFiles(urls: urls)
-				case .failure:
-					break
-				}
-			}
-			.sheet(isPresented: $model.isImagePickerVisible) {
-				AttachmentPickerAssembly.makeImagePicker(onSelect: model.addFile)
-			}
-			.sheet(isPresented: $model.isTakePhotoVisible) {
-				AttachmentPickerAssembly.makeImageRecorder(onSelect: model.addFile)
-					.interactiveDismissDisabled()
-			}
-			.sheet(isPresented: $model.isAudioRecordVisible) {
-				AttachmentPickerAssembly.makeAudioRecorder(env: model.env, onSelect: model.addFile)
-					.interactiveDismissDisabled()
-			}
-			.confirmationAlert(
-				isPresented: $model.isShowingCancelDialog,
-				presenting: model.confirmAlert
-			)
-			.confirmationAlert(
-				isPresented: $model.isShowingErrorDialog,
-				presenting: model.errorAlert
-			)
-		}
+                    ToolbarItem(placement: .topBarTrailing) {
+                        if #available(iOS 26, *) {
+                            extraSendButton
+                        } else {
+                            legacyExtraSendButton
+                        }
+                    }
+                }
+        }
+        .onPreferenceChange(ViewSizeKey.self) { offset in
+            model.showExtraSendButton = offset > headerHeight
+        }
+        .coordinateSpace(name: "scroll")
+        .background(Color.backgroundLightest)
+        .fileImporter(
+            isPresented: $model.isFilePickerVisible,
+            allowedContentTypes: [.item],
+            allowsMultipleSelection: false
+        ) { result in
+            switch result {
+            case .success(let urls):
+                model.addFiles(urls: urls)
+            case .failure:
+                break
+            }
+        }
+        .sheet(isPresented: $model.isImagePickerVisible) {
+            AttachmentPickerAssembly.makeImagePicker(onSelect: model.addFile)
+        }
+        .sheet(isPresented: $model.isTakePhotoVisible) {
+            AttachmentPickerAssembly.makeImageRecorder(onSelect: model.addFile)
+                .interactiveDismissDisabled()
+        }
+        .sheet(isPresented: $model.isAudioRecordVisible) {
+            AttachmentPickerAssembly.makeAudioRecorder(env: model.env, onSelect: model.addFile)
+                .interactiveDismissDisabled()
+        }
+        .confirmationAlert(
+            isPresented: $model.isShowingCancelDialog,
+            presenting: model.confirmAlert
+        )
+        .confirmationAlert(
+            isPresented: $model.isShowingErrorDialog,
+            presenting: model.errorAlert
+        )
     }
 
 	@ViewBuilder

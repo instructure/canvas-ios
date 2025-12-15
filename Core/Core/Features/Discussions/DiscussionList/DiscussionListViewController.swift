@@ -216,29 +216,20 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
     }
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		if #available(iOS 26, *) {
-			switch topics.sections?[section].name {
-			case "0":
-				return SectionHeaderView.create(title: String(localized: "Pinned Discussions", bundle: .core), section: section)
-			case "1":
-				return SectionHeaderView.create(title: String(localized: "Discussions", bundle: .core), section: section)
-			case "2":
-				return SectionHeaderView.create(title: String(localized: "Closed for Comments", bundle: .core), section: section)
-			default:
-				return nil
-			}
-		} else {
-			switch topics.sections?[section].name {
-			case "0":
-				return LegacySectionHeaderView.create(title: String(localized: "Pinned Discussions", bundle: .core), section: section)
-			case "1":
-				return LegacySectionHeaderView.create(title: String(localized: "Discussions", bundle: .core), section: section)
-			case "2":
-				return LegacySectionHeaderView.create(title: String(localized: "Closed for Comments", bundle: .core), section: section)
-			default:
-				return nil
-			}
-		}
+
+        let key: String.LocalizationValue? = switch topics.sections?[section].name {
+        case "0": "Pinned Discussions"
+        case "1": "Discussions"
+        case "2": "Closed for Comments"
+        default: nil
+        }
+        guard let key else { return nil }
+
+        return if #available(iOS 26, *) {
+            SectionHeaderView.create(title: .init(localized: key, bundle: .core), section: section)
+        } else {
+            LegacySectionHeaderView.create(title: .init(localized: key, bundle: .core), section: section)
+        }
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

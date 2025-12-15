@@ -18,47 +18,31 @@
 
 import SwiftUI
 
-@available(iOS, introduced: 26, message: "Legacy version exists")
 struct GradeListFilterButton: View {
 	@Environment(\.viewController) var viewController
 	@ObservedObject var viewModel: GradeListViewModel
 
 	var body: some View {
-		if viewModel.state != .initialLoading {
-			Button {
-				viewModel.navigateToFilter(viewController: viewController)
-			} label: {
-				Image.filterLine
-					.size(24)
-					.offset(y: 2)
-			}
-			.accessibilityLabel(Text("Filter", bundle: .core))
-			.accessibilityHint(Text("Filter grades options", bundle: .core))
-			.accessibilityIdentifier("GradeList.filterButton")
-		}
-	}
-}
-
-@available(iOS, deprecated: 26, message: "Non-legacy version exists")
-struct LegacyGradeListFilterButton: View {
-    @Environment(\.viewController) var viewController
-    @ObservedObject var viewModel: GradeListViewModel
-
-    var body: some View {
-        Button {
-            viewModel.navigateToFilter(viewController: viewController)
-        } label: {
-            Image.filterLine
-                .size(24)
-                .padding(5)
-                .foregroundStyle(viewModel.isParentApp
-                                 ? Color(Brand.shared.primary)
-                                 : .textLightest)
-
+        if viewModel.state != .initialLoading {
+            Button {
+                viewModel.navigateToFilter(viewController: viewController)
+            } label: {
+                if #available(iOS 26, *) {
+                    Image.filterLine
+                        .size(24)
+                        .offset(y: 2)
+                } else {
+                    Image.filterLine
+                        .size(24)
+                        .padding(5)
+                        .foregroundStyle(viewModel.isParentApp
+                                         ? Color(Brand.shared.primary)
+                                         : .textLightest)
+                }
+            }
+            .accessibilityLabel(Text("Filter", bundle: .core))
+            .accessibilityHint(Text("Filter grades options", bundle: .core))
+            .accessibilityIdentifier("GradeList.filterButton")
         }
-        .hidden(viewModel.state == .initialLoading)
-        .accessibilityLabel(Text("Filter", bundle: .core))
-        .accessibilityHint(Text("Filter grades options", bundle: .core))
-        .accessibilityIdentifier("GradeList.filterButton")
-    }
+	}
 }
