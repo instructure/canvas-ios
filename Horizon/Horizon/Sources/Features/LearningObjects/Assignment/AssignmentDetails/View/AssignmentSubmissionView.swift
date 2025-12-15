@@ -21,6 +21,9 @@ import HorizonUI
 import Core
 
 struct AssignmentSubmissionView: View {
+    // MARK: - A11y Propertites
+    @AccessibilityFocusState private var focusedAttachedFile: Bool?
+
     // MARK: - Private Properties
 
     @FocusState private var focusedInput: Bool
@@ -109,7 +112,31 @@ struct AssignmentSubmissionView: View {
                     selectedIndex: $viewModel.selectedSubmissionIndex
                 )
             }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(selectedSubmissionType)
+            .accessibilityActions {
+                Button {
+                    viewModel.selectedSubmissionIndex = 0
+                } label: {
+                    Text("Select text type")
+                }
+
+                Button {
+                    viewModel.selectedSubmissionIndex = 1
+                } label: {
+                    Text("Select File upload type")
+                }
+            }
+            .accessibilityHint("Swipe up or down to change the submission type")
         }
+    }
+    var selectedSubmissionType: String {
+        let selectedItem = viewModel.selectedSubmission.title
+        return String(
+            format: String(localized: "%@. Selected: %@", bundle: .horizon),
+            AssignmentLocalizedKeys.selectSubmissionType.title,
+            selectedItem
+        )
     }
 
     @ViewBuilder
@@ -139,7 +166,13 @@ struct AssignmentSubmissionView: View {
                 HorizonUI.UploadedFile(fileName: file.filename, actionType: .delete) {
                     viewModel.deleteFile(file: file)
                 }
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(String(format: "File name: %@. Double tap to delete this file.", file.filename))
+                .accessibilityAction {
+                    viewModel.deleteFile(file: file)
+                }
             }
+            .accessibilityFocused($focusedAttachedFile, equals: true)
         }
     }
 
@@ -188,6 +221,7 @@ struct AssignmentSubmissionView: View {
         ) {
             isOverlayUploadFilePresented.toggle()
             isImagePickerVisible.toggle()
+            restFoucsAccessibility()
         }
 
         let takePhotoButton = HorizonUI.Overlay.ButtonAttribute(
@@ -196,6 +230,7 @@ struct AssignmentSubmissionView: View {
         ) {
             isOverlayUploadFilePresented.toggle()
             isTakePhotoVisible.toggle()
+            restFoucsAccessibility()
         }
 
         let chooseFileButton = HorizonUI.Overlay.ButtonAttribute(
@@ -204,6 +239,7 @@ struct AssignmentSubmissionView: View {
         ) {
             isOverlayUploadFilePresented.toggle()
             isFilePickerVisible.toggle()
+            restFoucsAccessibility()
         }
 
         if isIncludeMedia {
@@ -212,6 +248,12 @@ struct AssignmentSubmissionView: View {
             buttons = [chooseFileButton]
         }
         return buttons
+    }
+
+    private func restFoucsAccessibility() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            focusedAttachedFile = true
+        }
     }
 }
 

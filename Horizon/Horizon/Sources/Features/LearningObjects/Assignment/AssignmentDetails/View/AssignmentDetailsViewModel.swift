@@ -158,6 +158,16 @@ final class AssignmentDetailsViewModel {
             ) { [weak self] in self?.performSubmission() })
     }
 
+    // We need it for VO
+    func submitWithoutConfirmation() {
+        guard hasSubmittedBefore == false else {
+            hasSubmittedBefore = false
+            selectedSubmissionIndex = selectedSubmission.index
+            return
+        }
+        performSubmission()
+    }
+
     func showDraftAlert() {
         showConfirmationModal(
             viewModel: AssignmentConfirmationMessagesAssembly
@@ -427,7 +437,7 @@ final class AssignmentDetailsViewModel {
         lastDraftSavedAt = fileUploadTimestamp
     }
 
-    private func deleteDraft(isShowToast: Bool = true) {
+    func deleteDraft(isShowToast: Bool = true) {
         switch selectedSubmission {
         case .text:
             dependency.textEntryInteractor.delete()

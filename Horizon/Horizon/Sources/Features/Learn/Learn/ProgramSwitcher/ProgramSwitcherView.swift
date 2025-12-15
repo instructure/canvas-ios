@@ -41,6 +41,9 @@ struct ProgramSwitcherView: View {
     @State private var selectedCourse: ProgramSwitcherModel.Course?
     @State private var isCoursesViewVisible: Bool
     @State private var contentHeight: CGFloat = .zero
+    @State private var lastFocusedElement: String?
+    @State private var lastFocusedSeeAllHeader: String?
+    @AccessibilityFocusState private var focusedProgramID: String?
 
     private var shouldHighlightProgram: Bool {
         initialCourse == nil && initialProgram == selectedProgram
@@ -77,6 +80,7 @@ struct ProgramSwitcherView: View {
                 if let selectedProgram, isCoursesViewVisible {
                     ProgramSwitcherHeaderView(
                         programName: selectedProgram.name ?? "",
+                        focusedID: $focusedProgramID,
                         shouldHighlightProgram: shouldHighlightProgram) {
                             isCoursesViewVisible = false
                             selectedCourse = nil
@@ -88,14 +92,24 @@ struct ProgramSwitcherView: View {
                                 dismiss(isSelectedProgram: true)
                             }
                         }
+                        .onAppear {
+                            if let lastFocused = lastFocusedSeeAllHeader {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    focusedProgramID = lastFocused
+                                }
+                            }
+                        }
 
                     coursesView(for: selectedProgram)
                 } else {
                     ProgramSwitcherListView(
                         programs: programs,
                         selectedProgram: selectedProgram,
+                        focusedProgramID: $focusedProgramID,
                         selectedCourse: selectedCourse) { program in
                             selectedProgram = program
+                            lastFocusedElement = program.id
+                            lastFocusedSeeAllHeader = "all"
                             DispatchQueue.main.asyncAfter(deadline: .now() + time) {
                                 isCoursesViewVisible = true
                             }
@@ -106,6 +120,13 @@ struct ProgramSwitcherView: View {
                             selectedCourse = course
                             DispatchQueue.main.asyncAfter(deadline: .now() + time) {
                                 dismiss(isSelectedProgram: false)
+                            }
+                        }
+                        .onAppear {
+                            if let lastFocused = lastFocusedElement {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                    focusedProgramID = lastFocused
+                                }
                             }
                         }
                 }
@@ -153,6 +174,7 @@ struct ProgramSwitcherView: View {
             } label: {
                 ProgramSwitcherCourseView(course: course, isSelected: course == selectedCourse)
             }
+            .disabled(!course.isEnrolled)
         }
     }
 }

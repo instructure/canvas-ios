@@ -29,7 +29,3 @@ extension DSCalendarEvent: DSCalendarItem {
     public var details: String? { description }
     public var date: Date { start_at }
 }
-
-extension DSPlannerNote: DSCalendarItem {
-    public var date: Date { todo_date }
-}

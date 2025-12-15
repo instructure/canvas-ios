@@ -50,5 +50,15 @@ struct ProgramSwitcherCourseView: View {
             : .clear
         )
         .opacity(course.isEnrolled ? 1 : 0.5)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilityLabel)
+    }
+
+    private var accessibilityLabel: String {
+        var components: [String] = [course.name]
+        if !course.isEnrolled {
+            components.append(String(localized: "Course is Locked"))
+        }
+        return components.joined(separator: ". ")
     }
 }

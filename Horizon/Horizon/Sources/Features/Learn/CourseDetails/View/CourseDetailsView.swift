@@ -69,6 +69,8 @@ struct CourseDetailsView: View {
                                 .onTapGesture {
                                     onSwitchToLearnTab(.init(id: viewModel.selectedProgram?.id), viewController)
                                 }
+                                .accessibilityElement(children: .ignore)
+                                .accessibilityLabel(viewModel.selectedProgram?.accessibilityDescription)
                         }
                         ExpandTitleView(
                             title: viewModel.selectedCourse?.name ?? "",
@@ -77,6 +79,8 @@ struct CourseDetailsView: View {
                         .padding(.horizontal, .huiSpaces.space24)
                         .padding(.bottom, .huiSpaces.space16)
                         .onTapGesture { isCourseDropdownVisible.toggle() }
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel(viewModel.course.accessibilityDescription)
                     }
                     .readingFrame { frame in courseNameHeight = frame.height }
                     headerView
@@ -128,13 +132,8 @@ struct CourseDetailsView: View {
     private var navigationBar: some View {
         if isBackButtonVisible {
             HStack {
-                Button {
+                HorizonBackButton { _ in
                     viewModel.didTapBackButton(viewController: viewController)
-                } label: {
-                    Image.huiIcons.arrowBack
-                        .foregroundStyle(Color.huiColors.icon.default)
-                        .frame(width: 44, height: 44, alignment: .leading)
-
                 }
                 Spacer()
             }
@@ -152,6 +151,7 @@ struct CourseDetailsView: View {
             .id(viewModel.course.progress)
         }
         .padding([.horizontal, .bottom], .huiSpaces.space24)
+        .accessibilityHidden(true)
     }
 
     private func learningContentView() -> some View {

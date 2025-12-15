@@ -105,10 +105,12 @@ extension HorizonUI {
                             }
                     }
                 }
+                .accessibilityElement(children: .ignore)
 
                 ZStack(alignment: .top) {
                     errorText
                     displayedOptions
+                        .accessibilityHidden(displayedOptionsHeight == 0)
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -123,6 +125,8 @@ extension HorizonUI {
                 VStack(spacing: .zero) {
                     ForEach(filteredItems, id: \.self) { item in
                         displayedOption(item)
+                            .accessibilityElement(children: .ignore)
+                            .accessibilityLabel(item)
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -236,6 +240,7 @@ extension HorizonUI {
                     .tint(Color.huiColors.icon.default)
                     .rotationEffect(.degrees(focused ? -90 : 90))
                     .animation(.easeInOut, value: focused)
+                    .accessibilityHidden(true)
             }
             .background(
                 Color.huiColors.surface.cardPrimary

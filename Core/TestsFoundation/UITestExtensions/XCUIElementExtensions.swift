@@ -70,6 +70,15 @@ public extension XCUIElement {
     var isUnselected: Bool { !isSelected }
     var isVanished: Bool { !(exists && isHittable) }
 
+    /// Checks if a switch element is in the "on" state.
+    /// SwiftUI toggles use "1" (on) and "0" (off) as string values.
+    /// UIKit switches use "on" and "off" as string values.
+    var isSwitchSelected: Bool {
+        guard elementType == .switch else { return false }
+        let switchValue = value as? String
+        return switchValue == "1" || switchValue == "on"
+    }
+
     var stringValue: String? {
         value as? String
     }
@@ -103,8 +112,18 @@ public extension XCUIElement {
         case .label(let expected, let strict): hasLabel(label: expected, strict: strict)
         case .enabled: exists && isEnabled
         case .disabled: isDisabled
-        case .selected: exists && isSelected
-        case .unselected: !isSelected
+        case .selected:
+            if elementType == .switch {
+                exists && isSwitchSelected
+            } else {
+                exists && isSelected
+            }
+        case .unselected:
+            if elementType == .switch {
+                !isSwitchSelected
+            } else {
+                !isSelected
+            }
         case .hittable: isVisible && isHittable
         case .labelContaining(let expected): label.contains(expected)
         case .labelHasPrefix(let expected): label.hasPrefix(expected)

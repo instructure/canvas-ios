@@ -77,6 +77,11 @@ struct FileDownloadStatusView: View {
                 onTapCancel()
             }
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(String(localized: "Double tap to cancel downloading file"))
+        .accessibilityAction {
+            onTapCancel()
+        }
     }
 
     private func errorView(message: String) -> some View {
@@ -87,6 +92,8 @@ struct FileDownloadStatusView: View {
                 .huiTypography(.p1)
                 .foregroundStyle(Color.huiColors.text.error)
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(message)
     }
 }
 
