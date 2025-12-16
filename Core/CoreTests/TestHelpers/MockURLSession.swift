@@ -18,7 +18,7 @@
 
 @preconcurrency import Foundation
 
-class MockURLProtocolSupport: URLProtocol {
+class MockURLProtocolSupport: URLProtocol, @unchecked Sendable {
 
     enum ResponseType {
         case error(NSError)
