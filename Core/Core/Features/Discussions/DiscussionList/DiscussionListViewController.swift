@@ -217,12 +217,14 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
-        let key: String.LocalizationValue? = switch topics.sections?[section].name {
-        case "0": "Pinned Discussions"
-        case "1": "Discussions"
-        case "2": "Closed for Comments"
-        default: nil
-        }
+        let key: String.LocalizationValue? = {
+            switch topics.sections?[section].name {
+            case "0": "Pinned Discussions"
+            case "1": "Discussions"
+            case "2": "Closed for Comments"
+            default: nil
+            }
+        }()
         guard let key else { return nil }
 
         return if #available(iOS 26, *) {

@@ -245,11 +245,21 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         spinnerView.color = color
         refreshControl.color = color
 
-        let navigationTitle = if showRepliesToEntryID != nil  {
-            isAnnouncement ? String(localized: "Announcement Replies", bundle: .core) : String(localized: "Discussion Replies", bundle: .core)
-        } else {
-            isAnnouncement ? String(localized: "Announcement Details", bundle: .core) : String(localized: "Discussion Details", bundle: .core)
-        }
+        let navigationTitle = {
+            if showRepliesToEntryID != nil {
+                if isAnnouncement {
+                    String(localized: "Announcement Replies", bundle: .core)
+                } else {
+                    String(localized: "Discussion Replies", bundle: .core)
+                }
+            } else {
+                if isAnnouncement {
+                    String(localized: "Announcement Details", bundle: .core)
+                } else {
+                    String(localized: "Discussion Details", bundle: .core)
+                }
+            }
+        }()
 
         if #available(iOS 26, *) {
             navigationItem.title = navigationTitle

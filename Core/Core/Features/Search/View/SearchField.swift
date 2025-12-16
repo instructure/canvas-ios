@@ -42,22 +42,22 @@ struct SearchTextField: View {
     var body: some View {
         if #available(iOS 26, *) {
             content
-            .clipShape(Capsule())
-            .frame(idealWidth: minWidth.value, maxWidth: .infinity)
-            .frame(height: 44)
-            .glassEffect()
-            .measuringSize { size in
-                minWidth.deferred = size.width
-            }
+                .clipShape(Capsule())
+                .frame(idealWidth: minWidth.value, maxWidth: .infinity)
+                .frame(height: 44)
+                .glassEffect()
+                .measuringSize { size in
+                    minWidth.deferred = size.width
+                }
         } else {
             content
-            .background(Color.backgroundLightest)
-            .clipShape(Capsule())
-            .shadow(radius: 2, y: 2)
-            .frame(idealWidth: minWidth.value, maxWidth: .infinity)
-            .measuringSize { size in
-                minWidth.deferred = size.width
-            }
+                .background(Color.backgroundLightest)
+                .clipShape(Capsule())
+                .shadow(radius: 2, y: 2)
+                .frame(idealWidth: minWidth.value, maxWidth: .infinity)
+                .measuringSize { size in
+                    minWidth.deferred = size.width
+                }
         }
     }
 
@@ -97,7 +97,7 @@ struct SearchTextField: View {
             }
         }
         .padding(.leading, 10)
-        .padding(.trailing, text.isEmpty ? 10 : 3)
+        .padding(.trailing, text.isNotEmpty ? 10 : 3)
         .onDisappear {
             // This is to resolve issue of field size when pushing to result details
             minWidth.update()

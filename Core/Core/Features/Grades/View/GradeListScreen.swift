@@ -65,11 +65,11 @@ public struct GradeListScreen: View, ScreenViewTrackable {
 
     public var body: some View {
 		if #available(iOS 26, *) {
-            contentAndModifiers
+            baseView
                 .navigationTitle(.init("Grades", bundle: .core))
                 .optionalNavigationSubtitle(viewModel.courseName)
 		} else {
-            contentAndModifiers
+            baseView
                 .navigationBarTitleView(
                     title: String(localized: "Grades", bundle: .core),
                     subtitle: viewModel.courseName
@@ -77,7 +77,7 @@ public struct GradeListScreen: View, ScreenViewTrackable {
 		}
     }
 
-    private var contentAndModifiers: some View {
+    private var baseView: some View {
         ZStack {
             ScrollView(showsIndicators: false) {
                 contentView

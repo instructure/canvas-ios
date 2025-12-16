@@ -90,7 +90,7 @@ public struct MessageView: View {
             if isReplyButtonVisible {
                 replyIconButton
             }
-            
+
             Menu {
                 if isReplyButtonVisible {
                     Button(.init("Reply", bundle: .core), image: .replyLine, action: replyDidTap)
