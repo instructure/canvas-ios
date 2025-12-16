@@ -110,12 +110,16 @@ workflows:
 
             export NSUnbufferedIO=YES
 
+            set +e
             xcodebuild \
                 -workspace Canvas.xcworkspace \
                 -scheme CITests \
                 -destination 'platform=iOS Simulator,name=Bitrise iOS default' \
                 -resultBundlePath scripts/coverage/citests.xcresult \
                 test-without-building 2>&1 | xcbeautify
+            XCODEBUILD_EXIT=${PIPESTATUS[0]}
+            set -e
+            exit $XCODEBUILD_EXIT
     - script:
         title: Save xcresult
         inputs:
