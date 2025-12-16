@@ -81139,13 +81139,13 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pas de date d’échéance"
+            "value" : "Pas de date limite"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aucune date d'échéance"
+            "value" : "Aucune date d’échéance"
           }
         },
         "ga" : {
@@ -81187,7 +81187,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "期日なし"
+            "value" : "締切日なし"
           }
         },
         "mi" : {
@@ -81229,7 +81229,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sem data limite"
+            "value" : "Sem data de limite"
           }
         },
         "pt-BR" : {
@@ -81247,7 +81247,7 @@
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ni roka."
+            "value" : "Ni roka"
           }
         },
         "sv" : {
@@ -96631,7 +96631,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "質問:"
+            "value" : "問題:"
           }
         },
         "mi" : {

@@ -39,7 +39,12 @@ public func XCTAssertSelected(
     file: StaticString = #filePath,
     line: UInt = #line
 ) {
-    XCTAssertTrue(element.isSelected, "Element is not selected: \(element.debugDescription)", file: file, line: line)
+    let errorMessage = "Element is not selected: \(element.debugDescription)"
+    if element.elementType == .switch {
+        XCTAssertTrue(element.isSwitchSelected, errorMessage, file: file, line: line)
+    } else {
+        XCTAssertTrue(element.isSelected, errorMessage, file: file, line: line)
+    }
 }
 
 public func XCTAssertNotSelected(
@@ -47,5 +52,10 @@ public func XCTAssertNotSelected(
     file: StaticString = #filePath,
     line: UInt = #line
 ) {
-    XCTAssertFalse(element.isSelected, "Element is selected: \(element.debugDescription)", file: file, line: line)
+    let errorMessage = "Element is selected: \(element.debugDescription)"
+    if element.elementType == .switch {
+        XCTAssertFalse(element.isSwitchSelected, errorMessage, file: file, line: line)
+    } else {
+        XCTAssertFalse(element.isSelected, errorMessage, file: file, line: line)
+    }
 }
