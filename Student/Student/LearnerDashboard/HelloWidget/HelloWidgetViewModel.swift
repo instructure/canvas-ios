@@ -17,43 +17,96 @@
 //
 
 import Foundation
+import Core
+import Combine
 
 @Observable
 public final class HelloWidgetViewModel {
-    var dayPeriod = DayPeriod.current
-    var greeting: String
+    private(set) var state = State.loading
 
-    init() {
-    }
+    @ObservationIgnored private let store: ReactiveStore<GetUserProfile>
+    @ObservationIgnored private var subscriptions = Set<AnyCancellable>()
+    @ObservationIgnored private var periodProvider: DayPeriodProvider
 
-    private func getGreeting() -> String {
+    init(
+        environment: AppEnvironment = .shared,
+        dayPeriodProvider: DayPeriodProvider = .init(),
+        refresh: PassthroughSubject<Void, Never>
+    ) {
+        self.store = ReactiveStore(
+            context: environment.database.viewContext,
+            useCase: GetUserProfile(userID: "self"),
+            environment: environment
+        )
+        self.periodProvider = dayPeriodProvider
 
-    }
-}
-
-    public extension HelloWidgetViewModel {
-        enum DayPeriod {
-            case morning
-            case afternoon
-            case evening
-            case night
-
-            var greeting: String {
-                switch self {
-                case .morning: "Good morning"
-                case .afternoon: "Good afternoon"
-                case .evening: "Good evening"
-                case .night: "Good night"
+        store.getEntities(keepObservingDatabaseChanges: true)
+            .sink(
+                receiveCompletion: { [weak self] completion in
+                    if case .failure = completion {
+                        self?.state = .error
+                    }
+                },
+                receiveValue: { [weak self] profiles in
+                    self?.refreshData(profile: profiles.first)
                 }
+            )
+            .store(in: &subscriptions)
+
+        refresh
+            .flatMap { [weak self] in
+                self?.store.forceRefresh() ?? Just(()).eraseToAnyPublisher()
             }
+            .sink { _ in }
+            .store(in: &subscriptions)
+    }
 
-            static var current: Self {
-                switch Calendar.autoupdatingCurrent.component(.hour, from: .now) {
-                case 0..<12: .morning
-                case 12..<17: .afternoon
-                case 17..<21: .evening
-                default: .night
-                }
+    private func refreshData(profile: UserProfile?) {
+        guard let message = message() else {
+            // when generic + periodMessages is empty, will not happen
+            return
+        }
+
+        state = .success(
+            greeting: greeting(to: profile?.shortName),
+            message: message
+        )
+    }
+
+    private func greeting(to shortName: String?) -> String.LocalizationValue {
+        return if let shortName, shortName.isNotEmptyOrBlank() {
+            switch periodProvider.current {
+            case .morning: "Good morning \(shortName)!"
+            case .afternoon: "Good afternoon \(shortName)!"
+            case .evening: "Good evening \(shortName)!"
+            case .night: "Good night \(shortName)!"
+            }
+        } else {
+            switch periodProvider.current {
+            case .morning: "Good morning!"
+            case .afternoon: "Good afternoon!"
+            case .evening: "Good evening!"
+            case .night: "Good night!"
             }
         }
     }
+
+    private func message() -> String.LocalizationValue? {
+        let periodMessages = switch periodProvider.current {
+        case .morning: Self.morning
+        case .afternoon: Self.afternoon
+        case .evening: Self.evening
+        case .night: Self.night
+        }
+
+        return (Self.generic + periodMessages).randomElement()
+    }
+}
+
+extension HelloWidgetViewModel {
+    enum State: Equatable {
+        case error
+        case success(greeting: String.LocalizationValue, message: String.LocalizationValue)
+        case loading
+    }
+}

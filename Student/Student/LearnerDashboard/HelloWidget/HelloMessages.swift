@@ -19,7 +19,7 @@
 import Foundation
 
 extension HelloWidgetViewModel {
-    static let generic = [
+    static let generic: [String.LocalizationValue] = [
         "You've got this.",
         "Keep going — you're stronger than you feel right now.",
         "One step at a time is still progress.",
@@ -69,7 +69,7 @@ extension HelloWidgetViewModel {
         "You're growing in ways you might not see yet."
     ]
 
-    static let morning = [
+    static let morning: [String.LocalizationValue] = [
         "Morning! You've got this — one class, one step at a time.",
         "Not feeling ready? That's normal. Just start where you are.",
         "Coffee helps, but kindness to yourself works better.",
@@ -81,7 +81,7 @@ extension HelloWidgetViewModel {
         "Technology can be tricky, but you're not alone in learning it."
     ]
 
-    static let afternoon = [
+    static let afternoon: [String.LocalizationValue] = [
         "Halfway there — you've already done more than you think.",
         "Feeling stuck? Everyone hits walls, just don't stop climbing.",
         "Jobs, grades, the future… no one has it all figured out yet.",
@@ -93,7 +93,7 @@ extension HelloWidgetViewModel {
         "Reach out if you're stuck — support is always closer than it feels."
     ]
 
-    static let evening = [
+    static let evening: [String.LocalizationValue] = [
         "Made it through the day — that's a win in itself.",
         "Missing people? Shoot someone a quick \"hey\" — it helps.",
         "Even if today felt messy, you showed up. That matters.",
@@ -105,7 +105,7 @@ extension HelloWidgetViewModel {
         "Your effort matters more than perfection."
     ]
 
-    static let night = [
+    static let night: [String.LocalizationValue] = [
         "Still grinding? Respect — but don't forget sleep exists.",
         "Tomorrow you'll thank yourself for resting tonight.",
         "Anxiety gets louder at night — don't believe all its noise.",

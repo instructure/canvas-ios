@@ -17,15 +17,41 @@
 //
 
 import SwiftUI
+import Core
+import Combine
 
 struct HelloWidgetView: View {
-    @State var viewModel = HelloWidgetViewModel()
+    @State var viewModel: HelloWidgetViewModel
+
+    init(viewModel: HelloWidgetViewModel) {
+        self.viewModel = viewModel
+    }
 
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        switch viewModel.state {
+        case .error, .loading: SwiftUI.EmptyView()
+        case .success(let greeting, let message): content(greeting: greeting, message: message)
+        }
+    }
+
+    @ViewBuilder
+    private func content(
+        greeting: String.LocalizationValue,
+        message: String.LocalizationValue
+    ) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(.init(greeting, bundle: .student))
+                .font(.semibold22)
+                .fontWeight(.semibold)
+
+            Text(.init(message, bundle: .student))
+                .font(.regular14)
+        }
+        .foregroundStyle(.textDarkest)
+        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 
 #Preview {
-    HelloWidgetView()
+    HelloWidgetView(viewModel: .init(refresh: PassthroughSubject<Void, Never>()))
 }
