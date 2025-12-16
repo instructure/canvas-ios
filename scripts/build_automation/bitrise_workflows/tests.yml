@@ -117,7 +117,7 @@ workflows:
                 -destination 'platform=iOS Simulator,name=Bitrise iOS default' \
                 -resultBundlePath scripts/coverage/citests.xcresult \
                 test-without-building 2>&1 | xcbeautify
-            XCODEBUILD_EXIT=${PIPESTATUS[0]}
+            XCODEBUILD_EXIT=${pipestatus[1]}
             set -e
             exit $XCODEBUILD_EXIT
     - script:
