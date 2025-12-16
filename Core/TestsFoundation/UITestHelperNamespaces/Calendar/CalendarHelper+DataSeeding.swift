@@ -146,41 +146,4 @@ extension CalendarHelper {
         )
     }
 
-    @discardableResult
-    public static func createCalendarToDo(
-        course: DSCourse,
-        title: String = "Sample Calendar ToDo Item in Course calendar",
-        details: String = "Don't forget to remember!",
-        todoDate: Date = Date.now
-    ) -> DSPlannerNote {
-        let contextCode = "course_\(course.id)"
-
-        return seeder.createPlannerNote(requestBody: .init(
-            title: title,
-            details: details,
-            todoDate: todoDate,
-            contextCode: contextCode,
-            courseId: course.id,
-            userId: nil
-        ))
-    }
-
-    @discardableResult
-    public static func createCalendarToDo(
-        user: DSUser,
-        title: String = "Sample Calendar ToDo Item in User calendar",
-        details: String = "Don't forget to remember!",
-        todoDate: Date = Date.now
-    ) -> DSPlannerNote {
-        let contextCode = "user_\(user.id)"
-
-        return seeder.createPlannerNote(requestBody: .init(
-            title: title,
-            details: details,
-            todoDate: todoDate,
-            contextCode: contextCode,
-            courseId: nil,
-            userId: user.id
-        ))
-    }
 }
