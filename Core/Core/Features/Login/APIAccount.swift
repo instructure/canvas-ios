@@ -42,6 +42,33 @@ public struct APIAccountResult: Codable, Equatable {
     }
 }
 
+// MARK: - Helpers
+
+extension Array where Element == APIAccountResult {
+
+    func sortedPromotingQueryPrefixed(_ query: String) -> Self {
+
+        return enumerated()
+            .sorted { result1, result2 in
+                let qValue = query.lowercased().trimmed()
+                let name1 = result1.element.name.lowercased().trimmed()
+                let name2 = result2.element.name.lowercased().trimmed()
+
+                let queryMatch1 = name1.hasPrefix(qValue)
+                let queryMatch2 = name2.hasPrefix(qValue)
+
+                if queryMatch1 == queryMatch2 {
+                    return result1.offset < result2.offset
+                } else if queryMatch1 {
+                    return true
+                } else {
+                    return false
+                }
+            }
+            .map { $0.element }
+    }
+}
+
 #if DEBUG
 extension APIAccountResult {
     public static func make(
@@ -67,7 +94,7 @@ public struct GetAccountsSearchRequest: APIRequestable {
     public let path = "https://canvas.instructure.com/api/v1/accounts/search"
     public var query: [APIQueryItem] {
         return [
-            .perPage(50),
+            .perPage(100),
             .value("search_term", searchTerm)
         ]
     }

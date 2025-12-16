@@ -107,7 +107,7 @@ class LoginFindSchoolViewController: UIViewController {
         loadingView?.startAnimating()
         searchTask = api.makeRequest(GetAccountsSearchRequest(searchTerm: query)) { [weak self] (results, _, error) in performUIUpdate {
             guard let self = self, error == nil else { return }
-            self.accounts = results ?? []
+            self.accounts = results?.sortedPromotingQueryPrefixed(query) ?? []
             self.loadingView.stopAnimating()
             self.resultsTableView.reloadData()
             self.searchTask = nil
