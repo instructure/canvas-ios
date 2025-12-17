@@ -44,8 +44,8 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     func test_screenConfig() {
         let expectedTitle = String(localized: "Welcome to Canvas!", bundle: .student)
 
-        XCTAssertTrue(testee.screenConfig.refreshable)
-        XCTAssertTrue(testee.screenConfig.emptyPandaConfig.scene is SpacePanda)
+        XCTAssertEqual(testee.screenConfig.refreshable, true)
+        XCTAssertEqual(testee.screenConfig.emptyPandaConfig.scene is SpacePanda, true)
         XCTAssertEqual(testee.screenConfig.emptyPandaConfig.title, expectedTitle)
     }
 

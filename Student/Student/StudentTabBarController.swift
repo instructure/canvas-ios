@@ -85,14 +85,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         let tabBarImage: UIImage
         let tabBarImageSelected: UIImage?
 
-        if ExperimentalFeature.studentLearnerDashboard.isEnabled {
-            let dashboard = CoreHostingController(LearnerDashboardAssembly.makeScreen())
-            result = DashboardContainerViewController(rootViewController: dashboard) { CoreSplitViewController() }
-
-            tabBarTitle = String(localized: "Dashboard", bundle: .student, comment: "Tab title, max character count is 14")
-            tabBarImage = .dashboardTab
-            tabBarImageSelected = .dashboardTabActive
-        } else if AppEnvironment.shared.k5.isK5Enabled {
+        if AppEnvironment.shared.k5.isK5Enabled {
             let dashboard = CoreNavigationController(rootViewController: CoreHostingController(K5DashboardView()))
             // This causes issues with hosted SwiftUI views. If appears at multiple places maybe worth disabling globally in CoreNavigationController.
             dashboard.interactivePopGestureRecognizer?.isEnabled = false
@@ -102,9 +95,15 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
             tabBarImage =  .homeroomTab
             tabBarImageSelected = .homeroomTabActive
         } else {
-            let dashboard = CoreHostingController(DashboardContainerView(shouldShowGroupList: true,
-                                                                         showOnlyTeacherEnrollment: false))
-            result = DashboardContainerViewController(rootViewController: dashboard) { CoreSplitViewController() }
+            if ExperimentalFeature.studentLearnerDashboard.isEnabled {
+                let dashboard = CoreHostingController(LearnerDashboardAssembly.makeScreen())
+                result = DashboardContainerViewController(rootViewController: dashboard) { CoreSplitViewController() }
+            } else {
+                let dashboard = CoreHostingController(
+                    DashboardContainerView(shouldShowGroupList: true, showOnlyTeacherEnrollment: false)
+                )
+                result = DashboardContainerViewController(rootViewController: dashboard) { CoreSplitViewController() }
+            }
 
             tabBarTitle = String(localized: "Dashboard", bundle: .student, comment: "Tab title, max character count is 14")
             tabBarImage = .dashboardTab
