@@ -95,9 +95,15 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
             tabBarImage =  .homeroomTab
             tabBarImageSelected = .homeroomTabActive
         } else {
-            let dashboard = CoreHostingController(DashboardContainerView(shouldShowGroupList: true,
-                                                                         showOnlyTeacherEnrollment: false))
-            result = DashboardContainerViewController(rootViewController: dashboard) { CoreSplitViewController() }
+            if ExperimentalFeature.studentLearnerDashboard.isEnabled {
+                let dashboard = CoreHostingController(LearnerDashboardAssembly.makeScreen())
+                result = DashboardContainerViewController(rootViewController: dashboard) { CoreSplitViewController() }
+            } else {
+                let dashboard = CoreHostingController(
+                    DashboardContainerView(shouldShowGroupList: true, showOnlyTeacherEnrollment: false)
+                )
+                result = DashboardContainerViewController(rootViewController: dashboard) { CoreSplitViewController() }
+            }
 
             tabBarTitle = String(localized: "Dashboard", bundle: .student, comment: "Tab title, max character count is 14")
             tabBarImage = .dashboardTab
