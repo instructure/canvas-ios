@@ -475,7 +475,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
             || (status.isGraded && assignment.pointsPossible != nil)
             || presenter.onlineUploadState != nil
         let gradeText = GradeFormatter.string(from: assignment, submission: submission, style: .short)
-        if status.isGraded, assignment.hideQuantitativeData, (gradeText ?? "").isEmpty == true {
+        if status.isGraded, assignment.hideQuantitativeData, gradeText.isBlankGrade {
             showGradeSection = false
         }
 
@@ -787,5 +787,17 @@ extension StudentAssignmentDetailsViewController {
         } else {
             presenter?.routeToSubmission(view: self)
         }
+    }
+}
+
+// MARK: - Helpers
+
+private extension Optional where Wrapped == String {
+    var isBlankGrade: Bool {
+        guard let self else { return true }
+        return self
+            .replacingOccurrences(of: "-", with: "")
+            .trimmed()
+            .isEmpty
     }
 }
