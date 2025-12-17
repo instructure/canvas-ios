@@ -78,7 +78,7 @@ public class CoreWebViewStudioFeaturesInteractor {
         resetStoreSubscription()
     }
 
-    func urlForStudioImmersiveView(of action: WKNavigationAction) -> URL? {
+    func urlForStudioImmersiveView(of action: NavigationActionRepresentable) -> URL? {
         guard action.isStudioImmersiveViewLinkTap, var url = action.request.url else {
             return nil
         }
@@ -173,23 +173,46 @@ public class CoreWebViewStudioFeaturesInteractor {
 
 // MARK: - WKNavigationAction Extensions
 
-extension WKNavigationAction {
+extension NavigationActionRepresentable {
 
     fileprivate var isStudioImmersiveViewLinkTap: Bool {
         guard let path = request.url?.path else { return false }
 
         let isExpandLink =
-            navigationType == .other
-            && path.contains("/media_attachments/") == true
-            && path.hasSuffix("/immersive_view") == true
-            && sourceFrame.isMainFrame == false
+            navigationType == .other &&
+            path.contains("/media_attachments/") &&
+            path.hasSuffix("/immersive_view") &&
+            sourceInfoFrame.isMainFrame == false
 
         let isDetailsLink =
-            navigationType == .linkActivated
-            && path.contains("/media_attachments/") == true
-            && path.hasSuffix("/immersive_view") == true
-            && (targetFrame?.isMainFrame ?? false) == false
+            navigationType == .linkActivated &&
+            path.contains("/media_attachments/") &&
+            path.hasSuffix("/immersive_view") &&
+            (targetInfoFrame?.isMainFrame ?? false) == false
 
         return isExpandLink || isDetailsLink
+    }
+}
+
+protocol FrameInfoRepresentable {
+    var isMainFrame: Bool { get }
+}
+
+protocol NavigationActionRepresentable {
+    var request: URLRequest { get }
+    var navigationType: WKNavigationType { get }
+    var sourceInfoFrame: FrameInfoRepresentable { get }
+    var targetInfoFrame: FrameInfoRepresentable? { get }
+}
+
+extension WKFrameInfo: FrameInfoRepresentable {}
+
+extension WKNavigationAction: NavigationActionRepresentable {
+    var sourceInfoFrame: FrameInfoRepresentable {
+        self.sourceFrame
+    }
+
+    var targetInfoFrame: FrameInfoRepresentable? {
+        self.targetFrame
     }
 }
