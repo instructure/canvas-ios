@@ -42,14 +42,14 @@ final class DomainService: DomainServiceProtocol {
         if( option == .journey) {
             return "journey-server-edge.journey.nonprod.inseng.io"
         }
-        return "\(option)-api-dev.domain-svcs.nonprod.inseng.io"
+        return "\(option)-api-dev.us-east-1.core.inseng.io"
     }
 
     private var productionURL: String {
         if option == .journey {
             return "journey-server-prod.\(region).temp.prod.inseng.io"
         }
-        return "\(option)-api-production.\(region).temp.prod.inseng.io"
+        return "\(option)-api.\(region).core.inseng.io"
     }
 
     // MARK: - Init
