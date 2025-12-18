@@ -75,7 +75,7 @@ public extension HorizonUI {
 
         private func accessibilityLabel(forTabIndex tabIndex: Int) -> String {
             let selectedTab = String(format: String("Selected tab is %@. "), tabs[selectTabIndex ?? 0])
-            let tabDescription = String(format: String("%@ double tab to select. "), tabs[tabIndex])
+            let tabDescription = String(format: String("%@ unselected. "), tabs[tabIndex])
             return selectTabIndex == tabIndex ? selectedTab : tabDescription
         }
     }

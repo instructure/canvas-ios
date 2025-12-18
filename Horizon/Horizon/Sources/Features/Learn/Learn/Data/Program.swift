@@ -71,13 +71,10 @@ struct Program: Identifiable {
     }
 
     var accessibilityHeader: String {
-        var description = String.localizedStringWithFormat(
-            String(localized: "Selected program is %@. ", bundle: .horizon),
+        return String.localizedStringWithFormat(
+            String(localized: "Program name is %@. ", bundle: .horizon),
             name
         )
-
-        description += String(localized: "Double tap to select another program. ", bundle: .horizon)
-        return description
     }
 
     var accessibilityDescription: String {

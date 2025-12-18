@@ -55,7 +55,6 @@ struct ProgramView: View {
                 .transition(.move(edge: .top).combined(with: .opacity))
                 .onTapGesture { isProgramDropdownVisible.toggle() }
                 .readingFrame { frame in programNameHeight = frame.height }
-                .accessibilityElement(children: .ignore)
                 .accessibilityLabel(viewModel.currentProgram?.accessibilityHeader)
         }
         .background(Color.huiColors.surface.pagePrimary)

@@ -30,7 +30,7 @@ final class ProgramTests: XCTestCase {
             courseCompletionCount: nil,
             courses: []
         )
-        let expected = "Selected program is Test Program. Double tap to select another program. "
+        let expected = "Program name is Test Program. "
         XCTAssertEqual(program.accessibilityHeader, expected)
     }
 
