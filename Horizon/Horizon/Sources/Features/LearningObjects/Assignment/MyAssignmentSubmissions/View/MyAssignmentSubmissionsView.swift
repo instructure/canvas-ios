@@ -61,6 +61,7 @@ struct MyAssignmentSubmissionsView: View {
             Image.huiIcons.checkCircleFull
                 .foregroundStyle(Color.huiColors.icon.success)
                 .frame(width: 24, height: 24)
+                .accessibilityHidden(true)
             Text(selectedSubmission ==  .text
                  ? AssignmentLocalizedKeys.submissionText.title
                  : AssignmentLocalizedKeys.submissionFileUpload.title)
@@ -126,6 +127,24 @@ struct MyAssignmentSubmissionsView: View {
                     return
                 }
                 viewModel.downloadFile(viewController: viewController, file: selectedUploadedFile)
+            }
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(String(format: String("File name is %@. "), file.filename))
+        .accessibilityActions {
+            if viewModel.viewState == .loading {
+                Button {
+                    viewModel.cancelDownload()
+                } label: {
+                    Text("Cancel downloading the file.")
+                }
+            } else {
+                Button {
+                    guard let selectedUploadedFile else { return }
+                    viewModel.downloadFile(viewController: viewController, file: selectedUploadedFile)
+                } label: {
+                    Text("Double tap to download the file.")
+                }
             }
         }
     }

@@ -56,6 +56,7 @@ struct CourseNotebookNote: Equatable, Identifiable {
         if isCourseNameVisible {
             description += String(format: String(localized: "Course name is %@. "), courseName ?? "")
         }
+        description += String(localized: "Delete note is available. ")
         return description
     }
 }

@@ -95,7 +95,7 @@ struct DashboardNavigationBar: ViewModifier {
 
 extension View {
 
-    func navigationBarDashboard() -> some View {
+    public func navigationBarDashboard() -> some View {
         modifier(DashboardNavigationBar())
     }
 }

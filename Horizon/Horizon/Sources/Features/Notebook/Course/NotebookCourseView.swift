@@ -105,10 +105,13 @@ struct NotebookCourseView: View {
         }
     }
 
+    @ViewBuilder
     private var listStatus: some View {
+        let selectedLabel = viewModel.listState.selectedLable ?? viewModel.courseLables.first
         SelectionPopover(
             items: viewModel.courseLables,
-            selectedItem: viewModel.listState.selectedLable ?? viewModel.courseLables.first,
+            accessibilityLabel: String(format: String(localized: "Selected label is %@. "), selectedLabel?.name ?? ""),
+            selectedItem: selectedLabel,
             accessibilityHint: String(localized: "Double tab to select a different label", bundle: .horizon)
         ) { seletected in
             viewModel.listState.selectedLable = seletected
