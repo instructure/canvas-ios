@@ -25,7 +25,7 @@ public class LegacySectionHeaderView: UITableViewHeaderFooterView {
 
     public override func awakeFromNib() {
         super.awakeFromNib()
-		bgView.backgroundColor = .backgroundLight
+        bgView.backgroundColor = .backgroundLight
     }
 
     public static func create(title: String, section: Int) -> LegacySectionHeaderView {

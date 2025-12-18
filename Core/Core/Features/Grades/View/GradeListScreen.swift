@@ -64,17 +64,17 @@ public struct GradeListScreen: View, ScreenViewTrackable {
     // MARK: - Components
 
     public var body: some View {
-		if #available(iOS 26, *) {
+        if #available(iOS 26, *) {
             baseView
                 .navigationTitle(.init("Grades", bundle: .core))
                 .optionalNavigationSubtitle(viewModel.courseName)
-		} else {
+        } else {
             baseView
                 .navigationBarTitleView(
                     title: String(localized: "Grades", bundle: .core),
                     subtitle: viewModel.courseName
                 )
-		}
+        }
     }
 
     private var baseView: some View {

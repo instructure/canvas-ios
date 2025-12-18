@@ -46,7 +46,7 @@ extension UINavigationBar {
         applyAppearanceChanges(backgroundColor: background, foregroundColor: foreground)
     }
 
-	@available(iOS, deprecated: 26)
+    @available(iOS, deprecated: 26)
     public func useGlobalNavStyle(brand: Brand = Brand.shared) {
         guard #unavailable(iOS 26) else { return }
 

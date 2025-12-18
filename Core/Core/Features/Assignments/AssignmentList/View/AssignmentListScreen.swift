@@ -36,8 +36,8 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-		if #available(iOS 26, *) {
-			states
+        if #available(iOS 26, *) {
+            states
                 .navigationTitle(.init("Assignments", bundle: .core))
                 .optionalNavigationSubtitle(viewModel.courseName)
                 .toolbar {
@@ -47,8 +47,8 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
                         }
                     }
                 }
-		} else {
-			states
+        } else {
+            states
                 .navigationBarTitleView(
                     title: String(localized: "Assignments", bundle: .core),
                     subtitle: viewModel.courseName
@@ -60,7 +60,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
                     }
                 )
                 .navigationBarStyle(.color(viewModel.courseColor))
-		}
+        }
     }
 
     private var states: some View {

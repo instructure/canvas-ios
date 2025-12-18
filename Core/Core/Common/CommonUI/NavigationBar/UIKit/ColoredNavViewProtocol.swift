@@ -29,7 +29,7 @@ public protocol ColoredNavViewProtocol: AnyObject {
 }
 
 extension ColoredNavViewProtocol {
-	@available(iOS, deprecated: 26)
+    @available(iOS, deprecated: 26)
     public func setupTitleViewInNavbar(title: String) {
         guard #unavailable(iOS 26) else { return }
 
@@ -38,7 +38,7 @@ extension ColoredNavViewProtocol {
         titleSubtitleView.accessibilityTraits = .header
     }
 
-	@available(iOS, deprecated: 26)
+    @available(iOS, deprecated: 26)
     public func updateNavBar(subtitle: String?, color: UIColor?) {
         guard #unavailable(iOS 26) else { return }
 

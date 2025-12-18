@@ -72,11 +72,11 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
         tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
-		if #available(iOS 26, *) {
-			tableView.registerHeaderFooterView(SectionHeaderView.self)
-		} else {
-			tableView.registerHeaderFooterView(LegacySectionHeaderView.self)
-		}
+        if #available(iOS 26, *) {
+            tableView.registerHeaderFooterView(SectionHeaderView.self)
+        } else {
+            tableView.registerHeaderFooterView(LegacySectionHeaderView.self)
+        }
         tableView.separatorColor = .borderMedium
 
         colors.refresh()
@@ -94,9 +94,9 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
             tableView.deselectRow(at: selected, animated: true)
         }
 
-		if #unavailable(iOS 26) {
-			navigationController?.navigationBar.useContextColor(color)
-		}
+        if #unavailable(iOS 26) {
+            navigationController?.navigationBar.useContextColor(color)
+        }
     }
 
     func updateNavBar() {

@@ -19,10 +19,10 @@
 import SwiftUI
 
 struct GradeListFilterButton: View {
-	@Environment(\.viewController) var viewController
-	@ObservedObject var viewModel: GradeListViewModel
+    @Environment(\.viewController) var viewController
+    @ObservedObject var viewModel: GradeListViewModel
 
-	var body: some View {
+    var body: some View {
         if viewModel.state != .initialLoading {
             Button {
                 viewModel.navigateToFilter(viewController: viewController)
@@ -44,5 +44,5 @@ struct GradeListFilterButton: View {
             .accessibilityHint(Text("Filter grades options", bundle: .core))
             .accessibilityIdentifier("GradeList.filterButton")
         }
-	}
+    }
 }

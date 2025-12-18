@@ -20,7 +20,7 @@ import SwiftUI
 
 extension InstUI {
 
-	@available(iOS, deprecated: 26)
+    @available(iOS, deprecated: 26)
     public struct NavigationBarTitleView: View {
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
         @Environment(\.navBarColors) private var navBarColors

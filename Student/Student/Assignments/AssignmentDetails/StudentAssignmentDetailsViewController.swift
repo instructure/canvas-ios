@@ -333,13 +333,13 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         presenter?.viewFileSubmission()
     }
 
-	@available(iOS, deprecated: 26)
+    @available(iOS, deprecated: 26)
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?) {
         titleSubtitleView.subtitle = subtitle
 
         if #unavailable(iOS 26) {
             navigationController?.navigationBar.useContextColor(backgroundColor)
-		}
+        }
     }
 
     func updateGradeCell(_ assignment: Assignment, submission: Submission?) {
