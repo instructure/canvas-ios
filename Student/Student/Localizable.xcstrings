@@ -96647,10 +96647,7 @@
         }
       }
     },
-    "Progress > perfection." : {
-
-    },
-    "Progress, not perfection. You're doing great." : {
+    "Profile Menu, Closed" : {
 
     },
     "Questions:" : {
@@ -143475,10 +143472,7 @@
         }
       }
     },
-    "Well done getting through the day — progress counts, even when it's quiet." : {
-
-    },
-    "What feels hard now will feel easier later." : {
+    "Welcome to Canvas!" : {
 
     },
     "Whoops!" : {
@@ -146642,6 +146636,9 @@
           }
         }
       }
+    },
+    "You don't have any courses yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity." : {
+
     },
     "You don't have permission to masquerade as this user or there is no user with that ID" : {
       "comment" : "Masquerade error message",
