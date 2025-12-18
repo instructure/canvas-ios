@@ -124,11 +124,11 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
 
-		if #available(iOS 26, *) {
-			navigationItem.title = String(localized: "Files", bundle: .core)
-		} else {
-			setupTitleViewInNavbar(title: String(localized: "Files", bundle: .core))
-		}
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "Files", bundle: .core)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Files", bundle: .core))
+        }
 
         addButton.accessibilityIdentifier = "FileList.addButton"
         addButton.accessibilityLabel = String(localized: "Add Item", bundle: .core)
@@ -174,31 +174,31 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
         tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
 
-		if #unavailable(iOS 26) {
-			if context.contextType == .user {
-				navigationController?.navigationBar.useGlobalNavStyle()
-			} else {
-				navigationController?.navigationBar.useContextColor(color)
-			}
-		}
+        if #unavailable(iOS 26) {
+            if context.contextType == .user {
+                navigationController?.navigationBar.useGlobalNavStyle()
+            } else {
+                navigationController?.navigationBar.useContextColor(color)
+            }
+        }
     }
 
     func updateNavBar() {
-		if #available(iOS 26, *) {
-			if let course = course?.first {
-				navigationItem.subtitle = course.name
-			} else if let group = group?.first {
-				navigationItem.subtitle = group.name
-			}
-		} else {
-			if let course = course?.first {
-				updateNavBar(subtitle: course.name, color: course.color)
-			} else if let group = group?.first {
-				updateNavBar(subtitle: group.name, color: group.color)
-			} else if context.contextType == .user {
-				color = .textDark
-			}
-		}
+        if #available(iOS 26, *) {
+            if let course = course?.first {
+                navigationItem.subtitle = course.name
+            } else if let group = group?.first {
+                navigationItem.subtitle = group.name
+            }
+        } else {
+            if let course = course?.first {
+                updateNavBar(subtitle: course.name, color: course.color)
+            } else if let group = group?.first {
+                updateNavBar(subtitle: group.name, color: group.color)
+            } else if context.contextType == .user {
+                color = .textDark
+            }
+        }
         view.tintColor = color
         updateNavButtons()
     }

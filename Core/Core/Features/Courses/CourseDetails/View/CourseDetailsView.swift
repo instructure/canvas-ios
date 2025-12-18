@@ -24,9 +24,9 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
     @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: CourseDetailsViewModel
     @ObservedObject private var selectionViewModel: ListSelectionViewModel
-	@ObservedObject private var headerViewModel: CourseDetailsHeaderViewModel
-	@available(iOS, deprecated: 26)
-	@ObservedObject private var legacyHeaderViewModel: LegacyCourseDetailsHeaderViewModel
+    @ObservedObject private var headerViewModel: CourseDetailsHeaderViewModel
+    @available(iOS, deprecated: 26)
+    @ObservedObject private var legacyHeaderViewModel: LegacyCourseDetailsHeaderViewModel
 
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 

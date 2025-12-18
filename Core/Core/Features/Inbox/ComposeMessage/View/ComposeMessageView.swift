@@ -113,76 +113,76 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         )
     }
 
-	@ViewBuilder
-	private func baseScreenView(_ geometry: GeometryProxy) -> some View {
-		VStack(spacing: 0) {
-			headerView
-				.background(
-					GeometryReader { proxy in
-						Color.clear
-							.onAppear {
-								headerHeight = proxy.size.height
-								model.showSearchRecipientsView = false
-								focusedInput = nil
-							}
-					}
-				)
-			separator
-			courseView
-			separator
-			ZStack(alignment: .topLeading) {
-				VStack(spacing: 0) {
-					propertiesView
-					separator
+    @ViewBuilder
+    private func baseScreenView(_ geometry: GeometryProxy) -> some View {
+        VStack(spacing: 0) {
+            headerView
+                .background(
+                    GeometryReader { proxy in
+                        Color.clear
+                            .onAppear {
+                                headerHeight = proxy.size.height
+                                model.showSearchRecipientsView = false
+                                focusedInput = nil
+                            }
+                    }
+                )
+            separator
+            courseView
+            separator
+            ZStack(alignment: .topLeading) {
+                VStack(spacing: 0) {
+                    propertiesView
+                    separator
 
-					bodyView(geometry: geometry)
-					attachmentsView
-					if !model.includedMessages.isEmpty {
-						includedMessages
-					}
-					// This Rectangle adds extra height to ensure smoother display of the list of recipients
-					// without affecting the UI or any logic.
-					Rectangle()
-						.fill(Color.clear)
-						.frame(height: 150)
-						.allowsHitTesting(false)
-				}
-				if model.showSearchRecipientsView {
-					RecipientFilterView(recipients: model.searchedRecipients) { selectedRecipient in
-						model.showSearchRecipientsView = false
-						model.textRecipientSearch = ""
-						model.didSelectRecipient.accept(selectedRecipient)
-					}
-					.accessibilityHidden(true)
-					.offset(y: model.recipients.isEmpty ? searchTextFieldHeight : recipientViewHeight + searchTextFieldHeight)
-					.padding(.horizontal, 35)
-					.fixedSize(horizontal: false, vertical: true)
-					.animation(.smooth, value: model.showSearchRecipientsView)
-				}
+                    bodyView(geometry: geometry)
+                    attachmentsView
+                    if !model.includedMessages.isEmpty {
+                        includedMessages
+                    }
+                    // This Rectangle adds extra height to ensure smoother display of the list of recipients
+                    // without affecting the UI or any logic.
+                    Rectangle()
+                        .fill(Color.clear)
+                        .frame(height: 150)
+                        .allowsHitTesting(false)
+                }
+                if model.showSearchRecipientsView {
+                    RecipientFilterView(recipients: model.searchedRecipients) { selectedRecipient in
+                        model.showSearchRecipientsView = false
+                        model.textRecipientSearch = ""
+                        model.didSelectRecipient.accept(selectedRecipient)
+                    }
+                    .accessibilityHidden(true)
+                    .offset(y: model.recipients.isEmpty ? searchTextFieldHeight : recipientViewHeight + searchTextFieldHeight)
+                    .padding(.horizontal, 35)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .animation(.smooth, value: model.showSearchRecipientsView)
+                }
 
-			}
-		}
-	}
+            }
+        }
+    }
 
-	@available(iOS, introduced: 26, message: "Legacy version exists")
-	@ViewBuilder
-	private var extraSendButton: some View {
-		if model.showExtraSendButton {
-			Button {
-				model.didTapSend.accept(controller)
-			} label: {
-				Image.arrowUpSolid
+    @available(iOS, introduced: 26, message: "Legacy version exists")
+    @ViewBuilder
+    private var extraSendButton: some View {
+        if model.showExtraSendButton {
+            Button {
+                model.didTapSend.accept(controller)
+            } label: {
+                Image.arrowUpSolid
                     .resizable()
-			}
-			.buttonStyle(.glassProminent)
-			.accessibility(label: Text("Send", bundle: .core))
-			.disabled(!model.sendButtonActive)
-			.frame(maxHeight: .infinity, alignment: .top)
-			.accessibilityIdentifier("ComposeMessage.send")
-		}
-	}
+            }
+            .buttonStyle(.glassProminent)
+            .accessibility(label: Text("Send", bundle: .core))
+            .disabled(!model.sendButtonActive)
+            .frame(maxHeight: .infinity, alignment: .top)
+            .accessibilityIdentifier("ComposeMessage.send")
+        }
+    }
 
-	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
     @ViewBuilder
     private var legacyExtraSendButton: some View {
         if model.showExtraSendButton {
@@ -197,16 +197,16 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .frame(height: 0.5)
     }
 
-	private var cancelButton: some View {
-		Button {
-			model.didTapCancel.accept(controller)
-		} label: {
-			Text("Cancel", bundle: .core)
-				.font(.regular16)
+    private var cancelButton: some View {
+        Button {
+            model.didTapCancel.accept(controller)
+        } label: {
+            Text("Cancel", bundle: .core)
+                .font(.regular16)
                 .foregroundStyleBelow26(Color.accentColor)
-				.accessibilityIdentifier("ComposeMessage.cancel")
-		}
-	}
+                .accessibilityIdentifier("ComposeMessage.cancel")
+        }
+    }
 
    @ViewBuilder
     private var sendButton: some View {

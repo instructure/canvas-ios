@@ -58,11 +58,11 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
 
-		if #available(iOS 26, *) {
-			navigationItem.title = String(localized: "Conferences", bundle: .core)
-		} else {
-			setupTitleViewInNavbar(title: String(localized: "Conferences", bundle: .core))
-		}
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "Conferences", bundle: .core)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Conferences", bundle: .core))
+        }
 
         emptyMessageLabel.text = String(localized: "There are no conferences to display yet.", bundle: .core)
         emptyTitleLabel.text = String(localized: "No Conferences", bundle: .core)
@@ -110,11 +110,11 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
         spinnerView.color = color
         refreshControl.color = color
 
-		if #available(iOS 26, *) {
-			navigationItem.subtitle = name
-		} else {
-			updateNavBar(subtitle: name, color: color)
-		}
+        if #available(iOS 26, *) {
+            navigationItem.subtitle = name
+        } else {
+            updateNavBar(subtitle: name, color: color)
+        }
     }
 
     func update() {
@@ -146,27 +146,30 @@ extension ConferenceListViewController: UITableViewDataSource, UITableViewDelega
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         @available(iOS, deprecated: 26)
-        let titleLabel = if conferences[IndexPath(row: 0, section: section)]?.isConcluded == true {
-            String(localized: "Concluded Conferences", bundle: .core)
-        } else {
-            String(localized: "New Conferences", bundle: .core)
-        }
+        let titleLabel = {
+            if conferences[IndexPath(row: 0, section: section)]?.isConcluded == true {
+                String(localized: "Concluded Conferences", bundle: .core)
+            } else {
+                String(localized: "New Conferences", bundle: .core)
+            }
+        }()
+
         @available(iOS, deprecated: 26)
         let accessibilityIdentifier = "ConferencesList.header-\(section)"
 
-		if #available(iOS 26, *) {
-			let view = tableView.dequeueHeaderFooter(SectionHeaderView.self)
-			view.titleLabel?.text = titleLabel
-			view.titleLabel?.accessibilityIdentifier = accessibilityIdentifier
+        if #available(iOS 26, *) {
+            let view = tableView.dequeueHeaderFooter(SectionHeaderView.self)
+            view.titleLabel?.text = titleLabel
+            view.titleLabel?.accessibilityIdentifier = accessibilityIdentifier
 
-			return view
-		} else {
-			let view = tableView.dequeueHeaderFooter(LegacySectionHeaderView.self)
-			view.titleLabel?.text = titleLabel
-			view.titleLabel?.accessibilityIdentifier = accessibilityIdentifier
+            return view
+        } else {
+            let view = tableView.dequeueHeaderFooter(LegacySectionHeaderView.self)
+            view.titleLabel?.text = titleLabel
+            view.titleLabel?.accessibilityIdentifier = accessibilityIdentifier
 
-			return view
-		}
+            return view
+        }
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

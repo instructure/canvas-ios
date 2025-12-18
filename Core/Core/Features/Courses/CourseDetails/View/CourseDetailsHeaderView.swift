@@ -29,7 +29,7 @@ struct CourseDetailsHeaderView: View {
     }
 
     public var body: some View {
-		ZStack(alignment: .bottomLeading) {
+        ZStack(alignment: .bottomLeading) {
             Color(viewModel.courseColor)
                 .frame(width: width, height: viewModel.height)
             if let url = viewModel.imageURL {
@@ -37,7 +37,7 @@ struct CourseDetailsHeaderView: View {
                     .opacity(viewModel.imageOpacity)
                     .accessibility(hidden: true)
             }
-			VStack(alignment: .leading, spacing: 3) {
+            VStack(alignment: .leading, spacing: 3) {
                 Text(viewModel.courseName)
                     .font(.semibold23)
                     .accessibility(identifier: "course-details.title-lbl")

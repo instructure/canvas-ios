@@ -72,11 +72,11 @@ public class ConferenceDetailsViewController: ScreenViewTrackableViewController,
         view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
 
-		if #available(iOS 26, *) {
-			navigationItem.title = String(localized: "Conference Details", bundle: .core)
-		} else {
-			setupTitleViewInNavbar(title: String(localized: "Conference Details", bundle: .core))
-		}
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "Conference Details", bundle: .core)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Conference Details", bundle: .core))
+        }
 
         detailsHeadingLabel.text = String(localized: "Description", bundle: .core)
 
@@ -113,11 +113,11 @@ public class ConferenceDetailsViewController: ScreenViewTrackableViewController,
         }
         spinnerView.color = color
         refreshControl.color = color
-		if #available(iOS 26, *) {
-			navigationItem.subtitle = name
-		} else {
-			updateNavBar(subtitle: name, color: color)
-		}
+        if #available(iOS 26, *) {
+            navigationItem.subtitle = name
+        } else {
+            updateNavBar(subtitle: name, color: color)
+        }
     }
 
     func update() {

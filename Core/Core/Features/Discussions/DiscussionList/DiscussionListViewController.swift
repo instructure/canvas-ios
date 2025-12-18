@@ -74,11 +74,11 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-		if #available(iOS 26, *) {
-			navigationItem.title = String(localized: "Discussions", bundle: .core)
-		} else {
-			setupTitleViewInNavbar(title: String(localized: "Discussions", bundle: .core))
-		}
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "Discussions", bundle: .core)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Discussions", bundle: .core))
+        }
 
         addButton.accessibilityLabel = String(localized: "Create Discussion", bundle: .core)
         addButton.accessibilityIdentifier = "DiscussionList.newButton"
@@ -126,11 +126,11 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
         if colors.pending == false,
             let name = course?.first?.name ?? group?.first?.name,
             let color = course?.first?.color ?? group?.first?.color {
-			if #available(iOS 26, *) {
-				navigationItem.subtitle = name
-			} else {
-				updateNavBar(subtitle: name, color: color)
-			}
+            if #available(iOS 26, *) {
+                navigationItem.subtitle = name
+            } else {
+                updateNavBar(subtitle: name, color: color)
+            }
             view.tintColor = color
         }
         let canAdd = (course?.first?.canCreateDiscussionTopic ?? group?.first?.canCreateDiscussionTopic) == true

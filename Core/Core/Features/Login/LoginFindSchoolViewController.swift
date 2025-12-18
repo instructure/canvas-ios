@@ -25,11 +25,11 @@ class LoginFindSchoolViewController: UIViewController {
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var searchField: UITextField!
 
-	private lazy var nextButton = if #available(iOS 26, *) {
-		UIBarButtonItem(title: String(localized: "Next", bundle: .core), style: .prominent, target: self, action: #selector(nextPressed))
-	} else {
-		UIBarButtonItem(title: String(localized: "Next", bundle: .core), style: .done, target: self, action: #selector(nextPressed))
-	}
+    private lazy var nextButton = if #available(iOS 26, *) {
+        UIBarButtonItem(title: String(localized: "Next", bundle: .core), style: .prominent, target: self, action: #selector(nextPressed))
+    } else {
+        UIBarButtonItem(title: String(localized: "Next", bundle: .core), style: .done, target: self, action: #selector(nextPressed))
+    }
 
     var accounts = [APIAccountResult]()
     var api: API = API()

@@ -28,17 +28,17 @@ public struct MessageDetailsView: View {
     }
 
     public var body: some View {
-		if #available(iOS 26, *) {
+        if #available(iOS 26, *) {
             content
                 .navigationTitle(model.title)
                 .snackBar(viewModel: model.snackBarViewModel)
                 .toolbar { moreButton }
-		} else {
-			content
+        } else {
+            content
                 .navigationBarTitleView(model.title)
                 .navigationBarItems(trailing: legacyMoreButton)
                 .navigationBarStyle(.global)
-		}
+        }
     }
 
     private var content: some View {
@@ -99,8 +99,8 @@ public struct MessageDetailsView: View {
         .padding(.horizontal, 16)
     }
 
-	@available(iOS, introduced: 26, message: "Legacy version exists")
-	private var moreButton: some View {
+    @available(iOS, introduced: 26, message: "Legacy version exists")
+    private var moreButton: some View {
         Menu {
             if model.isReplyButtonVisible {
                 Button(.init("Reply", bundle: .core), image: .replyLine) {
@@ -158,11 +158,11 @@ public struct MessageDetailsView: View {
         } label: {
             Image.moreSolid
         }
-		.accessibilityIdentifier("MessageDetails.more")
-		.accessibility(label: Text("More options", bundle: .core))
-	}
+        .accessibilityIdentifier("MessageDetails.more")
+        .accessibility(label: Text("More options", bundle: .core))
+    }
 
-	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
     private var legacyMoreButton: some View {
         Button(action: {
             model.conversationMoreTapped(viewController: controller)
@@ -236,9 +236,9 @@ struct MessageDetailsView_Previews: PreviewProvider {
     static let context = env.globalDatabase.viewContext
 
     static var previews: some View {
-		NavigationStack {
-			MessageDetailsAssembly.makePreview(env: env, subject: "Message Title", messages: .make(count: 5, body: InstUI.PreviewData.loremIpsumLong, in: context))
-		}
+        NavigationStack {
+            MessageDetailsAssembly.makePreview(env: env, subject: "Message Title", messages: .make(count: 5, body: InstUI.PreviewData.loremIpsumLong, in: context))
+        }
     }
 }
 

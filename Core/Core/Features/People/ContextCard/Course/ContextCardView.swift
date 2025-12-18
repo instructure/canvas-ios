@@ -52,21 +52,21 @@ public struct ContextCardView: View {
         }
     }
 
-	@available(iOS, introduced: 26, message: "Legacy version exists")
-	@ViewBuilder
-	var emailButton: some View {
-		if model.permissions.first?.sendMessages == true, model.isViewingAnotherUser {
-			Button { model.openNewMessageComposer(controller: controller.value) } label: {
-				Image.emailLine
-			}
-			.accessibility(label: Text("Send message", bundle: .core))
-			.identifier("ContextCard.emailContact")
-		}
-	}
-
-	@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    @available(iOS, introduced: 26, message: "Legacy version exists")
     @ViewBuilder
-	var legacyEmailButton: some View {
+    var emailButton: some View {
+        if model.permissions.first?.sendMessages == true, model.isViewingAnotherUser {
+            Button { model.openNewMessageComposer(controller: controller.value) } label: {
+                Image.emailLine
+            }
+            .accessibility(label: Text("Send message", bundle: .core))
+            .identifier("ContextCard.emailContact")
+        }
+    }
+
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    @ViewBuilder
+    var legacyEmailButton: some View {
         if model.permissions.first?.sendMessages == true, model.isViewingAnotherUser {
             Button(action: { model.openNewMessageComposer(controller: controller.value) }, label: {
                 let color = model.isModal ? Brand.shared.buttonPrimaryBackground : Brand.shared.buttonPrimaryText

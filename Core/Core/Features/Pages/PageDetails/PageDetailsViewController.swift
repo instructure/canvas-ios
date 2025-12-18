@@ -81,11 +81,11 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
 
-		if #available(iOS 26, *) {
-			navigationItem.title = String(localized: "Page Details", bundle: .core)
-		} else {
-			setupTitleViewInNavbar(title: String(localized: "Page Details", bundle: .core))
-		}
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "Page Details", bundle: .core)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Page Details", bundle: .core))
+        }
 
         webViewContainer.addSubview(webView)
         webView.pinWithThemeSwitchButton(inside: webViewContainer)
@@ -141,11 +141,11 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
             env.app != .parent
         else { return }
 
-		if #available(iOS 26, *) {
-			navigationItem.subtitle = name
-		} else {
-			updateNavBar(subtitle: name, color: color)
-		}
+        if #available(iOS 26, *) {
+            navigationItem.subtitle = name
+        } else {
+            updateNavBar(subtitle: name, color: color)
+        }
     }
 
     private func update() {

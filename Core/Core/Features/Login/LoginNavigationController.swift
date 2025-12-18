@@ -32,9 +32,9 @@ public class LoginNavigationController: UINavigationController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-		if #unavailable(iOS 26) {
-			navigationBar.useStyle(.global)
-		}
+        if #unavailable(iOS 26) {
+            navigationBar.useStyle(.global)
+        }
         isNavigationBarHidden = true
     }
 

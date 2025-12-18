@@ -57,7 +57,7 @@ extension UIViewController {
         return false
     }
 
-	@available(iOS, deprecated: 26)
+    @available(iOS, deprecated: 26)
     public var splitDisplayModeButtonItem: UIBarButtonItem? {
         guard let splitView = splitViewController else { return nil }
         let defaultButton = splitView.displayModeButtonItem
