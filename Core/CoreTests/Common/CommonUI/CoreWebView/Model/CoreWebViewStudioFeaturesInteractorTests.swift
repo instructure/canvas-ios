@@ -207,11 +207,11 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
     }
 }
 
-struct MockInfoFrameInfoRepresentable: FrameInfoRepresentable {
+private struct MockInfoFrameInfoRepresentable: FrameInfoRepresentable {
     let isMainFrame: Bool
 }
 
-struct MockNavigationActionRepresentable: NavigationActionRepresentable {
+private struct MockNavigationActionRepresentable: NavigationActionRepresentable {
     let request: URLRequest
     let navigationType: WKNavigationType
     let sourceInfoFrame: FrameInfoRepresentable

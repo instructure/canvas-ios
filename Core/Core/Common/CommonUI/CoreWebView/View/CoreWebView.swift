@@ -496,7 +496,7 @@ open class CoreWebView: WKWebView {
             .store(in: &subscriptions)
     }
 
-    func isSameFrameNavigation(_ action: WKNavigationAction) -> Bool {
+    func isSourceFrameSameAsTarget(_ action: WKNavigationAction) -> Bool {
         return action.sourceFrame == action.targetFrame
     }
 }
@@ -530,7 +530,7 @@ extension CoreWebView: WKNavigationDelegate {
 
         // Scroll to fragment if this is a #fragment link click on the same site
         if action.navigationType == .linkActivated,
-           isSameFrameNavigation(action),
+           isSourceFrameSameAsTarget(action),
            let url = action.request.url, let fragment = url.fragment,
            // self.url isn't set when using loadHTMLString, so we check the baseURL that is set when calling that method
            let lhsString: String.SubSequence = (self.url ?? baseURL)?.absoluteString.split(separator: "#").first,

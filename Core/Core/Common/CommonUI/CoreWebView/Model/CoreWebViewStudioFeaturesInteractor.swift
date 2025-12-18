@@ -179,40 +179,17 @@ extension NavigationActionRepresentable {
         guard let path = request.url?.path else { return false }
 
         let isExpandLink =
-            navigationType == .other &&
-            path.contains("/media_attachments/") &&
-            path.hasSuffix("/immersive_view") &&
-            sourceInfoFrame.isMainFrame == false
+        navigationType == .other
+        && path.contains("/media_attachments/")
+        && path.hasSuffix("/immersive_view")
+        && sourceInfoFrame.isMainFrame == false
 
         let isDetailsLink =
-            navigationType == .linkActivated &&
-            path.contains("/media_attachments/") &&
-            path.hasSuffix("/immersive_view") &&
-            (targetInfoFrame?.isMainFrame ?? false) == false
+        navigationType == .linkActivated
+        && path.contains("/media_attachments/")
+        && path.hasSuffix("/immersive_view")
+        && (targetInfoFrame?.isMainFrame ?? false) == false
 
         return isExpandLink || isDetailsLink
-    }
-}
-
-protocol FrameInfoRepresentable {
-    var isMainFrame: Bool { get }
-}
-
-protocol NavigationActionRepresentable {
-    var request: URLRequest { get }
-    var navigationType: WKNavigationType { get }
-    var sourceInfoFrame: FrameInfoRepresentable { get }
-    var targetInfoFrame: FrameInfoRepresentable? { get }
-}
-
-extension WKFrameInfo: FrameInfoRepresentable {}
-
-extension WKNavigationAction: NavigationActionRepresentable {
-    var sourceInfoFrame: FrameInfoRepresentable {
-        self.sourceFrame
-    }
-
-    var targetInfoFrame: FrameInfoRepresentable? {
-        self.targetFrame
     }
 }
