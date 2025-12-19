@@ -46,7 +46,7 @@ class DomainServiceTests: HorizonTestCase {
         // Then
         XCTAssertEqual(
             domainServiceApi?.baseURL.absoluteString,
-            "https://cedar-api-production.us-west-1.temp.prod.inseng.io",
+            "https://cedar-api.us-west-1.core.inseng.io",
             "The region should be included in the domain service URL"
         )
     }
@@ -72,7 +72,7 @@ class DomainServiceTests: HorizonTestCase {
         // Then
         XCTAssertEqual(
             domainServiceApi?.baseURL.absoluteString,
-            "https://cedar-api-production.us-east-1.temp.prod.inseng.io",
+            "https://cedar-api.us-east-1.core.inseng.io",
             "The region should be included in the domain service URL"
         )
     }
@@ -98,7 +98,7 @@ class DomainServiceTests: HorizonTestCase {
         // Then
         XCTAssertEqual(
             domainServiceApi?.baseURL.absoluteString,
-            "https://cedar-api-dev.domain-svcs.nonprod.inseng.io",
+            "https://cedar-api-dev.us-east-1.core.inseng.io",
             "Non-prod environments should use dev URL"
         )
     }
