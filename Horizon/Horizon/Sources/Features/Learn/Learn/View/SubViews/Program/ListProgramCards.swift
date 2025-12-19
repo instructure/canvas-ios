@@ -77,16 +77,11 @@ struct ListProgramCards: View {
                         completionPercent: program.completionPercent,
                         status: program.status
                     )
-                    Button {
-                        if status == .notEnrolled, UIAccessibility.isVoiceOverRunning {
-                            onTapEnroll(program)
-                        } else {
+                    contentView(for: program, status: status)
+                        .contentShape(.rect)
+                        .onTapGesture {
                             onTapSelect(program)
                         }
-                    } label: {
-                        contentView(for: program, status: status)
-                    }
-                    .buttonStyle(.plain)
                 }
             }
             .coordinateSpace(name: Constants.coordinateSpaceID)
@@ -129,9 +124,6 @@ struct ListProgramCards: View {
         }
         .identifier(program.id)
         .accessibilityFocused(focusedID, equals: program.id)
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(program.accessibilityLabelText(status: status, isLinear: isLinear))
-        .accessibilityHint(program.accessibilityHintString(status: status))
     }
 }
 

@@ -49,8 +49,13 @@ struct ProgramCardView: View {
     // MARK: - Body
     public var body: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
-            titleView
-            statusView
+            VStack(alignment: .leading, spacing: .huiSpaces.space16) {
+                titleView
+                statusView
+            }
+           .accessibilityElement(children: .ignore)
+           .accessibilityLabel(programCourse.accessibilityLabelText(status: status, isLinear: isLinear))
+           .accessibilityHint(programCourse.accessibilityHintString(status: status))
             if status == .notEnrolled {
                 enrollButton
             }
@@ -97,6 +102,7 @@ struct ProgramCardView: View {
                 onSave: onTapEnroll
             )
         }
+        .accessibilityLabel(String(localized: "Enroll to the course"))
     }
 
     private var cardBackground: some View {

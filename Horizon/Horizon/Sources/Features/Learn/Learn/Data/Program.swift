@@ -178,7 +178,7 @@ struct ProgramCourse: Identifiable, Equatable {
 
     func accessibilityHintString(status: ProgramCardStatus) -> String {
         switch status {
-        case .notEnrolled: String(localized: "Double tap to enroll course")
+        case .notEnrolled: ""
         case .locked: String(localized: "This course is dimmed")
         default: String(localized: "Double tap to open course")
         }

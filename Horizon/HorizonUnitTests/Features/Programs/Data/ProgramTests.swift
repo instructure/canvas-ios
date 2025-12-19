@@ -159,7 +159,7 @@ final class ProgramTests: XCTestCase {
         let result = testee.accessibilityHintString(status: .notEnrolled)
         XCTAssertEqual(
             result,
-            "Double tap to enroll course",
+            "",
             "Expected correct hint for notEnrolled"
         )
     }
