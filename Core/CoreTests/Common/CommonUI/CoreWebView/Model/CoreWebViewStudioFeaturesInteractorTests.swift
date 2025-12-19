@@ -185,7 +185,7 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
 
         // When
         let actionUrl = "https://suhaibalabsi.instructure.com/media_attachments/613046/immersive_view"
-        let action = MockNavigationAction(url: actionUrl, type: .other, sourceFrame: MockFrameInfo(isMainFrame: false))
+        let action = MockNavigationActionRepresentable(url: actionUrl, type: .other, sourceFrame: MockInfoFrameInfoRepresentable(isMainFrame: false))
         let immersiveUrl = interactor.urlForStudioImmersiveView(of: action)
 
         // Then
@@ -199,10 +199,33 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
 
         // When
         let actionUrl = "https://suhaibalabsi.instructure.com/media_attachments/546734/immersive_view?title=Hello%20World"
-        let action = MockNavigationAction(url: actionUrl, type: .linkActivated, targetFrame: MockFrameInfo(isMainFrame: false))
+        let action = MockNavigationActionRepresentable(url: actionUrl, type: .linkActivated, targetFrame: MockInfoFrameInfoRepresentable(isMainFrame: false))
         let immersiveUrl = interactor.urlForStudioImmersiveView(of: action)
 
         // Then
         XCTAssertEqual(immersiveUrl?.absoluteString, "https://suhaibalabsi.instructure.com/media_attachments/546734/immersive_view?title=Hello%20World&embedded=true")
+    }
+}
+
+private struct MockInfoFrameInfoRepresentable: FrameInfoRepresentable {
+    let isMainFrame: Bool
+}
+
+private struct MockNavigationActionRepresentable: NavigationActionRepresentable {
+    let request: URLRequest
+    let navigationType: WKNavigationType
+    let sourceInfoFrame: FrameInfoRepresentable
+    let targetInfoFrame: FrameInfoRepresentable?
+
+    init(
+        url: String,
+        type: WKNavigationType,
+        sourceFrame: FrameInfoRepresentable = MockInfoFrameInfoRepresentable(isMainFrame: true),
+        targetFrame: FrameInfoRepresentable? = nil
+    ) {
+        self.request = URLRequest(url: URL(string: url)!)
+        self.navigationType = type
+        self.sourceInfoFrame = sourceFrame
+        self.targetInfoFrame = targetFrame
     }
 }
