@@ -34,21 +34,6 @@ public struct CourseSettingsView: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        if #available(iOS 26, *) {
-            states
-                .navigationTitle(.init("Customize Course", bundle: .core))
-                .optionalNavigationSubtitle(viewModel.courseName)
-        } else {
-            states
-                .navigationBarTitleView(
-                    title: String(localized: "Customize Course", bundle: .core),
-                    subtitle: viewModel.courseName
-                )
-                .navigationBarStyle(.modal)
-        }
-    }
-
-    private var states: some View {
         GeometryReader { geometry in
             switch viewModel.state {
             case .loading:
@@ -71,6 +56,11 @@ public struct CourseSettingsView: View, ScreenViewTrackable {
                 }
                 .disabled(viewModel.state != .ready)
             }
+        )
+        .navigationTitles(
+            title: String(localized: "Customize Course", bundle: .core),
+            subtitle: viewModel.courseName,
+            style: .modal
         )
         .onAppear(perform: viewModel.viewDidAppear)
         .alert(isPresented: $viewModel.showError) {

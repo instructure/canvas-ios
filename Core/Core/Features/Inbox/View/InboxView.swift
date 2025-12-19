@@ -35,27 +35,6 @@ public struct InboxView: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        if #available(iOS 26, *) {
-            content
-                .toolbar {
-                    if model.isShowMenuButton {
-                        ToolbarItem(placement: .topBarLeading) {
-                            menuButton
-                        }
-                    }
-
-                    ToolbarItem(placement: .topBarTrailing) {
-                        newMessageButton
-                    }
-                }
-        } else {
-            content
-                .navigationBarItems(leading: model.isShowMenuButton ? legacyMenuButton : nil, trailing: legacyNewMessageButton)
-                .navigationBarStyle(.global)
-        }
-    }
-
-    private var content: some View {
         VStack(spacing: 0) {
             InboxFilterBarView(model: model)
             Color.borderMedium
@@ -94,6 +73,26 @@ public struct InboxView: View, ScreenViewTrackable {
             }
         }
         .background(Color.backgroundLightest)
+        .toolbar {
+            if model.isShowMenuButton {
+                ToolbarItem(placement: .topBarLeading) {
+                    if #available(iOS 26, *) {
+                        menuButton
+                    } else {
+                        legacyMenuButton
+                    }
+                }
+            }
+
+            ToolbarItem(placement: .topBarTrailing) {
+                if #available(iOS 26, *) {
+                    newMessageButton
+                } else {
+                    legacyNewMessageButton
+                }
+            }
+        }
+        .navigationBarStyle(.global)
     }
 
     private var messagesList: some View {

@@ -29,17 +29,6 @@ public struct AllCoursesView: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        if #available(iOS 26, *) {
-            states
-                .navigationTitle(.init("All Courses", bundle: .core))
-        } else {
-            states
-                .navigationBarTitleView(String(localized: "All Courses", bundle: .core))
-                .navigationBarStyle(.global)
-        }
-    }
-
-    private var states: some View {
         GeometryReader { geometry in
             RefreshableScrollView {
                 VStack(spacing: 0) {
@@ -61,6 +50,7 @@ public struct AllCoursesView: View, ScreenViewTrackable {
             }
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+        .navigationTitle(String(localized: "All Courses", bundle: .core), style: .global)
     }
 
     @ViewBuilder

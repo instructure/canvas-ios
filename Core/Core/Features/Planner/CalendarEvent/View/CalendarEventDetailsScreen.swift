@@ -29,64 +29,40 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        SwiftUI.Group {
-            if #available(iOS 26, *) {
-                InstUI.BaseScreen(
-                    state: viewModel.state,
-                    refreshAction: viewModel.reload
-                ) { _ in
-                    eventContent
-                }
-                .navigationTitle(viewModel.pageTitle)
-                .optionalNavigationSubtitle(viewModel.pageSubtitle)
-                .toolbar {
-                    if viewModel.shouldShowMenuButton {
-                        InstUI.NavigationBarButton.moreIcon(
-                            isEnabled: viewModel.isMoreButtonEnabled,
-                            isAvailableOffline: false,
-                            menuContent: {
-                                InstUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
-                                InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
-                            }
-                        )
-                        .confirmation(
-                            isPresented: $viewModel.shouldShowDeleteConfirmation,
-                            presenting: viewModel.deleteConfirmation
-                        )
+        InstUI.BaseScreen(
+            state: viewModel.state,
+            refreshAction: viewModel.reload
+        ) { _ in
+            eventContent
+        }
+        .toolbar {
+            let isBackgroundContextColor = if #available(iOS 26, *) { false } else { true }
+
+            if viewModel.shouldShowMenuButton {
+                InstUI.NavigationBarButton.moreIcon(
+                    isBackgroundContextColor: isBackgroundContextColor,
+                    isEnabled: viewModel.isMoreButtonEnabled,
+                    isAvailableOffline: false,
+                    menuContent: {
+                        InstUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
+                        InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
                     }
-                }
-            } else {
-                InstUI.BaseScreen(
-                    state: viewModel.state,
-                    refreshAction: viewModel.reload
-                ) { _ in
-                    eventContent
-                }
-                .navigationBarTitleView(title: viewModel.pageTitle, subtitle: viewModel.pageSubtitle)
-                .navBarItems(
-                    trailing: viewModel.shouldShowMenuButton
-                    ? InstUI.NavigationBarButton.moreIcon(
-                        isBackgroundContextColor: true,
-                        isEnabled: viewModel.isMoreButtonEnabled,
-                        isAvailableOffline: false,
-                        menuContent: {
-                            InstUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
-                            InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
-                        }
-                    )
-                    .confirmation(
-                        isPresented: $viewModel.shouldShowDeleteConfirmation,
-                        presenting: viewModel.deleteConfirmation
-                    )
-                    : nil
                 )
-                .navigationBarStyle(.color(viewModel.contextColor))
                 .confirmation(
                     isPresented: $viewModel.shouldShowDeleteConfirmation,
                     presenting: viewModel.deleteConfirmation
                 )
             }
         }
+        .navigationTitles(
+            title: viewModel.pageTitle,
+            subtitle: viewModel.pageSubtitle,
+            style: .color(viewModel.contextColor)
+        )
+        .confirmation(
+            isPresented: $viewModel.shouldShowDeleteConfirmation,
+            presenting: viewModel.deleteConfirmation
+        )
         .errorAlert(
             isPresented: $viewModel.shouldShowDeleteError,
             presenting: .init(

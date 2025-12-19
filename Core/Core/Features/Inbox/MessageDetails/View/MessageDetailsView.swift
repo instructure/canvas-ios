@@ -28,20 +28,6 @@ public struct MessageDetailsView: View {
     }
 
     public var body: some View {
-        if #available(iOS 26, *) {
-            content
-                .navigationTitle(model.title)
-                .snackBar(viewModel: model.snackBarViewModel)
-                .toolbar { moreButton }
-        } else {
-            content
-                .navigationBarTitleView(model.title)
-                .navigationBarItems(trailing: legacyMoreButton)
-                .navigationBarStyle(.global)
-        }
-    }
-
-    private var content: some View {
         RefreshableScrollView {
             switch model.state {
             case .loading:
@@ -62,6 +48,14 @@ public struct MessageDetailsView: View {
                 onComplete()
             }
         }
+        .toolbar {
+            if #available(iOS 26, *) {
+                moreButton
+            } else {
+                legacyMoreButton
+            }
+        }
+        .navigationTitle(model.title, style: .modal)
         .background(Color.backgroundLightest)
         .snackBar(viewModel: model.snackBarViewModel)
     }

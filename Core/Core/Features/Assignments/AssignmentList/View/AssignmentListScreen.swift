@@ -36,34 +36,8 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        if #available(iOS 26, *) {
-            states
-                .navigationTitle(.init("Assignments", bundle: .core))
-                .optionalNavigationSubtitle(viewModel.courseName)
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        InstUI.NavigationBarButton.filterIcon(isSolid: viewModel.isFilterIconSolid) {
-                            viewModel.navigateToPreferences(viewController: controller)
-                        }
-                    }
-                }
-        } else {
-            states
-                .navigationBarTitleView(
-                    title: String(localized: "Assignments", bundle: .core),
-                    subtitle: viewModel.courseName
-                )
-                .navigationBarGenericBackButton()
-                .navBarItems(
-                    trailing: .filterIcon(isBackgroundContextColor: true, isSolid: viewModel.isFilterIconSolid) {
-                        viewModel.navigateToPreferences(viewController: controller)
-                    }
-                )
-                .navigationBarStyle(.color(viewModel.courseColor))
-        }
-    }
+        let isBackgroundContextColor = if #available(iOS 26, *) { false } else { true }
 
-    private var states: some View {
         VStack(spacing: 0) {
             switch viewModel.state {
             case .empty, .error:
@@ -80,6 +54,16 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
         .tint(viewModel.courseColor?.asColor)
         .onAppear(perform: viewModel.viewDidAppear)
         .onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
+        .navigationTitles(
+            title: .init(localized: "Assignments", bundle: .core),
+            subtitle: viewModel.courseName,
+            style: .color(viewModel.courseColor)
+        )
+        .navBarItems(
+            trailing: .filterIcon(isBackgroundContextColor: isBackgroundContextColor, isSolid: viewModel.isFilterIconSolid) {
+                viewModel.navigateToPreferences(viewController: controller)
+            }
+        )
     }
 
     private var gradingPeriodTitle: some View {

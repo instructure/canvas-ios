@@ -75,11 +75,9 @@ public struct FileEditorView: View {
     }
 
     public var body: some View {
+        let title = isFile ? String(localized: "Edit File", bundle: .core) : String(localized: "Edit Folder", bundle: .core)
+        
         form
-            .navigationBarTitleView(isFile
-                                        ? String(localized: "Edit File", bundle: .core)
-                                        : String(localized: "Edit Folder", bundle: .core)
-            )
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: dismiss, label: {
@@ -92,7 +90,7 @@ public struct FileEditorView: View {
                     .disabled(isLoading || isSaving)
                     .identifier("FileEditor.doneButton")
             )
-            .navigationBarStyle(.modal)
+            .navigationTitle(title, style: .modal)
 
             .alert(item: $alertItem) {
                 switch $0 {

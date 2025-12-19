@@ -65,8 +65,7 @@ struct AssigmentAssigneeList: View {
             }
                 .background((isEmpty ? Color.backgroundLightest : Color.backgroundGrouped).edgesIgnoringSafeArea(.all))
         } }
-            .navigationBarTitleView(String(localized: "Add Assignee", bundle: .core))
-            .navigationBarStyle(.modal)
+        .navigationTitle(String(localized: "Add Assignee", bundle: .core), style: .modal)
     }
 
     @ViewBuilder

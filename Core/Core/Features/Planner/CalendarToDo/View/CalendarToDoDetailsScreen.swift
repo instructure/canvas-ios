@@ -28,43 +28,23 @@ public struct CalendarToDoDetailsScreen: View {
     }
 
     public var body: some View {
-        SwiftUI.Group {
-            if #available(iOS 26, *) {
-                InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { _ in
-                    eventContent
-                }
-                .navigationTitle(viewModel.navigationTitle)
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        InstUI.NavigationBarButton.moreIcon(
-                            isEnabled: viewModel.isMoreButtonEnabled,
-                            isAvailableOffline: false,
-                            menuContent: {
-                                InstUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
-                                InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
-                            }
-                        )
-                    }
-                }
-            } else {
-                InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { _ in
-                    eventContent
-                }
-                .navigationBarTitleView(viewModel.navigationTitle)
-                .navBarItems(
-                    trailing: .moreIcon(
-                        isBackgroundContextColor: true,
-                        isEnabled: viewModel.isMoreButtonEnabled,
-                        isAvailableOffline: false,
-                        menuContent: {
-                            InstUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
-                            InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
-                        }
-                    )
-                )
-                .navigationBarStyle(.color(viewModel.navBarColor))
-            }
+        let isContextColorBackground = if #available(iOS 26, *) { false } else { true }
+
+        InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { _ in
+            eventContent
         }
+        .navBarItems(
+            trailing: .moreIcon(
+                isBackgroundContextColor: isContextColorBackground,
+                isEnabled: viewModel.isMoreButtonEnabled,
+                isAvailableOffline: false,
+                menuContent: {
+                    InstUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
+                    InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
+                }
+            )
+        )
+        .navigationTitle(viewModel.navigationTitle, style: .color(viewModel.navBarColor))
         .confirmationAlert(
             isPresented: $viewModel.shouldShowDeleteConfirmation,
             presenting: viewModel.deleteConfirmationAlert

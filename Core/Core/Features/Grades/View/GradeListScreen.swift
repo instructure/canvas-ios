@@ -64,20 +64,6 @@ public struct GradeListScreen: View, ScreenViewTrackable {
     // MARK: - Components
 
     public var body: some View {
-        if #available(iOS 26, *) {
-            baseView
-                .navigationTitle(.init("Grades", bundle: .core))
-                .optionalNavigationSubtitle(viewModel.courseName)
-        } else {
-            baseView
-                .navigationBarTitleView(
-                    title: String(localized: "Grades", bundle: .core),
-                    subtitle: viewModel.courseName
-                )
-        }
-    }
-
-    private var baseView: some View {
         ZStack {
             ScrollView(showsIndicators: false) {
                 contentView
@@ -113,7 +99,11 @@ public struct GradeListScreen: View, ScreenViewTrackable {
                 GradeListFilterButton(viewModel: viewModel)
             }
         }
-        .navigationBarStyle(.color(nil))
+        .navigationTitles(
+            title: String(localized: "Grades", bundle: .core),
+            subtitle: viewModel.courseName,
+            style: .color(nil)
+        )
         .confirmationAlert(
             isPresented: $viewModel.isShowingRevertDialog,
             presenting: viewModel.confirmRevertAlertViewModel

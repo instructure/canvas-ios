@@ -44,8 +44,7 @@ public struct AssignmentDueDatesView: View {
             }
         }
         .background(Color.backgroundLightest)
-        .navigationBarTitleView(model.title)
-        .navigationBarStyle(.color(nil))
+        .navigationTitle(model.title, style: .color(nil))
     }
 }
 

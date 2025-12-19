@@ -27,29 +27,23 @@ public struct ContextCardView: View {
     }
 
     public var body: some View {
-        SwiftUI.Group {
-            if #available(iOS 26, *) {
-                contextCard
-                    .optionalNavigationTitle(model.user.first?.name)
-                    .optionalNavigationSubtitle(model.course.first?.name)
-                    .toolbar {
-                        emailButton
-                    }
-                    .navigationBarStyle(model.isModal ? .modal : .color(nil))
-            } else {
-                contextCard
-                    .navigationBarTitleView(
-                        title: model.user.first?.name ?? "",
-                        subtitle: model.course.first?.name
-                    )
-                    .navigationBarItems(trailing: legacyEmailButton)
-                    .navigationBarStyle(model.isModal ? .modal : .color(nil))
+        contextCard
+            .toolbar {
+                if #available(iOS 26, *) {
+                    emailButton
+                } else {
+                    legacyEmailButton
+                }
             }
-        }
-        .background(Color.backgroundLightest)
-        .onAppear {
-            model.viewAppeared()
-        }
+            .navigationTitles(
+                title: model.user.first?.name ?? "",
+                subtitle: model.course.first?.name,
+                style: model.isModal ? .modal : .color(nil)
+            )
+            .background(Color.backgroundLightest)
+            .onAppear {
+                model.viewAppeared()
+            }
     }
 
     @available(iOS, introduced: 26, message: "Legacy version exists")

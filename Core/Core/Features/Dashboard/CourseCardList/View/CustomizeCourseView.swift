@@ -86,12 +86,12 @@ struct CustomizeCourseView: View {
             }
             InstUI.Divider()
         }
-        .navigationBarTitleView(
-            title: String(localized: "Customize Course", bundle: .core),
-            subtitle: viewModel.courseName
-        )
         .navigationBarItems(leading: cancelNavBarButton, trailing: doneNavBarButton)
-        .navigationBarStyle(.modal)
+        .navigationTitles(
+            title: String(localized: "Customize Course", bundle: .core),
+            subtitle: viewModel.courseName,
+            style: .modal
+        )
         .onReceive(viewModel.dismissView) { _ in
             env.router.dismiss(controller)
         }

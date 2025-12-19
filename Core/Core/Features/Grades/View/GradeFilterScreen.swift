@@ -31,44 +31,33 @@ public struct GradeFilterScreen: View {
 
     // MARK: - Body
     public var body: some View {
-        if #available(iOS 26, *) {
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 0) {
-                    if viewModel.isShowGradingPeriodsView {
-                        gradingPeriodSection
-                    }
-                    sortBySection
+        ScrollView(showsIndicators: false) {
+            VStack(spacing: 0) {
+                if viewModel.isShowGradingPeriodsView {
+                    gradingPeriodSection
                 }
-                .navigationTitle(.init("Grade List Preferences", bundle: .core))
-                .optionalNavigationSubtitle(viewModel.courseName)
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) {
-                        cancelButton
-                    }
+                sortBySection
+            }
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    cancelButton
+                }
 
-                    ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .topBarTrailing) {
+                    if #available(iOS 26, *) {
                         sendButton
+                    } else {
+                        legacySendButton
                     }
                 }
             }
-            .background(Color.backgroundLightest)
-        } else {
-            ScrollView(showsIndicators: false) {
-                VStack(spacing: 0) {
-                    if viewModel.isShowGradingPeriodsView {
-                        gradingPeriodSection
-                    }
-                    sortBySection
-                }
-                .navigationBarTitleView(
-                    title: String(localized: "Grade List Preferences", bundle: .core),
-                    subtitle: viewModel.courseName
-                )
-                .navigationBarItems(leading: cancelButton, trailing: legacySendButton)
-                .navigationBarStyle(.modal)
-            }
-            .background(Color.backgroundLightest)
+            .navigationTitles(
+                title: String(localized: "Grade List Preferences", bundle: .core),
+                subtitle: viewModel.courseName,
+                style: .modal
+            )
         }
+        .background(Color.backgroundLightest)
     }
 
     private var gradingPeriodSection: some View {

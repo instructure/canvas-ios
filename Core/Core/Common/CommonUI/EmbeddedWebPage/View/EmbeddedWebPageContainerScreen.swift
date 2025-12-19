@@ -40,20 +40,6 @@ public struct EmbeddedWebPageContainerScreen: View {
     }
 
     public var body: some View {
-        if #available(iOS 26, *) {
-            webSession
-                .navBarItems(leading: viewModel.leadingNavigationButton)
-                .navigationTitle(viewModel.navTitle)
-                .optionalNavigationSubtitle(viewModel.subTitle)
-        } else {
-            webSession
-                .navBarItems(leading: viewModel.leadingNavigationButton)
-                .navigationBarTitleView(title: viewModel.navTitle, subtitle: viewModel.subTitle)
-                .navigationBarStyle(.color(viewModel.contextColor))
-        }
-    }
-
-    private var webSession: some View {
         WebSession(url: viewModel.url) { sessionURL in
             WebView(
                 url: sessionURL,
@@ -68,5 +54,7 @@ public struct EmbeddedWebPageContainerScreen: View {
                 viewModel.viewController = viewController.value
             }
         }
+        .navBarItems(leading: viewModel.leadingNavigationButton)
+        .navigationTitles(title: viewModel.navTitle, subtitle: viewModel.subTitle, style: .color(viewModel.contextColor))
     }
 }

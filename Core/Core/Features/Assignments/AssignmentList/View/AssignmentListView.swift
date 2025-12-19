@@ -41,11 +41,8 @@ struct AssignmentListView: View {
         self.whatIfModel = whatIfModel
     }
 
-    @available(iOS, deprecated: 26)
-    private let pinnedViews: PinnedScrollableViews = if #available(iOS 26, *) { .init() } else { .sectionHeaders }
-
     var body: some View {
-        LazyVStack(spacing: 0, pinnedViews: pinnedViews) {
+        LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
             ForEach(sections) { section in
                 sectionView(with: section)
             }

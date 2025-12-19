@@ -71,23 +71,31 @@ struct NavBarBackButtonModifier: ViewModifier {
 }
 
 extension View {
-    @available(iOS, introduced: 26)
+
     @ViewBuilder
-    public func optionalNavigationSubtitle(_ subtitle: String?) -> some View {
-        if let subtitle {
-            self.navigationSubtitle(subtitle)
+    @available(iOS, deprecated: 26, message: "Replace usages with native navigationTitle()")
+    public func navigationTitle(_ title: String, style: NavigationBarStyle) -> some View {
+        if #available(iOS 26, *) {
+            self
+                .navigationTitle(title)
         } else {
             self
+                .navigationBarTitleView(title: title, subtitle: nil)
+                .navigationBarStyle(style)
         }
     }
 
-    @available(iOS, introduced: 26)
     @ViewBuilder
-    public func optionalNavigationTitle(_ title: String?) -> some View {
-        if let title {
-            self.navigationTitle(title)
+    @available(iOS, deprecated: 26, message: "Not really deprecated, just remove the style parameter")
+    public func navigationTitles(title: String, subtitle: String?, style: NavigationBarStyle) -> some View {
+        if #available(iOS 26, *) {
+            self
+                .navigationTitle(title)
+                .navigationSubtitle(subtitle ?? "")
         } else {
             self
+                .navigationBarTitleView(title: title, subtitle: subtitle)
+                .navigationBarStyle(style)
         }
     }
 
@@ -110,19 +118,12 @@ extension View {
     ///     - title: The line is always displayed, even if this is empty. (This should not happen normally.)
     ///     - subtitle: The subtitle line is only displayed if this is not empty.
     @available(iOS, deprecated: 26)
-    public func navigationBarTitleView(title: String, subtitle: String?) -> some View {
+    private func navigationBarTitleView(title: String, subtitle: String?) -> some View {
         toolbar {
             ToolbarItem(placement: .principal) {
                 InstUI.NavigationBarTitleView(title: title, subtitle: subtitle)
             }
         }
-    }
-
-    /// Sets the navigation bar's title, using the proper font. Please use this one instead of the native `navigationTitle()` method.
-    /// - Warning: Make sure to call `navigationBarStyle()` _**AFTER**_ this method to set the proper text color.
-    @available(iOS, deprecated: 26)
-    public func navigationBarTitleView(_ title: String) -> some View {
-        navigationBarTitleView(title: title, subtitle: nil)
     }
 
     /// Sets the navigation bar's background color, button color to match the `Brand.shared` colors,

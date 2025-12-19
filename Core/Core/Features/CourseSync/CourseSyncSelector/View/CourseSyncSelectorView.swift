@@ -46,12 +46,12 @@ struct CourseSyncSelectorView: View {
         } else {
             content
                 .background(Color.backgroundLightest)
-                .navigationBarTitleView(
-                    title: String(localized: "Offline Content", bundle: .core),
-                    subtitle: viewModel.navBarSubtitle
-                )
                 .navigationBarItems(leading: leftNavBarButton, trailing: cancelButton)
-                .navigationBarStyle(.modal)
+                .navigationTitles(
+                    title: String(localized: "Offline Content", bundle: .core),
+                    subtitle: viewModel.navBarSubtitle,
+                    style: .modal
+                )
         }
     }
 
