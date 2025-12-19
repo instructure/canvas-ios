@@ -27,6 +27,18 @@ struct SearchTextField: View {
     private let clearButtonColor: Color
     private let onSubmit: () -> Void
 
+    private var trailingPadding: CGFloat {
+        if text.isEmpty  {
+            10
+        } else {
+            if #available(iOS 26, *) {
+                10
+            } else {
+                3
+            }
+        }
+    }
+
     init(
         text: Binding<String>,
         prompt: String,
@@ -55,6 +67,7 @@ struct SearchTextField: View {
                 .clipShape(Capsule())
                 .shadow(radius: 2, y: 2)
                 .frame(idealWidth: minWidth.value, maxWidth: .infinity)
+                .frame(height: 32)
                 .measuringSize { size in
                     minWidth.deferred = size.width
                 }
@@ -97,7 +110,7 @@ struct SearchTextField: View {
             }
         }
         .padding(.leading, 10)
-        .padding(.trailing, text.isNotEmpty ? 10 : 3)
+        .padding(.trailing, trailingPadding)
         .onDisappear {
             // This is to resolve issue of field size when pushing to result details
             minWidth.update()

@@ -73,7 +73,6 @@ struct NavBarBackButtonModifier: ViewModifier {
 extension View {
 
     @ViewBuilder
-    @available(iOS, deprecated: 26, message: "Replace usages with native navigationTitle()")
     public func navigationTitle(_ title: String, style: NavigationBarStyle) -> some View {
         if #available(iOS 26, *) {
             self
@@ -86,7 +85,6 @@ extension View {
     }
 
     @ViewBuilder
-    @available(iOS, deprecated: 26, message: "Not really deprecated, just remove the style parameter")
     public func navigationTitles(title: String, subtitle: String?, style: NavigationBarStyle) -> some View {
         if #available(iOS 26, *) {
             self

@@ -129,7 +129,7 @@ struct SubmissionListScreen: View {
             } label: {
                 Image.eyeLine
             }
-            .tintBelow26(Color.textLightest)
+            .toolbarItemTint(Color.textLightest)
             .accessibilityLabel(Text("Post settings", bundle: .teacher))
             .accessibilityIdentifier("SubmissionsList.postPolicyButton")
 
@@ -138,7 +138,7 @@ struct SubmissionListScreen: View {
             } label: {
                 Image.emailLine
             }
-            .tintBelow26(Color.textLightest)
+            .toolbarItemTint(Color.textLightest)
             .accessibility(label: Text("Send message to users", bundle: .teacher))
         }
     }

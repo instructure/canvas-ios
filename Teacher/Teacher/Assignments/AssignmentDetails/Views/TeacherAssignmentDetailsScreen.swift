@@ -50,30 +50,18 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        if #available(iOS 26, *) {
-            states
-                .background(Color.backgroundLightest)
-                .navigationTitle(.init("Assignment Details", bundle: .teacher))
-                .optionalNavigationSubtitle(course.first?.name)
-                .rightBarButtonItems(rightBarItems)
-                .onAppear {
-                    refreshAssignments()
-                    refreshCourses()
-                }
-        } else {
-            states
-                .background(Color.backgroundLightest)
-                .navigationBarTitleView(
-                    title: String(localized: "Assignment Details", bundle: .teacher),
-                    subtitle: course.first?.name
-                )
-                .rightBarButtonItems(rightBarItems)
-                .navigationBarStyle(.color(course.first?.color))
-                .onAppear {
-                    refreshAssignments()
-                    refreshCourses()
-                }
-        }
+        states
+            .background(Color.backgroundLightest)
+            .rightBarButtonItems(rightBarItems)
+            .navigationTitles(
+                title: String(localized: "Assignment Details", bundle: .teacher),
+                subtitle: course.first?.name,
+                style: .color(course.first?.color)
+            )
+            .onAppear {
+                refreshAssignments()
+                refreshCourses()
+            }
     }
 
     @ViewBuilder var states: some View {

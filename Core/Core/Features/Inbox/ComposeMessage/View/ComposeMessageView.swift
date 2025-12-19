@@ -203,7 +203,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         } label: {
             Text("Cancel", bundle: .core)
                 .font(.regular16)
-                .foregroundStyleBelow26(Color.accentColor)
+                .toolbarItemForegroundStyle(Color.accentColor)
                 .accessibilityIdentifier("ComposeMessage.cancel")
         }
     }

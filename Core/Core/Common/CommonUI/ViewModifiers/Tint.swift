@@ -37,7 +37,7 @@ extension View {
 
     @available(iOS, deprecated: 26, message: "Intended for temporary compatibility before full iOS 26 adoption.")
     @ViewBuilder
-    public func tintBelow26(_ tint: Color?) -> some View {
+    public func toolbarItemTint(_ tint: Color?) -> some View {
         if #available(iOS 26, *) {
             self
         } else {
@@ -47,7 +47,7 @@ extension View {
 
     @available(iOS, deprecated: 26, message: "Intended for temporary compatibility before full iOS 26 adoption.")
     @ViewBuilder
-    public func foregroundStyleBelow26<S>(_ style: S) -> some View where S: ShapeStyle {
+    public func toolbarItemForegroundStyle<S>(_ style: S) -> some View where S: ShapeStyle {
         if #available(iOS 26, *) {
             self
         } else {

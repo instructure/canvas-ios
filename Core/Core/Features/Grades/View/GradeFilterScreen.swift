@@ -79,16 +79,15 @@ public struct GradeFilterScreen: View {
     @available(iOS, introduced: 26, message: "Legacy version exists")
     @ViewBuilder
     private var sendButton: some View {
-        if viewModel.saveButtonIsEnabled {
-            Button {
-                viewModel.saveButtonTapped(viewController: viewController)
-            } label: {
-                Text(String(localized: "Done", bundle: .core))
-                    .font(.semibold16)
-            }
-            .buttonStyle(.glassProminent)
-            .accessibilityIdentifier("GradeFilter.saveButton")
+        Button {
+            viewModel.saveButtonTapped(viewController: viewController)
+        } label: {
+            Text(String(localized: "Done", bundle: .core))
+                .font(.semibold16)
         }
+        .buttonStyle(.glassProminent)
+        .accessibilityIdentifier("GradeFilter.saveButton")
+        .disabled(!viewModel.saveButtonIsEnabled)
     }
 
     @available(iOS, deprecated: 26, message: "Non-legacy version exists")

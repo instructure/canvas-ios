@@ -80,6 +80,7 @@ public struct GradeListScreen: View, ScreenViewTrackable {
 
             whatIfScoreEditorView
         }
+        .tint(viewModel.courseColor?.asColor)
         .animation(.smooth, value: isScoreEditorPresented)
         .safeAreaInset(edge: .top, spacing: 0) {
             switch viewModel.state {
@@ -233,7 +234,7 @@ private struct RevertWhatIfScoreButton: ToolbarContent {
                 }) {
                     Image(uiImage: .replyLine)
                         .resizable()
-                        .foregroundStyleBelow26(.textLightest.variantForLightMode)
+                        .toolbarItemForegroundStyle(.textLightest.variantForLightMode)
                 }
                 .frame(alignment: .leading)
                 .accessibilityLabel(Text("Revert", bundle: .core))

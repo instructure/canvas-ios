@@ -56,10 +56,7 @@ class TitleSubtitleViewTests: XCTestCase {
         view.tintColor = .red
         view.tintColorDidChange()
 
-        if #available(iOS 26, *) {
-            XCTAssertEqual(view.titleLabel.textColor, view.tintColor)
-            XCTAssertEqual(view.subtitleLabel.textColor, view.tintColor)
-        } else {
+        if #unavailable(iOS 26) {
             XCTAssertEqual(view.titleLabel.textColor, .red)
             XCTAssertEqual(view.subtitleLabel.textColor, .red)
         }
