@@ -166,10 +166,12 @@ struct ProgramCourse: Identifiable, Equatable {
              )
         }
 
-        if let estimatedTime = estimatedTime {
-            accessibilityParts += String(format: String(localized: "Estimated time %@. ", bundle: .horizon), estimatedTime)
-        }
-        accessibilityParts.append(isRequired ? String(localized: "Required course") : String(localized: "Optional course"))
+         if let estimatedTime = estimatedTime, status != .completed {
+             accessibilityParts += String(format: String(localized: "Estimated time %@. ", bundle: .horizon), estimatedTime)
+         }
+         if status != .completed {
+             accessibilityParts.append(isRequired ? String(localized: "Required course") : String(localized: "Optional course"))
+         }
 
         return accessibilityParts
     }
