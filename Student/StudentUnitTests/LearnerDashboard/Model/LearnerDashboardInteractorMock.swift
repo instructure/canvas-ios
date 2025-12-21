@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,17 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct DomainServiceConversationMessage: Codable, Equatable {
-    let role: Role
-    let text: String
+import Combine
+@testable import Student
 
-    init(text: String, role: Role) {
-        self.text = text
-        self.role = role
-    }
+final class LearnerDashboardInteractorMock: LearnerDashboardInteractor {
+    var refreshIgnoreCacheValue: Bool?
+    var refreshPublisher = PassthroughSubject<Void, Error>()
 
-    enum Role: String, Codable {
-        case Assistant
-        case User
+    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
+        refreshIgnoreCacheValue = ignoreCache
+        return refreshPublisher.eraseToAnyPublisher()
     }
 }

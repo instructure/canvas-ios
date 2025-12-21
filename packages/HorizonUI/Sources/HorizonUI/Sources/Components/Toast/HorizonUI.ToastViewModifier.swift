@@ -20,6 +20,7 @@ import SwiftUI
 
 extension HorizonUI.Toast {
     struct ToastViewModifier: ViewModifier {
+        @AccessibilityFocusState private var isFocused: Bool
         let viewModel: HorizonUI.Toast.ViewModel
         @Binding var isPresented: Bool
 
@@ -30,11 +31,20 @@ extension HorizonUI.Toast {
                         HorizonUI.Toast(viewModel: viewModel) {
                             isPresented = false
                         }
+                        .accessibilityFocused($isFocused, equals: true)
+                        .accessibilitySortPriority(0)
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel(viewModel.text)
                         .transition(
                             .move(edge: viewModel.direction.edge)
                             .combined(with: .opacity)
                         )
-                        .onAppear { dismissToast() }
+                        .onAppear {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                isFocused = true
+                            }
+                            dismissToast()
+                        }
                     }
                 }
                 .frame(

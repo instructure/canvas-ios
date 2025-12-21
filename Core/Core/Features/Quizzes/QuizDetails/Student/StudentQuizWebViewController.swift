@@ -94,14 +94,38 @@ public class StudentQuizWebViewController: UIViewController {
 }
 
 extension StudentQuizWebViewController: WKUIDelegate {
-    public func webView(_ webView: WKWebView, runJavaScriptConfirmPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping (Bool) -> Void) {
+    public func webView(
+        _ webView: WKWebView,
+        runJavaScriptConfirmPanelWithMessage message: String,
+        initiatedByFrame frame: WKFrameInfo,
+        completionHandler: @escaping (Bool) -> Void
+    ) {
+        handleJavaScriptConfirm(
+            message: message,
+            completionHandler: completionHandler
+        )
+    }
+
+    func handleJavaScriptConfirm(
+        message: String,
+        completionHandler: @escaping (Bool) -> Void
+    ) {
         let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel) { _ in
+
+        alert.addAction(AlertAction(
+            String(localized: "Cancel", bundle: .core),
+            style: .cancel
+        ) { _ in
             completionHandler(false)
         })
-        alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { _ in
+
+        alert.addAction(AlertAction(
+            String(localized: "OK", bundle: .core),
+            style: .default
+        ) { _ in
             completionHandler(true)
         })
+
         env.router.show(alert, from: self, options: .modal())
     }
 }
