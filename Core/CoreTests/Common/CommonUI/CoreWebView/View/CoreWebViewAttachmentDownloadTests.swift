@@ -72,7 +72,7 @@ class CoreWebViewAttachmentDownloadTests: CoreTestCase {
     private var linkDelegate: LinkDelegate!
 
     override func setUpWithError() throws {
-        download = WKDownload()
+        download = MockDownload()
         webView = CoreWebView()
         linkDelegate = LinkDelegate()
 
@@ -155,4 +155,9 @@ class CoreWebViewAttachmentDownloadTests: CoreTestCase {
         XCTAssertEqual(failedAttachment.contentType, "video/mp4")
         XCTAssertEqual(failure, error)
     }
+}
+
+private class MockDownload: WKDownload {
+    let mockProgress = Progress()
+    override var progress: Progress { mockProgress }
 }

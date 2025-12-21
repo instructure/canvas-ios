@@ -38,6 +38,11 @@ extension GradingScheme {
     }
 
     public func convertNormalizedScoreToLetterGrade(_ normalizedScore: Double) -> String? {
+        // Those meant for 0-points assignments
+        if normalizedScore == .infinity { return entries.first?.name }
+        if normalizedScore == (-1 * .infinity) { return entries.last?.name }
+        if normalizedScore.isNaN { return nil }
+
         // Teachers can add extra points so the "normalized" score can be higher than 1.0. But 10 would be very suspicious.
         assert(abs(normalizedScore) < 10)
 

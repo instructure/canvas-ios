@@ -26,17 +26,19 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
     let contextInfo = CurrentValueSubject<SpeedGraderContextInfo?, Never>(nil)
     private(set) var data: SpeedGraderData?
 
-    public let assignmentID: String
-    public let userID: String
-    public let context: Context
+    let context: Context
+    let assignmentID: String
+    let userID: String
 
     let gradeStatusInteractor: GradeStatusInteractor
     let submissionWordCountInteractor: SubmissionWordCountInteractor
     let customGradebookColumnsInteractor: CustomGradebookColumnsInteractor
 
-    private let env: AppEnvironment
     private let filter: GetSubmissions.Filter?
+    private let filterForNeedsGrading: Bool
     private let sortMode: GetSubmissions.SortMode
+
+    private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
 
@@ -45,6 +47,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         assignmentID: String,
         userID: String,
         filter: GetSubmissions.Filter?,
+        filterForNeedsGrading: Bool,
         sortMode: GetSubmissions.SortMode,
         gradeStatusInteractor: GradeStatusInteractor,
         submissionWordCountInteractor: SubmissionWordCountInteractor,
@@ -56,6 +59,7 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
         self.assignmentID = assignmentID
         self.userID = userID
         self.filter = filter
+        self.filterForNeedsGrading = filterForNeedsGrading
         self.sortMode = sortMode
         self.gradeStatusInteractor = gradeStatusInteractor
         self.submissionWordCountInteractor = submissionWordCountInteractor
@@ -106,14 +110,17 @@ class SpeedGraderInteractorLive: SpeedGraderInteractor {
             }
             .receive(on: mainScheduler)
             .sink { [weak self] completion in
-                if case .failure(let error) = completion {
+                if let error = completion.error {
                     self?.state.send(.error(.unexpectedError(error)))
                 }
             } receiveValue: { [weak self] (assignment: Assignment, fetchedSubmissions: [Submission], gradingScheme: GradingScheme?) in
                 guard let self else { return }
 
-                let submissions = fetchedSubmissions
-                    .sorted(using: .submissionsComparator(mode: sortMode))
+                var submissions = fetchedSubmissions
+                if filterForNeedsGrading {
+                    submissions = submissions.filter(\.status.needsGrading)
+                }
+                submissions.sort(using: .submissionsComparator(mode: sortMode))
 
                 if submissions.isEmpty {
                     state.send(.error(.submissionNotFound))
