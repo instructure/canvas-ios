@@ -66,91 +66,25 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
         """
     }()
 
-    private let insertScript: String = {
+    private let insertScript: String? = {
+        if let url = Bundle.core.url(forResource: "InsertStudioOpenInDetailButtons", withExtension: "js"),
+           let jsSource = try? String(contentsOf: url, encoding: .utf8) {
+            return jsSource
+        }
+        return nil
+    }()
+
+    private let insertValues: String = {
         let title = String(localized: "Open in Detail View", bundle: .core)
         let iconSVG = (NSDataAsset(name: "externalLinkData", bundle: .core)
             .flatMap({ String(data: $0.data, encoding: .utf8) ?? "" }) ?? "")
             .components(separatedBy: .newlines).joined()
 
         return """
-            function escapeHTML(text) {
-                return text
-                    .replace(/&/g, '&amp;')
-                    .replace(/</g, '&lt;')
-                    .replace(/>/g, '&gt;')
-                    .replace(/'/g, '&#039;')
-                    .replace(/"/g, '&quot;')
+            window.detailLinkSpecs = {
+                iconSVG: \(CoreWebView.jsString(iconSVG)),
+                title: \(CoreWebView.jsString(title))
             }
-
-            function findCanvasUploadLink(elm, title) {
-                if (elm.hasAttribute("data-media-id") == false) { return null }
-
-                let frameSource = elm.getAttribute("src");
-                if (!frameSource) { return null }
-
-                let frameFullPath = frameSource
-                    .replace("/media_attachments_iframe/", "/media_attachments/")
-
-                try {
-
-                    let frameURL = new URL(frameFullPath);
-                    frameURL.pathname += "/immersive_view";
-
-                    if (title) {
-                        title = title.replace("Video player for ", "").replace(".mp4", "");
-                        frameURL.searchParams.set("title", encodeURIComponent(title));
-                    }
-
-                    return frameURL;
-                } catch {
-                    return null;
-                }
-            }
-
-            function insertStudioDetailsLinks() {
-                const frameElements = document.querySelectorAll('iframe[data-media-id]');
-
-                frameElements.forEach(elm => {
-                    let nextSibling = elm.nextElementSibling;
-                    let nextNextSibling = (nextSibling) ? nextSibling.nextElementSibling : null;
-                    let wasInjected = (nextNextSibling) ? nextNextSibling.getAttribute("ios-injected") : 0;
-
-                    if(wasInjected == 1) { return }
-
-                    const videoTitle = elm.getAttribute("title");
-                    const ariaTitle = elm.getAttribute("aria-title");
-
-                    let title = videoTitle ?? ariaTitle;
-                    let frameLink = findCanvasUploadLink(elm, title);
-
-                    const newLine = document.createElement('br');
-                    const newParagraph = document.createElement('p');
-                    newParagraph.setAttribute("ios-injected", 1);
-
-                    const buttonContainer = document.createElement('div');
-                    buttonContainer.className = "open_detail_button_container";
-
-                    const icon = document.createElement('div');
-                    icon.className = "open_details_button_icon";
-                    icon.innerHTML = \(CoreWebView.jsString(iconSVG));
-
-                    const detailButton = document.createElement('a');
-                    detailButton.className = "open_details_button";
-                    detailButton.href = frameLink;
-                    detailButton.target = "_blank";
-                    detailButton.textContent = escapeHTML(\(CoreWebView.jsString(title)));
-
-                    buttonContainer.appendChild(icon);
-                    buttonContainer.appendChild(detailButton);
-                    newParagraph.appendChild(buttonContainer);
-
-                    elm.insertAdjacentElement('afterend', newLine);
-                    newLine.insertAdjacentElement('afterend', newParagraph);
-                });
-            }
-
-            insertStudioDetailsLinks();
-            window.addEventListener("DOMContentLoaded", insertStudioDetailsLinks);
         """
     }()
 
@@ -158,12 +92,20 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
 
     override func apply(on webView: CoreWebView) {
         webView.addScript(insertStyle)
-        webView.addScript(insertScript)
+
+        if let insertScript {
+            webView.addScript(insertValues)
+            webView.addScript(insertScript)
+        }
     }
 
     override func remove(from webView: CoreWebView) {
         webView.removeScript(insertStyle)
-        webView.removeScript(insertScript)
+
+        if let insertScript {
+            webView.removeScript(insertValues)
+            webView.removeScript(insertScript)
+        }
     }
 }
 
