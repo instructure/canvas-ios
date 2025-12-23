@@ -21,6 +21,10 @@ import HorizonUI
 import SwiftUI
 
 struct HMessageDetailsView: View {
+    // MARK: - Propertites a11y
+
+    @AccessibilityFocusState private var focusedAttachedFile: Bool?
+
     @State var model: HMessageDetailsViewModel
     @Environment(\.viewController) private var viewController
     @State private var attachmentsHeight: CGFloat?
@@ -35,6 +39,13 @@ struct HMessageDetailsView: View {
         if let attachmentViewModel = model.attachmentViewModel {
             AttachmentView(viewModel: attachmentViewModel) {
                 content
+            }
+            .onChange(of: model.attachmentViewModel?.isPickerVisible) { _, newValue in
+                if newValue == false {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        focusedAttachedFile = true
+                    }
+                }
             }
         } else {
             content
@@ -74,6 +85,7 @@ struct HMessageDetailsView: View {
                             .padding(.top, HorizonUI.spaces.space24)
                             .opacity(model.spinnerOpacity)
                             .animation(.easeInOut(duration: 0.3), value: model.loadingSpinnerOpacity)
+                            .accessibilityHidden(true)
 
                         VStack(spacing: HorizonUI.spaces.space24) {
                             messageBodies
@@ -149,17 +161,21 @@ struct HMessageDetailsView: View {
 
     private func messageBody(_ message: HMessageViewModel) -> some View {
         VStack(alignment: .leading, spacing: HorizonUI.spaces.space8) {
-            HStack(spacing: .zero) {
-                Text(message.author)
-                    .huiTypography(.labelLargeBold)
-                Spacer()
-                Text(message.date)
-                    .huiTypography(.p3)
-                    .foregroundStyle(HorizonUI.colors.text.timestamp)
+           VStack(alignment: .leading, spacing: HorizonUI.spaces.space8) {
+                HStack(spacing: .zero) {
+                    Text(message.author)
+                        .huiTypography(.labelLargeBold)
+                    Spacer()
+                    Text(message.date)
+                        .huiTypography(.p3)
+                        .foregroundStyle(HorizonUI.colors.text.timestamp)
+                }
+                Text(message.body)
+                    .foregroundStyle(HorizonUI.colors.text.body)
+                    .huiTypography(.p1)
             }
-            Text(message.body)
-                .foregroundStyle(HorizonUI.colors.text.body)
-                .huiTypography(.p1)
+           .accessibilityElement(children: .ignore)
+           .accessibilityLabel(accessibilityLabel(message))
             if message.attachments.isNotEmpty {
                 VStack(spacing: HorizonUI.spaces.space8) {
                     ForEach(message.attachments, id: \.self) { attachment in
@@ -169,12 +185,27 @@ struct HMessageDetailsView: View {
                         ) {
                             attachment.performAction(viewController)
                         }
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel(String(format: String(localized: "File name is %@"), attachment.filename))
+                        .accessibilityAddTraits(.isButton)
+                        .accessibilityHint(attachment.isDownloading ? String(localized: "Double tap to cancel download. ") : String(localized: "Double tap to download. "))
+                        .accessibilityAction {
+                            attachment.performAction(viewController)
+                        }
                     }
                 }
                 .padding(.top, HorizonUI.spaces.space8)
             }
         }
         .padding(.vertical, HorizonUI.spaces.space16)
+    }
+
+    private func accessibilityLabel(_ message: HMessageViewModel) -> String {
+        var parts: [String] = []
+        parts.append(String(format: String(localized: "Sender %@"), message.author))
+        parts.append(String(format: String(localized: "Body %@"), message.body))
+        parts.append(String(format: String(localized: "Date %@"), message.date))
+        return parts.joined(separator: ", ")
     }
 
     @ViewBuilder
@@ -187,6 +218,18 @@ struct HMessageDetailsView: View {
                     focused: _isTextAreaFocused,
                     autoExpand: true
                 )
+                .focused($isTextAreaFocused)
+                .accessibilityElement(children: .ignore)
+                .accessibilityLabel(
+                    String.localizedStringWithFormat(
+                        String(localized: "Your reply is %@", bundle: .horizon),
+                        model.reply.isEmpty ? String(localized: "Empty.") : model.reply
+                    ))
+                .accessibilityHint(String(localized: "Doubel Tap to start typing."))
+                .accessibilityAction {
+                    isTextAreaFocused = true
+                }
+                .accessibilityRemoveTraits(.isButton)
                 replyAreaAttachments
                 HStack {
                     replyAreaAttachFileButton
@@ -227,6 +270,13 @@ struct HMessageDetailsView: View {
                 ) {
                     attachment.delete()
                 }
+                .accessibilityElement(children: .ignore)
+                .accessibilityAddTraits(.isButton)
+                .accessibilityLabel(String(format: "File name is %@. ", attachment.filename))
+                .accessibilityHint(String(localized: "Double tap to delete"))
+                .accessibilityAction {
+                    attachment.delete()
+                }
             }
         }
         .readingFrame { frame in
@@ -243,6 +293,7 @@ struct HMessageDetailsView: View {
         ) {
             model.attachFile(viewController: viewController)
         }
+        .accessibilityFocused($focusedAttachedFile, equals: true)
     }
 
     private var replyAreaSendButton: some View {
@@ -251,6 +302,7 @@ struct HMessageDetailsView: View {
             ZStack {
                 HorizonUI.Spinner(size: .xSmall)
                     .opacity(model.loadingSpinnerOpacity)
+                    .accessibilityHidden(true)
 
                 HorizonUI.PrimaryButton(
                     String(localized: "Send", bundle: .horizon),
@@ -260,7 +312,7 @@ struct HMessageDetailsView: View {
                     model.sendMessage(viewController: viewController)
                 }
                 .disabled(model.isSendDisabled)
-                    .opacity(model.sendButtonOpacity)
+                .opacity(model.sendButtonOpacity)
             }
         }
     }
@@ -273,14 +325,17 @@ struct HMessageDetailsView: View {
                 HorizonUI.icons.announcement
                     .renderingMode(.template)
                     .foregroundStyle(HorizonUI.colors.surface.institution)
+                    .accessibilityHidden(true)
             }
             Text(model.headerTitle)
                 .lineLimit(2)
                 .huiTypography(.labelLargeBold)
                 .foregroundColor(HorizonUI.colors.surface.institution)
+                .accessibilityAddTraits(.isHeader)
             Spacer()
             backButton
                 .opacity(0)
+                .accessibilityHidden(true)
         }
         .padding(.horizontal, HorizonUI.spaces.space24)
         .frame(maxWidth: .infinity)
@@ -293,6 +348,9 @@ struct HMessageDetailsView: View {
         ) {
             model.pop(viewController: viewController)
         }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(String(localized: "Back"))
+        .accessibilityAddTraits(.isButton)
     }
 
     private func dismissKeyboard() {

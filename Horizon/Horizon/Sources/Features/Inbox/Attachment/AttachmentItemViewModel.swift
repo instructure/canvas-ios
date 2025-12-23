@@ -47,7 +47,7 @@ class AttachmentItemViewModel {
     // MARK: - Private
     private var downloadCancellable: AnyCancellable?
     private var file: File
-    private var isDownloading: Bool {
+    var isDownloading: Bool {
         downloadCancellable != nil
     }
     private var subscriptions = Set<AnyCancellable>()

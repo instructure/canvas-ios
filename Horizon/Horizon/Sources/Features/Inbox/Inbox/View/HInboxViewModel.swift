@@ -77,7 +77,7 @@ class HInboxViewModel {
     var messageRows: [MessageRowViewModel] = []
     var peopleSelectionViewModel: RecipientSelectionViewModel
     var screenState: InstUI.ScreenState = .data
-    var spinnerOpacity = 1.0
+    var isLoaderVisible = true
 
     // MARK: - Private
     private var filterSubject: CurrentValueRelay<FilterOption> = CurrentValueRelay(FilterOption.all)
@@ -240,7 +240,7 @@ class HInboxViewModel {
             guard let self = self else { return }
             self.messageRows = self.addAnnouncements(to: messages)
             self.messageListOpacity = self.messageRows.count > 0 ? 1.0 : 0.0
-            self.spinnerOpacity = 0.0
+            self.isLoaderVisible = false
         }
         .store(in: &subscriptions)
     }
@@ -254,7 +254,7 @@ class HInboxViewModel {
 
         messageRows = addAnnouncements(to: messageRowsInterim)
         messageListOpacity = messageRows.count > 0 ? 1.0 : 0.0
-        spinnerOpacity = 0.0
+        isLoaderVisible = false
     }
 
     private func filterByPerson(messageListItem: InboxMessageListItem) -> Bool {
