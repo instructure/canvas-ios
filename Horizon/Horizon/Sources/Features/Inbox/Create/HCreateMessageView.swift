@@ -241,7 +241,7 @@ struct HCreateMessageView: View {
                 String(localized: "Your Message is %@", bundle: .horizon),
                 viewModel.body.isEmpty ? String(localized: "Empty.") : viewModel.body
             ))
-        .accessibilityHint(String(localized: "Doubel Tap to start typing."))
+        .accessibilityHint(String(localized: "Double tap to start typing."))
         .accessibilityAction {
             isBodyFocused = true
         }

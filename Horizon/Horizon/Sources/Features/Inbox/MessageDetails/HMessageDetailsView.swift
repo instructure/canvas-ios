@@ -225,7 +225,7 @@ struct HMessageDetailsView: View {
                         String(localized: "Your reply is %@", bundle: .horizon),
                         model.reply.isEmpty ? String(localized: "Empty.") : model.reply
                     ))
-                .accessibilityHint(String(localized: "Doubel Tap to start typing."))
+                .accessibilityHint(String(localized: "Double tap to start typing."))
                 .accessibilityAction {
                     isTextAreaFocused = true
                 }
