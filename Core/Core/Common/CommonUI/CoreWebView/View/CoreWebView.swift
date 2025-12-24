@@ -228,7 +228,31 @@ open class CoreWebView: WKWebView {
             )
         }
 
+        handle("fullWindowLaunch") { [weak self] message in
+
+            if let dict = message.body as? [String: Any],
+               let data = dict["data"] as? [String: Any],
+               let mediaPath = data["url"] as? String,
+               let page = self?.studioFeaturesInteractor?.urlForStudioImmersiveView(ofMediaPath: mediaPath) {
+                self?.attemptStudioImmersiveViewLaunch(page)
+            }
+        }
+
         registerForTraitChanges()
+    }
+
+    @discardableResult
+    fileprivate func attemptStudioImmersiveViewLaunch(_ page: StudioPage) -> Bool {
+        if let controller = linkDelegate?.routeLinksFrom {
+            controller.pauseWebViewPlayback()
+            env.router.show(
+                StudioViewController(page: page),
+                from: controller,
+                options: .modal(.overFullScreen)
+            )
+            return true
+        }
+        return false
     }
 
     @discardableResult
@@ -540,6 +564,12 @@ extension CoreWebView: WKNavigationDelegate {
             return decisionHandler(.allow) // let web view scroll to link too, if necessary
         }
 
+        // Handle Studio Immersive Player links (media_attachments/:id/immersive_view)
+        if let immersiveURL = studioFeaturesInteractor?.urlForStudioImmersiveView(ofNavAction: action),
+           attemptStudioImmersiveViewLaunch(immersiveURL) {
+            return decisionHandler(.cancel)
+        }
+
         // Handle "Launch External Tool" button OR 
         // LTI app buttons embedded in K5 WebViews when there's no additional JavaScript
         // involved (like Zoom and Microsoft).
@@ -573,18 +603,6 @@ extension CoreWebView: WKNavigationDelegate {
                 addDoneButton: true
             )
             env.router.show(controller, from: viewController, options: routeOptions)
-            return decisionHandler(.cancel)
-        }
-
-        // Handle Studio Immersive Player links (media_attachments/:id/immersive_view)
-        if let immersiveURL = studioFeaturesInteractor?.urlForStudioImmersiveView(of: action),
-           let controller = linkDelegate?.routeLinksFrom {
-            controller.pauseWebViewPlayback()
-            env.router.show(
-                StudioViewController(url: immersiveURL),
-                from: controller,
-                options: .modal(.overFullScreen)
-            )
             return decisionHandler(.cancel)
         }
 

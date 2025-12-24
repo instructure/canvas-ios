@@ -67,7 +67,7 @@ class InsertStudioOpenInDetailButtons: CoreWebViewFeature {
     }()
 
     private let insertScript: String? = {
-        if let url = Bundle.core.url(forResource: "InsertStudioOpenInDetailButtons", withExtension: "js"),
+        if let url = Bundle.core.url(forResource: "InsertStudioOpenDetailViewButton", withExtension: "js"),
            let jsSource = try? String(contentsOf: url, encoding: .utf8) {
             return jsSource
         }

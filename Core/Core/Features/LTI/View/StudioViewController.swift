@@ -18,15 +18,30 @@
 
 import UIKit
 
+struct StudioPage {
+    let title: String?
+    let url: URL
+
+    init(title: String? = nil, url: URL) {
+        self.title = title
+        self.url = url
+    }
+}
+
 class StudioViewController: UINavigationController {
     public override var preferredStatusBarStyle: UIStatusBarStyle { .darkContent }
 
-    public init(url: URL) {
+    convenience init(url: URL) {
+        self.init(page: StudioPage(title: nil, url: url))
+    }
+
+    public init(page: StudioPage) {
         let controller = CoreWebViewController(studioEnhancementsEnabled: false)
-        controller.webView.load(URLRequest(url: url))
+        controller.webView.load(URLRequest(url: page.url))
         controller.addDoneButton()
-        controller.title = url.queryValue(for: "title")?.removingPercentEncoding
-                            ?? String(localized: "Studio", bundle: .core)
+        controller.title = page.title
+            ?? page.url.queryValue(for: "title")?.removingPercentEncoding
+            ?? String(localized: "Studio", bundle: .core)
 
         super.init(rootViewController: controller)
 

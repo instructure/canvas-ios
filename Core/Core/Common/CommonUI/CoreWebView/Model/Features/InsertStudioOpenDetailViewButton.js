@@ -41,7 +41,7 @@ function findCanvasUploadLink(elm, title) {
     }
 }
 
-function findStudioEmbedLink(elm, title) {
+function findLtiEmbedLink(elm, title) {
     let frameSource = elm.getAttribute("src");
     if(!frameSource) { return null }
 
@@ -53,7 +53,10 @@ function findStudioEmbedLink(elm, title) {
 
         let playerURL = new URL(playerSource);
 
-        let mediaID = playerURL.searchParams.get("custom_arc_media_id")
+        let mediaID = playerURL.searchParams.get("custom_arc_media_id");
+        let launchType = playerURL.searchParams.get("custom_arc_launch_type");
+
+        if(launchType == "quiz_embed") { return null }
         if(!mediaID) { return null }
 
         playerURL.searchParams.set("custom_arc_launch_type", "immersive_view");
@@ -88,8 +91,8 @@ function insertDetailsLinks(elm, method) {
     const title = videoTitle ?? ariaTitle;
 
     var buttonHref;
-    if(method == "studio") {
-        buttonHref = findStudioEmbedLink(elm, title);
+    if(method == "lti") {
+        buttonHref = findLtiEmbedLink(elm, title);
     } else {
         buttonHref = findCanvasUploadLink(elm, title);
     }
@@ -129,7 +132,7 @@ function scanMediaFramesInsertingDetailsLinks() {
     document
         .querySelectorAll("iframe[class='lti-embed']")
         .forEach(elm => {
-            insertDetailsLinks(elm, "studio");
+            insertDetailsLinks(elm, "lti");
         });
 
     document

@@ -293,6 +293,10 @@
         hasSentResponse = handleFetchWindowSize(message, event, responseMessages);
         break;
 
+      case 'requestFullWindowLaunch':
+        console.log('[Canvas Mobile LTI] Handling requestFullWindowLaunch');
+        webkit.messageHandlers.fullWindowLaunch.postMessage(message);
+        return;
       default:
         console.log('[Canvas Mobile LTI] Ignoring unsupported message subject:', subject);
         return;
