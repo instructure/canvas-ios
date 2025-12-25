@@ -233,8 +233,8 @@ open class CoreWebView: WKWebView {
             if let dict = message.body as? [String: Any],
                let data = dict["data"] as? [String: Any],
                let mediaPath = data["url"] as? String,
-               let page = self?.studioFeaturesInteractor?.urlForStudioImmersiveView(ofMediaPath: mediaPath) {
-                self?.attemptStudioImmersiveViewLaunch(page)
+               let url = self?.studioFeaturesInteractor?.urlForStudioImmersiveView(ofMediaPath: mediaPath) {
+                self?.attemptStudioImmersiveViewLaunch(url)
             }
         }
 
@@ -242,11 +242,11 @@ open class CoreWebView: WKWebView {
     }
 
     @discardableResult
-    fileprivate func attemptStudioImmersiveViewLaunch(_ page: StudioPage) -> Bool {
+    fileprivate func attemptStudioImmersiveViewLaunch(_ url: URL) -> Bool {
         if let controller = linkDelegate?.routeLinksFrom {
             controller.pauseWebViewPlayback()
             env.router.show(
-                StudioViewController(page: page),
+                StudioViewController(url: url),
                 from: controller,
                 options: .modal(.overFullScreen)
             )

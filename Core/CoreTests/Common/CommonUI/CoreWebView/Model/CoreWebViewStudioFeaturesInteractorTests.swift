@@ -201,10 +201,11 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
 
         // Then
         XCTAssertEqual(
-            immersiveUrl?.url.absoluteString,
+            immersiveUrl?.absoluteString,
             "https://canvas.instructure.com/\(TestConstants.context.pathComponent)/external_tools/retrieve?" +
             "display=full_width&embedded=true&url=https://suhaibalabsi.staging.instructuremedia.com/lti/launch?" +
-            "custom_arc_launch_type%3Dthumbnail_embed%26custom_arc_media_id%3D1de23fg456d"
+            "custom_arc_launch_type%3Dthumbnail_embed%26custom_arc_media_id%3D1de23fg456d" +
+            "&title=Studio%20Video%20Title"
         )
     }
 
@@ -216,11 +217,10 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         // When
         let actionUrl = "https://suhaibalabsi.instructure.com/media_attachments/613046/immersive_view"
         let action = MockNavigationActionRepresentable(url: actionUrl, type: .other, sourceFrame: MockInfoFrameInfoRepresentable(isMainFrame: false))
-        let immersivePage = interactor.urlForStudioImmersiveView(ofNavAction: action)
+        let immersiveUrl = interactor.urlForStudioImmersiveView(ofNavAction: action)
 
         // Then
-        XCTAssertEqual(immersivePage?.url.absoluteString, "https://suhaibalabsi.instructure.com/media_attachments/613046/immersive_view?embedded=true")
-        XCTAssertEqual(immersivePage?.title, "Video Title 11")
+        XCTAssertEqual(immersiveUrl?.absoluteString, "https://suhaibalabsi.instructure.com/media_attachments/613046/immersive_view?title=Video%20Title%2011&embedded=true")
     }
 
     func testImmersiveViewURL_DetailButton() throws {
@@ -231,7 +231,7 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         // When
         let actionUrl = "https://suhaibalabsi.instructure.com/media_attachments/546734/immersive_view?title=Hello%20World"
         let action = MockNavigationActionRepresentable(url: actionUrl, type: .linkActivated, targetFrame: MockInfoFrameInfoRepresentable(isMainFrame: false))
-        let immersiveUrl = interactor.urlForStudioImmersiveView(ofNavAction: action)?.url
+        let immersiveUrl = interactor.urlForStudioImmersiveView(ofNavAction: action)
 
         // Then
         XCTAssertEqual(immersiveUrl?.absoluteString, "https://suhaibalabsi.instructure.com/media_attachments/546734/immersive_view?title=Hello%20World&embedded=true")

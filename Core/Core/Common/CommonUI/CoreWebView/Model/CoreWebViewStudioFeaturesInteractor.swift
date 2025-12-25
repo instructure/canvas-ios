@@ -106,15 +106,14 @@ public class CoreWebViewStudioFeaturesInteractor {
         resetStoreSubscription()
     }
 
-    func urlForStudioImmersiveView(ofMediaPath mediaPath: String) -> StudioPage? {
+    func urlForStudioImmersiveView(ofMediaPath mediaPath: String) -> URL? {
         guard
             let environment,
             let context,
             var urlComps = URLComponents(string: environment.api.baseURL.absoluteString)
         else { return nil }
 
-        urlComps.path = "/\(context.pathComponent)/external_tools/retrieve"
-        urlComps.percentEncodedQueryItems = [
+        var encodedQueryItems: [URLQueryItem] = [
             URLQueryItem(name: "display", value: "full_width"),
             URLQueryItem(name: "embedded", value: "true"),
             URLQueryItem(
@@ -130,33 +129,37 @@ public class CoreWebViewStudioFeaturesInteractor {
             )
         ]
 
-        guard let url = urlComps.url else { return nil }
-
-        if let mediaURL = URL(string: mediaPath) {
-            return StudioPage(
-                title: videoPlayerFrameTitle(forStudioMediaURL: mediaURL),
-                url: url
+        if let mediaURL = URL(string: mediaPath),
+           let title = videoPlayerFrameTitle(forStudioMediaURL: mediaURL) {
+            encodedQueryItems.append(
+                URLQueryItem(
+                    name: "title",
+                    value: title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                )
             )
         }
 
-        return StudioPage(url: url)
+        urlComps.path = "/\(context.pathComponent)/external_tools/retrieve"
+        urlComps.percentEncodedQueryItems = encodedQueryItems
+
+        return urlComps.url
     }
 
-    func urlForStudioImmersiveView(ofNavAction action: NavigationActionRepresentable) -> StudioPage? {
+    func urlForStudioImmersiveView(ofNavAction action: NavigationActionRepresentable) -> URL? {
         guard action.isStudioImmersiveViewLinkTap, var url = action.request.url else {
             return nil
         }
 
-        var title: String?
-        if url.containsQueryItem(named: "title") == false {
-            title = videoPlayerFrameTitle(forCanvasMediaURL: url)
+        if url.containsQueryItem(named: "title") == false,
+           let title = videoPlayerFrameTitle(forCanvasMediaURL: url) {
+            url = url.appendingQueryItems(.init(name: "title", value: title))
         }
 
         if url.containsQueryItem(named: "embedded") == false {
             url = url.appendingQueryItems(.init(name: "embedded", value: "true"))
         }
 
-        return StudioPage(title: title, url: url)
+        return url
     }
 
     /// To be called in didFinishLoading delegate method of WKWebView, it scans through
