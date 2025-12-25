@@ -64,21 +64,36 @@ public final class PendoAnalyticsTracker {
         pendoManager.setup(apiKey)
     }
 
-    /// Start the session asynchronously
+    /// Start the session
     public func startSession(completion: (() -> Void)? = nil) {
-        Task { [weak self] in
-            try? await self?.startSessionAsync()
+        guard let pendoApiKey else {
+            RemoteLogger.shared.logError(
+                name: "Failed to start Pendo session",
+                reason: "Missing API key"
+            )
+            completion?()
+            return
+        }
+
+        setupManagerIfNeeded(apiKey: pendoApiKey)
+
+        interactor.getMetadata { [weak self] result in
+
+            switch result {
+            case .success(let metadata):
+                self?.startSession(withMetadata: metadata)
+            case .failure(let error):
+                RemoteLogger.shared.logError(
+                    name: "Failed to get analytics metadata for starting Pendo session",
+                    reason: error.localizedDescription
+                )
+            }
+
             completion?()
         }
     }
 
-    // extracted for testing purposes
-    internal func startSessionAsync() async throws {
-        guard let pendoApiKey else { return }
-        setupManagerIfNeeded(apiKey: pendoApiKey)
-
-        let metadata = try await interactor.getMetadata()
-
+    private func startSession(withMetadata metadata: AnalyticsMetadata) {
         environment?.pendoID = metadata.userId
 
         // This will also terminate the current session if there is one.
