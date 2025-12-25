@@ -38,7 +38,7 @@ class StudentQuizWebViewControllerTests: CoreTestCase {
         XCTAssertEqual(controller.webView.url, session_url)
 
         var confirm: Bool = true
-        controller.webView.uiDelegate?.webView?(controller.webView, runJavaScriptConfirmPanelWithMessage: "Boo", initiatedByFrame: WKFrameInfo()) {
+        controller.handleJavaScriptConfirm(message: "Boo") {
             confirm = $0
         }
         var alert = router.presented as? UIAlertController
