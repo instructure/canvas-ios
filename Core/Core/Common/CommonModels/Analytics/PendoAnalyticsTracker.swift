@@ -96,6 +96,8 @@ public final class PendoAnalyticsTracker {
     private func startSession(withMetadata metadata: AnalyticsMetadata) {
         environment?.pendoID = metadata.userId
 
+        Logger.shared.log("Pendo: starting a session with metadata")
+
         // This will also terminate the current session if there is one.
         pendoManager.startSession(
             metadata.userId,
@@ -113,6 +115,8 @@ public final class PendoAnalyticsTracker {
 
         isSessionInProgress = false
         pendoManager.endSession()
+
+        Logger.shared.log("Pendo: session ended")
     }
 
     public func track(_ eventName: String, properties: [String: Any]?) {
