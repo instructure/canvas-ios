@@ -44,15 +44,17 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
                 </iframe>
             </p>
             <p>
-                <iframe 
+                <iframe
                     class="lti-embed"
                     title="Studio Video Title"
-                    src="https://suhaibalabsi.cd.instructure.com/courses/32342/external_tools/retrieve?display=borderless&amp;url=https%3A%2F%2Fsuhaibalabsi.staging.instructuremedia.com%2Flti%2Flaunch%3Fcustom_arc_launch_type%3Dthumbnail_embed%26custom_arc_media_id%3D1de23fg456d"
+                    src="\(studioFrameSrc)"
                 ></iframe>
             </p>
         </div>
-        
         """
+
+        // swiftlint:disable:next line_length
+        private static let studioFrameSrc = "https://suhaibalabsi.cd.instructure.com/courses/32342/external_tools/retrieve?display=borderless&amp;url=https%3A%2F%2Fsuhaibalabsi.staging.instructuremedia.com%2Flti%2Flaunch%3Fcustom_arc_launch_type%3Dthumbnail_embed%26custom_arc_media_id%3D1de23fg456d"
     }
 
     private var webView: CoreWebView!
@@ -200,7 +202,9 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         // Then
         XCTAssertEqual(
             immersiveUrl?.url.absoluteString,
-            "https://canvas.instructure.com/\(TestConstants.context.pathComponent)/external_tools/retrieve?display=full_width&embedded=true&url=https://suhaibalabsi.staging.instructuremedia.com/lti/launch?custom_arc_launch_type%3Dthumbnail_embed%26custom_arc_media_id%3D1de23fg456d"
+            "https://canvas.instructure.com/\(TestConstants.context.pathComponent)/external_tools/retrieve?" +
+            "display=full_width&embedded=true&url=https://suhaibalabsi.staging.instructuremedia.com/lti/launch?" +
+            "custom_arc_launch_type%3Dthumbnail_embed%26custom_arc_media_id%3D1de23fg456d"
         )
     }
 
