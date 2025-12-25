@@ -79,12 +79,12 @@ class PendoAnalyticsTrackerTests: XCTestCase {
         try await testee.startSessionAsync()
         XCTAssertEqual(pendoManager.setupCallsCount, 1)
 
-        testee.endSession()
+        await testee.endSession()
         XCTAssertEqual(pendoManager.setupCallsCount, 1)
     }
 
     func test_setup_whenEndAndStartWasCalled_shouldBeCalledOnlyOnce() async throws {
-        testee.endSession()
+        await testee.endSession()
         XCTAssertEqual(pendoManager.setupCallsCount, 1)
 
         try await testee.startSessionAsync()
@@ -92,11 +92,11 @@ class PendoAnalyticsTrackerTests: XCTestCase {
     }
 
     func test_setup_whenEndWasCalledRepeatedly_shouldBeCalledOnlyOnce() async throws {
-        testee.endSession()
+        await testee.endSession()
         XCTAssertEqual(pendoManager.setupCallsCount, 1)
         XCTAssertEqual(pendoManager.setupInput, "some api key")
 
-        testee.endSession()
+        await testee.endSession()
         XCTAssertEqual(pendoManager.setupCallsCount, 1)
     }
 
@@ -122,6 +122,7 @@ class PendoAnalyticsTrackerTests: XCTestCase {
         XCTAssertEqual(pendoManager.startSessionInput?.accountData?["surveyOptOut"] as? Bool, metadata.accountData.surveyOptOut)
     }
 
+    @MainActor
     func test_endSession_shouldCallPendoManagerMethod() {
         testee.endSession()
 
@@ -156,7 +157,7 @@ class PendoAnalyticsTrackerTests: XCTestCase {
         XCTAssertEqual(pendoManager.trackCallsCount, 2)
 
         // after session end
-        testee.endSession()
+        await testee.endSession()
         testee.track("", properties: nil)
         XCTAssertEqual(pendoManager.trackCallsCount, 2)
 
