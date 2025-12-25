@@ -32,6 +32,8 @@ extension PendoManager: PendoManagerWrapper {}
 
 public final class PendoAnalyticsTracker {
 
+    // MARK: Properties
+
     private weak var environment: AppEnvironment?
     private let interactor: AnalyticsMetadataInteractor
     private let pendoManager: PendoManagerWrapper
@@ -39,6 +41,8 @@ public final class PendoAnalyticsTracker {
 
     private var isSetupCalled: Bool = false
     private var isSessionInProgress: Bool = false
+
+    // MARK: Initialization
 
     public init(
         environment: AppEnvironment,
@@ -56,7 +60,47 @@ public final class PendoAnalyticsTracker {
         pendoManager.initWith(url)
     }
 
+    // MARK: Publics
+
+    /// Start the session asynchronously
+    public func startSession(completion: (() -> Void)? = nil) {
+        Task { [weak self] in
+            try? await self?.startSessionAsync()
+            completion?()
+        }
+    }
+
+    @MainActor
+    public func endSession() {
+        guard let pendoApiKey else { return }
+
+        setupManagerIfNeeded(apiKey: pendoApiKey)
+
+        isSessionInProgress = false
+        pendoManager.endSession()
+    }
+
+    public func track(_ eventName: String, properties: [String: Any]?) {
+        guard isSessionInProgress else { return }
+
+        pendoManager.track(eventName, properties: properties)
+    }
+
+    // MARK: Internals & Privates
+
+    // extracted for testing purposes
+    internal func startSessionAsync() async throws {
+        guard let pendoApiKey else { return }
+
+        await setupManagerIfNeeded(apiKey: pendoApiKey)
+
+        let metadata = try await interactor.getMetadata()
+
+        await startSession(withMetadata: metadata)
+    }
+
     // Setup should be called only once during the application lifecycle.
+    @MainActor
     private func setupManagerIfNeeded(apiKey: String) {
         guard !isSetupCalled else { return }
 
@@ -64,39 +108,9 @@ public final class PendoAnalyticsTracker {
         pendoManager.setup(apiKey)
     }
 
-    /// Start the session
-    public func startSession(completion: (() -> Void)? = nil) {
-        guard let pendoApiKey else {
-            RemoteLogger.shared.logError(
-                name: "Failed to start Pendo session",
-                reason: "Missing API key"
-            )
-            completion?()
-            return
-        }
-
-        setupManagerIfNeeded(apiKey: pendoApiKey)
-
-        interactor.getMetadata { [weak self] result in
-
-            switch result {
-            case .success(let metadata):
-                self?.startSession(withMetadata: metadata)
-            case .failure(let error):
-                RemoteLogger.shared.logError(
-                    name: "Failed to get analytics metadata for starting Pendo session",
-                    reason: error.localizedDescription
-                )
-            }
-
-            completion?()
-        }
-    }
-
+    @MainActor
     private func startSession(withMetadata metadata: AnalyticsMetadata) {
         environment?.pendoID = metadata.userId
-
-        Logger.shared.log("Pendo: starting a session with metadata")
 
         // This will also terminate the current session if there is one.
         pendoManager.startSession(
@@ -107,21 +121,5 @@ public final class PendoAnalyticsTracker {
         )
 
         isSessionInProgress = true
-    }
-
-    public func endSession() {
-        guard let pendoApiKey else { return }
-        setupManagerIfNeeded(apiKey: pendoApiKey)
-
-        isSessionInProgress = false
-        pendoManager.endSession()
-
-        Logger.shared.log("Pendo: session ended")
-    }
-
-    public func track(_ eventName: String, properties: [String: Any]?) {
-        guard isSessionInProgress else { return }
-
-        pendoManager.track(eventName, properties: properties)
     }
 }

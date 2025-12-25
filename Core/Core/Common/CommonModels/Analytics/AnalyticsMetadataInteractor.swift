@@ -20,7 +20,7 @@ import Combine
 import Foundation
 
 public protocol AnalyticsMetadataInteractor {
-    func getMetadata(_ completion: @escaping (Result<AnalyticsMetadata, Error>) -> Void)
+    func getMetadata() async throws -> AnalyticsMetadata
 }
 
 public class AnalyticsMetadataInteractorLive: AnalyticsMetadataInteractor {
@@ -31,55 +31,42 @@ public class AnalyticsMetadataInteractorLive: AnalyticsMetadataInteractor {
         let accountUUID: String?
     }
 
-    private lazy var featureFlagsStore = ReactiveStore(useCase: GetEnvironmentFeatureFlags(context: Context.currentUser))
-    private lazy var userMetadataStore = ReactiveStore(useCase: GetSelfUserIncludingUUID())
-    private var subscriptions = Set<AnyCancellable>()
-
     public init() {}
 
-    public func getMetadata(_ completion: @escaping (Result<AnalyticsMetadata, any Error>) -> Void) {
-
-        let isFlagEnabledPublisher = featureFlagsStore
+    public func getMetadata() async throws -> AnalyticsMetadata {
+        let flagEnabledStore = ReactiveStore(useCase: GetEnvironmentFeatureFlags(context: Context.currentUser))
             .getEntities()
             .map { $0.isFeatureEnabled(.account_survey_notifications) }
 
-        let userMetadataPublisher = userMetadataStore
+        let userStore = ReactiveStore(useCase: GetSelfUserIncludingUUID())
             .getEntities(ignoreCache: true)
             .tryMap {
                 guard let user = $0.first else { throw NSError.internalError() }
-                return UserMetadata(
-                    uuid: user.uuid,
-                    locale: user.locale,
-                    accountUUID: user.accountUUID
-                )
+                return UserMetadata(uuid: user.uuid, locale: user.locale, accountUUID: user.accountUUID)
             }
 
-        return Publishers
-            .CombineLatest(isFlagEnabledPublisher, userMetadataPublisher)
-            .receive(on: DispatchQueue.main)
-            .map { (isFlagEnabled, userMetadata) in
+        // Both stores publish non-managed-object values to avoid accessing the managed objects
+        // from arbitrary threads which happen to call this method
+        async let flagEnabledPublisher = flagEnabledStore.asyncPublisher()
+        async let userPublisher = userStore.asyncPublisher()
 
-                let userUUID = userMetadata.uuid?.sha256() ?? ""
-                let accountUUID = userMetadata.accountUUID ?? ""
+        let isFlagEnabled = try await flagEnabledPublisher
+        let user = try await userPublisher
 
-                return AnalyticsMetadata(
-                    userId: userUUID,
-                    accountUUID: accountUUID,
-                    visitorData: .init(
-                        id: userUUID,
-                        locale: userMetadata.locale ?? ""
-                    ),
-                    accountData: .init(
-                        id: accountUUID,
-                        surveyOptOut: isFlagEnabled
-                    )
-                )
-            }
-            .sinkFailureOrValue(receiveFailure: { error in
-                completion(.failure(error))
-            }, receiveValue: { metadata in
-                completion(.success(metadata))
-            })
-            .store(in: &subscriptions)
+        let userUUID = user.uuid?.sha256() ?? ""
+        let accountUUID = user.accountUUID ?? ""
+
+        return AnalyticsMetadata(
+            userId: userUUID,
+            accountUUID: accountUUID,
+            visitorData: .init(
+                id: userUUID,
+                locale: user.locale ?? ""
+            ),
+            accountData: .init(
+                id: accountUUID,
+                surveyOptOut: isFlagEnabled
+            )
+        )
     }
 }
