@@ -126,7 +126,7 @@ final class ProgramTests: XCTestCase {
         )
         let status = ProgramCardStatus.notEnrolled
         let isLinear = true
-        let expected = String(format: "%@ Course %@. ", programCourse.ordinalString(from: programCourse.index), programCourse.name)
+        let expected = String(format: "%@ Course %@. ", programCourse.index.ordinalString, programCourse.name)
         + String(format: "Status %@. ", status.name)
         + "Required course"
         XCTAssertEqual(programCourse.accessibilityLabelText(status: status, isLinear: isLinear), expected)

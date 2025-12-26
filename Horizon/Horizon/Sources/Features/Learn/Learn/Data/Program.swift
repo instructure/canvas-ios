@@ -144,16 +144,10 @@ struct ProgramCourse: Identifiable, Equatable {
         Status(rawValue: status) ?? .enrolled
     }
 
-    func ordinalString(from number: Int) -> String {
-        let formatter = NumberFormatter()
-        formatter.numberStyle = .ordinal
-        return formatter.string(from: NSNumber(value: number)) ?? "\(number)"
-    }
-
      func accessibilityLabelText(status: ProgramCardStatus, isLinear: Bool) -> String {
         var accessibilityParts = ""
         if isLinear, isRequired {
-            accessibilityParts += String(format: String(localized: "%@ Course %@. "), ordinalString(from: index), name)
+            accessibilityParts += String(format: String(localized: "%@ Course %@. "), index.ordinalString, name)
         } else {
             accessibilityParts += String(format: String(localized: "Course name is %@. "), name)
         }
