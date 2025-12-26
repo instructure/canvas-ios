@@ -50,6 +50,26 @@ extension AssistQuizModel {
             id = UUID()
             self.answer = answer
         }
+
+        func accessibilityDescription(index: Int) -> String {
+            String(format: "%@ option, %@. ", (index + 1).ordinalString, answer)
+        }
+
+        func accessibilityHint(
+            isSelected: Bool,
+            isCorrect: Bool?
+        ) -> String {
+            let value: Bool? =
+                isSelected
+                    ? isCorrect
+                    : isCorrect == true ? true : nil
+
+            switch value {
+            case true: return String(localized: "Correct answer")
+            case false: return String(localized: "Not correct")
+            case nil: return ""
+            }
+        }
     }
 }
 

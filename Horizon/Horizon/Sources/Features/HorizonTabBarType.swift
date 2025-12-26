@@ -18,7 +18,7 @@
 
 import UIKit
 
-enum HorizonTabBarType {
+enum HorizonTabBarType: CaseIterable {
     case dashboard
     case learn
     case chatBot
@@ -29,7 +29,7 @@ enum HorizonTabBarType {
         switch self {
         case .dashboard: String(localized: "Home", bundle: .horizon)
         case .learn: String(localized: "Learn", bundle: .horizon)
-        case .chatBot: ""
+        case .chatBot: String(localized: "chat Bot", bundle: .horizon)
         case .skillspace: String(localized: "Skillspace", bundle: .horizon)
         case .account: String(localized: "Account", bundle: .horizon)
         }

@@ -58,6 +58,18 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
         tabBar.didTapButton = { [weak self] in
             self?.presentChatBot()
         }
+        setupTabBarAccessibility()
+    }
+
+    private func setupTabBarAccessibility() {
+        guard let items = tabBar.items else { return }
+        let labels = HorizonTabBarType.allCases
+
+        for (index, item) in items.enumerated() {
+            guard index < labels.count else { continue }
+            item.accessibilityLabel = labels[index].title
+            item.accessibilityTraits = [.tabBar, .button]
+        }
     }
 
     // MARK: - Functions
