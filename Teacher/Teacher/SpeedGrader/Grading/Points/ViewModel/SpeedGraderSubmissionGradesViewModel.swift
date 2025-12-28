@@ -192,7 +192,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
                     guard let self else { return }
 
                     isSavingGrade.send(false)
-                    
+
                     switch completion {
                     case .finished:
                         showSubmissionSuccessMessage()
