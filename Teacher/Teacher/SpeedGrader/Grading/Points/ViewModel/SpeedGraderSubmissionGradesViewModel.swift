@@ -46,6 +46,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     @Published var isNoGradeButtonDisabled: Bool = false
     let selectGradeOption = CurrentValueSubject<OptionItem?, Never>(nil)
     let didSelectGradeOption = PassthroughSubject<OptionItem?, Never>()
+    let snackbarViewModel = SnackBarViewModel()
 
     // Grade summary
     @Published private(set) var shouldShowGradeSummary: Bool = false
@@ -188,14 +189,28 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
             .receive(on: mainScheduler)
             .sink(
                 receiveCompletion: { [weak self] completion in
-                    self?.isSavingGrade.send(false)
-                    if case .failure(let error) = completion {
-                        self?.showError(error)
+                    guard let self else { return }
+
+                    isSavingGrade.send(false)
+                    
+                    switch completion {
+                    case .finished:
+                        showSubmissionSuccessMessage()
+                    case .failure(let error):
+                        showError(error)
                     }
                 },
                 receiveValue: { _ in }
             )
             .store(in: &cancellables)
+    }
+
+    private func showSubmissionSuccessMessage() {
+        let submittedMessage = String(
+            localized: "Grade Submitted",
+            bundle: .teacher
+        )
+        snackbarViewModel.showSnack(submittedMessage)
     }
 
     private func showError(_ error: Error) {

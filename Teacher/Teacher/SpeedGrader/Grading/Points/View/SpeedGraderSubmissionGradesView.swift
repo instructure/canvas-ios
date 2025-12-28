@@ -71,6 +71,7 @@ struct SpeedGraderSubmissionGradesView: View {
             }
             .scrollDismissesKeyboard(keyboardDismissalMode)
         }
+        .snackBar(viewModel: gradeViewModel.snackbarViewModel)
     }
 
     private var keyboardDismissalMode: ScrollDismissesKeyboardMode {
