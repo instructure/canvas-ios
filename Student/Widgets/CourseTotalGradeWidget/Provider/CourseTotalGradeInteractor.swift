@@ -112,44 +112,67 @@ class CourseTotalGradeInteractorLive: CourseTotalGradeInteractor {
         let interactor = GradeListAssembly
             .makeInteractor(environment: env, courseID: courseID, userID: self.userID)
 
-        return await withCheckedContinuation { continuation in
-            interactor
-                .getGrades(
-                    arrangeBy: .dueDate,
-                    baseOnGradedAssignment: baseOnGradedAssignment,
-                    gradingPeriodID: courseEnrollment?.currentGradingPeriodID,
-                    ignoreCache: false
-                )
-                .map({ listData -> CourseTotalGradeModel.Data in
+        do {
+            let listData = try await interactor.getGrades(
+                arrangeBy: .dueDate,
+                baseOnGradedAssignment: baseOnGradedAssignment,
+                gradingPeriodID: courseEnrollment?.currentGradingPeriodID,
+                ignoreCache: false
+            )
 
-                    guard let gradeText = listData.totalGradeText else {
-                        return CourseTotalGradeData(courseID: courseID, fetchResult: .restricted(attributes: courseAttributes))
-                    }
+            guard let gradeText = listData.totalGradeText else {
+                return CourseTotalGradeData(courseID: courseID, fetchResult: .restricted(attributes: courseAttributes))
+            }
 
-                    let fetchResult: CourseTotalGradeModel.FetchResult = gradeText.isNotEmpty
-                        ? .grade(attributes: courseAttributes, text: gradeText)
-                        : .noGrade(attributes: courseAttributes)
+            let fetchResult: CourseTotalGradeModel.FetchResult = gradeText.isNotEmpty
+                ? .grade(attributes: courseAttributes, text: gradeText)
+                : .noGrade(attributes: courseAttributes)
 
-                    return CourseTotalGradeData(courseID: courseID, fetchResult: fetchResult)
-                })
-                .replaceEmpty(
-                    with: CourseTotalGradeData(
-                        courseID: courseID,
-                        fetchResult: .restricted(attributes: courseAttributes)
-                    )
-                )
-                .sinkFailureOrValue { error in
-                    continuation.resume(
-                        returning: CourseTotalGradeData(
-                            courseID: courseID,
-                            fetchResult: .failure(attributes: courseAttributes, error: error.localizedDescription)
-                        )
-                    )
-                } receiveValue: { gradeData in
-                    continuation.resume(returning: gradeData)
-                }
-                .store(in: &self.subscriptions)
+            return CourseTotalGradeData(courseID: courseID, fetchResult: fetchResult)
+
+            // empty
+        } catch {
+            return CourseTotalGradeData(
+                courseID: courseID,
+                fetchResult: .failure(attributes: courseAttributes, error: error.localizedDescription)
+            )
         }
+
+//        return await withCheckedContinuation { continuation in
+//            interactor
+//                .getGrades(
+//                    arrangeBy: .dueDate,
+//                    baseOnGradedAssignment: baseOnGradedAssignment,
+//                    gradingPeriodID: courseEnrollment?.currentGradingPeriodID,
+//                    ignoreCache: false
+//                )
+//                .map({ listData -> CourseTotalGradeModel.Data in
+//
+//                    guard let gradeText = listData.totalGradeText else {
+//                        return CourseTotalGradeData(courseID: courseID, fetchResult: .restricted(attributes: courseAttributes))
+//                    }
+//
+//                    let fetchResult: CourseTotalGradeModel.FetchResult = gradeText.isNotEmpty
+//                        ? .grade(attributes: courseAttributes, text: gradeText)
+//                        : .noGrade(attributes: courseAttributes)
+//
+//                    return CourseTotalGradeData(courseID: courseID, fetchResult: fetchResult)
+//                })
+//                .replaceEmpty(
+//                    with: CourseTotalGradeData(
+//                        courseID: courseID,
+//                        fetchResult: .restricted(attributes: courseAttributes)
+//                    )
+//                )
+//                .sinkFailureOrValue { error in
+//                    continuation.resume(
+//                        returning:
+//                    )
+//                } receiveValue: { gradeData in
+//                    continuation.resume(returning: gradeData)
+//                }
+//                .store(in: &self.subscriptions)
+//        }
     }
 }
 

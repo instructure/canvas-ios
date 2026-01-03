@@ -48,8 +48,8 @@ public class AnalyticsMetadataInteractorLive: AnalyticsMetadataInteractor {
 
         // Both stores publish non-managed-object values to avoid accessing the managed objects
         //  from arbitrary threads which happen to call this method
-        async let flagEnabledPublisher = flagEnabledStore.asyncPublisher()
-        async let userPublisher = userStore.asyncPublisher()
+        async let flagEnabledPublisher = flagEnabledStore.asyncValue()
+        async let userPublisher = userStore.asyncValue()
 
         let isFlagEnabled = try await flagEnabledPublisher
         let user = try await userPublisher

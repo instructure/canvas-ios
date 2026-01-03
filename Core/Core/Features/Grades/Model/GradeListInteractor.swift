@@ -16,9 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-import CombineExt
-import CombineSchedulers
 import Foundation
 
 public struct GradeListGradingPeriodData {
@@ -35,11 +32,9 @@ public protocol GradeListInteractor {
         baseOnGradedAssignment: Bool,
         gradingPeriodID: String?,
         ignoreCache: Bool
-    ) -> AnyPublisher<GradeListData, Error>
+    ) async throws -> GradeListData
 
-    func loadBaseData(
-        ignoreCache: Bool
-    ) -> AnyPublisher<GradeListGradingPeriodData, Error>
+    func loadBaseData(ignoreCache: Bool) async throws -> GradeListGradingPeriodData
 
     func isWhatIfScoreFlagEnabled() -> Bool
 }
@@ -54,10 +49,10 @@ public final class GradeListInteractorLive: GradeListInteractor {
     private let env: AppEnvironment
 
     // MARK: - Private properties
-    private let customStatusesStore: ReactiveStore<GetCustomGradeStatuses>
-    private let colorListStore: ReactiveStore<GetCustomColors>
-    private let courseStore: ReactiveStore<GetCourse>
-    private let gradingPeriodListStore: ReactiveStore<GetGradingPeriods>
+    private let customStatusesStore: AsyncStore<GetCustomGradeStatuses>
+    private let colorListStore: AsyncStore<GetCustomColors>
+    private let courseStore: AsyncStore<GetCourse>
+    private let gradingPeriodListStore: AsyncStore<GetGradingPeriods>
 
     // MARK: - Init
 
@@ -74,55 +69,46 @@ public final class GradeListInteractorLive: GradeListInteractor {
         self.userID = userID
         self.filterAssignmentsToUserID = filterAssignmentsToUserID ?? (env.app == .parent)
 
-        customStatusesStore = ReactiveStore(
+        customStatusesStore = AsyncStore(
             useCase: GetCustomGradeStatuses(courseID: courseID),
             environment: env
         )
 
-        colorListStore = ReactiveStore(
+        colorListStore = AsyncStore(
             useCase: GetCustomColors(),
             environment: env
         )
 
-        courseStore = ReactiveStore(
+        courseStore = AsyncStore(
             useCase: GetCourse(courseID: courseID),
             environment: env
         )
 
-        gradingPeriodListStore = ReactiveStore(
+        gradingPeriodListStore = AsyncStore(
             useCase: GetGradingPeriods(courseID: courseID),
             environment: env
         )
     }
 
-    public func loadBaseData(ignoreCache: Bool) -> AnyPublisher<GradeListGradingPeriodData, Error> {
-        let userID = userID
-        return Publishers.Zip4(
-            customStatusesStore.getEntities(
-                ignoreCache: ignoreCache
-            )
-            .replaceError(with: [])
-            .setFailureType(to: Error.self),
-            colorListStore.getEntities(
-                ignoreCache: ignoreCache
-            ),
-            courseStore.getEntities(
-                ignoreCache: ignoreCache
-            ).compactMap { $0.first },
-            gradingPeriodListStore.getEntities(
-                ignoreCache: ignoreCache,
-                loadAllPages: true
-            )
+    public enum GradeListInteractorError: Error {
+        case courseNotFound
+    }
+
+    public func loadBaseData(ignoreCache: Bool) async throws -> GradeListGradingPeriodData {
+        async let customStatuses = customStatusesStore.getEntities(ignoreCache: ignoreCache)
+        async let colors = colorListStore.getEntities(ignoreCache: ignoreCache).first
+        async let course = courseStore.getEntities(ignoreCache: ignoreCache).first
+        async let gradingPeriods = gradingPeriodListStore.getEntities(ignoreCache: ignoreCache, loadAllPages: true)
+
+        let _ = await (try? customStatuses, try colors)
+        guard let course = try await course else { throw GradeListInteractorError.courseNotFound }
+
+        let courseEnrollment = course.enrollmentForGrades(userId: userID, includingCompleted: true)
+        return try await GradeListGradingPeriodData(
+            course: course,
+            currentlyActiveGradingPeriodID: courseEnrollment?.currentGradingPeriodID,
+            gradingPeriods: gradingPeriods
         )
-        .map { (_, _, course, gradingPeriods) in
-            let courseEnrollment = course.enrollmentForGrades(userId: userID, includingCompleted: true)
-            return GradeListGradingPeriodData(
-                course: course,
-                currentlyActiveGradingPeriodID: courseEnrollment?.currentGradingPeriodID,
-                gradingPeriods: gradingPeriods
-            )
-        }
-        .eraseToAnyPublisher()
     }
 
     public func getGrades(
@@ -130,8 +116,8 @@ public final class GradeListInteractorLive: GradeListInteractor {
         baseOnGradedAssignment: Bool,
         gradingPeriodID: String?,
         ignoreCache: Bool
-    ) -> AnyPublisher<GradeListData, Error> {
-        let enrollmentListStore = ReactiveStore(
+    ) async throws -> GradeListData {
+        let enrollmentListStore = AsyncStore(
             useCase: GetEnrollments(
                 context: .course(courseID),
                 userID: userID,
@@ -141,7 +127,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
             ),
             environment: env
         )
-        let assignmentListStore = ReactiveStore(
+        let assignmentListStore = AsyncStore(
             useCase: GetAssignmentsByGroup(
                 courseID: courseID,
                 gradingPeriodID: gradingPeriodID,
@@ -151,66 +137,38 @@ public final class GradeListInteractorLive: GradeListInteractor {
             environment: env
         )
 
-        return Publishers.Zip3(
-            loadCachedCoursesAndGradingPeriods(),
-            assignmentListStore.getEntities(
-                ignoreCache: ignoreCache,
-                loadAllPages: true
-            ),
-            enrollmentListStore.getEntities(
-                ignoreCache: true,
-                loadAllPages: true
-            )
-        )
-        .flatMap { [weak self] (courseAndGradingPeriods, assignments, enrollments) -> AnyPublisher<GradeListData, Error> in
-            guard let self else {
-                return Empty(completeImmediately: true)
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
-            }
-            let course = courseAndGradingPeriods.0
-            let gradingPeriods = courseAndGradingPeriods.1
-            let courseEnrollment = course.enrollmentForGrades(userId: userID, includingCompleted: true)
-            let isGradingPeriodHidden = courseEnrollment?.multipleGradingPeriodsEnabled == false
+        async let (course, gradingPeriods) = loadCachedCoursesAndGradingPeriods()
+        async let assignments = assignmentListStore.getEntities(ignoreCache: ignoreCache, loadAllPages: true)
+        async let enrollments = enrollmentListStore.getEntities(ignoreCache: true, loadAllPages: true)
 
-            let assignmentSections: [AssignmentListSection]
-            switch arrangeBy {
-            case .dueDate:
-                assignmentSections = groupAssignmentsByDueDate(assignments)
-            case .groupName:
-                assignmentSections = groupAssignmentsByAssignmentGroups(assignments)
-            }
-
-            return calculateTotalGrade(
-                course: course,
-                enrollments: enrollments,
-                gradingPeriodID: gradingPeriodID,
-                baseOnGradedAssignments: baseOnGradedAssignment
-            )
-            .flatMap { [weak self] totalGradeText -> AnyPublisher<GradeListData, Error> in
-                guard let self = self else {
-                    return Empty(completeImmediately: true)
-                        .setFailureType(to: Error.self)
-                        .eraseToAnyPublisher()
-                }
-                return Just(GradeListData(
-                    id: UUID.string,
-                    userID: userID ?? "",
-                    courseName: course.name,
-                    courseColor: course.color,
-                    assignmentSections: assignmentSections,
-                    isGradingPeriodHidden: isGradingPeriodHidden,
-                    gradingPeriods: gradingPeriods,
-                    currentGradingPeriod: getGradingPeriod(id: gradingPeriodID, gradingPeriods: gradingPeriods),
-                    totalGradeText: totalGradeText,
-                    currentGradingPeriodID: courseEnrollment?.currentGradingPeriodID
-                ))
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
-            }
-            .eraseToAnyPublisher()
+        let courseEnrollment = try await course.enrollmentForGrades(userId: userID, includingCompleted: true)
+        let isGradingPeriodHidden = courseEnrollment?.multipleGradingPeriodsEnabled == false
+        let assignmentSections = switch arrangeBy {
+        case .dueDate:
+            groupAssignmentsByDueDate(try await assignments)
+        case .groupName:
+            groupAssignmentsByAssignmentGroups(try await assignments)
         }
-        .eraseToAnyPublisher()
+
+        let totalGradeText = try await calculateTotalGrade(
+            course: course,
+            enrollments: enrollments,
+            gradingPeriodID: gradingPeriodID,
+            baseOnGradedAssignments: baseOnGradedAssignment
+        )
+
+        return try await GradeListData(
+            id: UUID.string,
+            userID: userID ?? "",
+            courseName: course.name,
+            courseColor: course.color,
+            assignmentSections: assignmentSections,
+            isGradingPeriodHidden: isGradingPeriodHidden,
+            gradingPeriods: gradingPeriods,
+            currentGradingPeriod: getGradingPeriod(id: gradingPeriodID, gradingPeriods: gradingPeriods),
+            totalGradeText: totalGradeText,
+            currentGradingPeriodID: courseEnrollment?.currentGradingPeriodID
+        )
     }
 
     public func isWhatIfScoreFlagEnabled() -> Bool {
@@ -219,17 +177,12 @@ public final class GradeListInteractorLive: GradeListInteractor {
 
     // MARK: - Private Methods
 
-    private func loadCachedCoursesAndGradingPeriods() -> AnyPublisher<(Course, [GradingPeriod]), Error> {
-        Publishers.Zip(
-            courseStore.getEntities(
-                ignoreCache: false
-            ).compactMap { $0.first },
-            gradingPeriodListStore.getEntities(
-                ignoreCache: false,
-                loadAllPages: true
-            )
-        )
-        .eraseToAnyPublisher()
+    private func loadCachedCoursesAndGradingPeriods() async throws -> (Course, [GradingPeriod]) {
+        async let course = courseStore.getEntities(ignoreCache: false).first
+        async let gradingPeriods = gradingPeriodListStore.getEntities(ignoreCache: false, loadAllPages: true)
+        guard let course = try await course else { throw GradeListInteractorError.courseNotFound }
+
+        return (course, try await gradingPeriods)
     }
 
     private func getGradingPeriod(id: String?, gradingPeriods: [GradingPeriod]) -> GradingPeriod? {
@@ -336,34 +289,32 @@ public final class GradeListInteractorLive: GradeListInteractor {
         enrollments: [Enrollment],
         gradingPeriodID: String?,
         baseOnGradedAssignments: Bool
-    ) -> AnyPublisher<String?, Never> {
+    ) -> String? {
         let courseEnrollment = course.enrollmentForGrades(userId: userID, includingCompleted: true)
         let gradeEnrollment = gradeEnrollment(from: enrollments)
         let hideQuantitativeData = course.hideQuantitativeData == true
 
         // When these conditions are met we don't show any grade, instead we display a lock icon.
-        if (courseEnrollment?.multipleGradingPeriodsEnabled == true &&
+        return if (courseEnrollment?.multipleGradingPeriodsEnabled == true &&
             courseEnrollment?.totalsForAllGradingPeriodsOption == false &&
             gradingPeriodID == nil) || course.hideFinalGrades {
-            return Just(nil).eraseToAnyPublisher()
+            nil
         } else if hideQuantitativeData {
-            return Just(getGradeForHideQuantitativeData(
+            getGradeForHideQuantitativeData(
                 baseOnGradedAssignments: baseOnGradedAssignments,
                 courseEnrollment: courseEnrollment,
                 gradeEnrollment: gradeEnrollment,
                 gradingPeriodID: gradingPeriodID,
                 course: course
-            ))
-            .eraseToAnyPublisher()
+            )
         } else {
-            return Just(getGradeForShowQuantitativeData(
+            getGradeForShowQuantitativeData(
                 baseOnGradedAssignments: baseOnGradedAssignments,
                 courseEnrollment: courseEnrollment,
                 gradeEnrollment: gradeEnrollment,
                 gradingPeriodID: gradingPeriodID,
                 gradingScheme: course.gradingScheme
-            ))
-            .eraseToAnyPublisher()
+            )
         }
     }
 

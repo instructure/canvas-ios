@@ -71,11 +71,12 @@ public struct GradeListScreen: View, ScreenViewTrackable {
             .background(Color.backgroundLight)
             .accessibilityHidden(isScoreEditorPresented)
             .refreshable {
-                await withCheckedContinuation { continuation in
-                    viewModel.pullToRefreshDidTrigger.accept {
-                        continuation.resume()
-                    }
-                }
+                await viewModel.refresh()
+//                await withCheckedContinuation { continuation in
+//                    viewModel.pullToRefreshDidTrigger.accept {
+//                        continuation.resume()
+//                    }
+//                }
             }
 
             whatIfScoreEditorView
@@ -154,7 +155,8 @@ public struct GradeListScreen: View, ScreenViewTrackable {
             identifierGroup: "GradeList",
             selectedAssignmentId: viewModel.selectedAssignmentId,
             navigateToDetailsAction: { url, id in
-                viewModel.didSelectAssignment.accept((url, id, viewController))
+                viewModel.selectAssignment(url: url, id: id, controller: viewController)
+//                viewModel.didSelectAssignment.accept((url, id, viewController))
             },
             whatIfModel: .init(
                 isEnabled: viewModel.isWhatIfScoreModeOn,

@@ -94,7 +94,6 @@ public class API {
         }
     }
 
-    /// Suhaib's implementation
     @discardableResult
     public func makeRequest<Request: APIRequestable>(
         _ requestable: Request,

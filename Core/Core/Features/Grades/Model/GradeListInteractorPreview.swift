@@ -25,66 +25,54 @@ final class GradeListInteractorPreview: GradeListInteractor {
     let context = PreviewEnvironment.shared.database.viewContext
     let isBaseDataLoaded = true
 
-    func loadBaseData(ignoreCache: Bool) -> AnyPublisher<GradeListGradingPeriodData, any Error> {
-        let result = GradeListGradingPeriodData(
+    func loadBaseData(ignoreCache: Bool) async throws -> GradeListGradingPeriodData {
+        GradeListGradingPeriodData(
             course: Course.save(.make(), in: context),
             currentlyActiveGradingPeriodID: nil,
             gradingPeriods: []
         )
-        return Just(result)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
     }
 
     var courseID: String { "courseID" }
 
-    func getGrades(
-        arrangeBy _: GradeArrangementOptions,
-        baseOnGradedAssignment _: Bool,
-        gradingPeriodID: String?,
-        ignoreCache _: Bool
-    ) -> AnyPublisher<GradeListData, Error> {
-        return Just(
-            GradeListData(
-                id: UUID.string,
-                userID: "userID",
-                courseName: "2023 - Math",
-                courseColor: nil,
-                assignmentSections: [
-                    .init(
-                        id: UUID.string,
-                        title: "Overdue Assignments",
-                        rows: (1...5).map {
-                            let assignment = Assignment.save(.make(id: .init(integerLiteral: $0), name: "Assignment \($0)"), in: context, updateSubmission: false, updateScoreStatistics: false)
-                            return .gradeListRow(.init(assignment: assignment, userId: "userID"))
-                        }
-                    ),
-                    .init(
-                        id: UUID.string,
-                        title: "Upcoming Assignments",
-                        rows: (6...8).map {
-                            let assignment = Assignment.save(.make(id: .init(integerLiteral: $0), name: "Assignment \($0)"), in: context, updateSubmission: false, updateScoreStatistics: false)
-                            return .gradeListRow(.init(assignment: assignment, userId: "userID"))
-                        }
-                    ),
-                    .init(
-                        id: UUID.string,
-                        title: "Past Assignments",
-                        rows: (9...10).map {
-                            let assignment = Assignment.save(.make(id: .init(integerLiteral: $0), name: "Assignment \($0)"), in: context, updateSubmission: false, updateScoreStatistics: false)
-                            return .gradeListRow(.init(assignment: assignment, userId: "userID"))
-                        }
-                    )
-                ],
-                isGradingPeriodHidden: false,
-                gradingPeriods: [
-                ],
-                currentGradingPeriod: .save(.make(), courseID: "courseID", in: context),
-                totalGradeText: "80%"
-            )
+    func getGrades(arrangeBy: GradeArrangementOptions, baseOnGradedAssignment: Bool, gradingPeriodID: String?, ignoreCache: Bool) async throws -> GradeListData {
+        GradeListData(
+            id: UUID.string,
+            userID: "userID",
+            courseName: "2023 - Math",
+            courseColor: nil,
+            assignmentSections: [
+                .init(
+                    id: UUID.string,
+                    title: "Overdue Assignments",
+                    rows: (1...5).map {
+                        let assignment = Assignment.save(.make(id: .init(integerLiteral: $0), name: "Assignment \($0)"), in: context, updateSubmission: false, updateScoreStatistics: false)
+                        return .gradeListRow(.init(assignment: assignment, userId: "userID"))
+                    }
+                ),
+                .init(
+                    id: UUID.string,
+                    title: "Upcoming Assignments",
+                    rows: (6...8).map {
+                        let assignment = Assignment.save(.make(id: .init(integerLiteral: $0), name: "Assignment \($0)"), in: context, updateSubmission: false, updateScoreStatistics: false)
+                        return .gradeListRow(.init(assignment: assignment, userId: "userID"))
+                    }
+                ),
+                .init(
+                    id: UUID.string,
+                    title: "Past Assignments",
+                    rows: (9...10).map {
+                        let assignment = Assignment.save(.make(id: .init(integerLiteral: $0), name: "Assignment \($0)"), in: context, updateSubmission: false, updateScoreStatistics: false)
+                        return .gradeListRow(.init(assignment: assignment, userId: "userID"))
+                    }
+                )
+            ],
+            isGradingPeriodHidden: false,
+            gradingPeriods: [
+            ],
+            currentGradingPeriod: .save(.make(), courseID: "courseID", in: context),
+            totalGradeText: "80%"
         )
-        .setFailureType(to: Error.self)
-        .eraseToAnyPublisher()
     }
 
     func updateGradingPeriod(id _: String?) {}

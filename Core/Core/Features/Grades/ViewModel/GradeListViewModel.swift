@@ -53,9 +53,9 @@ public final class GradeListViewModel: ObservableObject {
     var isParentApp: Bool { gradeFilterInteractor.isParentApp }
 
     // MARK: - Input
-    let pullToRefreshDidTrigger = PassthroughRelay<RefreshCompletion?>()
-    let didSelectAssignment = PassthroughRelay<(URL?, String, WeakViewController)>()
-    let didSelectGradingPeriod = PassthroughRelay<String?>()
+//    let pullToRefreshDidTrigger = PassthroughRelay<RefreshCompletion?>()
+//    let didSelectAssignment = PassthroughRelay<(URL?, String, WeakViewController)>()
+//    let didSelectGradingPeriod = PassthroughRelay<String?>()
     let confirmRevertAlertViewModel = ConfirmationAlertViewModel(
         title: String(localized: "Revert to Official Score?", bundle: .core),
         message: String(localized: "This will revert all your what-if scores in this course to the official score.", bundle: .core),
@@ -65,17 +65,19 @@ public final class GradeListViewModel: ObservableObject {
     )
 
     // MARK: - Input / Output
-    @Published var baseOnGradedAssignment = true
+    @Published var baseOnGradedAssignment = true {
+        didSet { Task { await refreshGrades(ignoreCache: false) } }
+    }
     @Published var isShowingRevertDialog = false
     let selectedGroupByOption = CurrentValueRelay<GradeArrangementOptions>(.dueDate)
 
     // MARK: - Private properties
-    private var subscriptions = Set<AnyCancellable>()
+//    private var subscriptions = Set<AnyCancellable>()
     private let env: AppEnvironment
     private var router: Router { env.router }
     private let gradeFilterInteractor: GradeFilterInteractor
-    private let scheduler: AnySchedulerOf<DispatchQueue>
-    private let triggerGradeRefresh = PassthroughRelay<(IgnoreCache, RefreshCompletion?)>()
+//    private let scheduler: AnySchedulerOf<DispatchQueue>
+//    private let triggerGradeRefresh = PassthroughRelay<(IgnoreCache, RefreshCompletion?)>()
     private var selectedGradingPeriod: String?
 
     // MARK: - Init
@@ -84,121 +86,194 @@ public final class GradeListViewModel: ObservableObject {
         interactor: GradeListInteractor,
         gradeFilterInteractor: GradeFilterInteractor,
         env: AppEnvironment,
-        scheduler: AnySchedulerOf<DispatchQueue> = .main
+        /*DO NOT LEAVE*/ scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
         self.env = env
         self.gradeFilterInteractor = gradeFilterInteractor
-        self.scheduler = scheduler
+//        self.scheduler = scheduler
 
         isWhatIfScoreFlagEnabled = interactor.isWhatIfScoreFlagEnabled()
 
-        pullToRefreshDidTrigger
-            .sink { [weak self] in
-                self?.loadBaseDataAndGrades(ignoreCache: true, completionBlock: $0)
-            }
-            .store(in: &subscriptions)
+//        pullToRefreshDidTrigger
+//            .sink { [weak self] in
+//                self?.loadBaseDataAndGrades(ignoreCache: true, completionBlock: $0)
+//            }
+//            .store(in: &subscriptions)
 
-        didSelectGradingPeriod
-            .sink { [weak self] newGradingPeriod in
-                self?.selectedGradingPeriod = newGradingPeriod
-                self?.triggerGradeRefresh.accept((true, nil))
-            }
-            .store(in: &subscriptions)
+//        didSelectGradingPeriod
+//            .sink { [weak self] newGradingPeriod in
+//                self?.selectedGradingPeriod = newGradingPeriod
+//                self?.triggerGradeRefresh.accept((true, nil))
+//            }
+//            .store(in: &subscriptions)
 
-        $baseOnGradedAssignment
-            .sink { [triggerGradeRefresh] _ in
-                triggerGradeRefresh.accept((false, nil))
-            }
-            .store(in: &subscriptions)
+//        $baseOnGradedAssignment
+//            .sink { [triggerGradeRefresh] _ in
+//                triggerGradeRefresh.accept((false, nil))
+//            }
+//            .store(in: &subscriptions)
 
-        triggerGradeRefresh
-            .receive(on: scheduler)
-            .flatMap { [weak self] (ignoreCache, refreshCompletion) -> AnyPublisher<Void, Never> in
-                guard let self else {
-                    return Empty(completeImmediately: true).eraseToAnyPublisher()
-                }
+//        triggerGradeRefresh
+//            .receive(on: scheduler)
+//            .flatMap { [weak self] (ignoreCache, refreshCompletion) -> AnyPublisher<Void, Never> in
+//                guard let self else {
+//                    return Empty(completeImmediately: true).eraseToAnyPublisher()
+//                }
+//
+//                // Changing the grading period fires an API request that takes time,
+//                // so we need to show a loading indicator.
+//                if refreshCompletion == nil, ignoreCache {
+//                    state = .initialLoading
+//                }
+//
+//                return refreshGrades(ignoreCache: ignoreCache)
+//                    .map {
+//                        refreshCompletion?()
+//                    }
+//                    .eraseToAnyPublisher()
+//            }
+//            .sink()
+//            .store(in: &subscriptions)
 
-                // Changing the grading period fires an API request that takes time,
-                // so we need to show a loading indicator.
-                if refreshCompletion == nil, ignoreCache {
+//        didSelectAssignment
+//            .receive(on: scheduler)
+//            .sink { url, id, controller in
+//                guard let url else { return }
+//                self.selectedAssignmentId = id
+//                env.router.route(to: url, from: controller, options: .detail)
+//            }
+//            .store(in: &subscriptions)
+
+        loadSortPreferences()
+        Task {
+            await loadBaseDataAndGrades(ignoreCache: false, isInitialLoad: true)
+        }
+    }
+
+    func selectGradingPeriod(id: String?) {
+        selectedGradingPeriod = id
+        Task {
+            await refreshGrades(ignoreCache: true)
+        }
+    }
+
+    func selectAssignment(url: URL?, id: String, controller: WeakViewController) {
+        guard let url else { return }
+        selectedAssignmentId = id
+        env.router.route(to: url, from: controller, options: .detail)
+    }
+
+    func refresh() async {
+        await loadBaseDataAndGrades(ignoreCache: true)
+    }
+
+    // triggerGradeRefresh (completion block removed)
+//    func gradeRefreshDidHappen(ignoreCache: Bool, showLoadingIndicator: Bool = true) async {
+//        // Changing the grading period fires an API request that takes time,
+//        // so we need to show a loading indicator.
+//        if showLoadingIndicator, ignoreCache {
+//            Task { @MainActor in
+//                state = .initialLoading
+//            }
+//        }
+//
+//        await refreshGrades(ignoreCache: ignoreCache)
+//    }
+
+    private func loadBaseDataAndGrades(ignoreCache: Bool, isInitialLoad: Bool = false) async {
+        do {
+            let gradingPeriodData = try await interactor.loadBaseData(ignoreCache: ignoreCache)
+
+            // Initial loading selects the currently active grading period
+            if isInitialLoad {
+                Task { @MainActor in
                     state = .initialLoading
                 }
 
-                return refreshGrades(ignoreCache: ignoreCache)
-                    .map {
-                        refreshCompletion?()
-                    }
-                    .eraseToAnyPublisher()
+                selectedGradingPeriod = gradingPeriodData.currentlyActiveGradingPeriodID
             }
-            .sink()
-            .store(in: &subscriptions)
 
-        didSelectAssignment
-            .receive(on: scheduler)
-            .sink { url, id, controller in
-                guard let url else { return }
-                self.selectedAssignmentId = id
-                env.router.route(to: url, from: controller, options: .detail)
-            }
-            .store(in: &subscriptions)
-
-        loadSortPreferences()
-        loadBaseDataAndGrades(ignoreCache: false, isInitialLoad: true)
-    }
-
-    private func loadBaseDataAndGrades(ignoreCache: Bool, isInitialLoad: Bool = false, completionBlock: (() -> Void)? = nil) {
-        interactor
-            .loadBaseData(ignoreCache: ignoreCache)
-            .map { [weak self] gradingPeriodData in
-                // Initial loading selects the currently active grading period
-                if isInitialLoad {
-                    self?.selectedGradingPeriod = gradingPeriodData.currentlyActiveGradingPeriodID
-                }
-            }
-            .mapToVoid()
-            .receive(on: scheduler)
-            .sink { [weak self] completion in
-                if case .failure = completion {
-                    self?.state = .error
-                    completionBlock?()
-                }
-            } receiveValue: { [triggerGradeRefresh] in
-                triggerGradeRefresh.accept((ignoreCache, completionBlock))
-            }
-            .store(in: &subscriptions)
-    }
-
-    private func refreshGrades(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        interactor.getGrades(
-            arrangeBy: selectedGroupByOption.value,
-            baseOnGradedAssignment: baseOnGradedAssignment,
-            gradingPeriodID: selectedGradingPeriod,
-            ignoreCache: ignoreCache
-        )
-        .receive(on: scheduler)
-        .flatMap { [weak self] listData -> AnyPublisher<ViewState, Never> in
-            guard let self else {
-                return Empty(completeImmediately: true).eraseToAnyPublisher()
-            }
-            courseName = listData.courseName
-            courseColor = listData.courseColor
-            totalGradeText = listData.totalGradeText
-
-            if listData.assignmentSections.count == 0 {
-                return Just(ViewState.empty(listData)).eraseToAnyPublisher()
-            } else {
-                return Just(ViewState.data(listData)).eraseToAnyPublisher()
-            }
+            await refreshGrades(ignoreCache: ignoreCache)
+        } catch {
+            state = .error
         }
-        .replaceError(with: .error)
-        .receive(on: scheduler)
-        .map { [weak self] in
-            self?.state = $0
-            return ()
-        }
-        .eraseToAnyPublisher()
     }
+
+//    private func loadBaseDataAndGrades(ignoreCache: Bool, isInitialLoad: Bool = false, completionBlock: (() -> Void)? = nil) {
+//        interactor
+//            .loadBaseData(ignoreCache: ignoreCache)
+//            .map { [weak self] gradingPeriodData in
+//                // Initial loading selects the currently active grading period
+//                if isInitialLoad {
+//                    self?.selectedGradingPeriod = gradingPeriodData.currentlyActiveGradingPeriodID
+//                }
+//            }
+//            .mapToVoid()
+//            .receive(on: scheduler)
+//            .sink { [weak self] completion in
+//                if case .failure = completion {
+//                    self?.state = .error
+//                    completionBlock?()
+//                }
+//            } receiveValue: { [triggerGradeRefresh] in
+//                triggerGradeRefresh.accept((ignoreCache, completionBlock))
+//            }
+//            .store(in: &subscriptions)
+//    }
+
+    private func refreshGrades(ignoreCache: Bool) async {
+        do {
+            let listData = try await interactor.getGrades(
+                arrangeBy: selectedGroupByOption.value,
+                baseOnGradedAssignment: baseOnGradedAssignment,
+                gradingPeriodID: selectedGradingPeriod,
+                ignoreCache: ignoreCache
+            )
+
+            Task { @MainActor in
+                courseName = listData.courseName
+                courseColor = listData.courseColor
+                totalGradeText = listData.totalGradeText
+
+                state = listData.assignmentSections.count == 0 ? .empty(listData) : .data(listData)
+            }
+        } catch {
+            state = .error
+        }
+    }
+
+//    private func refreshGrades(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
+//        interactor.getGrades(
+//            arrangeBy: selectedGroupByOption.value,
+//            baseOnGradedAssignment: baseOnGradedAssignment,
+//            gradingPeriodID: selectedGradingPeriod,
+//            ignoreCache: ignoreCache
+//        )
+//        AnyPublisher<Void, Never>()
+//        .receive(on: scheduler)
+//        .flatMap { [weak self] listData -> AnyPublisher<ViewState, Never> in
+//            guard let self else {
+//                return Empty(completeImmediately: true).eraseToAnyPublisher()
+//            }
+//            courseName = listData.courseName
+//            courseColor = listData.courseColor
+//            totalGradeText = listData.totalGradeText
+//
+//            if listData.assignmentSections.count == 0 {
+//                return Just(ViewState.empty(listData)).eraseToAnyPublisher()
+//            } else {
+//                return Just(ViewState.data(listData)).eraseToAnyPublisher()
+//            }
+//        }
+//        .replaceError(with: .error)
+//        .receive(on: scheduler)
+//        .map { [weak self] in
+//            self?.state = $0
+//            return ()
+//        }
+//        .eraseToAnyPublisher()
+//    }
 
     private func loadSortPreferences() {
        guard let id = gradeFilterInteractor.selectedSortById,
@@ -225,7 +300,7 @@ public final class GradeListViewModel: ObservableObject {
             isShowGradingPeriod: isShowGradingPeriod,
             initialGradingPeriodID: selectedGradingPeriod,
             courseName: courseName,
-            selectedGradingPeriodPublisher: didSelectGradingPeriod,
+            selectedGradingPeriodPublisher: /*didSelectGradingPeriod*/ PassthroughRelay<String?>(),
             selectedSortByPublisher: selectedGroupByOption,
             gradingPeriods: gradeData.gradingPeriods,
             sortByOptions: GradeArrangementOptions.allCases

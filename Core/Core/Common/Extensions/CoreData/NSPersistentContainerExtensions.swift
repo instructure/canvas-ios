@@ -106,7 +106,7 @@ extension NSPersistentContainer {
         context.perform { block(context) }
     }
 
-    public func performWriteTask<T>(_ block: @escaping (NSManagedObjectContext) throws -> T) async throws  -> T{
+    public func performWriteTask<T>(_ block: @escaping (NSManagedObjectContext) throws -> T) async rethrows  -> T{
         let context = writeContext ?? {
             let context = newBackgroundContext()
             context.automaticallyMergesChangesFromParent = true
