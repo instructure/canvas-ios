@@ -32,7 +32,7 @@ class CourseSyncConferencesInteractorLiveTests: CoreTestCase {
     }
 
     func testSavedDataPopulatesViewController() throws {
-        
+
             // MARK: - GIVEN
         api.mock(GetCustomColors(), value: .init(custom_colors: [:]))
         api.mock(GetCourse(courseID: "testCourse"), value: .make(id: "testCourse"))
