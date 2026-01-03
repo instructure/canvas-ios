@@ -277,7 +277,7 @@ open class Router {
         switch options {
         case let .modal(style, isDismissable, _, addDoneButton, animated):
             if addDoneButton {
-                view.addDoneButton(side: .left)
+                view.addDoneButton(side: .right)
             }
             nav?.navigationBar.useModalStyle()
             if let presentationStyle = style {
