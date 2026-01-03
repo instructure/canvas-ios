@@ -69,8 +69,18 @@ class QuizListViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
-        XCTAssertEqual(controller.navigationItem.title, "Quizzes")
-        XCTAssertEqual(controller.navigationItem.subtitle, "Course One")
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Quizzes")
+            XCTAssertEqual(controller.navigationItem.subtitle, "Course One")
+        } else {
+            let nav = UINavigationController(rootViewController: controller)
+            controller.view.layoutIfNeeded()
+            controller.viewWillAppear(false)
+
+            XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#0000ff")
+            XCTAssertEqual(controller.titleSubtitleView.title, "Quizzes")
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+        }
 
         XCTAssertNoThrow(controller.viewWillDisappear(false))
 
