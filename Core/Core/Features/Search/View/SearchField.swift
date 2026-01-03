@@ -28,7 +28,7 @@ struct SearchTextField: View {
     private let onSubmit: () -> Void
 
     private var trailingPadding: CGFloat {
-        if text.isEmpty  {
+        if text.isEmpty {
             10
         } else {
             if #available(iOS 26, *) {

@@ -129,7 +129,8 @@ struct StudentHeaderView: View {
         }
         .padding(.vertical, 8)
         .padding(.horizontal, 12)
-        .glassEffect()
+        .glassEffect(.regular.tint(viewModel.backgroundColor).interactive())
+        .foregroundStyle(.textLightest)
         .padding(.horizontal, isVerticallyCompact ? 0 : 64)
     }
 
@@ -194,7 +195,7 @@ private extension View {
     }
 }
 
-#Preview("Student Name") {
+#Preview("Lorem Ipsum") {
     let previewEnvironment = PreviewEnvironment()
     let user = User.save(
         // swiftlint:disable:next line_length

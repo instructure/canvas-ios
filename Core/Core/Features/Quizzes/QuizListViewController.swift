@@ -58,6 +58,12 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
         super.viewDidLoad()
         if #available(iOS 26, *) {
             navigationItem.title = String(localized: "Quizzes", bundle: .core)
+
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithDefaultBackground()
+            appearance.backgroundColor = .backgroundLightest
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
         } else {
             setupTitleViewInNavbar(title: String(localized: "Quizzes", bundle: .core))
         }
@@ -87,6 +93,17 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
         if #unavailable(iOS 26) {
             navigationController?.navigationBar.useContextColor(color)
         }
+    }
+
+    public override func viewWillDisappear(_ animated: Bool) {
+        if #available(iOS 26, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithDefaultBackground()
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        }
+
+        super.viewWillDisappear(animated)
     }
 
     @objc func refresh() {
@@ -130,11 +147,7 @@ extension QuizListViewController: UITableViewDataSource, UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let typeRaw = quizzes.sections?[section].name, let type = QuizType(rawValue: typeRaw) else { return nil }
-        return if #available(iOS 26, *) {
-            SectionHeaderView.create(title: type.sectionTitle, section: section)
-        } else {
-            LegacySectionHeaderView.create(title: type.sectionTitle, section: section)
-        }
+        return SectionHeaderView.create(title: type.sectionTitle, section: section)
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -76,6 +76,12 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
 
         if #available(iOS 26, *) {
             navigationItem.title = String(localized: "Discussions", bundle: .core)
+
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithDefaultBackground()
+            appearance.backgroundColor = .backgroundLightest
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
         } else {
             setupTitleViewInNavbar(title: String(localized: "Discussions", bundle: .core))
         }
@@ -108,6 +114,17 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
         super.viewWillAppear(animated)
         tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
         navigationController?.navigationBar.useContextColor(color)
+    }
+
+    public override func viewWillDisappear(_ animated: Bool) {
+        if #available(iOS 26, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithDefaultBackground()
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        }
+
+        super.viewWillDisappear(animated)
     }
 
     @objc func refresh() {
@@ -227,11 +244,7 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
         }()
         guard let key else { return nil }
 
-        return if #available(iOS 26, *) {
-            SectionHeaderView.create(title: .init(localized: key, bundle: .core), section: section)
-        } else {
-            LegacySectionHeaderView.create(title: .init(localized: key, bundle: .core), section: section)
-        }
+        return SectionHeaderView.create(title: .init(localized: key, bundle: .core), section: section)
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -72,11 +72,7 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
         tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
-        if #available(iOS 26, *) {
-            tableView.registerHeaderFooterView(SectionHeaderView.self)
-        } else {
-            tableView.registerHeaderFooterView(LegacySectionHeaderView.self)
-        }
+        tableView.registerHeaderFooterView(SectionHeaderView.self)
         tableView.separatorColor = .borderMedium
 
         colors.refresh()
@@ -145,31 +141,14 @@ extension ConferenceListViewController: UITableViewDataSource, UITableViewDelega
     }
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        @available(iOS, deprecated: 26)
-        let titleLabel = {
-            if conferences[IndexPath(row: 0, section: section)]?.isConcluded == true {
-                String(localized: "Concluded Conferences", bundle: .core)
-            } else {
-                String(localized: "New Conferences", bundle: .core)
-            }
-        }()
+        let view = tableView.dequeueHeaderFooter(SectionHeaderView.self)
+        view.titleLabel?.text = conferences[IndexPath(row: 0, section: section)]?.isConcluded == true
+        ? String(localized: "Concluded Conferences", bundle: .core)
+        : String(localized: "New Conferences", bundle: .core)
 
-        @available(iOS, deprecated: 26)
-        let accessibilityIdentifier = "ConferencesList.header-\(section)"
+        view.titleLabel?.accessibilityIdentifier = "ConferencesList.header-\(section)"
 
-        if #available(iOS 26, *) {
-            let view = tableView.dequeueHeaderFooter(SectionHeaderView.self)
-            view.titleLabel?.text = titleLabel
-            view.titleLabel?.accessibilityIdentifier = accessibilityIdentifier
-
-            return view
-        } else {
-            let view = tableView.dequeueHeaderFooter(LegacySectionHeaderView.self)
-            view.titleLabel?.text = titleLabel
-            view.titleLabel?.accessibilityIdentifier = accessibilityIdentifier
-
-            return view
-        }
+        return view
     }
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
