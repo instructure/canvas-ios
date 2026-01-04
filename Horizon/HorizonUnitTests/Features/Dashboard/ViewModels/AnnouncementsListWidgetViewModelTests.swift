@@ -108,7 +108,7 @@ final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
 
         // Then
         wait(for: [router.showExpectation], timeout: 1)
-        let messageDetailsVC = router.lastViewController as? CoreHostingController<HMessageDetailsView>
+        let messageDetailsVC = router.lastViewController as? CoreHostingController<HAnnouncementDetailsView>
         XCTAssertNotNil(messageDetailsVC)
     }
 

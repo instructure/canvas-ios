@@ -30,15 +30,18 @@ final class NotificationInteractorLive: NotificationInteractor {
     // MARK: - Dependencies
 
     private let userID: String
+    private let includePast: Bool
     private let formatter: NotificationFormatter
 
     // MARK: - Init
 
     init(
         userID: String,
+        includePast: Bool = false,
         formatter: NotificationFormatter
     ) {
         self.userID = userID
+        self.includePast = includePast
         self.formatter = formatter
     }
 
@@ -105,7 +108,7 @@ final class NotificationInteractorLive: NotificationInteractor {
     }
 
     private func fetchGlobalNotifications(ignoreCache: Bool) -> AnyPublisher<[NotificationModel], Never> {
-        ReactiveStore(useCase: GetAccountNotifications())
+        ReactiveStore(useCase: GetAccountNotifications(includePast: includePast))
             .getEntities(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .flatMap { Publishers.Sequence(sequence: $0) }
@@ -117,6 +120,7 @@ final class NotificationInteractorLive: NotificationInteractor {
                     isRead: $0.closed,
                     type: .announcement,
                     announcementId: $0.id,
+                    announcementContent: $0.message,
                     isGlobalNotification: true
                 )
             }
@@ -128,10 +132,12 @@ final class NotificationInteractorLive: NotificationInteractor {
         if notification.isGlobalNotification {
             return deleteAccountNotification(id: notification.id)
         } else {
-            return markDiscussionTopicRead(
-                courseID: notification.courseID,
-                topicID: notification.announcementId.defaultToEmpty
-            )
+            return getNotifications(ignoreCache: false)
+            // TODO: uncomment when set discussion topics
+//            return markDiscussionTopicRead(
+//                courseID: notification.courseID,
+//                topicID: notification.id
+//            )
         }
     }
 

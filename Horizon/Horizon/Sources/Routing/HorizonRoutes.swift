@@ -240,13 +240,9 @@ public enum HorizonRoutes {
                     allowArchive: allowArchive
                 )
             },
-            RouteHandler("/announcements/:announcementID") { _, params, userInfo in
-                guard let announcementID = params["announcementID"] else { return nil }
-                let announcement = userInfo?["announcement"] as? Announcement
-                return HorizonMessageDetailsAssembly.makeViewController(
-                    announcementID: announcementID,
-                    announcement: announcement // Pass the announcement if available
-                )
+            RouteHandler("/announcements") { _, _, userInfo in
+                guard let announcement = userInfo?["announcement"] as? NotificationModel else { return nil}
+                return HorizonMessageDetailsAssembly.makeAnnouncementView(notificationModel: announcement)
             }
         ]
     }

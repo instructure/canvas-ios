@@ -33,6 +33,7 @@ enum AnnouncementsWidgetAssembly {
         let formatter = NotificationFormatterLive()
         let interactor = NotificationInteractorLive(
             userID: AppEnvironment.shared.currentSession?.userID ?? "",
+            includePast: false,
             formatter: formatter
         )
         return interactor

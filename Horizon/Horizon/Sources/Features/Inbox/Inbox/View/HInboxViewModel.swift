@@ -19,91 +19,54 @@
 import Core
 import Combine
 import CombineExt
-import HorizonUI
-import SwiftUI
+import Observation
+import Foundation
 
 @Observable
-class HInboxViewModel {
-
-    enum FilterOption: CaseIterable {
-        // caution: ordering here matters, it is used in the UI
-        case all
-        case announcements
-        case unread
-        case sent
-
-        var title: String {
-            switch self {
-            case .all:
-                return String(localized: "All messages", bundle: .horizon)
-            case .announcements:
-                return String(localized: "Announcements", bundle: .horizon)
-            case .unread:
-                return String(localized: "Unread", bundle: .horizon)
-            case .sent:
-                return String(localized: "Sent", bundle: .horizon)
-            }
-        }
-
-        var inboxMessageInteractorScope: InboxMessageScope? {
-            let map = [
-                FilterOption.all: InboxMessageScope.inbox,
-                FilterOption.unread: InboxMessageScope.unread,
-                FilterOption.sent: InboxMessageScope.sent
-            ]
-            return map[self]
-        }
-    }
-
+final class HInboxViewModel {
     // MARK: - Outputs
+
     var filterTitle: String {
-        get {
-            filterSubject.value.title
-        }
+        get { filterSubject.value.title }
         set {
-            filterSubject.accept(FilterOption.allCases.first { $0.title == newValue } ?? .all)
+            filterSubject.accept(InboxFilterOption.allCases.first { $0.title == newValue } ?? .all)
             _ = inboxMessageInteractor.refresh()
         }
     }
+
     var isMessagesFilterFocused: Bool = false {
         didSet {
             onMessagesFilterFocused()
         }
     }
-    var isSearchDisabled: Bool {
-        filterSubject.value == .announcements
-    }
-    var messageListOpacity = 0.0
-    var messageRows: [MessageRowViewModel] = []
-    var peopleSelectionViewModel: RecipientSelectionViewModel
-    var screenState: InstUI.ScreenState = .data
-    var isLoaderVisible = true
+    var isSearchDisabled: Bool { filterSubject.value == .announcements }
+    private(set) var messageRows: [InboxMessageModel] = []
+    private(set) var peopleSelectionViewModel: RecipientSelectionViewModel
+    private(set) var screenState: InstUI.ScreenState = .loading
 
     // MARK: - Private
-    private var filterSubject: CurrentValueRelay<FilterOption> = CurrentValueRelay(FilterOption.all)
-    private var hasNextPage: Bool = false
+
+    private var filterSubject: CurrentValueRelay<InboxFilterOption> = CurrentValueRelay(InboxFilterOption.all)
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
 
-    private let announcementsInteractor: AnnouncementsInteractor
+    private let notificationInteractor: NotificationInteractor
     private let inboxMessageInteractor: InboxMessageInteractor
     private let router: Router
 
+    // MARK: - Init
+
     init(
-        userID: String = AppEnvironment.shared.currentSession?.userID ?? "",
-        router: Router = AppEnvironment.shared.router,
-        inboxMessageInteractor: InboxMessageInteractor = InboxMessageInteractorLive(
-            env: AppEnvironment.shared,
-            tabBarCountUpdater: .init(),
-            messageListStateUpdater: .init()
-        ),
-        announcementsInteractor: AnnouncementsInteractor = AnnouncementsInteractorLive()
+        userID: String,
+        router: Router,
+        inboxMessageInteractor: InboxMessageInteractor,
+        notificationInteractor: NotificationInteractor
     ) {
         self.router = router
         self.inboxMessageInteractor = inboxMessageInteractor
-        self.announcementsInteractor = announcementsInteractor
-        self.peopleSelectionViewModel = .init()
+        self.notificationInteractor = notificationInteractor
+        self.peopleSelectionViewModel = .init(userID: userID)
 
         _ = inboxMessageInteractor.setContext(.user(userID))
 
@@ -130,50 +93,36 @@ class HInboxViewModel {
             .store(in: &subscriptions)
     }
 
+    // MARK: - Actions Functions
+
     func goBack(_ viewController: WeakViewController) {
         router.pop(from: viewController)
     }
 
     func goToComposeMessage(_ viewController: WeakViewController) {
-        router.route(
-            to: "/conversations/create",
-            from: viewController
-        )
+        router.route(to: "/conversations/create", from: viewController)
     }
 
-    func loadMoreIfScrolledEnough(
-        scrollViewProxy: GeometryProxy,
-        contentProxy: GeometryProxy,
-        coordinateSpaceName: String = "scroll"
-    ) {
+    func loadMore(message: InboxMessageModel) {
         let isLoadingMore = inboxMessageInteractor.state.value == .loading
         let hasNextPage = inboxMessageInteractor.hasNextPage.value
-        if(!hasNextPage && !isLoadingMore) {
-            return
-        }
-        let contentHeight = contentProxy.size.height
-        let visibleHeight = scrollViewProxy.size.height
-        let offset = -contentProxy.frame(in: .named(coordinateSpaceName)).minY
-        let maxOffset = max(contentHeight - visibleHeight, 1)
-        let threshold = 150.0
-        let shouldLoadMore = offset > maxOffset - threshold
-        if !shouldLoadMore {
-            return
-        }
-        _ = inboxMessageInteractor.loadNextPage()
+        guard hasNextPage, !isLoadingMore, message == messageRows.last else { return }
+        inboxMessageInteractor
+            .loadNextPage()
+            .sink()
+            .store(in: &subscriptions)
     }
 
     func refresh(endRefreshing: @escaping () -> Void) {
         inboxMessageInteractor
             .refresh()
-            .sink { _ in
-                endRefreshing()
-            }
+            .zip(fetchAnnouncements(ignoreCache: true))
+            .sink { _, _ in endRefreshing() }
             .store(in: &subscriptions)
     }
 
     func viewMessage(
-        announcement: Announcement?,
+        announcement: NotificationModel?,
         inboxMessageListItem: InboxMessageListItem?,
         viewController: WeakViewController
     ) {
@@ -183,146 +132,104 @@ class HInboxViewModel {
                 from: viewController
             )
         }
-        if let announcement = announcement {
+        if let announcement {
             router.route(
-                to: "/announcements/\(announcement.id)",
+                to: "/announcements",
                 userInfo: ["announcement": announcement],
                 from: viewController
             )
         }
     }
 
-    // MARK: - Private Methods
-    private func addAnnouncements(to messageRows: [MessageRowViewModel]) -> [MessageRowViewModel] {
-        let isAnnouncementsShown = (
-            filterSubject.value == .all ||
-            filterSubject.value == .announcements
-        ) && peopleSelectionViewModel.personFilterSubject.value.isEmpty
+    // MARK: - Private Functions
 
-        let messages = isAnnouncementsShown ? (announcementsInteractor.messages.value ?? []) : []
+    private func addAnnouncements(to messageRows: [InboxMessageModel], announcements: [NotificationModel]) -> [InboxMessageModel] {
+        let filter = filterSubject.value
+        let isPeopleFilterEmpty = peopleSelectionViewModel.searchByPersonSelections.isEmpty
 
-        let announcements: [MessageRowViewModel] = messages.map { $0.viewModel }
+        let shouldShowAnnouncements =
+            (filter == .all || filter == .announcements) &&
+            isPeopleFilterEmpty
+
+        let announcementRows: [InboxMessageModel] = {
+            guard shouldShowAnnouncements else {
+                return filter == .unread
+                    ? announcements.filter { !$0.isRead }.map(\.messageModel)
+                    : []
+            }
+            return announcements.map(\.messageModel)
+        }()
+
         let isFinishedLoading = inboxMessageInteractor.hasNextPage.value == false
-        // Combine the message rows and announcements, sorting them by date descending.
-        let fullList = (messageRows + announcements).sorted { (lhs: MessageRowViewModel, rhs: MessageRowViewModel) in
-            lhs.date ?? Date.distantPast > rhs.date ?? Date.distantPast
-        }
-        let indexOfLastNonAnnouncement = fullList.firstIndex { !$0.isAnnouncement } ?? 0
 
-        // if we're finished loading the full list of announcements, show all the announcements + messages.
-        // if we're not finished loading, only show the announcements that are before the last non-announcement.
-        return fullList.enumerated().filter { (index, row) in
-            return !row.isAnnouncement || isFinishedLoading || index < indexOfLastNonAnnouncement
-        }.map { $0.element }
+        let combinedRows = (messageRows + announcementRows)
+            .sorted { ($0.date ?? .distantPast) > ($1.date ?? .distantPast) }
+
+        let lastMessageIndex =
+            combinedRows.firstIndex { !$0.isAnnouncement } ?? 0
+
+        return combinedRows.enumerated()
+            .filter { index, row in
+                !row.isAnnouncement || isFinishedLoading || index < lastMessageIndex
+            }
+            .map(\.element)
+    }
+
+    private func fetchAnnouncements(ignoreCache: Bool = false) -> AnyPublisher<[NotificationModel], Never> {
+        notificationInteractor
+            .getNotifications(ignoreCache: ignoreCache)
+            .replaceError(with: [])
+            .flatMap { Publishers.Sequence(sequence: $0) }
+            .filter { $0.type == .announcement}
+            .collect()
+            .eraseToAnyPublisher()
     }
 
     private func listenForMessagesAndAnnouncements() {
         Publishers.CombineLatest4(
             inboxMessageInteractor.messages,
-            announcementsInteractor.messages,
-            self.filterSubject,
-            self.peopleSelectionViewModel.personFilterSubject
+            fetchAnnouncements(),
+            filterSubject,
+            peopleSelectionViewModel.personSelectionPublisher
         )
         .filter { [weak self] _, announcements, _, _ in
-            let state = self?.inboxMessageInteractor.state.value ?? .loading
-            return (state == .data || state == .empty) && announcements != nil
+            guard let self else { return false }
+            let state = self.inboxMessageInteractor.state.value
+            return (state == .data || state == .empty) && announcements.isNotEmpty
         }
-        .map { [weak self] _, _, filterSubject, _ in
-            guard let self = self,
-                  filterSubject.inboxMessageInteractorScope != nil else {
-                return []
-            }
-            return inboxMessageInteractor.messages.value
-                .filter(filterByPerson)
-                .map { $0.viewModel }
+        .map { [weak self] _, announcements, filter, _ -> ([InboxMessageModel], [NotificationModel])in
+            guard let self, filter.inboxMessageInteractorScope != nil else { return ([], announcements) }
+            let messages = self.inboxMessageInteractor.messages.value
+                       .filter(self.filterByPerson)
+                       .map(\.messageModel)
+            return (messages, announcements)
         }
-        .sink { [weak self] (messages: [HInboxViewModel.MessageRowViewModel]) in
-            guard let self = self else { return }
-            self.messageRows = self.addAnnouncements(to: messages)
-            self.messageListOpacity = self.messageRows.count > 0 ? 1.0 : 0.0
-            self.isLoaderVisible = false
+        .sink { [weak self] messages, announcements in
+            guard let self else { return }
+            messageRows = addAnnouncements(to: messages, announcements: announcements)
+            screenState = .data
         }
         .store(in: &subscriptions)
     }
 
-    private func onInboxMessageListItems() {
-        let messageRowsInterim = filterSubject.value.inboxMessageInteractorScope == nil ?
-            [] :
-            inboxMessageInteractor.messages.value
-                .filter(filterByPerson)
-                .map { $0.viewModel }
-
-        messageRows = addAnnouncements(to: messageRowsInterim)
-        messageListOpacity = messageRows.count > 0 ? 1.0 : 0.0
-        isLoaderVisible = false
-    }
-
-    private func filterByPerson(messageListItem: InboxMessageListItem) -> Bool {
-        let personFilter = peopleSelectionViewModel.personFilterSubject.value
-        if personFilter.isEmpty || filterSubject.value == .announcements {
-            return true
-        }
-        return personFilter.contains { current in
-            messageListItem.participantName.lowercased().contains(current.label.lowercased())
+    private func filterByPerson(message: InboxMessageListItem) -> Bool {
+        let selectedPeople = peopleSelectionViewModel.searchByPersonSelections
+        let filter = filterSubject.value
+        guard !selectedPeople.isEmpty, filter != .announcements else { return true }
+        let messageName = message.participantName.lowercased()
+        return selectedPeople.contains {
+            messageName.contains($0.label.lowercased())
         }
     }
 
     private func onMessagesFilterFocused() {
-        if isMessagesFilterFocused && peopleSelectionViewModel.isFocusedSubject.value {
-            peopleSelectionViewModel.isFocusedSubject.accept(false)
-        }
-    }
-
-    public struct MessageRowViewModel: Equatable, Hashable, Identifiable {
-        let announcement: Announcement?
-        var date: Date? {
-            announcement?.date ?? inboxMessageListItem?.dateRaw
-        }
-        var dateString: String {
-            date.map { $0.relativeDateTimeString } ?? ""
-        }
-        var title: String {
-            if let announcement = announcement {
-                if let courseName = announcement.courseName {
-                    return String(
-                        format: String(
-                            localized: "Announcement in %@",
-                            bundle: .horizon
-                        ),
-                        courseName
-                    )
-                }
-                return String(localized: "Announcement", bundle: .horizon)
-            }
-            return inboxMessageListItem?.message ?? ""
-        }
-        var subtitle: String {
-            if let announcement = announcement {
-                return announcement.title
-            }
-            return inboxMessageListItem?.participantName ?? ""
-        }
-        var isAnnouncement: Bool {
-            inboxMessageListItem == nil
-        }
-        var isAnnouncementIconVisible: Bool {
-            isAnnouncement
-        }
-        var isNew: Bool {
-            inboxMessageListItem?.isUnread == true
-        }
-        var id: String {
-            if let announcement = announcement {
-                return "announcement_\(announcement.id)"
-            }
-            return "message_\(inboxMessageListItem?.id ?? "")"
-        }
-        let inboxMessageListItem: InboxMessageListItem?
+        guard isMessagesFilterFocused, peopleSelectionViewModel.isFocusedSubject.value else { return }
+        peopleSelectionViewModel.isFocusedSubject.accept(false)
     }
 }
 
-extension Announcement {
-    var viewModel: HInboxViewModel.MessageRowViewModel {
+private extension NotificationModel {
+    var messageModel: InboxMessageModel {
         .init(
             announcement: self,
             inboxMessageListItem: nil
@@ -330,8 +237,8 @@ extension Announcement {
     }
 }
 
-extension InboxMessageListItem {
-    var viewModel: HInboxViewModel.MessageRowViewModel {
+private extension InboxMessageListItem {
+    var messageModel: InboxMessageModel {
         .init(
             announcement: nil,
             inboxMessageListItem: self

@@ -19,10 +19,43 @@
 import Core
 import UIKit
 
-struct HInboxAssembly {
+enum HInboxAssembly {
     static func makeViewController() -> UIViewController {
-        CoreHostingController(
-            HInboxView(viewModel: HInboxViewModel())
+        let userID = AppEnvironment.shared.currentSession?.userID ?? ""
+        let inboxMessageInteractor = InboxMessageInteractorLive(
+            env: AppEnvironment.shared,
+            tabBarCountUpdater: .init(),
+            messageListStateUpdater: .init()
+        )
+
+        let announcementsInteractor = NotificationInteractorLive(
+            userID: userID,
+            includePast: true,
+            formatter: NotificationFormatterLive()
+        )
+        return CoreHostingController(
+            HInboxView(
+                viewModel: HInboxViewModel(
+                    userID: userID,
+                    router: AppEnvironment.shared.router,
+                    inboxMessageInteractor: inboxMessageInteractor,
+                    notificationInteractor: announcementsInteractor
+                )
+            )
         )
     }
+#if DEBUG
+    static func preview() -> HInboxView {
+        let env = PreviewEnvironment()
+        let context = env.globalDatabase.viewContext
+        let messageInteractor = [InboxMessageListItem].make(count: 5, in: context)
+        let viewModel = HInboxViewModel(
+            userID: "userID",
+            router: env.router,
+            inboxMessageInteractor: InboxMessageInteractorPreview(environment: env, messages: messageInteractor),
+            notificationInteractor: NotificationInteractorPreview()
+        )
+        return HInboxView(viewModel: viewModel)
+    }
+#endif
 }

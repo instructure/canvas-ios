@@ -64,9 +64,7 @@ final class AnnouncementsListWidgetViewModel {
         announcement: NotificationModel,
         viewController: WeakViewController
     ) {
-        let vc = HorizonMessageDetailsAssembly.makeViewController(
-            announcementID: announcement.announcementId.defaultToEmpty
-        )
+        let vc = HorizonMessageDetailsAssembly.makeAnnouncementView(notificationModel: announcement)
         router.show(vc, from: viewController)
         markAsRead(announcement: announcement)
     }

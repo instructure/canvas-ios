@@ -29,6 +29,7 @@ extension HorizonUI.MultiSelect {
         var body: some View {
             HorizonUI.MultiSelect(
                 focused: $focused,
+                selections: [],
                 label: "Label",
                 textInput: $textInput,
                 options: Array(1 ... 20).map {
