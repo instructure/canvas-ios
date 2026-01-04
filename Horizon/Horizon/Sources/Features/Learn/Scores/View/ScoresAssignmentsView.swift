@@ -20,6 +20,14 @@ import HorizonUI
 import SwiftUI
 
 struct ScoresAssignmentsView: View {
+    // MARK: - Propertites A11y
+
+    @AccessibilityFocusState private var focusedSortOption: Bool?
+    @AccessibilityFocusState private var assignmentFocusedID: String?
+    @State private var lastFocusedAssignmentID: String?
+
+    // MARK: - Dependencies
+
     let details: ScoreDetails
     @Binding var selectedSortOption: String
     @State private var selectionSortFocused: Bool = false
@@ -36,47 +44,24 @@ struct ScoresAssignmentsView: View {
             )
             .padding(.horizontal, .huiSpaces.space24)
             .padding(.top, .huiSpaces.space24)
+            .accessibilityLabel(String(format: String(localized: "Selected sort is %@. Double tap to select another sort. "), selectedSortOption))
+            .accessibilityAddTraits(.isButton)
+            .accessibilityFocused($focusedSortOption, equals: true)
+            .onChange(of: selectionSortFocused) { _, newValue in
+                if newValue == false {
+                    focusedSortOption = true
+                }
+            }
+
             VStack(spacing: .zero) {
                 ForEach(Array(details.assignments.enumerated()), id: \.offset) { index, assignment in
-                    VStack(alignment: .leading, spacing: .huiSpaces.space12) {
-                        Text(assignment.name)
-                        if let dueAtString = assignment.dueAtString {
-                            Text("Due date: \(dueAtString)", bundle: .horizon)
-                        }
-
-                        let submissionStatus = assignment.status
-                        HStack(spacing: .huiSpaces.space4) {
-                            Text("Status: ", bundle: .horizon)
-                            HorizonUI.StatusChip(
-                                title: submissionStatus.text,
-                                style: submissionStatus == .missing ? .red : .sky
-                            )
-                        }
-                        Text("Result: \(assignment.pointsResult)", bundle: .horizon)
-                        HStack(spacing: .huiSpaces.space4) {
-                            Text("Feedback: ", bundle: .horizon)
-                            if assignment.commentsCount > 0 {
-                                if assignment.isRead {
-                                    HorizonUI.icons.chat
-                                        .frame(width: 24, height: 24)
-                                } else {
-                                    HorizonUI.icons.markUnreadChat
-                                        .frame(width: 24, height: 24)
-                                }
-                                Text(String(assignment.commentsCount))
-                            } else {
-                                Text("-")
-                            }
-                        }
-                    }
-                    .huiTypography(.p1)
-                    .foregroundStyle(Color.huiColors.text.body)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.vertical, .huiSpaces.space16)
-                    .padding(.horizontal, .huiSpaces.space24)
-                    .onTapGesture {
+                    Button {
+                        lastFocusedAssignmentID = assignment.id
                         openAssignmentDetails(assignment.htmlUrl)
+                    } label: {
+                        contentView(assignment: assignment)
                     }
+                    .accessibilityFocused($assignmentFocusedID, equals: assignment.id)
 
                     if index != details.assignments.count - 1 {
                         divider
@@ -85,9 +70,57 @@ struct ScoresAssignmentsView: View {
                 Spacer()
             }
             .padding(.vertical, .huiSpaces.space8)
+            .onAppear {
+                guard let lastFocusedAssignmentID else { return }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    assignmentFocusedID = lastFocusedAssignmentID
+                }
+            }
         }
         .background(Color.huiColors.primitives.white10)
         .huiCornerRadius(level: .level5)
+    }
+
+    private func contentView(assignment: ScoresAssignment) -> some View {
+        VStack(alignment: .leading, spacing: .huiSpaces.space12) {
+            Text(assignment.name)
+            if let dueAtString = assignment.dueAtString {
+                Text("Due date: \(dueAtString)", bundle: .horizon)
+            }
+
+            let submissionStatus = assignment.status
+            HStack(spacing: .huiSpaces.space4) {
+                Text("Status: ", bundle: .horizon)
+                HorizonUI.StatusChip(
+                    title: submissionStatus.text,
+                    style: submissionStatus == .missing ? .red : .sky
+                )
+            }
+            Text("Result: \(assignment.pointsResult)", bundle: .horizon)
+            HStack(spacing: .huiSpaces.space4) {
+                Text("Feedback: ", bundle: .horizon)
+                if assignment.commentsCount > 0 {
+                    if assignment.isRead {
+                        HorizonUI.icons.chat
+                            .frame(width: 24, height: 24)
+                    } else {
+                        HorizonUI.icons.markUnreadChat
+                            .frame(width: 24, height: 24)
+                    }
+                    Text(String(assignment.commentsCount))
+                } else {
+                    Text("-")
+                }
+            }
+        }
+        .huiTypography(.p1)
+        .foregroundStyle(Color.huiColors.text.body)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.vertical, .huiSpaces.space16)
+        .padding(.horizontal, .huiSpaces.space24)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(assignment.accessibilityLabel)
+        .accessibilityAddTraits(.isButton)
     }
 
     private var divider: some View {

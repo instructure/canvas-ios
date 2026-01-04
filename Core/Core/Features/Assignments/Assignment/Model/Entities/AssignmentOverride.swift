@@ -22,7 +22,7 @@ import CoreData
 public final class AssignmentOverride: NSManagedObject, WriteableModel {
     @NSManaged public var id: String
     @NSManaged public var assignmentID: String
-    @NSManaged public var title: String
+    @NSManaged public var title: String?
 
     @NSManaged public var courseSectionID: String?
     @NSManaged public var groupID: String?

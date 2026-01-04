@@ -59,10 +59,10 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         super.tearDown()
     }
 
-    func testFeatureFlagOn() {
+    func testFeatureFlagOn() throws {
         // Given
         let context = TestConstants.context
-        let interactor = webView.studioFeaturesInteractor
+        let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
         let feature = FeatureFlagName.studioEmbedImprovements.rawValue
         let request = GetFeatureFlagStateRequest(featureName: .studioEmbedImprovements, context: context)
 
@@ -90,10 +90,10 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         XCTAssertTrue( webView.features.contains(where: { $0 is InsertStudioOpenInDetailButtons }) )
     }
 
-    func testFeatureFlagOff() {
+    func testFeatureFlagOff() throws {
         // Given
         let context = TestConstants.context
-        let interactor = webView.studioFeaturesInteractor
+        let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
         let feature = FeatureFlagName.studioEmbedImprovements.rawValue
         let request = GetFeatureFlagStateRequest(featureName: .studioEmbedImprovements, context: context)
 
@@ -121,10 +121,10 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         XCTAssertFalse( webView.features.contains(where: { $0 is InsertStudioOpenInDetailButtons }) )
     }
 
-    func testFeatureFlagAllowedOn() {
+    func testFeatureFlagAllowedOn() throws {
         // Given
         let context = TestConstants.context
-        let interactor = webView.studioFeaturesInteractor
+        let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
         let feature = FeatureFlagName.studioEmbedImprovements.rawValue
         let request = GetFeatureFlagStateRequest(featureName: .studioEmbedImprovements, context: context)
 
@@ -160,17 +160,17 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         wait(for: [mockLinkDelegate.navigationFinishedExpectation], timeout: 10)
 
         let exp = expectation(description: "frame-title map updated")
-        webView.studioFeaturesInteractor.onScanFinished = {
+        webView.studioFeaturesInteractor?.onScanFinished = {
             exp.fulfill()
         }
 
         wait(for: [exp])
     }
 
-    func testFramesScanning() {
+    func testFramesScanning() throws {
         // Given
         preloadPageContent()
-        let interactor = webView.studioFeaturesInteractor
+        let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
 
         // Then
         let titleMap = interactor.videoFramesTitleMap
@@ -178,31 +178,54 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         XCTAssertEqual(titleMap["https://suhaibalabsi.instructure.com/media_attachments/546734"], "Video Title 22")
     }
 
-    func testImmersiveViewURL_ExpandButton() {
+    func testImmersiveViewURL_ExpandButton() throws {
         // Given
         preloadPageContent()
-        let interactor = webView.studioFeaturesInteractor
+        let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
 
         // When
         let actionUrl = "https://suhaibalabsi.instructure.com/media_attachments/613046/immersive_view"
-        let action = MockNavigationAction(url: actionUrl, type: .other, sourceFrame: MockFrameInfo(isMainFrame: false))
+        let action = MockNavigationActionRepresentable(url: actionUrl, type: .other, sourceFrame: MockInfoFrameInfoRepresentable(isMainFrame: false))
         let immersiveUrl = interactor.urlForStudioImmersiveView(of: action)
 
         // Then
         XCTAssertEqual(immersiveUrl?.absoluteString, "https://suhaibalabsi.instructure.com/media_attachments/613046/immersive_view?title=Video%20Title%2011&embedded=true")
     }
 
-    func testImmersiveViewURL_DetailButton() {
+    func testImmersiveViewURL_DetailButton() throws {
         // Given
         preloadPageContent()
-        let interactor = webView.studioFeaturesInteractor
+        let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
 
         // When
         let actionUrl = "https://suhaibalabsi.instructure.com/media_attachments/546734/immersive_view?title=Hello%20World"
-        let action = MockNavigationAction(url: actionUrl, type: .linkActivated, targetFrame: MockFrameInfo(isMainFrame: false))
+        let action = MockNavigationActionRepresentable(url: actionUrl, type: .linkActivated, targetFrame: MockInfoFrameInfoRepresentable(isMainFrame: false))
         let immersiveUrl = interactor.urlForStudioImmersiveView(of: action)
 
         // Then
         XCTAssertEqual(immersiveUrl?.absoluteString, "https://suhaibalabsi.instructure.com/media_attachments/546734/immersive_view?title=Hello%20World&embedded=true")
+    }
+}
+
+private struct MockInfoFrameInfoRepresentable: FrameInfoRepresentable {
+    let isMainFrame: Bool
+}
+
+private struct MockNavigationActionRepresentable: NavigationActionRepresentable {
+    let request: URLRequest
+    let navigationType: WKNavigationType
+    let sourceInfoFrame: FrameInfoRepresentable
+    let targetInfoFrame: FrameInfoRepresentable?
+
+    init(
+        url: String,
+        type: WKNavigationType,
+        sourceFrame: FrameInfoRepresentable = MockInfoFrameInfoRepresentable(isMainFrame: true),
+        targetFrame: FrameInfoRepresentable? = nil
+    ) {
+        self.request = URLRequest(url: URL(string: url)!)
+        self.navigationType = type
+        self.sourceInfoFrame = sourceFrame
+        self.targetInfoFrame = targetFrame
     }
 }

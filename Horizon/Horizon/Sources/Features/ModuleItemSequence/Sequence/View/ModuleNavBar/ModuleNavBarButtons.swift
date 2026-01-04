@@ -49,7 +49,7 @@ enum ModuleNavBarUtilityButtons: Equatable, Hashable {
         case .chatBot:
             nil // use the default for the buttonStyle
         case .notebook:
-            Image.huiIcons.menuBookNotebook
+            Image.huiIcons.editNote
         case .assignmentMoreOptions:
             Image.huiIcons.moreVert
         }
@@ -91,6 +91,24 @@ enum ModuleNavBarUtilityButtons: Equatable, Hashable {
         switch self {
         case .assignmentMoreOptions(_, hasBadge: let hasBadge):
             return hasBadge
+        default:
+            return false
+        }
+    }
+
+    var accessibilityLabel: String {
+        switch self {
+        case .tts: String(localized: "Open Text to Speech")
+        case .chatBot:  String(localized: "Open AI chat bot")
+        case .notebook:  String(localized: "Open notebook")
+        case .assignmentMoreOptions: String(localized: "Assignment more options")
+        }
+    }
+
+    var isAssignmentMoreOptions: Bool {
+        switch self {
+        case .assignmentMoreOptions:
+            return true
         default:
             return false
         }

@@ -145,14 +145,14 @@ class CDAssignmentCheckpointTests: CoreTestCase {
             assignmentId: testData.assignmentId
         )
 
-        let sortedOverrides = testee.overrides.sorted(by: \.title)
+        let sortedOverrides = testee.overrides.sorted(by: comparing(\.title))
         XCTAssertEqual(sortedOverrides.count, 2)
         XCTAssertEqual(sortedOverrides.first?.title, "over1")
         XCTAssertEqual(sortedOverrides.last?.title, "over2")
 
         let fetchedOverrides: [AssignmentOverride] = databaseClient
             .all(where: \.assignmentID, equals: testData.assignmentId)
-            .sorted(by: \.title)
+            .sorted(by: comparing(\.title))
         XCTAssertEqual(fetchedOverrides.count, 2)
         XCTAssertEqual(fetchedOverrides.first?.title, "over1")
         XCTAssertEqual(fetchedOverrides.last?.title, "over2")
@@ -171,5 +171,16 @@ class CDAssignmentCheckpointTests: CoreTestCase {
             assignmentId: assignmentId,
             in: databaseClient
         )
+    }
+}
+
+private func comparing<R, V: Comparable>(_ keyPath: ReferenceWritableKeyPath<R, V?>, nilDefault: Bool = true) -> (R, R) -> Bool {
+    return { lhs, rhs in
+        let lhsValue: V? = lhs[keyPath: keyPath]
+        let rhsValue: V? = rhs[keyPath: keyPath]
+        if let lhsValue, let rhsValue {
+            return lhsValue < rhsValue
+        }
+        return nilDefault
     }
 }

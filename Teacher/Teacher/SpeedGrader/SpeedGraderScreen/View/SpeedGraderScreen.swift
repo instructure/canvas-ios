@@ -23,9 +23,7 @@ import SwiftUI
 /// The SpeedGrader screen itself: the container for the `SpeedGraderPage`s representing each student's submission.
 /// It displays the navigaton bar and handles paging.
 struct SpeedGraderScreen: View, ScreenViewTrackable {
-    var screenViewTrackingParameters: ScreenViewTrackingParameters {
-        viewModel.screenViewTrackingParameters
-    }
+    var screenViewTrackingParameters: ScreenViewTrackingParameters
 
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.viewController) private var controller
@@ -44,6 +42,7 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
 
     init(viewModel: SpeedGraderScreenViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
+        self.screenViewTrackingParameters = viewModel.screenViewTrackingParameters
     }
 
     var body: some View {
@@ -57,6 +56,10 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
             )
             .frame(width: proxy.size.width, height: proxy.size.height)
         }
+        // There's an attributed graph cycle (caused by UINavigationBar.useContextColor) that prevents
+        // the screen from moving from loading to data state. Adding this ID will treat the view as
+        // completely new when the state changes and allowing the view to re-render.
+        .id(viewModel.state)
         .navigationBarTitleView(
             title: viewModel.navigationTitle,
             subtitle: viewModel.navigationSubtitle

@@ -18,6 +18,7 @@
 
 import Combine
 @testable import Core
+import TestsFoundation
 import XCTest
 
 class ProfileSettingsViewControllerTests: CoreTestCase {
@@ -42,13 +43,11 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
 
         AppEnvironment.shared.app = .teacher
         vc.refresh(sender: self)
-        drainMainQueue()
-        XCTAssertFalse(isCellExists(title: "Pair with Observer", section: 0))
+        waitUntil(shouldFail: true) { !isCellExists(title: "Pair with Observer", section: 0) }
 
         AppEnvironment.shared.app = .student
         vc.refresh(sender: self)
-        drainMainQueue()
-        XCTAssertTrue(isCellExists(title: "Pair with Observer", section: 0))
+        waitUntil(shouldFail: true) { isCellExists(title: "Pair with Observer", section: 0) }
     }
 
     func testCalendarFeedRowVisibility() {
@@ -57,13 +56,11 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
 
         AppEnvironment.shared.app = .teacher
         vc.refresh(sender: self)
-        drainMainQueue()
-        XCTAssertFalse(isCellExists(title: "Subscribe to Calendar Feed", section: 0))
+        waitUntil(shouldFail: true) { !isCellExists(title: "Subscribe to Calendar Feed", section: 0) }
 
         AppEnvironment.shared.app = .student
         vc.refresh(sender: self)
-        drainMainQueue()
-        XCTAssertTrue(isCellExists(title: "Subscribe to Calendar Feed", section: 0))
+        waitUntil(shouldFail: true) { isCellExists(title: "Subscribe to Calendar Feed", section: 0) }
     }
 
     func testExperienceSwitchRowVisibility() {
@@ -73,20 +70,17 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
 
         mockInteractor.isSwitchAvailableMock = false
         load()
-        drainMainQueue()
-        XCTAssertFalse(isCellExists(title: "Switch to Canvas Career", section: 0))
+        waitUntil(shouldFail: true) { !isCellExists(title: "Switch to Canvas Career", section: 0) }
 
         mockInteractor.isSwitchAvailableMock = true
         environment.app = .student
         load()
-        drainMainQueue()
-        XCTAssertTrue(isCellExists(title: "Switch to Canvas Career", section: 0))
+        waitUntil(shouldFail: true) { isCellExists(title: "Switch to Canvas Career", section: 0) }
 
         mockInteractor.isSwitchAvailableMock = true
         environment.app = .teacher
         load()
-        drainMainQueue()
-        XCTAssertFalse(isCellExists(title: "Switch to Canvas Career", section: 0))
+        waitUntil(shouldFail: true) { !isCellExists(title: "Switch to Canvas Career", section: 0) }
     }
 
     func testExperienceSwitchCellConfiguration() {
@@ -96,7 +90,7 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
 
         mockInteractor.isSwitchAvailableMock = true
         load()
-        drainMainQueue()
+        waitUntil(shouldFail: true) { isCellExists(title: "Switch to Canvas Career", section: 0) }
 
         guard let cell = findCell(title: "Switch to Canvas Career", section: 0) else {
             XCTFail("Experience switch cell not found")
@@ -117,7 +111,7 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
 
         mockInteractor.isSwitchAvailableMock = true
         load()
-        drainMainQueue()
+        waitUntil(shouldFail: true) { isCellExists(title: "Switch to Canvas Career", section: 0) }
 
         guard let indexPath = findCellIndexPath(title: "Switch to Canvas Career", section: 0) else {
             XCTFail("Experience switch cell not found")
@@ -140,7 +134,11 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
         api.mock(GetAccountTermsOfServiceRequest(), value: .make(self_registration_type: .all))
 
         load()
-        drainMainQueue()
+        waitUntil(shouldFail: true) {
+            vc.tableView.numberOfSections >= 2 &&
+            vc.tableView.numberOfRows(inSection: 0) >= 6 &&
+            vc.tableView.numberOfRows(inSection: 1) >= 2
+        }
 
         var cell = vc.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? RightDetailTableViewCell
         XCTAssertEqual(cell?.textLabel?.text, "Landing Page")
@@ -195,6 +193,10 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
     }
 
     private func isCellExists(title: String, section: Int) -> Bool {
+        guard section < vc.tableView.numberOfSections else {
+            return false
+        }
+
         let cellCount = vc.tableView.numberOfRows(inSection: section)
 
         for rowIndex in 0 ..< cellCount {
@@ -212,6 +214,10 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
     }
 
     private func findCell(title: String, section: Int) -> RightDetailTableViewCell? {
+        guard section < vc.tableView.numberOfSections else {
+            return nil
+        }
+
         let cellCount = vc.tableView.numberOfRows(inSection: section)
 
         for rowIndex in 0 ..< cellCount {
@@ -229,6 +235,10 @@ class ProfileSettingsViewControllerTests: CoreTestCase {
     }
 
     private func findCellIndexPath(title: String, section: Int) -> IndexPath? {
+        guard section < vc.tableView.numberOfSections else {
+            return nil
+        }
+
         let cellCount = vc.tableView.numberOfRows(inSection: section)
 
         for rowIndex in 0 ..< cellCount {

@@ -1,6 +1,7 @@
 interface Window {
   applyHighlights: (highlights: [NotebookTextSelection]) => void;
   getCurrentTextSelection: () => NotebookTextSelection;
+  scrollToHighlight: (notebookTextSelection: NotebookTextSelection) => void;
   notifyTextSelectionChange: () => void;
   webkit?: any;
 }
@@ -20,8 +21,10 @@ type TextPositionSelector = {
 type NotebookTextSelection = {
   backgroundColor?: string;
   borderColor?: string;
-  iconSVG?: string;
+  borderStyle?: string;
   range: RangeSelector;
   selectedText: string;
   textPosition: TextPositionSelector;
+  labelType?: string;
+  accessibilityPrefix?: string;
 };

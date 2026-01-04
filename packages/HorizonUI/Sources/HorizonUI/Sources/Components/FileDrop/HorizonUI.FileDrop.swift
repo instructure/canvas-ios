@@ -47,6 +47,11 @@ public extension HorizonUI {
             .frame(height: 190)
             .frame(maxWidth: .infinity)
             .background(dashLineView)
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(accessibilityDescription)
+            .accessibilityAction {
+                onTap()
+            }
         }
 
         private var dashLineView: some View {
@@ -67,6 +72,14 @@ public extension HorizonUI {
                 .huiTypography(.p2)
                 .padding(.horizontal, .huiSpaces.space16)
             }
+        }
+        private var accessibilityDescription: String {
+            var description = ""
+            if let acceptedFilesType, !acceptedFilesType.isEmpty {
+                description += String(format: String(localized: "Accepted file types: %@. "), acceptedFilesType)
+            }
+            description += String(localized: "Double tap to upload a file.")
+            return description
         }
     }
 }

@@ -74,6 +74,11 @@ public struct ModuleItemSequenceView: View {
                 }
         }
         .overlay { loaderView }
+        .onReceive(NotificationCenter.default.publisher(for: .showToastAlert)) { notification in
+            if let message = notification.object as? String, message.isNotEmpty {
+                draftToastViewModel = .init(title: message, isPresented: true)
+            }
+        }
         .safeAreaInset(edge: .top, spacing: .zero) { introBlock }
         .safeAreaInset(edge: .bottom, spacing: .zero) { moduleNavBarView }
         .animation(isHeaderAnimationEnabled ? .linear : nil, value: isShowHeader)
@@ -175,10 +180,16 @@ public struct ModuleItemSequenceView: View {
     @ViewBuilder
     private var moduleNavBarView: some View {
         if isShowModuleNavBar {
-            let nextButton = ModuleNavBarView.ButtonAttribute(isVisible: viewModel.isNextButtonEnabled) {
+            let nextButton = ModuleNavBarView.ButtonAttribute(
+                isVisible: viewModel.isNextButtonEnabled,
+                accessibilityLabel: String(localized: "Go to next item", bundle: .horizon)
+            ) {
                 goNext()
             }
-            let previousButton = ModuleNavBarView.ButtonAttribute(isVisible: viewModel.isPreviousButtonEnabled) {
+            let previousButton = ModuleNavBarView.ButtonAttribute(
+                isVisible: viewModel.isPreviousButtonEnabled,
+                accessibilityLabel: String(localized: "Go to previous item", bundle: .horizon)
+            ) {
                 goPrevious()
             }
 
@@ -227,7 +238,8 @@ private struct ContentView: View {
                         isCompletedItem: isCompleted,
                         isMarkedAsDoneButtonVisible: isMarkedAsDoneButtonVisible,
                         moduleID: moduleID,
-                        itemID: itemID
+                        itemID: itemID,
+                        scrollToNoteID: viewModel.scrollToNoteID
                     )
                     .id(pageURL)
                 case .moduleItem(controller: let controller, let id):

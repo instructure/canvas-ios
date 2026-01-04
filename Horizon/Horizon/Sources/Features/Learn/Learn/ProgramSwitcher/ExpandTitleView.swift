@@ -37,6 +37,7 @@ struct ExpandTitleView: View {
                 .rotationEffect(.degrees(isExpanded ? 180 : 0))
                 .animation(.easeInOut, value: isExpanded)
                 .frame(width: 24, height: 24)
+                .accessibilityHidden(true)
             Spacer()
         }
     }

@@ -21,6 +21,7 @@ import HorizonUI
 
 struct CourseProgressView: View {
     @Environment(\.viewController) private var viewController
+    @AccessibilityFocusState private var focusedItemID: String?
     private let viewModel: CourseProgressViewModel
 
     init(viewModel: CourseProgressViewModel) {
@@ -34,6 +35,7 @@ struct CourseProgressView: View {
                 ModuleItemListView(
                     selectedModuleItem: viewModel.currentModuleItem,
                     items: viewModel.moduleItems,
+                    focusedID: $focusedItemID,
                     onSelectItem: onSelectItem
                 )
                 .animation(.smooth, value: viewModel.currentModuleItem)
@@ -50,8 +52,13 @@ struct CourseProgressView: View {
             }
             .huiElevation(level: .level4)
             .padding(.huiSpaces.space24)
+            .accessibilityAddTraits(.isButton)
+            .accessibilityLabel(Text("Dismiss screen. "))
         }
         .background(Color.huiColors.surface.pagePrimary)
+        .onAppear {
+            focusedItemID = viewModel.currentModuleItem?.id
+        }
     }
 
     private var headerView: some View {
@@ -60,6 +67,7 @@ struct CourseProgressView: View {
                 .foregroundStyle(Color.huiColors.text.title)
                 .frame(maxWidth: .infinity)
                 .huiTypography(.h3)
+                .accessibilityAddTraits(.isHeader)
 
             Text(viewModel.moduleName)
                 .foregroundStyle(Color.huiColors.text.body)
@@ -71,13 +79,20 @@ struct CourseProgressView: View {
 
     @ViewBuilder
     private var moduleNavBarButtons: some View {
-        let nextButton = ModuleNavBarView.ButtonAttribute(isVisible: viewModel.isNextButtonEnabled) {
+        let nextButton = ModuleNavBarView.ButtonAttribute(
+            isVisible: viewModel.isNextButtonEnabled,
+            accessibilityLabel: String(localized: "Go to next module", bundle: .horizon)
+
+        ) {
             withAnimation {
                 viewModel.goToNextModule()
             }
         }
 
-        let previousButton = ModuleNavBarView.ButtonAttribute(isVisible: viewModel.isPreviousButtonEnabled) {
+        let previousButton = ModuleNavBarView.ButtonAttribute(
+            isVisible: viewModel.isPreviousButtonEnabled,
+            accessibilityLabel: String(localized: "Back to previous module", bundle: .horizon)
+        ) {
             withAnimation {
                 viewModel.goToPreviousModule()
             }

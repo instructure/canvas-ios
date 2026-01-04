@@ -24,8 +24,6 @@ struct TodoListItemCell: View {
 
     @ObservedObject var item: TodoItemViewModel
     @Binding var isSwiping: Bool
-    private let swipeCompletionBehavior: InstUI.SwipeCompletionBehavior
-    private let swipeEnabled: Bool
     private let onTap: (_ item: TodoItemViewModel, _ viewController: WeakViewController) -> Void
     private let onMarkAsDone: (_ item: TodoItemViewModel) -> Void
     private let onSwipe: (_ item: TodoItemViewModel) -> Void
@@ -35,8 +33,6 @@ struct TodoListItemCell: View {
 
     init(
         item: TodoItemViewModel,
-        swipeCompletionBehavior: InstUI.SwipeCompletionBehavior,
-        swipeEnabled: Bool = true,
         onTap: @escaping (TodoItemViewModel, WeakViewController) -> Void,
         onMarkAsDone: @escaping (TodoItemViewModel) -> Void,
         onSwipe: @escaping (TodoItemViewModel) -> Void,
@@ -44,8 +40,6 @@ struct TodoListItemCell: View {
         isSwiping: Binding<Bool> = .constant(false)
     ) {
         self.item = item
-        self.swipeCompletionBehavior = swipeCompletionBehavior
-        self.swipeEnabled = swipeEnabled
         self.onTap = onTap
         self.onMarkAsDone = onMarkAsDone
         self.onSwipe = onSwipe
@@ -80,13 +74,14 @@ struct TodoListItemCell: View {
         }
         .swipeAction(
             backgroundColor: item.swipeBackgroundColor,
-            completionBehavior: swipeCompletionBehavior,
+            completionBehavior: item.swipeCompletionBehavior,
             isSwiping: $isSwiping,
-            isEnabled: swipeEnabled,
+            isEnabled: item.isSwipeEnabled,
             onSwipeCommitted: { onSwipeCommitted?(item) },
             onSwipe: { onSwipe(item) },
             label: { swipeActionView }
         )
+        .identifier("to-do.list.\(item.plannableId).row")
     }
 
     private var swipeActionView: some View {
@@ -130,14 +125,12 @@ struct TodoListItemCell: View {
     VStack(spacing: 0) {
         TodoListItemCell(
             item: .makeShortText(),
-            swipeCompletionBehavior: .reset,
             onTap: { _, _ in },
             onMarkAsDone: { _ in },
             onSwipe: { _ in }
         )
         TodoListItemCell(
             item: .makeLongText(),
-            swipeCompletionBehavior: .reset,
             onTap: { _, _ in },
             onMarkAsDone: { _ in },
             onSwipe: { _ in }

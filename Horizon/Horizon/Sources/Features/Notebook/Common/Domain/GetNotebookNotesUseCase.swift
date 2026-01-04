@@ -20,30 +20,32 @@ import Core
 import CoreData
 import Combine
 
-class GetNotebookNotesUseCase: CollectionUseCase {
+final class GetNotebookNotesUseCase: CollectionUseCase {
     typealias Model = CDHNotebookNote
 
     // MARK: - Dependencies
-    let redwood: DomainService
 
-    // MARK: - Overridden Properties
-    var cacheKey: String? {
-        "notebook-notes"
-    }
+    private let redwood: DomainServiceProtocol
+    private let filter: NotebookQueryFilter
 
-    let request = GetNotesQuery()
+    // MARK: - Properties
+
+    var cacheKey: String? { "notebook-notes" }
+    var request: GetNotesQuery { GetNotesQuery() }
 
     public var scope: Scope {
         var predicates: [NSPredicate] = [
             NSPredicate(format: "%K == %@", #keyPath(CDHNotebookNote.userID), Context.currentUser.id)
         ]
-        if let courseID = courseID {
+        if let courseID = filter.courseId {
             predicates.append(NSPredicate(format: "%K == %@", #keyPath(CDHNotebookNote.courseID), courseID))
         }
-        labels?.forEach { label in
-            predicates.append(NSPredicate(format: "%K CONTAINS %@", #keyPath(CDHNotebookNote.labels), label))
+        if let reactions = filter.reactions {
+            reactions.forEach { label in
+                predicates.append(NSPredicate(format: "%K CONTAINS %@", #keyPath(CDHNotebookNote.labels), label))
+            }
         }
-        if let pageID = pageID {
+        if let pageID = filter.pageId {
             predicates.append(NSPredicate(format: "%K == %@", #keyPath(CDHNotebookNote.pageID), pageID))
         }
         let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
@@ -54,76 +56,48 @@ class GetNotebookNotesUseCase: CollectionUseCase {
 
     // MARK: - Private Properties
 
-    private let courseID: String?
-    private let labels: [String]?
-    private let pageID: String?
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
     init(
-        labels: [String] = [],
-        courseID: String? = nil,
-        pageID: String? = nil,
-        redwood: DomainService = DomainService(.redwood)
+        filter: NotebookQueryFilter,
+        redwood: DomainServiceProtocol = DomainService(.redwood),
     ) {
-        self.labels = labels
-        self.courseID = courseID
-        self.pageID = pageID
+        self.filter = filter
         self.redwood = redwood
     }
 
     // MARK: - Overridden Methods
 
-    func makeRequest(environment: AppEnvironment, completionHandler: @escaping (Response?, URLResponse?, Error?) -> Void) {
+    func makeRequest(
+        environment: AppEnvironment,
+        completionHandler: @escaping ([RedwoodFetchNotesQueryResponse.ResponseEdge]?, URLResponse?, Error?) -> Void
+    ) {
         redwood
             .api()
             .sink(
                 receiveCompletion: { _ in },
                 receiveValue: { [weak self] api in
                     guard let self = self else { return }
-                    api.makeRequest(self.request, callback: completionHandler)
+                    api.exhaust(self.request, callback: completionHandler)
                 }
             )
             .store(in: &subscriptions)
     }
 
     func write(
-       response: RedwoodFetchNotesQueryResponse?,
-       urlResponse _: URLResponse?,
-       to client: NSManagedObjectContext
+        response: [RedwoodFetchNotesQueryResponse.ResponseEdge]?,
+        urlResponse _: URLResponse?,
+        to client: NSManagedObjectContext
     ) {
-        let fetchRequest = NSFetchRequest<CDHNotebookNote>(entityName: String(describing: CDHNotebookNote.self))
-        fetchRequest.sortDescriptors = [NSSortDescriptor(key: #keyPath(CDHNotebookNote.date), ascending: false)]
-
-        let result = (try? client.fetch(fetchRequest)) ?? []
-
-        let tuple = changed(redwoodNotes: response?.data.notes.edges.map { $0.node } ?? [], cdHNotebookNotes: result)
-        let changed = tuple.0
-        let removed = tuple.1
-
-        changed.forEach { redwoodNote in
+        let notes = response?.map { $0.node } ?? []
+        notes.forEach { redwoodNote in
             CDHNotebookNote.save(
                 redwoodNote,
                 userID: Context.currentUser.id,
                 in: client
             )
         }
-
-        removed.forEach { cdHNotebookNote in
-            client.delete(cdHNotebookNote)
-        }
-    }
-
-    // Returns the notes that have been added or updated in the first item, the ones that have been removed in the second item
-    func changed(redwoodNotes: [RedwoodNote], cdHNotebookNotes: [CDHNotebookNote]) -> ([RedwoodNote], [CDHNotebookNote]) {
-        let redwoodNotesAddedOrUpdated = redwoodNotes.filter { redwoodNote in
-            let cdHNotebookNote = cdHNotebookNotes.first { $0.id == redwoodNote.id }
-            return cdHNotebookNote?.content != redwoodNote.userText || cdHNotebookNote?.labels != CDHNotebookNote.serializeLabels(from: redwoodNote.reaction)
-        }
-        let notebookNotesRemoved = cdHNotebookNotes.filter { cdNotebookNote in
-            !redwoodNotes.contains { $0.id == cdNotebookNote.id }
-        }
-        return (redwoodNotesAddedOrUpdated, notebookNotesRemoved)
     }
 }

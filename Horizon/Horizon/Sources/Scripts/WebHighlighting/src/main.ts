@@ -19,8 +19,10 @@
 import applyHighlights from "./use_case/ApplyHighlights";
 import getCurrentTextSelection from "./use_case/GetCurrentTextSelection";
 import registerNotifyOnTextSelectionChange from "./use_case/NotifyTextSelectionChange";
+import scrollToHighlight from "./use_case/ScrollToHighlight";
 
 //This file is just an interface. No implementation details here!
 window.applyHighlights = applyHighlights;
 window.getCurrentTextSelection = getCurrentTextSelection;
+window.scrollToHighlight = scrollToHighlight;
 registerNotifyOnTextSelectionChange();
