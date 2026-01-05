@@ -58,6 +58,7 @@ public extension HorizonUI {
                     .foregroundStyle(Color.huiColors.primitives.grey125)
                     .huiTypography(.h3)
                     .frame(maxWidth: .infinity)
+                    .accessibilityAddTraits(.isHeader)
                 HorizonUI.IconButton(HorizonUI.icons.close, type: .white) {
                     isPresented.toggle()
                 }

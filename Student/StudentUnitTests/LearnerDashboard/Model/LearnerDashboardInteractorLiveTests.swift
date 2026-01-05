@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,17 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct DomainServiceConversationMessage: Codable, Equatable {
-    let role: Role
-    let text: String
+@testable import Student
+import XCTest
 
-    init(text: String, role: Role) {
-        self.text = text
-        self.role = role
+final class LearnerDashboardInteractorLiveTests: StudentTestCase {
+
+    func test_refresh_whenIgnoreCacheIsTrue_shouldFinish() {
+        let testee = LearnerDashboardInteractorLive()
+
+        XCTAssertFinish(testee.refresh(ignoreCache: true), timeout: 3)
     }
 
-    enum Role: String, Codable {
-        case Assistant
-        case User
+    func test_refresh_whenIgnoreCacheIsFalse_shouldFinish() {
+        let testee = LearnerDashboardInteractorLive()
+
+        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 3)
     }
 }

@@ -30936,7 +30936,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Aidez vos élèves à ce travail par l’ajout d’instructions."
+            "value" : "Aidez vos étudiants à ce travail par l’ajout d’instructions."
           }
         },
         "ga" : {
@@ -52453,7 +52453,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Notes pour les élèves"
+            "value" : "Notes pour les étudiants"
           }
         },
         "ga" : {
@@ -52709,7 +52709,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Élèves sans étiquettes de différenciation"
+            "value" : "Étudiants sans étiquettes de différenciation"
           }
         },
         "ga" : {
@@ -60918,7 +60918,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nous n’avons pas d’autres détails concernant l’élève et cette affectation."
+            "value" : "Nous n’avons pas d’autres détails concernant l’étudiant et cette affectation."
           }
         },
         "ga" : {

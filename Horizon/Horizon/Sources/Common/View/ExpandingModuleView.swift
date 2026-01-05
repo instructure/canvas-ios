@@ -21,6 +21,8 @@ import SwiftUI
 import HorizonUI
 
 struct ExpandingModuleView: View {
+    @AccessibilityFocusState private var focusedItemID: String?
+    @State private var lastFocusedID: String?
     // MARK: - Dependencies
 
     private let module: HModule
@@ -44,11 +46,23 @@ struct ExpandingModuleView: View {
                 Divider()
                     .background(Color.huiColors.lineAndBorders.lineStroke)
                     .padding(.bottom, .huiSpaces.space16)
+                    .accessibilityHidden(true)
 
-                ModuleItemListView(items: module.items) { selectedItem in
+                ModuleItemListView(
+                    items: module.items,
+                    focusedID: $focusedItemID
+                ) { selectedItem in
+                    lastFocusedID = selectedItem.id
                     handleItemTap(selectedItem)
                 }
                 .padding([.horizontal, .bottom], .huiSpaces.space16)
+                .onAppear {
+                    if let lastFocusedID {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                            focusedItemID = lastFocusedID
+                        }
+                    }
+                }
             }
         }
     }
@@ -67,6 +81,14 @@ struct ExpandingModuleView: View {
                 isCollapsed: isExpanded)
         }
         .buttonStyle(.plain)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(
+            CourseDetailsAccessibility.moduleContainer(
+                module: module,
+                status: module.moduleStatus.status,
+                isCollapsed: !isExpanded
+            )
+        )
     }
 
     private func handleItemTap(_ item: HModuleItem) {

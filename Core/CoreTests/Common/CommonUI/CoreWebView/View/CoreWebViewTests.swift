@@ -152,7 +152,8 @@ class CoreWebViewTests: CoreTestCase {
     }
 
     func testDecidePolicyForFragment() {
-        let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        let view = TestableCoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        view.shouldReturnSameFrame = true
         let linkDelegate = LinkDelegate { _ in
             XCTFail("Should not get to navigation")
             return true
@@ -165,7 +166,7 @@ class CoreWebViewTests: CoreTestCase {
     }
 
     func testDecidePolicyForInternal() {
-        let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        let view = TestableCoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
         view.webView(view, decidePolicyFor: MockNavigationAction(url: "example.com", type: .linkActivated)) { policy in
             XCTAssertEqual(policy, .allow)
         }
@@ -176,7 +177,7 @@ class CoreWebViewTests: CoreTestCase {
     }
 
     func testDecidePolicyForExternal() {
-        let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        let view = TestableCoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
         var linkDelegate = LinkDelegate { _ in return false }
         view.linkDelegate = linkDelegate
         view.webView(view, decidePolicyFor: MockNavigationAction(url: "example.com", type: .linkActivated)) { policy in
@@ -201,7 +202,7 @@ class CoreWebViewTests: CoreTestCase {
     }
 
     func testDecidePolicyForCourseLink() {
-        let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        let view = TestableCoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
         let linkDelegate = CoreWebViewController()
         view.linkDelegate = linkDelegate
         let controller = CoreWebViewController()
@@ -367,7 +368,8 @@ class CoreWebViewTests: CoreTestCase {
 
     func test_showsFileViewer_whenCanvasUserContentLinkTapped() throws {
         let canvasUserContentURL = "https://example.canvas-user-content.com/file.pdf"
-        let view = CoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        let view = TestableCoreWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        view.shouldReturnSameFrame = false
         let delegate = LinkDelegate()
         view.linkDelegate = delegate
         let policyCallbackExpectation = expectation(description: "Policy callback invoked")
@@ -396,6 +398,14 @@ class CoreWebViewTests: CoreTestCase {
     }
 }
 
+private class TestableCoreWebView: CoreWebView {
+    var shouldReturnSameFrame = false
+
+    override func isSourceFrameSameAsTarget(_ action: WKNavigationAction) -> Bool {
+        return shouldReturnSameFrame
+    }
+}
+
 private class MockA11yHelper: CoreWebViewAccessibilityHelper {
     var called = false
     var receivedIsExclusive: Bool?
@@ -421,38 +431,12 @@ class MockNavigationAction: WKNavigationAction {
         return mockType
     }
 
-    let mockSourceFrame: MockFrameInfo
-    let mockTargetFrame: MockFrameInfo?
-
     init(
         url: String,
-        type: WKNavigationType,
-        sourceFrame: MockFrameInfo = MockFrameInfo(isMainFrame: true),
-        targetFrame: MockFrameInfo? = nil
+        type: WKNavigationType
     ) {
         mockRequest = URLRequest(url: URL(string: url)!)
         mockType = type
-        mockSourceFrame = sourceFrame
-        mockTargetFrame = targetFrame
         super.init()
     }
-
-    override var sourceFrame: WKFrameInfo {
-        mockSourceFrame
-    }
-
-    override var targetFrame: WKFrameInfo? {
-        mockTargetFrame ?? sourceFrame
-    }
-}
-
-class MockFrameInfo: WKFrameInfo {
-
-    let mockIsMainFrame: Bool
-    init(isMainFrame: Bool) {
-        mockIsMainFrame = isMainFrame
-        super.init()
-    }
-
-    override var isMainFrame: Bool { mockIsMainFrame }
 }

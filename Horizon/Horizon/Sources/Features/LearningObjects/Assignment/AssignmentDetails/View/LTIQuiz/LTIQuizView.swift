@@ -64,6 +64,7 @@ struct LTIQuizView: View {
             .padding(.top, .huiSpaces.space32)
             .padding(.horizontal, .huiSpaces.space48)
             .padding(.horizontal, .huiSpaces.space10)
+            .accessibilityAddTraits(.isHeader)
     }
     @ViewBuilder
     private var loaderView: some View {
