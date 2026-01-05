@@ -95,30 +95,11 @@ public final class GradeListViewModel {
         }
     }
 
-    #if DEBUG
-    public init(
-        interactor: GradeListInteractor,
-        gradeFilterInteractor: GradeFilterInteractor,
-        env: AppEnvironment,
-    ) async {
-        self.interactor = interactor
-        self.env = env
-        self.gradeFilterInteractor = gradeFilterInteractor
-
-        isWhatIfScoreFlagEnabled = interactor.isWhatIfScoreFlagEnabled()
-
-        loadSortPreferences()
-
-        await loadBaseDataAndGrades(ignoreCache: false, isInitialLoad: true)
-    }
-    #endif
-
-    @discardableResult
-    func selectGradingPeriod(id: String?) -> Task<Void, Never> {
+    func selectGradingPeriod(id: String?) {
         selectedGradingPeriod = id
         state = .initialLoading
 
-        return Task {
+        Task {
             await refreshGrades(ignoreCache: true)
         }
     }
