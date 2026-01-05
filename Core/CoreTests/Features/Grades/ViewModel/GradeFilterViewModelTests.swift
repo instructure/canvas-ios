@@ -27,7 +27,7 @@ final class GradeFilterViewModelTests: CoreTestCase {
 
     // MARK: - Properties
     private var testee: GradeFilterViewModel!
-    private var subscriptions = Set<AnyCancellable>()
+//    private var subscriptions = Set<AnyCancellable>()
     private var gradeFilterInteractor: GradeFilterInteractorMock!
 
     override func setUp() {
@@ -177,19 +177,19 @@ final class GradeFilterViewModelTests: CoreTestCase {
 
     func test_saveButtonTapped() {
         // Given
-        let selectedGradingPeriodPublisher = PassthroughRelay<String?>()
-        let selectedSortByPublisher = CurrentValueRelay<GradeArrangementOptions>(.groupName)
         let listGradingPeriods = getListGradingPeriods()
         let viewController = WeakViewController()
-        var isSelectedGradingPeriodPublisherFired = false
-        var isSelectedSortByPublisherFired = false
+        var didSelectGradingPeriod = false
+        var didSelectSortByOption = false
+        let selectGradingPeriod: (String?) -> Void = { _ in didSelectGradingPeriod = true }
+        let selectSortByOption: (GradeArrangementOptions) -> Void = { _ in didSelectSortByOption = true }
 
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: true,
             initialGradingPeriodID: nil,
-            selectedGradingPeriodPublisher: selectedGradingPeriodPublisher,
-            selectedSortByPublisher: selectedSortByPublisher,
+            selectGradingPeriod: selectGradingPeriod,
+            selectSortByOption: selectSortByOption,
             gradingPeriods: listGradingPeriods,
             sortByOptions: GradeArrangementOptions.allCases
         )
@@ -200,20 +200,12 @@ final class GradeFilterViewModelTests: CoreTestCase {
         )
         testee.sortModeOptions.selected.send(.make(id: "groupName"))
         testee.gradingPeriodOptions.selected.send(nil)
-        selectedGradingPeriodPublisher.sink { _ in
-            isSelectedGradingPeriodPublisherFired = true
-        }
-        .store(in: &subscriptions)
 
-        selectedSortByPublisher.sink { _ in
-            isSelectedSortByPublisherFired = true
-        }
-        .store(in: &subscriptions)
         testee.saveButtonTapped(viewController: viewController)
         wait(for: [router.dismissExpectation], timeout: 1)
         // Then
-        XCTAssertTrue(isSelectedGradingPeriodPublisherFired)
-        XCTAssertTrue(isSelectedSortByPublisherFired)
+        XCTAssertTrue(didSelectGradingPeriod)
+        XCTAssertTrue(didSelectSortByOption)
     }
 
     private func getListGradingPeriods() -> [GradingPeriod] {

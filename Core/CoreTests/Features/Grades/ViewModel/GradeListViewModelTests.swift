@@ -23,23 +23,23 @@ import TestsFoundation
 import XCTest
 
 class GradeListViewModelTests: CoreTestCase {
-    func testErrorState() {
-        let testee = GradeListViewModel(
+    func testErrorState() async {
+        let testee = await GradeListViewModel(
             interactor: GradeListInteractorErrorMock(),
             gradeFilterInteractor: GradeFilterInteractorMock(),
-            env: PreviewEnvironment.shared,
-            scheduler: .immediate
+            env: PreviewEnvironment.shared
         )
+
         XCTAssertEqual(testee.state, .error)
     }
 
-    func testEmptyState() {
-        let testee = GradeListViewModel(
+    func testEmptyState() async {
+        let testee = await GradeListViewModel(
             interactor: GradeListInteractorEmptySectionsMock(),
             gradeFilterInteractor: GradeFilterInteractorMock(),
-            env: PreviewEnvironment.shared,
-            scheduler: .immediate
+            env: PreviewEnvironment.shared
         )
+
         XCTAssertEqual(testee.state, .empty(emptySections))
     }
 
@@ -48,96 +48,63 @@ class GradeListViewModelTests: CoreTestCase {
         _ = GradeListViewModel(
             interactor: GradeListInteractorEmptySectionsMock(),
             gradeFilterInteractor: gradeFilterInteractor,
-            env: PreviewEnvironment.shared,
-            scheduler: .immediate
+            env: PreviewEnvironment.shared
         )
         XCTAssertTrue(gradeFilterInteractor.selectedSortByIdIsCalled)
     }
 
-    func testRefreshState() {
-        var states: [GradeListViewModel.ViewState] = []
+    func testRefreshState() async {
         let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
-        let expectation = expectation(description: "Publisher sends value.")
-        let testee = GradeListViewModel(
+        let testee = await GradeListViewModel(
             interactor: interactor,
             gradeFilterInteractor: GradeFilterInteractorMock(),
-            env: PreviewEnvironment.shared,
-            scheduler: .immediate
+            env: PreviewEnvironment.shared
         )
 
-        let subscription = testee.$state
-            .sink { _ in
+        await testee.refresh()
 
-            } receiveValue: { state in
-                states.append(state)
-                if states.count == 2 {
-                    expectation.fulfill()
-                }
-            }
-
-        testee.pullToRefreshDidTrigger.accept((nil))
-        XCTAssertEqual(states[1], .initialLoading)
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+        XCTAssertEqual(testee.state, .data(gradeListData))
     }
 
-    func test_getSelectedGradingPeriodId() {
-        var states: [GradeListViewModel.ViewState] = []
+    func test_getSelectedGradingPeriodId() async {
         let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
-        let expectation = expectation(description: "Publisher sends value.")
         let gradeFilterInteractor = GradeFilterInteractorMock()
         gradeFilterInteractor.currentGradingId = "1"
-        let testee = GradeListViewModel(
+        let testee = await GradeListViewModel(
             interactor: interactor,
             gradeFilterInteractor: gradeFilterInteractor,
-            env: PreviewEnvironment.shared,
-            scheduler: .immediate
+            env: PreviewEnvironment.shared
         )
 
-        let subscription = testee.$state
-            .sink { _ in
+        await testee.refresh()
 
-            } receiveValue: { state in
-                states.append(state)
-                if states.count == 2 {
-                    expectation.fulfill()
-                }
-            }
-
-        testee.pullToRefreshDidTrigger.accept((nil))
-        XCTAssertEqual(states[1], .initialLoading)
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+        XCTAssertEqual(testee.state, .data(gradeListData))
     }
 
-    func testSelectedGradingPeriod() {
+    func testSelectedGradingPeriod() async {
         let interactor = GradeListInteractorMock()
-        let testee = GradeListViewModel(
+        let testee = await GradeListViewModel(
             interactor: interactor,
             gradeFilterInteractor: GradeFilterInteractorMock(),
-            env: PreviewEnvironment.shared,
-            scheduler: .immediate
+            env: PreviewEnvironment.shared
         )
-        testee.didSelectGradingPeriod.accept("999")
+
+        _ = await testee.selectGradingPeriod(id: "999").result
 
         XCTAssertEqual(interactor.ignoreCache, true)
         XCTAssertEqual(interactor.gradingPeriod, "999")
     }
 
-    func testPullToRefresh() {
-        var completionCalled = false
-        let completion: () -> Void = {
-            completionCalled = true
-        }
+    func testPullToRefresh() async {
         let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
-        let testee = GradeListViewModel(
+        let testee = await GradeListViewModel(
             interactor: interactor,
             gradeFilterInteractor: GradeFilterInteractorMock(),
-            env: PreviewEnvironment.shared,
-            scheduler: .immediate
+            env: PreviewEnvironment.shared
         )
-        testee.pullToRefreshDidTrigger.accept(completion)
-        XCTAssertEqual(completionCalled, true)
+
+        await testee.refresh()
+
         XCTAssertEqual(interactor.ignoreCache, true)
         XCTAssertEqual(testee.state, .data(gradeListData))
     }
@@ -149,30 +116,29 @@ class GradeListViewModelTests: CoreTestCase {
         let testee = GradeListViewModel(
             interactor: GradeListInteractorMock(),
             gradeFilterInteractor: GradeFilterInteractorMock(),
-            env: env,
-            scheduler: .immediate
+            env: env
         )
         let assignment = Assignment.make()
-        testee.didSelectAssignment.accept((assignment.htmlURL, assignment.id, WeakViewController()))
+        testee.selectAssignment(url: assignment.htmlURL, id: assignment.id, controller: WeakViewController())
+
         XCTAssertEqual(assignment.id, testee.selectedAssignmentId)
         XCTAssertEqual(router.calls[0].0, URLComponents(string: "/courses/1/assignments/1"))
         XCTAssertEqual(router.calls[0].2, RouteOptions.detail)
     }
 
-    func test_navigateToFilter() {
+    func test_navigateToFilter() async {
         // Given
         let viewController = WeakViewController()
         let interactor = GradeListInteractorMock(dataToReturn: gradeListData)
-        let testee = GradeListViewModel(
+        let testee = await GradeListViewModel(
             interactor: interactor,
             gradeFilterInteractor: GradeFilterInteractorMock(),
-            env: PreviewEnvironment.shared,
-            scheduler: .immediate
+            env: PreviewEnvironment.shared
         )
 
         // When
         testee.navigateToFilter(viewController: viewController)
-        wait(for: [router.showExpectation], timeout: 1)
+        await fulfillment(of: [router.showExpectation], timeout: 1)
         // Then
         XCTAssertTrue(router.presented is CoreHostingController<GradeFilterScreen>)
     }
@@ -180,18 +146,18 @@ class GradeListViewModelTests: CoreTestCase {
 
 private extension GradeListViewModelTests {
     class GradeListInteractorErrorMock: GradeListInteractor {
-        func loadBaseData(ignoreCache: Bool) -> AnyPublisher<GradeListGradingPeriodData, any Error> {
-            Fail(error: NSError.instructureError("")).eraseToAnyPublisher()
+        func loadBaseData(ignoreCache: Bool) async throws -> Core.GradeListGradingPeriodData {
+            throw NSError.instructureError("")
         }
 
         var courseID: String { "" }
         func getGrades(
-            arrangeBy: GradeArrangementOptions,
+            arrangeBy: Core.GradeArrangementOptions,
             baseOnGradedAssignment: Bool,
             gradingPeriodID: String?,
             ignoreCache: Bool
-        ) -> AnyPublisher<Core.GradeListData, Error> {
-            Fail(error: NSError.instructureError("")).eraseToAnyPublisher()
+        ) async throws -> Core.GradeListData {
+            throw NSError.instructureError("")
         }
 
         func updateGradingPeriod(id _: String?) {}
@@ -199,27 +165,22 @@ private extension GradeListViewModelTests {
     }
 
     class GradeListInteractorEmptySectionsMock: GradeListInteractor {
-        func loadBaseData(ignoreCache: Bool) -> AnyPublisher<GradeListGradingPeriodData, any Error> {
-            let result = GradeListGradingPeriodData(
+        func loadBaseData(ignoreCache: Bool) async throws -> Core.GradeListGradingPeriodData {
+            GradeListGradingPeriodData(
                 course: .save(.make(), in: singleSharedTestDatabase.viewContext),
                 currentlyActiveGradingPeriodID: nil,
                 gradingPeriods: []
             )
-            return Just(result)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
         }
 
         var courseID: String { "" }
         func getGrades(
-            arrangeBy: GradeArrangementOptions,
+            arrangeBy: Core.GradeArrangementOptions,
             baseOnGradedAssignment: Bool,
             gradingPeriodID: String?,
             ignoreCache: Bool
-        ) -> AnyPublisher<Core.GradeListData, Error> {
-            Just(emptySections)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
+        ) async throws -> Core.GradeListData {
+            emptySections
         }
 
         func updateGradingPeriod(id _: String?) {}
@@ -233,39 +194,36 @@ private extension GradeListViewModelTests {
         let dataToReturn: GradeListData?
         var courseID: String { "" }
 
+        enum GradeListInteractorMockError: Error {
+            case noDataToReturn
+        }
+
         init(dataToReturn: GradeListData? = nil) {
             self.dataToReturn = dataToReturn
         }
 
-        func loadBaseData(ignoreCache: Bool) -> AnyPublisher<Core.GradeListGradingPeriodData, any Error> {
-            let result = GradeListGradingPeriodData(
+        func loadBaseData(ignoreCache: Bool) async throws -> Core.GradeListGradingPeriodData {
+            GradeListGradingPeriodData(
                 course: .save(.make(), in: singleSharedTestDatabase.viewContext),
                 currentlyActiveGradingPeriodID: nil,
                 gradingPeriods: []
             )
-            return Just(result)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
         }
 
         func getGrades(
-            arrangeBy: GradeArrangementOptions,
+            arrangeBy: Core.GradeArrangementOptions,
             baseOnGradedAssignment: Bool,
             gradingPeriodID: String?,
             ignoreCache: Bool
-        ) -> AnyPublisher<Core.GradeListData, Error> {
+        ) async throws -> Core.GradeListData {
             self.ignoreCache = ignoreCache
             self.arrangeBy = arrangeBy
             gradingPeriod = gradingPeriodID
 
             if let dataToReturn {
-                return Just(dataToReturn)
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
+                return dataToReturn
             } else {
-                return Empty()
-                    .setFailureType(to: Error.self)
-                    .eraseToAnyPublisher()
+                throw GradeListInteractorMockError.noDataToReturn
             }
         }
 

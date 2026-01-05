@@ -95,12 +95,12 @@ public final class GradeFilterViewModel: ObservableObject {
     func saveButtonTapped(viewController: WeakViewController) {
         let selectedSortingOption = GradeArrangementOptions(optionItem: sortModeOptions.selected.value)
             ?? .dueDate
-        dependency.selectedSortByPublisher.accept(selectedSortingOption)
+        dependency.selectSortByOption(selectedSortingOption)
         gradeFilterInteractor.saveSortByOption(type: selectedSortingOption)
 
         let optionId = gradingPeriodOptions.selected.value?.id
         let selectedGradingPeriodId = optionId == OptionItem.allId ? nil : optionId
-        dependency.selectedGradingPeriodPublisher.accept(selectedGradingPeriodId)
+        dependency.selectGradingPeriod(selectedGradingPeriodId)
 
         dependency.router.dismiss(viewController) {
             UIAccessibility.announce(String(localized: "Filter applied successfully", bundle: .core))
@@ -119,8 +119,8 @@ extension GradeFilterViewModel {
         let isShowGradingPeriod: Bool
         let initialGradingPeriodID: String?
         var courseName: String?
-        var selectedGradingPeriodPublisher = PassthroughRelay<String?>()
-        var selectedSortByPublisher = CurrentValueRelay<GradeArrangementOptions>(.dueDate)
+        var selectGradingPeriod: (String?) -> Void = { _ in }
+        var selectSortByOption: (GradeArrangementOptions) -> Void = { _ in }
         var gradingPeriods: [GradingPeriod]?
         var sortByOptions: [GradeArrangementOptions]
     }

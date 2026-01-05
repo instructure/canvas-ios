@@ -155,7 +155,7 @@ public class AsyncStore<U: UseCase> {
         context: NSManagedObjectContext,
         environment: AppEnvironment
     ) async throws -> [T] {
-        let hasExpired = try await useCase.hasCacheExpired(environment: environment)
+        let hasExpired = await useCase.hasCacheExpired(environment: environment)
 
         return if hasExpired {
             try await Self.fetchEntitiesFromAPI(
@@ -177,7 +177,7 @@ public class AsyncStore<U: UseCase> {
         context: NSManagedObjectContext,
         environment: AppEnvironment
     ) async throws -> AsyncThrowingStream<[T], Error> {
-        let hasExpired = try await useCase.hasCacheExpired(environment: environment)
+        let hasExpired = await useCase.hasCacheExpired(environment: environment)
 
         return if hasExpired {
             try await Self.streamEntitiesFromAPI(

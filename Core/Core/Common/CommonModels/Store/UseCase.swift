@@ -180,12 +180,7 @@ public extension UseCase {
     func fetchWithAPIResponse(environment: AppEnvironment = .shared) async throws -> (Response?, URLResponse?) {
         try await withCheckedThrowingContinuation { continuation in
             self.executeFetch(environment: environment) { result in
-                switch result {
-                case .success((let response, let urlResponse)):
-                    continuation.resume(returning: (response, urlResponse))
-                case .failure(let error):
-                    continuation.resume(throwing: error)
-                }
+                continuation.resume(with: result)
             }
         }
     }

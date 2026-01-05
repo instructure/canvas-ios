@@ -19,7 +19,7 @@
 import SwiftUI
 
 struct GradeListTogglesView: View {
-    @ObservedObject var viewModel: GradeListViewModel
+    @State var viewModel: GradeListViewModel
 
     var body: some View {
         VStack(spacing: 0) {

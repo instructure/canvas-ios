@@ -20,7 +20,7 @@ import SwiftUI
 
 struct GradeListFilterButton: View {
     @Environment(\.viewController) var viewController
-    @ObservedObject var viewModel: GradeListViewModel
+    @State var viewModel: GradeListViewModel
 
     var body: some View {
         Button {

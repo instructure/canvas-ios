@@ -100,7 +100,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
         async let course = courseStore.getEntities(ignoreCache: ignoreCache).first
         async let gradingPeriods = gradingPeriodListStore.getEntities(ignoreCache: ignoreCache, loadAllPages: true)
 
-        let _ = await (try? customStatuses, try colors)
+        _ = await (try? customStatuses, try colors)
         guard let course = try await course else { throw GradeListInteractorError.courseNotFound }
 
         let courseEnrollment = course.enrollmentForGrades(userId: userID, includingCompleted: true)

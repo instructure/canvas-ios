@@ -172,7 +172,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         mockGrades(gradingPeriodID: "3", score: 25)
     }
 
-    func testDueDateArrangement() {
+    func testDueDateArrangement() async throws {
         let now = DateComponents(calendar: .current, year: 2024, month: 1, day: 1).date!
         Clock.mockNow(now)
 
@@ -195,28 +195,20 @@ class GradeListInteractorLiveTests: CoreTestCase {
         )
         api.mock(assignmentsRequest, value: assignmentGroups)
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .dueDate, baseOnGradedAssignment: true, gradingPeriodID: nil, ignoreCache: true)
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.assignmentSections.count, 3)
-                    XCTAssertEqual(data.assignmentSections[0].title, "Overdue Assignments")
-                    XCTAssertEqual(data.assignmentSections[0].rows[0].id, "3")
-                    XCTAssertEqual(data.assignmentSections[1].title, "Upcoming Assignments")
-                    XCTAssertEqual(data.assignmentSections[1].rows[0].id, "2")
-                    XCTAssertEqual(data.assignmentSections[2].title, "Past Assignments")
-                    XCTAssertEqual(data.assignmentSections[2].rows[0].id, "1")
+        let data = try await testee.getGrades(arrangeBy: .dueDate, baseOnGradedAssignment: true, gradingPeriodID: nil, ignoreCache: true)
 
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+        XCTAssertEqual(data.assignmentSections.count, 3)
+        XCTAssertEqual(data.assignmentSections[0].title, "Overdue Assignments")
+        XCTAssertEqual(data.assignmentSections[0].rows[0].id, "3")
+        XCTAssertEqual(data.assignmentSections[1].title, "Upcoming Assignments")
+        XCTAssertEqual(data.assignmentSections[1].rows[0].id, "2")
+        XCTAssertEqual(data.assignmentSections[2].title, "Past Assignments")
+        XCTAssertEqual(data.assignmentSections[2].rows[0].id, "1")
 
         Clock.reset()
     }
 
-    func testGroupArrangement() {
+    func testGroupArrangement() async throws {
         let assignmentGroups: [APIAssignmentGroup] = [
             .make(id: "1", name: "Group A", position: 1, assignments: [
                 .make(assignment_group_id: "1", id: "1")
@@ -236,25 +228,18 @@ class GradeListInteractorLiveTests: CoreTestCase {
         )
         api.mock(assignmentsRequest, value: assignmentGroups)
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.assignmentSections.count, 3)
-                    XCTAssertEqual(data.assignmentSections[0].title, "Group A")
-                    XCTAssertEqual(data.assignmentSections[0].rows.count, 1)
-                    XCTAssertEqual(data.assignmentSections[1].title, "Group in second position")
-                    XCTAssertEqual(data.assignmentSections[1].rows.count, 1)
-                    XCTAssertEqual(data.assignmentSections[2].title, "Group C")
-                    XCTAssertEqual(data.assignmentSections[2].rows.count, 2)
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+        let data = try await testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
+
+        XCTAssertEqual(data.assignmentSections.count, 3)
+        XCTAssertEqual(data.assignmentSections[0].title, "Group A")
+        XCTAssertEqual(data.assignmentSections[0].rows.count, 1)
+        XCTAssertEqual(data.assignmentSections[1].title, "Group in second position")
+        XCTAssertEqual(data.assignmentSections[1].rows.count, 1)
+        XCTAssertEqual(data.assignmentSections[2].title, "Group C")
+        XCTAssertEqual(data.assignmentSections[2].rows.count, 2)
     }
 
-    func testHideTotals() {
+    func testHideTotals() async throws {
         mockGetCourseAPI(
             currentGradingPeriodId: "1",
             hideFinalGrade: true,
@@ -262,19 +247,12 @@ class GradeListInteractorLiveTests: CoreTestCase {
         )
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, nil)
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+        let data = try await testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
+
+        XCTAssertEqual(data.totalGradeText, nil)
     }
 
-    func testHideTotalsWithTotalsForAllGradingPeriodIsDisabled() {
+    func testHideTotalsWithTotalsForAllGradingPeriodIsDisabled() async throws {
         mockGetCourseAPI(
             currentGradingPeriodId: nil,
             hideFinalGrade: true,
@@ -282,19 +260,12 @@ class GradeListInteractorLiveTests: CoreTestCase {
         )
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: nil, ignoreCache: false)
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, nil)
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+        let data = try await testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: nil, ignoreCache: false)
+
+        XCTAssertEqual(data.totalGradeText, nil)
     }
 
-    func testHideTotalsWhenQuantitativeDataEnabled() {
+    func testHideTotalsWhenQuantitativeDataEnabled() async throws {
         mockGetCourseAPI(
             currentGradingPeriodId: "1",
             hideFinalGrade: true,
@@ -303,56 +274,36 @@ class GradeListInteractorLiveTests: CoreTestCase {
         )
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, nil)
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+        let data = try await testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
+
+        XCTAssertEqual(data.totalGradeText, nil)
     }
 
-    func testShowGradeLetter() {
+    func testShowGradeLetter() async throws {
         mockGetCourseAPI(currentGradingPeriodId: "1")
         mockGetEnrollmentsAPI(
             grades: .make(current_grade: "C", current_score: 42)
         )
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, "42% (C)")
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+        let data = try await testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
+
+        XCTAssertEqual(data.totalGradeText, "42% (C)")
     }
-    func testShowGradeLetterForAllGradingPeriodsNotBasedOnGradedAssignment() {
+
+    func testShowGradeLetterForAllGradingPeriodsNotBasedOnGradedAssignment() async throws {
         mockGetCourseAPI(currentGradingPeriodId: nil)
         mockGetEnrollmentsAPI(
             grades: .make(current_grade: "C", current_score: 42, final_score: 21),
             gradingPeriodID: nil
         )
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: false, gradingPeriodID: nil, ignoreCache: false)
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, "21%")
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+        let data = try await testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: false, gradingPeriodID: nil, ignoreCache: false)
+
+        XCTAssertEqual(data.totalGradeText, "21%")
     }
 
-    func testShowGradeLetterForAllGradingPeriodsNotBasedOnGradedAssignmentHasFinalGrade() {
+    func testShowGradeLetterForAllGradingPeriodsNotBasedOnGradedAssignmentHasFinalGrade() async throws {
         let finalGrade = "Excellent"
         mockGetCourseAPI(
             currentGradingPeriodId: nil,
@@ -364,42 +315,29 @@ class GradeListInteractorLiveTests: CoreTestCase {
         )
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(
+        let data = try await testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: false,
             gradingPeriodID: nil,
             ignoreCache: false
-        ).sink(
-            receiveCompletion: { _ in }) { data in
-                XCTAssertEqual(data.totalGradeText, "21% (\(finalGrade))")
-                expectation.fulfill()
-            }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+        )
+
+        XCTAssertEqual(data.totalGradeText, "21% (\(finalGrade))")
     }
 
-    func testShowGradeLetterForGradingPeriodNotBasedOnGradedAssignment() {
+    func testShowGradeLetterForGradingPeriodNotBasedOnGradedAssignment() async throws {
         mockGetCourseAPI(currentGradingPeriodId: "1")
         mockGetEnrollmentsAPI(
             grades: .make(current_grade: "C", current_score: 42, final_score: 21)
         )
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: false, gradingPeriodID: "1", ignoreCache: false)
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, "21%")
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+        let data = try await testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: false, gradingPeriodID: "1", ignoreCache: false)
+
+        XCTAssertEqual(data.totalGradeText, "21%")
     }
 
-    func testShowGradeLetterForAllGradingPeriodsBasedOnGradedAssignmentHasCurrentGrade() {
+    func testShowGradeLetterForAllGradingPeriodsBasedOnGradedAssignmentHasCurrentGrade() async throws {
         let grade = "Excellent"
         mockGetCourseAPI(
             currentGradingPeriodId: nil,
@@ -412,24 +350,17 @@ class GradeListInteractorLiveTests: CoreTestCase {
         )
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(
+        let data = try await testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: true,
             gradingPeriodID: nil,
             ignoreCache: false
         )
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, "42% (\(grade))")
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+
+        XCTAssertEqual(data.totalGradeText, "42% (\(grade))")
     }
 
-    func testShowGradeLetterForAllGradingPeriodsBasedOnGradedAssignmenEmptyCurrentGrade() {
+    func testShowGradeLetterForAllGradingPeriodsBasedOnGradedAssignmenEmptyCurrentGrade() async throws {
         let grade = "Excellent"
         mockGetCourseAPI(
             currentGradingPeriodId: nil,
@@ -445,24 +376,17 @@ class GradeListInteractorLiveTests: CoreTestCase {
             gradingPeriodID: nil
         )
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(
+        let data = try await testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: true,
             gradingPeriodID: nil,
             ignoreCache: false
         )
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, "42% (\(grade))")
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+
+        XCTAssertEqual(data.totalGradeText, "42% (\(grade))")
     }
 
-    func testShowGradeLetterWhenQuantitativeDataEnabled() {
+    func testShowGradeLetterWhenQuantitativeDataEnabled() async throws {
         mockGetCourseAPI(
             currentGradingPeriodId: "1",
             multipleGradingPeriodsEnabled: true,
@@ -471,19 +395,12 @@ class GradeListInteractorLiveTests: CoreTestCase {
         mockGetEnrollmentsAPI(grades: .make(current_grade: "C", current_score: 42))
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, "C")
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+        let data = try await testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
+
+        XCTAssertEqual(data.totalGradeText, "C")
     }
 
-    func testShowGradeLetterWhenQuantitativeDataEnabledWithBaseOnGradedAssignmentFalse() {
+    func testShowGradeLetterWhenQuantitativeDataEnabledWithBaseOnGradedAssignmentFalse() async throws {
         mockGetCourseAPI(
             currentGradingPeriodId: "1",
             multipleGradingPeriodsEnabled: true,
@@ -492,24 +409,17 @@ class GradeListInteractorLiveTests: CoreTestCase {
         mockGetEnrollmentsAPI(grades: .make(final_grade: "C", current_score: 42))
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(
+        let data = try await testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: false,
             gradingPeriodID: "1",
             ignoreCache: false
         )
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, "C")
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+
+        XCTAssertEqual(data.totalGradeText, "C")
     }
 
-    func testShowGradeLetterWhenQuantitativeDataEnabledWithGradingPeriodNil() {
+    func testShowGradeLetterWhenQuantitativeDataEnabledWithGradingPeriodNil() async throws {
         mockGetCourseAPI(
             currentGradingPeriodId: nil,
             multipleGradingPeriodsEnabled: true,
@@ -519,24 +429,17 @@ class GradeListInteractorLiveTests: CoreTestCase {
         mockGetEnrollmentsAPI(grades: .make(final_grade: "C", current_score: 42))
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(
+        let data = try await testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: false,
             gradingPeriodID: nil,
             ignoreCache: false
         )
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, "C")
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+
+        XCTAssertEqual(data.totalGradeText, "C")
     }
 
-    func testShowGradeLetterWhenQuantitativeDataEnabledWithGradingPeriodNilHasHaseOnGradedAssignment() {
+    func testShowGradeLetterWhenQuantitativeDataEnabledWithGradingPeriodNilHasHaseOnGradedAssignment() async throws {
         mockGetCourseAPI(
             currentGradingPeriodId: nil,
             multipleGradingPeriodsEnabled: true,
@@ -546,24 +449,17 @@ class GradeListInteractorLiveTests: CoreTestCase {
         mockGetEnrollmentsAPI(grades: .make(final_grade: "C", current_score: 42))
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(
+        let data = try await testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: true,
             gradingPeriodID: nil,
             ignoreCache: false
         )
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, "C")
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+
+        XCTAssertEqual(data.totalGradeText, "C")
     }
 
-    func testShowGradeLetterWhenQuantitativeDataEnabledWithGradingPeriodWithEmptyGrade() {
+    func testShowGradeLetterWhenQuantitativeDataEnabledWithGradingPeriodWithEmptyGrade() async throws {
         mockGetCourseAPI(
             currentGradingPeriodId: nil,
             multipleGradingPeriodsEnabled: true,
@@ -573,24 +469,17 @@ class GradeListInteractorLiveTests: CoreTestCase {
         mockGetEnrollmentsAPI(grades: .make(final_grade: "C", current_score: 42))
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(
+        let data = try await testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: true,
             gradingPeriodID: nil,
             ignoreCache: false
         )
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, "C")
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+
+        XCTAssertEqual(data.totalGradeText, "C")
     }
 
-    func testShowGradeLetterWhenQuantitativeDataEnabledNOGradingPeriodWithEmptyGrade() {
+    func testShowGradeLetterWhenQuantitativeDataEnabledNOGradingPeriodWithEmptyGrade() async throws {
         mockGetCourseAPI(
             currentGradingPeriodId: nil,
             multipleGradingPeriodsEnabled: true,
@@ -599,43 +488,29 @@ class GradeListInteractorLiveTests: CoreTestCase {
         )
         mockGetEnrollmentsAPI(grades: .make(current_score: 42))
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(
+        let data = try await testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: true,
             gradingPeriodID: nil,
             ignoreCache: false
         )
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertNil(data.totalGradeText)
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+
+        XCTAssertNil(data.totalGradeText)
     }
 
-    func testShowGradeLetterWhenQuantitativeDataEnabledWithGradingPeriodWithGradingScheme() {
+    func testShowGradeLetterWhenQuantitativeDataEnabledWithGradingPeriodWithGradingScheme() async throws {
         mockGetCourseAPI(currentGradingPeriodId: "1", isRestrict: true)
         mockGetEnrollmentsAPI(grades: .make(current_score: 42))
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
-        let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(
+        let data = try await testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: true,
             gradingPeriodID: "1",
             ignoreCache: false
         )
-            .sink(
-                receiveCompletion: { _ in }) { data in
-                    XCTAssertEqual(data.totalGradeText, "N/A")
-                    expectation.fulfill()
-                }
-        drainMainQueue()
-        waitForExpectations(timeout: 1)
-        subscription.cancel()
+
+        XCTAssertEqual(data.totalGradeText, "N/A")
     }
 
     private func mockGetCourseAPI(

@@ -25,7 +25,7 @@ public struct GradeListScreen: View, ScreenViewTrackable {
     }
 
     // MARK: - Dependencies
-    @ObservedObject private var viewModel: GradeListViewModel
+    @State private var viewModel: GradeListViewModel
     @ObservedObject private var offlineModeViewModel: OfflineModeViewModel
     @Environment(\.viewController) private var viewController
     @Environment(\.verticalSizeClass) private var verticalSizeClass
