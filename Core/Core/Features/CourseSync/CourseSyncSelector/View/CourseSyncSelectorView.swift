@@ -34,25 +34,14 @@ struct CourseSyncSelectorView: View {
     @State private var infoHeight: CGFloat?
 
     var body: some View {
-        if #available(iOS 26, *) {
-            content
-                .background(Color.backgroundLightest)
-                .navigationTitle(.init("Offline Content", bundle: .core))
-                .navigationSubtitle(viewModel.navBarSubtitle)
-                .toolbar {
-                    ToolbarItem(placement: .topBarLeading) { leftNavBarButton }
-                    ToolbarItem(placement: .topBarTrailing) { cancelButton }
-                }
-        } else {
-            content
-                .background(Color.backgroundLightest)
-                .navigationBarItems(leading: leftNavBarButton, trailing: cancelButton)
-                .navigationTitles(
-                    title: String(localized: "Offline Content", bundle: .core),
-                    subtitle: viewModel.navBarSubtitle,
-                    style: .modal
-                )
-        }
+        content
+            .background(Color.backgroundLightest)
+            .navigationBarItems(leading: leftNavBarButton, trailing: cancelButton)
+            .navigationTitles(
+                title: String(localized: "Offline Content", bundle: .core),
+                subtitle: viewModel.navBarSubtitle,
+                style: .modal
+            )
     }
 
     @ViewBuilder

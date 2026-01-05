@@ -97,19 +97,6 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         courseReady()
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        if #available(iOS 26, *) {
-            // Remove Grade Screen's custom navigation bar color when navigating away
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithDefaultBackground()
-            appearance.backgroundColor = .backgroundLightest
-            navigationController?.navigationBar.standardAppearance = appearance
-            navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        }
-
-        super.viewWillDisappear(animated)
-    }
-
     override func setupPages() {
         super.setupPages()
         // This is to prevent the swipe to back gesture interfering with the collectionview horizontal scroll when on the first page
@@ -202,11 +189,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
 
             if #available(iOS 26, *), itemCount <= 1 {
                 // Set the toolbar background if the tab switcher is not present to match the Grade Screen's header
-                let appearance = UINavigationBarAppearance()
-                appearance.configureWithDefaultBackground()
-                appearance.backgroundColor = .backgroundLight
-                navigationController?.navigationBar.standardAppearance = appearance
-                navigationController?.navigationBar.scrollEdgeAppearance = appearance
+                navigationItem.setNavigationBarBackground(to: .backgroundLight)
             }
 
             layoutViewControllers()

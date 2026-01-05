@@ -82,9 +82,15 @@ public class TitleSubtitleView: UIView {
     }
 
     public override func tintColorDidChange() {
-        guard #unavailable(iOS 26) else { return }
-        let title = (superview?.superview as? UINavigationBar)?.titleTextAttributes?[.foregroundColor] as? UIColor
-        let color = title ?? tintColor
+        let color = {
+            if #available(iOS 26, *) {
+                return tintColor
+            } else {
+                let titleColor = (superview?.superview as? UINavigationBar)?.titleTextAttributes?[.foregroundColor] as? UIColor
+                return titleColor ?? tintColor
+            }
+        }()
+
         titleLabel.textColor = color
         subtitleLabel.textColor = color == .textDarkest ? .textDark : color
     }

@@ -31,9 +31,8 @@ class CourseSyncConferencesInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(CourseSyncConferencesInteractorLive(envResolver: envResolver).associatedTabType, .conferences)
     }
 
-    func testSavedDataPopulatesViewController() throws {
-
-            // MARK: - GIVEN
+    func testSavedDataPopulatesViewController() {
+        // MARK: - GIVEN
         api.mock(GetCustomColors(), value: .init(custom_colors: [:]))
         api.mock(GetCourse(courseID: "testCourse"), value: .make(id: "testCourse"))
         api.mock(GetConferences(context: .course("testCourse")), value: .init(conferences: [
@@ -51,14 +50,14 @@ class CourseSyncConferencesInteractorLiveTests: CoreTestCase {
         XCTAssertFinish(CourseSyncConferencesInteractorLive(envResolver: envResolver).getContent(courseId: "testCourse"))
         API.resetMocks()
 
-            // MARK: - WHEN
+        // MARK: - WHEN
         OfflineModeAssembly.mock(AlwaysOfflineModeInteractor())
         let testee = ConferenceListViewController.create(context: .course("testCourse"))
         testee.view.layoutIfNeeded()
         testee.viewWillAppear(false)
         drainMainQueue()
 
-            // MARK: - THEN
+        // MARK: - THEN
         XCTAssertEqual(testee.tableView.numberOfSections, 2) // new and concluded conferences sections
 
         guard let newConferencesHeader = testee.tableView.headerView(forSection: 0) as? SectionHeaderView else {

@@ -87,9 +87,14 @@ extension View {
     @ViewBuilder
     public func navigationTitles(title: String, subtitle: String?, style: NavigationBarStyle) -> some View {
         if #available(iOS 26, *) {
-            self
-                .navigationTitle(title)
-                .navigationSubtitle(subtitle ?? "")
+            if let subtitle {
+                self
+                    .navigationTitle(title)
+                    .navigationSubtitle(subtitle)
+            } else {
+                self
+                    .navigationTitle(title)
+            }
         } else {
             self
                 .navigationBarTitleView(title: title, subtitle: subtitle)

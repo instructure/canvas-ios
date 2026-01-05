@@ -76,12 +76,7 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
 
         if #available(iOS 26, *) {
             navigationItem.title = String(localized: "Discussions", bundle: .core)
-
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithDefaultBackground()
-            appearance.backgroundColor = .backgroundLightest
-            navigationController?.navigationBar.standardAppearance = appearance
-            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            navigationItem.setNavigationBarBackground(to: .backgroundLightest)
         } else {
             setupTitleViewInNavbar(title: String(localized: "Discussions", bundle: .core))
         }
@@ -114,17 +109,6 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
         super.viewWillAppear(animated)
         tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
         navigationController?.navigationBar.useContextColor(color)
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        if #available(iOS 26, *) {
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithDefaultBackground()
-            navigationController?.navigationBar.standardAppearance = appearance
-            navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        }
-
-        super.viewWillDisappear(animated)
     }
 
     @objc func refresh() {

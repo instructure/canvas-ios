@@ -71,11 +71,7 @@ public final class ModuleItemSequenceViewController: UIViewController {
 
         if #available(iOS 26, *) {
             // Since titleSubtitleView is in use, we need to set the toolbar appearance to match the screen's
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithDefaultBackground()
-            appearance.backgroundColor = .backgroundLightest
-            navigationController?.navigationBar.standardAppearance = appearance
-            navigationController?.navigationBar.scrollEdgeAppearance = appearance
+            navigationItem.setNavigationBarBackground(to: .backgroundLightest)
         }
 
         showSequenceButtons(prev: false, next: false)
@@ -104,18 +100,6 @@ public final class ModuleItemSequenceViewController: UIViewController {
 
         // force refresh because we don't provide a refresh control
         store.refresh(force: true)
-    }
-
-    public override func viewWillDisappear(_ animated: Bool) {
-        if #available(iOS 26, *) {
-            // Remove the toolbar appearance override since it is for this screen only
-            let appearance = UINavigationBarAppearance()
-            appearance.configureWithDefaultBackground()
-            navigationController?.navigationBar.standardAppearance = appearance
-            navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        }
-
-        super.viewWillDisappear(animated)
     }
 
     private func update(embed: Bool) {
