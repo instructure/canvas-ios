@@ -111,7 +111,7 @@ final class HMessageDetailsViewModel {
         let reply = reply.trimmed()
         guard let conversation = conversation, reply.isNotEmpty else { return }
         isSending = true
-        let recipientIDs = messageDetailsInteractor.userMap.map { $0.key }.filter { $0 != userID }
+        let recipientIDs = messageDetailsInteractor.userMap.map { $0.key }.filter { $0 != self.userID }
         let attachmentIDs = attachmentViewModel.items.compactMap { $0.id }
         composeMessageInteractor.addConversationMessage(
             parameters: MessageParameters(

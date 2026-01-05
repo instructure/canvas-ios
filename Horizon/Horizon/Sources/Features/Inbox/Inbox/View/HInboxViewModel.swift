@@ -148,31 +148,20 @@ final class HInboxViewModel {
         let isPeopleFilterEmpty = peopleSelectionViewModel.searchByPersonSelections.isEmpty
 
         let shouldShowAnnouncements =
-            (filter == .all || filter == .announcements) &&
-            isPeopleFilterEmpty
+        (filter == .all || filter == .announcements) &&
+        isPeopleFilterEmpty
 
         let announcementRows: [InboxMessageModel] = {
             guard shouldShowAnnouncements else {
                 return filter == .unread
-                    ? announcements.filter { !$0.isRead }.map(\.messageModel)
-                    : []
+                ? announcements.filter { !$0.isRead }.map(\.messageModel)
+                : []
             }
             return announcements.map(\.messageModel)
         }()
 
-        let isFinishedLoading = inboxMessageInteractor.hasNextPage.value == false
-
-        let combinedRows = (messageRows + announcementRows)
+        return (messageRows + announcementRows)
             .sorted { ($0.date ?? .distantPast) > ($1.date ?? .distantPast) }
-
-        let lastMessageIndex =
-            combinedRows.firstIndex { !$0.isAnnouncement } ?? 0
-
-        return combinedRows.enumerated()
-            .filter { index, row in
-                !row.isAnnouncement || isFinishedLoading || index < lastMessageIndex
-            }
-            .map(\.element)
     }
 
     private func fetchAnnouncements(ignoreCache: Bool = false) -> AnyPublisher<[NotificationModel], Never> {
