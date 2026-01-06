@@ -27,6 +27,17 @@ protocol CurrentGradeChangeEvaluator {
 class SpeedGraderScreenViewModel: ObservableObject {
     typealias Page = CoreHostingController<SpeedGraderPageView>
 
+    private class DefaultGradeChangeEvaluator: CurrentGradeChangeEvaluator {
+        weak var viewModel: SpeedGraderScreenViewModel?
+
+        var isChanged: Bool {
+            if let pageView = viewModel?.currentPage as? CoreHostingController<SpeedGraderPageView> {
+                return pageView.rootView.content.isGradeChanged()
+            }
+            return false
+        }
+    }
+
     // MARK: - Outputs
 
     @Published private(set) var state: InstUI.ScreenState = .loading
@@ -52,27 +63,20 @@ class SpeedGraderScreenViewModel: ObservableObject {
     private var currentPage: UIViewController?
     var currentGradeChangeEvaluator: CurrentGradeChangeEvaluator
 
-    private struct DefaultGradeChangeEvaluator: CurrentGradeChangeEvaluator {
-        weak var viewModel: SpeedGraderScreenViewModel?
-        var isChanged: Bool {
-            if let pageView = viewModel?.currentPage as? CoreHostingController<SpeedGraderPageView> {
-                return pageView.rootView.content.isGradeChanged()
-            }
-            return false
-        }
-    }
-
     init(
         interactor: SpeedGraderInteractor,
-        currentGradeChangeEvaluator: CurrentGradeChangeEvaluator = DefaultGradeChangeEvaluator(),
+        currentGradeChangeEvaluator: CurrentGradeChangeEvaluator? = nil,
         environment: AppEnvironment
     ) {
         self.interactor = interactor
         self.environment = environment
-        self.currentGradeChangeEvaluator = currentGradeChangeEvaluator
-        screenViewTrackingParameters = ScreenViewTrackingParameters(
+
+        self.screenViewTrackingParameters = ScreenViewTrackingParameters(
             eventName: "/\(interactor.context.pathComponent)/gradebook/speed_grader?assignment_id=\(interactor.assignmentID)&student_id=\(interactor.userID)"
         )
+
+        self.currentGradeChangeEvaluator = currentGradeChangeEvaluator ?? DefaultGradeChangeEvaluator()
+        (self.currentGradeChangeEvaluator as? DefaultGradeChangeEvaluator)?.viewModel = self
 
         showFocusedSubmission(on: didShowPagesViewController)
         showPostPolicyScreen(on: didTapPostPolicyButton)
