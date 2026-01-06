@@ -27,11 +27,17 @@ import SwiftUI
 class SpeedGraderScreenViewModelTests: TeacherTestCase {
     private var testee: SpeedGraderScreenViewModel!
     private var interactorMock: SpeedGraderInteractorMock!
+    private var currentGradeChangeEvaluator: MockCurrentGradeChangeEvaluator!
 
     override func setUp() {
         super.setUp()
         interactorMock = SpeedGraderInteractorMock()
-        testee = SpeedGraderScreenViewModel(interactor: interactorMock, environment: environment)
+        currentGradeChangeEvaluator = MockCurrentGradeChangeEvaluator()
+        testee = SpeedGraderScreenViewModel(
+            interactor: interactorMock,
+            currentGradeChangeEvaluator: currentGradeChangeEvaluator,
+            environment: environment
+        )
     }
 
     override func tearDown() {
@@ -116,6 +122,37 @@ class SpeedGraderScreenViewModelTests: TeacherTestCase {
         wait(for: [router.dismissExpectation])
         XCTAssertEqual(router.dismissed, controller)
     }
+
+    // MARK: Snackbar showing when grade is changed
+
+    func test_didTapDoneButton_grade_changed() {
+        window.rootViewController = MockSnackBarProviderController()
+        currentGradeChangeEvaluator.mockValue = true
+
+        // WHEN
+        let controller = UIViewController()
+        testee.didTapDoneButton.send(WeakViewController(controller))
+
+        // THEN
+        wait(for: [router.dismissExpectation])
+        XCTAssertEqual(router.dismissed, controller)
+
+        XCTAssertNotNil(SnackBarViewModel.topControllerModel)
+        XCTAssertEqual(SnackBarViewModel.topControllerModel?.visibleSnack, "Grade Submitted")
+    }
+
+    func test_didTransitionTo_grade_changed() {
+        currentGradeChangeEvaluator.mockValue = true
+
+        let pagesViewController = MockPagesViewController()
+        let page = UIViewController()
+
+        // WHEN
+        testee.pagesViewController(pagesViewController, didTransitionTo: page)
+
+        // THEN
+        XCTAssertEqual(testee.snackBarViewModel.visibleSnack, "Grade Submitted")
+    }
 }
 
 class SpeedGraderInteractorMock: SpeedGraderInteractor {
@@ -166,4 +203,13 @@ private class MockPagesViewController: PagesViewController {
     override func pauseMediaPlayback() {
         mediaPlaybackPaused = true
     }
+}
+
+private class MockCurrentGradeChangeEvaluator: CurrentGradeChangeEvaluator {
+    var mockValue: Bool = false
+    var isChanged: Bool { mockValue }
+}
+
+private class MockSnackBarProviderController: UIViewController, SnackBarProvider {
+    var snackBarViewModel = SnackBarViewModel()
 }

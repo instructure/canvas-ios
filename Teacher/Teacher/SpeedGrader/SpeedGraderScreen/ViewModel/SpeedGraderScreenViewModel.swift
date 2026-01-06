@@ -20,6 +20,10 @@ import Combine
 import Core
 import SwiftUI
 
+protocol CurrentGradeChangeEvaluator {
+    var isChanged: Bool { get }
+}
+
 class SpeedGraderScreenViewModel: ObservableObject {
     typealias Page = CoreHostingController<SpeedGraderPageView>
 
@@ -46,13 +50,26 @@ class SpeedGraderScreenViewModel: ObservableObject {
     private let environment: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
     private var currentPage: UIViewController?
+    var currentGradeChangeEvaluator: CurrentGradeChangeEvaluator
+
+    private struct DefaultGradeChangeEvaluator: CurrentGradeChangeEvaluator {
+        weak var viewModel: SpeedGraderScreenViewModel?
+        var isChanged: Bool {
+            if let pageView = viewModel?.currentPage as? CoreHostingController<SpeedGraderPageView> {
+                return pageView.rootView.content.isGradeChanged()
+            }
+            return false
+        }
+    }
 
     init(
         interactor: SpeedGraderInteractor,
+        currentGradeChangeEvaluator: CurrentGradeChangeEvaluator = DefaultGradeChangeEvaluator(),
         environment: AppEnvironment
     ) {
         self.interactor = interactor
         self.environment = environment
+        self.currentGradeChangeEvaluator = currentGradeChangeEvaluator
         screenViewTrackingParameters = ScreenViewTrackingParameters(
             eventName: "/\(interactor.context.pathComponent)/gradebook/speed_grader?assignment_id=\(interactor.assignmentID)&student_id=\(interactor.userID)"
         )
@@ -116,14 +133,9 @@ class SpeedGraderScreenViewModel: ObservableObject {
     ) {
         didTapDoneButton
             .sink { [weak self, router = environment.router] viewController in
-
-                var didEditGrades = false
-                if let pageView = self?.currentPage as? CoreHostingController<SpeedGraderPageView> {
-                    didEditGrades = pageView.rootView.content.isGradeChanged()
-                }
-
+                let didEditGrade = self?.currentGradeChangeEvaluator.isChanged ?? false
                 router.dismiss(viewController) {
-                    Self.didDismiss(withGradeChanges: didEditGrades)
+                    Self.didDismiss(withGradeChanges: didEditGrade)
                 }
             }
             .store(in: &subscriptions)
@@ -201,20 +213,21 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
         let assignment = data.assignment
         let submission = data.submissions[index]
         let gradingScheme = data.gradingScheme
+        let viewModel = SpeedGraderAssembly.makePageViewModel(
+            context: interactor.context,
+            assignment: assignment,
+            submission: submission,
+            gradingScheme: gradingScheme,
+            contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),
+            gradeStatusInteractor: interactor.gradeStatusInteractor,
+            submissionWordCountInteractor: interactor.submissionWordCountInteractor,
+            customGradebookColumnsInteractor: interactor.customGradebookColumnsInteractor,
+            env: environment
+        )
 
         return SpeedGraderPageView(
             userIndexInSubmissionList: index,
-            viewModel: SpeedGraderAssembly.makePageViewModel(
-                context: interactor.context,
-                assignment: assignment,
-                submission: submission,
-                gradingScheme: gradingScheme,
-                contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),
-                gradeStatusInteractor: interactor.gradeStatusInteractor,
-                submissionWordCountInteractor: interactor.submissionWordCountInteractor,
-                customGradebookColumnsInteractor: interactor.customGradebookColumnsInteractor,
-                env: environment
-            ),
+            viewModel: viewModel,
             landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel,
             handleRefresh: { [weak self] in
                 guard let self else { return }
@@ -222,6 +235,9 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
                     .refreshSubmission(forUserId: submission.userID)
                     .sink()
                     .store(in: &subscriptions)
+            },
+            isGradeChanged: { [weak viewModel] in
+                viewModel?.gradeViewModel.isGradeChanged ?? false
             }
         )
     }
@@ -255,10 +271,7 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDelegate {
         // Close keyboard
         pages.view.endEditing(true)
 
-        if
-            let pageView = currentPage as? CoreHostingController<SpeedGraderPageView>,
-            pageView.rootView.content.isGradeChanged() {
-
+        if currentGradeChangeEvaluator.isChanged {
             let submittedMessage = String(
                 localized: "Grade Submitted",
                 bundle: .teacher

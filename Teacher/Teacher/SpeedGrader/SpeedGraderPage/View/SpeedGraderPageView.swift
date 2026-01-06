@@ -73,15 +73,14 @@ struct SpeedGraderPageView: View {
         userIndexInSubmissionList: Int,
         viewModel: SpeedGraderPageViewModel,
         landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel,
-        handleRefresh: (() -> Void)?
+        handleRefresh: (() -> Void)?,
+        isGradeChanged: @escaping () -> Bool
     ) {
         self.userIndexInSubmissionList = userIndexInSubmissionList
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.landscapeSplitLayoutViewModel = landscapeSplitLayoutViewModel
         self.handleRefresh = handleRefresh
-        self.isGradeChanged = { [weak viewModel] in
-            viewModel?.gradeViewModel.isGradeChanged ?? false
-        }
+        self.isGradeChanged = isGradeChanged
     }
 
     // MARK: - Body
