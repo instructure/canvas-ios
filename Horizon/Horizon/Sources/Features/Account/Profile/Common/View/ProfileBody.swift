@@ -43,5 +43,6 @@ struct ProfileBody<Content: View>: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .toolbar(.hidden)
         .background(Color.huiColors.surface.pagePrimary)
+        .dismissKeyboardOnTap()
     }
 }

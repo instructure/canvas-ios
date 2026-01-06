@@ -51,6 +51,7 @@ struct AccountNavigationBar: View {
                 .foregroundStyle(Color.huiColors.text.title)
                 .frame(height: 44)
                 .frame(maxWidth: .infinity, alignment: .center)
+                .accessibilityAddTraits(.isHeader)
             HStack(spacing: 0) {
                 HorizonUI.IconButton(
                     HorizonUI.icons.arrowBack,
@@ -61,6 +62,9 @@ struct AccountNavigationBar: View {
                 }
                 .frame(width: 44, height: 44)
                 .padding(.leading, .huiSpaces.space24)
+                .accessibilityElement(children: .ignore)
+                .accessibilityAddTraits(.isButton)
+                .accessibilityLabel(String(localized: "Back"))
                 Spacer()
             }
         }

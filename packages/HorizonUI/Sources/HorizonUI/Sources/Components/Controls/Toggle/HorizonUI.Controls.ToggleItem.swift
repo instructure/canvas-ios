@@ -57,7 +57,10 @@ public extension HorizonUI.Controls {
                 }
                 .toggleStyle(ToggleItemStyle(alignment: alignment))
                 .disabled(isDisabled)
+                .accessibilityRemoveTraits(.isButton)
+                .accessibilityAddTraits(.isToggle)
                 .opacity(isDisabled ? 0.5 : 1)
+                .accessibilityValue(isOn ? String(localized: "On") : String(localized: "Off"))
             }
         }
 

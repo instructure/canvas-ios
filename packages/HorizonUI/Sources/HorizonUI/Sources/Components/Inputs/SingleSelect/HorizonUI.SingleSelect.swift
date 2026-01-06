@@ -108,11 +108,7 @@ extension HorizonUI {
                 .accessibilityElement(children: .ignore)
                 .accessibilityAddTraits(.isButton)
                 .accessibilityLabel(
-                    String(
-                        format: String(localized: "%@. %@. "),
-                        selection,
-                        focused ? String(localized: "Expanded") : String(localized: "Collapsed")
-                    )
+                    [label, selection, focused ? String(localized: "Expanded") : String(localized: "Collapsed")].compactMap { $0 }.joined(separator: ", ")
                 )
                 .accessibilityHint(focused ? String(localized: "Double-tap to collapse") : String(localized: "Double-tap to expand"))
 
