@@ -93,7 +93,6 @@ class RecipientSelectionViewModel {
         isFocusedSubject
             .removeDuplicates()
             .sink { [weak self] value in
-                print(value)
                 self?.isFocused = value
             }
             .store(in: &subscriptions)
