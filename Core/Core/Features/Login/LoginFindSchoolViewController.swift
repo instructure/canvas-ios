@@ -107,7 +107,7 @@ class LoginFindSchoolViewController: UIViewController {
         loadingView?.startAnimating()
         searchTask = api.makeRequest(GetAccountsSearchRequest(searchTerm: query)) { [weak self] (results, _, error) in performUIUpdate {
             guard let self = self, error == nil else { return }
-            self.accounts = results ?? []
+            self.accounts = results?.sortedPromotingQueryPrefixed(query) ?? []
             self.loadingView.stopAnimating()
             self.resultsTableView.reloadData()
             self.searchTask = nil
@@ -115,20 +115,19 @@ class LoginFindSchoolViewController: UIViewController {
     }
 
     func showLoginForHost(_ host: String, authenticationProvider: String? = nil) {
-        let provider = authenticationProvider ?? accounts.first(where: { $0.domain == host })?.authentication_provider
         let controller: UIViewController
         var analyticsRoute = "/login/find"
 
         if method == .manualOAuthLogin {
             controller = LoginManualOAuthViewController.create(
-                authenticationProvider: provider,
+                authenticationProvider: authenticationProvider,
                 host: host,
                 loginDelegate: loginDelegate
             )
             analyticsRoute = "/login/manualoauth"
         } else {
             controller = LoginWebViewController.create(
-                authenticationProvider: provider,
+                authenticationProvider: authenticationProvider,
                 host: host,
                 loginDelegate: loginDelegate,
                 method: method

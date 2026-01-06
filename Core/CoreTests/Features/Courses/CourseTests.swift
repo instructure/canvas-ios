@@ -70,6 +70,85 @@ class CourseTests: CoreTestCase {
         XCTAssertEqual(resultEnrollment?.canvasContextID, "course_1")
     }
 
+    func testIsPastEnrollmentWithWorkflowState() {
+        let completedCourse = Course.make(from: .make(workflow_state: .completed))
+        XCTAssertTrue(completedCourse.isPastEnrollment)
+
+        let availableCourse = Course.make(from: .make(workflow_state: .available))
+        XCTAssertFalse(availableCourse.isPastEnrollment)
+
+        let futureDate = Clock.now.addDays(10)
+        let completedWithFutureDates = Course.make(from: .make(
+            workflow_state: .completed,
+            end_at: futureDate,
+            term: .make(end_at: futureDate)
+        ))
+        XCTAssertTrue(completedWithFutureDates.isPastEnrollment)
+    }
+
+    func testIsPastEnrollmentWithCourseEndDate() {
+        let pastDate = Clock.now.addDays(-10)
+        let courseWithPastEnd = Course.make(from: .make(end_at: pastDate))
+        XCTAssertTrue(courseWithPastEnd.isPastEnrollment)
+
+        let futureDate = Clock.now.addDays(10)
+        let courseWithFutureEnd = Course.make(from: .make(end_at: futureDate))
+        XCTAssertFalse(courseWithFutureEnd.isPastEnrollment)
+
+        Clock.mockNow(Date(timeIntervalSince1970: 1000000))
+        let exactlyNow = Clock.now
+        let courseEndingNow = Course.make(from: .make(end_at: exactlyNow))
+        XCTAssertFalse(courseEndingNow.isPastEnrollment)
+
+        let futureCourseEnd = Clock.now.addDays(5)
+        let futureTermEnd = Clock.now.addDays(10)
+        let courseEndPrecedence = Course.make(from: .make(
+            end_at: futureCourseEnd,
+            term: .make(end_at: futureTermEnd)
+        ))
+        XCTAssertFalse(courseEndPrecedence.isPastEnrollment)
+    }
+
+    func testIsPastEnrollmentWithTermEndDate() {
+        let pastDate = Clock.now.addDays(-10)
+        let term = APICourse.Term.make(end_at: pastDate)
+        let courseWithPastTermEnd = Course.make(from: .make(end_at: nil, term: term))
+        XCTAssertTrue(courseWithPastTermEnd.isPastEnrollment)
+
+        let futureDate = Clock.now.addDays(10)
+        let termWithFutureEnd = APICourse.Term.make(end_at: futureDate)
+        let courseWithFutureTermEnd = Course.make(from: .make(end_at: nil, term: termWithFutureEnd))
+        XCTAssertFalse(courseWithFutureTermEnd.isPastEnrollment)
+
+        let termWithoutEnd = APICourse.Term.make(end_at: nil)
+        let courseWithNoTermEnd = Course.make(from: .make(end_at: nil, term: termWithoutEnd))
+        XCTAssertFalse(courseWithNoTermEnd.isPastEnrollment)
+
+        let courseWithNoTerm = Course.make(from: .make(end_at: nil, term: nil))
+        XCTAssertFalse(courseWithNoTerm.isPastEnrollment)
+    }
+
+    func testIsPastEnrollmentWithCourseEndAndTermEndDate() {
+        // Given
+        let pastDate = Clock.now.addDays(-10)
+        let futureDate = Clock.now.addDays(10)
+
+        // When
+        var term = APICourse.Term.make(end_at: pastDate)
+        var course = Course.make(from: .make(end_at: futureDate, term: term))
+        XCTAssertFalse(course.isPastEnrollment)
+
+        // When
+        term = APICourse.Term.make(end_at: futureDate)
+        course = Course.make(from: .make(end_at: pastDate, term: term))
+        XCTAssertTrue(course.isPastEnrollment)
+
+        // When
+        term = APICourse.Term.make(end_at: pastDate.addDays(-10))
+        course = Course.make(from: .make(end_at: pastDate, term: term))
+        XCTAssertTrue(course.isPastEnrollment)
+    }
+
     func testDeletesOnlyDanglingEnrollments() {
         let apiCourse = APICourse.make(id: "1")
         let course = Course.make(from: apiCourse)

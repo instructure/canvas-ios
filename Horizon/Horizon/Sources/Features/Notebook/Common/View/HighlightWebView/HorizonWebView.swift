@@ -26,6 +26,7 @@ import WebKit
 final class HorizonWebView: CoreWebView {
 
     // MARK: - Private
+    /// We use this flag to prevent any scrolling after the initial scroll to the highlighted note, such as when a note is added or deleted.
     private var shouldScrollToHighlightedNote = true
 
     private var courseNotebookNotes: [CourseNotebookNote] = [] {
@@ -40,7 +41,6 @@ final class HorizonWebView: CoreWebView {
                        let textSelection = note.notebookTextSelection {
                         try? await Task.sleep(for: .milliseconds(500)) // Wait for highlights to be applied
                         await highlightWebFeature?.scrollToHighlight(webView: self, notebookTextSelection: textSelection)
-                        shouldScrollToHighlightedNote = false
                     }
                 }
             }
@@ -107,11 +107,33 @@ final class HorizonWebView: CoreWebView {
 
     // MARK: - Override Functions
 
+    override var accessibilityCustomActions: [UIAccessibilityCustomAction]? {
+        get {
+            guard currentNotebookTextSelection != nil, !isOverlapped else {
+                return super.accessibilityCustomActions
+            }
+
+            let customActions = actionDefinitions.map { actionDefinition in
+                UIAccessibilityCustomAction(
+                    name: actionDefinition.title,
+                    target: self,
+                    selector: #selector(handleAccessibilityAction(_:))
+                )
+            }
+            return customActions
+        }
+        set { super.accessibilityCustomActions = newValue }
+    }
+
     override func buildMenu(with builder: any UIMenuBuilder) {
         guard !isOverlapped else { return }
-
         let notebookActions = actionDefinitions.map { actionDefinition in
-            UIAction(title: actionDefinition.title, handler: onMenuAction)
+            let action = UIAction(
+                title: actionDefinition.title,
+                image: actionDefinition.label.icon.uiImage,
+                handler: onMenuAction
+            )
+            return action
         }
         let notebookMenu = UIMenu(title: "", options: .displayInline, children: notebookActions)
 
@@ -132,6 +154,10 @@ final class HorizonWebView: CoreWebView {
     override func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         super.webView(webView, didFinish: navigation)
         listenForHighlights()
+        UIAccessibility.post(
+            notification: .announcement,
+            argument: String(localized: "Select the highlighted text, then swipe up or down to mark the note as important or unclear.")
+        )
     }
 
     // MARK: - Private
@@ -198,6 +224,7 @@ final class HorizonWebView: CoreWebView {
                                 .post(name: .showToastAlert, object: String(localized: "Note saved", bundle: .horizon))
                         }
                     }
+                    shouldScrollToHighlightedNote = false
                     router.show(
                         editNotebookView,
                         from: viewController,
@@ -213,8 +240,40 @@ final class HorizonWebView: CoreWebView {
             .sink { _ in
             } receiveValue: { [weak self] notebookTextSelection in
                 self?.currentNotebookTextSelection = notebookTextSelection
+                if UIAccessibility.isVoiceOverRunning {
+                    UIAccessibility.post(notification: .layoutChanged, argument: self)
+                }
             }
             .store(in: &subscriptions)
+    }
+
+    @objc private func handleAccessibilityAction(_ action: UIAccessibilityCustomAction) -> Bool {
+        guard let actionTitle = action.name as String?,
+              let actionDefinition = actionDefinitions.first(where: { $0.title == actionTitle }),
+              let courseID = courseID,
+              let pageURL = pageURL,
+              let notebookTextSelection = currentNotebookTextSelection else {
+            return false
+        }
+
+        let label = actionDefinition.label
+        let notebookHighlight = notebookTextSelection.notebookHighlight(label: label)
+        shouldScrollToHighlightedNote = false
+        courseNoteInteractor.add(
+            courseID: courseID,
+            pageURL: pageURL,
+            content: "",
+            labels: [label],
+            notebookHighlight: notebookHighlight
+        ).sink(
+            receiveCompletion: { _ in },
+            receiveValue: { _ in }
+        ).store(in: &subscriptions)
+
+        let announcement = String(localized: "Marked as \(label.label.lowercased())", bundle: .horizon)
+        UIAccessibility.post(notification: .announcement, argument: announcement)
+
+        return true
     }
 
     private func onMenuAction(_ action: UIAction) {
@@ -234,7 +293,7 @@ final class HorizonWebView: CoreWebView {
                 from: viewController)
             return
         }
-
+        shouldScrollToHighlightedNote = false
         courseNoteInteractor.add(
             courseID: courseID,
             pageURL: pageURL,
@@ -283,7 +342,9 @@ extension CourseNotebookNote {
             borderStyle: label.borderStyle,
             range: highlightData.range.rangeSelector,
             selectedText: highlightData.selectedText,
-            textPosition: highlightData.textPosition.textPositionSelector
+            textPosition: highlightData.textPosition.textPositionSelector,
+            labelType: label.label.lowercased(),
+            accessibilityPrefix: String(localized: "This text is", bundle: .horizon)
         )
     }
 
