@@ -27,17 +27,17 @@ final class HAnnouncementDetailsViewModel {
 
     // MARK: - Dependencies
 
-    let notificationModel: NotificationModel
+    let announcementModel: AnnouncementModel
 
     // MARK: - Initialization
 
     init(
-        notificationModel: NotificationModel,
-        interactor: NotificationInteractor
+        announcementModel: AnnouncementModel,
+        interactor: AnnouncementInteractor
     ) {
-        self.notificationModel = notificationModel
+        self.announcementModel = announcementModel
         interactor
-            .markNotificationAsRead(notification: notificationModel)
+            .markAnnouncementAsRead(announcement: announcementModel)
             .sink()
             .store(in: &subscriptions)
     }

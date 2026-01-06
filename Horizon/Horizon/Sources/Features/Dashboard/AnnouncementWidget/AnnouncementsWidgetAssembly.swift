@@ -29,19 +29,19 @@ enum AnnouncementsWidgetAssembly {
         return AnnouncementsListWidgetView(viewModel: viewModel)
     }
 
-    private static func makeInteractor() -> NotificationInteractor {
+    private static func makeInteractor() -> AnnouncementInteractor {
         let formatter = NotificationFormatterLive()
-        let interactor = NotificationInteractorLive(
+        let interactor = AnnouncementInteractorLive(
             userID: AppEnvironment.shared.currentSession?.userID ?? "",
-            includePast: false,
-            formatter: formatter
+            isIncludePast: false,
+            learnCoursesInteractor: GetLearnCoursesInteractorLive()
         )
         return interactor
     }
 
 #if DEBUG
     static func makePreview() -> AnnouncementsListWidgetView {
-        let interactor = NotificationInteractorPreview()
+        let interactor = AnnouncementInteractorPreview()
         let viewModel = AnnouncementsListWidgetViewModel(
             interactor: interactor,
             router: AppEnvironment.shared.router

@@ -30,14 +30,14 @@ struct HAnnouncementDetailsView: View {
     }
 
     var body: some View {
-        messages
+        message
             .background(HorizonUI.colors.surface.pagePrimary)
             .safeAreaInset(edge: .top) { titleBar }
             .navigationBarHidden(true)
     }
 
-    private var messages: some View {
-        announcementView(viewModel.notificationModel.announcementContent ?? "")
+    private var message: some View {
+        announcementView(viewModel.announcementModel.content)
             .padding([.leading, .trailing, .bottom], HorizonUI.spaces.space24)
             .padding(.top, HorizonUI.spaces.space16)
             .frame(maxHeight: .infinity, alignment: .top)
@@ -60,7 +60,7 @@ struct HAnnouncementDetailsView: View {
                     .renderingMode(.template)
                     .foregroundStyle(HorizonUI.colors.surface.institution)
                     .accessibilityHidden(true)
-                Text(viewModel.notificationModel.title)
+                Text(viewModel.announcementModel.title)
                     .lineLimit(2)
                     .huiTypography(.labelLargeBold)
                     .foregroundColor(HorizonUI.colors.surface.institution)

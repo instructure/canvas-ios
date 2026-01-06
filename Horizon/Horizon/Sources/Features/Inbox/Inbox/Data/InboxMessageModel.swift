@@ -20,7 +20,7 @@ import Core
 import Foundation
 
 struct InboxMessageModel: Equatable, Identifiable {
-    let announcement: NotificationModel?
+    let announcement: AnnouncementModel?
     let inboxMessageListItem: InboxMessageListItem?
 
     var date: Date? {

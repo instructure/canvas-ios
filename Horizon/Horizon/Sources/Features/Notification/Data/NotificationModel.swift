@@ -19,7 +19,35 @@
 import Core
 import Foundation
 
-struct NotificationModel: Identifiable, Equatable {
+protocol RelativeDateRepresentable {
+    var date: Date? { get }
+}
+
+extension RelativeDateRepresentable {
+
+    var dateFormatted: String {
+        guard let date else { return "" }
+
+        let calendar = Calendar.current
+        let now = Date()
+
+        switch true {
+        case calendar.isDateInToday(date):
+            return String(localized: "Today", bundle: .horizon)
+
+        case calendar.isDateInYesterday(date):
+            return String(localized: "Yesterday", bundle: .horizon)
+
+        case calendar.isDate(date, equalTo: now, toGranularity: .weekOfYear):
+            return Date.weekdayFormatter.string(from: date)
+
+        default:
+            return date.formatted(format: "MMM d, yyyy")
+        }
+    }
+}
+
+struct NotificationModel: Identifiable, Equatable, RelativeDateRepresentable {
     let id: String
     let title: String
     let date: Date?
@@ -65,24 +93,6 @@ struct NotificationModel: Identifiable, Equatable {
         self.assignmentURL = assignmentURL
         self.htmlURL = htmlURL
         self.isGlobalNotification = isGlobalNotification
-    }
-
-    var dateFormatted: String {
-        guard let date else { return "" }
-
-        let calendar = Calendar.current
-        let now = Date()
-
-        switch true {
-        case calendar.isDateInToday(date):
-            return String(localized: "Today", bundle: .horizon)
-        case calendar.isDateInYesterday(date):
-            return String(localized: "Yesterday", bundle: .horizon)
-        case calendar.isDate(date, equalTo: now, toGranularity: .weekOfYear):
-            return Date.weekdayFormatter.string(from: date)
-        default:
-            return date.formatted(format: "MMM d, yyyy")
-        }
     }
 
     static let mock: Self = .init(

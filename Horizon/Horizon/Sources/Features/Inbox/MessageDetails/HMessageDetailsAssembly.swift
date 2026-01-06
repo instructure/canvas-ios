@@ -53,13 +53,14 @@ struct HorizonMessageDetailsAssembly {
         return CoreHostingController(view)
     }
 
-     static func makeAnnouncementView(notificationModel: NotificationModel) -> UIViewController {
-         let interactor = NotificationInteractorLive(
-             userID: AppEnvironment.shared.currentSession?.userID ?? "",
-             formatter: NotificationFormatterLive()
+     static func makeAnnouncementView(announcementModel: AnnouncementModel) -> UIViewController {
+         let interactor = AnnouncementInteractorLive(
+            userID: AppEnvironment.shared.currentSession?.userID ?? "",
+            isIncludePast: true,
+            learnCoursesInteractor: GetLearnCoursesInteractorLive()
          )
          let viewModel = HAnnouncementDetailsViewModel(
-            notificationModel: notificationModel,
+            announcementModel: announcementModel,
             interactor: interactor
          )
         return CoreHostingController(HAnnouncementDetailsView(viewModel: viewModel))

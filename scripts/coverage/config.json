@@ -117,7 +117,6 @@
     "Horizon\/Horizon\/Sources\/Features\/Assist\/AssistFlashCard\/Data\/AssistFlashCardModel.swift",
     "Horizon\/Horizon\/Sources\/Features\/Inbox\/MessageDetails\/Message\/HMessageDetailsViewModel.swift",
     "Horizon\/Horizon\/Sources\/Features\/Inbox\/Inbox\/Data\/HMessageViewModel.swift",
-    "Horizon\/Horizon\/Sources\/Features\/Inbox\/Inbox\/Domain\/GetAnnouncementsUseCase.swift",
     "Horizon\/Horizon\/Sources\/Features\/Inbox\/Inbox\/Data\/InboxFilterOption.swift",
     "Horizon\/Horizon\/Sources\/Features\/Inbox\/Inbox\/Data\/InboxMessageModel.swift",
     "Horizon\/Horizon\/Sources\/Features\/Inbox\/Attachment\/AttachmentFileModel.swift",

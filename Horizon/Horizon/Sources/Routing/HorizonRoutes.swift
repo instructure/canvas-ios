@@ -241,8 +241,8 @@ public enum HorizonRoutes {
                 )
             },
             RouteHandler("/announcements") { _, _, userInfo in
-                guard let announcement = userInfo?["announcement"] as? NotificationModel else { return nil}
-                return HorizonMessageDetailsAssembly.makeAnnouncementView(notificationModel: announcement)
+                guard let announcement = userInfo?["announcement"] as? AnnouncementModel else { return nil}
+                return HorizonMessageDetailsAssembly.makeAnnouncementView(announcementModel: announcement)
             }
         ]
     }

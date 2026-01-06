@@ -51,7 +51,7 @@ final class HInboxViewModel {
 
     // MARK: - Dependencies
 
-    private let notificationInteractor: NotificationInteractor
+    private let announcementInteractor: AnnouncementInteractor
     private let inboxMessageInteractor: InboxMessageInteractor
     private let router: Router
 
@@ -61,11 +61,11 @@ final class HInboxViewModel {
         userID: String,
         router: Router,
         inboxMessageInteractor: InboxMessageInteractor,
-        notificationInteractor: NotificationInteractor
+        announcementInteractor: AnnouncementInteractor
     ) {
         self.router = router
         self.inboxMessageInteractor = inboxMessageInteractor
-        self.notificationInteractor = notificationInteractor
+        self.announcementInteractor = announcementInteractor
         self.peopleSelectionViewModel = .init(userID: userID)
 
         _ = inboxMessageInteractor.setContext(.user(userID))
@@ -122,7 +122,7 @@ final class HInboxViewModel {
     }
 
     func viewMessage(
-        announcement: NotificationModel?,
+        announcement: AnnouncementModel?,
         inboxMessageListItem: InboxMessageListItem?,
         viewController: WeakViewController
     ) {
@@ -143,7 +143,7 @@ final class HInboxViewModel {
 
     // MARK: - Private Functions
 
-    private func addAnnouncements(to messageRows: [InboxMessageModel], announcements: [NotificationModel]) -> [InboxMessageModel] {
+    private func addAnnouncements(to messageRows: [InboxMessageModel], announcements: [AnnouncementModel]) -> [InboxMessageModel] {
         let filter = filterSubject.value
         let isPeopleFilterEmpty = peopleSelectionViewModel.searchByPersonSelections.isEmpty
 
@@ -164,13 +164,9 @@ final class HInboxViewModel {
             .sorted { ($0.date ?? .distantPast) > ($1.date ?? .distantPast) }
     }
 
-    private func fetchAnnouncements(ignoreCache: Bool = false) -> AnyPublisher<[NotificationModel], Never> {
-        notificationInteractor
-            .getNotifications(ignoreCache: ignoreCache)
-            .replaceError(with: [])
-            .flatMap { Publishers.Sequence(sequence: $0) }
-            .filter { $0.type == .announcement}
-            .collect()
+    private func fetchAnnouncements(ignoreCache: Bool = false) -> AnyPublisher<[AnnouncementModel], Never> {
+        announcementInteractor
+            .getAllAnnouncements(ignoreCache: ignoreCache)
             .eraseToAnyPublisher()
     }
 
@@ -181,12 +177,7 @@ final class HInboxViewModel {
             filterSubject,
             peopleSelectionViewModel.personSelectionPublisher
         )
-        .filter { [weak self] _, announcements, _, _ in
-            guard let self else { return false }
-            let state = self.inboxMessageInteractor.state.value
-            return (state == .data || state == .empty) && announcements.isNotEmpty
-        }
-        .map { [weak self] _, announcements, filter, _ -> ([InboxMessageModel], [NotificationModel])in
+        .map { [weak self] _, announcements, filter, _ -> ([InboxMessageModel], [AnnouncementModel])in
             guard let self, filter.inboxMessageInteractorScope != nil else { return ([], announcements) }
             let messages = self.inboxMessageInteractor.messages.value
                        .filter(self.filterByPerson)
@@ -217,7 +208,7 @@ final class HInboxViewModel {
     }
 }
 
-private extension NotificationModel {
+private extension AnnouncementModel {
     var messageModel: InboxMessageModel {
         .init(
             announcement: self,

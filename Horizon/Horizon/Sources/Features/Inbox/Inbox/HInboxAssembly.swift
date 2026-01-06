@@ -28,10 +28,10 @@ enum HInboxAssembly {
             messageListStateUpdater: .init()
         )
 
-        let announcementsInteractor = NotificationInteractorLive(
+        let announcementsInteractor = AnnouncementInteractorLive(
             userID: userID,
-            includePast: true,
-            formatter: NotificationFormatterLive()
+            isIncludePast: true,
+            learnCoursesInteractor: GetLearnCoursesInteractorLive()
         )
         return CoreHostingController(
             HInboxView(
@@ -39,7 +39,7 @@ enum HInboxAssembly {
                     userID: userID,
                     router: AppEnvironment.shared.router,
                     inboxMessageInteractor: inboxMessageInteractor,
-                    notificationInteractor: announcementsInteractor
+                    announcementInteractor: announcementsInteractor
                 )
             )
         )
@@ -53,7 +53,7 @@ enum HInboxAssembly {
             userID: "userID",
             router: env.router,
             inboxMessageInteractor: InboxMessageInteractorPreview(environment: env, messages: messageInteractor),
-            notificationInteractor: NotificationInteractorPreview()
+            announcementInteractor: AnnouncementInteractorPreview()
         )
         return HInboxView(viewModel: viewModel)
     }
