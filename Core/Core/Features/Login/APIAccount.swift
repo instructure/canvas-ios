@@ -47,10 +47,10 @@ public struct APIAccountResult: Codable, Equatable {
 extension Array where Element == APIAccountResult {
 
     func sortedPromotingQueryPrefixed(_ query: String) -> Self {
+        let qValue = query.lowercased().trimmed()
 
         return enumerated()
             .sorted { result1, result2 in
-                let qValue = query.lowercased().trimmed()
                 let name1 = result1.element.name.lowercased().trimmed()
                 let name2 = result2.element.name.lowercased().trimmed()
 
