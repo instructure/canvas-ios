@@ -39,7 +39,7 @@ class HelpTests: E2ETestCase {
         searchTheCanvasGuidesButton.hit()
         HelpHelper.openInSafariButton.hit()
         var browserURL = SafariAppHelper.browserURL
-        XCTAssertContains(browserURL, "https://community.canvaslms.com/t5/Canvas/ct-p/canvas")
+        XCTAssertContains(browserURL, "https://community.instructure.com/en/categories/canvas")
 
         // MARK: Check "Conference Guides for Remote Classrooms" button
         HelpHelper.returnToHelpPage(teacher: true)
@@ -49,7 +49,7 @@ class HelpTests: E2ETestCase {
         conferenceGuidesButton.hit()
         HelpHelper.openInSafariButton.hit()
         browserURL = SafariAppHelper.browserURL
-        XCTAssertContains(browserURL, "Web-Conferencing-Resources")
+        XCTAssertContains(browserURL, "conferences-resources")
 
         // MARK: Check "Report a Problem" button
         HelpHelper.returnToHelpPage(teacher: true)
@@ -68,7 +68,7 @@ class HelpTests: E2ETestCase {
         askTheCommunityButton.hit()
         HelpHelper.openInSafariButton.hit()
         browserURL = SafariAppHelper.browserURL
-        XCTAssertContains(browserURL, "Canvas-Question-Forum")
+        XCTAssertContains(browserURL, "https://community.instructure.com/en")
 
         // MARK: Check "Submit a Feature Idea" button
         HelpHelper.returnToHelpPage(teacher: true)
@@ -78,7 +78,7 @@ class HelpTests: E2ETestCase {
         submitAFeatureButton.hit()
         HelpHelper.openInSafariButton.hit()
         browserURL = SafariAppHelper.browserURL
-        XCTAssertContains(browserURL, "canvas-ideas-themes")
+        XCTAssertContains(browserURL, "https://community.instructure.com/en/instructure-roadmap")
 
         // MARK: Check "Training Services Portal" button
         HelpHelper.returnToHelpPage(teacher: true)

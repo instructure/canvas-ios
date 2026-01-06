@@ -63,6 +63,14 @@ class StringExtensionsTests: XCTestCase {
         XCTAssertTrue("test123".containsNumber)
     }
 
+    func testContainsLetter() {
+        XCTAssertFalse("".containsLetter)
+        XCTAssertFalse("123-+.</@#$*".containsLetter)
+        XCTAssertTrue("A".containsLetter)
+        XCTAssertTrue("C+".containsLetter)
+        XCTAssertTrue("B-".containsLetter)
+    }
+
     func testContainsOnlyNumbers() {
         XCTAssertFalse("test".containsOnlyNumbers)
         XCTAssertFalse("test123".containsOnlyNumbers)

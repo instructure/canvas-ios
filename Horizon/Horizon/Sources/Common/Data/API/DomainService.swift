@@ -42,14 +42,14 @@ final class DomainService: DomainServiceProtocol {
         if( option == .journey) {
             return "journey-server-edge.journey.nonprod.inseng.io"
         }
-        return "\(option)-api-dev.domain-svcs.nonprod.inseng.io"
+        return "\(option)-api-dev.us-east-1.core.inseng.io"
     }
 
     private var productionURL: String {
         if option == .journey {
             return "journey-server-prod.\(region).temp.prod.inseng.io"
         }
-        return "\(option)-api-production.\(region).temp.prod.inseng.io"
+        return "\(option)-api.\(region).core.inseng.io"
     }
 
     // MARK: - Init
@@ -91,17 +91,11 @@ final class DomainService: DomainServiceProtocol {
 }
 
 enum DomainServiceOption: String {
-    case cedar
     case journey
-    case pine
     case redwood
     var service: String {
         rawValue
     }
 
-    var workflows: [DomainServiceOption] {
-        self == .journey ?
-        [self, .pine] :
-        [self]
-    }
+    var workflows: [DomainServiceOption] { [self] }
 }

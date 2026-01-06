@@ -16,13 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Combine
+@testable import Student
 
-public struct DSPlannerNote: Codable {
-    public let id: String
-    public let title: String
-    public let details: String?
-    public let todo_date: Date
-    public let user_id: String?
-    public let course_id: String?
+final class LearnerDashboardInteractorMock: LearnerDashboardInteractor {
+    var refreshIgnoreCacheValue: Bool?
+    var refreshPublisher = PassthroughSubject<Void, Error>()
+
+    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
+        refreshIgnoreCacheValue = ignoreCache
+        return refreshPublisher.eraseToAnyPublisher()
+    }
 }

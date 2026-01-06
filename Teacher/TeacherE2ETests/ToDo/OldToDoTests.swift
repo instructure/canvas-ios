@@ -20,7 +20,7 @@ import Foundation
 import TestsFoundation
 import XCTest
 
-class ToDoTests: E2ETestCase {
+class OldToDoTests: E2ETestCase {
     func testToDo() {
         // MARK: Seed the usual stuff with a submitted assignment
         let student = seeder.createUser()
@@ -36,14 +36,14 @@ class ToDoTests: E2ETestCase {
         let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
         XCTAssertVisible(courseCard)
 
-        let toDoTab = ToDoHelper.TabBar.todoTab.waitUntil(.visible)
+        let toDoTab = OldToDoHelper.TabBar.todoTab.waitUntil(.visible)
         XCTAssertVisible(toDoTab)
         XCTAssertEqual(toDoTab.stringValue, "1 item")
 
         // MARK: Tap ToDo button and check the 3 items
         toDoTab.hit()
-        let assignmentItem = ToDoHelper.cell(id: assignment.id).waitUntil(.visible)
-        let assignmentItemTitle = ToDoHelper.cellItemTitle(cell: assignmentItem).waitUntil(.visible)
+        let assignmentItem = OldToDoHelper.cell(id: assignment.id).waitUntil(.visible)
+        let assignmentItemTitle = OldToDoHelper.cellItemTitle(cell: assignmentItem).waitUntil(.visible)
         XCTAssertVisible(assignmentItem)
         XCTAssertVisible(assignmentItemTitle)
         XCTAssertEqual(assignmentItemTitle.label, assignment.name)

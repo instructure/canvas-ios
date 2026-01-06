@@ -30,13 +30,13 @@ class DomainServiceTests: HorizonTestCase {
         let baseURL = "https://example.com"
         let mockToken = "ZmFrZS1qd3QtdG9rZW4="
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .cedar),
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
             value: DomainJWTService.JWTTokenRequest.Result(token: mockToken)
         )
 
         // When
         let domainService = DomainService(
-            .cedar,
+            .journey,
             baseURL: baseURL,
             region: "us-west-1",
             domainJWTService: DomainJWTService(horizonApi: api)
@@ -46,7 +46,7 @@ class DomainServiceTests: HorizonTestCase {
         // Then
         XCTAssertEqual(
             domainServiceApi?.baseURL.absoluteString,
-            "https://cedar-api-production.us-west-1.temp.prod.inseng.io",
+            "https://journey-server-prod.us-west-1.temp.prod.inseng.io",
             "The region should be included in the domain service URL"
         )
     }
@@ -56,13 +56,13 @@ class DomainServiceTests: HorizonTestCase {
         let baseURL = "https://example.com"
         let mockToken = "ZmFrZS1qd3QtdG9rZW4="
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .cedar),
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
             value: DomainJWTService.JWTTokenRequest.Result(token: mockToken)
         )
 
         // When
         let domainService = DomainService(
-            .cedar,
+            .journey,
             baseURL: baseURL,
             region: "us-east-1",
             domainJWTService: DomainJWTService(horizonApi: api)
@@ -72,7 +72,7 @@ class DomainServiceTests: HorizonTestCase {
         // Then
         XCTAssertEqual(
             domainServiceApi?.baseURL.absoluteString,
-            "https://cedar-api-production.us-east-1.temp.prod.inseng.io",
+            "https://journey-server-prod.us-east-1.temp.prod.inseng.io",
             "The region should be included in the domain service URL"
         )
     }
@@ -82,13 +82,13 @@ class DomainServiceTests: HorizonTestCase {
         let baseURL = "https://horizon.cd.instructure.com"
         let mockToken = "ZmFrZS1qd3QtdG9rZW4="
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .cedar),
+            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
             value: DomainJWTService.JWTTokenRequest.Result(token: mockToken)
         )
 
         // When
         let domainService = DomainService(
-            .cedar,
+            .journey,
             baseURL: baseURL,
             region: "us-east-1",
             domainJWTService: DomainJWTService(horizonApi: api)
@@ -98,7 +98,7 @@ class DomainServiceTests: HorizonTestCase {
         // Then
         XCTAssertEqual(
             domainServiceApi?.baseURL.absoluteString,
-            "https://cedar-api-dev.domain-svcs.nonprod.inseng.io",
+            "https://journey-server-edge.journey.nonprod.inseng.io",
             "Non-prod environments should use dev URL"
         )
     }

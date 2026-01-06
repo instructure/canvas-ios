@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,11 +16,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-extension DataSeeder {
+import Foundation
+import WebKit
 
-    @discardableResult
-    public func createPlannerNote(requestBody: CreateDSPlannerNotesRequest.Body) -> DSPlannerNote {
-        let request = CreateDSPlannerNotesRequest(body: requestBody)
-        return makeRequest(request)
+protocol FrameInfoRepresentable {
+    var isMainFrame: Bool { get }
+}
+
+protocol NavigationActionRepresentable {
+    var request: URLRequest { get }
+    var navigationType: WKNavigationType { get }
+    var sourceInfoFrame: FrameInfoRepresentable { get }
+    var targetInfoFrame: FrameInfoRepresentable? { get }
+}
+
+extension WKFrameInfo: FrameInfoRepresentable {}
+
+extension WKNavigationAction: NavigationActionRepresentable {
+    var sourceInfoFrame: FrameInfoRepresentable {
+        self.sourceFrame
+    }
+
+    var targetInfoFrame: FrameInfoRepresentable? {
+        self.targetFrame
     }
 }

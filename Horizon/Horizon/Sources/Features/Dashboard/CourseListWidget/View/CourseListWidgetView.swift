@@ -115,6 +115,7 @@ struct CourseListWidgetView: View {
                             .accessibilityFocused($focusedCourseID, equals: course.id)
                             .frame(width: size - 48)
                             .scaleEffect(bounceScale)
+                            .disabled(viewModel.state == .loading)
                             .opacity(viewModel.state == .loading ? 0.6 : 1.0)
                             .scrollTransition(.interactive) { content, phase in
                                 content
