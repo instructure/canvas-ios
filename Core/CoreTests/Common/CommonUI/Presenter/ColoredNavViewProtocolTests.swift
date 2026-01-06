@@ -33,28 +33,33 @@ class ColoredNavViewProtocolTests: XCTestCase, ColoredNavViewProtocol {
         titleSubtitleView = TitleSubtitleView.create()
     }
 
-    func testSetupTitleViewInNavbar() throws {
-        if #available(iOS 26, *) {
-            throw XCTSkip("ColoredNavViewProtocol is not used above iOS 26")
-        }
-
+    func testSetupTitleViewInNavbar() {
         setupTitleViewInNavbar(title: self.name)
-        XCTAssertEqual(titleSubtitleView.title, self.name)
-        XCTAssertEqual(navigationItem.titleView, titleSubtitleView)
+
+        if #available(iOS 26, *) {
+            XCTAssertEqual(titleSubtitleView.title, "")
+            XCTAssertNil(navigationItem.titleView)
+        } else {
+            XCTAssertEqual(titleSubtitleView.title, self.name)
+            XCTAssertEqual(navigationItem.titleView, titleSubtitleView)
+        }
     }
 
-    func testUpdateNavBar() throws {
-        if #available(iOS 26, *) {
-            throw XCTSkip("ColoredNavViewProtocol is not used above iOS 26")
-        }
+    func testUpdateNavBar() {
 
         let expectedColor: UIColor = .red.darkenToEnsureContrast(against: .textLightest.variantForLightMode)
         updateNavBar(subtitle: subtitle, color: expectedColor)
 
-        XCTAssertEqual(color, expectedColor)
-        XCTAssertEqual(titleSubtitleView.subtitle, subtitle)
-        XCTAssertEqual(navigationController?.navigationBar.barTintColor?.hexString, expectedColor.hexString)
-        XCTAssertEqual(navigationController?.navigationBar.tintColor.hexString, UIColor.textLightest.variantForLightMode.hexString)
-        XCTAssertEqual(navigationController?.navigationBar.barStyle, .black)
+        if #available(iOS 26, *) {
+            XCTAssertEqual(color, nil)
+            XCTAssertEqual(titleSubtitleView.subtitle, "")
+            XCTAssertEqual(navigationController?.navigationBar.barTintColor?.hexString, nil)
+        } else {
+            XCTAssertEqual(color, expectedColor)
+            XCTAssertEqual(titleSubtitleView.subtitle, subtitle)
+            XCTAssertEqual(navigationController?.navigationBar.barTintColor?.hexString, expectedColor.hexString)
+            XCTAssertEqual(navigationController?.navigationBar.tintColor.hexString, UIColor.textLightest.variantForLightMode.hexString)
+            XCTAssertEqual(navigationController?.navigationBar.barStyle, .black)
+        }
     }
 }
