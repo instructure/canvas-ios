@@ -45,11 +45,11 @@ function findLtiEmbedLink(elm, title) {
     let frameSource = elm.getAttribute("src");
     if(!frameSource) { return null }
 
-    let frameURL = new URL(frameSource);
-    let playerSource = frameURL.searchParams.get("url");
-    if(!playerSource) { return null }
-
     try {
+
+        let frameURL = new URL(frameSource);
+        let playerSource = frameURL.searchParams.get("url");
+        if(!playerSource) { return null }
 
         let playerURL = new URL(playerSource);
 
