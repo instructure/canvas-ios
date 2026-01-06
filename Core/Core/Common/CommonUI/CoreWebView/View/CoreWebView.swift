@@ -232,7 +232,7 @@ open class CoreWebView: WKWebView {
             )
         }
 
-        handle("fullWindowLaunch") { [weak self] message in
+        handle(CoreWebViewStudioFeaturesInteractor.fullWindowLaunchEventName) { [weak self] message in
             self?.studioFeaturesInteractor?.handleFullWindowLaunchMessage(message)
         }
 

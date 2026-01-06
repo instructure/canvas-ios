@@ -20,7 +20,8 @@ import Combine
 import WebKit
 
 public class CoreWebViewStudioFeaturesInteractor {
-
+    static let fullWindowLaunchEventName: String = "fullWindowLaunch"
+    
     private static let scanFramesScript = """
         function scanVideoFramesForTitles() {
             var result = []
