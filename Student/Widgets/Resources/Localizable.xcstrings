@@ -10522,7 +10522,260 @@
       }
     },
     "Looks like you are free, you have no upcoming tasks.  Do you want to add some to-dos?" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يبدو أنك متفرغ، وليس لديك أي مهام قادمة.  هل تريد أن تضيف بعض المهام؟"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sembla que esteu lliure i no teniu cap tasca propera.  Voleu afegir alguna tasca pendent?"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rydych chi’n rhydd, does gennych chi ddim tasgau ar y gweill.  Ydych chi am ychwanegu pethau i’w gwneud?"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det ser ud til, at du er ledig, du har ingen kommende opgaver.  Vil du tilføje noget til opgavelisten?"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det ser ud til, at du er ledig, du har ingen kommende opgaver.  Vil du tilføje noget til opgavelisten?"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sieht so aus, als ob Sie frei haben, denn Sie haben keine Aufgaben vor sich.  Möchten Sie ein paar Aufgaben hinzufügen?"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Looks like you are free, you have no upcoming tasks.  Do you want to add some to-dos?"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Looks like you are free, you have no upcoming tasks.  Do you want to add some to-dos?"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Looks like you are free, you have no upcoming tasks.  Do you want to add some to-dos?"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Looks like you are free, you have no upcoming tasks.  Do you want to add some to-dos?"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Looks like you are free, you have no upcoming tasks.  Do you want to add some to-dos?"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Looks like you are free, you have no upcoming tasks.  Do you want to add some to-dos?"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parece que está libre, no tiene tareas pendientes.  ¿Quiere agregar algunas tareas por hacer?"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parece que estás libre; no tienes tareas próximas.  ¿Quieres añadir algunas tareas pendientes?"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Näyttää siltä, että olet vapaa, sinulla ei ole tulevia tehtäviä.  Haluatko lisätä tämän osan?"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il semblerait que vous êtes libre, il n’y a aucune tâche à venir.  Voulez-vous ajouter des tâches à faire ?"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il semble que vous soyez libre, vous n’avez pas de tâches à venir.  Voulez-vous ajouter des tâches à accomplir?"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Is cosúil go bhfuil tú saor, níl aon tascanna le teacht agat.  An bhfuil tú ag iarraidh roinnt 'Le Déanamh' a chur leis?"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऐसा लगता है कि आप खाली हैं, आपके पास कोई आगामी कार्य नहीं है।  क्या आप करने के लिए कुछ कार्य जोड़ना चाहते हैं?"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sanble ou lib, ou pa gen okenn travay kap vini  Èske w vle ajoute kèk bagay pou w fè?"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sepertinya Anda bebas, Anda tidak ada tugas dalam waktu dekat ini.  Mau menambah beberapa to-do?"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Þú virðist vera laus, þú ert ekki með nein verkefni framundan.  Viltu bæta við nokkrum verkefnalistum?"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sembra che tu sia libero, senza attività imminenti.  Aggiungere qualche attività da fare?"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "予定は空いているようです。今後のタスクはありません。するべきことを追加しますか？"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Te āhua nei kua wātea koe, kāore he mahi kei te haere mai.  Kei te hiahia koe ki te taapiri i etahi mahi?"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nampaknya anda lapang, anda tidak ada tugasan dalam waktu terdekat.  Adakah anda mahu menambah beberapa item untuk dilakukan?"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ser ut som du er ledig, du har ingen kommende oppgaver.  Vil du legge til noen gjøremål?"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ser ut som du er ledig, du har ingen kommende oppgaver.  Vil du legge til noen gjøremål?"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Het lijkt erop dat je vrij hebt, je hebt geen aankomende taken.  Wil je een paar opdrachten toevoegen?"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wygląda na to, że nie masz więcej zadań.  Czy chcesz dodać listy zadań?"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parece que está livre, não tem tarefas pendentes.  Quer adicionar algumas tarefas?"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Parece que você está livre, não tem tarefas agendadas.  Deseja adicionar algumas tarefas?"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Похоже, вы свободны, у вас нет предстоящих заданий.  Хотите добавить несколько задач?"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kaže, da ste prosti in nimate nobenih prihajajočih nalog.  Ali želite dodati nekaj seznamov opravil?"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det ser ut som om du är ledig. Du har inga kommande uppgifter.  Vill du lägga till några att göra-uppgifter?"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det ser ut som om du är ledig. Du har inga kommande uppgifter.  Vill du lägga till några att göra-uppgifter?"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ดูเหมือนคุณจะว่าง ไม่มีงานในอนาคตค้างอยู่  ต้องการเพิ่มรายการดำเนินการหรือไม่"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Có vẻ như bạn đang rảnh, bạn không có nhiệm vụ nào sắp tới.  Bạn có muốn thêm một số việc cần làm không?"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您很空闲，没有即将要进行的任务。是否要添加一些任务？"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您很空闲，没有即将要进行的任务。是否要添加一些任务？"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "看起來您目前空閒，沒有即將到來的任務。您想添加一些待辦事項嗎？"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "看起來您目前空閒，沒有即將到來的任務。您想添加一些待辦事項嗎？"
+          }
+        }
+      }
     },
     "Looks like you're free for the next 4 weeks.  Do you want to add some to-dos?" : {
       "extractionState" : "stale",

@@ -60,8 +60,8 @@ public class API {
                 }
 
                 // If the request is rejected due to the rate limit being exhausted we retry and hope that the quota is restored in the meantime
-                if response?.exceededLimit(responseData: data) == true {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) { [weak self] in
+                if let retrialTime = response?.retrialTimeOnRateLimitExceeded(responseData: data) {
+                    DispatchQueue.main.asyncAfter(deadline: retrialTime) { [weak self] in
                         self?.makeRequest(requestable, callback: callback)
                     }
                     return

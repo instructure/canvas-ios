@@ -82,6 +82,7 @@ class APITests: XCTestCase {
     override func setUp() {
         super.setUp()
         API.resetMocks(useMocks: false)
+        LoginSession.clearAll()
         AppEnvironment.shared.userDidLogin(session: .make())
     }
 
@@ -355,18 +356,26 @@ class APITests: XCTestCase {
         XCTAssertNotNil(error)
     }
 
-    func testRetryOnRateLimitedRequest() throws {
+    func testRetryOnRateLimitedRequest_403() throws {
+        testRetry(forErrorCode: 403, message: "403 Forbidden (Rate Limit Exceeded)\n")
+    }
+
+    func testRetryOnRateLimitedRequest_429() throws {
+        testRetry(forErrorCode: 429, message: "429 Too Many Requests (Rate Limit Exceeded)")
+    }
+
+    private func testRetry(forErrorCode code: Int, message: String) {
         API.resetMocks()
 
         let request = GetNoContent()
-        var invocationCount = 0
 
+        var invocationCount = 0
         api.mock(withData: request) { _ in
             switch invocationCount {
             case 0:
                 invocationCount += 1
-                let rateLimitResponse = HTTPURLResponse(url: .make(), statusCode: 403, httpVersion: nil, headerFields: nil)!
-                let rateLimitData = "403 Forbidden (Rate Limit Exceeded)\n".data(using: .utf8)!
+                let rateLimitResponse = HTTPURLResponse(url: .make(), statusCode: code, httpVersion: nil, headerFields: nil)!
+                let rateLimitData = message.data(using: .utf8)!
                 return (data: rateLimitData, response: rateLimitResponse, error: nil)
             case 1:
                 invocationCount += 1
@@ -377,6 +386,7 @@ class APITests: XCTestCase {
                 return (data: nil, response: nil, error: nil)
             }
         }
+
         let responseExpectation = expectation(description: "API response")
         var receivedResponse: URLResponse?
 

@@ -76,11 +76,7 @@ struct ProgramSwitcherListView: View {
         .background(isSelected ? Color.huiColors.surface.inverseSecondary : Color.clear)
         .accessibilityElement(children: .ignore)
         .accessibilityFocused(focusedProgramID, equals: program.id)
-        .accessibilityLabel(
-            String(
-                format: String(localized: "%@ double tap to see courses in this program. "),
-                program.name.defaultToEmpty
-            )
-        )
+        .accessibilityLabel(program.name.defaultToEmpty)
+        .accessibilityAddTraits(program == selectedProgram ? .isSelected : [])
     }
 }
