@@ -41,7 +41,7 @@ enum ProgramCardStatus {
         }
     }
 
-     var forgroundColor: Color {
+     var foregroundColor: Color {
         switch self {
         case .inProgress, .active: Color.huiColors.surface.institution
         default: Color.huiColors.text.title

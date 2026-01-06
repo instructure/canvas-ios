@@ -74,7 +74,7 @@ struct ProgramCardView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .multilineTextAlignment(.leading)
                 .fixedSize(horizontal: false, vertical: true)
-                .foregroundStyle(status.forgroundColor)
+                .foregroundStyle(status.foregroundColor)
                 .huiTypography(.h4)
         }
     }
