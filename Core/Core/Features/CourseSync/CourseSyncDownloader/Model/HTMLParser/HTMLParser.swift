@@ -65,7 +65,7 @@ public class HTMLParserLive: HTMLParser {
         let fileURLs = Array(Set(findRegexMatches(content, pattern: fileRegex)))
         let relativeURLs = findRegexMatches(content, pattern: relativeURLRegex, groupCount: 2).filter { url in url.host ==  nil }
         let rootURL = getRootURL(courseId: courseId, resourceId: resourceId)
-        let fileParser: AnyPublisher<[(URL, String)], Never> = fileURLs.publisher // Download the files to local Documents folder, return the (original link - local link) tuple
+        let fileParser: AnyPublisher<[(URL, String)], Error> = fileURLs.publisher // Download the files to local Documents folder, return the (original link - local link) tuple
             .flatMap(maxPublishers: .max(5)) { [envResolver] url in // Replace File Links with valid access urls
                 if url.pathComponents.contains("files") && !url.containsQueryItem(named: "verifier") {
                     let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
@@ -78,16 +78,18 @@ public class HTMLParserLive: HTMLParser {
                     .map { files in
                         (files.first?.url ?? url, url)
                     }
-                    .replaceError(with: (url, url))
+                    .ignoreForbiddenNotFoundErrors(replacingWith: (url, url))
                     .eraseToAnyPublisher()
                 } else if url.pathComponents.contains("files") {
                     if !url.pathComponents.contains("download") {
-                        return Just((url.appendingPathComponent("download"), url)).eraseToAnyPublisher()
+                        return Just((url.appendingPathComponent("download"), url))
+                            .setFailureType(to: Error.self)
+                            .eraseToAnyPublisher()
                     } else {
-                        return Just((url, url)).eraseToAnyPublisher()
+                        return Just((url, url)).setFailureType(to: Error.self).eraseToAnyPublisher()
                     }
                 } else {
-                    return Just((url, url)).eraseToAnyPublisher()
+                    return Just((url, url)).setFailureType(to: Error.self).eraseToAnyPublisher()
                 }
             }
             .flatMap { [interactor] (fileURL, originalURL) in
@@ -95,13 +97,13 @@ public class HTMLParserLive: HTMLParser {
                     .map { urlPath -> (URL, String)? in
                         return (originalURL, urlPath)
                     }
-                    .replaceError(with: nil)
             }
+            .ignoreForbiddenNotFoundErrors(replacingWith: nil)
             .compactMap { $0 }
             .collect()
             .eraseToAnyPublisher()
 
-        let imageParser: AnyPublisher<[(URL, String)], Never> =  imageURLs.publisher
+        let imageParser: AnyPublisher<[(URL, String)], Error> =  imageURLs.publisher
             .flatMap(maxPublishers: .max(5)) { [envResolver] url in // Replace File Links with valid access urls
                 if url.pathComponents.contains("files") && !url.containsQueryItem(named: "verifier") {
                     let fileId = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
@@ -114,10 +116,10 @@ public class HTMLParserLive: HTMLParser {
                     .map { files in
                         (files.first?.url ?? url, url)
                     }
-                    .replaceError(with: (url, url))
+                    .ignoreForbiddenNotFoundErrors(replacingWith: (url, url))
                     .eraseToAnyPublisher()
                 } else {
-                    return Just((url, url)).eraseToAnyPublisher()
+                    return Just((url, url)).setFailureType(to: Error.self).eraseToAnyPublisher()
                 }
             }
             .flatMap { [interactor] (fileURL, originalURL) in // Download images to local Documents folder, return the (original link - local link) tuple
@@ -130,7 +132,7 @@ public class HTMLParserLive: HTMLParser {
                 .map { url -> (URL, String)? in
                     return (originalURL, url)
                 }
-                .replaceError(with: nil)
+                .ignoreForbiddenNotFoundErrors(replacingWith: nil)
             }
             .compactMap { $0 }
             .collect() // Wait for all image download to finish and handle as an array

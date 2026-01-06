@@ -68,4 +68,22 @@ extension Publisher {
                 })
         }
     }
+
+    // MARK: Ignore Errors Helpers
+
+    public func ignoreForbiddenNotFoundErrors(replacingWith value: Output) -> AnyPublisher<Output, Failure> {
+        ignoreErrors({ $0.isForbidden || $0.isNotFound }, replacingWith: value)
+    }
+
+    public func ignoreErrors(_ check: @escaping (Error) -> Bool, replacingWith value: Output) -> AnyPublisher<Output, Failure> {
+        return self.catch { error in
+            if check(error) {
+                return Just<Output>(value)
+                    .setFailureType(to: Failure.self)
+                    .eraseToAnyPublisher()
+            }
+            return Fail(error: error).eraseToAnyPublisher()
+        }
+        .eraseToAnyPublisher()
+    }
 }
