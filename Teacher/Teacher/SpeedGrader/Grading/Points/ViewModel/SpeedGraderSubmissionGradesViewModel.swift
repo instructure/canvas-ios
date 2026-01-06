@@ -46,7 +46,6 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     @Published var isNoGradeButtonDisabled: Bool = false
     let selectGradeOption = CurrentValueSubject<OptionItem?, Never>(nil)
     let didSelectGradeOption = PassthroughSubject<OptionItem?, Never>()
-    let snackbarViewModel = SnackBarViewModel()
 
     // Grade summary
     @Published private(set) var shouldShowGradeSummary: Bool = false
@@ -64,6 +63,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     private let gradeInteractor: GradeInteractor
     private var cancellables = Set<AnyCancellable>()
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
+    private var initialGrade: String = ""
 
     // MARK: - Init
 
@@ -139,6 +139,11 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
         saveGrade(grade: item.id)
     }
 
+    var isGradeChanged: Bool {
+        guard initialGrade.isNotEmpty else { return false }
+        return gradeState.originalGradeWithoutMetric != initialGrade
+    }
+
     // MARK: - Private Methods
 
     private func observeGradeStateChanges() {
@@ -167,6 +172,12 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     private func updateGradeState(_ gradeState: GradeState ) {
         self.gradeState = gradeState
 
+        if let grade = gradeState.originalGradeWithoutMetric,
+           grade.isNotEmpty,
+           initialGrade.isEmpty {
+            initialGrade = grade
+        }
+
         gradeInputType = gradeState.gradeInputType
         sliderValue = gradeState.score
         isNoGradeButtonDisabled = (!gradeState.isGraded && !gradeState.isExcused)
@@ -189,28 +200,14 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
             .receive(on: mainScheduler)
             .sink(
                 receiveCompletion: { [weak self] completion in
-                    guard let self else { return }
-
-                    isSavingGrade.send(false)
-
-                    switch completion {
-                    case .finished:
-                        showSubmissionSuccessMessage()
-                    case .failure(let error):
-                        showError(error)
+                    self?.isSavingGrade.send(false)
+                    if case .failure(let error) = completion {
+                        self?.showError(error)
                     }
                 },
                 receiveValue: { _ in }
             )
             .store(in: &cancellables)
-    }
-
-    private func showSubmissionSuccessMessage() {
-        let submittedMessage = String(
-            localized: "Grade Submitted",
-            bundle: .teacher
-        )
-        snackbarViewModel.showSnack(submittedMessage)
     }
 
     private func showError(_ error: Error) {

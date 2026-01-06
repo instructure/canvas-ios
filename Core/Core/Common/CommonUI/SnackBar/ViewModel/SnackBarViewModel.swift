@@ -94,6 +94,12 @@ public class SnackBarViewModel: ObservableObject {
     }
 }
 
+extension SnackBarViewModel {
+    public static var topControllerModel: SnackBarViewModel? {
+        AppEnvironment.shared.topViewController?.findSnackBarViewModel()
+    }
+}
+
 extension SnackBarViewModel: Equatable {
     public static func == (lhs: SnackBarViewModel, rhs: SnackBarViewModel) -> Bool {
         lhs.visibleSnack == rhs.visibleSnack

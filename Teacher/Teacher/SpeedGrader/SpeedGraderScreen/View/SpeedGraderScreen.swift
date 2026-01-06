@@ -72,6 +72,7 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
             // the router automatically adds a done button
             controller.value.navigationItem.leadingItemGroups = []
         }
+        .snackBar(viewModel: viewModel.snackBarViewModel)
     }
 
     private func setupStatusBarStyleUpdates() {

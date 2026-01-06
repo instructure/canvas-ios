@@ -65,6 +65,7 @@ struct SpeedGraderPageView: View {
     @ObservedObject private var landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel
 
     private let handleRefresh: (() -> Void)?
+    let isGradeChanged: () -> Bool
 
     // MARK: - Init
 
@@ -78,6 +79,9 @@ struct SpeedGraderPageView: View {
         self._viewModel = StateObject(wrappedValue: viewModel)
         self.landscapeSplitLayoutViewModel = landscapeSplitLayoutViewModel
         self.handleRefresh = handleRefresh
+        self.isGradeChanged = { [weak viewModel] in
+            viewModel?.gradeViewModel.isGradeChanged ?? false
+        }
     }
 
     // MARK: - Body

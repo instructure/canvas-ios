@@ -26,7 +26,6 @@ class SpeedGraderScreenViewModel: ObservableObject {
     // MARK: - Outputs
 
     @Published private(set) var state: InstUI.ScreenState = .loading
-    @Published private(set) var currentPage: UIViewController?
     @Published private(set) var isPostPolicyButtonVisible = false
     @Published private(set) var navigationTitle = ""
     @Published private(set) var navigationSubtitle = ""
@@ -38,6 +37,7 @@ class SpeedGraderScreenViewModel: ObservableObject {
     let didTapDoneButton = PassthroughSubject<WeakViewController, Never>()
     let didTapPostPolicyButton = PassthroughSubject<WeakViewController, Never>()
     let didShowPagesViewController = PassthroughSubject<PagesViewController, Never>()
+    let snackBarViewModel = SnackBarViewModel()
 
     // MARK: - Private
 
@@ -45,6 +45,7 @@ class SpeedGraderScreenViewModel: ObservableObject {
     private let landscapeSplitLayoutViewModel = SpeedGraderPageLandscapeSplitLayoutViewModel()
     private let environment: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
+    private var currentPage: UIViewController?
 
     init(
         interactor: SpeedGraderInteractor,
@@ -114,10 +115,29 @@ class SpeedGraderScreenViewModel: ObservableObject {
         on subject: PassthroughSubject<WeakViewController, Never>
     ) {
         didTapDoneButton
-            .sink { [router = environment.router] viewController in
-                router.dismiss(viewController)
+            .sink { [weak self, router = environment.router] viewController in
+
+                var didEditGrades = false
+                if let pageView = self?.currentPage as? CoreHostingController<SpeedGraderPageView> {
+                    didEditGrades = pageView.rootView.content.isGradeChanged()
+                }
+
+                router.dismiss(viewController) {
+                    Self.didDismiss(withGradeChanges: didEditGrades)
+                }
             }
             .store(in: &subscriptions)
+    }
+
+    private static func didDismiss(withGradeChanges didEditGrades: Bool) {
+        guard didEditGrades else { return }
+
+        let submittedMessage = String(
+            localized: "Grade Submitted",
+            bundle: .teacher
+        )
+
+        SnackBarViewModel.topControllerModel?.showSnack(submittedMessage)
     }
 
     private func showPostPolicyScreen(
@@ -210,6 +230,7 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
         guard let data = interactor.data else { return }
 
         if let page = controller(for: data.focusedSubmissionIndex) {
+            currentPage = page
             pages.setCurrentPage(page)
         }
 
@@ -233,5 +254,18 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDelegate {
         pages.pauseMediaPlayback()
         // Close keyboard
         pages.view.endEditing(true)
+
+        if
+            let pageView = currentPage as? CoreHostingController<SpeedGraderPageView>,
+            pageView.rootView.content.isGradeChanged() {
+
+            let submittedMessage = String(
+                localized: "Grade Submitted",
+                bundle: .teacher
+            )
+            snackBarViewModel.showSnack(submittedMessage)
+        }
+
+        currentPage = page
     }
 }
