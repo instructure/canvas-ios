@@ -21,7 +21,7 @@ import WebKit
 
 public class CoreWebViewStudioFeaturesInteractor {
     static let fullWindowLaunchEventName: String = "fullWindowLaunch"
-    
+
     private static let scanFramesScript = """
         function scanVideoFramesForTitles() {
             var result = []
@@ -165,7 +165,7 @@ public class CoreWebViewStudioFeaturesInteractor {
 
     // MARK: URL Resolving
 
-    private func urlForStudioImmersiveView(ofMediaPath mediaPath: String) -> URL? {
+    func urlForStudioImmersiveView(ofMediaPath mediaPath: String) -> URL? {
         guard
             let context,
             var urlComps = URLComponents(string: env.api.baseURL.absoluteString)
@@ -203,7 +203,7 @@ public class CoreWebViewStudioFeaturesInteractor {
         return urlComps.url
     }
 
-    private func urlForStudioImmersiveView(ofNavAction action: NavigationActionRepresentable) -> URL? {
+    func urlForStudioImmersiveView(ofNavAction action: NavigationActionRepresentable) -> URL? {
         guard action.isStudioImmersiveViewLinkTap, var url = action.request.url else {
             return nil
         }

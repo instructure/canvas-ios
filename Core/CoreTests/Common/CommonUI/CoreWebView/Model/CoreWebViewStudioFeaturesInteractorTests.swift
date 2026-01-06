@@ -58,10 +58,13 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
     }
 
     private var webView: CoreWebView!
+    private var mockLinkDelegate: MockCoreWebViewLinkDelegate!
 
     override func setUp() {
         super.setUp()
+        mockLinkDelegate = MockCoreWebViewLinkDelegate()
         webView = CoreWebView()
+        webView.linkDelegate = mockLinkDelegate
     }
 
     override func tearDown() {
@@ -163,8 +166,6 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
     }
 
     func preloadPageContent() {
-        let mockLinkDelegate = MockCoreWebViewLinkDelegate()
-        webView.linkDelegate = mockLinkDelegate
         webView.loadHTMLString(TestConstants.pageHTML)
 
         wait(for: [mockLinkDelegate.navigationFinishedExpectation], timeout: 10)
@@ -236,6 +237,48 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         // Then
         XCTAssertEqual(immersiveUrl?.absoluteString, "https://suhaibalabsi.instructure.com/media_attachments/546734/immersive_view?title=Hello%20World&embedded=true")
     }
+
+    func test_presentation_via_nav_action() throws {
+        // Given
+        preloadPageContent()
+        let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
+
+        // When
+        let actionUrl = "https://suhaibalabsi.instructure.com/media_attachments/546734/immersive_view?title=Hello%20World"
+        let action = MockNavigationActionRepresentable(url: actionUrl, type: .linkActivated, targetFrame: MockInfoFrameInfoRepresentable(isMainFrame: false))
+
+        let isHandled = interactor.handleNavigationAction(action)
+
+        XCTAssertTrue(isHandled)
+        XCTAssertNotNil(router.presented as? StudioViewController)
+    }
+
+    func test_presentation_via_post_message() throws {
+        // Given
+        preloadPageContent()
+        let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
+
+        let mediaPath = "https://suhaibalabsi.staging.instructuremedia.com/lti/launch?custom_arc_launch_type=thumbnail_embed&custom_arc_media_id=1de23fg456d"
+
+        let message = MockScriptMessage()
+        message.info = [
+            "data": [
+                "url": mediaPath
+            ]
+        ]
+
+        // When
+        interactor.handleFullWindowLaunchMessage(message)
+
+        // Then
+        XCTAssertNotNil(router.presented as? StudioViewController)
+    }
+}
+
+private class MockScriptMessage: WKScriptMessage {
+    var info: [String: Any] = [:]
+
+    override var body: Any { info }
 }
 
 private struct MockInfoFrameInfoRepresentable: FrameInfoRepresentable {
