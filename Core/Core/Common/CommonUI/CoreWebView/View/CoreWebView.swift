@@ -108,14 +108,18 @@ open class CoreWebView: WKWebView {
     /// each Studio video `iframe` when `rce_studio_embed_improvements` feature
     /// flag is enabled for the passed context. Will turn `on` Studio Enhancements
     /// features if not enabled at initialization.
-    public func setupStudioFeatures(context: Context?, env: AppEnvironment) {
+    public func setupStudioFeatures(context: Context?, env: AppEnvironment? = nil) {
+        let environment = env ?? self.env
+        self.env = environment
+
         guard let context else {
-            studioFeaturesInteractor?.resetFeatureFlagStore(context: nil, env: env)
+            studioFeaturesInteractor?.resetFeatureFlagStore(context: nil, env: environment)
             return
         }
 
-        studioFeaturesInteractor = studioFeaturesInteractor ?? CoreWebViewStudioFeaturesInteractor(webView: self)
-        studioFeaturesInteractor?.resetFeatureFlagStore(context: context, env: env)
+        studioFeaturesInteractor = studioFeaturesInteractor
+            ?? CoreWebViewStudioFeaturesInteractor(webView: self)
+        studioFeaturesInteractor?.resetFeatureFlagStore(context: context, env: environment)
     }
 
     deinit {
@@ -193,7 +197,7 @@ open class CoreWebView: WKWebView {
         isInspectable = true
 
         if studioEnhancementsEnabled {
-            studioFeaturesInteractor = CoreWebViewStudioFeaturesInteractor(webView: self)
+            studioFeaturesInteractor = CoreWebViewStudioFeaturesInteractor(webView: self, env: env)
         }
 
         addScript(js)
@@ -229,30 +233,10 @@ open class CoreWebView: WKWebView {
         }
 
         handle("fullWindowLaunch") { [weak self] message in
-
-            if let dict = message.body as? [String: Any],
-               let data = dict["data"] as? [String: Any],
-               let mediaPath = data["url"] as? String,
-               let url = self?.studioFeaturesInteractor?.urlForStudioImmersiveView(ofMediaPath: mediaPath) {
-                self?.attemptStudioImmersiveViewLaunch(url)
-            }
+            self?.studioFeaturesInteractor?.handleFullWindowLaunchMessage(message)
         }
 
         registerForTraitChanges()
-    }
-
-    @discardableResult
-    fileprivate func attemptStudioImmersiveViewLaunch(_ url: URL) -> Bool {
-        if let controller = linkDelegate?.routeLinksFrom {
-            controller.pauseWebViewPlayback()
-            env.router.show(
-                StudioViewController(url: url),
-                from: controller,
-                options: .modal(.overFullScreen)
-            )
-            return true
-        }
-        return false
     }
 
     @discardableResult
@@ -565,8 +549,7 @@ extension CoreWebView: WKNavigationDelegate {
         }
 
         // Handle Studio Immersive Player links (media_attachments/:id/immersive_view)
-        if let immersiveURL = studioFeaturesInteractor?.urlForStudioImmersiveView(ofNavAction: action),
-           attemptStudioImmersiveViewLaunch(immersiveURL) {
+        if let isHandled = studioFeaturesInteractor?.handleNavigationAction(action), isHandled {
             return decisionHandler(.cancel)
         }
 
