@@ -97,7 +97,7 @@ public class HTMLParserLive: HTMLParser {
                     }
                     .replaceError(with: nil)
             }
-            .compactMap({ $0 })
+            .compactMap { $0 }
             .collect()
             .eraseToAnyPublisher()
 
@@ -132,7 +132,7 @@ public class HTMLParserLive: HTMLParser {
                 }
                 .replaceError(with: nil)
             }
-            .compactMap({ $0 })
+            .compactMap { $0 }
             .collect() // Wait for all image download to finish and handle as an array
             .eraseToAnyPublisher()
 
