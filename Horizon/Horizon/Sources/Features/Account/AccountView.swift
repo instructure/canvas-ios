@@ -21,6 +21,17 @@ import HorizonUI
 import SwiftUI
 
 struct AccountView: View {
+    enum SettingIDs: String {
+        case profile
+        case notifications
+        case advanced
+        case reportBug
+    }
+
+    // MARK: - Propertites a11y
+    @State private var lastFocusedId: SettingIDs?
+    @AccessibilityFocusState private var focusedSettingID: String?
+
     @Bindable var viewModel: AccountViewModel
     @Environment(\.viewController) private var viewController
 
@@ -35,12 +46,10 @@ struct AccountView: View {
                     if viewModel.isExperienceSwitchAvailable {
                         experienceSection
                             .padding(.top, .huiSpaces.space40)
-                        settingsSection
-                            .padding(.top, .huiSpaces.space24)
-                    } else {
-                        settingsSection
-                            .padding(.top, .huiSpaces.space40)
                     }
+
+                    settingsSection
+                        .padding(.top, .huiSpaces.space24)
 
                     supportSection
                         .padding(.top, .huiSpaces.space24)
@@ -61,6 +70,12 @@ struct AccountView: View {
             isPresented: $viewModel.isShowingLogoutConfirmationAlert,
             presenting: viewModel.confirmLogoutViewModel
         )
+        .onAppear {
+            guard let lastFocusedId else { return }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                focusedSettingID = lastFocusedId.rawValue
+            }
+        }
     }
 
     private var loaderView: some View {
@@ -78,6 +93,7 @@ struct AccountView: View {
             Text("Experience")
                 .huiTypography(.h3)
                 .foregroundStyle(Color.huiColors.text.title)
+                .accessibilityAddTraits(.isHeader)
 
             AccountEntryRowView(
                 title: String(localized: "Switch to Canvas Academic", bundle: .horizon),
@@ -96,15 +112,18 @@ struct AccountView: View {
             Text("Settings")
                 .huiTypography(.h3)
                 .foregroundStyle(Color.huiColors.text.title)
+                .accessibilityAddTraits(.isHeader)
 
-            VStack(spacing: 0) {
+            VStack(spacing: .zero) {
                 AccountEntryRowView(
                     title: String(localized: "Profile", bundle: .horizon),
                     isFirstItem: true,
                     didTapRow: {
+                        lastFocusedId = .profile
                         viewModel.profileDidTap(viewController: viewController)
                     }
                 )
+                .accessibilityFocused($focusedSettingID, equals: SettingIDs.profile.rawValue)
                 // TODO: Uncomment after implementing the functionality
 //                divider
 //                AccountEntryRowView(
@@ -117,17 +136,21 @@ struct AccountView: View {
                 AccountEntryRowView(
                     title: String(localized: "Notifications", bundle: .horizon),
                     didTapRow: {
+                        lastFocusedId = .notifications
                         viewModel.notificationsDidTap(viewController: viewController)
                     }
                 )
+                .accessibilityFocused($focusedSettingID, equals: SettingIDs.notifications.rawValue)
                 divider
                 AccountEntryRowView(
                     title: String(localized: "Advanced", bundle: .horizon),
                     isLastItem: true,
                     didTapRow: {
+                        lastFocusedId = .advanced
                         viewModel.advancedDidTap(viewController: viewController)
                     }
                 )
+                .accessibilityFocused($focusedSettingID, equals: SettingIDs.advanced.rawValue)
             }
         }
         .onAppear {
@@ -146,17 +169,19 @@ struct AccountView: View {
             Text("Support")
                 .huiTypography(.h3)
                 .foregroundStyle(Color.huiColors.text.title)
+                .accessibilityAddTraits(.isHeader)
 
-            VStack(spacing: 0) { AccountEntryRowView(
+            AccountEntryRowView(
                 title: "Report a bug",
                 image: .huiIcons.openInNew,
                 isFirstItem: true,
                 isLastItem: true,
                 didTapRow: {
+                    lastFocusedId = .reportBug
                     viewModel.giveFeedbackDidTap(viewController: viewController)
                 }
             )
-            }
+            .accessibilityFocused($focusedSettingID, equals: SettingIDs.reportBug.rawValue)
         }
     }
 

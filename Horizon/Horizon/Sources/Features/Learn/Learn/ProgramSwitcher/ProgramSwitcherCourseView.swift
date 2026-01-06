@@ -52,6 +52,7 @@ struct ProgramSwitcherCourseView: View {
         .opacity(course.isEnrolled ? 1 : 0.5)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(accessibilityLabel)
+        .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 
     private var accessibilityLabel: String {

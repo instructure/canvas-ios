@@ -209,11 +209,23 @@ public class GradeFormatter {
                 return medium(score: score, grade: grade)
             }
         case .letter_grade:
+
+            /// This is to protect against the case where grade is retrieved from
+            /// backend as numeric value for an assignment with `letter_grade`
+            /// grading style.
+            let isLetterGradeValue = grade?.containsLetter == true
+            let letterGrade = isLetterGradeValue ? grade : {
+                if let normalizedScore {
+                    return gradingScheme?.convertNormalizedScoreToLetterGrade(normalizedScore)
+                }
+                return nil
+            }()
+
             switch gradeStyle {
             case .short:
-                return grade
+                return letterGrade
             case .medium:
-                return medium(score: score, grade: grade)
+                return medium(score: score, grade: letterGrade)
             }
         case .not_graded:
             return nil
