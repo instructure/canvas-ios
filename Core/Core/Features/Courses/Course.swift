@@ -128,11 +128,7 @@ final public class Course: NSManagedObject, WriteableModel {
 
             // If course end date is set, use that to determine if the course
             // is past enrollment, otherwise fall back to term end date.
-            if let endDate = item.end_at {
-                return endDate < Clock.now
-            } else {
-                return (item.term?.end_at ?? .distantFuture) < Clock.now
-            }
+            return (item.end_at ?? item.term?.end_at ?? .distantFuture) < Clock.now
         }()
 
         model.isHomeroomCourse = item.homeroom_course ?? false
