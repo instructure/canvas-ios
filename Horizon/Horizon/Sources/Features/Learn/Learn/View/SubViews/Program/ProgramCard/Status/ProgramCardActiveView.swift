@@ -50,6 +50,7 @@ struct ProgramCardActiveView: View {
                 )
             }
         }
+        .accessibilityHidden(true)
     }
 }
 
