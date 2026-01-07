@@ -93,6 +93,7 @@ final class DomainService: DomainServiceProtocol {
 enum DomainServiceOption: String {
     case journey
     case redwood
+
     var service: String {
         rawValue
     }
