@@ -37,7 +37,7 @@ final class CDHActivitiesWidgetModelTests: CoreTestCase {
         // When
         let saved = CDHActivitiesWidgetModel.save(apiEntity, in: databaseClient)
         // Then
-        XCTAssertEqual(saved.courseID, "0")
+        XCTAssertEqual(saved.courseID, "")
         XCTAssertEqual(saved.courseName, "")
         XCTAssertEqual(saved.moduleCountCompleted.intValue, 0)
     }
