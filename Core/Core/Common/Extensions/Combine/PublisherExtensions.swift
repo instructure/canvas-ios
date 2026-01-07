@@ -78,11 +78,9 @@ extension Publisher {
     public func ignoreErrors(_ check: @escaping (Error) -> Bool, replacingWith value: Output) -> AnyPublisher<Output, Failure> {
         return self.catch { error in
             if check(error) {
-                return Just<Output>(value)
-                    .setFailureType(to: Failure.self)
-                    .eraseToAnyPublisher()
+                return Publishers.typedJust(value, failureType: Failure.self)
             }
-            return Fail(error: error).eraseToAnyPublisher()
+            return Publishers.typedFailure(error: error)
         }
         .eraseToAnyPublisher()
     }
