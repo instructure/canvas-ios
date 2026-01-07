@@ -97,5 +97,19 @@ enum DomainServiceOption: String {
         rawValue
     }
 
-    var workflows: [DomainServiceOption] { [self] }
+    var workflows: [DomainServiceWorkflow] {
+            switch self {
+            case .journey:
+                return [.journey, .pine, .cedar]
+            case .redwood:
+                return [.redwood]
+            }
+        }
+}
+
+enum DomainServiceWorkflow: String {
+    case journey
+    case redwood
+    case pine
+    case cedar
 }
