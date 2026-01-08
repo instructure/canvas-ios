@@ -30,7 +30,7 @@ protocol RecipientsSearchInteractor {
     func search(with query: String, using context: Context)
 }
 
-class RecipientsSearchInteractorLive: RecipientsSearchInteractor {
+final class RecipientsSearchInteractorLive: RecipientsSearchInteractor {
 
     // MARK: - Outputs
     var loading: CurrentValueSubject<Bool, Never> = CurrentValueSubject(false)
