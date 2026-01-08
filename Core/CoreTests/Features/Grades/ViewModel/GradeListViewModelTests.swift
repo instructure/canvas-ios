@@ -100,15 +100,17 @@ class GradeListViewModelTests: CoreTestCase {
 
     func testSelectedGradingPeriod() {
         let expectation = expectation(description: "getGrades expectation")
+        expectation.assertForOverFulfill = false
         let interactor = GradeListInteractorMock(expectation: expectation)
         let testee = GradeListViewModel(
             interactor: interactor,
             gradeFilterInteractor: GradeFilterInteractorMock(),
             env: PreviewEnvironment.shared
         )
-        wait(for: [expectation], timeout: 1)
 
         testee.selectGradingPeriod(id: "999")
+
+        wait(for: [expectation], timeout: 1)
 
         XCTAssertEqual(interactor.ignoreCache, true)
         XCTAssertEqual(interactor.gradingPeriod, "999")
@@ -237,10 +239,6 @@ private extension GradeListViewModelTests {
         var courseID: String { "" }
         let expectation: XCTestExpectation
 
-        enum GradeListInteractorMockError: Error {
-            case noDataToReturn
-        }
-
         init(dataToReturn: GradeListData? = nil, expectation: XCTestExpectation) {
             self.dataToReturn = dataToReturn
             self.expectation = expectation
@@ -266,10 +264,10 @@ private extension GradeListViewModelTests {
             self.arrangeBy = arrangeBy
             gradingPeriod = gradingPeriodID
 
-            if let dataToReturn {
-                return dataToReturn
+            return if let dataToReturn {
+                dataToReturn
             } else {
-                throw GradeListInteractorMockError.noDataToReturn
+                .init()
             }
         }
 

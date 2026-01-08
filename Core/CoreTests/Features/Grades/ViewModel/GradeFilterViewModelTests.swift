@@ -27,7 +27,6 @@ final class GradeFilterViewModelTests: CoreTestCase {
 
     // MARK: - Properties
     private var testee: GradeFilterViewModel!
-//    private var subscriptions = Set<AnyCancellable>()
     private var gradeFilterInteractor: GradeFilterInteractorMock!
 
     override func setUp() {
