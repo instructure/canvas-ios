@@ -19,7 +19,10 @@
 import Core
 import XCTest
 
-class InsertStudioOpenDetailViewButtonTests: XCTestCase {
+class InsertStudioOpenInDetailButtonsTests: XCTestCase {
+
+    // swiftlint:disable:next line_length
+    private static let studioFrameSrc = "https://suhaibalabsi.cd.instructure.com/courses/32342/external_tools/retrieve?display=borderless&url=https%3A%2F%2Fsuhaibalabsi.staging.instructuremedia.com%2Flti%2Flaunch%3Fcustom_arc_launch_type%3Dthumbnail_embed%26custom_arc_media_id%3D1de23fg456d"
 
     func testInsertion() {
         let mockLinkDelegate = MockCoreWebViewLinkDelegate()
@@ -46,6 +49,13 @@ class InsertStudioOpenDetailViewButtonTests: XCTestCase {
                 >
                 </iframe>
             </p>
+            <p>
+                <iframe
+                    class="lti-embed"
+                    title="Studio Video Title"
+                    src="\(Self.studioFrameSrc)"
+                ></iframe>
+            </p>
         </div>
         """)
 
@@ -69,8 +79,8 @@ class InsertStudioOpenDetailViewButtonTests: XCTestCase {
             let list = result as? [String]
             let urls = list?.compactMap({ URL(string: $0) }) ?? []
 
-            guard urls.count == 2 else {
-                XCTFail("Expecting 2 URLs to be evaluated")
+            guard urls.count == 3 else {
+                XCTFail("Expecting 3 URLs to be evaluated")
                 return
             }
 
@@ -86,6 +96,26 @@ class InsertStudioOpenDetailViewButtonTests: XCTestCase {
 
             XCTAssertEqual(urls[0].queryValue(for: "title"), "Example%20Video%20Title")
             XCTAssertEqual(urls[1].queryValue(for: "title"), "Some_File_Name")
+
+            XCTAssertEqual(
+                urls[2].removingQueryAndFragment().absoluteString,
+                "https://suhaibalabsi.cd.instructure.com/courses/32342/external_tools/retrieve"
+            )
+
+            XCTAssertEqual(
+                urls[2].queryValue(for: "display"),
+                "full_width"
+            )
+
+            XCTAssertEqual(
+                urls[2].queryValue(for: "url"),
+                "https%3A%2F%2Fsuhaibalabsi.staging.instructuremedia.com%2Flti%2Flaunch%3Fcustom_arc_launch_type%3Dimmersive_view%26custom_arc_media_id%3D1de23fg456d".removingPercentEncoding
+            )
+
+            XCTAssertEqual(
+                urls[2].queryValue(for: "title"),
+                "Studio%20Video%20Title"
+            )
         }
 
         wait(for: [exp])

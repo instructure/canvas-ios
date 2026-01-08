@@ -43,15 +43,28 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
                 >
                 </iframe>
             </p>
+            <p>
+                <iframe
+                    class="lti-embed"
+                    title="Studio Video Title"
+                    src="\(studioFrameSrc)"
+                ></iframe>
+            </p>
         </div>
         """
+
+        // swiftlint:disable:next line_length
+        private static let studioFrameSrc = "https://suhaibalabsi.cd.instructure.com/courses/32342/external_tools/retrieve?display=borderless&amp;url=https%3A%2F%2Fsuhaibalabsi.staging.instructuremedia.com%2Flti%2Flaunch%3Fcustom_arc_launch_type%3Dthumbnail_embed%26custom_arc_media_id%3D1de23fg456d"
     }
 
     private var webView: CoreWebView!
+    private var mockLinkDelegate: MockCoreWebViewLinkDelegate!
 
     override func setUp() {
         super.setUp()
+        mockLinkDelegate = MockCoreWebViewLinkDelegate()
         webView = CoreWebView()
+        webView.linkDelegate = mockLinkDelegate
     }
 
     override func tearDown() {
@@ -153,13 +166,12 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
     }
 
     func preloadPageContent() {
-        let mockLinkDelegate = MockCoreWebViewLinkDelegate()
-        webView.linkDelegate = mockLinkDelegate
         webView.loadHTMLString(TestConstants.pageHTML)
 
         wait(for: [mockLinkDelegate.navigationFinishedExpectation], timeout: 10)
 
         let exp = expectation(description: "frame-title map updated")
+        webView.setupStudioFeatures(context: TestConstants.context, env: environment)
         webView.studioFeaturesInteractor?.onScanFinished = {
             exp.fulfill()
         }
@@ -176,6 +188,26 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         let titleMap = interactor.videoFramesTitleMap
         XCTAssertEqual(titleMap["https://suhaibalabsi.instructure.com/media_attachments/613046"], "Video Title 11")
         XCTAssertEqual(titleMap["https://suhaibalabsi.instructure.com/media_attachments/546734"], "Video Title 22")
+        XCTAssertEqual(titleMap["1de23fg456d"], "Studio Video Title")
+    }
+
+    func testImmersiveViewURL_MediaPath() throws {
+        // Given
+        preloadPageContent()
+        let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
+
+        // When
+        let mediaPath = "https://suhaibalabsi.staging.instructuremedia.com/lti/launch?custom_arc_launch_type=thumbnail_embed&custom_arc_media_id=1de23fg456d"
+        let immersiveUrl = interactor.urlForStudioImmersiveView(ofMediaPath: mediaPath)
+
+        // Then
+        XCTAssertEqual(
+            immersiveUrl?.absoluteString,
+            "https://canvas.instructure.com/\(TestConstants.context.pathComponent)/external_tools/retrieve?" +
+            "display=full_width&embedded=true&url=https://suhaibalabsi.staging.instructuremedia.com/lti/launch?" +
+            "custom_arc_launch_type%3Dthumbnail_embed%26custom_arc_media_id%3D1de23fg456d" +
+            "&title=Studio%20Video%20Title"
+        )
     }
 
     func testImmersiveViewURL_ExpandButton() throws {
@@ -186,7 +218,7 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         // When
         let actionUrl = "https://suhaibalabsi.instructure.com/media_attachments/613046/immersive_view"
         let action = MockNavigationActionRepresentable(url: actionUrl, type: .other, sourceFrame: MockInfoFrameInfoRepresentable(isMainFrame: false))
-        let immersiveUrl = interactor.urlForStudioImmersiveView(of: action)
+        let immersiveUrl = interactor.urlForStudioImmersiveView(ofNavAction: action)
 
         // Then
         XCTAssertEqual(immersiveUrl?.absoluteString, "https://suhaibalabsi.instructure.com/media_attachments/613046/immersive_view?title=Video%20Title%2011&embedded=true")
@@ -200,11 +232,53 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         // When
         let actionUrl = "https://suhaibalabsi.instructure.com/media_attachments/546734/immersive_view?title=Hello%20World"
         let action = MockNavigationActionRepresentable(url: actionUrl, type: .linkActivated, targetFrame: MockInfoFrameInfoRepresentable(isMainFrame: false))
-        let immersiveUrl = interactor.urlForStudioImmersiveView(of: action)
+        let immersiveUrl = interactor.urlForStudioImmersiveView(ofNavAction: action)
 
         // Then
         XCTAssertEqual(immersiveUrl?.absoluteString, "https://suhaibalabsi.instructure.com/media_attachments/546734/immersive_view?title=Hello%20World&embedded=true")
     }
+
+    func test_presentation_via_nav_action() throws {
+        // Given
+        preloadPageContent()
+        let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
+
+        // When
+        let actionUrl = "https://suhaibalabsi.instructure.com/media_attachments/546734/immersive_view?title=Hello%20World"
+        let action = MockNavigationActionRepresentable(url: actionUrl, type: .linkActivated, targetFrame: MockInfoFrameInfoRepresentable(isMainFrame: false))
+
+        let isHandled = interactor.handleNavigationAction(action)
+
+        XCTAssertTrue(isHandled)
+        XCTAssertNotNil(router.presented as? StudioViewController)
+    }
+
+    func test_presentation_via_post_message() throws {
+        // Given
+        preloadPageContent()
+        let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
+
+        let mediaPath = "https://suhaibalabsi.staging.instructuremedia.com/lti/launch?custom_arc_launch_type=thumbnail_embed&custom_arc_media_id=1de23fg456d"
+
+        let message = MockScriptMessage()
+        message.info = [
+            "data": [
+                "url": mediaPath
+            ]
+        ]
+
+        // When
+        interactor.handleFullWindowLaunchMessage(message)
+
+        // Then
+        XCTAssertNotNil(router.presented as? StudioViewController)
+    }
+}
+
+private class MockScriptMessage: WKScriptMessage {
+    var info: [String: Any] = [:]
+
+    override var body: Any { info }
 }
 
 private struct MockInfoFrameInfoRepresentable: FrameInfoRepresentable {

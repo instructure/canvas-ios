@@ -20,13 +20,14 @@ import Combine
 import WebKit
 
 public class CoreWebViewStudioFeaturesInteractor {
+    static let fullWindowLaunchEventName: String = "fullWindowLaunch"
 
     private static let scanFramesScript = """
         function scanVideoFramesForTitles() {
-            const frameElements = document.querySelectorAll('iframe[data-media-id]');
             var result = []
 
-            frameElements.forEach(elm => {
+            let mediaFrames = document.querySelectorAll("iframe[data-media-id]");
+            mediaFrames.forEach(elm => {
 
                 var frameLink =  elm.getAttribute("src");
                 frameLink = frameLink.replace("media_attachments_iframe", "media_attachments");
@@ -35,7 +36,28 @@ public class CoreWebViewStudioFeaturesInteractor {
                 const ariaTitle = elm.getAttribute("aria-title");
                 const title = videoTitle ?? ariaTitle;
 
-                result.push({url: frameLink, title: title});
+                result.push({ token: frameLink, title: title});
+            });
+
+            let ltiFrames = document.querySelectorAll("iframe[class='lti-embed']");
+            ltiFrames.forEach(elm => {
+
+                let frameSource = elm.getAttribute("src");
+                if(!frameSource) { return }
+
+                let frameURL = new URL(frameSource);
+                let playerSource = frameURL.searchParams.get("url");
+                if(!playerSource) { return }
+
+                let playerURL = new URL(playerSource);
+                let mediaID = playerURL.searchParams.get("custom_arc_media_id");
+                if(!mediaID) { return }
+
+                const videoTitle = elm.getAttribute("title");
+                const ariaTitle = elm.getAttribute("aria-title");
+                const title = videoTitle ?? ariaTitle;
+
+                result.push({ token: mediaID, title: title });
             });
 
             return result;
@@ -48,6 +70,8 @@ public class CoreWebViewStudioFeaturesInteractor {
     var onFeatureUpdate: (() -> Void)?
 
     private(set) weak var webView: CoreWebView?
+    private var env: AppEnvironment
+    private var context: Context?
     private var studioImprovementsFlagStore: ReactiveStore<GetFeatureFlagState>?
     private var storeSubscription: AnyCancellable?
 
@@ -55,11 +79,15 @@ public class CoreWebViewStudioFeaturesInteractor {
     /// of CoreWebView. Supposed to be updated (or emptied) on each page load.
     private(set) var videoFramesTitleMap: [String: String] = [:]
 
-    init(webView: CoreWebView) {
+    init(webView: CoreWebView, env: AppEnvironment = .shared) {
         self.webView = webView
+        self.env = env
     }
 
     func resetFeatureFlagStore(context: Context?, env: AppEnvironment) {
+        self.env = env
+        self.context = context
+
         guard let context else {
             storeSubscription?.cancel()
             storeSubscription = nil
@@ -78,21 +106,20 @@ public class CoreWebViewStudioFeaturesInteractor {
         resetStoreSubscription()
     }
 
-    func urlForStudioImmersiveView(of action: NavigationActionRepresentable) -> URL? {
-        guard action.isStudioImmersiveViewLinkTap, var url = action.request.url else {
-            return nil
+    func handleFullWindowLaunchMessage(_ message: WKScriptMessage) {
+        if let dict = message.body as? [String: Any],
+           let data = dict["data"] as? [String: Any],
+           let mediaPath = data["url"] as? String,
+           let url = urlForStudioImmersiveView(ofMediaPath: mediaPath) {
+            attemptStudioImmersiveViewLaunch(url)
         }
+    }
 
-        if url.containsQueryItem(named: "title") == false,
-            let title = videoPlayerFrameTitle(matching: url) {
-            url = url.appendingQueryItems(.init(name: "title", value: title))
+    func handleNavigationAction(_ action: NavigationActionRepresentable) -> Bool {
+        if let immersiveURL = urlForStudioImmersiveView(ofNavAction: action) {
+            return attemptStudioImmersiveViewLaunch(immersiveURL)
         }
-
-        if url.containsQueryItem(named: "embedded") == false {
-            url = url.appendingQueryItems(.init(name: "embedded", value: "true"))
-        }
-
-        return url
+        return false
     }
 
     /// To be called in didFinishLoading delegate method of WKWebView, it scans through
@@ -118,14 +145,11 @@ public class CoreWebViewStudioFeaturesInteractor {
             (result as? [[String: String]] ?? [])
                 .forEach({ pair in
                     guard
-                        let urlString = pair["url"],
-                        let urlCleanPath = URL(string: urlString)?
-                            .removingQueryAndFragment()
-                            .absoluteString,
+                        let token = pair["token"],
                         let title = pair["title"]
                     else { return }
 
-                    mapped[urlCleanPath] = title
+                    mapped[token] = title
                         .replacingOccurrences(of: "Video player for ", with: "")
                         .replacingOccurrences(of: ".mp4", with: "")
                 })
@@ -139,7 +163,96 @@ public class CoreWebViewStudioFeaturesInteractor {
         resetStoreSubscription(ignoreCache: true)
     }
 
-    // MARK: Privates
+    // MARK: URL Resolving
+
+    func urlForStudioImmersiveView(ofMediaPath mediaPath: String) -> URL? {
+        guard
+            let context,
+            var urlComps = URLComponents(string: env.api.baseURL.absoluteString)
+        else { return nil }
+
+        var encodedQueryItems: [URLQueryItem] = [
+            URLQueryItem(name: "display", value: "full_width"),
+            URLQueryItem(name: "embedded", value: "true"),
+            URLQueryItem(
+                name: "url",
+                value: mediaPath
+                    .addingPercentEncoding(
+                        withAllowedCharacters: .urlHostAllowed
+                            .union(.urlPathAllowed)
+                            .union(.urlQueryAllowed)
+                            .union(CharacterSet(charactersIn: "?"))
+                            .subtracting(CharacterSet(charactersIn: "&="))
+                    )
+            )
+        ]
+
+        if let mediaURL = URL(string: mediaPath),
+           let title = videoPlayerFrameTitle(forStudioMediaURL: mediaURL) {
+            encodedQueryItems.append(
+                URLQueryItem(
+                    name: "title",
+                    value: title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                )
+            )
+        }
+
+        urlComps.path = "/\(context.pathComponent)/external_tools/retrieve"
+        urlComps.percentEncodedQueryItems = encodedQueryItems
+
+        return urlComps.url
+    }
+
+    func urlForStudioImmersiveView(ofNavAction action: NavigationActionRepresentable) -> URL? {
+        guard action.isStudioImmersiveViewLinkTap, var url = action.request.url else {
+            return nil
+        }
+
+        if url.containsQueryItem(named: "title") == false,
+           let title = videoPlayerFrameTitle(forCanvasMediaURL: url) {
+            url = url.appendingQueryItems(.init(name: "title", value: title))
+        }
+
+        if url.containsQueryItem(named: "embedded") == false {
+            url = url.appendingQueryItems(.init(name: "embedded", value: "true"))
+        }
+
+        return url
+    }
+
+    // MARK: Show Immersive View
+
+    @discardableResult
+    private func attemptStudioImmersiveViewLaunch(_ url: URL) -> Bool {
+        guard let webView else { return false }
+
+        if let controller = webView.linkDelegate?.routeLinksFrom {
+            controller.pauseWebViewPlayback()
+            env.router.show(
+                StudioViewController(url: url),
+                from: controller,
+                options: .modal(.overFullScreen)
+            )
+            return true
+        }
+        return false
+    }
+
+    // MARK: Video Frame Title
+
+    private func videoPlayerFrameTitle(forCanvasMediaURL url: URL) -> String? {
+        let path = url.removingQueryAndFragment().absoluteString
+        return videoFramesTitleMap.first(where: { path.hasPrefix($0.key) })?.value
+    }
+
+    private func videoPlayerFrameTitle(forStudioMediaURL mediaURL: URL) -> String? {
+        if let mediaID = mediaURL.queryValue(for: "custom_arc_media_id") {
+            return videoFramesTitleMap.first(where: { $0.key == mediaID })?.value
+        }
+        return nil
+    }
+
+    // MARK: Resetting
 
     private func resetStoreSubscription(ignoreCache: Bool = false) {
         storeSubscription?.cancel()
@@ -163,12 +276,6 @@ public class CoreWebViewStudioFeaturesInteractor {
 
         onFeatureUpdate?()
     }
-
-    private func videoPlayerFrameTitle(matching url: URL) -> String? {
-        let path = url.removingQueryAndFragment().absoluteString
-        return videoFramesTitleMap.first(where: { path.hasPrefix($0.key) })?
-            .value
-    }
 }
 
 // MARK: - WKNavigationAction Extensions
@@ -184,12 +291,19 @@ extension NavigationActionRepresentable {
         && path.hasSuffix("/immersive_view")
         && sourceInfoFrame.isMainFrame == false
 
-        let isDetailsLink =
+        let isCanvasUploadDetailsLink =
         navigationType == .linkActivated
         && path.contains("/media_attachments/")
         && path.hasSuffix("/immersive_view")
         && (targetInfoFrame?.isMainFrame ?? false) == false
 
-        return isExpandLink || isDetailsLink
+        let query = request.url?.query()?.removingPercentEncoding ?? ""
+        let isStudioEmbedDetailsLink =
+        navigationType == .linkActivated
+        && path.hasSuffix("/external_tools/retrieve")
+        && query.contains("custom_arc_launch_type=immersive_view")
+        && (targetInfoFrame?.isMainFrame ?? false) == false
+
+        return isExpandLink || isCanvasUploadDetailsLink || isStudioEmbedDetailsLink
     }
 }

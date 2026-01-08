@@ -108,14 +108,18 @@ open class CoreWebView: WKWebView {
     /// each Studio video `iframe` when `rce_studio_embed_improvements` feature
     /// flag is enabled for the passed context. Will turn `on` Studio Enhancements
     /// features if not enabled at initialization.
-    public func setupStudioFeatures(context: Context?, env: AppEnvironment) {
+    public func setupStudioFeatures(context: Context?, env: AppEnvironment? = nil) {
+        let environment = env ?? self.env
+        self.env = environment
+
         guard let context else {
-            studioFeaturesInteractor?.resetFeatureFlagStore(context: nil, env: env)
+            studioFeaturesInteractor?.resetFeatureFlagStore(context: nil, env: environment)
             return
         }
 
-        studioFeaturesInteractor = studioFeaturesInteractor ?? CoreWebViewStudioFeaturesInteractor(webView: self)
-        studioFeaturesInteractor?.resetFeatureFlagStore(context: context, env: env)
+        studioFeaturesInteractor = studioFeaturesInteractor
+            ?? CoreWebViewStudioFeaturesInteractor(webView: self)
+        studioFeaturesInteractor?.resetFeatureFlagStore(context: context, env: environment)
     }
 
     deinit {
@@ -193,7 +197,7 @@ open class CoreWebView: WKWebView {
         isInspectable = true
 
         if studioEnhancementsEnabled {
-            studioFeaturesInteractor = CoreWebViewStudioFeaturesInteractor(webView: self)
+            studioFeaturesInteractor = CoreWebViewStudioFeaturesInteractor(webView: self, env: env)
         }
 
         addScript(js)
@@ -226,6 +230,10 @@ open class CoreWebView: WKWebView {
                 isExclusive: isPresentingModal,
                 viewController: self.viewController
             )
+        }
+
+        handle(CoreWebViewStudioFeaturesInteractor.fullWindowLaunchEventName) { [weak self] message in
+            self?.studioFeaturesInteractor?.handleFullWindowLaunchMessage(message)
         }
 
         registerForTraitChanges()
@@ -540,6 +548,11 @@ extension CoreWebView: WKNavigationDelegate {
             return decisionHandler(.allow) // let web view scroll to link too, if necessary
         }
 
+        // Handle Studio Immersive Player links (media_attachments/:id/immersive_view)
+        if let isHandled = studioFeaturesInteractor?.handleNavigationAction(action), isHandled {
+            return decisionHandler(.cancel)
+        }
+
         // Handle "Launch External Tool" button OR 
         // LTI app buttons embedded in K5 WebViews when there's no additional JavaScript
         // involved (like Zoom and Microsoft).
@@ -573,18 +586,6 @@ extension CoreWebView: WKNavigationDelegate {
                 addDoneButton: true
             )
             env.router.show(controller, from: viewController, options: routeOptions)
-            return decisionHandler(.cancel)
-        }
-
-        // Handle Studio Immersive Player links (media_attachments/:id/immersive_view)
-        if let immersiveURL = studioFeaturesInteractor?.urlForStudioImmersiveView(of: action),
-           let controller = linkDelegate?.routeLinksFrom {
-            controller.pauseWebViewPlayback()
-            env.router.show(
-                StudioViewController(url: immersiveURL),
-                from: controller,
-                options: .modal(.overFullScreen)
-            )
             return decisionHandler(.cancel)
         }
 
