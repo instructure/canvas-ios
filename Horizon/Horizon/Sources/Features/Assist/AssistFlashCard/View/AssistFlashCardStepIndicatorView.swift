@@ -48,6 +48,8 @@ extension AssistFlashCardStepIndicatorView {
         ) {
             viewModel.goToPreviousCard()
         }
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel(String(localized: "Go to previous card"))
     }
 
     private var nextButton: some View {
@@ -57,6 +59,8 @@ extension AssistFlashCardStepIndicatorView {
         ) {
             viewModel.goToNextCard()
         }
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel(String(localized: "Go to next card"))
     }
 
     private func stepButton(image: Image, disabled: Bool, action: @escaping () -> Void) -> some View {
