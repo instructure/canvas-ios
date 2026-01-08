@@ -64,6 +64,7 @@ struct AssistTitle: View {
         )
         .opacity(backOpacity)
         .animation(.easeInOut(duration: 0.2), value: backOpacity)
+        .accessibilityLabel(String(localized: "Back"))
     }
 
     private var close: some View {
@@ -78,9 +79,10 @@ struct AssistTitle: View {
     private var title: some View {
         HStack {
             HorizonUI.icons.aiFilled
+                .accessibilityHidden(true)
             Text(String(localized: "IgniteAI", bundle: .horizon))
                 .huiTypography(.h4)
-
+                .accessibilityAddTraits(.isHeader)
         }
         .foregroundStyle(Color.textLightest)
         .foregroundStyle(Color.huiColors.text.surfaceColored)

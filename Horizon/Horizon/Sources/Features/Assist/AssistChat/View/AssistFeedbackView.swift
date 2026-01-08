@@ -21,88 +21,66 @@ import HorizonUI
 import SwiftUI
 
 struct AssistFeedbackView: View {
-    private var onChange: AssistChatMessageViewModel.OnFeedbackChange
+    private var onChange: (Bool?) -> Void
     @State private var selected: Bool?
-    @State private var thumbsOpacity: Double = 1.0
-    @State private var thanksOpacity: Double = 0.0
-    @State private var viewHeight: CGFloat = 0 // Dynamically measured height
+    @State private var isFeedbackVisiable = true
+    @State private var opacity: Double = 0.0
 
-    init(onChange: @escaping AssistChatMessageViewModel.OnFeedbackChange) {
+    init(onChange: @escaping (Bool?) -> Void) {
         self.onChange = onChange
     }
 
-    private var thumbsUpOpacity: Double {
-        selected == true ? 1 : 0
-    }
-    private var thumbsDownOpacity: Double {
-        selected == false ? 1 : 0
-    }
-
     var body: some View {
-        ZStack(alignment: .leading) {
-            HStack(spacing: HorizonUI.spaces.space8) {
-                thumbUpIcon
-                thumbDownIcon
+        VStack {
+            if selected == nil {
+                HStack(spacing: HorizonUI.spaces.space8) {
+                    thumbUpIcon
+                    thumbDownIcon
+                }
+                .padding(.top, .huiSpaces.space8)
             }
-            .opacity(thumbsOpacity)
-            .animation(.easeInOut(duration: 0.2), value: thumbsOpacity)
-            .padding(.top, .huiSpaces.space8)
 
-            Text(String(localized: "Thank you for your feedback!", bundle: .horizon))
-                .huiTypography(.p1)
-                .foregroundColor(HorizonUI.colors.text.surfaceColored)
-                .opacity(thanksOpacity)
-                .animation(.easeInOut(duration: 0.2), value: thanksOpacity)
-        }
-        .background(
-            GeometryReader { proxy in
-                Color.clear
-                    .onAppear {
-                        viewHeight = proxy.size.height
-                    }
+            if selected != nil, isFeedbackVisiable {
+                Text(String(localized: "Thank you for your feedback!", bundle: .horizon))
+                    .huiTypography(.p1)
+                    .foregroundColor(HorizonUI.colors.text.surfaceColored)
+                    .opacity(opacity)
+                    .animation(.easeInOut(duration: 0.2), value: opacity)
+                    .padding(.top, .huiSpaces.space10)
             }
-        )
-        .frame(height: viewHeight)
-        .animation(.easeInOut(duration: 0.2), value: viewHeight)
+        }
+        .animation(.smooth, value: selected)
     }
 
     private var thumbUpIcon: some View {
-        ZStack {
-            HorizonUI.icons.thumbUp
-                .foregroundStyle(HorizonUI.colors.text.surfaceColored)
-                .onTapGesture { onTap(true) }
+        HorizonUI.icons.thumbUp
+            .foregroundStyle(HorizonUI.colors.text.surfaceColored)
+            .onTapGesture { onTap(true) }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(String(localized: "Like"))
+            .accessibilityAddTraits(.isButton)
 
-            HorizonUI.icons.thumbUp
-                .foregroundStyle(HorizonUI.colors.text.surfaceColored)
-                .onTapGesture { onTap(true) }
-                .opacity(thumbsUpOpacity)
-                .animation(.easeInOut(duration: 0.2), value: thumbsUpOpacity)
-        }
     }
 
     private var thumbDownIcon: some View {
-        ZStack {
-            HorizonUI.icons.thumbDown
-                .foregroundStyle(HorizonUI.colors.text.surfaceColored)
-                .onTapGesture { onTap(false) }
-
-            HorizonUI.icons.thumbDown
-                .foregroundStyle(HorizonUI.colors.text.surfaceColored)
-                .onTapGesture { onTap(false) }
-                .opacity(thumbsUpOpacity)
-                .animation(.easeInOut(duration: 0.2), value: thumbsUpOpacity)
-        }
+        HorizonUI.icons.thumbDown
+            .foregroundStyle(HorizonUI.colors.text.surfaceColored)
+            .onTapGesture { onTap(false) }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(String(localized: "Unlike"))
+            .accessibilityAddTraits(.isButton)
     }
 
     private func onTap(_ value: Bool) {
-        thumbsOpacity = 0.0
-        thanksOpacity = 1.0
-        selected = selected == value ? nil : value
+        opacity = 1
+        selected = value
         onChange(selected)
-
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            thanksOpacity = 0.0
-            viewHeight = 0
+            withAnimation {
+                opacity = 0.0
+            } completion: {
+                isFeedbackVisiable = false
+            }
         }
     }
 }

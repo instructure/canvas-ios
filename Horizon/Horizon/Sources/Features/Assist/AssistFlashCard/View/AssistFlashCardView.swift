@@ -23,6 +23,7 @@ import Core
 struct AssistFlashCardView: View {
     @Bindable var viewModel: AssistFlashCardViewModel
     @Environment(\.viewController) private var viewController
+    @AccessibilityFocusState private var focusedCardIndex: Int?
 
     var body: some View {
         ZStack {
@@ -67,6 +68,10 @@ extension AssistFlashCardView {
             }
             .animation(.smooth, value: viewModel.currentCardIndex)
             .padding(.top, .huiSpaces.space16)
+            .onChange(of: focusedCardIndex) { _, newIndex in
+                guard let newIndex else { return }
+                viewModel.currentCardIndex = newIndex
+            }
             .safeAreaInset(edge: .bottom, spacing: .zero) {
                 VStack(spacing: .huiSpaces.space24) {
                     AssistFlashCardStepIndicatorView(viewModel: viewModel)
@@ -96,6 +101,12 @@ extension AssistFlashCardView {
     private var flashCardsView: some View {
         ForEach(Array(viewModel.flashCards.enumerated()), id: \.offset) { index, item in
             AssistFlashCardItemView(item: item)
+                .accessibilityElement(children: .ignore)
+                .accessibilityAddTraits(.isButton)
+                .accessibilityLabel(item.accessibilityDescription)
+                .accessibilityHint(String(localized: "Double tap to flip"))
+                .accessibilityFocused($focusedCardIndex, equals: index)
+                .id(index)
                 .containerRelativeFrame(.horizontal)
                 .containerRelativeFrame(.vertical) { height, _ in
                     height * 0.75

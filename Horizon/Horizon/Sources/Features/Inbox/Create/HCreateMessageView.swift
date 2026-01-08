@@ -36,6 +36,11 @@ struct HCreateMessageView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
             header
+                .onTapGesture {
+                    isBodyFocused = false
+                    isRecipientFocused = false
+                    isSubjectFocused = false
+                }
             bodyContent
             if isFooterVisiable {
                 footer
