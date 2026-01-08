@@ -25,6 +25,8 @@ struct AssignmentListView: View {
     private let navigateToDetailsAction: (URL?, String) -> Void
     private let whatIfModel: GradeListWhatIfModel?
 
+    @State private var sectionExpandedStates: [String: Bool] = [:]
+
     init(
         sections: [AssignmentListSection],
         identifierGroup: String,
@@ -42,12 +44,18 @@ struct AssignmentListView: View {
     var body: some View {
         LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
             ForEach(sections) { section in
+                let isExpanded = Binding(
+                    get: { sectionExpandedStates[section.id] ?? true },
+                    set: { sectionExpandedStates[section.id] = $0 }
+                )
+
                 AssignmentListSectionView(
                     section: section,
                     identifierGroup: identifierGroup,
                     selectedAssignmentId: selectedAssignmentId,
                     navigateToDetailsAction: navigateToDetailsAction,
-                    whatIfModel: whatIfModel
+                    whatIfModel: whatIfModel,
+                    isExpanded: isExpanded
                 )
             }
         }
@@ -62,13 +70,15 @@ struct AssignmentListSectionView: View {
     private let selectedAssignmentId: String?
     private let navigateToDetailsAction: (URL?, String) -> Void
     private let whatIfModel: GradeListWhatIfModel?
+    @Binding private var isExpanded: Bool
 
     init(
         section: AssignmentListSection,
         identifierGroup: String,
         selectedAssignmentId: String?,
         navigateToDetailsAction: @escaping (URL?, String) -> Void,
-        whatIfModel: GradeListWhatIfModel? = nil
+        whatIfModel: GradeListWhatIfModel? = nil,
+        isExpanded: Binding<Bool>
     ) {
         self.section = section
         self.sectionIdentifier = "\(identifierGroup).Sections.\(section.id)"
@@ -76,13 +86,15 @@ struct AssignmentListSectionView: View {
         self.selectedAssignmentId = selectedAssignmentId
         self.navigateToDetailsAction = navigateToDetailsAction
         self.whatIfModel = whatIfModel
+        self._isExpanded = isExpanded
     }
 
     var body: some View {
         InstUI.CollapsibleListSection(
             title: section.title,
             headerIdentifier: sectionIdentifier,
-            itemCount: section.rows.count
+            itemCount: section.rows.count,
+            isExpanded: $isExpanded
         ) {
             ForEach(section.rows) { row in
                 cell(for: row, isLastItem: section.rows.last?.id == row.id)
@@ -190,5 +202,6 @@ extension AssignmentListSectionView: Equatable {
     static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.section == rhs.section
         && lhs.selectedAssignmentId == rhs.selectedAssignmentId
+        && lhs.isExpanded == rhs.isExpanded
     }
 }
