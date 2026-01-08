@@ -38,11 +38,16 @@ final class InboxMessageInteractorMock: InboxMessageInteractor {
     var lastSetContext: Context?
     var lastSetScope: InboxMessageScope?
 
+    // MARK: - Response Configuration
+    var refreshResult: Result<Void, Never> = .success(())
+    var setContextResult: Result<Void, Never> = .success(())
+    var setScopeResult: Result<Void, Never> = .success(())
+
     // MARK: - Inputs
     func refresh() -> Future<Void, Never> {
         refreshCallCount += 1
         return Future { promise in
-            promise(.success(()))
+            promise(self.refreshResult)
         }
     }
 
@@ -50,7 +55,7 @@ final class InboxMessageInteractorMock: InboxMessageInteractor {
         setContextCallCount += 1
         lastSetContext = context
         return Future { promise in
-            promise(.success(()))
+            promise(self.setContextResult)
         }
     }
 
@@ -58,7 +63,7 @@ final class InboxMessageInteractorMock: InboxMessageInteractor {
         setScopeCallCount += 1
         lastSetScope = scope
         return Future { promise in
-            promise(.success(()))
+            promise(self.setScopeResult)
         }
     }
 

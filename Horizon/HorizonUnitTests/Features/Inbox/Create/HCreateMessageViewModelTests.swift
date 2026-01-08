@@ -212,4 +212,290 @@ final class HCreateMessageViewModelTests: HorizonTestCase {
         // Then
         XCTAssertTrue(result)
     }
+
+    func test_isSendDisabled_shouldReturnTrue_whenSubjectIsEmpty() {
+        // Given
+        let courses = [makeCourse(id: "1", name: "Math 101")]
+        mockInboxMessageInteractor.courses.send(courses)
+        testScheduler.advance()
+        testee.subject = ""
+        testee.body = "Test Body"
+        recipientSelectionViewModel.update(selections: [
+            HorizonUI.MultiSelect.Option(id: "1", label: "John")
+        ])
+
+        // When
+        let result = testee.isSendDisabled
+
+        // Then
+        XCTAssertTrue(result)
+    }
+
+    func test_isSendDisabled_shouldReturnTrue_whenSubjectIsWhitespace() {
+        // Given
+        let courses = [makeCourse(id: "1", name: "Math 101")]
+        mockInboxMessageInteractor.courses.send(courses)
+        testScheduler.advance()
+        testee.subject = "   "
+        testee.body = "Test Body"
+        recipientSelectionViewModel.update(selections: [
+            HorizonUI.MultiSelect.Option(id: "1", label: "John")
+        ])
+
+        // When
+        let result = testee.isSendDisabled
+
+        // Then
+        XCTAssertTrue(result)
+    }
+
+    func test_isSendDisabled_shouldReturnTrue_whenBodyIsEmpty() {
+        // Given
+        let courses = [makeCourse(id: "1", name: "Math 101")]
+        mockInboxMessageInteractor.courses.send(courses)
+        testScheduler.advance()
+        testee.subject = "Test Subject"
+        testee.body = ""
+        recipientSelectionViewModel.update(selections: [
+            HorizonUI.MultiSelect.Option(id: "1", label: "John")
+        ])
+
+        // When
+        let result = testee.isSendDisabled
+
+        // Then
+        XCTAssertTrue(result)
+    }
+
+    func test_isSendDisabled_shouldReturnTrue_whenBodyIsWhitespace() {
+        // Given
+        let courses = [makeCourse(id: "1", name: "Math 101")]
+        mockInboxMessageInteractor.courses.send(courses)
+        testScheduler.advance()
+        testee.subject = "Test Subject"
+        testee.body = "   "
+        recipientSelectionViewModel.update(selections: [
+            HorizonUI.MultiSelect.Option(id: "1", label: "John")
+        ])
+
+        // When
+        let result = testee.isSendDisabled
+
+        // Then
+        XCTAssertTrue(result)
+    }
+
+    func test_isSendDisabled_shouldReturnTrue_whenRecipientsAreEmpty() {
+        // Given
+        let courses = [makeCourse(id: "1", name: "Math 101")]
+        mockInboxMessageInteractor.courses.send(courses)
+        testScheduler.advance()
+        testee.subject = "Test Subject"
+        testee.body = "Test Body"
+
+        // When
+        let result = testee.isSendDisabled
+
+        // Then
+        XCTAssertTrue(result)
+    }
+
+    func test_isSendDisabled_shouldReturnTrue_whenIsSending() {
+        // Given
+        let courses = [makeCourse(id: "1", name: "Math 101")]
+        mockInboxMessageInteractor.courses.send(courses)
+        testScheduler.advance()
+        testee.subject = "Test Subject"
+        testee.body = "Test Body"
+        recipientSelectionViewModel.update(selections: [
+            HorizonUI.MultiSelect.Option(id: "1", label: "John")
+        ])
+        testee.isSending = true
+
+        // When
+        let result = testee.isSendDisabled
+
+        // Then
+        XCTAssertTrue(result)
+    }
+
+    func test_isSendDisabled_shouldReturnFalse_whenAllConditionsAreMet() {
+        // Given
+        let courses = [makeCourse(id: "1", name: "Math 101")]
+        mockInboxMessageInteractor.courses.send(courses)
+        testScheduler.advance()
+        testee.subject = "Test Subject"
+        testee.body = "Test Body"
+        recipientSelectionViewModel.update(selections: [
+            HorizonUI.MultiSelect.Option(id: "1", label: "John")
+        ])
+
+        // When
+        let result = testee.isSendDisabled
+
+        // Then
+        XCTAssertFalse(result)
+    }
+
+    func test_attachFile_shouldSetAttachmentViewModelVisible() {
+        // Given
+        let viewController = WeakViewController()
+        attachmentViewModel.isVisible = false
+
+        // When
+        testee.attachFile(from: viewController)
+
+        // Then
+        XCTAssertTrue(attachmentViewModel.isVisible)
+    }
+
+    func test_close_shouldDeleteAllAttachments() {
+        // Given
+        let mockFile = File.make()
+        mockComposeMessageInteractor.simulateAttachments([mockFile])
+        let viewController = WeakViewController()
+
+        // When
+        testee.close(viewController: viewController)
+
+        // Then
+        XCTAssertEqual(mockComposeMessageInteractor.removeFileCallCount, 1)
+        XCTAssertEqual(mockComposeMessageInteractor.lastRemovedFile?.id, mockFile.id)
+    }
+
+    func test_close_shouldDismissViewController() {
+        // Given
+        let viewController = WeakViewController()
+
+        // When
+        testee.close(viewController: viewController)
+
+        // Then
+        XCTAssertNotNil(router.dismissed)
+    }
+
+    func test_sendMessage_shouldSetIsSendingToTrue() {
+        // Given
+        let courses = [makeCourse(id: "1", name: "Math 101")]
+        mockInboxMessageInteractor.courses.send(courses)
+        testScheduler.advance()
+        testee.subject = "Test Subject"
+        testee.body = "Test Body"
+        recipientSelectionViewModel.update(selections: [
+            HorizonUI.MultiSelect.Option(id: "1", label: "John")
+        ])
+        let viewController = WeakViewController()
+        mockComposeMessageInteractor.createConversationResult = .success(nil)
+        mockInboxMessageInteractor.setContextResult = .success(())
+        mockInboxMessageInteractor.setScopeResult = .success(())
+        mockInboxMessageInteractor.refreshResult = .success(())
+
+        // When
+        testee.sendMessage(viewController: viewController)
+
+        // Then
+        XCTAssertTrue(testee.isSending)
+    }
+
+    func test_sendMessage_shouldCallCreateConversationWithCorrectParameters() {
+        // Given
+        let courses = [makeCourse(id: "course-123", name: "Math 101")]
+        mockInboxMessageInteractor.courses.send(courses)
+        testScheduler.advance()
+        testee.subject = "Test Subject"
+        testee.body = "Test Body"
+        recipientSelectionViewModel.update(selections: [
+            HorizonUI.MultiSelect.Option(id: "recipient-1", label: "John")
+        ])
+        let viewController = WeakViewController()
+        mockComposeMessageInteractor.createConversationResult = .success(nil)
+        mockInboxMessageInteractor.setContextResult = .success(())
+        mockInboxMessageInteractor.setScopeResult = .success(())
+        mockInboxMessageInteractor.refreshResult = .success(())
+
+        // When
+        testee.sendMessage(viewController: viewController)
+        testScheduler.advance()
+
+        // Then
+        XCTAssertEqual(mockComposeMessageInteractor.createConversationCallCount, 1)
+        XCTAssertEqual(mockComposeMessageInteractor.lastCreateConversationParameters?.subject, "Test Subject")
+        XCTAssertEqual(mockComposeMessageInteractor.lastCreateConversationParameters?.body, "Test Body")
+        XCTAssertEqual(mockComposeMessageInteractor.lastCreateConversationParameters?.recipientIDs, ["recipient-1"])
+        XCTAssertEqual(mockComposeMessageInteractor.lastCreateConversationParameters?.context, .course("course-123"))
+        XCTAssertEqual(mockComposeMessageInteractor.lastCreateConversationParameters?.bulkMessage, false)
+    }
+
+    func test_sendMessage_shouldRefreshSentMessages() {
+        // Given
+        let courses = [makeCourse(id: "1", name: "Math 101")]
+        mockInboxMessageInteractor.courses.send(courses)
+        testScheduler.advance()
+        testee.subject = "Test Subject"
+        testee.body = "Test Body"
+        recipientSelectionViewModel.update(selections: [
+            HorizonUI.MultiSelect.Option(id: "1", label: "John")
+        ])
+        let viewController = WeakViewController()
+        mockComposeMessageInteractor.createConversationResult = .success(nil)
+        mockInboxMessageInteractor.setContextResult = .success(())
+        mockInboxMessageInteractor.setScopeResult = .success(())
+        mockInboxMessageInteractor.refreshResult = .success(())
+
+        // When
+        testee.sendMessage(viewController: viewController)
+        testScheduler.advance()
+
+        // Then
+        XCTAssertEqual(mockInboxMessageInteractor.setContextCallCount, 1)
+        XCTAssertEqual(mockInboxMessageInteractor.lastSetContext, .user("test-user-id"))
+        XCTAssertEqual(mockInboxMessageInteractor.setScopeCallCount, 1)
+        XCTAssertEqual(mockInboxMessageInteractor.lastSetScope, .sent)
+        XCTAssertEqual(mockInboxMessageInteractor.refreshCallCount, 1)
+    }
+
+    func test_sendMessage_shouldDismissViewController_onSuccess() {
+        // Given
+        let courses = [makeCourse(id: "1", name: "Math 101")]
+        mockInboxMessageInteractor.courses.send(courses)
+        testScheduler.advance()
+        testee.subject = "Test Subject"
+        testee.body = "Test Body"
+        recipientSelectionViewModel.update(selections: [
+            HorizonUI.MultiSelect.Option(id: "1", label: "John")
+        ])
+        let viewController = WeakViewController()
+        mockComposeMessageInteractor.createConversationResult = .success(nil)
+        mockInboxMessageInteractor.setContextResult = .success(())
+        mockInboxMessageInteractor.setScopeResult = .success(())
+        mockInboxMessageInteractor.refreshResult = .success(())
+
+        // When
+        testee.sendMessage(viewController: viewController)
+        testScheduler.advance()
+
+        // Then
+        XCTAssertNotNil(router.dismissed)
+    }
+
+    func test_sendMessage_shouldNotDismissViewController_onFailure() {
+        // Given
+        let courses = [makeCourse(id: "1", name: "Math 101")]
+        mockInboxMessageInteractor.courses.send(courses)
+        testScheduler.advance()
+        testee.subject = "Test Subject"
+        testee.body = "Test Body"
+        recipientSelectionViewModel.update(selections: [
+            HorizonUI.MultiSelect.Option(id: "1", label: "John")
+        ])
+        let viewController = WeakViewController()
+        mockComposeMessageInteractor.createConversationResult = .failure(NSError(domain: "test", code: 1))
+
+        // When
+        testee.sendMessage(viewController: viewController)
+        testScheduler.advance()
+
+        // Then
+        XCTAssertNil(router.dismissed)
+    }
 }
