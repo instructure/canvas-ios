@@ -53,7 +53,7 @@ struct HAnnouncementDetailsView: View {
     }
 
     private var titleBar: some View {
-        ZStack(alignment: .topLeading) {
+        ZStack(alignment: .leading) {
             HStack {
                 Spacer()
                 HorizonUI.icons.announcement
@@ -67,6 +67,7 @@ struct HAnnouncementDetailsView: View {
                     .accessibilityAddTraits(.isHeader)
                 Spacer()
             }
+            .padding(.leading, .huiSpaces.space32)
             backButton
         }
         .padding(.horizontal, HorizonUI.spaces.space24)

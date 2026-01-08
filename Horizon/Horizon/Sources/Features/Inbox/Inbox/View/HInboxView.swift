@@ -70,7 +70,7 @@ struct HInboxView: View {
                     lastFocusedMessageID = messageRow.id
                     viewModel.viewMessage(
                         announcement: messageRow.announcement,
-                        inboxMessageListItem: messageRow.inboxMessageListItem,
+                        messageID: messageRow.messageListItemID,
                         viewController: viewController
                     )
                 }

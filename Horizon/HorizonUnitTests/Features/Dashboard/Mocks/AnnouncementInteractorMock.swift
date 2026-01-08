@@ -24,6 +24,12 @@ final class AnnouncementInteractorMock: AnnouncementInteractor {
     private let shouldReturnError: Bool
     var mockedAnnouncements: [AnnouncementModel]?
 
+    // MARK: - Call Tracking
+    var getAllAnnouncementsCallCount = 0
+    var markAnnouncementAsReadCallCount = 0
+    var lastGetAllAnnouncementsIgnoreCache: Bool?
+    var lastMarkedAnnouncementAsRead: AnnouncementModel?
+
     init(shouldReturnError: Bool = false) {
         self.shouldReturnError = shouldReturnError
     }
@@ -60,6 +66,8 @@ final class AnnouncementInteractorMock: AnnouncementInteractor {
     ]
 
     func getAllAnnouncements(ignoreCache: Bool) -> AnyPublisher<[AnnouncementModel], Never> {
+        getAllAnnouncementsCallCount += 1
+        lastGetAllAnnouncementsIgnoreCache = ignoreCache
         if shouldReturnError {
             return Just([]).eraseToAnyPublisher()
         } else {
@@ -69,6 +77,8 @@ final class AnnouncementInteractorMock: AnnouncementInteractor {
     }
 
     func markAnnouncementAsRead(announcement: AnnouncementModel) -> AnyPublisher<[AnnouncementModel], Never> {
+        markAnnouncementAsReadCallCount += 1
+        lastMarkedAnnouncementAsRead = announcement
         if shouldReturnError {
             return Just([]).eraseToAnyPublisher()
         } else {

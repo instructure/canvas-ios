@@ -20,19 +20,55 @@ import Core
 import Foundation
 
 struct InboxMessageModel: Equatable, Identifiable {
-    let announcement: AnnouncementModel?
-    let inboxMessageListItem: InboxMessageListItem?
+    // MARK: - Propertites
 
-    var date: Date? {
-        announcement?.date ?? inboxMessageListItem?.dateRaw
+    let announcement: AnnouncementModel?
+    let date: Date?
+    let dateString: String
+    let isNew: Bool
+    let messageListItemID: String?
+    let isAnnouncement: Bool
+    let subtitle: String
+    let messageTitle: String
+
+    // MARK: - Init
+
+    init(
+        announcement: AnnouncementModel?,
+        date: Date?,
+        dateString: String,
+        isNew: Bool,
+        messageListItemID: String?,
+        isAnnouncement: Bool,
+        subtitle: String,
+        messageTitle: String
+    ) {
+        self.announcement = announcement
+        self.date = date
+        self.dateString = dateString
+        self.isNew = isNew
+        self.messageListItemID = messageListItemID
+        self.isAnnouncement = isAnnouncement
+        self.subtitle = subtitle
+        self.messageTitle = messageTitle
     }
-    var dateString: String {
-        date.map { $0.relativeDateTimeString } ?? ""
+
+    init(
+        announcement: AnnouncementModel?,
+        entity: InboxMessageListItem?
+    ) {
+        self.announcement = announcement
+        self.date = announcement?.date ?? entity?.dateRaw
+        self.isAnnouncement = entity == nil
+        self.messageTitle = (entity?.title).defaultToEmpty
+        self.messageListItemID = entity?.id
+        self.dateString = (announcement?.date ?? entity?.dateRaw).map { $0.relativeDateTimeString } ?? ""
+        self.subtitle = (announcement?.title ?? entity?.participantName).defaultToEmpty
+        self.isNew = entity?.isUnread == true || announcement?.isRead == false
     }
 
     var title: String {
-        guard let announcement else { return inboxMessageListItem?.title ?? "" }
-
+        guard let announcement else { return messageTitle }
         guard let courseName = announcement.courseName else {
             return String(localized: "Announcement", bundle: .horizon)
         }
@@ -41,23 +77,11 @@ struct InboxMessageModel: Equatable, Identifiable {
             courseName
         )
     }
-    var subtitle: String {
-        announcement?.title
-        ?? inboxMessageListItem?.participantName
-        ?? ""
-    }
 
-    var isAnnouncement: Bool {
-        inboxMessageListItem == nil
-    }
-
-    var isNew: Bool {
-        inboxMessageListItem?.isUnread == true || announcement?.isRead == false
-    }
     var id: String {
         if let announcement {
             return "announcement_\(announcement.id)"
         }
-        return "message_\(inboxMessageListItem?.id ?? "")"
+        return "message_\(messageListItemID.defaultToEmpty)"
     }
 }
