@@ -51,7 +51,7 @@ final class HInboxViewModel {
 
     private var filterSubject: CurrentValueRelay<InboxFilterOption> = CurrentValueRelay(InboxFilterOption.all)
     private var subscriptions = Set<AnyCancellable>()
-    private var announcementsPublisher = PassthroughSubject<[AnnouncementModel], Never>()
+    private var announcementsPublisher = CurrentValueSubject<[AnnouncementModel], Never>([])
 
     // MARK: - Dependencies
 
