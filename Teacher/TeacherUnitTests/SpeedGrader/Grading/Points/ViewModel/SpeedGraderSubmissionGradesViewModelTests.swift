@@ -151,6 +151,34 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         XCTAssertFalse(viewModel.isSavingGrade.value)
     }
 
+    func test_grade_edited() {
+        XCTAssertFalse(viewModel.isGradeChanged)
+
+        gradeInteractorMock.gradeStateSubject.send(
+            GradeState.make(originalGradeWithoutMetric: "80")
+        )
+        XCTAssertFalse(viewModel.isGradeChanged)
+
+        gradeInteractorMock.gradeStateSubject.send(
+            GradeState.make(originalGradeWithoutMetric: "20")
+        )
+        XCTAssertTrue(viewModel.isGradeChanged)
+    }
+
+    func test_grade_not_edited() {
+        XCTAssertFalse(viewModel.isGradeChanged)
+
+        gradeInteractorMock.gradeStateSubject.send(
+            GradeState.make(originalGradeWithoutMetric: "60")
+        )
+        XCTAssertFalse(viewModel.isGradeChanged)
+
+        gradeInteractorMock.gradeStateSubject.send(
+            GradeState.make(originalGradeWithoutMetric: "60")
+        )
+        XCTAssertFalse(viewModel.isGradeChanged)
+    }
+
     // MARK: - Error Handling Tests
 
     func test_saveGradeError_showsErrorAlert() {
