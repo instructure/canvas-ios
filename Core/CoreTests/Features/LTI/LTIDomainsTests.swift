@@ -26,11 +26,13 @@ class LTIDomainsTests: XCTestCase {
         XCTAssertEqual(LTIDomains.gauge.icon, .ltiLine)
         XCTAssertEqual(LTIDomains.gauge.icon, LTIDomains.defaultIcon)
         XCTAssertEqual(LTIDomains.masteryConnect.icon, .masteryLTI)
+        XCTAssertEqual(LTIDomains.eportfolio.icon, .eportfolioLine)
     }
 
     func testRawValues() {
         XCTAssertEqual(LTIDomains.studio.rawValue, "arc.instructure.com")
         XCTAssertEqual(LTIDomains.gauge.rawValue, "gauge.instructure.com")
         XCTAssertEqual(LTIDomains.masteryConnect.rawValue, "app.masteryconnect.com")
+        XCTAssertEqual(LTIDomains.eportfolio.rawValue, "portfolio.instructure.com")
     }
 }

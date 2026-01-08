@@ -23,16 +23,48 @@ class GetGlobalNavExternalToolsPlacementsTests: XCTestCase {
 
     func testAllowedGlobalLTIDomains() {
         XCTAssertEqual(HelpLinkEnrollment.observer.allowedGlobalLTIDomains,
-                       ["app.masteryconnect.com"])
+                       [.masteryConnect])
         XCTAssertEqual(HelpLinkEnrollment.admin.allowedGlobalLTIDomains,
-                       ["arc.instructure.com", "gauge.instructure.com", "app.masteryconnect.com"])
+                       [.studio, .gauge, .masteryConnect, .eportfolio])
         XCTAssertEqual(HelpLinkEnrollment.student.allowedGlobalLTIDomains,
-                       ["arc.instructure.com", "gauge.instructure.com", "app.masteryconnect.com"])
+                       [.studio, .gauge, .masteryConnect, .eportfolio])
         XCTAssertEqual(HelpLinkEnrollment.teacher.allowedGlobalLTIDomains,
-                       ["arc.instructure.com", "gauge.instructure.com", "app.masteryconnect.com"])
+                       [.studio, .gauge, .masteryConnect, .eportfolio])
         XCTAssertEqual(HelpLinkEnrollment.unenrolled.allowedGlobalLTIDomains,
-                       ["arc.instructure.com", "gauge.instructure.com"])
+                       [.studio, .gauge])
         XCTAssertEqual(HelpLinkEnrollment.user.allowedGlobalLTIDomains,
-                       ["arc.instructure.com", "gauge.instructure.com"])
+                       [.studio, .gauge])
+    }
+
+    func test_scope() throws {
+        try checkPredicateForLinkEnrollment(.admin)
+        try checkPredicateForLinkEnrollment(.observer)
+        try checkPredicateForLinkEnrollment(.student)
+        try checkPredicateForLinkEnrollment(.teacher)
+        try checkPredicateForLinkEnrollment(.unenrolled)
+        try checkPredicateForLinkEnrollment(.user)
+    }
+
+    private func checkPredicateForLinkEnrollment(_ link: HelpLinkEnrollment) throws {
+        let locationPart = NSPredicate(
+            format: "%K == %@",
+            #keyPath(ExternalToolLaunchPlacement.locationRaw),
+            ExternalToolLaunchPlacementLocation.global_navigation.rawValue
+        )
+
+        let predicate = try XCTUnwrap(GetGlobalNavExternalToolsPlacements(enrollment: link).scope.predicate as? NSCompoundPredicate)
+
+        XCTAssertEqual(predicate.compoundPredicateType, .and)
+        XCTAssertEqual(predicate.subpredicates.first as? NSPredicate, locationPart)
+
+        let domainPredicate = try XCTUnwrap(predicate.subpredicates.last as? NSCompoundPredicate)
+        XCTAssertEqual(domainPredicate.compoundPredicateType, .or)
+
+        let expectedDomainPredicates = link.allowedGlobalLTIDomains.map { domain in
+            let format = domain == .eportfolio ? "%K CONTAINS[c] %@" : "%K == %@"
+            return NSPredicate(format: format, #keyPath(ExternalToolLaunchPlacement.domain), domain.rawValue)
+        }
+
+        XCTAssertEqual(domainPredicate.subpredicates as? [NSPredicate], expectedDomainPredicates)
     }
 }

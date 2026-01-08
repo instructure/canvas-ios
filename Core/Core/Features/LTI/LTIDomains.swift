@@ -22,11 +22,13 @@ public enum LTIDomains: String {
     case studio = "arc.instructure.com"
     case gauge = "gauge.instructure.com"
     case masteryConnect = "app.masteryconnect.com"
+    case eportfolio = "portfolio.instructure.com"
 
     public var icon: Image {
         switch self {
         case .studio: return .studioLine
         case .masteryConnect: return .masteryLTI
+        case .eportfolio: return .eportfolioLine
         default: return Self.defaultIcon
         }
     }
