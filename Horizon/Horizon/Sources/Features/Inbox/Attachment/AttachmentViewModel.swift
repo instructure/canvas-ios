@@ -45,6 +45,9 @@ class AttachmentViewModel {
     var isFilePickerVisible = false
     var isImagePickerVisible = false
     var isTakePhotoVisible = false
+    var isPickerVisible: Bool {
+        (isFilePickerVisible || isImagePickerVisible || isTakePhotoVisible || isVisible)
+    }
 
     var isUploading: Bool {
         let files: [File] = composeMessageInteractor.attachments.value
