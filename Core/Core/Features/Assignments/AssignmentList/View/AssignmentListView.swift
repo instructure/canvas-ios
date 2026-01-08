@@ -20,8 +20,7 @@ import SwiftUI
 
 struct AssignmentListView: View {
     private let sections: [AssignmentListSection]
-    private let sectionIdentifierGroup: String
-    private let itemIdentifierGroup: String
+    private let identifierGroup: String
     private let selectedAssignmentId: String?
     private let navigateToDetailsAction: (URL?, String) -> Void
     private let whatIfModel: GradeListWhatIfModel?
@@ -34,8 +33,7 @@ struct AssignmentListView: View {
         whatIfModel: GradeListWhatIfModel? = nil
     ) {
         self.sections = sections
-        self.sectionIdentifierGroup = "\(identifierGroup).Sections"
-        self.itemIdentifierGroup = "\(identifierGroup).Items"
+        self.identifierGroup = identifierGroup
         self.selectedAssignmentId = selectedAssignmentId
         self.navigateToDetailsAction = navigateToDetailsAction
         self.whatIfModel = whatIfModel
@@ -44,30 +42,64 @@ struct AssignmentListView: View {
     var body: some View {
         LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
             ForEach(sections) { section in
-                sectionView(with: section)
+                AssignmentListSectionView(
+                    section: section,
+                    identifierGroup: identifierGroup,
+                    selectedAssignmentId: selectedAssignmentId,
+                    navigateToDetailsAction: navigateToDetailsAction,
+                    whatIfModel: whatIfModel
+                )
+            }
+        }
+    }
+}
+
+// Sections are extracted to their own view, mainly to be able to conform to Equatable.
+struct AssignmentListSectionView: View {
+    private let section: AssignmentListSection
+    private let sectionIdentifier: String
+    private let itemIdentifierGroup: String
+    private let selectedAssignmentId: String?
+    private let navigateToDetailsAction: (URL?, String) -> Void
+    private let whatIfModel: GradeListWhatIfModel?
+
+    init(
+        section: AssignmentListSection,
+        identifierGroup: String,
+        selectedAssignmentId: String?,
+        navigateToDetailsAction: @escaping (URL?, String) -> Void,
+        whatIfModel: GradeListWhatIfModel? = nil
+    ) {
+        self.section = section
+        self.sectionIdentifier = "\(identifierGroup).Sections.\(section.id)"
+        self.itemIdentifierGroup = "\(identifierGroup).Items"
+        self.selectedAssignmentId = selectedAssignmentId
+        self.navigateToDetailsAction = navigateToDetailsAction
+        self.whatIfModel = whatIfModel
+    }
+
+    var body: some View {
+        InstUI.CollapsibleListSection(
+            title: section.title,
+            headerIdentifier: sectionIdentifier,
+            itemCount: section.rows.count
+        ) {
+            ForEach(section.rows) { row in
+                cell(for: row, isLastItem: section.rows.last?.id == row.id)
+                    .selected(when: row.id == selectedAssignmentId)
             }
         }
     }
 
-    private func sectionView(with section: AssignmentListSection) -> some View {
-        InstUI.CollapsibleListSection(
-            title: section.title,
-            headerIdentifier: "\(sectionIdentifierGroup).\(section.id)",
-            itemCount: section.rows.count
-        ) {
-            ForEach(section.rows) { row in
-                switch row {
-                case .student(let model):
-                    studentCell(model: model, isLastItem: section.rows.last == row)
-                        .selected(when: model.id == selectedAssignmentId)
-                case .teacher(let model):
-                    teacherCell(model: model, isLastItem: section.rows.last == row)
-                        .selected(when: model.id == selectedAssignmentId)
-                case .gradeListRow(let model):
-                    gradeListCell(model: model, isLastItem: section.rows.last == row)
-                        .selected(when: model.id == selectedAssignmentId)
-                }
-            }
+    @ViewBuilder
+    private func cell(for row: AssignmentListSection.Row, isLastItem: Bool) -> some View {
+        switch row {
+        case .student(let model):
+            studentCell(model: model, isLastItem: isLastItem)
+        case .teacher(let model):
+            teacherCell(model: model, isLastItem: isLastItem)
+        case .gradeListRow(let model):
+            gradeListCell(model: model, isLastItem: isLastItem)
         }
     }
 
@@ -151,5 +183,12 @@ struct AssignmentListView: View {
             )
             .identifier(itemIdentifier)
         }
+    }
+}
+
+extension AssignmentListSectionView: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.section == rhs.section
+        && lhs.selectedAssignmentId == rhs.selectedAssignmentId
     }
 }
