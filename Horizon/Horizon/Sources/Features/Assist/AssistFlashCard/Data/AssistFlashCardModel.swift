@@ -41,6 +41,12 @@ struct AssistFlashCardModel: Identifiable, Hashable {
     mutating func makeItFlipped() {
         isFlipped.toggle()
     }
+
+    var accessibilityDescription: String {
+        var text = title
+        text += currentContent
+        return text
+    }
 }
 
 extension AssistFlashCardModel {
