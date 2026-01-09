@@ -40,13 +40,12 @@ class StudentQuizDetailsViewControllerTests: CoreTestCase {
         controller.viewWillAppear(false)
 
         if #available(iOS 26, *) {
-            XCTAssertEqual(controller.navigationItem.title, "Quiz Details")
-            XCTAssertEqual(controller.navigationItem.subtitle, "Course One")
+            XCTAssertNil(nav.navigationBar.barTintColor?.hexString)
         } else {
             XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#0000ff")
-            XCTAssertEqual(controller.titleSubtitleView.title, "Quiz Details")
-            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
         }
+        XCTAssertEqual(controller.titleSubtitleView.title, "Quiz Details")
+        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
 
         XCTAssertEqual(controller.titleLabel.text, "What kind of pokemon are you?")
         XCTAssertEqual(controller.pointsLabel.text, "11.1 pts")
