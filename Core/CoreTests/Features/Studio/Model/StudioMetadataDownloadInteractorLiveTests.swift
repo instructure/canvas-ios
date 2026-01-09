@@ -77,11 +77,28 @@ class StudioMetadataDownloadInteractorLiveTests: CoreTestCase {
         )
     }
 
-    func testFailsOnErrorsOtherThanNotFoundError() {
+    func testDownloadSucceedsInCaseOfForbiddenError() {
         let testee: StudioMetadataDownloadInteractor = StudioMetadataDownloadInteractorLive()
 
         api.mock(GetStudioCourseMediaRequest(courseId: "1")) { _ in
             (nil, nil, NSError.instructureError("", code: HttpError.forbidden))
+        }
+
+        // WHEN
+        let publisher = testee.fetchStudioMediaItems(api: api, courseID: "1")
+
+        // THEN
+        XCTAssertSingleOutputEquals(
+            publisher,
+            []
+        )
+    }
+
+    func testFailsOnErrorsOtherThanNotFoundForbiddenErrors() {
+        let testee: StudioMetadataDownloadInteractor = StudioMetadataDownloadInteractorLive()
+
+        api.mock(GetStudioCourseMediaRequest(courseId: "1")) { _ in
+            (nil, nil, NSError.instructureError("", code: HttpError.unexpected))
         }
 
         // WHEN
