@@ -16,13 +16,40 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import AVKit
 import Core
 import HorizonUI
 import SwiftUI
 
 struct AttachmentView<Content: View>: View {
+    enum FileType {
+        case file
+        case image
+        case photo
+    }
+
+    private var fileTypes: [FileType] = [.image, .photo, .file]
+    private var allowedContentTypes: [UTType] = [
+        .image,
+        .audio,
+        .video,
+        .pdf,
+        .text,
+        .spreadsheet,
+        .presentation,
+        .zip
+    ]
+
     @State var viewModel: AttachmentViewModel
     @ViewBuilder let content: Content
+
+    init(
+        viewModel: AttachmentViewModel,
+        @ViewBuilder content: () -> Content
+    ) {
+        self._viewModel = State(wrappedValue: viewModel)
+        self.content = content()
+    }
 
     var body: some View {
         content
@@ -31,9 +58,16 @@ struct AttachmentView<Content: View>: View {
                 buttons: makeFileUploadButtons(),
                 isPresented: $viewModel.isVisible
             )
+            .huiToast(
+                viewModel: .init(
+                    text: viewModel.errorMessage,
+                    style: .error
+                ),
+                isPresented: $viewModel.isErrorMessagePresented
+            )
             .fileImporter(
                 isPresented: $viewModel.isFilePickerVisible,
-                allowedContentTypes: viewModel.allowedContentTypes,
+                allowedContentTypes: allowedContentTypes,
                 onCompletion: viewModel.fileSelectionComplete
             )
             .sheet(isPresented: $viewModel.isImagePickerVisible) {
@@ -46,7 +80,7 @@ struct AttachmentView<Content: View>: View {
     }
 
     private func makeFileUploadButtons() -> [HorizonUI.Overlay.ButtonAttribute] {
-        viewModel.fileTypes.map { fileType in
+        fileTypes.map { fileType in
             switch fileType {
             case .file:
                 return chooseFileButton

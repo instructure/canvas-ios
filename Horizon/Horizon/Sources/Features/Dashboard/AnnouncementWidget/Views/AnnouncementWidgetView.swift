@@ -20,14 +20,14 @@ import HorizonUI
 import SwiftUI
 
 struct AnnouncementWidgetView: View {
-    let announcement: NotificationModel
+    let announcement: AnnouncementModel
     let currentIndex: Int
     let totalCount: Int
     let isCounterVisible: Bool
     let focusedAnnouncementID: AccessibilityFocusState<String?>.Binding
 
     init(
-        announcement: NotificationModel,
+        announcement: AnnouncementModel,
         currentIndex: Int,
         totalCount: Int,
         isCounterVisible: Bool,
@@ -93,7 +93,7 @@ struct AnnouncementWidgetView: View {
                 .skeletonLoadable()
                 .accessibilityHidden(true)
 
-            Text(announcement.type.title)
+            Text("Announcement")
                 .foregroundStyle(Color.huiColors.text.dataPoint)
                 .huiTypography(.labelMediumBold)
                 .skeletonLoadable()
@@ -112,7 +112,7 @@ struct AnnouncementWidgetView: View {
 
     private var combinedAccessibilityLabel: String {
         var components: [String] = []
-        components.append(announcement.type.title)
+        components.append("Announcement")
         if announcement.courseName != nil {
             components.append(announcement.accessibilityCourseName)
         }
@@ -138,11 +138,11 @@ struct AnnouncementWidgetView: View {
     AnnouncementWidgetView(
         announcement: .init(
             id: "1",
-            title: "The full announcement could be shown here, or we could truncate it. Lorem ipsum dolor sit amet, consectetur adipiscing elit,",
+            title: "Subject 1",
+            content: "New Content info",
             date: Date(),
             isRead: true,
-            courseName: "Course Name",
-            type: .announcement
+            isGlobal: false
         ),
         currentIndex: 1,
         totalCount: 10,

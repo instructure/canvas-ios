@@ -19,23 +19,61 @@
 import Core
 import SwiftUI
 
-struct HCreateMessageAssembly {
-    public static func makeViewController() -> UIViewController {
+enum HCreateMessageAssembly {
+    private static func makeViewModel() -> HCreateMessageViewModel {
+        let appEnvironment = AppEnvironment.shared
         let uploadIdentifier = UUID().uuidString
-        return CoreHostingController(
-            HCreateMessageView(viewModel:
-                .init(
-                    composeMessageInteractor: ComposeMessageInteractorLive(
-                        env: AppEnvironment.shared,
-                        batchId: uploadIdentifier,
-                        uploadFolderPath: "conversation attachments",
-                        uploadManager: UploadManager(
-                            env: AppEnvironment.shared,
-                            identifier: uploadIdentifier
-                        )
-                    )
-                )
+        let userID = appEnvironment.currentSession?.userID ?? ""
+        let composeMessageInteractor =  ComposeMessageInteractorLive(
+            env: AppEnvironment.shared,
+            batchId: uploadIdentifier,
+            uploadFolderPath: "conversation attachments",
+            uploadManager: UploadManager(
+                env: AppEnvironment.shared,
+                identifier: uploadIdentifier
             )
+        )
+
+        let messageInteractor = InboxMessageInteractorLive(
+            env: appEnvironment,
+            tabBarCountUpdater: .init(),
+            messageListStateUpdater: .init()
+        )
+
+        let attachmentViewModel = AttachmentViewModel(composeMessageInteractor: composeMessageInteractor)
+
+        return HCreateMessageViewModel(
+            userID: userID,
+            attachmentViewModel: attachmentViewModel,
+            recipientSelectionViewModel: .init(userID: userID),
+            composeMessageInteractor: composeMessageInteractor,
+            inboxMessageInteractor: messageInteractor,
+            router: appEnvironment.router,
+        )
+    }
+
+    public static func makeViewController() -> UIViewController {
+        CoreHostingController(
+            HCreateMessageView(viewModel: makeViewModel())
         )
     }
 }
+
+#if DEBUG
+extension HCreateMessageAssembly {
+    static func makePreview() -> HCreateMessageView {
+        let env = PreviewEnvironment()
+        let context = env.globalDatabase.viewContext
+        let attachmentViewModel = AttachmentViewModel(composeMessageInteractor: ComposeMessageInteractorPreview())
+        let viewModel = HCreateMessageViewModel(
+            userID: "userID",
+            attachmentViewModel: attachmentViewModel,
+            recipientSelectionViewModel: .init(userID: "userID"),
+            composeMessageInteractor: ComposeMessageInteractorPreview(),
+            inboxMessageInteractor: InboxMessageInteractorPreview(environment: env, messages: .make(count: 5, in: context)),
+            router: AppEnvironment.shared.router,
+        )
+        return HCreateMessageView(viewModel: viewModel)
+    }
+}
+#endif

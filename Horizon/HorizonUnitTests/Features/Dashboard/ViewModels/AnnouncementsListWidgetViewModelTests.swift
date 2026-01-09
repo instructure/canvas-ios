@@ -18,150 +18,440 @@
 
 import XCTest
 import Combine
+import CombineSchedulers
 @testable import Horizon
 @testable import Core
 
 final class AnnouncementsListWidgetViewModelTests: HorizonTestCase {
+    private var interactor: AnnouncementInteractorMock!
 
-    func testInitializationFetchesAndFiltersAnnouncements() {
+    override func setUp() {
+        super.setUp()
+        interactor = AnnouncementInteractorMock()
+    }
+
+    override func tearDown() {
+        interactor = nil
+        super.tearDown()
+    }
+
+    // MARK: - Initialization Tests
+
+    func testInitializationFetchesAnnouncementsAndSetsDataState() {
         // Given
-        let interactor = NotificationInteractorMock(shouldReturnError: false)
-        let unreadAnnouncement = NotificationModel(id: "1", type: .announcement, isRead: false)
-        let readAnnouncement = NotificationModel(id: "2", type: .announcement, isRead: true)
-        let globalAnnouncement = NotificationModel(id: "3", type: .announcement, isRead: false, isGlobalNotification: true)
-        let otherNotification = NotificationModel(id: "4", type: .score, isRead: false)
-        let expiredNotification = NotificationModel(
-            id: "4",
-            type: .announcement,
-            isRead: false,
-            date: Calendar.current.date(byAdding: .day, value: -16, to: Date())
-        )
+        let unreadAnnouncements = [
+            AnnouncementModel(
+                id: "1",
+                title: "Announcement 1",
+                content: "Content 1",
+                date: Date(),
+                isRead: false,
+                isGlobal: false
+            ),
+            AnnouncementModel(
+                id: "2",
+                title: "Announcement 2",
+                content: "Content 2",
+                date: Date(),
+                isRead: false,
+                isGlobal: true
+            )
+        ]
+        interactor.mockedAnnouncements = unreadAnnouncements
 
-        interactor.mockedNotifications = [unreadAnnouncement, readAnnouncement, globalAnnouncement, otherNotification, expiredNotification, expiredNotification]
-        let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
+        // When
+        let testee = createViewModel()
 
         // Then
         XCTAssertEqual(testee.state, .data)
-        XCTAssertEqual(testee.announcements.count, 4)
-        XCTAssertTrue(testee.announcements.contains(where: { $0.id == "1" }))
-        XCTAssertTrue(testee.announcements.contains(where: { $0.id == "3" }))
+        XCTAssertEqual(testee.announcements.count, 2)
+        XCTAssertEqual(testee.announcements[0].id, "1")
+        XCTAssertEqual(testee.announcements[1].id, "2")
         XCTAssertTrue(testee.isCounterViewVisible)
-        XCTAssertEqual(testee.currentCardIndex, 0)
     }
 
-    func testFetchAnnouncementsWithEmptyResponse() {
+    func testInitializationWithEmptyAnnouncementsSetsEmptyState() {
         // Given
-        let interactor = NotificationInteractorMock(shouldReturnError: false)
-        interactor.mockedNotifications = []
-        let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
+        interactor.mockedAnnouncements = []
+
+        // When
+        let testee = createViewModel()
 
         // Then
         XCTAssertEqual(testee.state, .empty)
-        XCTAssertTrue(testee.announcements.isEmpty)
+        XCTAssertEqual(testee.announcements.count, 0)
         XCTAssertFalse(testee.isCounterViewVisible)
     }
 
-    func testFetchAnnouncementsOnErrorReturnsEmptyData() {
+    func testInitializationFilterOutReadAnnouncements() {
         // Given
-        let interactor = NotificationInteractorMock(shouldReturnError: true)
-        let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
+        let announcements = [
+            AnnouncementModel(
+                id: "1",
+                title: "Announcement 1",
+                content: "Content 1",
+                date: Date(),
+                isRead: false,
+                isGlobal: false
+            ),
+            AnnouncementModel(
+                id: "2",
+                title: "Announcement 2",
+                content: "Content 2",
+                date: Date(),
+                isRead: true,
+                isGlobal: false
+            ),
+            AnnouncementModel(
+                id: "3",
+                title: "Announcement 3",
+                content: "Content 3",
+                date: Date(),
+                isRead: false,
+                isGlobal: false
+            )
+        ]
+        interactor.mockedAnnouncements = announcements
+
+        // When
+        let testee = createViewModel()
 
         // Then
-        XCTAssertEqual(testee.state, .empty)
-        XCTAssertTrue(testee.announcements.isEmpty)
+        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.announcements.count, 2)
+        XCTAssertEqual(testee.announcements[0].id, "1")
+        XCTAssertEqual(testee.announcements[1].id, "3")
     }
+
+    // MARK: - Counter View Visibility Tests
+
+    func testCounterViewVisibleWhenMultipleAnnouncements() {
+        // Given
+        let announcements = [
+            AnnouncementModel(
+                id: "1",
+                title: "Announcement 1",
+                content: "Content 1",
+                date: Date(),
+                isRead: false,
+                isGlobal: false
+            ),
+            AnnouncementModel(
+                id: "2",
+                title: "Announcement 2",
+                content: "Content 2",
+                date: Date(),
+                isRead: false,
+                isGlobal: false
+            )
+        ]
+        interactor.mockedAnnouncements = announcements
+
+        // When
+        let testee = createViewModel()
+
+        // Then
+        XCTAssertTrue(testee.isCounterViewVisible)
+    }
+
+    func testCounterViewHiddenWhenSingleAnnouncement() {
+        // Given
+        let announcements = [
+            AnnouncementModel(
+                id: "1",
+                title: "Announcement 1",
+                content: "Content 1",
+                date: Date(),
+                isRead: false,
+                isGlobal: false
+            )
+        ]
+        interactor.mockedAnnouncements = announcements
+
+        // When
+        let testee = createViewModel()
+
+        // Then
+        XCTAssertFalse(testee.isCounterViewVisible)
+    }
+
+    // MARK: - Fetch Announcements Tests
 
     func testFetchAnnouncementsWithIgnoreCacheTrue() {
         // Given
-        let interactor = NotificationInteractorMock(shouldReturnError: false)
-        let unreadAnnouncement = NotificationModel(id: "1", type: .announcement, isRead: false)
-        interactor.mockedNotifications = [unreadAnnouncement]
-        let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
+        let initialAnnouncements = [
+            AnnouncementModel(
+                id: "1",
+                title: "Announcement 1",
+                content: "Content 1",
+                date: Date(),
+                isRead: false,
+                isGlobal: false
+            )
+        ]
+        interactor.mockedAnnouncements = initialAnnouncements
+        let testee = createViewModel()
+        XCTAssertEqual(testee.announcements.count, 1)
 
-        // When - force reload with new data
-        let updatedAnnouncement = NotificationModel(id: "2", type: .announcement, isRead: false)
-        interactor.mockedNotifications = [updatedAnnouncement]
+        let newAnnouncements = [
+            AnnouncementModel(
+                id: "2",
+                title: "Announcement 2",
+                content: "Content 2",
+                date: Date(),
+                isRead: false,
+                isGlobal: false
+            ),
+            AnnouncementModel(
+                id: "3",
+                title: "Announcement 3",
+                content: "Content 3",
+                date: Date(),
+                isRead: false,
+                isGlobal: false
+            )
+        ]
+        interactor.mockedAnnouncements = newAnnouncements
 
-        // Initially in data state with first announcement
+        // When
+        testee.fetchAnnouncements(ignoreCache: true)
+
+        // Then
         XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.announcements.count, 2)
+        XCTAssertEqual(testee.announcements[0].id, "2")
+        XCTAssertEqual(testee.announcements[1].id, "3")
+    }
 
+    func testFetchAnnouncementsResetsCurrentCardIndex() {
+        // Given
+        interactor.mockedAnnouncements = [
+            AnnouncementModel(
+                id: "1",
+                title: "Announcement 1",
+                content: "Content 1",
+                date: Date(),
+                isRead: false,
+                isGlobal: false
+            ),
+            AnnouncementModel(
+                id: "2",
+                title: "Announcement 2",
+                content: "Content 2",
+                date: Date(),
+                isRead: false,
+                isGlobal: false
+            )
+        ]
+        let testee = createViewModel()
+        testee.currentCardIndex = 1
+
+        // When
+        testee.fetchAnnouncements(ignoreCache: true)
+
+        // Then
+        XCTAssertEqual(testee.currentCardIndex, 0)
+    }
+
+    func testFetchAnnouncementsCallsCompletion() {
+        // Given
+        interactor.mockedAnnouncements = []
+        let testee = createViewModel()
         var completionCalled = false
-        testee.fetchAnnouncements(ignoreCache: true) {
+
+        // When
+        testee.fetchAnnouncements(ignoreCache: false) {
             completionCalled = true
         }
 
         // Then
         XCTAssertTrue(completionCalled)
-        XCTAssertEqual(testee.state, .data)
     }
 
-    func testNavigateToAnnouncementRoutesToMessageDetails() {
-        // Given
-        let interactor = NotificationInteractorMock(shouldReturnError: false)
-        let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
+    // MARK: - Navigation Tests
 
-        let announcement = NotificationModel(id: "1", type: .announcement, announcementId: "ann-1")
-        let viewController = WeakViewController(UIViewController())
+    func testNavigateToAnnouncementCallsRouter() {
+        // Given
+        let announcement = AnnouncementModel(
+            id: "1",
+            title: "Test Announcement",
+            content: "Test Content",
+            courseID: "course-1",
+            courseName: "iOS Development",
+            date: Date(),
+            isRead: false,
+            isGlobal: false
+        )
+        interactor.mockedAnnouncements = [announcement]
+        let testee = createViewModel()
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
 
         // When
         testee.navigateToAnnouncement(announcement: announcement, viewController: viewController)
 
         // Then
+        XCTAssertEqual(router.showExpectation.expectedFulfillmentCount, 1)
         wait(for: [router.showExpectation], timeout: 1)
-        let messageDetailsVC = router.lastViewController as? CoreHostingController<HMessageDetailsView>
-        XCTAssertNotNil(messageDetailsVC)
     }
 
-    func testHiedNavigationButtonWithOneAnnouncement() {
+    func testNavigateToAnnouncementMarksAsRead() {
         // Given
+        let announcement = AnnouncementModel(
+            id: "1",
+            title: "Test Announcement",
+            content: "Test Content",
+            date: Date(),
+            isRead: false,
+            isGlobal: false
+        )
+        let announcement2 = AnnouncementModel(
+            id: "2",
+            title: "Test Announcement 2",
+            content: "Test Content 2",
+            date: Date(),
+            isRead: false,
+            isGlobal: false
+        )
+        interactor.mockedAnnouncements = [announcement, announcement2]
+        let testee = createViewModel(scheduler: .immediate)
+        XCTAssertEqual(testee.announcements.count, 2)
 
-        let interactor = NotificationInteractorMock(shouldReturnError: false)
-        let announcement1 = NotificationModel(id: "1", type: .announcement, isRead: false)
-        interactor.mockedNotifications = [announcement1]
-        let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
+
+        // When
+        testee.navigateToAnnouncement(announcement: announcement, viewController: viewController)
+
+        // Then
+        XCTAssertEqual(testee.announcements.count, 1)
+        XCTAssertEqual(testee.announcements[0].id, "2")
+    }
+
+    // MARK: - Mark As Read Tests
+
+    func testMarkAsReadUpdatesAnnouncementsList() {
+        // Given
+        let announcement1 = AnnouncementModel(
+            id: "1",
+            title: "Announcement 1",
+            content: "Content 1",
+            date: Date(),
+            isRead: false,
+            isGlobal: false
+        )
+        let announcement2 = AnnouncementModel(
+            id: "2",
+            title: "Announcement 2",
+            content: "Content 2",
+            date: Date(),
+            isRead: false,
+            isGlobal: false
+        )
+        interactor.mockedAnnouncements = [announcement1, announcement2]
+        let testee = createViewModel(scheduler: .immediate)
+        XCTAssertEqual(testee.announcements.count, 2)
+
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
+
+        // When
+        testee.navigateToAnnouncement(announcement: announcement1, viewController: viewController)
+
+        // Then
+        XCTAssertEqual(testee.announcements.count, 1)
+        XCTAssertEqual(testee.announcements[0].id, "2")
+    }
+
+    func testMarkAsReadUpdatesStateToEmptyWhenLastAnnouncement() {
+        // Given
+        let announcement = AnnouncementModel(
+            id: "1",
+            title: "Announcement 1",
+            content: "Content 1",
+            date: Date(),
+            isRead: false,
+            isGlobal: false
+        )
+        interactor.mockedAnnouncements = [announcement]
+        let testee = createViewModel(scheduler: .immediate)
+        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.announcements.count, 1)
+
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
+        interactor.mockedAnnouncements = []
+
+        // When
+        testee.navigateToAnnouncement(announcement: announcement, viewController: viewController)
+
+        // Then
+        XCTAssertEqual(testee.state, .empty)
+        XCTAssertEqual(testee.announcements.count, 0)
+    }
+
+    func testMarkAsReadUpdatesCounterViewVisibility() {
+        // Given
+        let announcement1 = AnnouncementModel(
+            id: "1",
+            title: "Announcement 1",
+            content: "Content 1",
+            date: Date(),
+            isRead: false,
+            isGlobal: false
+        )
+        let announcement2 = AnnouncementModel(
+            id: "2",
+            title: "Announcement 2",
+            content: "Content 2",
+            date: Date(),
+            isRead: false,
+            isGlobal: false
+        )
+        interactor.mockedAnnouncements = [announcement1, announcement2]
+        let testee = createViewModel(scheduler: .immediate)
+        XCTAssertTrue(testee.isCounterViewVisible)
+
+        let sourceView = UIViewController()
+        let viewController = WeakViewController(sourceView)
+        interactor.mockedAnnouncements = [announcement2]
+
+        // When
+        testee.navigateToAnnouncement(announcement: announcement1, viewController: viewController)
 
         // Then
         XCTAssertFalse(testee.isCounterViewVisible)
     }
 
-    func testMarkAsRead() {
+    // MARK: - Current Card Index Tests
+
+    func testCurrentCardIndexInitializedToZero() {
         // Given
-        let interactor = NotificationInteractorMock()
-        let testee = AnnouncementsListWidgetViewModel(interactor: interactor, router: router, scheduler: .immediate)
-        let viewController = WeakViewController(UIViewController())
-        let globalAnnouncement = NotificationModel(id: "3", type: .announcement, isRead: true, isGlobalNotification: true)
+        interactor.mockedAnnouncements = [
+            AnnouncementModel(
+                id: "1",
+                title: "Announcement 1",
+                content: "Content 1",
+                date: Date(),
+                isRead: false,
+                isGlobal: false
+            )
+        ]
+
         // When
-        testee.navigateToAnnouncement(announcement: globalAnnouncement, viewController: viewController)
+        let testee = createViewModel()
+
         // Then
-        XCTAssertEqual(testee.announcements.count, 1)
+        XCTAssertEqual(testee.currentCardIndex, 0)
     }
-}
 
-// MARK: - Mock Extensions
+    // MARK: - Helper Methods
 
-private extension NotificationModel {
-    init(
-        id: String,
-        type: NotificationType,
-        isRead: Bool = false,
-        isGlobalNotification: Bool = false,
-        announcementId: String? = nil,
-        date: Date? = Date()
-    ) {
-        self.init(
-            id: id,
-            title: "Title \(id)",
-            date: date,
-            isRead: isRead,
-            courseName: "Course",
-            courseID: "1",
-            enrollmentID: "1",
-            isScoreAnnouncement: false,
-            type: type,
-            announcementId: announcementId,
-            assignmentURL: nil,
-            htmlURL: nil,
-            isGlobalNotification: isGlobalNotification
+    private func createViewModel(scheduler: AnySchedulerOf<DispatchQueue> = .immediate) -> AnnouncementsListWidgetViewModel {
+        AnnouncementsListWidgetViewModel(
+            interactor: interactor,
+            router: router,
+            scheduler: scheduler
         )
     }
 }

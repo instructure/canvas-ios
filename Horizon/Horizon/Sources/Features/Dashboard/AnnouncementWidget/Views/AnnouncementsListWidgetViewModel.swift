@@ -28,7 +28,7 @@ final class AnnouncementsListWidgetViewModel {
 
     private(set) var state: HViewState = .loading
     private(set) var isCounterViewVisible = false
-    private(set) var announcements: [NotificationModel] = []
+    private(set) var announcements: [AnnouncementModel] = []
 
     // MARK: - Input/Outputs
 
@@ -42,13 +42,13 @@ final class AnnouncementsListWidgetViewModel {
 
     // MARK: - Dependencies
 
-    private let interactor: NotificationInteractor
+    private let interactor: AnnouncementInteractor
     private let router: Router
 
     // MARK: - Init
 
     init(
-        interactor: NotificationInteractor,
+        interactor: AnnouncementInteractor,
         router: Router,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
@@ -61,26 +61,23 @@ final class AnnouncementsListWidgetViewModel {
     // MARK: - Actions
 
     func navigateToAnnouncement(
-        announcement: NotificationModel,
+        announcement: AnnouncementModel,
         viewController: WeakViewController
     ) {
-        let vc = HorizonMessageDetailsAssembly.makeViewController(
-            announcementID: announcement.announcementId.defaultToEmpty
-        )
+        let vc = HorizonMessageDetailsAssembly.makeAnnouncementView(announcementModel: announcement)
         router.show(vc, from: viewController)
         markAsRead(announcement: announcement)
     }
 
-    private func markAsRead(announcement: NotificationModel) {
-        interactor.markNotificationAsRead(notification: announcement)
-            .replaceError(with: [])
+    private func markAsRead(announcement: AnnouncementModel) {
+        interactor.markAnnouncementAsRead(announcement: announcement)
             .flatMap { Publishers.Sequence(sequence: $0) }
-            .filter { $0.type == .announcement && ($0.isRead == false )}
+            .filter { $0.isRead == false }
             .receive(on: scheduler)
             .collect()
-            .sink { [weak self] notifications in
+            .sink { [weak self] announcements in
                 guard let self else { return }
-                self.handleResponse(notifications: notifications)
+                self.handleResponse(announcements: announcements)
             }
             .store(in: &subscriptions)
     }
@@ -92,26 +89,26 @@ final class AnnouncementsListWidgetViewModel {
             state = .loading
         }
         currentCardIndex = 0
-        announcements = [NotificationModel.mock]
+        announcements = [AnnouncementModel.mock]
         isFirstLoading = false
         interactor
-            .getNotifications(ignoreCache: ignoreCache)
+            .getAllAnnouncements(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .flatMap { Publishers.Sequence(sequence: $0) }
-            .filter { $0.type == .announcement && ($0.isRead == false )}
+            .filter { $0.isRead == false }
             .collect()
             .receive(on: scheduler)
             .sink { [weak self] notifications in
                 guard let self else { return }
-                self.handleResponse(notifications: notifications)
+                self.handleResponse(announcements: notifications)
                 completion?()
             }
             .store(in: &subscriptions)
     }
 
-    private func handleResponse(notifications: [NotificationModel]) {
-        state = notifications.isEmpty ? .empty : .data
-        announcements = notifications
+    private func handleResponse(announcements: [AnnouncementModel]) {
+        state = announcements.isEmpty ? .empty : .data
+        self.announcements = announcements
         isCounterViewVisible = announcements.count > 1
         currentCardIndex = .zero
     }

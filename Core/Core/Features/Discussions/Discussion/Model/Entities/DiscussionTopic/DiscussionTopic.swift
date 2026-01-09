@@ -61,6 +61,7 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
     @NSManaged public var sortByRating: Bool
     @NSManaged public var subscribed: Bool
     @NSManaged public var title: String?
+    @NSManaged public var readState: String
     @NSManaged public var unreadCount: Int
 
     // Checkpoints
@@ -87,6 +88,8 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
     public var nUnreadString: String {
         String.localizedStringWithFormat(String(localized: "%d Unread", bundle: .core), unreadCount)
     }
+
+    public var isRead: Bool { readState == "read" }
 
     @discardableResult
     public static func save(_ item: APIDiscussionTopic, apiPosition: Int = 0, in context: NSManagedObjectContext) -> DiscussionTopic {
@@ -172,7 +175,7 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
         model.subscribed = item.subscribed == true
         model.title = item.title
         model.unreadCount = item.unread_count ?? 0
-
+        model.readState = item.read_state.defaultToEmpty
         model.updateCheckpoints(from: item, in: context)
         return model
     }

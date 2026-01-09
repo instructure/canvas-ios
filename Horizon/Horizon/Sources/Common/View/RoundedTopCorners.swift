@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,26 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-import Foundation
+import HorizonUI
+import SwiftUI
 
-public protocol ComposeMessageInteractor {
-    // MARK: - Outputs
-    var attachments: CurrentValueSubject<[File], Never> { get }
-    var didUploadFiles: PassthroughSubject<Result<Void, Error>, Never> { get }
-
-    // MARK: - Inputs
-    func createConversation(parameters: MessageParameters) -> Future<URLResponse?, Error>
-
-    func addConversationMessage(parameters: MessageParameters) -> Future<URLResponse?, Error>
-
-    @discardableResult func addFile(url: URL) -> File?
-
-    func addFile(file: File)
-
-    func retry()
-
-    func cancel()
-
-    func removeFile(file: File)
+extension View {
+    func roundedTopCorners(
+        radius: CGFloat = HorizonUI.CornerRadius.level4.attributes.radius
+    ) -> some View {
+        clipShape(
+            .rect(
+                topLeadingRadius: radius,
+                topTrailingRadius: radius
+            )
+        )
+    }
 }

@@ -19,7 +19,35 @@
 import Core
 import Foundation
 
-struct NotificationModel: Identifiable, Equatable {
+protocol RelativeDateRepresentable {
+    var date: Date? { get }
+}
+
+extension RelativeDateRepresentable {
+
+    var dateFormatted: String {
+        guard let date else { return "" }
+
+        let calendar = Calendar.current
+        let now = Date()
+
+        switch true {
+        case calendar.isDateInToday(date):
+            return String(localized: "Today", bundle: .horizon)
+
+        case calendar.isDateInYesterday(date):
+            return String(localized: "Yesterday", bundle: .horizon)
+
+        case calendar.isDate(date, equalTo: now, toGranularity: .weekOfYear):
+            return Date.weekdayFormatter.string(from: date)
+
+        default:
+            return date.formatted(format: "MMM d, yyyy")
+        }
+    }
+}
+
+struct NotificationModel: Identifiable, Equatable, RelativeDateRepresentable {
     let id: String
     let title: String
     let date: Date?
@@ -30,6 +58,7 @@ struct NotificationModel: Identifiable, Equatable {
     let isScoreAnnouncement: Bool
     let type: NotificationType
     let announcementId: String?
+    let announcementContent: String?
     let assignmentURL: URL?
     let htmlURL: URL?
     let isGlobalNotification: Bool
@@ -37,14 +66,15 @@ struct NotificationModel: Identifiable, Equatable {
     init(
         id: String,
         title: String,
-        date: Date?,
-        isRead: Bool,
+        date: Date? = nil,
+        isRead: Bool = true,
         courseName: String? = nil,
         courseID: String = "",
         enrollmentID: String = "''",
         isScoreAnnouncement: Bool = false,
         type: NotificationType,
         announcementId: String? = nil,
+        announcementContent: String? = nil,
         assignmentURL: URL? = nil,
         htmlURL: URL? = nil,
         isGlobalNotification: Bool = false
@@ -59,27 +89,10 @@ struct NotificationModel: Identifiable, Equatable {
         self.isScoreAnnouncement = isScoreAnnouncement
         self.type = type
         self.announcementId = announcementId
+        self.announcementContent = announcementContent
         self.assignmentURL = assignmentURL
         self.htmlURL = htmlURL
         self.isGlobalNotification = isGlobalNotification
-    }
-
-    var dateFormatted: String {
-        guard let date else { return "" }
-
-        let calendar = Calendar.current
-        let now = Date()
-
-        switch true {
-        case calendar.isDateInToday(date):
-            return String(localized: "Today", bundle: .horizon)
-        case calendar.isDateInYesterday(date):
-            return String(localized: "Yesterday", bundle: .horizon)
-        case calendar.isDate(date, equalTo: now, toGranularity: .weekOfYear):
-            return Date.weekdayFormatter.string(from: date)
-        default:
-            return date.formatted(format: "MMM d, yyyy")
-        }
     }
 
     static let mock: Self = .init(
