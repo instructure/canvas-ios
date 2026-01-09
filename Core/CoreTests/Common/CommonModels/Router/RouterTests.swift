@@ -102,7 +102,7 @@ class RouterTests: CoreTestCase {
         ]) { _, _, _, _ in }
         router.route(to: URLComponents(string: "/modal")!, from: mockView, options: .modal(embedInNav: true, addDoneButton: true))
         let nav = mockView.presented as? UINavigationController
-        XCTAssertEqual(nav?.viewControllers.first?.navigationItem.leftBarButtonItems?.count, 1)
+        XCTAssertEqual(nav?.viewControllers.first?.navigationItem.rightBarButtonItems?.count, 1)
     }
 
     func testRouteFormSheet() {
@@ -203,7 +203,11 @@ class RouterTests: CoreTestCase {
         XCTAssert(mockView.shown?.isKind(of: UIViewController.self) == true)
     }
 
-    func testDetailSplitViewButtons() {
+    func testDetailSplitViewButtons() throws {
+        if #available(iOS 26, *) {
+            throw XCTSkip("Default implementation provided above iOS 26")
+        }
+
         let mockView = MockViewController()
         mockView.navigationItem.leftItemsSupplementBackButton = false
         mockView.navigationItem.leftBarButtonItems = nil

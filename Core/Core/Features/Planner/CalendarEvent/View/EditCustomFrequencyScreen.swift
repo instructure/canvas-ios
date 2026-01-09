@@ -74,7 +74,6 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
             }
             .frame(maxWidth: geometry.size.width)
         }
-        .navigationBarTitleView(viewModel.pageTitle)
         .navBarItems(
             trailing: .init(
                 isEnabled: viewModel.isSaveButtonEnabled,
@@ -85,7 +84,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                 }
             )
         )
-        .navigationBarStyle(.modal)
+        .navigationTitle(viewModel.pageTitle, style: .modal)
         .dropDownDetailsContainer(state: $weekDayDropDownState) {
             WeekDaysSelectionListView(selection: $viewModel.daysOfTheWeek)
         }

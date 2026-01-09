@@ -27,6 +27,18 @@ struct SearchTextField: View {
     private let clearButtonColor: Color
     private let onSubmit: () -> Void
 
+    private var trailingPadding: CGFloat {
+        if text.isEmpty {
+            10
+        } else {
+            if #available(iOS 26, *) {
+                10
+            } else {
+                3
+            }
+        }
+    }
+
     init(
         text: Binding<String>,
         prompt: String,
@@ -40,6 +52,29 @@ struct SearchTextField: View {
     }
 
     var body: some View {
+        if #available(iOS 26, *) {
+            content
+                .clipShape(Capsule())
+                .frame(idealWidth: minWidth.value, maxWidth: .infinity)
+                .frame(height: 44)
+                .glassEffect()
+                .measuringSize { size in
+                    minWidth.deferred = size.width
+                }
+        } else {
+            content
+                .background(Color.backgroundLightest)
+                .clipShape(Capsule())
+                .shadow(radius: 2, y: 2)
+                .frame(idealWidth: minWidth.value, maxWidth: .infinity)
+                .frame(height: 32)
+                .measuringSize { size in
+                    minWidth.deferred = size.width
+                }
+        }
+    }
+
+    private var content: some View {
         HStack(spacing: 0) {
             Image
                 .smartSearchSmallLine
@@ -55,7 +90,7 @@ struct SearchTextField: View {
                 .submitLabel(.search)
                 .font(.regular14)
                 .foregroundStyle(Color.textDarkest)
-                .frame(maxWidth: .infinity)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .padding(.vertical, 8)
                 .onSubmit {
                     minWidth.update()
@@ -75,14 +110,7 @@ struct SearchTextField: View {
             }
         }
         .padding(.leading, 10)
-        .padding(.trailing, text.isEmpty ? 10 : 3)
-        .background(Color.backgroundLightest)
-        .clipShape(Capsule())
-        .shadow(radius: 2, y: 2)
-        .frame(idealWidth: minWidth.value, maxWidth: .infinity)
-        .measuringSize { size in
-            minWidth.deferred = size.width
-        }
+        .padding(.trailing, trailingPadding)
         .onDisappear {
             // This is to resolve issue of field size when pushing to result details
             minWidth.update()

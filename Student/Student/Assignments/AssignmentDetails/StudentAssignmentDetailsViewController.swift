@@ -293,7 +293,25 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.useContextColor(presenter?.courses.first?.color)
+        if #unavailable(iOS 26) {
+            navigationController?.navigationBar.useContextColor(presenter?.courses.first?.color)
+        }
+
+        if #available(iOS 26, *) {
+            submitAssignmentButton.layer.cornerRadius = 25
+
+            NSLayoutConstraint.activate([
+                submitAssignmentButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+                submitAssignmentButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+                submitAssignmentButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                submitAssignmentButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                submitAssignmentButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                submitAssignmentButton.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -315,9 +333,13 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         presenter?.viewFileSubmission()
     }
 
+    @available(iOS, deprecated: 26)
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?) {
         titleSubtitleView.subtitle = subtitle
-        navigationController?.navigationBar.useContextColor(backgroundColor)
+
+        if #unavailable(iOS 26) {
+            navigationController?.navigationBar.useContextColor(backgroundColor)
+        }
     }
 
     func updateGradeCell(_ assignment: Assignment, submission: Submission?) {

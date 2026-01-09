@@ -24,8 +24,7 @@
       "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
       "identifier" : "5E6441861C3EE2E0003D7397",
       "name" : "Parent"
-    },
-    "uiTestingScreenshotsLifetime" : "keepNever"
+    }
   },
   "testTargets" : [
     {
@@ -34,7 +33,7 @@
       ],
       "target" : {
         "containerPath" : "container:Parent.xcodeproj",
-        "identifier" : "E80763C723E08DA10085DAFB",
+        "identifier" : "65096788CC5CBB4C34C420D3",
         "name" : "ParentE2ETests"
       }
     }

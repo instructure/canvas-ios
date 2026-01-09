@@ -35,25 +35,34 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
         ) { _ in
             eventContent
         }
-        .navigationBarTitleView(title: viewModel.pageTitle, subtitle: viewModel.pageSubtitle)
-        .navBarItems(
-            trailing: viewModel.shouldShowMenuButton
-            ? InstUI.NavigationBarButton.moreIcon(
-                isBackgroundContextColor: true,
-                isEnabled: viewModel.isMoreButtonEnabled,
-                isAvailableOffline: false,
-                menuContent: {
-                    InstUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
-                    InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
-                }
-            )
-            .confirmation(
-                isPresented: $viewModel.shouldShowDeleteConfirmation,
-                presenting: viewModel.deleteConfirmation
-            )
-            : nil
+        .toolbar {
+            let isBackgroundContextColor = if #available(iOS 26, *) { false } else { true }
+
+            if viewModel.shouldShowMenuButton {
+                InstUI.NavigationBarButton.moreIcon(
+                    isBackgroundContextColor: isBackgroundContextColor,
+                    isEnabled: viewModel.isMoreButtonEnabled,
+                    isAvailableOffline: false,
+                    menuContent: {
+                        InstUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
+                        InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
+                    }
+                )
+                .confirmation(
+                    isPresented: $viewModel.shouldShowDeleteConfirmation,
+                    presenting: viewModel.deleteConfirmation
+                )
+            }
+        }
+        .navigationTitles(
+            title: viewModel.pageTitle,
+            subtitle: viewModel.pageSubtitle,
+            style: .color(viewModel.contextColor)
         )
-        .navigationBarStyle(.color(viewModel.contextColor))
+        .confirmation(
+            isPresented: $viewModel.shouldShowDeleteConfirmation,
+            presenting: viewModel.deleteConfirmation
+        )
         .errorAlert(
             isPresented: $viewModel.shouldShowDeleteError,
             presenting: .init(
@@ -77,19 +86,21 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
 #if DEBUG
 
 #Preview {
-    let event = CalendarEvent.save(
-        .make(
-            id: "",
-            title: "Creative Machines and Innovative Instrumentation Conference",
-            description: "We should meet 10 minutes before the event. <a href=\"\">Click here!</a>",
-            location_name: "UCF Department of Mechanical and Aerospace Engineering",
-            location_address: "12760 Pegasus Dr\nOrlando, FL 32816"
-        ),
-        in: PreviewEnvironment().database.viewContext
-    )
-    let contextColor: UIColor = .red
+    NavigationStack {
+        let event = CalendarEvent.save(
+            .make(
+                id: "",
+                title: "Creative Machines and Innovative Instrumentation Conference",
+                description: "We should meet 10 minutes before the event. <a href=\"\">Click here!</a>",
+                location_name: "UCF Department of Mechanical and Aerospace Engineering",
+                location_address: "12760 Pegasus Dr\nOrlando, FL 32816"
+            ),
+            in: PreviewEnvironment().database.viewContext
+        )
+        let contextColor: UIColor = .red
 
-    return PlannerAssembly.makeEventDetailsScreenPreview(event: event, contextColor: contextColor)
+        return PlannerAssembly.makeEventDetailsScreenPreview(event: event, contextColor: contextColor)
+    }
 }
 
 #endif

@@ -61,7 +61,12 @@ public class ExternalURLViewController: UIViewController, ColoredNavViewProtocol
             bundle: .core
         )
         openInSafariButton.setTitle(String(localized: "Open in Safari", bundle: .core), for: .normal)
-        setupTitleViewInNavbar(title: String(localized: "External URL", bundle: .core))
+
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "External URL", bundle: .core)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "External URL", bundle: .core))
+        }
         colors.refresh()
         courses?.refresh()
     }
@@ -73,7 +78,11 @@ public class ExternalURLViewController: UIViewController, ColoredNavViewProtocol
 
     public func updateNavBar() {
         let course = courses?.first
-        updateNavBar(subtitle: course?.name, color: course?.color)
+        if #available(iOS 26, *) {
+            navigationItem.subtitle = course?.name
+        } else {
+            updateNavBar(subtitle: course?.name, color: course?.color)
+        }
     }
 
     @IBAction public func openButtonPressed(_ sender: UIButton) {

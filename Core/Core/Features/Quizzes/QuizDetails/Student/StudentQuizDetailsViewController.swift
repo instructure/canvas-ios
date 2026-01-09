@@ -77,7 +77,13 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: String(localized: "Quiz Details", bundle: .core))
+
+        if #available(iOS 26, *) {
+            navigationItem.titleView = titleSubtitleView
+            titleSubtitleView.title = String(localized: "Quiz Details", bundle: .core)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Quiz Details", bundle: .core))
+        }
 
         attemptsLabel.text = String(localized: "Allowed Attempts:", bundle: .core)
         dueHeadingLabel.text = String(localized: "Due", bundle: .core)
@@ -119,7 +125,9 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.useContextColor(color)
+        if #unavailable(iOS 26) {
+            navigationController?.navigationBar.useContextColor(color)
+        }
     }
 
     @objc func refresh() {
@@ -132,7 +140,11 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
 
     func updateNavBar() {
         guard let course = courses.first, !colors.pending else { return }
-        updateNavBar(subtitle: course.name, color: course.color)
+        if #available(iOS 26, *) {
+            titleSubtitleView.subtitle = course.name
+        } else {
+            updateNavBar(subtitle: course.name, color: course.color)
+        }
         view.tintColor = color
     }
 

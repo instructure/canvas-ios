@@ -45,7 +45,6 @@ public struct SyllabusEditorView: View {
 
     public var body: some View {
         form
-            .navigationBarTitleView(String(localized: "Edit Syllabus", bundle: .core))
             .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: {
@@ -61,7 +60,7 @@ public struct SyllabusEditorView: View {
                 })
                     .disabled(isLoading || isSaving)
             )
-            .navigationBarStyle(.modal)
+            .navigationTitle(String(localized: "Edit Syllabus", bundle: .core), style: .modal)
 
             .alert(isPresented: $showError) {
                 Alert(title: Text(error!.localizedDescription))

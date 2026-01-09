@@ -54,7 +54,6 @@ struct AssignmentAssigneePicker: View {
 
     var body: some View {
         form
-            .navigationBarTitleView(String(localized: "Assign to", bundle: .core))
             .navigationBarItems(
                 trailing: Button(action: save, label: {
                     Text("Done", bundle: .core).bold()
@@ -62,7 +61,7 @@ struct AssignmentAssigneePicker: View {
                 .disabled(isSpinning)
                 .identifier("DiscussionEditor.doneButton")
             )
-            .navigationBarStyle(.modal)
+            .navigationTitle(String(localized: "Assign to", bundle: .core), style: .modal)
             .onAppear(perform: load)
     }
 

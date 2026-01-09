@@ -73,8 +73,13 @@ class AttendanceViewController: ScreenViewTrackableViewController, ColoredNavVie
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
 
-        setupTitleViewInNavbar(title: String(localized: "Attendance", bundle: .teacher))
-        titleSubtitleView.subtitle = AttendanceViewController.dateFormatter.string(from: date)
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "Attendance", bundle: .teacher)
+            navigationItem.subtitle = AttendanceViewController.dateFormatter.string(from: date)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Attendance", bundle: .teacher))
+            titleSubtitleView.subtitle = AttendanceViewController.dateFormatter.string(from: date)
+        }
 
         let datePickerButton = UIButton(type: .custom)
         datePickerButton.accessibilityIdentifier = "Attendance.selectDateButton"
@@ -350,7 +355,11 @@ extension AttendanceViewController: DatePickerDelegate {
     func didSelectDate(_ date: Date) {
         self.date = date
         calendarDayIconView.setDate(date)
-        titleSubtitleView.subtitle = AttendanceViewController.dateFormatter.string(from: date)
+        if #available(iOS 26, *) {
+            navigationItem.subtitle = AttendanceViewController.dateFormatter.string(from: date)
+        } else {
+            titleSubtitleView.subtitle = AttendanceViewController.dateFormatter.string(from: date)
+        }
         statuses = []
         tableView.reloadData()
         updateMarkAllButton()

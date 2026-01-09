@@ -47,68 +47,33 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     public var body: some View {
         InstUI.BaseScreen(state: model.state, config: model.screenConfig) { geometry in
-            VStack(spacing: 0) {
-                headerView
-                    .background(
-                        GeometryReader { proxy in
-                            Color.clear
-                                .onAppear {
-                                    headerHeight = proxy.size.height
-                                    model.showSearchRecipientsView = false
-                                    focusedInput = nil
-                                }
-                        }
-                    )
-                separator
-                courseView
-                separator
-                ZStack(alignment: .topLeading) {
-                    VStack(spacing: 0) {
-                        propertiesView
-                        separator
-
-                        bodyView(geometry: geometry)
-                        attachmentsView
-                        if !model.includedMessages.isEmpty {
-                            includedMessages
-                        }
-                        // This Rectangle adds extra height to ensure smoother display of the list of recipients
-                        // without affecting the UI or any logic.
-                        Rectangle()
-                            .fill(Color.clear)
-                            .frame(height: 150)
-                            .allowsHitTesting(false)
+            baseScreenView(geometry)
+                .font(.regular12)
+                .foregroundColor(.textDarkest)
+                .background(
+                    GeometryReader { reader in
+                        Color
+                            .backgroundLightest
+                            .onTapGesture {
+                                model.clearSearchedRecipients()
+                                focusedInput = nil
+                            }
+                            .preference(key: ViewSizeKey.self, value: -reader.frame(in: .named("scroll")).origin.y)
                     }
-                    if model.showSearchRecipientsView {
-                        RecipientFilterView(recipients: model.searchedRecipients) { selectedRecipient in
-                            model.showSearchRecipientsView = false
-                            model.textRecipientSearch = ""
-                            model.didSelectRecipient.accept(selectedRecipient)
-                        }
-                        .accessibilityHidden(true)
-                        .offset(y: model.recipients.isEmpty ? searchTextFieldHeight : recipientViewHeight + searchTextFieldHeight)
-                        .padding(.horizontal, 35)
-                        .fixedSize(horizontal: false, vertical: true)
-                        .animation(.smooth, value: model.showSearchRecipientsView)
+                )
+                .toolbar {
+                    ToolbarItem(placement: .topBarLeading) {
+                        cancelButton
                     }
 
-                }
-            }
-            .font(.regular12)
-            .foregroundColor(.textDarkest)
-            .background(
-                GeometryReader { reader in
-                    Color
-                        .backgroundLightest
-                        .onTapGesture {
-                            model.clearSearchedRecipients()
-                            focusedInput = nil
+                    ToolbarItem(placement: .topBarTrailing) {
+                        if #available(iOS 26, *) {
+                            extraSendButton
+                        } else {
+                            legacyExtraSendButton
                         }
-                        .preference(key: ViewSizeKey.self, value: -reader.frame(in: .named("scroll")).origin.y)
+                    }
                 }
-            )
-            .navigationBarItems(leading: cancelButton, trailing: extraSendButton)
-            .navigationBarStyle(.modal)
         }
         .onPreferenceChange(ViewSizeKey.self) { offset in
             model.showExtraSendButton = offset > headerHeight
@@ -149,7 +114,77 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
+    private func baseScreenView(_ geometry: GeometryProxy) -> some View {
+        VStack(spacing: 0) {
+            headerView
+                .background(
+                    GeometryReader { proxy in
+                        Color.clear
+                            .onAppear {
+                                headerHeight = proxy.size.height
+                                model.showSearchRecipientsView = false
+                                focusedInput = nil
+                            }
+                    }
+                )
+            separator
+            courseView
+            separator
+            ZStack(alignment: .topLeading) {
+                VStack(spacing: 0) {
+                    propertiesView
+                    separator
+
+                    bodyView(geometry: geometry)
+                    attachmentsView
+                    if !model.includedMessages.isEmpty {
+                        includedMessages
+                    }
+                    // This Rectangle adds extra height to ensure smoother display of the list of recipients
+                    // without affecting the UI or any logic.
+                    Rectangle()
+                        .fill(Color.clear)
+                        .frame(height: 150)
+                        .allowsHitTesting(false)
+                }
+                if model.showSearchRecipientsView {
+                    RecipientFilterView(recipients: model.searchedRecipients) { selectedRecipient in
+                        model.showSearchRecipientsView = false
+                        model.textRecipientSearch = ""
+                        model.didSelectRecipient.accept(selectedRecipient)
+                    }
+                    .accessibilityHidden(true)
+                    .offset(y: model.recipients.isEmpty ? searchTextFieldHeight : recipientViewHeight + searchTextFieldHeight)
+                    .padding(.horizontal, 35)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .animation(.smooth, value: model.showSearchRecipientsView)
+                }
+
+            }
+        }
+    }
+
+    @available(iOS, introduced: 26, message: "Legacy version exists")
+    @ViewBuilder
     private var extraSendButton: some View {
+        if model.showExtraSendButton {
+            Button {
+                model.didTapSend.accept(controller)
+            } label: {
+                Image.arrowUpSolid
+                    .resizable()
+            }
+            .buttonStyle(.glassProminent)
+            .accessibility(label: Text("Send", bundle: .core))
+            .disabled(!model.sendButtonActive)
+            .frame(maxHeight: .infinity, alignment: .top)
+            .accessibilityIdentifier("ComposeMessage.send")
+        }
+    }
+
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    @ViewBuilder
+    private var legacyExtraSendButton: some View {
         if model.showExtraSendButton {
             sendButton
         } else {
@@ -168,7 +203,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
         } label: {
             Text("Cancel", bundle: .core)
                 .font(.regular16)
-                .foregroundColor(.accentColor)
+                .toolbarItemForegroundStyle(Color.accentColor)
                 .accessibilityIdentifier("ComposeMessage.cancel")
         }
     }
@@ -517,7 +552,9 @@ struct ComposeMessageView_Previews: PreviewProvider {
     static let env = PreviewEnvironment()
 
     static var previews: some View {
-        ComposeMessageAssembly.makePreview(env: env)
+        NavigationStack {
+            ComposeMessageAssembly.makePreview(env: env)
+        }
     }
 }
 

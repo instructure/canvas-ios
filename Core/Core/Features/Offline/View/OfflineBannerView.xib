@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,7 +27,7 @@
                             <rect key="frame" x="166.66666666666666" y="0.0" width="60" height="30"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="offlineLine" translatesAutoresizingMaskIntoConstraints="NO" id="ohM-Lc-GPb">
-                                    <rect key="frame" x="0.0" y="6" width="18" height="18"/>
+                                    <rect key="frame" x="0.0" y="6.3333333333333321" width="18" height="18"/>
                                     <color key="tintColor" name="textDarkest"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="18" id="4RO-7N-BNJ"/>
@@ -49,9 +48,9 @@
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="Bly-U5-Ddc" secondAttribute="trailing" id="15T-1g-Ny8"/>
                                 <constraint firstItem="ohM-Lc-GPb" firstAttribute="leading" secondItem="esq-fQ-yUr" secondAttribute="leading" id="Vft-Tx-sNb"/>
-                                <constraint firstItem="Bly-U5-Ddc" firstAttribute="centerY" secondItem="esq-fQ-yUr" secondAttribute="centerY" id="bKY-k7-IX8"/>
+                                <constraint firstItem="Bly-U5-Ddc" firstAttribute="top" secondItem="esq-fQ-yUr" secondAttribute="top" constant="8" id="bKY-k7-IX8"/>
                                 <constraint firstItem="Bly-U5-Ddc" firstAttribute="leading" secondItem="ohM-Lc-GPb" secondAttribute="trailing" constant="4" id="mMc-cR-RDV"/>
-                                <constraint firstItem="ohM-Lc-GPb" firstAttribute="centerY" secondItem="esq-fQ-yUr" secondAttribute="centerY" id="pzC-a9-96I"/>
+                                <constraint firstItem="ohM-Lc-GPb" firstAttribute="centerY" secondItem="Bly-U5-Ddc" secondAttribute="centerY" id="pzC-a9-96I"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -66,7 +65,7 @@
                     <rect key="frame" x="0.0" y="1" width="393" height="30"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back Online" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhu-dn-Z3K" userLabel="Back Online" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="8.3333333333333357" width="393" height="13.666666666666664"/>
+                            <rect key="frame" x="0.0" y="7.9999999999999991" width="393" height="13.666666666666664"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                             <color key="textColor" name="textLightest"/>
                             <nil key="highlightedColor"/>
@@ -75,10 +74,10 @@
                             </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" name="shamrock"/>
+                    <color key="backgroundColor" name="textSuccess"/>
                     <constraints>
                         <constraint firstItem="uhu-dn-Z3K" firstAttribute="centerX" secondItem="jRu-na-zJM" secondAttribute="centerX" id="OUX-3a-CdN"/>
-                        <constraint firstItem="uhu-dn-Z3K" firstAttribute="centerY" secondItem="jRu-na-zJM" secondAttribute="centerY" id="PQn-Ma-EoP"/>
+                        <constraint firstItem="uhu-dn-Z3K" firstAttribute="top" secondItem="jRu-na-zJM" secondAttribute="top" constant="8" id="PQn-Ma-EoP"/>
                         <constraint firstItem="uhu-dn-Z3K" firstAttribute="width" secondItem="jRu-na-zJM" secondAttribute="width" id="oUX-sy-xlc"/>
                     </constraints>
                 </view>
@@ -102,37 +101,32 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="offlineContainer" destination="BNN-0A-qts" id="zAB-rJ-xmE"/>
+                <outlet property="offlineIcon" destination="ohM-Lc-GPb" id="cWv-HO-6TD"/>
                 <outlet property="offlineIconCenter" destination="pzC-a9-96I" id="4IA-kW-7wr"/>
+                <outlet property="offlineLabel" destination="Bly-U5-Ddc" id="Gb3-4g-USB"/>
                 <outlet property="onlineContainer" destination="jRu-na-zJM" id="sOc-ze-RXS"/>
+                <outlet property="separator" destination="RWc-49-a4g" id="hgB-ZF-RkX"/>
                 <outlet property="separatorHeight" destination="uUs-E1-c6G" id="fvr-8q-Bhm"/>
             </connections>
             <point key="canvasLocation" x="-7" y="42"/>
         </view>
     </objects>
-    <designables>
-        <designable name="Bly-U5-Ddc">
-            <size key="intrinsicContentSize" width="38" height="14.333333333333334"/>
-        </designable>
-        <designable name="uhu-dn-Z3K">
-            <size key="intrinsicContentSize" width="70" height="14.333333333333334"/>
-        </designable>
-    </designables>
     <resources>
         <image name="offlineLine" width="19" height="19"/>
         <namedColor name="backgroundLightest">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="borderMedium">
-            <color red="0.7803921568627451" green="0.80392156862745101" blue="0.81960784313725488" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="shamrock">
-            <color red="0.070588235294117646" green="0.47843137254901963" blue="0.10588235294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.61960784313725492" green="0.65098039215686276" blue="0.67843137254901964" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textDarkest">
-            <color red="0.17647058823529413" green="0.23137254901960785" blue="0.27058823529411763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.15294117647058825" green="0.20784313725490197" blue="0.25098039215686274" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="textLightest">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textSuccess">
+            <color red="0.011764705882352941" green="0.53725490196078429" blue="0.23921568627450981" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

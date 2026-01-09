@@ -42,7 +42,7 @@ struct TodoListScreen: View {
                 )
             }
         ) { _ in
-            LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+            LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
                 InstUI.TopDivider()
                 ForEach(viewModel.items) { group in
                     groupView(for: group)
@@ -55,6 +55,7 @@ struct TodoListScreen: View {
         .scrollDisabled(isCellSwiping)
         .navigationBarItems(leading: profileMenuButton, trailing: filterButton)
         .snackBar(viewModel: viewModel.snackBar)
+        .background(.backgroundLightest)
     }
 
     @ViewBuilder
@@ -104,14 +105,24 @@ struct TodoListScreen: View {
     }
 
     private var profileMenuButton: some View {
-        Button {
-            viewModel.openProfile(viewController)
-        } label: {
-            Image.hamburgerSolid
-                .foregroundColor(Color(Brand.shared.navTextColor))
+        SwiftUI.Group {
+            if #available(iOS 26, *) {
+                Button {
+                    viewModel.openProfile(viewController)
+                } label: {
+                    Image.hamburgerSolid
+                }
+            } else {
+                Button {
+                    viewModel.openProfile(viewController)
+                } label: {
+                    Image.hamburgerSolid
+                        .foregroundColor(Color(Brand.shared.navTextColor))
+                }
+                .frame(width: 44, height: 44)
+                .padding(.leading, -6)
+            }
         }
-        .frame(width: 44, height: 44)
-        .padding(.leading, -6)
         .identifier("ToDos.profileButton")
         .accessibility(label: Text(
             "Profile Menu, Closed",
@@ -121,14 +132,25 @@ struct TodoListScreen: View {
     }
 
     private var filterButton: some View {
-        Button {
-            viewModel.openFilter(viewController)
-        } label: {
-            viewModel.filterIcon
-                .foregroundColor(Color(Brand.shared.navTextColor))
+        SwiftUI.Group {
+            if #available(iOS 26, *) {
+                Button {
+                    viewModel.openFilter(viewController)
+                } label: {
+                    viewModel.filterIcon
+                }
+                .offset(y: 1)
+            } else {
+                Button {
+                    viewModel.openFilter(viewController)
+                } label: {
+                    viewModel.filterIcon
+                        .foregroundColor(Color(Brand.shared.navTextColor))
+                }
+                .frame(width: 44, height: 44)
+                .padding(.trailing, -6)
+            }
         }
-        .frame(width: 44, height: 44)
-        .padding(.trailing, -6)
         .identifier("ToDos.filterButton")
         .accessibility(label: Text(
             "Filter To-do list",

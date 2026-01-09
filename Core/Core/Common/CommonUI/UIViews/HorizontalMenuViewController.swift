@@ -32,7 +32,7 @@ open class HorizontalMenuViewController: ScreenViewTrackerViewController {
     public weak var delegate: HorizontalPagedMenuDelegate?
     public private(set) var selectedIndexPath: IndexPath = IndexPath(item: 0, section: 0)
 
-    private var itemCount: Int {
+    public var itemCount: Int {
         return delegate?.numberOfMenuItems ?? 0
     }
 
@@ -78,8 +78,16 @@ open class HorizontalMenuViewController: ScreenViewTrackerViewController {
         } else {
             setupMenu()
             setupPages()
-            setupUnderline()
             setupBottomBorder()
+
+            // Only show the underline on iOS 26 if there are more than one tabs
+            if #available(iOS 26, *) {
+                if itemCount > 1 {
+                    setupUnderline()
+                }
+            } else {
+                setupUnderline()
+            }
         }
     }
 

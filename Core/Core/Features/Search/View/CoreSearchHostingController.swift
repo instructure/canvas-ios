@@ -69,7 +69,9 @@ public class CoreSearchHostingController<
             }
         )
     ).with {
-        $0.tintColor = .textLightest
+        if #unavailable(iOS 26) {
+            $0.tintColor = .textLightest
+        }
         $0.accessibilityLabel = String(localized: "Close", bundle: .core)
         $0.accessibilityIdentifier = "close_bar_button"
     }
@@ -82,7 +84,9 @@ public class CoreSearchHostingController<
             }
         )
     ).with {
-        $0.tintColor = .textLightest
+        if #unavailable(iOS 26) {
+            $0.tintColor = .textLightest
+        }
         $0.accessibilityIdentifier = "filter_bar_button"
         $0.accessibilityLabel = String(localized: "Filter", bundle: .core)
     }
@@ -100,16 +104,22 @@ public class CoreSearchHostingController<
             )
         )
         .with {
-            $0.tintColor = .textLightest
+            if #unavailable(iOS 26) {
+                $0.tintColor = .textLightest
+            }
             $0.accessibilityIdentifier = "support_bar_button"
             $0.accessibilityLabel = String(localized: "Help", bundle: .core)
         }
     }()
 
     private lazy var searchFieldView: UISearchField = {
-        let searchView = UISearchField(
-            frame: CGRect(origin: .zero, size: CGSize(width: 400, height: 100))
-        )
+        let frame = if #available(iOS 26, *) {
+            CGRect(origin: .zero, size: CGSize(width: 400, height: 56))
+        } else {
+            CGRect(origin: .zero, size: CGSize(width: 400, height: 100))
+        }
+
+        let searchView = UISearchField(frame: frame)
         searchView.field.placeholder = searchContext.searchPrompt
         searchView.field.accessibilityIdentifier = "ui_search_field"
         searchView.field.delegate = self
@@ -140,7 +150,7 @@ public class CoreSearchHostingController<
 
         super.init(SearchHostingBaseView(content: content, searchContext: searchContext))
 
-        if let contextColor = attributes.accentColor {
+        if #unavailable(iOS 26), let contextColor = attributes.accentColor {
             navigationBarStyle = .color(contextColor)
         }
     }
@@ -186,7 +196,9 @@ public class CoreSearchHostingController<
         // Reset large enough length to re-fit search field in
         // navigation title view
         let length = view.bounds.width
-        searchFieldView.frame.size = CGSize(width: length, height: length)
+        if #unavailable(iOS 26) {
+            searchFieldView.frame.size = CGSize(width: length, height: length)
+        }
 
         navigationItem.leftBarButtonItems = [closeBarItem]
         navigationItem.hidesBackButton = true

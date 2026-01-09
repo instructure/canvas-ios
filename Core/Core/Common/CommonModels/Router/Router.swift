@@ -257,10 +257,12 @@ open class Router {
 
         if view is UIAlertController { return from.present(view, animated: true, completion: completion) }
 
-        if let displayModeButton = from.splitDisplayModeButtonItem,
-            from.splitViewController?.isCollapsed == false,
-            options.isDetail || from.isInSplitViewDetail,
-            !options.isModal {
+        if #unavailable(iOS 26),
+           let displayModeButton = from.splitDisplayModeButtonItem,
+           from.splitViewController?.isCollapsed == false,
+           options.isDetail || from.isInSplitViewDetail,
+           !options.isModal {
+
             view.addNavigationButton(displayModeButton, side: .left)
             view.navigationItem.leftItemsSupplementBackButton = true
         }
@@ -273,7 +275,7 @@ open class Router {
         switch options {
         case let .modal(style, isDismissable, _, addDoneButton, animated):
             if addDoneButton {
-                view.addDoneButton(side: .left)
+                view.addDoneButton(side: .right)
             }
             nav?.navigationBar.useModalStyle()
             if let presentationStyle = style {

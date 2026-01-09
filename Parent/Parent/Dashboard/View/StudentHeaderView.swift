@@ -16,9 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 import Core
 import SwiftUI
 
+@available(iOS, introduced: 26, message: "Legacy version exists")
 struct StudentHeaderView: View {
     @ObservedObject private var viewModel: StudentHeaderViewModel
     @Environment(\.viewController) private var controller
@@ -33,24 +36,17 @@ struct StudentHeaderView: View {
     private let horizontalPadding: CGFloat = 16
     private var menuIconSize: CGFloat { uiScale.iconScale * 24 }
     private var avatarSize: CGFloat { isVerticallyCompact ? 32 : 48 }
-    private var navBarHeight: CGFloat { isVerticallyCompact ? 42 : 91 }
+    private var navBarHeight: CGFloat { isVerticallyCompact ? 56 : 94 }
 
     init(viewModel: StudentHeaderViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
-        HStack(alignment: isVerticallyCompact ? .center : .top, spacing: horizontalPadding) {
-            menuButton
-            studentView
-            Color.clear.frame(width: horizontalPadding + menuIconSize)
-        }
-        .frame(height: navBarHeight, alignment: .center)
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .animation(nil, value: viewModel.backgroundColor)
-        .background(viewModel.backgroundColor)
-        .animation(.default, value: viewModel.backgroundColor)
-        .foregroundStyle(Color.textLightest)
+        studentView
+            .frame(height: navBarHeight, alignment: .center)
+            .frame(maxWidth: .infinity)
+            .background(.backgroundLightest)
     }
 
     private var studentView: some View {
@@ -69,27 +65,35 @@ struct StudentHeaderView: View {
             }
             // Match the animation we use for the student carousel appearance
             .animation(.easeOut(duration: 0.3), value: viewModel.state)
-            .clipped()
         }
-        .frame(maxWidth: .infinity, alignment: .center)
         .accessibilityFocused($isStudentViewFocused)
         .onReceive(viewModel.focusStudentPicker) {
             isStudentViewFocused = true
         }
+        .buttonStyle(.plain)
     }
 
     @ViewBuilder
     private var viewBody: some View {
         if isVerticallyCompact {
             HStack(spacing: 8) {
+                menuButton
+                Spacer()
                 icon
                 label
+                Spacer()
             }
         } else {
-            VStack(spacing: 8) {
+            VStack(spacing: 4) {
+                Spacer()
                 icon
                 label
             }
+            .frame(maxWidth: .infinity, alignment: .center)
+            .overlay(alignment: .topLeading) {
+                menuButton
+            }
+            .padding(.bottom, 30)
         }
     }
 
@@ -99,8 +103,10 @@ struct StudentHeaderView: View {
         case .addStudent:
             Circle()
                 .frame(width: avatarSize, height: avatarSize)
+                .foregroundStyle(.clear)
+                .glassEffect()
                 .overlay {
-                    Image.addLine
+                    Image.addSolid
                         .size(avatarSize / 2)
                         .foregroundStyle(viewModel.backgroundColor)
                 }
@@ -113,12 +119,19 @@ struct StudentHeaderView: View {
 
     @ViewBuilder
     private var label: some View {
-        switch viewModel.state {
-        case .addStudent:
-            addStudentLabel
-        case .student(let name, _):
-            studentNameWithDropDown(name: name)
+        Group {
+            switch viewModel.state {
+            case .addStudent:
+                addStudentLabel
+            case .student(let name, _):
+                studentNameWithDropDown(name: name)
+            }
         }
+        .padding(.vertical, 8)
+        .padding(.horizontal, 12)
+        .glassEffect(.regular.tint(viewModel.backgroundColor).interactive())
+        .foregroundStyle(.textLightest)
+        .padding(.horizontal, isVerticallyCompact ? 0 : 64)
     }
 
     private func studentNameWithDropDown(name: String) -> some View {
@@ -144,9 +157,12 @@ struct StudentHeaderView: View {
             Image.hamburgerSolid
                 .resizable()
                 .size(menuIconSize)
-                .foregroundColor(Color.textLightest)
-                .instBadge(viewModel.badgeCount)
+                .foregroundColor(Color.textDarkest)
+                // Could not find a better way to make the button a circle
+                .frame(height: 34)
         }
+        .instBadge(viewModel.badgeCount)
+        .buttonStyle(.glass)
         .padding(.leading, horizontalPadding)
         .padding(.top, isVerticallyCompact ? 0 : 12)
         .identifier("Dashboard.profileButton")
@@ -170,14 +186,16 @@ private extension View {
 
 #if DEBUG
 
-#Preview {
+#Preview("Add student") {
     VStack {
-        StudentHeaderView(viewModel: StudentHeaderViewModel())
+        if #available(iOS 26, *) {
+            StudentHeaderView(viewModel: StudentHeaderViewModel())
+        }
         Spacer()
     }
 }
 
-#Preview {
+#Preview("Lorem Ipsum") {
     let previewEnvironment = PreviewEnvironment()
     let user = User.save(
         // swiftlint:disable:next line_length
@@ -191,7 +209,29 @@ private extension View {
     }()
 
     VStack {
-        StudentHeaderView(viewModel: viewModel)
+        if #available(iOS 26, *) {
+            StudentHeaderView(viewModel: viewModel)
+        }
+        Spacer()
+    }
+}
+
+#Preview("Beyoncé") {
+    let previewEnvironment = PreviewEnvironment()
+    let user = User.save(
+        .make(short_name: "Beyoncé"),
+        in: previewEnvironment.database.viewContext
+    )
+    let viewModel = {
+        let model = StudentHeaderViewModel()
+        model.didSelectStudent.send(user)
+        return model
+    }()
+
+    VStack {
+        if #available(iOS 26, *) {
+            StudentHeaderView(viewModel: viewModel)
+        }
         Spacer()
     }
 }

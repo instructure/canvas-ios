@@ -57,7 +57,12 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: String(localized: "Conferences", bundle: .core))
+
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "Conferences", bundle: .core)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Conferences", bundle: .core))
+        }
 
         emptyMessageLabel.text = String(localized: "There are no conferences to display yet.", bundle: .core)
         emptyTitleLabel.text = String(localized: "No Conferences", bundle: .core)
@@ -84,7 +89,10 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
         if let selected = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selected, animated: true)
         }
-        navigationController?.navigationBar.useContextColor(color)
+
+        if #unavailable(iOS 26) {
+            navigationController?.navigationBar.useContextColor(color)
+        }
     }
 
     func updateNavBar() {
@@ -97,7 +105,12 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
         view.tintColor = color
         spinnerView.color = color
         refreshControl.color = color
-        updateNavBar(subtitle: name, color: color)
+
+        if #available(iOS 26, *) {
+            navigationItem.subtitle = name
+        } else {
+            updateNavBar(subtitle: name, color: color)
+        }
     }
 
     func update() {
@@ -130,9 +143,11 @@ extension ConferenceListViewController: UITableViewDataSource, UITableViewDelega
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueHeaderFooter(SectionHeaderView.self)
         view.titleLabel?.text = conferences[IndexPath(row: 0, section: section)]?.isConcluded == true
-            ? String(localized: "Concluded Conferences", bundle: .core)
-            : String(localized: "New Conferences", bundle: .core)
+        ? String(localized: "Concluded Conferences", bundle: .core)
+        : String(localized: "New Conferences", bundle: .core)
+
         view.titleLabel?.accessibilityIdentifier = "ConferencesList.header-\(section)"
+
         return view
     }
 

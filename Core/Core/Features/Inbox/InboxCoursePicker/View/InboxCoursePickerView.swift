@@ -33,9 +33,8 @@ public struct InboxCoursePickerView: View {
                 ? String(localized: "Select a Course", bundle: .core)
                 : String(localized: "Select a Course or a Group", bundle: .core)
             content
-                .navigationBarTitleView(title)
                 .navigationBarTitleDisplayMode(.inline)
-                .navigationBarStyle(.modal)
+                .navigationTitle(title, style: .modal)
         }
         .refreshable {
             await viewModel.refresh()
@@ -43,7 +42,6 @@ public struct InboxCoursePickerView: View {
         .font(.regular12)
         .foregroundColor(.textDarkest)
         .frame(maxWidth: .infinity)
-        .navigationBarStyle(.modal)
         .background(Color.backgroundLightest)
         .snackBar(viewModel: viewModel.snackbarViewModel)
     }

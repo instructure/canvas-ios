@@ -40,9 +40,8 @@ public struct AddressbookRecipientView: View, ScreenViewTrackable {
             placement: .navigationBarDrawer(displayMode: .always)
         )
         .background(Color.backgroundLightest)
-        .navigationBarTitleView(viewModel.title)
         .navigationBarItems(trailing: doneButton)
-        .navigationBarStyle(.modal)
+        .navigationTitle(viewModel.title, style: .modal)
     }
 
     private var separator: some View {

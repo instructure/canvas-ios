@@ -30,9 +30,9 @@ public class EmptyViewController: UIViewController {
         logoImageView.tintColor = .textDark
         logoImageView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            logoImageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            logoImageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            logoImageView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.1),
+            logoImageView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            logoImageView.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            logoImageView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.2),
             logoImageView.heightAnchor.constraint(equalTo: logoImageView.widthAnchor)
         ])
     }

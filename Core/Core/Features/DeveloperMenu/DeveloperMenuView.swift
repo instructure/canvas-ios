@@ -58,7 +58,6 @@ public struct DeveloperMenuView: View {
             }
         }
         .background(Color.backgroundLightest)
-        .navigationBarTitleView("🛠 Developer Menu")
         .navBarItems(trailing: {
             Button(action: {
                 router.dismiss(controller)
@@ -66,7 +65,7 @@ public struct DeveloperMenuView: View {
                 Text("Done", bundle: .core).fontWeight(.regular)
             })
         })
-        .navigationBarStyle(.modal)
+        .navigationTitle("🛠 Developer Menu", style: .modal)
         .snackBar(viewModel: snackBarViewModel)
         .onAppear {
             setupItems()

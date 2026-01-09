@@ -64,10 +64,15 @@ struct GradeListHeaderView: View {
         }
         .padding(.horizontal, 16)
         .padding(.vertical, verticalSizeClass == .regular ? 20 : 5)
-        .background(
-            Color.backgroundLightest
-                .cornerRadius(6)
-        )
+        .background {
+            if #available(iOS 26, *) {
+                Color.backgroundLightest
+                    .cornerRadius(24)
+            } else {
+                Color.backgroundLightest
+                    .cornerRadius(6)
+            }
+        }
         .shadow(color: Color.textDark.opacity(0.2), radius: 5, x: 0, y: 0)
     }
 

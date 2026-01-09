@@ -44,10 +44,6 @@ public struct CourseSettingsView: View, ScreenViewTrackable {
                 editor(width: geometry.size.width)
             }
         }
-        .navigationBarTitleView(
-            title: String(localized: "Customize Course", bundle: .core),
-            subtitle: viewModel.courseName
-        )
         .navBarItems(
             leading: {
                 Button(action: cancelTapped) {
@@ -61,7 +57,11 @@ public struct CourseSettingsView: View, ScreenViewTrackable {
                 .disabled(viewModel.state != .ready)
             }
         )
-        .navigationBarStyle(.modal)
+        .navigationTitles(
+            title: String(localized: "Customize Course", bundle: .core),
+            subtitle: viewModel.courseName,
+            style: .modal
+        )
         .onAppear(perform: viewModel.viewDidAppear)
         .alert(isPresented: $viewModel.showError) {
             Alert(title: Text(viewModel.errorText ?? String(localized: "Something went wrong", bundle: .core)))

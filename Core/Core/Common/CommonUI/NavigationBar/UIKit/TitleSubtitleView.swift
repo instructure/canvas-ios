@@ -18,6 +18,7 @@
 
 import UIKit
 
+@available(iOS, deprecated: 26)
 public class TitleSubtitleView: UIView {
     @IBOutlet public weak var titleLabel: UILabel!
     @IBOutlet public weak var subtitleLabel: UILabel!
@@ -52,6 +53,11 @@ public class TitleSubtitleView: UIView {
 
     public static func create() -> Self {
         let view = loadFromXib()
+
+        if #available(iOS 26, *) {
+            view.tintColor = .textDarkest
+        }
+
         view.titleLabel.text = ""
         view.subtitleLabel.text = ""
         view.titleLabel.font = .scaledNamedFont(.semibold16)
@@ -66,14 +72,25 @@ public class TitleSubtitleView: UIView {
 
     public func recreate() -> TitleSubtitleView {
         let copy = TitleSubtitleView.create()
+
+        if #available(iOS 26, *) {
+            copy.tintColor = .textDarkest
+        }
         copy.title = title
         copy.subtitle = subtitle
         return copy
     }
 
     public override func tintColorDidChange() {
-        let title = (superview?.superview as? UINavigationBar)?.titleTextAttributes?[.foregroundColor] as? UIColor
-        let color = title ?? tintColor
+        let color = {
+            if #available(iOS 26, *) {
+                return tintColor
+            } else {
+                let titleColor = (superview?.superview as? UINavigationBar)?.titleTextAttributes?[.foregroundColor] as? UIColor
+                return titleColor ?? tintColor
+            }
+        }()
+
         titleLabel.textColor = color
         subtitleLabel.textColor = color == .textDarkest ? .textDark : color
     }

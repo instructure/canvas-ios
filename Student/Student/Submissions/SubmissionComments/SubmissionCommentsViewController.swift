@@ -77,6 +77,7 @@ class SubmissionCommentsViewController: UIViewController, ErrorViewController {
         addCommentTextView.placeholderColor = .textDark
         addCommentTextView.font(.scaledNamedFont(.regular16), lineHeight: .body)
         addCommentTextView.adjustsFontForContentSizeCategory = true
+        addCommentView.tintColor = .textDarkest
         addCommentTextView.textColor = .textDarkest
         addCommentView.backgroundColor = .backgroundLightest
         emptyContainer.isHidden = true

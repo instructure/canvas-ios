@@ -43,8 +43,7 @@ struct CourseSyncSettingsView: View {
             }
         }
         .background(Color.backgroundLightest)
-        .navigationBarTitleView(String(localized: "Synchronization", bundle: .core))
-        .navigationBarStyle(.modal)
+        .navigationTitle(String(localized: "Synchronization", bundle: .core), style: .modal)
         .confirmationAlert(isPresented: $viewModel.isShowingConfirmationDialog,
                            presenting: viewModel.confirmAlert)
     }

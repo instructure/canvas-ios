@@ -36,7 +36,6 @@ public struct TeacherQuizEditorView<ViewModel: TeacherQuizEditorViewModel>: View
 
     public var body: some View {
         form
-            .navigationBarTitleView(String(localized: "Edit Quiz Details", bundle: .core))
             .navigationBarTitleDisplayMode(.inline)
             .navBarItems(leading: cancelButton, trailing: {
                 Button(action: doneTapped, label: {
@@ -45,7 +44,7 @@ public struct TeacherQuizEditorView<ViewModel: TeacherQuizEditorViewModel>: View
                 })
                 .disabled(viewModel.state != .ready)
             })
-            .navigationBarStyle(.modal)
+            .navigationTitle(String(localized: "Edit Quiz Details", bundle: .core), style: .modal)
             .alert(item: $alert) { alert in
                 switch alert {
                 case .error(let error):

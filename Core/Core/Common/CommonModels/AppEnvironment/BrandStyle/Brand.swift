@@ -249,6 +249,13 @@ public struct Brand: Equatable {
         logoView.image = headerImage
         logoView.backgroundColor = headerImageBackground
         logoView.accessibilityElementsHidden = true
+
+        if #available(iOS 26, *) {
+            logoView.layer.cornerRadius = 8
+            logoView.clipsToBounds = true
+
+        }
+
         return logoView
     }
 }
