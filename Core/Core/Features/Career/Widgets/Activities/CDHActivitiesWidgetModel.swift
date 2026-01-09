@@ -33,7 +33,7 @@ public final class CDHActivitiesWidgetModel: NSManagedObject {
             equals: apiEntity.courseID
         ) ?? context.insert()
 
-        dbEntity.courseID = String(apiEntity.courseID.defaultToZero)
+        dbEntity.courseID = apiEntity.courseID.defaultToEmpty
         dbEntity.courseName = apiEntity.courseName.defaultToEmpty
         dbEntity.moduleCountCompleted = NSNumber(value: apiEntity.moduleCountCompleted.defaultToZero)
         return dbEntity

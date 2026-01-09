@@ -30,7 +30,7 @@ public struct GetHTimeSpentWidgetResponse: Codable {
 
     public struct TimeSpent: Codable {
         let date: String?
-        let userID: Int?
+        let userID: String?
         let userUUID, userName, userEmail, userAvatarImageURL: String?
         public let courseID: String?
         public let courseName: String?
@@ -50,7 +50,7 @@ public struct GetHTimeSpentWidgetResponse: Codable {
 
         public init(
             date: String?,
-            userID: Int?,
+            userID: String?,
             userUUID: String?,
             userName: String?,
             userEmail: String?,
@@ -73,7 +73,7 @@ public struct GetHTimeSpentWidgetResponse: Codable {
         public init(from decoder: Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             date = try container.decodeIfPresent(String.self, forKey: .date)
-            userID = try container.decodeIfPresent(Int.self, forKey: .userID)
+            userID = try container.decodeIfPresent(String.self, forKey: .userID)
             userUUID = try container.decodeIfPresent(String.self, forKey: .userUUID)
             userName = try container.decodeIfPresent(String.self, forKey: .userName)
             userEmail = try container.decodeIfPresent(String.self, forKey: .userEmail)
