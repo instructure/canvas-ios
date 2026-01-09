@@ -19,6 +19,19 @@
 import UIKit
 
 final class HorizonTabBar: UITabBar {
+    // MARK: - Properties
+
+    var didTapButton: (() -> Void)?
+    public lazy var chatBotButton: UIButton = {
+        let middleButton = UIButton()
+        let image = UIImage(resource: .chatBot)
+        middleButton.setImage(image, for: .normal)
+        middleButton.addTarget(self, action: #selector(self.chatBotAction), for: .touchUpInside)
+        middleButton.isAccessibilityElement = false
+        self.addSubview(middleButton)
+        return middleButton
+    }()
+
     // MARK: - Init
 
     init() {
@@ -33,6 +46,19 @@ final class HorizonTabBar: UITabBar {
         removeTabBarBorder()
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        let frameHeight = frame.size.height
+        let safeAreaBottomHeight = safeAreaInsets.bottom
+        let dividBy: Double = safeAreaBottomHeight == 0 ? 1.2 : 1.6
+        let buttonHeight = Double(frameHeight / dividBy)
+        chatBotButton.frame.size = CGSize(width: buttonHeight, height: buttonHeight)
+        let xPoint = Double(frame.width / 2)
+        let yPoint = frameHeight / 2
+        let padding = safeAreaBottomHeight / 2.5
+        chatBotButton.center = CGPoint(x: xPoint, y: yPoint - padding)
+    }
+
     private func configureShadow() {
         self.layer.shadowColor = UIColor.textDarkest.cgColor
         self.layer.shadowOffset = CGSize(width: 0.0, height: 0)
@@ -44,5 +70,11 @@ final class HorizonTabBar: UITabBar {
     private func removeTabBarBorder() {
         self.backgroundImage = UIImage()
         self.shadowImage = UIImage()
+    }
+
+    // MARK: - Actions
+
+    @objc private func chatBotAction(sender: UIButton) {
+        didTapButton?()
     }
 }

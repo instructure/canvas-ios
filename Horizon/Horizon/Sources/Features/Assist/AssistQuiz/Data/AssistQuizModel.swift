@@ -102,11 +102,11 @@ final class AssistQuizViewModel {
 
     // MARK: - Input Actions
 
-    func isCorrect(answer: AssistQuizModel.AnswerOption) -> Bool? {
+    func isCorrect(answer: AssistQuizModel.AnswerOption?) -> Bool? {
         if !didSubmitQuiz {
             return nil
         }
-        guard let quiz = quiz else {
+        guard let quiz = quiz, let answer else {
             return nil
         }
         return quiz.options.firstIndex { $0.id == answer.id } == quiz.correctAnswerIndex

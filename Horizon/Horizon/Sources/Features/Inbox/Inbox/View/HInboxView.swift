@@ -22,6 +22,11 @@ import HorizonUI
 import SwiftUI
 
 struct HInboxView: View {
+    // MARK: - Propertites a11y
+    @AccessibilityFocusState private var focusedFilterSelection: Bool?
+    @AccessibilityFocusState private var focusedFilterPeople: Bool?
+    @AccessibilityFocusState private var messageFocusedID: String?
+    @State private var lastFocusedMessageID: String?
 
     @Environment(\.viewController) private var viewController
     @Bindable var viewModel: HInboxViewModel
@@ -37,7 +42,10 @@ struct HInboxView: View {
                 VStack(alignment: .leading, spacing: HorizonUI.spaces.space8) {
                     filterSelection
                     peopleSelection
-                    messageArea
+                    messageList
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .accessibilityHidden(viewModel.peopleSelectionViewModel.isFocused)
+
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(
@@ -56,6 +64,7 @@ struct HInboxView: View {
             .coordinateSpace(name: coordinateSpaceName)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .overlay { loaderView }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(HorizonUI.colors.surface.pagePrimary)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -64,31 +73,43 @@ struct HInboxView: View {
         .onTapGesture {
             ScrollOffsetReader.dismissKeyboard()
         }
-        .onAppear {
+        .onFirstAppear {
             viewModel.refresh {}
+        }
+        .onAppear {
+            if let lastFocusedMessageID {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    messageFocusedID = lastFocusedMessageID
+                }
+            }
         }
     }
 
-    private var messageArea: some View {
-        ZStack {
-            HorizonUI.Spinner(size: .xSmall)
-                .opacity(viewModel.spinnerOpacity)
-                .animation(.easeInOut(duration: 0.2), value: viewModel.spinnerOpacity)
-            messageList
+    @ViewBuilder
+    private var loaderView: some View {
+        if viewModel.isLoaderVisible {
+            ZStack {
+                Color.huiColors.surface.pageSecondary
+                    .ignoresSafeArea()
+                HorizonUI.Spinner(size: .small, showBackground: true)
+                    .accessibilityLabel("Loading notifications")
+            }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private var messageList: some View {
         VStack(spacing: .zero) {
             ForEach(viewModel.messageRows, id: \.id) { messageRow in
                 MessageRow(viewModel: messageRow) {
+                    lastFocusedMessageID = messageRow.id
                     viewModel.viewMessage(
                         announcement: messageRow.announcement,
                         inboxMessageListItem: messageRow.inboxMessageListItem,
                         viewController: viewController
                     )
                 }
+                .id(messageRow.id)
+                .accessibilityFocused($messageFocusedID, equals: messageRow.id)
             }
         }
         .frame(maxHeight: .infinity, alignment: .top)
@@ -111,17 +132,31 @@ struct HInboxView: View {
             disabled: viewModel.isSearchDisabled
         )
         .padding(.horizontal, HorizonUI.spaces.space12)
+        .accessibilityHidden(viewModel.isMessagesFilterFocused || (viewModel.filterTitle == HInboxViewModel.FilterOption.announcements.title))
+        .accessibilityFocused($focusedFilterPeople, equals: true)
+        .onChange(of: viewModel.peopleSelectionViewModel.isFocused) { _, newValue in
+            if newValue == false {
+                focusedFilterPeople = true
+            }
+        }
     }
 
     private var filterSelection: some View {
         HorizonUI.SingleSelect(
             selection: $viewModel.filterTitle,
             focused: $viewModel.isMessagesFilterFocused,
+            isSearchable: false,
             label: nil,
             options: HInboxViewModel.FilterOption.allCases.map { $0.title },
             zIndex: 102
         )
         .padding(.horizontal, HorizonUI.spaces.space12)
+        .accessibilityFocused($focusedFilterSelection, equals: true)
+        .onChange(of: viewModel.isMessagesFilterFocused) { _, newValue in
+            if newValue == false {
+                focusedFilterSelection = true
+            }
+        }
     }
 
     private var topBar: some View {
@@ -135,6 +170,7 @@ struct HInboxView: View {
             ) {
                 viewModel.goToComposeMessage(viewController)
             }
+            .hidden(viewModel.isLoaderVisible)
         }
         .padding(.huiSpaces.space16)
     }
@@ -183,6 +219,10 @@ struct MessageRow: View {
         .padding(.leading, .huiSpaces.space16)
         .padding(.trailing, .huiSpaces.space12)
         .background(HorizonUI.colors.surface.pageSecondary)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilityLabel)
+        .accessibilityAddTraits(.isButton)
+        .contentShape(.rect)
         .onTapGesture {
             onTap()
         }
@@ -199,6 +239,28 @@ struct MessageRow: View {
             .frame(width: HorizonUI.spaces.space8, height: HorizonUI.spaces.space8)
             .background(HorizonUI.colors.surface.institution)
             .clipShape(Circle())
+    }
+
+    private var accessibilityLabel: String {
+        var parts: [String] = []
+
+        if viewModel.isNew {
+            parts.append(String(localized: "New message"))
+        }
+
+        if !viewModel.dateString.isEmpty {
+            parts.append(String(format: String(localized: "Date %@"), viewModel.dateString))
+        }
+
+        if viewModel.isAnnouncementIconVisible {
+            parts.append(viewModel.title)
+            parts.append(String(format: String(localized: "Subject %@"), viewModel.subtitle))
+        } else {
+            parts.append(String(format: String(localized: "Subject %@"), viewModel.title))
+            parts.append(String(format: String(localized: "Sender %@"), viewModel.subtitle))
+        }
+
+        return parts.joined(separator: ", ")
     }
 }
 

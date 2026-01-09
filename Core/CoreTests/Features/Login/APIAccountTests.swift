@@ -58,11 +58,38 @@ class APIAccountResultTests: XCTestCase {
     func testGetAccountsSearchRequest() {
         XCTAssertEqual(GetAccountsSearchRequest(searchTerm: "").path, "https://canvas.instructure.com/api/v1/accounts/search")
         XCTAssertEqual(GetAccountsSearchRequest(searchTerm: "abcd").queryItems, [
-            URLQueryItem(name: "per_page", value: "50"),
+            URLQueryItem(name: "per_page", value: "100"),
             URLQueryItem(name: "search_term", value: "abcd")
         ])
         XCTAssertEqual(GetAccountsSearchRequest(searchTerm: "").headers, [
             HttpHeader.authorization: nil
         ])
+    }
+
+    func testAccountResultsQueryBasedSorting() {
+        let results: [APIAccountResult] = [
+            .make(name: "Boston University", domain: "bu.edu"),
+            .make(name: "Harvard University", domain: "harvard.edu"),
+            .make(name: "Boston College", domain: "bc.edu"),
+            .make(name: "MIT", domain: "mit.edu"),
+            .make(name: "boston medical center", domain: "bmc.org")
+        ]
+
+        let sorted = results.sortedPromotingQueryPrefixed("boston")
+
+        XCTAssertEqual(sorted[0].name, "Boston University")
+        XCTAssertEqual(sorted[1].name, "Boston College")
+        XCTAssertEqual(sorted[2].name, "boston medical center")
+        XCTAssertEqual(sorted[3].name, "Harvard University")
+        XCTAssertEqual(sorted[4].name, "MIT")
+
+        let sortedUppercase = results.sortedPromotingQueryPrefixed("BOSTON")
+        XCTAssertEqual(sortedUppercase, sorted)
+
+        let sortedNoMatches = results.sortedPromotingQueryPrefixed("yale")
+        XCTAssertEqual(sortedNoMatches, results)
+
+        let sortedEmpty = results.sortedPromotingQueryPrefixed("")
+        XCTAssertEqual(sortedEmpty, results)
     }
 }

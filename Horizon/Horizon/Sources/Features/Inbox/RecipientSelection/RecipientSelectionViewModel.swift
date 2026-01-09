@@ -27,17 +27,32 @@ import Observation
 @Observable
 class RecipientSelectionViewModel {
     // MARK: - Outputs
+    private(set) var accessibilityDescription: String = ""
     let isFocusedSubject = CurrentValueRelay<Bool>(false)
     var personOptions: [HorizonUI.MultiSelect.Option] = []
     var recipientIDs: [String] {
         searchByPersonSelections.map { $0.id }
     }
+    var isFocused: Bool = false
+
     var searchByPersonSelections: [HorizonUI.MultiSelect.Option] {
         get {
             personFilterSubject.value
         }
         set {
             personFilterSubject.send(newValue)
+
+            guard !newValue.isEmpty else {
+                accessibilityDescription = ""
+                return
+            }
+
+            let recipientsNames = newValue
+                .map(\.label)
+                .joined(separator: ", ")
+
+            accessibilityDescription =
+                String(localized: "Filtered recipients. ") + recipientsNames
         }
     }
     let personFilterSubject = CurrentValueSubject<[HorizonUI.MultiSelect.Option], Never>([])
@@ -74,6 +89,13 @@ class RecipientSelectionViewModel {
 
         listenForRecipients()
         listenForSearchStringUpdates()
+
+        isFocusedSubject
+            .removeDuplicates()
+            .sink { [weak self] value in
+                self?.isFocused = value
+            }
+            .store(in: &subscriptions)
     }
 
     // MARK: - Public Methods

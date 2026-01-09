@@ -37,7 +37,6 @@ struct RecipientSelectionView: View {
 
     var body: some View {
         HorizonUI.MultiSelect(
-            selections: $viewModel.searchByPersonSelections,
             focused: Binding<Bool>(
                 get: { viewModel.isFocusedSubject.value },
                 set: onFocused
@@ -48,6 +47,15 @@ struct RecipientSelectionView: View {
             loading: $viewModel.searchLoading,
             disabled: disabled,
             placeholder: placeholder
+        ) { selections in
+            viewModel.searchByPersonSelections = selections
+        }
+        .accessibilityLabel(viewModel.accessibilityDescription.isEmpty ? placeholder : viewModel.accessibilityDescription)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityHint(String(format: String(localized: "Double tap to filter a recipients. %@"),
+                                  viewModel.isFocusedSubject.value
+                                  ? String(localized: "Expanded")
+                                  : String(localized: "Collapsed"))
         )
     }
 

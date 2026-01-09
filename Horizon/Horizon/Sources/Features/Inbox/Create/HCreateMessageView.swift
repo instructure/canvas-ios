@@ -21,6 +21,11 @@ import HorizonUI
 import SwiftUI
 
 struct HCreateMessageView: View {
+    // MARK: - Propertites a11y
+
+    @AccessibilityFocusState private var focusedFilterCourse: Bool?
+    @AccessibilityFocusState private var focusedFilterPeople: Bool?
+    @AccessibilityFocusState private var focusedAttachedFile: Bool?
 
     @Environment(\.viewController) private var viewController
     @Bindable var viewModel: HCreateMessageViewModel
@@ -31,6 +36,11 @@ struct HCreateMessageView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
             header
+                .onTapGesture {
+                    isBodyFocused = false
+                    isRecipientFocused = false
+                    isSubjectFocused = false
+                }
             bodyContent
 
             if isFooterVisiable {
@@ -65,6 +75,7 @@ struct HCreateMessageView: View {
                 .padding(.horizontal, .huiSpaces.space24)
                 .padding(.top, .huiSpaces.space12)
             }
+            .scrollDismissesKeyboard(.immediately)
             .frame(maxHeight: .infinity, alignment: .topLeading)
             .onTapGesture {
                 ScrollOffsetReader.dismissKeyboard()
@@ -73,19 +84,31 @@ struct HCreateMessageView: View {
         .onReceive(viewModel.recipientSelectionViewModel.isFocusedSubject) { value in
             isRecipientFocused = value
         }
+        .onChange(of: viewModel.attachmentViewModel.isPickerVisible) { _, newValue in
+            if newValue == false {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    focusedAttachedFile = true
+                }
+            }
+        }
     }
 
     private var courseSelection: some View {
         HorizonUI.SingleSelect(
             selection: $viewModel.selectedCourse,
             focused: $viewModel.isCourseFocused,
+            isSearchable: false,
+            label: nil,
             options: viewModel.courses,
             disabled: viewModel.isCourseSelectionDisabled,
-            placeholder: String(localized: "Select a course", bundle: .horizon),
             zIndex: 102
         )
-        .readingFrame { frame in
-            print(frame.height, "courseSelection")
+        .id(viewModel.courses.count)
+        .accessibilityFocused($focusedFilterCourse, equals: true)
+        .onChange(of: viewModel.isCourseFocused) { _, newValue in
+            if newValue == false {
+                focusedFilterCourse = true
+            }
         }
     }
 
@@ -98,8 +121,13 @@ struct HCreateMessageView: View {
                 .foregroundStyle(HorizonUI.colors.text.title)
             Spacer()
         }
+        .contentShape(.rect)
         .onTapGesture { viewModel.attachFile(from: viewController) }
         .opacity(viewModel.attachmentButtonOpacity)
+        .accessibilityElement(children: .ignore)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel(String(localized: "Attach file"))
+        .accessibilityFocused($focusedAttachedFile, equals: true)
     }
 
     private var fileAttachments: some View {
@@ -109,6 +137,13 @@ struct HCreateMessageView: View {
                     fileName: attachment.filename,
                     actionType: attachment.actionType
                 ) {
+                    attachment.delete()
+                }
+                .accessibilityElement(children: .ignore)
+                .accessibilityAddTraits(.isButton)
+                .accessibilityLabel(String(format: "File name is %@. ", attachment.filename))
+                .accessibilityHint(String(localized: "Double tap to delete"))
+                .accessibilityAction {
                     attachment.delete()
                 }
             }
@@ -144,6 +179,7 @@ struct HCreateMessageView: View {
             viewModel.close(viewController: viewController)
         }
         .disabled(viewModel.isCloseDisabled)
+        .accessibilityAddTraits(.isButton)
     }
 
     private var footerSendButton: some View {
@@ -154,6 +190,7 @@ struct HCreateMessageView: View {
             viewModel.sendMessage(viewController: viewController)
         }
         .disabled(viewModel.isSendDisabled)
+        .accessibilityAddTraits(.isButton)
     }
 
     private var divider: some View {
@@ -167,6 +204,7 @@ struct HCreateMessageView: View {
         HStack(spacing: .zero) {
             Text("Create message")
                 .huiTypography(.h2)
+                .accessibilityAddTraits(.isHeader)
             Spacer()
             HorizonUI.IconButton(
                 HorizonUI.icons.close,
@@ -196,6 +234,18 @@ struct HCreateMessageView: View {
         .onChange(of: isBodyFocused) { _, _ in
             viewModel.bodyFocusedChange(isFocused: isBodyFocused)
         }
+        .focused($isBodyFocused)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(
+            String.localizedStringWithFormat(
+                String(localized: "Your Message is %@", bundle: .horizon),
+                viewModel.body.isEmpty ? String(localized: "Empty.") : viewModel.body
+            ))
+        .accessibilityHint(String(localized: "Double tap to start typing."))
+        .accessibilityAction {
+            isBodyFocused = true
+        }
+        .accessibilityRemoveTraits(.isButton)
     }
 
     private var messageTitleInput: some View {
@@ -217,6 +267,11 @@ struct HCreateMessageView: View {
             placeholder: String(localized: "Recipients", bundle: .horizon),
             disabled: viewModel.isPeopleSelectionDisabled
         )
+        .onChange(of: viewModel.recipientSelectionViewModel.isFocusedSubject.value) { _, newValue in
+            if newValue == false {
+                focusedFilterPeople = true
+            }
+        }
     }
 }
 

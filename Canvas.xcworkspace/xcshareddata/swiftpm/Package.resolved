@@ -132,8 +132,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pendo-io/pendo-mobile-sdk",
       "state" : {
-        "revision" : "4e161756226dff909e3bec92f6efa73b1d7922e3",
-        "version" : "3.9.1"
+        "revision" : "c111f856d8553084b9452bea5052cc96214de086",
+        "version" : "3.9.2"
       }
     },
     {

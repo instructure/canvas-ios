@@ -21,6 +21,10 @@ import HorizonUI
 import SwiftUI
 
 struct ProgramView: View {
+    // MARK: - Propertites
+    @AccessibilityFocusState private var focusedItemID: String?
+    @State private var lastFocusedID: String?
+
     @State private var isProgramDropdownVisible: Bool = false
     @State private var programNameHeight: CGFloat?
     @Bindable var viewModel: LearnViewModel
@@ -31,6 +35,13 @@ struct ProgramView: View {
             if !viewModel.isLoaderVisible {
                 content
                     .padding([.horizontal, .bottom], .huiSpaces.space24)
+                    .onAppear {
+                        if let lastFocusedID {
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                focusedItemID = lastFocusedID
+                            }
+                        }
+                    }
             }
         }
         .padding(.top, .huiSpaces.space2)
@@ -44,6 +55,7 @@ struct ProgramView: View {
                 .transition(.move(edge: .top).combined(with: .opacity))
                 .onTapGesture { isProgramDropdownVisible.toggle() }
                 .readingFrame { frame in programNameHeight = frame.height }
+                .accessibilityLabel(viewModel.currentProgram?.accessibilityHeader)
         }
         .background(Color.huiColors.surface.pagePrimary)
         .onTapGesture { isProgramDropdownVisible = false }
@@ -89,29 +101,32 @@ struct ProgramView: View {
 
     private var content: some View {
         VStack(alignment: .leading, spacing: .zero) {
-            if viewModel.shouldShowProgress {
-                LearnProgressBarView(completionPercent: viewModel.currentProgram?.completionPercent)
-                    .padding(.bottom, .huiSpaces.space8)
-            }
+            VStack(alignment: .leading, spacing: .zero) {
+                if viewModel.shouldShowProgress {
+                    LearnProgressBarView(completionPercent: viewModel.currentProgram?.completionPercent)
+                        .padding(.bottom, .huiSpaces.space8)
+                }
 
-            if let description = viewModel.currentProgram?.description {
-                Text(description)
-                    .foregroundStyle(Color.huiColors.text.body)
-                    .huiTypography(.p1)
-                    .padding(.bottom, .huiSpaces.space16)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
+                if let description = viewModel.currentProgram?.description {
+                    Text(description)
+                        .foregroundStyle(Color.huiColors.text.body)
+                        .huiTypography(.p1)
+                        .padding(.bottom, .huiSpaces.space16)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                LearnAttributesView(
+                    estimatedDuration: viewModel.currentProgram?.estimatedTime,
+                    date: viewModel.currentProgram?.date
+                )
+                .padding(.bottom, viewModel.currentProgram?.hasPills == true ? .huiSpaces.space32 : .zero)
 
-            LearnAttributesView(
-                estimatedDuration: viewModel.currentProgram?.estimatedTime,
-                date: viewModel.currentProgram?.date
-            )
-            .padding(.bottom, viewModel.currentProgram?.hasPills == true ? .huiSpaces.space32 : .zero)
-
-            if let program = viewModel.currentProgram, !program.isLinear, !program.isOptionalProgram {
-                completeProgram(program)
-                    .padding(.bottom, .huiSpaces.space16)
+                if let program = viewModel.currentProgram, !program.isLinear, !program.isOptionalProgram {
+                    completeProgram(program)
+                        .padding(.bottom, .huiSpaces.space16)
+                }
             }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(viewModel.currentProgram?.accessibilityDescription)
             programCards
                 .id(viewModel.currentProgram?.id)
                 .padding(.top, .huiSpaces.space2)
@@ -120,8 +135,10 @@ struct ProgramView: View {
     var programCards: some View {
         ListProgramCards(
             programs: viewModel.currentProgram?.courses ?? [],
-            isLoading: viewModel.isLoadingEnrollButton, isLinear: viewModel.currentProgram?.isLinear ?? false
+            isLoading: viewModel.isLoadingEnrollButton, isLinear: viewModel.currentProgram?.isLinear ?? false,
+            focusedID: $focusedItemID
         ) { course in
+            lastFocusedID = course.id
             viewModel.navigateToCourseDetails(
                 courseID: course.id,
                 programID: viewModel.currentProgram?.id,
@@ -137,7 +154,7 @@ struct ProgramView: View {
         Text(
             String(
                 format: String(localized: "Complete %d of %d courses", bundle: .horizon),
-                viewModel.currentProgram?.countOfRemeaningCourses ?? 0,
+                viewModel.currentProgram?.countOfRemainingCourses ?? 0,
                 viewModel.currentProgram?.courses.count ?? 0
             )
         )
