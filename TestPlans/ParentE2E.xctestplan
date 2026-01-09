@@ -24,43 +24,12 @@
       "containerPath" : "container:..\/Parent\/Parent.xcodeproj",
       "identifier" : "5E6441861C3EE2E0003D7397",
       "name" : "Parent"
-    },
-    "uiTestingScreenshotsLifetime" : "keepAlways"
+    }
   },
   "testTargets" : [
     {
       "skippedTests" : [
-        "CalendarTests",
-        "CalendarTests\/testCalendar()",
-        "ChangeUserTests",
-        "ChangeUserTests\/testChangeUser()",
-        "CoursesTests",
-        "CoursesTests\/testCourses()",
-        "GradesTests",
-        "GradesTests\/testGrades()",
-        "GradesTests\/testLetterGradeOnly()",
-        "InboxTests",
-        "InboxTests\/testMessageDetails()",
-        "InboxTests\/testSendMessage()",
-        "LoginTests",
-        "LoginTests\/testForgotPassword()",
-        "LoginTests\/testLoginHappyPath()",
-        "LoginTests\/testLoginWithLastUser()",
-        "LoginTests\/testLoginWithoutUsernameAndPassword()",
-        "LoginTests\/testWrongUsernameAndPassword()",
-        "LogoutTests",
-        "LogoutTests\/testLogout()",
-        "ManageStudentsTests",
-        "ManageStudentsTests\/testManageStudents()",
-        "PlannerTests\/testSwipes()",
-        "ProfileTests",
-        "ProfileTests\/testProfile()",
-        "SettingsTests",
-        "SettingsTests\/testAbout()",
-        "SettingsTests\/testAppearanceSetting()",
-        "SettingsTests\/testPrivacyPolicy()",
-        "SettingsTests\/testSettingsMenuItems()",
-        "SettingsTests\/testTermsOfUse()"
+        "PlannerTests\/testSwipes()"
       ],
       "target" : {
         "containerPath" : "container:Parent.xcodeproj",
