@@ -45,6 +45,7 @@ public final class GradeListViewModel {
     private(set) var courseColor: UIColor?
     private(set) var totalGradeText: String?
     private(set) var state: ViewState = .initialLoading
+    private(set) var task: Task<Void, Never>?
     public var isWhatIfScoreModeOn = false
     public var isWhatIfScoreFlagEnabled = false
     public var selectedAssignmentId: String?
@@ -63,7 +64,7 @@ public final class GradeListViewModel {
     // MARK: - Input / Output
     var baseOnGradedAssignment = true {
         didSet {
-            Task { await refreshGrades(ignoreCache: false) }
+            task = Task { await refreshGrades(ignoreCache: false) }
         }
     }
     var isShowingRevertDialog = false
@@ -90,7 +91,7 @@ public final class GradeListViewModel {
 
         loadSortPreferences()
 
-        Task {
+        task = Task {
             await loadBaseDataAndGrades(ignoreCache: false, isInitialLoad: true)
         }
     }
@@ -99,7 +100,7 @@ public final class GradeListViewModel {
         selectedGradingPeriod = id
         state = .initialLoading
 
-        Task {
+        task = Task {
             await refreshGrades(ignoreCache: true)
         }
     }
