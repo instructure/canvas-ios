@@ -62,6 +62,12 @@ struct TeacherAssignmentListSubItemCell: View {
     }
 }
 
+extension TeacherAssignmentListSubItemCell: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.model == rhs.model
+    }
+}
+
 // MARK: - Preview
 
 #if DEBUG

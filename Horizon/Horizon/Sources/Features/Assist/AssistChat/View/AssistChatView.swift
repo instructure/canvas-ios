@@ -21,6 +21,10 @@ import SwiftUI
 import Core
 
 struct AssistChatView: View {
+    // MARK: - Propertites A11y
+
+    @AccessibilityFocusState private var messageFocusID: String?
+
     // MARK: - Properties
 
     @Bindable var viewModel: AssistChatViewModel
@@ -40,7 +44,9 @@ struct AssistChatView: View {
             }
             .scrollIndicators(.hidden)
             .onReceive(viewModel.shouldOpenKeyboardPublisher) { value in
-                isFocused = value
+               if !UIAccessibility.isVoiceOverRunning {
+                    isFocused = value
+                }
             }
             .onFirstAppear { viewModel.viewController = viewController }
             .padding(.horizontal, .huiSpaces.space16)
@@ -70,6 +76,7 @@ struct AssistChatView: View {
                 ForEach(viewModel.messages, id: \.id) { message in
                     AssistChatMessageView(message: message)
                         .id(message.id)
+                        .accessibilityFocused($messageFocusID, equals: message.id)
                 }
                 .animation(.smooth, value: viewModel.isRetryButtonVisible)
                 .animation(.smooth, value: viewModel.messages)
@@ -89,6 +96,7 @@ struct AssistChatView: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
                     withAnimation {
                         scrollViewProxy.scrollTo(id, anchor: .top)
+                        messageFocusID = id
                     }
                 }
             }
@@ -106,6 +114,7 @@ struct AssistChatView: View {
                 .resizable()
                 .frame(width: 20, height: 20)
                 .foregroundStyle(Color.huiColors.icon.surfaceColored)
+                .accessibilityHidden(true)
         }
     }
 
@@ -139,6 +148,9 @@ struct AssistChatView: View {
                         .opacity(viewModel.message.isEmpty && !isFocused ? 1 : 0)
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                .accessibilityAction {
+                    isFocused = true
+                }
             )
             .frame(minHeight: 36)
             .frame(maxHeight: 100)
@@ -149,6 +161,12 @@ struct AssistChatView: View {
             .padding(.top, .huiSpaces.space12)
             .foregroundColor(Color.huiColors.text.timestamp)
             .scrollContentBackground(.hidden)
+            .accessibilityLabel(
+                viewModel.message.isEmpty
+                ? String(localized: "Ask a question")
+                : viewModel.message
+            )
+            .accessibilityHint(String(localized: "Double tap to start typing."))
     }
 
     private var textInputSendButton: some View {
@@ -157,6 +175,7 @@ struct AssistChatView: View {
         }
         .padding(.huiSpaces.space12)
         .disabled(viewModel.isDisableSendButton)
+        .accessibilityLabel(String(localized: "Send"))
     }
 }
 

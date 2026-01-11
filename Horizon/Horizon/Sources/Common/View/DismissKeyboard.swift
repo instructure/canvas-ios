@@ -18,30 +18,23 @@
 
 import SwiftUI
 
-extension HorizonUI.MultiSelect {
-    struct Storybook: View {
-
-        @State var focused = false
-        @State var selections: [HorizonUI.MultiSelect.Option] = []
-        @State var textInput = ""
-        @State var loading = false
-
-        var body: some View {
-            HorizonUI.MultiSelect(
-                focused: $focused,
-                label: "Label",
-                textInput: $textInput,
-                options: Array(1 ... 20).map {
-                    Option(id: "Option \($0)", label: "Option \($0)")
-                },
-                loading: $loading
-            ) { _ in }
-            .frame(maxHeight: .infinity, alignment: .top)
-            .padding(.horizontal, .huiSpaces.space36)
-        }
+struct DismissKeyboardOnTapModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .contentShape(Rectangle())
+            .onTapGesture {
+                UIApplication.shared.sendAction(
+                    #selector(UIResponder.resignFirstResponder),
+                    to: nil,
+                    from: nil,
+                    for: nil
+                )
+            }
     }
 }
 
-#Preview {
-    HorizonUI.MultiSelect.Storybook()
+extension View {
+    func dismissKeyboardOnTap() -> some View {
+        modifier(DismissKeyboardOnTapModifier())
+    }
 }

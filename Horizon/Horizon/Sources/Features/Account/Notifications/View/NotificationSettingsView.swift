@@ -131,6 +131,7 @@ struct NotificationSettingsView: View {
                 .foregroundStyle(Color.huiColors.text.title)
                 .frame(height: 44)
                 .frame(maxWidth: .infinity, alignment: .center)
+                .accessibilityAddTraits(.isHeader)
             HStack(spacing: 0) {
                 HorizonUI.IconButton(
                     HorizonUI.icons.arrowBack,
@@ -141,6 +142,7 @@ struct NotificationSettingsView: View {
                 }
                 .frame(width: 44, height: 44)
                 .padding(.leading, .huiSpaces.space24)
+                .accessibilityLabel(String(localized: "Back"))
                 Spacer()
             }
         }
@@ -164,11 +166,15 @@ struct NotificationSettingsView: View {
                     .huiTypography(.p2)
                     .foregroundStyle(Color.huiColors.text.body)
             }
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel([title, subtitle].joined(separator: ". "))
             VStack(alignment: .leading, spacing: .huiSpaces.space4) {
                 HorizonUI.Controls.ToggleItem(
                     isOn: isEmailOn,
                     title: String(localized: "E-mail", bundle: .horizon)
                 )
+                .accessibilityLabel(String(localized: "Email", bundle: .horizon))
+                .accessibilityRemoveTraits(.isButton)
                 .padding(.vertical, .huiSpaces.space10)
                 if viewModel.isPushConfigured {
                     HorizonUI.Controls.ToggleItem(
