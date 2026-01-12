@@ -43,11 +43,7 @@ extension HorizonUI {
         }
         private let placeholder: String?
         private let zIndex: Double
-        @State private var selections: [Option] = [] {
-            didSet {
-                onSelectOptions(selections)
-            }
-        }
+        private let selections: [Option]
 
         // MARK: Properties
 
@@ -100,6 +96,7 @@ extension HorizonUI {
 
         public init(
             focused: Binding<Bool>,
+            selections: [Option],
             label: String? = nil,
             textInput: Binding<String>,
             options: [Option],
@@ -110,6 +107,7 @@ extension HorizonUI {
             zIndex: Double = 101,
             onSelectOptions: @escaping ([Option]) -> Void
         ) {
+            self.selections = selections
             self._focused = focused
             self.label = label
             self._textInput = textInput
@@ -137,7 +135,7 @@ extension HorizonUI {
 
                     ForEach(selections) { selection in
                         Button(String(format: String(localized: "%@ Double tap to remove from filter. "), selection.label)) {
-                            selections.removeAll(where: { $0.id == selection.id })
+                            remove(option: selection)
                         }
                     }
                 }
@@ -265,7 +263,7 @@ extension HorizonUI {
                 .huiTypography(.p1)
                 .onTapGesture {
                     focused = false
-                    selections.append(option)
+                    add(option: option)
                 }
         }
 
@@ -371,12 +369,25 @@ extension HorizonUI {
                     )
             )
             .onTapGesture {
-                selections.removeAll(where: { $0.id == option.id })
+                remove(option: option)
+//                selections.removeAll(where: { $0.id == option.id })
                 textInput = ""
             }
         }
 
         // MARK: - Private Functions
+
+        private func remove(option: Option) {
+            var items = selections
+            items.removeAll(where: { $0.id == option.id })
+            onSelectOptions(items)
+        }
+
+        private func add(option: Option) {
+            var items = selections
+            items.append(option)
+            onSelectOptions(items)
+        }
 
         private func onTapText() {
             if disabled {
@@ -480,6 +491,7 @@ extension HorizonUI {
         VStack(alignment: .leading) {
             HorizonUI.MultiSelect(
                 focused: $focused,
+                selections: [],
                 label: "Words of the Alphabet",
                 textInput: $textInput,
                 options: options,

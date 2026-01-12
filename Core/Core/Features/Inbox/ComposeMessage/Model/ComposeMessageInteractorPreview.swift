@@ -25,6 +25,7 @@ import Foundation
 public class ComposeMessageInteractorPreview: ComposeMessageInteractor {
     public var attachments = CurrentValueSubject<[File], Never>([])
     public var conversationAttachmentsFolder = CurrentValueSubject<[Folder], Never>([])
+    public var didUploadFiles = PassthroughSubject<Result<Void, any Error>, Never>()
 
     private var addFileWithURLCalled = false
     private var addFileWithFileCalled = false
