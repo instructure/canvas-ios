@@ -31,9 +31,9 @@ public struct GetHActivitiesWidgetResponse: Codable {
     }
 
     public struct Widget: Codable {
-        let courseID: Int?
+        let courseID: String?
         let courseName: String?
-        let userID: Int?
+        let userID: String?
         let userUUID, userName, userAvatarImageURL, userEmail: String?
         let moduleCountCompleted, moduleCountStarted, moduleCountLocked, moduleCountTotal: Int?
 
