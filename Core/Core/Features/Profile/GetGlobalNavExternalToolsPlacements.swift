@@ -82,6 +82,9 @@ private extension LTIDomains {
         let format: String
         switch self {
         case .eportfolio:
+            // This is to include sub-domains that has region-specific prefix.
+            // Like `iad.` in this domain `iad.portfolio.instructure.com` which
+            // represents `US-East` region.
             format = "%K CONTAINS[c] %@"
         case .studio, .gauge, .masteryConnect:
             format = "%K == %@"
