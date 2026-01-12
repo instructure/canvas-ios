@@ -59,6 +59,9 @@ final class AnnouncementInteractorLive: AnnouncementInteractor {
     }
 
     func markAnnouncementAsRead(announcement: AnnouncementModel) -> AnyPublisher<[AnnouncementModel], Never> {
+        guard !announcement.isRead else {
+            return self.getAllAnnouncements(ignoreCache: false)
+        }
         if announcement.isGlobal {
             return deleteAccountNotification(id: announcement.id)
 

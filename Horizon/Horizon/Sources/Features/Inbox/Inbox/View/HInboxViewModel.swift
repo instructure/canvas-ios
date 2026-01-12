@@ -21,11 +21,14 @@ import Combine
 import CombineExt
 import Observation
 import Foundation
+import HorizonUI
 
 @Observable
 final class HInboxViewModel {
     // MARK: - Outputs
 
+    /// Sets the current filter and triggers a refresh of messages.
+    /// Note: Setting this property has the side effect of calling `inboxMessageInteractor.refresh()`
     var filterTitle: String {
         get { filterSubject.value.title }
         set {
@@ -36,7 +39,7 @@ final class HInboxViewModel {
 
     var isMessagesFilterFocused: Bool = false {
         didSet {
-            onMessagesFilterFocused()
+            handleFilterFocusChange()
         }
     }
     var isSearchDisabled: Bool { filterSubject.value == .announcements }
@@ -48,6 +51,7 @@ final class HInboxViewModel {
 
     private var filterSubject: CurrentValueRelay<InboxFilterOption> = CurrentValueRelay(InboxFilterOption.all)
     private var subscriptions = Set<AnyCancellable>()
+    private var announcementsPublisher = CurrentValueSubject<[AnnouncementModel], Never>([])
 
     // MARK: - Dependencies
 
@@ -73,15 +77,11 @@ final class HInboxViewModel {
         listenForMessagesAndAnnouncements()
 
         // When the message filter type changes, make the necessary updates.
-        filterSubject.sink { [weak self] filterOption in
-            if let inboxMessageInteractorScope = filterOption.inboxMessageInteractorScope {
-                _ = inboxMessageInteractor.setScope(inboxMessageInteractorScope)
+        filterSubject
+            .sink { [weak self] filterOption in
+                self?.handleFilterChange(filterOption)
             }
-            if filterOption == .announcements {
-                self?.peopleSelectionViewModel.clearSearch()
-            }
-        }
-        .store(in: &subscriptions)
+            .store(in: &subscriptions)
 
         // close the messages filter when the people selection view model is focused
         peopleSelectionViewModel.isFocusedSubject
@@ -91,6 +91,7 @@ final class HInboxViewModel {
                 }
             }
             .store(in: &subscriptions)
+        fetchAnnouncements()
     }
 
     // MARK: - Actions Functions
@@ -116,19 +117,22 @@ final class HInboxViewModel {
     func refresh(endRefreshing: @escaping () -> Void) {
         inboxMessageInteractor
             .refresh()
-            .zip(fetchAnnouncements(ignoreCache: true))
-            .sink { _, _ in endRefreshing() }
+            .zip(announcementInteractor.getAllAnnouncements(ignoreCache: true))
+            .sink { [weak self] _, announcements in
+                self?.announcementsPublisher.send(announcements)
+                endRefreshing()
+            }
             .store(in: &subscriptions)
     }
 
     func viewMessage(
         announcement: AnnouncementModel?,
-        inboxMessageListItem: InboxMessageListItem?,
+        messageID: String?,
         viewController: WeakViewController
     ) {
-        if let inboxMessageListItem = inboxMessageListItem {
+        if let messageID {
             router.route(
-                to: "/conversations/\(inboxMessageListItem.id)",
+                to: "/conversations/\(messageID)",
                 from: viewController
             )
         }
@@ -141,53 +145,111 @@ final class HInboxViewModel {
         }
     }
 
+    // MARK: - Business Logic Helpers
+
+    /// Determines whether announcements should be included based on filter and people selection
+    func shouldIncludeAnnouncements(
+        filter: InboxFilterOption,
+        hasPeopleFilter: Bool
+    ) -> Bool {
+        let isAnnouncementFilter = filter != .sent
+        return isAnnouncementFilter && !hasPeopleFilter
+    }
+
+    /// Filters announcements by read status when filter is .unread
+    func filterAnnouncementsByReadStatus(
+        _ announcements: [AnnouncementModel],
+        filter: InboxFilterOption
+    ) -> [AnnouncementModel] {
+        guard filter == .unread else { return announcements }
+        return announcements.filter { !$0.isRead }
+    }
+
+    /// Matches message participant name against selected people using case-insensitive substring matching
+    func messageMatchesPeopleFilter(
+        participantName: String,
+        selectedPeople: [HorizonUI.MultiSelect.Option]
+    ) -> Bool {
+        guard !selectedPeople.isEmpty else { return true }
+
+        let lowercasedName = participantName.lowercased()
+        return selectedPeople.contains { person in
+            lowercasedName.contains(person.label.lowercased())
+        }
+    }
+
+    /// Filters messages by person and transforms to InboxMessageModel
+    private func filterMessages(
+        _ messages: [InboxMessageListItem]
+    ) -> [InboxMessageModel] {
+        return messages
+            .filter(filterByPerson)
+            .map(\.messageModel)
+    }
+
+    /// Merges messages and announcements based on current filter
+    private func mergeMessagesAndAnnouncements(
+        messages: [InboxMessageListItem],
+        announcements: [AnnouncementModel],
+        filter: InboxFilterOption
+    ) -> [InboxMessageModel] {
+        guard filter.inboxMessageInteractorScope != nil else {
+            return announcements.map(\.messageModel)
+        }
+
+        let filteredMessages = filterMessages(messages)
+        return addAnnouncements(to: filteredMessages, announcements: announcements)
+    }
+
     // MARK: - Private Functions
 
     private func addAnnouncements(to messageRows: [InboxMessageModel], announcements: [AnnouncementModel]) -> [InboxMessageModel] {
         let filter = filterSubject.value
-        let isPeopleFilterEmpty = peopleSelectionViewModel.searchByPersonSelections.isEmpty
+        let hasPeopleFilter = !peopleSelectionViewModel.searchByPersonSelections.isEmpty
 
-        let shouldShowAnnouncements =
-        (filter == .all || filter == .announcements) &&
-        isPeopleFilterEmpty
+        let shouldInclude = shouldIncludeAnnouncements(
+            filter: filter,
+            hasPeopleFilter: hasPeopleFilter
+        )
 
-        let announcementRows: [InboxMessageModel] = {
-            guard shouldShowAnnouncements else {
-                return filter == .unread
-                ? announcements.filter { !$0.isRead }.map(\.messageModel)
-                : []
-            }
-            return announcements.map(\.messageModel)
-        }()
+        let filteredAnnouncements = shouldInclude
+            ? filterAnnouncementsByReadStatus(announcements, filter: filter)
+            : []
+
+        let announcementRows = filteredAnnouncements.map(\.messageModel)
 
         return (messageRows + announcementRows)
             .sorted { ($0.date ?? .distantPast) > ($1.date ?? .distantPast) }
     }
 
-    private func fetchAnnouncements(ignoreCache: Bool = false) -> AnyPublisher<[AnnouncementModel], Never> {
+    private func fetchAnnouncements(ignoreCache: Bool = false) {
         announcementInteractor
             .getAllAnnouncements(ignoreCache: ignoreCache)
-            .eraseToAnyPublisher()
+            .sink { [weak self] announcements in
+                self?.announcementsPublisher.send(announcements)
+            }
+            .store(in: &subscriptions)
     }
 
     private func listenForMessagesAndAnnouncements() {
         Publishers.CombineLatest4(
             inboxMessageInteractor.messages,
-            fetchAnnouncements(),
+            announcementsPublisher,
             filterSubject,
             peopleSelectionViewModel.personSelectionPublisher
         )
-        .map { [weak self] _, announcements, filter, _ -> ([InboxMessageModel], [AnnouncementModel])in
-            guard let self, filter.inboxMessageInteractorScope != nil else { return ([], announcements) }
-            let messages = self.inboxMessageInteractor.messages.value
-                       .filter(self.filterByPerson)
-                       .map(\.messageModel)
-            return (messages, announcements)
+        .map { [weak self] messages, announcements, filter, _ -> [InboxMessageModel] in
+            guard let self else { return [] }
+            return self.mergeMessagesAndAnnouncements(
+                messages: messages,
+                announcements: announcements,
+                filter: filter
+            )
         }
-        .sink { [weak self] messages, announcements in
+        .sink { [weak self] mergedMessages in
             guard let self else { return }
-            messageRows = addAnnouncements(to: messages, announcements: announcements)
-            screenState = .data
+            self.messageRows = mergedMessages
+            self.screenState = .data
         }
         .store(in: &subscriptions)
     }
@@ -195,16 +257,33 @@ final class HInboxViewModel {
     private func filterByPerson(message: InboxMessageListItem) -> Bool {
         let selectedPeople = peopleSelectionViewModel.searchByPersonSelections
         let filter = filterSubject.value
-        guard !selectedPeople.isEmpty, filter != .announcements else { return true }
-        let messageName = message.participantName.lowercased()
-        return selectedPeople.contains {
-            messageName.contains($0.label.lowercased())
+
+        guard filter != .announcements else { return true }
+
+        return messageMatchesPeopleFilter(
+            participantName: message.participantName,
+            selectedPeople: selectedPeople
+        )
+    }
+
+    /// Handles when message filter gains focus - ensures people search loses focus
+    private func handleFilterFocusChange() {
+        guard isMessagesFilterFocused else { return }
+
+        if peopleSelectionViewModel.isFocusedSubject.value {
+            peopleSelectionViewModel.isFocusedSubject.accept(false)
         }
     }
 
-    private func onMessagesFilterFocused() {
-        guard isMessagesFilterFocused, peopleSelectionViewModel.isFocusedSubject.value else { return }
-        peopleSelectionViewModel.isFocusedSubject.accept(false)
+    /// Handles filter option changes - updates scope and clears people search if needed
+    private func handleFilterChange(_ filterOption: InboxFilterOption) {
+        if let scope = filterOption.inboxMessageInteractorScope {
+            _ = inboxMessageInteractor.setScope(scope)
+        }
+
+        if filterOption == .announcements {
+            peopleSelectionViewModel.clearSearch()
+        }
     }
 }
 
@@ -212,7 +291,7 @@ private extension AnnouncementModel {
     var messageModel: InboxMessageModel {
         .init(
             announcement: self,
-            inboxMessageListItem: nil
+            entity: nil
         )
     }
 }
@@ -221,7 +300,7 @@ private extension InboxMessageListItem {
     var messageModel: InboxMessageModel {
         .init(
             announcement: nil,
-            inboxMessageListItem: self
+            entity: self
         )
     }
 }
