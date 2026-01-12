@@ -57,8 +57,15 @@ class SubmissionsListFilterTests: E2ETestCase {
             XCTAssertVisible(courseCard)
 
             AssignmentsHelper.navigateToAssignments(course: course)
-            let navBar = AssignmentsHelper.navBar(course: course).waitUntil(.visible)
-            XCTAssertVisible(navBar)
+            if #available(iOS 26, *) {
+                let navTitle = AssignmentsHelper.navTitle.waitUntil(.visible)
+                let navSubtitle = AssignmentsHelper.navSubtitle(course: course).waitUntil(.visible)
+                XCTAssertVisible(navTitle)
+                XCTAssertVisible(navSubtitle)
+            } else {
+                let navBar = AssignmentsHelper.navBar(course: course).waitUntil(.visible)
+                XCTAssertVisible(navBar)
+            }
 
             let assignmentButton = AssignmentsHelper.assignmentButton(assignment: assignment).waitUntil(.visible)
             XCTAssertVisible(assignmentButton)
@@ -75,8 +82,15 @@ class SubmissionsListFilterTests: E2ETestCase {
         }
 
         XCTContext.runActivity(named: "Verify filter screen appears") { _ in
-            let navBar = FilterHelper.navBar(assignment: assignment).waitUntil(.visible)
-            XCTAssertVisible(navBar)
+            if #available(iOS 26, *) {
+                let navTitle = FilterHelper.navTitle.waitUntil(.visible)
+                let navSubtitle = FilterHelper.navSubtitle(assignment: assignment).waitUntil(.visible)
+                XCTAssertVisible(navTitle)
+                XCTAssertVisible(navSubtitle)
+            } else {
+                let navBar = FilterHelper.navBar(assignment: assignment).waitUntil(.visible)
+                XCTAssertVisible(navBar)
+            }
         }
 
         XCTContext.runActivity(named: "Verify filter rows are displayed") { _ in

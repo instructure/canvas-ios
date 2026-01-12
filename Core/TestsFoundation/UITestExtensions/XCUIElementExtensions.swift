@@ -336,6 +336,14 @@ public extension XCUIElement {
         return descendants(matching: type).matching(id: id).firstMatch
     }
 
+    func findBackButton() -> XCUIElement {
+        if #available(iOS 26, *) {
+            find(id: "BackButton", type: .button)
+        } else {
+            find(label: "Back", type: .button)
+        }
+    }
+
     func find(idStartingWith prefix: String, type: ElementType = .any) -> XCUIElement {
         return descendants(matching: type).matching(idStartingWith: prefix).firstMatch
     }
