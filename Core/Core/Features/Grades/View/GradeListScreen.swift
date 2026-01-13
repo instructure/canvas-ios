@@ -70,13 +70,7 @@ public struct GradeListScreen: View, ScreenViewTrackable {
             }
             .background(Color.backgroundLight)
             .accessibilityHidden(isScoreEditorPresented)
-            .refreshable {
-                await withCheckedContinuation { continuation in
-                    viewModel.pullToRefreshDidTrigger.accept {
-                        continuation.resume()
-                    }
-                }
-            }
+            .refreshable(action: viewModel.pullToRefreshDidTrigger.accept)
 
             whatIfScoreEditorView
         }

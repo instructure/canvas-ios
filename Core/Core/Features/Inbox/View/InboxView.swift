@@ -60,13 +60,7 @@ public struct InboxView: View, ScreenViewTrackable {
                             SwiftUI.EmptyView()
                         }
                     }
-                    .refreshable {
-                        await withCheckedContinuation { continuation in
-                            model.refreshDidTrigger.send {
-                                continuation.resume()
-                            }
-                        }
-                    }
+                    .refreshable(action: model.refreshDidTrigger.send)
                     .listStyle(PlainListStyle())
                     .animation(.default, value: model.messages)
                 }
