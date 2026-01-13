@@ -122,24 +122,13 @@ public class K5GradesViewModel: ObservableObject {
     }
 }
 
-extension K5GradesViewModel: Refreshable {
+extension K5GradesViewModel {
 
-    @available(*, renamed: "refresh()")
     public func refresh(completion: @escaping () -> Void) {
-        Task {
-            await refresh()
-            completion()
-        }
-    }
-
-    public func refresh() async {
         forceRefresh = true
-        return await withCheckedContinuation { continuation in
-            refreshCompletion = {
-                continuation.resume()
-            }
-            reloadData()
-        }
+        refreshCompletion = completion
+
+        reloadData()
     }
 
     func reloadData() {

@@ -28,7 +28,7 @@ public struct MessageDetailsView: View {
     }
 
     public var body: some View {
-        RefreshableScrollView {
+        ScrollView {
             switch model.state {
             case .loading:
                 loadingIndicator
@@ -44,11 +44,7 @@ public struct MessageDetailsView: View {
                 .padding(.vertical, 24)
             }
         }
-        refreshAction: { onComplete in
-            model.refreshDidTrigger.send {
-                onComplete()
-            }
-        }
+        .refreshable(action: model.refreshDidTrigger.send)
         .background(Color.backgroundLightest)
         .navigationBarTitleView(model.title)
         .navigationBarItems(trailing: moreButton)

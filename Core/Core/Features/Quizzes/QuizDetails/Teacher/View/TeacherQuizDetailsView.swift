@@ -60,15 +60,13 @@ public struct TeacherQuizDetailsView<ViewModel: TeacherQuizDetailsViewModel>: Vi
             // Quiz not found, perhaps recently deleted
             Spacer().onAppear { env.router.dismiss(controller) }
         case .ready:
-            RefreshableScrollView {
+            ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     details()
                         .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil) }
                 }
             }
-            refreshAction: { onComplete in
-                viewModel.refresh(completion: onComplete)
-            }
+            .refreshable(action: viewModel.refresh)
         }
     }
 

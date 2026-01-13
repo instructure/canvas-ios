@@ -66,13 +66,13 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
 
     @ViewBuilder var states: some View {
         if let assignment = assignment.first {
-            RefreshableScrollView {
+            ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     details(assignment: assignment)
                         .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil) }
                 }
             }
-            refreshAction: { endRefreshing in
+            .refreshable { endRefreshing in
                 self.assignment.refresh(force: true) { _ in
                     endRefreshing()
                 }
