@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
+import Core
 import SwiftUI
 
 protocol LearnerWidgetViewModel: AnyObject, Identifiable where ID == WidgetIdentifier {
@@ -25,6 +27,8 @@ protocol LearnerWidgetViewModel: AnyObject, Identifiable where ID == WidgetIdent
     var id: WidgetIdentifier { get }
     var isFullWidth: Bool { get }
     var isEditable: Bool { get }
+    var state: InstUI.ScreenState { get }
 
     func makeView() -> ViewType
+    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never>
 }

@@ -22,25 +22,25 @@ import SwiftUI
 struct DashboardWidgetLayout: View {
     let fullWidthWidgets: [any LearnerWidgetViewModel]
     let gridWidgets: [any LearnerWidgetViewModel]
-
     @State private var containerWidth: CGFloat = 0
 
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
             fullWidthSection()
             gridSection(columnCount: columns(for: containerWidth))
         }
         .onWidthChange { width in
-            containerWidth = width
+            // Don't animate the first appearance
+            withAnimation(containerWidth == 0 ? .none : .smooth) {
+                containerWidth = width
+            }
         }
-        .animation(.easeInOut(duration: 0.3), value: columns(for: containerWidth))
     }
 
     @ViewBuilder
     private func fullWidthSection() -> some View {
         ForEach(fullWidthWidgets, id: \.id) { viewModel in
             LearnerDashboardWidgetAssembly.makeView(for: viewModel)
-                .paddingStyle(.top, .standard)
         }
     }
 
@@ -52,7 +52,6 @@ struct DashboardWidgetLayout: View {
                     columnView(columnIndex: columnIndex, columnCount: columnCount)
                 }
             }
-            .paddingStyle(.top, .standard)
         }
     }
 
@@ -78,24 +77,28 @@ struct DashboardWidgetLayout: View {
 #if DEBUG
 
 #Preview {
-    ScrollView {
+    let fullWidthWidget = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
+        config: WidgetConfig(id: .fullWidthWidget, order: 0, isVisible: true, settings: nil)
+    )
+    let widget1 = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
+        config: WidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil)
+    )
+    let widget2 = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
+        config: WidgetConfig(id: .widget2, order: 2, isVisible: true, settings: nil)
+    )
+    let widget3 = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
+        config: WidgetConfig(id: .widget3, order: 3, isVisible: true, settings: nil)
+    )
+
+    _ = fullWidthWidget.refresh(ignoreCache: false)
+    _ = widget1.refresh(ignoreCache: false)
+    _ = widget2.refresh(ignoreCache: false)
+    _ = widget3.refresh(ignoreCache: false)
+
+    return ScrollView {
         DashboardWidgetLayout(
-            fullWidthWidgets: [
-                LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-                    config: WidgetConfig(id: .fullWidthWidget, order: 0, isVisible: true, settings: nil)
-                )
-            ],
-            gridWidgets: [
-                LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-                    config: WidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil)
-                ),
-                LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-                    config: WidgetConfig(id: .widget2, order: 2, isVisible: true, settings: nil)
-                ),
-                LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-                    config: WidgetConfig(id: .widget3, order: 3, isVisible: true, settings: nil)
-                )
-            ]
+            fullWidthWidgets: [fullWidthWidget],
+            gridWidgets: [widget1, widget2, widget3]
         )
         .paddingStyle(.horizontal, .standard)
     }

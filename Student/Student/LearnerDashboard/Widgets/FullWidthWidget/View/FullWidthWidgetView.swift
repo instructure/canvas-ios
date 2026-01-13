@@ -23,14 +23,15 @@ struct FullWidthWidgetView: View {
     @State var viewModel: FullWidthWidgetViewModel
 
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(verbatim: "Full Width Widget")
-                .font(.headline)
-            Text(verbatim: InstUI.PreviewData.loremIpsumLong(2))
-                .foregroundColor(.secondary)
+        if viewModel.state != .loading {
+            TitledWidget("Full Width Widget") {
+                Text(verbatim: InstUI.PreviewData.loremIpsumMedium)
+                    .foregroundColor(.secondary)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .paddingStyle(.standard)
+                    .dashboardCardStyle()
+            }
+            .transition(.move(edge: .top).combined(with: .opacity))
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .paddingStyle(.standard)
-        .dashboardCardStyle()
     }
 }

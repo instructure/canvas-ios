@@ -36460,15 +36460,6 @@
         }
       }
     },
-    "Content for widget 1" : {
-
-    },
-    "Content for widget 2" : {
-
-    },
-    "Content for widget 3" : {
-
-    },
     "Continue" : {
       "comment" : "Button title for selecting to continue on to quiz. The will appear in the alert view notfifying the user of mobile quiz limitations.",
       "extractionState" : "manual",
@@ -57689,9 +57680,6 @@
           }
         }
       }
-    },
-    "Full Width Widget" : {
-
     },
     "Future" : {
       "extractionState" : "manual",
@@ -130186,9 +130174,6 @@
         }
       }
     },
-    "This is a full width widget" : {
-
-    },
     "This is a media message." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -143543,15 +143528,6 @@
           }
         }
       }
-    },
-    "Widget 1" : {
-
-    },
-    "Widget 2" : {
-
-    },
-    "Widget 3" : {
-
     },
     "Will unlock %@." : {
       "comment" : "unlock date for discussion/announcement",

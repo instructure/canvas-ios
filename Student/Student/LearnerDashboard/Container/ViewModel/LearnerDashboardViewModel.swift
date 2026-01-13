@@ -30,6 +30,7 @@ final class LearnerDashboardViewModel {
 
     let screenConfig = InstUI.BaseScreenConfig(
         refreshable: true,
+        showsScrollIndicators: false,
         emptyPandaConfig: .init(
             scene: SpacePanda(),
             title: String(localized: "Welcome to Canvas!", bundle: .student),
@@ -52,7 +53,6 @@ final class LearnerDashboardViewModel {
         self.mainScheduler = mainScheduler
 
         loadWidgets()
-        refresh(ignoreCache: false)
     }
 
     private func loadWidgets() {
@@ -65,18 +65,21 @@ final class LearnerDashboardViewModel {
                 if !result.fullWidth.isEmpty || !result.grid.isEmpty {
                     self.state = .data
                 }
+                self.refresh(ignoreCache: false)
             }
             .store(in: &subscriptions)
     }
 
     func refresh(ignoreCache: Bool, completion: (() -> Void)? = nil) {
-        interactor.refresh(ignoreCache: ignoreCache)
+        let allWidgets = fullWidthWidgets + gridWidgets
+        let publishers = allWidgets.map { $0.refresh(ignoreCache: ignoreCache) }
+
+        Publishers.MergeMany(publishers)
+            .collect()
             .receive(on: mainScheduler)
             .sink { [weak self] _ in
-                guard let self else { return }
-                self.state = .empty
+                guard self != nil else { return }
                 completion?()
-            } receiveValue: { _ in
             }
             .store(in: &subscriptions)
     }

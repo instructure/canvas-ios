@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
+import Core
 import SwiftUI
 
 @Observable
@@ -26,6 +28,7 @@ final class Widget3ViewModel: LearnerWidgetViewModel {
     var id: WidgetIdentifier { config.id }
     let isFullWidth = false
     let isEditable = false
+    var state: InstUI.ScreenState = .data
 
     init(config: WidgetConfig) {
         self.config = config
@@ -33,5 +36,9 @@ final class Widget3ViewModel: LearnerWidgetViewModel {
 
     func makeView() -> Widget3View {
         Widget3View(viewModel: self)
+    }
+
+    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
+        Just(()).eraseToAnyPublisher()
     }
 }

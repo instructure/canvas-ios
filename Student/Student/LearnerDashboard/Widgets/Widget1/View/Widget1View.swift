@@ -30,7 +30,9 @@ struct Widget1View: View {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .paddingStyle(.standard)
+            .redacted(reason: viewModel.state == .data ? [] : .placeholder)
             .dashboardCardStyle()
+            .animation(.smooth, value: viewModel.state)
         }
     }
 }

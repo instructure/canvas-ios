@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
+import Core
 import SwiftUI
 
 @Observable
@@ -26,6 +28,7 @@ final class FullWidthWidgetViewModel: LearnerWidgetViewModel {
     var id: WidgetIdentifier { config.id }
     let isFullWidth = true
     let isEditable = false
+    var state: InstUI.ScreenState = .loading
 
     init(config: WidgetConfig) {
         self.config = config
@@ -33,5 +36,24 @@ final class FullWidthWidgetViewModel: LearnerWidgetViewModel {
 
     func makeView() -> FullWidthWidgetView {
         FullWidthWidgetView(viewModel: self)
+    }
+
+    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
+        Future { [weak self] promise in
+            guard let self else {
+                promise(.success(()))
+                return
+            }
+
+            let delay: TimeInterval = self.state == .loading ? 2.0 : 0.0
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
+                withAnimation(.smooth) {
+                    self.state = .data
+                }
+                promise(.success(()))
+            }
+        }
+        .eraseToAnyPublisher()
     }
 }

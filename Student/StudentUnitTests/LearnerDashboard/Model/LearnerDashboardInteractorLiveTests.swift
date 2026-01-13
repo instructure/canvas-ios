@@ -21,19 +21,11 @@ import XCTest
 
 final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
-    func test_refresh_whenIgnoreCacheIsTrue_shouldFinish() {
+    func test_loadWidgets_shouldReturnWidgets() {
         let testee = LearnerDashboardInteractorLive(
             widgetViewModelFactory: LearnerDashboardWidgetAssembly.makeWidgetViewModel
         )
 
-        XCTAssertFinish(testee.refresh(ignoreCache: true), timeout: 3)
-    }
-
-    func test_refresh_whenIgnoreCacheIsFalse_shouldFinish() {
-        let testee = LearnerDashboardInteractorLive(
-            widgetViewModelFactory: LearnerDashboardWidgetAssembly.makeWidgetViewModel
-        )
-
-        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 3)
+        XCTAssertFinish(testee.loadWidgets(), timeout: 3)
     }
 }

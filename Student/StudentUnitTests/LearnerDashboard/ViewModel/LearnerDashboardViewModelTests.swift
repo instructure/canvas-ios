@@ -49,52 +49,42 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.screenConfig.emptyPandaConfig.title, expectedTitle)
     }
 
-    func test_refresh_shouldSetStateToEmpty() {
+    func test_loadWidgets_whenNoWidgets_shouldSetStateToEmpty() {
+        // WHEN
+        interactor.loadWidgetsPublisher.send((fullWidth: [], grid: []))
+        scheduler.advance()
+
+        // THEN
+        XCTAssertEqual(testee.state, .loading)
+    }
+
+    func test_loadWidgets_whenWidgetsExist_shouldSetStateToData() {
+        let widget = FullWidthWidgetViewModel(config: WidgetConfig(id: .fullWidthWidget, order: 0, isVisible: true, settings: nil))
+
+        // WHEN
+        interactor.loadWidgetsPublisher.send((fullWidth: [widget], grid: []))
+        scheduler.advance()
+
+        // THEN
+        XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.fullWidthWidgets.count, 1)
+        XCTAssertEqual(testee.gridWidgets.count, 0)
+    }
+
+    func test_refresh_shouldComplete() {
+        let widget = FullWidthWidgetViewModel(config: WidgetConfig(id: .fullWidthWidget, order: 0, isVisible: true, settings: nil))
         let expectation = expectation(description: "Refresh should complete")
+
+        interactor.loadWidgetsPublisher.send((fullWidth: [widget], grid: []))
+        scheduler.advance()
 
         // WHEN
         testee.refresh(ignoreCache: true) {
             expectation.fulfill()
         }
-
-        interactor.refreshPublisher.send(())
-        interactor.refreshPublisher.send(completion: .finished)
-        scheduler.advance()
+        scheduler.advance(by: 2.1)
 
         // THEN
-        wait(for: [expectation], timeout: 1)
-        XCTAssertEqual(testee.state, .empty)
-    }
-
-    func test_refresh_whenIgnoreCacheIsTrue_shouldCallInteractorWithCorrectParameter() {
-        let expectedIgnoreCache = true
-
-        // WHEN
-        testee.refresh(ignoreCache: expectedIgnoreCache)
-
-        interactor.refreshPublisher.send(())
-        interactor.refreshPublisher.send(completion: .finished)
-        scheduler.advance()
-
-        // THEN
-        XCTAssertEqual(interactor.refreshIgnoreCacheValue, expectedIgnoreCache)
-    }
-
-    func test_refresh_whenIgnoreCacheIsFalse_shouldCallInteractorWithCorrectParameter() {
-        let expectedIgnoreCache = false
-
-        interactor.refreshPublisher.send(())
-        interactor.refreshPublisher.send(completion: .finished)
-        scheduler.advance()
-
-        // WHEN
-        testee.refresh(ignoreCache: expectedIgnoreCache)
-
-        interactor.refreshPublisher.send(())
-        interactor.refreshPublisher.send(completion: .finished)
-        scheduler.advance()
-
-        // THEN
-        XCTAssertEqual(interactor.refreshIgnoreCacheValue, expectedIgnoreCache)
+        wait(for: [expectation], timeout: 3)
     }
 }

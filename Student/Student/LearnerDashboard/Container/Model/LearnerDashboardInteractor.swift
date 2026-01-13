@@ -22,7 +22,6 @@ import Foundation
 
 protocol LearnerDashboardInteractor {
     func loadWidgets() -> AnyPublisher<(fullWidth: [any LearnerWidgetViewModel], grid: [any LearnerWidgetViewModel]), Never>
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error>
 }
 
 final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
@@ -54,13 +53,6 @@ final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
 
                 return (fullWidth, grid)
             }
-            .eraseToAnyPublisher()
-    }
-
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
-        Just(())
-            .delay(for: .seconds(2), scheduler: DispatchQueue.global(qos: .userInitiated))
-            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 }
