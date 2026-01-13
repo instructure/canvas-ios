@@ -106,9 +106,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
                     .listRowBackground(SwiftUI.EmptyView())
             }
             .listStyle(.plain)
-            .refreshable {
-                await viewModel.refresh()
-            }
+            .refreshable(action: viewModel.refresh)
         }
     }
 
@@ -135,9 +133,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
                 )
             }
         }
-        .refreshable {
-            await viewModel.refresh()
-        }
+        .refreshable(action: viewModel.refresh)
     }
 
     private func setupDefaultSplitDetailView(_ routeUrl: String) {
