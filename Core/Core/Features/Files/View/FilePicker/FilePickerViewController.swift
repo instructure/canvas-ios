@@ -20,6 +20,7 @@ import Combine
 import UIKit
 import MobileCoreServices
 import VisionKit
+import PDFKit
 import UniformTypeIdentifiers
 
 public enum FilePickerSource: Int, CaseIterable {
@@ -385,14 +386,52 @@ extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
+
+    private var shouldMergeScannedImagesIntoPDF: Bool {
+        // TODO: Enable this back later. https://instructure.atlassian.net/browse/MBL-19654
+        // utis.contains(where: { $0.isPDF }) && utis.contains(where: { $0.isImage }) == false
+        return false
+    }
+
+    private func proposeFilenameForNewPDFScan() -> String {
+        // This gives a reasonably consistent unique ID
+        // necessary to avoid name conflicts across upload batches
+        let prefix = batchID
+            .split(separator: "-")
+            .compactMap({ $0.prefix(2) })
+            .map(String.init)
+            .joined()
+        let scannedCount = pickedFilesSourceMap.filter({ $0.value == .documentScan }).count
+        return "Scan_b\(prefix)_\(scannedCount + 1).pdf"
+    }
+
     public func documentCameraViewController(_ controller: VNDocumentCameraViewController, didFinishWith scan: VNDocumentCameraScan) {
         controller.dismiss(animated: true)
-        for i in 0..<scan.pageCount {
+
+        if shouldMergeScannedImagesIntoPDF {
+            let pdfDocument = PDFDocument()
+            let pages = (0 ..< scan.pageCount).compactMap {
+                PDFPage(image: scan.imageOfPage(at: $0))
+            }
+
+            pages.forEach {
+                pdfDocument.insert($0, at: pdfDocument.pageCount)
+            }
+
             do {
-                let image = scan.imageOfPage(at: i)
-                add(try image.write(), source: .documentScan)
+                let proposeName = proposeFilenameForNewPDFScan()
+                add(try pdfDocument.write(name: proposeName), source: .documentScan)
             } catch {
                 showError(error)
+            }
+        } else {
+            for i in 0 ..< scan.pageCount {
+                do {
+                    let image = scan.imageOfPage(at: i)
+                    add(try image.write(), source: .documentScan)
+                } catch {
+                    showError(error)
+                }
             }
         }
     }

@@ -43,7 +43,7 @@ class HelpTests: E2ETestCase {
         searchTheCanvasGuidesButton.hit()
         HelpHelper.openInSafariButton.hit()
         var browserURL = SafariAppHelper.browserURL
-        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas/ct-p/canvas"))
+        XCTAssertContains(browserURL, "https://community.instructure.com/en/categories/canvas")
 
         // MARK: Check "Report a Problem" button
         HelpHelper.returnToHelpPage(teacher: true)
@@ -62,6 +62,6 @@ class HelpTests: E2ETestCase {
         submitAFeatureButton.hit()
         HelpHelper.openInSafariButton.hit()
         browserURL = SafariAppHelper.browserURL
-        XCTAssertTrue(browserURL.contains("canvas-ideas-themes"))
+        XCTAssertContains(browserURL, "https://community.instructure.com/en/instructure-roadmap")
     }
 }

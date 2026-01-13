@@ -795,6 +795,7 @@
         <attribute name="position" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="postedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="published" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="readState" attributeType="String"/>
         <attribute name="requiredReplyCountRaw" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
         <attribute name="requireInitialPost" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="sortByRating" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>

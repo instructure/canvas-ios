@@ -59,40 +59,5 @@ final class NotificationInteractorPreview: NotificationInteractor {
     func getUnreadNotificationCount() -> AnyPublisher<Int, Never> {
         Just(3).eraseToAnyPublisher()
     }
-
-    func markNotificationAsRead(notification: NotificationModel) -> AnyPublisher<[NotificationModel], Error> {
-        Just([
-            .init(
-                id: "4",
-                title: "[first two lines of the message......... there’s more.].",
-                date: Date(),
-                isRead: true,
-                courseName: "course Name",
-                courseID: "1552",
-                enrollmentID: "1211",
-                isScoreAnnouncement: false,
-                type: .announcement,
-                announcementId: "1",
-                assignmentURL: nil
-
-            ),
-            .init(
-                id: "5",
-                title: "[first two lines of the message......... there’s more.].",
-                date: Date(),
-                isRead: false,
-                courseName: "course Name",
-                courseID: "122",
-                enrollmentID: "1211",
-                isScoreAnnouncement: false,
-                type: .announcement,
-                announcementId: "1",
-                assignmentURL: nil
-
-            )
-        ])
-        .setFailureType(to: Error.self)
-        .eraseToAnyPublisher()
-    }
 }
 #endif

@@ -105,17 +105,19 @@ struct HCourse: Identifiable {
         }
     }
 
-    var accessibilityDescription: String {
-        var description = String.localizedStringWithFormat(
-            String(localized: "Selected course is %@. ", bundle: .horizon),
-            name
+    func accessibilityDescription(isExpanded: Bool) -> String {
+        let state = isExpanded ? String(localized: "Expanded", bundle: .horizon) : String(localized: "Collapsed", bundle: .horizon)
+        return String.localizedStringWithFormat(
+            String(localized: "Course name is %@. %@", bundle: .horizon),
+            name,
+            state
         )
-        description += String.localizedStringWithFormat(
+    }
+
+    var accessibilityProgressDescription: String {
+        return String.localizedStringWithFormat(
             String(localized: "Progress: %d percent complete. ", bundle: .horizon),
             Int(progress.rounded())
         )
-
-        description += String(localized: "Double tap to select another course. ", bundle: .horizon)
-        return description
     }
 }

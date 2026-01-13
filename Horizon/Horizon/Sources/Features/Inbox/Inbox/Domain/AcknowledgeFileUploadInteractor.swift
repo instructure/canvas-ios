@@ -24,7 +24,7 @@ protocol AcknowledgeFileUploadInteractor {
     func acknowledgeUpload(of file: File)
 }
 
-class AcknowledgeFileUploadInteractorLive: AcknowledgeFileUploadInteractor {
+final class AcknowledgeFileUploadInteractorLive: AcknowledgeFileUploadInteractor {
     // MARK: Private
     private var observations = [String: NSKeyValueObservation]()
     private var subscriptions: Set<AnyCancellable> = []

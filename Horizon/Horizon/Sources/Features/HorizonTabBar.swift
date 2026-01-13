@@ -27,6 +27,7 @@ final class HorizonTabBar: UITabBar {
         let image = UIImage(resource: .chatBot)
         middleButton.setImage(image, for: .normal)
         middleButton.addTarget(self, action: #selector(self.chatBotAction), for: .touchUpInside)
+        middleButton.isAccessibilityElement = false
         self.addSubview(middleButton)
         return middleButton
     }()

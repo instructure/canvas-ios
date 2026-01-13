@@ -22,6 +22,7 @@ import SwiftUI
 struct StudentNotesView: View {
 
     @ObservedObject private var viewModel: StudentNotesViewModel
+    @State private var isExpanded: Bool = true
 
     init(viewModel: StudentNotesViewModel) {
         self.viewModel = viewModel
@@ -30,7 +31,7 @@ struct StudentNotesView: View {
     var body: some View {
         let title = String(localized: "Student Notes", bundle: .teacher)
         let itemCount = viewModel.entries.count > 1 ? viewModel.entries.count : nil
-        InstUI.CollapsibleListSection(title: title, itemCount: itemCount) {
+        InstUI.CollapsibleListSection(title: title, itemCount: itemCount, isExpanded: $isExpanded) {
             VStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
                 ForEach(viewModel.entries) { entry in
                     StudentNotesEntryView(title: entry.title, content: entry.content)

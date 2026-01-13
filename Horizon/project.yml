@@ -40,7 +40,7 @@ packages:
   # Remote
   Pendo:
     url: https://github.com/pendo-io/pendo-mobile-sdk
-    exactVersion: 3.9.1
+    exactVersion: 3.9.2
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
     exactVersion: 14.2.0

@@ -42,12 +42,11 @@ public class AnalyticsMetadataInteractorLive: AnalyticsMetadataInteractor {
             .getEntities(ignoreCache: true)
             .tryMap {
                 guard let user = $0.first else { throw NSError.internalError() }
-
                 return UserMetadata(uuid: user.uuid, locale: user.locale, accountUUID: user.accountUUID)
             }
 
         // Both stores publish non-managed-object values to avoid accessing the managed objects
-        //  from arbitrary threads which happen to call this method
+        // from arbitrary threads which happen to call this method
         async let flagEnabledPublisher = flagEnabledStore.asyncPublisher()
         async let userPublisher = userStore.asyncPublisher()
 
