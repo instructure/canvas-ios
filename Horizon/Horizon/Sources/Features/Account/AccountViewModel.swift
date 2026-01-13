@@ -117,7 +117,7 @@ final class AccountViewModel {
 
     func giveFeedbackDidTap(viewController: WeakViewController) {
         router.show(
-            BugReportAssembly.makeViewConroller(),
+            ReportBugAssembly.makeViewConroller(),
             from: viewController,
             options: .modal(.custom)
         )

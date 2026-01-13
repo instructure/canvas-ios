@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -19,8 +19,14 @@
 import Core
 import UIKit
 
-struct BugReportAssembly {
+enum ReportBugAssembly {
     static func makeViewConroller() -> UIViewController {
-        CoreHostingController(BugReportView())
+        let app = AppEnvironment.shared
+        let viewModel = ReportBugViewModel(
+            api: app.api,
+            baseURL: app.currentSession?.baseURL.absoluteString ?? "",
+            router: app.router
+        )
+        return CoreHostingController(ReportBugView(viewModel: viewModel))
     }
 }

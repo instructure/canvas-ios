@@ -62,7 +62,7 @@ extension HorizonUI {
         // push the content below it down
         @State private var textInputMeasuredHeight: CGFloat = 0
         @State private var filteredItems: [String] = []
-
+        private let borderOpacity: Double
         // MARK: - Init
 
         public init(
@@ -74,7 +74,8 @@ extension HorizonUI {
             disabled: Bool = false,
             placeholder: String? = nil,
             error: String? = nil,
-            zIndex: Double = 101
+            zIndex: Double = 101,
+            borderOpacity: Double = 0.5
         ) {
             self.label = label
             self.options = options
@@ -88,6 +89,7 @@ extension HorizonUI {
             self.filteredItems = options
             self.originalSelection = selection.wrappedValue
             self.zIndex = zIndex
+            self.borderOpacity = borderOpacity
         }
 
         public var body: some View {
@@ -121,6 +123,7 @@ extension HorizonUI {
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: bodyHeight, alignment: .top)
             .zIndex(zIndex)
+            .accessibilityElement(children: .contain)
         }
 
         // MARK: - Private
@@ -146,6 +149,7 @@ extension HorizonUI {
             .shadow(radius: HorizonUI.Elevations.level1.attributes.blur)
             .padding(.top, .huiSpaces.space8)
             .animation(.easeInOut, value: displayedOptionsHeight)
+            .accessibilityElement(children: .contain)
             .accessibilityHidden(!focused)
         }
 
@@ -291,7 +295,7 @@ extension HorizonUI {
         }
 
         private func textOverlayStrokeOpacity(isOuter: Bool = false) -> Double {
-            focused ? 1.0 : (isOuter ? 0.0 : 0.5)
+            focused ? 1.0 : (isOuter ? 0.0 : borderOpacity)
         }
 
         private func textOverlayLineWidth(isOuter: Bool = false) -> CGFloat {
