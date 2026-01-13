@@ -69,100 +69,8 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
 
     override func tearDown() {
         webView = nil
+        mockLinkDelegate = nil
         super.tearDown()
-    }
-
-    func testFeatureFlagOn() throws {
-        // Given
-        let context = TestConstants.context
-        let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
-        let feature = FeatureFlagName.studioEmbedImprovements.rawValue
-        let request = GetFeatureFlagStateRequest(featureName: .studioEmbedImprovements, context: context)
-
-        api.mock(
-            request,
-            value: APIFeatureFlagState(
-                feature: feature,
-                state: .on,
-                locked: false,
-                context_id: context.id,
-                context_type: context.contextType.rawValue
-            )
-        )
-
-        // when
-        let exp = expectation(description: "feature updated")
-        interactor.resetFeatureFlagStore(context: context, env: environment)
-        interactor.onFeatureUpdate = {
-            exp.fulfill()
-        }
-
-        wait(for: [exp])
-
-        // Then
-        XCTAssertTrue( webView.features.contains(where: { $0 is InsertStudioOpenInDetailButtons }) )
-    }
-
-    func testFeatureFlagOff() throws {
-        // Given
-        let context = TestConstants.context
-        let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
-        let feature = FeatureFlagName.studioEmbedImprovements.rawValue
-        let request = GetFeatureFlagStateRequest(featureName: .studioEmbedImprovements, context: context)
-
-        api.mock(
-            request,
-            value: APIFeatureFlagState(
-                feature: feature,
-                state: .off,
-                locked: false,
-                context_id: context.id,
-                context_type: context.contextType.rawValue
-            )
-        )
-
-        // when
-        let exp = expectation(description: "feature updated")
-        interactor.resetFeatureFlagStore(context: context, env: environment)
-        interactor.onFeatureUpdate = {
-            exp.fulfill()
-        }
-
-        wait(for: [exp])
-
-        // Then
-        XCTAssertFalse( webView.features.contains(where: { $0 is InsertStudioOpenInDetailButtons }) )
-    }
-
-    func testFeatureFlagAllowedOn() throws {
-        // Given
-        let context = TestConstants.context
-        let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
-        let feature = FeatureFlagName.studioEmbedImprovements.rawValue
-        let request = GetFeatureFlagStateRequest(featureName: .studioEmbedImprovements, context: context)
-
-        api.mock(
-            request,
-            value: APIFeatureFlagState(
-                feature: feature,
-                state: .allowed_on,
-                locked: false,
-                context_id: "1234",
-                context_type: ContextType.account.rawValue
-            )
-        )
-
-        // when
-        let exp = expectation(description: "feature updated")
-        interactor.resetFeatureFlagStore(context: context, env: environment)
-        interactor.onFeatureUpdate = {
-            exp.fulfill()
-        }
-
-        wait(for: [exp])
-
-        // Then
-        XCTAssertTrue( webView.features.contains(where: { $0 is InsertStudioOpenInDetailButtons }) )
     }
 
     func preloadPageContent() {
@@ -222,20 +130,6 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
 
         // Then
         XCTAssertEqual(immersiveUrl?.absoluteString, "https://suhaibalabsi.instructure.com/media_attachments/613046/immersive_view?title=Video%20Title%2011&embedded=true")
-    }
-
-    func testImmersiveViewURL_DetailButton() throws {
-        // Given
-        preloadPageContent()
-        let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
-
-        // When
-        let actionUrl = "https://suhaibalabsi.instructure.com/media_attachments/546734/immersive_view?title=Hello%20World"
-        let action = MockNavigationActionRepresentable(url: actionUrl, type: .linkActivated, targetFrame: MockInfoFrameInfoRepresentable(isMainFrame: false))
-        let immersiveUrl = interactor.urlForStudioImmersiveView(ofNavAction: action)
-
-        // Then
-        XCTAssertEqual(immersiveUrl?.absoluteString, "https://suhaibalabsi.instructure.com/media_attachments/546734/immersive_view?title=Hello%20World&embedded=true")
     }
 
     func test_presentation_via_nav_action() throws {

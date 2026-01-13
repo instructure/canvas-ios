@@ -118,7 +118,6 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
     }
 
     @objc private func refresh() {
-        webView.studioFeaturesInteractor?.refresh()
         pages.refresh(force: true) { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }

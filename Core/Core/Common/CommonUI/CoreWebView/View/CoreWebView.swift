@@ -113,23 +113,18 @@ open class CoreWebView: WKWebView {
         self.env = environment
 
         guard let context else {
-            studioFeaturesInteractor?.resetFeatureFlagStore(context: nil, env: environment)
+            studioFeaturesInteractor?.reset(context: nil, env: environment)
             return
         }
 
         studioFeaturesInteractor = studioFeaturesInteractor
             ?? CoreWebViewStudioFeaturesInteractor(webView: self)
-        studioFeaturesInteractor?.resetFeatureFlagStore(context: context, env: environment)
+        studioFeaturesInteractor?.reset(context: context, env: environment)
     }
 
     deinit {
         configuration.userContentController.removeAllScriptMessageHandlers()
         configuration.userContentController.removeAllUserScripts()
-    }
-
-    open override func reload() -> WKNavigation? {
-        studioFeaturesInteractor?.refresh()
-        return super.reload()
     }
 
     /**

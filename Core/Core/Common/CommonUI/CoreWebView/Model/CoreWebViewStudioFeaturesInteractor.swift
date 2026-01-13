@@ -67,13 +67,10 @@ public class CoreWebViewStudioFeaturesInteractor {
     """
 
     var onScanFinished: (() -> Void)?
-    var onFeatureUpdate: (() -> Void)?
 
     private(set) weak var webView: CoreWebView?
     private var env: AppEnvironment
     private var context: Context?
-    private var studioImprovementsFlagStore: ReactiveStore<GetFeatureFlagState>?
-    private var storeSubscription: AnyCancellable?
 
     /// This is to persist a map of video URL vs Title for the currently loaded page
     /// of CoreWebView. Supposed to be updated (or emptied) on each page load.
@@ -84,26 +81,9 @@ public class CoreWebViewStudioFeaturesInteractor {
         self.env = env
     }
 
-    func resetFeatureFlagStore(context: Context?, env: AppEnvironment) {
+    func reset(context: Context?, env: AppEnvironment) {
         self.env = env
         self.context = context
-
-        guard let context else {
-            storeSubscription?.cancel()
-            storeSubscription = nil
-            studioImprovementsFlagStore = nil
-            return
-        }
-
-        studioImprovementsFlagStore = ReactiveStore(
-            useCase: GetFeatureFlagState(
-                featureName: .studioEmbedImprovements,
-                context: context
-            ),
-            environment: env
-        )
-
-        resetStoreSubscription()
     }
 
     func handleFullWindowLaunchMessage(_ message: WKScriptMessage) {
@@ -157,10 +137,6 @@ public class CoreWebViewStudioFeaturesInteractor {
             self?.videoFramesTitleMap = mapped
             self?.onScanFinished?()
         }
-    }
-
-    public func refresh() {
-        resetStoreSubscription(ignoreCache: true)
     }
 
     // MARK: URL Resolving
@@ -250,31 +226,6 @@ public class CoreWebViewStudioFeaturesInteractor {
             return videoFramesTitleMap.first(where: { $0.key == mediaID })?.value
         }
         return nil
-    }
-
-    // MARK: Resetting
-
-    private func resetStoreSubscription(ignoreCache: Bool = false) {
-        storeSubscription?.cancel()
-        storeSubscription = studioImprovementsFlagStore?
-            .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
-            .replaceError(with: [])
-            .map({ $0.first?.enabled ?? false })
-            .sink(receiveValue: { [weak self] isEnabled in
-                self?.updateStudioImprovementFeature(isEnabled: isEnabled)
-            })
-    }
-
-    private func updateStudioImprovementFeature(isEnabled: Bool) {
-        guard let webView else { return }
-
-        if isEnabled {
-            webView.addFeature(.insertStudioOpenInDetailButtons)
-        } else {
-            webView.removeFeatures(ofType: InsertStudioOpenInDetailButtons.self)
-        }
-
-        onFeatureUpdate?()
     }
 }
 
