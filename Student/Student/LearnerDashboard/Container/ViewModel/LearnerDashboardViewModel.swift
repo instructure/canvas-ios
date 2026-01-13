@@ -25,6 +25,8 @@ import Observation
 @Observable
 final class LearnerDashboardViewModel {
     private(set) var state: InstUI.ScreenState = .loading
+    private(set) var fullWidthWidgets: [any LearnerWidgetViewModel] = []
+    private(set) var gridWidgets: [any LearnerWidgetViewModel] = []
 
     let screenConfig = InstUI.BaseScreenConfig(
         refreshable: true,
@@ -48,7 +50,23 @@ final class LearnerDashboardViewModel {
     ) {
         self.interactor = interactor
         self.mainScheduler = mainScheduler
+
+        loadWidgets()
         refresh(ignoreCache: false)
+    }
+
+    private func loadWidgets() {
+        interactor.loadWidgets()
+            .receive(on: mainScheduler)
+            .sink { [weak self] result in
+                guard let self else { return }
+                self.fullWidthWidgets = result.fullWidth
+                self.gridWidgets = result.grid
+                if !result.fullWidth.isEmpty || !result.grid.isEmpty {
+                    self.state = .data
+                }
+            }
+            .store(in: &subscriptions)
     }
 
     func refresh(ignoreCache: Bool, completion: (() -> Void)? = nil) {

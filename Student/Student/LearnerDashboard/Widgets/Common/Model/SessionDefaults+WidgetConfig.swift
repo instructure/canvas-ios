@@ -16,24 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Student
-import XCTest
+import Core
+import Foundation
 
-final class LearnerDashboardInteractorLiveTests: StudentTestCase {
+extension SessionDefaults {
+    private var learnerDashboardWidgetConfigsKey: String { "learnerDashboardWidgetConfigs" }
 
-    func test_refresh_whenIgnoreCacheIsTrue_shouldFinish() {
-        let testee = LearnerDashboardInteractorLive(
-            widgetViewModelFactory: LearnerDashboardWidgetAssembly.makeWidgetViewModel
-        )
-
-        XCTAssertFinish(testee.refresh(ignoreCache: true), timeout: 3)
-    }
-
-    func test_refresh_whenIgnoreCacheIsFalse_shouldFinish() {
-        let testee = LearnerDashboardInteractorLive(
-            widgetViewModelFactory: LearnerDashboardWidgetAssembly.makeWidgetViewModel
-        )
-
-        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 3)
+    var learnerDashboardWidgetConfigs: [WidgetConfig]? {
+        get {
+            guard let data = self[learnerDashboardWidgetConfigsKey] as? Data else {
+                return nil
+            }
+            return try? JSONDecoder().decode([WidgetConfig].self, from: data)
+        }
+        set {
+            if let newValue, let data = try? JSONEncoder().encode(newValue) {
+                self[learnerDashboardWidgetConfigsKey] = data
+            } else {
+                self[learnerDashboardWidgetConfigsKey] = nil
+            }
+        }
     }
 }

@@ -16,24 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Student
-import XCTest
-
-final class LearnerDashboardInteractorLiveTests: StudentTestCase {
-
-    func test_refresh_whenIgnoreCacheIsTrue_shouldFinish() {
-        let testee = LearnerDashboardInteractorLive(
-            widgetViewModelFactory: LearnerDashboardWidgetAssembly.makeWidgetViewModel
-        )
-
-        XCTAssertFinish(testee.refresh(ignoreCache: true), timeout: 3)
-    }
-
-    func test_refresh_whenIgnoreCacheIsFalse_shouldFinish() {
-        let testee = LearnerDashboardInteractorLive(
-            widgetViewModelFactory: LearnerDashboardWidgetAssembly.makeWidgetViewModel
-        )
-
-        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 3)
-    }
+enum WidgetIdentifier: String, Codable, CaseIterable {
+    case fullWidthWidget
+    case widget1
+    case widget2
+    case widget3
 }

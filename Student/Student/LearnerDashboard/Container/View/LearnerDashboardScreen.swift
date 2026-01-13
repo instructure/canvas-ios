@@ -57,7 +57,13 @@ struct LearnerDashboardScreen: View {
 
     @ViewBuilder
     private var content: some View {
-        SwiftUI.EmptyView()
+        ScrollView {
+            DashboardWidgetLayout(
+                fullWidthWidgets: viewModel.fullWidthWidgets,
+                gridWidgets: viewModel.gridWidgets
+            )
+            .padding(.vertical, 8)
+        }
     }
 }
 
@@ -65,11 +71,7 @@ struct LearnerDashboardScreen: View {
 
 #Preview {
     let controller = CoreHostingController(
-        LearnerDashboardScreen(
-            viewModel: LearnerDashboardViewModel(
-                interactor: LearnerDashboardInteractorLive()
-            )
-        )
+        LearnerDashboardAssembly.makeScreen()
     )
     CoreNavigationController(rootViewController: controller)
 }

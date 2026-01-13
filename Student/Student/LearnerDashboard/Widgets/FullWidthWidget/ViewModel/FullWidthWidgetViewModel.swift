@@ -16,19 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum LearnerDashboardAssembly {
+import SwiftUI
 
-    static func makeInteractor() -> LearnerDashboardInteractor {
-        LearnerDashboardInteractorLive()
+@Observable
+final class FullWidthWidgetViewModel: LearnerWidgetViewModel {
+    typealias ViewType = FullWidthWidgetView
+
+    let config: WidgetConfig
+    var id: WidgetIdentifier { config.id }
+    let isFullWidth = true
+    let isEditable = false
+
+    init(config: WidgetConfig) {
+        self.config = config
     }
 
-    static func makeViewModel(interactor: LearnerDashboardInteractor) -> LearnerDashboardViewModel {
-        LearnerDashboardViewModel(interactor: interactor)
-    }
-
-    static func makeScreen() -> LearnerDashboardScreen {
-        let interactor = makeInteractor()
-        let viewModel = makeViewModel(interactor: interactor)
-        return LearnerDashboardScreen(viewModel: viewModel)
+    func makeView() -> FullWidthWidgetView {
+        FullWidthWidgetView(viewModel: self)
     }
 }

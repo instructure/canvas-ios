@@ -16,24 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Student
-import XCTest
+import SwiftUI
 
-final class LearnerDashboardInteractorLiveTests: StudentTestCase {
+protocol LearnerWidgetViewModel: AnyObject, Identifiable where ID == WidgetIdentifier {
+    associatedtype ViewType: View
 
-    func test_refresh_whenIgnoreCacheIsTrue_shouldFinish() {
-        let testee = LearnerDashboardInteractorLive(
-            widgetViewModelFactory: LearnerDashboardWidgetAssembly.makeWidgetViewModel
-        )
+    var config: WidgetConfig { get }
+    var id: WidgetIdentifier { get }
+    var isFullWidth: Bool { get }
+    var isEditable: Bool { get }
 
-        XCTAssertFinish(testee.refresh(ignoreCache: true), timeout: 3)
-    }
-
-    func test_refresh_whenIgnoreCacheIsFalse_shouldFinish() {
-        let testee = LearnerDashboardInteractorLive(
-            widgetViewModelFactory: LearnerDashboardWidgetAssembly.makeWidgetViewModel
-        )
-
-        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 3)
-    }
+    func makeView() -> ViewType
 }

@@ -16,24 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Student
-import XCTest
+struct WidgetConfig: Codable, Comparable, Identifiable {
+    let id: WidgetIdentifier
+    var order: Int
+    var isVisible: Bool
+    var settings: String?
 
-final class LearnerDashboardInteractorLiveTests: StudentTestCase {
-
-    func test_refresh_whenIgnoreCacheIsTrue_shouldFinish() {
-        let testee = LearnerDashboardInteractorLive(
-            widgetViewModelFactory: LearnerDashboardWidgetAssembly.makeWidgetViewModel
-        )
-
-        XCTAssertFinish(testee.refresh(ignoreCache: true), timeout: 3)
+    static func < (lhs: WidgetConfig, rhs: WidgetConfig) -> Bool {
+        lhs.order < rhs.order
     }
+}
 
-    func test_refresh_whenIgnoreCacheIsFalse_shouldFinish() {
-        let testee = LearnerDashboardInteractorLive(
-            widgetViewModelFactory: LearnerDashboardWidgetAssembly.makeWidgetViewModel
-        )
-
-        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 3)
+extension Array where Element == WidgetConfig {
+    func partitionedByLayout(
+        isFullWidth: (WidgetConfig) -> Bool
+    ) -> (fullWidth: [WidgetConfig], grid: [WidgetConfig]) {
+        let fullWidth = filter { isFullWidth($0) }.sorted()
+        let grid = filter { !isFullWidth($0) }.sorted()
+        return (fullWidth, grid)
     }
 }

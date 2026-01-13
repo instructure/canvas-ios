@@ -20,8 +20,13 @@ import Combine
 @testable import Student
 
 final class LearnerDashboardInteractorMock: LearnerDashboardInteractor {
+    var loadWidgetsPublisher = PassthroughSubject<(fullWidth: [any LearnerWidgetViewModel], grid: [any LearnerWidgetViewModel]), Never>()
     var refreshIgnoreCacheValue: Bool?
     var refreshPublisher = PassthroughSubject<Void, Error>()
+
+    func loadWidgets() -> AnyPublisher<(fullWidth: [any LearnerWidgetViewModel], grid: [any LearnerWidgetViewModel]), Never> {
+        loadWidgetsPublisher.eraseToAnyPublisher()
+    }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
         refreshIgnoreCacheValue = ignoreCache

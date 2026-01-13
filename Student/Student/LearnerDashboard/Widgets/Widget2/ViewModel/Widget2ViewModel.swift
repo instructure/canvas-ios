@@ -16,20 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-import Core
-import Foundation
+import SwiftUI
 
-protocol LearnerDashboardInteractor {
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error>
-}
+@Observable
+final class Widget2ViewModel: LearnerWidgetViewModel {
+    typealias ViewType = Widget2View
 
-final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
+    let config: WidgetConfig
+    var id: WidgetIdentifier { config.id }
+    let isFullWidth = false
+    let isEditable = false
 
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
-        Just(())
-            .delay(for: .seconds(2), scheduler: DispatchQueue.global(qos: .userInitiated))
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+    init(config: WidgetConfig) {
+        self.config = config
+    }
+
+    func makeView() -> Widget2View {
+        Widget2View(viewModel: self)
     }
 }
