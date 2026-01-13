@@ -16,20 +16,39 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 
-struct DashboardCard<Content: View>: View {
+struct TitledWidget<Content: View>: View {
+    let title: String
     let content: Content
 
-    init(@ViewBuilder content: () -> Content) {
+    init(_ title: String, @ViewBuilder content: () -> Content) {
+        self.title = title
         self.content = content()
     }
 
     var body: some View {
-        content
-            .padding(16)
-            .background(Color(.systemBackground))
-            .cornerRadius(12)
-            .shadow(color: Color.black.opacity(0.1), radius: 4, x: 0, y: 2)
+        VStack(
+            alignment: .leading,
+            spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue
+        ) {
+            Text(title)
+                .font(.regular14, lineHeight: .fit)
+                .foregroundColor(.textDarkest)
+            content
+        }
     }
 }
+
+#if DEBUG
+
+#Preview {
+    TitledWidget("Weekly Summary") {
+        Text(verbatim: InstUI.PreviewData.loremIpsumLong(1))
+            .paddingStyle(.standard)
+            .dashboardCardStyle()
+    }
+}
+
+#endif

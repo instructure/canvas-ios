@@ -16,20 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 
 struct Widget1View: View {
     @State var viewModel: Widget1ViewModel
 
     var body: some View {
-        DashboardCard {
+        TitledWidget("Widget 1") {
             VStack(alignment: .leading) {
-                Text("Widget 1", bundle: .student)
-                    .font(.headline)
-                Text("Content for widget 1", bundle: .student)
+                Text(verbatim: InstUI.PreviewData.loremIpsumLong(1))
                     .foregroundColor(.secondary)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            .paddingStyle(.standard)
+            .dashboardCardStyle()
         }
     }
 }

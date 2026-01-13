@@ -16,21 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import SwiftUI
+import Core
 
-struct Widget2View: View {
-    @State var viewModel: Widget2ViewModel
+struct DashboardCardStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .elevation(.cardLarge, background: .backgroundLightest)
+    }
+}
 
-    var body: some View {
-        TitledWidget("Widget 2") {
-            VStack(alignment: .leading) {
-                Text(verbatim: InstUI.PreviewData.loremIpsumLong(2))
-                    .foregroundColor(.secondary)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .paddingStyle(.standard)
-            .dashboardCardStyle()
-        }
+extension View {
+    func dashboardCardStyle() -> some View {
+        modifier(DashboardCardStyle())
     }
 }

@@ -16,20 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 
 struct FullWidthWidgetView: View {
     @State var viewModel: FullWidthWidgetViewModel
 
     var body: some View {
-        DashboardCard {
-            VStack(alignment: .leading) {
-                Text("Full Width Widget", bundle: .student)
-                    .font(.headline)
-                Text("This is a full width widget", bundle: .student)
-                    .foregroundColor(.secondary)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
+        VStack(alignment: .leading) {
+            Text(verbatim: "Full Width Widget")
+                .font(.headline)
+            Text(verbatim: InstUI.PreviewData.loremIpsumLong(2))
+                .foregroundColor(.secondary)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .paddingStyle(.standard)
+        .dashboardCardStyle()
     }
 }

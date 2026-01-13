@@ -62,7 +62,6 @@ struct LearnerDashboardScreen: View {
                 fullWidthWidgets: viewModel.fullWidthWidgets,
                 gridWidgets: viewModel.gridWidgets
             )
-            .padding(.vertical, 8)
         }
     }
 }
