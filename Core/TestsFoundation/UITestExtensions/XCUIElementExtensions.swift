@@ -21,6 +21,12 @@ import XCTest
 
 public var app: XCUIApplication { XCUIApplication() }
 
+public extension XCUIApplication {
+    func dismissMenu() {
+        self.windows.firstMatch.tap()
+    }
+}
+
 public extension XCUIElement {
     // MARK: Enums
     enum ElementCondition {

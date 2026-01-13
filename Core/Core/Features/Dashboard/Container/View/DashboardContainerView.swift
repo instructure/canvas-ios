@@ -195,6 +195,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                     env.router.route(to: "/offline/sync_picker", from: controller, options: .modal(isDismissable: false, embedInNav: true))
                 }
             }
+            .identifier("Dashboard.manageOfflineButton")
 
             Button(.init("Dashboard Settings", bundle: .core)) {
                 guard controller.value.presentedViewController == nil else {
@@ -203,10 +204,12 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 }
                 viewModel.settingsButtonTapped.send()
             }
+            .identifier("Dashboard.settingsButton")
         } label: {
             Image.moreSolid
         }
         .accessibilityLabel(Text("Dashboard Options", bundle: .core))
+        .identifier("Dashboard.optionsButton")
     }
 
     @ViewBuilder

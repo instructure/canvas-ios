@@ -22,7 +22,8 @@ import XCTest
 open class BaseHelper {
     public static let seeder = DataSeeder()
     public static var user: UITestUser {.dataSeedAdmin}
-    public static var backButton: XCUIElement { app.findBackButton() }
+    public static var backButtonByIdOrLabel: XCUIElement { app.findBackButton() }
+    public static var backButtonByLabel: XCUIElement { app.find(label: "Back", type: .button) }
     public static var nextButton: XCUIElement { app.find(id: "nextButton", type: .button) }
     public static var openInSafariButton: XCUIElement { app.find(id: "OpenInSafariButton") }
 
