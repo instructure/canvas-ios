@@ -23,6 +23,8 @@ import SwiftUI
 
 struct GradeInputTextFieldCell: View {
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     private let title: String
     private let subtitle: String?
     private let customAccessibilityLabel: String?
@@ -58,24 +60,32 @@ struct GradeInputTextFieldCell: View {
     }
 
     var body: some View {
-        HStack(alignment: .center, spacing: 8) {
-            Text(title)
-                .textStyle(.cellLabel)
-                .accessibility(hidden: true)
+        VStack(alignment: .leading) {
 
-            if let subtitle {
-                Text(subtitle)
-                    .font(.regular16, lineHeight: .fit)
-                    .foregroundStyle(.textDark)
+            HStack(alignment: .center, spacing: 8) {
+                Text(title)
+                    .textStyle(.cellLabel)
                     .accessibility(hidden: true)
+
+                if let subtitle {
+                    Text(subtitle)
+                        .font(.regular16, lineHeight: .fit)
+                        .foregroundStyle(.textDark)
+                        .accessibility(hidden: true)
+                }
+
+                if !dynamicTypeSize.isAccessibilitySize {
+                    textFieldViews
+                }
             }
 
-            textFieldViews
-                .swapWithSpinner(onSaving: isSaving, alignment: .trailing)
-                .accessibilityLabel(isSaving.value ? accessibilityLabel : nil)
+            if dynamicTypeSize.isAccessibilitySize {
+                textFieldViews
+            }
         }
         .paddingStyle(set: .standardCell)
         .contentShape(Rectangle())
+        .dynamicTypeSize(...DynamicTypeSize.accessibility3)
         .onTapGesture {
             isFocused = true
         }
@@ -107,6 +117,8 @@ struct GradeInputTextFieldCell: View {
                     .accessibility(hidden: true)
             }
         }
+        .swapWithSpinner(onSaving: isSaving, alignment: .trailing)
+        .accessibilityLabel(isSaving.value ? accessibilityLabel : nil)
     }
 
     private var numericTextField: some View {
