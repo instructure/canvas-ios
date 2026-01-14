@@ -70,18 +70,15 @@ public class DashboardContainerViewModel: ObservableObject {
             .assign(to: &$groups)
 
         NotificationCenter.default.publisher(for: .favoritesDidChange)
-            .sink { [weak self] _ in
-                self?.refreshGroups()
+            .flatMap { [weak self] _ in
+                self?.refreshGroups() ?? Publishers.typedJust()
             }
+            .sink()
             .store(in: &subscriptions)
     }
 
-    public func refreshGroups(onComplete: (() -> Void)? = nil) {
-        groupListStore
-            .forceRefresh()
-            .sink { _ in
-                onComplete?()
-            }
-            .store(in: &subscriptions)
+    public func refreshGroups() -> AnyPublisher<Void, Never> {
+        groupListStore.forceRefresh()
+            .eraseToAnyPublisher()
     }
 }
