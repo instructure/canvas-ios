@@ -23,16 +23,17 @@ struct Widget1View: View {
     @State var viewModel: Widget1ViewModel
 
     var body: some View {
-        TitledWidget("Widget 1") {
-            VStack(alignment: .leading) {
-                Text(verbatim: InstUI.PreviewData.loremIpsumLong(1))
-                    .foregroundColor(.secondary)
+        LearnerDashboardTitledWidget("Widget 1") {
+            LearnerDashboardCard {
+                VStack(alignment: .leading) {
+                    Text(verbatim: InstUI.PreviewData.loremIpsumLong(1))
+                        .foregroundColor(.secondary)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .paddingStyle(.standard)
+                .redacted(reason: viewModel.state == .data ? [] : .placeholder)
+                .animation(.smooth, value: viewModel.state)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .paddingStyle(.standard)
-            .redacted(reason: viewModel.state == .data ? [] : .placeholder)
-            .dashboardCardStyle()
-            .animation(.smooth, value: viewModel.state)
         }
     }
 }

@@ -16,9 +16,37 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum WidgetIdentifier: String, Codable, CaseIterable {
-    case fullWidthWidget
-    case widget1
-    case widget2
-    case widget3
+import Core
+import SwiftUI
+
+struct LearnerDashboardTitledWidget<Content: View>: View {
+    let title: String
+    let content: Content
+
+    init(_ title: String, @ViewBuilder content: () -> Content) {
+        self.title = title
+        self.content = content()
+    }
+
+    var body: some View {
+        VStack(
+            alignment: .leading,
+            spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue
+        ) {
+            Text(title)
+                .font(.regular14, lineHeight: .fit)
+                .foregroundColor(.textDarkest)
+            content
+        }
+    }
 }
+
+#if DEBUG
+
+#Preview {
+    LearnerDashboardTitledWidget("Weekly Summary") {
+        Text(verbatim: InstUI.PreviewData.loremIpsumShort)
+    }
+}
+
+#endif

@@ -25,7 +25,7 @@ final class Widget2ViewModel: LearnerWidgetViewModel {
     typealias ViewType = Widget2View
 
     let config: WidgetConfig
-    var id: WidgetIdentifier { config.id }
+    var id: LearnerDashboardWidgetIdentifier { config.id }
     let isFullWidth = false
     let isEditable = false
     var state: InstUI.ScreenState = .data

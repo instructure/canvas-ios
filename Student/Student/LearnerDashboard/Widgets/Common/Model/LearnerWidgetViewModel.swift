@@ -20,15 +20,16 @@ import Combine
 import Core
 import SwiftUI
 
-protocol LearnerWidgetViewModel: AnyObject, Identifiable where ID == WidgetIdentifier {
+protocol LearnerWidgetViewModel: AnyObject, Identifiable where ID == LearnerDashboardWidgetIdentifier {
     associatedtype ViewType: View
 
+    var id: LearnerDashboardWidgetIdentifier { get }
+
     var config: WidgetConfig { get }
-    var id: WidgetIdentifier { get }
     var isFullWidth: Bool { get }
     var isEditable: Bool { get }
-    var state: InstUI.ScreenState { get }
 
+    var state: InstUI.ScreenState { get }
     func makeView() -> ViewType
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never>
 }

@@ -16,38 +16,34 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import SwiftUI
+import Core
 
-struct TitledWidget<Content: View>: View {
-    let title: String
+struct LearnerDashboardCard<Content: View>: View {
     let content: Content
 
-    init(_ title: String, @ViewBuilder content: () -> Content) {
-        self.title = title
+    init(@ViewBuilder content: () -> Content) {
         self.content = content()
     }
 
     var body: some View {
-        VStack(
-            alignment: .leading,
-            spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue
-        ) {
-            Text(title)
-                .font(.regular14, lineHeight: .fit)
-                .foregroundColor(.textDarkest)
+        // The purpose of this layout is to keep the widget's border
+        // on screen while the content's size changes. Instead of the border
+        // fading with the states, it stays on screen and just resizes
+        // to the new content's size.
+        ZStack {
             content
         }
+        .elevation(.cardLarge, background: .backgroundLightest)
     }
 }
 
 #if DEBUG
 
 #Preview {
-    TitledWidget("Weekly Summary") {
-        Text(verbatim: InstUI.PreviewData.loremIpsumLong(1))
-            .paddingStyle(.standard)
-            .dashboardCardStyle()
+    LearnerDashboardCard {
+        Text(verbatim: "Hello")
+            .padding(50)
     }
 }
 

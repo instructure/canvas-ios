@@ -19,7 +19,7 @@
 import Core
 import SwiftUI
 
-struct DashboardWidgetLayout: View {
+struct LearnerDashboardWidgetLayout: View {
     let fullWidthWidgets: [any LearnerWidgetViewModel]
     let gridWidgets: [any LearnerWidgetViewModel]
     @State private var containerWidth: CGFloat = 0
@@ -29,6 +29,10 @@ struct DashboardWidgetLayout: View {
             fullWidthSection()
             gridSection(columnCount: columns(for: containerWidth))
         }
+        // These are to properly animate widget size changes
+        // especially when one widget pushes another one
+        .animation(.smooth, value: fullWidthWidgets.map { $0.state })
+        .animation(.smooth, value: gridWidgets.map { $0.state })
         .onWidthChange { width in
             // Don't animate the first appearance
             withAnimation(containerWidth == 0 ? .none : .smooth) {
@@ -96,7 +100,7 @@ struct DashboardWidgetLayout: View {
     _ = widget3.refresh(ignoreCache: false)
 
     return ScrollView {
-        DashboardWidgetLayout(
+        LearnerDashboardWidgetLayout(
             fullWidthWidgets: [fullWidthWidget],
             gridWidgets: [widget1, widget2, widget3]
         )

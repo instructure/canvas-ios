@@ -16,18 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-import Core
-
-struct DashboardCardStyle: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .elevation(.cardLarge, background: .backgroundLightest)
-    }
-}
-
-extension View {
-    func dashboardCardStyle() -> some View {
-        modifier(DashboardCardStyle())
-    }
+enum LearnerDashboardWidgetIdentifier: String, Codable, CaseIterable {
+    case fullWidthWidget
+    case widget1
+    case widget2
+    case widget3
 }

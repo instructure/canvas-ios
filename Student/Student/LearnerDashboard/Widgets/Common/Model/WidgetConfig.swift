@@ -17,7 +17,7 @@
 //
 
 struct WidgetConfig: Codable, Comparable, Identifiable {
-    let id: WidgetIdentifier
+    let id: LearnerDashboardWidgetIdentifier
     var order: Int
     var isVisible: Bool
     var settings: String?

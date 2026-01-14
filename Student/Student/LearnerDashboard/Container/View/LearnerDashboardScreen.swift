@@ -57,13 +57,11 @@ struct LearnerDashboardScreen: View {
 
     @ViewBuilder
     private var content: some View {
-        ScrollView {
-            DashboardWidgetLayout(
-                fullWidthWidgets: viewModel.fullWidthWidgets,
-                gridWidgets: viewModel.gridWidgets
-            )
-            .paddingStyle(.all, .standard)
-        }
+        LearnerDashboardWidgetLayout(
+            fullWidthWidgets: viewModel.fullWidthWidgets,
+            gridWidgets: viewModel.gridWidgets
+        )
+        .paddingStyle(.all, .standard)
     }
 }
 

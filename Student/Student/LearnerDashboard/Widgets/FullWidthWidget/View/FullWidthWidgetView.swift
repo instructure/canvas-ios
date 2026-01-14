@@ -24,12 +24,13 @@ struct FullWidthWidgetView: View {
 
     var body: some View {
         if viewModel.state != .loading {
-            TitledWidget("Full Width Widget") {
-                Text(verbatim: InstUI.PreviewData.loremIpsumMedium)
-                    .foregroundColor(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .paddingStyle(.standard)
-                    .dashboardCardStyle()
+            LearnerDashboardTitledWidget("Full Width Widget") {
+                LearnerDashboardCard {
+                    Text(verbatim: InstUI.PreviewData.loremIpsumMedium)
+                        .foregroundColor(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .paddingStyle(.standard)
+                }
             }
             .transition(.move(edge: .top).combined(with: .opacity))
         }
