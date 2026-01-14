@@ -40,7 +40,7 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
 
     var body: some View {
         ScrollViewReader { scrollProxy in
-            InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { geometry in
+            InstUI.BaseScreen(state: viewModel.state, config: .notRefreshable) { geometry in
                 VStack(alignment: .leading, spacing: 0) {
                     VStack(spacing: 0) {
                         InstUI.TextFieldCell(

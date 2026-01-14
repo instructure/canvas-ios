@@ -21,13 +21,18 @@ import SwiftUI
 extension View {
 
     /// Closure-based wrapper around SwiftUI's native `refreshable() async` method.
-    public func refreshable(action: @escaping (@escaping () -> Void) -> Void) -> some View {
-        refreshable {
-            await withCheckedContinuation { continuation in
-                action {
-                    continuation.resume()
+    @ViewBuilder
+    public func refreshable(action: ((@escaping () -> Void) -> Void)?) -> some View {
+        if let action {
+            refreshable {
+                await withCheckedContinuation { continuation in
+                    action {
+                        continuation.resume()
+                    }
                 }
             }
+        } else {
+            self
         }
     }
 }

@@ -28,7 +28,7 @@ public struct CalendarToDoDetailsScreen: View {
     }
 
     public var body: some View {
-        InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { _ in
+        InstUI.BaseScreen(state: viewModel.state, config: .notRefreshable) { _ in
             eventContent
         }
         .navigationBarTitleView(viewModel.navigationTitle)

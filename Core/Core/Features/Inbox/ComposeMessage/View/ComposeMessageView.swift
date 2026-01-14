@@ -46,7 +46,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        InstUI.BaseScreen(state: model.state, config: model.screenConfig) { geometry in
+        InstUI.BaseScreen(state: model.state, config: .notRefreshable) { geometry in
             VStack(spacing: 0) {
                 headerView
                     .background(

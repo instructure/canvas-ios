@@ -38,7 +38,6 @@ final class EditCalendarToDoViewModel: ObservableObject {
     // MARK: - Output
 
     let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new")
-    let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
     @Published private(set) var state: InstUI.ScreenState = .data
     @Published var title: String
