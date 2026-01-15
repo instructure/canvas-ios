@@ -106,6 +106,11 @@ extension HorizonUI {
                     }
                 }
                 .accessibilityElement(children: .ignore)
+                .accessibilityAddTraits(.isButton)
+                .accessibilityLabel(
+                    [label, selection, focused ? String(localized: "Expanded") : String(localized: "Collapsed")].compactMap { $0 }.joined(separator: ", ")
+                )
+                .accessibilityHint(focused ? String(localized: "Double-tap to collapse") : String(localized: "Double-tap to expand"))
 
                 ZStack(alignment: .top) {
                     errorText
@@ -127,6 +132,9 @@ extension HorizonUI {
                         displayedOption(item)
                             .accessibilityElement(children: .ignore)
                             .accessibilityLabel(item)
+                            .accessibilityAddTraits(.isButton)
+                            .accessibilityRemoveTraits(.isSelected)
+                            .accessibilityAddTraits(item == selection ? .isSelected : [])
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -138,6 +146,7 @@ extension HorizonUI {
             .shadow(radius: HorizonUI.Elevations.level1.attributes.blur)
             .padding(.top, .huiSpaces.space8)
             .animation(.easeInOut, value: displayedOptionsHeight)
+            .accessibilityHidden(!focused)
         }
 
         private func displayedOption(_ text: String) -> some View {
@@ -259,7 +268,7 @@ extension HorizonUI {
             if disabled {
                 return
             }
-            focused = !focused
+            focused.toggle()
         }
 
         private var textInputTextColor: Color {

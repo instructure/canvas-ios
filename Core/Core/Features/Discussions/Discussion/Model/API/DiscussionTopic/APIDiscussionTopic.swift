@@ -55,6 +55,7 @@ public struct APIDiscussionTopic: Codable, Equatable {
     public let subscription_hold: String?
     public var title: String?
     public let unread_count: Int?
+    public let read_state: String?
     public let is_checkpointed: Bool?
     public let reply_to_entry_required_count: Int?
     public let has_sub_assignments: Bool?
@@ -117,6 +118,7 @@ extension APIDiscussionTopic {
         is_checkpointed: Bool? = nil,
         reply_to_entry_required_count: Int? = nil,
         has_sub_assignments: Bool? = nil,
+        read_state: String? = "unread",
         checkpoints: [APIAssignmentCheckpoint]? = nil
     ) -> APIDiscussionTopic {
         return APIDiscussionTopic(
@@ -155,6 +157,7 @@ extension APIDiscussionTopic {
             subscription_hold: subscription_hold,
             title: title,
             unread_count: unread_count,
+            read_state: read_state,
             is_checkpointed: is_checkpointed,
             reply_to_entry_required_count: reply_to_entry_required_count,
             has_sub_assignments: has_sub_assignments,

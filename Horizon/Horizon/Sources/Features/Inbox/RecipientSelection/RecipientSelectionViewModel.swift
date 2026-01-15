@@ -25,23 +25,18 @@ import HorizonUI
 import Observation
 
 @Observable
-class RecipientSelectionViewModel {
+final class RecipientSelectionViewModel {
     // MARK: - Outputs
+
+    private(set) var accessibilityDescription: String = ""
+    private(set) var personOptions: [HorizonUI.MultiSelect.Option] = []
+    private(set) var isFocused: Bool = false
+    private(set) var searchByPersonSelections: [HorizonUI.MultiSelect.Option] = []
+    let personSelectionPublisher = CurrentValueSubject<[HorizonUI.MultiSelect.Option], Never>([])
     let isFocusedSubject = CurrentValueRelay<Bool>(false)
-    var personOptions: [HorizonUI.MultiSelect.Option] = []
     var recipientIDs: [String] {
         searchByPersonSelections.map { $0.id }
     }
-    var searchByPersonSelections: [HorizonUI.MultiSelect.Option] {
-        get {
-            personFilterSubject.value
-        }
-        set {
-            personFilterSubject.send(newValue)
-        }
-    }
-    let personFilterSubject = CurrentValueSubject<[HorizonUI.MultiSelect.Option], Never>([])
-    var searchLoading: Bool = false
     var searchString: String = "" {
         didSet {
             searchStringSubject.send(searchString)
@@ -49,38 +44,52 @@ class RecipientSelectionViewModel {
     }
 
     // MARK: - Private
+
     private let contextSubject: CurrentValueSubject<Context, Never>
     private let searchStringSubject = CurrentValueSubject<String, Never>("")
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Dependencies
-    private let currentUserID: String
+
+    private let userID: String
     private let dispatchQueue: AnySchedulerOf<DispatchQueue>
-    private let environment: AppEnvironment
     private let recipientsSearch: RecipientsSearchInteractor
 
     // MARK: - Init
     init(
-        environment: AppEnvironment = .shared,
-        currentUserID: String = AppEnvironment.shared.currentSession?.userID ?? "",
+        userID: String,
         dispatchQueue: AnySchedulerOf<DispatchQueue> = .main,
         recipientsSearch: RecipientsSearchInteractor = RecipientsSearchInteractorLive()
     ) {
-        self.environment = environment
-        self.currentUserID = currentUserID
-        self.contextSubject = .init(.user(currentUserID))
+        self.userID = userID
+        self.contextSubject = .init(.user(userID))
         self.dispatchQueue = dispatchQueue
         self.recipientsSearch = recipientsSearch
 
         listenForRecipients()
         listenForSearchStringUpdates()
+
+        isFocusedSubject
+            .removeDuplicates()
+            .sink { [weak self] value in
+                self?.isFocused = value
+            }
+            .store(in: &subscriptions)
     }
 
     // MARK: - Public Methods
+
+    func update(selections: [HorizonUI.MultiSelect.Option]) {
+        searchByPersonSelections = selections
+        personSelectionPublisher.send(selections)
+        updateAccessibilityDescription(with: selections)
+    }
+
     func clearSearch() {
         searchString = ""
         personOptions = []
         searchByPersonSelections = []
+        personSelectionPublisher.send([])
     }
 
     func setContext(_ context: Context) {
@@ -103,6 +112,19 @@ class RecipientSelectionViewModel {
             .store(in: &subscriptions)
     }
 
+    private func updateAccessibilityDescription(with selections: [HorizonUI.MultiSelect.Option]) {
+        guard !selections.isEmpty else {
+            accessibilityDescription = ""
+            return
+        }
+
+        let names = selections
+            .map(\.label)
+            .joined(separator: ", ")
+
+        accessibilityDescription = String(localized: "Filtered recipients. ") + names
+    }
+
     private func listenForSearchStringUpdates() {
         Publishers.CombineLatest(
             searchStringSubject
@@ -111,9 +133,7 @@ class RecipientSelectionViewModel {
             contextSubject
         )
         .sink { [weak self] searchString, contextSubject in
-            guard let self = self else {
-                return
-            }
+            guard let self = self else { return }
             self.recipientsSearch.search(with: searchString, using: contextSubject)
         }
         .store(in: &subscriptions)

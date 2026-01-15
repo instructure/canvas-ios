@@ -16,65 +16,52 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import AVKit
 import Combine
 import Core
+import Foundation
 
 @Observable
-class AttachmentViewModel {
-
-    enum FileType {
-        case file
-        case image
-        case photo
-    }
-
-    // MARK: - Outputs
-    var fileTypes: [FileType] = [.image, .photo, .file]
-    var allowedContentTypes: [UTType] = [
-        .image,
-        .audio,
-        .video,
-        .pdf,
-        .text,
-        .spreadsheet,
-        .presentation,
-        .zip
-    ]
+final class AttachmentViewModel {
+    // MARK: - Inputs / Outputs
+    var isErrorMessagePresented = false
+    private(set) var errorMessage: String = ""
     var isVisible: Bool = false
     var isFilePickerVisible = false
     var isImagePickerVisible = false
     var isTakePhotoVisible = false
 
+    // MARK: - Outputs
+
+    private(set) var items: [AttachmentFileModel] = []
+    var isPickerVisible: Bool {
+        (isFilePickerVisible || isImagePickerVisible || isTakePhotoVisible || isVisible)
+    }
+
     var isUploading: Bool {
         let files: [File] = composeMessageInteractor.attachments.value
         return files.contains { $0.isUploading }
     }
-    var items: [AttachmentItemViewModel] = []
 
     // MARK: - Private
+
+    private var downloadCancellable: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
     private var observations = [String: NSKeyValueObservation]()
 
     // MARK: - Dependencies
+
     private let acknowledgeFileUploadInteractor: AcknowledgeFileUploadInteractor
     private let composeMessageInteractor: ComposeMessageInteractor
-    private let downloadFileInteractor: DownloadFileInteractor
-    let router: Router
 
     // MARK: - Init
     init(
-        router: Router = AppEnvironment.shared.router,
         composeMessageInteractor: ComposeMessageInteractor,
-        downloadFileInteractor: DownloadFileInteractor = DownloadFileInteractorLive(),
         acknowledgeFileUploadInteractor: AcknowledgeFileUploadInteractor = AcknowledgeFileUploadInteractorLive()
     ) {
-        self.router = router
         self.composeMessageInteractor = composeMessageInteractor
-        self.downloadFileInteractor = downloadFileInteractor
         self.acknowledgeFileUploadInteractor = acknowledgeFileUploadInteractor
-
         self.listenForAttachments()
+        listenForFileUploadFailures()
     }
 
     // MARK: - Inputs
@@ -83,6 +70,10 @@ class AttachmentViewModel {
         if let file = composeMessageInteractor.addFile(url: url) {
             confirmFileUpload(for: file)
         }
+    }
+
+    func deleteAll() {
+        items.forEach { composeMessageInteractor.removeFile(file: $0.file) }
     }
 
     func chooseFile() {
@@ -128,16 +119,26 @@ class AttachmentViewModel {
             .attachments
             .sink { [weak self] files in
                 guard let self else { return }
-                self.items = files.map {
-                    return AttachmentItemViewModel(
-                        $0,
-                        isOnlyForDownload: false,
-                        router: self.router,
-                        composeMessageInteractor: self.composeMessageInteractor,
-                        downloadFileInteractor: self.downloadFileInteractor
-                    )
+                self.items = files.map { .init(file: $0) }
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func listenForFileUploadFailures() {
+        composeMessageInteractor.didUploadFiles
+            .sink { [weak self] result in
+                if case .failure(let error) = result {
+                    self?.errorMessage = error.localizedDescription
+                    self?.isErrorMessagePresented = true
+                    if let file = self?.composeMessageInteractor.attachments.value.last {
+                        self?.composeMessageInteractor.removeFile(file: file)
+                    }
                 }
             }
             .store(in: &subscriptions)
+    }
+
+    func removeFile(attachment: AttachmentFileModel) {
+        composeMessageInteractor.removeFile(file: attachment.file)
     }
 }
