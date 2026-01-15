@@ -24,7 +24,7 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var errorView: ListErrorView!
     @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var tableView: UITableView!
@@ -135,7 +135,6 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
             return
         }
         spinnerView.color = color
-        refreshControl.color = color
         updateNavBar(subtitle: name, color: color)
     }
 

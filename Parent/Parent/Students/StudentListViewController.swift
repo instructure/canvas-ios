@@ -31,7 +31,7 @@ class StudentListViewController: ScreenViewTrackableViewController {
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var errorView: ListErrorView!
     @IBOutlet weak var loadingView: CircleProgressView!
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     @IBOutlet weak var tableView: UITableView!
 
     let env = AppEnvironment.shared

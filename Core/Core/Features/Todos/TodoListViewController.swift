@@ -68,7 +68,7 @@ public class TodoListViewController: ScreenViewTrackableViewController, ErrorVie
         profileButton.accessibilityValue = String(localized: "Closed", bundle: .core)
 
         tableView.backgroundColor = .backgroundLightest
-        tableView.refreshControl = CircleRefreshControl()
+        tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.separatorColor = .borderMedium
 

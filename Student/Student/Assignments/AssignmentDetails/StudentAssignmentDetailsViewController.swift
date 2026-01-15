@@ -144,7 +144,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "/courses/\(courseID)/assignments/\(assignmentID)"
     )
-    var refreshControl: CircleRefreshControl?
+    var refreshControl: UIRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: StudentAssignmentDetailsPresenter?
 
@@ -202,7 +202,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         scrollView?.backgroundColor = .backgroundLightest
         loadingView.color = Brand.shared.primary
         loadingView.startAnimating()
-        let refreshControl = CircleRefreshControl()
+        let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         scrollView?.addSubview(refreshControl)
         self.refreshControl = refreshControl
@@ -306,7 +306,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
     }
 
     @objc
-    func refresh(_ refreshControl: CircleRefreshControl) {
+    func refresh(_ refreshControl: UIRefreshControl) {
         presenter?.refresh()
     }
 

@@ -20,7 +20,7 @@ import Combine
 import SafariServices
 
 public final class ModuleListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController {
-    private let refreshControl = CircleRefreshControl()
+    private let refreshControl = UIRefreshControl()
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -82,7 +82,6 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         emptyTitleLabel.text = String(localized: "No Modules", bundle: .core)
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
-        refreshControl.color = nil
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         spinnerView.color = color
 

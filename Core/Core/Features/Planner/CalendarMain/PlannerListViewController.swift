@@ -28,7 +28,7 @@ public class PlannerListViewController: UIViewController {
     @IBOutlet weak var emptyStateSubHeader: UILabel!
     @IBOutlet weak var emptyStateView: UIView!
     @IBOutlet weak var errorView: ListErrorView!
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewBackgroundView: TableViewBackgroundView!
@@ -60,7 +60,6 @@ public class PlannerListViewController: UIViewController {
         errorView.retryButton.addTarget(self, action: #selector(retryAfterError), for: .primaryActionTriggered)
 
         refreshControl.addTarget(self, action: #selector(plannerListWillRefresh), for: .primaryActionTriggered)
-        refreshControl.color = nil
         spinnerView.color = nil
         tableView.refreshControl = refreshControl
         tableView.separatorColor = .borderMedium

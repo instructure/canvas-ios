@@ -27,7 +27,7 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var errorView: ListErrorView!
     @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var tableView: UITableView!
@@ -118,7 +118,6 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
         loadingView.color = nil
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
-        refreshControl.color = nil
 
         searchBar.placeholder = String(localized: "Search", bundle: .core)
         searchBar.backgroundColor = .backgroundLightest

@@ -119,7 +119,7 @@ class AttendanceViewController: ScreenViewTrackableViewController, ColoredNavVie
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.tableFooterView = UIView()
 
-        tableView.refreshControl = CircleRefreshControl()
+        tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
 
         markAllButton.backgroundColor = Brand.shared.buttonPrimaryBackground

@@ -29,7 +29,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
     @IBOutlet weak var publishedIcon: UIImageView!
     @IBOutlet weak var publishedLabel: UILabel!
     @IBOutlet weak var publishedView: UIView!
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet public weak var sectionsStack: UIStackView!
@@ -234,7 +234,6 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
             return
         }
         spinnerView.color = color
-        refreshControl.color = color
         titleSubtitleView.title = showRepliesToEntryID != nil ? (
             isAnnouncement
                 ? String(localized: "Announcement Replies", bundle: .core)

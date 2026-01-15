@@ -52,7 +52,7 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
         tableView.backgroundColor = .backgroundGrouped
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.refreshControl = CircleRefreshControl()
+        tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         tableView.registerHeaderFooterView(GroupedSectionFooterView.self, fromNib: false)
         tableView.registerHeaderFooterView(GroupedSectionHeaderView.self, fromNib: false)
