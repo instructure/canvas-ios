@@ -37,7 +37,7 @@ extension HorizonUI {
         private var originalSelection: String
         @State private var text: String = ""
         private var bodyHeight: CGFloat {
-            textInputMeasuredHeight + errorHeight
+            textInputMeasuredHeight + (error == nil ? 0 : errorHeight)
         }
 
         // The computed height of a single option
