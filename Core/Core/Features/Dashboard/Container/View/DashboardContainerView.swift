@@ -342,6 +342,9 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     }
 
     func refresh(force: Bool, onComplete: (() -> Void)? = nil) {
+        refreshCancellable?.cancel()
+        refreshCancellable = nil
+
         invitationsViewModel.refresh()
         colors.refresh(force: force)
         conferencesViewModel.refresh(force: force)
