@@ -86,7 +86,7 @@ struct CourseListWidgetView: View {
                                 width: size - 48,
                                 currentIndex: index,
                                 // We should set a static value for the total course count depending on the maximum number of courses that should be visible.
-                                totalCount: 3,
+                                totalCount: min(viewModel.allowedCourse.count, 3),
                                 onCourseTap: { courseId in
                                     lastFocusedElement.wrappedValue = .course(id: courseId)
                                     viewModel.navigateToCourseDetails(

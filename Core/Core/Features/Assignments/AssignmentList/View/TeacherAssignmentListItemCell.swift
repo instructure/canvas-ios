@@ -101,6 +101,13 @@ struct TeacherAssignmentListItemCell: View {
     }
 }
 
+extension TeacherAssignmentListItemCell: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.model == rhs.model
+        && lhs.isLastItem == rhs.isLastItem
+    }
+}
+
 // MARK: - Preview
 
 #if DEBUG

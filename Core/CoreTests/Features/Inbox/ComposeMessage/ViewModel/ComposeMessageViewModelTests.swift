@@ -679,6 +679,8 @@ class ComposeMessageViewModelTests: CoreTestCase {
 }
 
 private class ComposeMessageInteractorMock: ComposeMessageInteractor {
+    var didUploadFiles = PassthroughSubject<Result<Void, Error>, Never>()
+
     var attachments = CurrentValueSubject<[Core.File], Never>([])
 
     var isSuccessfulMockFuture = true

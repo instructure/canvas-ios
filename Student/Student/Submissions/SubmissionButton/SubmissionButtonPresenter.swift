@@ -243,9 +243,16 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
         if assignment.allowedExtensions.isEmpty == true || allowedUTIs.contains(where: { $0.isImage || $0.isVideo }) {
             filePicker.sources.append(contentsOf: [.library, .camera])
             if !isMediaRecording { filePicker.sources.append(.documentScan) }
-        } else if allowedUTIs.contains(where: { $0.isPDF }) {
+        }
+
+        // TODO: Uncomment this later to enable merging of PDF scans.
+        // https://instructure.atlassian.net/browse/MBL-19654
+        /*
+         else if allowedUTIs.contains(where: { $0.isPDF }) {
             filePicker.sources.append(.documentScan)
         }
+         */
+
         if isMediaRecording { filePicker.sources.append(.audio) }
         filePicker.utis = allowedUTIs
         filePicker.mediaTypes = mediaTypes

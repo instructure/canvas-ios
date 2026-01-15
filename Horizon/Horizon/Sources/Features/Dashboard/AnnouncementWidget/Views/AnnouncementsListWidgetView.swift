@@ -83,7 +83,7 @@ struct AnnouncementsListWidgetView: View {
         .scrollIndicators(.hidden)
     }
 
-    private func announcementView(announcement: NotificationModel, index: Int) -> some View {
+    private func announcementView(announcement: AnnouncementModel, index: Int) -> some View {
         Button {
             lastFocusedElement.wrappedValue = .announcement(id: announcement.id)
             viewModel.navigateToAnnouncement(
@@ -106,7 +106,7 @@ struct AnnouncementsListWidgetView: View {
 
 #if DEBUG
 #Preview {
-    let interactor = NotificationInteractorPreview()
+    let interactor = AnnouncementInteractorPreview()
     let viewModel = AnnouncementsListWidgetViewModel(
         interactor: interactor,
         router: AppEnvironment.shared.router
