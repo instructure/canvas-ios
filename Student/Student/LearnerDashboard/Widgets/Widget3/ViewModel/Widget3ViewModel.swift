@@ -29,7 +29,6 @@ final class Widget3ViewModel: LearnerWidgetViewModel {
     let isFullWidth = false
     let isEditable = false
     var state: InstUI.ScreenState = .data
-    private var subscriptions = Set<AnyCancellable>()
 
     init(config: WidgetConfig) {
         self.config = config
@@ -39,19 +38,7 @@ final class Widget3ViewModel: LearnerWidgetViewModel {
         Widget3View(viewModel: self)
     }
 
-    func refresh() {
-        state = .loading
-        refresh(ignoreCache: true)
-            .sink()
-            .store(in: &subscriptions)
-    }
-
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        Just(())
-            .delay(for: 2, scheduler: RunLoop.main)
-            .map { [weak self] in
-                self?.state = .error
-            }
-            .eraseToAnyPublisher()
+        Just(()).eraseToAnyPublisher()
     }
 }

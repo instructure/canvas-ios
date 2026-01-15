@@ -24,14 +24,39 @@ import SwiftUI
 final class Widget1ViewModel: LearnerWidgetViewModel {
     typealias ViewType = Widget1View
 
+    var text = WidgetPlaceholderData.long(1)
     let config: WidgetConfig
     var id: LearnerDashboardWidgetIdentifier { config.id }
     let isFullWidth = false
     let isEditable = false
     var state: InstUI.ScreenState = .loading
 
+    var layoutIdentifier: AnyHashable {
+        struct Identifier: Hashable {
+            let state: InstUI.ScreenState
+            let textCount: Int
+        }
+        return AnyHashable(Identifier(state: state, textCount: text.count))
+    }
+
+    private var timerCancellable: AnyCancellable?
+
     init(config: WidgetConfig) {
         self.config = config
+        startTextTimer()
+    }
+
+    private func startTextTimer() {
+        timerCancellable = Timer.publish(every: 2, on: .main, in: .common)
+            .autoconnect()
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                var newText: String
+                repeat {
+                    newText = WidgetPlaceholderData.long(Int.random(in: 1...4))
+                } while newText.count == self.text.count
+                self.text = newText
+            }
     }
 
     func makeView() -> Widget1View {

@@ -26,7 +26,7 @@ struct FullWidthWidgetView: View {
         if viewModel.state != .loading {
             LearnerDashboardTitledWidget("Full Width Widget") {
                 LearnerDashboardCard {
-                    Text(verbatim: InstUI.PreviewData.loremIpsumMedium)
+                    Text(verbatim: WidgetPlaceholderData.medium)
                         .foregroundColor(.secondary)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .paddingStyle(.standard)

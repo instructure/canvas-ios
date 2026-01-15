@@ -29,6 +29,7 @@ final class Widget2ViewModel: LearnerWidgetViewModel {
     let isFullWidth = false
     let isEditable = false
     var state: InstUI.ScreenState = .data
+    private var subscriptions = Set<AnyCancellable>()
 
     init(config: WidgetConfig) {
         self.config = config
@@ -38,7 +39,19 @@ final class Widget2ViewModel: LearnerWidgetViewModel {
         Widget2View(viewModel: self)
     }
 
+    func refresh() {
+        state = .loading
+        refresh(ignoreCache: true)
+            .sink()
+            .store(in: &subscriptions)
+    }
+
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        Just(()).eraseToAnyPublisher()
+        Just(())
+            .delay(for: 2, scheduler: RunLoop.main)
+            .map { [weak self] in
+                self?.state = .error
+            }
+            .eraseToAnyPublisher()
     }
 }

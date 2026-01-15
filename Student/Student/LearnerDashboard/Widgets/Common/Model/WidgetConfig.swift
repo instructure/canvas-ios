@@ -20,6 +20,7 @@ struct WidgetConfig: Codable, Comparable, Identifiable {
     let id: LearnerDashboardWidgetIdentifier
     var order: Int
     var isVisible: Bool
+    /// Widget-specific settings encoded into a JSON to be persisted.
     var settings: String?
 
     static func < (lhs: WidgetConfig, rhs: WidgetConfig) -> Bool {

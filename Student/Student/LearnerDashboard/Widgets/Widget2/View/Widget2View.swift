@@ -25,13 +25,23 @@ struct Widget2View: View {
     var body: some View {
         LearnerDashboardTitledWidget("Widget 2") {
             LearnerDashboardCard {
-                VStack(alignment: .leading) {
-                    Text(verbatim: InstUI.PreviewData.loremIpsumLong(2))
-                        .foregroundColor(.secondary)
+                switch viewModel.state {
+                case .empty, .data, .loading:
+                    dataView
+                case .error:
+                    LearnerDashboardWidgetErrorView(onRetry: viewModel.refresh)
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .paddingStyle(.standard)
             }
         }
+        .animation(.smooth, value: viewModel.state)
+    }
+
+    private var dataView: some View {
+        VStack(alignment: .leading) {
+            Text(verbatim: WidgetPlaceholderData.long(3))
+                .foregroundColor(.secondary)
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .paddingStyle(.standard)
     }
 }

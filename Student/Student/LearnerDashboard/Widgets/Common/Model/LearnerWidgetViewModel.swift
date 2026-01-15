@@ -25,11 +25,33 @@ protocol LearnerWidgetViewModel: AnyObject, Identifiable where ID == LearnerDash
 
     var id: LearnerDashboardWidgetIdentifier { get }
 
+    /// User configurable widget settings.
     var config: WidgetConfig { get }
+
+    /// Non-editable, widget specific property used for layouting.
+    /// Full width widgets are put at the top of the screen outside of the widget grid.
     var isFullWidth: Bool { get }
+
     var isEditable: Bool { get }
 
+    /// The state helps the dashboard screen to decide if the empty state should be shown or not.
     var state: InstUI.ScreenState { get }
+
+    /// Used by the layout to detect when widget size might change and trigger smooth animations.
+    /// Override this property to include any size-affecting properties (e.g., text.count).
+    /// This is required because widget view models are stored in an array and SwiftUI can't observe
+    /// individual view model changes in the array.
+    /// Default implementation returns state.
+    var layoutIdentifier: AnyHashable { get }
+
     func makeView() -> ViewType
+
+    /// When pull to refresh is performed on the dashboard each widget is asked to refresh their content.
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never>
+}
+
+extension LearnerWidgetViewModel {
+    var layoutIdentifier: AnyHashable {
+        AnyHashable(state)
+    }
 }

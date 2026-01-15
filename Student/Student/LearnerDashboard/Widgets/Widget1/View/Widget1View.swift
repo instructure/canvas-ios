@@ -26,14 +26,15 @@ struct Widget1View: View {
         LearnerDashboardTitledWidget("Widget 1") {
             LearnerDashboardCard {
                 VStack(alignment: .leading) {
-                    Text(verbatim: InstUI.PreviewData.loremIpsumLong(1))
+                    Text(viewModel.text)
                         .foregroundColor(.secondary)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .paddingStyle(.standard)
                 .redacted(reason: viewModel.state == .data ? [] : .placeholder)
-                .animation(.smooth, value: viewModel.state)
             }
         }
+        .animation(.smooth, value: viewModel.state)
+        .animation(.smooth, value: viewModel.text)
     }
 }

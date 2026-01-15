@@ -33,7 +33,10 @@ struct LearnerDashboardScreen: View {
             state: viewModel.state,
             config: viewModel.screenConfig,
             refreshAction: { completion in
-                viewModel.refresh(ignoreCache: true, completion: completion)
+                viewModel.refresh(
+                    ignoreCache: true,
+                    completion: completion
+                )
             }
         ) { _ in
             content
