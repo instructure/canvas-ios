@@ -105,8 +105,12 @@ public struct ContextCardView: View {
                       let apiEnrollment = apiUser.enrollments?.first(where: { $0.course_id?.rawValue == course.id}),
                       apiEnrollment.enrollment_state == EnrollmentState.invited {
                 EmptyPanda(.Sleeping, title: Text("Not enrolled", bundle: .core), message: Text("Invitation pending", bundle: .core))
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal)
             } else {
                 EmptyPanda(.Unsupported, title: Text("Something went wrong", bundle: .core), message: Text("There was an error while communicating with the server", bundle: .core))
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal)
             }
         }
     }
