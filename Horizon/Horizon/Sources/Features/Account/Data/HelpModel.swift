@@ -17,21 +17,30 @@
 //
 
 import Core
-import UIKit
+import Foundation
 
-enum ReportBugAssembly {
-    static func makeViewConroller(
-        didSubmitBug: @escaping () -> Void,
-        didDismiss: (() -> Void)? = nil
-    ) -> UIViewController {
-        let app = AppEnvironment.shared
-        let viewModel = ReportBugViewModel(
-            api: app.api,
-            baseURL: app.currentSession?.baseURL.absoluteString ?? "",
-            router: app.router,
-            didSubmitBug: didSubmitBug,
-            didDismiss: didDismiss
-        )
-        return CoreHostingController(ReportBugView(viewModel: viewModel))
+struct HelpModel: Identifiable, Equatable {
+    let id: String
+    let title: String
+    let url: URL?
+    let isBugReport: Bool
+
+    init(
+        id: String = UUID().uuidString,
+        title: String,
+        url: URL?,
+        isBugReport: Bool
+    ) {
+        self.id = id
+        self.title = title
+        self.url = url
+        self.isBugReport = isBugReport
+    }
+
+    init(entity: CDCareerHelp) {
+        self.id = entity.id
+        self.title = entity.title
+        self.isBugReport = entity.isBugReport
+        self.url = entity.url
     }
 }

@@ -292,28 +292,43 @@ struct SubmissionCommentView: View {
 struct TextArea: View {
     @Binding private var text: String
     private let placeholder: String?
+    private let errorMessage: String?
     private let proxy: GeometryProxy
 
     init(
         text: Binding<String>,
         placeholder: String? = nil,
+        errorMessage: String? = nil,
         proxy: GeometryProxy
     ) {
         _text = text
         self.placeholder = placeholder
+        self.errorMessage = errorMessage
         self.proxy = proxy
     }
 
     var body: some View {
-        textField
-            .background(Color.huiColors.surface.cardPrimary)
-            .huiBorder(
-                level: .level1,
-                color: .huiColors.lineAndBorders.containerStroke,
-                radius: HorizonUI.CornerRadius.level1_5.attributes.radius
-            )
-            .huiCornerRadius(level: .level1_5)
-            .huiTypography(.p1)
+        VStack(alignment: .leading, spacing: .zero) {
+            textField
+                .background(Color.huiColors.surface.cardPrimary)
+                .huiBorder(
+                    level: .level1,
+                    color: errorMessage != nil ? .huiColors.surface.error : .huiColors.lineAndBorders.containerStroke,
+                    radius: HorizonUI.CornerRadius.level1_5.attributes.radius
+                )
+                .huiCornerRadius(level: .level1_5)
+                .huiTypography(.p1)
+
+            if let errorMessage {
+                HorizonUI.StatusChip(
+                    title: errorMessage,
+                    style: .red,
+                    icon: Image.huiIcons.error,
+                    isFilled: false,
+                )
+                .padding(.top, .huiSpaces.space8)
+            }
+        }
     }
 
     private var textField: some View {

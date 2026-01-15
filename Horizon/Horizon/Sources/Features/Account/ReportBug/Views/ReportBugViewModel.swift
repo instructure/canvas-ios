@@ -33,9 +33,12 @@ final class ReportBugViewModel {
 
     // MARK: - Outputs
 
-    private(set) var isSubmitEnabled = false
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var errorMessage = ""
+    private(set) var formValidation = ReportBugFormValidator()
+
+    // MARK: - Validation Messages
+
     var listTopics: [String] = [
         String(localized: "Suggestion or comment", bundle: .horizon),
         String(localized: "General help", bundle: .horizon),
@@ -48,12 +51,15 @@ final class ReportBugViewModel {
 
     private var subscriptions = Set<AnyCancellable>()
     private var userEmail = ""
+    private var didTapOnSubmit: Bool = false
 
     // MARK: - Dependencies
 
     private let api: API
     private let router: Router
     private let baseURL: String
+    private let didSubmitBug: () -> Void
+    private let didDismiss: (() -> Void)?
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
@@ -63,11 +69,15 @@ final class ReportBugViewModel {
         api: API,
         baseURL: String,
         router: Router,
+        didSubmitBug: @escaping () -> Void,
+        didDismiss: (() -> Void)? = nil,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.api = api
         self.baseURL = baseURL
         self.router = router
+        self.didSubmitBug = didSubmitBug
+        self.didDismiss = didDismiss
         self.scheduler = scheduler
         getUserInteractor
             .getUser()
@@ -86,6 +96,11 @@ final class ReportBugViewModel {
     // MARK: - Actions
 
     func submit(viewController: WeakViewController) {
+        didTapOnSubmit = true
+        checkValidity()
+        guard formValidation.isValid else {
+            return
+        }
         state = .loading
         api.makeRequest(
             ReportBugRequest(
@@ -103,6 +118,7 @@ final class ReportBugViewModel {
             self?.isShowError = true
         } receiveValue: { [weak self] _ in
             self?.state = .data
+            self?.didSubmitBug()
             self?.dimiss(viewController: viewController)
         }
         .store(in: &subscriptions)
@@ -110,13 +126,17 @@ final class ReportBugViewModel {
 
     func dimiss(viewController: WeakViewController) {
         router.dismiss(viewController)
+        didDismiss?()
     }
 
     // MARK: - Private Functions
 
     private func checkValidity() {
-        isSubmitEnabled = selectedTopic.trimmedEmptyLines.isNotEmpty &&
-        subject.trimmedEmptyLines.isNotEmpty &&
-        description.trimmedEmptyLines.isNotEmpty
+        guard didTapOnSubmit else { return }
+        formValidation.validationErrors(
+           selectedTopic: selectedTopic,
+           subject: subject,
+           description: description
+       )
     }
 }

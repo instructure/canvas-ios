@@ -29,7 +29,8 @@ struct AccountView: View {
     }
 
     // MARK: - Propertites a11y
-    @State private var lastFocusedId: SettingIDs?
+    @State private var lastFocusedId: String?
+
     @AccessibilityFocusState private var focusedSettingID: String?
 
     @Bindable var viewModel: AccountViewModel
@@ -51,8 +52,8 @@ struct AccountView: View {
                     settingsSection
                         .padding(.top, .huiSpaces.space24)
 
-                    supportSection
-                        .padding(.top, .huiSpaces.space24)
+                    helpSection
+                        .padding(.top, .huiSpaces.space40)
 
                     logoutRow
                         .padding(.top, .huiSpaces.space40)
@@ -61,6 +62,29 @@ struct AccountView: View {
             }
             .toolbar(.hidden)
             .background(Color.huiColors.surface.pagePrimary)
+            .onAppear {
+                guard let lastFocusedId else { return }
+
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    focusedSettingID = lastFocusedId
+                }
+            }
+            .onChange(of: viewModel.onReportBugDismissed) { _, newValue in
+                if newValue {
+                    guard let lastFocusedId else { return }
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                        focusedSettingID = lastFocusedId
+                        viewModel.onReportBugDismissed = false
+                    }
+                }
+            }
+            .huiToast(
+                viewModel: .init(
+                    text: String(localized: "Your ticket was submitted."),
+                    style: .success
+                ),
+                isPresented: $viewModel.isBugSubmitted
+            )
 
             if viewModel.isLoading {
                 loaderView
@@ -70,12 +94,6 @@ struct AccountView: View {
             isPresented: $viewModel.isShowingLogoutConfirmationAlert,
             presenting: viewModel.confirmLogoutViewModel
         )
-        .onAppear {
-            guard let lastFocusedId else { return }
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                focusedSettingID = lastFocusedId.rawValue
-            }
-        }
     }
 
     private var loaderView: some View {
@@ -119,7 +137,7 @@ struct AccountView: View {
                     title: String(localized: "Profile", bundle: .horizon),
                     isFirstItem: true,
                     didTapRow: {
-                        lastFocusedId = .profile
+                        lastFocusedId = SettingIDs.profile.rawValue
                         viewModel.profileDidTap(viewController: viewController)
                     }
                 )
@@ -136,7 +154,7 @@ struct AccountView: View {
                 AccountEntryRowView(
                     title: String(localized: "Notifications", bundle: .horizon),
                     didTapRow: {
-                        lastFocusedId = .notifications
+                        lastFocusedId = SettingIDs.notifications.rawValue
                         viewModel.notificationsDidTap(viewController: viewController)
                     }
                 )
@@ -146,7 +164,7 @@ struct AccountView: View {
                     title: String(localized: "Advanced", bundle: .horizon),
                     isLastItem: true,
                     didTapRow: {
-                        lastFocusedId = .advanced
+                        lastFocusedId = SettingIDs.advanced.rawValue
                         viewModel.advancedDidTap(viewController: viewController)
                     }
                 )
@@ -164,27 +182,36 @@ struct AccountView: View {
             .frame(height: 1)
     }
 
-    private var supportSection: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.space12) {
-            Text("Support")
+    private var helpSection: some View {
+        VStack(spacing: .zero) {
+            Text("Help")
                 .huiTypography(.h3)
                 .foregroundStyle(Color.huiColors.text.title)
                 .accessibilityAddTraits(.isHeader)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, .huiSpaces.space12)
 
-            AccountEntryRowView(
-                title: "Report a bug",
-                image: .huiIcons.openInNew,
-                isFirstItem: true,
-                isLastItem: true,
-                didTapRow: {
-                    lastFocusedId = .reportBug
-                    viewModel.giveFeedbackDidTap(viewController: viewController)
-                }
-            )
-            .accessibilityFocused($focusedSettingID, equals: SettingIDs.reportBug.rawValue)
+            ForEach(viewModel.helpItems) { item in
+                AccountEntryRowView(
+                    title: item.title,
+                    image: item.isBugReport ? nil : .huiIcons.openInNew,
+                    isFirstItem: item == viewModel.helpItems.first,
+                    isLastItem: item == viewModel.helpItems.last,
+                    didTapRow: {
+                        lastFocusedId = item.id
+                        viewModel.giveFeedbackDidTap(viewController: viewController, help: item)
+                    }
+                )
+                .accessibilityFocused($focusedSettingID, equals: item.id)
+                .accessibilityHint(item.isBugReport
+                                   ? String(localized: "Opens form to report a bug", bundle: .horizon)
+                                   : String(localized: "Opens in browser", bundle: .horizon))
+                divider
+                    .hidden(item == viewModel.helpItems.last)
+            }
+
         }
     }
-
     private var logoutRow: some View {
         AccountEntryRowView(
             title: "Log Out",
@@ -206,14 +233,14 @@ struct AccountView: View {
 
 private struct AccountEntryRowView: View {
     private let title: String
-    private let image: Image
+    private let image: Image?
     private let didTapRow: () -> Void
     private var cornerRadiusLevel: HorizonUI.CornerRadius = .level2
     private let roundedCorners: HorizonUI.Corners?
 
     init(
         title: String,
-        image: Image = .huiIcons.arrowForward,
+        image: Image? = .huiIcons.arrowForward,
         isFirstItem: Bool = false,
         isLastItem: Bool = false,
         didTapRow: @escaping () -> Void
@@ -244,12 +271,16 @@ private struct AccountEntryRowView: View {
                     .huiTypography(.labelLargeBold)
                     .foregroundStyle(Color.huiColors.text.body)
                     .frame(minHeight: 24)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .multilineTextAlignment(.leading)
 
                 Spacer()
 
-                image
-                    .frame(width: 24, height: 24)
-                    .foregroundStyle(Color.huiColors.icon.medium)
+                if let image {
+                    image
+                        .frame(width: 24, height: 24)
+                        .foregroundStyle(Color.huiColors.icon.medium)
+                }
             }
             .padding(.all, .huiSpaces.space16)
         }

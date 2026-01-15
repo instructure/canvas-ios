@@ -16,22 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import UIKit
+import Foundation
 
-enum ReportBugAssembly {
-    static func makeViewConroller(
-        didSubmitBug: @escaping () -> Void,
-        didDismiss: (() -> Void)? = nil
-    ) -> UIViewController {
-        let app = AppEnvironment.shared
-        let viewModel = ReportBugViewModel(
-            api: app.api,
-            baseURL: app.currentSession?.baseURL.absoluteString ?? "",
-            router: app.router,
-            didSubmitBug: didSubmitBug,
-            didDismiss: didDismiss
-        )
-        return CoreHostingController(ReportBugView(viewModel: viewModel))
-    }
+public struct GetCareerHelpRequest: APIRequestable {
+    public typealias Response = [GetCareerHelpResponse]
+    public var path: String = "/help_links"
+   public var shouldAddNoVerifierQuery: Bool = false
 }

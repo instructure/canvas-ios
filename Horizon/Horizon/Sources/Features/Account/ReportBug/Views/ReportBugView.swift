@@ -46,29 +46,37 @@ struct ReportBugView: View {
                 loaderBackgroundColor: .huiColors.surface.pageSecondary
             )
         ) { proxy in
-            VStack(spacing: .huiSpaces.space16) {
+            VStack(spacing: .zero) {
                 subTitleTextView
-                    .padding(.bottom, .huiSpaces.space8)
+                    .padding(.bottom, .huiSpaces.space24)
 
                 topicTextView
-                listTopicView
                     .padding(.bottom, .huiSpaces.space8)
+                listTopicView
+                    .padding(.horizontal, .huiSpaces.space10)
+                    .padding(.bottom, .huiSpaces.space16)
 
                 subjectTextView
+                    .padding(.top, .huiSpaces.space4)
+                    .padding(.bottom, .huiSpaces.space8)
                 subjectTextField
+                    .padding(.horizontal, .huiSpaces.space10)
+                    .padding(.bottom, .huiSpaces.space16)
 
                 descriptionTextView
+                    .padding(.top, .huiSpaces.space4)
+                    .padding(.bottom, .huiSpaces.space8)
                 descriptionTextArea(proxy: proxy)
             }
         }
-        .safeAreaInset(edge: .top) {
+        .safeAreaInset(edge: .top, spacing: .huiSpaces.space24) {
             VStack(spacing: .huiSpaces.space16) {
                 headerView
                 divider
             }
             .background(Color.huiColors.surface.pageSecondary)
         }
-        .safeAreaInset(edge: .bottom) {
+        .safeAreaInset(edge: .bottom, spacing: .zero) {
             if focusedInput == nil {
                 footer
             }
@@ -97,6 +105,7 @@ struct ReportBugView: View {
             }
             .accessibilityLabel(String(localized: "Close"))
             .accessibilityHint(String(localized: "Dismisses the report a problem screen"))
+            .padding(.horizontal, .huiSpaces.space16)
         }
     }
 
@@ -104,7 +113,6 @@ struct ReportBugView: View {
         Divider()
             .background(Color.huiColors.lineAndBorders.containerStroke)
             .accessibilityHidden(true)
-            .padding(.bottom, .huiSpaces.space8)
     }
 
     private var subTitleTextView: some View {
@@ -135,6 +143,8 @@ struct ReportBugView: View {
             isSearchable: false,
             label: nil,
             options: viewModel.listTopics,
+            placeholder: String(localized: "Select a category"),
+            error: viewModel.formValidation.topicError,
             zIndex: 102,
             borderOpacity: 1
         )
@@ -142,7 +152,7 @@ struct ReportBugView: View {
         .accessibilityLabel(String(localized: "Topic, required"))
         .accessibilityHint(String(localized: "Select the topic that best describes your issue"))
         .accessibilityValue(viewModel.selectedTopic.isEmpty ? String(localized: "No topic selected") : viewModel.selectedTopic)
-        .padding(.horizontal, .huiSpaces.space24)
+        .padding(.horizontal, .huiSpaces.space10)
         .onChange(of: isTopicListFocused) { _, newValue in
             if newValue == false {
                 focusedTopicSelection = true
@@ -160,12 +170,16 @@ struct ReportBugView: View {
     }
 
     private var subjectTextField: some View {
-        HorizonUI.TextInput($viewModel.subject)
-            .accessibilityLabel(String(localized: "Subject, required"))
-            .accessibilityHint(String(localized: "Enter a brief summary of your issue"))
-            .padding(.horizontal, .huiSpaces.space24)
-            .padding(.bottom, .huiSpaces.space8)
-            .focused($focusedInput, equals: .subject)
+        HorizonUI.TextInput(
+            $viewModel.subject,
+            error: viewModel.formValidation.subjectError,
+            placeholder: String(localized: "Add a title")
+        )
+        .accessibilityLabel(String(localized: "Subject, required"))
+        .accessibilityHint(String(localized: "Enter a brief summary of your issue"))
+        .padding(.horizontal, .huiSpaces.space10)
+        .padding(.bottom, .huiSpaces.space8)
+        .focused($focusedInput, equals: .subject)
     }
 
     private var descriptionTextView: some View {
@@ -178,11 +192,16 @@ struct ReportBugView: View {
     }
 
     private func descriptionTextArea(proxy: GeometryProxy) -> some View {
-        TextArea(text: $viewModel.description, proxy: proxy)
-            .focused($focusedInput, equals: .description)
-            .accessibilityLabel(String(localized: "Description, required"))
-            .accessibilityHint(String(localized: "Provide detailed information about your issue"))
-            .padding(.horizontal, .huiSpaces.space24)
+        TextArea(
+            text: $viewModel.description,
+            placeholder: String(localized: "Share more details"),
+            errorMessage: viewModel.formValidation.descriptionError,
+            proxy: proxy
+        )
+        .focused($focusedInput, equals: .description)
+        .accessibilityLabel(String(localized: "Description, required"))
+        .accessibilityHint(String(localized: "Provide detailed information about your issue"))
+        .padding(.horizontal, .huiSpaces.space24)
     }
 
     private var footer: some View {
@@ -194,19 +213,17 @@ struct ReportBugView: View {
                 }
                 .accessibilityLabel(String(localized: "Close"))
                 Spacer()
-                HorizonUI.PrimaryButton(String("Submit ticket"), type: .institution) {
+                HorizonUI.PrimaryButton(String("Submit ticket"), type: .black) {
                     viewModel.submit(viewController: viewController)
                 }
-                .disabled(!viewModel.isSubmitEnabled)
                 .accessibilityLabel(String(localized: "Submit ticket"))
                 .accessibilityHint(
-                    viewModel.isSubmitEnabled
+                    viewModel.formValidation.isValid
                     ? String(localized: "Submits your bug report")
                     : String(localized: "Fill in all required fields to enable submission")
                 )
             }
             .padding(.horizontal, .huiSpaces.space24)
-            .padding(.bottom, .huiSpaces.space12)
         }
     }
 }
@@ -216,7 +233,8 @@ struct ReportBugView: View {
         viewModel: ReportBugViewModel(
             api: AppEnvironment.shared.api,
             baseURL: "https://career.com",
-            router: AppEnvironment.shared.router
+            router: AppEnvironment.shared.router,
+            didSubmitBug: {}
         )
     )
 }

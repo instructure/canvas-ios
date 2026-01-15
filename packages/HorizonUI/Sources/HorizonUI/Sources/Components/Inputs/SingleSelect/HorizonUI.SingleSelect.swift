@@ -185,15 +185,13 @@ extension HorizonUI {
 
         @ViewBuilder
         private var errorText: some View {
-            if let error = error {
-                HStack {
-                    HorizonUI.icons.error
-                        .frame(width: .huiSpaces.space16, height: .huiSpaces.space16)
-                        .foregroundColor(.huiColors.text.error)
-                    Text(error)
-                        .huiTypography(.p2)
-                        .foregroundColor(.huiColors.text.error)
-                }
+            if let error {
+                HorizonUI.StatusChip(
+                    title: error,
+                    style: .red,
+                    icon: Image.huiIcons.error,
+                    isFilled: false,
+                )
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, .huiSpaces.space8)
                 .padding(.top, .huiSpaces.space2)

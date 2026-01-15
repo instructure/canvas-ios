@@ -16,22 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import UIKit
+import Foundation
 
-enum ReportBugAssembly {
-    static func makeViewConroller(
-        didSubmitBug: @escaping () -> Void,
-        didDismiss: (() -> Void)? = nil
-    ) -> UIViewController {
-        let app = AppEnvironment.shared
-        let viewModel = ReportBugViewModel(
-            api: app.api,
-            baseURL: app.currentSession?.baseURL.absoluteString ?? "",
-            router: app.router,
-            didSubmitBug: didSubmitBug,
-            didDismiss: didDismiss
-        )
-        return CoreHostingController(ReportBugView(viewModel: viewModel))
+public struct GetCareerHelpResponse: Codable {
+    let id, type: String?
+    let availableTo: [String]?
+    let text, subtext: String?
+    let url: URL?
+    let isFeatured, isNew: Bool?
+    let featureHeadline: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id, type
+        case availableTo = "available_to"
+        case text, subtext, url
+        case isFeatured = "is_featured"
+        case isNew = "is_new"
+        case featureHeadline = "feature_headline"
     }
 }

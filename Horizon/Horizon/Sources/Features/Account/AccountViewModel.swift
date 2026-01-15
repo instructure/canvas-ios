@@ -17,15 +17,22 @@
 //
 
 import Combine
+import CombineSchedulers
 import Core
 import Foundation
 import Observation
 
 @Observable
 final class AccountViewModel {
+    // MARK: - Init / Outputs
+
+    var isBugSubmitted = false
+    var onReportBugDismissed = false
+
     // MARK: - Outputs
 
     private(set) var name: String = ""
+    private(set) var helpItems: [HelpModel] = []
     var isShowingLogoutConfirmationAlert = false
     var isExperienceSwitchAvailable = false
     var isLoading = false
@@ -35,6 +42,7 @@ final class AccountViewModel {
     private let router: Router
     private let getUserInteractor: GetUserInteractor
     private let appExperienceInteractor: ExperienceSummaryInteractor
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Private properties
 
@@ -53,12 +61,14 @@ final class AccountViewModel {
         router: Router = AppEnvironment.shared.router,
         getUserInteractor: GetUserInteractor,
         appExperienceInteractor: ExperienceSummaryInteractor = ExperienceSummaryInteractorLive(),
-        sessionInteractor: SessionInteractor = SessionInteractor()
+        sessionInteractor: SessionInteractor = SessionInteractor(),
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.router = router
         self.getUserInteractor = getUserInteractor
         self.appExperienceInteractor = appExperienceInteractor
-
+        self.scheduler = scheduler
+        getAccountHelpLinks()
         confirmLogoutViewModel.userConfirmation()
             .sink {
                 sessionInteractor.logout()
@@ -71,7 +81,20 @@ final class AccountViewModel {
             .store(in: &subscriptions)
     }
 
-    // MARK: - Input functions
+   private func getAccountHelpLinks() {
+        ReactiveStore(useCase: GetCareerHelpUseCase())
+            .getEntities()
+            .replaceError(with: [])
+            .flatMap { Publishers.Sequence(sequence: $0) }
+            .map { HelpModel(entity: $0) }
+            .collect()
+            .map { models in models.sorted { $0.isBugReport && !$1.isBugReport } }
+            .receive(on: scheduler)
+            .sink { [weak self] models in
+                self?.helpItems = models
+            }
+            .store(in: &subscriptions)
+    }
 
     func profileDidTap(viewController: WeakViewController) {
         if let url = URL(string: "/account/profile") {
@@ -115,12 +138,22 @@ final class AccountViewModel {
 
     func betaCommunityDidTap() {}
 
-    func giveFeedbackDidTap(viewController: WeakViewController) {
-        router.show(
-            ReportBugAssembly.makeViewConroller(),
-            from: viewController,
-            options: .modal(.custom)
-        )
+    func giveFeedbackDidTap(viewController: WeakViewController, help: HelpModel) {
+        if help.isBugReport {
+            let bugView = ReportBugAssembly.makeViewConroller(
+                didSubmitBug: { [weak self] in
+                    self?.isBugSubmitted = true
+                },
+                didDismiss: { [weak self] in
+                    self?.onReportBugDismissed = true
+                }
+            )
+            router.show(bugView, from: viewController, options: .modal(.custom))
+            return
+        }
+
+        guard let url = help.url else { return }
+        router.route(to: url, from: viewController)
     }
 
     func logoutDidTap() {
