@@ -42,7 +42,7 @@ public struct K5SubjectView: View, ScreenViewTrackable {
                     WebView(url: currentPageURL,
                             features: [
                                 .disableZoom,
-                                .pullToRefresh(color: viewModel.courseColor),
+                                .pullToRefresh(),
                                 .invertColorsInDarkMode
                             ],
                             configuration: viewModel.config)
