@@ -21,7 +21,7 @@
 import Combine
 import Foundation
 
-class InboxMessageInteractorPreview: InboxMessageInteractor {
+public class InboxMessageInteractorPreview: InboxMessageInteractor {
     // MARK: - Outputs
     public let state = CurrentValueSubject<StoreState, Never>(.loading)
     public let messages: CurrentValueSubject<[InboxMessageListItem], Never>

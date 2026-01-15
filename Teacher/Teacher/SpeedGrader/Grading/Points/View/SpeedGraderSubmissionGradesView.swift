@@ -48,6 +48,7 @@ struct SpeedGraderSubmissionGradesView: View {
         case rubric(Int)
     }
     @FocusState private var focusedInput: FocusedInput?
+    @State private var isCommentsExpanded: Bool = false
 
     var body: some View {
         ScrollViewReader { scrollViewProxy in
@@ -449,7 +450,7 @@ struct SpeedGraderSubmissionGradesView: View {
                     itemCount: nil,
                     paddingSet: .iconCell,
                     accessoryIconSize: 24,
-                    isInitiallyExpanded: false,
+                    isExpanded: $isCommentsExpanded,
                     content: { content }
                 )
             } else {

@@ -46,7 +46,7 @@ class StudioMetadataDownloadInteractorLive: StudioMetadataDownloadInteractor {
     private static func replaceNotFoundErrorWithEmptyResponse(
         _ error: Error
     ) -> AnyPublisher<(body: [APIStudioMediaItem], urlResponse: HTTPURLResponse?), Error> {
-        if error.isNotFound {
+        if error.isNotFound || error.isForbidden {
             return Just((body: [], urlResponse: nil))
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()

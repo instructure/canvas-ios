@@ -134,6 +134,14 @@ struct GradeListItemCell: View {
     }
 }
 
+extension GradeListItemCell: Equatable {
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.model == rhs.model
+        && lhs.whatIfModel == rhs.whatIfModel
+        && lhs.isLastItem == rhs.isLastItem
+    }
+}
+
 // MARK: - Preview
 
 #if DEBUG

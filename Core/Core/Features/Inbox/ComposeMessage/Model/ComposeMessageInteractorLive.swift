@@ -23,6 +23,7 @@ import Foundation
 public class ComposeMessageInteractorLive: ComposeMessageInteractor {
     // MARK: - Outputs
     public let attachments = CurrentValueSubject<[File], Never>([])
+    public let didUploadFiles = PassthroughSubject<Result<Void, Error>, Never>()
 
     // MARK: - Private
     private let context: Context = .currentUser
@@ -56,7 +57,10 @@ public class ComposeMessageInteractorLive: ComposeMessageInteractor {
         self.restrictForFolderPath = restrictForFolderPath
         self.scheduler = scheduler
         self.publisherProvider = publisherProvider
-
+        uploadManager
+            .didUploadFile
+            .subscribe(didUploadFiles)
+            .store(in: &subscriptions)
         fileStore.refresh()
 
         setupAttachmentListBinding()

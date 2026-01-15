@@ -26,35 +26,72 @@ struct HorizonMessageDetailsAssembly {
     ) -> UIViewController {
         let batchID = UUID.string
         let env = AppEnvironment.shared
+
+        let messageDetailsInteractor =  MessageDetailsInteractorLive(
+            env: env,
+            conversationID: conversationID
+        )
+
+        let composeMessageInteractor = ComposeMessageInteractorLive(
+            env: AppEnvironment.shared,
+            batchId: batchID,
+            uploadFolderPath: "conversation attachments",
+            uploadManager: UploadManager(env: env, identifier: batchID)
+        )
+        let attachmentViewModel = AttachmentViewModel(composeMessageInteractor: composeMessageInteractor)
         let viewModel = HMessageDetailsViewModel(
             conversationID: conversationID,
-            messageDetailsInteractor: MessageDetailsInteractorLive(
-                env: env,
-                conversationID: conversationID
-            ),
-            composeMessageInteractor: ComposeMessageInteractorLive(
-                env: AppEnvironment.shared,
-                batchId: batchID,
-                uploadFolderPath: "conversation attachments",
-                uploadManager: UploadManager(env: env, identifier: batchID)
-            ),
+            router: env.router,
+            userID: env.currentSession?.userID ?? "",
+            attachmentViewModel: attachmentViewModel,
+            messageDetailsInteractor: messageDetailsInteractor,
+            composeMessageInteractor: composeMessageInteractor,
+            downloadFileInteractor: DownloadFileInteractorLive(),
             allowArchive: allowArchive
         )
-        let view = HMessageDetailsView(model: viewModel)
+        let view = HMessageDetailsView(viewModel: viewModel)
         return CoreHostingController(view)
     }
 
-    public static func makeViewController(
-        announcementID: String,
-        announcement: Announcement? = nil
-    ) -> UIViewController {
-        CoreHostingController(
-            HMessageDetailsView(
-                model: HMessageDetailsViewModel(
-                    announcementID: announcementID,
-                    announcement: announcement
-                )
-            )
-        )
+     static func makeAnnouncementView(announcementModel: AnnouncementModel) -> UIViewController {
+         let interactor = AnnouncementInteractorLive(
+            userID: AppEnvironment.shared.currentSession?.userID ?? "",
+            isIncludePast: true,
+            learnCoursesInteractor: GetLearnCoursesInteractorLive()
+         )
+         let viewModel = HAnnouncementDetailsViewModel(
+            announcementModel: announcementModel,
+            interactor: interactor
+         )
+        return CoreHostingController(HAnnouncementDetailsView(viewModel: viewModel))
     }
 }
+
+#if DEBUG
+extension HorizonMessageDetailsAssembly {
+    static func makePreview() -> HMessageDetailsView {
+        let env = PreviewEnvironment()
+        let context = env.globalDatabase.viewContext
+        let loremIpsumLong = """
+                         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt rhoncus\
+                         rutrum
+                         """
+        let attachmentViewModel = AttachmentViewModel(composeMessageInteractor: ComposeMessageInteractorPreview())
+        let viewModel = HMessageDetailsViewModel(
+            conversationID: "conversationID",
+            router: env.router,
+            userID: env.currentSession?.userID ?? "",
+            attachmentViewModel: attachmentViewModel,
+            messageDetailsInteractor: MessageDetailsInteractorPreview(
+                env: env,
+                subject: "",
+                messages: .make(count: 5, body: loremIpsumLong, in: context)
+            ),
+            composeMessageInteractor: ComposeMessageInteractorPreview(),
+            downloadFileInteractor: DownloadFileInteractorLive(),
+            allowArchive: false
+        )
+       return HMessageDetailsView(viewModel: viewModel)
+    }
+}
+#endif
