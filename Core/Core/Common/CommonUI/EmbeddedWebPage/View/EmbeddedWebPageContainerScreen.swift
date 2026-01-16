@@ -35,7 +35,7 @@ public struct EmbeddedWebPageContainerScreen: View {
         self.viewModel = viewModel
 
         if isPullToRefreshEnabled {
-            features.append(.pullToRefresh())
+            features.append(.pullToRefresh)
         }
     }
 

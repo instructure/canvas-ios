@@ -25,7 +25,7 @@ struct HEmbeddedWebPageContainerView: View {
     private var features: [CoreWebViewFeature] = [
         .disableZoom,
         .forceDisableHorizontalScroll,
-        .pullToRefresh()
+        .pullToRefresh
     ]
 
     // MARK: - Dependencies

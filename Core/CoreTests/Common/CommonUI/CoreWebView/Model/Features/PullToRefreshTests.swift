@@ -23,7 +23,7 @@ import XCTest
 class PullToRefreshTests: XCTestCase {
 
     func testRefreshControlAdded() {
-        let webView = CoreWebView(features: [.pullToRefresh()])
+        let webView = CoreWebView(features: [.pullToRefresh])
 
         guard let refreshControl = refreshControl(for: webView) else {
             return XCTFail("No refresh control found")
@@ -33,7 +33,7 @@ class PullToRefreshTests: XCTestCase {
     }
 
     func testReloadsWebView() {
-        let mockWebView = MockCoreWebView(features: [.pullToRefresh()])
+        let mockWebView = MockCoreWebView(features: [.pullToRefresh])
 
         guard let refreshControl = refreshControl(for: mockWebView) else {
             return XCTFail("No refresh control found")

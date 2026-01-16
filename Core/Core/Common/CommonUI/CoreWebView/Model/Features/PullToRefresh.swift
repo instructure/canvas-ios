@@ -48,7 +48,7 @@ private class PullToRefresh: CoreWebViewFeature {
     // MARK: - Private Methods
 
     private func addRefreshControl(to webView: CoreWebView) {
-        webView.scrollView.addSubview(refreshControl)
+        webView.scrollView.refreshControl = refreshControl
         webView.scrollView.bounces = true
     }
 
@@ -60,7 +60,7 @@ private class PullToRefresh: CoreWebViewFeature {
 
 public extension CoreWebViewFeature {
 
-    static func pullToRefresh() -> CoreWebViewFeature {
+    static var pullToRefresh: CoreWebViewFeature {
         PullToRefresh()
     }
 }
