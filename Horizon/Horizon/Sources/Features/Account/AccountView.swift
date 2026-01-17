@@ -52,8 +52,10 @@ struct AccountView: View {
                     settingsSection
                         .padding(.top, .huiSpaces.space24)
 
-                    helpSection
-                        .padding(.top, .huiSpaces.space40)
+                    if viewModel.helpItems.isNotEmpty {
+                        helpSection
+                            .padding(.top, .huiSpaces.space40)
+                    }
 
                     logoutRow
                         .padding(.top, .huiSpaces.space40)
