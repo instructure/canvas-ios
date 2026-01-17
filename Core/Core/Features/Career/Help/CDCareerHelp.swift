@@ -33,8 +33,8 @@ public final class CDCareerHelp: NSManagedObject {
         in context: NSManagedObjectContext
     ) -> CDCareerHelp {
         let dbEntity: CDCareerHelp = context.first(
-            where: #keyPath(CDCareerHelp.title),
-            equals: apiEntity.text
+            where: #keyPath(CDCareerHelp.id),
+            equals: apiEntity.id
         ) ?? context.insert()
 
         dbEntity.id = apiEntity.id.defaultToEmpty

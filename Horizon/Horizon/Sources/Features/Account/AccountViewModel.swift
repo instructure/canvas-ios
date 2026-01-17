@@ -81,9 +81,9 @@ final class AccountViewModel {
             .store(in: &subscriptions)
     }
 
-   private func getAccountHelpLinks() {
+    private func getAccountHelpLinks(ignoreCache: Bool = false, completion: (() -> Void)? = nil) {
         ReactiveStore(useCase: GetCareerHelpUseCase())
-            .getEntities()
+            .getEntities(ignoreCache: ignoreCache)
             .replaceError(with: [])
             .flatMap { Publishers.Sequence(sequence: $0) }
             .map { HelpModel(entity: $0) }
@@ -92,8 +92,21 @@ final class AccountViewModel {
             .receive(on: scheduler)
             .sink { [weak self] models in
                 self?.helpItems = models
+                completion?()
             }
             .store(in: &subscriptions)
+    }
+
+    func refresh() async {
+        await withCheckedContinuation { [weak self] continuation in
+            guard let self else {
+                continuation.resume()
+                return
+            }
+            getAccountHelpLinks(ignoreCache: true) {
+                continuation.resume()
+            }
+        }
     }
 
     func profileDidTap(viewController: WeakViewController) {

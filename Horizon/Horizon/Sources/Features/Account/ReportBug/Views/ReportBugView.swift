@@ -180,6 +180,9 @@ struct ReportBugView: View {
         .padding(.horizontal, .huiSpaces.space10)
         .padding(.bottom, .huiSpaces.space8)
         .focused($focusedInput, equals: .subject)
+        .onSubmit {
+            focusedInput = .description
+        }
     }
 
     private var descriptionTextView: some View {
@@ -196,7 +199,11 @@ struct ReportBugView: View {
             text: $viewModel.description,
             placeholder: String(localized: "Share more details"),
             errorMessage: viewModel.formValidation.descriptionError,
-            proxy: proxy
+            proxy: proxy,
+            onSubmit: { [viewController] in
+                focusedInput = nil
+                viewModel.submit(viewController: viewController)
+            }
         )
         .focused($focusedInput, equals: .description)
         .accessibilityLabel(String(localized: "Description, required"))

@@ -60,6 +60,7 @@ struct AccountView: View {
                 }
                 .padding(.huiSpaces.space24)
             }
+            .refreshable { await viewModel.refresh() }
             .toolbar(.hidden)
             .background(Color.huiColors.surface.pagePrimary)
             .onAppear {
