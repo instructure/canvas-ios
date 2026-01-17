@@ -101,7 +101,7 @@ struct ReportBugView: View {
             Spacer()
 
             HorizonUI.IconButton(Image.huiIcons.close, type: .white, isSmall: false) {
-                viewModel.dimiss(viewController: viewController)
+                viewModel.dismiss(viewController: viewController)
             }
             .accessibilityLabel(String(localized: "Close"))
             .accessibilityHint(String(localized: "Dismisses the report a problem screen"))
@@ -216,7 +216,7 @@ struct ReportBugView: View {
             divider
             HStack {
                 HorizonUI.PrimaryButton(String(localized: "Cancel"), type: .white) {
-                    viewModel.dimiss(viewController: viewController)
+                    viewModel.dismiss(viewController: viewController)
                 }
                 .accessibilityLabel(String(localized: "Close"))
                 Spacer()

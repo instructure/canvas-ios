@@ -482,7 +482,7 @@ final class ReportBugViewModelTests: HorizonTestCase {
         let viewController = WeakViewController(sourceView)
 
         // When
-        testee.dimiss(viewController: viewController)
+        testee.dismiss(viewController: viewController)
 
         // Then
         XCTAssertEqual(router.dismissed, sourceView)

@@ -119,12 +119,12 @@ final class ReportBugViewModel {
         } receiveValue: { [weak self] _ in
             self?.state = .data
             self?.didSubmitBug()
-            self?.dimiss(viewController: viewController)
+            self?.dismiss(viewController: viewController)
         }
         .store(in: &subscriptions)
     }
 
-    func dimiss(viewController: WeakViewController) {
+    func dismiss(viewController: WeakViewController) {
         router.dismiss(viewController)
         didDismiss?()
     }

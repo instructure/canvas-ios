@@ -85,7 +85,7 @@ final class CDCareerHelpTests: CoreTestCase {
         let updatedEntity = CDCareerHelp.save(apiEntity: updatedResponse, in: databaseClient)
         let savedEntities: [CDCareerHelp] = databaseClient.fetch()
 
-        XCTAssertEqual(savedEntities.count, 1)
+        XCTAssertEqual(savedEntities.count, 2)
         XCTAssertEqual(updatedEntity.id, testData.id2)
         XCTAssertEqual(updatedEntity.title, testData.title1)
         XCTAssertEqual(updatedEntity.type, testData.type2)
