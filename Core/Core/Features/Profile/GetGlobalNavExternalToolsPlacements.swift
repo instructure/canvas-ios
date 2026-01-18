@@ -64,7 +64,7 @@ public class GetGlobalNavExternalToolsPlacements: CollectionUseCase {
 
 public extension HelpLinkEnrollment {
 
-    var allowedGlobalLTIDomains: [LTIDomains] {
+    var allowedGlobalLTIDomains: [LTIDomain] {
         switch self {
         case .observer:
             return [.masteryConnect]
@@ -76,7 +76,7 @@ public extension HelpLinkEnrollment {
     }
 }
 
-private extension LTIDomains {
+private extension LTIDomain {
 
     var matchPredicate: NSPredicate {
         let format: String
