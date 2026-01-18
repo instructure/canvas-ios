@@ -60,26 +60,26 @@ struct GradeInputTextFieldCell: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading) {
+        let labels = Group {
+            Text(title)
+                .textStyle(.cellLabel)
+                .accessibility(hidden: true)
 
-            HStack(alignment: .center, spacing: 8) {
-                Text(title)
-                    .textStyle(.cellLabel)
+            if let subtitle {
+                Text(subtitle)
+                    .font(.regular16, lineHeight: .fit)
+                    .foregroundStyle(.textDark)
                     .accessibility(hidden: true)
-
-                if let subtitle {
-                    Text(subtitle)
-                        .font(.regular16, lineHeight: .fit)
-                        .foregroundStyle(.textDark)
-                        .accessibility(hidden: true)
-                }
-
-                if !dynamicTypeSize.isAccessibilitySize {
-                    textFieldViews
-                }
             }
+        }
 
-            if dynamicTypeSize.isAccessibilitySize {
+        ViewThatFits {
+            HStack(alignment: .center, spacing: 8) {
+                labels
+                textFieldViews
+            }
+            VStack(alignment: .leading) {
+                HStack(alignment: .center, spacing: 8) { labels }
                 textFieldViews
             }
         }

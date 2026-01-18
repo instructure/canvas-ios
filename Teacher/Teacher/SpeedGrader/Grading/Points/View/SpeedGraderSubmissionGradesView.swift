@@ -274,13 +274,10 @@ struct SpeedGraderSubmissionGradesView: View {
             .disabled(gradeViewModel.gradeState.isExcused)
         }
 
-        return Group {
-            if dynamicTypeSize < .accessibility2 {
-                HStack(spacing: 16) { buttons }
-            } else {
-                VStack(spacing: 16) { buttons }
-                    .paddingStyle(.top, .standard)
-            }
+        return ViewThatFits {
+            HStack(spacing: 16) { buttons }
+            VStack(spacing: 16) { buttons }
+                .paddingStyle(.top, .standard)
         }
         .paddingStyle(.horizontal, .standard)
     }
