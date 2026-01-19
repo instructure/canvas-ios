@@ -48,8 +48,11 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
     var body: some View {
         if #available(iOS 26, *) {
             content
-                .navigationTitle(viewModel.navigationTitle)
-                .navigationSubtitle(viewModel.navigationSubtitle)
+                .navigationTitles(
+                    title: viewModel.navigationTitle,
+                    subtitle: viewModel.navigationSubtitle,
+                    style: .color(viewModel.navigationBarColor)
+                )
                 .toolbar {
                     if viewModel.isPostPolicyButtonVisible {
                         postPolicySettingsButton
