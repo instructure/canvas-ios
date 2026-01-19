@@ -109,7 +109,13 @@ extension UIViewController {
     }
 
     public func addDismissBarButton(_ barButtonSystemItem: UIBarButtonItem.SystemItem, side: NavigationItemSide) {
-        let button = UIBarButtonItem(barButtonSystemItem: barButtonSystemItem, target: self, action: #selector(dismissDoneButton))
+        let button = {
+            if #available(iOS 26, *) {
+                UIBarButtonItem(title: .init(localized: "Done", bundle: .core), style: .prominent, target: self, action: #selector(dismissDoneButton))
+            } else {
+                UIBarButtonItem(barButtonSystemItem: barButtonSystemItem, target: self, action: #selector(dismissDoneButton))
+            }
+        }()
         button.accessibilityIdentifier = "screen.dismiss"
         addNavigationButton(button, side: side)
     }

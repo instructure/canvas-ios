@@ -73,7 +73,6 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
-        tableView.separatorColor = .borderMedium
         tableView.backgroundColor = .backgroundLightest
         view.backgroundColor = .backgroundLightest
 

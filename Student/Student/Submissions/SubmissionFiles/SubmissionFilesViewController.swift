@@ -37,7 +37,6 @@ class SubmissionFilesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        tableView?.separatorColor = .borderMedium
         tableView?.tintColor = .textInfo
         emptyLabel?.text = String(localized: "There are no files for this assignment.", bundle: .student)
         emptyContainer?.isHidden = !files.isEmpty

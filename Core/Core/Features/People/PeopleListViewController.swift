@@ -98,7 +98,6 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
         tableView.registerHeaderFooterView(FilterHeaderView.self, fromNib: false)
-        tableView.separatorColor = .borderMedium
         colors.refresh()
         customStatuses?.refresh()
         if context.contextType == .course {

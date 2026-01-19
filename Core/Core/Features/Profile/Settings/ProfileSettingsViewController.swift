@@ -88,7 +88,6 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         tableView.registerCell(RightDetailTableViewCell.self)
         tableView.registerCell(SwitchTableViewCell.self)
         tableView.sectionFooterHeight = 0
-        tableView.separatorColor = .borderMedium
         tableView.separatorInset = .zero
 
         offlineModeInteractor

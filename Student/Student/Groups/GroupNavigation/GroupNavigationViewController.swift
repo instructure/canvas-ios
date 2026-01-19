@@ -54,7 +54,6 @@ class GroupNavigationViewController: ScreenViewTrackableTableViewController, Col
         view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.registerCell(RightDetailTableViewCell.self)
-        tableView.separatorColor = .borderMedium
         tableView.separatorInset = .zero
         tableView.tableFooterView = UIView()
 

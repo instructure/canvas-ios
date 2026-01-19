@@ -71,7 +71,6 @@ public class TodoListViewController: ScreenViewTrackableViewController, ErrorVie
         tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = CircleRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
-        tableView.separatorColor = .borderMedium
 
         colors.refresh()
         courses.exhaust()

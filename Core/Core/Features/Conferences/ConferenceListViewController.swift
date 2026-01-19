@@ -73,7 +73,6 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
         tableView.registerHeaderFooterView(SectionHeaderView.self)
-        tableView.separatorColor = .borderMedium
 
         colors.refresh()
         if context.contextType == .course {

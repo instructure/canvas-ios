@@ -115,7 +115,6 @@ class AttendanceViewController: ScreenViewTrackableViewController, ColoredNavVie
 
         tableView.backgroundColor = .backgroundLightest
         tableView.separatorInset = .zero
-        tableView.separatorColor = .borderMedium
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
         tableView.registerCell(StatusCell.self)

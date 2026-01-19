@@ -86,7 +86,6 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
         view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = refreshControl
-        tableView.separatorColor = .borderMedium
 
         colors.refresh()
         frontPage.refresh()
