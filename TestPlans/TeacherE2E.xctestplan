@@ -24,13 +24,14 @@
       "containerPath" : "container:Teacher.xcodeproj",
       "identifier" : "13B07F861A680F5B00A75B9A",
       "name" : "Teacher"
-    }
+    },
+    "uiTestingScreenshotsLifetime" : "keepNever"
   },
   "testTargets" : [
     {
       "target" : {
         "containerPath" : "container:Teacher.xcodeproj",
-        "identifier" : "F43EBA60B9C4EEAEA6C6C94A",
+        "identifier" : "E841D8A223D6472F00685A63",
         "name" : "TeacherE2ETests"
       }
     }
