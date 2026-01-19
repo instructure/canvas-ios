@@ -27,12 +27,12 @@ struct CourseSyncProgressView: View {
 
     var body: some View {
         content
-            .navigationBarTitleView(
-                title: String(localized: "Offline Content", bundle: .core),
-                subtitle: String(localized: "All Courses", bundle: .core)
-            )
             .navigationBarItems(leading: cancelButton, trailing: trailingBarItem)
-            .navigationBarStyle(.modal)
+            .navigationTitles(
+                title: String(localized: "Offline Content", bundle: .core),
+                subtitle: String(localized: "All Courses", bundle: .core),
+                style: .modal
+            )
             .confirmationAlert(
                 isPresented: $viewModel.isShowingCancelDialog,
                 presenting: viewModel.confirmAlert

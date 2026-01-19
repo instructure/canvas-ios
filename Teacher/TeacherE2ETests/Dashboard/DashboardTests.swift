@@ -44,7 +44,7 @@ class DashboardTests: E2ETestCase {
 
         dashboardEditButton.hit()
         Helper.toggleFavorite(course: courses[1])
-        let navBarBackButton = Helper.backButton.waitUntil(.visible)
+        let navBarBackButton = Helper.backButtonByLabel.waitUntil(.visible)
         XCTAssertVisible(navBarBackButton)
 
         navBarBackButton.hit()

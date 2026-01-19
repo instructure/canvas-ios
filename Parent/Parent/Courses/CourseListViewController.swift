@@ -55,7 +55,6 @@ class CourseListViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         refreshControl.color = nil
         tableView.refreshControl = refreshControl
-        tableView.separatorColor = .borderMedium
     }
 
     override func viewWillAppear(_ animated: Bool) {

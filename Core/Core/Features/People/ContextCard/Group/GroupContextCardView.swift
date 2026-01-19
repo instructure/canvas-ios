@@ -28,12 +28,12 @@ public struct GroupContextCardView: View {
 
     public var body: some View {
         contextCard
-            .navigationBarTitleView(
-                title: model.user.first?.name ?? "",
-                subtitle: model.group.first?.name
-            )
             .navigationBarItems(trailing: emailButton)
-            .navigationBarStyle(.color(nil))
+            .navigationTitles(
+                title: model.user.first?.name ?? "",
+                subtitle: model.group.first?.name,
+                style: .color(nil)
+            )
             .onAppear {
                 model.viewAppeared()
             }
@@ -42,8 +42,12 @@ public struct GroupContextCardView: View {
     @ViewBuilder var emailButton: some View {
         if model.shouldShowMessageButton {
             Button(action: { model.openNewMessageComposer(controller: controller.value) }, label: {
-                Image.emailLine
-                    .foregroundColor(Color(Brand.shared.navTextColor))
+                if #available(iOS 26, *) {
+                    Image.emailLine
+                } else {
+                    Image.emailLine
+                        .foregroundColor(Color(Brand.shared.navTextColor))
+                }
             })
             .accessibility(label: Text("Send message", bundle: .core))
             .identifier("ContextCard.emailContact")

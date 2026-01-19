@@ -21,8 +21,18 @@ import Foundation
 import XCTest
 
 public class AssignmentsHelper: BaseHelper {
+    /// Still needed as of iOS 26.2 (see comments for `NavigationBarTitleView`)
+    @available(iOS, deprecated: 26)
     public static func navBar(course: DSCourse) -> XCUIElement {
         return app.find(label: "Assignments, \(course.name)", type: .staticText)
+    }
+
+    public static var navTitle: XCUIElement {
+        app.find(label: "Assignments", type: .staticText)
+    }
+
+    public static func navSubtitle(course: DSCourse) -> XCUIElement {
+        app.find(label: course.name, type: .staticText)
     }
 
     public static func assignmentButton(assignment: DSAssignment) -> XCUIElement {
@@ -129,9 +139,7 @@ public class AssignmentsHelper: BaseHelper {
         public static var yesButton: XCUIElement { app.find(label: "Yes", type: .button) }
 
         // Other
-        public static var backButton: XCUIElement {
-            return app.find(type: .navigationBar).find(label: "Back", type: .button)
-        }
+        public static var backButton: XCUIElement { app.find(type: .navigationBar).findBackButton() }
 
         public static func navBar(course: DSCourse) -> XCUIElement {
             return app.find(id: "Assignment details, \(course.name)")
@@ -243,7 +251,7 @@ public class AssignmentsHelper: BaseHelper {
 
         public struct TeacherSubmissionsList {
             public static var needsGradingLabel: XCUIElement { app.find(labelContaining: "Needs Grading") }
-            public static var backButton: XCUIElement { app.find(label: "Back", type: .button) }
+            public static var backButton: XCUIElement { app.findBackButton() }
             public static var filterButton: XCUIElement { app.find(label: "Filter", type: .button) }
 
             public static func cell(student: DSUser) -> XCUIElement {
@@ -257,6 +265,12 @@ public class AssignmentsHelper: BaseHelper {
             public struct Filter {
                 public static func navBar(assignment: DSAssignment) -> XCUIElement {
                     return app.find(label: "Submission List Preferences, \(assignment.name)")
+                }
+
+                public static var navTitle: XCUIElement { app.find(label: "Submission List Preferences", type: .staticText) }
+
+                public static func navSubtitle(assignment: DSAssignment) -> XCUIElement {
+                    app.find(label: assignment.name, type: .staticText)
                 }
 
                 public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }

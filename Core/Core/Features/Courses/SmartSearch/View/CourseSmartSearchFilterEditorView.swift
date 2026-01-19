@@ -49,7 +49,7 @@ public struct CourseSmartSearchFilterEditorView: View {
                 }
             }
             .listStyle(.plain)
-            .navigationBarTitleView(String(localized: "Search Preferences", bundle: .core))
+            .navigationTitle(String(localized: "Search Preferences", bundle: .core))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
 

@@ -287,7 +287,7 @@ extension CalendarHelper {
         public static var detailsInput: XCUIElement { app.find(id: "Calendar.Todo.details") }
 
         public struct CalendarSelector {
-            public static var backButton: XCUIElement { app.find(label: "Back", type: .button) }
+            public static var backButton: XCUIElement { app.findBackButton() }
 
             public static func userItem(user: DSUser) -> XCUIElement {
                 return app.find(id: "user_\(user.id)")

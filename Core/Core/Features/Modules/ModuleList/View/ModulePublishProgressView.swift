@@ -29,9 +29,8 @@ struct ModulePublishProgressView: View {
 
     var body: some View {
         content
-            .navigationBarTitleView(title)
             .navigationBarItems(leading: dismissButton, trailing: trailingBarButton)
-            .navigationBarStyle(.modal)
+            .navigationTitle(title, style: .modal)
     }
 
     @ViewBuilder

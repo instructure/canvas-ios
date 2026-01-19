@@ -61,7 +61,11 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
 
-        setupTitleViewInNavbar(title: String(localized: "Submission", bundle: .student))
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "Submission", bundle: .student)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Submission", bundle: .student))
+        }
         drawer?.selectionColor = env.flatMap({ context?.color(in: $0.database.viewContext) })
         drawer?.tabs?.addTarget(self, action: #selector(drawerTabChanged), for: .valueChanged)
         emptyView?.submitCallback = { [weak self] button in
@@ -156,7 +160,11 @@ class SubmissionDetailsViewController: ScreenViewTrackableViewController, Submis
         guard let assignment = presenter?.assignment.first, let course = presenter?.course.first else {
             return
         }
-        updateNavBar(subtitle: assignment.name, color: course.color)
+        if #available(iOS 26, *) {
+            navigationItem.subtitle = assignment.name
+        } else {
+            updateNavBar(subtitle: assignment.name, color: course.color)
+        }
         view.tintColor = course.color
     }
 

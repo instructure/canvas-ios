@@ -28,13 +28,14 @@ public struct CalendarToDoDetailsScreen: View {
     }
 
     public var body: some View {
+        let isContextColorBackground = if #available(iOS 26, *) { false } else { true }
+
         InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { _ in
             eventContent
         }
-        .navigationBarTitleView(viewModel.navigationTitle)
         .navBarItems(
             trailing: .moreIcon(
-                isBackgroundContextColor: true,
+                isBackgroundContextColor: isContextColorBackground,
                 isEnabled: viewModel.isMoreButtonEnabled,
                 isAvailableOffline: false,
                 menuContent: {
@@ -43,7 +44,7 @@ public struct CalendarToDoDetailsScreen: View {
                 }
             )
         )
-        .navigationBarStyle(.color(viewModel.navBarColor))
+        .navigationTitle(viewModel.navigationTitle, style: .color(viewModel.navBarColor))
         .confirmationAlert(
             isPresented: $viewModel.shouldShowDeleteConfirmation,
             presenting: viewModel.deleteConfirmationAlert

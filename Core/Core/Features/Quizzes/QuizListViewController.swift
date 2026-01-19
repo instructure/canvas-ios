@@ -56,7 +56,12 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: String(localized: "Quizzes", bundle: .core))
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "Quizzes", bundle: .core)
+            navigationItem.setNavigationBarBackground(to: .backgroundLightest)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Quizzes", bundle: .core))
+        }
 
         emptyMessageLabel.text = String(localized: "It looks like quizzes haven’t been created in this space yet.", bundle: .core)
         emptyTitleLabel.text = String(localized: "No Quizzes", bundle: .core)
@@ -68,7 +73,6 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
-        tableView.separatorColor = .borderMedium
         tableView.backgroundColor = .backgroundLightest
         view.backgroundColor = .backgroundLightest
 
@@ -80,7 +84,9 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
-        navigationController?.navigationBar.useContextColor(color)
+        if #unavailable(iOS 26) {
+            navigationController?.navigationBar.useContextColor(color)
+        }
     }
 
     @objc func refresh() {
@@ -96,7 +102,11 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
 
     func update() {
         if let course = course.first, colors.pending == false {
-            updateNavBar(subtitle: course.name, color: course.color)
+            if #available(iOS 26, *) {
+                navigationItem.subtitle = course.name
+            } else {
+                updateNavBar(subtitle: course.name, color: course.color)
+            }
             view.tintColor = course.color
         }
         loadingView.isHidden = quizzes.state != .loading || refreshControl.isRefreshing

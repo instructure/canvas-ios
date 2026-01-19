@@ -52,12 +52,12 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
     public var body: some View {
         states
             .background(Color.backgroundLightest)
-            .navigationBarTitleView(
-                title: String(localized: "Assignment Details", bundle: .teacher),
-                subtitle: course.first?.name
-            )
             .rightBarButtonItems(rightBarItems)
-            .navigationBarStyle(.color(course.first?.color))
+            .navigationTitles(
+                title: String(localized: "Assignment Details", bundle: .teacher),
+                subtitle: course.first?.name,
+                style: .color(course.first?.color)
+            )
             .onAppear {
                 refreshAssignments()
                 refreshCourses()

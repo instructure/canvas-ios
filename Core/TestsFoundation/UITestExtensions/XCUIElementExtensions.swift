@@ -21,6 +21,12 @@ import XCTest
 
 public var app: XCUIApplication { XCUIApplication() }
 
+public extension XCUIApplication {
+    func dismissMenu() {
+        self.windows.firstMatch.tap()
+    }
+}
+
 public extension XCUIElement {
     // MARK: Enums
     enum ElementCondition {
@@ -334,6 +340,14 @@ public extension XCUIElement {
 
     func find(id: String, type: ElementType = .any) -> XCUIElement {
         return descendants(matching: type).matching(id: id).firstMatch
+    }
+
+    func findBackButton() -> XCUIElement {
+        if #available(iOS 26, *) {
+            find(id: "BackButton", type: .button)
+        } else {
+            find(label: "Back", type: .button)
+        }
     }
 
     func find(idStartingWith prefix: String, type: ElementType = .any) -> XCUIElement {

@@ -20,14 +20,15 @@
 import XCTest
 import TestsFoundation
 
-class CourseDetailsHeaderViewModelTests: CoreTestCase {
+@available(iOS, deprecated: 26, message: "Non-legacy version exists")
+class LegacyCourseDetailsHeaderViewModelTests: CoreTestCase {
 
     func testProperties() {
         api.mock(GetUserSettings(userID: "self"), value: .make(hide_dashcard_color_overlays: true))
         let course = Course.save(.make(term: .make()), in: databaseClient)
         course.contextColor = ContextColor.save(.init(custom_colors: ["1": "#FF0000"]), in: databaseClient)[0]
 
-        let testee = CourseDetailsHeaderViewModel()
+        let testee = LegacyCourseDetailsHeaderViewModel()
         testee.viewDidAppear()
         testee.courseUpdated(course)
 
@@ -42,7 +43,7 @@ class CourseDetailsHeaderViewModelTests: CoreTestCase {
     }
 
     func testHeaderVisibility() {
-        let testee = CourseDetailsHeaderViewModel()
+        let testee = LegacyCourseDetailsHeaderViewModel()
         // header would take half of the screen's height
         XCTAssertEqual(testee.shouldShowHeader(in: CGSize(width: 300, height: 2 * testee.height)), false)
         // there's more space for cells than what the header blocks
@@ -50,7 +51,7 @@ class CourseDetailsHeaderViewModelTests: CoreTestCase {
     }
 
     func testPullToRefreshScrollCalculation() {
-        let testee = CourseDetailsHeaderViewModel()
+        let testee = LegacyCourseDetailsHeaderViewModel()
         // pull down as many points as high the header is
         testee.scrollPositionChanged([.init(viewId: 0, bounds: .init(x: 0, y: testee.height, width: 0, height: 0))])
 
@@ -60,7 +61,7 @@ class CourseDetailsHeaderViewModelTests: CoreTestCase {
     }
 
     func testScrollUpToCellsCalculation() {
-        let testee = CourseDetailsHeaderViewModel()
+        let testee = LegacyCourseDetailsHeaderViewModel()
         // scroll up as many points as high the header is
         let scrollOffset = -testee.height
         testee.scrollPositionChanged([.init(viewId: 0, bounds: .init(x: 0, y: scrollOffset, width: 0, height: 0))])

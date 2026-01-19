@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -33,7 +33,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zqb-cj-XMP" customClass="AvatarView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="319" y="24" width="40" height="40"/>
+                                                    <rect key="frame" x="319" y="28" width="40" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="40" id="hBJ-8F-HOS"/>
                                                         <constraint firstAttribute="height" constant="40" id="uJ3-pH-Wnd"/>
@@ -43,7 +43,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Um-tb-BF2" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="206.5" y="28" width="100.5" height="20.5"/>
+                                                    <rect key="frame" x="206.5" y="32" width="100.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -53,7 +53,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 13 at 10:51 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="brg-4l-HGS" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="143.5" y="48.5" width="163.5" height="20.5"/>
+                                                    <rect key="frame" x="143.5" y="52.5" width="163.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -99,7 +99,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6at-Xx-e6I" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="224" y="-5" width="135" height="34"/>
+                                                    <rect key="frame" x="224" y="-5" width="135" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="jWm-AB-N4T"/>
                                                     </constraints>
@@ -109,7 +109,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Comment Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jQO-Zk-01K" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="236" y="12" width="111" height="9"/>
+                                                    <rect key="frame" x="236" y="12" width="111" height="5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -119,7 +119,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="AEd-pd-uUK">
-                                                    <rect key="frame" x="16" y="37" width="343" height="0.0"/>
+                                                    <rect key="frame" x="16" y="33" width="343" height="0.0"/>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -150,7 +150,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f0s-7P-aDs" customClass="AvatarView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="24" width="40" height="40"/>
+                                                    <rect key="frame" x="16" y="28" width="40" height="36"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="Ygp-kU-9VW"/>
                                                         <constraint firstAttribute="width" constant="40" id="nMx-7b-cVU"/>
@@ -160,7 +160,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Author Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Thz-j3-Y3K" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="68" y="28" width="100.5" height="20.5"/>
+                                                    <rect key="frame" x="68" y="32" width="100.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -170,7 +170,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="March 13 at 10:51 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S2V-PQ-jCT" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="68" y="48.5" width="163.5" height="20.5"/>
+                                                    <rect key="frame" x="68" y="52.5" width="163.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -217,7 +217,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="893-hG-e0V" customClass="IconView" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="-5" width="135" height="34"/>
+                                                    <rect key="frame" x="16" y="-5" width="135" height="30"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="300" id="6G6-Mn-eLP"/>
                                                     </constraints>
@@ -228,7 +228,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" text="Comment Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eMn-Vx-0Ll" customClass="DynamicLabel" customModule="Student" customModuleProvider="target">
-                                                    <rect key="frame" x="28" y="12" width="111" height="9"/>
+                                                    <rect key="frame" x="28" y="12" width="111" height="5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -238,7 +238,7 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ahz-cJ-JGc">
-                                                    <rect key="frame" x="16" y="37" width="343" height="0.0"/>
+                                                    <rect key="frame" x="16" y="33" width="343" height="0.0"/>
                                                 </stackView>
                                             </subviews>
                                             <constraints>
@@ -269,7 +269,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HOr-G9-8Pg">
-                                                    <rect key="frame" x="16" y="13" width="343" height="33"/>
+                                                    <rect key="frame" x="16" y="17" width="343" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="32" id="8MA-9C-Duo"/>
                                                     </constraints>
@@ -430,9 +430,8 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vZr-mW-D6N">
                                                 <rect key="frame" x="0.0" y="0.0" width="319" height="272"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AK9-qA-H1o">
+                                                    <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AK9-qA-H1o">
                                                         <rect key="frame" x="0.0" y="0.0" width="16" height="272"/>
-                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="16" id="GML-c1-2ww"/>
                                                         </constraints>
@@ -440,9 +439,8 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="vKH-ti-PRW">
                                                         <rect key="frame" x="16" y="0.0" width="303" height="272"/>
                                                         <subviews>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j0q-Or-nTA">
+                                                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j0q-Or-nTA">
                                                                 <rect key="frame" x="0.0" y="0.0" width="303" height="4"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="4" id="8Uj-s5-e4z"/>
                                                                 </constraints>
@@ -453,9 +451,9 @@
                                                                 <color key="textColor" name="borderMedium"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ozz-P0-P6q">
+                                                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ozz-P0-P6q">
                                                                 <rect key="frame" x="0.0" y="268" width="303" height="4"/>
-                                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                                <color key="backgroundColor" systemColor="systemBlueColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="4" id="eFw-Yx-i6Q"/>
                                                                 </constraints>
@@ -595,8 +593,8 @@
         <namedColor name="borderMedium">
             <color red="0.61960784313725492" green="0.65098039215686276" blue="0.67843137254901964" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.53333333333333333" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -45,12 +45,12 @@ public struct AssignmentListPreferencesScreen: View {
         }
         .tint(viewModel.courseColor)
         .background(Color.backgroundLightest)
-        .navigationBarTitleView(
-            title: String(localized: "Assignment List Preferences", bundle: .core),
-            subtitle: viewModel.courseName
-        )
         .navigationBarItems(leading: cancelButton, trailing: doneButton)
-        .navigationBarStyle(.modal)
+        .navigationTitles(
+            title: String(localized: "Assignment List Preferences", bundle: .core),
+            subtitle: viewModel.courseName,
+            style: .modal
+        )
         .onDisappear {
             viewModel.didDismiss()
         }

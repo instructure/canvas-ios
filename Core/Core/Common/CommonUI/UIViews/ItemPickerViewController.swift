@@ -83,7 +83,6 @@ public class ItemPickerViewController: UIViewController {
         tableView.registerHeaderFooterView(GroupedSectionHeaderView.self, fromNib: false)
         tableView.registerCell(RightDetailTableViewCell.self)
         tableView.registerCell(SubtitleTableViewCell.self)
-        tableView.separatorColor = .borderMedium
         tableView.separatorInset = .zero
         tableView.tintColor = Brand.shared.primary
 

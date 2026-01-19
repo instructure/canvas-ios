@@ -96,7 +96,6 @@ class ActivityStreamViewController: ScreenViewTrackableViewController {
         let refreshControl = CircleRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         tableView?.refreshControl = refreshControl
-        tableView.separatorColor = .borderMedium
         tableView.backgroundColor = .backgroundLightest
     }
 

@@ -21,16 +21,25 @@ import UIKit
 @testable import Core
 
 class UINavigationBarExtensionsTests: XCTestCase {
-    func testUseContextColor() {
+    func testUseContextColor() throws {
+        if #available(iOS 26, *) {
+            throw XCTSkip("No toolbar colors above iOS 26")
+        }
+
         let bar = UINavigationBar(frame: .zero)
         bar.useContextColor(.backgroundDarkest)
+
         XCTAssertEqual((bar.titleTextAttributes?[.foregroundColor] as? UIColor)?.hexString, UIColor.textLightest.variantForLightMode.hexString)
         XCTAssertEqual(bar.tintColor.hexString, UIColor.textLightest.variantForLightMode.hexString)
         XCTAssertEqual(bar.barTintColor?.hexString, UIColor.backgroundDarkest.hexString)
         XCTAssertEqual(bar.barStyle, .black)
     }
 
-    func testUseGlobalNavStyle() {
+    func testUseGlobalNavStyle() throws {
+        if #available(iOS 26, *) {
+            throw XCTSkip("No toolbar colors above iOS 26")
+        }
+
         let bar = UINavigationBar(frame: .zero)
         bar.useGlobalNavStyle()
         XCTAssertEqual((bar.titleTextAttributes?[.foregroundColor] as? UIColor)!.hexString, Brand.shared.navTextColor.hexString)
