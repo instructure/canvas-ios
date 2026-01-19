@@ -87,6 +87,8 @@ public class CoreWebViewStudioFeaturesInteractor {
     }
 
     func handleFullWindowLaunchMessage(_ message: WKScriptMessage) {
+        scanVideoFramesForTitlesIfNeeded()
+
         if let dict = message.body as? [String: Any],
            let data = dict["data"] as? [String: Any],
            let mediaPath = data["url"] as? String,
@@ -96,6 +98,8 @@ public class CoreWebViewStudioFeaturesInteractor {
     }
 
     func handleNavigationAction(_ action: NavigationActionRepresentable) -> Bool {
+        scanVideoFramesForTitlesIfNeeded()
+
         if let immersiveURL = urlForStudioImmersiveView(ofNavAction: action) {
             return attemptStudioImmersiveViewLaunch(immersiveURL)
         }
@@ -107,7 +111,7 @@ public class CoreWebViewStudioFeaturesInteractor {
     /// `title` attribute value and keep a map of such values vs video src URL, to be used
     /// later to set immersive video player title. This mainly useful when triggering the player
     /// from a button that's internal to video-frame. (`Expand` button)
-    func scanVideoFrames() {
+    func scanVideoFramesForTitles() {
         guard let webView else { return }
 
         videoFramesTitleMap.removeAll()
@@ -136,6 +140,14 @@ public class CoreWebViewStudioFeaturesInteractor {
 
             self?.videoFramesTitleMap = mapped
             self?.onScanFinished?()
+        }
+    }
+
+    /// This would be effective when loading a page that has another loading stage
+    /// to load the HTML content of video frames. Discussion topics as an example.
+    private func scanVideoFramesForTitlesIfNeeded() {
+        if videoFramesTitleMap.isEmpty {
+            scanVideoFramesForTitles()
         }
     }
 
@@ -196,6 +208,14 @@ public class CoreWebViewStudioFeaturesInteractor {
         return url
     }
 
+    func isImmersiveViewURLHandledDifferently(ofNavAction action: NavigationActionRepresentable) -> Bool {
+        guard let url = action.request.url else { return false }
+        return action.navigationType == .other
+            && (action.targetInfoFrame?.isMainFrame ?? false) == true
+            && url.immersiveViewType == .studio
+            && context != nil
+    }
+
     // MARK: Show Immersive View
 
     @discardableResult
@@ -222,39 +242,65 @@ public class CoreWebViewStudioFeaturesInteractor {
     }
 
     private func videoPlayerFrameTitle(forStudioMediaURL mediaURL: URL) -> String? {
-        if let mediaID = mediaURL.queryValue(for: "custom_arc_media_id") {
-            return videoFramesTitleMap.first(where: { $0.key == mediaID })?.value
+        if let mediaID = mediaURL.queryValue(for: "custom_arc_media_id"),
+           let title = videoFramesTitleMap.first(where: { $0.key == mediaID })?.value {
+            return title
         }
+
+        if mediaURL.queryValue(for: "custom_arc_source_view_type") == "quiz_embed" {
+            return String(localized: "Quiz", bundle: .core)
+        }
+
         return nil
     }
 }
 
 // MARK: - WKNavigationAction Extensions
 
-extension NavigationActionRepresentable {
+private extension NavigationActionRepresentable {
 
-    fileprivate var isStudioImmersiveViewLinkTap: Bool {
-        guard let path = request.url?.path else { return false }
+    var isStudioImmersiveViewLinkTap: Bool {
+        guard let url = request.url else { return false }
 
-        let isExpandLink =
-        navigationType == .other
-        && path.contains("/media_attachments/")
-        && path.hasSuffix("/immersive_view")
-        && sourceInfoFrame.isMainFrame == false
+        let isExpandTap = navigationType == .other
+            && url.immersiveViewType == .canvasUpload
+            && sourceInfoFrame.isMainFrame == false
 
-        let isCanvasUploadDetailsLink =
-        navigationType == .linkActivated
-        && path.contains("/media_attachments/")
-        && path.hasSuffix("/immersive_view")
-        && (targetInfoFrame?.isMainFrame ?? false) == false
+        let isCanvasUploadDetailsLink = navigationType == .linkActivated
+            && url.immersiveViewType == .canvasUpload
+            && (targetInfoFrame?.isMainFrame ?? false) == false
 
-        let query = request.url?.query()?.removingPercentEncoding ?? ""
-        let isStudioEmbedDetailsLink =
-        navigationType == .linkActivated
-        && path.hasSuffix("/external_tools/retrieve")
-        && query.contains("custom_arc_launch_type=immersive_view")
-        && (targetInfoFrame?.isMainFrame ?? false) == false
+        let isStudioEmbedDetailsLink = navigationType == .linkActivated
+            && url.immersiveViewType == .studio
+            && (targetInfoFrame?.isMainFrame ?? false) == false
 
-        return isExpandLink || isCanvasUploadDetailsLink || isStudioEmbedDetailsLink
+        return isExpandTap || isCanvasUploadDetailsLink || isStudioEmbedDetailsLink
+    }
+}
+
+// MARK: - URL Extensions
+
+enum ImmersiveViewType {
+    case canvasUpload
+    case studio
+}
+
+private extension URL {
+
+    var isImmersiveViewURL: Bool { immersiveViewType != nil }
+
+    var immersiveViewType: ImmersiveViewType? {
+
+        if path.contains("/media_attachments/") && path.hasSuffix("/immersive_view") {
+            return .canvasUpload
+        }
+
+        let query = query()?.removingPercentEncoding ?? ""
+        if path.hasSuffix("/external_tools/retrieve")
+            && query.contains("custom_arc_launch_type=immersive_view") {
+            return .studio
+        }
+
+        return nil
     }
 }

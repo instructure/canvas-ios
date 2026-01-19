@@ -54,7 +54,7 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         """
 
         // swiftlint:disable:next line_length
-        private static let studioFrameSrc = "https://suhaibalabsi.cd.instructure.com/courses/32342/external_tools/retrieve?display=borderless&amp;url=https%3A%2F%2Fsuhaibalabsi.staging.instructuremedia.com%2Flti%2Flaunch%3Fcustom_arc_launch_type%3Dthumbnail_embed%26custom_arc_media_id%3D1de23fg456d"
+        private static let studioFrameSrc = "https://suhaibalabsi.cd.instructure.com/courses/32342/external_tools/retrieve?display=borderless&amp;url=https%3A%2F%2Fsuhaibalabsi.staging.instructuremedia.com%2Flti%2Flaunch%3Fcustom_arc_launch_type%3Dimmersive_view%26custom_arc_media_id%3D1de23fg456d"
     }
 
     private var webView: CoreWebView!
@@ -105,7 +105,7 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
 
         // When
-        let mediaPath = "https://suhaibalabsi.staging.instructuremedia.com/lti/launch?custom_arc_launch_type=thumbnail_embed&custom_arc_media_id=1de23fg456d"
+        let mediaPath = "https://suhaibalabsi.staging.instructuremedia.com/lti/launch?custom_arc_launch_type=immersive_view&custom_arc_media_id=1de23fg456d"
         let immersiveUrl = interactor.urlForStudioImmersiveView(ofMediaPath: mediaPath)
 
         // Then
@@ -113,9 +113,44 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
             immersiveUrl?.absoluteString,
             "https://canvas.instructure.com/\(TestConstants.context.pathComponent)/external_tools/retrieve?" +
             "display=full_width&embedded=true&url=https://suhaibalabsi.staging.instructuremedia.com/lti/launch?" +
-            "custom_arc_launch_type%3Dthumbnail_embed%26custom_arc_media_id%3D1de23fg456d" +
+            "custom_arc_launch_type%3Dimmersive_view%26custom_arc_media_id%3D1de23fg456d" +
             "&title=Studio%20Video%20Title"
         )
+    }
+
+    func testImmersiveViewURL_StudioExpand_HandledCheck() throws {
+        // Given
+        preloadPageContent()
+        let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
+
+        let studioPath = "https://canvas.instructure.com/\(TestConstants.context.pathComponent)/external_tools/retrieve?" +
+            "display=full_width&embedded=true&url=https://suhaibalabsi.staging.instructuremedia.com/lti/launch?" +
+            "custom_arc_launch_type%3Dimmersive_view%26custom_arc_media_id%3D1de23fg456d"
+
+        let action = MockNavigationActionRepresentable(
+            url: studioPath,
+            type: .other,
+            targetFrame: MockInfoFrameInfoRepresentable(isMainFrame: true)
+        )
+
+        let isHandled = interactor.isImmersiveViewURLHandledDifferently(ofNavAction: action)
+        XCTAssertTrue(isHandled)
+    }
+
+    func testImmersiveViewURL_quizEmbed_title() throws {
+        // Given
+        preloadPageContent()
+        
+        let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
+
+        let mediaPath = "https://suhaibalabsi.staging.instructuremedia.com/lti/launch" +
+            "?custom_arc_launch_type=immersive_view" +
+            "&custom_arc_media_id=8767654" +
+            "&custom_arc_source_view_type=quiz_embed"
+
+        let immersiveUrl = interactor.urlForStudioImmersiveView(ofMediaPath: mediaPath)
+
+        XCTAssertEqual(immersiveUrl?.queryValue(for: "title"), "Quiz")
     }
 
     func testImmersiveViewURL_ExpandButton() throws {

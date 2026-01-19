@@ -47,6 +47,7 @@ public struct EmbeddedWebPageContainerScreen: View {
                 canToggleTheme: true,
                 configuration: viewModel.webViewConfig
             )
+            .featuresContext(viewModel.context)
             .onProvisionalNavigationStarted { webView, navigation in
                 viewModel.webView(webView, didStartProvisionalNavigation: navigation)
             }

@@ -94,7 +94,7 @@ open class CoreWebView: WKWebView {
     ) {
 
         configuration.applyDefaultSettings()
-        let features = features + [.dynamicFontSize]
+        let features = features + [.dynamicFontSize, .canvasLTIPostMessageHandler]
         features.forEach { $0.apply(on: configuration) }
 
         super.init(frame: .zero, configuration: configuration)
@@ -590,6 +590,11 @@ extension CoreWebView: WKNavigationDelegate {
             return decisionHandler(.cancel)
         }
 
+        if studioFeaturesInteractor?.isImmersiveViewURLHandledDifferently(ofNavAction: action) == true {
+            decisionHandler(.cancel)
+            return
+        }
+
         decisionHandler(.allow)
     }
 
@@ -605,7 +610,7 @@ extension CoreWebView: WKNavigationDelegate {
         }
 
         features.forEach { $0.webView(webView, didFinish: navigation) }
-        studioFeaturesInteractor?.scanVideoFrames()
+        studioFeaturesInteractor?.scanVideoFramesForTitles()
     }
 
     public func webView(
