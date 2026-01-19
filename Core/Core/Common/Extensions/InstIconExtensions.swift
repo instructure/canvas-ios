@@ -90,6 +90,8 @@ public extension UIImage {
     static var emailSolid: UIImage { UIImage(named: "emailSolid", in: .core, compatibleWith: nil)! }
     static var emptyLine: UIImage { UIImage(named: "emptyLine", in: .core, compatibleWith: nil)! }
     static var emptySolid: UIImage { UIImage(named: "emptySolid", in: .core, compatibleWith: nil)! }
+    static var eportfolioLine: UIImage { UIImage(named: "eportfolioLine", in: .core, compatibleWith: nil)! }
+    static var eportfolioSolid: UIImage { UIImage(named: "eportfolioSolid", in: .core, compatibleWith: nil)! }
     static var exitFullScreenLine: UIImage { UIImage(named: "exitFullScreenLine", in: .core, compatibleWith: nil)! }
     static var exitFullScreenSolid: UIImage { UIImage(named: "exitFullScreenSolid", in: .core, compatibleWith: nil)! }
     static var expandItemsLine: UIImage { UIImage(named: "expandItemsLine", in: .core, compatibleWith: nil)! }
@@ -361,6 +363,8 @@ public extension Image {
     static var emailSolid: Image { Image("emailSolid", bundle: .core) }
     static var emptyLine: Image { Image("emptyLine", bundle: .core) }
     static var emptySolid: Image { Image("emptySolid", bundle: .core) }
+    static var eportfolioLine: Image { Image("eportfolioLine", bundle: .core) }
+    static var eportfolioSolid: Image { Image("eportfolioSolid", bundle: .core) }
     static var exitFullScreenLine: Image { Image("exitFullScreenLine", bundle: .core) }
     static var exitFullScreenSolid: Image { Image("exitFullScreenSolid", bundle: .core) }
     static var expandItemsLine: Image { Image("expandItemsLine", bundle: .core) }
