@@ -9479,7 +9479,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tanca"
+            "value" : "Tanca-ho"
           }
         },
         "cy" : {
@@ -11016,7 +11016,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contret"
+            "value" : "S’ha contret"
           }
         },
         "cy" : {
@@ -11184,13 +11184,13 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schowany"
+            "value" : "Zwinięte"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fechado"
+            "value" : "Recolhido"
           }
         },
         "pt-BR" : {
@@ -21005,7 +21005,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Desplegat"
+            "value" : "S’ha desplegat"
           }
         },
         "cy" : {
@@ -21137,7 +21137,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "拡大"
+            "value" : "展開"
           }
         },
         "mi" : {
