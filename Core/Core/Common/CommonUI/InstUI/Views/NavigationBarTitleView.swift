@@ -20,7 +20,20 @@ import SwiftUI
 
 extension InstUI {
 
+    /// We should not need this View after iOS 26, but the native `navigationSubtitle()` modifier
+    /// messes up the VoiceOver reading order as of iOS 26.2:
+    /// If there is no trailing button, then the order is: subtite - title
+    /// If there is, then: title - button - subtitle
+    @available(iOS, deprecated: 26)
     public struct NavigationBarTitleView: View {
+        private static let isIOS26: Bool = {
+            if #available(iOS 26, *) {
+                return true
+            } else {
+                return false
+            }
+        }()
+
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
         @Environment(\.navBarColors) private var navBarColors
 
@@ -39,12 +52,12 @@ extension InstUI {
             VStack(spacing: 1) {
                 Text(title)
                     .font(.scaledRestrictly(.semibold16))
-                    .foregroundColor(navBarColors.title)
+                    .foregroundStyle(Self.isIOS26 ? .textDarkest : navBarColors.title)
 
                 if let subtitle, subtitle.isNotEmpty {
                     Text(subtitle)
                         .font(.scaledRestrictly(.regular14))
-                        .foregroundColor(navBarColors.subtitle)
+                        .foregroundStyle(Self.isIOS26 ? .textDark : navBarColors.subtitle)
                 }
             }
             .accessibilityElement(children: .combine)

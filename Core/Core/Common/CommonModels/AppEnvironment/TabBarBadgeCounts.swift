@@ -61,10 +61,14 @@ public class TabBarBadgeCounts: NSObject {
     private static func updateUnreadMessageCount() {
         messageItem?.badgeValue = unreadMessageCount <= 0 ? nil :
             NumberFormatter.localizedString(from: NSNumber(value: unreadMessageCount), number: .none)
+
+        messageItem?.accessibilityValue = unreadMessageCount <= 0 ? nil : .format(numberOfItems: Int(unreadMessageCount))
     }
 
     private static func updateTodoListCount() {
         todoItem?.badgeValue = todoListCount <= 0 ? nil :
             NumberFormatter.localizedString(from: NSNumber(value: todoListCount), number: .none)
+
+        todoItem?.accessibilityValue = todoListCount <= 0 ? nil : .format(numberOfItems: Int(todoListCount))
     }
 }

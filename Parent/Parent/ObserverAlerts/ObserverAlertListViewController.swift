@@ -60,7 +60,6 @@ class ObserverAlertListViewController: UIViewController {
         tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
-        tableView.separatorColor = .borderMedium
 
         internalRefresh(ignoreCache: false)
     }

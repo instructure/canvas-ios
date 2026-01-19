@@ -167,7 +167,7 @@ class FilesTests: E2ETestCase {
         XCTAssertVisible(testText2)
         XCTAssertVisible(testText3)
 
-        let backButton = Helper.backButton.waitUntil(.visible)
+        let backButton = Helper.backButtonByIdOrLabel.waitUntil(.visible)
         XCTAssertVisible(backButton)
 
         // MARK: Delete the file
@@ -219,7 +219,7 @@ class FilesTests: E2ETestCase {
 
         uploadedImageItem.hit()
         let imageView = Details.imageView.waitUntil(.visible, timeout: 60)
-        let backButton = Helper.backButton.waitUntil(.visible)
+        let backButton = Helper.backButtonByIdOrLabel.waitUntil(.visible)
         XCTAssertVisible(imageView)
         XCTAssertVisible(backButton)
 

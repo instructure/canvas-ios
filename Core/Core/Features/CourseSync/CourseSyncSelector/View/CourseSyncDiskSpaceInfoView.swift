@@ -59,6 +59,7 @@ struct CourseSyncDiskSpaceInfoView: View {
         }
     }
 
+    @available(iOS, deprecated: 26, message: "Collapsion is disabled above iOS 26")
     private var collapsibleInfo: some View {
         let height: CGFloat? = {
             guard let originalInfoHeight else {

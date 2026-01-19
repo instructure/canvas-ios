@@ -67,7 +67,25 @@ public struct InboxView: View, ScreenViewTrackable {
             }
         }
         .background(Color.backgroundLightest)
-        .navigationBarItems(leading: model.isShowMenuButton ? menuButton : nil, trailing: newMessageButton)
+        .toolbar {
+            if model.isShowMenuButton {
+                ToolbarItem(placement: .topBarLeading) {
+                    if #available(iOS 26, *) {
+                        menuButton
+                    } else {
+                        legacyMenuButton
+                    }
+                }
+            }
+
+            ToolbarItem(placement: .topBarTrailing) {
+                if #available(iOS 26, *) {
+                    newMessageButton
+                } else {
+                    legacyNewMessageButton
+                }
+            }
+        }
         .navigationBarStyle(.global)
     }
 
@@ -203,7 +221,20 @@ public struct InboxView: View, ScreenViewTrackable {
             .listRowSeparator(.hidden)
     }
 
+    @available(iOS, introduced: 26, message: "Legacy version exists")
     private var menuButton: some View {
+        Button {
+            model.menuDidTap.send(controller)
+        } label: {
+            // TODO: Remove the condition once horizon-specific logic is no longer needed.
+            Image.hamburgerSolid
+        }
+        .identifier("Inbox.profileButton")
+        .accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
+    }
+
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyMenuButton: some View {
         Button {
             model.menuDidTap.send(controller)
         } label: {
@@ -216,7 +247,20 @@ public struct InboxView: View, ScreenViewTrackable {
         .accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
     }
 
+    @available(iOS, introduced: 26, message: "Legacy version exists")
     private var newMessageButton: some View {
+        Button {
+            model.newMessageDidTap.send(controller)
+        } label: {
+            Image.addSolid
+            // TODO: Remove the condition once horizon-specific logic is no longer needed.
+        }
+        .identifier("Inbox.newMessageButton")
+        .accessibility(label: Text("New Message", bundle: .core))
+    }
+
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyNewMessageButton: some View {
         Button {
             model.newMessageDidTap.send(controller)
         } label: {

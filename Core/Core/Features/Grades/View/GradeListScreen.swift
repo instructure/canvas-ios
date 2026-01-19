@@ -74,6 +74,7 @@ public struct GradeListScreen: View, ScreenViewTrackable {
 
             whatIfScoreEditorView
         }
+        .tint(viewModel.courseColor?.asColor)
         .animation(.smooth, value: isScoreEditorPresented)
         .safeAreaInset(edge: .top, spacing: 0) {
             switch viewModel.state {
@@ -85,11 +86,6 @@ public struct GradeListScreen: View, ScreenViewTrackable {
             }
         }
         .background(Color.backgroundLightest)
-        .tint(viewModel.courseColor?.asColor)
-        .navigationBarTitleView(
-            title: String(localized: "Grades", bundle: .core),
-            subtitle: viewModel.courseName
-        )
         .toolbar {
             RevertWhatIfScoreButton(isWhatIfScoreModeOn: viewModel.isWhatIfScoreModeOn) {
                 viewModel.isShowingRevertDialog = true
@@ -98,7 +94,11 @@ public struct GradeListScreen: View, ScreenViewTrackable {
                 GradeListFilterButton(viewModel: viewModel)
             }
         }
-        .navigationBarStyle(.color(nil))
+        .navigationTitles(
+            title: String(localized: "Grades", bundle: .core),
+            subtitle: viewModel.courseName,
+            style: .color(nil)
+        )
         .confirmationAlert(
             isPresented: $viewModel.isShowingRevertDialog,
             presenting: viewModel.confirmRevertAlertViewModel
@@ -221,14 +221,14 @@ private struct RevertWhatIfScoreButton: ToolbarContent {
     let buttonDidTap: () -> Void
 
     var body: some ToolbarContent {
-        ToolbarItemGroup(placement: .navigationBarTrailing) {
+        ToolbarItem(placement: .navigationBarTrailing) {
             if isWhatIfScoreModeOn {
                 Button(action: {
                     buttonDidTap()
                 }) {
                     Image(uiImage: .replyLine)
                         .resizable()
-                        .foregroundColor(.textLightest.variantForLightMode)
+                        .toolbarItemForegroundStyle(.textLightest.variantForLightMode)
                 }
                 .frame(alignment: .leading)
                 .accessibilityLabel(Text("Revert", bundle: .core))

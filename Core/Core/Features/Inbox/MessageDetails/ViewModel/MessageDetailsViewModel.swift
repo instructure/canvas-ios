@@ -28,6 +28,7 @@ class MessageDetailsViewModel: ObservableObject {
     @Published public private(set) var starred: Bool = false
     @Published public private(set) var isReplyButtonVisible: Bool = false
     @Published public private(set) var isStudentAccessRestricted: Bool = false
+    public let allowArchive: Bool
 
     public let snackBarViewModel = SnackBarViewModel()
 
@@ -55,7 +56,6 @@ class MessageDetailsViewModel: ObservableObject {
     private let studentAccessInteractor: StudentAccessInteractor
     private let env: AppEnvironment
     private let myID: String
-    private let allowArchive: Bool
 
     public init(interactor: MessageDetailsInteractor, studentAccessInteractor: StudentAccessInteractor, myID: String, allowArchive: Bool, env: AppEnvironment) {
         self.interactor = interactor
@@ -69,6 +69,7 @@ class MessageDetailsViewModel: ObservableObject {
         bindStudentAccessRestriction()
     }
 
+    @available(iOS, deprecated: 26)
     public func conversationMoreTapped(viewController: WeakViewController) {
         let sheet = BottomSheetPickerViewController.create()
         if isReplyButtonVisible {
@@ -143,6 +144,28 @@ class MessageDetailsViewModel: ObservableObject {
         env.router.show(sheet, from: viewController, options: .modal())
     }
 
+    @available(iOS, introduced: 26, message: "Legacy version exists")
+    public func messageReplyTapped(message: ConversationMessage?, viewController: WeakViewController) {
+        if let message {
+            replyTapped(message: message, viewController: viewController)
+        }
+    }
+
+    @available(iOS, introduced: 26, message: "Legacy version exists")
+    public func messageReplyAllTapped(message: ConversationMessage?, viewController: WeakViewController) {
+        if let message {
+            replyAllTapped(message: message, viewController: viewController)
+        }
+    }
+
+    @available(iOS, introduced: 26, message: "Legacy version exists")
+    public func deleteMessageTapped(message: ConversationMessage?, viewController: WeakViewController) {
+        if let conversationId = conversations.first?.id, let messageId = message?.id {
+            deleteConversationMessageDidTap.send((conversationId: conversationId, messageId: messageId, viewController: viewController))
+        }
+    }
+
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
     public func messageMoreTapped(message: ConversationMessage?, viewController: WeakViewController) {
         let sheet = BottomSheetPickerViewController.create()
         if isReplyButtonVisible {

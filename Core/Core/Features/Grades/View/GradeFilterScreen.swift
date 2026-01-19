@@ -38,12 +38,24 @@ public struct GradeFilterScreen: View {
                 }
                 sortBySection
             }
-            .navigationBarTitleView(
+            .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    cancelButton
+                }
+
+                ToolbarItem(placement: .topBarTrailing) {
+                    if #available(iOS 26, *) {
+                        sendButton
+                    } else {
+                        legacySendButton
+                    }
+                }
+            }
+            .navigationTitles(
                 title: String(localized: "Grade List Preferences", bundle: .core),
-                subtitle: viewModel.courseName
+                subtitle: viewModel.courseName,
+                style: .modal
             )
-            .navigationBarItems(leading: cancelButton, trailing: sendButton)
-            .navigationBarStyle(.modal)
         }
         .background(Color.backgroundLightest)
     }
@@ -64,7 +76,22 @@ public struct GradeFilterScreen: View {
         )
     }
 
+    @available(iOS, introduced: 26, message: "Legacy version exists")
+    @ViewBuilder
     private var sendButton: some View {
+        Button {
+            viewModel.saveButtonTapped(viewController: viewController)
+        } label: {
+            Text(String(localized: "Done", bundle: .core))
+                .font(.semibold16)
+        }
+        .buttonStyle(.glassProminent)
+        .accessibilityIdentifier("GradeFilter.saveButton")
+        .disabled(!viewModel.saveButtonIsEnabled)
+    }
+
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacySendButton: some View {
         Button {
             viewModel.saveButtonTapped(viewController: viewController)
         } label: {

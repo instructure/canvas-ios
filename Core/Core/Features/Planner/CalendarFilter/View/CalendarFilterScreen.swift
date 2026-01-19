@@ -40,12 +40,11 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
                 groupFilters
             }
         }
-        .navigationBarTitleView(viewModel.pageTitle)
         .toolbar {
             doneButton
             selectAllButton
         }
-        .navigationBarStyle(.modal)
+        .navigationTitle(viewModel.pageTitle, style: .modal)
         .snackBar(viewModel: viewModel.snackbarViewModel)
     }
 

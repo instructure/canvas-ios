@@ -58,7 +58,6 @@ class NotificationCategoriesViewController: UIViewController, ErrorViewControlle
         tableView.registerHeaderFooterView(GroupedSectionHeaderView.self, fromNib: false)
         tableView.registerCell(RightDetailTableViewCell.self)
         tableView.registerCell(SwitchTableViewCell.self)
-        tableView.separatorColor = .borderMedium
         tableView.separatorInset = .zero
 
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: UIApplication.didBecomeActiveNotification, object: nil)

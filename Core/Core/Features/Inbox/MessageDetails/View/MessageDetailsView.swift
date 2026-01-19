@@ -45,10 +45,15 @@ public struct MessageDetailsView: View {
             }
         }
         .refreshable(action: model.refreshDidTrigger.send)
+        .toolbar {
+            if #available(iOS 26, *) {
+                moreButton
+            } else {
+                legacyMoreButton
+            }
+        }
+        .navigationTitle(model.title, style: .modal)
         .background(Color.backgroundLightest)
-        .navigationBarTitleView(model.title)
-        .navigationBarItems(trailing: moreButton)
-        .navigationBarStyle(.global)
         .snackBar(viewModel: model.snackBarViewModel)
     }
 
@@ -85,7 +90,71 @@ public struct MessageDetailsView: View {
         .padding(.horizontal, 16)
     }
 
+    @available(iOS, introduced: 26, message: "Legacy version exists")
     private var moreButton: some View {
+        Menu {
+            if model.isReplyButtonVisible {
+                Button(.init("Reply", bundle: .core), image: .replyLine) {
+                    model.replyTapped(message: nil, viewController: controller)
+                }
+                .accessibilityIdentifier("MessageDetails.reply")
+            }
+
+            if !model.isStudentAccessRestricted {
+                Button(.init("Reply All", bundle: .core), image: .replyAllLine) {
+                    model.replyAllTapped(message: nil, viewController: controller)
+                }
+                .accessibilityIdentifier("MessageDetails.replyAll")
+            }
+
+            Button(.init("Forward", bundle: .core), image: .forwardLine) {
+                model.forwardTapped(viewController: controller)
+            }
+            .accessibilityIdentifier("MessageDetails.forward")
+
+            if model.conversations.first?.workflowState == .read {
+                Button(.init("Mark as Unread", bundle: .core), image: .nextUnreadLine) {
+                    model.updateState.send(.unread)
+                }
+                .accessibilityIdentifier("MessageDetails.markAsUnread")
+            } else {
+                Button(.init("Mark as Read", bundle: .core), image: .emailLine) {
+                    model.updateState.send(.read)
+                }
+                .accessibilityIdentifier("MessageDetails.markAsRead")
+            }
+
+            if model.conversations.first?.workflowState != .archived, model.allowArchive {
+                Button(.init("Archive", bundle: .core), image: .archiveLine) {
+                    model.updateState.send(.archived)
+                }
+                .accessibilityIdentifier("MessageDetails.archive")
+            }
+
+            if model.conversations.first?.workflowState == .archived, model.allowArchive {
+                Button(.init("Unarchive", bundle: .core), image: .unarchiveLine) {
+                    model.updateState.send(.read)
+                }
+                .accessibilityIdentifier("MessageDetails.unarchive")
+            }
+
+            if !model.isStudentAccessRestricted {
+                Button(.init("Delete Conversation", bundle: .core), image: .trashLine) {
+                    if let conversationId = model.conversations.first?.id {
+                        model.deleteConversationDidTap.send((conversationId, controller))
+                    }
+                }
+                .accessibilityIdentifier("MessageDetails.delete")
+            }
+        } label: {
+            Image.moreSolid
+        }
+        .accessibilityIdentifier("MessageDetails.more")
+        .accessibility(label: Text("More options", bundle: .core))
+    }
+
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyMoreButton: some View {
         Button(action: {
             model.conversationMoreTapped(viewController: controller)
         }, label: {
@@ -129,12 +198,23 @@ public struct MessageDetailsView: View {
                 Color.borderMedium
                     .frame(height: 0.5)
 
-                MessageView(model: message,
-                            isReplyButtonVisible: model.isReplyButtonVisible,
-                            replyDidTap: { model.replyTapped(message: message.conversationMessage, viewController: controller) },
-                            moreDidTap: { model.messageMoreTapped(message: message.conversationMessage, viewController: controller) })
-                .padding(16)
-
+                if #available(iOS 26, *) {
+                    MessageView(model: message,
+                                isReplyButtonVisible: model.isReplyButtonVisible,
+                                isStudentAccessRestricted: model.isStudentAccessRestricted,
+                                replyDidTap: { model.messageReplyTapped(message: message.conversationMessage, viewController: controller) },
+                                replyAllDidTap: { model.messageReplyAllTapped(message: message.conversationMessage, viewController: controller) },
+                                forwardDidTap: { model.forwardTapped(message: message.conversationMessage, viewController: controller)},
+                                deleteDidTap: { model.deleteMessageTapped(message: message.conversationMessage, viewController: controller) }
+                    )
+                    .padding(16)
+                } else {
+                    LegacyMessageView(model: message,
+                                isReplyButtonVisible: model.isReplyButtonVisible,
+                                replyDidTap: { model.replyTapped(message: message.conversationMessage, viewController: controller) },
+                                moreDidTap: { model.messageMoreTapped(message: message.conversationMessage, viewController: controller) })
+                    .padding(16)
+                }
             }
         }
     }
@@ -147,7 +227,9 @@ struct MessageDetailsView_Previews: PreviewProvider {
     static let context = env.globalDatabase.viewContext
 
     static var previews: some View {
-        MessageDetailsAssembly.makePreview(env: env, subject: "Message Title", messages: .make(count: 5, body: InstUI.PreviewData.loremIpsumLong, in: context))
+        NavigationStack {
+            MessageDetailsAssembly.makePreview(env: env, subject: "Message Title", messages: .make(count: 5, body: InstUI.PreviewData.loremIpsumLong, in: context))
+        }
     }
 }
 

@@ -68,9 +68,7 @@ public class DiscussionsHelper: BaseHelper {
         public static func replyToThreadButton(threadIndex: Int) -> XCUIElement {
             app.find(id: "DiscussionDetails.body").findAll(labelContaining: "Reply", type: .link)[threadIndex]
         }
-        public static var backButton: XCUIElement {
-            app.find(label: "Back", type: .button)
-        }
+        public static var backButton: XCUIElement { app.findBackButton() }
 
         public struct Reply {
             public static var navBar: XCUIElement { app.find(id: "Reply") }

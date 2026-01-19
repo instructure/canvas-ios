@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2022-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,20 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import UIKit
 
-public struct ListWithoutVerticalScrollIndicator<Content: View>: View {
-    private let scrollIndicatorWidth: CGFloat = 6
-    private let content: () -> Content
-
-    public init(content: @escaping () -> Content) {
-        self.content = content
-    }
-
-    public var body: some View {
-        List {
-            content().padding(.horizontal, scrollIndicatorWidth)
-        }
-        .padding(.horizontal, -scrollIndicatorWidth)
+extension UINavigationItem {
+    public func setNavigationBarBackground(to color: UIColor) {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithDefaultBackground()
+        appearance.backgroundColor = color
+        self.standardAppearance = appearance
+        self.scrollEdgeAppearance = appearance
     }
 }

@@ -52,10 +52,9 @@ public struct SubmitAssignmentExtensionView: View {
         Text("Please log in via the application", bundle: .core)
             .foregroundColor(.textDarkest)
             .font(.regular16)
-            .navigationBarTitleView(title)
             .navigationBarTitleDisplayMode(.inline)
             .navBarItems(trailing: cancelButton)
-            .navigationBarStyle(.modal)
+            .navigationTitle(title, style: .modal)
     }
 
     private var contentView: some View {
@@ -71,10 +70,9 @@ public struct SubmitAssignmentExtensionView: View {
             }
             .padding(.horizontal, 20)
         }
-        .navigationBarTitleView(title: title, subtitle: env.currentSession?.userName)
         .navigationBarTitleDisplayMode(.inline)
         .navBarItems(leading: cancelButton, trailing: submitButton)
-        .navigationBarStyle(.modal)
+        .navigationTitles(title: title, subtitle: env.currentSession?.userName, style: .modal)
         .onDisappear {
             accessibilityFocus = nil
         }

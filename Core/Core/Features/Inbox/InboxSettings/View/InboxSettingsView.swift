@@ -38,9 +38,8 @@ public struct InboxSettingsView: View {
         ) { geometry in
             contentView(geometry: geometry)
         }
-        .navigationBarTitleView(String(localized: "Inbox Signature", bundle: .core))
         .navigationBarItems(trailing: doneButton)
-        .navigationBarStyle(.modal)
+        .navigationTitle(String(localized: "Inbox Signature", bundle: .core), style: .modal)
         .alert(String(localized: "Failed to load Inbox Settings", bundle: .core), isPresented: $viewModel.showFailedToLoadDialog) {
             Button("Go back", role: .cancel) { viewModel.didTapBack.accept(controller) }
             Button("Retry") { viewModel.didTapRefresh.accept(controller) }

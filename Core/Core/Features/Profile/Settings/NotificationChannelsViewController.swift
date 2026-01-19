@@ -52,7 +52,6 @@ class NotificationChannelsViewController: UIViewController {
         tableView.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         tableView.registerCell(RightDetailTableViewCell.self)
         tableView.sectionFooterHeight = 0
-        tableView.separatorColor = .borderMedium
         tableView.separatorInset = .zero
     }
 

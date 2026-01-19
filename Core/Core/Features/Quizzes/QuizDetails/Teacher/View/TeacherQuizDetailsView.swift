@@ -32,7 +32,6 @@ public struct TeacherQuizDetailsView<ViewModel: TeacherQuizDetailsViewModel>: Vi
     public var body: some View {
         states
             .background(Color.backgroundLightest)
-            .navigationBarTitleView(title: viewModel.title, subtitle: viewModel.subtitle)
             .rightBarButtonItems {
                 [
                     UIBarButtonItemWithCompletion(
@@ -43,7 +42,7 @@ public struct TeacherQuizDetailsView<ViewModel: TeacherQuizDetailsViewModel>: Vi
                     )
                 ]
             }
-            .navigationBarStyle(.color(viewModel.courseColor))
+            .navigationTitles(title: viewModel.title, subtitle: viewModel.subtitle, style: .color(viewModel.courseColor))
             .onAppear {
                 viewModel.viewDidAppear()
             }

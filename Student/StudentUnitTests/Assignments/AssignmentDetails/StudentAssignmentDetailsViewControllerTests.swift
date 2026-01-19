@@ -82,7 +82,10 @@ class StudentAssignmentDetailsViewControllerTests: StudentTestCase {
 
         viewController.updateNavBar(subtitle: "hello", backgroundColor: .red)
         XCTAssertEqual(viewController.titleSubtitleView.subtitle, "hello")
-        XCTAssertEqual(viewController.navigationController?.navigationBar.barTintColor?.hexString, UIColor.red.hexString)
+
+        if #unavailable(iOS 26) {
+            XCTAssertEqual(viewController.navigationController?.navigationBar.barTintColor?.hexString, UIColor.red.hexString)
+        }
     }
 
     func testShowSubmitAssignmentButton() {
@@ -352,6 +355,32 @@ class StudentAssignmentDetailsViewControllerTests: StudentTestCase {
         XCTAssertFalse(viewController.gradeSection!.isHidden)
         XCTAssertTrue(viewController.gradeStatisticGraphView!.isHidden)
         XCTAssertTrue(viewController.gradedView!.isHidden)
+    }
+
+    func testGraded_RestrictQuantitativeData_On() {
+        let course = APICourse.make(
+            id: ID(courseID),
+            settings: .make(restrict_quantitative_data: true)
+        )
+
+        api.mock(viewController.presenter!.courses, value: course)
+        let assignment = APIAssignment.make(
+            course_id: ID(courseID),
+            id: ID(assignmentID),
+            submission: .make(
+                grade: "",
+                score: 0.93,
+                submission_type: .online_text_entry,
+                workflow_state: .graded
+            )
+        )
+        api.mock(viewController.presenter!.assignments, value: assignment)
+        load()
+        drainMainQueue()
+        XCTAssertEqual(viewController.statusLabel?.text, "Graded")
+        XCTAssertTrue(viewController.submittedView!.isHidden)
+        XCTAssertTrue(viewController.gradeSection!.isHidden)
+        XCTAssertTrue(viewController.gradeStatisticGraphView!.isHidden)
     }
 
     func testNeedsGradingAndExcused() {

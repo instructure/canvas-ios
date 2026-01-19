@@ -73,7 +73,13 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: String(localized: "Discussions", bundle: .core))
+
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "Discussions", bundle: .core)
+            navigationItem.setNavigationBarBackground(to: .backgroundLightest)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Discussions", bundle: .core))
+        }
 
         addButton.accessibilityLabel = String(localized: "Create Discussion", bundle: .core)
         addButton.accessibilityIdentifier = "DiscussionList.newButton"
@@ -87,7 +93,6 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
-        tableView.separatorColor = .borderMedium
         tableView.backgroundColor = .backgroundLightest
         view.backgroundColor = .backgroundLightest
 
@@ -120,7 +125,11 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
         if colors.pending == false,
             let name = course?.first?.name ?? group?.first?.name,
             let color = course?.first?.color ?? group?.first?.color {
-            updateNavBar(subtitle: name, color: color)
+            if #available(iOS 26, *) {
+                navigationItem.subtitle = name
+            } else {
+                updateNavBar(subtitle: name, color: color)
+            }
             view.tintColor = color
         }
         let canAdd = (course?.first?.canCreateDiscussionTopic ?? group?.first?.canCreateDiscussionTopic) == true
@@ -206,16 +215,18 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
     }
 
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch topics.sections?[section].name {
-        case "0":
-            return SectionHeaderView.create(title: String(localized: "Pinned Discussions", bundle: .core), section: section)
-        case "1":
-            return SectionHeaderView.create(title: String(localized: "Discussions", bundle: .core), section: section)
-        case "2":
-            return SectionHeaderView.create(title: String(localized: "Closed for Comments", bundle: .core), section: section)
-        default:
-            return nil
-        }
+
+        let key: String.LocalizationValue? = {
+            switch topics.sections?[section].name {
+            case "0": "Pinned Discussions"
+            case "1": "Discussions"
+            case "2": "Closed for Comments"
+            default: nil
+            }
+        }()
+        guard let key else { return nil }
+
+        return SectionHeaderView.create(title: .init(localized: key, bundle: .core), section: section)
     }
 
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

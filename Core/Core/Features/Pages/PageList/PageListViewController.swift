@@ -64,7 +64,13 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: String(localized: "Pages", bundle: .core))
+
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "Pages", bundle: .core)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Pages", bundle: .core))
+        }
+
         if canCreatePage {
             let item = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: #selector(createPage))
             item.accessibilityIdentifier = "PageList.add"
@@ -80,7 +86,6 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
         view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = refreshControl
-        tableView.separatorColor = .borderMedium
 
         colors.refresh()
         frontPage.refresh()
@@ -110,7 +115,11 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
         }
         loadingView.color = color
         view.tintColor = color
-        updateNavBar(subtitle: name, color: color)
+        if #available(iOS 26, *) {
+            navigationItem.subtitle = name
+        } else {
+            updateNavBar(subtitle: name, color: color)
+        }
     }
 
     func update() {
@@ -208,6 +217,12 @@ extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if cell is LoadingCell {
             pages.getNextPage()
+        }
+
+        if #available(iOS 26, *) {
+            if indexPath.section == 0 && indexPath.row == 0 {
+                cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+            }
         }
     }
 

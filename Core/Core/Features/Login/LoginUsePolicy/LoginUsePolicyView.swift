@@ -59,7 +59,6 @@ struct LoginUsePolicyView: View {
             Spacer()
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
-        .navigationBarTitleView(String(localized: "Acceptable Use Policy", bundle: .core))
         .navigationBarItems(
             leading: Button(action: {
                 controller.value.dismiss(animated: true) {
@@ -81,7 +80,7 @@ struct LoginUsePolicyView: View {
                     .opacity(viewModel.isAccepted ? 1 : 0.4)
             }).disabled(!viewModel.isAccepted)
         )
-        .navigationBarStyle(.color(Brand.shared.primary))
+        .navigationTitle(String(localized: "Acceptable Use Policy", bundle: .core), style: .color(Brand.shared.primary))
         .alert(isPresented: $viewModel.showError) {
             Alert(title: Text(viewModel.errorText ?? String(localized: "Something went wrong", bundle: .core)))
         }

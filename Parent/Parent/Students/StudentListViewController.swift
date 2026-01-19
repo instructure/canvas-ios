@@ -65,7 +65,6 @@ class StudentListViewController: ScreenViewTrackableViewController {
         view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = refreshControl
-        tableView.separatorColor = .borderMedium
 
         students.exhaust()
     }

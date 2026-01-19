@@ -79,8 +79,7 @@ public struct ItemPickerScreen: View {
                 style: .trailingCheckmark
             )
         }
-        .navigationBarTitleView(pageTitle)
-        .navigationBarStyle(.modal)
+        .navigationTitle(pageTitle, style: .modal)
         .onReceive(selectedOption.dropFirst().compactMap(\.self)) { option in
             didSelectOption?(option)
         }

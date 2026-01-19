@@ -56,6 +56,7 @@ public class TodoListViewController: ScreenViewTrackableViewController, ErrorVie
         view.backgroundColor = .backgroundLightest
         title = String(localized: "To-do", bundle: .core)
         navigationItem.leftBarButtonItem = profileButton
+
         navigationItem.titleView = Brand.shared.headerImageView()
 
         emptyDescLabel.text = String(localized: "Your To-do list is empty. Time to recharge.", bundle: .core)
@@ -70,7 +71,6 @@ public class TodoListViewController: ScreenViewTrackableViewController, ErrorVie
         tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
-        tableView.separatorColor = .borderMedium
 
         colors.refresh()
         courses.exhaust()
