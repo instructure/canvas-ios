@@ -140,7 +140,7 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
     func testImmersiveViewURL_quizEmbed_title() throws {
         // Given
         preloadPageContent()
-        
+
         let interactor = try XCTUnwrap(webView.studioFeaturesInteractor)
 
         let mediaPath = "https://suhaibalabsi.staging.instructuremedia.com/lti/launch" +
