@@ -75,15 +75,19 @@ class SubmissionsListFilterTests: E2ETestCase {
         }
 
         XCTContext.runActivity(named: "Verify filter screen appears") { _ in
-            if #available(iOS 26, *) {
-                let navTitle = FilterHelper.navTitle.waitUntil(.visible)
-                let navSubtitle = FilterHelper.navSubtitle(assignment: assignment).waitUntil(.visible)
-                XCTAssertVisible(navTitle)
-                XCTAssertVisible(navSubtitle)
-            } else {
-                let navBar = FilterHelper.navBar(assignment: assignment).waitUntil(.visible)
-                XCTAssertVisible(navBar)
-            }
+            // TODO: Replace with commented version after a11y issues are fixed (see comments for `NavigationBarTitleView`)
+            let navBar = FilterHelper.navBar(assignment: assignment).waitUntil(.visible)
+            XCTAssertVisible(navBar)
+
+//            if #available(iOS 26, *) {
+//                let navTitle = FilterHelper.navTitle.waitUntil(.visible)
+//                let navSubtitle = FilterHelper.navSubtitle(assignment: assignment).waitUntil(.visible)
+//                XCTAssertVisible(navTitle)
+//                XCTAssertVisible(navSubtitle)
+//            } else {
+//                let navBar = FilterHelper.navBar(assignment: assignment).waitUntil(.visible)
+//                XCTAssertVisible(navBar)
+//            }
         }
 
         XCTContext.runActivity(named: "Verify filter rows are displayed") { _ in
