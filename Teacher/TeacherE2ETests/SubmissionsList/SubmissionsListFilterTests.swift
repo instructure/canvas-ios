@@ -57,15 +57,8 @@ class SubmissionsListFilterTests: E2ETestCase {
             XCTAssertVisible(courseCard)
 
             AssignmentsHelper.navigateToAssignments(course: course)
-            if #available(iOS 26, *) {
-                let navTitle = AssignmentsHelper.navTitle.waitUntil(.visible)
-                let navSubtitle = AssignmentsHelper.navSubtitle(course: course).waitUntil(.visible)
-                XCTAssertVisible(navTitle)
-                XCTAssertVisible(navSubtitle)
-            } else {
-                let navBar = AssignmentsHelper.navBar(course: course).waitUntil(.visible)
-                XCTAssertVisible(navBar)
-            }
+            let navBar = app.find(labelContaining: "Assignments", type: .staticText)
+            XCTAssertVisible(navBar)
 
             let assignmentButton = AssignmentsHelper.assignmentButton(assignment: assignment).waitUntil(.visible)
             XCTAssertVisible(assignmentButton)

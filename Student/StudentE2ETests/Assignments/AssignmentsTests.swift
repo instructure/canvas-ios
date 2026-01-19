@@ -437,14 +437,18 @@ class AssignmentsTests: E2ETestCase {
     }
 
     private func assertNavbarVisible(course: DSCourse) {
-        if #available(iOS 26, *) {
-            let navTitle = Helper.navTitle.waitUntil(.visible)
-            let navSubtitle = Helper.navSubtitle(course: course).waitUntil(.visible)
-            XCTAssertVisible(navTitle)
-            XCTAssertVisible(navSubtitle)
-        } else {
-            let navBar = Helper.navBar(course: course).waitUntil(.visible)
-            XCTAssertVisible(navBar)
-        }
+        // TODO: Replace with commented version after a11y issues are fixed (see comments for `NavigationBarTitleView`)
+        let navBar = Helper.navBar(course: course).waitUntil(.visible)
+        XCTAssertVisible(navBar)
+
+//        if #available(iOS 26, *) {
+//            let navTitle = Helper.navTitle.waitUntil(.visible)
+//            let navSubtitle = Helper.navSubtitle(course: course).waitUntil(.visible)
+//            XCTAssertVisible(navTitle)
+//            XCTAssertVisible(navSubtitle)
+//        } else {
+//            let navBar = Helper.navBar(course: course).waitUntil(.visible)
+//            XCTAssertVisible(navBar)
+//        }
     }
 }

@@ -21,6 +21,7 @@ import Foundation
 import XCTest
 
 public class AssignmentsHelper: BaseHelper {
+    /// Still needed as of iOS 26.2 (see comments for `NavigationBarTitleView`)
     @available(iOS, deprecated: 26)
     public static func navBar(course: DSCourse) -> XCUIElement {
         return app.find(label: "Assignments, \(course.name)", type: .staticText)
