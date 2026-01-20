@@ -108,8 +108,6 @@ extension InstUI {
     }
 }
 
-#if DEBUG
-
 extension InstUI.PageIndicator {
     struct Storybook: View {
         var body: some View {
@@ -118,10 +116,6 @@ extension InstUI.PageIndicator {
                 .navigationBarTitleDisplayMode(.large)
         }
     }
-}
-
-#Preview {
-    PageIndicatorPreview()
 }
 
 private struct PageIndicatorPreview: View {
@@ -213,6 +207,12 @@ private struct PageIndicatorPreview: View {
         }
         .padding()
     }
+}
+
+#if DEBUG
+
+#Preview {
+    PageIndicatorPreview()
 }
 
 #endif
