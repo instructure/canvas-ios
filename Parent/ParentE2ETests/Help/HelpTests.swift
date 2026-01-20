@@ -52,7 +52,7 @@ class HelpTests: E2ETestCase {
             } else {
                 item.hit()
                 let browserURL = SafariAppHelper.browserURL
-                XCTAssertHasPrefix(browserURL, "https://", " at index \(index)")
+                XCTAssertHasPrefix(browserURL, "https://", " at index \(index), titled: \(label)")
 
                 HelpHelper.returnToHelpPage(isStudentApp: false)
             }
