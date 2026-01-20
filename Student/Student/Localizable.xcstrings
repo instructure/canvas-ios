@@ -32296,7 +32296,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tanca"
+            "value" : "Tanca-ho"
           }
         },
         "cy" : {
@@ -33335,7 +33335,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contret"
+            "value" : "S’ha contret"
           }
         },
         "cy" : {
@@ -33503,13 +33503,13 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schowany"
+            "value" : "Zwinięte"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fechado"
+            "value" : "Recolhido"
           }
         },
         "pt-BR" : {
@@ -96492,7 +96492,260 @@
       }
     },
     "Profile Menu, Closed" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قائمة ملف التعريف، مغلقة"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menú Perfil, tancat"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dewislen Proffil, Wedi Cau"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profilmenu, lukket"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profilmenu, lukket"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profilmenü, geschlossen"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile Menu, Closed"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile Menu, Closed"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile Menu, Closed"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile Menu, Closed"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile Menu, Closed"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profile Menu, Closed"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menú de perfil, cerrado"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menú de perfil, cerrado"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profiilin valikko, suljettu"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu Profil fermé"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu profil, fermé"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roghchlár Próifíle, Dúnta"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "प्रोफ़ाइल मेनू, बंद"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meni Pwofil, Fèmen"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu Profil, Ditutup"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uppsetningar valmynd, lokað"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu Profilo, chiuso"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プロフィールメニュー、終了"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tahua Kōtaha, Katia"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu Profil, Ditutup"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profilmeny, lukket"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profilmeny, lukket"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profielmenu, gesloten"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu profilu, zamknięte"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu Perfil, Fechado"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu perfil, fechado"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Меню профиля закрыто"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meni profila, zaprto"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profilmeny, stängd"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Profilmeny, stängd"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เมนูโพรไฟล์, ปิดแล้ว"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menu Hồ Sơ, Đã Đóng"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "资料菜单，已关闭"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "资料菜单，已关闭"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已關閉個人檔案選單"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已關閉個人檔案選單"
+          }
+        }
+      }
     },
     "Questions:" : {
       "localizations" : {
@@ -143272,7 +143525,260 @@
       }
     },
     "Welcome to Canvas!" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مرحبًا بك في Canvas!"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Us donem la benvinguda al Canvas!"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Croeso i Canvas!"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velkommen til Canvas!"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velkommen til Canvas!"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Willkommen bei Canvas!"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to Canvas!"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to Canvas!"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to Canvas!"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to Canvas!"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to Canvas!"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welcome to Canvas!"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le damos la bienvenida a Canvas."
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "¡Bienvenido a Canvas!"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tervetuloa Canvasiin!"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bienvenue dans Canvas !"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bienvenue dans Canvas!"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fáilte go Canvas!"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canvas में आपका स्वागत है!"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Byenvini nan Canvas!"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selamat Datang di Canvas!"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velkomin(n) í Canvas!"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Benvenuto in Canvas."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canvas へようこそ!"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nau mai ki Canvas!"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selamat Datang ke Canvas!"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velkommen til Canvas!"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Velkommen til Canvas!"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Welkom bij Canvas!"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Witamy w systemie Canvas!"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bem-vindo ao Canvas!"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bem-vindo ao Canvas!"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Вас приветствует Canvas!"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobrodošli v sistem Canvas."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Välkommen till Canvas!"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Välkommen till Canvas!"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ยินดีต้อนรับสู่ Canvas!"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chào mừng bạn đến với Canvas!"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "欢迎使用 Canvas!"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "欢迎使用 Canvas!"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "歡迎使用 Canvas！"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "歡迎使用 Canvas！"
+          }
+        }
+      }
     },
     "Whoops!" : {
       "comment" : "Error Title",
@@ -146434,7 +146940,260 @@
       }
     },
     "You don't have any courses yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity." : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ليس لدك أي مساقات بعد، ولذلك لا يوجد أي نشاط هنا. بمجرد أن تسجل في فصل، ستتم تعبئة لوحة المعلومات الخاصة بك بالأنشطة الجديدة."
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encara no teniu cap assignatura, de manera que tot està una mica tranquil aquí. Un cop us hàgiu inscrit en una classe, el panell de control començarà a omplir-se d’activitats noves."
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Does gennych chi ddim cyrsiau eto –– felly mae hi’n dawel yma. Ar ôl i chi gofrestru ar gyfer dosbarth, bydd eich dangosfwrdd yn dechrau llenwi â gweithgarwch newydd."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ingen fag endnu – så her er stadigvæk lidt stille. Når du tilmelder dig et fag, vil din oversigt begynde at fyldes med ny aktivitet."
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ingen fag endnu – så her er stadigvæk lidt stille. Når du tilmelder dig et fag, vil din oversigt begynde at fyldes med ny aktivitet."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sie haben noch keine Kurse – hier ist es also noch etwas ruhig. Sobald Sie sich für einen Kurs angemeldet haben, wird sich Ihr Dashboard mit neuen Aktivitäten füllen."
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any courses yet — so things are a bit quiet here. Once you enrol in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any subjects yet — so things are a bit quiet here. Once you enrol in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any courses yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any modules yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any courses yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any modules yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No tiene cursos todavía, así que, por ahora, todo está un poco tranquilo por aquí. Una vez que se inscriba en una clase, su tablero comenzará a llenarse de nuevas actividades."
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todavía no tienes ninguna asignatura, así que todo está un poco tranquilo por aquí. Cuando te inscribas en una clase, tu panel de control empezará a llenarse de nueva actividad."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sinulla ei ole vielä  kursseja - joten täällä on hieman hiljaista. Kun ilmoittaudut kurssille, koontinäyttösi alkaa täyttyä uusilla aktiviteeteilla."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous n’avez pas encore de cours, donc il n’y a pas grand-chose ici. Après votre inscription à un cours, votre tableau de bord commencera à se remplir d’informations concernant vos nouvelles activités."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous n’avez pas encore de cours - c’est donc un peu calme ici. Dès que vous vous inscrivez à un cours, votre tableau de bord se remplit de nouvelles activités."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon chúrsaí agat fós — mar sin tá rudaí beagáinín ciúin anseo. Nuair a rollaíonn tú i rang, tosóidh do phainéal ag líonadh le gníomhaíocht nua."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपके पास अभी तक कोई पाठ्यक्रम उपलब्ध नहीं है — इसलिए यहां फिलहाल कुछ नहीं दिख रहा है। एक बार जब आप किसी कक्षा में नामांकन कर ले लेते हैं, तो आपका डैशबोर्ड नई गतिविधियों से भरना शुरू हो जाएगा।"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ou poko gen okenn kou — se sa k fè pa gen anpil aktivite isit la. Lè w fin enskri nan yon klas, tablodbò ou a ap kòmanse ranpli ak nouvo aktivite."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anda belum memiliki kursus apa pun — jadi semuanya agak sepi di sini. Setelah Anda mendaftar di kelas, dasbor Anda akan mulai terisi dengan aktivitas baru."
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Þú hefur engin námskeið enn, því er allt svolítið rólegt hér. Þegar þú hefur innritað þig í námskeið fer stjórnborðið að fyllast upp af nýrri virkni."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non hai ancora dei corsi, quindi tutto è tranquillo qui. Una volta che ti iscrivi a un corso, la tua dashboard inizierà a riempirsi con le nuove attività."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "受講中のコースはまだありません — そのため、ここは少し静かです。クラスに登録すると、ダッシュボードに新しい活動が表示され始めます。"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kāore anō kia whai akoranga koe — nō reira he marino te āhua o te noho i konei. Kia rēhita koe ki tētahi akomanga, ka tīmata tō papatohu ki te whakakī i ngā mahi hou."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anda belum mempunyai apa-apa kursus — jadi keadaan masih sunyi di sini. Setelah anda mendaftar dalam kelas, papan pemuka anda akan mula diisi dengan aktiviti baharu."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ikke flere emner ennå – så det er litt stille her. Når du har meldt deg på et emne, begynner dashbordet ditt å fylles opp med ny aktivitet."
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ikke flere fag ennå – så det er litt stille her. Når du har meldt deg på et emne, vil oversikten din begynne å fylles opp med ny aktivitet."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Je hebt nog een cursussen – het is hier dus nog erg rustig. Zodra je je inschrijft voor een klas, vult je dashboard zich met nieuwe activiteit."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie masz jeszcze kursów, dlatego jest tu dość cicho. Gdy zapiszesz się na zajęcia, pulpit nawigacyjny zacznie wypełniać się nowymi aktywnościami."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ainda não tem nenhuma disciplina — por isso, as coisas estão um pouco calmas por aqui. Assim que se inscrever numa aula, o seu painel começará a encher-se de novas atividades."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você ainda não tem nenhum curso — então as coisas estão um pouco calmas por aqui. Depois de se matricular em uma aula, seu painel começará a se encher de novas atividades."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "У вас пока нет ни одного курса, поэтому здесь ничего не происходит. Как только вы будете включены в курс, ваша панель управления начнет заполняться новой активностью."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trenutno nimate še nobenega predmeta – zato je tukaj precej tiho. Ko se boste vpisali v predmet, se bo vaša nadzorna plošča začela polniti z novimi aktivnostmi."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ännu inte några kurser – så det är ganska lugnt just nu. När du har registrerat dig för en kurs kommer din översikt att fyllas med nya aktiviteter."
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ännu inte några kurser – så det är ganska lugnt just nu. När du har registrerat dig för en kurs kommer din översikt att fyllas med nya aktiviteter."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "คุณยังไม่มีบทเรียนใด ๆ - ทุกอย่างยังนิ่งอยู่ หลังจากลงทะเบียนในชั้นเรียนแล้ว แผงข้อมูลของคุณจะเริ่มแจ้งกิจกรรมใหม่"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn chưa có bất kỳ khóa học nào — vì vậy mà mọi thứ ở đây có vẻ hơi yên ắng. Khi bạn ghi danh vào một lớp học, bảng điều khiển sẽ bắt đầu lấp đầy với hoạt động mới."
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您还没有任何课程，因此暂无消息。注册班级后，您的控制面板将开始出现新活动。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您还没有任何课程，因此暂无消息。注册班级后，您的控制面板将开始出现新活动。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您目前還沒有任何課程，所以這裡暫時比較安靜。一旦您註冊了課程，您的控制面板就會開始充滿新的活動。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您目前還沒有任何課程，所以這裡暫時比較安靜。一旦您註冊了課程，您的控制面板就會開始充滿新的活動。"
+          }
+        }
+      }
     },
     "You don't have permission to masquerade as this user or there is no user with that ID" : {
       "comment" : "Masquerade error message",

@@ -32,14 +32,13 @@ struct K5GradesView: View, ScreenViewTrackable {
         VStack(spacing: 0) {
             gradingPeriodSelector
             Spacer()
-            RefreshableScrollView(showsIndicators: false) {
+            ScrollView(showsIndicators: false) {
                 ForEach(viewModel.grades) {
                     K5GradeCell(with: $0)
                     Divider()
                 }
-            } refreshAction: { endRefreshing in
-                viewModel.refresh(completion: endRefreshing)
             }
+            .refreshable(action: viewModel.refresh)
         }
         .padding(.horizontal)
         .contentShape(Rectangle())

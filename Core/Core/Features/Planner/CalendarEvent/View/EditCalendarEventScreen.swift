@@ -40,7 +40,7 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
 
     var body: some View {
         ScrollViewReader { scrollProxy in
-            InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { geometry in
+            InstUI.BaseScreen(state: viewModel.state, config: .notRefreshable) { geometry in
                 VStack(alignment: .leading, spacing: 0) {
                     VStack(spacing: 0) {
                         InstUI.TextFieldCell(
@@ -141,7 +141,6 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                 .frame(maxWidth: geometry.size.width, minHeight: geometry.size.height)
             }
         }
-        .navigationBarTitleView(viewModel.pageTitle)
         .navBarItems(
             leading: InstUI.NavigationBarButton.cancel {
                 viewModel.didTapCancel.send()
@@ -159,7 +158,7 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                 presenting: viewModel.editConfirmation
             )
         )
-        .navigationBarStyle(.modal)
+        .navigationTitle(viewModel.pageTitle, style: .modal)
         .errorAlert(isPresented: $viewModel.shouldShowSaveError, presenting: viewModel.saveErrorAlert)
     }
 }

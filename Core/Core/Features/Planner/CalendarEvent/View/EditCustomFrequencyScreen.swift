@@ -35,7 +35,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     }
 
     var body: some View {
-        InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { geometry in
+        InstUI.BaseScreen(state: viewModel.state, config: .notRefreshable) { geometry in
             VStack(alignment: .leading, spacing: 0) {
                 InstUI.LabelCell(
                     label: Text("Repeats every", bundle: .core)
@@ -74,7 +74,6 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
             }
             .frame(maxWidth: geometry.size.width)
         }
-        .navigationBarTitleView(viewModel.pageTitle)
         .navBarItems(
             trailing: .init(
                 isEnabled: viewModel.isSaveButtonEnabled,
@@ -85,7 +84,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                 }
             )
         )
-        .navigationBarStyle(.modal)
+        .navigationTitle(viewModel.pageTitle, style: .modal)
         .dropDownDetailsContainer(state: $weekDayDropDownState) {
             WeekDaysSelectionListView(selection: $viewModel.daysOfTheWeek)
         }

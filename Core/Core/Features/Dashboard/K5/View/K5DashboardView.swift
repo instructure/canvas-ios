@@ -48,7 +48,7 @@ public struct K5DashboardView: View {
                 viewModel.profileButtonPressed(router: env.router, viewController: controller)
             }, label: {
                 Image.hamburgerSolid
-                    .foregroundColor(Color(Brand.shared.navTextColor))
+                    .toolbarItemForegroundStyle(Brand.shared.navTextColor.asColor)
             })
             .identifier("Dashboard.profileButton")
             .accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))

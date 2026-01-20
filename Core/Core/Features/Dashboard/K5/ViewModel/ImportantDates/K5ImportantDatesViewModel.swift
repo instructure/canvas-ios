@@ -94,24 +94,13 @@ public class K5ImportantDatesViewModel: ObservableObject {
     }
 }
 
-extension K5ImportantDatesViewModel: Refreshable {
+extension K5ImportantDatesViewModel {
 
-    @available(*, renamed: "refresh()")
     public func refresh(completion: @escaping () -> Void) {
-        Task {
-            await refresh()
-            completion()
-        }
-    }
-
-    public func refresh() async {
         forceRefresh = true
-        return await withCheckedContinuation { continuation in
-            refreshCompletion = {
-                continuation.resume()
-            }
-            reloadData()
-        }
+        refreshCompletion = completion
+
+        reloadData()
     }
 
     private func reloadData() {

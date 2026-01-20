@@ -191,30 +191,19 @@ public class K5HomeroomViewModel: ObservableObject {
 
 // MARK: - Refresh Trigger -
 
-extension K5HomeroomViewModel: Refreshable {
+extension K5HomeroomViewModel {
 
-    @available(*, renamed: "refresh()")
     public func refresh(completion: @escaping () -> Void) {
-        Task {
-            await refresh()
-            completion()
-        }
-    }
-
-    public func refresh() async {
         forceRefresh = true
-        return await withCheckedContinuation { continuation in
-            refreshCompletion = {
-                continuation.resume()
-            }
-            announcementsStore = nil
-            missingSubmissions = nil
-            dueItems = nil
-            cards.refresh(force: true)
-            profile.refresh(force: true)
-            accountAnnouncementsStore.exhaust(force: true)
-            conferencesViewModel.refresh(force: true)
-            invitationsViewModel.refresh()
-        }
+        refreshCompletion = completion
+
+        announcementsStore = nil
+        missingSubmissions = nil
+        dueItems = nil
+        cards.refresh(force: true)
+        profile.refresh(force: true)
+        accountAnnouncementsStore.exhaust(force: true)
+        conferencesViewModel.refresh(force: true)
+        invitationsViewModel.refresh()
     }
 }

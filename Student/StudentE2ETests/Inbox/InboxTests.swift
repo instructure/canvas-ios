@@ -152,10 +152,16 @@ class InboxTests: E2ETestCase {
         let cancelButton = Helper.Filter.cancelButton.waitUntil(.visible)
         XCTAssertVisible(allCoursesOption)
         XCTAssertVisible(courseOption)
-        XCTAssertVisible(cancelButton)
+        if #unavailable(iOS 26) {
+            XCTAssertVisible(cancelButton)
+        }
 
         // MARK: Check filter by type options
-        cancelButton.hit()
+        if #available(iOS 26, *) {
+            app.dismissMenu()
+        } else {
+            cancelButton.hit()
+        }
         filterByTypeButton.hit()
         let inboxOption = Helper.Filter.inbox.waitUntil(.visible)
         let unreadOption = Helper.Filter.unread.waitUntil(.visible)
@@ -167,7 +173,9 @@ class InboxTests: E2ETestCase {
         XCTAssertVisible(starredOption)
         XCTAssertVisible(sentOption)
         XCTAssertVisible(archivedOption)
-        XCTAssertVisible(cancelButton.waitUntil(.visible))
+        if #unavailable(iOS 26) {
+            XCTAssertVisible(cancelButton.waitUntil(.visible))
+        }
     }
 
     func testMessageDetails() {
@@ -240,7 +248,11 @@ class InboxTests: E2ETestCase {
         XCTAssertVisible(archiveOption)
         XCTAssertVisible(deleteOption)
 
-        moreButton.forceTap()
+        if #available(iOS 26, *) {
+            app.dismissMenu()
+        } else {
+            moreButton.forceTap()
+        }
 
         // MARK: Check "Conversation options"
         optionsButton.hit()

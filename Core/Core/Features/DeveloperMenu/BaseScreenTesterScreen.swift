@@ -44,7 +44,6 @@ struct BaseScreenTesterScreen: View {
             }
             .padding()
         }
-        .navigationBarTitleView("Base Screen Test")
-        .navigationBarStyle(.modal)
+        .navigationTitle("Base Screen Test", style: .modal)
     }
 }

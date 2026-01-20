@@ -68,7 +68,7 @@ class CommentLibraryViewModel: ObservableObject {
     }
 }
 
-extension CommentLibraryViewModel: Refreshable {
+extension CommentLibraryViewModel {
 
     @available(*, renamed: "refresh()")
     public func refresh(completion: @escaping () -> Void) {

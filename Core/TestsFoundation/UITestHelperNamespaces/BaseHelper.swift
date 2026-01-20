@@ -22,7 +22,8 @@ import XCTest
 open class BaseHelper {
     public static let seeder = DataSeeder()
     public static var user: UITestUser {.dataSeedAdmin}
-    public static var backButton: XCUIElement { app.find(label: "Back", type: .button) }
+    public static var backButtonByIdOrLabel: XCUIElement { app.findBackButton() }
+    public static var backButtonByLabel: XCUIElement { app.find(label: "Back", type: .button) }
     public static var nextButton: XCUIElement { app.find(id: "nextButton", type: .button) }
     public static var openInSafariButton: XCUIElement { app.find(id: "OpenInSafariButton") }
 
@@ -66,7 +67,7 @@ open class BaseHelper {
 
     public struct TabBar {
         public static var dashboardTab: XCUIElement { app.find(id: "TabBar.dashboardTab", type: .button) }
-        public static var calendarTab: XCUIElement { app.find(id: "TabBar.calendarTab", type: .button) }
+        public static var calendarTab: XCUIElement { app.find(label: "Tab Bar", type: .tabBar).images["calendarTab"] }
         public static var todoTab: XCUIElement { app.find(id: "TabBar.todoTab", type: .button) }
         public static var notificationsTab: XCUIElement { app.find(id: "notificationsTab", type: .button) }
         public static var inboxTab: XCUIElement { app.find(id: "TabBar.inboxTab", type: .button) }

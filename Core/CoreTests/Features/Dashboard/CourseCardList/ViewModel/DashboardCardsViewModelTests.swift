@@ -37,12 +37,10 @@ class DashboardCardsViewModelTests: CoreTestCase {
 
         let uiRefreshExpectation = expectation(description: "ui refresh received")
         uiRefreshExpectation.expectedFulfillmentCount = 3 // initial loading state, actual loading state, data state
-        let refreshCallbackExpectation = expectation(description: "refresh callback called")
         let subscription = testee.$state.sink { _ in uiRefreshExpectation.fulfill() }
-        testee.refresh { refreshCallbackExpectation.fulfill() }
-        drainMainQueue()
+        XCTAssertFinish(testee.refresh())
 
-        wait(for: [uiRefreshExpectation, refreshCallbackExpectation], timeout: 1)
+        wait(for: [uiRefreshExpectation], timeout: 1)
 
         guard case .data = testee.state else { XCTFail("No data in view model"); return }
         let courseCardList = testee.courseCardList
@@ -56,16 +54,27 @@ class DashboardCardsViewModelTests: CoreTestCase {
     }
 
     func testLayoutSelectionFlagOnEmptyCourses() {
+        api.mock(GetDashboardCourses(), value: [])
+        api.mock(GetDashboardCards(showOnlyTeacherEnrollment: false), value: [])
+
         let interactor = DashboardCourseCardListInteractorLive(showOnlyTeacherEnrollment: false)
         let testee = DashboardCourseCardListViewModel(interactor)
         XCTAssertFalse(testee.shouldShowSettingsButton)
 
-        testee.refresh()
-        drainMainQueue()
+        let stateExpectation = expectation(description: "state updated")
+        let subscription = testee.$state.dropFirst().sink { state in
+            if case .empty = state {
+                stateExpectation.fulfill()
+            }
+        }
+
+        XCTAssertFinish(testee.refresh())
+        wait(for: [stateExpectation], timeout: 1)
 
         guard case .empty = testee.state else { XCTFail("View model should be empty"); return }
 
         XCTAssertFalse(testee.shouldShowSettingsButton)
+        subscription.cancel()
     }
 
     func testLayoutSelectionFlagWhenCoursesAvailable() {
@@ -76,11 +85,19 @@ class DashboardCardsViewModelTests: CoreTestCase {
         let testee = DashboardCourseCardListViewModel(interactor)
         XCTAssertFalse(testee.shouldShowSettingsButton)
 
-        testee.refresh()
-        drainMainQueue()
+        let stateExpectation = expectation(description: "state updated")
+        let subscription = testee.$state.dropFirst().sink { state in
+            if case .data = state {
+                stateExpectation.fulfill()
+            }
+        }
+
+        XCTAssertFinish(testee.refresh())
+        wait(for: [stateExpectation], timeout: 1)
 
         guard case .data = testee.state else { XCTFail("No data in view model"); return }
 
         XCTAssertTrue(testee.shouldShowSettingsButton)
+        subscription.cancel()
     }
 }

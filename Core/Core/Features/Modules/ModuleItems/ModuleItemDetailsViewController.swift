@@ -64,7 +64,11 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: String(localized: "Module Item", bundle: .core))
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "Module Item", bundle: .core)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Module Item", bundle: .core))
+        }
         Analytics.shared.logEvent("module_item", parameters: ["moduleID": moduleID!, "itemID": itemID!])
         errorView.isHidden = true
         errorView.retryButton.addTarget(self, action: #selector(retryButtonPressed), for: .primaryActionTriggered)
@@ -107,7 +111,12 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
         // When embedded view controllers adapt course color for their own spinner view,
         // we should enable this line below.
 //        spinnerView.color = course.first?.color
-        updateNavBar(subtitle: course.first?.name, color: course.first?.color)
+        if #available(iOS 26, *) {
+            navigationItem.subtitle = course.first?.name
+        } else {
+            updateNavBar(subtitle: course.first?.name, color: course.first?.color)
+        }
+
         let title: String
         switch item?.type {
         case .assignment:
@@ -127,7 +136,13 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
         case nil, .subHeader:
             title = String(localized: "Module Item", bundle: .core)
         }
-        setupTitleViewInNavbar(title: title)
+
+        if #available(iOS 26, *) {
+            navigationItem.title = title
+        } else {
+            setupTitleViewInNavbar(title: title)
+        }
+
         if item?.completionRequirementType == .must_mark_done {
             navigationItem.rightBarButtonItems = []
             navigationItem.rightBarButtonItems?.append(optionsButton)

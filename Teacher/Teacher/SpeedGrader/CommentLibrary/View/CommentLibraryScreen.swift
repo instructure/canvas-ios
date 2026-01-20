@@ -67,11 +67,10 @@ struct CommentLibraryScreen: View {
                 }
             )
         }
-        .navigationBarTitleView(String(localized: "Comment Library", bundle: .teacher))
         .toolbar {
             doneButton
         }
-        .navigationBarStyle(.modal)
+        .navigationTitle(String(localized: "Comment Library", bundle: .teacher), style: .modal)
         .background(.backgroundLightest)
     }
 

@@ -35,7 +35,7 @@ public struct K5ImportantDatesView: View, ScreenViewTrackable {
                     .padding(EdgeInsets(top: 28, leading: 16, bottom: 9, trailing: 24))
             }
             GeometryReader { geometry in
-                RefreshableScrollView(showsIndicators: false) {
+                ScrollView(showsIndicators: false) {
                     VStack(spacing: 0) {
                         if viewModel.importantDates.isEmpty {
                             EmptyPanda(
@@ -51,9 +51,8 @@ public struct K5ImportantDatesView: View, ScreenViewTrackable {
                         }
                         Spacer()
                     }
-                } refreshAction: { endRefreshing in
-                    viewModel.refresh(completion: endRefreshing)
                 }
+                .refreshable(action: viewModel.refresh)
             }
         }
     }

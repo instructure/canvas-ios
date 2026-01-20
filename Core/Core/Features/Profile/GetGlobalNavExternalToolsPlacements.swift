@@ -33,10 +33,8 @@ public class GetGlobalNavExternalToolsPlacements: CollectionUseCase {
                 #keyPath(ExternalToolLaunchPlacement.locationRaw),
                 ExternalToolLaunchPlacementLocation.global_navigation.rawValue
             ),
-            NSCompoundPredicate(orPredicateWithSubpredicates:
-                enrollment.allowedGlobalLTIDomains.map {
-                    NSPredicate(format: "%K == %@", #keyPath(ExternalToolLaunchPlacement.domain), $0)
-                }
+            NSCompoundPredicate(
+                orPredicateWithSubpredicates: enrollment.allowedGlobalLTIDomains.map { $0.matchPredicate }
             )
         ]), orderBy: #keyPath(ExternalToolLaunchPlacement.title), naturally: true)
     }
@@ -66,18 +64,32 @@ public class GetGlobalNavExternalToolsPlacements: CollectionUseCase {
 
 public extension HelpLinkEnrollment {
 
-    var allowedGlobalLTIDomains: [String] {
-        var domains: [LTIDomains] = []
-
+    var allowedGlobalLTIDomains: [LTIDomain] {
         switch self {
         case .observer:
-            domains = [.masteryConnect]
+            return [.masteryConnect]
         case .teacher, .student, .admin:
-            domains = [.studio, .gauge, .masteryConnect]
+            return [.studio, .gauge, .masteryConnect, .eportfolio]
         default:
-            domains = [.studio, .gauge]
+            return [.studio, .gauge]
+        }
+    }
+}
+
+private extension LTIDomain {
+
+    var matchPredicate: NSPredicate {
+        let format: String
+        switch self {
+        case .eportfolio:
+            // This is to include sub-domains that has region-specific prefix.
+            // Like `iad.` in this domain `iad.portfolio.instructure.com` which
+            // represents `US-East` region.
+            format = "%K CONTAINS[c] %@"
+        case .studio, .gauge, .masteryConnect:
+            format = "%K == %@"
         }
 
-        return domains.map(\.rawValue)
+        return NSPredicate(format: format, #keyPath(ExternalToolLaunchPlacement.domain), rawValue)
     }
 }

@@ -29,7 +29,7 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
     @IBOutlet weak var publishedIcon: UIImageView!
     @IBOutlet weak var publishedLabel: UILabel!
     @IBOutlet weak var publishedView: UIView!
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet public weak var sectionsStack: UIStackView!
@@ -124,10 +124,15 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: isAnnouncement
-            ? String(localized: "Announcement Details", bundle: .core)
-            : String(localized: "Discussion Details", bundle: .core)
-        )
+
+        let navigationTitle = isAnnouncement ? String(localized: "Announcement Details", bundle: .core) : String(localized: "Discussion Details", bundle: .core)
+
+        if #available(iOS 26, *) {
+            navigationItem.title = navigationTitle
+        } else {
+            setupTitleViewInNavbar(title: navigationTitle)
+        }
+
         courseSectionsView.isHidden = true
 
         optionsButton.accessibilityLabel = String(localized: "Options", bundle: .core)
@@ -161,10 +166,14 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
         webView.handle("moreOptions") { [weak self] message in self?.handleMoreOptions(message) }
         webView.handle("ready") { [weak self] _ in self?.ready() }
 
+        let showRepliesNavigationTitle = isAnnouncement ? String(localized: "Announcement Replies", bundle: .core) : String(localized: "Discussion Replies", bundle: .core)
+
         if showRepliesToEntryID != nil {
-            titleSubtitleView.title = isAnnouncement
-                ? String(localized: "Announcement Replies", bundle: .core)
-                : String(localized: "Discussion Replies", bundle: .core)
+            if #available(iOS 26, *) {
+                navigationItem.title = showRepliesNavigationTitle
+            } else {
+                titleSubtitleView.title = showRepliesNavigationTitle
+            }
             navigationItem.rightBarButtonItem = nil
         }
 
@@ -234,17 +243,36 @@ public class DiscussionDetailsViewController: ScreenViewTrackableViewController,
             return
         }
         spinnerView.color = color
-        refreshControl.color = color
-        titleSubtitleView.title = showRepliesToEntryID != nil ? (
-            isAnnouncement
-                ? String(localized: "Announcement Replies", bundle: .core)
-                : String(localized: "Discussion Replies", bundle: .core)
-        ) : (
-            isAnnouncement
-                ? String(localized: "Announcement Details", bundle: .core)
-                : String(localized: "Discussion Details", bundle: .core)
-        )
-        updateNavBar(subtitle: name, color: color)
+
+        let navigationTitle = {
+            if showRepliesToEntryID != nil {
+                if isAnnouncement {
+                    String(localized: "Announcement Replies", bundle: .core)
+                } else {
+                    String(localized: "Discussion Replies", bundle: .core)
+                }
+            } else {
+                if isAnnouncement {
+                    String(localized: "Announcement Details", bundle: .core)
+                } else {
+                    String(localized: "Discussion Details", bundle: .core)
+                }
+            }
+        }()
+
+        if #available(iOS 26, *) {
+            navigationItem.title = navigationTitle
+        } else {
+            titleSubtitleView.title = navigationTitle
+        }
+
+        if #available(iOS 26, *) {
+            navigationItem.subtitle = name
+            // WebView needs this color
+            self.color = color
+        } else {
+            updateNavBar(subtitle: name, color: color)
+        }
     }
 
     func update() {

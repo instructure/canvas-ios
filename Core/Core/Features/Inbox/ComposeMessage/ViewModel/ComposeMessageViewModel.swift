@@ -42,7 +42,6 @@ final class ComposeMessageViewModel: ObservableObject {
     @Published public private(set) var expandedIncludedMessageIds = [String]()
 
     @Published public var showExtraSendButton = false
-    public let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
     public let title = String(localized: "[No Subject]", bundle: .core)
     public var sendButtonActive: Bool {
         !recipients.isEmpty

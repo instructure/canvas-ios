@@ -25,7 +25,7 @@ struct HEmbeddedWebPageContainerView: View {
     private var features: [CoreWebViewFeature] = [
         .disableZoom,
         .forceDisableHorizontalScroll,
-        .pullToRefresh(color: UIColor(Color.huiColors.surface.institution))
+        .pullToRefresh
     ]
 
     // MARK: - Dependencies
@@ -43,7 +43,7 @@ struct HEmbeddedWebPageContainerView: View {
     var body: some View {
         if let url = viewModel.url {
             contentView(url: url)
-                .navigationBarTitleView(title: viewModel.navTitle, subtitle: nil)
+                .navigationTitles(title: viewModel.navTitle, subtitle: nil, style: .color(nil))
                 .toolbar(.hidden)
         }
     }

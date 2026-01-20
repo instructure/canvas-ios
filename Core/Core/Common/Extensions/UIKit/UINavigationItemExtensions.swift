@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2021-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,8 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public protocol Refreshable {
-    @available(*, renamed: "refresh()")
-    func refresh(completion: @escaping () -> Void)
-    func refresh() async
+import UIKit
+
+extension UINavigationItem {
+    public func setNavigationBarBackground(to color: UIColor) {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithDefaultBackground()
+        appearance.backgroundColor = color
+        self.standardAppearance = appearance
+        self.scrollEdgeAppearance = appearance
+    }
 }

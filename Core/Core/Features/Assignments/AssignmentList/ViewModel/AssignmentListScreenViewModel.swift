@@ -457,21 +457,11 @@ public class AssignmentListScreenViewModel: ObservableObject {
 #endif
 }
 
-extension AssignmentListScreenViewModel: Refreshable {
+extension AssignmentListScreenViewModel {
 
-    @available(*, renamed: "refresh()")
     public func refresh(completion: @escaping () -> Void) {
-        Task {
-            await refresh()
+        assignmentGroups?.refresh(force: true) { _ in
             completion()
-        }
-    }
-
-    public func refresh() async {
-        return await withCheckedContinuation { continuation in
-            assignmentGroups?.refresh(force: true) { _ in
-                continuation.resume()
-            }
         }
     }
 }
