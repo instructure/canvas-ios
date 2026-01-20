@@ -151,9 +151,15 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
     var isGradeChanged: Bool {
         guard let initialGrade else {
+            // Checking if last submission is reflected on lately generated
+            // grade state of stored objects of concern (Assignment & Submission).
+            // Which implies it submitted for first time at this session.
             return lastSubmittedGrade != nil
                 && lastSubmittedGrade == gradeState.originalGrade
         }
+
+        // Check if the grade of lately generated state is different from the one
+        // we started this session with.
         return gradeState.originalGrade != initialGrade
     }
 
