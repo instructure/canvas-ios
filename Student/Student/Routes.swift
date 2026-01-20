@@ -439,6 +439,10 @@ let academicRouter = Router(routes: [
         CoreHostingController(SnackBarTestView())
     },
 
+    RouteHandler("/dev-menu/instui-storybook") { _, _, _ in
+        CoreHostingController(InstUI.Storybook())
+    },
+
     RouteHandler("/logs") { _, _, _ in
         LogEventListViewController.create()
     },
