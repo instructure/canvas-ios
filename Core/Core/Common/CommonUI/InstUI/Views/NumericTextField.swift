@@ -47,6 +47,7 @@ extension InstUI {
         private let hasDecimal: Bool
         private let style: Style
 
+        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
         @AccessibilityFocusState private var isA11yFocused: Bool
 
         public init(
@@ -72,10 +73,6 @@ extension InstUI {
             // Style
             textField.textColor = style.textColor
             textField.font = .scaledNamedFont(style.textFont)
-            let placeholderAttributes: [NSAttributedString.Key: Any] = [
-                .foregroundColor: UIColor.textPlaceholder,
-                .font: UIFont.scaledNamedFont(style.placeholderFont)
-            ]
             textField.textAlignment = style.textAlignment
 
             // Keyboard
@@ -104,10 +101,7 @@ extension InstUI {
             textField.inputAccessoryView = toolbar
 
             // Texts
-            textField.attributedPlaceholder = NSAttributedString(
-                string: placeholder,
-                attributes: placeholderAttributes
-            )
+            textField.attributedPlaceholder = placeholderAttributed()
             textField.text = text
 
             return textField
@@ -119,6 +113,22 @@ extension InstUI {
                     textField.text = text
                 }
             }
+        }
+
+        public func sizeThatFits(_ proposal: ProposedViewSize, uiView: UITextField, context: Context) -> CGSize? {
+            guard dynamicTypeSize > .accessibility2 else { return nil }
+
+            // This is to shrink placeholder gradually, just enough to fit into the proposed width,
+            // which comes in handy for the cases of large accessibility sizes
+            if let width = proposal.width, width < placeholderAttributed().size().width {
+                var shrinkBy: CGFloat = 0.05
+                while placeholderAttributed(shrinkBy: shrinkBy).size().width > width && shrinkBy < 0.3 {
+                    shrinkBy += 0.05
+                }
+                uiView.attributedPlaceholder = placeholderAttributed(shrinkBy: shrinkBy)
+            }
+
+            return nil
         }
 
         public class Coordinator: NSObject, UITextFieldDelegate {
@@ -146,6 +156,26 @@ extension InstUI {
                 parent.isA11yFocused = true
                 return true
             }
+        }
+
+        // MARK: Placeholder Attributed
+
+        private func placeholderAttributed(shrinkBy shrinkPercent: CGFloat? = nil) -> NSAttributedString {
+            var font = UIFont.scaledNamedFont(style.placeholderFont)
+
+            if let shrinkPercent {
+                font = font.withSize(font.pointSize * (1 - shrinkPercent))
+            }
+
+            let placeholderAttributes: [NSAttributedString.Key: Any] = [
+                .foregroundColor: UIColor.textPlaceholder,
+                .font: font
+            ]
+
+            return NSAttributedString(
+                string: placeholder,
+                attributes: placeholderAttributes
+            )
         }
     }
 }
