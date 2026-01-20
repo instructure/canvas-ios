@@ -51,7 +51,7 @@ extension InstUI {
             count: Int,
             maxDotsBeforeScroll: Int = 7
         ) {
-            self.currentIndex = currentIndex
+            self.currentIndex = max(0, min(currentIndex, count - 1))
             self.count = count
             self.maxDotsBeforeScroll = maxDotsBeforeScroll
         }
@@ -91,6 +91,8 @@ extension InstUI {
             .frame(width: viewportWidth, height: dotSize)
             .frame(maxWidth: .infinity)
             .accessibilityHidden(true)
+            .animation(.smooth, value: count)
+            .animation(.smooth, value: maxDotsBeforeScroll)
         }
 
         private var viewportWidth: CGFloat {
@@ -101,7 +103,7 @@ extension InstUI {
             Capsule()
                 .fill(isSelected ? Color.textDarkest : Color.borderMedium)
                 .frame(width: isSelected ? selectedDotSize : dotSize, height: dotSize)
-                .animation(.smooth, value: currentIndex)
+                .animation(.smooth, value: isSelected)
         }
     }
 }
