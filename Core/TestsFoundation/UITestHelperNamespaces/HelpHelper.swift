@@ -60,8 +60,12 @@ public class HelpHelper: BaseHelper {
 
     // Functions
     public static func navigateToHelpPage() {
-        DashboardHelper.profileButton.hit()
-        ProfileHelper.helpButton.hit()
+        XCTContext.runActivity(named: "Navigate to Help screen") { _ in
+            DashboardHelper.profileButton.hit()
+            ProfileHelper.helpButton.hit()
+            let navTitle = app.find(label: "Help", type: .staticText)
+            navTitle.waitUntil(.visible)
+        }
     }
 
     public static func closeSafariAndActivateApp() {
@@ -69,9 +73,16 @@ public class HelpHelper: BaseHelper {
         app.activate()
     }
 
-    public static func returnToHelpPage(teacher: Bool = false) {
+    public static func returnToHelpPage(isStudentApp: Bool = true) {
         closeSafariAndActivateApp()
-        if teacher { closeButton.hit() }
+        if !isStudentApp {
+            closeButton.hit()
+        }
         navigateToHelpPage()
+    }
+
+    public static func getAllHelpItems() -> [XCUIElement] {
+        let helpItemsContainer = app.find(id: "helpItems")
+        return helpItemsContainer.buttons.allElementsBoundByIndex
     }
 }
