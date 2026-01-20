@@ -28,7 +28,7 @@ class StudentDetailsViewController: ScreenViewTrackableViewController, ErrorView
     @IBOutlet weak var keyboardSpace: NSLayoutConstraint!
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var nameLabel: UILabel!
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     @IBOutlet weak var scrollView: UIScrollView!
 
     let env = AppEnvironment.shared

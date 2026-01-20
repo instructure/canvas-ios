@@ -35,7 +35,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     }
 
     var body: some View {
-        InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { geometry in
+        InstUI.BaseScreen(state: viewModel.state, config: .notRefreshable) { geometry in
             VStack(alignment: .leading, spacing: 0) {
                 InstUI.LabelCell(
                     label: Text("Repeats every", bundle: .core)

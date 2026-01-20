@@ -23,7 +23,7 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var errorView: ListErrorView!
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var tableView: UITableView!
     public let titleSubtitleView = TitleSubtitleView.create()
@@ -103,7 +103,6 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
         }
         view.tintColor = color
         spinnerView.color = color
-        refreshControl.color = color
 
         if #available(iOS 26, *) {
             navigationItem.subtitle = name

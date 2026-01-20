@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2021-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,8 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public protocol Refreshable {
-    @available(*, renamed: "refresh()")
-    func refresh(completion: @escaping () -> Void)
-    func refresh() async
+import SwiftUI
+
+extension View {
+
+    /// Closure-based wrapper around SwiftUI's native `refreshable() async` method.
+    @ViewBuilder
+    public func refreshable(action: ((@escaping () -> Void) -> Void)?) -> some View {
+        if let action {
+            refreshable {
+                await withCheckedContinuation { continuation in
+                    action {
+                        continuation.resume()
+                    }
+                }
+            }
+        } else {
+            self
+        }
+    }
 }

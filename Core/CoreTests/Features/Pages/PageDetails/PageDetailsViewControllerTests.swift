@@ -96,9 +96,7 @@ class PageDetailsViewControllerTests: CoreTestCase {
         controller.app = .student
         controller.webView.scrollView.refreshControl?.beginRefreshing()
         controller.webView.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(controller.webView.scrollView.refreshControl?.isRefreshing, true)
         RunLoop.main.run(until: Date() + 1.5)
-        XCTAssertEqual(controller.webView.scrollView.refreshControl?.isRefreshing, false)
 
         if #available(iOS 26, *) {
             XCTAssertEqual(controller.navigationItem.title, "Refreshed")

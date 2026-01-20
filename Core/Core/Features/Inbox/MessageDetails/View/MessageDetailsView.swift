@@ -28,7 +28,7 @@ public struct MessageDetailsView: View {
     }
 
     public var body: some View {
-        RefreshableScrollView {
+        ScrollView {
             switch model.state {
             case .loading:
                 loadingIndicator
@@ -43,11 +43,8 @@ public struct MessageDetailsView: View {
                 .padding(.horizontal, 12)
                 .padding(.vertical, 24)
             }
-        } refreshAction: { onComplete in
-            model.refreshDidTrigger.send {
-                onComplete()
-            }
         }
+        .refreshable(action: model.refreshDidTrigger.send)
         .toolbar {
             if #available(iOS 26, *) {
                 moreButton

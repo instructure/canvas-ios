@@ -26,7 +26,7 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
     @IBOutlet weak var errorView: ListErrorView!
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var tableView: UITableView!
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     public var titleSubtitleView = TitleSubtitleView.create()
 
     public var color: UIColor?
@@ -69,7 +69,6 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         loadingView.color = nil
-        refreshControl.color = nil
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl

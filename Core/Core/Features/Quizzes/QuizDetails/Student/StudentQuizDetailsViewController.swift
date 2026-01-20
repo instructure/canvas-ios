@@ -30,7 +30,7 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var questionsLabel: UILabel!
     @IBOutlet weak var questionsValueLabel: UILabel!
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var settingsHeadingLabel: UILabel!
     @IBOutlet weak var statusIconView: UIImageView!
@@ -103,7 +103,6 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
         instructionsWebView.setupStudioFeatures(context: .course(courseID), env: env)
 
         loadingView.color = nil
-        refreshControl.color = nil
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         scrollView.refreshControl = refreshControl
         scrollView.isHidden = true

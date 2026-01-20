@@ -24,7 +24,7 @@ class DiscussionDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var webViewContainer: UIView!
     let webView = CoreWebView()
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
 
     var courseID = ""
     private(set) var env = AppEnvironment.shared

@@ -30,7 +30,7 @@ public struct AllCoursesView: View, ScreenViewTrackable {
 
     public var body: some View {
         GeometryReader { geometry in
-            RefreshableScrollView {
+            ScrollView {
                 VStack(spacing: 0) {
                     let width = geometry.size.width
                     let height = geometry.size.height
@@ -45,9 +45,8 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                         errorView(width: width, height: height)
                     }
                 }
-            } refreshAction: { endRefreshing in
-                viewModel.refresh(completion: endRefreshing)
             }
+            .refreshable(action: viewModel.refresh)
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
         .navigationTitle(String(localized: "All Courses", bundle: .core), style: .global)

@@ -254,15 +254,7 @@ public class CourseDetailsViewModel: ObservableObject {
     }
 }
 
-extension CourseDetailsViewModel: Refreshable {
-
-    @available(*, renamed: "refresh()")
-    public func refresh(completion: @escaping () -> Void) {
-        Task {
-            await refresh()
-            completion()
-        }
-    }
+extension CourseDetailsViewModel {
 
     public func refresh() async {
         requestAttendanceTool()

@@ -41,7 +41,10 @@ public class DashboardCourseCardListViewModel: ObservableObject {
 
         NotificationCenter.default.publisher(for: .favoritesDidChange)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in self?.refresh() }
+            .flatMap { [weak self] _ in
+                self?.refresh() ?? Publishers.typedJust()
+            }
+            .sink()
             .store(in: &subscriptions)
 
         interactor.state
@@ -55,13 +58,9 @@ public class DashboardCourseCardListViewModel: ObservableObject {
             .assign(to: &$shouldShowSettingsButton)
     }
 
-    public func refresh(onComplete: (() -> Void)? = nil) {
-        interactor
-            .refresh()
-            .sink { _ in
-                onComplete?()
-            }
-            .store(in: &subscriptions)
+    public func refresh() -> AnyPublisher<Void, Never> {
+        interactor.refresh()
+            .eraseToAnyPublisher()
     }
 }
 

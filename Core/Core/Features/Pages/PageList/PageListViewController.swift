@@ -25,7 +25,7 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
     @IBOutlet weak var errorView: ListErrorView!
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var tableView: UITableView!
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     public let titleSubtitleView = TitleSubtitleView.create()
 
     var app = App.student
@@ -114,7 +114,6 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
             return
         }
         loadingView.color = color
-        refreshControl.color = color
         view.tintColor = color
         if #available(iOS 26, *) {
             navigationItem.subtitle = name

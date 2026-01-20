@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public struct DashboardContainerView: View, ScreenViewTrackable {
@@ -41,6 +42,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
     @StateObject private var offlineSyncCardViewModel = DashboardOfflineSyncProgressCardAssembly.makeViewModel()
     @State private var draggedCourseCardId: String?
+    @State private var refreshCancellable: AnyCancellable?
 
     private var activeGroups: [Group] { viewModel.groups.filter { $0.isActive } }
     private var isGroupSectionActive: Bool { !activeGroups.isEmpty && shouldShowGroupList }
@@ -63,7 +65,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
 
     public var body: some View {
         GeometryReader { geometry in
-            RefreshableScrollView {
+            ScrollView {
                 VStack(spacing: 0) {
                     DashboardOfflineSyncProgressCardView(viewModel: offlineSyncCardViewModel)
                     fileUploadNotificationCards()
@@ -72,7 +74,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 .animation(.default, value: offlineSyncCardViewModel.state)
                 .padding(.horizontal, verticalSpacing)
             }
-            refreshAction: { onComplete in
+            .refreshable { onComplete in
                 refresh(force: true, onComplete: onComplete)
             }
         }
@@ -429,13 +431,23 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     }
 
     func refresh(force: Bool, onComplete: (() -> Void)? = nil) {
+        refreshCancellable?.cancel()
+        refreshCancellable = nil
+
         invitationsViewModel.refresh()
         colors.refresh(force: force)
         conferencesViewModel.refresh(force: force)
-        viewModel.refreshGroups(onComplete: onComplete)
         notifications.exhaust(force: force)
         settings.refresh(force: force)
-        courseCardListViewModel.refresh(onComplete: onComplete)
+
+        refreshCancellable = Publishers.CombineLatest(
+            viewModel.refreshGroups(),
+            courseCardListViewModel.refresh()
+        )
+        .mapToVoid()
+        .sink {
+            onComplete?()
+        }
     }
 
     func showAllCourses() {

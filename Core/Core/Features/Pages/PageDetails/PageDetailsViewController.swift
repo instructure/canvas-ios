@@ -22,7 +22,7 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
     lazy var optionsButton = UIBarButtonItem(image: .moreLine, style: .plain, target: self, action: #selector(showOptions))
     @IBOutlet weak var webViewContainer: UIView!
     public var webView = CoreWebView()
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     public let titleSubtitleView = TitleSubtitleView.create()
 
     var app = App.student

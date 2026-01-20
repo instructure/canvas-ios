@@ -24,7 +24,7 @@ class CourseListViewController: UIViewController {
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
     @IBOutlet weak var errorView: ListErrorView!
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var tableView: UITableView!
 
@@ -53,7 +53,6 @@ class CourseListViewController: UIViewController {
         spinnerView.color = nil
         tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
-        refreshControl.color = nil
         tableView.refreshControl = refreshControl
     }
 

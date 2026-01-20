@@ -40,7 +40,7 @@ class ParentAssignmentDetailsViewController: UIViewController, CoreWebViewLinkDe
     @IBOutlet weak var webViewContainer: UIView!
     @IBOutlet weak var submissionAndRubricButton: UIButton!
     let webView = CoreWebView()
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     var selectedDate: Date?
     var assignmentID = ""
     var courseID = ""

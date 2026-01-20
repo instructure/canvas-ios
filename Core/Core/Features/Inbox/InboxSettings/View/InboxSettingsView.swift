@@ -33,7 +33,8 @@ public struct InboxSettingsView: View {
 
     public var body: some View {
         InstUI.BaseScreen(
-            state: viewModel.state
+            state: viewModel.state,
+            config: .notRefreshable
         ) { geometry in
             contentView(geometry: geometry)
         }

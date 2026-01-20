@@ -82,7 +82,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         tableView.backgroundColor = .backgroundLightest
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.refreshControl = CircleRefreshControl()
+        tableView.refreshControl = UIRefreshControl()
         tableView.refreshControl?.addTarget(self, action: #selector(refresh(sender:)), for: .valueChanged)
         tableView.registerHeaderFooterView(GroupedSectionHeaderView.self, fromNib: false)
         tableView.registerCell(RightDetailTableViewCell.self)

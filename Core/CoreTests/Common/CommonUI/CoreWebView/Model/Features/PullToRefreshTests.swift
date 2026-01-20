@@ -23,18 +23,17 @@ import XCTest
 class PullToRefreshTests: XCTestCase {
 
     func testRefreshControlAdded() {
-        let webView = CoreWebView(features: [.pullToRefresh(color: .red)])
+        let webView = CoreWebView(features: [.pullToRefresh])
 
         guard let refreshControl = refreshControl(for: webView) else {
             return XCTFail("No refresh control found")
         }
 
-        XCTAssertEqual(refreshControl.color, .red)
         XCTAssertEqual(webView.scrollView.bounces, true)
     }
 
     func testReloadsWebView() {
-        let mockWebView = MockCoreWebView(features: [.pullToRefresh()])
+        let mockWebView = MockCoreWebView(features: [.pullToRefresh])
 
         guard let refreshControl = refreshControl(for: mockWebView) else {
             return XCTFail("No refresh control found")
@@ -44,8 +43,8 @@ class PullToRefreshTests: XCTestCase {
         XCTAssertTrue(mockWebView.reloadCalled)
     }
 
-    func refreshControl(for webView: CoreWebView) -> CircleRefreshControl? {
-        for case let refresh as CircleRefreshControl in webView.scrollView.subviews {
+    func refreshControl(for webView: CoreWebView) -> UIRefreshControl? {
+        for case let refresh as UIRefreshControl in webView.scrollView.subviews {
             return refresh
         }
 

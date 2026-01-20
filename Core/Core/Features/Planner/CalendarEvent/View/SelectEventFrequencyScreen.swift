@@ -31,7 +31,7 @@ struct SelectEventFrequencyScreen: View, ScreenViewTrackable {
     }
 
     var body: some View {
-        InstUI.BaseScreen(state: .data, config: viewModel.screenConfig) { geometry in
+        InstUI.BaseScreen(state: .data, config: .notRefreshable) { geometry in
             VStack(alignment: .leading, spacing: 0) {
                 ForEach(viewModel.presetViewModels) { presetVM in
                     FrequencyPresetCell(

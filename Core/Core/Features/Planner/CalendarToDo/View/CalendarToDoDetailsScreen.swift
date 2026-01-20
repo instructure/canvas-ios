@@ -30,7 +30,7 @@ public struct CalendarToDoDetailsScreen: View {
     public var body: some View {
         let isContextColorBackground = if #available(iOS 26, *) { false } else { true }
 
-        InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { _ in
+        InstUI.BaseScreen(state: viewModel.state, config: .notRefreshable) { _ in
             eventContent
         }
         .navBarItems(

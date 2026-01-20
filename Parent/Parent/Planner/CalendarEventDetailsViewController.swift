@@ -38,7 +38,7 @@ class CalendarEventDetailsViewController: UIViewController, ColoredNavViewProtoc
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var webViewContainer: UIView!
     let webView = CoreWebView()
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     let titleSubtitleView = TitleSubtitleView.create()
     var selectedDate: Date?
     private var minDate = Clock.now

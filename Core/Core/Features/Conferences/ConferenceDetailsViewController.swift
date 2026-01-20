@@ -25,7 +25,7 @@ public class ConferenceDetailsViewController: ScreenViewTrackableViewController,
     @IBOutlet weak var joinButton: UIButton!
     @IBOutlet weak var recordingsHeadingLabel: UILabel!
     @IBOutlet weak var recordingsView: UIView!
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -112,7 +112,6 @@ public class ConferenceDetailsViewController: ScreenViewTrackableViewController,
             return
         }
         spinnerView.color = color
-        refreshControl.color = color
         if #available(iOS 26, *) {
             navigationItem.subtitle = name
         } else {
@@ -139,7 +138,7 @@ public class ConferenceDetailsViewController: ScreenViewTrackableViewController,
         tableView.reloadData()
     }
 
-    @objc func refresh(_ sender: CircleRefreshControl? = nil) {
+    @objc func refresh(_ sender: UIRefreshControl? = nil) {
         conferences.exhaust(force: sender != nil) { [weak self] _ in
             if self?.conferences.hasNextPage == true, self?.conference == nil {
                 return true
