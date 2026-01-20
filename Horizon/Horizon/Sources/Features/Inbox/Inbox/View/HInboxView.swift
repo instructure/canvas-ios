@@ -17,45 +17,35 @@
 //
 
 import Core
-import Combine
 import HorizonUI
 import SwiftUI
 
 struct HInboxView: View {
+    // MARK: - Propertites a11y
+    @AccessibilityFocusState private var focusedFilterSelection: Bool?
+    @AccessibilityFocusState private var focusedFilterPeople: Bool?
+    @AccessibilityFocusState private var messageFocusedID: String?
+    @State private var lastFocusedMessageID: String?
 
     @Environment(\.viewController) private var viewController
     @Bindable var viewModel: HInboxViewModel
-    let coordinateSpaceName: String = "scroll"
 
     var body: some View {
-        GeometryReader { scrollViewProxy in
-            InstUI.BaseScreen(
-                state: viewModel.screenState,
-                config: .init(refreshable: true),
-                refreshAction: viewModel.refresh
-            ) { _ in
-                VStack(alignment: .leading, spacing: HorizonUI.spaces.space8) {
-                    filterSelection
-                    peopleSelection
-                    messageArea
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(
-                    GeometryReader { contentProxy in
-                        Color.clear
-                            .onChange(of: contentProxy.frame(in: .named(coordinateSpaceName)).minY) {
-                                viewModel.loadMoreIfScrolledEnough(
-                                    scrollViewProxy: scrollViewProxy,
-                                    contentProxy: contentProxy,
-                                    coordinateSpaceName: coordinateSpaceName
-                                )
-                            }
-                    }
-                )
+        InstUI.BaseScreen(
+            state: viewModel.screenState,
+            config: .init(refreshable: true),
+            refreshAction: viewModel.refresh
+        ) { _ in
+            VStack(alignment: .leading, spacing: HorizonUI.spaces.space8) {
+                filterSelection
+                peopleSelection
+                messageList
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .accessibilityHidden(viewModel.peopleSelectionViewModel.isFocused)
             }
-            .coordinateSpace(name: coordinateSpaceName)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(HorizonUI.colors.surface.pagePrimary)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -65,43 +55,36 @@ struct HInboxView: View {
             ScrollOffsetReader.dismissKeyboard()
         }
         .onAppear {
-            viewModel.refresh {}
+            if let lastFocusedMessageID {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                    messageFocusedID = lastFocusedMessageID
+                }
+            }
         }
-    }
-
-    private var messageArea: some View {
-        ZStack {
-            HorizonUI.Spinner(size: .xSmall)
-                .opacity(viewModel.spinnerOpacity)
-                .animation(.easeInOut(duration: 0.2), value: viewModel.spinnerOpacity)
-            messageList
-        }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 
     private var messageList: some View {
-        VStack(spacing: .zero) {
+        LazyVStack(spacing: .zero) {
             ForEach(viewModel.messageRows, id: \.id) { messageRow in
-                MessageRow(viewModel: messageRow) {
+                InboxMessageView(viewModel: messageRow) {
+                    lastFocusedMessageID = messageRow.id
                     viewModel.viewMessage(
                         announcement: messageRow.announcement,
-                        inboxMessageListItem: messageRow.inboxMessageListItem,
+                        messageID: messageRow.messageListItemID,
                         viewController: viewController
                     )
                 }
+                .id(messageRow.id)
+                .accessibilityFocused($messageFocusedID, equals: messageRow.id)
+                .onAppear { viewModel.loadMore(message: messageRow) }
             }
         }
         .frame(maxHeight: .infinity, alignment: .top)
         .frame(maxWidth: .infinity)
         .background(HorizonUI.colors.surface.pageSecondary)
-        .opacity(viewModel.messageListOpacity)
-        .animation(.easeInOut(duration: 0.2), value: viewModel.messageListOpacity)
-        .clipShape(
-            .rect(
-                topLeadingRadius: HorizonUI.CornerRadius.level4.attributes.radius,
-                topTrailingRadius: HorizonUI.CornerRadius.level4.attributes.radius
-            )
-        )
+        .hidden(viewModel.messageRows.isEmpty)
+        .animation(.easeInOut(duration: 0.2), value: viewModel.messageRows.count)
+        .roundedTopCorners()
     }
 
     private var peopleSelection: some View {
@@ -111,17 +94,31 @@ struct HInboxView: View {
             disabled: viewModel.isSearchDisabled
         )
         .padding(.horizontal, HorizonUI.spaces.space12)
+        .accessibilityHidden(viewModel.isMessagesFilterFocused || (viewModel.filterTitle == InboxFilterOption.announcements.title))
+        .accessibilityFocused($focusedFilterPeople, equals: true)
+        .onChange(of: viewModel.peopleSelectionViewModel.isFocused) { _, newValue in
+            if newValue == false {
+                focusedFilterPeople = true
+            }
+        }
     }
 
     private var filterSelection: some View {
         HorizonUI.SingleSelect(
             selection: $viewModel.filterTitle,
             focused: $viewModel.isMessagesFilterFocused,
+            isSearchable: false,
             label: nil,
-            options: HInboxViewModel.FilterOption.allCases.map { $0.title },
+            options: InboxFilterOption.allCases.map { $0.title },
             zIndex: 102
         )
         .padding(.horizontal, HorizonUI.spaces.space12)
+        .accessibilityFocused($focusedFilterSelection, equals: true)
+        .onChange(of: viewModel.isMessagesFilterFocused) { _, newValue in
+            if newValue == false {
+                focusedFilterSelection = true
+            }
+        }
     }
 
     private var topBar: some View {
@@ -135,96 +132,14 @@ struct HInboxView: View {
             ) {
                 viewModel.goToComposeMessage(viewController)
             }
+            .hidden(viewModel.screenState == .loading)
         }
         .padding(.huiSpaces.space16)
     }
 }
 
-struct MessageRow: View {
-    let viewModel: HInboxViewModel.MessageRowViewModel
-    let onTap: () -> Void
-
-    var body: some View {
-        VStack(alignment: .leading) {
-            if viewModel.isNew || !viewModel.dateString.isEmpty {
-                HStack(alignment: .top) {
-                    Text(viewModel.dateString)
-                        .huiTypography(.p2)
-                        .padding(.bottom, .huiSpaces.space8)
-
-                    Spacer()
-
-                    if viewModel.isNew {
-                        newIndicatorBadge
-                    }
-                }
-            }
-
-            HStack(alignment: .top, spacing: .huiSpaces.space8) {
-                if viewModel.isAnnouncementIconVisible {
-                    HorizonUI.icons.announcement
-                        .renderingMode(.template)
-                        .foregroundStyle(HorizonUI.colors.icon.default)
-                }
-                VStack(alignment: .leading) {
-                    Text(viewModel.title)
-                        .lineLimit(1)
-                        .huiTypography(viewModel.isNew ? .labelMediumBold : .p2)
-
-                    Text(viewModel.subtitle)
-                        .lineLimit(1)
-                        .huiTypography(viewModel.isNew ? .labelMediumBold : .p2)
-                }
-            }
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(.top, .huiSpaces.space16)
-        .padding(.bottom, .huiSpaces.space12)
-        .padding(.leading, .huiSpaces.space16)
-        .padding(.trailing, .huiSpaces.space12)
-        .background(HorizonUI.colors.surface.pageSecondary)
-        .onTapGesture {
-            onTap()
-        }
-        .overlay(
-            Rectangle()
-                .frame(height: 1)
-                .foregroundStyle(HorizonUI.colors.lineAndBorders.lineStroke),
-            alignment: .bottom
-        )
-    }
-
-    var newIndicatorBadge: some View {
-        HStack {}
-            .frame(width: HorizonUI.spaces.space8, height: HorizonUI.spaces.space8)
-            .background(HorizonUI.colors.surface.institution)
-            .clipShape(Circle())
-    }
-}
-
-struct AddressbookInteractorPreview: AddressbookInteractor {
-    var state: CurrentValueSubject<StoreState, Never> {
-        CurrentValueSubject(.data)
-    }
-    var recipients: CurrentValueSubject<[SearchRecipient], Never> {
-        CurrentValueSubject([])
-    }
-    var canSelectAllRecipient: CurrentValueSubject<Bool, Never> {
-        CurrentValueSubject(false)
-    }
-
-    func refresh() -> Future<Void, Never> {
-        Future { promise in
-            promise(.success(()))
-        }
-    }
-
-    func setSearch(_ searchString: String) {
-    }
-}
-
+#if DEBUG
 #Preview {
-    HInboxView(
-        viewModel: HInboxViewModel()
-    )
+    HInboxAssembly.preview()
 }
+#endif

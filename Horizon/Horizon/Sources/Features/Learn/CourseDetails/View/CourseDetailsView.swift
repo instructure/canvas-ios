@@ -79,8 +79,7 @@ struct CourseDetailsView: View {
                         .padding(.horizontal, .huiSpaces.space24)
                         .padding(.bottom, .huiSpaces.space16)
                         .onTapGesture { isCourseDropdownVisible.toggle() }
-                        .accessibilityElement(children: .ignore)
-                        .accessibilityLabel(viewModel.course.accessibilityDescription)
+                        .accessibilityLabel(viewModel.course.accessibilityDescription(isExpanded: isCourseDropdownVisible))
                     }
                     .readingFrame { frame in courseNameHeight = frame.height }
                     headerView
@@ -151,7 +150,8 @@ struct CourseDetailsView: View {
             .id(viewModel.course.progress)
         }
         .padding([.horizontal, .bottom], .huiSpaces.space24)
-        .accessibilityHidden(true)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(viewModel.course.accessibilityProgressDescription)
     }
 
     private func learningContentView() -> some View {

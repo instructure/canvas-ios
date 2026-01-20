@@ -76,8 +76,10 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         view.backgroundColor = .backgroundLightest
         colorScheme = ColorScheme.observee(studentID)
         navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.useContextColor(colorScheme?.color)
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: String(localized: "Back", bundle: .parent), style: .plain, target: nil, action: nil)
+        if #unavailable(iOS 26) {
+            navigationController?.navigationBar.useContextColor(colorScheme?.color)
+            self.navigationItem.backBarButtonItem = UIBarButtonItem(title: String(localized: "Back", bundle: .parent), style: .plain, target: nil, action: nil)
+        }
 
         delegate = self
         customStatuses.refresh()
@@ -183,6 +185,11 @@ class CourseDetailsViewController: HorizontalMenuViewController {
                     configureSyllabus()
                     if showSummary { configureSummary() }
                 }
+            }
+
+            if #available(iOS 26, *), itemCount <= 1 {
+                // Set the toolbar background if the tab switcher is not present to match the Grade Screen's header
+                navigationItem.setNavigationBarBackground(to: .backgroundLight)
             }
 
             layoutViewControllers()

@@ -39,11 +39,20 @@ class SyllabusTests: E2ETestCase {
         XCTAssertVisible(courseCard)
 
         Helper.navigateToSyllabus(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(.visible)
+
+        if #available(iOS 26, *) {
+            let navTitle = Helper.navTitle.waitUntil(.visible)
+            let navSubtitle = Helper.navSubtitle(course: course).waitUntil(.visible)
+            XCTAssertVisible(navTitle)
+            XCTAssertVisible(navSubtitle)
+        } else {
+            let navBar = Helper.navBar(course: course).waitUntil(.visible)
+            XCTAssertVisible(navBar)
+        }
+
         let syllabusTab = Helper.syllabusTab.waitUntil(.visible)
         let summaryTab = Helper.summaryTab.waitUntil(.visible)
         let syllabusBodyLabel = Helper.syllabusBody.waitUntil(.visible)
-        XCTAssertVisible(navBar)
         XCTAssertVisible(syllabusTab)
         XCTAssertVisible(summaryTab)
         XCTAssertVisible(syllabusBodyLabel)

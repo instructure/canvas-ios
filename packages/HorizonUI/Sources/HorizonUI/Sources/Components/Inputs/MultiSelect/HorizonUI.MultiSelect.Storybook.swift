@@ -28,15 +28,15 @@ extension HorizonUI.MultiSelect {
 
         var body: some View {
             HorizonUI.MultiSelect(
-                selections: $selections,
                 focused: $focused,
+                selections: [],
                 label: "Label",
                 textInput: $textInput,
                 options: Array(1 ... 20).map {
                     Option(id: "Option \($0)", label: "Option \($0)")
                 },
                 loading: $loading
-            )
+            ) { _ in }
             .frame(maxHeight: .infinity, alignment: .top)
             .padding(.horizontal, .huiSpaces.space36)
         }

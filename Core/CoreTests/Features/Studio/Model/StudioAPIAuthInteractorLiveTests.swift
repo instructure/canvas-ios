@@ -61,7 +61,7 @@ class StudioAPIAuthInteractorLiveTests: CoreTestCase {
     private func mockStudioLTIData() {
         api.mock(
             GetArc(courseID: "1"),
-            value: [.make(domain: LTIDomains.studio.rawValue, url: TestData.studioLaunchURL)]
+            value: [.make(domain: LTIDomain.studio.rawValue, url: TestData.studioLaunchURL)]
         )
     }
 

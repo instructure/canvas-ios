@@ -153,6 +153,14 @@ public class QuizzesHelper: BaseHelper {
         return app.find(id: "Quizzes, \(course.name)")
     }
 
+    public static var navTitle: XCUIElement {
+        app.find(label: "Quizzes", type: .staticText)
+    }
+
+    public static func navSubtitle(course: DSCourse) -> XCUIElement {
+        app.find(label: course.name, type: .staticText)
+    }
+
     public static func navigateToQuizzes(course: DSCourse) {
         DashboardHelper.courseCard(course: course).hit()
         CourseDetailsHelper.titleLabel.waitUntil(.visible)

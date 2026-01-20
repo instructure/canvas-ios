@@ -22,7 +22,7 @@ import XCTest
 final class CDHActivitiesWidgetModelTests: CoreTestCase {
     func testSave() {
         // Given
-        let apiEntity = makeActivitiesWidget(courseID: 42, courseName: "Course 42", moduleCountCompleted: 15)
+        let apiEntity = makeActivitiesWidget(courseID: "42", courseName: "Course 42", moduleCountCompleted: 15)
         // When
         let saved = CDHActivitiesWidgetModel.save(apiEntity, in: databaseClient)
         // Then
@@ -37,18 +37,18 @@ final class CDHActivitiesWidgetModelTests: CoreTestCase {
         // When
         let saved = CDHActivitiesWidgetModel.save(apiEntity, in: databaseClient)
         // Then
-        XCTAssertEqual(saved.courseID, "0")
+        XCTAssertEqual(saved.courseID, "")
         XCTAssertEqual(saved.courseName, "")
         XCTAssertEqual(saved.moduleCountCompleted.intValue, 0)
     }
 
     func testUpdateExistingEntity() {
         // Given
-        let initial = makeActivitiesWidget(courseID: 99, courseName: "Old Name", moduleCountCompleted: 10)
+        let initial = makeActivitiesWidget(courseID: "99", courseName: "Old Name", moduleCountCompleted: 10)
         let savedInitial = CDHActivitiesWidgetModel.save(initial, in: databaseClient)
         XCTAssertEqual(savedInitial.courseName, "Old Name")
         // When
-        let updated = makeActivitiesWidget(courseID: 99, courseName: "New Name", moduleCountCompleted: 25)
+        let updated = makeActivitiesWidget(courseID: "99", courseName: "New Name", moduleCountCompleted: 25)
         let savedUpdated = CDHActivitiesWidgetModel.save(updated, in: databaseClient)
         // Then
         XCTAssertEqual(savedUpdated.courseID, "99")
@@ -57,7 +57,7 @@ final class CDHActivitiesWidgetModelTests: CoreTestCase {
     }
 
     private func makeActivitiesWidget(
-        courseID: Int?,
+        courseID: String?,
         courseName: String?,
         moduleCountCompleted: Int?
     ) -> GetHActivitiesWidgetResponse.Widget {

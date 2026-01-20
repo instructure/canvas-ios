@@ -40,6 +40,7 @@ final class NotificationFormatterLive: NotificationFormatter {
                 isScoreAnnouncement: (unownedSelf.isNotificationItemScored(notification) || unownedSelf.isGradingWeightChanged(notification)),
                 type: type,
                 announcementId: notification.announcementId,
+                announcementContent: notification.message,
                 assignmentURL: notification.assignmentURL,
                 htmlURL: notification.htmlURL
             )

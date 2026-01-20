@@ -48,6 +48,7 @@ public extension HorizonUI {
                             tab(title: item, isSelected: index == selectTabIndex)
                         }
                         .id(index)
+                        .accessibilityLabel(accessibilityLabel(forTabIndex: index))
                     }
                 }
                 .padding(.horizontal, .huiSpaces.space24)
@@ -70,6 +71,12 @@ public extension HorizonUI {
                         .matchedGeometryEffect(id: "selected", in: nameSpace)
                 }
             }
+        }
+
+        private func accessibilityLabel(forTabIndex tabIndex: Int) -> String {
+            let selectedTab = String(format: String("Selected tab is %@. "), tabs[selectTabIndex ?? 0])
+            let tabDescription = String(format: String("%@. unselected"), tabs[tabIndex])
+            return selectTabIndex == tabIndex ? selectedTab : tabDescription
         }
     }
 }

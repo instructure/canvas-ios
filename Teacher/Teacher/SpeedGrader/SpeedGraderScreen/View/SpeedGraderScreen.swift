@@ -46,6 +46,46 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
     }
 
     var body: some View {
+        if #available(iOS 26, *) {
+            content
+                .navigationTitles(
+                    title: viewModel.navigationTitle,
+                    subtitle: viewModel.navigationSubtitle,
+                    style: .color(viewModel.navigationBarColor)
+                )
+                .toolbar {
+                    if viewModel.isPostPolicyButtonVisible {
+                        postPolicySettingsButton
+                    }
+                    doneButton
+                }
+                .onFirstAppear {
+                    // When speedgrader is opened from a discussion
+                    // the router automatically adds a done button
+                    controller.value.navigationItem.leadingItemGroups = []
+                }
+        } else {
+            content
+                // There's an attributed graph cycle (caused by UINavigationBar.useContextColor) that prevents
+                // the screen from moving from loading to data state. Adding this ID will treat the view as
+                // completely new when the state changes and allowing the view to re-render.
+                .id(viewModel.state)
+                .navBarItems(trailing: navBarTrailingItems)
+                .navigationTitles(
+                    title: viewModel.navigationTitle,
+                    subtitle: viewModel.navigationSubtitle,
+                    style: .color(viewModel.navigationBarColor)
+                )
+                .onFirstAppear {
+                    setupStatusBarStyleUpdates()
+                    // When speedgrader is opened from a discussion
+                    // the router automatically adds a done button
+                    controller.value.navigationItem.leadingItemGroups = []
+                }
+        }
+    }
+
+    private var content: some View {
         InstUI.BaseScreen(state: viewModel.state, config: screenConfig) { proxy in
             PagesViewControllerWrapper(
                 dataSource: viewModel,
@@ -75,6 +115,8 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
         .snackBar(viewModel: viewModel.snackBarViewModel)
     }
 
+    @available(iOS, deprecated: 26, message: "Toolbars are not colored above iOS 26")
+    // Sets the status bar color for the colored toolbar
     private func setupStatusBarStyleUpdates() {
         guard let controller = controller.value as? CoreHostingController<SpeedGraderScreen> else {
             return
@@ -96,8 +138,9 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
     }
 
     private var doneButton: InstUI.NavigationBarButton {
-        .done(
-            isBackgroundContextColor: true,
+        let isBackgroundContextColor = if #available(iOS 26, *) { false } else { true }
+        return .done(
+            isBackgroundContextColor: isBackgroundContextColor,
             accessibilityId: "SpeedGrader.doneButton"
         ) {
             viewModel.didTapDoneButton.send(controller)
@@ -110,7 +153,7 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
         } label: {
             Image.eyeLine
                 .size(24 * uiScale.iconScale)
-                .foregroundColor(.textLightest)
+                .toolbarItemForegroundStyle(.textLightest)
         }
         .identifier("SpeedGrader.postPolicyButton")
         .accessibilityLabel(Text("Post settings", bundle: .teacher))

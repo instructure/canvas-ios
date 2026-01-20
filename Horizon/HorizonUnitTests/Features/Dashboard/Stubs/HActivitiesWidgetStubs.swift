@@ -27,9 +27,9 @@ enum HActivitiesWidgetStubs {
             widgetData: .init(
                 data: [
                     .init(
-                        courseID: 101,
+                        courseID: "101",
                         courseName: "Course 1",
-                        userID: 1,
+                        userID: "1",
                         userUUID: "uuid1",
                         userName: "User 1",
                         userAvatarImageURL: "avatar1",
@@ -40,9 +40,9 @@ enum HActivitiesWidgetStubs {
                         moduleCountTotal: 8
                     ),
                     .init(
-                        courseID: 102,
+                        courseID: "102",
                         courseName: "Course 2",
-                        userID: 1,
+                        userID: "1",
                         userUUID: "uuid1",
                         userName: "User 1",
                         userAvatarImageURL: "avatar1",
@@ -53,9 +53,9 @@ enum HActivitiesWidgetStubs {
                         moduleCountTotal: 6
                     ),
                     .init(
-                        courseID: 103,
+                        courseID: "103",
                         courseName: "Course 3",
-                        userID: 1,
+                        userID: "1",
                         userUUID: "uuid1",
                         userName: "User 1",
                         userAvatarImageURL: "avatar1",

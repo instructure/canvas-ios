@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,21 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import XCTest
+import SwiftUI
 
-class LTIDomainsTests: XCTestCase {
-
-    func testIcons() {
-        XCTAssertEqual(LTIDomains.studio.icon, .studioLine)
-        XCTAssertEqual(LTIDomains.gauge.icon, .ltiLine)
-        XCTAssertEqual(LTIDomains.gauge.icon, LTIDomains.defaultIcon)
-        XCTAssertEqual(LTIDomains.masteryConnect.icon, .masteryLTI)
+struct DismissKeyboardOnTapModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .contentShape(Rectangle())
+            .onTapGesture {
+                UIApplication.shared.sendAction(
+                    #selector(UIResponder.resignFirstResponder),
+                    to: nil,
+                    from: nil,
+                    for: nil
+                )
+            }
     }
+}
 
-    func testRawValues() {
-        XCTAssertEqual(LTIDomains.studio.rawValue, "arc.instructure.com")
-        XCTAssertEqual(LTIDomains.gauge.rawValue, "gauge.instructure.com")
-        XCTAssertEqual(LTIDomains.masteryConnect.rawValue, "app.masteryconnect.com")
+extension View {
+    func dismissKeyboardOnTap() -> some View {
+        modifier(DismissKeyboardOnTapModifier())
     }
 }

@@ -37,8 +37,7 @@ class SyllabusTests: E2ETestCase {
 
         SyllabusHelper.navigateToSyllabus(course: course)
 
-        let navBar = SyllabusHelper.navBar(course: course).waitUntil(.visible)
-        XCTAssertVisible(navBar)
+        assertNavbarVisible(course: course)
 
         let syllabusTab = SyllabusHelper.syllabusTab.waitUntil(.visible)
         XCTAssertVisible(syllabusTab)
@@ -85,11 +84,22 @@ class SyllabusTests: E2ETestCase {
 
         // MARK: Navigate to Syllabus, check if tabs (syllabus, summary) are not visible
         SyllabusHelper.navigateToSyllabus(course: course)
-        let navBar = SyllabusHelper.navBar(course: course).waitUntil(.visible)
         let syllabusTab = SyllabusHelper.syllabusTab.waitUntil(.vanish)
         let summaryTab = SyllabusHelper.summaryTab.waitUntil(.vanish)
-        XCTAssertVisible(navBar)
+        assertNavbarVisible(course: course)
         XCTAssertTrue(syllabusTab.isVanished)
         XCTAssertTrue(summaryTab.isVanished)
+    }
+
+    private func assertNavbarVisible(course: DSCourse) {
+        if #available(iOS 26, *) {
+            let navTitle = SyllabusHelper.navTitle.waitUntil(.visible)
+            let navSubtitle = SyllabusHelper.navSubtitle(course: course).waitUntil(.visible)
+            XCTAssertVisible(navTitle)
+            XCTAssertVisible(navSubtitle)
+        } else {
+            let navBar = SyllabusHelper.navBar(course: course).waitUntil(.visible)
+            XCTAssertVisible(navBar)
+        }
     }
 }

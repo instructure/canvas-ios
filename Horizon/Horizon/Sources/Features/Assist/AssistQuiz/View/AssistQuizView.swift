@@ -87,18 +87,23 @@ extension AssistQuizView {
 
     private var answerOptions: some View {
         VStack(spacing: .huiSpaces.space8) {
-            ForEach(viewModel.quiz?.options ?? []) { answer in
+            ForEach(Array((viewModel.quiz?.options ?? []).enumerated()), id: \.offset) { index, answer in
                 Button {
                     viewModel.selectedAnswer = answer
                 } label: {
                     let isCorrect = viewModel.isCorrect(answer: answer)
+                    let isSelected = answer == viewModel.selectedAnswer
                     AssistQuizAnswerOptionView(
                         selectedAnswer: answer,
-                        isSelected: answer == viewModel.selectedAnswer,
-                        isCorrect: answer == viewModel.selectedAnswer
+                        isSelected: isSelected,
+                        isCorrect: isSelected
                         ? isCorrect
                         : isCorrect == true ? isCorrect : nil
                     )
+                    .accessibilityElement(children: .ignore)
+                    .accessibilityAddTraits(isSelected ? .isSelected : [])
+                    .accessibilityLabel(answer.accessibilityDescription(index: index))
+                    .accessibilityHint(answer.accessibilityHint(isSelected: isSelected, isCorrect: isCorrect))
                 }
             }
         }
@@ -112,6 +117,14 @@ extension AssistQuizView {
             fillsWidth: true
         ) {
             viewModel.submitQuiz()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIAccessibility.post(
+                    notification: .announcement,
+                    argument: viewModel.isCorrect(answer: viewModel.selectedAnswer) == true
+                    ? String(localized: "Your answer is correct. ")
+                    : String(localized: "Your answer wrong. ")
+                )
+            }
         }
         .disabled(viewModel.isSubmitButtonDisabled)
     }

@@ -28,7 +28,7 @@ extension InstUI {
         private let accessoryIconSize: CGFloat
         private let content: () -> Content
 
-        @State private var isExpanded: Bool
+        @Binding private var isExpanded: Bool
         @State private var expandedState: CollapseButtonExpandedState
 
         private let headerAccessibilityLabel: String
@@ -42,7 +42,7 @@ extension InstUI {
             itemCount: Int?,
             paddingSet: InstUI.Styles.PaddingSet = .sectionHeader,
             accessoryIconSize: CGFloat = 18,
-            isInitiallyExpanded: Bool = true,
+            isExpanded: Binding<Bool>,
             content: @escaping () -> Content
         ) where Label == Text {
             self.init(
@@ -52,7 +52,7 @@ extension InstUI {
                 itemCount: itemCount,
                 paddingSet: paddingSet,
                 accessoryIconSize: accessoryIconSize,
-                isInitiallyExpanded: isInitiallyExpanded,
+                isExpanded: isExpanded,
                 content: content
             )
         }
@@ -64,7 +64,7 @@ extension InstUI {
             itemCount: Int?,
             paddingSet: InstUI.Styles.PaddingSet = .sectionHeader,
             accessoryIconSize: CGFloat = 18,
-            isInitiallyExpanded: Bool = true,
+            isExpanded: Binding<Bool>,
             content: @escaping () -> Content
         ) {
             self.label = label
@@ -72,8 +72,8 @@ extension InstUI {
             self.accessoryIconSize = accessoryIconSize
             self.content = content
 
-            self.isExpanded = isInitiallyExpanded
-            self.expandedState = .init(isExpanded: isInitiallyExpanded)
+            self._isExpanded = isExpanded
+            self.expandedState = .init(isExpanded: isExpanded.wrappedValue)
 
             self.headerAccessibilityLabel = [
                 accessibilityLabel,
@@ -147,12 +147,15 @@ extension InstUI {
 #if DEBUG
 
 #Preview {
+    @Previewable @State var isExpanded1: Bool = true
+    @Previewable @State var isExpanded2: Bool = true
     let count1 = 3
     let count2 = 25
+
     InstUI.BaseScreen(state: .data) { _ in
         VStack(spacing: 0) {
             InstUI.Divider()
-            InstUI.CollapsibleListSection(title: "First Section", itemCount: count1) {
+            InstUI.CollapsibleListSection(title: "First Section", itemCount: count1, isExpanded: $isExpanded1) {
                 VStack(spacing: 0) {
                     ForEach(0..<count1, id: \.self) { index in
                         Text(verbatim: "Item \(index)")
@@ -163,7 +166,7 @@ extension InstUI {
                     }
                 }
             }
-            InstUI.CollapsibleListSection(title: "Second Section", itemCount: count2) {
+            InstUI.CollapsibleListSection(title: "Second Section", itemCount: count2, isExpanded: $isExpanded2) {
                 VStack(spacing: 0) {
                     ForEach(0..<count2, id: \.self) { index in
                         Text(verbatim: "Item \(index)")

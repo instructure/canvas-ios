@@ -41,7 +41,7 @@ enum ProgramCardStatus {
         }
     }
 
-     var forgroundColor: Color {
+     var foregroundColor: Color {
         switch self {
         case .inProgress, .active: Color.huiColors.surface.institution
         default: Color.huiColors.text.title
@@ -62,6 +62,16 @@ enum ProgramCardStatus {
             return true
         default:
             return false
+        }
+    }
+
+    var name: String {
+        switch self {
+        case .active: String(localized: "Not started yet", bundle: .horizon)
+        case .completed: String(localized: "Completed", bundle: .horizon)
+        case .inProgress: String(localized: "In Progress", bundle: .horizon)
+        case .locked: String(localized: "Locked", bundle: .horizon)
+        case .notEnrolled: String(localized: "Not Enrolled", bundle: .horizon)
         }
     }
 }

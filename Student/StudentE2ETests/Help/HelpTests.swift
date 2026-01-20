@@ -39,7 +39,7 @@ class HelpTests: E2ETestCase {
         XCTAssertVisible(searchTheCanvasGuidesButton)
         searchTheCanvasGuidesButton.hit()
         var browserURL = SafariAppHelper.browserURL
-        XCTAssertTrue(browserURL.contains("https://community.canvaslms.com/t5/Canvas/ct-p/canvas"))
+        XCTAssertContains(browserURL, "https://community.instructure.com/en/categories/canvas")
         HelpHelper.returnToHelpPage()
 
         // MARK: Check "CUSTOM LINK" button
@@ -81,6 +81,6 @@ class HelpTests: E2ETestCase {
 
         submitAFeatureButton.hit()
         browserURL = SafariAppHelper.browserURL
-        XCTAssertTrue(browserURL.contains("canvas-ideas-themes"))
+        XCTAssertContains(browserURL, "https://community.instructure.com/en/instructure-roadmap")
     }
 }

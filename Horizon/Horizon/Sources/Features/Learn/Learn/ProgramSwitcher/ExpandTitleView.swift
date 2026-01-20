@@ -40,5 +40,7 @@ struct ExpandTitleView: View {
                 .accessibilityHidden(true)
             Spacer()
         }
+        .accessibilityAddTraits(.isButton)
+        .accessibilityHint(isExpanded ? String(localized: "Double-tap to collapse") : String(localized: "Double-tap to expand"))
     }
 }

@@ -40,6 +40,8 @@ public extension UIImage {
     static var arrowOpenRightSolid: UIImage { UIImage(named: "arrowOpenRightSolid", in: .core, compatibleWith: nil)! }
     static var arrowOpenUpLine: UIImage { UIImage(named: "arrowOpenUpLine", in: .core, compatibleWith: nil)! }
     static var arrowOpenUpSolid: UIImage { UIImage(named: "arrowOpenUpSolid", in: .core, compatibleWith: nil)! }
+    static var arrowUpLine: UIImage { UIImage(named: "arrowUpLine", in: .core, compatibleWith: nil)! }
+    static var arrowUpSolid: UIImage { UIImage(named: "arrowUpSolid", in: .core, compatibleWith: nil)! }
     static var assignmentLine: UIImage { UIImage(named: "assignmentLine", in: .core, compatibleWith: nil)! }
     static var assignmentSolid: UIImage { UIImage(named: "assignmentSolid", in: .core, compatibleWith: nil)! }
     static var audioLine: UIImage { UIImage(named: "audioLine", in: .core, compatibleWith: nil)! }
@@ -88,6 +90,8 @@ public extension UIImage {
     static var emailSolid: UIImage { UIImage(named: "emailSolid", in: .core, compatibleWith: nil)! }
     static var emptyLine: UIImage { UIImage(named: "emptyLine", in: .core, compatibleWith: nil)! }
     static var emptySolid: UIImage { UIImage(named: "emptySolid", in: .core, compatibleWith: nil)! }
+    static var eportfolioLine: UIImage { UIImage(named: "eportfolioLine", in: .core, compatibleWith: nil)! }
+    static var eportfolioSolid: UIImage { UIImage(named: "eportfolioSolid", in: .core, compatibleWith: nil)! }
     static var exitFullScreenLine: UIImage { UIImage(named: "exitFullScreenLine", in: .core, compatibleWith: nil)! }
     static var exitFullScreenSolid: UIImage { UIImage(named: "exitFullScreenSolid", in: .core, compatibleWith: nil)! }
     static var expandItemsLine: UIImage { UIImage(named: "expandItemsLine", in: .core, compatibleWith: nil)! }
@@ -309,6 +313,8 @@ public extension Image {
     static var arrowOpenRightSolid: Image { Image("arrowOpenRightSolid", bundle: .core) }
     static var arrowOpenUpLine: Image { Image("arrowOpenUpLine", bundle: .core) }
     static var arrowOpenUpSolid: Image { Image("arrowOpenUpSolid", bundle: .core) }
+    static var arrowUpLine: Image { Image("arrowUpLine", bundle: .core) }
+    static var arrowUpSolid: Image { Image("arrowUpSolid", bundle: .core) }
     static var assignmentLine: Image { Image("assignmentLine", bundle: .core) }
     static var assignmentSolid: Image { Image("assignmentSolid", bundle: .core) }
     static var audioLine: Image { Image("audioLine", bundle: .core) }
@@ -357,6 +363,8 @@ public extension Image {
     static var emailSolid: Image { Image("emailSolid", bundle: .core) }
     static var emptyLine: Image { Image("emptyLine", bundle: .core) }
     static var emptySolid: Image { Image("emptySolid", bundle: .core) }
+    static var eportfolioLine: Image { Image("eportfolioLine", bundle: .core) }
+    static var eportfolioSolid: Image { Image("eportfolioSolid", bundle: .core) }
     static var exitFullScreenLine: Image { Image("exitFullScreenLine", bundle: .core) }
     static var exitFullScreenSolid: Image { Image("exitFullScreenSolid", bundle: .core) }
     static var expandItemsLine: Image { Image("expandItemsLine", bundle: .core) }

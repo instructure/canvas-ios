@@ -20,55 +20,42 @@ import SwiftUI
 import HorizonUI
 
 struct ProgramCardView: View {
-    // MARK: - Content
-    private let courseName: String
+    // MARK: - Dependencies
+
+    private let programCourse: ProgramCourse
+    private let status: ProgramCardStatus
     private let isLinear: Bool
-    private let isSelfEnrolled: Bool
-    private let isRequired: Bool
-    private let estimatedTime: String?
-    private let courseStatus: String
-    private let completionPercent: Double
-
-    // MARK: - State
     @Binding private var isLoading: Bool
-
-    // MARK: - Actions
     private let onTapEnroll: () -> Void
 
     // MARK: - UI
     private let cornerRadius: HorizonUI.CornerRadius = .level3
-    private var status: ProgramCardStatus {
-        .init(completionPercent: completionPercent, status: courseStatus)
-    }
 
     // MARK: - Init
     public init(
-        courseName: String,
+        programCourse: ProgramCourse,
         isLinear: Bool,
-        isSelfEnrolled: Bool,
-        isRequired: Bool,
+        status: ProgramCardStatus,
         isLoading: Binding<Bool>,
-        estimatedTime: String?,
-        courseStatus: String,
-        completionPercent: Double,
         onTapEnroll: @escaping () -> Void
     ) {
-        self.courseName = courseName
+        self.programCourse = programCourse
         self.isLinear = isLinear
-        self.isSelfEnrolled = isSelfEnrolled
-        self.isRequired = isRequired
+        self.status = status
         _isLoading = isLoading
-        self.estimatedTime = estimatedTime
-        self.courseStatus = courseStatus
-        self.completionPercent = completionPercent
         self.onTapEnroll = onTapEnroll
     }
 
     // MARK: - Body
     public var body: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
-            titleView
-            statusView
+            VStack(alignment: .leading, spacing: .huiSpaces.space16) {
+                titleView
+                statusView
+            }
+           .accessibilityElement(children: .ignore)
+           .accessibilityLabel(programCourse.accessibilityLabelText(status: status, isLinear: isLinear))
+           .accessibilityHint(programCourse.accessibilityHintString(status: status))
             if status == .notEnrolled {
                 enrollButton
             }
@@ -76,7 +63,6 @@ struct ProgramCardView: View {
         .padding(.huiSpaces.space16)
         .background(cardBackground)
     }
-
     // MARK: - Components
     private var titleView: some View {
         HStack(alignment: .top, spacing: .huiSpaces.space4) {
@@ -84,23 +70,23 @@ struct ProgramCardView: View {
                 Image.huiIcons.checkCircleFull
                     .foregroundStyle(status.borderColor)
             }
-            Text(courseName)
+            Text(programCourse.name)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .multilineTextAlignment(.leading)
                 .fixedSize(horizontal: false, vertical: true)
-                .foregroundStyle(status.forgroundColor)
+                .foregroundStyle(status.foregroundColor)
                 .huiTypography(.h4)
         }
     }
 
     private var statusView: some View {
         ProgramCardStatusView(
-            isEnrolled: status.isEnrolled && isSelfEnrolled,
-            isRequired: isRequired,
+            isEnrolled: status.isEnrolled && programCourse.isSelfEnrolled,
+            isRequired: programCourse.isRequired,
             isLinear: isLinear,
             status: status,
-            estimatedTime: estimatedTime,
-            completionPercent: completionPercent
+            estimatedTime: programCourse.estimatedTime,
+            completionPercent: programCourse.completionPercent
         )
     }
 
@@ -116,6 +102,7 @@ struct ProgramCardView: View {
                 onSave: onTapEnroll
             )
         }
+        .accessibilityLabel(String(localized: "Enroll to the course"))
     }
 
     private var cardBackground: some View {
@@ -128,7 +115,7 @@ struct ProgramCardView: View {
 
     @ViewBuilder
     private var borderView: some View {
-        if isRequired || status == .completed {
+        if programCourse.isRequired || status == .completed {
             RoundedRectangle(cornerRadius: cornerRadius.attributes.radius)
                 .stroke(status.borderColor, lineWidth: 1)
         } else {
@@ -144,14 +131,18 @@ struct ProgramCardView: View {
 #Preview {
     @Previewable @State var isLoading: Bool = false
     ProgramCardView(
-        courseName: "Course Name Dolor Sit Amet",
+        programCourse: ProgramCourse(
+            id: "12",
+            name: "Course Name Dolor Sit Amet",
+            isSelfEnrolled: true,
+            isRequired: true,
+            status: "Required",
+            progressID: "progressID",
+            completionPercent: 0.1,
+            moduleItemsestimatedTime: [],
+            index: 1
+        ),
         isLinear: true,
-        isSelfEnrolled: true,
-        isRequired: true,
-        isLoading: $isLoading,
-        estimatedTime: "10 Hours",
-        courseStatus: "ENROLLED",
-        completionPercent: 0.3
-
-    ) { isLoading.toggle() }
+        status: .active,
+        isLoading: $isLoading) { isLoading.toggle() }
 }

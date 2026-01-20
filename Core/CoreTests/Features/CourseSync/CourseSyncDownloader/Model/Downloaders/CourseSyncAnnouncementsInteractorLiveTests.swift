@@ -45,7 +45,11 @@ class CourseSyncAnnouncementsInteractorLiveTests: CoreTestCase {
         testee.viewWillAppear(false)
 
         // MARK: - THEN
-        XCTAssertEqual((testee.navigationItem.titleView as? TitleSubtitleView)?.subtitle, "Course One")
+        if #available(iOS 26, *) {
+            XCTAssertEqual(testee.navigationItem.subtitle, "Course One")
+        } else {
+            XCTAssertEqual((testee.navigationItem.titleView as? TitleSubtitleView)?.subtitle, "Course One")
+        }
 
         guard let announcementCell = testee.tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? AnnouncementListCell else {
             return XCTFail()
