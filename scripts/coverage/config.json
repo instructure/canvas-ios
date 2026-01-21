@@ -13,6 +13,7 @@
     "Core\/Common\/CommonUI\/CoreWebView\/Model\/NavigationActionRepresentable.swift",
     "Core\/Common\/CommonUI\/EmbeddedWebPage\/ViewModel\/EmbeddedWebPageViewModel.swift",
     "Core\/Common\/CommonUI\/InstUI\/",
+    "Core\/Common\/CommonUI\/NavigationBar\/UIKit\/ColoredNavViewProtocol.swift",
     "Core\/Common\/CommonUI\/SnackBar\/View\/SwiftUI\/SnackBarViewModifier.swift",
     "Core\/Common\/CommonUI\/SwiftUIViews\/",
     "Core\/Common\/CommonUI\/Typography\/",
