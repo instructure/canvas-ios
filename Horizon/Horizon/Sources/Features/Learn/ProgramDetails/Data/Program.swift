@@ -18,7 +18,7 @@
 
 import Foundation
 
-struct Program: Identifiable {
+struct Program: Identifiable, ProgressStatusProvidable {
     let id: String
     let name: String
     let variant: String
@@ -40,6 +40,8 @@ struct Program: Identifiable {
     var isOptionalProgram: Bool {
         courses.allSatisfy { !$0.isRequired }
     }
+
+    var status: ProgressStatus { .init(progress: completionPercent * 100) }
 
     var completionPercent: Double {
         if isLinear {
@@ -199,18 +201,6 @@ extension Array where Element == ProgramCourse {
                 updatedCourse.index = 0
             }
             return updatedCourse
-        }
-    }
-
-    func mapToProgramSwitcher(programID: String?, programName: String?) -> [ProgramSwitcherModel.Course] {
-        return self.map {
-            .init(
-                id: $0.id,
-                name: $0.name,
-                programID: programID,
-                programName: programName,
-                isEnrolled: $0.isEnrolled
-            )
         }
     }
 }

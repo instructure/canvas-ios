@@ -33,7 +33,10 @@ struct CourseListView: View {
     @Environment(\.viewController) private var viewController
     @State private var isShowHeader: Bool = true
     @State private var isShowDivider: Bool = false
-    @State private var selectedStatus: CourseCardModel.CourseStatus = .all
+    @State private var selectedOption: OptionModel = .init(
+        id: ProgressStatus.all.rawValue,
+        name: String(localized: "All courses")
+    )
 
     // MARK: - Dependencies
 
@@ -116,33 +119,29 @@ struct CourseListView: View {
 
     private var courseFilterView: some View {
         HStack(spacing: .zero) {
-            CourseFilteringView(selectedStatus: selectedStatus) { status in
-                viewModel.filter(status: status ?? .all)
-                lastFocusedCourseID = selectFilterFocusedID
-                restoreFocusIfNeeded(after: 1)
-                selectedStatus = status ?? .all
-            }
-            .frame(maxWidth: 200)
-            .fixedSize(horizontal: true, vertical: false)
-
+            filterView
             Spacer()
             Text(viewModel.filteredCourses.count.description)
                 .foregroundStyle(Color.huiColors.text.dataPoint)
                 .huiTypography(.p1)
-                .accessibilityLabel(
-                    Text(
-                        String(
-                            format: String(localized: "Count of visible courses is %@"),
-                            viewModel.filteredCourses.count.description
-                        )
-                    )
-                )
+                .accessibilityLabel(Text(String(format: String(localized: "Count of visible items is %@"), viewModel.filteredCourses.count.description)))
         }
         .padding(.horizontal, .huiSpaces.space16)
         .padding(.bottom, .huiSpaces.space16)
+    }
+
+    private var filterView: some View {
+        FilterView(
+            items: ProgressStatus.courses,
+            selectedOption: selectedOption
+        ) { option in
+            viewModel.filter(status: .init(rawValue: option?.id ?? 0))
+            lastFocusedCourseID = selectFilterFocusedID
+            restoreFocusIfNeeded(after: 1)
+            selectedOption = option ?? selectedOption
+        }
         .id(selectFilterFocusedID)
         .accessibilityFocused($focusedCourseID, equals: selectFilterFocusedID)
-
     }
 
     private var navigationBarHelperView: some View {
@@ -207,6 +206,6 @@ struct CourseListView: View {
                 .init(course: .init(id: "12", name: "Course111", progress: 30))
             ],
             router: AppEnvironment.shared.router
-        ) { _, _ in }
+        )
     )
 }

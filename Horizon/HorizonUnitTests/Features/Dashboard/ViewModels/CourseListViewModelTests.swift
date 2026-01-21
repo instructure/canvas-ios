@@ -21,14 +21,12 @@
 import XCTest
 import SwiftUI
 
-final class CourseListViewTests: HorizonTestCase {
+final class CourseListViewModelTests: HorizonTestCase {
     private var testee: CourseListViewModel!
-    private var onTapProgramCalled: Bool!
     private var courses: [CourseCardModel]!
 
     override func setUp() {
         super.setUp()
-        onTapProgramCalled = false
         courses = [
             .init(course: .init(id: "1", name: "Course 1", progress: 100)), // Completed
             .init(course: .init(id: "2", name: "Course 2", progress: 50)),  // In Progress
@@ -47,7 +45,6 @@ final class CourseListViewTests: HorizonTestCase {
 
     override func tearDown() {
         testee = nil
-        onTapProgramCalled = nil
         courses = nil
         super.tearDown()
     }
@@ -150,17 +147,16 @@ final class CourseListViewTests: HorizonTestCase {
         testee.navigateProgram(id: "program1", viewController: viewController)
 
         // Then
-        XCTAssertTrue(onTapProgramCalled)
+        let programDetails = router.lastViewController as? CoreHostingController<ProgramDetailsView>
+        XCTAssertNotNil(programDetails)
     }
-
 }
 
-extension CourseListViewTests {
+extension CourseListViewModelTests {
     private func createtestee(courses: [CourseCardModel]) {
         testee = CourseListViewModel(
             courses: courses,
-            router: router,
-            onTapProgram: { _, _ in self.onTapProgramCalled = true }
+            router: router
         )
     }
 }

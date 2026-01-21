@@ -22,8 +22,6 @@ import SwiftUI
 
 struct CourseDetailsView: View {
     @State private var viewModel: CourseDetailsViewModel
-    @State private var isCourseDropdownVisible: Bool = false
-    @State private var courseNameHeight: CGFloat = .zero
     @Environment(\.viewController) private var viewController
 
     private var tabs: [CourseDetailsTabs] {
@@ -39,7 +37,6 @@ struct CourseDetailsView: View {
     private let isBackButtonVisible: Bool
     private let shouldHideTabBar: Bool
     private let onShowNavigationBarAndTabBar: (Bool) -> Void
-    private let onSwitchToLearnTab: (ProgramSwitcherModel?, WeakViewController) -> Void
 
     // MARK: - Init
 
@@ -48,44 +45,25 @@ struct CourseDetailsView: View {
         isBackButtonVisible: Bool = true,
         shouldHideTabBar: Bool = false,
         onShowNavigationBarAndTabBar: @escaping (Bool) -> Void,
-        onSwitchToLearnTab: @escaping (ProgramSwitcherModel?, WeakViewController) -> Void
     ) {
         self.viewModel = viewModel
         self.shouldHideTabBar = shouldHideTabBar
         self.isBackButtonVisible = isBackButtonVisible
         self.onShowNavigationBarAndTabBar = onShowNavigationBarAndTabBar
-        self.onSwitchToLearnTab = onSwitchToLearnTab
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
             if viewModel.isShowHeader {
-                VStack(spacing: .zero) {
-                    VStack(spacing: .zero) {
-                        if let programName = viewModel.selectedProgram?.name {
-                            ProgramNameView(name: programName)
-                                .padding(.horizontal, .huiSpaces.space24)
-                                .padding(.bottom, .huiSpaces.space16)
-                                .onTapGesture {
-                                    onSwitchToLearnTab(.init(id: viewModel.selectedProgram?.id), viewController)
-                                }
-                                .accessibilityElement(children: .ignore)
-                                .accessibilityLabel(viewModel.selectedProgram?.accessibilityDescription)
-                        }
-                        ExpandTitleView(
-                            title: viewModel.selectedCourse?.name ?? "",
-                            isExpanded: isCourseDropdownVisible
-                        )
+                VStack(spacing: .huiSpaces.space16) {
+                    Text(viewModel.course.name)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .huiTypography(.h3)
+                        .foregroundStyle(Color.huiColors.text.title)
                         .padding(.horizontal, .huiSpaces.space24)
-                        .padding(.bottom, .huiSpaces.space16)
-                        .onTapGesture { isCourseDropdownVisible.toggle() }
-                        .accessibilityLabel(viewModel.course.accessibilityDescription(isExpanded: isCourseDropdownVisible))
-                    }
-                    .readingFrame { frame in courseNameHeight = frame.height }
                     headerView
                 }
                 .transition(.move(edge: .top).combined(with: .opacity))
-                .onTapGesture { isCourseDropdownVisible = false }
             }
             learningContentView()
         }
@@ -94,11 +72,9 @@ struct CourseDetailsView: View {
         .background {
             Color.huiColors.surface.pagePrimary
                 .ignoresSafeArea()
-                .onTapGesture { isCourseDropdownVisible = false }
         }
         .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
         .onWillDisappear {
-            isCourseDropdownVisible = false
             onShowNavigationBarAndTabBar(true)
         }
         .onWillAppear { onShowNavigationBarAndTabBar(false) }
@@ -107,24 +83,7 @@ struct CourseDetailsView: View {
                 HorizonUI.Spinner(size: .small, showBackground: true)
             }
         }
-        .overlay(alignment: .top) {
-            if isCourseDropdownVisible {
-                ProgramSwitcherView(
-                    isExpanded: $isCourseDropdownVisible,
-                    isProgramPage: false,
-                    programs: viewModel.programs,
-                    selectedProgram: viewModel.selectedProgram,
-                    selectedCourse: viewModel.selectedCourse,
-                    onSelectProgram: { program in
-                        onSwitchToLearnTab(program, viewController)
-                    },
-                    onSelectCourse: viewModel.onSelectCourse
-                )
-                .padding(.top, courseNameHeight + (isBackButtonVisible ? 40 : 0))
-                .padding(.horizontal, .huiSpaces.space24)
-            }
-        }
-        .animation(.linear, value: [viewModel.isShowHeader, isCourseDropdownVisible])
+        .animation(.linear, value: viewModel.isShowHeader)
     }
 
     @ViewBuilder
@@ -141,14 +100,14 @@ struct CourseDetailsView: View {
     }
 
     private var headerView: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.space16) {
-            HorizonUI.ProgressBar(
-                progress: viewModel.course.progress / 100,
-                size: .medium,
-                numberPosition: .outside
-            )
-            .id(viewModel.course.progress)
-        }
+        HorizonUI.ProgressBar(
+            progress: viewModel.course.progress / 100,
+            progressColor: .huiColors.surface.institution,
+            size: .small,
+            numberPosition: .outside,
+            backgroundColor: Color.huiColors.primitives.grey14
+        )
+        .id(viewModel.course.progress)
         .padding([.horizontal, .bottom], .huiSpaces.space24)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(viewModel.course.accessibilityProgressDescription)
@@ -248,11 +207,18 @@ private struct ContentView: View {
 
     @ViewBuilder
     private func overview(htmlString: String?) -> some View {
-        if let htmlString {
-            WebView(html: htmlString, isScrollEnabled: false)
-                .frameToFit()
-                .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
+        VStack {
+            if let programName = viewModel.programName {
+                ProgramNameView(name: programName)
+                    .padding([.horizontal, .top], .huiSpaces.space24)
+            }
+            if let htmlString {
+                WebView(html: htmlString, isScrollEnabled: false)
+                    .frameToFit()
+            }
         }
+        .background(Color.huiColors.surface.pageSecondary)
+        .clipShape(RoundedRectangle(cornerRadius: 32, style: .continuous))
     }
 }
 

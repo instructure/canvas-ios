@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2024-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -19,15 +19,8 @@
 import Core
 import UIKit
 
-enum CourseListAssembly {
-    static func makeViewModel(courses: [CourseCardModel]) -> CourseListViewModel {
-        return CourseListViewModel(
-            courses: courses,
-            router: AppEnvironment.shared.router,
-        )
-    }
-
-    static func makeView(courses: [CourseCardModel]) -> UIViewController {
-        CoreHostingController(CourseListView(viewModel: makeViewModel(courses: courses)))
+struct LearnAssembly {
+    static func makeLearnView() -> UIViewController {
+        return CoreHostingController( LearnView())
     }
 }

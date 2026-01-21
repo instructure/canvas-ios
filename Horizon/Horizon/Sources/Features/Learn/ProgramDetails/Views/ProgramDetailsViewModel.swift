@@ -23,30 +23,14 @@ import Observation
 import Foundation
 
 @Observable
-final class LearnViewModel: ProgramSwitcherMapper {
-
-    enum State {
-        case programs
-        case courseDetails
-        case empty
-    }
+final class ProgramDetailsViewModel {
     // MARK: - Outputs (State)
 
-    private(set) var state: State = .empty
-    private(set) var courseDetailsViewModel: CourseDetailsViewModel?
     private(set) var isLoaderVisible = true
     private(set) var isLoadingEnrollButton = false
     private(set) var hasError = false
     private(set) var toastMessage = ""
-
-    private(set) var programs: [Program] = []
     private(set) var currentProgram: Program?
-    private(set) var selectedProgram: ProgramSwitcherModel?
-    private(set) var dropdownMenuPrograms: [ProgramSwitcherModel] = []
-
-    // MARK: - Inputs
-
-    var onSelectProgram: (ProgramSwitcherModel?) -> Void = { _ in }
 
     // MARK: - Inputs / Ouputs
 
@@ -54,7 +38,6 @@ final class LearnViewModel: ProgramSwitcherMapper {
     var shouldShowProgress: Bool {
         currentProgram?.isOptionalProgram == false
     }
-
     // MARK: - Private
 
     private var subscriptions = Set<AnyCancellable>()
@@ -65,6 +48,7 @@ final class LearnViewModel: ProgramSwitcherMapper {
     private let interactor: ProgramInteractor
     private let learnCoursesInteractor: GetLearnCoursesInteractor
     private let router: Router
+    private let programID: String
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
@@ -72,45 +56,25 @@ final class LearnViewModel: ProgramSwitcherMapper {
         interactor: ProgramInteractor,
         learnCoursesInteractor: GetLearnCoursesInteractor,
         router: Router,
-        programID: String? = nil,
+        programID: String,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.interactor = interactor
         self.learnCoursesInteractor = learnCoursesInteractor
         self.router = router
+        self.programID = programID
         self.scheduler = scheduler
-        selectedProgram = programID != nil  ? .init(id: programID) : nil
-        configureSelectionHandler()
 
         NotificationCenter.default.addObserver(
             forName: .moduleItemRequirementCompleted,
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            if self?.programs.isNotEmpty == true {
-                self?.fetchPrograms(ignoreCache: true)
-            }
+            self?.fetchPrograms(ignoreCache: true)
         }
     }
 
-    private func configureSelectionHandler() {
-        onSelectProgram = { [weak self] selectedProgram in
-            guard let self, self.selectedProgram != selectedProgram else { return }
-            self.selectedProgram = selectedProgram
-            self.updateCurrentProgram(by: selectedProgram?.id)
-        }
-    }
-
-    func updateProgram(_ program: ProgramSwitcherModel?) {
-        selectedProgram = dropdownMenuPrograms.isEmpty ? program : dropdownMenuPrograms.first(where: { $0.id ==  program?.id })
-        updateCurrentProgram(by: selectedProgram?.id)
-        // We call fetchPrograms in case the learner has courses but no programs.
-        // This handles the scenario when the learner pulls to refresh after enrolling
-        // in a program, so they can see it immediately.
-        if dropdownMenuPrograms.allSatisfy({ $0.id == nil }) {
-            fetchPrograms()
-        }
-    }
+    deinit { NotificationCenter.default.removeObserver(self) }
 
     func refreshPrograms() async {
         await fetchPrograms(ignoreCache: true)
@@ -128,8 +92,11 @@ final class LearnViewModel: ProgramSwitcherMapper {
         ignoreCache: Bool = false,
         completionHandler: (() -> Void)? = nil
     ) {
+        let programID = self.programID
         interactor
             .getProgramsWithCourses(ignoreCache: ignoreCache)
+            .flatMap { Publishers.Sequence(sequence: $0).setFailureType(to: Error.self) }
+            .first(where: { $0.id == programID })
             .zip(
                 learnCoursesInteractor
                     .getCourses(ignoreCache: ignoreCache)
@@ -141,43 +108,27 @@ final class LearnViewModel: ProgramSwitcherMapper {
                     self?.handleError(error)
                 }
                 completionHandler?()
-            } receiveValue: { [weak self] programs, courses in
+            } receiveValue: { [weak self] program, courses in
                 self?.courses = courses
-                self?.handleProgramsLoaded(programs)
-                self?.dropdownMenuPrograms = self?.mapPrograms(programs: programs, courses: courses) ?? []
-                self?.setState(programs: programs, courses: courses)
+                self?.handleProgramLoaded(program)
             }
             .store(in: &subscriptions)
-    }
-
-    private func setState(programs: [Program], courses: [LearnCourse]) {
-        if programs.isNotEmpty {
-            state = .programs
-        } else if let firtCourse = courses.first {
-            courseDetailsViewModel = LearnAssembly.makeViewModel(
-                courseID: firtCourse.id,
-                enrollmentID: firtCourse.enrollmentId
-            )
-            state = .courseDetails
-        } else {
-            state = .empty
-        }
     }
 
     // MARK: - Actions
 
     func navigateToCourseDetails(
         courseID: String,
-        programID: String? = nil,
+        programName: String? = nil,
         isEnrolled: Bool,
         viewController: WeakViewController
     ) {
         guard isEnrolled, let enrollemtID = courses.first(where: { $0.id == courseID })?.enrollmentId  else { return }
         router.show(
-                LearnAssembly.makeCourseDetailsViewController(
+            CourseDetailsAssembly.makeCourseDetailsViewController(
                     courseID: courseID,
                     enrollmentID: enrollemtID,
-                    programID: programID
+                    programName: programName
                 ),
                 from: viewController
             )
@@ -203,7 +154,9 @@ final class LearnViewModel: ProgramSwitcherMapper {
             } receiveValue: { [weak self] programs, courses in
                 guard let self else { return }
                 self.courses = courses
-                handleProgramsLoaded(programs)
+                let programID = self.programID
+                let program = programs.first(where: { $0.id == programID })
+                handleProgramLoaded(program)
                 let message = String(localized: "You’ve been enrolled in Course", bundle: .horizon)
                     .appending(" ")
                     .appending(course.name)
@@ -218,26 +171,12 @@ final class LearnViewModel: ProgramSwitcherMapper {
 
     // MARK: - Helpers
 
-    private func handleProgramsLoaded(_ programs: [Program]) {
-        self.programs = programs
-
-        if let first = programs.first {
-            if selectedProgram == nil {
-                currentProgram = applyIndexing(to: first)
-                selectedProgram = mapProgram(program: first)
-            } else if let existing = programs.first(where: { $0.id == selectedProgram?.id }) {
-                currentProgram = applyIndexing(to: existing)
-                selectedProgram = mapProgram(program: currentProgram)
-            }
-        }
+    private func handleProgramLoaded(_ program: Program?) {
+        guard let program else { return }
+        currentProgram = applyIndexing(to: program)
 
         hasError = false
         isLoaderVisible = false
-    }
-
-    private func updateCurrentProgram(by id: String?) {
-        guard let id, let program = programs.first(where: { $0.id == id }) else { return }
-        currentProgram = applyIndexing(to: program)
     }
 
     private func applyIndexing(to program: Program) -> Program {

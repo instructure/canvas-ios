@@ -20,14 +20,12 @@ import Core
 import HorizonUI
 import SwiftUI
 
-struct ProgramView: View {
+struct ProgramDetailsView: View {
     // MARK: - Propertites
     @AccessibilityFocusState private var focusedItemID: String?
     @State private var lastFocusedID: String?
 
-    @State private var isProgramDropdownVisible: Bool = false
-    @State private var programNameHeight: CGFloat?
-    @Bindable var viewModel: LearnViewModel
+    @State var viewModel: ProgramDetailsViewModel
     @Environment(\.viewController) private var viewController
 
     var body: some View {
@@ -45,20 +43,10 @@ struct ProgramView: View {
             }
         }
         .padding(.top, .huiSpaces.space2)
-
+        .onFirstAppear { viewModel.fetchPrograms() }
         .toolbar(.hidden)
-        .safeAreaInset(edge: .top, spacing: .huiSpaces.space24) {
-            ExpandTitleView(title: viewModel.currentProgram?.name ?? "", isExpanded: isProgramDropdownVisible)
-                .padding(.top, .huiSpaces.space24)
-                .padding(.horizontal, .huiSpaces.space24)
-                .hidden(viewModel.isLoaderVisible)
-                .transition(.move(edge: .top).combined(with: .opacity))
-                .onTapGesture { isProgramDropdownVisible.toggle() }
-                .readingFrame { frame in programNameHeight = frame.height }
-                .accessibilityLabel(viewModel.currentProgram?.accessibilityHeader)
-        }
+        .safeAreaInset(edge: .top, spacing: .huiSpaces.space8) { navigationBar }
         .background(Color.huiColors.surface.pagePrimary)
-        .onTapGesture { isProgramDropdownVisible = false }
         .overlay {
             if viewModel.isLoaderVisible {
                 HorizonUI.Spinner(size: .small, showBackground: true)
@@ -78,30 +66,19 @@ struct ProgramView: View {
             ),
             isPresented: $viewModel.toastIsPresented
         )
-        .overlay(alignment: .top) {
-            if isProgramDropdownVisible {
-                ProgramSwitcherView(
-                    isExpanded: $isProgramDropdownVisible,
-                    programs: viewModel.dropdownMenuPrograms,
-                    selectedProgram: viewModel.selectedProgram,
-                    onSelectProgram: viewModel.onSelectProgram) { course in
-                        viewModel.navigateToCourseDetails(
-                            courseID: course?.id ?? "",
-                            programID: course?.programID,
-                            isEnrolled: course?.isEnrolled ?? false,
-                            viewController: viewController
-                        )
-                    }
-                    .padding(.top, programNameHeight)
-                    .padding(.horizontal, .huiSpaces.space24)
-            }
-        }
-        .animation(.linear, value: isProgramDropdownVisible)
     }
 
     private var content: some View {
         VStack(alignment: .leading, spacing: .zero) {
             VStack(alignment: .leading, spacing: .zero) {
+                Text(viewModel.currentProgram?.name ?? "")
+                    .huiTypography(.h3)
+                    .frame(alignment: .leading)
+                    .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .foregroundStyle(Color.huiColors.text.title)
+                    .padding(.bottom, .huiSpaces.space16)
+
                 if viewModel.shouldShowProgress {
                     LearnProgressBarView(completionPercent: viewModel.currentProgram?.completionPercent)
                         .padding(.bottom, .huiSpaces.space8)
@@ -141,7 +118,7 @@ struct ProgramView: View {
             lastFocusedID = course.id
             viewModel.navigateToCourseDetails(
                 courseID: course.id,
-                programID: viewModel.currentProgram?.id,
+                programName: viewModel.currentProgram?.name,
                 isEnrolled: course.isEnrolled,
                 viewController: viewController
             )
@@ -161,16 +138,26 @@ struct ProgramView: View {
         .foregroundStyle(Color.huiColors.text.body)
         .huiTypography(.h4)
     }
+
+    private var navigationBar: some View {
+        HStack {
+            HorizonBackButton { _ in
+                viewModel.didTapBackButton(viewController: viewController)
+            }
+            Spacer()
+        }
+        .padding(.horizontal, .huiSpaces.space24)
+    }
 }
 
 #if DEBUG
 #Preview {
-    ProgramView(
+    ProgramDetailsView(
         viewModel: .init(
             interactor: ProgramInteractorPreview(),
             learnCoursesInteractor: GetLearnCoursesInteractorPreview(),
             router: AppEnvironment.shared.router,
-            programID: nil
+            programID: "1"
         )
     )
 }

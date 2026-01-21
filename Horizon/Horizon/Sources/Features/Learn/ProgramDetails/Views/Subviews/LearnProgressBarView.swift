@@ -16,27 +16,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import HorizonUI
 import SwiftUI
+import HorizonUI
 
-struct ProgramNameView: View {
-    let name: String
+struct LearnProgressBarView: View {
+    let completionPercent: Double?
+
     var body: some View {
-        HStack(alignment: .top, spacing: .huiSpaces.space4) {
-            Text("Part of", bundle: .horizon)
-                .huiTypography(.p1)
-                .foregroundStyle(Color.huiColors.text.body)
-                .frame(alignment: .leading)
+        VStack(spacing: .huiSpaces.space8) {
+            let completion = completionPercent ?? 0
+            if completion == 0 {
+                Text("Not started", bundle: .horizon)
+                    .foregroundStyle(Color.huiColors.text.title)
+                    .huiTypography(.p2)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
 
-            Text(name)
-                .underline()
-                .huiTypography(.buttonTextLarge)
-                .foregroundStyle(Color.huiColors.text.body)
-            Spacer()
+            HorizonUI.ProgressBar(
+                progress: completion,
+                size: .small,
+                numberPosition: .outside,
+                backgroundColor: Color.huiColors.surface.pageSecondary
+            )
         }
     }
-}
-
-#Preview {
-    ProgramNameView(name: "Here Lorem Ipsum Dolor Sit Amet Adipiscing")
 }

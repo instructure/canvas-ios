@@ -19,13 +19,41 @@
 import HorizonUI
 import SwiftUI
 
-struct CourseFilteringView: View {
-    let selectedStatus: CourseCardModel.CourseStatus?
+struct OptionModel: Identifiable, Equatable {
+    let id: Int
+    let name: String
+}
+
+struct FilterView: View {
     @State private var isListCoursesVisiable = false
-    let onSelect: (CourseCardModel.CourseStatus?) -> Void
+
+    // MARK: - Dependencies
+
+    private let items: [OptionModel]
+    private let selectedOption: OptionModel?
+    private let onSelect: (OptionModel?) -> Void
+
+    // MARK: - Init
+
+    init(
+        items: [OptionModel],
+        selectedOption: OptionModel?,
+        onSelect: @escaping (OptionModel?) -> Void
+    ) {
+        self.items = items
+        self.selectedOption = selectedOption
+        self.onSelect = onSelect
+
+    }
 
     var body: some View {
-        CourseSelectionButton(status: selectedStatus?.name ?? "") {
+        courseSelectionView
+            .frame(maxWidth: 200)
+            .fixedSize(horizontal: true, vertical: false)
+    }
+
+    private var courseSelectionView: some View {
+        CourseSelectionButton(status: selectedOption?.name ?? "") {
             isListCoursesVisiable.toggle()
         }
         .frame(minWidth: 130)
@@ -33,7 +61,7 @@ struct CourseFilteringView: View {
             Text(
                 String.localizedStringWithFormat(
                     String(localized: "Selected filter is %@. Double tap to select another filter", bundle: .horizon),
-                    selectedStatus?.name ?? ""
+                    selectedOption?.name ?? ""
                 )
             )
         )
@@ -48,14 +76,14 @@ struct CourseFilteringView: View {
     private var courseListView: some View {
         ScrollView {
             VStack(spacing: .zero) {
-                ForEach(CourseCardModel.CourseStatus.allCases, id: \.self) { status in
+                ForEach(items) { status in
                     Button {
                         onSelect(status)
                         isListCoursesVisiable.toggle()
                     } label: {
                         TimeSpentCourseView(
                             name: status.name,
-                            isSelected: status == selectedStatus
+                            isSelected: status == selectedOption
                         )
                     }
                 }

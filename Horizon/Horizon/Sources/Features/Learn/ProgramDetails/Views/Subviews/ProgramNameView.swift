@@ -16,18 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import UIKit
+import HorizonUI
+import SwiftUI
 
-enum CourseListAssembly {
-    static func makeViewModel(courses: [CourseCardModel]) -> CourseListViewModel {
-        return CourseListViewModel(
-            courses: courses,
-            router: AppEnvironment.shared.router,
-        )
-    }
+struct ProgramNameView: View {
+    let name: String
+    var body: some View {
+        HStack(alignment: .top, spacing: .huiSpaces.space4) {
+            Text("Part of", bundle: .horizon)
+                .huiTypography(.p1)
+                .foregroundStyle(Color.huiColors.text.body)
+                .frame(alignment: .leading)
 
-    static func makeView(courses: [CourseCardModel]) -> UIViewController {
-        CoreHostingController(CourseListView(viewModel: makeViewModel(courses: courses)))
+            Text(name)
+                .huiTypography(.buttonTextLarge)
+                .foregroundStyle(Color.huiColors.text.body)
+            Spacer()
+        }
     }
+}
+
+#Preview {
+    ProgramNameView(name: "Here Lorem Ipsum Dolor Sit Amet Adipiscing")
 }
