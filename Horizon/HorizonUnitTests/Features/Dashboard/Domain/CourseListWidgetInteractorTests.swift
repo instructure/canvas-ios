@@ -38,7 +38,7 @@ final class CourseListWidgetInteractorTests: HorizonTestCase {
         mockCoursesAPIResponse()
 
         // When
-        let courses = try? await testee.getAndObserveCoursesWithoutModules(ignoreCache: true).asyncPublisher()
+        let courses = try? await testee.getAndObserveCoursesWithoutModules(ignoreCache: true).asyncValue()
 
         // Then
         XCTAssertEqual(courses?.count, 2)
@@ -51,7 +51,7 @@ final class CourseListWidgetInteractorTests: HorizonTestCase {
         mockCoursesAPIResponseWithProgress()
 
         // When
-        let courses = try? await testee.getAndObserveCoursesWithoutModules(ignoreCache: true).asyncPublisher()
+        let courses = try? await testee.getAndObserveCoursesWithoutModules(ignoreCache: true).asyncValue()
 
         // Then
         XCTAssertEqual(courses?.count, 4)
@@ -68,12 +68,12 @@ final class CourseListWidgetInteractorTests: HorizonTestCase {
     func testGetCoursesRefresh() async {
         // Given
         mockCoursesAPIResponse()
-        let initialCourses = try? await testee.getAndObserveCoursesWithoutModules(ignoreCache: false).asyncPublisher()
+        let initialCourses = try? await testee.getAndObserveCoursesWithoutModules(ignoreCache: false).asyncValue()
         XCTAssertEqual(initialCourses?.count, 2)
 
         // When
         mockCoursesAPIResponseUpdated()
-        let updatedCourses = try? await testee.getAndObserveCoursesWithoutModules(ignoreCache: true).asyncPublisher()
+        let updatedCourses = try? await testee.getAndObserveCoursesWithoutModules(ignoreCache: true).asyncValue()
 
         // Then
         XCTAssertEqual(updatedCourses?.count, 3)

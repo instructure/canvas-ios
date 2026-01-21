@@ -54,7 +54,6 @@ public struct AsyncStore<U: UseCase> {
         request.predicate = scope.predicate
         request.sortDescriptors = scope.order
 
-
         return if offlineModeInteractor?.isOfflineModeEnabled() == true {
             try await Self.fetchEntitiesFromDatabase(
                 fetchRequest: request,
