@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,10 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum LearnerDashboardWidgetIdentifier: String, Codable, CaseIterable {
-    case fullWidthWidget
-    case courseInvitations
-    case widget1
-    case widget2
-    case widget3
+import Foundation
+
+enum LearnerDashboardWidgetLayoutHelpers {
+    static func columns(for width: CGFloat) -> Int {
+        switch width {
+        case ..<600: 1
+        case 600..<840: 2
+        default: 3
+        }
+    }
 }

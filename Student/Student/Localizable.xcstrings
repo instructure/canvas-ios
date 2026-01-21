@@ -15032,6 +15032,12 @@
         }
       }
     },
+    "Accept" : {
+
+    },
+    "Accept invitation to %@" : {
+
+    },
     "Access Denied" : {
       "comment" : "Access Denied from the server",
       "extractionState" : "manual",
@@ -37771,6 +37777,9 @@
         }
       }
     },
+    "Course Invitations (%lld)" : {
+
+    },
     "Course Syllabus" : {
       "comment" : "Title for Course Syllabus view controller",
       "extractionState" : "manual",
@@ -40380,6 +40389,12 @@
           }
         }
       }
+    },
+    "Decline" : {
+
+    },
+    "Decline invitation to %@" : {
+
     },
     "Delete" : {
       "comment" : "Button to confirm deleting folders\n   Button to delete a discussion entry\n   Confirm deletion of discussion entry",
@@ -147977,6 +147992,9 @@
           }
         }
       }
+    },
+    "You have been invited" : {
+
     },
     "You must first complete:" : {
       "comment" : "prerequisites for unlocking item",

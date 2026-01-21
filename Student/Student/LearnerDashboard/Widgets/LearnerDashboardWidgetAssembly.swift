@@ -23,18 +23,26 @@ enum LearnerDashboardWidgetAssembly {
     static func makeDefaultWidgetConfigs() -> [WidgetConfig] {
         [
             WidgetConfig(id: .fullWidthWidget, order: 0, isVisible: true, settings: nil),
-            WidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil),
-            WidgetConfig(id: .widget3, order: 3, isVisible: true, settings: nil),
-            WidgetConfig(id: .widget2, order: 2, isVisible: true, settings: nil)
+            WidgetConfig(id: .courseInvitations, order: 1, isVisible: true, settings: nil),
+            WidgetConfig(id: .widget1, order: 2, isVisible: true, settings: nil),
+            WidgetConfig(id: .widget3, order: 4, isVisible: true, settings: nil),
+            WidgetConfig(id: .widget2, order: 3, isVisible: true, settings: nil)
         ]
     }
 
     static func makeWidgetViewModel(config: WidgetConfig) -> any LearnerWidgetViewModel {
         switch config.id {
-        case .fullWidthWidget: FullWidthWidgetViewModel(config: config)
-        case .widget1: Widget1ViewModel(config: config)
-        case .widget2: Widget2ViewModel(config: config)
-        case .widget3: Widget3ViewModel(config: config)
+        case .fullWidthWidget:
+            return FullWidthWidgetViewModel(config: config)
+        case .courseInvitations:
+            let interactor = CourseInvitationsInteractorLive()
+            return CourseInvitationsWidgetViewModel(config: config, interactor: interactor)
+        case .widget1:
+            return Widget1ViewModel(config: config)
+        case .widget2:
+            return Widget2ViewModel(config: config)
+        case .widget3:
+            return Widget3ViewModel(config: config)
         }
     }
 
@@ -42,6 +50,8 @@ enum LearnerDashboardWidgetAssembly {
     static func makeView(for viewModel: any LearnerWidgetViewModel) -> some View {
         switch viewModel {
         case let vm as FullWidthWidgetViewModel:
+            vm.makeView()
+        case let vm as CourseInvitationsWidgetViewModel:
             vm.makeView()
         case let vm as Widget1ViewModel:
             vm.makeView()
