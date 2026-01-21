@@ -51,6 +51,7 @@ class HelpTests: E2ETestCase {
                 HelpHelper.navigateToHelpPage()
             } else {
                 item.hit()
+                HelpHelper.openInSafariButton.hit() // for some reason this is needed only for Parent app
                 let browserURL = SafariAppHelper.browserURL
                 XCTAssertHasPrefix(browserURL, "https://", " at index \(index), titled: \(label)")
 

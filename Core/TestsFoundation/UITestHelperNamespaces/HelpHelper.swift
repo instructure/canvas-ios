@@ -22,6 +22,13 @@ public class HelpHelper: BaseHelper {
 
     public static var closeButton: XCUIElement { app.find(label: "Close", type: .button) }
 
+    public static func getAllHelpItems() -> [XCUIElement] {
+        let helpItemsContainer = app.find(id: "helpItems")
+        return helpItemsContainer.buttons.allElementsBoundByIndex
+    }
+
+    // MARK: - Navigation
+
     public static func navigateToHelpPage() {
         XCTContext.runActivity(named: "Navigate to Help screen") { _ in
             DashboardHelper.profileButton.hit()
@@ -29,11 +36,6 @@ public class HelpHelper: BaseHelper {
             let navTitle = app.find(label: "Help", type: .staticText)
             navTitle.waitUntil(.visible)
         }
-    }
-
-    public static func closeSafariAndActivateApp() {
-        SafariAppHelper.safariApp.terminate()
-        app.activate()
     }
 
     public static func returnToHelpPage(isStudentApp: Bool = true) {
@@ -44,8 +46,8 @@ public class HelpHelper: BaseHelper {
         navigateToHelpPage()
     }
 
-    public static func getAllHelpItems() -> [XCUIElement] {
-        let helpItemsContainer = app.find(id: "helpItems")
-        return helpItemsContainer.buttons.allElementsBoundByIndex
+    private static func closeSafariAndActivateApp() {
+        SafariAppHelper.safariApp.terminate()
+        app.activate()
     }
 }
