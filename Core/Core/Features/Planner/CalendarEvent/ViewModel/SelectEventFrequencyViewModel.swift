@@ -25,7 +25,6 @@ final class SelectEventFrequencyViewModel: ObservableObject {
 
     let pageTitle = String(localized: "Frequency", bundle: .core)
     let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new/frequency")
-    let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
     let presetViewModels: [FrequencyPresetViewModel]
     @Published private(set) var selectedPreset: FrequencyPreset

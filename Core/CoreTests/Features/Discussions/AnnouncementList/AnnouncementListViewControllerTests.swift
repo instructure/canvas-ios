@@ -81,9 +81,16 @@ class AnnouncementListViewControllerTests: CoreTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(controller.titleSubtitleView.title, "Announcements")
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#0000ff")
+
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Announcements")
+            XCTAssertEqual(controller.navigationItem.subtitle, "Course One")
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.title, "Announcements")
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+            XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#0000ff")
+        }
+
         XCTAssertNil(controller.navigationItem.rightBarButtonItem)
 
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 3)
@@ -142,9 +149,16 @@ class AnnouncementListViewControllerTests: CoreTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(controller.titleSubtitleView.title, "Announcements")
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Group One")
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#000000")
+
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Announcements")
+            XCTAssertEqual(controller.navigationItem.subtitle, "Group One")
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.title, "Announcements")
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Group One")
+            XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#000000")
+        }
+
         XCTAssertNotNil(controller.navigationItem.rightBarButtonItem)
 
         _ = controller.addButton.target?.perform(controller.addButton.action)

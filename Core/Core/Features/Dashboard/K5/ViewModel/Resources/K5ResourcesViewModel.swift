@@ -107,21 +107,11 @@ public class K5ResourcesViewModel: ObservableObject {
     }
 }
 
-extension K5ResourcesViewModel: Refreshable {
+extension K5ResourcesViewModel {
 
-    @available(*, renamed: "refresh()")
     public func refresh(completion: @escaping () -> Void) {
-        Task {
-            await refresh()
+        courses.refresh(force: true) { _ in
             completion()
-        }
-    }
-
-    public func refresh() async {
-        return await withCheckedContinuation { continuation in
-            courses.refresh(force: true) {_ in
-                continuation.resume()
-            }
         }
     }
 }

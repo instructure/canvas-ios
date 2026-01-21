@@ -42,7 +42,7 @@ public struct K5SubjectView: View, ScreenViewTrackable {
                     WebView(url: currentPageURL,
                             features: [
                                 .disableZoom,
-                                .pullToRefresh(color: viewModel.courseColor),
+                                .pullToRefresh,
                                 .invertColorsInDarkMode
                             ],
                             configuration: viewModel.config)
@@ -51,8 +51,7 @@ public struct K5SubjectView: View, ScreenViewTrackable {
                 Divider()
             }
         }
-        .navigationBarTitleView(viewModel.courseTitle ?? "")
-        .navigationBarStyle(.color(viewModel.courseColor))
+        .navigationTitle(viewModel.courseTitle ?? "", style: .color(viewModel.courseColor))
     }
 
     public init(context: Context, selectedTabId: String? = nil) {

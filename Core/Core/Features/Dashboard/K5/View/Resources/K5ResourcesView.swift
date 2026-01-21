@@ -28,7 +28,7 @@ public struct K5ResourcesView: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        RefreshableScrollView(showsIndicators: false) {
+        ScrollView(showsIndicators: false) {
             VStack(alignment: .leading) {
                 if !viewModel.homeroomInfos.isEmpty {
                     importantInfo
@@ -43,9 +43,8 @@ public struct K5ResourcesView: View, ScreenViewTrackable {
                 }
             }
             .padding(.vertical)
-        } refreshAction: { endRefreshing in
-            viewModel.refresh(completion: endRefreshing)
         }
+        .refreshable(action: viewModel.refresh)
         .padding(.horizontal, horizontalPadding)
         .onAppear {
             viewModel.viewDidAppear()

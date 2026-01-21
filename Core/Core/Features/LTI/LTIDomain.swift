@@ -18,15 +18,42 @@
 
 import SwiftUI
 
-public enum LTIDomains: String {
+public enum LTIDomain: String, CaseIterable {
     case studio = "arc.instructure.com"
     case gauge = "gauge.instructure.com"
     case masteryConnect = "app.masteryconnect.com"
+    case eportfolio = "portfolio.instructure.com"
+
+    public init?(rawValue: String) {
+
+        let ePortfolioRegionSpecificDomain: () -> LTIDomain? = {
+            let lowercasedValue = rawValue.lowercased()
+            let components = lowercasedValue.components(separatedBy: ".")
+
+            if
+                lowercasedValue.hasSuffix(Self.eportfolio.rawValue),
+                components.count <= 4,
+                components.first?.isNotEmpty == true {
+                return .eportfolio
+            }
+
+            return nil
+        }
+
+        guard
+            let domain = Self
+                .allCases
+                .first(where: { $0.rawValue == rawValue }) ?? ePortfolioRegionSpecificDomain()
+        else { return nil }
+
+        self = domain
+    }
 
     public var icon: Image {
         switch self {
         case .studio: return .studioLine
         case .masteryConnect: return .masteryLTI
+        case .eportfolio: return .eportfolioLine
         default: return Self.defaultIcon
         }
     }

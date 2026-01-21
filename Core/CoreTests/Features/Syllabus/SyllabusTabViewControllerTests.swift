@@ -35,10 +35,15 @@ class SyllabusTabViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#ed0000")
-        let titleView = controller.navigationItem.titleView as? TitleSubtitleView
-        XCTAssertEqual(titleView?.title, "Course Syllabus")
-        XCTAssertEqual(titleView?.subtitle, "Course One")
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Course Syllabus")
+            XCTAssertEqual(controller.navigationItem.subtitle, "Course One")
+        } else {
+            XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#ed0000")
+            let titleView = controller.navigationItem.titleView as? TitleSubtitleView
+            XCTAssertEqual(titleView?.title, "Course Syllabus")
+            XCTAssertEqual(titleView?.subtitle, "Course One")
+        }
 
         var cell = controller.collectionView(controller.menu!, cellForItemAt: IndexPath(item: 0, section: 0)) as? HorizontalMenuViewController.MenuCell
         XCTAssertEqual(cell?.title?.text, "Syllabus")

@@ -52,12 +52,12 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
     public var body: some View {
         states
             .background(Color.backgroundLightest)
-            .navigationBarTitleView(
-                title: String(localized: "Assignment Details", bundle: .teacher),
-                subtitle: course.first?.name
-            )
             .rightBarButtonItems(rightBarItems)
-            .navigationBarStyle(.color(course.first?.color))
+            .navigationTitles(
+                title: String(localized: "Assignment Details", bundle: .teacher),
+                subtitle: course.first?.name,
+                style: .color(course.first?.color)
+            )
             .onAppear {
                 refreshAssignments()
                 refreshCourses()
@@ -66,13 +66,13 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
 
     @ViewBuilder var states: some View {
         if let assignment = assignment.first {
-            RefreshableScrollView {
+            ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     details(assignment: assignment)
                         .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil) }
                 }
             }
-            refreshAction: { endRefreshing in
+            .refreshable { endRefreshing in
                 self.assignment.refresh(force: true) { _ in
                     endRefreshing()
                 }

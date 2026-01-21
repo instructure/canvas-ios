@@ -19,8 +19,8 @@
 import WebKit
 
 private class PullToRefresh: CoreWebViewFeature {
-    private lazy var refreshControl: CircleRefreshControl = {
-        let refreshControl = CircleRefreshControl()
+    private lazy var refreshControl: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
         refreshControl.addTarget(
             self,
             action: #selector(refreshWebView(_:)),
@@ -28,18 +28,13 @@ private class PullToRefresh: CoreWebViewFeature {
         )
         return refreshControl
     }()
-    private let color: UIColor?
     private weak var webView: CoreWebView?
     private var pullToRefreshNavigation: WKNavigation?
 
     // MARK: - Public Methods
 
-    public init(color: UIColor? = nil) {
-        self.color = color
-    }
-
     override func apply(on webView: CoreWebView) {
-        addRefreshControl(color: color, to: webView)
+        addRefreshControl(to: webView)
         self.webView = webView
     }
 
@@ -52,10 +47,9 @@ private class PullToRefresh: CoreWebViewFeature {
 
     // MARK: - Private Methods
 
-    private func addRefreshControl(color: UIColor?, to webView: CoreWebView) {
-        webView.scrollView.addSubview(refreshControl)
+    private func addRefreshControl(to webView: CoreWebView) {
+        webView.scrollView.refreshControl = refreshControl
         webView.scrollView.bounces = true
-        refreshControl.color = color
     }
 
     @objc private func refreshWebView(_ sender: UIRefreshControl) {
@@ -66,7 +60,7 @@ private class PullToRefresh: CoreWebViewFeature {
 
 public extension CoreWebViewFeature {
 
-    static func pullToRefresh(color: UIColor? = nil) -> CoreWebViewFeature {
-        PullToRefresh(color: color)
+    static var pullToRefresh: CoreWebViewFeature {
+        PullToRefresh()
     }
 }

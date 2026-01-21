@@ -36,12 +36,12 @@ struct CourseSyncSelectorView: View {
     var body: some View {
         content
             .background(Color.backgroundLightest)
-            .navigationBarTitleView(
-                title: String(localized: "Offline Content", bundle: .core),
-                subtitle: viewModel.navBarSubtitle
-            )
             .navigationBarItems(leading: leftNavBarButton, trailing: cancelButton)
-            .navigationBarStyle(.modal)
+            .navigationTitles(
+                title: String(localized: "Offline Content", bundle: .core),
+                subtitle: viewModel.navBarSubtitle,
+                style: .modal
+            )
     }
 
     @ViewBuilder
@@ -84,39 +84,63 @@ struct CourseSyncSelectorView: View {
             }
             .accessibilityElement(children: .combine)
         case .data:
-            ZStack(alignment: .top) {
-                VStack(spacing: 0) {
-                    Divider()
-                    GeometryReader { geometry in
-                        ScrollView {
-                            if viewModel.cells.isEmpty {
-                                emptyList(geometry: geometry)
-                            } else {
-                                VStack(spacing: 0) {
-                                    // Applying the background to listCells that is a LazyVStack didn't work
-                                    Color.clear.frame(height: 0)
-                                        .bindTopPosition(
-                                            id: "scrollPosition",
-                                            coordinateSpaceName: "scroll",
-                                            to: $scrollOffset
-                                        )
+            SwiftUI.Group {
+                if #available(iOS 26, *) {
+                    VStack(spacing: 0) {
+                        GeometryReader { geometry in
+                            ScrollView {
+                                // Not collapsable above iOS 26
+                                CourseSyncDiskSpaceInfoView(
+                                    viewModel: diskSpaceViewModel,
+                                    scrollOffset: scrollOffset ?? 0
+                                )
+                                .padding([.horizontal, .top], 16)
+
+                                if viewModel.cells.isEmpty {
+                                    emptyList(geometry: geometry)
+                                } else {
                                     listCells
                                 }
                             }
                         }
-                        .coordinateSpace(name: "scroll")
+                        syncButton
                     }
-                    syncButton
-                }
+                } else {
+                    ZStack(alignment: .top) {
+                        VStack(spacing: 0) {
+                            Divider()
+                            GeometryReader { geometry in
+                                ScrollView {
+                                    if viewModel.cells.isEmpty {
+                                        emptyList(geometry: geometry)
+                                    } else {
+                                        VStack(spacing: 0) {
+                                                // Applying the background to listCells that is a LazyVStack didn't work
+                                            Color.clear.frame(height: 0)
+                                                .bindTopPosition(
+                                                    id: "scrollPosition",
+                                                    coordinateSpaceName: "scroll",
+                                                    to: $scrollOffset
+                                                )
+                                            listCells
+                                        }
+                                    }
+                                }
+                                .coordinateSpace(name: "scroll")
+                            }
+                            syncButton
+                        }
 
-                CourseSyncDiskSpaceInfoView(
-                    viewModel: diskSpaceViewModel,
-                    scrollOffset: scrollOffset ?? 0
-                )
-                .padding(16)
-                .onFrameChange(id: "infoViewHeight", coordinateSpace: .local) { newFrame in
-                    if infoHeight == nil {
-                        infoHeight = newFrame.height
+                        CourseSyncDiskSpaceInfoView(
+                            viewModel: diskSpaceViewModel,
+                            scrollOffset: scrollOffset ?? 0
+                        )
+                        .padding(16)
+                        .onFrameChange(id: "infoViewHeight", coordinateSpace: .local) { newFrame in
+                            if infoHeight == nil {
+                                infoHeight = newFrame.height
+                            }
+                        }
                     }
                 }
             }

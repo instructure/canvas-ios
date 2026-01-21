@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,21 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import XCTest
+import SwiftUI
 
-class LTIDomainsTests: XCTestCase {
+extension View {
 
-    func testIcons() {
-        XCTAssertEqual(LTIDomains.studio.icon, .studioLine)
-        XCTAssertEqual(LTIDomains.gauge.icon, .ltiLine)
-        XCTAssertEqual(LTIDomains.gauge.icon, LTIDomains.defaultIcon)
-        XCTAssertEqual(LTIDomains.masteryConnect.icon, .masteryLTI)
-    }
-
-    func testRawValues() {
-        XCTAssertEqual(LTIDomains.studio.rawValue, "arc.instructure.com")
-        XCTAssertEqual(LTIDomains.gauge.rawValue, "gauge.instructure.com")
-        XCTAssertEqual(LTIDomains.masteryConnect.rawValue, "app.masteryconnect.com")
+    /// Closure-based wrapper around SwiftUI's native `refreshable() async` method.
+    @ViewBuilder
+    public func refreshable(action: ((@escaping () -> Void) -> Void)?) -> some View {
+        if let action {
+            refreshable {
+                await withCheckedContinuation { continuation in
+                    action {
+                        continuation.resume()
+                    }
+                }
+            }
+        } else {
+            self
+        }
     }
 }

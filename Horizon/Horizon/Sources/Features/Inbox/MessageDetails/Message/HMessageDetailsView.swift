@@ -59,14 +59,12 @@ struct HMessageDetailsView: View {
 
     private var messages: some View {
         ScrollViewReader { proxy in
-            RefreshableScrollView(
-                content: {
-                    messagesView
-                        .padding([.leading, .trailing, .bottom], HorizonUI.spaces.space24)
-                        .padding(.top, HorizonUI.spaces.space16)
-                },
-                refreshAction: viewModel.refresh
-            )
+            ScrollView {
+                messagesView
+                    .padding([.leading, .trailing, .bottom], HorizonUI.spaces.space24)
+                    .padding(.top, HorizonUI.spaces.space16)
+            }
+            .refreshable(action: viewModel.refresh)
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .background(HorizonUI.colors.surface.pageSecondary)
             .roundedTopCorners()

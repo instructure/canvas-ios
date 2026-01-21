@@ -126,11 +126,17 @@ class ModuleListViewControllerTests: CoreTestCase {
         XCTAssertEqual(item4.completedStatusView.image, .checkLine)
 
         XCTAssertNotNil(nav.viewControllers.first)
-        XCTAssertEqual(viewController.titleSubtitleView.title, "Modules")
-        XCTAssertEqual(viewController.titleSubtitleView.subtitle, "Course 1")
-        XCTAssertEqual(
-            viewController.navigationController?.navigationBar.barTintColor!.hexString,
-            UIColor(hexString: "#fff")!.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString)
+
+        if #available(iOS 26, *) {
+            XCTAssertEqual(viewController.navigationItem.title, "Modules")
+            XCTAssertEqual(viewController.navigationItem.subtitle, "Course 1")
+        } else {
+            XCTAssertEqual(viewController.titleSubtitleView.title, "Modules")
+            XCTAssertEqual(viewController.titleSubtitleView.subtitle, "Course 1")
+            XCTAssertEqual(
+                viewController.navigationController?.navigationBar.barTintColor!.hexString,
+                UIColor(hexString: "#fff")!.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString)
+        }
     }
 
     func testLockedForUserDoesNotApplyToTeachers() {

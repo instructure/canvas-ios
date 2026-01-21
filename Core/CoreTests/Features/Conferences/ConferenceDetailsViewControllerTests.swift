@@ -55,9 +55,15 @@ class ConferenceDetailsViewControllerTests: CoreTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(controller.titleSubtitleView.title, "Conference Details")
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
-        XCTAssertEqual(nav.navigationBar.barTintColor!.hexString, UIColor(hexString: "#f00")!.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString)
+
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Conference Details")
+            XCTAssertEqual(controller.navigationItem.subtitle, "Course One")
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.title, "Conference Details")
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+            XCTAssertEqual(nav.navigationBar.barTintColor!.hexString, UIColor(hexString: "#f00")!.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString)
+        }
 
         XCTAssertEqual(controller.titleLabel.text, "Pandemic playthrough")
         XCTAssertEqual(controller.statusLabel.text, "Not Started")

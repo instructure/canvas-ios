@@ -52,6 +52,14 @@ public class SyllabusHelper: BaseHelper {
         return app.find(id: "Course Syllabus, \(course.name)")
     }
 
+    public static var navTitle: XCUIElement {
+        app.find(label: "Course Syllabus", type: .staticText)
+    }
+
+    public static func navSubtitle(course: DSCourse) -> XCUIElement {
+        app.find(label: course.name, type: .staticText)
+    }
+
     public static func navigateToSyllabus(course: DSCourse) {
         DashboardHelper.courseCard(course: course).hit()
         let syllabusItem = CourseDetailsHelper.cell(type: .syllabus)
