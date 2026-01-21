@@ -52,7 +52,7 @@ public struct MessageDetailsView: View {
                 legacyMoreButton
             }
         }
-        .navigationTitle(model.title, style: .modal)
+        .navigationTitle(model.title, style: .global)
         .background(Color.backgroundLightest)
         .snackBar(viewModel: model.snackBarViewModel)
     }
