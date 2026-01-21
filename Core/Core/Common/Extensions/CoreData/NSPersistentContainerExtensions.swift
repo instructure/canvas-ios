@@ -96,17 +96,26 @@ extension NSPersistentContainer {
     }
 
     @objc open func performWriteTask(_ block: @escaping (NSManagedObjectContext) -> Void) {
-        let context = writeContext ?? {
+        context.perform { block(self.context) }
+    }
+
+    public func performWriteTask<T>(_ block: @escaping (NSManagedObjectContext) throws -> T) async rethrows -> T {
+        return try await context.perform { try block(self.context) }
+    }
+
+    // MARK: - Private Methods
+
+    private var context: NSManagedObjectContext {
+        if let writeContext {
+            return writeContext
+        } else {
             let context = newBackgroundContext()
             context.automaticallyMergesChangesFromParent = true
             context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
             writeContext = context
             return context
-        }()
-        context.perform { block(context) }
+        }
     }
-
-    // MARK: - Private Methods
 
     private static func destroyAndReCreatePersistentStore(in container: NSPersistentContainer) {
         container.destroy() // ignore migration conflicts
