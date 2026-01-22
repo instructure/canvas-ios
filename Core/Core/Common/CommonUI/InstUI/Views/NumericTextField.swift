@@ -82,6 +82,10 @@ extension InstUI {
             // Make textView follow font size changes dynamically
             textField.adjustsFontForContentSizeCategory = true
 
+            textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+            textField.adjustsFontSizeToFitWidth = true
+            textField.minimumFontSize = 10
+
             // Done button
             let doneButton = UIBarButtonItemWithCompletion(
                 title: String(localized: "Done", bundle: .core),
@@ -122,7 +126,7 @@ extension InstUI {
             // which comes in handy for the cases of large accessibility sizes
             if let width = proposal.width, width < placeholderAttributed().size().width {
                 var shrinkBy: CGFloat = 0.05
-                while placeholderAttributed(shrinkBy: shrinkBy).size().width > width && shrinkBy < 0.75 {
+                while placeholderAttributed(shrinkBy: shrinkBy).size().width > width && shrinkBy < 1 {
                     shrinkBy += 0.05
                 }
                 uiView.attributedPlaceholder = placeholderAttributed(shrinkBy: shrinkBy)
