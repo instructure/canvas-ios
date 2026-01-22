@@ -161,10 +161,34 @@ public class CoreWebViewStudioFeaturesInteractor {
 
         var encodedQueryItems: [URLQueryItem] = [
             URLQueryItem(name: "display", value: "full_width"),
-            URLQueryItem(name: "embedded", value: "true"),
+            URLQueryItem(name: "embedded", value: "true")
+        ]
+
+        var mediaPathToEncode: String = mediaPath
+        if var mediaURL = URL(string: mediaPath) {
+
+            if let title = videoPlayerFrameTitle(forStudioMediaURL: mediaURL) {
+                encodedQueryItems.append(
+                    URLQueryItem(
+                        name: "title",
+                        value: title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+                    )
+                )
+            }
+
+            if mediaURL.containsQueryItem(named: "custom_embed_hide_header") == false {
+                mediaURL.append(queryItems: [
+                    URLQueryItem(name: "custom_embed_hide_header", value: "true")
+                ])
+            }
+
+            mediaPathToEncode = mediaURL.absoluteString
+        }
+
+        encodedQueryItems.append(
             URLQueryItem(
                 name: "url",
-                value: mediaPath
+                value: mediaPathToEncode
                     .addingPercentEncoding(
                         withAllowedCharacters: .urlHostAllowed
                             .union(.urlPathAllowed)
@@ -173,17 +197,7 @@ public class CoreWebViewStudioFeaturesInteractor {
                             .subtracting(CharacterSet(charactersIn: "&="))
                     )
             )
-        ]
-
-        if let mediaURL = URL(string: mediaPath),
-           let title = videoPlayerFrameTitle(forStudioMediaURL: mediaURL) {
-            encodedQueryItems.append(
-                URLQueryItem(
-                    name: "title",
-                    value: title.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-                )
-            )
-        }
+        )
 
         urlComps.path = "/\(context.pathComponent)/external_tools/retrieve"
         urlComps.percentEncodedQueryItems = encodedQueryItems
@@ -203,6 +217,10 @@ public class CoreWebViewStudioFeaturesInteractor {
 
         if url.containsQueryItem(named: "embedded") == false {
             url = url.appendingQueryItems(.init(name: "embedded", value: "true"))
+        }
+
+        if url.containsQueryItem(named: "custom_embed_hide_header") == false {
+            url = url.appendingQueryItems(.init(name: "custom_embed_hide_header", value: "true"))
         }
 
         return url

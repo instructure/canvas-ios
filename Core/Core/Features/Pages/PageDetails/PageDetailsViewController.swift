@@ -21,7 +21,7 @@ import UIKit
 open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
     lazy var optionsButton = UIBarButtonItem(image: .moreLine, style: .plain, target: self, action: #selector(showOptions))
     @IBOutlet weak var webViewContainer: UIView!
-    public var webView = CoreWebView()
+    public var webView = CoreWebView(features: [])
     let refreshControl = UIRefreshControl()
     public let titleSubtitleView = TitleSubtitleView.create()
 

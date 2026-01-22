@@ -22,10 +22,7 @@ class StudioViewController: UINavigationController {
     public override var preferredStatusBarStyle: UIStatusBarStyle { .darkContent }
 
     public init(url: URL) {
-        let controller = CoreWebViewController(
-            features: [.hideCloseButtonInImmersiveView],
-            studioEnhancementsEnabled: false
-        )
+        let controller = CoreWebViewController(studioEnhancementsEnabled: false)
         controller.webView.load(URLRequest(url: url))
         controller.addDoneButton()
         controller.title = url.queryValue(for: "title")?.removingPercentEncoding
