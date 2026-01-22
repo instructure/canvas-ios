@@ -107,7 +107,6 @@ public struct MessageDetailsView: View {
                 }
             }
 
-
             Button(.init("Forward", bundle: .core), image: .forwardLine) {
                 model.forwardTapped(viewController: controller)
             }
