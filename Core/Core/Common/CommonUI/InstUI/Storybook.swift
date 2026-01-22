@@ -29,7 +29,7 @@ extension InstUI {
                         InstUI.PageIndicator.Storybook()
                     } label: {
                         Text(verbatim: "Page Indicator")
-                            .tint(Color.black)
+                            .tint(Color.textDarkest)
                     }
                 }
             }

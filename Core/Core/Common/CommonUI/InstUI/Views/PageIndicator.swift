@@ -20,6 +20,8 @@ import SwiftUI
 
 extension InstUI {
 
+    /// A visual page indicator for paged content.
+    /// This component does not support accessibility. The parent component using the pager should handle accessibility in the scrollable area.
     public struct PageIndicator: View {
 
         // MARK: - Private Properties
@@ -108,111 +110,10 @@ extension InstUI {
     }
 }
 
-extension InstUI.PageIndicator {
-    struct Storybook: View {
-        var body: some View {
-            PageIndicatorPreview()
-                .navigationTitle(Text(verbatim: "Page Indicator"))
-                .navigationBarTitleDisplayMode(.large)
-        }
-    }
-}
-
-private struct PageIndicatorPreview: View {
-    @State private var currentPage = 0
-    @State private var pageCount = 4
-    @State private var maxDotsBeforeScroll = 7
-
-    var body: some View {
-        VStack(spacing: 20) {
-            InstUI.PageIndicator(currentIndex: currentPage, count: pageCount, maxDotsBeforeScroll: maxDotsBeforeScroll)
-
-            VStack(spacing: 10) {
-                Text(verbatim: "Helper controls")
-
-                InstUI.Divider()
-
-                HStack(spacing: 12) {
-                    Button {
-                        if currentPage > 0 {
-                            currentPage -= 1
-                        }
-                    } label: {
-                        Text(verbatim: "Prev")
-                    }
-                    .disabled(currentPage == 0)
-
-                    Button {
-                        if currentPage < pageCount - 1 {
-                            currentPage += 1
-                        }
-                    } label: {
-                        Text(verbatim: "Next")
-                    }
-                    .disabled(currentPage == pageCount - 1)
-                }
-
-                Text(verbatim: "Page \(currentPage + 1) of \(pageCount)")
-
-                InstUI.Divider()
-
-                HStack(spacing: 12) {
-                    Button {
-                        currentPage = 0
-                        pageCount = 4
-                    } label: {
-                        Text(verbatim: "4 Pages")
-                    }
-
-                    Button {
-                        currentPage = 0
-                        pageCount = 15
-                    } label: {
-                        Text(verbatim: "15 Pages")
-                    }
-                }
-
-                InstUI.Divider()
-
-                HStack(spacing: 12) {
-                    Button {
-                        maxDotsBeforeScroll = 3
-                    } label: {
-                        Text(verbatim: "3 Max")
-                    }
-
-                    Button {
-                        maxDotsBeforeScroll = 5
-                    } label: {
-                        Text(verbatim: "5 Max")
-                    }
-
-                    Button {
-                        maxDotsBeforeScroll = 7
-                    } label: {
-                        Text(verbatim: "7 Max")
-                    }
-
-                    Button {
-                        maxDotsBeforeScroll = 10
-                    } label: {
-                        Text(verbatim: "10 Max")
-                    }
-                }
-
-                Text(verbatim: "Max dots before scroll: \(maxDotsBeforeScroll)")
-            }
-            .padding()
-            .border(Color.borderDark)
-        }
-        .padding()
-    }
-}
-
 #if DEBUG
 
 #Preview {
-    PageIndicatorPreview()
+    InstUI.PageIndicator.Storybook()
 }
 
 #endif
