@@ -112,9 +112,10 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         XCTAssertEqual(
             immersiveUrl?.absoluteString,
             "https://canvas.instructure.com/\(TestConstants.context.pathComponent)/external_tools/retrieve?" +
-            "display=full_width&embedded=true&url=https://suhaibalabsi.staging.instructuremedia.com/lti/launch?" +
-            "custom_arc_launch_type%3Dimmersive_view%26custom_arc_media_id%3D1de23fg456d" +
-            "&title=Studio%20Video%20Title"
+            "display=full_width&embedded=true&title=Studio%20Video%20Title&" +
+            "url=https://suhaibalabsi.staging.instructuremedia.com/lti/launch?" +
+            "custom_arc_launch_type%3Dimmersive_view%26custom_arc_media_id%3D1de23fg456d%26" +
+            "custom_embed_hide_header%3Dtrue"
         )
     }
 
@@ -164,7 +165,7 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         let immersiveUrl = interactor.urlForStudioImmersiveView(ofNavAction: action)
 
         // Then
-        XCTAssertEqual(immersiveUrl?.absoluteString, "https://suhaibalabsi.instructure.com/media_attachments/613046/immersive_view?title=Video%20Title%2011&embedded=true")
+        XCTAssertEqual(immersiveUrl?.absoluteString, "https://suhaibalabsi.instructure.com/media_attachments/613046/immersive_view?title=Video%20Title%2011&embedded=true&custom_embed_hide_header=true")
     }
 
     func test_presentation_via_nav_action() throws {
