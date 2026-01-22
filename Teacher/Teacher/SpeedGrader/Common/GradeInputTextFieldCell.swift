@@ -85,7 +85,6 @@ struct GradeInputTextFieldCell: View {
         }
         .paddingStyle(set: .standardCell)
         .contentShape(Rectangle())
-        .dynamicTypeSize(...DynamicTypeSize.accessibility3)
         .onTapGesture {
             isFocused = true
         }
