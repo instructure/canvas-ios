@@ -165,7 +165,8 @@ class CoreWebViewStudioFeaturesInteractorTests: CoreTestCase {
         let immersiveUrl = interactor.urlForStudioImmersiveView(ofNavAction: action)
 
         // Then
-        XCTAssertEqual(immersiveUrl?.absoluteString, "https://suhaibalabsi.instructure.com/media_attachments/613046/immersive_view?title=Video%20Title%2011&embedded=true&custom_embed_hide_header=true")
+        let expectedUrl = "https://suhaibalabsi.instructure.com/media_attachments/613046/immersive_view?title=Video%20Title%2011&embedded=true&custom_embed_hide_header=true"
+        XCTAssertEqual(immersiveUrl?.absoluteString, expectedUrl)
     }
 
     func test_presentation_via_nav_action() throws {
