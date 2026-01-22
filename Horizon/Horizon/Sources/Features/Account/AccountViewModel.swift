@@ -42,6 +42,7 @@ final class AccountViewModel {
     private let router: Router
     private let getUserInteractor: GetUserInteractor
     private let appExperienceInteractor: ExperienceSummaryInteractor
+    private let careerHelpInteractor: CareerHelpInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Private properties
@@ -62,12 +63,14 @@ final class AccountViewModel {
         getUserInteractor: GetUserInteractor,
         appExperienceInteractor: ExperienceSummaryInteractor = ExperienceSummaryInteractorLive(),
         sessionInteractor: SessionInteractor = SessionInteractor(),
+        careerHelpInteractor: CareerHelpInteractor = CareerHelpInteractorLive(),
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.router = router
         self.getUserInteractor = getUserInteractor
         self.appExperienceInteractor = appExperienceInteractor
         self.scheduler = scheduler
+        self.careerHelpInteractor = careerHelpInteractor
         getAccountHelpLinks()
         confirmLogoutViewModel.userConfirmation()
             .sink {
@@ -82,13 +85,8 @@ final class AccountViewModel {
     }
 
     private func getAccountHelpLinks(ignoreCache: Bool = false, completion: (() -> Void)? = nil) {
-        ReactiveStore(useCase: GetCareerHelpUseCase())
-            .getEntities(ignoreCache: ignoreCache)
-            .replaceError(with: [])
-            .flatMap { Publishers.Sequence(sequence: $0) }
-            .map { HelpModel(entity: $0) }
-            .collect()
-            .map { models in models.sorted { $0.isBugReport && !$1.isBugReport } }
+        careerHelpInteractor
+            .getAccountHelpLinks(ignoreCache: ignoreCache)
             .receive(on: scheduler)
             .sink { [weak self] models in
                 self?.helpItems = models

@@ -27,6 +27,7 @@ final class AccountViewModelTests: HorizonTestCase {
     private var testee: AccountViewModel!
     private var getUserInteractor: GetUserInteractorMock!
     private var experienceInteractor: ExperienceSummaryInteractorMock!
+    private var careerHelpInteractor: CareerHelpInteractorMock!
 
     override func setUp() {
         super.setUp()
@@ -36,12 +37,14 @@ final class AccountViewModelTests: HorizonTestCase {
         user.email = "test@example.com"
         getUserInteractor = GetUserInteractorMock(user: user)
         experienceInteractor = ExperienceSummaryInteractorMock()
+        careerHelpInteractor = CareerHelpInteractorMock()
     }
 
     override func tearDown() {
         testee = nil
         getUserInteractor = nil
         experienceInteractor = nil
+        careerHelpInteractor = nil
         super.tearDown()
     }
 
@@ -132,6 +135,69 @@ final class AccountViewModelTests: HorizonTestCase {
         XCTAssertFalse(testee.onReportBugDismissed)
     }
 
+    func test_getAccountHelpLinks_givenHelpItemsLoaded_thenHelpItemsArePopulated() {
+        // Given
+        let mockHelpItems = [
+            HelpModel(
+                id: "report_a_problem",
+                title: "Report a Problem",
+                url: nil,
+                isBugReport: true
+            ),
+            HelpModel(
+                id: "training_services_portal",
+                title: "Training Services",
+                url: URL(string: "https://example.com/training"),
+                isBugReport: false
+            )
+        ]
+        careerHelpInteractor.helpModels = mockHelpItems
+
+        // When
+        testee = makeViewModel()
+
+        // Then
+        XCTAssertEqual(testee.helpItems.count, 2)
+        XCTAssertEqual(testee.helpItems.first?.id, "report_a_problem")
+        XCTAssertEqual(testee.helpItems.last?.id, "training_services_portal")
+    }
+
+    func test_getAccountHelpLinks_givenEmptyResponse_thenHelpItemsRemainsEmpty() {
+        // Given
+        careerHelpInteractor.helpModels = []
+
+        // When
+        testee = makeViewModel()
+
+        // Then
+        XCTAssertEqual(testee.helpItems.count, 0)
+    }
+
+    func test_refresh_givenCalled_thenHelpItemsAreReloaded() async {
+        // Given
+        careerHelpInteractor.helpModels = []
+        testee = makeViewModel()
+        XCTAssertEqual(testee.helpItems.count, 0)
+
+        let updatedHelpItems = [
+            HelpModel(
+                id: "report_a_problem",
+                title: "Report a Problem",
+                url: nil,
+                isBugReport: true
+            )
+        ]
+        careerHelpInteractor.helpModels = updatedHelpItems
+
+        // When
+        await testee.refresh()
+
+        // Then
+        XCTAssertEqual(careerHelpInteractor.getAccountHelpLinksCallCount, 2)
+        XCTAssertEqual(careerHelpInteractor.lastIgnoreCache, true)
+        XCTAssertEqual(testee.helpItems.count, 1)
+    }
+
     // MARK: - Private helpers
 
     private func makeViewModel() -> AccountViewModel {
@@ -139,6 +205,7 @@ final class AccountViewModelTests: HorizonTestCase {
             router: router,
             getUserInteractor: getUserInteractor,
             appExperienceInteractor: experienceInteractor,
+            careerHelpInteractor: careerHelpInteractor,
             scheduler: .immediate
         )
     }
