@@ -28,7 +28,7 @@ struct SelectCalendarScreen: View {
     }
 
     public var body: some View {
-        InstUI.BaseScreen(state: viewModel.state, config: viewModel.screenConfig) { _ in
+        InstUI.BaseScreen(state: viewModel.state, config: .notRefreshable) { _ in
             LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
                 ForEach(viewModel.sections) { section in
                     if !section.items.isEmpty {
@@ -41,8 +41,7 @@ struct SelectCalendarScreen: View {
                 }
             }
         }
-        .navigationBarTitleView(viewModel.pageTitle)
-        .navigationBarStyle(.modal)
+        .navigationTitle(viewModel.pageTitle, style: .modal)
     }
 }
 

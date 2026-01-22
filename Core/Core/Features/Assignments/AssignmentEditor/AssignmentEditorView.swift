@@ -53,7 +53,6 @@ public struct AssignmentEditorView: View, ScreenViewTrackable {
 
     public var body: some View {
         form
-            .navigationBarTitleView(String(localized: "Edit Assignment", bundle: .core))
             .navigationBarTitleDisplayMode(.inline)
             .navBarItems(leading: {
                 Button(action: {
@@ -69,7 +68,7 @@ public struct AssignmentEditorView: View, ScreenViewTrackable {
                 .disabled(isLoading || isSaving)
                 .identifier("AssignmentEditor.doneButton")
             })
-            .navigationBarStyle(.modal)
+            .navigationTitle(String(localized: "Edit Assignment", bundle: .core), style: .modal)
 
             .alert(item: $alert) { alert in
                 switch alert {

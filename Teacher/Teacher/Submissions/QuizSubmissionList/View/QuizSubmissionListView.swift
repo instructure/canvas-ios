@@ -54,22 +54,15 @@ public struct QuizSubmissionListView: View, ScreenViewTrackable {
                             SwiftUI.EmptyView()
                         }
                     }
-                    .refreshable {
-                        await withCheckedContinuation { continuation in
-                            model.refreshDidTrigger.send {
-                                continuation.resume()
-                            }
-                        }
-                    }
+                    .refreshable(action: model.refreshDidTrigger.send)
                     .listStyle(PlainListStyle())
                     .animation(.default, value: model.submissions)
                 }
             }
         }
         .background(Color.backgroundLightest)
-        .navigationBarTitleView(title: model.title, subtitle: model.subTitle)
         .navigationBarItems(trailing: messageUsersButton)
-        .navigationBarStyle(.color(nil))
+        .navigationTitles(title: model.title, subtitle: model.subTitle, style: .color(nil))
         .alert(isPresented: $model.showError) {
             Alert(title: Text("Practice quizzes & surveys do not have detail views.", bundle: .teacher))
         }

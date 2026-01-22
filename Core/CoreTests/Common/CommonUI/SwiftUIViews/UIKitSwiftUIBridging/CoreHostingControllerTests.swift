@@ -27,6 +27,9 @@ class CoreHostingControllerTests: CoreTestCase {
                 .navigationBarStyle(.color(.red))
         )
         controller.viewWillAppear(false)
-        XCTAssertEqual(controller.navigationBarStyle, .color(.red))
+
+        if #unavailable(iOS 26) {
+            XCTAssertEqual(controller.navigationBarStyle, .color(.red))
+        }
     }
 }

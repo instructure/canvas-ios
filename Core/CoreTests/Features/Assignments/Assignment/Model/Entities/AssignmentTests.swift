@@ -152,6 +152,18 @@ class AssignmentTests: CoreTestCase {
         XCTAssertEqual(savedAssignment.position, Int.max)
     }
 
+    func testIsGroupAssignment() {
+        let api = APIAssignment.make(group_category_id: "1234")
+        let savedAssignment = Assignment.save(api, in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
+        XCTAssertTrue(savedAssignment.isGroupAssignment)
+    }
+
+    func testIsGroupGradedDiscussion() {
+        let api = APIAssignment.make(discussion_topic: .make(group_category_id: "1234"))
+        let savedAssignment = Assignment.save(api, in: databaseClient, updateSubmission: false, updateScoreStatistics: false)
+        XCTAssertTrue(savedAssignment.isGroupAssignment)
+    }
+
     func testUpdateFromAPIItemWithNeedsGradingCount() {
         let api = APIAssignment.make(needs_grading_count: 5)
         let savedAssignment = Assignment.save(api, in: databaseClient, updateSubmission: false, updateScoreStatistics: false)

@@ -32,6 +32,22 @@ public class DashboardHelper: BaseHelper {
         app.find(id: "DashboardSettings.showGradesToggle", type: .toggle)
     }
 
+    /// Waits until the Dashboard itself is visible. This will not wait for Course Cards to load.
+    public static func waitUntilDashboardIsVisible() {
+        XCTContext.runActivity(named: "Wait until Dashboard (Profile Menu button) is visible") { _ in
+            let profileButton = profileButton.waitUntil(.visible)
+            XCTAssertVisible(profileButton)
+        }
+    }
+
+    /// Waits until the CourseCards on Dashboard are visible. Not usable for Parent app.
+    public static func waitUntilCourseCardIsVisible() {
+        XCTContext.runActivity(named: "Wait until Course Card is visible") { _ in
+            let courseCard = app.find(idStartingWith: "DashboardCourseCell.").waitUntil(.visible)
+            XCTAssertVisible(courseCard)
+        }
+    }
+
     public static func courseCard(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
         return app.find(id: "DashboardCourseCell.\(course?.id ?? courseId!)")
     }

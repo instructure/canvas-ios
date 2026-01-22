@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      pull-requests: read
+      pull-requests: write
       issues: read
       id-token: write
 
@@ -43,25 +43,53 @@ jobs:
           prompt: |
             REPO: ${{ github.repository }}
             PR NUMBER: ${{ github.event.pull_request.number }}
+            EVENT ACTION: ${{ github.event.action }}
 
-            Provide a CONCISE review (max 10 bullet points) focusing ONLY on:
-            - Potential bugs or crashes
-            - Major performance issues
-            - Breaking changes
-            - Correctness
+            Please review this pull request and provide inline feedback using the GitHub review system.
 
-            Skip minor style issues, suggestions, and explanations. Be direct and brief.
-            If critical issues are found, list them in a few short bullet points. If no critical issues are found, provide a simple approval.
-            Sign off with a checkbox emoji:  (approved) or  (issues found).
+            Review focus areas:
+            - Code quality and best practices
+            - Potential bugs or issues
+            - Performance considerations
+            - Security concerns
+            - Test coverage
 
-            IMPORTANT: Before posting your review:
-            1. Check if there's an existing comment from "github-actions[bot]" containing "Claude Code Review"
-            2. If found, UPDATE that comment using: gh api repos/${{ github.repository }}/issues/comments/{comment_id} -X PATCH -f body="your review"
-            3. If not found, create a new comment with: gh pr comment ${{ github.event.pull_request.number }} --body "your review"
+            Use the repository's CLAUDE.md for guidance on style and conventions. Be constructive and helpful in your feedback.
 
-            Start your review with "## Claude Code Review" and include "Updated: $(date)" at the top.
+            Instructions:
+            ${{ github.event.action == 'synchronize' && '
+            ## SYNCHRONIZE EVENT - UPDATE EXISTING REVIEW
+            This is an update to an existing PR. You must:
+            1. Use the GitHub MCP tools to fetch your previous reviews on this PR
+            2. Fetch the latest PR diff and identify what has changed since your last review
+            3. Find your previous review summary comment (the one that starts with "## PR Review Summary" or similar)
+            4. Post a NEW PR comment (not a review) with an update status that includes:
+               - Reference to your previous review
+               - Progress update using checkboxes:
+                 - [x] Previously identified issues that have been resolved
+                 - [ ] Previously identified issues still present
+                 - [ ] New issues found in this update
+               - Brief summary of what changed
+               - Any new concerns or positive feedback
+            5. For inline review comments:
+               - Resolve threads where the issue has been fixed
+               - Update existing review comment threads if partially addressed
+               - Add new inline review comments ONLY for new issues that require changes
+               - Do NOT add inline comments for positive feedback
+            6. DO NOT create a new review summary - only post a progress update comment
+
+            Use mcp__github__create_or_update_issue_comment to post the update.' || '
+            ## NEW REVIEW EVENT
+            This is a new PR or initial review. You must:
+            1. Use the GitHub MCP tools to fetch the PR diff
+            2. Create a review summary with checkboxes for any issues found:
+               - [ ] Issue description and location
+            3. Add inline comments ONLY for specific code that needs changes
+            4. DO NOT add inline comments for positive feedback - include positive feedback in the summary section only
+            5. Submit the review with event type COMMENT (not REQUEST_CHANGES) to publish as non-blocking feedback
+            ' }}
 
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
           # or https://docs.claude.com/en/docs/claude-code/cli-reference for available options
-          claude_args: '--allowed-tools "Bash(gh issue view:*),Bash(gh search:*),Bash(gh issue list:*),Bash(gh pr comment:*),Bash(gh pr diff:*),Bash(gh pr view:*),Bash(gh pr list:*),Bash(gh api:*)" --model haiku'
+          claude_args: '--allowedTools "mcp__github__create_pending_pull_request_review,mcp__github__add_comment_to_pending_review,mcp__github__submit_pending_pull_request_review,mcp__github__get_pull_request_diff,mcp__github__list_reviews,mcp__github__get_review,mcp__github__list_review_comments,mcp__github__update_review_comment,mcp__github__create_or_update_pull_request_review_comment,mcp__github__create_or_update_issue_comment,mcp__github__list_issue_comments,mcp__github__resolve_review_thread"'
 

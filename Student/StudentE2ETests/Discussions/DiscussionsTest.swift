@@ -140,8 +140,8 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertVisible(assignmentButton)
 
         // MARK: Navigate to Grades to check visibility and submission of the assignment discussion
-        Helper.backButton.hit()
-        Helper.backButton.hit()
+        Helper.backButtonByIdOrLabel.hit()
+        Helper.backButtonByLabel.hit()
         GradesHelper.navigateToGrades(course: course)
         var gradesAssignmentButton = GradesHelper.cell(assignment: assignmentDiscussion.assignment!)
             .waitUntil(.visible)
@@ -153,8 +153,8 @@ class DiscussionsTests: E2ETestCase {
         XCTAssertEqual(gradesAssignmentSubmittedLabel.label, "Not Submitted")
 
         // MARK: Navigate to Discussions and send a reply
-        Helper.backButton.hit()
-        Helper.backButton.hit()
+        Helper.backButtonByIdOrLabel.hit()
+        Helper.backButtonByLabel.hit()
         Helper.navigateToDiscussions(course: course)
         let discussionButton = Helper.discussionButton(discussion: assignmentDiscussion).waitUntil(.visible)
         XCTAssertVisible(discussionButton)
@@ -168,7 +168,7 @@ class DiscussionsTests: E2ETestCase {
         // On iPhone: Back button needs to be tapped for the label to get visible
         let discussionDataLabelReplies = Helper.discussionDataLabel(discussion: assignmentDiscussion, label: .replies)
         if discussionDataLabelReplies == nil {
-            Helper.backButton.hit()
+            Helper.backButtonByIdOrLabel.hit()
             app.pullToRefresh()
         }
         let discussionRepliesLabel = Helper.discussionButton(discussion: assignmentDiscussion)
@@ -178,8 +178,8 @@ class DiscussionsTests: E2ETestCase {
         XCTAssert(discussionRepliesLabel.isVisible)
 
         // MARK: Navigate to Grades and check for updates regarding submission
-        Helper.backButton.hit()
-        Helper.backButton.hit()
+        Helper.backButtonByIdOrLabel.hit()
+        Helper.backButtonByLabel.hit()
         GradesHelper.navigateToGrades(course: course)
         GradesHelper.refreshGradesScreen()
         gradesAssignmentButton = GradesHelper.cell(assignment: assignmentDiscussion.assignment!)

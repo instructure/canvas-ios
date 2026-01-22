@@ -23,14 +23,17 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
     @ObservedObject private var viewModel: CourseDetailsViewModel
-    @ObservedObject private var headerViewModel: CourseDetailsHeaderViewModel
     @ObservedObject private var selectionViewModel: ListSelectionViewModel
+    @ObservedObject private var headerViewModel: CourseDetailsHeaderViewModel
+    @available(iOS, deprecated: 26)
+    @ObservedObject private var legacyHeaderViewModel: LegacyCourseDetailsHeaderViewModel
 
     public let screenViewTrackingParameters: ScreenViewTrackingParameters
 
     public init(viewModel: CourseDetailsViewModel) {
         self.viewModel = viewModel
         self.headerViewModel = viewModel.headerViewModel
+        self.legacyHeaderViewModel = viewModel.legacyHeaderViewModel
         self.selectionViewModel = viewModel.selectionViewModel
 
         screenViewTrackingParameters = ScreenViewTrackingParameters(
@@ -39,31 +42,60 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        GeometryReader { geometry in
-            VStack(spacing: 0) {
-                switch viewModel.state {
-                case .empty(let title, let message):
-                    imageHeader(geometry: geometry)
-                    errorView(title: title, message: message)
-                case .loading:
-                    imageHeader(geometry: geometry)
-                    loadingView
-                case .data(let tabViewModels):
-                    tabList(tabViewModels, geometry: geometry)
+        if #available(iOS 26, *) {
+            GeometryReader { geometry in
+                VStack(spacing: 0) {
+                    switch viewModel.state {
+                    case .empty(let title, let message):
+                        imageHeader(geometry: geometry)
+                        errorView(title: title, message: message)
+                    case .loading:
+                        imageHeader(geometry: geometry)
+                        loadingView
+                    case .data(let tabViewModels):
+                        tabList(tabViewModels, geometry: geometry)
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .center)
+                .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+                .navigationTitle(viewModel.navigationBarTitle)
+                .toolbar {
+                    if viewModel.showSettings {
+                        settingsButton
+                    }
+                }
+                .onAppear {
+                    viewModel.viewDidAppear()
+                    viewModel.splitModeObserver.splitViewController = controller.value.splitViewController
                 }
             }
-            .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
-            .navigationBarTitleView(viewModel.navigationBarTitle)
-            .navigationBarGenericBackButton()
-            .navigationBarItems(trailing: viewModel.showSettings ? settingsButton : nil)
-            .navigationBarStyle(.color(viewModel.courseColor))
-            .onAppear {
-                viewModel.viewDidAppear()
-                viewModel.splitModeObserver.splitViewController = controller.value.splitViewController
+            .onReceive(viewModel.$homeRoute, perform: setupDefaultSplitDetailView)
+        } else {
+            GeometryReader { geometry in
+                VStack(spacing: 0) {
+                    switch viewModel.state {
+                    case .empty(let title, let message):
+                        legacyImageHeader(geometry: geometry)
+                        errorView(title: title, message: message)
+                    case .loading:
+                        legacyImageHeader(geometry: geometry)
+                        loadingView
+                    case .data(let tabViewModels):
+                        legacyTabList(tabViewModels, geometry: geometry)
+                    }
+                }
+                .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
+                .navigationBarGenericBackButton()
+                .navigationBarItems(trailing: viewModel.showSettings ? settingsButton : nil)
+                .navigationTitle(viewModel.navigationBarTitle, style: .color(viewModel.courseColor))
+                .onAppear {
+                    viewModel.viewDidAppear()
+                    viewModel.splitModeObserver.splitViewController = controller.value.splitViewController
+                }
             }
+            .onPreferenceChange(ViewBoundsKey.self, perform: legacyHeaderViewModel.scrollPositionChanged)
+            .onReceive(viewModel.$homeRoute, perform: setupDefaultSplitDetailView)
         }
-        .onPreferenceChange(ViewBoundsKey.self, perform: headerViewModel.scrollPositionChanged)
-        .onReceive(viewModel.$homeRoute, perform: setupDefaultSplitDetailView)
     }
 
     @ViewBuilder
@@ -73,7 +105,11 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
                 env.router.route(to: url, from: controller, options: .modal(.formSheet, isDismissable: false, embedInNav: true))
             }
         } label: {
-            Image.settingsLine.foregroundColor(.textLightest)
+            if #available(iOS 26, *) {
+                Image.settingsSolid
+            } else {
+                Image.settingsLine.foregroundColor(.textLightest)
+            }
         }
         .accessibility(label: Text("Edit course settings", bundle: .core))
     }
@@ -146,10 +182,39 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
         Spacer()
     }
 
+    @available(iOS, introduced: 26, message: "Legacy version exists")
     private func tabList(_ tabViewModels: [CourseDetailsCellViewModel], geometry: GeometryProxy) -> some View {
+        ScrollView {
+            VStack(spacing: 0) {
+                imageHeader(geometry: geometry)
+                    .padding(.bottom, 16)
+                if viewModel.showHome {
+                    homeView
+                    Divider()
+                }
+                ForEach(tabViewModels, id: \.id) { tabViewModel in
+                    CourseDetailsCellView(viewModel: tabViewModel)
+                    Divider()
+                }
+            }
+            .listRowInsets(EdgeInsets())
+            .listRowBackground(Color.clear)
+            .listRowSeparator(.hidden)
+            .background(Color.backgroundLightest)
+        }
+        .scrollIndicators(.hidden)
+        .listStyle(.plain)
+        .scrollContentBackground(.hidden)
+        .refreshable {
+            await viewModel.refresh()
+        }
+    }
+
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private func legacyTabList(_ tabViewModels: [CourseDetailsCellViewModel], geometry: GeometryProxy) -> some View {
         ZStack(alignment: .top) {
-            imageHeader(geometry: geometry)
-            ListWithoutVerticalScrollIndicator {
+            legacyImageHeader(geometry: geometry)
+            ScrollView {
                 VStack(spacing: 0) {
                     if viewModel.showHome {
                         homeView
@@ -164,13 +229,14 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
                 .listRowBackground(Color.clear)
                 .listRowSeparator(.hidden)
                 .background(Color.backgroundLightest)
-                .padding(.top, headerViewModel.visibleHeight)
+                .padding(.top, legacyHeaderViewModel.visibleHeight)
                 // Save the frame of the content so we can inspect its y position and move course image based on that
                 .transformAnchorPreference(key: ViewBoundsKey.self, value: .bounds) { preferences, bounds in
                     preferences = [.init(viewId: 0, bounds: geometry[bounds])]
                 }
             }
             .listStyle(.plain)
+            .scrollIndicators(.hidden)
             .scrollContentBackground(.hidden)
             .refreshable {
                 await viewModel.refresh()
@@ -178,10 +244,17 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
         }
     }
 
-    @ViewBuilder
+    @available(iOS, introduced: 26, message: "Legacy version exists")
     private func imageHeader(geometry: GeometryProxy) -> some View {
-        if headerViewModel.shouldShowHeader(in: geometry.size) {
-            CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width)
+        CourseDetailsHeaderView(viewModel: headerViewModel, width: geometry.size.width - 32)
+            .clipShape(RoundedRectangle(cornerRadius: 16))
+    }
+
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    @ViewBuilder
+    private func legacyImageHeader(geometry: GeometryProxy) -> some View {
+        if legacyHeaderViewModel.shouldShowHeader(in: geometry.size) {
+            LegacyCourseDetailsHeaderView(viewModel: legacyHeaderViewModel, width: geometry.size.width)
         }
     }
 
@@ -209,7 +282,14 @@ struct CourseDetailsView_Previews: PreviewProvider {
     private static let env = AppEnvironment.shared
     private static let context = env.globalDatabase.viewContext
     private static var contentViewModel: CourseDetailsViewModel {
-        let course = Course.save(.make(default_view: .assignments, term: .init(id: "1", name: "Default Term", start_at: nil, end_at: nil)), in: context)
+        let course = Course.save(
+            .make(
+                name: "Long name to brake the layout of the title",
+                default_view: .assignments,
+                term: .init(id: "1", name: "Default Term", start_at: nil, end_at: nil)
+            ),
+            in: context
+        )
         let tab1: Tab = Tab(context: context)
         tab1.save(.make(), in: context, context: .course("1"))
         let tab2: Tab = Tab(context: context)

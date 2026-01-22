@@ -98,6 +98,7 @@ public class CoreSplitViewController: UISplitViewController {
         }
     }
 
+    @available(iOS, deprecated: 26, message: "iOS26 has a default implementation")
     public func prettyDisplayModeButtonItem(_ displayMode: DisplayMode) -> UIBarButtonItem {
         let defaultButton = self.displayModeButtonItem
         let collapse = displayMode == .oneOverSecondary || displayMode == .secondaryOnly
@@ -121,9 +122,13 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
     public func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
         if svc.viewControllers.count == 2 {
             let top = (svc.viewControllers.last as? UINavigationController)?.topViewController
-            top?.navigationItem.leftItemsSupplementBackButton = true
+            if #unavailable(iOS 26) {
+                top?.navigationItem.leftItemsSupplementBackButton = true
+            }
             if top?.isKind(of: EmptyViewController.self) == false {
-                top?.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem(displayMode)
+                if #unavailable(iOS 26) {
+                    top?.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem(displayMode)
+                }
                 NotificationCenter.default.post(name: NSNotification.Name.SplitViewControllerWillChangeDisplayModeNotification, object: self)
             }
         }
@@ -179,9 +184,12 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
             }
 
             let viewControllers = (newDeets as? UINavigationController)?.viewControllers ?? [newDeets]
-            for vc in viewControllers {
-                vc.navigationItem.leftItemsSupplementBackButton = true
-                vc.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem(splitViewController.displayMode)
+
+            if #unavailable(iOS 26) {
+                for vc in viewControllers {
+                    vc.navigationItem.leftItemsSupplementBackButton = true
+                    vc.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem(splitViewController.displayMode)
+                }
             }
 
             if let nav = newDeets as? UINavigationController {

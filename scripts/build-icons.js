@@ -48,6 +48,7 @@ const whitelist = [
   'arrow-open-left',
   'arrow-open-right',
   'arrow-open-up',
+  'arrow-up',
   'expand-items',
   'assignment',
   'audio',
@@ -141,7 +142,8 @@ const whitelist = [
   'filter',
   'search',
   'speed-grader',
-  'flag'
+  'flag',
+  'eportfolio'
 ]
 
 const getImages = (path) => fs.readdirSync(path, { withFileTypes: true }).flatMap(dir => {

@@ -24,7 +24,6 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
     // MARK: - Output
 
     public let navigationTitle = String(localized: "To-do", bundle: .core)
-    public let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
     @Published private(set) var state: InstUI.ScreenState = .data
     @Published public private(set) var title: String?

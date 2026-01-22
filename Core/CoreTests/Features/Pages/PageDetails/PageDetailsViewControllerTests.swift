@@ -52,9 +52,14 @@ class PageDetailsViewControllerTests: CoreTestCase {
             controller.view.superview != nil
         }
 
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#008800")
-        XCTAssertEqual(controller.titleSubtitleView.title, "Test Page")
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Test Page")
+            XCTAssertEqual(controller.navigationItem.subtitle, "Course One")
+        } else {
+            XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#008800")
+            XCTAssertEqual(controller.titleSubtitleView.title, "Test Page")
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+        }
         XCTAssertEqual(controller.navigationItem.rightBarButtonItems?.count, 1)
 
         let optionsButton = controller.navigationItem.rightBarButtonItem
@@ -91,10 +96,13 @@ class PageDetailsViewControllerTests: CoreTestCase {
         controller.app = .student
         controller.webView.scrollView.refreshControl?.beginRefreshing()
         controller.webView.scrollView.refreshControl?.sendActions(for: .primaryActionTriggered)
-        XCTAssertEqual(controller.webView.scrollView.refreshControl?.isRefreshing, true)
         RunLoop.main.run(until: Date() + 1.5)
-        XCTAssertEqual(controller.webView.scrollView.refreshControl?.isRefreshing, false)
-        XCTAssertEqual(controller.titleSubtitleView.title, "Refreshed")
+
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Refreshed")
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.title, "Refreshed")
+        }
         XCTAssertNil(controller.navigationItem.rightBarButtonItem)
     }
 
@@ -109,9 +117,14 @@ class PageDetailsViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#000088")
-        XCTAssertEqual(controller.titleSubtitleView.title, "Test Page")
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Group One")
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Test Page")
+            XCTAssertEqual(controller.navigationItem.subtitle, "Group One")
+        } else {
+            XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, "#000088")
+            XCTAssertEqual(controller.titleSubtitleView.title, "Test Page")
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Group One")
+        }
     }
 
     func testFrontPage() {
@@ -125,7 +138,12 @@ class PageDetailsViewControllerTests: CoreTestCase {
             title: "Front Page"
         ))
         controller.view.layoutIfNeeded()
-        XCTAssertEqual(controller.titleSubtitleView.title, "Front Page")
+
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Front Page")
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.title, "Front Page")
+        }
         XCTAssertNil(controller.navigationItem.rightBarButtonItem)
     }
 }

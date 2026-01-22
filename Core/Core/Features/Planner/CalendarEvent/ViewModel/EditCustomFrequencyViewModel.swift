@@ -27,7 +27,6 @@ final class EditCustomFrequencyViewModel: ObservableObject {
     let pageTitle = String(localized: "Custom Frequency", bundle: .core)
     let doneButtonTitle: String = String(localized: "Done", bundle: .core)
     let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new/frequency/custom")
-    let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
     // MARK: - Data
     let proposedDate: Date

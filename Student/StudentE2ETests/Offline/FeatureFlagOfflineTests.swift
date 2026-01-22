@@ -88,7 +88,7 @@ class FeatureFlagOfflineTests: OfflineE2ETestCase {
         announcementItem.hit()
         let announcementTitleItem = AnnouncementsHelper.Details.title.waitUntil(.visible)
         let announcementBodyItem = AnnouncementsHelper.Details.message.waitUntil(.visible)
-        let backButton = AnnouncementsHelper.backButton.waitUntil(.visible)
+        let backButton = AnnouncementsHelper.backButtonByIdOrLabel.waitUntil(.visible)
         XCTAssertVisible(announcementTitleItem)
         XCTAssertVisible(announcementBodyItem)
         XCTAssertVisible(backButton)

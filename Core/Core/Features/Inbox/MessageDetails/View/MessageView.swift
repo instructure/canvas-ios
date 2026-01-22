@@ -18,25 +18,35 @@
 
 import SwiftUI
 
+@available(iOS, introduced: 26, message: "Legacy version exists")
 public struct MessageView: View {
     @Environment(\.viewController) private var controller
     @ScaledMetric private var uiScale: CGFloat = 1
 
     private var model: MessageViewModel
     private let isReplyButtonVisible: Bool
-    private var replyDidTap: () -> Void
-    private var moreDidTap: () -> Void
+    private let isStudentAccessRestricted: Bool
+    private let replyDidTap: () -> Void
+    private let replyAllDidTap: () -> Void
+    private let forwardDidTap: () -> Void
+    public var deleteDidTap: () -> Void
 
     public init(
         model: MessageViewModel,
         isReplyButtonVisible: Bool,
+        isStudentAccessRestricted: Bool,
         replyDidTap: @escaping () -> Void,
-        moreDidTap: @escaping () -> Void
+        replyAllDidTap: @escaping () -> Void,
+        forwardDidTap: @escaping () -> Void,
+        deleteDidTap: @escaping () -> Void
     ) {
         self.model = model
         self.replyDidTap = replyDidTap
-        self.moreDidTap = moreDidTap
+        self.isStudentAccessRestricted = isStudentAccessRestricted
+        self.replyAllDidTap = replyAllDidTap
         self.isReplyButtonVisible = isReplyButtonVisible
+        self.forwardDidTap = forwardDidTap
+        self.deleteDidTap = deleteDidTap
     }
 
     public var body: some View {
@@ -76,11 +86,37 @@ public struct MessageView: View {
                     .accessibilityIdentifier("MessageDetails.date")
             }
             Spacer()
+
             if isReplyButtonVisible {
                 replyIconButton
             }
-            Button {
-                moreDidTap()
+
+            Menu {
+                if isReplyButtonVisible {
+                    Button(.init("Reply", bundle: .core), image: .replyLine, action: replyDidTap)
+                        .accessibilityIdentifier("MessageDetails.reply")
+
+                    if !isStudentAccessRestricted {
+                        Button(
+                            .init("Reply All", bundle: .core),
+                            image: .replyAllLine,
+                            action: replyAllDidTap
+                        )
+                        .accessibilityIdentifier("MessageDetails.replyAll")
+                    }
+                }
+
+                Button(.init("Forward", bundle: .core), image: .forwardLine, action: forwardDidTap)
+                    .accessibilityIdentifier("MessageDetails.forward")
+
+                if !isStudentAccessRestricted {
+                    Button(
+                        .init("Delete Message", bundle: .core),
+                        image: .trashLine,
+                        action: deleteDidTap
+                    )
+                    .accessibilityIdentifier("MessageDetails.delete")
+                }
             } label: {
                 Image
                     .moreLine
@@ -131,3 +167,18 @@ public struct MessageView: View {
         .environment(\.openURL, OpenURLAction(handler: model.handleURL))
     }
 }
+
+#if DEBUG
+
+#Preview {
+    let env = PreviewEnvironment()
+    let context = env.globalDatabase.viewContext
+
+    MessageDetailsAssembly.makePreview(
+        env: env,
+        subject: "Message Title",
+        messages: .make(count: 5, body: InstUI.PreviewData.loremIpsumLong, in: context)
+    )
+}
+
+#endif

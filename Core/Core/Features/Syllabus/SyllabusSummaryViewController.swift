@@ -68,11 +68,10 @@ public class SyllabusSummaryViewController: UITableViewController {
         view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.separatorInset = .zero
-        tableView.separatorColor = .borderMedium
         tableView.tableFooterView = UIView()
         tableView.registerCell(SyllabusSummaryItemCell.self)
 
-        let refresh = CircleRefreshControl()
+        let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector(refresh(_:)), for: .primaryActionTriggered)
         tableView.refreshControl = refresh
 

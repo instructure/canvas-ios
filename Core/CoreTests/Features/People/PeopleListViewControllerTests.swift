@@ -54,8 +54,13 @@ class PeopleListViewControllerTests: CoreTestCase {
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
-        XCTAssertEqual(controller.titleSubtitleView.title, "People")
-        XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "People")
+            XCTAssertEqual(controller.navigationItem.subtitle, "Course One")
+        } else {
+            XCTAssertEqual(controller.titleSubtitleView.title, "People")
+            XCTAssertEqual(controller.titleSubtitleView.subtitle, "Course One")
+        }
 
         XCTAssertEqual(controller.tableView.numberOfRows(inSection: 0), 2)
 
