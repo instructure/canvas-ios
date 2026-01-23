@@ -55,7 +55,7 @@ struct DashboardCourseCardView: View {
         }
         .buttonStyle(ScaleButtonStyle(scale: 1))
         .accessibility(label: Text(verbatim: "\(courseCard.shortName) \(courseCard.courseCode) \(a11yGrade)".trimmingCharacters(in: .whitespacesAndNewlines)))
-        .identifier("DashboardCourseCell.\(courseCard.id)")
+        .identifier("Dashboard.CourseCard.cardButton")
     }
 
     private var regularHorizontalLayout: some View {
@@ -114,6 +114,10 @@ struct DashboardCourseCardView: View {
 
     @ViewBuilder
     private var optionsKebabButton: some View {
+        let identifier = offlineModeViewModel.isOfflineFeatureEnabled
+            ? "Dashboard.CourseCard.optionsButton"
+            : "Dashboard.CourseCard.customizeButton"
+
         PrimaryButton(isAvailable: $isAvailable) {
             if offlineModeViewModel.isOfflineFeatureEnabled {
                 isShowingKebabDialog.toggle()
@@ -125,7 +129,7 @@ struct DashboardCourseCardView: View {
         }
         .frame(width: 44, height: 44).padding(.trailing, -6)
         .accessibilityLabel(Text("Course Card Options", bundle: .core))
-        .identifier("DashboardCourseCell.\(courseCard.id).optionsButton")
+        .identifier(identifier)
         .confirmationDialog("", isPresented: $isShowingKebabDialog) {
             Button {
                 if offlineModeViewModel.isOffline {
@@ -144,11 +148,14 @@ struct DashboardCourseCardView: View {
             } label: {
                 Text("Manage Offline Content", bundle: .core)
             }
+            .identifier("Dashboard.CourseCard.manageOfflineButton")
+
             Button {
                 openDashboardCardCustomizeSheet()
             } label: {
                 Text("Customize Course", bundle: .core)
             }
+            .identifier("Dashboard.CourseCard.customizeButton")
         }
     }
 
@@ -177,7 +184,7 @@ struct DashboardCourseCardView: View {
             .padding(.horizontal, 6).frame(height: 20)
             .background(RoundedRectangle(cornerRadius: 10).fill(Color.backgroundLightest))
             .frame(maxWidth: 120, alignment: .leading)
-            .accessibilityIdentifier("DashboardCourseCell.\(courseCard.id).gradePill")
+            .identifier("Dashboard.CourseCard.gradePill")
         }
     }
 

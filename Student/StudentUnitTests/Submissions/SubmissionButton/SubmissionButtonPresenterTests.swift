@@ -56,54 +56,54 @@ class SubmissionButtonPresenterTests: StudentTestCase {
             submission_types: [ .online_upload ]
         ))
         let c = Course.make(from: .make(enrollments: [ .make(type: "observer") ]))
-        XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil))
+        XCTAssertNil(presenter.buttonKind(course: c, assignment: a, quiz: nil, onlineUpload: nil))
 
         c.enrollments?.first?.type = "student"
         c.enrollments?.first?.role = "SomethingCustom"
-        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "Submit Assignment")
+        XCTAssertEqual(presenter.buttonKind(course: c, assignment: a, quiz: nil, onlineUpload: nil)?.title, "Submit Assignment")
 
         a.submission?.submittedAt = Date()
-        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "Resubmit Assignment")
+        XCTAssertEqual(presenter.buttonKind(course: c, assignment: a, quiz: nil, onlineUpload: nil)?.title, "Resubmit Assignment")
 
         a.submission?.workflowState = .graded
         a.submission?.submittedAt = nil
-        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "Submit Assignment")
+        XCTAssertEqual(presenter.buttonKind(course: c, assignment: a, quiz: nil, onlineUpload: nil)?.title, "Submit Assignment")
 
         a.submissionTypes = [ .discussion_topic ]
-        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "View Discussion")
+        XCTAssertEqual(presenter.buttonKind(course: c, assignment: a, quiz: nil, onlineUpload: nil)?.title, "View Discussion")
 
         a.submissionTypes = [ .external_tool ]
         a.isQuizLTI = true
-        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "Open the Quiz")
+        XCTAssertEqual(presenter.buttonKind(course: c, assignment: a, quiz: nil, onlineUpload: nil)?.title, "Open the Quiz")
         a.isQuizLTI = false
-        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil), "Launch External Tool")
+        XCTAssertEqual(presenter.buttonKind(course: c, assignment: a, quiz: nil, onlineUpload: nil)?.title, "Launch External Tool")
 
         presenter.arcID = .pending
         a.submissionTypes = [.online_upload]
-        XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil))
+        XCTAssertNil(presenter.buttonKind(course: c, assignment: a, quiz: nil, onlineUpload: nil))
 
         presenter.arcID = .none
         a.submissionTypes = [ .online_quiz ]
         let quiz = Quiz.make()
         a.quizID = quiz.id
         quiz.submission = QuizSubmission.make(from: .make(started_at: Date()))
-        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz, onlineUpload: nil), "Resume Quiz")
+        XCTAssertEqual(presenter.buttonKind(course: c, assignment: a, quiz: quiz, onlineUpload: nil)?.title, "Resume Quiz")
         quiz.submission = QuizSubmission.make(from: .make(attempts_left: 0))
-        XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: quiz, onlineUpload: nil))
+        XCTAssertNil(presenter.buttonKind(course: c, assignment: a, quiz: quiz, onlineUpload: nil))
         quiz.submission = nil
         a.submission?.submittedAt = Date()
-        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz, onlineUpload: nil), "Retake Quiz")
+        XCTAssertEqual(presenter.buttonKind(course: c, assignment: a, quiz: quiz, onlineUpload: nil)?.title, "Retake Quiz")
         a.submission?.submittedAt = nil
-        XCTAssertEqual(presenter.buttonText(course: c, assignment: a, quiz: quiz, onlineUpload: nil), "Take Quiz")
+        XCTAssertEqual(presenter.buttonKind(course: c, assignment: a, quiz: quiz, onlineUpload: nil)?.title, "Take Quiz")
 
         a.submissionTypes = [ .online_upload ]
         a.lockedForUser = true
-        XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil))
+        XCTAssertNil(presenter.buttonKind(course: c, assignment: a, quiz: nil, onlineUpload: nil))
 
         a.lockedForUser = false
         a.allowedAttempts = 1
         a.submission = Submission.make(from: .make(attempt: 2))
-        XCTAssertNil(presenter.buttonText(course: c, assignment: a, quiz: nil, onlineUpload: nil))
+        XCTAssertNil(presenter.buttonKind(course: c, assignment: a, quiz: nil, onlineUpload: nil))
     }
 
     func testSubmitAssignment() {

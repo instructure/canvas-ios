@@ -22,17 +22,17 @@ public class DashboardHelper: BaseHelper {
     public static var settingsButton: XCUIElement { app.find(id: "Dashboard.settingsButton") }
     public static var optionsButton: XCUIElement { app.find(id: "Dashboard.optionsButton") }
     public static var profileButton: XCUIElement { app.find(id: "Dashboard.profileButton", type: .button) }
-    public static var editButton: XCUIElement { app.find(id: "Dashboard.editButton") }
+    public static var allCoursesButton: XCUIElement { app.find(id: "Dashboard.allCoursesButton") }
     public static var doneButton: XCUIElement { app.find(id: "screen.dismiss", type: .button) }
-    public static var coursesLabel: XCUIElement { app.find(id: "dashboard.courses.heading-lbl") }
+    public static var coursesLabel: XCUIElement { app.find(id: "Dashboard.coursesLabel") }
     public static var offlineLine: XCUIElement { app.find(id: "offlineLine") }
-    public static var favoriteButton: XCUIElement { app.find(label: "Favorite", type: .button) }
     public static var noCoursesLabel: XCUIElement { app.find(label: "No Courses") }
     public static var dashboardSettingsShowGradeToggle: XCUIElement {
         app.find(id: "DashboardSettings.showGradesToggle", type: .toggle)
     }
 
-    /// Waits until the Dashboard itself is visible. This will not wait for Course Cards to load.
+    /// Waits until the Dashboard itself is visible.
+    /// This will not wait for Course Cards to load.
     public static func waitUntilDashboardIsVisible() {
         XCTContext.runActivity(named: "Wait until Dashboard (Profile Menu button) is visible") { _ in
             let profileButton = profileButton.waitUntil(.visible)
@@ -40,32 +40,41 @@ public class DashboardHelper: BaseHelper {
         }
     }
 
-    /// Waits until the CourseCards on Dashboard are visible. Not usable for Parent app.
+    /// Waits until the CourseCards on Dashboard are visible.
+    /// Not usable for Parent app.
     public static func waitUntilCourseCardIsVisible() {
         XCTContext.runActivity(named: "Wait until Course Card is visible") { _ in
-            let courseCard = app.find(idStartingWith: "DashboardCourseCell.").waitUntil(.visible)
+            let courseCard = app.find(idStartingWith: "Dashboard.CourseCard.").waitUntil(.visible)
             XCTAssertVisible(courseCard)
         }
     }
 
-    public static func courseCard(course: DSCourse? = nil, courseId: String? = nil) -> XCUIElement {
-        return app.find(id: "DashboardCourseCell.\(course?.id ?? courseId!)")
+    private static func courseCardContainer(course: DSCourse) -> XCUIElement {
+        app.find(id: "Dashboard.CourseCard.Id.\(course.id)")
     }
 
-    public static func courseCardAssignmentMissingButton(course: DSCourse) -> XCUIElement {
-        return app.find(id: "DashboardCourseCell.\(course.id)").find(type: .button)
+    public static func courseCard(course: DSCourse) -> XCUIElement {
+        courseCardContainer(course: course)
+            .find(id: "Dashboard.CourseCard.cardButton")
+    }
+
+    public static func k5SubjectCard(course: DSCourse) -> XCUIElement {
+        app.find(id: "K5Homeroom.SubjectCard.Id.\(course.id)")
+    }
+
+    public static func k5SubjectCardAssignmentMissingButton(course: DSCourse) -> XCUIElement {
+        app.find(id: "K5Homeroom.SubjectCard.Id.\(course.id)")
+            .find(type: .button)
     }
 
     public static func courseCardGradeLabel(course: DSCourse) -> XCUIElement {
-        return app.find(id: "DashboardCourseCell.\(course.id).gradePill")
+        courseCardContainer(course: course)
+            .find(id: "Dashboard.CourseCard.gradePill")
     }
 
     public static func courseOptionsButton(course: DSCourse) -> XCUIElement {
-        return app.find(id: "DashboardCourseCell.\(course.id).optionsButton")
-    }
-
-    public static func toggleFavorite(course: DSCourse) {
-        app.find(id: "DashboardCourseCell.\(course.id).favoriteButton", type: .button).hit()
+        courseCardContainer(course: course)
+            .find(id: "Dashboard.CourseCard.optionsButton")
     }
 
     public static func turnOnShowGrades() {
@@ -73,6 +82,31 @@ public class DashboardHelper: BaseHelper {
         settingsButton.hit()
         dashboardSettingsShowGradeToggle.tap()
         doneButton.hit()
+    }
+
+    public struct AllCourses {
+        private static func courseItemContainer(course: DSCourse) -> XCUIElement {
+            app.find(id: "AllCourses.CourseItem.Id.\(course.id)")
+        }
+
+        public static func courseItem(course: DSCourse) -> XCUIElement {
+            courseItemContainer(course: course)
+                .find(id: "AllCourses.CourseItem.cellButton")
+        }
+
+        public static func courseItemFavoriteButton(course: DSCourse) -> XCUIElement {
+            courseItemContainer(course: course)
+                .find(id: "AllCourses.CourseItem.favoriteButton")
+        }
+
+        public static func toggleFavorite(course: DSCourse) {
+            courseItemFavoriteButton(course: course).hit()
+        }
+
+        public static func firstFavoriteButton() -> XCUIElement {
+            app.find(idStartingWith: "AllCourses.CourseItem.Id.")
+                .find(id: "AllCourses.CourseItem.favoriteButton")
+        }
     }
 
     public struct CourseInvitations {

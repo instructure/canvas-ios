@@ -591,9 +591,11 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         }
     }
 
-    func showSubmitAssignmentButton(title: String?) {
+    func showSubmitAssignmentButton(title: String?, identifier: String?) {
         view.bringSubviewToFront(submitAssignmentButton)
         submitAssignmentButton.setTitle(title, for: .normal)
+        submitAssignmentButton.accessibilityIdentifier = ["AssignmentDetails.submitAssignmentButton", identifier]
+            .joined(separator: ".")
 
         if title == nil {
             scrollViewBottom.constant = 0
