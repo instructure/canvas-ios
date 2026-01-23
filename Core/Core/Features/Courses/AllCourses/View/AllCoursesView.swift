@@ -180,8 +180,11 @@ public struct AllCoursesView: View, ScreenViewTrackable {
             ForEach(groups, id: \.id) { group in
                 if group.id != groups.first?.id { Divider() }
                 AllCoursesCellView(
-                    viewModel: AllCoursesAssembly.makeCourseCellViewModel(with: .group(group), env: .shared)
+                    viewModel: AllCoursesAssembly.makeCourseCellViewModel(with: .group(group), env: .shared),
+                    identifierGroup: "AllCourses.GroupItem"
                 )
+                .accessibilityElement(children: .contain)
+                .identifier("AllCourses.GroupItem.Id.\(group.id)")
             }
         }
     }
@@ -193,8 +196,11 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                 ForEach(courses, id: \.courseId) { course in
                     if course.courseId != courses.first?.courseId { Divider() }
                     AllCoursesCellView(
-                        viewModel: AllCoursesAssembly.makeCourseCellViewModel(with: .course(course), env: .shared)
+                        viewModel: AllCoursesAssembly.makeCourseCellViewModel(with: .course(course), env: .shared),
+                        identifierGroup: "AllCourses.CourseItem"
                     )
+                    .accessibilityElement(children: .contain)
+                    .identifier("AllCourses.CourseItem.Id.\(course.courseId)")
                 }
             }
         }

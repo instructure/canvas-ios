@@ -78,3 +78,50 @@ extension DataSeeder {
         return makeRequest(request)
     }
 }
+
+// MARK: - Convenience methods for user creation & enrollment
+
+extension DataSeeder {
+
+    // MARK: - Student
+
+    public func createStudentEnrolledInCourse() -> (DSUser, DSCourse) {
+        let student = createUser()
+        let course = createCourse()
+        enrollStudent(student, in: course)
+        return (student, course)
+    }
+
+    public func createStudentEnrolled() -> DSUser {
+        let (student, _) = createStudentEnrolledInCourse()
+        return student
+    }
+
+    // MARK: - Teacher
+
+    public func createTeacherEnrolledInCourse() -> (DSUser, DSCourse) {
+        let teacher = createUser()
+        let course = createCourse()
+        enrollTeacher(teacher, in: course)
+        return (teacher, course)
+    }
+
+    public func createTeacherEnrolled() -> DSUser {
+        let (teacher, _) = createTeacherEnrolledInCourse()
+        return teacher
+    }
+
+    // MARK: - Parent
+
+    public func createParentEnrolledInCourse() -> (DSUser, DSCourse) {
+        let parent = createUser()
+        let course = createCourse()
+        enrollParent(parent, in: course)
+        return (parent, course)
+    }
+
+    public func createParentEnrolled() -> DSUser {
+        let (parent, _) = createParentEnrolledInCourse()
+        return parent
+    }
+}

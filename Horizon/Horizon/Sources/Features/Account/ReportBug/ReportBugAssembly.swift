@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,28 +17,21 @@
 //
 
 import Core
-import SwiftUI
+import UIKit
 
-struct BugReportView: View {
-    @Environment(\.dismiss) private var dismiss
-
-    private let htmlContent = """
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <style>
-            body {
-                height: 100%;
-                background-color: white;
-            }
-        </style>
-    </head>
-    <body>
-    </body>
-    </html>
-    """
-    var body: some View {
-        WebView(html: htmlContent, features: [.onLoadFeedback {dismiss()}])
-        .ignoresSafeArea(.keyboard, edges: .bottom)
+enum ReportBugAssembly {
+    static func makeViewConroller(
+        didSubmitBug: @escaping () -> Void,
+        didDismiss: (() -> Void)? = nil
+    ) -> UIViewController {
+        let app = AppEnvironment.shared
+        let viewModel = ReportBugViewModel(
+            api: app.api,
+            baseURL: app.currentSession?.baseURL.absoluteString ?? "",
+            router: app.router,
+            didSubmitBug: didSubmitBug,
+            didDismiss: didDismiss
+        )
+        return CoreHostingController(ReportBugView(viewModel: viewModel))
     }
 }

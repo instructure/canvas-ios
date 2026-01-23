@@ -27,7 +27,7 @@ class CalendarTests: E2ETestCase {
 
     func testCalendarLayout() {
         // Seed
-        let (student, course) = Helper.createStudentEnrolledInCourse()
+        let (student, course) = seeder.createStudentEnrolledInCourse()
         let event = Helper.createCalendarEvent(course: course)
 
         // Log in, navigate to entry point
@@ -68,7 +68,7 @@ class CalendarTests: E2ETestCase {
 
     func testCalendarEventDetails() {
         // Seed
-        let (student, course) = Helper.createStudentEnrolledInCourse()
+        let (student, course) = seeder.createStudentEnrolledInCourse()
         let event = Helper.createCalendarEvent(course: course)
 
         // Log in, navigate to entry point
@@ -104,7 +104,7 @@ class CalendarTests: E2ETestCase {
 
     func testNavigateToEventCells() {
         // Seed
-        let (student, course) = Helper.createStudentEnrolledInCourse()
+        let (student, course) = seeder.createStudentEnrolledInCourse()
         let eventTypes: [Helper.EventType] = [.todays, .tomorrows, .yesterdays, .nextYears]
         let events = Helper.createSampleCalendarEvents(course: course, eventTypes: eventTypes)
 
@@ -128,7 +128,7 @@ class CalendarTests: E2ETestCase {
 
     func testRecurringEvent() {
         // Seed
-        let (student, course) = Helper.createStudentEnrolledInCourse()
+        let (student, course) = seeder.createStudentEnrolledInCourse()
         let events = Helper.createSampleCalendarEvents(course: course, eventTypes: [.recurring])
 
         // Log in, navigate to entry point
@@ -154,7 +154,7 @@ class CalendarTests: E2ETestCase {
 
     func testEventForAssignment() {
         // Seed
-        let (student, course) = Helper.createStudentEnrolledInCourse()
+        let (student, course) = seeder.createStudentEnrolledInCourse()
         let assignment = Helper.createAssignmentWithDueDate(course: course)
 
         // Log in, navigate to entry point
@@ -174,7 +174,7 @@ class CalendarTests: E2ETestCase {
         let date2 = Date.now.addDays(1)
 
         // Seed
-        let (student, course) = Helper.createStudentEnrolledInCourse()
+        let (student, course) = seeder.createStudentEnrolledInCourse()
         Helper.createDiscussionCheckpoints(
             course: course,
             title: title,
@@ -300,7 +300,7 @@ class CalendarTests: E2ETestCase {
         let description = "Description of my dear calendar todo item."
 
         // Seed
-        let (student, course) = Helper.createStudentEnrolledInCourse()
+        let (student, course) = seeder.createStudentEnrolledInCourse()
 
         // Log in, navigate to entry point
         logInDSUser(student)
@@ -377,7 +377,7 @@ class CalendarTests: E2ETestCase {
         let description = "Description of my dear calendar todo item."
 
         // Seed
-        let student = Helper.createStudentEnrolled()
+        let student = seeder.createStudentEnrolled()
 
         // Log in, navigate to entry point
         logInDSUser(student)
@@ -452,7 +452,7 @@ class CalendarTests: E2ETestCase {
         let newTitle = "My edited todo item"
 
         // Seed
-        let student = Helper.createStudentEnrolled()
+        let student = seeder.createStudentEnrolled()
 
         // Log in, navigate to entry point
         logInDSUser(student)
@@ -514,7 +514,7 @@ class CalendarTests: E2ETestCase {
 
     func testDeleteCalendarTodo() {
         // Seed
-        let student = Helper.createStudentEnrolled()
+        let student = seeder.createStudentEnrolled()
 
         // Log in, navigate to entry point
         logInDSUser(student)
