@@ -47,7 +47,7 @@ final class CourseNoteInteractorTests: HorizonTestCase {
 
     private func makeInteractorWithAPI() {
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            DomainJWTService.JWTTokenRequest(),
             value: .init(token: HTimeSpentWidgetStubs.token)
         )
 
@@ -64,7 +64,7 @@ final class CourseNoteInteractorTests: HorizonTestCase {
         let noteID = "note-to-delete"
         api.mock(
             RedwoodDeleteNoteMutation(id: noteID),
-            value: RedwoodDeleteNoteMutationResponse(data: .init(deleteNote: "deleted Note"))
+            value: RedwoodDeleteNoteMutationResponse(data: .init(executeRedwoodQuery: .init(data: .init(deleteNote: "deleted Note"))))
         )
 
         // When
@@ -109,7 +109,18 @@ final class CourseNoteInteractorTests: HorizonTestCase {
             )
         )
 
-        api.mock(request, value: RedwoodUpdateNoteMutationResponse(data: .init(updateNote: RedwoodNote.make())))
+        api.mock(
+            request,
+            value: RedwoodUpdateNoteMutationResponse(
+                data: .init(
+                    executeRedwoodQuery: .init(
+                        data: .init(
+                            updateNote: RedwoodNote.make()
+                        )
+                    )
+                )
+            )
+        )
 
         // When
         let publisher = interactor.set(
@@ -134,13 +145,17 @@ final class CourseNoteInteractorTests: HorizonTestCase {
 
         let response = RedwoodFetchNotesQueryResponse(
             data: .init(
-                notes: .init(
-                    edges: [.init(node: RedwoodNote.make(), cursor: "")],
-                    pageInfo: .init(
-                        hasNextPage: false,
-                        hasPreviousPage: false,
-                        endCursor: nil,
-                        startCursor: nil
+                executeRedwoodQuery: .init(
+                    data: .init(
+                        notes: .init(
+                            edges: [.init(node: RedwoodNote.make(), cursor: "")],
+                            pageInfo: .init(
+                                hasNextPage: false,
+                                hasPreviousPage: false,
+                                endCursor: nil,
+                                startCursor: nil
+                            )
+                        )
                     )
                 )
             )
