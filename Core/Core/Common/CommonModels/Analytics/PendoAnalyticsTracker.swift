@@ -44,10 +44,20 @@ public final class PendoAnalyticsTracker {
 
     // MARK: Initialization
 
+    public final class PendoManagerMock: PendoManagerWrapper {
+        public init() {}
+        public func initWith(_ url: URL) { }
+        public func setup(_ appKey: String) { }
+        public func startSession(_ visitorId: String?, accountId: String?, visitorData: [AnyHashable: Any]?, accountData: [AnyHashable: Any]?) { }
+        public func endSession() { }
+        public func track(_ event: String, properties: [AnyHashable: Any]?) { }
+    }
+
     public init(
         environment: AppEnvironment,
         interactor: AnalyticsMetadataInteractor = AnalyticsMetadataInteractorLive(),
-        pendoManager: PendoManagerWrapper = PendoManager.shared(),
+//        pendoManager: PendoManagerWrapper = PendoManager.shared(),
+        pendoManager: PendoManagerWrapper = PendoManagerMock(),
         pendoApiKey: String? = nil
     ) {
         self.environment = environment
