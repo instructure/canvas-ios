@@ -29,7 +29,6 @@ final class DomainService: DomainServiceProtocol {
 
     private let baseURL: String
     private let domainJWTService: DomainJWTService
-    let option: DomainServiceOption
     private let region: String
 
     // MARK: - Private
@@ -49,12 +48,10 @@ final class DomainService: DomainServiceProtocol {
     // MARK: - Init
 
     init(
-        _ domainServiceOption: DomainServiceOption = .journey,
         baseURL: String = AppEnvironment.shared.currentSession?.baseURL.absoluteString ?? "",
         region: String? = AppEnvironment.shared.currentSession?.canvasRegion,
-        domainJWTService: DomainJWTService = DomainJWTService.shared,
+        domainJWTService: DomainJWTService = DomainJWTService.shared
     ) {
-        self.option = domainServiceOption
         self.baseURL = baseURL
         self.region = region ?? "us-east-1"
         self.domainJWTService = domainJWTService
@@ -65,7 +62,7 @@ final class DomainService: DomainServiceProtocol {
     /// Get the API for the domain service
     func api() -> AnyPublisher<API, Error> {
         domainJWTService
-            .getToken(option: option)
+            .getToken()
             .tryMap { [weak self] jwt -> API in
                 guard let self, let url = URL(string: "https://\(self.audience)") else {
                     throw DomainJWTService.Issue.unableToGetToken
@@ -81,20 +78,6 @@ final class DomainService: DomainServiceProtocol {
                 )
             }
             .eraseToAnyPublisher()
-    }
-}
-
-enum DomainServiceOption: String {
-    case journey
-    var service: String {
-        rawValue
-    }
-
-    var workflows: [DomainServiceWorkflow] {
-        switch self {
-        case .journey:
-            return [.journey, .pine, .cedar, .redwood]
-        }
     }
 }
 

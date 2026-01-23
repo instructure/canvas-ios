@@ -36,7 +36,6 @@ class DomainServiceTests: HorizonTestCase {
 
         // When
         let domainService = DomainService(
-            .journey,
             baseURL: baseURL,
             region: "us-west-1",
             domainJWTService: DomainJWTService(horizonApi: api)
@@ -62,7 +61,6 @@ class DomainServiceTests: HorizonTestCase {
 
         // When
         let domainService = DomainService(
-            .journey,
             baseURL: baseURL,
             region: "us-east-1",
             domainJWTService: DomainJWTService(horizonApi: api)
@@ -88,7 +86,6 @@ class DomainServiceTests: HorizonTestCase {
 
         // When
         let domainService = DomainService(
-            .journey,
             baseURL: baseURL,
             region: "us-east-1",
             domainJWTService: DomainJWTService(horizonApi: api)
@@ -114,7 +111,6 @@ class DomainServiceTests: HorizonTestCase {
 
         // When
         let domainService = DomainService(
-            .journey,
             baseURL: baseURL,
             region: "us-east-1",
             domainJWTService: DomainJWTService(horizonApi: api)

@@ -35,7 +35,7 @@ final class EnrollProgramCourseUseCase: APIUseCase {
 
     init(
         progressId: String,
-        journey: DomainServiceProtocol = DomainService(.journey)
+        journey: DomainServiceProtocol = DomainService()
     ) {
         self.progressId = progressId
         self.journey = journey
