@@ -18,6 +18,7 @@
 
 @testable import Core
 @testable import Horizon
+import TestsFoundation
 import XCTest
 
 final class ProgramInteractorLiveTests: HorizonTestCase {
@@ -29,7 +30,7 @@ final class ProgramInteractorLiveTests: HorizonTestCase {
 
         // When
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            DomainJWTService.JWTTokenRequest(),
             value: DomainJWTService.JWTTokenRequest.Result(token: HProgramStubs.token)
         )
         api.mock(GetHProgramsRequest(), value: HProgramStubs.response)
@@ -53,7 +54,7 @@ final class ProgramInteractorLiveTests: HorizonTestCase {
 
         // When
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            DomainJWTService.JWTTokenRequest(),
             value: DomainJWTService.JWTTokenRequest.Result(token: HProgramStubs.token)
         )
         api.mock(GetHProgramsRequest(), value: HProgramStubs.response)
@@ -87,7 +88,7 @@ final class ProgramInteractorLiveTests: HorizonTestCase {
 
         // When
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            DomainJWTService.JWTTokenRequest(),
             value: DomainJWTService.JWTTokenRequest.Result(token: HProgramStubs.token)
         )
         api.mock(GetHProgramsRequest(), value: HProgramStubs.response)

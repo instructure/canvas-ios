@@ -39,23 +39,17 @@ final class DomainService: DomainServiceProtocol {
     }
 
     private var horizonCDURL: String {
-        if( option == .journey) {
-            return "journey-server-edge.journey.nonprod.inseng.io"
-        }
-        return "\(option)-api-dev.us-east-1.core.inseng.io"
+        "journey-server-edge.us-east-1.core.inseng.io"
     }
 
     private var productionURL: String {
-        if option == .journey {
-            return "journey-server-prod.\(region).temp.prod.inseng.io"
-        }
-        return "\(option)-api.\(region).core.inseng.io"
+        "journey-server-prod.\(region).core.inseng.io"
     }
 
     // MARK: - Init
 
     init(
-        _ domainServiceOption: DomainServiceOption,
+        _ domainServiceOption: DomainServiceOption = .journey,
         baseURL: String = AppEnvironment.shared.currentSession?.baseURL.absoluteString ?? "",
         region: String? = AppEnvironment.shared.currentSession?.canvasRegion,
         domainJWTService: DomainJWTService = DomainJWTService.shared,
@@ -92,22 +86,19 @@ final class DomainService: DomainServiceProtocol {
 
 enum DomainServiceOption: String {
     case journey
-    case redwood
     var service: String {
         rawValue
     }
 
     var workflows: [DomainServiceWorkflow] {
-            switch self {
-            case .journey:
-                return [.journey, .pine, .cedar]
-            case .redwood:
-                return [.redwood]
-            }
+        switch self {
+        case .journey:
+            return [.journey, .pine, .cedar, .redwood]
         }
+    }
 }
 
-enum DomainServiceWorkflow: String {
+enum DomainServiceWorkflow: String, CaseIterable {
     case journey
     case redwood
     case pine

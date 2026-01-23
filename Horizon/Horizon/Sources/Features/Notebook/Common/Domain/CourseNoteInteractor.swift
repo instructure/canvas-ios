@@ -69,7 +69,7 @@ final class CourseNoteInteractorLive: CourseNoteInteractor {
 
     init(
         learnCoursesInteractor: GetLearnCoursesInteractor = GetLearnCoursesInteractorLive(),
-        domainService: DomainServiceProtocol = DomainService(.redwood)
+        domainService: DomainServiceProtocol = DomainService()
     ) {
         self.learnCoursesInteractor = learnCoursesInteractor
         self.domainService = domainService

@@ -69,7 +69,7 @@ final public class DomainJWTService {
             }
 
             let api = self.horizonApi
-            let publisher = api.makeRequest(JWTTokenRequest(domainServiceOption: option))
+            let publisher = api.makeRequest(JWTTokenRequest())
                 .tryMap { [weak self] response, urlResponse -> String in
                     guard let self else {
                         throw Issue.unableToGetToken
@@ -155,14 +155,10 @@ extension DomainJWTService {
 extension DomainJWTService {
     struct JWTTokenRequest: APIRequestable {
         typealias Response = Result
-
-        let domainServiceOption: DomainServiceOption
-
+        var shouldAddNoVerifierQuery: Bool = false
+        var body: Body? { Body()}
         var path: String {
-            let workflowQueryParams = domainServiceOption.workflows.map {
-                "workflows[]=\($0.rawValue)"
-            }.joined(separator: "&")
-            return "/api/v1/jwts?canvas_audience=false&\(workflowQueryParams)"
+            return "/api/v1/jwts?canvas_audience=false"
         }
 
         var method: APIMethod { .post }
@@ -170,5 +166,9 @@ extension DomainJWTService {
         struct Result: Codable {
             let token: String
         }
+    }
+
+    struct Body: Codable {
+        var workflows: [String] = DomainServiceWorkflow.allCases.map { $0.rawValue }
     }
 }
