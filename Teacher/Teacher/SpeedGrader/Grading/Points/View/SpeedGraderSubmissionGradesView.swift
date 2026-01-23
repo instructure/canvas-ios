@@ -28,6 +28,7 @@ struct SpeedGraderSubmissionGradesView: View {
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     // slider
     @State private var gradeSliderViewModel = GradeSliderViewModel()
@@ -258,7 +259,7 @@ struct SpeedGraderSubmissionGradesView: View {
     }
 
     private var noGradeAndExcuseButtons: some View {
-        HStack(spacing: 16) {
+        let buttons = Group {
             let noGradeTitle = gradeViewModel.gradeState.gradingType == .not_graded
                 ? String(localized: "Reset Status", bundle: .teacher)
                 : String(localized: "No Grade", bundle: .teacher)
@@ -271,6 +272,12 @@ struct SpeedGraderSubmissionGradesView: View {
                 gradeViewModel.excuseStudent()
             }
             .disabled(gradeViewModel.gradeState.isExcused)
+        }
+
+        return ViewThatFits {
+            HStack(spacing: 16) { buttons }
+            VStack(spacing: 16) { buttons }
+                .paddingStyle(.top, .standard)
         }
         .paddingStyle(.horizontal, .standard)
     }
