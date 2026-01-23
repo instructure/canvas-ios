@@ -347,6 +347,9 @@ open class CoreWebView: WKWebView {
             }
         }
 
+        // Line height is increased by -webkit-text-size-adjust in DynamicFontSize.
+        let lineHeightRow = isDynamicFontScalingEnabled ? "" : "line-height: \(style.lineHeight.toPoints(for: uiFont))px;"
+
         return """
             \(fontCSS)
             html {
@@ -359,7 +362,7 @@ open class CoreWebView: WKWebView {
             }
             p {
                 font-size: \(uiFont.pointSize)px;
-                line-height: \(style.lineHeight.toPoints(for: uiFont))px;
+                \(lineHeightRow)
             }
             a {
                 color: \(link.hexString);
