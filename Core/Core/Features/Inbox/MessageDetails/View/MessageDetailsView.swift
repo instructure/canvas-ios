@@ -98,13 +98,13 @@ public struct MessageDetailsView: View {
                     model.replyTapped(message: nil, viewController: controller)
                 }
                 .accessibilityIdentifier("MessageDetails.reply")
-            }
 
-            if !model.isStudentAccessRestricted {
-                Button(.init("Reply All", bundle: .core), image: .replyAllLine) {
-                    model.replyAllTapped(message: nil, viewController: controller)
+                if !model.isStudentAccessRestricted {
+                    Button(.init("Reply All", bundle: .core), image: .replyAllLine) {
+                        model.replyAllTapped(message: nil, viewController: controller)
+                    }
+                    .accessibilityIdentifier("MessageDetails.replyAll")
                 }
-                .accessibilityIdentifier("MessageDetails.replyAll")
             }
 
             Button(.init("Forward", bundle: .core), image: .forwardLine) {
