@@ -341,11 +341,11 @@ class OfflineTests: OfflineE2ETestCase {
         XCTAssertVisible(offlineLineImage)
 
         // MARK: Check "All Courses" button, check "Star" button is disabled
-        let allCoursesButton = DashboardHelper.editButton.waitUntil(.visible)
+        let allCoursesButton = DashboardHelper.allCoursesButton.waitUntil(.visible)
         XCTAssertVisible(allCoursesButton)
 
         allCoursesButton.hit()
-        let starButton = DashboardHelper.favoriteButton.waitUntil(.visible)
+        let starButton = DashboardHelper.AllCourses.firstFavoriteButton().waitUntil(.visible)
         let backButton = DashboardHelper.backButtonByIdOrLabel.waitUntil(.visible)
         XCTAssertVisible(starButton)
         XCTAssertTrue(starButton.isDisabled)
