@@ -95,6 +95,10 @@ public struct DeveloperMenuView: View {
                 .absoluteString
         }()
 
+        items.append(DeveloperMenuItem("InstUI Storybook") {
+            router.route(to: "/dev-menu/instui-storybook", from: controller)
+        })
+
         items.append(contentsOf: [
             DeveloperMenuItem("View Experimental Features") {
                 router.route(to: "/dev-menu/experimental-features", from: controller)
