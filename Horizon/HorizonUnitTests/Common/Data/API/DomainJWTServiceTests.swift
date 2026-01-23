@@ -126,8 +126,6 @@ final class DomainJWTServiceTests: HorizonTestCase {
         // Then
         XCTAssertEqual(secondToken, "fake-jwt-token")
     }
-
-
     func testGetToken_InvalidBase64ThrowsError() {
         // Given
         let expectation = expectation(description: "Token request completes")
