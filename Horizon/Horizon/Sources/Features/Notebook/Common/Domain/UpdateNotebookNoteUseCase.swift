@@ -32,14 +32,14 @@ final class UpdateNotebookNoteUseCase: UseCase {
     let request: RedwoodUpdateNoteMutation
 
     public var scope: Scope {
-        Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(CDHNotebookNote.id), request.variables.id), order: [])
+        Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(CDHNotebookNote.id), request.variables.input.variables.id), order: [])
     }
 
     // MARK: Private Properties
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: Init
-    init(updateNoteMutation: RedwoodUpdateNoteMutation, redwood: DomainServiceProtocol = DomainService(.redwood)) {
+    init(updateNoteMutation: RedwoodUpdateNoteMutation, redwood: DomainServiceProtocol = DomainService()) {
         self.request = updateNoteMutation
         self.redwood = redwood
     }
@@ -63,7 +63,7 @@ final class UpdateNotebookNoteUseCase: UseCase {
         urlResponse: URLResponse?,
         to client: NSManagedObjectContext
     ) {
-        if let redwoodNote = response?.data.updateNote {
+        if let redwoodNote = response?.data.executeRedwoodQuery.data.updateNote {
             CDHNotebookNote.save(
                 redwoodNote,
                 userID: Context.currentUser.id,

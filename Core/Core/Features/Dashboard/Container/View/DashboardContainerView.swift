@@ -271,7 +271,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
             Image.settingsSolid
         }
         .accessibilityLabel(Text("Dashboard settings", bundle: .core))
-        .accessibilityIdentifier("Dashboard.settingsButton")
+        .identifier("Dashboard.settingsButton")
     }
 
     @ViewBuilder
@@ -376,6 +376,8 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                                                                   draggedCourseCardId: $draggedCourseCardId,
                                                                   order: courseCardList.map { $0.id },
                                                                   delegate: courseCardListViewModel))
+                .accessibilityElement(children: .contain)
+                .identifier("Dashboard.CourseCard.Id.\(card.id)")
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.bottom, 2)
@@ -399,13 +401,14 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         HStack(alignment: .lastTextBaseline) {
             Text("Courses", bundle: .core)
                 .font(.heavy24).foregroundColor(.textDarkest)
-                .accessibility(identifier: "dashboard.courses.heading-lbl")
+                .identifier("Dashboard.coursesLabel")
                 .accessibility(addTraits: .isHeader)
             Spacer()
             Button(action: showAllCourses) {
                 Text("All Courses", bundle: .core)
                     .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
-            }.identifier("Dashboard.editButton")
+            }
+            .identifier("Dashboard.allCoursesButton")
         }
         .frame(width: width) // If we rotate from single view to split view then this HStack won't fill its parent, this fixes it.
         .padding(.top, verticalSpacing).padding(.bottom, verticalSpacing / 2)
@@ -418,6 +421,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                     Text("Groups", bundle: .core)
                         .font(.heavy24).foregroundColor(.textDarkest)
                         .accessibility(addTraits: .isHeader)
+                        .identifier("Dashboard.groupsLabel")
                     Spacer()
                 }
                 .padding(.top, verticalSpacing).padding(.bottom, verticalSpacing / 2)) {
@@ -425,6 +429,8 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 ForEach(filteredGroups, id: \.id) { group in
                     GroupCard(group: group, course: group.course, isAvailable: !$offlineModeViewModel.isOffline)
                         .padding(.bottom, filteredGroups.last != group ? verticalSpacing : 0)
+                        .accessibilityElement(children: .contain)
+                        .identifier("Dashboard.GroupCard.Id.\(group.id)")
                 }
             }
         }

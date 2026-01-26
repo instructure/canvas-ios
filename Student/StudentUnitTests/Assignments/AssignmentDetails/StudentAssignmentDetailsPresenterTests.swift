@@ -643,7 +643,7 @@ private class MockView: UIViewController, StudentAssignmentDetailsViewProtocol {
         test?.presentedView = viewControllerToPresent
     }
 
-    func showSubmitAssignmentButton(title: String?) {
+    func showSubmitAssignmentButton(title: String?, identifier: String?) {
         test?.resultingButtonTitle = title
     }
 

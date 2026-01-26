@@ -39,13 +39,15 @@ open class E2ETestCase: CoreUITestCase {
     }
 
     open func findSchool(lastLogin: Bool = false) {
-        let findSchoolButton = LoginHelper.Start.findSchoolButton.waitUntil(.visible)
-        if lastLogin && LoginHelper.Start.lastLoginButton.exists && LoginHelper.Start.lastLoginButton.label == user.host {
-            LoginHelper.Start.lastLoginButton.hit()
-        } else {
-            findSchoolButton.hit()
-            LoginHelper.FindSchool.searchField.writeText(text: user.host)
-            LoginHelper.FindSchool.nextButton.hit()
+        XCTContext.runActivity(named: "Find school: \(user.host)") { _ in
+            let findSchoolButton = LoginHelper.Start.findSchoolButton.waitUntil(.visible)
+            if lastLogin && LoginHelper.Start.lastLoginButton.exists && LoginHelper.Start.lastLoginButton.label == user.host {
+                LoginHelper.Start.lastLoginButton.hit()
+            } else {
+                findSchoolButton.hit()
+                LoginHelper.FindSchool.searchField.writeText(text: user.host)
+                LoginHelper.FindSchool.nextButton.hit()
+            }
         }
     }
 

@@ -20,28 +20,31 @@ import Core
 import Foundation
 import Combine
 
-final class GetNotesQuery: APIGraphQLPagedRequestable {
+final class GetNotesQuery: APIGraphQLPagedRequestable, RedwoodProxyRequestable {
     typealias Response = RedwoodFetchNotesQueryResponse
 
-    public let variables: GetNotesQueryInput
-    public static let operationName: String = "FetchNotes"
+    public let innerVariables: FetchNotesVariables
+    public static let operationName: String = "RedwoodGetNotes"
+
     var path: String { "/graphql" }
+    var shouldAddNoVerifierQuery: Bool = false
     var headers: [String: String?] {
         [
-            "x-apollo-operation-name": "FetchNotes",
+            "x-apollo-operation-name": GetNotesQuery.operationName,
             HttpHeader.accept: "application/json"
         ]
     }
 
-    // For geting all notes
+    // MARK: - Init
+
     public init() {
-        self.variables = GetNotesQueryInput(before: nil, filter: nil)
+        self.innerVariables = FetchNotesVariables(before: nil, filter: nil)
     }
 
     public init(filter: NotebookQueryFilter) {
-        self.variables = GetNotesQueryInput(
+        self.innerVariables = FetchNotesVariables(
             before: filter.startCursor,
-            filter: GetNotesQuery.NoteFilterInput.build(
+            filter: NoteFilterInput.build(
                 courseId: filter.courseId,
                 objectId: filter.pageId,
                 reactions: filter.reactions
@@ -49,7 +52,13 @@ final class GetNotesQuery: APIGraphQLPagedRequestable {
         )
     }
 
-    public static var query: String {
+    private init(innerVariables: FetchNotesVariables) {
+        self.innerVariables = innerVariables
+    }
+
+    public static var innerOperationName: String = "FetchNotes"
+
+    public static var innerQuery: String {
         """
         query FetchNotes($filter: NoteFilterInput, $first: Float, $last: Float, $after: String, $before: String) {
             notes(filter: $filter, first: $first, last: $last, after: $after, before: $before) {
@@ -77,19 +86,29 @@ final class GetNotesQuery: APIGraphQLPagedRequestable {
         """
     }
 
+    // MARK: - Pagination
+
     func nextPageRequest(from response: RedwoodFetchNotesQueryResponse) -> GetNotesQuery? {
-        guard response.data.notes.pageInfo.hasPreviousPage else {
+        guard response.data.executeRedwoodQuery.data.notes.pageInfo.hasPreviousPage else {
             return nil
         }
-        return GetNotesQuery(filter: .init(startCursor: response.data.notes.pageInfo.startCursor))
+
+        // We reconstruct variables for pagination logic based on the cursor
+        // Note: This matches the logic of your previous implementation assuming
+        // implicit state or simplified cursor movement.
+        let nextVars = FetchNotesVariables(
+            before: response.data.executeRedwoodQuery.data.notes.pageInfo.startCursor,
+            filter: nil
+        )
+        return GetNotesQuery(innerVariables: nextVars)
     }
 }
 
-// MARK: - Filter Models
+// MARK: - Models
 
 extension GetNotesQuery {
-    struct GetNotesQueryInput: Codable, Equatable {
-        private static let pageSize: Float = 100 // Max value is 1000
+    struct FetchNotesVariables: CodableEquatable {
+        private static let pageSize: Float = 100
 
         let after: String?
         let before: String?
@@ -97,18 +116,17 @@ extension GetNotesQuery {
         let first: Float?
         let last: Float?
 
-        // this is used to navigate to the previous page
         init(before: String?, filter: NoteFilterInput? = nil) {
             self.before = before
             self.filter = filter
-            self.last = GetNotesQueryInput.pageSize
-
+            self.last = FetchNotesVariables.pageSize
             self.after = nil
             self.first = nil
         }
     }
 
-    struct NoteFilterInput: Codable, Equatable {
+    // MARK: Filter Logic
+    struct NoteFilterInput: CodableEquatable {
         let reactions: [String]?
         let courseId: String?
         let learningObject: LearningObjectFilter?
@@ -132,7 +150,6 @@ extension GetNotesQuery {
             let isEmptyReactions = (reactions == nil || reactions?.isEmpty == true)
             let isEmptyObjectId = (objectId == nil)
 
-            // If all filters are empty → return nil
             if isEmptyCourse && isEmptyReactions && isEmptyObjectId {
                 return nil
             }
@@ -145,7 +162,7 @@ extension GetNotesQuery {
         }
     }
 
-    struct LearningObjectFilter: Codable, Equatable {
+    struct LearningObjectFilter: CodableEquatable {
         let type: String
         let id: String
 
@@ -155,9 +172,7 @@ extension GetNotesQuery {
         }
 
         static func build(id: String?) -> LearningObjectFilter? {
-            guard let id = id else {
-                return nil
-            }
+            guard let id = id else { return nil }
             return .init(type: APIModuleItemType.page.rawValue, id: id)
         }
     }

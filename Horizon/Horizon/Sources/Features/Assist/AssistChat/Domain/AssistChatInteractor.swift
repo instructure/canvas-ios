@@ -103,7 +103,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
         pageID: String? = nil,
         fileID: String? = nil,
         textSelection: String? = nil,
-        journey: DomainService = .init(.journey)
+        journey: DomainService = .init()
     ) {
         self.state = .init(
             courseID: courseID,

@@ -18,53 +18,63 @@
 
 import Core
 
-class RedwoodCreateNoteMutation: APIGraphQLRequestable {
-    let variables: NewCourseNoteInput
+final class RedwoodCreateNoteMutation: APIGraphQLRequestable, RedwoodProxyRequestable {
+    typealias Response = RedwoodCreateNoteMutationResponse
+    public let innerVariables: NewCourseNoteInput
+    public static let operationName: String = "RedwoodCreateNote"
+    public static let innerOperationName: String = "CreateNote"
 
-    var path: String {
-        "/graphql"
-    }
+    var path: String { "/graphql" }
 
     var headers: [String: String?] {
         [
-            "x-apollo-operation-name": "CreateNote",
+            "x-apollo-operation-name": RedwoodCreateNoteMutation.operationName,
             HttpHeader.accept: "application/json"
         ]
     }
 
     public init(note: NewRedwoodNote) {
-        self.variables = NewCourseNoteInput(input: note)
+        self.innerVariables = NewCourseNoteInput(input: note)
     }
 
-    public static let operationName: String = "CreateNote"
-    public static var query: String = """
-    mutation \(operationName)($input: CreateNoteInput!) {
-        createNote(input: $input) {
-            id
-            courseId
-            objectId
-            objectType
-            userText
-            reaction
-            updatedAt
-            highlightData
+    public static var innerQuery: String {
+        """
+        mutation CreateNote($input: CreateNoteInput!) {
+            createNote(input: $input) {
+                id
+                courseId
+                objectId
+                objectType
+                userText
+                reaction
+                updatedAt
+                highlightData
+            }
         }
+        """
     }
-    """
-
-    typealias Response = RedwoodCreateNoteMutationResponse
 }
 
-struct NewCourseNoteInput: Codable, Equatable {
-    let input: NewRedwoodNote
-}
+// MARK: - Models
 
-// MARK: - Codeables
+extension RedwoodCreateNoteMutation {
+    struct NewCourseNoteInput: Codable, Equatable {
+        let input: NewRedwoodNote
+    }
+}
 
 struct RedwoodCreateNoteMutationResponse: Codable {
-    let data: RedwoodCreateNote
-}
+    let data: Executer
 
-struct RedwoodCreateNote: Codable {
-    let createNote: RedwoodNote
+    struct Executer: Codable {
+        let executeRedwoodQuery: NoteData
+    }
+
+    struct NoteData: Codable {
+        let data: RedwoodCreateNote
+    }
+
+    struct RedwoodCreateNote: Codable {
+        let createNote: RedwoodNote
+    }
 }

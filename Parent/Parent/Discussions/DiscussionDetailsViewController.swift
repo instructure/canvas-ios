@@ -23,7 +23,7 @@ class DiscussionDetailsViewController: UIViewController, CoreWebViewLinkDelegate
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var webViewContainer: UIView!
-    let webView = CoreWebView()
+    let webView = CoreWebView(features: [])
     let refreshControl = UIRefreshControl()
 
     var courseID = ""

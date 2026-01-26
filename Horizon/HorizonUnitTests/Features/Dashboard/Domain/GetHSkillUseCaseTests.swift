@@ -42,7 +42,7 @@ final class GetHSkillUseCaseTests: HorizonTestCase {
         testee = GetHSkillsUseCase(journey: DomainServiceMock(result: .success(api)))
         // When
         let expection = expectation(description: "Wait for completion")
-        api.mock(DomainJWTService.JWTTokenRequest(domainServiceOption: .journey), value: DomainJWTService.JWTTokenRequest.Result(token: HSkillStubs.token))
+        api.mock(DomainJWTService.JWTTokenRequest(), value: DomainJWTService.JWTTokenRequest.Result(token: HSkillStubs.token))
         api.mock(GetHSkillRequest(), value: HSkillStubs.response)
 
         // Then
@@ -60,7 +60,7 @@ final class GetHSkillUseCaseTests: HorizonTestCase {
         // When
         let expection = expectation(description: "Wait for completion")
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            DomainJWTService.JWTTokenRequest(),
                 value: DomainJWTService.JWTTokenRequest.Result(token: HSkillStubs.token),
                error: DomainJWTService.Issue.unableToGetToken
             )

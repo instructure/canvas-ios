@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,11 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import UIKit
+import Foundation
 
-struct BugReportAssembly {
-    static func makeViewConroller() -> UIViewController {
-        CoreHostingController(BugReportView())
+public struct GetCareerHelpResponse: Codable {
+    let id, type: String?
+    let availableTo: [String]?
+    let text, subtext: String?
+    let url: URL?
+    let isFeatured, isNew: Bool?
+    let featureHeadline: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id, type
+        case availableTo = "available_to"
+        case text, subtext, url
+        case isFeatured = "is_featured"
+        case isNew = "is_new"
+        case featureHeadline = "feature_headline"
     }
 }
