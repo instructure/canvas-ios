@@ -57,7 +57,6 @@ public struct StudentAnnotationSubmissionView: View {
                 .fontWeight(.semibold)
                 .toolbarItemForegroundStyle(.textLightest.variantForLightMode)
                 .opacity(viewModel.doneButton.opacity)
-
         }
         .disabled(viewModel.doneButton.isDisabled)
     }
