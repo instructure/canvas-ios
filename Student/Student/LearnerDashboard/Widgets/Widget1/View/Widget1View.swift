@@ -16,19 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum LearnerDashboardAssembly {
+import Core
+import SwiftUI
 
-    static func makeInteractor() -> LearnerDashboardInteractor {
-        LearnerDashboardInteractorLive()
-    }
+struct Widget1View: View {
+    @State var viewModel: Widget1ViewModel
 
-    static func makeViewModel(interactor: LearnerDashboardInteractor) -> LearnerDashboardViewModel {
-        LearnerDashboardViewModel(interactor: interactor)
-    }
-
-    static func makeScreen() -> LearnerDashboardScreen {
-        let interactor = makeInteractor()
-        let viewModel = makeViewModel(interactor: interactor)
-        return LearnerDashboardScreen(viewModel: viewModel)
+    var body: some View {
+        LearnerDashboardTitledWidget("Widget 1") {
+            LearnerDashboardCard {
+                VStack(alignment: .leading) {
+                    Text(viewModel.text)
+                        .foregroundColor(.secondary)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .paddingStyle(.standard)
+                .redacted(reason: viewModel.state == .data ? [] : .placeholder)
+            }
+        }
+        .animation(.smooth, value: viewModel.state)
+        .animation(.smooth, value: viewModel.text)
     }
 }

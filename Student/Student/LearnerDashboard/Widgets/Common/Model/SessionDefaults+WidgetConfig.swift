@@ -16,15 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-@testable import Student
+import Core
+import Foundation
 
-final class LearnerDashboardInteractorMock: LearnerDashboardInteractor {
-    var refreshIgnoreCacheValue: Bool?
-    var refreshPublisher = PassthroughSubject<Void, Error>()
+extension SessionDefaults {
+    private var learnerDashboardWidgetConfigsKey: String { "learnerDashboardWidgetConfigs" }
 
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
-        refreshIgnoreCacheValue = ignoreCache
-        return refreshPublisher.eraseToAnyPublisher()
+    var learnerDashboardWidgetConfigs: [WidgetConfig]? {
+        get {
+            guard let data = self[learnerDashboardWidgetConfigsKey] as? Data else {
+                return nil
+            }
+            return try? JSONDecoder().decode([WidgetConfig].self, from: data)
+        }
+        set {
+            if let newValue, let data = try? JSONEncoder().encode(newValue) {
+                self[learnerDashboardWidgetConfigsKey] = data
+            } else {
+                self[learnerDashboardWidgetConfigsKey] = nil
+            }
+        }
     }
 }

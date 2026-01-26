@@ -18,18 +18,27 @@
 
 import Combine
 import Core
-import Foundation
+import SwiftUI
 
-protocol LearnerDashboardInteractor {
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error>
-}
+@Observable
+final class Widget3ViewModel: LearnerWidgetViewModel {
+    typealias ViewType = Widget3View
 
-final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
+    let config: WidgetConfig
+    var id: LearnerDashboardWidgetIdentifier { config.id }
+    let isFullWidth = false
+    let isEditable = false
+    var state: InstUI.ScreenState = .data
 
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
-        Just(())
-            .delay(for: .seconds(2), scheduler: DispatchQueue.global(qos: .userInitiated))
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+    init(config: WidgetConfig) {
+        self.config = config
+    }
+
+    func makeView() -> Widget3View {
+        Widget3View(viewModel: self)
+    }
+
+    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
+        Just(()).eraseToAnyPublisher()
     }
 }
