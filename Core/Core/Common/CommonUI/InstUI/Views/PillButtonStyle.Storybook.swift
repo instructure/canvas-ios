@@ -54,10 +54,11 @@ struct PillButtonStorybook: View {
 
                     Button {
                     } label: {
-                        HStack(spacing: 0) {
+                        HStack(spacing: 2) {
                             Text(verbatim: "All Courses")
                             Image.arrowOpenRightSolid
                                 .scaledIcon(size: 16)
+                                .offset(y: 1)
                         }
                     }
                     .buttonStyle(.pillButtonFilled(color: .textInfo))
@@ -82,9 +83,10 @@ struct PillButtonStorybook: View {
 
                     Button {
                     } label: {
-                        HStack(spacing: 8) {
+                        HStack(spacing: 4) {
                             Image.editLine
                                 .scaledIcon(size: 16)
+                                .offset(y: 1)
                             Text(verbatim: "Customize Dashboard")
                         }
                     }

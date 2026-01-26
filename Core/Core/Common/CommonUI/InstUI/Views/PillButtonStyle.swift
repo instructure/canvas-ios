@@ -35,7 +35,10 @@ extension InstUI {
                 .multilineTextAlignment(.center)
                 .foregroundStyle(buttonStyleConfig.foregroundColor)
                 .padding(.horizontal, 12 * uiScale)
-                .padding(.vertical, 4 * uiScale)
+                // A smaller top padding pushes the text up. This makes
+                // the text more centered for the eye than real centering.
+                .padding(.top, 3 * uiScale)
+                .padding(.bottom, 4 * uiScale)
                 .frame(minHeight: 30 * uiScale.iconScale)
                 .background(
                     Capsule()
