@@ -274,7 +274,6 @@ final class AsyncStoreTests: CoreTestCase {
         XCTAssert(ids.contains("1"))
     }
 
-
     // MARK: - Custom App Environment
 
     func testCustomEnvironmentIsUsed() async throws {
