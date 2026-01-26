@@ -85,6 +85,7 @@ public struct AsyncStore<U: UseCase> {
     /// By default it downloads all pages, and validates cache unless specificied differently.
     /// When the device is offline, it will read data from Core Data.
 
+    /// - Warning: This stream **does not terminate**. Ensure proper cancellation of its consuming task.
     /// - Parameters:
     ///     - ignoreCache: Indicates if the request should check the available cache first.
     ///       If it's set to **false**, it will validate the cache's expiration and return it if it's still valid. If the cache has expired it will make a request to the API.
