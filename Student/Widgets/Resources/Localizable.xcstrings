@@ -147,6 +147,12 @@
             "value" : "するべきことを追加する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "할 일 추가"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -402,6 +408,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "米文学 IV"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "미국 문학 IV"
           }
         },
         "mi" : {
@@ -662,6 +674,12 @@
             "value" : "米文学 IV"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "미국 문학 IV"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -918,6 +936,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "米文学 IV:すべての本"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "미국 문학 IV: 모든 책"
           }
         },
         "mi" : {
@@ -1177,6 +1201,12 @@
             "value" : "アナウンス"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공지"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1434,6 +1464,12 @@
             "value" : "課題の評定"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과제 점수"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1688,6 +1724,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定済み課題に基づく"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "채점된 과제에 기반"
           }
         },
         "mi" : {
@@ -2203,6 +2245,12 @@
             "value" : "生物学 201"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "생물 201"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2461,6 +2509,12 @@
             "value" : "生物学の試験 2"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "생물 시험 2"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2717,6 +2771,12 @@
             "value" : "Canvas 単一評定ウィジェット"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canvas 단일 점수 위젯"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2971,6 +3031,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Canvas To-do（するべきこと）ウィジェット"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canvas 할 일 위젯"
           }
         },
         "mi" : {
@@ -3741,6 +3807,12 @@
             "value" : "コース"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과목"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3996,6 +4068,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コース評定"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과목 점수"
           }
         },
         "mi" : {
@@ -4510,6 +4588,12 @@
             "value" : "ダブルタップでコースの評定タブを表示する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "두 번 탭하여 과목 점수 탭 보기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4764,6 +4848,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ダブルタップしてするべきことの全リストを表示する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "두 번 탭하여 전체 할 일 목록 보기"
           }
         },
         "mi" : {
@@ -5023,6 +5113,12 @@
             "value" : "ドラムアンドベース 101"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "드럼 및 베이스 101"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5278,6 +5374,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "英文学 101"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "영문학 101"
           }
         },
         "mi" : {
@@ -5538,6 +5640,12 @@
             "value" : "小論文 #1:『The Rocky Planets』"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "작문 #1: 바위 표면 행성"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5792,6 +5900,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "例となるコース"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "예제 과목"
           }
         },
         "mi" : {
@@ -6051,6 +6165,12 @@
             "value" : "期末試験来週に移動します。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기말 시험을 다음 주로 이동합니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6306,6 +6426,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "一般天文学"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일반 천문학"
           }
         },
         "mi" : {
@@ -6564,6 +6690,12 @@
             "value" : "評定"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6818,6 +6950,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定は非表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 숨김"
           }
         },
         "mi" : {
@@ -7077,6 +7215,12 @@
             "value" : "評定リスト"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 목록"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7331,6 +7475,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定：%@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적: %@"
           }
         },
         "mi" : {
@@ -7591,6 +7741,12 @@
             "value" : "評定"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7846,6 +8002,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ギリシャ文学"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "그리스 문학"
           }
         },
         "mi" : {
@@ -8358,6 +8520,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "非表示の評定"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "숨겨진 성적"
           }
         },
         "mi" : {
@@ -8873,6 +9041,12 @@
             "value" : "ジャングル内"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정글에서"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9386,6 +9560,12 @@
             "value" : "太陽系の紹介"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "태양계 개요"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9641,6 +9821,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ジャネット・ハモンド"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Janet Hammond"
           }
         },
         "mi" : {
@@ -10155,6 +10341,12 @@
             "value" : "ログインしましょう！"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로그인하겠습니다!"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10378,7 +10570,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "लोड किया जा रहा है"
+            "value" : "लोड करना"
           }
         },
         "ht" : {
@@ -10409,6 +10601,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "読み込み中"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로드"
           }
         },
         "mi" : {
@@ -10924,6 +11122,12 @@
             "value" : "次の4週間は、空き時間があるようです。 するべきことを追加しますか？"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음 4주 동안 여유로운 것 같습니다.  할 일을 추가하시겠습니까?"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11181,6 +11385,12 @@
             "value" : "数学 904 2024 /25"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수학 904 2024/25"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11436,6 +11646,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "携帯開発101101"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모바일 개발 101"
           }
         },
         "mi" : {
@@ -11950,6 +12166,12 @@
             "value" : "現在、アナウンスメントはありません"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "공지 없음"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12204,6 +12426,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定なし"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 없음"
           }
         },
         "mi" : {
@@ -12463,6 +12691,12 @@
             "value" : "表示する評定なし"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "표시할 성적 없음"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12717,6 +12951,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "おっと！なにかが失敗しました"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "죄송합니다. 문제가 발생했습니다"
           }
         },
         "mi" : {
@@ -12976,6 +13216,12 @@
             "value" : "地球"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지구"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13230,6 +13476,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "アプリケーションからログインしてください"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "애플리케이션을 통하여 로그인하세요"
           }
         },
         "mi" : {
@@ -13489,6 +13741,12 @@
             "value" : "週末までに『Moby Dick』([『白鯨』)を読んでください。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주말가지 모비딕을 읽습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13743,6 +14001,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "再読み込み"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다시 로드"
           }
         },
         "mi" : {
@@ -14001,6 +14265,12 @@
             "value" : "ウィジェットを再読みする"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위젯 다시 로드"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14255,6 +14525,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ウィジェットの再読み込み中"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위젯 다시 로드"
           }
         },
         "mi" : {
@@ -15025,6 +15301,12 @@
             "value" : "コースの選択"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과목 선택"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15279,6 +15561,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "総合評定を表示するコースを選択します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과목을 선택하여 총점 표시"
           }
         },
         "mi" : {
@@ -15537,6 +15825,12 @@
             "value" : "総合評定を表示するコースを選択します。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "총점을 표시할 과목을 선택하세요."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15793,6 +16087,12 @@
             "value" : "単一評定"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단일 점수"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16047,6 +16347,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "なにか問題が発生しました！"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "문제가 발생했습니다."
           }
         },
         "mi" : {
@@ -16306,6 +16612,12 @@
             "value" : "宇宙と星"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "우주와 행성"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16563,6 +16875,12 @@
             "value" : "スーザン・ジョーゲンソン"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Susan Jorgenson"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16818,6 +17136,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "トーマスMcKempis"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thomas McKempis"
           }
         },
         "mi" : {
@@ -17332,6 +17656,12 @@
             "value" : "評定を表示するには、アプリでアカウントにログインしてください。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적을 보려면 앱에서 로그인하세요."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17586,6 +17916,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定を表示するには、アプリでアカウントにログインしてください。すぐに完了します！"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적을 보려면 앱에서 로그인하세요.  많은 시간이 걸리지 않습니다."
           }
         },
         "mi" : {
@@ -17844,6 +18180,12 @@
             "value" : "するべきことを表示するには、アプリでアカウントにログインしてください。 すぐに完了します！"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "할 일을 보려면 앱에서 로그인하세요.  많은 시간이 걸리지 않습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18099,6 +18441,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "するべきこと"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "할 일"
           }
         },
         "mi" : {
@@ -18359,6 +18707,12 @@
             "value" : "するべきこと"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "할 일"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18613,6 +18967,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "今日、"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오늘 "
           }
         },
         "mi" : {
@@ -19127,6 +19487,12 @@
             "value" : "全リストを表示する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "전체 목록 보기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19381,6 +19747,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選択したコースの評定を表示します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택한 과목의 성적을 확인합니다."
           }
         },
         "mi" : {
@@ -19640,6 +20012,12 @@
             "value" : "お気に入りのコースの評定を表示します。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "좋아하는 과목의 성적을 확인합니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19895,6 +20273,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コースの最新のアナウンスを表示します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과목에서 최근 공지를 확인합니다."
           }
         },
         "mi" : {
@@ -20155,6 +20539,12 @@
             "value" : "課題やお気に入りのコースの最新の評定を表示します。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과제 및 좋아하는 과목에서 최근 성적을 확인합니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20410,6 +20800,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "するべきことの項目を表示します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "할 일 항목을 확인합니다."
           }
         },
         "mi" : {
@@ -20668,6 +21064,12 @@
             "value" : "現在評定を表示できません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지금은 성적을 표시하는 데 문제가 있습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20922,6 +21324,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "現在評定を表示できません。しばらくしてからもういちどやり直すか、アプリに移動してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지금은 성적을 표시하는 데 문제가 있습니다.  잠시 후에 다시 시도하거나 앱을 사용하세요."
           }
         },
         "mi" : {
@@ -21180,6 +21588,12 @@
             "value" : "現在、タスクを表示できません しばらくしてからもういちどやり直すか、アプリに移動してください。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지금은 작업을 표시하는 데 문제가 있습니다.  잠시 후에 다시 시도하거나 앱을 사용하세요."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21434,6 +21848,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "これで完了です！"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "현재는 모두 완료되었습니다."
           }
         },
         "mi" : {
@@ -21691,6 +22111,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "動物園へ遠足！"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "동물원 소풍!"
           }
         },
         "mi" : {
