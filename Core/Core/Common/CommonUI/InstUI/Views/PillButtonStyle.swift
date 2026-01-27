@@ -39,13 +39,13 @@ extension InstUI {
                 // the text more centered for the eye than real centering.
                 .padding(.top, 3 * uiScale)
                 .padding(.bottom, 4 * uiScale)
-                .frame(minHeight: 30 * uiScale.iconScale)
+                .frame(minHeight: 30 * uiScale)
                 .background(
                     Capsule()
                         .fill(buttonStyleConfig.backgroundColor)
                         .stroke(
-                            buttonStyleConfig.strokeColor,
-                            lineWidth: buttonStyleConfig.strokeWidth(uiScale: uiScale)
+                            buttonStyleConfig.borderColor,
+                            lineWidth: buttonStyleConfig.borderWidth(uiScale: uiScale)
                         )
                 )
                 .contentShape(Capsule())

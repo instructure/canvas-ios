@@ -23,23 +23,23 @@ extension InstUI.PillButtonStyle {
     public struct Config {
         public let foregroundColor: Color
         public let backgroundColor: Color
-        public let strokeColor: Color
-        private let strokeWidth: CGFloat
+        public let borderColor: Color
+        private let borderWidth: CGFloat
 
         private init(
             foregroundColor: Color,
             backgroundColor: Color,
-            strokeColor: Color,
-            strokeWidth: CGFloat
+            borderColor: Color,
+            borderWidth: CGFloat
         ) {
             self.foregroundColor = foregroundColor
             self.backgroundColor = backgroundColor
-            self.strokeColor = strokeColor
-            self.strokeWidth = strokeWidth
+            self.borderColor = borderColor
+            self.borderWidth = borderWidth
         }
 
-        public func strokeWidth(uiScale: CGFloat) -> CGFloat {
-            strokeWidth * uiScale
+        public func borderWidth(uiScale: CGFloat) -> CGFloat {
+            borderWidth * uiScale
         }
     }
 }
@@ -50,8 +50,8 @@ extension InstUI.PillButtonStyle.Config {
         Self(
             foregroundColor: .textLightest,
             backgroundColor: .brandPrimary,
-            strokeColor: .clear,
-            strokeWidth: 0
+            borderColor: .clear,
+            borderWidth: 0
         )
     }
 
@@ -59,8 +59,8 @@ extension InstUI.PillButtonStyle.Config {
         Self(
             foregroundColor: .textDarkest,
             backgroundColor: .clear,
-            strokeColor: .borderMedium,
-            strokeWidth: 1.5
+            borderColor: .borderMedium,
+            borderWidth: 1
         )
     }
 
@@ -68,8 +68,8 @@ extension InstUI.PillButtonStyle.Config {
         Self(
             foregroundColor: .textLightest,
             backgroundColor: color,
-            strokeColor: .clear,
-            strokeWidth: 0
+            borderColor: .clear,
+            borderWidth: 0
         )
     }
 
@@ -77,8 +77,8 @@ extension InstUI.PillButtonStyle.Config {
         Self(
             foregroundColor: textColor,
             backgroundColor: .clear,
-            strokeColor: borderColor,
-            strokeWidth: 1.5
+            borderColor: borderColor,
+            borderWidth: 1
         )
     }
 
