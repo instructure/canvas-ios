@@ -20,14 +20,12 @@ import SwiftUI
 
 struct GradeSlider: View {
     var value: Binding<Double>
-    var maxValue: Double
-    var showTooltip: Bool
     var tooltipText: Text
     var a11yValue: Text
-    var score: Double
-    var possible: Double
-    var onEditingChanged: (Bool) -> Void = { _ in }
+    var maxValue: Double
+    var showTooltip: Bool
     let viewModel: GradeSliderViewModel
+    var onEditingChanged: (Bool) -> Void = { _ in }
 
     var body: some View {
         GeometryReader { geometry in
@@ -51,7 +49,7 @@ struct GradeSlider: View {
     private var tooltip: some View {
         if showTooltip {
             GeometryReader { geometry in
-                let x = CGFloat(score / max(possible, 0.01))
+                let x = CGFloat(value.wrappedValue / max(maxValue, 0.01))
                     * (geometry.size.width - 26) + 13 // center on slider thumb 26 wide
                 tooltipText
                     .foregroundColor(.textLightest)
