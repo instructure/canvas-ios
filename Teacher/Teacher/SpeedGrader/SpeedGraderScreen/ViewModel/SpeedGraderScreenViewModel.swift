@@ -20,13 +20,27 @@ import Combine
 import Core
 import SwiftUI
 
+protocol CurrentGradeChangeEvaluator {
+    var isChanged: Bool { get }
+}
+
 class SpeedGraderScreenViewModel: ObservableObject {
     typealias Page = CoreHostingController<SpeedGraderPageView>
+
+    private class DefaultGradeChangeEvaluator: CurrentGradeChangeEvaluator {
+        weak var viewModel: SpeedGraderScreenViewModel?
+
+        var isChanged: Bool {
+            if let pageView = viewModel?.currentPage as? CoreHostingController<SpeedGraderPageView> {
+                return pageView.rootView.content.isGradeChanged()
+            }
+            return false
+        }
+    }
 
     // MARK: - Outputs
 
     @Published private(set) var state: InstUI.ScreenState = .loading
-    @Published private(set) var currentPage: UIViewController?
     @Published private(set) var isPostPolicyButtonVisible = false
     @Published private(set) var navigationTitle = ""
     @Published private(set) var navigationSubtitle = ""
@@ -38,6 +52,7 @@ class SpeedGraderScreenViewModel: ObservableObject {
     let didTapDoneButton = PassthroughSubject<WeakViewController, Never>()
     let didTapPostPolicyButton = PassthroughSubject<WeakViewController, Never>()
     let didShowPagesViewController = PassthroughSubject<PagesViewController, Never>()
+    let snackBarViewModel = SnackBarViewModel()
 
     // MARK: - Private
 
@@ -45,16 +60,23 @@ class SpeedGraderScreenViewModel: ObservableObject {
     private let landscapeSplitLayoutViewModel = SpeedGraderPageLandscapeSplitLayoutViewModel()
     private let environment: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
+    private var currentPage: UIViewController?
+    var currentGradeChangeEvaluator: CurrentGradeChangeEvaluator
 
     init(
         interactor: SpeedGraderInteractor,
+        currentGradeChangeEvaluator: CurrentGradeChangeEvaluator? = nil,
         environment: AppEnvironment
     ) {
         self.interactor = interactor
         self.environment = environment
-        screenViewTrackingParameters = ScreenViewTrackingParameters(
+
+        self.screenViewTrackingParameters = ScreenViewTrackingParameters(
             eventName: "/\(interactor.context.pathComponent)/gradebook/speed_grader?assignment_id=\(interactor.assignmentID)&student_id=\(interactor.userID)"
         )
+
+        self.currentGradeChangeEvaluator = currentGradeChangeEvaluator ?? DefaultGradeChangeEvaluator()
+        (self.currentGradeChangeEvaluator as? DefaultGradeChangeEvaluator)?.viewModel = self
 
         showFocusedSubmission(on: didShowPagesViewController)
         showPostPolicyScreen(on: didTapPostPolicyButton)
@@ -114,10 +136,24 @@ class SpeedGraderScreenViewModel: ObservableObject {
         on subject: PassthroughSubject<WeakViewController, Never>
     ) {
         didTapDoneButton
-            .sink { [router = environment.router] viewController in
-                router.dismiss(viewController)
+            .sink { [weak self, router = environment.router] viewController in
+                let didEditGrade = self?.currentGradeChangeEvaluator.isChanged ?? false
+                router.dismiss(viewController) {
+                    Self.didDismiss(withGradeChanges: didEditGrade)
+                }
             }
             .store(in: &subscriptions)
+    }
+
+    private static func didDismiss(withGradeChanges didEditGrades: Bool) {
+        guard didEditGrades else { return }
+
+        let submittedMessage = String(
+            localized: "Grade Submitted",
+            bundle: .teacher
+        )
+
+        SnackBarViewModel.topControllerModel?.showSnack(submittedMessage)
     }
 
     private func showPostPolicyScreen(
@@ -181,20 +217,21 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
         let assignment = data.assignment
         let submission = data.submissions[index]
         let gradingScheme = data.gradingScheme
+        let viewModel = SpeedGraderAssembly.makePageViewModel(
+            context: interactor.context,
+            assignment: assignment,
+            submission: submission,
+            gradingScheme: gradingScheme,
+            contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),
+            gradeStatusInteractor: interactor.gradeStatusInteractor,
+            submissionWordCountInteractor: interactor.submissionWordCountInteractor,
+            customGradebookColumnsInteractor: interactor.customGradebookColumnsInteractor,
+            env: environment
+        )
 
         return SpeedGraderPageView(
             userIndexInSubmissionList: index,
-            viewModel: SpeedGraderAssembly.makePageViewModel(
-                context: interactor.context,
-                assignment: assignment,
-                submission: submission,
-                gradingScheme: gradingScheme,
-                contextColor: interactor.contextInfo.compactMap { $0?.courseColor }.eraseToAnyPublisher(),
-                gradeStatusInteractor: interactor.gradeStatusInteractor,
-                submissionWordCountInteractor: interactor.submissionWordCountInteractor,
-                customGradebookColumnsInteractor: interactor.customGradebookColumnsInteractor,
-                env: environment
-            ),
+            viewModel: viewModel,
             landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel,
             handleRefresh: { [weak self] in
                 guard let self else { return }
@@ -202,6 +239,9 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
                     .refreshSubmission(forUserId: submission.userID)
                     .sink()
                     .store(in: &subscriptions)
+            },
+            isGradeChanged: { [weak viewModel] in
+                viewModel?.gradeViewModel.isGradeChanged ?? false
             }
         )
     }
@@ -210,6 +250,7 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDataSource {
         guard let data = interactor.data else { return }
 
         if let page = controller(for: data.focusedSubmissionIndex) {
+            currentPage = page
             pages.setCurrentPage(page)
         }
 
@@ -233,5 +274,15 @@ extension SpeedGraderScreenViewModel: PagesViewControllerDelegate {
         pages.pauseMediaPlayback()
         // Close keyboard
         pages.view.endEditing(true)
+
+        if currentGradeChangeEvaluator.isChanged {
+            let submittedMessage = String(
+                localized: "Grade Submitted",
+                bundle: .teacher
+            )
+            snackBarViewModel.showSnack(submittedMessage)
+        }
+
+        currentPage = page
     }
 }
