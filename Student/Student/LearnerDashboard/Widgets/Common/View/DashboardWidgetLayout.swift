@@ -19,9 +19,9 @@
 import Core
 import SwiftUI
 
-struct LearnerDashboardWidgetLayout: View {
-    let fullWidthWidgets: [any LearnerWidgetViewModel]
-    let gridWidgets: [any LearnerWidgetViewModel]
+struct DashboardWidgetLayout: View {
+    let fullWidthWidgets: [any DashboardWidgetViewModel]
+    let gridWidgets: [any DashboardWidgetViewModel]
     @State private var containerWidth: CGFloat = 0
 
     var body: some View {
@@ -80,16 +80,16 @@ struct LearnerDashboardWidgetLayout: View {
 
 #Preview {
     let fullWidthWidget = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-        config: WidgetConfig(id: .fullWidthWidget, order: 0, isVisible: true, settings: nil)
+        config: DashboardWidgetConfig(id: .fullWidthWidget, order: 0, isVisible: true, settings: nil)
     )
     let widget1 = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-        config: WidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil)
+        config: DashboardWidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil)
     )
     let widget2 = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-        config: WidgetConfig(id: .widget2, order: 2, isVisible: true, settings: nil)
+        config: DashboardWidgetConfig(id: .widget2, order: 2, isVisible: true, settings: nil)
     )
     let widget3 = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-        config: WidgetConfig(id: .widget3, order: 3, isVisible: true, settings: nil)
+        config: DashboardWidgetConfig(id: .widget3, order: 3, isVisible: true, settings: nil)
     )
 
     _ = fullWidthWidget.refresh(ignoreCache: false)
@@ -98,7 +98,7 @@ struct LearnerDashboardWidgetLayout: View {
     _ = widget3.refresh(ignoreCache: false)
 
     return ScrollView {
-        LearnerDashboardWidgetLayout(
+        DashboardWidgetLayout(
             fullWidthWidgets: [fullWidthWidget],
             gridWidgets: [widget1, widget2, widget3]
         )

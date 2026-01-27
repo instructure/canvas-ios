@@ -20,13 +20,13 @@ import Combine
 import Core
 import SwiftUI
 
-protocol LearnerWidgetViewModel: AnyObject, Identifiable where ID == LearnerDashboardWidgetIdentifier {
+protocol DashboardWidgetViewModel: AnyObject, Identifiable where ID == LearnerDashboardWidgetIdentifier {
     associatedtype ViewType: View
 
     var id: LearnerDashboardWidgetIdentifier { get }
 
     /// User configurable widget settings.
-    var config: WidgetConfig { get }
+    var config: DashboardWidgetConfig { get }
 
     /// Non-editable, widget specific property used for layouting.
     /// Full width widgets are put at the top of the screen outside of the widget grid.
@@ -50,7 +50,7 @@ protocol LearnerWidgetViewModel: AnyObject, Identifiable where ID == LearnerDash
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never>
 }
 
-extension LearnerWidgetViewModel {
+extension DashboardWidgetViewModel {
     var layoutIdentifier: AnyHashable {
         AnyHashable(state)
     }

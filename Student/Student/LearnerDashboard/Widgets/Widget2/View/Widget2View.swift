@@ -23,13 +23,13 @@ struct Widget2View: View {
     @State var viewModel: Widget2ViewModel
 
     var body: some View {
-        LearnerDashboardTitledWidget("Widget 2") {
-            LearnerDashboardCard {
+        DashboardWidgetTitledWidget("Widget 2") {
+            DashboardWidgetCard {
                 switch viewModel.state {
                 case .empty, .data, .loading:
                     dataView
                 case .error:
-                    LearnerDashboardWidgetErrorView(onRetry: viewModel.refresh)
+                    DashboardWidgetErrorView(onRetry: viewModel.refresh)
                 }
             }
         }
@@ -38,7 +38,7 @@ struct Widget2View: View {
 
     private var dataView: some View {
         VStack(alignment: .leading) {
-            Text(verbatim: WidgetPlaceholderData.long(3))
+            Text(verbatim: DashboardWidgetPlaceholderData.long(3))
                 .foregroundColor(.secondary)
         }
         .frame(maxWidth: .infinity, alignment: .leading)

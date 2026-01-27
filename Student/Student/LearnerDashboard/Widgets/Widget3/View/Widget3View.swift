@@ -24,10 +24,10 @@ struct Widget3View: View {
     @State var viewModel: Widget3ViewModel
 
     var body: some View {
-        LearnerDashboardTitledWidget("Widget 3") {
-            LearnerDashboardCard {
+        DashboardWidgetTitledWidget("Widget 3") {
+            DashboardWidgetCard {
                 VStack(alignment: .leading) {
-                    Text(verbatim: WidgetPlaceholderData.long(2))
+                    Text(verbatim: DashboardWidgetPlaceholderData.long(2))
                         .foregroundColor(.secondary)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

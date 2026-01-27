@@ -17,24 +17,36 @@
 //
 
 import Core
-import Foundation
+import SwiftUI
 
-extension SessionDefaults {
-    private var learnerDashboardWidgetConfigsKey: String { "learnerDashboardWidgetConfigs" }
+struct DashboardWidgetTitledWidget<Content: View>: View {
+    let title: String
+    let content: Content
 
-    var learnerDashboardWidgetConfigs: [WidgetConfig]? {
-        get {
-            guard let data = self[learnerDashboardWidgetConfigsKey] as? Data else {
-                return nil
-            }
-            return try? JSONDecoder().decode([WidgetConfig].self, from: data)
-        }
-        set {
-            if let newValue, let data = try? JSONEncoder().encode(newValue) {
-                self[learnerDashboardWidgetConfigsKey] = data
-            } else {
-                self[learnerDashboardWidgetConfigsKey] = nil
-            }
+    init(_ title: String, @ViewBuilder content: () -> Content) {
+        self.title = title
+        self.content = content()
+    }
+
+    var body: some View {
+        VStack(
+            alignment: .leading,
+            spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue
+        ) {
+            Text(title)
+                .font(.regular14, lineHeight: .fit)
+                .foregroundColor(.textDarkest)
+            content
         }
     }
 }
+
+#if DEBUG
+
+#Preview {
+    DashboardWidgetTitledWidget("Weekly Summary") {
+        Text(verbatim: InstUI.PreviewData.loremIpsumShort)
+    }
+}
+
+#endif

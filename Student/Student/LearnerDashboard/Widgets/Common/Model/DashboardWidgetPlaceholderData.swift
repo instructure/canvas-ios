@@ -18,7 +18,7 @@
 
 import Foundation
 
-enum WidgetPlaceholderData {
+enum DashboardWidgetPlaceholderData {
     static let short = "Lorem ipsum dolor sit amet"
     static let medium = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam tincidunt rhoncus"
     static let long = """

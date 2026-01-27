@@ -19,7 +19,7 @@
 import SwiftUI
 import Core
 
-struct LearnerDashboardCard<Content: View>: View {
+struct DashboardWidgetCard<Content: View>: View {
     let content: Content
 
     init(@ViewBuilder content: () -> Content) {
@@ -41,7 +41,7 @@ struct LearnerDashboardCard<Content: View>: View {
 #if DEBUG
 
 #Preview {
-    LearnerDashboardCard {
+    DashboardWidgetCard {
         Text(verbatim: "Hello")
             .padding(50)
     }

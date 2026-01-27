@@ -16,37 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import SwiftUI
+struct DashboardWidgetConfig: Codable, Comparable, Identifiable {
+    let id: LearnerDashboardWidgetIdentifier
+    var order: Int
+    var isVisible: Bool
+    /// Widget-specific settings encoded into a JSON to be persisted.
+    var settings: String?
 
-struct LearnerDashboardTitledWidget<Content: View>: View {
-    let title: String
-    let content: Content
-
-    init(_ title: String, @ViewBuilder content: () -> Content) {
-        self.title = title
-        self.content = content()
-    }
-
-    var body: some View {
-        VStack(
-            alignment: .leading,
-            spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue
-        ) {
-            Text(title)
-                .font(.regular14, lineHeight: .fit)
-                .foregroundColor(.textDarkest)
-            content
-        }
+    static func < (lhs: DashboardWidgetConfig, rhs: DashboardWidgetConfig) -> Bool {
+        lhs.order < rhs.order
     }
 }
 
-#if DEBUG
-
-#Preview {
-    LearnerDashboardTitledWidget("Weekly Summary") {
-        Text(verbatim: InstUI.PreviewData.loremIpsumShort)
+extension Array where Element == DashboardWidgetConfig {
+    func partitionedByLayout(
+        isFullWidth: (DashboardWidgetConfig) -> Bool
+    ) -> (fullWidth: [DashboardWidgetConfig], grid: [DashboardWidgetConfig]) {
+        let fullWidth = filter { isFullWidth($0) }.sorted()
+        let grid = filter { !isFullWidth($0) }.sorted()
+        return (fullWidth, grid)
     }
 }
-
-#endif

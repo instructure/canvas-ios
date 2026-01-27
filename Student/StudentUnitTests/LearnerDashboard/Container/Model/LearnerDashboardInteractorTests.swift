@@ -50,8 +50,8 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         )
 
         let expectation = expectation(description: "loadWidgets")
-        var receivedFullWidth: [any LearnerWidgetViewModel]?
-        var receivedGrid: [any LearnerWidgetViewModel]?
+        var receivedFullWidth: [any DashboardWidgetViewModel]?
+        var receivedGrid: [any DashboardWidgetViewModel]?
 
         testee.loadWidgets()
             .sink { result in
@@ -75,9 +75,9 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
     func test_loadWidgets_withSavedConfigs_shouldFilterVisibleAndSort() {
         userDefaults.learnerDashboardWidgetConfigs = [
-            WidgetConfig(id: .widget3, order: 5, isVisible: true),
-            WidgetConfig(id: .widget1, order: 20, isVisible: false),
-            WidgetConfig(id: .widget2, order: 10, isVisible: true)
+            DashboardWidgetConfig(id: .widget3, order: 5, isVisible: true),
+            DashboardWidgetConfig(id: .widget1, order: 20, isVisible: false),
+            DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
         ]
         testee = LearnerDashboardInteractorLive(
             userDefaults: userDefaults,
@@ -85,8 +85,8 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         )
 
         let expectation = expectation(description: "loadWidgets")
-        var receivedFullWidth: [any LearnerWidgetViewModel]?
-        var receivedGrid: [any LearnerWidgetViewModel]?
+        var receivedFullWidth: [any DashboardWidgetViewModel]?
+        var receivedGrid: [any DashboardWidgetViewModel]?
 
         testee.loadWidgets()
             .sink { result in
@@ -106,9 +106,9 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
     func test_loadWidgets_shouldSeparateFullWidthFromGridWidgets() {
         userDefaults.learnerDashboardWidgetConfigs = [
-            WidgetConfig(id: .widget1, order: 20, isVisible: true),
-            WidgetConfig(id: .fullWidthWidget, order: 5, isVisible: true),
-            WidgetConfig(id: .widget2, order: 10, isVisible: true)
+            DashboardWidgetConfig(id: .widget1, order: 20, isVisible: true),
+            DashboardWidgetConfig(id: .fullWidthWidget, order: 5, isVisible: true),
+            DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
         ]
         testee = LearnerDashboardInteractorLive(
             userDefaults: userDefaults,
@@ -116,8 +116,8 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         )
 
         let expectation = expectation(description: "loadWidgets")
-        var receivedFullWidth: [any LearnerWidgetViewModel]?
-        var receivedGrid: [any LearnerWidgetViewModel]?
+        var receivedFullWidth: [any DashboardWidgetViewModel]?
+        var receivedGrid: [any DashboardWidgetViewModel]?
 
         testee.loadWidgets()
             .sink { result in
@@ -138,23 +138,23 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
     // MARK: - Private helpers
 
-    private func makeViewModelFactory() -> (WidgetConfig) -> any LearnerWidgetViewModel {
+    private func makeViewModelFactory() -> (DashboardWidgetConfig) -> any DashboardWidgetViewModel {
         return { config in
             MockWidgetViewModel(config: config)
         }
     }
 }
 
-private final class MockWidgetViewModel: LearnerWidgetViewModel {
+private final class MockWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = Never
 
     let id: LearnerDashboardWidgetIdentifier
-    let config: WidgetConfig
+    let config: DashboardWidgetConfig
     let isFullWidth: Bool
     let isEditable = false
     let state: InstUI.ScreenState = .data
 
-    init(config: WidgetConfig) {
+    init(config: DashboardWidgetConfig) {
         self.config = config
         self.id = config.id
         self.isFullWidth = config.id == .fullWidthWidget

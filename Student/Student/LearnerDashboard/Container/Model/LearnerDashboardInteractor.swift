@@ -21,26 +21,26 @@ import Core
 import Foundation
 
 protocol LearnerDashboardInteractor {
-    func loadWidgets() -> AnyPublisher<(fullWidth: [any LearnerWidgetViewModel], grid: [any LearnerWidgetViewModel]), Never>
+    func loadWidgets() -> AnyPublisher<(fullWidth: [any DashboardWidgetViewModel], grid: [any DashboardWidgetViewModel]), Never>
 }
 
 final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
     private let userDefaults: SessionDefaults
-    private let widgetViewModelFactory: (WidgetConfig) -> any LearnerWidgetViewModel
+    private let widgetViewModelFactory: (DashboardWidgetConfig) -> any DashboardWidgetViewModel
 
     init(
         userDefaults: SessionDefaults = AppEnvironment.shared.userDefaults ?? .fallback,
-        widgetViewModelFactory: @escaping (WidgetConfig) -> any LearnerWidgetViewModel
+        widgetViewModelFactory: @escaping (DashboardWidgetConfig) -> any DashboardWidgetViewModel
     ) {
         self.userDefaults = userDefaults
         self.widgetViewModelFactory = widgetViewModelFactory
     }
 
-    func loadWidgets() -> AnyPublisher<(fullWidth: [any LearnerWidgetViewModel], grid: [any LearnerWidgetViewModel]), Never> {
+    func loadWidgets() -> AnyPublisher<(fullWidth: [any DashboardWidgetViewModel], grid: [any DashboardWidgetViewModel]), Never> {
         Just(())
             .subscribe(on: DispatchQueue.global(qos: .userInitiated))
             .map { [userDefaults, widgetViewModelFactory] _ in
-                let configs: [WidgetConfig]
+                let configs: [DashboardWidgetConfig]
                 if let savedWidgets = userDefaults.learnerDashboardWidgetConfigs {
                     configs = savedWidgets.filter { $0.isVisible }.sorted()
                 } else {

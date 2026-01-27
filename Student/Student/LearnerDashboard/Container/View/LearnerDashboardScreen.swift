@@ -60,7 +60,7 @@ struct LearnerDashboardScreen: View {
 
     @ViewBuilder
     private var content: some View {
-        LearnerDashboardWidgetLayout(
+        DashboardWidgetLayout(
             fullWidthWidgets: viewModel.fullWidthWidgets,
             gridWidgets: viewModel.gridWidgets
         )

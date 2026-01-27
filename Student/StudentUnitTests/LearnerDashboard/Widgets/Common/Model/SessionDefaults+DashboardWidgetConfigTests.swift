@@ -20,7 +20,7 @@
 @testable import Student
 import XCTest
 
-final class SessionDefaultsWidgetConfigTests: XCTestCase {
+final class SessionDefaultsDashboardWidgetConfigTests: XCTestCase {
 
     private var testee: SessionDefaults!
 
@@ -42,18 +42,18 @@ final class SessionDefaultsWidgetConfigTests: XCTestCase {
     }
 
     func test_getter_whenInvalidDataStored_shouldReturnNil() {
-        testee["learnerDashboardWidgetConfigs"] = Data("invalid json".utf8)
+        testee["dashboardWidgetConfigs"] = Data("invalid json".utf8)
 
         XCTAssertEqual(testee.learnerDashboardWidgetConfigs, nil)
     }
 
     func test_getter_whenValidDataStored_shouldDecodeAndReturnConfigs() {
         let configs = [
-            WidgetConfig(id: .widget1, order: 7, isVisible: true, settings: "some settings"),
-            WidgetConfig(id: .widget2, order: 42, isVisible: false, settings: nil)
+            DashboardWidgetConfig(id: .widget1, order: 7, isVisible: true, settings: "some settings"),
+            DashboardWidgetConfig(id: .widget2, order: 42, isVisible: false, settings: nil)
         ]
         let data = try! JSONEncoder().encode(configs)
-        testee["learnerDashboardWidgetConfigs"] = data
+        testee["dashboardWidgetConfigs"] = data
 
         let result = testee.learnerDashboardWidgetConfigs
 
@@ -72,16 +72,16 @@ final class SessionDefaultsWidgetConfigTests: XCTestCase {
 
     func test_setter_withValidConfigs_shouldEncodeAndStore() {
         let configs = [
-            WidgetConfig(id: .widget1, order: 7, isVisible: true, settings: "some settings"),
-            WidgetConfig(id: .widget3, order: 100, isVisible: false, settings: nil)
+            DashboardWidgetConfig(id: .widget1, order: 7, isVisible: true, settings: "some settings"),
+            DashboardWidgetConfig(id: .widget3, order: 100, isVisible: false, settings: nil)
         ]
 
         testee.learnerDashboardWidgetConfigs = configs
 
-        let storedData = testee["learnerDashboardWidgetConfigs"] as? Data
+        let storedData = testee["dashboardWidgetConfigs"] as? Data
         XCTAssertNotEqual(storedData, nil)
 
-        let decoded = try! JSONDecoder().decode([WidgetConfig].self, from: storedData!)
+        let decoded = try! JSONDecoder().decode([DashboardWidgetConfig].self, from: storedData!)
         XCTAssertEqual(decoded.count, 2)
         XCTAssertEqual(decoded[0].id, .widget1)
         XCTAssertEqual(decoded[0].order, 7)
@@ -90,12 +90,12 @@ final class SessionDefaultsWidgetConfigTests: XCTestCase {
     }
 
     func test_setter_withNil_shouldRemoveStoredData() {
-        let configs = [WidgetConfig(id: .widget1, order: 7, isVisible: true)]
+        let configs = [DashboardWidgetConfig(id: .widget1, order: 7, isVisible: true)]
         testee.learnerDashboardWidgetConfigs = configs
-        XCTAssertNotNil(testee["learnerDashboardWidgetConfigs"])
+        XCTAssertNotNil(testee["dashboardWidgetConfigs"])
 
         testee.learnerDashboardWidgetConfigs = nil
 
-        XCTAssertNil(testee["learnerDashboardWidgetConfigs"])
+        XCTAssertNil(testee["dashboardWidgetConfigs"])
     }
 }

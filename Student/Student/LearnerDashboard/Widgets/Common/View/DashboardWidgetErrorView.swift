@@ -19,7 +19,7 @@
 import SwiftUI
 import Core
 
-struct LearnerDashboardWidgetErrorView: View {
+struct DashboardWidgetErrorView: View {
     let onRetry: () -> Void
 
     var body: some View {
@@ -63,7 +63,7 @@ struct LearnerDashboardWidgetErrorView: View {
 #if DEBUG
 
 #Preview {
-    LearnerDashboardWidgetErrorView(onRetry: {})
+    DashboardWidgetErrorView(onRetry: {})
         .border(Color.black)
 }
 

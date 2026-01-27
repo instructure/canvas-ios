@@ -16,24 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct WidgetConfig: Codable, Comparable, Identifiable {
-    let id: LearnerDashboardWidgetIdentifier
-    var order: Int
-    var isVisible: Bool
-    /// Widget-specific settings encoded into a JSON to be persisted.
-    var settings: String?
+import Core
+import Foundation
 
-    static func < (lhs: WidgetConfig, rhs: WidgetConfig) -> Bool {
-        lhs.order < rhs.order
-    }
-}
+extension SessionDefaults {
+    private var dashboardWidgetConfigsKey: String { "dashboardWidgetConfigs" }
 
-extension Array where Element == WidgetConfig {
-    func partitionedByLayout(
-        isFullWidth: (WidgetConfig) -> Bool
-    ) -> (fullWidth: [WidgetConfig], grid: [WidgetConfig]) {
-        let fullWidth = filter { isFullWidth($0) }.sorted()
-        let grid = filter { !isFullWidth($0) }.sorted()
-        return (fullWidth, grid)
+    var learnerDashboardWidgetConfigs: [DashboardWidgetConfig]? {
+        get {
+            guard let data = self[dashboardWidgetConfigsKey] as? Data else {
+                return nil
+            }
+            return try? JSONDecoder().decode([DashboardWidgetConfig].self, from: data)
+        }
+        set {
+            if let newValue, let data = try? JSONEncoder().encode(newValue) {
+                self[dashboardWidgetConfigsKey] = data
+            } else {
+                self[dashboardWidgetConfigsKey] = nil
+            }
+        }
     }
 }

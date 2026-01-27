@@ -19,26 +19,26 @@
 @testable import Student
 import XCTest
 
-final class WidgetConfigTests: XCTestCase {
+final class DashboardWidgetConfigTests: XCTestCase {
 
     // MARK: - Comparable
 
     func test_comparable_shouldCompareByOrder() {
         // WHEN lhs.order < rhs.order
-        var lhs = WidgetConfig(id: .widget1, order: 5, isVisible: true)
-        var rhs = WidgetConfig(id: .widget2, order: 10, isVisible: true)
+        var lhs = DashboardWidgetConfig(id: .widget1, order: 5, isVisible: true)
+        var rhs = DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
         // THEN
         XCTAssertEqual(lhs < rhs, true)
 
         // WHEN lhs.order > rhs.order
-        lhs = WidgetConfig(id: .widget1, order: 15, isVisible: true)
-        rhs = WidgetConfig(id: .widget2, order: 10, isVisible: true)
+        lhs = DashboardWidgetConfig(id: .widget1, order: 15, isVisible: true)
+        rhs = DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
         // THEN
         XCTAssertEqual(lhs < rhs, false)
 
         // WHEN lhs.order == rhs.order
-        lhs = WidgetConfig(id: .widget1, order: 10, isVisible: true)
-        rhs = WidgetConfig(id: .widget2, order: 10, isVisible: true)
+        lhs = DashboardWidgetConfig(id: .widget1, order: 10, isVisible: true)
+        rhs = DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
         // THEN
         XCTAssertEqual(lhs < rhs, false)
     }
@@ -47,10 +47,10 @@ final class WidgetConfigTests: XCTestCase {
 
     func test_partitionedByLayout_shouldSeparateAndSortWidgets() {
         let widgets = [
-            WidgetConfig(id: .widget1, order: 20, isVisible: true),
-            WidgetConfig(id: .fullWidthWidget, order: 5, isVisible: true),
-            WidgetConfig(id: .widget2, order: 10, isVisible: true),
-            WidgetConfig(id: .widget3, order: 30, isVisible: true)
+            DashboardWidgetConfig(id: .widget1, order: 20, isVisible: true),
+            DashboardWidgetConfig(id: .fullWidthWidget, order: 5, isVisible: true),
+            DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true),
+            DashboardWidgetConfig(id: .widget3, order: 30, isVisible: true)
         ]
 
         let result = widgets.partitionedByLayout { config in
@@ -67,8 +67,8 @@ final class WidgetConfigTests: XCTestCase {
 
     func test_partitionedByLayout_withAllFullWidth_shouldReturnAllInFullWidthArray() {
         let widgets = [
-            WidgetConfig(id: .widget1, order: 20, isVisible: true),
-            WidgetConfig(id: .widget2, order: 10, isVisible: true)
+            DashboardWidgetConfig(id: .widget1, order: 20, isVisible: true),
+            DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
         ]
 
         let result = widgets.partitionedByLayout { _ in true }
@@ -81,8 +81,8 @@ final class WidgetConfigTests: XCTestCase {
 
     func test_partitionedByLayout_withAllGrid_shouldReturnAllInGridArray() {
         let widgets = [
-            WidgetConfig(id: .widget1, order: 20, isVisible: true),
-            WidgetConfig(id: .widget2, order: 10, isVisible: true)
+            DashboardWidgetConfig(id: .widget1, order: 20, isVisible: true),
+            DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
         ]
 
         let result = widgets.partitionedByLayout { _ in false }
@@ -94,7 +94,7 @@ final class WidgetConfigTests: XCTestCase {
     }
 
     func test_partitionedByLayout_withEmptyArray_shouldReturnEmptyArrays() {
-        let widgets: [WidgetConfig] = []
+        let widgets: [DashboardWidgetConfig] = []
 
         let result = widgets.partitionedByLayout { _ in true }
 

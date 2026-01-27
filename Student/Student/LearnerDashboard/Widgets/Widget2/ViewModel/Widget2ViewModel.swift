@@ -21,17 +21,17 @@ import Core
 import SwiftUI
 
 @Observable
-final class Widget2ViewModel: LearnerWidgetViewModel {
+final class Widget2ViewModel: DashboardWidgetViewModel {
     typealias ViewType = Widget2View
 
-    let config: WidgetConfig
+    let config: DashboardWidgetConfig
     var id: LearnerDashboardWidgetIdentifier { config.id }
     let isFullWidth = false
     let isEditable = false
     var state: InstUI.ScreenState = .data
     private var subscriptions = Set<AnyCancellable>()
 
-    init(config: WidgetConfig) {
+    init(config: DashboardWidgetConfig) {
         self.config = config
     }
 

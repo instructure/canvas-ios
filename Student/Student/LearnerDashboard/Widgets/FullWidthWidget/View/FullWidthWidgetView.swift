@@ -24,9 +24,9 @@ struct FullWidthWidgetView: View {
 
     var body: some View {
         if viewModel.state != .loading {
-            LearnerDashboardTitledWidget("Full Width Widget") {
-                LearnerDashboardCard {
-                    Text(verbatim: WidgetPlaceholderData.medium)
+            DashboardWidgetTitledWidget("Full Width Widget") {
+                DashboardWidgetCard {
+                    Text(verbatim: DashboardWidgetPlaceholderData.medium)
                         .foregroundColor(.secondary)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .paddingStyle(.standard)
