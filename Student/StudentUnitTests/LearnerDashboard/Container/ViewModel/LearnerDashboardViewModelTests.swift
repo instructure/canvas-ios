@@ -165,7 +165,6 @@ final class LearnerDashboardViewModelTests: XCTestCase {
 private final class MockWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = Never
 
-    let id: LearnerDashboardWidgetIdentifier
     let config: DashboardWidgetConfig
     let isFullWidth: Bool
     let isEditable = false
@@ -174,8 +173,7 @@ private final class MockWidgetViewModel: DashboardWidgetViewModel {
     var refreshCalled = false
     var refreshIgnoreCache: Bool?
 
-    init(id: LearnerDashboardWidgetIdentifier, isFullWidth: Bool) {
-        self.id = id
+    init(id: DashboardWidgetIdentifier, isFullWidth: Bool) {
         self.isFullWidth = isFullWidth
         self.config = DashboardWidgetConfig(id: id, order: 7, isVisible: true)
     }

@@ -20,10 +20,10 @@ import Combine
 import Core
 import SwiftUI
 
-protocol DashboardWidgetViewModel: AnyObject, Identifiable where ID == LearnerDashboardWidgetIdentifier {
+protocol DashboardWidgetViewModel: AnyObject, Identifiable where ID == DashboardWidgetIdentifier {
     associatedtype ViewType: View
 
-    var id: LearnerDashboardWidgetIdentifier { get }
+    var id: DashboardWidgetIdentifier { get }
 
     /// User configurable widget settings.
     var config: DashboardWidgetConfig { get }
@@ -51,6 +51,10 @@ protocol DashboardWidgetViewModel: AnyObject, Identifiable where ID == LearnerDa
 }
 
 extension DashboardWidgetViewModel {
+    var id: DashboardWidgetIdentifier {
+        config.id
+    }
+
     var layoutIdentifier: AnyHashable {
         AnyHashable(state)
     }

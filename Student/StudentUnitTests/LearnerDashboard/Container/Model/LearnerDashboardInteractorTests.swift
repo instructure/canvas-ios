@@ -148,7 +148,6 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 private final class MockWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = Never
 
-    let id: LearnerDashboardWidgetIdentifier
     let config: DashboardWidgetConfig
     let isFullWidth: Bool
     let isEditable = false
@@ -156,7 +155,6 @@ private final class MockWidgetViewModel: DashboardWidgetViewModel {
 
     init(config: DashboardWidgetConfig) {
         self.config = config
-        self.id = config.id
         self.isFullWidth = config.id == .fullWidthWidget
     }
 

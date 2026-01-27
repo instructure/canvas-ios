@@ -20,20 +20,20 @@ import Core
 import Foundation
 
 extension SessionDefaults {
-    private var dashboardWidgetConfigsKey: String { "dashboardWidgetConfigs" }
+    private static let dashboardWidgetConfigsKey = "dashboardWidgetConfigs"
 
     var learnerDashboardWidgetConfigs: [DashboardWidgetConfig]? {
         get {
-            guard let data = self[dashboardWidgetConfigsKey] as? Data else {
+            guard let data = self[Self.dashboardWidgetConfigsKey] as? Data else {
                 return nil
             }
             return try? JSONDecoder().decode([DashboardWidgetConfig].self, from: data)
         }
         set {
             if let newValue, let data = try? JSONEncoder().encode(newValue) {
-                self[dashboardWidgetConfigsKey] = data
+                self[Self.dashboardWidgetConfigsKey] = data
             } else {
-                self[dashboardWidgetConfigsKey] = nil
+                self[Self.dashboardWidgetConfigsKey] = nil
             }
         }
     }

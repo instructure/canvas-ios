@@ -26,7 +26,6 @@ final class Widget1ViewModel: DashboardWidgetViewModel {
 
     var text = DashboardWidgetPlaceholderData.long(1)
     let config: DashboardWidgetConfig
-    var id: LearnerDashboardWidgetIdentifier { config.id }
     let isFullWidth = false
     let isEditable = false
     var state: InstUI.ScreenState = .loading

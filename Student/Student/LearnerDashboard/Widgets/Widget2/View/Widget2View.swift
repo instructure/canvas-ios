@@ -23,7 +23,7 @@ struct Widget2View: View {
     @State var viewModel: Widget2ViewModel
 
     var body: some View {
-        DashboardWidgetTitledWidget("Widget 2") {
+        DashboardTitledWidget("Widget 2") {
             DashboardWidgetCard {
                 switch viewModel.state {
                 case .empty, .data, .loading:

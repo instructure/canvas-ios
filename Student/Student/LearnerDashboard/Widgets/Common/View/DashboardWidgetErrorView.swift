@@ -56,7 +56,8 @@ struct DashboardWidgetErrorView: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .paddingStyle(.standard)
+        .paddingStyle(set: .standardCell)
+        .accessibilityElement(children: .combine)
     }
 }
 

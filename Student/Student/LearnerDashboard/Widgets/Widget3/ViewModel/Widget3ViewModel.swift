@@ -25,7 +25,6 @@ final class Widget3ViewModel: DashboardWidgetViewModel {
     typealias ViewType = Widget3View
 
     let config: DashboardWidgetConfig
-    var id: LearnerDashboardWidgetIdentifier { config.id }
     let isFullWidth = false
     let isEditable = false
     var state: InstUI.ScreenState = .data

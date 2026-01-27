@@ -24,7 +24,7 @@ struct FullWidthWidgetView: View {
 
     var body: some View {
         if viewModel.state != .loading {
-            DashboardWidgetTitledWidget("Full Width Widget") {
+            DashboardTitledWidget("Full Width Widget") {
                 DashboardWidgetCard {
                     Text(verbatim: DashboardWidgetPlaceholderData.medium)
                         .foregroundColor(.secondary)

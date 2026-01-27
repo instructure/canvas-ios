@@ -23,7 +23,7 @@ struct Widget1View: View {
     @State var viewModel: Widget1ViewModel
 
     var body: some View {
-        DashboardWidgetTitledWidget("Widget 1") {
+        DashboardTitledWidget("Widget 1") {
             DashboardWidgetCard {
                 VStack(alignment: .leading) {
                     Text(viewModel.text)

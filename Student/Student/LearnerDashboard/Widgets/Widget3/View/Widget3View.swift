@@ -24,7 +24,7 @@ struct Widget3View: View {
     @State var viewModel: Widget3ViewModel
 
     var body: some View {
-        DashboardWidgetTitledWidget("Widget 3") {
+        DashboardTitledWidget("Widget 3") {
             DashboardWidgetCard {
                 VStack(alignment: .leading) {
                     Text(verbatim: DashboardWidgetPlaceholderData.long(2))

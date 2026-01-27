@@ -17,7 +17,7 @@
 //
 
 struct DashboardWidgetConfig: Codable, Comparable, Identifiable {
-    let id: LearnerDashboardWidgetIdentifier
+    let id: DashboardWidgetIdentifier
     var order: Int
     var isVisible: Bool
     /// Widget-specific settings encoded into a JSON to be persisted.

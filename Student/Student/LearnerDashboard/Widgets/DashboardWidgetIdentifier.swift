@@ -16,37 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import SwiftUI
-
-struct DashboardWidgetTitledWidget<Content: View>: View {
-    let title: String
-    let content: Content
-
-    init(_ title: String, @ViewBuilder content: () -> Content) {
-        self.title = title
-        self.content = content()
-    }
-
-    var body: some View {
-        VStack(
-            alignment: .leading,
-            spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue
-        ) {
-            Text(title)
-                .font(.regular14, lineHeight: .fit)
-                .foregroundColor(.textDarkest)
-            content
-        }
-    }
+enum DashboardWidgetIdentifier: String, Codable, CaseIterable {
+    case fullWidthWidget
+    case widget1
+    case widget2
+    case widget3
 }
-
-#if DEBUG
-
-#Preview {
-    DashboardWidgetTitledWidget("Weekly Summary") {
-        Text(verbatim: InstUI.PreviewData.loremIpsumShort)
-    }
-}
-
-#endif
