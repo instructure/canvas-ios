@@ -41,6 +41,33 @@ extension InstUI.PillButtonStyle {
         public func borderWidth(uiScale: CGFloat) -> CGFloat {
             borderWidth * uiScale
         }
+
+        /// Buttons without a background color are considered outlined style buttons
+        public var isOutlined: Bool {
+            backgroundColor == .clear
+        }
+
+        public func backgroundColor(isPressed: Bool, isDarkMode: Bool) -> Color {
+            // Filled styles always have solid backgrounds and selection is handled with opacity
+            guard isOutlined else {
+                return backgroundColor
+            }
+
+            if isPressed {
+                // In dark mode we need stronger colors to be as prominent as in light mode
+                let opacity = isDarkMode ? 0.3 : 0.1
+                return borderColor.opacity(opacity)
+            } else {
+                return Color.clear
+            }
+        }
+
+        public func opacity(isPressed: Bool, isEnabled: Bool) -> Double {
+            if isOutlined {
+                return isEnabled ? 1.0 : 0.7
+            }
+            return isPressed || !isEnabled ? 0.7 : 1.0
+        }
     }
 }
 

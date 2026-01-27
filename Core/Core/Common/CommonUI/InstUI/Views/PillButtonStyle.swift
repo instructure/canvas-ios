@@ -22,6 +22,7 @@ extension InstUI {
 
     public struct PillButtonStyle: ButtonStyle {
         @Environment(\.isEnabled) private var isEnabled
+        @Environment(\.colorScheme) private var colorScheme
         @ScaledMetric private var uiScale: CGFloat = 1
         private let buttonStyleConfig: InstUI.PillButtonStyle.Config
 
@@ -42,14 +43,19 @@ extension InstUI {
                 .frame(minHeight: 30 * uiScale)
                 .background(
                     Capsule()
-                        .fill(buttonStyleConfig.backgroundColor)
+                        .fill(
+                            buttonStyleConfig.backgroundColor(
+                                isPressed: configuration.isPressed,
+                                isDarkMode: colorScheme == .dark
+                            )
+                        )
                         .stroke(
                             buttonStyleConfig.borderColor,
                             lineWidth: buttonStyleConfig.borderWidth(uiScale: uiScale)
                         )
                 )
                 .contentShape(Capsule())
-                .opacity(configuration.isPressed || !isEnabled ? 0.7 : 1.0)
+                .opacity(buttonStyleConfig.opacity(isPressed: configuration.isPressed, isEnabled: isEnabled))
         }
     }
 }
