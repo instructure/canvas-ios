@@ -62,7 +62,7 @@ final class LearnerDashboardViewModel {
                 guard let self else { return }
                 self.fullWidthWidgets = result.fullWidth
                 self.gridWidgets = result.grid
-                if !result.fullWidth.isEmpty || !result.grid.isEmpty {
+                if result.fullWidth.isNotEmpty || result.grid.isNotEmpty {
                     self.state = .data
                 }
                 self.refresh(ignoreCache: false)

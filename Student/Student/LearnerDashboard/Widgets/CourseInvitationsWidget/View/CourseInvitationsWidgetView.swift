@@ -25,12 +25,8 @@ struct CourseInvitationsWidgetView: View {
     var body: some View {
         if viewModel.state == .data {
             LearnerDashboardTitledWidget(widgetTitle) {
-                HorizontalCarouselView(items: viewModel.invitations) { invitation in
-                    CourseInvitationCardView(
-                        invitation: invitation,
-                        onAccept: { viewModel.acceptInvitation(id: invitation.id) },
-                        onDecline: { viewModel.declineInvitation(id: invitation.id) }
-                    )
+                HorizontalCarouselView(items: viewModel.invitations) { cardViewModel in
+                    CourseInvitationCardView(viewModel: cardViewModel)
                 }
             }
         }
@@ -46,8 +42,13 @@ struct CourseInvitationsWidgetView: View {
 
 #Preview {
     let config = WidgetConfig(id: .courseInvitations, order: 1, isVisible: true, settings: nil)
-    let interactor = CourseInvitationsInteractorLive()
-    let viewModel = CourseInvitationsWidgetViewModel(config: config, interactor: interactor)
+    let offlineModeInteractor = OfflineModeInteractorLive(isOfflineModeEnabledForApp: false)
+    let coursesInteractor = CoursesInteractorLive()
+    let viewModel = CourseInvitationsWidgetViewModel(
+        config: config,
+        interactor: coursesInteractor,
+        offlineModeInteractor: offlineModeInteractor
+    )
 
     CourseInvitationsWidgetView(viewModel: viewModel)
         .onAppear {

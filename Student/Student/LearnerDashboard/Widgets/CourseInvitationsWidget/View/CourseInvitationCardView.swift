@@ -20,9 +20,7 @@ import Core
 import SwiftUI
 
 struct CourseInvitationCardView: View {
-    let invitation: CourseInvitation
-    let onAccept: () -> Void
-    let onDecline: () -> Void
+    @State var viewModel: CourseInvitationCardViewModel
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -31,64 +29,93 @@ struct CourseInvitationCardView: View {
                     .font(.regular14, lineHeight: .fit)
                     .foregroundColor(.textDark)
 
-                Text(invitation.courseName)
+                Text(viewModel.displayName)
                     .font(.medium16, lineHeight: .fit)
                     .foregroundColor(.textDarkest)
                     .lineLimit(2)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal, 16)
-            .padding(.top, 12)
-            .padding(.bottom, 14)
+            .paddingStyle(set: .standardCell)
 
-            HStack(spacing: 12) {
-                Button(action: onAccept) {
-                    Text("Accept", bundle: .student)
-                        .font(.semibold12, lineHeight: .fit)
-                        .foregroundColor(.white)
-                }
-                .frame(maxWidth: .infinity)
-                .frame(height: 24)
-                .background(Color(uiColor: UIColor(hexString: "#2573DF")!))
-                .cornerRadius(100)
-                .accessibilityLabel(Text("Accept invitation to \(invitation.courseName)"))
-
-                Button(action: onDecline) {
-                    Text("Decline", bundle: .student)
-                        .font(.regular12, lineHeight: .fit)
-                        .foregroundColor(.textDarkest)
-                }
-                .frame(maxWidth: .infinity)
-                .frame(height: 24)
-                .background(Color.backgroundLightest)
-                .cornerRadius(100)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 100)
-                        .stroke(Color.borderMedium, lineWidth: 0.5)
-                )
-                .accessibilityLabel(Text("Decline invitation to \(invitation.courseName)"))
+            HStack(spacing: InstUI.Styles.Padding.cellAccessoryPadding.rawValue) {
+                acceptButton
+                declineButton
             }
-            .padding(.horizontal, 16)
-            .padding(.bottom, 16)
+            .paddingStyle(.horizontal, .standard)
+            .paddingStyle(.bottom, .standard)
         }
         .elevation(.cardLarge, background: .backgroundLightest)
+        .disabled(viewModel.isProcessing)
+        .alert(item: $viewModel.error) { error in
+            Alert(title: Text(error.title), message: Text(error.message))
+        }
+    }
+
+    private var acceptButton: some View {
+        Button(action: { viewModel.accept() }) {
+            if viewModel.isLoadingAccept {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .textLightest))
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 24)
+            } else {
+                buttonText("Accept", fontName: .semibold12, color: .textLightest)
+            }
+        }
+        .disabled(viewModel.isProcessing)
+        .background(Color.brandPrimary)
+        .cornerRadius(100)
+        .identifier("CourseInvitation.\(viewModel.id).acceptButton")
+    }
+
+    private var declineButton: some View {
+        Button(action: { viewModel.decline() }) {
+            if viewModel.isLoadingDecline {
+                ProgressView()
+                    .progressViewStyle(CircularProgressViewStyle(tint: .textDarkest))
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 24)
+            } else {
+                buttonText("Decline", fontName: .regular12, color: .textDarkest)
+            }
+        }
+        .disabled(viewModel.isProcessing)
+        .background(Color.backgroundLightest)
+        .cornerRadius(100)
+        .overlay(
+            RoundedRectangle(cornerRadius: 100)
+                .stroke(Color.borderMedium, lineWidth: 0.5)
+        )
+        .identifier("CourseInvitation.\(viewModel.id).rejectButton")
+    }
+
+    private func buttonText(_ key: LocalizedStringKey, fontName: UIFont.Name, color: Color) -> some View {
+        Text(key, bundle: .student)
+            .font(fontName, lineHeight: .fit)
+            .foregroundColor(color)
+            .frame(maxWidth: .infinity)
+            .frame(height: 24)
+            .contentShape(Rectangle())
     }
 }
 
 #if DEBUG
 
 #Preview {
-    CourseInvitationCardView(
-        invitation: CourseInvitation(
-            id: "1",
-            courseName: "Introduction to Computer Science",
-            invitedBy: "Dr. Sarah Johnson",
-            invitedAt: Date()
-        ),
-        onAccept: {},
-        onDecline: {}
+    let offlineModeInteractor = OfflineModeInteractorLive(isOfflineModeEnabledForApp: false)
+    let coursesInteractor = CoursesInteractorLive()
+    let viewModel = CourseInvitationCardViewModel(
+        id: "1",
+        courseId: "course1",
+        courseName: "Introduction to Computer Science",
+        sectionName: "Section 01",
+        interactor: coursesInteractor,
+        offlineModeInteractor: offlineModeInteractor,
+        onDismiss: { _ in }
     )
-    .padding()
+
+    CourseInvitationCardView(viewModel: viewModel)
+        .padding()
 }
 
 #endif

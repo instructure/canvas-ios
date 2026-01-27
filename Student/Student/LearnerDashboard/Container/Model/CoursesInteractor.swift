@@ -27,6 +27,8 @@ struct CoursesResult {
 
 protocol CoursesInteractor {
     func getCourses() -> AnyPublisher<CoursesResult, Error>
+    func acceptInvitation(courseId: String, enrollmentId: String) -> AnyPublisher<Void, Error>
+    func declineInvitation(courseId: String, enrollmentId: String) -> AnyPublisher<Void, Error>
 }
 
 final class CoursesInteractorLive: CoursesInteractor {
@@ -78,6 +80,26 @@ final class CoursesInteractorLive: CoursesInteractor {
         queue.async { [weak self] in
             self?.inFlightPublisher = nil
         }
+    }
+
+    func acceptInvitation(courseId: String, enrollmentId: String) -> AnyPublisher<Void, Error> {
+        handleInvitation(courseId: courseId, enrollmentId: enrollmentId, isAccepted: true)
+    }
+
+    func declineInvitation(courseId: String, enrollmentId: String) -> AnyPublisher<Void, Error> {
+        handleInvitation(courseId: courseId, enrollmentId: enrollmentId, isAccepted: false)
+    }
+
+    private func handleInvitation(courseId: String, enrollmentId: String, isAccepted: Bool) -> AnyPublisher<Void, Error> {
+        let request = HandleCourseInvitationRequest(
+            courseID: courseId,
+            enrollmentID: enrollmentId,
+            isAccepted: isAccepted
+        )
+
+        return env.api.makeRequest(request)
+            .mapToVoid()
+            .eraseToAnyPublisher()
     }
 }
 

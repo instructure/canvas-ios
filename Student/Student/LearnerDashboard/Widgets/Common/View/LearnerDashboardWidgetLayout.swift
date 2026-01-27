@@ -71,8 +71,8 @@ struct LearnerDashboardWidgetLayout: View {
 #if DEBUG
 
 #Preview {
-    let fullWidthWidget = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-        config: WidgetConfig(id: .fullWidthWidget, order: 0, isVisible: true, settings: nil)
+    let courseInvitations = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
+        config: WidgetConfig(id: .courseInvitations, order: 0, isVisible: true, settings: nil)
     )
     let widget1 = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
         config: WidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil)
@@ -84,14 +84,14 @@ struct LearnerDashboardWidgetLayout: View {
         config: WidgetConfig(id: .widget3, order: 3, isVisible: true, settings: nil)
     )
 
-    _ = fullWidthWidget.refresh(ignoreCache: false)
+    _ = courseInvitations.refresh(ignoreCache: false)
     _ = widget1.refresh(ignoreCache: false)
     _ = widget2.refresh(ignoreCache: false)
     _ = widget3.refresh(ignoreCache: false)
 
     return ScrollView {
         LearnerDashboardWidgetLayout(
-            fullWidthWidgets: [fullWidthWidget],
+            fullWidthWidgets: [courseInvitations],
             gridWidgets: [widget1, widget2, widget3]
         )
         .paddingStyle(.horizontal, .standard)

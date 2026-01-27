@@ -16,27 +16,30 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 
 enum LearnerDashboardWidgetAssembly {
 
     static func makeDefaultWidgetConfigs() -> [WidgetConfig] {
         [
-            WidgetConfig(id: .fullWidthWidget, order: 0, isVisible: true, settings: nil),
-            WidgetConfig(id: .courseInvitations, order: 1, isVisible: true, settings: nil),
-            WidgetConfig(id: .widget1, order: 2, isVisible: true, settings: nil),
-            WidgetConfig(id: .widget3, order: 4, isVisible: true, settings: nil),
+            WidgetConfig(id: .courseInvitations, order: 0, isVisible: true, settings: nil),
+            WidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil),
+            WidgetConfig(id: .widget3, order: 2, isVisible: true, settings: nil),
             WidgetConfig(id: .widget2, order: 3, isVisible: true, settings: nil)
         ]
     }
 
     static func makeWidgetViewModel(config: WidgetConfig) -> any LearnerWidgetViewModel {
         switch config.id {
-        case .fullWidthWidget:
-            return FullWidthWidgetViewModel(config: config)
         case .courseInvitations:
-            let interactor = CourseInvitationsInteractorLive()
-            return CourseInvitationsWidgetViewModel(config: config, interactor: interactor)
+            let offlineModeInteractor = OfflineModeAssembly.make()
+            let coursesInteractor = CoursesInteractorLive(env: .shared)
+            return CourseInvitationsWidgetViewModel(
+                config: config,
+                interactor: coursesInteractor,
+                offlineModeInteractor: offlineModeInteractor
+            )
         case .widget1:
             return Widget1ViewModel(config: config)
         case .widget2:
@@ -49,8 +52,6 @@ enum LearnerDashboardWidgetAssembly {
     @ViewBuilder
     static func makeView(for viewModel: any LearnerWidgetViewModel) -> some View {
         switch viewModel {
-        case let vm as FullWidthWidgetViewModel:
-            vm.makeView()
         case let vm as CourseInvitationsWidgetViewModel:
             vm.makeView()
         case let vm as Widget1ViewModel:

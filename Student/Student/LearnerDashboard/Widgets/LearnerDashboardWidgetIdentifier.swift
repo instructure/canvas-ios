@@ -17,7 +17,6 @@
 //
 
 enum LearnerDashboardWidgetIdentifier: String, Codable, CaseIterable {
-    case fullWidthWidget
     case courseInvitations
     case widget1
     case widget2

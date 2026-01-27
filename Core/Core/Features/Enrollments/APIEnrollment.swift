@@ -275,6 +275,12 @@ public struct HandleCourseInvitationRequest: APIRequestable {
     let enrollmentID: String
     let isAccepted: Bool
 
+    public init(courseID: String, enrollmentID: String, isAccepted: Bool) {
+        self.courseID = courseID
+        self.enrollmentID = enrollmentID
+        self.isAccepted = isAccepted
+    }
+
     public var method: APIMethod { .post }
     public var path: String { "courses/\(courseID)/enrollments/\(enrollmentID)/\(isAccepted ? "accept" : "reject")" }
 }

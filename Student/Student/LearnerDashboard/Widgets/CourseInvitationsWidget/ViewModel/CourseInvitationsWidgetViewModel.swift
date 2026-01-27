@@ -30,7 +30,7 @@ final class CourseInvitationsWidgetViewModel: LearnerWidgetViewModel {
     let isFullWidth = true
     let isEditable = false
 
-    private(set) var invitations: [CourseInvitation] = []
+    private(set) var invitations: [CourseInvitationCardViewModel] = []
     private(set) var state: InstUI.ScreenState = .loading
 
     var layoutIdentifier: AnyHashable {
@@ -41,12 +41,18 @@ final class CourseInvitationsWidgetViewModel: LearnerWidgetViewModel {
         return AnyHashable(Identifier(state: state, invitationCount: invitations.count))
     }
 
-    private let interactor: CourseInvitationsInteractor
+    private let interactor: CoursesInteractor
+    private let offlineModeInteractor: OfflineModeInteractor
     private var subscriptions = Set<AnyCancellable>()
 
-    init(config: WidgetConfig, interactor: CourseInvitationsInteractor) {
+    init(
+        config: WidgetConfig,
+        interactor: CoursesInteractor,
+        offlineModeInteractor: OfflineModeInteractor
+    ) {
         self.config = config
         self.interactor = interactor
+        self.offlineModeInteractor = offlineModeInteractor
     }
 
     func makeView() -> CourseInvitationsWidgetView {
@@ -56,11 +62,29 @@ final class CourseInvitationsWidgetViewModel: LearnerWidgetViewModel {
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
         state = .loading
 
-        return interactor.fetchInvitations(ignoreCache: ignoreCache)
+        return interactor.getCourses()
             .receive(on: DispatchQueue.main)
-            .map { [weak self] invitations in
-                self?.invitations = invitations
-                self?.state = invitations.isEmpty ? .empty : .data
+            .map { [weak self] result in
+                guard let self = self else { return () }
+                self.invitations = result.invitedCourses.map { course in
+                    let invitedEnrollment = course.enrollments?.first { $0.state == .invited }
+                    let enrollmentID = invitedEnrollment?.id ?? ""
+                    let sectionID = invitedEnrollment?.courseSectionID
+                    let section = course.sections.first { $0.id == sectionID }
+
+                    return CourseInvitationCardViewModel(
+                        id: enrollmentID,
+                        courseId: course.id,
+                        courseName: course.name ?? "",
+                        sectionName: section?.name,
+                        interactor: self.interactor,
+                        offlineModeInteractor: self.offlineModeInteractor,
+                        onDismiss: { [weak self] enrollmentId in
+                            self?.removeInvitation(id: enrollmentId)
+                        }
+                    )
+                }
+                self.state = self.invitations.isEmpty ? .empty : .data
                 return ()
             }
             .catch { [weak self] _ in
@@ -70,33 +94,10 @@ final class CourseInvitationsWidgetViewModel: LearnerWidgetViewModel {
             .eraseToAnyPublisher()
     }
 
-    func acceptInvitation(id: String) {
-        interactor.acceptInvitation(id: id)
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                if case .failure = completion {
-                }
-            } receiveValue: { [weak self] _ in
-                self?.invitations.removeAll { $0.id == id }
-                if self?.invitations.isEmpty == true {
-                    self?.state = .empty
-                }
-            }
-            .store(in: &subscriptions)
-    }
-
-    func declineInvitation(id: String) {
-        interactor.declineInvitation(id: id)
-            .receive(on: DispatchQueue.main)
-            .sink { completion in
-                if case .failure = completion {
-                }
-            } receiveValue: { [weak self] _ in
-                self?.invitations.removeAll { $0.id == id }
-                if self?.invitations.isEmpty == true {
-                    self?.state = .empty
-                }
-            }
-            .store(in: &subscriptions)
+    private func removeInvitation(id: String) {
+        invitations.removeAll { $0.id == id }
+        if invitations.isEmpty {
+            state = .empty
+        }
     }
 }
