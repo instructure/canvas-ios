@@ -51,7 +51,7 @@ struct LearnerDashboardScreen: View {
             env.router.route(to: "/profile", from: viewController, options: .modal())
         } label: {
             Image.hamburgerSolid
-                .foregroundColor(Color(Brand.shared.navTextColor))
+                .foregroundColor(.textDarkest)
         }
         .frame(width: 44, height: 44).padding(.leading, -6)
         .identifier("Dashboard.profileButton")
@@ -60,7 +60,7 @@ struct LearnerDashboardScreen: View {
 
     @ViewBuilder
     private var content: some View {
-        LearnerDashboardWidgetLayout(
+        DashboardWidgetLayout(
             fullWidthWidgets: viewModel.fullWidthWidgets,
             gridWidgets: viewModel.gridWidgets
         )

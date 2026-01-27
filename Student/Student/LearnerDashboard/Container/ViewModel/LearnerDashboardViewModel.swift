@@ -25,8 +25,8 @@ import Observation
 @Observable
 final class LearnerDashboardViewModel {
     private(set) var state: InstUI.ScreenState = .loading
-    private(set) var fullWidthWidgets: [any LearnerWidgetViewModel] = []
-    private(set) var gridWidgets: [any LearnerWidgetViewModel] = []
+    private(set) var fullWidthWidgets: [any DashboardWidgetViewModel] = []
+    private(set) var gridWidgets: [any DashboardWidgetViewModel] = []
 
     let screenConfig = InstUI.BaseScreenConfig(
         refreshable: true,

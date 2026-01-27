@@ -135,6 +135,7 @@ public struct WebView: UIViewRepresentable {
         let webView = CoreWebView(features: features, configuration: configuration)
         let coordinator = context.coordinator
 
+        webView.setupStudioFeatures(context: featuresContext)
         webView.resetEnvironment(env) { [weak coordinator] in
             coordinator?.setWebViewAsReadyForLoading()
         }

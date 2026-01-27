@@ -153,7 +153,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
     }
 
     private var env: AppEnvironment = .defaultValue
-    private let webView = CoreWebView()
+    private let webView = CoreWebView(features: [])
     private let isLeftToRightLayout: Bool = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight
     private weak var gradeBorderLayer: CAShapeLayer?
     private var offlineModeInteractor: OfflineModeInteractor?

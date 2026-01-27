@@ -21,16 +21,15 @@ import Core
 import SwiftUI
 
 @Observable
-final class Widget3ViewModel: LearnerWidgetViewModel {
+final class Widget3ViewModel: DashboardWidgetViewModel {
     typealias ViewType = Widget3View
 
-    let config: WidgetConfig
-    var id: LearnerDashboardWidgetIdentifier { config.id }
+    let config: DashboardWidgetConfig
     let isFullWidth = false
     let isEditable = false
     var state: InstUI.ScreenState = .data
 
-    init(config: WidgetConfig) {
+    init(config: DashboardWidgetConfig) {
         self.config = config
     }
 

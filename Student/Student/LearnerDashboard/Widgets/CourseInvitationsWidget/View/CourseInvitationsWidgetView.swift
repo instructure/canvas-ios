@@ -24,7 +24,7 @@ struct CourseInvitationsWidgetView: View {
 
     var body: some View {
         if viewModel.state == .data {
-            LearnerDashboardTitledWidget(widgetTitle) {
+            DashboardTitledWidget(widgetTitle) {
                 HorizontalCarouselView(items: viewModel.invitations) { cardViewModel in
                     CourseInvitationCardView(viewModel: cardViewModel)
                 }
@@ -41,7 +41,7 @@ struct CourseInvitationsWidgetView: View {
 #if DEBUG
 
 #Preview {
-    let config = WidgetConfig(id: .courseInvitations, order: 1, isVisible: true, settings: nil)
+    let config = DashboardWidgetConfig(id: .courseInvitations, order: 1, isVisible: true, settings: nil)
     let offlineModeInteractor = OfflineModeInteractorLive(isOfflineModeEnabledForApp: false)
     let coursesInteractor = CoursesInteractorLive()
     let viewModel = CourseInvitationsWidgetViewModel(

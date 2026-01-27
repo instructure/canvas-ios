@@ -18,19 +18,19 @@
 
 enum LearnerDashboardAssembly {
 
-    static func makeInteractor() -> LearnerDashboardInteractor {
+    static func makeScreen() -> LearnerDashboardScreen {
+        let interactor = makeInteractor()
+        let viewModel = makeViewModel(interactor: interactor)
+        return LearnerDashboardScreen(viewModel: viewModel)
+    }
+
+    private static func makeInteractor() -> LearnerDashboardInteractor {
         LearnerDashboardInteractorLive(
             widgetViewModelFactory: LearnerDashboardWidgetAssembly.makeWidgetViewModel
         )
     }
 
-    static func makeViewModel(interactor: LearnerDashboardInteractor) -> LearnerDashboardViewModel {
+    private static func makeViewModel(interactor: LearnerDashboardInteractor) -> LearnerDashboardViewModel {
         LearnerDashboardViewModel(interactor: interactor)
-    }
-
-    static func makeScreen() -> LearnerDashboardScreen {
-        let interactor = makeInteractor()
-        let viewModel = makeViewModel(interactor: interactor)
-        return LearnerDashboardScreen(viewModel: viewModel)
     }
 }

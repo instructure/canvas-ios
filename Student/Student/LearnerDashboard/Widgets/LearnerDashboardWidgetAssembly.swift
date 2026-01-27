@@ -21,16 +21,16 @@ import SwiftUI
 
 enum LearnerDashboardWidgetAssembly {
 
-    static func makeDefaultWidgetConfigs() -> [WidgetConfig] {
+    static func makeDefaultWidgetConfigs() -> [DashboardWidgetConfig] {
         [
-            WidgetConfig(id: .courseInvitations, order: 0, isVisible: true, settings: nil),
-            WidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil),
-            WidgetConfig(id: .widget3, order: 2, isVisible: true, settings: nil),
-            WidgetConfig(id: .widget2, order: 3, isVisible: true, settings: nil)
+            DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true, settings: nil),
+            DashboardWidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil),
+            DashboardWidgetConfig(id: .widget3, order: 3, isVisible: true, settings: nil),
+            DashboardWidgetConfig(id: .widget2, order: 2, isVisible: true, settings: nil)
         ]
     }
 
-    static func makeWidgetViewModel(config: WidgetConfig) -> any LearnerWidgetViewModel {
+    static func makeWidgetViewModel(config: DashboardWidgetConfig) -> any DashboardWidgetViewModel {
         switch config.id {
         case .courseInvitations:
             let offlineModeInteractor = OfflineModeAssembly.make()
@@ -50,7 +50,7 @@ enum LearnerDashboardWidgetAssembly {
     }
 
     @ViewBuilder
-    static func makeView(for viewModel: any LearnerWidgetViewModel) -> some View {
+    static func makeView(for viewModel: any DashboardWidgetViewModel) -> some View {
         switch viewModel {
         case let vm as CourseInvitationsWidgetViewModel:
             vm.makeView()

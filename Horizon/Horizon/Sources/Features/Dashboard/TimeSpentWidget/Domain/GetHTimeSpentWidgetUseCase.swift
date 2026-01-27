@@ -28,7 +28,7 @@ final class GetHTimeSpentWidgetUseCase: APIUseCase {
     public var cacheKey: String? { "get-time-spent-widget" }
     public var request: GetHTimeSpentWidgetRequest { GetHTimeSpentWidgetRequest() }
 
-    init(journey: DomainServiceProtocol = DomainService(.journey)) {
+    init(journey: DomainServiceProtocol = DomainService()) {
         self.journey = journey
     }
 

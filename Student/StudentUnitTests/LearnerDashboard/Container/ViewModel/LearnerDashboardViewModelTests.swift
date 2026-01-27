@@ -162,11 +162,10 @@ final class LearnerDashboardViewModelTests: XCTestCase {
     }
 }
 
-private final class MockWidgetViewModel: LearnerWidgetViewModel {
+private final class MockWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = Never
 
-    let id: LearnerDashboardWidgetIdentifier
-    let config: WidgetConfig
+    let config: DashboardWidgetConfig
     let isFullWidth: Bool
     let isEditable = false
     let state: InstUI.ScreenState = .data
@@ -174,10 +173,9 @@ private final class MockWidgetViewModel: LearnerWidgetViewModel {
     var refreshCalled = false
     var refreshIgnoreCache: Bool?
 
-    init(id: LearnerDashboardWidgetIdentifier, isFullWidth: Bool) {
-        self.id = id
+    init(id: DashboardWidgetIdentifier, isFullWidth: Bool) {
         self.isFullWidth = isFullWidth
-        self.config = WidgetConfig(id: id, order: 7, isVisible: true)
+        self.config = DashboardWidgetConfig(id: id, order: 7, isVisible: true)
     }
 
     func makeView() -> Never {

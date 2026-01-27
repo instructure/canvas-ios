@@ -22,11 +22,11 @@ import Foundation
 import Observation
 
 @Observable
-final class CourseInvitationsWidgetViewModel: LearnerWidgetViewModel {
+final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = CourseInvitationsWidgetView
 
-    let config: WidgetConfig
-    var id: LearnerDashboardWidgetIdentifier { config.id }
+    let config: DashboardWidgetConfig
+    var id: DashboardWidgetIdentifier { config.id }
     let isFullWidth = true
     let isEditable = false
 
@@ -46,7 +46,7 @@ final class CourseInvitationsWidgetViewModel: LearnerWidgetViewModel {
     private var subscriptions = Set<AnyCancellable>()
 
     init(
-        config: WidgetConfig,
+        config: DashboardWidgetConfig,
         interactor: CoursesInteractor,
         offlineModeInteractor: OfflineModeInteractor
     ) {

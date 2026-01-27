@@ -23,8 +23,8 @@ struct Widget1View: View {
     @State var viewModel: Widget1ViewModel
 
     var body: some View {
-        LearnerDashboardTitledWidget("Widget 1") {
-            LearnerDashboardCard {
+        DashboardTitledWidget("Widget 1") {
+            DashboardWidgetCard {
                 VStack(alignment: .leading) {
                     Text(viewModel.text)
                         .foregroundColor(.secondary)

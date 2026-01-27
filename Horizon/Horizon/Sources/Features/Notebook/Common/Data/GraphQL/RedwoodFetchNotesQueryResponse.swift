@@ -19,10 +19,18 @@
 import Core
 
 public struct RedwoodFetchNotesQueryResponse: Codable, PagedResponse {
-    public var page: [ResponseEdge] { data.notes.edges }
+    public var page: [ResponseEdge] { data.executeRedwoodQuery.data.notes.edges }
     public typealias Page = [ResponseEdge]
 
-    let data: ResponseData
+    let data: Executer
+
+    struct Executer: Codable {
+        let executeRedwoodQuery: NoteData
+    }
+
+    struct NoteData: Codable {
+        let data: ResponseData
+    }
 
     public struct ResponseData: Codable {
         let notes: ResponseNotes

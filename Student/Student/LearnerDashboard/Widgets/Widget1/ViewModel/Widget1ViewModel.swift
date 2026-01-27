@@ -21,12 +21,11 @@ import Core
 import SwiftUI
 
 @Observable
-final class Widget1ViewModel: LearnerWidgetViewModel {
+final class Widget1ViewModel: DashboardWidgetViewModel {
     typealias ViewType = Widget1View
 
-    var text = WidgetPlaceholderData.long(1)
-    let config: WidgetConfig
-    var id: LearnerDashboardWidgetIdentifier { config.id }
+    var text = DashboardWidgetPlaceholderData.long(1)
+    let config: DashboardWidgetConfig
     let isFullWidth = false
     let isEditable = false
     var state: InstUI.ScreenState = .loading
@@ -41,7 +40,7 @@ final class Widget1ViewModel: LearnerWidgetViewModel {
 
     private var timerCancellable: AnyCancellable?
 
-    init(config: WidgetConfig) {
+    init(config: DashboardWidgetConfig) {
         self.config = config
         startTextTimer()
     }
@@ -53,7 +52,7 @@ final class Widget1ViewModel: LearnerWidgetViewModel {
                 guard let self = self else { return }
                 var newText: String
                 repeat {
-                    newText = WidgetPlaceholderData.long(Int.random(in: 1...4))
+                    newText = DashboardWidgetPlaceholderData.long(Int.random(in: 1...4))
                 } while newText.count == self.text.count
                 self.text = newText
             }
