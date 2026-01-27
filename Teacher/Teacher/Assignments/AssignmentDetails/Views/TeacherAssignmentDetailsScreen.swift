@@ -101,9 +101,9 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
         if #available(iOS 26, *) {
             Button(action: action) {
                 label
+                    .padding(8)
+                    .frame(maxWidth: .infinity, minHeight: 50)
             }
-            .padding(8)
-            .frame(maxWidth: .infinity, minHeight: 50)
             .background(Color(Brand.shared.buttonPrimaryBackground), in: Capsule())
             .padding(.horizontal, 20)
             .offset(y: -8)
