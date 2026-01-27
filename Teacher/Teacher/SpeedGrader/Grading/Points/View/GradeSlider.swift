@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 
 struct GradeSlider: View {
@@ -30,15 +31,19 @@ struct GradeSlider: View {
     var body: some View {
         GeometryReader { geometry in
             Slider(value: value, in: 0...maxValue, onEditingChanged: onEditingChanged)
-                .gesture(
-                    DragGesture(minimumDistance: 0)
-                        .onChanged { changeValue in
-                            value.wrappedValue = viewModel.gradeValue(for: changeValue.location.x, in: geometry.size.width, maxValue: maxValue)
-                            onEditingChanged(true)
-                        }.onEnded { _ in
-                            onEditingChanged(false)
-                        }
-                )
+                .overlay {
+                    InstUI.TapArea()
+                        .gesture(
+                            DragGesture(minimumDistance: 0)
+                                .onChanged { changeValue in
+                                    value.wrappedValue = viewModel.gradeValue(for: changeValue.location.x, in: geometry.size.width, maxValue: maxValue)
+                                    onEditingChanged(true)
+                                }.onEnded { _ in
+                                    onEditingChanged(false)
+                                }
+                        )
+                        .accessibilityHidden(true)
+                }
                 .overlay(tooltip, alignment: .bottom)
                 .accessibilityLabel(Text("Grade Slider", bundle: .teacher))
                 .accessibilityValue(a11yValue)
