@@ -224,6 +224,7 @@ private extension TeacherAssignmentDetailsScreen {
                 .foregroundColor(.textDark)
                 .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
             WebView(html: html, baseURL: env.currentSession?.baseURL, canToggleTheme: true)
+                .featuresContext(.course(assignment.courseID))
                 .frameToFit()
         } else {
             Section(label: Text("Description", bundle: .teacher)) {
