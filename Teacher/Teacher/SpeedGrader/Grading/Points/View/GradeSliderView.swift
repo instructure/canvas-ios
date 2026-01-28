@@ -69,6 +69,7 @@ struct GradeSliderView: View {
                     onEditingChanged: sliderChangedState
                 )
             }
+            .zIndex(1)
             sliderButton(score: maxScore)
         }
         .paddingStyle(set: .standardCell)
