@@ -33,7 +33,10 @@ struct LearnerDashboardScreen: View {
             state: viewModel.state,
             config: viewModel.screenConfig,
             refreshAction: { completion in
-                viewModel.refresh(ignoreCache: true, completion: completion)
+                viewModel.refresh(
+                    ignoreCache: true,
+                    completion: completion
+                )
             }
         ) { _ in
             content
@@ -48,7 +51,7 @@ struct LearnerDashboardScreen: View {
             env.router.route(to: "/profile", from: viewController, options: .modal())
         } label: {
             Image.hamburgerSolid
-                .foregroundColor(Color(Brand.shared.navTextColor))
+                .foregroundColor(.textDarkest)
         }
         .frame(width: 44, height: 44).padding(.leading, -6)
         .identifier("Dashboard.profileButton")
@@ -57,7 +60,11 @@ struct LearnerDashboardScreen: View {
 
     @ViewBuilder
     private var content: some View {
-        SwiftUI.EmptyView()
+        DashboardWidgetLayout(
+            fullWidthWidgets: viewModel.fullWidthWidgets,
+            gridWidgets: viewModel.gridWidgets
+        )
+        .paddingStyle(.all, .standard)
     }
 }
 
@@ -65,11 +72,7 @@ struct LearnerDashboardScreen: View {
 
 #Preview {
     let controller = CoreHostingController(
-        LearnerDashboardScreen(
-            viewModel: LearnerDashboardViewModel(
-                interactor: LearnerDashboardInteractorLive()
-            )
-        )
+        LearnerDashboardAssembly.makeScreen()
     )
     CoreNavigationController(rootViewController: controller)
 }

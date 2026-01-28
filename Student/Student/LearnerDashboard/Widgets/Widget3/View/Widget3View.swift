@@ -16,20 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
 import Core
-import Foundation
+import SwiftUI
 
-protocol LearnerDashboardInteractor {
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error>
-}
+struct Widget3View: View {
 
-final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
+    @State var viewModel: Widget3ViewModel
 
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
-        Just(())
-            .delay(for: .seconds(2), scheduler: DispatchQueue.global(qos: .userInitiated))
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+    var body: some View {
+        DashboardTitledWidget("Widget 3") {
+            DashboardWidgetCard {
+                VStack(alignment: .leading) {
+                    Text(verbatim: DashboardWidgetPlaceholderData.long(2))
+                        .foregroundColor(.secondary)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .paddingStyle(.standard)
+            }
+        }
     }
 }

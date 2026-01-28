@@ -16,19 +16,35 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum LearnerDashboardAssembly {
+import SwiftUI
+import Core
 
-    static func makeInteractor() -> LearnerDashboardInteractor {
-        LearnerDashboardInteractorLive()
+struct DashboardWidgetCard<Content: View>: View {
+    let content: Content
+
+    init(@ViewBuilder content: () -> Content) {
+        self.content = content()
     }
 
-    static func makeViewModel(interactor: LearnerDashboardInteractor) -> LearnerDashboardViewModel {
-        LearnerDashboardViewModel(interactor: interactor)
-    }
-
-    static func makeScreen() -> LearnerDashboardScreen {
-        let interactor = makeInteractor()
-        let viewModel = makeViewModel(interactor: interactor)
-        return LearnerDashboardScreen(viewModel: viewModel)
+    var body: some View {
+        // The purpose of this layout is to keep the widget's border
+        // on screen while the content's size changes. Instead of the border
+        // fading with the states, it stays on screen and just resizes
+        // to the new content's size.
+        ZStack {
+            content
+        }
+        .elevation(.cardLarge, background: .backgroundLightest)
     }
 }
+
+#if DEBUG
+
+#Preview {
+    DashboardWidgetCard {
+        Text(verbatim: "Hello")
+            .padding(50)
+    }
+}
+
+#endif

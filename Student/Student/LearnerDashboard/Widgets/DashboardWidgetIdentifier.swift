@@ -16,15 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-@testable import Student
-
-final class LearnerDashboardInteractorMock: LearnerDashboardInteractor {
-    var refreshIgnoreCacheValue: Bool?
-    var refreshPublisher = PassthroughSubject<Void, Error>()
-
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
-        refreshIgnoreCacheValue = ignoreCache
-        return refreshPublisher.eraseToAnyPublisher()
-    }
+enum DashboardWidgetIdentifier: String, Codable, CaseIterable {
+    case fullWidthWidget
+    case widget1
+    case widget2
+    case widget3
 }
