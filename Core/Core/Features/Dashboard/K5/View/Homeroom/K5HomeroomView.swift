@@ -28,7 +28,7 @@ public struct K5HomeroomView: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        RefreshableScrollView(.vertical, showsIndicators: false) {
+        ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 0) {
                 conferences
                 invitations
@@ -49,9 +49,8 @@ public struct K5HomeroomView: View, ScreenViewTrackable {
                     .padding(.top, 23)
             }
             .padding(.horizontal, horizontalPadding)
-        } refreshAction: { endRefreshing in
-            viewModel.refresh(completion: endRefreshing)
         }
+        .refreshable(action: viewModel.refresh)
     }
 
     private var conferences: some View {

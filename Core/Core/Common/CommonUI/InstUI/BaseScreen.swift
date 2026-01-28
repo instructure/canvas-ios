@@ -34,6 +34,8 @@ public extension InstUI {
      Properties were collected in a mind that those won't change and are static to a specific screen.
      */
     struct BaseScreenConfig {
+        public static let notRefreshable = BaseScreenConfig(refreshable: false)
+
         public let refreshable: Bool
         public let showsScrollIndicators: Bool
         public let scrollAxes: Axis.Set
@@ -56,7 +58,6 @@ public extension InstUI {
             errorPandaConfig: InteractivePanda.Config = AppEnvironment.shared.app == .horizon ? .horizonError() : .error(),
             emptyPandaConfig: InteractivePanda.Config = AppEnvironment.shared.app == .horizon ? .horizonEmpty() : .empty(),
             loaderBackgroundColor: Color = .backgroundLightest
-
         ) {
             self.refreshable = refreshable
             self.showsScrollIndicators = showsScrollIndicators
@@ -131,17 +132,16 @@ public extension InstUI {
         private func panda(config: InteractivePanda.Config)
         -> some View {
             GeometryReader { geometry in
-                RefreshableScrollView(
-                    content: {
-                        InteractivePanda(config: config)
-                            .frame(
-                                minWidth: geometry.size.width,
-                                minHeight: geometry.size.height,
-                                alignment: .center
-                            )
-                    },
-                    refreshAction: refreshAction)
+                ScrollView {
+                    InteractivePanda(config: config)
+                        .frame(
+                            minWidth: geometry.size.width,
+                            minHeight: geometry.size.height,
+                            alignment: .center
+                        )
+                }
                 .background(Color.backgroundLightest)
+                .refreshable(action: refreshAction)
             }
         }
 
@@ -149,25 +149,14 @@ public extension InstUI {
             GeometryReader { geometry in
                 let content = content(geometry)
 
-                if config.refreshable {
-                    RefreshableScrollView(
-                        config.scrollAxes,
-                        showsIndicators: config.showsScrollIndicators,
-                        content: {
-                            content
-                        },
-                        refreshAction: refreshAction
-                    )
-                    .frame(width: geometry.size.width, height: geometry.size.height)
-                } else {
-                    ScrollView(
-                        config.scrollAxes,
-                        showsIndicators: config.showsScrollIndicators
-                    ) {
-                        content
-                    }
-                    .frame(width: geometry.size.width, height: geometry.size.height)
+                ScrollView(
+                    config.scrollAxes,
+                    showsIndicators: config.showsScrollIndicators
+                ) {
+                    content
                 }
+                .frame(width: geometry.size.width, height: geometry.size.height)
+                .refreshable(action: config.refreshable ? refreshAction : nil)
             }
             .background(AppEnvironment.shared.app == .horizon ? Color.clear : Color.backgroundLightest)
             .scrollBounceBehavior(config.scrollBounce)

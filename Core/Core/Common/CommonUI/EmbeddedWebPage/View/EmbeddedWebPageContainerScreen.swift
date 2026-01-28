@@ -35,7 +35,7 @@ public struct EmbeddedWebPageContainerScreen: View {
         self.viewModel = viewModel
 
         if isPullToRefreshEnabled {
-            features.append(.pullToRefresh(color: viewModel.contextColor))
+            features.append(.pullToRefresh)
         }
     }
 
@@ -47,15 +47,15 @@ public struct EmbeddedWebPageContainerScreen: View {
                 canToggleTheme: true,
                 configuration: viewModel.webViewConfig
             )
+            .featuresContext(viewModel.context)
             .onProvisionalNavigationStarted { webView, navigation in
                 viewModel.webView(webView, didStartProvisionalNavigation: navigation)
             }
-            .navBarItems(leading: viewModel.leadingNavigationButton)
             .onAppear {
                 viewModel.viewController = viewController.value
             }
         }
-        .navigationBarTitleView(title: viewModel.navTitle, subtitle: viewModel.subTitle)
-        .navigationBarStyle(.color(viewModel.contextColor))
+        .navBarItems(leading: viewModel.leadingNavigationButton)
+        .navigationTitles(title: viewModel.navTitle, subtitle: viewModel.subTitle, style: .color(viewModel.contextColor))
     }
 }

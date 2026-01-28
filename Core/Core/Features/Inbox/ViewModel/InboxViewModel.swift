@@ -27,7 +27,9 @@ public class InboxViewModel: ObservableObject {
     @Published public private(set) var course: String = String(localized: "All Courses", bundle: .core)
     @Published public private(set) var courses: [InboxCourse] = []
     @Published public private(set) var hasNextPage = false
+    @available(iOS, deprecated: 26)
     @Published public var isShowingScopeSelector = false
+    @available(iOS, deprecated: 26)
     @Published public var isShowingCourseSelector = false
     @Published public var isShowMenuButton: Bool = true
     @Published public var selectedMessageId: String?

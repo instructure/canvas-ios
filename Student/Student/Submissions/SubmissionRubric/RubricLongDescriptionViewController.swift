@@ -21,13 +21,44 @@ import Core
 
 class RubricLongDescriptionViewController: UIViewController {
 
+    let titleValue: String
     let longDescription: String
     weak var delegate: CoreWebViewLinkDelegate?
 
+    private let titleGuideView = UIView()
+    private var titleTop: NSLayoutConstraint?
+    private var titleLeading: NSLayoutConstraint?
+    private var titleTrailing: NSLayoutConstraint?
+    private var titleMinimumHeight: NSLayoutConstraint?
+
     init(longDescription: String, title: String) {
+        self.titleValue = title
         self.longDescription = longDescription
         super.init(nibName: nil, bundle: nil)
-        self.title = title
+
+        titleGuideView.isUserInteractionEnabled = false
+        titleGuideView.frame = CGRect(x: 0, y: 0, width: CGFloat.greatestFiniteMagnitude, height: 0)
+
+        let barAppearance = UINavigationBarAppearance()
+        barAppearance.configureWithTransparentBackground()
+
+        navigationItem.standardAppearance = barAppearance
+        navigationItem.compactAppearance = barAppearance
+        navigationItem.titleView = titleGuideView
+
+        edgesForExtendedLayout = [.top]
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        let titleFrame = titleGuideView.convert(titleGuideView.bounds, to: view)
+        let maxBarFittingHeight = titleFrame.origin.y * 2
+
+        titleTop?.constant = titleFrame.minX
+        titleLeading?.constant = titleFrame.minX
+        titleTrailing?.constant = titleFrame.maxX - view.bounds.width
+        titleMinimumHeight?.constant = maxBarFittingHeight - titleFrame.minX * 2
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -38,13 +69,58 @@ class RubricLongDescriptionViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
 
-        self.addDoneButton()
+        setupSubviews()
+        addDoneButton()
+    }
+
+    private func setupSubviews() {
+
+        // Views Creation
+
+        let titleLabel = UILabel()
+        titleLabel.text = titleValue
+        titleLabel.font = UIFont.scaledNamedFont(.semibold16)
+        titleLabel.numberOfLines = 0
+        titleLabel.accessibilityTraits = .header
 
         let webView = CoreWebView()
         webView.linkDelegate = delegate
         webView.loadHTMLString(longDescription)
 
-        self.view.addSubview(webView)
-        webView.pin(inside: self.view)
+        view.addSubview(titleLabel)
+        view.addSubview(webView)
+
+        // Layout
+
+        titleLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleTop = titleLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: 18)
+        titleLeading = titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16)
+        titleTrailing = titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16)
+        titleMinimumHeight = titleLabel
+            .heightAnchor
+            .constraint(greaterThanOrEqualToConstant: 44)
+
+        NSLayoutConstraint.activate(
+            [
+                titleTop,
+                titleLeading,
+                titleTrailing,
+                titleLabel
+                    .heightAnchor
+                    .constraint(lessThanOrEqualToConstant: view.bounds.height * 0.5),
+                titleMinimumHeight
+            ].compactMap { $0 }
+        )
+
+        webView.pin(inside: self.view, top: nil)
+
+        let webViewTop = webView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10)
+        webViewTop.priority = .defaultHigh
+
+        NSLayoutConstraint.activate([
+            webViewTop,
+            webView.topAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.topAnchor, constant: 6)
+        ])
     }
 }

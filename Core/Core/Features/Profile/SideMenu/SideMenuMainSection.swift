@@ -106,8 +106,8 @@ struct SideMenuMainSection: View {
     }
 
     func imageForDomain(_ domain: String?) -> Image {
-        guard let ltiDomain = LTIDomains(rawValue: domain ?? "") else {
-            return LTIDomains.defaultIcon
+        guard let ltiDomain = LTIDomain(rawValue: domain ?? "") else {
+            return LTIDomain.defaultIcon
         }
 
         return ltiDomain.icon

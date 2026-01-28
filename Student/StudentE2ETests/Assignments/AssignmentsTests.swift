@@ -59,8 +59,7 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Navigate to Assignments and check visibility
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertVisible(navBar)
+        assertNavbarVisible(course: course)
 
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertVisible(assignmentButton)
@@ -132,15 +131,15 @@ class AssignmentsTests: E2ETestCase {
         // simply `hit()` does not register sometimes, even if the button is there
         submitAssignmentButton.actionUntilElementCondition(
             action: .tap,
-            element: SubmissionHelper.cancelButton,
+            element: SubmissionHelper.doneButton,
             condition: .visible,
             gracePeriod: 2
         )
 
         // MARK: Check visibility of elements on submission edit screen
-        let submissionCancelButton = SubmissionHelper.cancelButton.waitUntil(.visible)
-        XCTAssertVisible(submissionCancelButton)
-        XCTAssertEqual(submissionCancelButton.label, "Cancel")
+        let submissionDoneButton = SubmissionHelper.doneButton.waitUntil(.visible)
+        XCTAssertVisible(submissionDoneButton)
+        XCTAssertEqual(submissionDoneButton.label, "Done")
 
         var submissionSubmitButton = SubmissionHelper.submitButton.waitUntil(.visible)
         XCTAssertVisible(submissionSubmitButton)
@@ -189,8 +188,7 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Navigate to Assignments
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertVisible(navBar)
+        assertNavbarVisible(course: course)
 
         // MARK: Check Yesterdays Assignment due date
         let yesterdaysAssignmentButton = Helper.assignmentButton(assignment: yesterdaysAssignment).waitUntil(.visible)
@@ -221,8 +219,7 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Navigate to Assignments
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertVisible(navBar)
+        assertNavbarVisible(course: course)
 
         // MARK: Check Locked Assignment
         let lockedAssignmentButton = Helper.assignmentButton(assignment: lockedAssignment).waitUntil(.visible)
@@ -254,8 +251,7 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Navigate to Assignments
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertVisible(navBar)
+        assertNavbarVisible(course: course)
 
         // MARK: Check Future Assignment
         let futureAssignmentButton = Helper.assignmentButton(assignment: futureAssignment).waitUntil(.visible)
@@ -289,8 +285,7 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Navigate to Assignments
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertVisible(navBar)
+        assertNavbarVisible(course: course)
 
         // MARK: Check Assignment
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
@@ -320,8 +315,7 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Navigate to Assignments
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertVisible(navBar)
+        assertNavbarVisible(course: course)
 
         // MARK: Check Assignment
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
@@ -423,8 +417,7 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Navigate to Assignments and tap the assignment
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertVisible(navBar)
+        assertNavbarVisible(course: course)
 
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertVisible(assignmentButton)
@@ -441,5 +434,21 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertVisible(pandaFilePicker)
         XCTAssertVisible(filesButton)
         XCTAssertTrue(studioLabel.isVanished)
+    }
+
+    private func assertNavbarVisible(course: DSCourse) {
+        // TODO: Replace with commented version after a11y issues are fixed (see comments for `NavigationBarTitleView`)
+        let navBar = Helper.navBar(course: course).waitUntil(.visible)
+        XCTAssertVisible(navBar)
+
+//        if #available(iOS 26, *) {
+//            let navTitle = Helper.navTitle.waitUntil(.visible)
+//            let navSubtitle = Helper.navSubtitle(course: course).waitUntil(.visible)
+//            XCTAssertVisible(navTitle)
+//            XCTAssertVisible(navSubtitle)
+//        } else {
+//            let navBar = Helper.navBar(course: course).waitUntil(.visible)
+//            XCTAssertVisible(navBar)
+//        }
     }
 }

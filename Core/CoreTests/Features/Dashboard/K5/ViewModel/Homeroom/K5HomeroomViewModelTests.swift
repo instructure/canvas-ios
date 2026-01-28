@@ -38,12 +38,17 @@ class K5HomeroomViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.welcomeText, "Welcome!")
     }
 
-    func testRefreshesWelcomeText() async {
+    func testRefreshesWelcomeText() {
         mockUserProfile(name: "testName")
         let testee = K5HomeroomViewModel()
 
         mockUserProfile(name: "new testName")
-        await testee.refresh()
+        let expectation = expectation(description: "refresh completed")
+
+        testee.refresh {
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 1)
 
         XCTAssertEqual(testee.welcomeText, "Welcome, new testName!")
     }

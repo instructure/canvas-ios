@@ -26,7 +26,7 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
     @IBOutlet weak var errorView: ListErrorView!
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var tableView: UITableView!
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     public var titleSubtitleView = TitleSubtitleView.create()
 
     public var color: UIColor?
@@ -60,7 +60,12 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: String(localized: "Announcements", bundle: .core))
+
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "Announcements", bundle: .core)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Announcements", bundle: .core))
+        }
 
         addButton.accessibilityLabel = String(localized: "Create Announcement", bundle: .core)
 
@@ -70,11 +75,9 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
         loadingView.color = nil
-        refreshControl.color = nil
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
-        tableView.separatorColor = .borderMedium
         tableView.backgroundColor = .backgroundLightest
         view.backgroundColor = .backgroundLightest
         colors.refresh()
@@ -110,11 +113,17 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
     }
 
     func updateNavBar() {
-        if colors.pending == false,
-            let name = course?.first?.name ?? group?.first?.name,
-            let color = course?.first?.color ?? group?.first?.color {
-            updateNavBar(subtitle: name, color: color)
-            view.tintColor = color
+        if #available(iOS 26, *) {
+            if let name = course?.first?.name ?? group?.first?.name {
+                navigationItem.subtitle = name
+            }
+        } else {
+            if colors.pending == false,
+               let name = course?.first?.name ?? group?.first?.name,
+               let color = course?.first?.color ?? group?.first?.color {
+                updateNavBar(subtitle: name, color: color)
+                view.tintColor = color
+            }
         }
         let canAdd = (course?.first?.canCreateAnnouncement ?? group?.first?.canCreateAnnouncement) == true
         navigationItem.rightBarButtonItem = canAdd ? addButton : nil

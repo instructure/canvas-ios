@@ -20,7 +20,7 @@ import Combine
 import SafariServices
 
 public final class ModuleListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController {
-    private let refreshControl = CircleRefreshControl()
+    private let refreshControl = UIRefreshControl()
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -71,7 +71,12 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        setupTitleViewInNavbar(title: String(localized: "Modules", bundle: .core))
+
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "Modules", bundle: .core)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Modules", bundle: .core))
+        }
 
         collapsedIDs[courseID] = collapsedIDs[courseID] ?? []
         if let moduleID = moduleID {
@@ -82,7 +87,6 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         emptyTitleLabel.text = String(localized: "No Modules", bundle: .core)
         errorView.retryButton.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
 
-        refreshControl.color = nil
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         spinnerView.color = color
 
@@ -111,7 +115,9 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         if let selectedIndexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: selectedIndexPath, animated: false)
         }
-        navigationController?.navigationBar.useContextColor(color)
+        if #unavailable(iOS 26) {
+            navigationController?.navigationBar.useContextColor(color)
+        }
     }
 
     private func update() {
@@ -176,7 +182,11 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
     }
 
     private func reloadCourse() {
-        updateNavBar(subtitle: courses.first?.name, color: courses.first?.color)
+        if #available(iOS 26, *) {
+            navigationItem.subtitle = courses.first?.name
+        } else {
+            updateNavBar(subtitle: courses.first?.name, color: courses.first?.color)
+        }
         view.tintColor = color
     }
 

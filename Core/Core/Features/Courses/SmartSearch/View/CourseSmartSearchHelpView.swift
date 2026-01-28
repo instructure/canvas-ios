@@ -91,7 +91,6 @@ public struct CourseSmartSearchHelpView: View {
             .padding()
             .padding(.bottom, spacing)
         }
-        .navigationBarTitleView(String(localized: "How it works", bundle: .core))
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .topBarLeading) {
@@ -103,7 +102,7 @@ public struct CourseSmartSearchHelpView: View {
                 .tint(contextColor)
             }
         }
-        .navigationBarStyle(.modal)
+        .navigationTitle(String(localized: "How it works", bundle: .core), style: .modal)
     }
 
     private var spacing: CGFloat {

@@ -37,7 +37,7 @@ projectReferences:
 packages:
   Pendo:
     url: https://github.com/pendo-io/pendo-mobile-sdk
-    exactVersion: 3.9.2
+    exactVersion: 3.10.0
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
     exactVersion: 14.2.0

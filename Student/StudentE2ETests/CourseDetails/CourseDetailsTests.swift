@@ -106,7 +106,7 @@ class CourseDetailsTests: E2ETestCase {
 
         homeButton.hit()
         let moduleElement = ModulesHelper.moduleLabel(moduleIndex: 0).waitUntil(.visible)
-        let backButton = ModulesHelper.backButton.waitUntil(.visible)
+        let backButton = ModulesHelper.backButtonByIdOrLabel.waitUntil(.visible)
         XCTAssertVisible(moduleElement)
         XCTAssertVisible(backButton)
 

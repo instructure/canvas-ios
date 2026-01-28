@@ -36,7 +36,10 @@ class AccountNotificationDetailsViewControllerTests: ParentTestCase {
         let nav = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.hexString)
+
+        if #unavailable(iOS 26) {
+            XCTAssertEqual(nav.navigationBar.barTintColor?.hexString, ColorScheme.observee("1").color.hexString)
+        }
         XCTAssertEqual(controller.title, "Announcement")
         XCTAssertEqual(controller.titleLabel.text, "Pandemic")
 

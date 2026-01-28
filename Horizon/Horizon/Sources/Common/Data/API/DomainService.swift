@@ -29,7 +29,6 @@ final class DomainService: DomainServiceProtocol {
 
     private let baseURL: String
     private let domainJWTService: DomainJWTService
-    let option: DomainServiceOption
     private let region: String
 
     // MARK: - Private
@@ -39,28 +38,20 @@ final class DomainService: DomainServiceProtocol {
     }
 
     private var horizonCDURL: String {
-        if( option == .journey) {
-            return "journey-server-edge.journey.nonprod.inseng.io"
-        }
-        return "\(option)-api-dev.us-east-1.core.inseng.io"
+        "journey-server-edge.us-east-1.core.inseng.io"
     }
 
     private var productionURL: String {
-        if option == .journey {
-            return "journey-server-prod.\(region).temp.prod.inseng.io"
-        }
-        return "\(option)-api.\(region).core.inseng.io"
+        "journey-server-prod.\(region).core.inseng.io"
     }
 
     // MARK: - Init
 
     init(
-        _ domainServiceOption: DomainServiceOption,
         baseURL: String = AppEnvironment.shared.currentSession?.baseURL.absoluteString ?? "",
         region: String? = AppEnvironment.shared.currentSession?.canvasRegion,
-        domainJWTService: DomainJWTService = DomainJWTService.shared,
+        domainJWTService: DomainJWTService = DomainJWTService.shared
     ) {
-        self.option = domainServiceOption
         self.baseURL = baseURL
         self.region = region ?? "us-east-1"
         self.domainJWTService = domainJWTService
@@ -71,7 +62,7 @@ final class DomainService: DomainServiceProtocol {
     /// Get the API for the domain service
     func api() -> AnyPublisher<API, Error> {
         domainJWTService
-            .getToken(option: option)
+            .getToken()
             .tryMap { [weak self] jwt -> API in
                 guard let self, let url = URL(string: "https://\(self.audience)") else {
                     throw DomainJWTService.Issue.unableToGetToken
@@ -90,24 +81,7 @@ final class DomainService: DomainServiceProtocol {
     }
 }
 
-enum DomainServiceOption: String {
-    case journey
-    case redwood
-    var service: String {
-        rawValue
-    }
-
-    var workflows: [DomainServiceWorkflow] {
-            switch self {
-            case .journey:
-                return [.journey, .pine, .cedar]
-            case .redwood:
-                return [.redwood]
-            }
-        }
-}
-
-enum DomainServiceWorkflow: String {
+enum DomainServiceWorkflow: String, CaseIterable {
     case journey
     case redwood
     case pine

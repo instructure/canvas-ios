@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public protocol TeacherQuizDetailsViewModel: ObservableObject, Refreshable {
+public protocol TeacherQuizDetailsViewModel: ObservableObject {
     var state: QuizDetailsViewModelState { get }
     var courseColor: UIColor? { get }
     var title: String { get }
@@ -37,6 +37,7 @@ public protocol TeacherQuizDetailsViewModel: ObservableObject, Refreshable {
     func viewDidAppear()
     func editTapped(router: Router, viewController: WeakViewController)
     func previewTapped(router: Router, viewController: WeakViewController)
+    func refresh(completion: @escaping () -> Void)
 }
 
 public enum QuizDetailsViewModelState: Equatable {

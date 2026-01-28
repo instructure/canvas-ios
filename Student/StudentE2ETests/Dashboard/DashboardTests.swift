@@ -39,12 +39,12 @@ class DashboardTests: E2ETestCase {
         XCTAssertVisible(courseCard2)
 
         // MARK: Select a favorite course and check for dashboard updating
-        let dashboardEditButton = Helper.editButton.waitUntil(.visible)
-        XCTAssertVisible(dashboardEditButton)
+        let allCoursesButton = Helper.allCoursesButton.waitUntil(.visible)
+        XCTAssertVisible(allCoursesButton)
 
-        dashboardEditButton.hit()
-        Helper.toggleFavorite(course: courses[1])
-        let navBarBackButton = Helper.backButton.waitUntil(.visible)
+        allCoursesButton.hit()
+        Helper.AllCourses.toggleFavorite(course: courses[1])
+        let navBarBackButton = Helper.backButtonByLabel.waitUntil(.visible)
         XCTAssertVisible(navBarBackButton)
 
         navBarBackButton.hit()
@@ -125,7 +125,7 @@ class DashboardTests: E2ETestCase {
         XCTAssertContains(courseCard.label, course.name)
     }
 
-    func testDashboardEditButtonDisplaysCorrectCourses() {
+    func testAllCoursesDisplaysCorrectCourses() {
         // MARK: Seed the usual stuff with 7 courses and student enrolled in them with all 7 different states
         let student = seeder.createUser()
         let courses = Helper.createCourses(number: 7)
@@ -147,30 +147,30 @@ class DashboardTests: E2ETestCase {
         XCTAssertVisible(courseCard2)
         XCTAssertContains(courseCard2.label, courses[1].name)
 
-        // MARK: Tap edit button
-        Helper.editButton.hit()
+        // MARK: Tap All Courses button
+        Helper.allCoursesButton.hit()
 
         // MARK: Completed, Active, Invited courses should be listed
-        courseCard1 = Helper.courseCard(course: courses[0]).waitUntil(.visible)
+        courseCard1 = Helper.AllCourses.courseItem(course: courses[0]).waitUntil(.visible)
         XCTAssertVisible(courseCard1)
         XCTAssertContains(courseCard1.label, courses[0].name)
 
-        courseCard2 = Helper.courseCard(course: courses[1]).waitUntil(.visible)
+        courseCard2 = Helper.AllCourses.courseItem(course: courses[1]).waitUntil(.visible)
         XCTAssertVisible(courseCard2)
         XCTAssertContains(courseCard2.label, courses[1].name)
 
-        let courseCard3 = Helper.courseCard(course: courses[2]).waitUntil(.visible)
+        let courseCard3 = Helper.AllCourses.courseItem(course: courses[2]).waitUntil(.visible)
         XCTAssertVisible(courseCard3)
         XCTAssertContains(courseCard3.label, courses[2].name)
 
         // MARK: Creation Pending, Deleted, Inactive, Rejected should not be listed
-        let courseCard4 = Helper.courseCard(course: courses[3]).waitUntil(.vanish)
+        let courseCard4 = Helper.AllCourses.courseItem(course: courses[3]).waitUntil(.vanish)
         XCTAssertTrue(courseCard4.isVanished)
-        let courseCard5 = Helper.courseCard(course: courses[4]).waitUntil(.vanish)
+        let courseCard5 = Helper.AllCourses.courseItem(course: courses[4]).waitUntil(.vanish)
         XCTAssertTrue(courseCard5.isVanished)
-        let courseCard6 = Helper.courseCard(course: courses[5]).waitUntil(.vanish)
+        let courseCard6 = Helper.AllCourses.courseItem(course: courses[5]).waitUntil(.vanish)
         XCTAssertTrue(courseCard6.isVanished)
-        let courseCard7 = Helper.courseCard(course: courses[6]).waitUntil(.vanish)
+        let courseCard7 = Helper.AllCourses.courseItem(course: courses[6]).waitUntil(.vanish)
         XCTAssertTrue(courseCard7.isVanished)
     }
 

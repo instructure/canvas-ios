@@ -42,8 +42,7 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Navigate to Assignments and check visibility
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertVisible(navBar)
+        assertNavbarVisible(course: course)
 
         let assignmentButton = Helper.assignmentButton(assignment: assignment).waitUntil(.visible)
         XCTAssertVisible(assignmentButton)
@@ -97,8 +96,7 @@ class AssignmentsTests: E2ETestCase {
 
         // MARK: Navigate to Assignments
         Helper.navigateToAssignments(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(.visible)
-        XCTAssertVisible(navBar)
+        assertNavbarVisible(course: course)
 
         // MARK: Check due date of assignments
         let yesterdaysAssignmentButton = Helper.assignmentButton(assignment: yesterdaysAssignment).waitUntil(.visible)
@@ -107,5 +105,21 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertContains(yesterdaysAssignmentButton.label, "Due Yesterday")
         XCTAssertVisible(tomorrowsAssignmentButton)
         XCTAssertContains(tomorrowsAssignmentButton.label, "Due Tomorrow")
+    }
+
+    private func assertNavbarVisible(course: DSCourse) {
+        // TODO: Replace with commented version after a11y issues are fixed (see comments for `NavigationBarTitleView`)
+        let navBar = Helper.navBar(course: course).waitUntil(.visible)
+        XCTAssertVisible(navBar)
+
+//        if #available(iOS 26, *) {
+//            let navTitle = Helper.navTitle.waitUntil(.visible)
+//            let navSubtitle = Helper.navSubtitle(course: course).waitUntil(.visible)
+//            XCTAssertVisible(navTitle)
+//            XCTAssertVisible(navSubtitle)
+//        } else {
+//            let navBar = Helper.navBar(course: course).waitUntil(.visible)
+//            XCTAssertVisible(navBar)
+//        }
     }
 }

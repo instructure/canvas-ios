@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public struct DashboardContainerView: View, ScreenViewTrackable {
@@ -36,10 +37,12 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
 
     public var screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/")
 
+    @available(iOS, deprecated: 26)
     @State private var isShowingKebabDialog = false
     @State var showGrade = AppEnvironment.shared.userDefaults?.showGradesOnDashboard == true
     @StateObject private var offlineSyncCardViewModel = DashboardOfflineSyncProgressCardAssembly.makeViewModel()
     @State private var draggedCourseCardId: String?
+    @State private var refreshCancellable: AnyCancellable?
 
     private var activeGroups: [Group] { viewModel.groups.filter { $0.isActive } }
     private var isGroupSectionActive: Bool { !activeGroups.isEmpty && shouldShowGroupList }
@@ -62,7 +65,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
 
     public var body: some View {
         GeometryReader { geometry in
-            RefreshableScrollView {
+            ScrollView {
                 VStack(spacing: 0) {
                     DashboardOfflineSyncProgressCardView(viewModel: offlineSyncCardViewModel)
                     fileUploadNotificationCards()
@@ -71,13 +74,29 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 .animation(.default, value: offlineSyncCardViewModel.state)
                 .padding(.horizontal, verticalSpacing)
             }
-            refreshAction: { onComplete in
+            .refreshable { onComplete in
                 refresh(force: true, onComplete: onComplete)
             }
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
         .navigationBarDashboard()
-        .navigationBarItems(leading: profileMenuButton, trailing: rightNavBarButtons)
+        .toolbar {
+            if #available(iOS 26, *) {
+                ToolbarItem(placement: .topBarLeading) {
+                    profileMenuButton
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    rightNavBarButtons
+                }
+            } else {
+                ToolbarItem(placement: .topBarLeading) {
+                    legacyProfileMenuButton
+                }
+                ToolbarItem(placement: .topBarTrailing) {
+                    legacyRightNavBarButtons
+                }
+            }
+        }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.willEnterForegroundNotification)) { _ in
             fileUploadNotificationCardViewModel.sceneDidBecomeActive.send()
         }
@@ -119,7 +138,19 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
 
     // MARK: - Nav Bar Buttons
 
+    @available(iOS, introduced: 26, message: "Legacy version exists")
     private var profileMenuButton: some View {
+        Button {
+            env.router.route(to: "/profile", from: controller, options: .modal())
+        } label: {
+            Image.hamburgerSolid
+        }
+        .identifier("Dashboard.profileButton")
+        .accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
+    }
+
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyProfileMenuButton: some View {
         Button {
             env.router.route(to: "/profile", from: controller, options: .modal())
         } label: {
@@ -132,10 +163,11 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
+    @available(iOS, introduced: 26, message: "Legacy version exists")
     private var rightNavBarButtons: some View {
         if courseCardListViewModel.shouldShowSettingsButton {
             if offlineModeViewModel.isOfflineFeatureEnabled, env.app == .student {
-                optionsKebabButton
+                optionsKebabMenu
             } else {
                 dashboardSettingsButton
             }
@@ -143,7 +175,48 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
-    private var optionsKebabButton: some View {
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyRightNavBarButtons: some View {
+        if courseCardListViewModel.shouldShowSettingsButton {
+            if offlineModeViewModel.isOfflineFeatureEnabled, env.app == .student {
+                legacyOptionsKebabButton
+            } else {
+                legacyDashboardSettingsButton
+            }
+        }
+    }
+
+    @ViewBuilder
+    @available(iOS, introduced: 26, message: "Legacy version exists")
+    private var optionsKebabMenu: some View {
+        Menu {
+            Button(.init("Manage Offline Content", bundle: .core)) {
+                if offlineModeViewModel.isOffline {
+                    UIAlertController.showItemNotAvailableInOfflineAlert()
+                } else {
+                    env.router.route(to: "/offline/sync_picker", from: controller, options: .modal(isDismissable: false, embedInNav: true))
+                }
+            }
+            .identifier("Dashboard.manageOfflineButton")
+
+            Button(.init("Dashboard Settings", bundle: .core)) {
+                guard controller.value.presentedViewController == nil else {
+                    controller.value.presentedViewController?.dismiss(animated: true)
+                    return
+                }
+                viewModel.settingsButtonTapped.send()
+            }
+            .identifier("Dashboard.settingsButton")
+        } label: {
+            Image.moreSolid
+        }
+        .accessibilityLabel(Text("Dashboard Options", bundle: .core))
+        .identifier("Dashboard.optionsButton")
+    }
+
+    @ViewBuilder
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyOptionsKebabButton: some View {
         Button {
             // Dismiss dashboard settings popover
             guard controller.value.presentedViewController == nil else {
@@ -185,7 +258,25 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     }
 
     @ViewBuilder
+    @available(iOS, introduced: 26, message: "Legacy version exists")
     private var dashboardSettingsButton: some View {
+        Button {
+            guard controller.value.presentedViewController == nil else {
+                controller.value.presentedViewController?.dismiss(animated: true)
+                return
+            }
+
+            viewModel.settingsButtonTapped.send()
+        } label: {
+            Image.settingsSolid
+        }
+        .accessibilityLabel(Text("Dashboard settings", bundle: .core))
+        .identifier("Dashboard.settingsButton")
+    }
+
+    @ViewBuilder
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyDashboardSettingsButton: some View {
         Button {
             guard controller.value.presentedViewController == nil else {
                 controller.value.presentedViewController?.dismiss(animated: true)
@@ -285,6 +376,8 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                                                                   draggedCourseCardId: $draggedCourseCardId,
                                                                   order: courseCardList.map { $0.id },
                                                                   delegate: courseCardListViewModel))
+                .accessibilityElement(children: .contain)
+                .identifier("Dashboard.CourseCard.Id.\(card.id)")
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.bottom, 2)
@@ -308,13 +401,14 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         HStack(alignment: .lastTextBaseline) {
             Text("Courses", bundle: .core)
                 .font(.heavy24).foregroundColor(.textDarkest)
-                .accessibility(identifier: "dashboard.courses.heading-lbl")
+                .identifier("Dashboard.coursesLabel")
                 .accessibility(addTraits: .isHeader)
             Spacer()
             Button(action: showAllCourses) {
                 Text("All Courses", bundle: .core)
                     .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
-            }.identifier("Dashboard.editButton")
+            }
+            .identifier("Dashboard.allCoursesButton")
         }
         .frame(width: width) // If we rotate from single view to split view then this HStack won't fill its parent, this fixes it.
         .padding(.top, verticalSpacing).padding(.bottom, verticalSpacing / 2)
@@ -327,6 +421,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                     Text("Groups", bundle: .core)
                         .font(.heavy24).foregroundColor(.textDarkest)
                         .accessibility(addTraits: .isHeader)
+                        .identifier("Dashboard.groupsLabel")
                     Spacer()
                 }
                 .padding(.top, verticalSpacing).padding(.bottom, verticalSpacing / 2)) {
@@ -334,19 +429,31 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 ForEach(filteredGroups, id: \.id) { group in
                     GroupCard(group: group, course: group.course, isAvailable: !$offlineModeViewModel.isOffline)
                         .padding(.bottom, filteredGroups.last != group ? verticalSpacing : 0)
+                        .accessibilityElement(children: .contain)
+                        .identifier("Dashboard.GroupCard.Id.\(group.id)")
                 }
             }
         }
     }
 
     func refresh(force: Bool, onComplete: (() -> Void)? = nil) {
+        refreshCancellable?.cancel()
+        refreshCancellable = nil
+
         invitationsViewModel.refresh()
         colors.refresh(force: force)
         conferencesViewModel.refresh(force: force)
-        viewModel.refreshGroups(onComplete: onComplete)
         notifications.exhaust(force: force)
         settings.refresh(force: force)
-        courseCardListViewModel.refresh(onComplete: onComplete)
+
+        refreshCancellable = Publishers.CombineLatest(
+            viewModel.refreshGroups(),
+            courseCardListViewModel.refresh()
+        )
+        .mapToVoid()
+        .sink {
+            onComplete?()
+        }
     }
 
     func showAllCourses() {

@@ -36,7 +36,6 @@ final class SelectCalendarViewModel: ObservableObject {
     // MARK: - Output
 
     let pageTitle = String(localized: "Select Calendar", bundle: .core)
-    let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
 
     let state: InstUI.ScreenState = .data
     @Published private(set) var sections: [Section] = []

@@ -144,7 +144,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "/courses/\(courseID)/assignments/\(assignmentID)"
     )
-    var refreshControl: CircleRefreshControl?
+    var refreshControl: UIRefreshControl?
     let titleSubtitleView = TitleSubtitleView.create()
     var presenter: StudentAssignmentDetailsPresenter?
 
@@ -153,7 +153,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
     }
 
     private var env: AppEnvironment = .defaultValue
-    private let webView = CoreWebView()
+    private let webView = CoreWebView(features: [])
     private let isLeftToRightLayout: Bool = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight
     private weak var gradeBorderLayer: CAShapeLayer?
     private var offlineModeInteractor: OfflineModeInteractor?
@@ -202,7 +202,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         scrollView?.backgroundColor = .backgroundLightest
         loadingView.color = Brand.shared.primary
         loadingView.startAnimating()
-        let refreshControl = CircleRefreshControl()
+        let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
         scrollView?.addSubview(refreshControl)
         self.refreshControl = refreshControl
@@ -293,7 +293,25 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.useContextColor(presenter?.courses.first?.color)
+        if #unavailable(iOS 26) {
+            navigationController?.navigationBar.useContextColor(presenter?.courses.first?.color)
+        }
+
+        if #available(iOS 26, *) {
+            submitAssignmentButton.layer.cornerRadius = 25
+
+            NSLayoutConstraint.activate([
+                submitAssignmentButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+                submitAssignmentButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+                submitAssignmentButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                submitAssignmentButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                submitAssignmentButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                submitAssignmentButton.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            ])
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -306,7 +324,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
     }
 
     @objc
-    func refresh(_ refreshControl: CircleRefreshControl) {
+    func refresh(_ refreshControl: UIRefreshControl) {
         presenter?.refresh()
     }
 
@@ -315,9 +333,13 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         presenter?.viewFileSubmission()
     }
 
+    @available(iOS, deprecated: 26)
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?) {
         titleSubtitleView.subtitle = subtitle
-        navigationController?.navigationBar.useContextColor(backgroundColor)
+
+        if #unavailable(iOS 26) {
+            navigationController?.navigationBar.useContextColor(backgroundColor)
+        }
     }
 
     func updateGradeCell(_ assignment: Assignment, submission: Submission?) {
@@ -475,7 +497,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
             || (status.isGraded && assignment.pointsPossible != nil)
             || presenter.onlineUploadState != nil
         let gradeText = GradeFormatter.string(from: assignment, submission: submission, style: .short)
-        if assignment.hideQuantitativeData, (gradeText ?? "").isEmpty == true {
+        if status.isGraded, assignment.hideQuantitativeData, gradeText.isBlankGrade {
             showGradeSection = false
         }
 
@@ -569,9 +591,11 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         }
     }
 
-    func showSubmitAssignmentButton(title: String?) {
+    func showSubmitAssignmentButton(title: String?, identifier: String?) {
         view.bringSubviewToFront(submitAssignmentButton)
         submitAssignmentButton.setTitle(title, for: .normal)
+        submitAssignmentButton.accessibilityIdentifier = ["AssignmentDetails.submitAssignmentButton", identifier]
+            .joined(separator: ".")
 
         if title == nil {
             scrollViewBottom.constant = 0
@@ -787,5 +811,17 @@ extension StudentAssignmentDetailsViewController {
         } else {
             presenter?.routeToSubmission(view: self)
         }
+    }
+}
+
+// MARK: - Helpers
+
+private extension Optional where Wrapped == String {
+    var isBlankGrade: Bool {
+        guard let self else { return true }
+        return self
+            .replacingOccurrences(of: "-", with: "")
+            .trimmed()
+            .isEmpty
     }
 }

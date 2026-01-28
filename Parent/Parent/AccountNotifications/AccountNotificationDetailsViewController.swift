@@ -24,7 +24,7 @@ class AccountNotificationDetailsViewController: UIViewController, CoreWebViewLin
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var webViewContainer: UIView!
     let webView = CoreWebView()
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
 
     let env = AppEnvironment.shared
     var notificationID = ""

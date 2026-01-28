@@ -100,8 +100,6 @@
 		<string>Frameworks/Core.framework/lato_bold.ttf</string>
 		<string>Frameworks/Core.framework/lato_regular.ttf</string>
 	</array>
-	<key>UIDesignRequiresCompatibility</key>
-	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>

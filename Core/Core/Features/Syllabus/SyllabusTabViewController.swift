@@ -75,7 +75,11 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
     open override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
-        setupTitleViewInNavbar(title: String(localized: "Course Syllabus", bundle: .core))
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "Course Syllabus", bundle: .core)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Course Syllabus", bundle: .core))
+        }
         view.backgroundColor = UIColor.backgroundLightest
         emptyPandaViewController.view.backgroundColor = .backgroundLightest
         settings.refresh()
@@ -86,7 +90,9 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
 
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.useContextColor(color)
+        if #unavailable(iOS 26) {
+            navigationController?.navigationBar.useContextColor(color)
+        }
     }
 
     func update() {
@@ -97,7 +103,11 @@ open class SyllabusTabViewController: ScreenViewTrackableHorizontalMenuViewContr
               let course = course.first
         else { return }
 
-        updateNavBar(subtitle: course.name, color: course.color)
+        if #available(iOS 26, *) {
+            navigationItem.subtitle = course.name
+        } else {
+            updateNavBar(subtitle: course.name, color: course.color)
+        }
 
         if permissions.first?.manageContent == true || permissions.first?.manageCourseContentEdit == true {
             editButton.accessibilityIdentifier = "Syllabus.editButton"
