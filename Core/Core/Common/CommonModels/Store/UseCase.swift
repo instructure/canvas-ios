@@ -134,6 +134,13 @@ public extension UseCase {
         }
     }
 
+    /// Cache expiration check used by the `AsyncStore`.
+    func hasCacheExpired(environment: AppEnvironment = .shared) async -> Bool {
+        await environment.database.performWriteTask { context in
+            self.hasExpired(in: context)
+        }
+    }
+
     /// Reactive `fetch()`, used by the `ReactiveStore` and directly from other places.
     /// Returns the URLResponse after writing to the database.
     func fetchWithFuture(environment: AppEnvironment = .shared) -> Future<URLResponse?, Error> {
@@ -149,6 +156,12 @@ public extension UseCase {
         }
     }
 
+    /// Async `fetch()`, used by the `AsyncStore` and directly from other places.
+    /// Returns the URLResponse after writing to the database.
+    func fetch(environment: AppEnvironment = .shared) async throws -> URLResponse? {
+        try await fetchWithAPIResponse(environment: environment).1
+    }
+
     /// Reactive `fetch()` that returns both the API response and URLResponse.
     /// Use this when you need access to the API response data directly.
     /// The response is optional - it will be nil if the API returned no response body.
@@ -156,6 +169,17 @@ public extension UseCase {
         Future<(Response?, URLResponse?), Error> { promise in
             self.executeFetch(environment: environment) { result in
                 promise(result)
+            }
+        }
+    }
+
+    /// Async `fetch()` that returns both the API response and URLResponse.
+    /// Use this when you need access to the API response data directly.
+    /// The response is optional - it will be nil if the API returned no response body.
+    func fetchWithAPIResponse(environment: AppEnvironment = .shared) async throws -> (Response?, URLResponse?) {
+        try await withCheckedThrowingContinuation { continuation in
+            self.executeFetch(environment: environment) { result in
+                continuation.resume(with: result)
             }
         }
     }
