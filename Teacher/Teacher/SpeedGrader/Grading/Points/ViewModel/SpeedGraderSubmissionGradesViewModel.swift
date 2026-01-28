@@ -163,7 +163,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
-    private func updateGradeState(_ gradeState: GradeState ) {
+    private func updateGradeState(_ gradeState: GradeState) {
         self.gradeState = gradeState
 
         gradeInputType = gradeState.gradeInputType
