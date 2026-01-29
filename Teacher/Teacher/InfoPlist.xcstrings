@@ -155,6 +155,12 @@
             "value" : "Canvas 教員"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canvas Teacher"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -431,6 +437,12 @@
             "value" : "Canvas 教員"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canvas Teacher"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -693,6 +705,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "投稿のコメントに写真や動画を添付します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 의견에 사진 및 동영상을 첨부합니다."
           }
         },
         "mi" : {
@@ -1223,6 +1241,12 @@
             "value" : "投稿コメントにオーディオ録音を添付します。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 의견에 오디오 녹음을 첨부합니다"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1487,6 +1511,12 @@
             "value" : "投稿のコメントに写真や動画を添付します。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 의견에 사진 및 동영상을 첨부합니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1749,6 +1779,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コースにコンテンツをアップロードします。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "콘텐츠를 과목에 업로드합니다."
           }
         },
         "mi" : {

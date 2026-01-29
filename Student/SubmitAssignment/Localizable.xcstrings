@@ -148,6 +148,12 @@
             "value" : "課題"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과제"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -403,6 +409,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "課題"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과제"
           }
         },
         "mi" : {
@@ -662,6 +674,12 @@
             "value" : "コメント..."
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의견..."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -917,6 +935,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コース"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과목"
           }
         },
         "mi" : {
@@ -1176,6 +1200,12 @@
             "value" : "コース"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과목"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1433,6 +1463,12 @@
             "value" : "サポートされていないフォーマット"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지원되지 않는 형식입니다"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1688,6 +1724,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "送信"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출"
           }
         },
         "mi" : {
