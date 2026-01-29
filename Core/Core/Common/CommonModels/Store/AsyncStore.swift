@@ -37,6 +37,29 @@ public struct AsyncStore<U: UseCase> {
         self.environment = environment
     }
 
+    /// Produces one entity for the given UseCase.
+    /// When the device is connected to the internet and there's no valid cache, it makes a request to the API and saves the response to the database. If there's valid cache, it returns it.
+    /// By default it downloads all pages, and validates cache unless specificied differently.
+    /// When the device is offline, it will read data from Core Data.
+    /// - Parameters:
+    ///     - ignoreCache: Indicates if the request should check the available cache first.
+    ///       If it's set to **false**, it will validate the cache's expiration and return it if it's still valid. If the cache has expired it will make a request to the API.
+    ///       If it's set to **true**, it will make a request to the API.
+    ///       Defaults to **false**.
+    ///     - loadAllPages: Tells the request if it should load all the pages or just the first one. Defaults to **true**.
+    ///     - assertOnlyOneEntityFound: Indicates if the request should assert that only one entity is found. Defaults to **true**.
+    /// - Returns: The first fetched entity.
+    /// - Throws: `AsyncStoreError.noEntityFound` if no entity is found.
+    /// - Throws: `AsyncStoreError.moreThanOneEntityFound` if more than one entity is found and `assertOnlyOneEntityFound` is set to true or emitted.
+    public func getFirstEntity(ignoreCache: Bool = false, loadAllPages: Bool = true, assertOnlyOneEntityFound: Bool = true) async throws -> U.Model {
+        let entities = try await getEntities(ignoreCache: ignoreCache, loadAllPages: loadAllPages)
+
+        if assertOnlyOneEntityFound, entities.count > 1 { throw AsyncStoreError.moreThanOneEntityFound(entities.count) }
+        guard let entity = entities.first else { throw AsyncStoreError.noEntityFound }
+
+        return entity
+    }
+
     /// Produces a list of entities for the given UseCase.
     /// When the device is connected to the internet and there's no valid cache, it makes a request to the API and saves the response to the database. If there's valid cache, it returns it.
     /// By default it downloads all pages, and validates cache unless specificied differently.
@@ -285,15 +308,20 @@ public struct AsyncStore<U: UseCase> {
         fetchRequest: NSFetchRequest<T>,
         context: NSManagedObjectContext
     ) async throws -> [T] {
-        try await FetchedResultsPublisher(request: fetchRequest, context: context)
-            .asyncValue()
+        try await AsyncFetchedResults(request: fetchRequest, context: context)
+            .fetch()
     }
 
     private static func streamEntitiesFromDatabase<T: NSManagedObject>(
         fetchRequest: NSFetchRequest<T>,
         context: NSManagedObjectContext
     ) -> AsyncThrowingStream<[T], Error> {
-        FetchedResultsPublisher(request: fetchRequest, context: context)
-            .asyncStream()
+        AsyncFetchedResults(request: fetchRequest, context: context)
+            .stream()
     }
+}
+
+public enum AsyncStoreError: Error {
+    case noEntityFound
+    case moreThanOneEntityFound(Int)
 }

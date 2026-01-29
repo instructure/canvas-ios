@@ -68,6 +68,44 @@ final class AsyncStoreTests: CoreTestCase {
         XCTAssertEqual(courses.map { $0.id }, ["1"])
     }
 
+    func testFirstEntityIsReturned() async throws {
+        let useCase = TestUseCase(courses: [.make(id: "1")])
+        let testee = createStore(useCase: useCase)
+
+        let course = try await testee.getFirstEntity(ignoreCache: true)
+        XCTAssertEqual(course.id, "1")
+    }
+
+    func testFirstEntityThrowsError() async throws {
+        let useCase = TestUseCase(courses: [.make(id: "1"), .make(id: "2")])
+        let testee = createStore(useCase: useCase)
+
+        do {
+            _ = try await testee.getFirstEntity(ignoreCache: true)
+        } catch AsyncStoreError.moreThanOneEntityFound(let count) {
+            XCTAssertEqual(2, count)
+        } // other errors cause the test to fail
+    }
+
+    func testFirstEntityDoesNotThrowsErrorWithAssertionTurnedOff() async throws {
+        let useCase = TestUseCase(courses: [.make(id: "1"), .make(id: "2")])
+        let testee = createStore(useCase: useCase)
+
+        // We expect no error thrown
+        _ = try await testee.getFirstEntity(ignoreCache: true, assertOnlyOneEntityFound: false)
+    }
+
+    func testFirstEntityThrowsErrorWhenNoEntities() async throws {
+        let useCase = TestUseCase(courses: [])
+        let testee = createStore(useCase: useCase)
+
+        do {
+            _ = try await testee.getFirstEntity(ignoreCache: true)
+        } catch let error as AsyncStoreError {
+            XCTAssertEqual(error, AsyncStoreError.noEntityFound)
+        } // other errors cause the test to fail
+    }
+
     // MARK: - Direct database calling
 
     func testObjectsAreReturnedFromDatabase() async throws {
@@ -181,7 +219,6 @@ final class AsyncStoreTests: CoreTestCase {
         await fulfillment(of: [initialExpectation], timeout: 1)
 
         course.name = "updatedName"
-        try await Task.sleep(for: .seconds(1))
         await fulfillment(of: [updatedItemExpectation], timeout: 1)
         task.cancel()
     }

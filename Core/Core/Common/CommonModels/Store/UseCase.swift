@@ -176,8 +176,11 @@ public extension UseCase {
     /// Async `fetch()` that returns both the API response and URLResponse.
     /// Use this when you need access to the API response data directly.
     /// The response is optional - it will be nil if the API returned no response body.
+    /// Handles task cancellation as it is not possible to propagate it down further.
     func fetchWithAPIResponse(environment: AppEnvironment = .shared) async throws -> (Response?, URLResponse?) {
-        try await withCheckedThrowingContinuation { continuation in
+        try Task.checkCancellation()
+
+        return try await withCheckedThrowingContinuation { continuation in
             self.executeFetch(environment: environment) { result in
                 continuation.resume(with: result)
             }
