@@ -42,21 +42,40 @@ struct LearnerDashboardScreen: View {
             content
         }
         .navigationBarDashboard()
-        .navigationBarItems(leading: profileMenuButton)
-        .navigationTitle(String(localized: "Dashboard", bundle: .student))
+        .toolbar {
+            if #available(iOS 26, *) {
+                ToolbarItem(placement: .topBarLeading) { profileMenuButton }
+            } else {
+                ToolbarItem(placement: .topBarLeading) { legacyProfileMenuButton }
+            }
+        }
+
     }
 
+    @available(iOS, introduced: 26, message: "Legacy version exists")
     private var profileMenuButton: some View {
         Button {
             env.router.route(to: "/profile", from: viewController, options: .modal())
         } label: {
             Image.hamburgerSolid
-                .foregroundColor(.textDarkest)
+        }
+        .identifier("Dashboard.profileButton")
+        .accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
+    }
+
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyProfileMenuButton: some View {
+        Button {
+            env.router.route(to: "/profile", from: viewController, options: .modal())
+        } label: {
+            Image.hamburgerSolid
+                .foregroundColor(Color(Brand.shared.navTextColor))
         }
         .frame(width: 44, height: 44).padding(.leading, -6)
         .identifier("Dashboard.profileButton")
-        .accessibility(label: Text("Profile Menu, Closed", bundle: .core))
+        .accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
     }
+
 
     @ViewBuilder
     private var content: some View {

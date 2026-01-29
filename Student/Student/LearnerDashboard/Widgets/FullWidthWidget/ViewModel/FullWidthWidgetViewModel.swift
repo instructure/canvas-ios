@@ -47,7 +47,7 @@ final class FullWidthWidgetViewModel: DashboardWidgetViewModel {
             let delay: TimeInterval = self.state == .loading ? 2.0 : 0.0
 
             DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                withAnimation(.smooth) {
+                withAnimation(.dashboardWidget) {
                     self.state = .data
                 }
                 promise(.success(()))

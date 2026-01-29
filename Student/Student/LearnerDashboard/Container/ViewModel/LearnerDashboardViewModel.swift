@@ -60,12 +60,12 @@ final class LearnerDashboardViewModel {
             .receive(on: mainScheduler)
             .sink { [weak self] result in
                 guard let self else { return }
-                self.fullWidthWidgets = result.fullWidth
-                self.gridWidgets = result.grid
+                fullWidthWidgets = result.fullWidth
+                gridWidgets = result.grid
                 if result.fullWidth.isNotEmpty || result.grid.isNotEmpty {
-                    self.state = .data
+                    state = .data
                 }
-                self.refresh(ignoreCache: false)
+                refresh(ignoreCache: false)
             }
             .store(in: &subscriptions)
     }

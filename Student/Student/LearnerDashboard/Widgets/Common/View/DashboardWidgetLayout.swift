@@ -29,11 +29,11 @@ struct DashboardWidgetLayout: View {
             fullWidthSection()
             gridSection(columnCount: columns(for: containerWidth))
         }
-        .animation(.smooth, value: fullWidthWidgets.map { $0.layoutIdentifier })
-        .animation(.smooth, value: gridWidgets.map { $0.layoutIdentifier })
+        .animation(.dashboardWidget, value: fullWidthWidgets.map { $0.layoutIdentifier })
+        .animation(.dashboardWidget, value: gridWidgets.map { $0.layoutIdentifier })
         .onWidthChange { width in
             // Don't animate the first appearance
-            withAnimation(containerWidth == 0 ? .none : .smooth) {
+            withAnimation(containerWidth == 0 ? .none : .dashboardWidget) {
                 containerWidth = width
             }
         }

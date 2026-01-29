@@ -44,7 +44,7 @@ final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
                 if let savedWidgets = userDefaults.learnerDashboardWidgetConfigs {
                     configs = savedWidgets.filter { $0.isVisible }.sorted()
                 } else {
-                    configs = LearnerDashboardWidgetAssembly.makeDefaultWidgetConfigs()
+                    configs = LearnerDashboardWidgetAssembly.makeDefaultWidgetConfigs().sorted()
                 }
 
                 let viewModels = configs.map { widgetViewModelFactory($0) }

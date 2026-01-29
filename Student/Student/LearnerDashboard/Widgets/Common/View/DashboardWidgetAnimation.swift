@@ -16,25 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import SwiftUI
 
-struct Widget1View: View {
-    @State var viewModel: Widget1ViewModel
-
-    var body: some View {
-        DashboardTitledWidget("Widget 1") {
-            DashboardWidgetCard {
-                VStack(alignment: .leading) {
-                    Text(viewModel.text)
-                        .foregroundColor(.secondary)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .paddingStyle(.standard)
-                .redacted(reason: viewModel.state == .data ? [] : .placeholder)
-            }
-        }
-        .animation(.dashboardWidget, value: viewModel.state)
-        .animation(.dashboardWidget, value: viewModel.text)
+extension Animation {
+    static var dashboardWidget: Animation {
+        .smooth
     }
 }
