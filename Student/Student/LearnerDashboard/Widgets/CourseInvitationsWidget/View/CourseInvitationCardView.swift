@@ -21,6 +21,7 @@ import SwiftUI
 
 struct CourseInvitationCardView: View {
     @State var viewModel: CourseInvitationCardViewModel
+    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -43,6 +44,8 @@ struct CourseInvitationCardView: View {
             }
             .paddingStyle(.horizontal, .standard)
             .paddingStyle(.bottom, .standard)
+            .disabled(viewModel.isProcessing)
+            .animation(.dashboardWidget, value: viewModel.isProcessing)
         }
         .elevation(.cardLarge, background: .backgroundLightest)
         .disabled(viewModel.isProcessing)
@@ -53,50 +56,35 @@ struct CourseInvitationCardView: View {
     }
 
     private var acceptButton: some View {
-        Button(action: { viewModel.accept() }) {
-            if viewModel.isAccepting {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .textLightest))
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 24)
-            } else {
-                buttonText("Accept", fontName: .semibold12, color: .textLightest)
+        PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline, action: viewModel.accept) {
+            ZStack {
+                if viewModel.isAccepting {
+                    ProgressView()
+                        .progressViewStyle(.indeterminateCircle(size: 16, lineWidth: 2, color: .textLightest))
+                } else {
+                    Text("Accept", bundle: .student)
+                }
             }
+            .frame(maxWidth: .infinity)
         }
-        .disabled(viewModel.isProcessing)
-        .background(Color.brandPrimary)
-        .cornerRadius(100)
+        .buttonStyle(.pillButtonBrandFilled)
         .identifier("CourseInvitation.\(viewModel.id).acceptButton")
     }
 
     private var declineButton: some View {
-        Button(action: { viewModel.decline() }) {
-            if viewModel.isDeclining {
-                ProgressView()
-                    .progressViewStyle(CircularProgressViewStyle(tint: .textDarkest))
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 24)
-            } else {
-                buttonText("Decline", fontName: .regular12, color: .textDarkest)
+        PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline, action: viewModel.decline) {
+            ZStack {
+                if viewModel.isDeclining {
+                    ProgressView()
+                        .progressViewStyle(.indeterminateCircle(size: 16, lineWidth: 2, color: .textDarkest))
+                } else {
+                    Text("Decline", bundle: .student)
+                }
             }
-        }
-        .disabled(viewModel.isProcessing)
-        .background(Color.backgroundLightest)
-        .cornerRadius(100)
-        .overlay(
-            RoundedRectangle(cornerRadius: 100)
-                .stroke(Color.borderMedium, lineWidth: 0.5)
-        )
-        .identifier("CourseInvitation.\(viewModel.id).rejectButton")
-    }
-
-    private func buttonText(_ key: LocalizedStringKey, fontName: UIFont.Name, color: Color) -> some View {
-        Text(key, bundle: .student)
-            .font(fontName, lineHeight: .fit)
-            .foregroundColor(color)
             .frame(maxWidth: .infinity)
-            .frame(height: 24)
-            .contentShape(Rectangle())
+        }
+        .buttonStyle(.pillButtonDefaultOutlined)
+        .identifier("CourseInvitation.\(viewModel.id).rejectButton")
     }
 }
 
