@@ -33,7 +33,7 @@ struct Widget2View: View {
                 }
             }
         }
-        .animation(.smooth, value: viewModel.state)
+        .animation(.dashboardWidget, value: viewModel.state)
     }
 
     private var dataView: some View {

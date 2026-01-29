@@ -39,6 +39,7 @@
     "Student\/Widgets\/",
     "Student\/Student\/LearnerDashboard\/Widgets\/Common\/Model\/DashboardWidgetViewModel.swift",
     "Student\/Student\/LearnerDashboard\/Widgets\/Common\/Model\/DashboardWidgetPlaceholderData.swift",
+    "Student\/Student\/LearnerDashboard\/Widgets\/Common\/View\/DashboardWidgetAnimation.swift",
     "Student\/Student\/LearnerDashboard\/Widgets\/FullWidthWidget\/",
     "Student\/Student\/LearnerDashboard\/Widgets\/Widget1\/",
     "Student\/Student\/LearnerDashboard\/Widgets\/Widget2\/",

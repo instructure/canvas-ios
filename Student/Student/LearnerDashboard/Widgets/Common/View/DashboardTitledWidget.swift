@@ -20,6 +20,7 @@ import Core
 import SwiftUI
 
 struct DashboardTitledWidget<Content: View>: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     let title: String
     let customAccessibilityTitle: String?
     let content: Content

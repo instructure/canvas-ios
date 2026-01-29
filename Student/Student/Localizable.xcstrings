@@ -96507,6 +96507,7 @@
       }
     },
     "Profile Menu, Closed" : {
+      "comment" : "Accessibility text describing the Profile Menu button and its state",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
