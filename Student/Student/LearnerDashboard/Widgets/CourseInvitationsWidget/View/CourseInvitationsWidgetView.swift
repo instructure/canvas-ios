@@ -44,12 +44,16 @@ struct CourseInvitationsWidgetView: View {
 
 #if DEBUG
 
+private let snackBarViewModel = SnackBarViewModel()
+
 #Preview {
-    @Previewable @State var viewModel = makePreviewViewModel()
+    @Previewable @State var viewModel = makePreviewViewModel(snackbarViewModel: snackBarViewModel)
     @Previewable @State var subscriptions = Set<AnyCancellable>()
 
-    return CourseInvitationsWidgetView(viewModel: viewModel)
+    CourseInvitationsWidgetView(viewModel: viewModel)
         .padding()
+        .frame(maxHeight: .infinity, alignment: .top)
+        .snackBar(viewModel: snackBarViewModel)
         .onAppear {
             viewModel.refresh(ignoreCache: false)
                 .sink { _ in }
@@ -57,7 +61,7 @@ struct CourseInvitationsWidgetView: View {
         }
 }
 
-private func makePreviewViewModel() -> CourseInvitationsWidgetViewModel {
+private func makePreviewViewModel(snackbarViewModel: SnackBarViewModel) -> CourseInvitationsWidgetViewModel {
     let env = PreviewEnvironment()
     let context = env.database.viewContext
 
@@ -100,7 +104,8 @@ private func makePreviewViewModel() -> CourseInvitationsWidgetViewModel {
     return CourseInvitationsWidgetViewModel(
         config: config,
         interactor: coursesInteractor,
-        offlineModeInteractor: offlineModeInteractor
+        offlineModeInteractor: offlineModeInteractor,
+        snackBarViewModel: snackbarViewModel
     )
 }
 

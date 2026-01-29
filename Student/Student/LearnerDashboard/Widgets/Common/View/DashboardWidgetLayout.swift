@@ -71,17 +71,22 @@ struct DashboardWidgetLayout: View {
 #if DEBUG
 
 #Preview {
+    let snackBarViewModel = SnackBarViewModel()
     let courseInvitations = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-        config: DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true, settings: nil)
+        config: DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true, settings: nil),
+        snackBarViewModel: snackBarViewModel
     )
     let widget1 = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-        config: DashboardWidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil)
+        config: DashboardWidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil),
+        snackBarViewModel: snackBarViewModel
     )
     let widget2 = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-        config: DashboardWidgetConfig(id: .widget2, order: 2, isVisible: true, settings: nil)
+        config: DashboardWidgetConfig(id: .widget2, order: 2, isVisible: true, settings: nil),
+        snackBarViewModel: snackBarViewModel
     )
     let widget3 = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-        config: DashboardWidgetConfig(id: .widget3, order: 3, isVisible: true, settings: nil)
+        config: DashboardWidgetConfig(id: .widget3, order: 3, isVisible: true, settings: nil),
+        snackBarViewModel: snackBarViewModel
     )
 
     _ = courseInvitations.refresh(ignoreCache: false)

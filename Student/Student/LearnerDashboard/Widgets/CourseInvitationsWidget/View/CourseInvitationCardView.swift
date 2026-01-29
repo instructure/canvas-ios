@@ -46,14 +46,15 @@ struct CourseInvitationCardView: View {
         }
         .elevation(.cardLarge, background: .backgroundLightest)
         .disabled(viewModel.isProcessing)
-        .alert(item: $viewModel.error) { error in
-            Alert(title: Text(error.title), message: Text(error.message))
-        }
+        .errorAlert(
+            isPresented: $viewModel.isShowingErrorAlert,
+            presenting: viewModel.errorAlert
+        )
     }
 
     private var acceptButton: some View {
         Button(action: { viewModel.accept() }) {
-            if viewModel.isLoadingAccept {
+            if viewModel.isAccepting {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .textLightest))
                     .frame(maxWidth: .infinity)
@@ -70,7 +71,7 @@ struct CourseInvitationCardView: View {
 
     private var declineButton: some View {
         Button(action: { viewModel.decline() }) {
-            if viewModel.isLoadingDecline {
+            if viewModel.isDeclining {
                 ProgressView()
                     .progressViewStyle(CircularProgressViewStyle(tint: .textDarkest))
                     .frame(maxWidth: .infinity)
@@ -128,6 +129,7 @@ private struct CourseInvitationCardPreviewContainer: View {
             sectionName: "Section 01",
             interactor: coursesInteractor,
             offlineModeInteractor: offlineModeInteractor,
+            snackBarViewModel: SnackBarViewModel(),
             onDismiss: { _ in }
         )
         return CourseInvitationCardView(viewModel: viewModel)

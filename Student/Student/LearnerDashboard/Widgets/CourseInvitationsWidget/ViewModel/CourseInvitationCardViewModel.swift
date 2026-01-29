@@ -25,27 +25,17 @@ import UIKit
 @Observable
 final class CourseInvitationCardViewModel: Identifiable {
     let id: String
-    let courseId: String
-    let courseName: String
-    let sectionName: String?
+    let displayName: String
+    var isShowingErrorAlert = false
+    private(set) var errorAlert = ErrorAlertViewModel()
+    private(set) var isAccepting: Bool = false
+    private(set) var isDeclining: Bool = false
+    var isProcessing: Bool { isAccepting || isDeclining }
 
-    private(set) var isLoadingAccept: Bool = false
-    private(set) var isLoadingDecline: Bool = false
-    var error: CourseInvitationError?
-
-    var isProcessing: Bool {
-        isLoadingAccept || isLoadingDecline
-    }
-
-    var displayName: String {
-        if let sectionName, sectionName != courseName {
-            return "\(courseName), \(sectionName)"
-        }
-        return courseName
-    }
-
+    private let courseId: String
     private let interactor: CoursesInteractor
     private let offlineModeInteractor: OfflineModeInteractor
+    private let snackBarViewModel: SnackBarViewModel
     private let onDismiss: (String) -> Void
     private var subscriptions = Set<AnyCancellable>()
 
@@ -56,15 +46,21 @@ final class CourseInvitationCardViewModel: Identifiable {
         sectionName: String?,
         interactor: CoursesInteractor,
         offlineModeInteractor: OfflineModeInteractor,
+        snackBarViewModel: SnackBarViewModel,
         onDismiss: @escaping (String) -> Void
     ) {
         self.id = id
         self.courseId = courseId
-        self.courseName = courseName
-        self.sectionName = sectionName
         self.interactor = interactor
         self.offlineModeInteractor = offlineModeInteractor
+        self.snackBarViewModel = snackBarViewModel
         self.onDismiss = onDismiss
+
+        if let sectionName, sectionName != courseName {
+            self.displayName = "\(courseName), \(sectionName)"
+        } else {
+            self.displayName = courseName
+        }
     }
 
     func accept() {
@@ -74,21 +70,21 @@ final class CourseInvitationCardViewModel: Identifiable {
             return
         }
 
-        isLoadingAccept = true
+        isAccepting = true
         interactor.acceptInvitation(courseId: courseId, enrollmentId: id)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
-                if let self {
-                    self.isLoadingAccept = false
-                    if case .failure = completion {
-                        self.error = CourseInvitationError(
-                            title: String(localized: "Error", bundle: .core),
-                            message: String(localized: "Failed to accept invitation. Please try again.", bundle: .student)
-                        )
-                    }
+                guard let self else { return }
+                self.isAccepting = false
+                if case .failure = completion {
+                    self.errorAlert.message = String(localized: "Failed to accept invitation. Please try again.", bundle: .student)
+                    self.isShowingErrorAlert = true
                 }
             } receiveValue: { [weak self] _ in
                 if let self {
+                    self.snackBarViewModel.showSnack(
+                        String(localized: "Accepted invitation to \(self.displayName)", bundle: .student)
+                    )
                     self.onDismiss(self.id)
                 }
             }
@@ -102,21 +98,21 @@ final class CourseInvitationCardViewModel: Identifiable {
             return
         }
 
-        isLoadingDecline = true
+        isDeclining = true
         interactor.declineInvitation(courseId: courseId, enrollmentId: id)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
-                if let self {
-                    self.isLoadingDecline = false
-                    if case .failure = completion {
-                        self.error = CourseInvitationError(
-                            title: String(localized: "Error", bundle: .core),
-                            message: String(localized: "Failed to decline invitation. Please try again.", bundle: .student)
-                        )
-                    }
+                guard let self else { return }
+                self.isDeclining = false
+                if case .failure = completion {
+                    self.errorAlert.message = String(localized: "Failed to decline invitation. Please try again.", bundle: .student)
+                    self.isShowingErrorAlert = true
                 }
             } receiveValue: { [weak self] _ in
                 if let self {
+                    self.snackBarViewModel.showSnack(
+                        String(localized: "Declined invitation to \(self.displayName)", bundle: .student)
+                    )
                     self.onDismiss(self.id)
                 }
             }
@@ -127,17 +123,9 @@ final class CourseInvitationCardViewModel: Identifiable {
 extension CourseInvitationCardViewModel: Equatable {
     static func == (lhs: CourseInvitationCardViewModel, rhs: CourseInvitationCardViewModel) -> Bool {
         lhs.id == rhs.id &&
-        lhs.courseId == rhs.courseId &&
-        lhs.courseName == rhs.courseName &&
-        lhs.sectionName == rhs.sectionName &&
-        lhs.isLoadingAccept == rhs.isLoadingAccept &&
-        lhs.isLoadingDecline == rhs.isLoadingDecline &&
-        lhs.error == rhs.error
+        lhs.displayName == rhs.displayName &&
+        lhs.isAccepting == rhs.isAccepting &&
+        lhs.isDeclining == rhs.isDeclining &&
+        lhs.errorAlert == rhs.errorAlert
     }
-}
-
-struct CourseInvitationError: Identifiable, Equatable {
-    var id: String { UUID.string }
-    let title: String
-    let message: String
 }

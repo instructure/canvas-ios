@@ -19,7 +19,7 @@
 import Combine
 import SwiftUI
 
-public struct ErrorAlertViewModel {
+public struct ErrorAlertViewModel: Equatable {
     public var title: String
     public var message: String
     public var buttonTitle: String

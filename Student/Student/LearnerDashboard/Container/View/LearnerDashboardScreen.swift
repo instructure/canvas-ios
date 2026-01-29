@@ -41,6 +41,7 @@ struct LearnerDashboardScreen: View {
         ) { _ in
             content
         }
+        .snackBar(viewModel: viewModel.snackBarViewModel)
         .navigationBarDashboard()
         .navigationBarItems(leading: profileMenuButton)
         .navigationTitle(String(localized: "Dashboard", bundle: .student))

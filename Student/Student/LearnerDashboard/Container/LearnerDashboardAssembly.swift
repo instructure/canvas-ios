@@ -16,21 +16,36 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
+
 enum LearnerDashboardAssembly {
 
     static func makeScreen() -> LearnerDashboardScreen {
-        let interactor = makeInteractor()
-        let viewModel = makeViewModel(interactor: interactor)
+        let snackBarViewModel = SnackBarViewModel()
+        let widgetFactory: (DashboardWidgetConfig) -> any DashboardWidgetViewModel = { config in
+            LearnerDashboardWidgetAssembly.makeWidgetViewModel(
+                config: config,
+                snackBarViewModel: snackBarViewModel
+            )
+        }
+        let interactor = makeInteractor(widgetViewModelFactory: widgetFactory)
+        let viewModel = makeViewModel(interactor: interactor, snackBarViewModel: snackBarViewModel)
         return LearnerDashboardScreen(viewModel: viewModel)
     }
 
-    private static func makeInteractor() -> LearnerDashboardInteractor {
-        LearnerDashboardInteractorLive(
-            widgetViewModelFactory: LearnerDashboardWidgetAssembly.makeWidgetViewModel
-        )
+    private static func makeInteractor(
+        widgetViewModelFactory: @escaping (DashboardWidgetConfig) -> any DashboardWidgetViewModel
+    ) -> LearnerDashboardInteractor {
+        LearnerDashboardInteractorLive(widgetViewModelFactory: widgetViewModelFactory)
     }
 
-    private static func makeViewModel(interactor: LearnerDashboardInteractor) -> LearnerDashboardViewModel {
-        LearnerDashboardViewModel(interactor: interactor)
+    private static func makeViewModel(
+        interactor: LearnerDashboardInteractor,
+        snackBarViewModel: SnackBarViewModel
+    ) -> LearnerDashboardViewModel {
+        LearnerDashboardViewModel(
+            interactor: interactor,
+            snackBarViewModel: snackBarViewModel
+        )
     }
 }

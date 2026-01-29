@@ -30,7 +30,10 @@ enum LearnerDashboardWidgetAssembly {
         ]
     }
 
-    static func makeWidgetViewModel(config: DashboardWidgetConfig) -> any DashboardWidgetViewModel {
+    static func makeWidgetViewModel(
+        config: DashboardWidgetConfig,
+        snackBarViewModel: SnackBarViewModel
+    ) -> any DashboardWidgetViewModel {
         switch config.id {
         case .courseInvitations:
             let offlineModeInteractor = OfflineModeAssembly.make()
@@ -38,7 +41,8 @@ enum LearnerDashboardWidgetAssembly {
             return CourseInvitationsWidgetViewModel(
                 config: config,
                 interactor: coursesInteractor,
-                offlineModeInteractor: offlineModeInteractor
+                offlineModeInteractor: offlineModeInteractor,
+                snackBarViewModel: snackBarViewModel
             )
         case .widget1:
             return Widget1ViewModel(config: config)
