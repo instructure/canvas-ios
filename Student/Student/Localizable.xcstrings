@@ -15377,7 +15377,7 @@
     "Accept" : {
 
     },
-    "Accept invitation to %@" : {
+    "Accepted invitation to %@" : {
 
     },
     "Access Denied" : {
@@ -38635,6 +38635,9 @@
         }
       }
     },
+    "Course Invitations" : {
+
+    },
     "Course Invitations (%lld)" : {
 
     },
@@ -41311,7 +41314,7 @@
     "Decline" : {
 
     },
-    "Decline invitation to %@" : {
+    "Declined invitation to %@" : {
 
     },
     "Delete" : {
@@ -55794,6 +55797,12 @@
           }
         }
       }
+    },
+    "Failed to accept invitation. Please try again." : {
+
+    },
+    "Failed to decline invitation. Please try again." : {
+
     },
     "File" : {
       "extractionState" : "manual",

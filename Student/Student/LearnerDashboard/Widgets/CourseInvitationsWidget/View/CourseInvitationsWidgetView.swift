@@ -26,7 +26,10 @@ struct CourseInvitationsWidgetView: View {
     var body: some View {
         ZStack {
             if viewModel.state == .data {
-                DashboardTitledWidget(widgetTitle) {
+                DashboardTitledWidget(
+                    viewModel.widgetTitle,
+                    customAccessibilityTitle: viewModel.widgetAccessibilityTitle
+                ) {
                     HorizontalCarouselView(items: viewModel.invitations) { cardViewModel in
                         CourseInvitationCardView(viewModel: cardViewModel)
                     }
@@ -34,11 +37,6 @@ struct CourseInvitationsWidgetView: View {
             }
         }
         .animation(.dashboardWidget, value: viewModel.invitations)
-    }
-
-    private var widgetTitle: String {
-        let count = viewModel.invitations.count
-        return String(localized: "Course Invitations (\(count))", bundle: .student)
     }
 }
 

@@ -30,8 +30,12 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
     let isFullWidth = true
     let isEditable = false
 
-    private(set) var invitations: [CourseInvitationCardViewModel] = []
+    private(set) var invitations: [CourseInvitationCardViewModel] = [] {
+        didSet { updateTitles() }
+    }
     private(set) var state: InstUI.ScreenState = .loading
+    private(set) var widgetTitle: String = ""
+    private(set) var widgetAccessibilityTitle: String = ""
 
     var layoutIdentifier: AnyHashable {
         struct Identifier: Hashable {
@@ -53,6 +57,7 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
         self.config = config
         self.interactor = interactor
         self.snackBarViewModel = snackBarViewModel
+        updateTitles()
     }
 
     func makeView() -> CourseInvitationsWidgetView {
@@ -99,5 +104,14 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
         if invitations.isEmpty {
             state = .empty
         }
+    }
+
+    private func updateTitles() {
+        let count = invitations.count
+        widgetTitle = String(localized: "Course Invitations (\(count))", bundle: .student)
+        widgetAccessibilityTitle = [
+            String(localized: "Course Invitations", bundle: .student),
+            String.format(numberOfItems: count)
+        ].joined(separator: ", ")
     }
 }

@@ -20,6 +20,7 @@ import Core
 import SwiftUI
 
 struct CourseInvitationCardView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State var viewModel: CourseInvitationCardViewModel
     @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
 
@@ -33,10 +34,10 @@ struct CourseInvitationCardView: View {
                 Text(viewModel.displayName)
                     .font(.medium16, lineHeight: .fit)
                     .foregroundColor(.textDarkest)
-                    .lineLimit(2)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .paddingStyle(set: .standardCell)
+            .multilineTextAlignment(.leading)
 
             HStack(spacing: InstUI.Styles.Padding.cellAccessoryPadding.rawValue) {
                 acceptButton
@@ -53,6 +54,7 @@ struct CourseInvitationCardView: View {
             isPresented: $viewModel.isShowingErrorAlert,
             presenting: viewModel.errorAlert
         )
+        .accessibilityElement(children: .combine)
     }
 
     private var acceptButton: some View {
