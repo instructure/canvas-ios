@@ -26,8 +26,9 @@ struct CourseCardModel: Identifiable, Equatable {
     let progress: Double
     let programs: [CourseListWidgetModel.ProgramInfo]
     let hasPrograms: Bool
-    let status: CourseStatus
+    let status: ProgressStatus
     let firstProgramID: String?
+    let firstProgramName: String?
     var progressPercentage: String {
         let percentage = Int(progress.rounded())
         return String(format: "%d%%", percentage)
@@ -42,6 +43,7 @@ struct CourseCardModel: Identifiable, Equatable {
         self.hasPrograms = course.programs.isNotEmpty
         self.status = .init(progress: progress)
         self.firstProgramID = course.programs.first?.id
+        self.firstProgramName = course.programs.first?.name
     }
 
     var accessibilityDescription: String {
@@ -72,32 +74,5 @@ struct CourseCardModel: Identifiable, Equatable {
             String(localized: "Open %@", bundle: .horizon),
             programName
         )
-    }
-
-    enum CourseStatus: CaseIterable {
-        case all
-        case notStarted
-        case inProgress
-        case completed
-
-        init(progress: Double) {
-            switch progress {
-            case 100.0:
-                self = .completed
-            case 0.0:
-                self = .notStarted
-            default:
-                self = .inProgress
-            }
-        }
-
-        var name: String {
-            switch self {
-            case .all: String(localized: "All courses", bundle: .horizon)
-            case .inProgress: String(localized: "In Progress", bundle: .horizon)
-            case .completed: String(localized: "Completed", bundle: .horizon)
-            case .notStarted: String(localized: "Not Started", bundle: .horizon)
-            }
-        }
     }
 }

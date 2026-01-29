@@ -18,8 +18,9 @@
 
 import Foundation
 
-struct CourseListWidgetModel: Identifiable, Equatable {
+struct CourseListWidgetModel: Identifiable, Equatable, ProgressStatusProvidable {
     let id: String
+    let enrollmentID: String
     let name: String
     let imageURL: URL?
     let progress: Double
@@ -34,6 +35,7 @@ struct CourseListWidgetModel: Identifiable, Equatable {
 
     struct LearningObjectInfo: Equatable {
         let name: String
+        let id: String
         let moduleTitle: String
         let type: LearningObjectType?
         let dueDate: String?
@@ -60,6 +62,21 @@ struct CourseListWidgetModel: Identifiable, Equatable {
 
     var isCourseCompleted: Bool {
         progress.rounded() == 100 && !hasCurrentLearningObject
+    }
+
+    var buttonCourseTitle: String {
+        switch progress {
+        case 100.0:
+            String(localized: "View course")
+        case 0.0:
+            String(localized: "Start learning")
+        default:
+            String(localized: "Resume learning")
+        }
+    }
+
+    var status: ProgressStatus {
+        .init(progress: progress)
     }
 
     var accessibilityDescription: String {
@@ -122,6 +139,27 @@ struct CourseListWidgetModel: Identifiable, Equatable {
         }
     }
 
+    var accessiblityLearnDescription: String {
+        var description = String.localizedStringWithFormat(
+            String(localized: "Course: %@. ", bundle: .horizon),
+            name
+        )
+
+        description += String.localizedStringWithFormat(
+            String(localized: "Progress: %d percent complete. ", bundle: .horizon),
+            Int(progress.rounded())
+        )
+        return description
+    }
+
+    var accessiblityLearnHintString: String {
+        if hasCurrentLearningObject {
+            String(format: String(localized: "Double tap to %@", bundle: .horizon), buttonCourseTitle)
+        } else {
+            String(localized: "Double tap to open course", bundle: .horizon)
+        }
+    }
+
     func viewProgramAccessibilityString(_ programName: String) -> String {
         String.localizedStringWithFormat(
             String(localized: "Open %@", bundle: .horizon),
@@ -134,6 +172,7 @@ extension CourseListWidgetModel {
     init(from course: HCourse) {
         id = course.id
         name = course.name
+        enrollmentID = course.enrollmentID
         if let imageUrlString = course.imageUrl, let imageUrl = URL(string: imageUrlString) {
             imageURL = imageUrl
         } else {
@@ -148,6 +187,7 @@ extension CourseListWidgetModel {
         if let currentLearningObject = course.currentLearningObject {
             self.currentLearningObject = LearningObjectInfo(
                 name: currentLearningObject.learningObjectName,
+                id: currentLearningObject.learningObjectID,
                 moduleTitle: currentLearningObject.moduleTitle,
                 type: currentLearningObject.type,
                 dueDate: currentLearningObject.dueDate,

@@ -107,38 +107,12 @@ struct CourseListWidgetItemView: View {
     }
 
     private var courseImageSection: some View {
-        SkeletonRemoteImage(
-            url: model.imageURL,
-            topLeading: 32,
-            topTrailing: 32,
-            bottomLeading: 0,
-            bottomTrailing: 0
-        ) { image in
-            image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(height: imageHeight)
-                .frame(maxWidth: width)
-                .huiCornerRadius(level: .level5, corners: [.topLeft, .topRight])
-                .accessibilityLabel("")
-                .accessibilityRemoveTraits(.isImage)
-                .accessibilityHidden(true)
-        } placeholder: {
-            ZStack {
-                Color.huiColors.primitives.grey14
-                    .huiCornerRadius(level: .level5, corners: [.topLeft, .topRight])
-                    .accessibilityHidden(true)
-                Image.huiIcons.book2Filled
-                    .foregroundStyle(Color.huiColors.surface.institution)
-                    .accessibilityHidden(true)
-            }
-        }
-        .skeletonLoadable()
-        .frame(height: imageHeight)
+        CourseImageView(
+            height: imageHeight,
+            width: width,
+            url: model.imageURL
+        )
         .padding(.bottom, .huiSpaces.space16)
-        .accessibilityLabel("")
-        .accessibilityRemoveTraits(.isImage)
-        .accessibilityHidden(true)
     }
 
     private var courseContentSection: some View {
@@ -308,6 +282,7 @@ struct CourseListWidgetItemView: View {
                 CourseListWidgetItemView(
                     model: CourseListWidgetModel(
                         id: "1",
+                        enrollmentID: "12",
                         name: "Lo2rem Ipsum Course Name Here",
                         imageURL: nil,
                         progress: 0,
@@ -315,6 +290,7 @@ struct CourseListWidgetItemView: View {
                         programs: [],
                         currentLearningObject: CourseListWidgetModel.LearningObjectInfo(
                             name: "Adipiscing Elit Learning Object Name Here",
+                            id: "2121",
                             moduleTitle: "Module Title",
                             type: .assessment,
                             dueDate: "xxxxx",
@@ -335,6 +311,7 @@ struct CourseListWidgetItemView: View {
                 CourseListWidgetItemView(
                     model: CourseListWidgetModel(
                         id: "1",
+                        enrollmentID: "444",
                         name: "Lo2rem Ipsum Course Name Here Dolor",
                         imageURL: nil,
                         progress: 25.0,
@@ -342,6 +319,7 @@ struct CourseListWidgetItemView: View {
                         programs: [],
                         currentLearningObject: CourseListWidgetModel.LearningObjectInfo(
                             name: "Adipiscing Elit Learning Object Name Here",
+                            id: "3232",
                             moduleTitle: "Module Title",
                             type: .assignment,
                             dueDate: "Due XX/XX",
@@ -360,6 +338,7 @@ struct CourseListWidgetItemView: View {
                 CourseListWidgetItemView(
                     model: CourseListWidgetModel(
                         id: "1",
+                        enrollmentID: "4444",
                         name: "Lo2rem Ipsum Course Name Here Dolor Sit Amet Adipising Elit So",
                         imageURL: nil,
                         progress: 25.0,
@@ -372,6 +351,7 @@ struct CourseListWidgetItemView: View {
                         ],
                         currentLearningObject: CourseListWidgetModel.LearningObjectInfo(
                             name: "Adipiscing Elit Learning Object Name Here",
+                            id: "909",
                             moduleTitle: "Module Title",
                             type: .page,
                             dueDate: "Due XX/XX",
@@ -390,6 +370,7 @@ struct CourseListWidgetItemView: View {
                 CourseListWidgetItemView(
                     model: CourseListWidgetModel(
                         id: "1",
+                        enrollmentID: "566",
                         name: "Lo2rem Ipsum Course Name Here",
                         imageURL: nil,
                         progress: 0,
@@ -397,6 +378,7 @@ struct CourseListWidgetItemView: View {
                         programs: [],
                         currentLearningObject: CourseListWidgetModel.LearningObjectInfo(
                             name: "Adipiscing Elit Learning Object Name Here",
+                            id: "66",
                             moduleTitle: "Module Title",
                             type: .assessment,
                             dueDate: nil,
@@ -415,6 +397,7 @@ struct CourseListWidgetItemView: View {
                 CourseListWidgetItemView(
                     model: CourseListWidgetModel(
                         id: "1",
+                        enrollmentID: "5454",
                         name: "Lo2rem Ipsum Course Name Here",
                         imageURL: nil,
                         progress: 0,

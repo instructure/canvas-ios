@@ -38,17 +38,14 @@ final class CourseListViewModel {
 
     // MARK: - Dependencies
     private let router: Router
-    private let onTapProgram: (ProgramSwitcherModel?, WeakViewController) -> Void
 
     // MARK: - Init
     init(
         courses: [CourseCardModel],
-        router: Router,
-        onTapProgram: @escaping (ProgramSwitcherModel?, WeakViewController) -> Void
+        router: Router
     ) {
         self.allCourses = courses
         self.router = router
-        self.onTapProgram = onTapProgram
 
         setupPagination(with: courses)
     }
@@ -64,7 +61,7 @@ final class CourseListViewModel {
 
     // MARK: - Input Actions
 
-    func filter(status: CourseCardModel.CourseStatus) {
+    func filter(status: ProgressStatus) {
         let filtered: [CourseCardModel]
         switch status {
         case .all:
@@ -89,16 +86,19 @@ final class CourseListViewModel {
     // MARK: - Navigation
     func navigateToCourseDetails(course: CourseCardModel, viewController: WeakViewController) {
         router.show(
-            LearnAssembly.makeCourseDetailsViewController(
+            CourseDetailsAssembly.makeCourseDetailsViewController(
                 courseID: course.id,
                 enrollmentID: course.enrollmentID,
-                programID: course.firstProgramID
+                programName: course.firstProgramName
             ),
             from: viewController
         )
     }
 
     func navigateProgram(id: String, viewController: WeakViewController) {
-        onTapProgram(.init(id: id), viewController)
+        router.show(
+            ProgramDetailsAssembly.makeViewController(programID: id),
+            from: viewController
+        )
     }
 }
