@@ -321,7 +321,7 @@ public struct AsyncStore<U: UseCase> {
     }
 }
 
-public enum AsyncStoreError: Error {
+public enum AsyncStoreError: Error, Equatable {
     case noEntityFound
     case moreThanOneEntityFound(Int)
 }
