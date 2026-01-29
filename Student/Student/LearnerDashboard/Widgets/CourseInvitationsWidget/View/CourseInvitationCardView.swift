@@ -101,21 +101,63 @@ struct CourseInvitationCardView: View {
 
 #if DEBUG
 
-#Preview {
-    let offlineModeInteractor = OfflineModeInteractorLive(isOfflineModeEnabledForApp: false)
-    let coursesInteractor = CoursesInteractorLive()
-    let viewModel = CourseInvitationCardViewModel(
-        id: "1",
-        courseId: "course1",
-        courseName: "Introduction to Computer Science",
-        sectionName: "Section 01",
-        interactor: coursesInteractor,
-        offlineModeInteractor: offlineModeInteractor,
-        onDismiss: { _ in }
-    )
+private struct CourseInvitationCardPreviewContainer: View {
+    let acceptBehavior: CoursesInteractorMock.MockBehavior
+    let declineBehavior: CoursesInteractorMock.MockBehavior
+    let isOffline: Bool
 
-    CourseInvitationCardView(viewModel: viewModel)
+    init(
+        acceptBehavior: CoursesInteractorMock.MockBehavior = .success,
+        declineBehavior: CoursesInteractorMock.MockBehavior = .success,
+        isOffline: Bool = false
+    ) {
+        self.acceptBehavior = acceptBehavior
+        self.declineBehavior = declineBehavior
+        self.isOffline = isOffline
+    }
+
+    var body: some View {
+        let offlineModeInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: isOffline)
+        let coursesInteractor = CoursesInteractorMock()
+        coursesInteractor.acceptBehavior = acceptBehavior
+        coursesInteractor.declineBehavior = declineBehavior
+        let viewModel = CourseInvitationCardViewModel(
+            id: "1",
+            courseId: "course1",
+            courseName: "Introduction to Computer Science",
+            sectionName: "Section 01",
+            interactor: coursesInteractor,
+            offlineModeInteractor: offlineModeInteractor,
+            onDismiss: { _ in }
+        )
+        return CourseInvitationCardView(viewModel: viewModel)
+            .padding()
+    }
+}
+
+#Preview {
+    ScrollView {
+        VStack(spacing: 16) {
+            VStack(alignment: .leading, spacing: 4) {
+                Text(verbatim: "Success")
+                CourseInvitationCardPreviewContainer()
+            }
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(verbatim: "Failure")
+                CourseInvitationCardPreviewContainer(
+                    acceptBehavior: .failure(NSError(domain: "TestError", code: 1)),
+                    declineBehavior: .failure(NSError(domain: "TestError", code: 2))
+                )
+            }
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text(verbatim: "Offline")
+                CourseInvitationCardPreviewContainer(isOffline: true)
+            }
+        }
         .padding()
+    }
 }
 
 #endif

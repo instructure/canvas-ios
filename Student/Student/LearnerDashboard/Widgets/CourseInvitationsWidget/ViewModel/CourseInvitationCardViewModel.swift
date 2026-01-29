@@ -124,7 +124,19 @@ final class CourseInvitationCardViewModel: Identifiable {
     }
 }
 
-struct CourseInvitationError: Identifiable {
+extension CourseInvitationCardViewModel: Equatable {
+    static func == (lhs: CourseInvitationCardViewModel, rhs: CourseInvitationCardViewModel) -> Bool {
+        lhs.id == rhs.id &&
+        lhs.courseId == rhs.courseId &&
+        lhs.courseName == rhs.courseName &&
+        lhs.sectionName == rhs.sectionName &&
+        lhs.isLoadingAccept == rhs.isLoadingAccept &&
+        lhs.isLoadingDecline == rhs.isLoadingDecline &&
+        lhs.error == rhs.error
+    }
+}
+
+struct CourseInvitationError: Identifiable, Equatable {
     var id: String { UUID.string }
     let title: String
     let message: String

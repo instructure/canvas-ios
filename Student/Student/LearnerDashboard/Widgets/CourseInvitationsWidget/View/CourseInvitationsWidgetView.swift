@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 import SwiftUI
 
@@ -23,13 +24,16 @@ struct CourseInvitationsWidgetView: View {
     @State var viewModel: CourseInvitationsWidgetViewModel
 
     var body: some View {
-        if viewModel.state == .data {
-            DashboardTitledWidget(widgetTitle) {
-                HorizontalCarouselView(items: viewModel.invitations) { cardViewModel in
-                    CourseInvitationCardView(viewModel: cardViewModel)
+        ZStack {
+            if viewModel.state == .data {
+                DashboardTitledWidget(widgetTitle) {
+                    HorizontalCarouselView(items: viewModel.invitations) { cardViewModel in
+                        CourseInvitationCardView(viewModel: cardViewModel)
+                    }
                 }
             }
         }
+        .animation(.smooth, value: viewModel.invitations)
     }
 
     private var widgetTitle: String {
@@ -41,19 +45,63 @@ struct CourseInvitationsWidgetView: View {
 #if DEBUG
 
 #Preview {
+    @Previewable @State var viewModel = makePreviewViewModel()
+    @Previewable @State var subscriptions = Set<AnyCancellable>()
+
+    return CourseInvitationsWidgetView(viewModel: viewModel)
+        .padding()
+        .onAppear {
+            viewModel.refresh(ignoreCache: false)
+                .sink { _ in }
+                .store(in: &subscriptions)
+        }
+}
+
+private func makePreviewViewModel() -> CourseInvitationsWidgetViewModel {
+    let env = PreviewEnvironment()
+    let context = env.database.viewContext
+
     let config = DashboardWidgetConfig(id: .courseInvitations, order: 1, isVisible: true, settings: nil)
-    let offlineModeInteractor = OfflineModeInteractorLive(isOfflineModeEnabledForApp: false)
-    let coursesInteractor = CoursesInteractorLive()
-    let viewModel = CourseInvitationsWidgetViewModel(
+    let offlineModeInteractor = OfflineModeInteractorMock()
+    let coursesInteractor = CoursesInteractorMock()
+
+    let mockCourses = [
+        Course.save(
+            .make(
+                id: "1",
+                name: "Introduction to Computer Science",
+                enrollments: [.make(id: "enrollment1", enrollment_state: .invited)]
+            ),
+            in: context
+        ),
+        Course.save(
+            .make(
+                id: "2",
+                name: "Advanced Mathematics",
+                enrollments: [.make(id: "enrollment2", enrollment_state: .invited)]
+            ),
+            in: context
+        ),
+        Course.save(
+            .make(
+                id: "3",
+                name: "English Literature",
+                enrollments: [.make(id: "enrollment3", enrollment_state: .invited)]
+            ),
+            in: context
+        )
+    ]
+
+    coursesInteractor.mockCoursesResult = CoursesResult(
+        allCourses: mockCourses,
+        invitedCourses: mockCourses
+    )
+
+    return CourseInvitationsWidgetViewModel(
         config: config,
         interactor: coursesInteractor,
         offlineModeInteractor: offlineModeInteractor
     )
-
-    CourseInvitationsWidgetView(viewModel: viewModel)
-        .onAppear {
-            _ = viewModel.refresh(ignoreCache: false)
-        }
 }
 
 #endif
