@@ -31,6 +31,13 @@ extension InstUI {
                         Text(verbatim: "Page Indicator")
                             .tint(Color.textDarkest)
                     }
+
+                    NavigationLink {
+                        PillButtonStorybook()
+                    } label: {
+                        Text(verbatim: "Pill Button")
+                            .tint(Color.textDarkest)
+                    }
                 }
             }
             .listStyle(.sidebar)
