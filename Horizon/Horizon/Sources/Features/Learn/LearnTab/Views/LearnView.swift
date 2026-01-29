@@ -47,6 +47,7 @@ struct LearnView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.huiColors.surface.pagePrimary)
         .dismissKeyboardOnTap()
+        .scrollDismissesKeyboard(.immediately)
     }
 
     private func tabDetailsView() -> some View {

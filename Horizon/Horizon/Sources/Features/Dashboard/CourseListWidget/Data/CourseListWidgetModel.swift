@@ -139,6 +139,27 @@ struct CourseListWidgetModel: Identifiable, Equatable, ProgressStatusProvidable 
         }
     }
 
+    var accessiblityLearnDescription: String {
+        var description = String.localizedStringWithFormat(
+            String(localized: "Course: %@. ", bundle: .horizon),
+            name
+        )
+
+        description += String.localizedStringWithFormat(
+            String(localized: "Progress: %d percent complete. ", bundle: .horizon),
+            Int(progress.rounded())
+        )
+        return description
+    }
+
+    var accessiblityLearnHintString: String {
+        if hasCurrentLearningObject {
+            String(format: String(localized: "Double tap to %@", bundle: .horizon), buttonCourseTitle)
+        } else {
+            String(localized: "Double tap to open course", bundle: .horizon)
+        }
+    }
+
     func viewProgramAccessibilityString(_ programName: String) -> String {
         String.localizedStringWithFormat(
             String(localized: "Open %@", bundle: .horizon),

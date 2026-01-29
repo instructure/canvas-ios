@@ -21,6 +21,12 @@ import HorizonUI
 import SwiftUI
 
 struct LearnProgramListView: View {
+    // MARK: - VO
+
+    @State private var lastFocusedProgramID: String?
+    @AccessibilityFocusState private var focusedProgramID: String?
+    private let selectFilterFocusedID = "selectFilterFocusedID"
+
     @Environment(\.viewController) private var viewController
     @State private var isShowHeader: Bool = true
     @State private var isShowDivider: Bool = false
@@ -45,6 +51,7 @@ struct LearnProgramListView: View {
         .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
         .background(Color.huiColors.surface.pagePrimary)
         .animation(.linear, value: isShowHeader)
+        .onAppear { restoreFocusIfNeeded(after: 0.1) }
     }
 
     private var programListView: some View {
@@ -60,8 +67,21 @@ struct LearnProgramListView: View {
 
     private var contentView: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
+            listProgramsView
+            if viewModel.filteredPrograms.isEmpty {
+                CourseListEmptyView()
+            }
+            if viewModel.isSeeMoreVisible {
+                seeMoreButton
+            }
+        }
+    }
+
+    private var listProgramsView: some View {
+        VStack(alignment: .leading, spacing: .huiSpaces.space16) {
             ForEach(viewModel.filteredPrograms) { program in
                 Button {
+                    lastFocusedProgramID = program.id
                     viewModel.navigateToProgramDetails(
                         id: program.id,
                         viewController: viewController
@@ -69,12 +89,8 @@ struct LearnProgramListView: View {
                 } label: {
                     LearnProgramCardView(program: program)
                 }
-            }
-
-            if viewModel.isSeeMoreVisible {
-                SeeMoreButton(accessibilityHint: String(localized: "Double tap to load more programs")) {
-                    viewModel.seeMore()
-                }
+                .id(program.id)
+                .accessibilityFocused($focusedProgramID, equals: program.id)
             }
         }
     }
@@ -120,9 +136,13 @@ struct LearnProgramListView: View {
                 items: ProgressStatus.programs,
                 selectedOption: viewModel.selectedStatus) { option in
                     guard let option else { return }
+                    lastFocusedProgramID = selectFilterFocusedID
                     viewModel.selectedStatus = option
                     viewModel.filter()
+                    restoreFocusIfNeeded(after: 1)
                 }
+                .id(lastFocusedProgramID)
+                .accessibilityFocused($focusedProgramID, equals: selectFilterFocusedID)
             Spacer()
             Text(viewModel.filteredPrograms.count.description)
                 .foregroundStyle(Color.huiColors.text.dataPoint)
@@ -154,6 +174,19 @@ struct LearnProgramListView: View {
                     .ignoresSafeArea()
                 HorizonUI.Spinner(size: .small, showBackground: true)
             }
+        }
+    }
+
+    private func restoreFocusIfNeeded(after: Double) {
+        guard let lastFocused = lastFocusedProgramID else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + after) {
+            focusedProgramID = lastFocused
+        }
+    }
+
+    private var seeMoreButton: some View {
+        SeeMoreButton(accessibilityHint: String(localized: "Double tap to load more programs")) {
+            viewModel.seeMore()
         }
     }
 }

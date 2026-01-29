@@ -25,7 +25,7 @@ struct OptionModel: Identifiable, Equatable {
 }
 
 struct FilterView: View {
-    @State private var isListCoursesVisiable = false
+    @State private var isListVisiable = false
 
     // MARK: - Dependencies
 
@@ -54,18 +54,19 @@ struct FilterView: View {
 
     private var courseSelectionView: some View {
         CourseSelectionButton(status: selectedOption?.name ?? "") {
-            isListCoursesVisiable.toggle()
+            isListVisiable.toggle()
         }
         .frame(minWidth: 130)
         .accessibilityHint(
             Text(
                 String.localizedStringWithFormat(
-                    String(localized: "Selected filter is %@. Double tap to select another filter", bundle: .horizon),
-                    selectedOption?.name ?? ""
+                    String(localized: "Selected filter is %@. Double tap to select another filter. %@", bundle: .horizon),
+                    selectedOption?.name ?? "",
+                    isListVisiable ? String(localized: "Expanded") : String(localized: "Collapsed")
                 )
             )
         )
-        .popover(isPresented: $isListCoursesVisiable, attachmentAnchor: .point(.center), arrowEdge: .top) {
+        .popover(isPresented: $isListVisiable, attachmentAnchor: .point(.center), arrowEdge: .top) {
             courseListView
                 .presentationCompactAdaptation(.none)
                 .presentationBackground(Color.huiColors.surface.cardPrimary)
@@ -79,13 +80,14 @@ struct FilterView: View {
                 ForEach(items) { status in
                     Button {
                         onSelect(status)
-                        isListCoursesVisiable.toggle()
+                        isListVisiable.toggle()
                     } label: {
                         TimeSpentCourseView(
                             name: status.name,
                             isSelected: status == selectedOption
                         )
                     }
+                    .accessibilityAddTraits(status == selectedOption ? .isSelected : [])
                 }
             }
             .padding(.vertical, .huiSpaces.space10)

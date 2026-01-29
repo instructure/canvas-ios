@@ -21,6 +21,12 @@ import HorizonUI
 import SwiftUI
 
 struct LearnCourseListView: View {
+    // MARK: - VO
+
+    @State private var lastFocusedCourseID: String?
+    @AccessibilityFocusState private var focusedCourseID: String?
+    private let selectFilterFocusedID = "selectFilterFocusedID"
+
     @Environment(\.viewController) private var viewController
     @State private var isShowHeader: Bool = true
     @State private var isShowDivider: Bool = false
@@ -49,6 +55,7 @@ struct LearnCourseListView: View {
         .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
         .background(Color.huiColors.surface.pagePrimary)
         .animation(.linear, value: isShowHeader)
+        .onAppear { restoreFocusIfNeeded(after: 0.1) }
     }
 
     private var helperView: some View {
@@ -104,9 +111,13 @@ struct LearnCourseListView: View {
                 items: ProgressStatus.courses,
                 selectedOption: viewModel.selectedStatus) { option in
                     guard let option else { return }
+                    lastFocusedCourseID = selectFilterFocusedID
                     viewModel.selectedStatus = option
                     viewModel.filter()
+                    restoreFocusIfNeeded(after: 1)
                 }
+                .id(selectFilterFocusedID)
+                .accessibilityFocused($focusedCourseID, equals: selectFilterFocusedID)
             Spacer()
             Text(viewModel.filteredCourses.count.description)
                 .foregroundStyle(Color.huiColors.text.dataPoint)
@@ -126,16 +137,17 @@ struct LearnCourseListView: View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
             ForEach(viewModel.filteredCourses) { course in
                 LearnCourseCardView(model: course) {
+                    lastFocusedCourseID = course.id
                     viewModel.navigateToCourseDetails(
                         id: course.id,
                         enrollmentID: course.enrollmentID,
                         programName: course.programs.first?.name,
                         viewController: viewController
                     )
-
                 } onTapLearningObject: { _, url in
                     if let url = url,
                        let currentLearningObject = course.currentLearningObject {
+                        lastFocusedCourseID = course.id
                         viewModel.navigateToItemSequence(
                             url: url,
                             learningObject: currentLearningObject,
@@ -143,6 +155,8 @@ struct LearnCourseListView: View {
                         )
                     }
                 }
+                .id(course.id)
+                .accessibilityFocused($focusedCourseID, equals: course.id)
             }
         }
     }
@@ -174,5 +188,12 @@ struct LearnCourseListView: View {
                 .padding(.top, .huiSpaces.space32)
         }
         .refreshable { await viewModel.refresh() }
+    }
+
+    private func restoreFocusIfNeeded(after: Double) {
+        guard let lastFocused = lastFocusedCourseID else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + after) {
+            focusedCourseID = lastFocused
+        }
     }
 }

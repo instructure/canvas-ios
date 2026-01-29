@@ -31,19 +31,19 @@ struct LearnCourseCardView: View {
     private var contentView: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
             courseDetailsButton
-                HorizonUI.PrimaryButton(
-                    model.buttonCourseTitle,
-                    type: .grayOutline,
-                    isSmall: false,
-                    fillsWidth: true
-                ) {
-                    if model.isCourseCompleted {
-                        onTapCourseDetails()
-                    } else {
-                        onTapLearningObject?(model.id, model.currentLearningObject?.url)
-                    }
+            HorizonUI.PrimaryButton(
+                model.buttonCourseTitle,
+                type: .grayOutline,
+                isSmall: false,
+                fillsWidth: true
+            ) {
+                if model.isCourseCompleted {
+                    onTapCourseDetails()
+                } else {
+                    onTapLearningObject?(model.id, model.currentLearningObject?.url)
                 }
-                .padding([.horizontal, .bottom], .huiSpaces.space24)
+            }
+            .padding([.horizontal, .bottom], .huiSpaces.space24)
         }
 
         .background(Color.huiColors.surface.pageSecondary)
@@ -52,6 +52,20 @@ struct LearnCourseCardView: View {
         .scrollTransition(.animated) { content, phase in
             content
                 .scaleEffect(phase.isIdentity ? 1 : 0.9)
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(model.accessiblityLearnDescription)
+        .accessibilityHint(model.accessiblityLearnHintString)
+        .accessibilityActions {
+            Button("Open course") {
+                onTapCourseDetails()
+            }
+            if model.hasCurrentLearningObject {
+                Button(model.buttonCourseTitle) {
+
+                    onTapLearningObject?(model.id, model.currentLearningObject?.url)
+                }
+            }
         }
     }
 

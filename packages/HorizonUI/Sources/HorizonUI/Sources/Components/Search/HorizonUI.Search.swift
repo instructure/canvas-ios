@@ -70,6 +70,7 @@ public extension HorizonUI {
             Image.huiIcons.search
                 .foregroundStyle(Color.huiColors.icon.light)
                 .frame(width: 24, height: 24)
+                .accessibilityHidden(true)
         }
 
         private var textField: some View {
