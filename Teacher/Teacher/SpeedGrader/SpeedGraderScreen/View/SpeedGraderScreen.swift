@@ -96,6 +96,7 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
             )
             .frame(width: proxy.size.width, height: proxy.size.height)
         }
+        .snackBar(viewModel: viewModel.snackBarViewModel)
     }
 
     @available(iOS, deprecated: 26, message: "Toolbars are not colored above iOS 26")

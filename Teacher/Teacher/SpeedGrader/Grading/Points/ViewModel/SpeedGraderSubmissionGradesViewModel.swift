@@ -63,6 +63,8 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     private let gradeInteractor: GradeInteractor
     private var cancellables = Set<AnyCancellable>()
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
+    private var initialGrade: String?
+    private var lastSubmittedGrade: String?
 
     // MARK: - Init
 
@@ -126,16 +128,39 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     }
 
     func setPointsGrade(_ points: Double) {
-        saveGrade(grade: String(points))
+        saveGrade(grade: format(value: points))
     }
 
     func setPercentGrade(_ percent: Double) {
-        let percentValue = "\(percent)%"
+        let percentValue = "\(format(value: percent))%"
         saveGrade(grade: percentValue)
+    }
+
+    private func format(value: Double) -> String {
+        value
+            .formatted(
+                .number
+                    .locale(.init(languageCode: .english, languageRegion: .unitedStates))
+                    .precision(.fractionLength(0...))
+            )
     }
 
     func setGradeOption(_ item: OptionItem) {
         saveGrade(grade: item.id)
+    }
+
+    var isGradeChanged: Bool {
+        guard let initialGrade else {
+            // Checking if last submission is reflected on lately generated
+            // grade state of stored objects of concern (Assignment & Submission).
+            // Which implies it submitted for first time at this session.
+            return lastSubmittedGrade != nil
+                && lastSubmittedGrade == gradeState.originalGrade
+        }
+
+        // Check if the grade of lately generated state is different from the one
+        // we started this session with.
+        return gradeState.originalGrade != initialGrade
     }
 
     // MARK: - Private Methods
@@ -166,6 +191,13 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     private func updateGradeState(_ gradeState: GradeState) {
         self.gradeState = gradeState
 
+        if let grade = gradeState.originalGrade,
+           grade.isNotEmpty,
+           lastSubmittedGrade == nil,
+           initialGrade == nil {
+            initialGrade = grade
+        }
+
         gradeInputType = gradeState.gradeInputType
         sliderValue = gradeState.score
         isNoGradeButtonDisabled = (!gradeState.isGraded && !gradeState.isExcused)
@@ -183,6 +215,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
     private func saveGrade(excused: Bool? = nil, grade: String? = nil) {
         isSavingGrade.send(true)
+        lastSubmittedGrade = grade
 
         gradeInteractor.saveGrade(excused: excused, grade: grade)
             .receive(on: mainScheduler)
