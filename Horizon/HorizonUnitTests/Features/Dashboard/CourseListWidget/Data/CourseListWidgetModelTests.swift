@@ -306,8 +306,16 @@ final class CourseListWidgetModelTests: HorizonTestCase {
             currentLearningObject: learningObject
         ))
 
-        let expected = "Course: \(testData.courseName). Progress: 42 percent complete. Current learning object: \(testData.learningObjectName). Due at \(testData.dueDate). Estimated duration: \(testData.estimatedTime). "
-        XCTAssertEqual(testee.accessibilityDescription, expected)
+        let expected =
+            "Course: \(testData.courseName). " +
+            "Progress: 42 percent complete. " +
+            "Current learning object: \(testData.learningObjectName). " +
+            "Due at \(testData.dueDate). " +
+            "Estimated duration: \(testData.estimatedTime)."
+        XCTAssertEqual(
+            testee.accessibilityDescription.trimmingCharacters(in: .whitespacesAndNewlines),
+            expected
+        )
     }
 
     // MARK: - accessiblityHintString
