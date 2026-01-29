@@ -303,13 +303,13 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
             NSLayoutConstraint.activate([
                 submitAssignmentButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
                 submitAssignmentButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-                submitAssignmentButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8)
+                submitAssignmentButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
             ])
         } else {
             NSLayoutConstraint.activate([
                 submitAssignmentButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
                 submitAssignmentButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-                submitAssignmentButton.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                submitAssignmentButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             ])
         }
     }

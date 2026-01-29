@@ -127,6 +127,22 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
         if #unavailable(iOS 26) {
             navigationController?.navigationBar.useContextColor(color)
         }
+
+        if #available(iOS 26, *) {
+            takeButton.layer.cornerRadius = 25
+
+            NSLayoutConstraint.activate([
+                takeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+                takeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+                takeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                takeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                takeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                takeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            ])
+        }
     }
 
     @objc func refresh() {
