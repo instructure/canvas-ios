@@ -76,7 +76,6 @@ struct LearnerDashboardScreen: View {
         .accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
     }
 
-
     @ViewBuilder
     private var content: some View {
         DashboardWidgetLayout(
