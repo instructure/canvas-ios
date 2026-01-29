@@ -67,8 +67,8 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         XCTAssertEqual(receivedFullWidth?.first?.id, .fullWidthWidget)
         XCTAssertEqual(receivedGrid?.count, 3)
         XCTAssertEqual(receivedGrid?[0].id, .widget1)
-        XCTAssertEqual(receivedGrid?[1].id, .widget3)
-        XCTAssertEqual(receivedGrid?[2].id, .widget2)
+        XCTAssertEqual(receivedGrid?[1].id, .widget2)
+        XCTAssertEqual(receivedGrid?[2].id, .widget3)
     }
 
     // MARK: - Load widgets with saved configs
