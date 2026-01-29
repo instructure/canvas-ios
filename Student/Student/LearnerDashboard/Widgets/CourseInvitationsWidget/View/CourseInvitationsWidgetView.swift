@@ -66,7 +66,6 @@ private func makePreviewViewModel(snackbarViewModel: SnackBarViewModel) -> Cours
     let context = env.database.viewContext
 
     let config = DashboardWidgetConfig(id: .courseInvitations, order: 1, isVisible: true, settings: nil)
-    let offlineModeInteractor = OfflineModeInteractorMock()
     let coursesInteractor = CoursesInteractorMock()
 
     let mockCourses = [
@@ -104,7 +103,6 @@ private func makePreviewViewModel(snackbarViewModel: SnackBarViewModel) -> Cours
     return CourseInvitationsWidgetViewModel(
         config: config,
         interactor: coursesInteractor,
-        offlineModeInteractor: offlineModeInteractor,
         snackBarViewModel: snackbarViewModel
     )
 }

@@ -106,7 +106,6 @@ private struct CourseInvitationCardPreviewContainer: View {
     }
 
     var body: some View {
-        let offlineModeInteractor = OfflineModeInteractorMock(mockIsInOfflineMode: isOffline)
         let coursesInteractor = CoursesInteractorMock()
         coursesInteractor.acceptBehavior = acceptBehavior
         coursesInteractor.declineBehavior = declineBehavior
@@ -116,7 +115,6 @@ private struct CourseInvitationCardPreviewContainer: View {
             courseName: "Introduction to Computer Science",
             sectionName: "Section 01",
             interactor: coursesInteractor,
-            offlineModeInteractor: offlineModeInteractor,
             snackBarViewModel: SnackBarViewModel(),
             onDismiss: { _ in }
         )

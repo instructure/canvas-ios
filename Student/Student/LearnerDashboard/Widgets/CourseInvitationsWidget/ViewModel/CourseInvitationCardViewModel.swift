@@ -34,7 +34,6 @@ final class CourseInvitationCardViewModel: Identifiable {
 
     private let courseId: String
     private let interactor: CoursesInteractor
-    private let offlineModeInteractor: OfflineModeInteractor
     private let snackBarViewModel: SnackBarViewModel
     private let onDismiss: (String) -> Void
     private var subscriptions = Set<AnyCancellable>()
@@ -45,14 +44,12 @@ final class CourseInvitationCardViewModel: Identifiable {
         courseName: String,
         sectionName: String?,
         interactor: CoursesInteractor,
-        offlineModeInteractor: OfflineModeInteractor,
         snackBarViewModel: SnackBarViewModel,
         onDismiss: @escaping (String) -> Void
     ) {
         self.id = id
         self.courseId = courseId
         self.interactor = interactor
-        self.offlineModeInteractor = offlineModeInteractor
         self.snackBarViewModel = snackBarViewModel
         self.onDismiss = onDismiss
 
@@ -65,10 +62,6 @@ final class CourseInvitationCardViewModel: Identifiable {
 
     func accept() {
         if isProcessing { return }
-        if offlineModeInteractor.isOfflineModeEnabled() {
-            UIAlertController.showItemNotAvailableInOfflineAlert()
-            return
-        }
 
         isAccepting = true
         interactor.acceptInvitation(courseId: courseId, enrollmentId: id)
@@ -93,10 +86,6 @@ final class CourseInvitationCardViewModel: Identifiable {
 
     func decline() {
         if isProcessing { return }
-        if offlineModeInteractor.isOfflineModeEnabled() {
-            UIAlertController.showItemNotAvailableInOfflineAlert()
-            return
-        }
 
         isDeclining = true
         interactor.declineInvitation(courseId: courseId, enrollmentId: id)

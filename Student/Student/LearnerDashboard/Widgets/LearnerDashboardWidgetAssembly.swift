@@ -36,12 +36,10 @@ enum LearnerDashboardWidgetAssembly {
     ) -> any DashboardWidgetViewModel {
         switch config.id {
         case .courseInvitations:
-            let offlineModeInteractor = OfflineModeAssembly.make()
             let coursesInteractor = CoursesInteractorLive(env: .shared)
             return CourseInvitationsWidgetViewModel(
                 config: config,
                 interactor: coursesInteractor,
-                offlineModeInteractor: offlineModeInteractor,
                 snackBarViewModel: snackBarViewModel
             )
         case .widget1:

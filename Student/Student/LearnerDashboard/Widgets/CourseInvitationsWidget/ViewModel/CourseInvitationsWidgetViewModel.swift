@@ -42,19 +42,16 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
     }
 
     private let interactor: CoursesInteractor
-    private let offlineModeInteractor: OfflineModeInteractor
     private let snackBarViewModel: SnackBarViewModel
     private var subscriptions = Set<AnyCancellable>()
 
     init(
         config: DashboardWidgetConfig,
         interactor: CoursesInteractor,
-        offlineModeInteractor: OfflineModeInteractor,
         snackBarViewModel: SnackBarViewModel
     ) {
         self.config = config
         self.interactor = interactor
-        self.offlineModeInteractor = offlineModeInteractor
         self.snackBarViewModel = snackBarViewModel
     }
 
@@ -81,7 +78,6 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
                         courseName: course.name ?? "",
                         sectionName: section?.name,
                         interactor: self.interactor,
-                        offlineModeInteractor: self.offlineModeInteractor,
                         snackBarViewModel: self.snackBarViewModel,
                         onDismiss: { [weak self] enrollmentId in
                             self?.removeInvitation(id: enrollmentId)
