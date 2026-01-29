@@ -33,7 +33,7 @@ struct CourseInvitationsWidgetView: View {
                 }
             }
         }
-        .animation(.smooth, value: viewModel.invitations)
+        .animation(.dashboardWidget, value: viewModel.invitations)
     }
 
     private var widgetTitle: String {
