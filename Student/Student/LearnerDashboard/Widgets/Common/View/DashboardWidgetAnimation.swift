@@ -16,20 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-import Core
-import Foundation
+import SwiftUI
 
-protocol LearnerDashboardInteractor {
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error>
-}
-
-final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
-
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
-        Just(())
-            .delay(for: .seconds(2), scheduler: DispatchQueue.global(qos: .userInitiated))
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+extension Animation {
+    static var dashboardWidget: Animation {
+        .smooth
     }
 }

@@ -91151,6 +91151,9 @@
         }
       }
     },
+    "Oops, Something went wrong" : {
+
+    },
     "Oops!" : {
       "comment" : "Error message title\n   Error title\n   Masquerade error title",
       "extractionState" : "manual",
@@ -98679,6 +98682,7 @@
       }
     },
     "Profile Menu, Closed" : {
+      "comment" : "Accessibility text describing the Profile Menu button and its state",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -103213,6 +103217,9 @@
           }
         }
       }
+    },
+    "Refresh" : {
+
     },
     "Refresh Button" : {
       "extractionState" : "manual",
@@ -146242,6 +146249,9 @@
           }
         }
       }
+    },
+    "We weren't able to load this content.\nTry again, or come back later." : {
+
     },
     "Website Address" : {
       "localizations" : {

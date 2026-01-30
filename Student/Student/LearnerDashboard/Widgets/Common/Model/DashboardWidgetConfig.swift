@@ -16,20 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Student
-import XCTest
+struct DashboardWidgetConfig: Codable, Comparable, Identifiable {
+    let id: DashboardWidgetIdentifier
+    var order: Int
+    var isVisible: Bool
+    /// Widget-specific settings encoded into a JSON to be persisted.
+    var settings: String?
 
-final class LearnerDashboardInteractorLiveTests: StudentTestCase {
-
-    func test_refresh_whenIgnoreCacheIsTrue_shouldFinish() {
-        let testee = LearnerDashboardInteractorLive()
-
-        XCTAssertFinish(testee.refresh(ignoreCache: true), timeout: 3)
+    static func < (lhs: DashboardWidgetConfig, rhs: DashboardWidgetConfig) -> Bool {
+        lhs.order < rhs.order
     }
+}
 
-    func test_refresh_whenIgnoreCacheIsFalse_shouldFinish() {
-        let testee = LearnerDashboardInteractorLive()
-
-        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 3)
+extension Array where Element == DashboardWidgetConfig {
+    func partitionedByLayout(
+        isFullWidth: (DashboardWidgetConfig) -> Bool
+    ) -> (fullWidth: [DashboardWidgetConfig], grid: [DashboardWidgetConfig]) {
+        let fullWidth = filter { isFullWidth($0) }.sorted()
+        let grid = filter { !isFullWidth($0) }.sorted()
+        return (fullWidth, grid)
     }
 }

@@ -33,17 +33,38 @@ struct LearnerDashboardScreen: View {
             state: viewModel.state,
             config: viewModel.screenConfig,
             refreshAction: { completion in
-                viewModel.refresh(ignoreCache: true, completion: completion)
+                viewModel.refresh(
+                    ignoreCache: true,
+                    completion: completion
+                )
             }
         ) { _ in
             content
         }
         .navigationBarDashboard()
-        .navigationBarItems(leading: profileMenuButton)
-        .navigationTitle(String(localized: "Dashboard", bundle: .student))
+        .toolbar {
+            if #available(iOS 26, *) {
+                ToolbarItem(placement: .topBarLeading) { profileMenuButton }
+            } else {
+                ToolbarItem(placement: .topBarLeading) { legacyProfileMenuButton }
+            }
+        }
+
     }
 
+    @available(iOS, introduced: 26, message: "Legacy version exists")
     private var profileMenuButton: some View {
+        Button {
+            env.router.route(to: "/profile", from: viewController, options: .modal())
+        } label: {
+            Image.hamburgerSolid
+        }
+        .identifier("Dashboard.profileButton")
+        .accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
+    }
+
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyProfileMenuButton: some View {
         Button {
             env.router.route(to: "/profile", from: viewController, options: .modal())
         } label: {
@@ -52,12 +73,16 @@ struct LearnerDashboardScreen: View {
         }
         .frame(width: 44, height: 44).padding(.leading, -6)
         .identifier("Dashboard.profileButton")
-        .accessibility(label: Text("Profile Menu, Closed", bundle: .core))
+        .accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
     }
 
     @ViewBuilder
     private var content: some View {
-        SwiftUI.EmptyView()
+        DashboardWidgetLayout(
+            fullWidthWidgets: viewModel.fullWidthWidgets,
+            gridWidgets: viewModel.gridWidgets
+        )
+        .paddingStyle(.all, .standard)
     }
 }
 
@@ -65,11 +90,7 @@ struct LearnerDashboardScreen: View {
 
 #Preview {
     let controller = CoreHostingController(
-        LearnerDashboardScreen(
-            viewModel: LearnerDashboardViewModel(
-                interactor: LearnerDashboardInteractorLive()
-            )
-        )
+        LearnerDashboardAssembly.makeScreen()
     )
     CoreNavigationController(rootViewController: controller)
 }
