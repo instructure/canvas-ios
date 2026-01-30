@@ -65,16 +65,16 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        state = .loading
-
-        return interactor.getCourses(ignoreCache: ignoreCache)
+        interactor.getCourses(ignoreCache: ignoreCache)
             .receive(on: DispatchQueue.main)
             .map { [weak self] result in
-                guard let self = self else { return () }
-                self.invitations = result.invitedCourses.map { course in
-                    let invitedEnrollment = course.enrollments?.first { $0.state == .invited }
-                    let enrollmentID = invitedEnrollment?.id ?? ""
-                    let sectionID = invitedEnrollment?.courseSectionID
+                guard let self else { return () }
+                self.invitations = result.invitedCourses.compactMap { course in
+                    guard let invitedEnrollment = course.enrollments?.first(where: { $0.state == .invited && $0.id != nil }),
+                          let enrollmentID = invitedEnrollment.id else {
+                        return nil
+                    }
+                    let sectionID = invitedEnrollment.courseSectionID
                     let section = course.sections.first { $0.id == sectionID }
 
                     return CourseInvitationCardViewModel(

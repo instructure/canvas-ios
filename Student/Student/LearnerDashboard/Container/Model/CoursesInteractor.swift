@@ -54,46 +54,59 @@ final class CoursesInteractorLive: CoursesInteractor {
     }
 
     func getCourses(ignoreCache: Bool) -> AnyPublisher<CoursesResult, Error> {
-        return queue.sync {
-            let subject = PassthroughSubject<CoursesResult, Error>()
-            let request = PendingRequest(ignoreCache: ignoreCache, subject: subject)
+        let subject = PassthroughSubject<CoursesResult, Error>()
+        let request = PendingRequest(ignoreCache: ignoreCache, subject: subject)
+
+        queue.async { [weak self] in
+            guard let self else {
+                subject.send(completion: .failure(NSError(domain: "CoursesInteractor", code: -1)))
+                return
+            }
             pendingRequests.append(request)
 
             if !isFetching {
                 startFetch()
             }
-
-            return subject.eraseToAnyPublisher()
         }
+
+        return subject.eraseToAnyPublisher()
     }
 
     private func startFetch() {
-        queue.async { [weak self] in
-            guard let self, !isFetching else { return }
-            isFetching = true
+        guard !isFetching else { return }
+        isFetching = true
 
-            let shouldIgnoreCache = pendingRequests.contains { $0.ignoreCache }
-            currentFetchIgnoresCache = shouldIgnoreCache
+        let shouldIgnoreCache = pendingRequests.contains { $0.ignoreCache }
+        currentFetchIgnoresCache = shouldIgnoreCache
 
-            coursesStore
-                .getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true)
-                .map { courses in
-                    let allCourses = courses.filter { !$0.isCourseDeleted }
-                    let invitedCourses = allCourses.filter { course in
-                        course.enrollments.hasInvitedEnrollment
-                    }
-                    return CoursesResult(allCourses: allCourses, invitedCourses: invitedCourses)
-                }
-                .sink(
-                    receiveCompletion: { [weak self] completion in
-                        self?.handleFetchCompletion(completion)
-                    },
-                    receiveValue: { [weak self] result in
-                        self?.handleFetchResult(result)
-                    }
-                )
-                .store(in: &subscriptions)
+        let enrollmentsStore = ReactiveStore(
+            useCase: GetEnrollments(
+                context: .currentUser,
+                states: [.active, .completed, .invited]
+            ),
+            environment: env
+        )
+
+        Publishers.Zip(
+            coursesStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true),
+            enrollmentsStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true)
+        )
+        .map { courses, _ in
+            let allCourses = courses.filter { !$0.isCourseDeleted }
+            let invitedCourses = allCourses.filter { course in
+                course.enrollments.hasInvitedEnrollment
+            }
+            return CoursesResult(allCourses: allCourses, invitedCourses: invitedCourses)
         }
+        .sink(
+            receiveCompletion: { [weak self] completion in
+                self?.handleFetchCompletion(completion)
+            },
+            receiveValue: { [weak self] result in
+                self?.handleFetchResult(result)
+            }
+        )
+        .store(in: &subscriptions)
     }
 
     private func handleFetchResult(_ result: CoursesResult) {
@@ -123,10 +136,10 @@ final class CoursesInteractorLive: CoursesInteractor {
     }
 
     private func handleFetchCompletion(_ completion: Subscribers.Completion<Error>) {
-        queue.async { [weak self] in
-            guard let self else { return }
+        if case .failure(let error) = completion {
+            queue.async { [weak self] in
+                guard let self else { return }
 
-            if case .failure(let error) = completion {
                 for request in pendingRequests {
                     request.subject.send(completion: .failure(error))
                 }

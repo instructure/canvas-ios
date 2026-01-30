@@ -105,13 +105,14 @@ final public class Course: NSManagedObject, WriteableModel {
         model.syllabusBody = item.syllabus_body
         model.defaultViewRaw = item.default_view?.rawValue
         model.enrollments?.forEach { enrollment in
-            // We only want to delete enrollments created from
-            // the minimal enrollments attached to an APICourse
+            // We only want to delete enrollments containing grades. These are created from
+            // the minimal enrollments attached to an APICourse and recognizable by not having an enrollment id.
             if enrollment.id == nil {
                 context.delete(enrollment)
             }
         }
         model.enrollments = nil
+
         if let apiGradingPeriods = item.grading_periods {
             let gradingPeriods: [GradingPeriod] = apiGradingPeriods.map { apiGradingPeriod in
                 let gp: GradingPeriod = GradingPeriod.save(apiGradingPeriod, courseID: model.id, in: context)
@@ -136,16 +137,18 @@ final public class Course: NSManagedObject, WriteableModel {
         model.termName = item.term?.name
         model.accessRestrictedByDate = item.access_restricted_by_date ?? false
 
-        if let apiEnrollments = item.enrollments {
-            let enrollmentModels: [Enrollment] = apiEnrollments.map { apiItem in
-                /// This enrollment contains the grade fields necessary to calculate grades on the dashboard.
-                /// This is a special enrollment that has no courseID nor enrollmentID and contains no Grade objects.
-                let e: Enrollment = context.insert()
-                e.update(fromApiModel: apiItem, course: model, in: context)
-                return e
-            }
-            model.enrollments = Set(enrollmentModels)
+        let gradeEnrollments: [Enrollment] = (item.enrollments ?? []).map { apiItem in
+            /// This enrollment contains the grade fields necessary to calculate grades on the dashboard.
+            /// This is a special enrollment that has no courseID nor enrollmentID and contains no Grade objects.
+            let e: Enrollment = context.insert()
+            e.update(fromApiModel: apiItem, course: model, in: context)
+            return e
         }
+        // Also link fully qualified enrollment objects of this course already existing in the DB.
+        let fetchedDBEnrollments: [Enrollment] = context.fetch(
+            scope: .where(#keyPath(Enrollment.canvasContextID), equals: model.canvasContextID)
+        ).filter { $0.id != nil }
+        model.enrollments = Set(gradeEnrollments + fetchedDBEnrollments)
 
         if let contextColor: ContextColor = context.fetch(scope: .where(#keyPath(ContextColor.canvasContextID), equals: model.canvasContextID)).first {
             model.contextColor = contextColor

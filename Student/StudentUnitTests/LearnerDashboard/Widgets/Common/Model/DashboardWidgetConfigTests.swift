@@ -48,17 +48,17 @@ final class DashboardWidgetConfigTests: XCTestCase {
     func test_partitionedByLayout_shouldSeparateAndSortWidgets() {
         let widgets = [
             DashboardWidgetConfig(id: .widget1, order: 20, isVisible: true),
-            DashboardWidgetConfig(id: .fullWidthWidget, order: 5, isVisible: true),
+            DashboardWidgetConfig(id: .courseInvitations, order: 5, isVisible: true),
             DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true),
             DashboardWidgetConfig(id: .widget3, order: 30, isVisible: true)
         ]
 
         let result = widgets.partitionedByLayout { config in
-            config.id == .fullWidthWidget
+            config.id == .courseInvitations
         }
 
         XCTAssertEqual(result.fullWidth.count, 1)
-        XCTAssertEqual(result.fullWidth.first?.id, .fullWidthWidget)
+        XCTAssertEqual(result.fullWidth.first?.id, .courseInvitations)
         XCTAssertEqual(result.grid.count, 3)
         XCTAssertEqual(result.grid[0].id, .widget2)
         XCTAssertEqual(result.grid[1].id, .widget1)
