@@ -67,7 +67,7 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
         state = .loading
 
-        return interactor.getCourses()
+        return interactor.getCourses(ignoreCache: ignoreCache)
             .receive(on: DispatchQueue.main)
             .map { [weak self] result in
                 guard let self = self else { return () }

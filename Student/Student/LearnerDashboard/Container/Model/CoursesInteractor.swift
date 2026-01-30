@@ -26,7 +26,7 @@ struct CoursesResult {
 }
 
 protocol CoursesInteractor {
-    func getCourses() -> AnyPublisher<CoursesResult, Error>
+    func getCourses(ignoreCache: Bool) -> AnyPublisher<CoursesResult, Error>
     func acceptInvitation(courseId: String, enrollmentId: String) -> AnyPublisher<Void, Error>
     func declineInvitation(courseId: String, enrollmentId: String) -> AnyPublisher<Void, Error>
 }
@@ -34,10 +34,18 @@ protocol CoursesInteractor {
 final class CoursesInteractorLive: CoursesInteractor {
     let useCase = GetAllUserCourses()
 
-    private let env: AppEnvironment
+    let env: AppEnvironment
     private let coursesStore: ReactiveStore<GetAllUserCourses>
     private var subscriptions = Set<AnyCancellable>()
-    private var inFlightPublisher: AnyPublisher<CoursesResult, Error>?
+
+    private struct PendingRequest {
+        let ignoreCache: Bool
+        let subject: PassthroughSubject<CoursesResult, Error>
+    }
+    private var pendingRequests: [PendingRequest] = []
+    private var isFetching = false
+    private var currentFetchIgnoresCache = false
+
     private let queue = DispatchQueue(label: "com.instructure.student.coursesInteractor")
 
     init(env: AppEnvironment = .shared) {
@@ -45,14 +53,30 @@ final class CoursesInteractorLive: CoursesInteractor {
         self.coursesStore = ReactiveStore(useCase: useCase)
     }
 
-    func getCourses() -> AnyPublisher<CoursesResult, Error> {
+    func getCourses(ignoreCache: Bool) -> AnyPublisher<CoursesResult, Error> {
         return queue.sync {
-            if let existing = inFlightPublisher {
-                return existing
+            let subject = PassthroughSubject<CoursesResult, Error>()
+            let request = PendingRequest(ignoreCache: ignoreCache, subject: subject)
+            pendingRequests.append(request)
+
+            if !isFetching {
+                startFetch()
             }
 
-            let publisher = coursesStore
-                .getEntities(loadAllPages: true)
+            return subject.eraseToAnyPublisher()
+        }
+    }
+
+    private func startFetch() {
+        queue.async { [weak self] in
+            guard let self, !isFetching else { return }
+            isFetching = true
+
+            let shouldIgnoreCache = pendingRequests.contains { $0.ignoreCache }
+            currentFetchIgnoresCache = shouldIgnoreCache
+
+            coursesStore
+                .getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true)
                 .map { courses in
                     let allCourses = courses.filter { !$0.isCourseDeleted }
                     let invitedCourses = allCourses.filter { course in
@@ -60,46 +84,57 @@ final class CoursesInteractorLive: CoursesInteractor {
                     }
                     return CoursesResult(allCourses: allCourses, invitedCourses: invitedCourses)
                 }
-                .handleEvents(
-                    receiveCompletion: { [weak self] _ in
-                        self?.clearInFlightPublisher()
+                .sink(
+                    receiveCompletion: { [weak self] completion in
+                        self?.handleFetchCompletion(completion)
                     },
-                    receiveCancel: { [weak self] in
-                        self?.clearInFlightPublisher()
+                    receiveValue: { [weak self] result in
+                        self?.handleFetchResult(result)
                     }
                 )
-                .share()
-                .eraseToAnyPublisher()
-
-            inFlightPublisher = publisher
-            return publisher
+                .store(in: &subscriptions)
         }
     }
 
-    private func clearInFlightPublisher() {
+    private func handleFetchResult(_ result: CoursesResult) {
         queue.async { [weak self] in
-            self?.inFlightPublisher = nil
+            guard let self else { return }
+
+            let gotFresh = currentFetchIgnoresCache
+            var remainingRequests: [PendingRequest] = []
+
+            for request in pendingRequests {
+                if gotFresh || !request.ignoreCache {
+                    request.subject.send(result)
+                    request.subject.send(completion: .finished)
+                } else {
+                    remainingRequests.append(request)
+                }
+            }
+
+            pendingRequests = remainingRequests
+            isFetching = false
+            currentFetchIgnoresCache = false
+
+            if remainingRequests.isNotEmpty {
+                startFetch()
+            }
         }
     }
 
-    func acceptInvitation(courseId: String, enrollmentId: String) -> AnyPublisher<Void, Error> {
-        handleInvitation(courseId: courseId, enrollmentId: enrollmentId, isAccepted: true)
-    }
+    private func handleFetchCompletion(_ completion: Subscribers.Completion<Error>) {
+        queue.async { [weak self] in
+            guard let self else { return }
 
-    func declineInvitation(courseId: String, enrollmentId: String) -> AnyPublisher<Void, Error> {
-        handleInvitation(courseId: courseId, enrollmentId: enrollmentId, isAccepted: false)
-    }
-
-    private func handleInvitation(courseId: String, enrollmentId: String, isAccepted: Bool) -> AnyPublisher<Void, Error> {
-        let request = HandleCourseInvitationRequest(
-            courseID: courseId,
-            enrollmentID: enrollmentId,
-            isAccepted: isAccepted
-        )
-
-        return env.api.makeRequest(request)
-            .mapToVoid()
-            .eraseToAnyPublisher()
+            if case .failure(let error) = completion {
+                for request in pendingRequests {
+                    request.subject.send(completion: .failure(error))
+                }
+                pendingRequests.removeAll()
+                isFetching = false
+                currentFetchIgnoresCache = false
+            }
+        }
     }
 }
 

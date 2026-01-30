@@ -32,7 +32,7 @@ final class CoursesInteractorMock: CoursesInteractor {
     var declineBehavior: MockBehavior = .success
     var mockCoursesResult: CoursesResult = CoursesResult(allCourses: [], invitedCourses: [])
 
-    func getCourses() -> AnyPublisher<CoursesResult, Error> {
+    func getCourses(ignoreCache: Bool) -> AnyPublisher<CoursesResult, Error> {
         Just(mockCoursesResult)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()

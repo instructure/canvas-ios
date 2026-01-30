@@ -40,8 +40,7 @@ final class CoursesInteractorTests: StudentTestCase {
 
     // MARK: - Tests
 
-    func testParallelCalls_sharePublisher() {
-        // MARK: Setup expectations and mock API
+    func testMultipleCachedRequests_receiveSameData() {
         let useCaseCallExpectation = expectation(description: "UseCase invoked exactly once")
         useCaseCallExpectation.expectedFulfillmentCount = 1
         useCaseCallExpectation.assertForOverFulfill = true
@@ -60,7 +59,6 @@ final class CoursesInteractorTests: StudentTestCase {
         mocks.completed.suspend()
         mocks.invited.suspend()
 
-        // MARK: Create parallel subscriptions
         let expectation1 = expectation(description: "First call completes")
         let expectation2 = expectation(description: "Second call completes")
         let expectation3 = expectation(description: "Third call completes")
@@ -69,28 +67,27 @@ final class CoursesInteractorTests: StudentTestCase {
         var result2: CoursesResult?
         var result3: CoursesResult?
 
-        testee.getCourses()
+        testee.getCourses(ignoreCache: false)
             .sink(
                 receiveCompletion: { _ in expectation1.fulfill() },
                 receiveValue: { result1 = $0 }
             )
             .store(in: &subscriptions)
 
-        testee.getCourses()
+        testee.getCourses(ignoreCache: false)
             .sink(
                 receiveCompletion: { _ in expectation2.fulfill() },
                 receiveValue: { result2 = $0 }
             )
             .store(in: &subscriptions)
 
-        testee.getCourses()
+        testee.getCourses(ignoreCache: false)
             .sink(
                 receiveCompletion: { _ in expectation3.fulfill() },
                 receiveValue: { result3 = $0 }
             )
             .store(in: &subscriptions)
 
-        // MARK: Resume mocks to trigger API responses
         mocks.active.resume()
         mocks.completed.resume()
         mocks.invited.resume()
@@ -105,7 +102,6 @@ final class CoursesInteractorTests: StudentTestCase {
             timeout: 5
         )
 
-        // MARK: Verify all subscribers received the same data
         XCTAssertEqual(result1?.allCourses.count, 3)
         XCTAssertEqual(result2?.allCourses.count, 3)
         XCTAssertEqual(result3?.allCourses.count, 3)
@@ -117,6 +113,189 @@ final class CoursesInteractorTests: StudentTestCase {
         XCTAssertEqual(ids1, ["1", "2", "3"])
         XCTAssertEqual(ids2, ["1", "2", "3"])
         XCTAssertEqual(ids3, ["1", "2", "3"])
+    }
+
+    func testFreshRequestDuringCached_triggersSecondFetch() {
+        var activeCallCount = 0
+        let firstFetchExpectation = expectation(description: "First fetch completes")
+        let secondFetchExpectation = expectation(description: "Second fetch completes")
+
+        let mocks = mockCourseRequests(
+            active: [
+                APICourse.make(id: "1", name: "Course 1"),
+                APICourse.make(id: "2", name: "Course 2")
+            ],
+            onActiveCalled: {
+                activeCallCount += 1
+                if activeCallCount == 1 {
+                    firstFetchExpectation.fulfill()
+                } else if activeCallCount == 2 {
+                    secondFetchExpectation.fulfill()
+                }
+            }
+        )
+        mocks.active.suspend()
+        mocks.completed.suspend()
+        mocks.invited.suspend()
+
+        let cachedExpectation = expectation(description: "Cached request completes")
+        let freshExpectation = expectation(description: "Fresh request completes")
+
+        var cachedResult: CoursesResult?
+        var freshResult: CoursesResult?
+
+        testee.getCourses(ignoreCache: false)
+            .sink(
+                receiveCompletion: { _ in cachedExpectation.fulfill() },
+                receiveValue: { cachedResult = $0 }
+            )
+            .store(in: &subscriptions)
+
+        testee.getCourses(ignoreCache: true)
+            .sink(
+                receiveCompletion: { _ in freshExpectation.fulfill() },
+                receiveValue: { freshResult = $0 }
+            )
+            .store(in: &subscriptions)
+
+        mocks.active.resume()
+        mocks.completed.resume()
+        mocks.invited.resume()
+
+        wait(
+            for: [
+                firstFetchExpectation,
+                cachedExpectation,
+                secondFetchExpectation,
+                freshExpectation
+            ],
+            timeout: 5
+        )
+
+        XCTAssertEqual(activeCallCount, 2)
+        XCTAssertEqual(cachedResult?.allCourses.count, 2)
+        XCTAssertEqual(freshResult?.allCourses.count, 2)
+    }
+
+    func testCachedRequestDuringFresh_receivesFreshData() {
+        let useCaseCallExpectation = expectation(description: "UseCase invoked exactly once")
+        useCaseCallExpectation.expectedFulfillmentCount = 1
+        useCaseCallExpectation.assertForOverFulfill = true
+
+        let mocks = mockCourseRequests(
+            active: [
+                APICourse.make(id: "1", name: "Course 1"),
+                APICourse.make(id: "2", name: "Course 2")
+            ],
+            onActiveCalled: {
+                useCaseCallExpectation.fulfill()
+            }
+        )
+        mocks.active.suspend()
+        mocks.completed.suspend()
+        mocks.invited.suspend()
+
+        let freshExpectation = expectation(description: "Fresh request completes")
+        let cachedExpectation = expectation(description: "Cached request completes")
+
+        var freshResult: CoursesResult?
+        var cachedResult: CoursesResult?
+
+        testee.getCourses(ignoreCache: true)
+            .sink(
+                receiveCompletion: { _ in freshExpectation.fulfill() },
+                receiveValue: { freshResult = $0 }
+            )
+            .store(in: &subscriptions)
+
+        testee.getCourses(ignoreCache: false)
+            .sink(
+                receiveCompletion: { _ in cachedExpectation.fulfill() },
+                receiveValue: { cachedResult = $0 }
+            )
+            .store(in: &subscriptions)
+
+        mocks.active.resume()
+        mocks.completed.resume()
+        mocks.invited.resume()
+
+        wait(
+            for: [
+                useCaseCallExpectation,
+                freshExpectation,
+                cachedExpectation
+            ],
+            timeout: 5
+        )
+
+        XCTAssertEqual(freshResult?.allCourses.count, 2)
+        XCTAssertEqual(cachedResult?.allCourses.count, 2)
+        XCTAssertEqual(freshResult?.allCourses.first?.id, cachedResult?.allCourses.first?.id)
+    }
+
+    func testError_broadcastsToAllPendingRequests() {
+        let testError = NSError(domain: "test", code: 1, userInfo: nil)
+        let mocks = mockCourseRequests(error: testError)
+        mocks.active.suspend()
+
+        let expectation1 = expectation(description: "First request receives error")
+        let expectation2 = expectation(description: "Second request receives error")
+        let expectation3 = expectation(description: "Third request receives error")
+
+        var error1: Error?
+        var error2: Error?
+        var error3: Error?
+
+        testee.getCourses(ignoreCache: false)
+            .sink(
+                receiveCompletion: { completion in
+                    if case .failure(let error) = completion {
+                        error1 = error
+                    }
+                    expectation1.fulfill()
+                },
+                receiveValue: { _ in }
+            )
+            .store(in: &subscriptions)
+
+        testee.getCourses(ignoreCache: true)
+            .sink(
+                receiveCompletion: { completion in
+                    if case .failure(let error) = completion {
+                        error2 = error
+                    }
+                    expectation2.fulfill()
+                },
+                receiveValue: { _ in }
+            )
+            .store(in: &subscriptions)
+
+        testee.getCourses(ignoreCache: false)
+            .sink(
+                receiveCompletion: { completion in
+                    if case .failure(let error) = completion {
+                        error3 = error
+                    }
+                    expectation3.fulfill()
+                },
+                receiveValue: { _ in }
+            )
+            .store(in: &subscriptions)
+
+        mocks.active.resume()
+
+        wait(
+            for: [
+                expectation1,
+                expectation2,
+                expectation3
+            ],
+            timeout: 5
+        )
+
+        XCTAssertNotNil(error1)
+        XCTAssertNotNil(error2)
+        XCTAssertNotNil(error3)
     }
 
     // MARK: - Helpers
