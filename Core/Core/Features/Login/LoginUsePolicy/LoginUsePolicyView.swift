@@ -67,7 +67,7 @@ struct LoginUsePolicyView: View {
             }, label: {
                 Text("Cancel", bundle: .core)
                     .font(.regular16)
-                    .foregroundColor(.textLightest)
+                    .toolbarItemForegroundStyle(.textLightest)
             }),
             trailing: Button(action: {
                 viewModel.submitAcceptance {
@@ -76,7 +76,7 @@ struct LoginUsePolicyView: View {
             }, label: {
                 Text("Submit", bundle: .core)
                     .font(.semibold16)
-                    .foregroundColor(.textLightest)
+                    .toolbarItemForegroundStyle(.textLightest)
                     .opacity(viewModel.isAccepted ? 1 : 0.4)
             }).disabled(!viewModel.isAccepted)
         )
