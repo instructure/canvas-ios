@@ -17,9 +17,8 @@
 //
 
 import Foundation
-import CoreData
+@preconcurrency import CoreData
 
-@preconcurrency
 public final class AsyncFetchedResults<ResultType: NSFetchRequestResult> {
     private let request: NSFetchRequest<ResultType>
     private let context: NSManagedObjectContext
@@ -33,9 +32,7 @@ public final class AsyncFetchedResults<ResultType: NSFetchRequestResult> {
     }
 
     public func fetch() async throws -> [ResultType] {
-        try await context.perform {
-            try self.context.fetch(self.request)
-        }
+        try await context.fetch(request)
     }
 
     public func stream() -> AsyncThrowingStream<[ResultType], Error> {
@@ -82,7 +79,7 @@ private final class FetchedResultsObserver<ResultType: NSFetchRequestResult>: NS
                 try self.controller?.performFetch()
                 self.sendElement()
             } catch {
-                continuation.finish(throwing: NSError.instructureError("Error while reading from Core Data"))
+                continuation.finish(throwing: error)
             }
         }
     }
@@ -104,6 +101,14 @@ private final class FetchedResultsObserver<ResultType: NSFetchRequestResult>: NS
             self?.controller?.delegate = nil
             self?.controller = nil
             self?.continuation.finish()
+        }
+    }
+}
+
+extension NSManagedObjectContext {
+    public func fetch<R: NSFetchRequestResult>(_ request: NSFetchRequest<R>) async throws -> [R] {
+        try await perform {
+            try self.fetch(request)
         }
     }
 }
