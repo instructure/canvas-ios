@@ -24,7 +24,7 @@ public struct WebView: UIViewRepresentable {
     private var handleLink: ((URL) -> Bool)?
     private var handleSize: ((CGFloat) -> Void)?
     private var handleNavigationFinished: (() -> Void)?
-	private var handleProvisionalNavigationStarted: ((CoreWebView, WKNavigation?) -> Void)?
+    private var handleProvisionalNavigationStarted: ((CoreWebView, WKNavigation?) -> Void)?
     private let source: Source?
     private var canToggleTheme: Bool = false
     private var reloadTrigger: AnyPublisher<Void, Never>?
@@ -135,6 +135,7 @@ public struct WebView: UIViewRepresentable {
         let webView = CoreWebView(features: features, configuration: configuration)
         let coordinator = context.coordinator
 
+        webView.setupStudioFeatures(context: featuresContext)
         webView.resetEnvironment(env) { [weak coordinator] in
             coordinator?.setWebViewAsReadyForLoading()
         }

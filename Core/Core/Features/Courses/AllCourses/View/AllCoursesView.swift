@@ -30,7 +30,7 @@ public struct AllCoursesView: View, ScreenViewTrackable {
 
     public var body: some View {
         GeometryReader { geometry in
-            RefreshableScrollView {
+            ScrollView {
                 VStack(spacing: 0) {
                     let width = geometry.size.width
                     let height = geometry.size.height
@@ -45,13 +45,11 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                         errorView(width: width, height: height)
                     }
                 }
-            } refreshAction: { endRefreshing in
-                viewModel.refresh(completion: endRefreshing)
             }
+            .refreshable(action: viewModel.refresh)
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
-        .navigationBarTitleView(String(localized: "All Courses", bundle: .core))
-        .navigationBarStyle(.global)
+        .navigationTitle(String(localized: "All Courses", bundle: .core), style: .global)
     }
 
     @ViewBuilder
@@ -65,8 +63,10 @@ public struct AllCoursesView: View, ScreenViewTrackable {
 
     @ViewBuilder
     func sectionsView(sections: AllCoursesSections) -> some View {
+        let pinnedViews: PinnedScrollableViews = if #available(iOS 26, *) { .init() } else { .sectionHeaders }
+
         ScrollViewReader { scrollView in
-            LazyVStack(alignment: sections.isEmpty ? .center : .leading, spacing: 0, pinnedViews: .sectionHeaders) {
+            LazyVStack(alignment: sections.isEmpty ? .center : .leading, spacing: 0, pinnedViews: pinnedViews) {
                 let binding = Binding {
                     viewModel.filter.value
                 } set: { newValue, _ in
@@ -92,7 +92,7 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                 }
             }
             .frame(maxWidth: .infinity)
-            .onFirstAppear { scrollView.scrollTo(0, anchor: .top) }
+            .onFirstAppear { if #unavailable(iOS 26) { scrollView.scrollTo(0, anchor: .top) }}
         }
     }
 
@@ -180,8 +180,11 @@ public struct AllCoursesView: View, ScreenViewTrackable {
             ForEach(groups, id: \.id) { group in
                 if group.id != groups.first?.id { Divider() }
                 AllCoursesCellView(
-                    viewModel: AllCoursesAssembly.makeCourseCellViewModel(with: .group(group), env: .shared)
+                    viewModel: AllCoursesAssembly.makeCourseCellViewModel(with: .group(group), env: .shared),
+                    identifierGroup: "AllCourses.GroupItem"
                 )
+                .accessibilityElement(children: .contain)
+                .identifier("AllCourses.GroupItem.Id.\(group.id)")
             }
         }
     }
@@ -193,8 +196,11 @@ public struct AllCoursesView: View, ScreenViewTrackable {
                 ForEach(courses, id: \.courseId) { course in
                     if course.courseId != courses.first?.courseId { Divider() }
                     AllCoursesCellView(
-                        viewModel: AllCoursesAssembly.makeCourseCellViewModel(with: .course(course), env: .shared)
+                        viewModel: AllCoursesAssembly.makeCourseCellViewModel(with: .course(course), env: .shared),
+                        identifierGroup: "AllCourses.CourseItem"
                     )
+                    .accessibilityElement(children: .contain)
+                    .identifier("AllCourses.CourseItem.Id.\(course.courseId)")
                 }
             }
         }

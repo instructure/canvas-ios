@@ -32,6 +32,43 @@ enum ArcID: Equatable {
 }
 
 class SubmissionButtonPresenter: NSObject {
+
+    enum ButtonKind: String {
+        case viewDiscussion
+        case openTheQuiz
+        case launchExternalTool
+        case resumeQuiz
+        case retakeQuiz
+        case takeQuiz
+        case resubmitAssignment
+        case submitAssignment
+
+        var title: String {
+            switch self {
+            case .viewDiscussion:
+                return String(localized: "View Discussion", bundle: .student)
+            case .openTheQuiz:
+                return String(localized: "Open the Quiz", bundle: .student)
+            case .launchExternalTool:
+                return String(localized: "Launch External Tool", bundle: .student)
+            case .resumeQuiz:
+                return String(localized: "Resume Quiz", bundle: .student)
+            case .retakeQuiz:
+                return String(localized: "Retake Quiz", bundle: .student)
+            case .takeQuiz:
+                return String(localized: "Take Quiz", bundle: .student)
+            case .resubmitAssignment:
+                return String(localized: "Resubmit Assignment", bundle: .student)
+            case .submitAssignment:
+                return String(localized: "Submit Assignment", bundle: .student)
+            }
+        }
+
+        var identifier: String {
+            return rawValue
+        }
+    }
+
     var assignment: Assignment?
     let assignmentID: String
     let env: AppEnvironment
@@ -59,15 +96,15 @@ class SubmissionButtonPresenter: NSObject {
         env.router.show(controller, from: view, options: .modal(), completion: completion)
     }
 
-    func buttonText(course: Course, assignment: Assignment, quiz: Quiz?, onlineUpload: OnlineUploadState?) -> String? {
+    func buttonKind(course: Course, assignment: Assignment, quiz: Quiz?, onlineUpload: OnlineUploadState?) -> ButtonKind? {
         if assignment.isDiscussion {
-            return String(localized: "View Discussion", bundle: .student)
+            return .viewDiscussion
         }
 
         if assignment.isQuizLTI {
-            return String(localized: "Open the Quiz", bundle: .student)
+            return .openTheQuiz
         } else if assignment.isLTIAssignment {
-            return String(localized: "Launch External Tool", bundle: .student)
+            return .launchExternalTool
         }
 
         if arcID == .pending {
@@ -90,20 +127,20 @@ class SubmissionButtonPresenter: NSObject {
         guard canSubmit else { return nil }
 
         if quiz?.submission?.canResume == true {
-            return String(localized: "Resume Quiz", bundle: .student)
+            return .resumeQuiz
         }
         if quiz?.submission?.attemptsLeft == 0 { return nil }
 
         let isSubmitted = assignment.submission?.status.isSubmitted ?? false
         if assignment.quizID != nil {
             return isSubmitted
-                ? String(localized: "Retake Quiz", bundle: .student)
-                : String(localized: "Take Quiz", bundle: .student)
+                ? .retakeQuiz
+                : .takeQuiz
         }
 
         return isSubmitted
-            ? String(localized: "Resubmit Assignment", bundle: .student)
-            : String(localized: "Submit Assignment", bundle: .student)
+            ? .resubmitAssignment
+            : .submitAssignment
     }
 
     func submitAssignment(_ assignment: Assignment, button: UIView) {
@@ -243,7 +280,10 @@ extension SubmissionButtonPresenter: FilePickerControllerDelegate {
         if assignment.allowedExtensions.isEmpty == true || allowedUTIs.contains(where: { $0.isImage || $0.isVideo }) {
             filePicker.sources.append(contentsOf: [.library, .camera])
             if !isMediaRecording { filePicker.sources.append(.documentScan) }
+        } else if allowedUTIs.contains(where: { $0.isPDF }) {
+            filePicker.sources.append(.documentScan)
         }
+
         if isMediaRecording { filePicker.sources.append(.audio) }
         filePicker.utis = allowedUTIs
         filePicker.mediaTypes = mediaTypes

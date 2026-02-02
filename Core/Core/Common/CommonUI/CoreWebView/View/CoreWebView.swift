@@ -94,7 +94,7 @@ open class CoreWebView: WKWebView {
     ) {
 
         configuration.applyDefaultSettings()
-        let features = features + [.dynamicFontSize]
+        let features = features + [.dynamicFontSize, .canvasLTIPostMessageHandler]
         features.forEach { $0.apply(on: configuration) }
 
         super.init(frame: .zero, configuration: configuration)
@@ -108,24 +108,23 @@ open class CoreWebView: WKWebView {
     /// each Studio video `iframe` when `rce_studio_embed_improvements` feature
     /// flag is enabled for the passed context. Will turn `on` Studio Enhancements
     /// features if not enabled at initialization.
-    public func setupStudioFeatures(context: Context?, env: AppEnvironment) {
+    public func setupStudioFeatures(context: Context?, env: AppEnvironment? = nil) {
+        let environment = env ?? self.env
+        self.env = environment
+
         guard let context else {
-            studioFeaturesInteractor?.resetFeatureFlagStore(context: nil, env: env)
+            studioFeaturesInteractor?.reset(context: nil, env: environment)
             return
         }
 
-        studioFeaturesInteractor = studioFeaturesInteractor ?? CoreWebViewStudioFeaturesInteractor(webView: self)
-        studioFeaturesInteractor?.resetFeatureFlagStore(context: context, env: env)
+        studioFeaturesInteractor = studioFeaturesInteractor
+            ?? CoreWebViewStudioFeaturesInteractor(webView: self)
+        studioFeaturesInteractor?.reset(context: context, env: environment)
     }
 
     deinit {
         configuration.userContentController.removeAllScriptMessageHandlers()
         configuration.userContentController.removeAllUserScripts()
-    }
-
-    open override func reload() -> WKNavigation? {
-        studioFeaturesInteractor?.refresh()
-        return super.reload()
     }
 
     /**
@@ -193,7 +192,7 @@ open class CoreWebView: WKWebView {
         isInspectable = true
 
         if studioEnhancementsEnabled {
-            studioFeaturesInteractor = CoreWebViewStudioFeaturesInteractor(webView: self)
+            studioFeaturesInteractor = CoreWebViewStudioFeaturesInteractor(webView: self, env: env)
         }
 
         addScript(js)
@@ -226,6 +225,10 @@ open class CoreWebView: WKWebView {
                 isExclusive: isPresentingModal,
                 viewController: self.viewController
             )
+        }
+
+        handle(CoreWebViewStudioFeaturesInteractor.fullWindowLaunchEventName) { [weak self] message in
+            self?.studioFeaturesInteractor?.handleFullWindowLaunchMessage(message)
         }
 
         registerForTraitChanges()
@@ -344,6 +347,9 @@ open class CoreWebView: WKWebView {
             }
         }
 
+        // Line height is increased by -webkit-text-size-adjust in DynamicFontSize.
+        let lineHeightRow = isDynamicFontScalingEnabled ? "" : "line-height: \(style.lineHeight.toPoints(for: uiFont))px;"
+
         return """
             \(fontCSS)
             html {
@@ -356,7 +362,7 @@ open class CoreWebView: WKWebView {
             }
             p {
                 font-size: \(uiFont.pointSize)px;
-                line-height: \(style.lineHeight.toPoints(for: uiFont))px;
+                \(lineHeightRow)
             }
             a {
                 color: \(link.hexString);
@@ -495,6 +501,10 @@ open class CoreWebView: WKWebView {
             )
             .store(in: &subscriptions)
     }
+
+    func isSourceFrameSameAsTarget(_ action: WKNavigationAction) -> Bool {
+        return action.sourceFrame == action.targetFrame
+    }
 }
 
 // MARK: - WKNavigationDelegate
@@ -526,7 +536,7 @@ extension CoreWebView: WKNavigationDelegate {
 
         // Scroll to fragment if this is a #fragment link click on the same site
         if action.navigationType == .linkActivated,
-           action.sourceFrame == action.targetFrame,
+           isSourceFrameSameAsTarget(action),
            let url = action.request.url, let fragment = url.fragment,
            // self.url isn't set when using loadHTMLString, so we check the baseURL that is set when calling that method
            let lhsString: String.SubSequence = (self.url ?? baseURL)?.absoluteString.split(separator: "#").first,
@@ -534,6 +544,11 @@ extension CoreWebView: WKNavigationDelegate {
            lhsString == rhsString {
             scrollIntoView(fragment: fragment)
             return decisionHandler(.allow) // let web view scroll to link too, if necessary
+        }
+
+        // Handle Studio Immersive Player links (media_attachments/:id/immersive_view)
+        if let isHandled = studioFeaturesInteractor?.handleNavigationAction(action), isHandled {
+            return decisionHandler(.cancel)
         }
 
         // Handle "Launch External Tool" button OR 
@@ -572,22 +587,15 @@ extension CoreWebView: WKNavigationDelegate {
             return decisionHandler(.cancel)
         }
 
-        // Handle Studio Immersive Player links (media_attachments/:id/immersive_view)
-        if let immersiveURL = studioFeaturesInteractor?.urlForStudioImmersiveView(of: action),
-           let controller = linkDelegate?.routeLinksFrom {
-            controller.pauseWebViewPlayback()
-            env.router.show(
-                StudioViewController(url: immersiveURL),
-                from: controller,
-                options: .modal(.overFullScreen)
-            )
-            return decisionHandler(.cancel)
-        }
-
         // Forward decision to delegate
         if action.navigationType == .linkActivated, let url = action.request.url,
            linkDelegate?.handleLink(url) == true {
             return decisionHandler(.cancel)
+        }
+
+        if studioFeaturesInteractor?.isImmersiveViewURLHandledDifferently(ofNavAction: action) == true {
+            decisionHandler(.cancel)
+            return
         }
 
         decisionHandler(.allow)
@@ -605,7 +613,7 @@ extension CoreWebView: WKNavigationDelegate {
         }
 
         features.forEach { $0.webView(webView, didFinish: navigation) }
-        studioFeaturesInteractor?.scanVideoFrames()
+        studioFeaturesInteractor?.scanVideoFramesForTitles()
     }
 
     public func webView(

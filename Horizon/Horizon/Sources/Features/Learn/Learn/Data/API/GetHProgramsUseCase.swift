@@ -28,7 +28,7 @@ final public class GetHProgramsUseCase: APIUseCase {
         return GetHProgramsRequest()
     }
 
-    init(journey: DomainServiceProtocol = DomainService(.journey)) {
+    init(journey: DomainServiceProtocol = DomainService()) {
         self.journey = journey
 
     }

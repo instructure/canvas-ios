@@ -24,6 +24,9 @@ class OfflineBannerView: UIView {
     @IBOutlet private unowned var offlineContainer: UIView!
     @IBOutlet private unowned var separatorHeight: NSLayoutConstraint!
     @IBOutlet private unowned var offlineIconCenter: NSLayoutConstraint!
+    @IBOutlet weak var offlineIcon: UIImageView!
+    @IBOutlet weak var offlineLabel: DynamicLabel!
+    @IBOutlet weak var separator: UIView!
     private var viewModel: OfflineBannerViewModel! {
         didSet {
             setup()
@@ -38,14 +41,30 @@ class OfflineBannerView: UIView {
     }
 
     public func embed(into viewController: UIViewController) {
+        if #available(iOS 26, *) {
+            separator.isHidden = true
+            offlineContainer.backgroundColor = .backgroundDark
+            offlineIcon.tintColor = .textLightest
+            offlineLabel.textColor = .textLightest
+        } else {
+            offlineContainer.backgroundColor = .backgroundLightest
+            offlineIcon.tintColor = .textDarkest
+            offlineLabel.textColor = .textDarkest
+        }
+
         viewController.view.addSubview(self)
         translatesAutoresizingMaskIntoConstraints = false
         leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor).isActive = true
         trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor).isActive = true
         topAnchor.constraint(equalTo: viewController.view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-        heightAnchor.constraint(equalToConstant: 32).isActive = true
-        offlineIconCenter.constant = 1 / UIScreen.main.scale
-        separatorHeight.constant = 1 / UIScreen.main.scale
+
+        if #available(iOS 26, *) {
+            bottomAnchor.constraint(equalTo: viewController.view.bottomAnchor).isActive = true
+        } else {
+            heightAnchor.constraint(equalToConstant: 32).isActive = true
+            separatorHeight.constant = 1 / UIScreen.main.scale
+            offlineIconCenter.constant = 1 / UIScreen.main.scale
+        }
     }
 
     private func setup() {

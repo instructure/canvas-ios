@@ -51,7 +51,7 @@ public class EmbeddedWebPageContainerViewModel: ObservableObject {
 
     private let webPageModel: EmbeddedWebPageViewModel
     private let isMasqueradingUser: Bool
-    private let context: Context
+    let context: Context
     private let env: AppEnvironment
     private lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.update()

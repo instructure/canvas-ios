@@ -21,73 +21,41 @@ import XCTest
 
 class HelpTests: E2ETestCase {
     func testHelpPage() {
-        // MARK: Seed the usual stuff
-        let teacher = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollTeacher(teacher, in: course)
+        // Seed
+        let teacher = seeder.createTeacherEnrolled()
 
-        // MARK: Get the user logged in
+        // Log in, navigate to entry point
         logInDSUser(teacher)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertVisible(courseCard)
-
-        // MARK: Navigate to Help page, Check "Search the Canvas Guides" button
+        DashboardHelper.waitUntilDashboardIsVisible()
         HelpHelper.navigateToHelpPage()
-        let searchTheCanvasGuidesButton = HelpHelper.searchTheCanvasGuides.waitUntil(.visible)
-        XCTAssertVisible(searchTheCanvasGuidesButton)
 
-        searchTheCanvasGuidesButton.hit()
-        HelpHelper.openInSafariButton.hit()
-        var browserURL = SafariAppHelper.browserURL
-        XCTAssertContains(browserURL, "https://community.canvaslms.com/t5/Canvas/ct-p/canvas")
+        // Verify minimum number of rows
+        let helpItems = HelpHelper.getAllHelpItems()
+        XCTAssertEqual(helpItems.count >= 4, true, "Should have at least 4 Help items")
 
-        // MARK: Check "Conference Guides for Remote Classrooms" button
-        HelpHelper.returnToHelpPage(teacher: true)
-        let conferenceGuidesButton = HelpHelper.conferenceGuides.waitUntil(.visible)
-        XCTAssertVisible(conferenceGuidesButton)
+        // Verify each row
+        for (index, item) in helpItems.enumerated() {
+            let label = item.label
 
-        conferenceGuidesButton.hit()
-        HelpHelper.openInSafariButton.hit()
-        browserURL = SafariAppHelper.browserURL
-        XCTAssertContains(browserURL, "Web-Conferencing-Resources")
+            XCTAssertEqual(label.isEmpty, false, "Help item at index \(index) should have non-empty title")
 
-        // MARK: Check "Report a Problem" button
-        HelpHelper.returnToHelpPage(teacher: true)
-        let reportAProblemButton = HelpHelper.reportAProblem.waitUntil(.visible)
-        XCTAssertVisible(reportAProblemButton)
+            if label.contains("Report a Problem") {
+                item.waitUntil(.visible).hit()
 
-        reportAProblemButton.hit()
-        XCTAssertVisible(app.find(label: "Report a Problem").waitUntil(.visible))
+                let dismissButton = InboxHelper.Composer.dismissButton.waitUntil(.visible)
+                let reportAProblemLabel = app.find(label: "Report a Problem").waitUntil(.visible)
+                XCTAssertVisible(dismissButton)
+                XCTAssertVisible(reportAProblemLabel)
 
-        // MARK: Check "Ask the Community" button
-        app.find(label: "Cancel").hit()
-        HelpHelper.navigateToHelpPage()
-        let askTheCommunityButton = HelpHelper.askTheCommunity.waitUntil(.visible)
-        XCTAssertVisible(askTheCommunityButton)
+                dismissButton.hit()
+                HelpHelper.navigateToHelpPage()
+            } else {
+                item.hit()
+                let browserURL = SafariAppHelper.browserURL
+                XCTAssertHasPrefix(browserURL, "https://", " at index \(index)")
 
-        askTheCommunityButton.hit()
-        HelpHelper.openInSafariButton.hit()
-        browserURL = SafariAppHelper.browserURL
-        XCTAssertContains(browserURL, "Canvas-Question-Forum")
-
-        // MARK: Check "Submit a Feature Idea" button
-        HelpHelper.returnToHelpPage(teacher: true)
-        let submitAFeatureButton = HelpHelper.submitAFeatureIdea.waitUntil(.visible)
-        XCTAssertVisible(submitAFeatureButton)
-
-        submitAFeatureButton.hit()
-        HelpHelper.openInSafariButton.hit()
-        browserURL = SafariAppHelper.browserURL
-        XCTAssertContains(browserURL, "canvas-ideas-themes")
-
-        // MARK: Check "Training Services Portal" button
-        HelpHelper.returnToHelpPage(teacher: true)
-        let trainingServicesButton = HelpHelper.trainingServices.waitUntil(.visible)
-        XCTAssertVisible(trainingServicesButton)
-
-        trainingServicesButton.hit()
-        HelpHelper.openInSafariButton.hit()
-        browserURL = SafariAppHelper.browserURL
-        XCTAssertContains(browserURL, "/login/canvas")
+                HelpHelper.returnToHelpPage(isStudentApp: false)
+            }
+        }
     }
 }

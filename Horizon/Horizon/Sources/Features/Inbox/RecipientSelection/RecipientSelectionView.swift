@@ -23,6 +23,7 @@ struct RecipientSelectionView: View {
 
     var disabled: Bool
     let placeholder: String
+    @State private var searchLoading: Bool = false
     @Bindable var viewModel: RecipientSelectionViewModel
 
     init(
@@ -37,17 +38,26 @@ struct RecipientSelectionView: View {
 
     var body: some View {
         HorizonUI.MultiSelect(
-            selections: $viewModel.searchByPersonSelections,
             focused: Binding<Bool>(
                 get: { viewModel.isFocusedSubject.value },
                 set: onFocused
             ),
+            selections: viewModel.searchByPersonSelections,
             label: nil,
             textInput: $viewModel.searchString,
             options: viewModel.personOptions,
-            loading: $viewModel.searchLoading,
+            loading: $searchLoading,
             disabled: disabled,
             placeholder: placeholder
+        ) { selections in
+            viewModel.update(selections: selections)
+        }
+        .accessibilityLabel(viewModel.accessibilityDescription.isEmpty ? placeholder : viewModel.accessibilityDescription)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityHint(String(format: String(localized: "Double tap to filter a recipients. %@"),
+                                  viewModel.isFocusedSubject.value
+                                  ? String(localized: "Expanded")
+                                  : String(localized: "Collapsed"))
         )
     }
 

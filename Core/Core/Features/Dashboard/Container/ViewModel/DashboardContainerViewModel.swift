@@ -43,7 +43,7 @@ public class DashboardContainerViewModel: ObservableObject {
                 let interactor = DashboardSettingsInteractorLive(environment: environment, defaults: environment.userDefaults)
                 let viewModel = DashboardSettingsViewModel(interactor: interactor)
                 let dashboard = CoreHostingController(DashboardSettingsView(viewModel: viewModel))
-                dashboard.addDoneButton(side: .left)
+                dashboard.addDoneButton(side: .right)
                 return (CoreNavigationController(rootViewController: dashboard), viewModel.popoverSize)
             }
             .subscribe(showSettings)
@@ -70,18 +70,15 @@ public class DashboardContainerViewModel: ObservableObject {
             .assign(to: &$groups)
 
         NotificationCenter.default.publisher(for: .favoritesDidChange)
-            .sink { [weak self] _ in
-                self?.refreshGroups()
+            .flatMap { [weak self] _ in
+                self?.refreshGroups() ?? Publishers.typedJust()
             }
+            .sink()
             .store(in: &subscriptions)
     }
 
-    public func refreshGroups(onComplete: (() -> Void)? = nil) {
-        groupListStore
-            .forceRefresh()
-            .sink { _ in
-                onComplete?()
-            }
-            .store(in: &subscriptions)
+    public func refreshGroups() -> AnyPublisher<Void, Never> {
+        groupListStore.forceRefresh()
+            .eraseToAnyPublisher()
     }
 }

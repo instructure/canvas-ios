@@ -25,12 +25,12 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
     @IBOutlet weak var dueLabel: UILabel!
     @IBOutlet weak var instructionsHeadingLabel: UILabel!
     @IBOutlet weak var instructionsContainer: UIView!
-    let instructionsWebView = CoreWebView()
+    let instructionsWebView = CoreWebView(features: [])
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var questionsLabel: UILabel!
     @IBOutlet weak var questionsValueLabel: UILabel!
-    let refreshControl = CircleRefreshControl()
+    let refreshControl = UIRefreshControl()
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var settingsHeadingLabel: UILabel!
     @IBOutlet weak var statusIconView: UIImageView!
@@ -77,7 +77,13 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: String(localized: "Quiz Details", bundle: .core))
+
+        if #available(iOS 26, *) {
+            navigationItem.titleView = titleSubtitleView
+            titleSubtitleView.title = String(localized: "Quiz Details", bundle: .core)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Quiz Details", bundle: .core))
+        }
 
         attemptsLabel.text = String(localized: "Allowed Attempts:", bundle: .core)
         dueHeadingLabel.text = String(localized: "Due", bundle: .core)
@@ -97,7 +103,6 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
         instructionsWebView.setupStudioFeatures(context: .course(courseID), env: env)
 
         loadingView.color = nil
-        refreshControl.color = nil
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         scrollView.refreshControl = refreshControl
         scrollView.isHidden = true
@@ -119,7 +124,25 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.useContextColor(color)
+        if #unavailable(iOS 26) {
+            navigationController?.navigationBar.useContextColor(color)
+        }
+
+        if #available(iOS 26, *) {
+            takeButton.layer.cornerRadius = 25
+
+            NSLayoutConstraint.activate([
+                takeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+                takeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+                takeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                takeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                takeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                takeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            ])
+        }
     }
 
     @objc func refresh() {
@@ -132,7 +155,11 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
 
     func updateNavBar() {
         guard let course = courses.first, !colors.pending else { return }
-        updateNavBar(subtitle: course.name, color: course.color)
+        if #available(iOS 26, *) {
+            titleSubtitleView.subtitle = course.name
+        } else {
+            updateNavBar(subtitle: course.name, color: course.color)
+        }
         view.tintColor = color
     }
 

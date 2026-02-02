@@ -22,6 +22,7 @@ import Foundation
 public protocol ComposeMessageInteractor {
     // MARK: - Outputs
     var attachments: CurrentValueSubject<[File], Never> { get }
+    var didUploadFiles: PassthroughSubject<Result<Void, Error>, Never> { get }
 
     // MARK: - Inputs
     func createConversation(parameters: MessageParameters) -> Future<URLResponse?, Error>

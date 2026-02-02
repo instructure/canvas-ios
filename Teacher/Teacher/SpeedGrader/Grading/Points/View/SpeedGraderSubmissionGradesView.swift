@@ -28,13 +28,7 @@ struct SpeedGraderSubmissionGradesView: View {
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
-
-    // slider
-    @State private var gradeSliderViewModel = GradeSliderViewModel()
-    @State var showTooltip = false
-    @State var sliderCleared = false
-    @State var sliderExcused = false
-    @State var sliderTimer: Timer?
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     @ObservedObject var gradeViewModel: SpeedGraderSubmissionGradesViewModel
     @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
@@ -48,6 +42,7 @@ struct SpeedGraderSubmissionGradesView: View {
         case rubric(Int)
     }
     @FocusState private var focusedInput: FocusedInput?
+    @State private var isCommentsExpanded: Bool = false
 
     var body: some View {
         ScrollViewReader { scrollViewProxy in
@@ -257,7 +252,7 @@ struct SpeedGraderSubmissionGradesView: View {
     }
 
     private var noGradeAndExcuseButtons: some View {
-        HStack(spacing: 16) {
+        let buttons = Group {
             let noGradeTitle = gradeViewModel.gradeState.gradingType == .not_graded
                 ? String(localized: "Reset Status", bundle: .teacher)
                 : String(localized: "No Grade", bundle: .teacher)
@@ -271,132 +266,30 @@ struct SpeedGraderSubmissionGradesView: View {
             }
             .disabled(gradeViewModel.gradeState.isExcused)
         }
+
+        return ViewThatFits {
+            HStack(spacing: 16) { buttons }
+            VStack(spacing: 16) { buttons }
+                .paddingStyle(.top, .standard)
+        }
         .paddingStyle(.horizontal, .standard)
     }
 
-    // MARK: Slider
-
     @ViewBuilder
     var slider: some View {
-        let score = gradeViewModel.sliderValue
-        let possible = assignment.pointsPossible ?? 0
         let isPercent = assignment.gradingType == .percent
-        let tooltipText =
-            sliderCleared ? Text("No Grade", bundle: .teacher) :
-            sliderExcused ? Text("Excused", bundle: .teacher) :
-            isPercent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
-            Text(gradeSliderViewModel.formatScore(score, maxPoints: possible))
-        let a11yValue = (sliderCleared || sliderExcused || isPercent) ? tooltipText : Text(String.format(points: score))
-
-        let maxScore = isPercent ? 100 : possible
-
-        HStack(spacing: 16) {
-            sliderButton(score: 0, isPercent: isPercent)
-            ZStack {
-                // disables page swipe around the slider
-                Rectangle()
-                    .contentShape(Rectangle())
-                    .foregroundColor(.clear)
-                    .gesture(DragGesture(minimumDistance: 0).onChanged { _ in })
-                GradeSlider(value: Binding(get: { score }, set: sliderChangedValue),
-                            maxValue: assignment.pointsPossible ?? 0,
-                            showTooltip: showTooltip,
-                            tooltipText: tooltipText,
-                            a11yValue: a11yValue,
-                            score: score,
-                            possible: possible,
-                            onEditingChanged: sliderChangedState,
-                            viewModel: gradeSliderViewModel)
-            }
-            sliderButton(score: maxScore, isPercent: isPercent)
-        }
-        .paddingStyle(set: .standardCell)
-    }
-
-    private func sliderButton(score: Double, isPercent: Bool) -> some View {
-        Button(
-            action: { updateGrade(score, isPercent: isPercent) },
-            label: {
-                let label = {
-                    if isPercent {
-                        return Text(verbatim: GradeFormatter.percentFormatter.string(from: NSNumber(value: score/100)) ?? "\(score)%")
-                    } else {
-                        return Text(score)
-                    }
-                }()
-
-                label
-                    .foregroundStyle(.tint)
-                    .font(.semibold14)
-                    .frame(height: 30)
-                    .accessibilityLabel(
-                        isPercent
-                            ? GradeFormatter.percentFormatter.string(from: NSNumber(value: score/100)) ?? "\(score)%"
-                            : String.format(points: score)
-                    )
+        GradeSliderView(
+            value: $gradeViewModel.sliderValue,
+            pointsPossible: assignment.pointsPossible ?? 0,
+            isPercent: isPercent,
+            onEndEditing: { value in
+                if isPercent {
+                    gradeViewModel.setPercentGrade(value)
+                } else {
+                    gradeViewModel.setPointsGrade(value)
+                }
             }
         )
-    }
-
-    func updateGrade(
-        excused: Bool? = nil,
-        noMark: Bool? = false,
-        _ grade: Double? = nil,
-        isPercent: Bool = false
-    ) {
-        if excused == true {
-            gradeViewModel.excuseStudent()
-        } else if noMark == true {
-            gradeViewModel.removeGrade()
-        } else if let grade {
-            if isPercent {
-                gradeViewModel.setPercentGrade(grade)
-            } else {
-                gradeViewModel.setPointsGrade(grade)
-            }
-        }
-    }
-
-    func sliderChangedState(_ editing: Bool) {
-        withAnimation(.default) { showTooltip = editing }
-        if editing == false {
-            let value = gradeViewModel.sliderValue
-            sliderTimer?.invalidate()
-            sliderTimer = nil
-            if sliderCleared {
-                gradeViewModel.removeGrade()
-            } else if sliderExcused {
-                updateGrade(excused: true, 0)
-            } else if assignment.gradingType == .percent {
-                let percentValue = round(value / max(assignment.pointsPossible ?? 0, 0.01) * 100)
-                gradeViewModel.setPercentGrade(percentValue)
-            } else { // slider uses points in all other cases where visible (points, gpa, letterGrade)
-                gradeViewModel.setPointsGrade(value)
-            }
-        }
-    }
-
-    func sliderChangedValue(_ value: Double) {
-        let previous = gradeViewModel.sliderValue
-        gradeViewModel.sliderValue = value
-        guard previous != value || sliderTimer == nil else { return }
-        sliderTimer?.invalidate()
-        sliderTimer = nil
-        sliderCleared = false
-        sliderExcused = false
-        if value == 0 {
-            sliderTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                sliderCleared = true
-                sliderExcused = false
-                UISelectionFeedbackGenerator().selectionChanged()
-            }
-        } else if value == assignment.pointsPossible ?? 0 {
-            sliderTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                sliderCleared = false
-                sliderExcused = true
-                UISelectionFeedbackGenerator().selectionChanged()
-            }
-        }
     }
 
     // MARK: - Comments
@@ -449,7 +342,7 @@ struct SpeedGraderSubmissionGradesView: View {
                     itemCount: nil,
                     paddingSet: .iconCell,
                     accessoryIconSize: 24,
-                    isInitiallyExpanded: false,
+                    isExpanded: $isCommentsExpanded,
                     content: { content }
                 )
             } else {

@@ -21,8 +21,8 @@ import UIKit
 open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
     lazy var optionsButton = UIBarButtonItem(image: .moreLine, style: .plain, target: self, action: #selector(showOptions))
     @IBOutlet weak var webViewContainer: UIView!
-    public var webView = CoreWebView()
-    let refreshControl = CircleRefreshControl()
+    public var webView = CoreWebView(features: [])
+    let refreshControl = UIRefreshControl()
     public let titleSubtitleView = TitleSubtitleView.create()
 
     var app = App.student
@@ -80,7 +80,13 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
     public override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        setupTitleViewInNavbar(title: String(localized: "Page Details", bundle: .core))
+
+        if #available(iOS 26, *) {
+            navigationItem.title = String(localized: "Page Details", bundle: .core)
+        } else {
+            setupTitleViewInNavbar(title: String(localized: "Page Details", bundle: .core))
+        }
+
         webViewContainer.addSubview(webView)
         webView.pinWithThemeSwitchButton(inside: webViewContainer)
         webView.linkDelegate = self
@@ -118,7 +124,6 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
     }
 
     @objc private func refresh() {
-        webView.studioFeaturesInteractor?.refresh()
         pages.refresh(force: true) { [weak self] _ in
             self?.refreshControl.endRefreshing()
         }
@@ -134,12 +139,21 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
             let color = context.contextType == .course ? courses.first?.color : groups.first?.color,
             env.app != .parent
         else { return }
-        updateNavBar(subtitle: name, color: color)
+
+        if #available(iOS 26, *) {
+            navigationItem.subtitle = name
+        } else {
+            updateNavBar(subtitle: name, color: color)
+        }
     }
 
     private func update() {
         guard let page = page else { return }
-        setupTitleViewInNavbar(title: page.title)
+        if #available(iOS 26, *) {
+            navigationItem.title = page.title
+        } else {
+            setupTitleViewInNavbar(title: page.title)
+        }
         optionsButton.accessibilityIdentifier = "PageDetails.options"
         navigationItem.rightBarButtonItem = canEdit ? optionsButton : nil
 

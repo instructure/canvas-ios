@@ -25,4 +25,6 @@ type NotebookTextSelection = {
   range: RangeSelector;
   selectedText: string;
   textPosition: TextPositionSelector;
+  labelType?: string;
+  accessibilityPrefix?: string;
 };

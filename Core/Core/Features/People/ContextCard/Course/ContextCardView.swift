@@ -28,19 +28,39 @@ public struct ContextCardView: View {
 
     public var body: some View {
         contextCard
-            .background(Color.backgroundLightest)
-            .navigationBarTitleView(
+            .toolbar {
+                if #available(iOS 26, *) {
+                    emailButton
+                } else {
+                    legacyEmailButton
+                }
+            }
+            .navigationTitles(
                 title: model.user.first?.name ?? "",
-                subtitle: model.course.first?.name
+                subtitle: model.course.first?.name,
+                style: model.isModal ? .modal : .color(nil)
             )
-            .navigationBarItems(trailing: emailButton)
-            .navigationBarStyle(model.isModal ? .modal : .color(nil))
+            .background(Color.backgroundLightest)
             .onAppear {
                 model.viewAppeared()
             }
     }
 
-    @ViewBuilder var emailButton: some View {
+    @available(iOS, introduced: 26, message: "Legacy version exists")
+    @ViewBuilder
+    var emailButton: some View {
+        if model.permissions.first?.sendMessages == true, model.isViewingAnotherUser {
+            Button { model.openNewMessageComposer(controller: controller.value) } label: {
+                Image.emailLine
+            }
+            .accessibility(label: Text("Send message", bundle: .core))
+            .identifier("ContextCard.emailContact")
+        }
+    }
+
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    @ViewBuilder
+    var legacyEmailButton: some View {
         if model.permissions.first?.sendMessages == true, model.isViewingAnotherUser {
             Button(action: { model.openNewMessageComposer(controller: controller.value) }, label: {
                 let color = model.isModal ? Brand.shared.buttonPrimaryBackground : Brand.shared.buttonPrimaryText
@@ -85,8 +105,12 @@ public struct ContextCardView: View {
                       let apiEnrollment = apiUser.enrollments?.first(where: { $0.course_id?.rawValue == course.id}),
                       apiEnrollment.enrollment_state == EnrollmentState.invited {
                 EmptyPanda(.Sleeping, title: Text("Not enrolled", bundle: .core), message: Text("Invitation pending", bundle: .core))
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal)
             } else {
                 EmptyPanda(.Unsupported, title: Text("Something went wrong", bundle: .core), message: Text("There was an error while communicating with the server", bundle: .core))
+                    .frame(maxWidth: .infinity)
+                    .padding(.horizontal)
             }
         }
     }

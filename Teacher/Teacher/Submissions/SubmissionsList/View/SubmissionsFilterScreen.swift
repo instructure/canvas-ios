@@ -124,11 +124,11 @@ struct SubmissionsFilterScreen: View {
                 )
             }
         }
-        .navigationBarTitleView(
+        .navigationTitles(
             title: String(localized: "Submission List Preferences", bundle: .teacher),
-            subtitle: viewModel.assignmentName
+            subtitle: viewModel.assignmentName,
+            style: .modal
         )
-        .navigationBarStyle(.modal)
     }
 }
 

@@ -25,7 +25,11 @@ class UISearchField: UIView {
         super.init(frame: frame)
 
         let icon = UIImageView(image: UIImage.smartSearchSmallLine)
-        icon.tintColor = .secondaryLabel
+        if #available(iOS 26, *) {
+            icon.tintColor = .label
+        } else {
+            icon.tintColor = .secondaryLabel
+        }
         icon.contentMode = .center
         icon.setContentHuggingPriority(.required, for: .horizontal)
         icon.setContentCompressionResistancePriority(.required, for: .horizontal)
@@ -43,14 +47,18 @@ class UISearchField: UIView {
         field.translatesAutoresizingMaskIntoConstraints = false
 
         let container = CapsuleView()
-        container.backgroundColor = .backgroundLightest
+        if #unavailable(iOS 26) {
+            container.backgroundColor = .backgroundLightest
+        }
         container.frame = CGRect(x: 0, y: 5, width: frame.width, height: frame.height - 10)
         container.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
-        container.layer.shadowColor = UIColor.black.cgColor
-        container.layer.shadowOpacity = 0.16
-        container.layer.shadowRadius = 2
-        container.layer.shadowOffset = CGSize(width: 0, height: 2)
+        if #unavailable(iOS 26) {
+            container.layer.shadowColor = UIColor.black.cgColor
+            container.layer.shadowOpacity = 0.16
+            container.layer.shadowRadius = 2
+            container.layer.shadowOffset = CGSize(width: 0, height: 2)
+        }
 
         addSubview(container)
         container.addSubview(icon)
@@ -108,9 +116,34 @@ class CoreTextField: UITextField {
 }
 
 private class CapsuleView: UIView {
+    private var glassEffectView: UIVisualEffectView?
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupGlassEffect()
+    }
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupGlassEffect()
+    }
+
+    private func setupGlassEffect() {
+        if #available(iOS 26, *) {
+            let glassEffect = UIGlassEffect()
+            let effectView = UIVisualEffectView(effect: glassEffect)
+            effectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            effectView.frame = bounds
+            glassEffect.isInteractive = true
+            insertSubview(effectView, at: 0)
+            glassEffectView = effectView
+        }
+    }
 
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = min(frame.height, frame.width) * 0.5
+        glassEffectView?.layer.cornerRadius = layer.cornerRadius
+        glassEffectView?.clipsToBounds = true
     }
 }

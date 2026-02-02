@@ -85,15 +85,13 @@ extension HorizonUI {
 
         @ViewBuilder
         private var errorView: some View {
-            if let error = error {
-                HStack(spacing: 0) {
-                    Image.huiIcons.error.foregroundColor(Color.huiColors.text.error)
-                    Text(error)
-                        .huiTypography(.p2)
-                        .foregroundColor(Color.huiColors.text.error)
-                }
-                .opacity(isErrorEmpty ? 0 : 1)
-                .animation(.easeInOut, value: error)
+            if let error {
+                HorizonUI.StatusChip(
+                    title: error,
+                    style: .red,
+                    icon: Image.huiIcons.error,
+                    isFilled: false,
+                )
                 .padding(.leading, .huiSpaces.space4)
             }
         }
@@ -128,9 +126,10 @@ extension HorizonUI {
         }
 
         private var textField: some View {
-            TextField(
-                placeholder ?? "",
-                text: $text
+            TextField("",
+                text: $text,
+                prompt: Text(placeholder ?? "")
+                .foregroundStyle(Color.huiColors.text.placeholder)
             )
             .padding(.huiSpaces.space12)
             .padding(.trailing, .huiSpaces.space24)
@@ -173,7 +172,7 @@ extension HorizonUI {
                 RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level1_5.attributes.radius + 2)
                     .stroke(
                         textFieldContainerBorderColor,
-                        lineWidth: HorizonUI.Borders.level2.rawValue
+                         lineWidth: focused ? HorizonUI.Borders.level2.rawValue : .zero
                     )
                     .opacity(focused ? 1.0 : 0.0)
                     .animation(.easeInOut, value: focused)

@@ -81,12 +81,15 @@ class TodoListViewModel: ObservableObject {
     func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool, completion: (() -> Void)? = nil) {
         interactor.refresh(ignorePlannablesCache: ignorePlannablesCache, ignoreCoursesCache: ignoreCoursesCache)
             .receive(on: scheduler)
-            .sinkFailureOrValue { [weak self] _ in
-                self?.state = .error
-                completion?()
-            } receiveValue: { _ in
-                completion?()
-            }
+            .sink(
+                receiveCompletion: { [weak self] in
+                    if $0.isFailure {
+                        self?.state = .error
+                    }
+                    completion?()
+                },
+                receiveValue: { }
+            )
             .store(in: &subscriptions)
     }
 

@@ -22,8 +22,8 @@ import SwiftUI
 open class SyllabusViewController: UIViewController, CoreWebViewLinkDelegate {
     public var courseID = ""
     public private(set) var env = AppEnvironment.shared
-    public let refreshControl = CircleRefreshControl()
-    public var webView = CoreWebView()
+    public let refreshControl = UIRefreshControl()
+    public var webView = CoreWebView(features: [])
 
     public lazy var courses = env.subscribe(GetCourse(courseID: courseID)) { [weak self] in
         self?.update()

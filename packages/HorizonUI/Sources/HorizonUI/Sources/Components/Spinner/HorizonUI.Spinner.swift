@@ -68,6 +68,8 @@ public extension HorizonUI {
                 height: self.size.dimension + self.size.strokeWidth
             )
             .rotationEffect(.degrees(rotation))
+            .accessibilityElement(children: .ignore)
+            .accessibilityLabel(String(localized: "Loading"))
             .onAppear {
                 withAnimation(.linear(duration: spinDuration).repeatForever(autoreverses: false)) {
                     self.rotation = 360

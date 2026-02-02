@@ -38,13 +38,20 @@ class QuizzesTests: E2ETestCase {
 
         // MARK: Navigate to Quizzes, Check elements
         Helper.navigateToQuizzes(course: course)
-        let navBar = Helper.navBar(course: course).waitUntil(.visible)
+        if #available(iOS 26, *) {
+            let title = Helper.navTitle.waitUntil(.visible)
+            let subtitle = Helper.navSubtitle(course: course).waitUntil(.visible)
+            XCTAssertVisible(title)
+            XCTAssertVisible(subtitle)
+        } else {
+            let navBar = Helper.navBar(course: course).waitUntil(.visible)
+            XCTAssertVisible(navBar)
+        }
         let quizCell = Helper.cell(index: 0).waitUntil(.visible)
         let titleLabel = Helper.titleLabel(cell: quizCell).waitUntil(.visible)
         let dueDateLabel = Helper.dueDateLabel(cell: quizCell).waitUntil(.visible)
         let pointsLabel = Helper.pointsLabel(cell: quizCell).waitUntil(.visible)
         let questionsLabel = Helper.questionsLabel(cell: quizCell).waitUntil(.visible)
-        XCTAssertVisible(navBar)
         XCTAssertVisible(quizCell)
         XCTAssertVisible(titleLabel)
         XCTAssertEqual(titleLabel.label, quiz.title)

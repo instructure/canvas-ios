@@ -70,7 +70,7 @@ public struct ItemPickerScreen: View {
     }
 
     public var body: some View {
-        InstUI.BaseScreen(state: .data, config: .init(refreshable: false, scrollBounce: .automatic)) { _ in
+        InstUI.BaseScreen(state: .data, config: .notRefreshable) { _ in
             SingleSelectionView(
                 title: nil,
                 identifierGroup: identifierGroup,
@@ -79,8 +79,7 @@ public struct ItemPickerScreen: View {
                 style: .trailingCheckmark
             )
         }
-        .navigationBarTitleView(pageTitle)
-        .navigationBarStyle(.modal)
+        .navigationTitle(pageTitle, style: .modal)
         .onReceive(selectedOption.dropFirst().compactMap(\.self)) { option in
             didSelectOption?(option)
         }

@@ -43,7 +43,7 @@ extension HorizonUI {
         }
         private let placeholder: String?
         private let zIndex: Double
-        @Binding private var selections: [Option]
+        private let selections: [Option]
 
         // MARK: Properties
 
@@ -67,7 +67,7 @@ extension HorizonUI {
 
         // The computed height of the error text
         @State private var errorHeight: CGFloat = 0
-
+        @State private var isShowTextField = true
         @Binding private var focused: Bool {
             didSet {
                 textFieldFocusState = focused
@@ -91,11 +91,12 @@ extension HorizonUI {
 
         @FocusState private var textFieldFocusState: Bool
 
+        let onSelectOptions: ([Option]) -> Void
         // MARK: - Init
 
         public init(
-            selections: Binding<[Option]>,
             focused: Binding<Bool>,
+            selections: [Option],
             label: String? = nil,
             textInput: Binding<String>,
             options: [Option],
@@ -103,9 +104,10 @@ extension HorizonUI {
             disabled: Bool = false,
             placeholder: String? = nil,
             error: String? = nil,
-            zIndex: Double = 101
+            zIndex: Double = 101,
+            onSelectOptions: @escaping ([Option]) -> Void
         ) {
-            self._selections = selections
+            self.selections = selections
             self._focused = focused
             self.label = label
             self._textInput = textInput
@@ -115,6 +117,7 @@ extension HorizonUI {
             self.placeholder = placeholder
             self.error = error
             self.zIndex = zIndex
+            self.onSelectOptions = onSelectOptions
         }
 
         public var body: some View {
@@ -124,18 +127,26 @@ extension HorizonUI {
                     textFieldAndChevron
                 }
                 .onTapGesture(perform: onTapText)
+                .accessibilityElement(children: .ignore)
+                .accessibilityActions {
+                    Button(String(localized: "Double tap to filter a recipients. ")) {
+                        onTapText()
+                    }
+
+                    ForEach(selections) { selection in
+                        Button(String(format: String(localized: "%@ Double tap to remove from filter. "), selection.label)) {
+                            remove(option: selection)
+                        }
+                    }
+                }
 
                 ZStack(alignment: .top) {
                     errorText
                     dropDownOptionsWithSpinner
-                        .zIndex(zIndex)
                 }
-                .padding(.horizontal, .huiSpaces.space4)
             }
-            .background(.clear)
             .frame(maxWidth: .infinity, alignment: .leading)
             .frame(height: bodyHeight, alignment: .top)
-            .padding(.huiSpaces.space2)
             .zIndex(zIndex)
         }
 
@@ -147,6 +158,7 @@ extension HorizonUI {
                     HorizonUI.icons.error
                         .frame(width: .huiSpaces.space16, height: .huiSpaces.space16)
                         .foregroundColor(.huiColors.text.error)
+                        .accessibilityHidden(true)
                     Text(error)
                         .huiTypography(.p2)
                         .foregroundColor(.huiColors.text.error)
@@ -190,6 +202,9 @@ extension HorizonUI {
                 ZStack(alignment: .top) {
                     dropDownOptions
                     dropDownSpinner
+                        .accessibilityElement(children: .ignore)
+                        .accessibilityLabel(String(localized: "Loading"))
+                        .accessibilityHidden(!loading)
                 }
             }
             .background(Color.huiColors.surface.pageSecondary)
@@ -233,6 +248,7 @@ extension HorizonUI {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal, .huiSpaces.space12)
                 .padding(.vertical, .huiSpaces.space8)
+                .accessibilityAddTraits(.isButton)
                 .background {
                     GeometryReader { geometry in
                         HStack {}
@@ -247,7 +263,7 @@ extension HorizonUI {
                 .huiTypography(.p1)
                 .onTapGesture {
                     focused = false
-                    selections.append(option)
+                    add(option: option)
                 }
         }
 
@@ -257,6 +273,7 @@ extension HorizonUI {
             ZStack(alignment: .init(horizontal: .trailing, vertical: .center)) {
                 textFieldAndOptions
                 chevron
+                    .accessibilityHidden(true)
             }
             .padding(.huiSpaces.space4)
             .overlay(textOverlay(isOuter: true))
@@ -294,7 +311,7 @@ extension HorizonUI {
 
         @ViewBuilder
         private var textField: some View {
-            if focused || selections.isEmpty {
+            if isShowTextField || selections.isEmpty {
                 TextField(
                     placeholder ?? String(localized: "Filter"),
                     text: $textInput
@@ -305,6 +322,7 @@ extension HorizonUI {
                     if focused != textFieldFocusState {
                         focused = textFieldFocusState
                     }
+                    isShowTextField = focused
                 }
                 .huiTypography(.p1)
             }
@@ -351,18 +369,32 @@ extension HorizonUI {
                     )
             )
             .onTapGesture {
-                selections.removeAll(where: { $0.id == option.id })
+                remove(option: option)
+//                selections.removeAll(where: { $0.id == option.id })
                 textInput = ""
             }
         }
 
         // MARK: - Private Functions
 
+        private func remove(option: Option) {
+            var items = selections
+            items.removeAll(where: { $0.id == option.id })
+            onSelectOptions(items)
+        }
+
+        private func add(option: Option) {
+            var items = selections
+            items.append(option)
+            onSelectOptions(items)
+        }
+
         private func onTapText() {
             if disabled {
                 return
             }
-            focused = !focused
+            focused.toggle()
+            isShowTextField.toggle()
             textInput = ""
         }
 
@@ -458,8 +490,8 @@ extension HorizonUI {
     VStack(alignment: .leading) {
         VStack(alignment: .leading) {
             HorizonUI.MultiSelect(
-                selections: $selections,
                 focused: $focused,
+                selections: [],
                 label: "Words of the Alphabet",
                 textInput: $textInput,
                 options: options,
@@ -467,7 +499,7 @@ extension HorizonUI {
                 disabled: false,
                 placeholder: "Filter",
                 error: "This is an error"
-            )
+            ) { _ in }
             Text("Some Text Below")
         }
         .padding(.horizontal, .huiSpaces.space24)

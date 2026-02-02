@@ -39,7 +39,6 @@ final class EditCalendarEventViewModel: ObservableObject {
     // MARK: - Output
 
     let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new")
-    let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
     let uploadParameters: RichContentEditorUploadParameters
 
     @Published private(set) var state: InstUI.ScreenState = .data

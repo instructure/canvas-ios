@@ -36,12 +36,18 @@ protocol StudentAssignmentDetailsViewProtocol: SubmissionButtonViewProtocol {
 
     func updateNavBar(subtitle: String?, backgroundColor: UIColor?)
     func update(assignment: Assignment, quiz: Quiz?, submission: Submission?, baseURL: URL?)
-    func showSubmitAssignmentButton(title: String?)
+    func showSubmitAssignmentButton(title: String?, identifier: String?)
     func updateAttemptPickerButton(isActive: Bool,
                                    attemptDate: String,
                                    items: [UIAction])
     func updateGradeCell(_ assignment: Assignment, submission: Submission?)
     func updateAttemptInfo(attemptNumber: String)
+}
+
+extension StudentAssignmentDetailsViewProtocol {
+    func showSubmitAssignmentButton(title: String?) {
+        showSubmitAssignmentButton(title: title, identifier: nil)
+    }
 }
 
 class StudentAssignmentDetailsPresenter {
@@ -187,8 +193,8 @@ class StudentAssignmentDetailsPresenter {
             fileCleanupPending = false
             UploadManager.shared.cleanupDanglingFiles(assignment: assignment)
         }
-        let title = submissionButtonPresenter.buttonText(course: course, assignment: assignment, quiz: quizzes?.first, onlineUpload: onlineUploadState)
-        view?.showSubmitAssignmentButton(title: title)
+        let buttonKind = submissionButtonPresenter.buttonKind(course: course, assignment: assignment, quiz: quizzes?.first, onlineUpload: onlineUploadState)
+        view?.showSubmitAssignmentButton(title: buttonKind?.title, identifier: buttonKind?.identifier)
         view?.updateNavBar(subtitle: course.name, backgroundColor: course.color)
         view?.update(assignment: assignment, quiz: quizzes?.first, submission: selectedSubmission ?? assignment.submission, baseURL: baseURL)
     }

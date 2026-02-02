@@ -924,6 +924,12 @@
             "value" : "%1$@、提出日：%2$@"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, 제출 %2$@"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1181,6 +1187,12 @@
             "value" : "%g中%g"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%g 총점 %g"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1436,6 +1448,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%gポイント"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%g 점"
           }
         },
         "mi" : {
@@ -2146,6 +2164,18 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%lld日遅延。"
+                }
+              }
+            }
+          }
+        },
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld 일 늦었습니다."
                 }
               }
             }
@@ -2952,6 +2982,12 @@
             "value" : "欠席"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "결석"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3206,6 +3242,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "添付を追加"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "첨부 파일 추가"
           }
         },
         "mi" : {
@@ -3465,6 +3507,12 @@
             "value" : "コメントを追加"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의견/댓글 추가"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3720,6 +3768,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "カスタム評定を追加する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용자 지정 성적 추가"
           }
         },
         "mi" : {
@@ -3978,6 +4032,12 @@
             "value" : "すべて"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "전체"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4232,6 +4292,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "すべての評定は今、非表示になっています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 성적이 현재 숨겨졌습니다."
           }
         },
         "mi" : {
@@ -4490,6 +4556,12 @@
             "value" : "すべての評定は今、掲示されています。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 성적이 현재 게시되었습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4746,6 +4818,12 @@
             "value" : "すべて非表示"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 숨김"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5000,6 +5078,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "すべて掲示済"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모두 게시됨"
           }
         },
         "mi" : {
@@ -5259,6 +5343,12 @@
             "value" : "すべての提出物"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 제출"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5513,6 +5603,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "すべての提出物"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 제출"
           }
         },
         "mi" : {
@@ -5771,6 +5867,12 @@
             "value" : "課題日付"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과제 날짜"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6025,6 +6127,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "課題の詳細"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과제 세부 정보"
           }
         },
         "mi" : {
@@ -6284,6 +6392,12 @@
             "value" : "試行%lld"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시도 %lld"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6538,6 +6652,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "出席状況"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "출석"
           }
         },
         "mi" : {
@@ -6796,6 +6916,12 @@
             "value" : "出席エラー"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "출석 오류"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7050,6 +7176,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "公開設定："
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용 가능:"
           }
         },
         "mi" : {
@@ -7308,6 +7440,12 @@
             "value" : "公開日時："
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용 가능 시작:"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7564,6 +7702,12 @@
             "value" : "最終利用可能日："
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용 가능 마감:"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7818,6 +7962,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "戻る"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "뒤로"
           }
         },
         "mi" : {
@@ -8077,6 +8227,12 @@
             "value" : "カレンダー"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "캘린더"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8331,6 +8487,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "キャンセル"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "취소"
           }
         },
         "mi" : {
@@ -8589,6 +8751,12 @@
             "value" : "セクションをかえる"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "분반 변경"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8843,6 +9011,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "セクションを選択する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "분반 선택"
           }
         },
         "mi" : {
@@ -9101,6 +9275,12 @@
             "value" : "日付を選択する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "날짜를 선택"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9357,6 +9537,12 @@
             "value" : "ファイルの選択"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 선택"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9479,7 +9665,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tanca"
+            "value" : "Tanca-ho"
           }
         },
         "cy" : {
@@ -9612,6 +9798,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "閉じる"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "닫기"
           }
         },
         "mi" : {
@@ -9870,6 +10062,12 @@
             "value" : "ライブラリのコメントを閉じる"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의견/댓글 라이브러리 닫기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10124,6 +10322,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "引き出しを閉じる"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서랍 닫기"
           }
         },
         "mi" : {
@@ -10383,6 +10587,12 @@
             "value" : "引き出しを閉じる"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서랍 닫기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10637,6 +10847,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "終了済み"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "종료됨"
           }
         },
         "mi" : {
@@ -10895,6 +11111,12 @@
             "value" : "引き出しを半画面に折りたたむ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서랍 화면 절반 접기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11016,7 +11238,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Contret"
+            "value" : "S’ha contret"
           }
         },
         "cy" : {
@@ -11151,6 +11373,12 @@
             "value" : "折りたたみ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "접힘"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11184,13 +11412,13 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Schowany"
+            "value" : "Zwinięte"
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fechado"
+            "value" : "Recolhido"
           }
         },
         "pt-BR" : {
@@ -11405,6 +11633,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コメント"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의견/댓글"
           }
         },
         "mi" : {
@@ -11661,6 +11895,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コメントライブラリ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의견/댓글 라이브러리"
           }
         },
         "mi" : {
@@ -11920,6 +12160,12 @@
             "value" : "コメントライブラリは利用できません"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의견/댓글 라이브러리를 사용할 수 없습니다"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12176,6 +12422,12 @@
             "value" : "コメントは正常に送信されました"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "댓글을 보냈습니다"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12430,6 +12682,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コメント"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의견/댓글"
           }
         },
         "mi" : {
@@ -12944,6 +13202,12 @@
             "value" : "完了"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완료"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13198,6 +13462,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コメントを保存できませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "댓글을 저장할 수 없습니다."
           }
         },
         "mi" : {
@@ -13457,6 +13727,12 @@
             "value" : "コース"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과목"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13712,6 +13988,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "グレードを最適化"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 사용자 지정"
           }
         },
         "mi" : {
@@ -13970,6 +14252,12 @@
             "value" : "日付ピッカー"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "날짜 선택기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14224,6 +14512,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "遅延日数"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "늦음 날짜"
           }
         },
         "mi" : {
@@ -14482,6 +14776,12 @@
             "value" : "遅延日数が正常に保存されました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "늦음 날짜가 저장되었습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14738,6 +15038,12 @@
             "value" : "説明"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설명"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14992,6 +15298,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "詳細"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "세부 정보"
           }
         },
         "mi" : {
@@ -15506,6 +15818,12 @@
             "value" : "取り下げる"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "버리기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15760,6 +16078,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "終了"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완료"
           }
         },
         "mi" : {
@@ -16018,6 +16342,12 @@
             "value" : "ダブルタップして引き出しを閉じます"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "두 번 탭하여 서랍 닫기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16272,6 +16602,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ダブルタップして引き出しを開きます"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "두 번 탭하여 서랍 열기"
           }
         },
         "mi" : {
@@ -16530,6 +16866,12 @@
             "value" : "ダブルタップして解答を表示する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "두 번 탭하여 시도 보기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16784,6 +17126,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ダブルタップしファイルを表示する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "두 번 탭하여 파일 보기"
           }
         },
         "mi" : {
@@ -17042,6 +17390,12 @@
             "value" : "ダブルタップしてプロフィールを表示する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "두 번 탭하여 프로필 보기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17296,6 +17650,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ダブルタップで遅延日数を変更できます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "두 번 탭하여 늦음 날짜 수를 변경합니다."
           }
         },
         "mi" : {
@@ -17554,6 +17914,12 @@
             "value" : "引き出しメニュー"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서랍 메뉴"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17808,6 +18174,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "期限%@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기한 %@"
           }
         },
         "mi" : {
@@ -18323,6 +18695,12 @@
             "value" : "期限日は%@でした。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기한 날짜는 %@이었습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18577,6 +18955,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "期限、詳細をダブルタップしてください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기한 날짜, 두번 탭하여 세부 정보를 확인합니다."
           }
         },
         "mi" : {
@@ -18835,6 +19219,12 @@
             "value" : "期限："
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기한:"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19089,6 +19479,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "編集"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "편집"
           }
         },
         "mi" : {
@@ -19603,6 +19999,12 @@
             "value" : "遅延日数を入力してください"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "늦음 날짜 입력"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19857,6 +20259,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "エラー"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오류"
           }
         },
         "mi" : {
@@ -20116,6 +20524,12 @@
             "value" : "エラー:ロールコールAPIから返されたデータはありません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오류: Roll Call API에서 반환된 데이터가 없습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20370,6 +20784,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "全員"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모두"
           }
         },
         "mi" : {
@@ -20628,6 +21048,12 @@
             "value" : "学生を免除する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "학생 인정"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20884,6 +21310,12 @@
             "value" : "評価対象外(免除)"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인정됨"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21005,7 +21437,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Desplegat"
+            "value" : "S’ha desplegat"
           }
         },
         "cy" : {
@@ -21137,7 +21569,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "拡大"
+            "value" : "展開"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "펼쳐짐"
           }
         },
         "mi" : {
@@ -21396,6 +21834,12 @@
             "value" : "拡大された"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "연장됨"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21650,6 +22094,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "LTI ツールを起動できませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roll Call LTI 도구를 시작하지 못했습니다."
           }
         },
         "mi" : {
@@ -21908,6 +22358,12 @@
             "value" : "提出データ読み込みに失敗しました！"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 데이터를 로드하지 못했습니다!"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22162,6 +22618,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定ステータスの保存に失敗しました。\nもう一度やり直してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 상태를 저장하지 못했습니다.\n다시 시도하세요."
           }
         },
         "mi" : {
@@ -22427,6 +22889,12 @@
             "value" : "ファイル%1$lld /%2$lld"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 %1$lld/ %2$lld"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22682,6 +23150,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイル"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일"
           }
         },
         "mi" : {
@@ -22941,6 +23415,12 @@
             "value" : "ファイル (%@)"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일(%@)"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23196,6 +23676,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイル (%lld)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일(%lld)"
           }
         },
         "mi" : {
@@ -23455,6 +23941,12 @@
             "value" : "フィルタ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "필터링"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23712,6 +24204,12 @@
             "value" : "フィルター (%d)"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "필터링(%d)"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23966,6 +24464,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "フィルタ条件"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "필터링 기준"
           }
         },
         "mi" : {
@@ -24480,6 +24984,12 @@
             "value" : "フィルターを提出"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 필터링"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24734,6 +25244,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最終的な評定"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최종 성적"
           }
         },
         "mi" : {
@@ -24993,6 +25509,12 @@
             "value" : "対象："
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "대상:"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25245,6 +25767,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GPA"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "GPA"
@@ -25504,6 +26032,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적"
           }
         },
         "mi" : {
@@ -26019,6 +26553,12 @@
             "value" : "評定掲示規約"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 게시 정책"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26273,6 +26813,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定スライダー"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 슬라이더"
           }
         },
         "mi" : {
@@ -26531,6 +27077,12 @@
             "value" : "評定ステータスが正常に保存されました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 상태를 저장했습니다"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26785,6 +27337,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "採点済み"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "채점됨"
           }
         },
         "mi" : {
@@ -27044,6 +27602,12 @@
             "value" : "評価先%@"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "채점됨 %@"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27299,6 +27863,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적"
           }
         },
         "mi" : {
@@ -27557,6 +28127,12 @@
             "value" : "評定はすべての受講者に表示されます"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적은 모든 학생에게 표시됩니다"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27811,6 +28387,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定は、提出物が採点された受講者が閲覧できるよう表示されます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적은 채점된 제출과 함께 학생에게 표시됩니다"
           }
         },
         "mi" : {
@@ -28635,6 +29217,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%d現在非表示の評定"
+                }
+              }
+            }
+          }
+        },
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d 성적 현재 숨김"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d 성적 현재 숨김"
                 }
               }
             }
@@ -29839,6 +30439,24 @@
             }
           }
         },
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d 성적 현재 게시됨"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d 성적 현재 게시됨"
+                }
+              }
+            }
+          }
+        },
         "mi" : {
           "variations" : {
             "plural" : {
@@ -30468,6 +31086,12 @@
             "value" : "グループ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "그룹"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30725,6 +31349,12 @@
             "value" : "グループ%lld"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "그룹 %lld"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30979,6 +31609,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "指示を追加して、この課題を受講者に分かりやすくしてください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지시 사항을 추가하여 이 과제에 관해 학생을 돕습니다."
           }
         },
         "mi" : {
@@ -31493,6 +32129,12 @@
             "value" : "評定を非表示にする"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 숨기기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31750,6 +32392,12 @@
             "value" : "メッセージ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수신함"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32004,6 +32652,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未完了"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완료되지 않음"
           }
         },
         "mi" : {
@@ -32518,6 +33172,12 @@
             "value" : "採点する有効な提出物がないようです。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "채점할 유효한 제출이 없는 것 같습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32774,6 +33434,12 @@
             "value" : "遅延"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "늦게 제출"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33028,6 +33694,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "遅延ペナルティ："
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "늦게 제출 벌점"
           }
         },
         "mi" : {
@@ -33543,6 +34215,12 @@
             "value" : "ABC...評価"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "평점"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33766,7 +34444,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "लोड किया जा रहा है"
+            "value" : "लोड करना"
           }
         },
         "ht" : {
@@ -33797,6 +34475,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "読み込み中"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로드"
           }
         },
         "mi" : {
@@ -34055,6 +34739,12 @@
             "value" : "全員を出席としてマークする"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모두 출석으로 표시"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34309,6 +34999,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "出席としてマークする"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "나머지를 출석으로 표시"
           }
         },
         "mi" : {
@@ -34567,6 +35263,12 @@
             "value" : "欠如"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "누락됨"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34821,6 +35523,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "修正された採点はサポートされていません"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "조정된 성적 평가 지원되지 않음"
           }
         },
         "mi" : {
@@ -35079,6 +35787,12 @@
             "value" : "複数の締切日"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여러 기한 날짜"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35333,6 +36047,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "採点が必要です"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 평가 필요"
           }
         },
         "mi" : {
@@ -35591,6 +36311,12 @@
             "value" : "日付セットからは利用できません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용 가능 시작 날짜가 설정되지 않았습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35845,6 +36571,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "利用可能最終日がありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용 가능 종료 날짜가 설정되지 않았습니다."
           }
         },
         "mi" : {
@@ -36103,6 +36835,12 @@
             "value" : "締切日なし"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기한 날짜 없음"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36357,6 +37095,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "期限は設定されていません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기한 날짜가 설정되지 않았습니다."
           }
         },
         "mi" : {
@@ -36872,6 +37616,12 @@
             "value" : "期限が設定されていません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기한 날짜가 설정되지 않았습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37126,6 +37876,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定はありません"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 없음"
           }
         },
         "mi" : {
@@ -37384,6 +38140,12 @@
             "value" : "提出物なし"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 없음"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37638,6 +38400,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "示唆されている利用可能なものなし"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용할 수 있는 제안 없음"
           }
         },
         "mi" : {
@@ -37896,6 +38664,12 @@
             "value" : "なし"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "없음"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -38152,6 +38926,12 @@
             "value" : "採点なし"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "채점되지 않음"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -38406,6 +39186,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未提出"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출되지 않음"
           }
         },
         "mi" : {
@@ -38920,6 +39706,12 @@
             "value" : "OK"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "확인"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -39174,6 +39966,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "열기"
           }
         },
         "mi" : {
@@ -39432,6 +40230,12 @@
             "value" : "コメントライブラリを開く"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의견/댓글 라이브러리 열기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -39686,6 +40490,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "引き出しを全画面で開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서랍 전체 화면 열기"
           }
         },
         "mi" : {
@@ -39945,6 +40755,12 @@
             "value" : "引き出しを全画面で開く"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서랍 전체 화면 열기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -40199,6 +41015,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "引き出しを半画面で開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서랍 절반 화면 열기"
           }
         },
         "mi" : {
@@ -40456,6 +41278,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "引き出しを半画面で開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서랍 절반 화면 열기"
           }
         },
         "mi" : {
@@ -40968,6 +41796,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "その他"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기타"
           }
         },
         "mi" : {
@@ -41484,6 +42318,12 @@
             "value" : "out_of_g_pts"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "out_of_g_pts"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -41738,6 +42578,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "保留中"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보류 중"
           }
         },
         "mi" : {
@@ -41997,6 +42843,12 @@
             "value" : "パーセント (%)"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "백분율(%)"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -42251,6 +43103,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ポイント"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "점"
           }
         },
         "mi" : {
@@ -42509,6 +43367,12 @@
             "value" : "評定表の掲示"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 게시"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -42763,6 +43627,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "掲載の設定"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "게시 설정"
           }
         },
         "mi" : {
@@ -43021,6 +43891,12 @@
             "value" : "掲示設定"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "게시 설정"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -43277,6 +44153,12 @@
             "value" : "掲示先..."
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "게시 대상..."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -43531,6 +44413,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "演習小テストと調査には詳細ビューはありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "연습 퀴즈 및 설문 조사에는 세부 정보 보기가 없습니다."
           }
         },
         "mi" : {
@@ -44045,6 +44933,12 @@
             "value" : "表示する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "현재/출석"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -44299,6 +45193,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "プレビューできません"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "미리 보기 사용할 수 없음"
           }
         },
         "mi" : {
@@ -44558,6 +45458,12 @@
             "value" : "更新された評定のプロンプト"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "업데이트된 성적에 대한 프롬프트"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -44812,6 +45718,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "公開済み"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "게시됨"
           }
         },
         "mi" : {
@@ -45070,6 +45982,12 @@
             "value" : "オーディオを録音する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오디오 녹음"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45324,6 +46242,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "動画を録画する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "동영상 녹화"
           }
         },
         "mi" : {
@@ -45581,6 +46505,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "リセット"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "초기화"
           }
         },
         "mi" : {
@@ -46095,6 +47025,12 @@
             "value" : "再試行"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다시 시도"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -46349,6 +47285,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ルーブリック"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "루브릭"
           }
         },
         "mi" : {
@@ -47119,6 +48061,12 @@
             "value" : "遅延日数を保存中です。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "늦음 날짜를 저장합니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -47373,6 +48321,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定ステータスを保存中です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 상태를 저장합니다."
           }
         },
         "mi" : {
@@ -47888,6 +48842,12 @@
             "value" : "...超えのスコア"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "더 높은 점수..."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -48143,6 +49103,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "...未満のスコア"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "더 낮은 점수..."
           }
         },
         "mi" : {
@@ -48913,6 +49879,12 @@
             "value" : "検索"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "검색"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -49167,6 +50139,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "提出物を検索する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 검색"
           }
         },
         "mi" : {
@@ -49681,6 +50659,12 @@
             "value" : "ロールコールの日付を変更するために選択します"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택하여 Roll Call 날짜를 변경"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -49937,6 +50921,12 @@
             "value" : "送信"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보내기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -50191,6 +51181,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "メッセージをユーザーに送信"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용자에게 메시지 보내기"
           }
         },
         "mi" : {
@@ -50705,6 +51701,12 @@
             "value" : "類似スコア"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유사성 점수"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -51217,6 +52219,12 @@
             "value" : "特定のセクション"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "특정 분반"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -51471,6 +52479,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ステータス"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "상태"
           }
         },
         "mi" : {
@@ -51986,6 +53000,12 @@
             "value" : "生徒"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "학생"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -52242,6 +53262,12 @@
             "value" : "生徒%lld"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "학생 %lld"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -52496,6 +53522,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "受講者のメモ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "학생 메모"
           }
         },
         "mi" : {
@@ -53011,6 +54043,12 @@
             "value" : "提出フィルター"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 필터링"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -53265,6 +54303,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "提出リストの優先設定"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 목록 기본 설정"
           }
         },
         "mi" : {
@@ -53523,6 +54567,12 @@
             "value" : "提出タイプ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 유형"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -53777,6 +54827,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "提出物"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출"
           }
         },
         "mi" : {
@@ -54035,6 +55091,12 @@
             "value" : "提出済み"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출됨"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -54291,6 +55353,12 @@
             "value" : "タップして提出リストを表示します。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "탭하여 제출 목록을 봅니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -54545,6 +55613,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テスト用受講生"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "테스트 학생"
           }
         },
         "mi" : {
@@ -54804,6 +55878,12 @@
             "value" : "メッセージはまだありません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아직 메시지가 없습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55060,6 +56140,12 @@
             "value" : "提出物の読み込み中にエラーが発生しました。プルして更新し、再試行してください。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출을 로드하는 데 오류가 있었습니다. 다시 시도하기 위해 당겨서 새로 고칩니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55311,6 +56397,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "there_are_d_assignees_without_grades"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "there_are_d_assignees_without_grades"
@@ -55572,6 +56664,12 @@
             "value" : "この課題は提出を許可していません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 과제는 제출을 허용하지 않습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55826,6 +56924,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "この課題は、論文の提出のみを許可します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 과제는 종이 과제 제출만 허용합니다."
           }
         },
         "mi" : {
@@ -56085,6 +57189,12 @@
             "value" : "この基準はスコアに影響を与えません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 조건은 점수에 영향을 주지 않습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -56339,6 +57449,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "このグループには、この課題の提出はありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 그룹에는 이 과제에 대한 제출이 없습니다."
           }
         },
         "mi" : {
@@ -56597,6 +57713,12 @@
             "value" : "この受講者には、この課題の提出はありません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 학생에는 이 과제에 대한 제출이 없습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -56851,6 +57973,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "この課題は匿名なので、この受講者の応答は表示されません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과제가 익명이므로 이 학생의 답변이 표시되지 않습니다."
           }
         },
         "mi" : {
@@ -57110,6 +58238,12 @@
             "value" : "この提出には、ファイルがありません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 제출에는 파일이 없습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -57364,6 +58498,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "この提出は、外部ページへのURLです。提出された時点のページの内容をスナップショットにして含めてあります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 제출은 외부 페이지를 가리키는 URL입니다. 제출되었을 때에 페이지의 스냅샵을 포함합니다."
           }
         },
         "mi" : {
@@ -57622,6 +58762,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "するべきこと"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "할 일"
           }
         },
         "mi" : {
@@ -58137,6 +59283,12 @@
             "value" : "未知のエラー"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "알 수 없는 오류"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -58391,6 +59543,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "マークを外す"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "표시 취소"
           }
         },
         "mi" : {
@@ -58649,6 +59807,12 @@
             "value" : "マークを外しました"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "표시 취소됨"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -58903,6 +60067,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "非公開"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "게시되지 않음"
           }
         },
         "mi" : {
@@ -59161,6 +60331,12 @@
             "value" : "URL プレビュー画像"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL 미리 보기 이미지"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -59417,6 +60593,12 @@
             "value" : "すべての提出を表示"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 제출 보기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -59671,6 +60853,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ディスカッションを表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "토론 보기"
           }
         },
         "mi" : {
@@ -59930,6 +61118,12 @@
             "value" : "ファイルを表示%@%@"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 보기 %@ %@"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -60187,6 +61381,12 @@
             "value" : "長い説明を表示"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "긴 설명 보기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -60442,6 +61642,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "提出予定 %@を閲覧します。%@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 시도 %@을(를) 봅니다. %@"
           }
         },
         "mi" : {
@@ -60707,6 +61913,12 @@
             "value" : "提出予定 %1$lldを閲覧します。%2$@"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 시도 %1$lld을(를) 봅니다. %2$@"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -60963,6 +62175,12 @@
             "value" : "この受講者と課題に関する詳細情報はありません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 학생 및 과제에 대한 추가 세부 정보가 없습니다"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -61217,6 +62435,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "語数"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단어 수"
           }
         },
         "mi" : {
@@ -61988,6 +63212,12 @@
             "value" : "ここにコメントを入力してください"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여기에 댓글을 작성"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -62242,6 +63472,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "あなたにはこのアクションを行う権限がありません"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "작업을 수행할 권한이 부여되지 않았습니다"
           }
         },
         "mi" : {

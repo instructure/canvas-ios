@@ -54,7 +54,7 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.canCancelContentTouches = true
 
-        embedPage(currentPage, at: 0)
+        embedPageFirst(currentPage)
     }
 
     public override func viewWillLayoutSubviews() {
@@ -90,7 +90,7 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
     public func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         if let left = getPage(onLeft: true) {
             leftPage?.unembed()
-            embedPage(left, at: 0)
+            embedPageFirst(left)
             if leftPage == nil {
                 scrollView.contentOffset.x += scrollView.frame.width
             }
@@ -98,7 +98,7 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
         }
         if let right = getPage(onLeft: false) {
             rightPage?.unembed()
-            embedPage(right, at: leftPage == nil ? 1 : 2)
+            embedPageLast(right)
             rightPage = right
         }
         view.setNeedsLayout()
@@ -172,13 +172,6 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
         delegate?.pagesViewController?(self, didTransitionTo: currentPage)
     }
 
-    private func embedPage(_ page: UIViewController, at: Int) {
-        addChild(page)
-        scrollView.insertSubview(page.view, at: at)
-        page.view.tag = 1
-        page.didMove(toParent: self)
-    }
-
     public enum Direction {
         case reverse, forward
     }
@@ -191,23 +184,37 @@ public class PagesViewController: UIViewController, UIScrollViewDelegate {
         if direction == leftDir {
             leftPage = nil
             rightPage = currentPage
-            embedPage(page, at: 0)
+            embedPageFirst(page)
             scrollView.contentOffset.x = scrollView.frame.width
         } else if direction == nil {
             leftPage = nil
             rightPage = nil
             currentPage.unembed()
-            embedPage(page, at: 0)
+            embedPageFirst(page)
         } else {
             rightPage = nil
             leftPage = currentPage
-            embedPage(page, at: 1)
+            embedPageLast(page)
             scrollView.contentOffset.x = 0
             x = scrollView.frame.width
         }
         currentPage = page
         view.setNeedsLayout()
-        scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: direction != nil)
         view.layoutIfNeeded()
+        scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: direction != nil)
+    }
+
+    private func embedPageFirst(_ page: UIViewController) {
+        addChild(page)
+        scrollView.insertSubview(page.view, at: 0)
+        page.view.tag = 1
+        page.didMove(toParent: self)
+    }
+
+    private func embedPageLast(_ page: UIViewController) {
+        addChild(page)
+        scrollView.addSubview(page.view)
+        page.view.tag = 1
+        page.didMove(toParent: self)
     }
 }

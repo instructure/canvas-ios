@@ -64,7 +64,7 @@ class CoursesTests: E2ETestCase {
         let assignmentCell2 = DetailsHelper.assignmentCell(assignment: assignment2).waitUntil(.visible)
         let letterGradeLabelOfAssignment1 = DetailsHelper.letterGradeLabelOfAssignmentCell(assignment: assignment1, letterGrade: "A")
             .waitUntil(.visible)
-        let backButton = DetailsHelper.backButton.waitUntil(.visible)
+        let backButton = DetailsHelper.backButtonByIdOrLabel.waitUntil(.visible)
         XCTAssertVisible(totalGradeLabel)
         XCTAssertEqual(totalGradeLabel.label, "Total grade is 100%")
         XCTAssertVisible(assignmentCell1)

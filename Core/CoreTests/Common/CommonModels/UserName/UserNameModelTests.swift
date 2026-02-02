@@ -186,26 +186,40 @@ class UserNameModelTests: CoreTestCase {
 
     func test_initWithSubmissionAndAssignment_whenGroupAssignment() {
         assignment.gradedIndividually = false
+        assignment.groupCategoryID = "1234"
         submission.groupID = "something"
         testee = .init(submission: submission, assignment: assignment)
         XCTAssertEqual(testee.name, TestConstants.groupName)
     }
 
-    func test_initWithSubmissionAndAssignment_whenNotGroupAssignment() {
+    func test_initWithSubmissionAndAssignment_whenGroupGradedDiscussion() {
+        assignment.gradedIndividually = false
+        assignment.discussionTopic = .save(.make(group_category_id: "1234"), in: databaseClient)
+        submission.groupID = "something"
+        testee = .init(submission: submission, assignment: assignment)
+        XCTAssertEqual(testee.name, TestConstants.groupName)
+    }
+
+    func test_initWithSubmissionAndAssignment_whenGroupAssignment_gradedIndividuallyTrueFalse() {
         assignment.gradedIndividually = true
+        assignment.groupCategoryID = "1234"
+
+        // 1. gradedIndividually is true
         submission.groupID = "something"
         testee = .init(submission: submission, assignment: assignment)
         XCTAssertEqual(testee.name, TestConstants.userName)
 
+        // 2. No assignment
         submission.groupID = "something"
         testee = .init(submission: submission, assignment: nil)
         XCTAssertEqual(testee.name, TestConstants.userName)
 
-        assignment.gradedIndividually = true
+        // 3. No group ID
         submission.groupID = nil
         testee = .init(submission: submission, assignment: assignment)
         XCTAssertEqual(testee.name, TestConstants.userName)
 
+        // 4. gradedIndividually is false
         assignment.gradedIndividually = false
         submission.groupID = nil
         testee = .init(submission: submission, assignment: assignment)

@@ -21,8 +21,18 @@ import Foundation
 import XCTest
 
 public class AssignmentsHelper: BaseHelper {
+    /// Still needed as of iOS 26.2 (see comments for `NavigationBarTitleView`)
+    @available(iOS, deprecated: 26)
     public static func navBar(course: DSCourse) -> XCUIElement {
         return app.find(label: "Assignments, \(course.name)", type: .staticText)
+    }
+
+    public static var navTitle: XCUIElement {
+        app.find(label: "Assignments", type: .staticText)
+    }
+
+    public static func navSubtitle(course: DSCourse) -> XCUIElement {
+        app.find(label: course.name, type: .staticText)
     }
 
     public static func assignmentButton(assignment: DSAssignment) -> XCUIElement {
@@ -92,7 +102,7 @@ public class AssignmentsHelper: BaseHelper {
         public static var due: XCUIElement { app.find(id: "AssignmentDetails.due") }
         public static var submissionTypes: XCUIElement { app.find(id: "AssignmentDetails.submissionTypes") }
         public static var submissionButton: XCUIElement { app.find(id: "AssignmentDetails.viewSubmissionButton") }
-        public static var submitAssignmentButton: XCUIElement { app.find(id: "AssignmentDetails.submitAssignmentButton") }
+        public static var submitAssignmentButton: XCUIElement { app.find(idStartingWith: "AssignmentDetails.submitAssignmentButton") }
         public static var successfulSubmissionLabel: XCUIElement { app.find(id: "AssignmentDetails.submittedText") }
         public static var allowedExtensions: XCUIElement { app.find(id: "AssignmentDetails.allowedExtensions") }
         public static var attemptsView: XCUIElement { app.find(id: "AssignmentDetails.attemptsView") }
@@ -129,9 +139,7 @@ public class AssignmentsHelper: BaseHelper {
         public static var yesButton: XCUIElement { app.find(label: "Yes", type: .button) }
 
         // Other
-        public static var backButton: XCUIElement {
-            return app.find(type: .navigationBar).find(label: "Back", type: .button)
-        }
+        public static var backButton: XCUIElement { app.find(type: .navigationBar).findBackButton() }
 
         public static func navBar(course: DSCourse) -> XCUIElement {
             return app.find(id: "Assignment details, \(course.name)")
@@ -243,7 +251,7 @@ public class AssignmentsHelper: BaseHelper {
 
         public struct TeacherSubmissionsList {
             public static var needsGradingLabel: XCUIElement { app.find(labelContaining: "Needs Grading") }
-            public static var backButton: XCUIElement { app.find(label: "Back", type: .button) }
+            public static var backButton: XCUIElement { app.findBackButton() }
             public static var filterButton: XCUIElement { app.find(label: "Filter", type: .button) }
 
             public static func cell(student: DSUser) -> XCUIElement {
@@ -257,6 +265,12 @@ public class AssignmentsHelper: BaseHelper {
             public struct Filter {
                 public static func navBar(assignment: DSAssignment) -> XCUIElement {
                     return app.find(label: "Submission List Preferences, \(assignment.name)")
+                }
+
+                public static var navTitle: XCUIElement { app.find(label: "Submission List Preferences", type: .staticText) }
+
+                public static func navSubtitle(assignment: DSAssignment) -> XCUIElement {
+                    app.find(label: assignment.name, type: .staticText)
                 }
 
                 public static var cancelButton: XCUIElement { app.find(label: "Cancel", type: .button) }
@@ -295,7 +309,7 @@ public class AssignmentsHelper: BaseHelper {
 
     public struct Submission {
         public static var navBar: XCUIElement { app.find(id: "Text Entry") }
-        public static var cancelButton: XCUIElement { app.find(id: "screen.dismiss") }
+        public static var doneButton: XCUIElement { app.find(id: "screen.dismiss") }
         public static var submitButton: XCUIElement { app.find(id: "TextSubmission.submitButton") }
         public static var textField: XCUIElement { app.find(id: "RichContentEditor.webView").find(type: .textField) }
         public static var textView: XCUIElement { app.find(label: "Submission text", type: .textView) }

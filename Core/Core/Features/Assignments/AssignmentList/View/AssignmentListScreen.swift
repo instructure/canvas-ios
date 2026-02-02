@@ -36,6 +36,8 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
     }
 
     public var body: some View {
+        let isBackgroundContextColor = if #available(iOS 26, *) { false } else { true }
+
         VStack(spacing: 0) {
             switch viewModel.state {
             case .empty, .error:
@@ -50,19 +52,18 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
         }
         .background(Color.backgroundLightest.edgesIgnoringSafeArea(.all))
         .tint(viewModel.courseColor?.asColor)
-        .navigationBarTitleView(
-            title: String(localized: "Assignments", bundle: .core),
-            subtitle: viewModel.courseName
+        .onAppear(perform: viewModel.viewDidAppear)
+        .onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
+        .navigationTitles(
+            title: .init(localized: "Assignments", bundle: .core),
+            subtitle: viewModel.courseName,
+            style: .color(viewModel.courseColor)
         )
-        .navigationBarGenericBackButton()
         .navBarItems(
-            trailing: .filterIcon(isBackgroundContextColor: true, isSolid: viewModel.isFilterIconSolid) {
+            trailing: .filterIcon(isBackgroundContextColor: isBackgroundContextColor, isSolid: viewModel.isFilterIconSolid) {
                 viewModel.navigateToPreferences(viewController: controller)
             }
         )
-        .navigationBarStyle(.color(viewModel.courseColor))
-        .onAppear(perform: viewModel.viewDidAppear)
-        .onReceive(viewModel.$defaultDetailViewRoute, perform: setupDefaultSplitDetailView)
     }
 
     private var gradingPeriodTitle: some View {
@@ -106,9 +107,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
                     .listRowBackground(SwiftUI.EmptyView())
             }
             .listStyle(.plain)
-            .refreshable {
-                await viewModel.refresh()
-            }
+            .refreshable(action: viewModel.refresh)
         }
     }
 
@@ -135,9 +134,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
                 )
             }
         }
-        .refreshable {
-            await viewModel.refresh()
-        }
+        .refreshable(action: viewModel.refresh)
     }
 
     private func setupDefaultSplitDetailView(_ routeUrl: String) {

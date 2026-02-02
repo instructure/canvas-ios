@@ -25,7 +25,11 @@ class LoginFindSchoolViewController: UIViewController {
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var searchField: UITextField!
 
-    private lazy var nextButton = UIBarButtonItem(title: String(localized: "Next", bundle: .core), style: .done, target: self, action: #selector(nextPressed))
+    private lazy var nextButton = if #available(iOS 26, *) {
+        UIBarButtonItem(title: String(localized: "Next", bundle: .core), style: .prominent, target: self, action: #selector(nextPressed))
+    } else {
+        UIBarButtonItem(title: String(localized: "Next", bundle: .core), style: .done, target: self, action: #selector(nextPressed))
+    }
 
     var accounts = [APIAccountResult]()
     var api: API = API()
@@ -107,7 +111,7 @@ class LoginFindSchoolViewController: UIViewController {
         loadingView?.startAnimating()
         searchTask = api.makeRequest(GetAccountsSearchRequest(searchTerm: query)) { [weak self] (results, _, error) in performUIUpdate {
             guard let self = self, error == nil else { return }
-            self.accounts = results ?? []
+            self.accounts = results?.sortedPromotingQueryPrefixed(query) ?? []
             self.loadingView.stopAnimating()
             self.resultsTableView.reloadData()
             self.searchTask = nil
@@ -115,20 +119,19 @@ class LoginFindSchoolViewController: UIViewController {
     }
 
     func showLoginForHost(_ host: String, authenticationProvider: String? = nil) {
-        let provider = authenticationProvider ?? accounts.first(where: { $0.domain == host })?.authentication_provider
         let controller: UIViewController
         var analyticsRoute = "/login/find"
 
         if method == .manualOAuthLogin {
             controller = LoginManualOAuthViewController.create(
-                authenticationProvider: provider,
+                authenticationProvider: authenticationProvider,
                 host: host,
                 loginDelegate: loginDelegate
             )
             analyticsRoute = "/login/manualoauth"
         } else {
             controller = LoginWebViewController.create(
-                authenticationProvider: provider,
+                authenticationProvider: authenticationProvider,
                 host: host,
                 loginDelegate: loginDelegate,
                 method: method

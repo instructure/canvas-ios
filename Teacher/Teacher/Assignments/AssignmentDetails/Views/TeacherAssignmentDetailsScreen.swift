@@ -52,12 +52,12 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
     public var body: some View {
         states
             .background(Color.backgroundLightest)
-            .navigationBarTitleView(
-                title: String(localized: "Assignment Details", bundle: .teacher),
-                subtitle: course.first?.name
-            )
             .rightBarButtonItems(rightBarItems)
-            .navigationBarStyle(.color(course.first?.color))
+            .navigationTitles(
+                title: String(localized: "Assignment Details", bundle: .teacher),
+                subtitle: course.first?.name,
+                style: .color(course.first?.color)
+            )
             .onAppear {
                 refreshAssignments()
                 refreshCourses()
@@ -66,27 +66,22 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
 
     @ViewBuilder var states: some View {
         if let assignment = assignment.first {
-            RefreshableScrollView {
-                VStack(alignment: .leading, spacing: 0) {
-                    details(assignment: assignment)
-                        .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil) }
+            VStack(spacing: 0) {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 0) {
+                        details(assignment: assignment)
+                            .onAppear { UIAccessibility.post(notification: .screenChanged, argument: nil) }
+                    }
                 }
-            }
-            refreshAction: { endRefreshing in
-                self.assignment.refresh(force: true) { _ in
-                    endRefreshing()
+                .refreshable { endRefreshing in
+                    self.assignment.refresh(force: true) { _ in
+                        endRefreshing()
+                    }
                 }
-            }
-            if let discussionUrl = assignment.discussionTopic?.htmlURL {
-                Button {
-                    env.router.route(to: discussionUrl, from: controller)
-                } label: {
-                    Text("View Discussion", bundle: .teacher)
+
+                if let discussionUrl = assignment.discussionTopic?.htmlURL {
+                    viewDiscussionButton(url: discussionUrl)
                 }
-                .frame(maxWidth: .infinity, minHeight: 50)
-                .background(Color(Brand.shared.buttonPrimaryBackground))
-                .font(.semibold16)
-                .foregroundColor(Color(Brand.shared.buttonPrimaryText))
             }
         } else if assignment.state == .loading {
             ZStack {
@@ -95,6 +90,33 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
             }
         } else /* Assignment not found, perhaps recently deleted */ {
             Spacer().onAppear { env.router.dismiss(controller) }
+        }
+    }
+
+    @ViewBuilder
+    private func viewDiscussionButton(url: URL) -> some View {
+        let action = { env.router.route(to: url, from: controller) }
+        let label = Text("View Discussion", bundle: .teacher)
+
+        if #available(iOS 26, *) {
+            Button(action: action) {
+                label
+                    .padding(8)
+                    .frame(maxWidth: .infinity, minHeight: 50)
+            }
+            .background(Color(Brand.shared.buttonPrimaryBackground), in: Capsule())
+            .padding(.horizontal, 20)
+            .offset(y: -8)
+            .font(.semibold16)
+            .foregroundColor(Color(Brand.shared.buttonPrimaryText))
+        } else {
+            Button(action: action) {
+                label
+            }
+            .frame(maxWidth: .infinity, minHeight: 50)
+            .background(Color(Brand.shared.buttonPrimaryBackground))
+            .font(.semibold16)
+            .foregroundColor(Color(Brand.shared.buttonPrimaryText))
         }
     }
 
@@ -224,6 +246,7 @@ private extension TeacherAssignmentDetailsScreen {
                 .foregroundColor(.textDark)
                 .padding(EdgeInsets(top: 16, leading: 16, bottom: 0, trailing: 16))
             WebView(html: html, baseURL: env.currentSession?.baseURL, canToggleTheme: true)
+                .featuresContext(.course(assignment.courseID))
                 .frameToFit()
         } else {
             Section(label: Text("Description", bundle: .teacher)) {

@@ -262,13 +262,13 @@ class OfflineTests: OfflineE2ETestCase {
         XCTAssertVisible(discussionItem)
 
         // MARK: Check page
-        DashboardHelper.backButton.hit()
+        DashboardHelper.backButtonByIdOrLabel.hit()
         pagesButton.hit()
         let pagesItem = PagesHelper.page(index: 0).waitUntil(.visible)
         XCTAssertVisible(pagesItem)
 
         // MARK: Check syllabus
-        DashboardHelper.backButton.hit()
+        DashboardHelper.backButtonByIdOrLabel.hit()
         syllabusButton.hit()
         let syllabusBody = SyllabusHelper.syllabusBody.waitUntil(.visible)
         XCTAssertVisible(syllabusBody)
@@ -341,12 +341,12 @@ class OfflineTests: OfflineE2ETestCase {
         XCTAssertVisible(offlineLineImage)
 
         // MARK: Check "All Courses" button, check "Star" button is disabled
-        let allCoursesButton = DashboardHelper.editButton.waitUntil(.visible)
+        let allCoursesButton = DashboardHelper.allCoursesButton.waitUntil(.visible)
         XCTAssertVisible(allCoursesButton)
 
         allCoursesButton.hit()
-        let starButton = DashboardHelper.favoriteButton.waitUntil(.visible)
-        let backButton = DashboardHelper.backButton.waitUntil(.visible)
+        let starButton = DashboardHelper.AllCourses.firstFavoriteButton().waitUntil(.visible)
+        let backButton = DashboardHelper.backButtonByIdOrLabel.waitUntil(.visible)
         XCTAssertVisible(starButton)
         XCTAssertTrue(starButton.isDisabled)
         XCTAssertVisible(backButton)

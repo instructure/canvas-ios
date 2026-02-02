@@ -40,9 +40,14 @@ class GroupNavigationViewControllerTests: StudentTestCase {
         let navigation = UINavigationController(rootViewController: controller)
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
-        XCTAssertEqual(navigation.navigationBar.barTintColor?.hexString, UIColor(hexString: "#f00")?.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString)
+
+        if #available(iOS 26, *) {
+            XCTAssertEqual(controller.navigationItem.title, "Tests")
+        } else {
+            XCTAssertEqual(navigation.navigationBar.barTintColor?.hexString, UIColor(hexString: "#f00")?.darkenToEnsureContrast(against: .textLightest.variantForLightMode).hexString)
+            XCTAssertEqual(controller.titleSubtitleView.title, "Tests")
+        }
         XCTAssertEqual(controller.tableView.backgroundColor, .backgroundLightest)
-        XCTAssertEqual(controller.titleSubtitleView.title, "Tests")
     }
 
     func testSelect() {

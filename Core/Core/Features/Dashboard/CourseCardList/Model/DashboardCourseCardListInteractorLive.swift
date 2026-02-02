@@ -64,7 +64,7 @@ public class DashboardCourseCardListInteractorLive: DashboardCourseCardListInter
         )
         .eraseToAnyPublisher()
         .map { [courseCardListStore] combinedState in // Publish empty state if there are no course cards in the list
-            if combinedState != .error || combinedState != .loading {
+            if combinedState != .error && combinedState != .loading {
                 return courseCardListStore.state
             } else {
                 return combinedState
