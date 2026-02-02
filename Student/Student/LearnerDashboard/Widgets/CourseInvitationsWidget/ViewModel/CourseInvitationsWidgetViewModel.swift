@@ -66,10 +66,9 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
         interactor.getCourses(ignoreCache: ignoreCache)
-            .receive(on: DispatchQueue.main)
-            .map { [weak self] result in
-                guard let self else { return () }
-                self.invitations = result.invitedCourses.compactMap { course in
+            .map { [weak self, interactor, snackBarViewModel] result in
+                guard let self else { return [] }
+                return result.invitedCourses.compactMap { course in
                     guard let invitedEnrollment = course.enrollments?.first(where: { $0.state == .invited && $0.id != nil }),
                           let enrollmentID = invitedEnrollment.id else {
                         return nil
@@ -82,14 +81,18 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
                         courseId: course.id,
                         courseName: course.name ?? "",
                         sectionName: section?.name,
-                        interactor: self.interactor,
-                        snackBarViewModel: self.snackBarViewModel,
+                        interactor: interactor,
+                        snackBarViewModel: snackBarViewModel,
                         onDismiss: { [weak self] enrollmentId in
                             self?.removeInvitation(id: enrollmentId)
                         }
                     )
                 }
-                self.state = self.invitations.isEmpty ? .empty : .data
+            }
+            .receive(on: DispatchQueue.main)
+            .map { [weak self] (invitations: [CourseInvitationCardViewModel]) in
+                self?.invitations = invitations
+                self?.state = invitations.isEmpty ? .empty : .data
                 return ()
             }
             .catch { [weak self] _ in

@@ -18,6 +18,7 @@
 
 import Combine
 import Core
+import CoreData
 import Foundation
 
 struct CoursesResult {
@@ -38,16 +39,16 @@ protocol CoursesInteractor {
 /// This interactor implements request coalescing to optimize network usage and prevent race conditions:
 ///
 /// - **Request Queuing**: Multiple concurrent `getCourses()` calls are queued and served by a single fetch
-/// - **Thread Safety**: All state mutations happen on a serial `DispatchQueue` to prevent data races
+/// - **Thread Safety**: All state mutations happen on the context's queue to prevent data races
 /// - **Cache Coordination**: If any pending request requires fresh data (`ignoreCache: true`),
 ///   the fetch bypasses cache and all pending requests receive fresh data
 ///
 /// ## Request Flow
 ///
-/// 1. **getCourses()** creates a `PassthroughSubject` and queues the request
+/// 1. **getCourses()** creates a `PassthroughSubject` and queues the request on context's queue
 /// 2. **startFetch()** initiates a network fetch if none is in progress
 /// 3. **handleFetchResult()** broadcasts results to requests and triggers subsequent fetches if needed
-/// 4. **handleFetchCompletion()** broadcasts errors to all pending requests
+/// 4. **handleFetchError()** broadcasts errors to all pending requests
 ///
 /// ## Cache Behavior
 ///
@@ -65,26 +66,30 @@ final class CoursesInteractorLive: CoursesInteractor {
     let useCase = GetAllUserCourses()
     let env: AppEnvironment
 
+    private let context: NSManagedObjectContext
     private let coursesStore: ReactiveStore<GetAllUserCourses>
     private let sortComparator: any SortComparator<Course>
     private var subscriptions = Set<AnyCancellable>()
 
-    /// Queue of requests waiting for fetch completion. Protected by `queue`.
+    /// Queue of requests waiting for fetch completion. Protected by context's queue.
     private var pendingRequests: [PendingRequest] = []
-    /// Indicates if a fetch is currently in progress. Protected by `queue`.
+    /// Indicates if a fetch is currently in progress. Protected by context's queue.
     private var isFetching = false
-    /// Tracks whether the current fetch bypasses cache. Protected by `queue`.
+    /// Tracks whether the current fetch bypasses cache. Protected by context's queue.
     private var currentFetchIgnoresCache = false
-    /// Serial queue ensuring thread-safe access to mutable state.
-    private let queue = DispatchQueue(label: "com.instructure.student.coursesInteractor")
 
     init(
         env: AppEnvironment = .shared,
+        context: NSManagedObjectContext = AppEnvironment.shared.database.backgroundReadContext,
         sortComparator: some SortComparator<Course> = InvitedCourseSortComparator()
     ) {
         self.env = env
+        self.context = context
         self.sortComparator = sortComparator
-        self.coursesStore = ReactiveStore(useCase: useCase)
+        self.coursesStore = ReactiveStore(
+            context: context,
+            useCase: useCase
+        )
     }
 
     /// Fetches courses with request coalescing.
@@ -98,7 +103,7 @@ final class CoursesInteractorLive: CoursesInteractor {
         let subject = PassthroughSubject<CoursesResult, Error>()
         let request = PendingRequest(ignoreCache: ignoreCache, subject: subject)
 
-        queue.async { [weak self] in
+        context.perform { [weak self] in
             guard let self else {
                 subject.send(completion: .failure(NSError(domain: "CoursesInteractor", code: -1)))
                 return
@@ -116,7 +121,7 @@ final class CoursesInteractorLive: CoursesInteractor {
     /// Initiates a network fetch for all pending requests.
     ///
     /// Determines cache strategy by checking if any pending request requires fresh data.
-    /// Must be called on `queue` to ensure thread safety.
+    /// Must be called on context's queue to ensure thread safety.
     private func startFetch() {
         guard !isFetching else { return }
         isFetching = true
@@ -125,6 +130,7 @@ final class CoursesInteractorLive: CoursesInteractor {
         currentFetchIgnoresCache = shouldIgnoreCache
 
         let enrollmentsStore = ReactiveStore(
+            context: context,
             useCase: GetEnrollments(
                 context: .currentUser,
                 states: [.active, .completed, .invited]
@@ -147,7 +153,8 @@ final class CoursesInteractorLive: CoursesInteractor {
         }
         .sink(
             receiveCompletion: { [weak self] completion in
-                self?.handleFetchCompletion(completion)
+                guard case .failure(let error) = completion else { return }
+                self?.handleFetchError(error)
             },
             receiveValue: { [weak self] result in
                 self?.handleFetchResult(result)
@@ -165,7 +172,7 @@ final class CoursesInteractorLive: CoursesInteractor {
     /// Unsatisfied requests (cached fetch, but request needs fresh data) remain queued
     /// and trigger a new fetch.
     private func handleFetchResult(_ result: CoursesResult) {
-        queue.async { [weak self] in
+        context.perform { [weak self] in
             guard let self else { return }
 
             let gotFresh = currentFetchIgnoresCache
@@ -194,18 +201,17 @@ final class CoursesInteractorLive: CoursesInteractor {
     ///
     /// On fetch failure, all pending requests receive the error and are cleared.
     /// No automatic retry occurs - callers must initiate new requests.
-    private func handleFetchCompletion(_ completion: Subscribers.Completion<Error>) {
-        if case .failure(let error) = completion {
-            queue.async { [weak self] in
-                guard let self else { return }
+    private func handleFetchError(_ error: Error) {
+        context.perform { [weak self] in
+            guard let self else { return }
 
-                for request in pendingRequests {
-                    request.subject.send(completion: .failure(error))
-                }
-                pendingRequests.removeAll()
-                isFetching = false
-                currentFetchIgnoresCache = false
+            for request in pendingRequests {
+                request.subject.send(completion: .failure(error))
             }
+
+            pendingRequests.removeAll()
+            isFetching = false
+            currentFetchIgnoresCache = false
         }
     }
 }

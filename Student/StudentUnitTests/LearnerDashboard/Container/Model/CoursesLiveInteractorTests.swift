@@ -22,7 +22,7 @@ import Combine
 @testable import TestsFoundation
 import XCTest
 
-final class CoursesInteractorTests: StudentTestCase {
+final class CoursesLiveInteractorTests: StudentTestCase {
 
     private var testee: CoursesInteractorLive!
     private var subscriptions = Set<AnyCancellable>()
