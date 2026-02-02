@@ -133,7 +133,7 @@ public struct AsyncStore<U: UseCase> {
     }
 
     private func fetchEntitiesFromAPI(getNextUseCase: GetNextUseCase<U>? = nil, loadAllPages: Bool) async throws -> [U.Model] {
-        let urlResponse = {
+        let urlResponse = try await {
                 if let getNextUseCase {
                     try await getNextUseCase.fetch(environment: environment)
                 } else {
@@ -148,7 +148,7 @@ public struct AsyncStore<U: UseCase> {
     }
 
     private func updateEntitiesFromAPI(getNextUseCase: GetNextUseCase<U>? = nil, loadAllPages: Bool) async throws {
-        let urlResponse = {
+        let urlResponse = try await {
                 if let getNextUseCase {
                     try await getNextUseCase.fetch(environment: environment)
                 } else {
