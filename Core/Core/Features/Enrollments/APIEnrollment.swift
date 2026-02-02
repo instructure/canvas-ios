@@ -38,7 +38,7 @@ public struct APIEnrollment: Codable, Equatable {
     let associated_user_id: ID?
     let role: String
     let role_id: String
-    // let created_at: Date
+    let created_at: Date?
     // let updated_at: Date
     let start_at: Date?
     let end_at: Date?
@@ -105,6 +105,7 @@ extension APIEnrollment {
         associated_user_id: String? = nil,
         role: String = "StudentEnrollment",
         role_id: String = "3",
+        created_at: Date? = nil,
         start_at: Date? = nil,
         end_at: Date? = nil,
         last_activity_at: Date? = nil,
@@ -134,6 +135,7 @@ extension APIEnrollment {
             associated_user_id: ID(associated_user_id),
             role: role,
             role_id: role_id,
+            created_at: created_at,
             start_at: start_at,
             end_at: end_at,
             last_activity_at: last_activity_at,

@@ -36,6 +36,7 @@ final public class Enrollment: NSManagedObject {
     @NSManaged public var observedUser: User?
     @NSManaged public var isFromInvitation: Bool
     @NSManaged public var lastActivityAt: Date?
+    @NSManaged public var createdAt: Date?
 
     @NSManaged public var computedCurrentScoreRaw: NSNumber?
     @NSManaged public var computedCurrentGrade: String?
@@ -192,6 +193,7 @@ extension Enrollment {
         userID = item.user_id.value
         courseSectionID = item.course_section_id?.value
         lastActivityAt = item.last_activity_at
+        createdAt = item.created_at
 
         let courseID = item.course_id?.value ?? course?.id
         if let courseID = courseID {

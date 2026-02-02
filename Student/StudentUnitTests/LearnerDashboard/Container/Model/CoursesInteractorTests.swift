@@ -59,13 +59,13 @@ final class CoursesInteractorTests: StudentTestCase {
         mocks.completed.suspend()
         mocks.invited.suspend()
 
-        let expectation1 = expectation(description: "First call completes")
-        let expectation2 = expectation(description: "Second call completes")
-        let expectation3 = expectation(description: "Third call completes")
-
         var result1: CoursesResult?
         var result2: CoursesResult?
         var result3: CoursesResult?
+
+        let expectation1 = expectation(description: "Request 1")
+        let expectation2 = expectation(description: "Request 2")
+        let expectation3 = expectation(description: "Request 3")
 
         testee.getCourses(ignoreCache: false)
             .sink(
@@ -92,15 +92,7 @@ final class CoursesInteractorTests: StudentTestCase {
         mocks.completed.resume()
         mocks.invited.resume()
 
-        wait(
-            for: [
-                useCaseCallExpectation,
-                expectation1,
-                expectation2,
-                expectation3
-            ],
-            timeout: 5
-        )
+        wait(for: [useCaseCallExpectation, expectation1, expectation2, expectation3], timeout: 5)
 
         XCTAssertEqual(result1?.allCourses.count, 3)
         XCTAssertEqual(result2?.allCourses.count, 3)
@@ -138,11 +130,11 @@ final class CoursesInteractorTests: StudentTestCase {
         mocks.completed.suspend()
         mocks.invited.suspend()
 
-        let cachedExpectation = expectation(description: "Cached request completes")
-        let freshExpectation = expectation(description: "Fresh request completes")
-
         var cachedResult: CoursesResult?
         var freshResult: CoursesResult?
+
+        let cachedExpectation = expectation(description: "Cached request")
+        let freshExpectation = expectation(description: "Fresh request")
 
         testee.getCourses(ignoreCache: false)
             .sink(
@@ -162,15 +154,7 @@ final class CoursesInteractorTests: StudentTestCase {
         mocks.completed.resume()
         mocks.invited.resume()
 
-        wait(
-            for: [
-                firstFetchExpectation,
-                cachedExpectation,
-                secondFetchExpectation,
-                freshExpectation
-            ],
-            timeout: 5
-        )
+        wait(for: [firstFetchExpectation, secondFetchExpectation, cachedExpectation, freshExpectation], timeout: 5)
 
         XCTAssertEqual(activeCallCount, 2)
         XCTAssertEqual(cachedResult?.allCourses.count, 2)
@@ -195,11 +179,11 @@ final class CoursesInteractorTests: StudentTestCase {
         mocks.completed.suspend()
         mocks.invited.suspend()
 
-        let freshExpectation = expectation(description: "Fresh request completes")
-        let cachedExpectation = expectation(description: "Cached request completes")
-
         var freshResult: CoursesResult?
         var cachedResult: CoursesResult?
+
+        let freshExpectation = expectation(description: "Fresh request")
+        let cachedExpectation = expectation(description: "Cached request")
 
         testee.getCourses(ignoreCache: true)
             .sink(
@@ -219,14 +203,7 @@ final class CoursesInteractorTests: StudentTestCase {
         mocks.completed.resume()
         mocks.invited.resume()
 
-        wait(
-            for: [
-                useCaseCallExpectation,
-                freshExpectation,
-                cachedExpectation
-            ],
-            timeout: 5
-        )
+        wait(for: [useCaseCallExpectation, freshExpectation, cachedExpectation], timeout: 5)
 
         XCTAssertEqual(freshResult?.allCourses.count, 2)
         XCTAssertEqual(cachedResult?.allCourses.count, 2)
@@ -238,21 +215,16 @@ final class CoursesInteractorTests: StudentTestCase {
         let mocks = mockCourseRequests(error: testError)
         mocks.active.suspend()
 
-        let expectation1 = expectation(description: "First request receives error")
-        let expectation2 = expectation(description: "Second request receives error")
-        let expectation3 = expectation(description: "Third request receives error")
-
-        var error1: Error?
-        var error2: Error?
-        var error3: Error?
+        let expectation1 = expectation(description: "Request 1 fails")
+        let expectation2 = expectation(description: "Request 2 fails")
+        let expectation3 = expectation(description: "Request 3 fails")
 
         testee.getCourses(ignoreCache: false)
             .sink(
                 receiveCompletion: { completion in
-                    if case .failure(let error) = completion {
-                        error1 = error
+                    if case .failure = completion {
+                        expectation1.fulfill()
                     }
-                    expectation1.fulfill()
                 },
                 receiveValue: { _ in }
             )
@@ -261,10 +233,9 @@ final class CoursesInteractorTests: StudentTestCase {
         testee.getCourses(ignoreCache: true)
             .sink(
                 receiveCompletion: { completion in
-                    if case .failure(let error) = completion {
-                        error2 = error
+                    if case .failure = completion {
+                        expectation2.fulfill()
                     }
-                    expectation2.fulfill()
                 },
                 receiveValue: { _ in }
             )
@@ -273,10 +244,9 @@ final class CoursesInteractorTests: StudentTestCase {
         testee.getCourses(ignoreCache: false)
             .sink(
                 receiveCompletion: { completion in
-                    if case .failure(let error) = completion {
-                        error3 = error
+                    if case .failure = completion {
+                        expectation3.fulfill()
                     }
-                    expectation3.fulfill()
                 },
                 receiveValue: { _ in }
             )
@@ -284,21 +254,83 @@ final class CoursesInteractorTests: StudentTestCase {
 
         mocks.active.resume()
 
-        wait(
-            for: [
-                expectation1,
-                expectation2,
-                expectation3
+        wait(for: [expectation1, expectation2, expectation3], timeout: 5)
+    }
+
+    func testGetCoursesReturnsInvitedCourses() throws {
+        _ = mockCourseRequests(
+            active: [
+                APICourse.make(id: "1", name: "Active Course")
             ],
-            timeout: 5
+            invited: [
+                APICourse.make(
+                    id: "2",
+                    name: "Invited Course 1",
+                    enrollments: [APIEnrollment.make(id: "e1", enrollment_state: .invited)]
+                ),
+                APICourse.make(
+                    id: "3",
+                    name: "Invited Course 2",
+                    enrollments: [APIEnrollment.make(id: "e2", enrollment_state: .invited)]
+                )
+            ]
         )
 
-        XCTAssertNotNil(error1)
-        XCTAssertNotNil(error2)
-        XCTAssertNotNil(error3)
+        XCTAssertSingleOutputAndFinish(testee.getCourses(ignoreCache: false), timeout: 5) { result in
+            XCTAssertEqual(result.allCourses.count, 3)
+            XCTAssertEqual(result.invitedCourses.count, 2)
+        }
+    }
+
+    func testGetCoursesInvokesSortComparator() throws {
+        let mockComparator = MockCourseSortComparator()
+        testee = CoursesInteractorLive(env: env, sortComparator: mockComparator)
+
+        _ = mockCourseRequests(
+            active: [],
+            invited: [
+                APICourse.make(
+                    id: "1",
+                    name: "Course 1",
+                    enrollments: [APIEnrollment.make(id: "e1", enrollment_state: .invited)]
+                ),
+                APICourse.make(
+                    id: "2",
+                    name: "Course 2",
+                    enrollments: [APIEnrollment.make(id: "e2", enrollment_state: .invited)]
+                )
+            ]
+        )
+
+        XCTAssertSingleOutputAndFinish(testee.getCourses(ignoreCache: false), timeout: 5) { _ in
+            XCTAssertTrue(mockComparator.compareCalled)
+            XCTAssertGreaterThan(mockComparator.compareCallCount, 0)
+        }
     }
 
     // MARK: - Helpers
+
+    private class MockCourseSortComparator: SortComparator {
+        typealias Compared = Course
+        var order: SortOrder = .forward
+
+        private(set) var compareCalled = false
+        private(set) var compareCallCount = 0
+
+        func compare(_ lhs: Course, _ rhs: Course) -> ComparisonResult {
+            compareCalled = true
+            compareCallCount += 1
+            return .orderedSame
+        }
+
+        static func == (lhs: MockCourseSortComparator, rhs: MockCourseSortComparator) -> Bool {
+            true
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(order)
+        }
+    }
 
     private func mockCourseRequests(
         active: [APICourse] = [],
