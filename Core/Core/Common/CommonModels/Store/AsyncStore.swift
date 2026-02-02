@@ -146,11 +146,13 @@ public struct AsyncStore<U: UseCase> {
     }
 
     private func updateEntitiesFromAPI(getNextUseCase: GetNextUseCase<U>? = nil, loadAllPages: Bool) async throws {
-        let urlResponse = if let getNextUseCase {
-            try await getNextUseCase.fetch(environment: environment)
-        } else {
-            try await useCase.fetch(environment: environment)
-        }
+        let urlResponse = {
+                if let getNextUseCase {
+                    try await getNextUseCase.fetch(environment: environment)
+                } else {
+                    try await useCase.fetch(environment: environment)
+                }
+        }()
 
         let nextResponse = urlResponse.flatMap { useCase.getNext(from: $0) }
         try await fetchAllPagesIfNeeded(loadAllPages: loadAllPages, nextResponse: nextResponse)
