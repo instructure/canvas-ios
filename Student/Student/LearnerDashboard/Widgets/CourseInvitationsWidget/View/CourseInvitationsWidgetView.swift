@@ -22,6 +22,8 @@ import SwiftUI
 
 struct CourseInvitationsWidgetView: View {
     @State var viewModel: CourseInvitationsWidgetViewModel
+    @State private var currentPage: Int = 0
+    @State private var totalPages: Int = 1
 
     var body: some View {
         ZStack {
@@ -30,8 +32,16 @@ struct CourseInvitationsWidgetView: View {
                     viewModel.widgetTitle,
                     customAccessibilityTitle: viewModel.widgetAccessibilityTitle
                 ) {
-                    HorizontalCarouselView(items: viewModel.invitations) { cardViewModel in
-                        CourseInvitationCardView(viewModel: cardViewModel)
+                    VStack(spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue) {
+                        HorizontalCarouselView(
+                            items: viewModel.invitations,
+                            currentPage: $currentPage,
+                            totalPages: $totalPages
+                        ) { cardViewModel in
+                            CourseInvitationCardView(viewModel: cardViewModel)
+                        }
+
+                        InstUI.PageIndicator(currentIndex: currentPage, count: totalPages)
                     }
                 }
             }

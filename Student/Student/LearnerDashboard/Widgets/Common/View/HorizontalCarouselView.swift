@@ -21,39 +21,102 @@ import SwiftUI
 
 struct HorizontalCarouselView<Item: Identifiable, CardContent: View>: View {
     let items: [Item]
+    var currentPage: Binding<Int>?
+    var totalPages: Binding<Int>?
     let cardContent: (Item) -> CardContent
     @State private var containerWidth: CGFloat = 0
+    @State private var scrollPosition: Item.ID?
     private let cardSpacing: CGFloat = 8
 
     var body: some View {
         ScrollView(.horizontal) {
-            HStack(spacing: cardSpacing) {
-                ForEach(items) { item in
+            HStack(alignment: .top, spacing: 0) {
+                ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
                     cardContent(item)
-                        .frame(width: cardWidth)
-                        .id(item.id)
+                        .frame(width: cardContentWidth)
+                        .padding(.leading, cardSpacing / 2)
+                        .padding(.trailing, trailingPadding(for: index))
                 }
             }
             .scrollTargetLayout()
         }
-        .scrollTargetBehavior(.viewAligned)
+        .scrollPosition(id: $scrollPosition)
+        .scrollTargetBehavior(.paging)
         .scrollIndicators(.hidden)
-        .scrollClipDisabled() // This is to let card shadows draw out of the scrollable area
+        .scrollClipDisabled()
         .onWidthChange(update: $containerWidth)
+        .onChange(of: scrollPosition) { _, _ in
+            updateCurrentPage()
+        }
+        .onChange(of: items.count) { _, _ in
+            updateTotalPages()
+        }
+        .onChange(of: containerWidth) { _, _ in
+            updateTotalPages()
+        }
+        .onAppear {
+            scrollPosition = items.first?.id
+            updateTotalPages()
+        }
     }
 
-    private var cardWidth: CGFloat {
-        guard containerWidth > 0 else { return 0 }
-        let columnCount = LearnerDashboardWidgetLayoutHelpers.columns(for: containerWidth)
-        let totalSpacing = cardSpacing * CGFloat(columnCount - 1)
-        let availableWidth = containerWidth - totalSpacing
-        return availableWidth / CGFloat(columnCount)
+    private var columnCount: Int {
+        LearnerDashboardWidgetLayoutHelpers.columns(for: containerWidth)
+    }
+
+    private var cardContentWidth: CGFloat {
+        guard containerWidth > 0, columnCount > 0 else { return 0 }
+        let slotWidth = containerWidth / CGFloat(columnCount)
+        return slotWidth - cardSpacing
+    }
+
+    private var pageCount: Int {
+        guard columnCount > 0 else { return 0 }
+        return Int(ceil(Double(items.count) / Double(columnCount)))
+    }
+
+    private func trailingPadding(for index: Int) -> CGFloat {
+        guard columnCount > 0 else { return 0 }
+
+        let isLastItem = index == items.count - 1
+
+        if isLastItem {
+            let itemsInLastPage = items.count % columnCount
+            let itemsInLastPageCount = itemsInLastPage == 0 ? columnCount : itemsInLastPage
+            let missingItems = columnCount - itemsInLastPageCount
+
+            if missingItems > 0 {
+                let extraPaddingForMissingSlots = CGFloat(missingItems) * (containerWidth / CGFloat(columnCount))
+                return (cardSpacing / 2) + extraPaddingForMissingSlots
+            }
+        }
+
+        return cardSpacing / 2
+    }
+
+    private func updateCurrentPage() {
+        guard let scrollPosition,
+              let itemIndex = items.firstIndex(where: { $0.id == scrollPosition }),
+              columnCount > 0 else { return }
+        let page = itemIndex / columnCount
+        currentPage?.wrappedValue = page
+    }
+
+    private func updateTotalPages() {
+        totalPages?.wrappedValue = pageCount
     }
 }
 
 #if DEBUG
 
 #Preview {
+    @Previewable @State var currentPage1 = 0
+    @Previewable @State var totalPages1 = 1
+    @Previewable @State var currentPage3 = 0
+    @Previewable @State var totalPages3 = 1
+    @Previewable @State var currentPage5 = 0
+    @Previewable @State var totalPages5 = 1
+
     struct PreviewItem: Identifiable {
         let id: String
         let title: String
@@ -68,35 +131,85 @@ struct HorizontalCarouselView<Item: Identifiable, CardContent: View>: View {
         PreviewItem(id: "5", title: "Item 5", subtitle: "Subtitle 5")
     ]
 
-    return VStack {
-        HorizontalCarouselView(items: [items[0]]) { item in
+    return ScrollView {
+        VStack(spacing: 24) {
             VStack(alignment: .leading, spacing: 8) {
-                Text(item.title)
-                    .font(.medium16, lineHeight: .fit)
-                    .foregroundColor(.textDarkest)
-                Text(item.subtitle)
-                    .font(.regular14, lineHeight: .fit)
-                    .foregroundColor(.textDark)
+                Text("Single Item")
+                    .font(.headline)
+                HorizontalCarouselView(
+                    items: [items[0]],
+                    currentPage: $currentPage1,
+                    totalPages: $totalPages1
+                ) { item in
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(item.title)
+                            .font(.medium16, lineHeight: .fit)
+                            .foregroundColor(.textDarkest)
+                        Text(item.subtitle)
+                            .font(.regular14, lineHeight: .fit)
+                            .foregroundColor(.textDark)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(16)
+                    .elevation(.cardLarge, background: .backgroundLightest)
+                }
+                Text("Page \(currentPage1 + 1) of \(totalPages1)")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(16)
-            .elevation(.cardLarge, background: .backgroundLightest)
-        }
-        HorizontalCarouselView(items: items) { item in
+
             VStack(alignment: .leading, spacing: 8) {
-                Text(item.title)
-                    .font(.medium16, lineHeight: .fit)
-                    .foregroundColor(.textDarkest)
-                Text(item.subtitle)
-                    .font(.regular14, lineHeight: .fit)
-                    .foregroundColor(.textDark)
+                Text("Three Items (2 columns/page)")
+                    .font(.headline)
+                HorizontalCarouselView(
+                    items: Array(items.prefix(3)),
+                    currentPage: $currentPage3,
+                    totalPages: $totalPages3
+                ) { item in
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(item.title)
+                            .font(.medium16, lineHeight: .fit)
+                            .foregroundColor(.textDarkest)
+                        Text(item.subtitle)
+                            .font(.regular14, lineHeight: .fit)
+                            .foregroundColor(.textDark)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(16)
+                    .elevation(.cardLarge, background: .backgroundLightest)
+                }
+                Text("Page \(currentPage3 + 1) of \(totalPages3)")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(16)
-            .elevation(.cardLarge, background: .backgroundLightest)
+
+            VStack(alignment: .leading, spacing: 8) {
+                Text("Five Items")
+                    .font(.headline)
+                HorizontalCarouselView(
+                    items: items,
+                    currentPage: $currentPage5,
+                    totalPages: $totalPages5
+                ) { item in
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(item.title)
+                            .font(.medium16, lineHeight: .fit)
+                            .foregroundColor(.textDarkest)
+                        Text(item.subtitle)
+                            .font(.regular14, lineHeight: .fit)
+                            .foregroundColor(.textDark)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(16)
+                    .elevation(.cardLarge, background: .backgroundLightest)
+                }
+                Text("Page \(currentPage5 + 1) of \(totalPages5)")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
         }
+        .padding(16)
     }
-    .padding(16)
 }
 
 #endif
