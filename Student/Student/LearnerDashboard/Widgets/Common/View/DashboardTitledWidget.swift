@@ -42,7 +42,7 @@ struct DashboardTitledWidget<Content: View>: View {
         ) {
             Text(title)
                 .font(.regular14, lineHeight: .fit)
-                .foregroundColor(.textDarkest)
+                .foregroundStyle(.textDarkest)
                 .accessibilityAddTraits(.isHeader)
                 .accessibilityLabel(customAccessibilityTitle ?? title)
             content

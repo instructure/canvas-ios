@@ -84,7 +84,9 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
                         interactor: interactor,
                         snackBarViewModel: snackBarViewModel,
                         onDismiss: { [weak self] enrollmentId in
-                            self?.removeInvitation(id: enrollmentId)
+                            DispatchQueue.main.async {
+                                self?.removeInvitation(id: enrollmentId)
+                            }
                         }
                     )
                 }
@@ -102,6 +104,7 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
             .eraseToAnyPublisher()
     }
 
+    @MainActor
     private func removeInvitation(id: String) {
         invitations.removeAll { $0.id == id }
         if invitations.isEmpty {

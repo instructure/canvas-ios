@@ -26,7 +26,7 @@ struct HorizontalCarouselView<Item: Identifiable, CardContent: View>: View {
     private let cardSpacing: CGFloat = 8
 
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
+        ScrollView(.horizontal) {
             HStack(spacing: cardSpacing) {
                 ForEach(items) { item in
                     cardContent(item)
@@ -37,8 +37,8 @@ struct HorizontalCarouselView<Item: Identifiable, CardContent: View>: View {
             .scrollTargetLayout()
         }
         .scrollTargetBehavior(.viewAligned)
+        .scrollIndicators(.hidden)
         .scrollClipDisabled() // This is to let card shadows draw out of the scrollable area
-//        .frame(maxWidth: .infinity)
         .onWidthChange(update: $containerWidth)
     }
 

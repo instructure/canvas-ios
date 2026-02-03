@@ -29,11 +29,11 @@ struct CourseInvitationCardView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text("You have been invited", bundle: .student)
                     .font(.regular14, lineHeight: .fit)
-                    .foregroundColor(.textDark)
+                    .foregroundStyle(.textDark)
 
                 Text(viewModel.displayName)
                     .font(.medium16, lineHeight: .fit)
-                    .foregroundColor(.textDarkest)
+                    .foregroundStyle(.textDarkest)
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .paddingStyle(set: .standardCell)
