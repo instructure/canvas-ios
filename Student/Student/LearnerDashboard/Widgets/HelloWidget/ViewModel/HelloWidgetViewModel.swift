@@ -19,79 +19,107 @@
 import Foundation
 import Core
 import Combine
+import CombineSchedulers
 
 @Observable
-public final class HelloWidgetViewModel {
-    private(set) var state = State.loading
+final class HelloWidgetViewModel: DashboardWidgetViewModel {
+    typealias ViewType = HelloWidgetView
 
-    @ObservationIgnored private let store: ReactiveStore<GetUserProfile>
-    @ObservationIgnored private var subscriptions = Set<AnyCancellable>()
-    @ObservationIgnored private var periodProvider: DayPeriodProvider
+    // MARK: Dashboard widget config
+    let config: DashboardWidgetConfig
+    let isFullWidth = true
+    let isEditable = false
+    var layoutIdentifier: AnyHashable {
+        struct Identifier: Hashable {
+            let state: InstUI.ScreenState
+            let greetingCount: Int
+            let messageCount: Int
+        }
+
+        return Identifier(state: state, greetingCount: greeting.count, messageCount: message.count)
+    }
+
+    // MARK: Outputs
+    private(set) var state: InstUI.ScreenState = .loading
+    private(set) var greeting = ""
+    private(set) var message = ""
+
+    // MARK: Private properties
+    private var subscriptions = Set<AnyCancellable>()
+    private var periodProvider: DayPeriodProvider
+    private let interactor: HelloWidgetInteractor
 
     init(
         environment: AppEnvironment = .shared,
         dayPeriodProvider: DayPeriodProvider = .init(),
-        refresh: PassthroughSubject<Void, Never>
+        interactor: HelloWidgetInteractor = HelloWidgetInteractorLive(),
+        config: DashboardWidgetConfig
     ) {
-        self.store = ReactiveStore(
-            context: environment.database.viewContext,
-            useCase: GetUserProfile(userID: "self"),
-            environment: environment
-        )
         self.periodProvider = dayPeriodProvider
+        self.config = config
+        self.interactor = interactor
 
-        store.getEntities(keepObservingDatabaseChanges: true)
+        interactor.getShortName(ignoreCache: false)
             .sink(
                 receiveCompletion: { [weak self] completion in
                     if case .failure = completion {
                         self?.state = .error
                     }
                 },
-                receiveValue: { [weak self] profiles in
-                    self?.refreshData(profile: profiles.first)
+                receiveValue: { [weak self] shortName in
+                    self?.setData(shortName: shortName)
                 }
             )
             .store(in: &subscriptions)
-
-        refresh
-            .flatMap { [weak self] in
-                self?.store.forceRefresh() ?? Just(()).eraseToAnyPublisher()
-            }
-            .sink { _ in }
-            .store(in: &subscriptions)
     }
 
-    private func refreshData(profile: UserProfile?) {
-        guard let message = message() else {
-            // when generic + periodMessages is empty, will not happen
-            return
-        }
-
-        state = .success(
-            greeting: greeting(to: profile?.shortName),
-            message: message
-        )
+    public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
+        interactor.getShortName(ignoreCache: ignoreCache)
+            .handleEvents(
+                receiveOutput: { [weak self] shortName in
+                    self?.setData(shortName: shortName)
+                }, receiveCompletion: { [weak self] completion in
+                    if case .failure = completion {
+                        self?.state = .error
+                    }
+                }
+            )
+            .map { _ in () }
+            .replaceError(with: ())
+            .setFailureType(to: Never.self)
+            .eraseToAnyPublisher()
     }
 
-    private func greeting(to shortName: String?) -> String.LocalizationValue {
+    func makeView() -> HelloWidgetView {
+        HelloWidgetView(viewModel: self)
+    }
+
+    // MARK: Private methods
+    private func setData(shortName: String?) {
+        self.message = self.getMessage()
+        self.greeting = self.getGreeting(to: shortName)
+        self.state = .data
+    }
+
+    private func getGreeting(to shortName: String?) -> String {
         return if let shortName, shortName.isNotEmptyOrBlank() {
             switch periodProvider.current {
-            case .morning: "Good morning \(shortName)!"
-            case .afternoon: "Good afternoon \(shortName)!"
-            case .evening: "Good evening \(shortName)!"
-            case .night: "Good night \(shortName)!"
+            case .morning: .init(localized: "Good morning \(shortName)!", bundle: .student)
+            case .afternoon: .init(localized: "Good afternoon \(shortName)!", bundle: .student)
+            case .evening: .init(localized: "Good evening \(shortName)!", bundle: .student)
+            case .night: .init(localized: "Good night \(shortName)!", bundle: .student)
             }
         } else {
             switch periodProvider.current {
-            case .morning: "Good morning!"
-            case .afternoon: "Good afternoon!"
-            case .evening: "Good evening!"
-            case .night: "Good night!"
+            case .morning: .init(localized: "Good morning!", bundle: .student)
+            case .afternoon: .init(localized: "Good afternoon!", bundle: .student)
+            case .evening: .init(localized: "Good evening!", bundle: .student)
+            case .night: .init(localized: "Good night!", bundle: .student)
             }
         }
     }
 
-    private func message() -> String.LocalizationValue? {
+    private func getMessage() -> String {
         let periodMessages = switch periodProvider.current {
         case .morning: Self.morning
         case .afternoon: Self.afternoon
@@ -99,14 +127,10 @@ public final class HelloWidgetViewModel {
         case .night: Self.night
         }
 
-        return (Self.generic + periodMessages).randomElement()
-    }
-}
-
-extension HelloWidgetViewModel {
-    enum State: Equatable {
-        case error
-        case success(greeting: String.LocalizationValue, message: String.LocalizationValue)
-        case loading
+        guard let message = (Self.generic + periodMessages).randomElement() else {
+            // arrays are empty, will not happen
+            return ""
+        }
+        return message
     }
 }

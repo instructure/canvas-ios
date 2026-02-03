@@ -99097,6 +99097,12 @@
         }
       }
     },
+    "Progress > perfection." : {
+
+    },
+    "Progress, not perfection. You're doing great." : {
+
+    },
     "Questions:" : {
       "localizations" : {
         "ar" : {
@@ -147242,6 +147248,12 @@
           }
         }
       }
+    },
+    "Well done getting through the day — progress counts, even when it's quiet." : {
+
+    },
+    "What feels hard now will feel easier later." : {
+
     },
     "Whoops!" : {
       "comment" : "Error Title",

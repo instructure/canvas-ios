@@ -29,22 +29,19 @@ struct HelloWidgetView: View {
 
     var body: some View {
         switch viewModel.state {
-        case .error, .loading: SwiftUI.EmptyView()
-        case .success(let greeting, let message): content(greeting: greeting, message: message)
+        case .data: content
+        default: SwiftUI.EmptyView()
         }
     }
 
     @ViewBuilder
-    private func content(
-        greeting: String.LocalizationValue,
-        message: String.LocalizationValue
-    ) -> some View {
+    private var content: some View {
         VStack(alignment: .leading, spacing: 2) {
-            Text(.init(greeting, bundle: .student))
+            Text(viewModel.greeting)
                 .font(.semibold22)
                 .fontWeight(.semibold)
 
-            Text(.init(message, bundle: .student))
+            Text(viewModel.message)
                 .font(.regular14)
         }
         .foregroundStyle(.textDarkest)
@@ -52,6 +49,8 @@ struct HelloWidgetView: View {
     }
 }
 
+#if DEBUG
 #Preview {
-    HelloWidgetView(viewModel: .init(refresh: PassthroughSubject<Void, Never>()))
+    HelloWidgetView(viewModel: .init(config: .init(id: .helloWidget, order: 0, isVisible: true)))
 }
+#endif

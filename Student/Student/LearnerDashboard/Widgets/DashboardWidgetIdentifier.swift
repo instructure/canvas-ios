@@ -21,4 +21,6 @@ enum DashboardWidgetIdentifier: String, Codable, CaseIterable {
     case widget1
     case widget2
     case widget3
+
+    case helloWidget
 }
