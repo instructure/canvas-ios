@@ -28,7 +28,7 @@ public struct AssignmentListPreferencesScreen: View {
 
     public var body: some View {
         ScrollView(showsIndicators: false) {
-            LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) {
+            VStack(alignment: .leading, spacing: 0) {
                 if viewModel.isTeacher {
                     teacherFilterSection
                     teacherPublishStatusFilterSection
