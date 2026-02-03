@@ -102,7 +102,7 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
     }
 
     private func getGreeting(to shortName: String?) -> String {
-        return if let shortName, shortName.isNotEmptyOrBlank() {
+        if let shortName, shortName.isNotEmptyOrBlank() {
             switch periodProvider.current {
             case .morning: .init(localized: "Good morning \(shortName)!", bundle: .student)
             case .afternoon: .init(localized: "Good afternoon \(shortName)!", bundle: .student)
