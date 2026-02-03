@@ -61,7 +61,7 @@ struct HorizontalCarouselView<Item: Identifiable, CardContent: View>: View {
     }
 
     private var columnCount: Int {
-        LearnerDashboardWidgetLayoutHelpers.columns(for: containerWidth)
+        DashboardWidgetLayout.columns(for: containerWidth)
     }
 
     private var cardContentWidth: CGFloat {

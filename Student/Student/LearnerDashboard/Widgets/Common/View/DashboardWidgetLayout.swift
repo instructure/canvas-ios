@@ -27,7 +27,7 @@ struct DashboardWidgetLayout: View {
     var body: some View {
         VStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
             fullWidthSection()
-            gridSection(columnCount: LearnerDashboardWidgetLayoutHelpers.columns(for: containerWidth))
+            gridSection(columnCount: Self.columns(for: containerWidth))
         }
         .animation(.dashboardWidget, value: fullWidthWidgets.map(\.layoutIdentifier))
         .animation(.dashboardWidget, value: gridWidgets.map(\.layoutIdentifier))
@@ -64,6 +64,14 @@ struct DashboardWidgetLayout: View {
                     LearnerDashboardWidgetAssembly.makeView(for: viewModel)
                 }
             }
+        }
+    }
+
+    static func columns(for width: CGFloat) -> Int {
+        switch width {
+        case ..<600: 1
+        case 600..<840: 2
+        default: 3
         }
     }
 }
