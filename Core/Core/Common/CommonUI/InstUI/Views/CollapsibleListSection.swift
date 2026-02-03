@@ -26,7 +26,7 @@ extension InstUI {
         private let label: Label
         private let paddingSet: InstUI.Styles.PaddingSet
         private let accessoryIconSize: CGFloat
-        private let content: () -> Content
+        private let content: Content
 
         @Binding private var isExpanded: Bool
         @State private var expandedState: CollapseButtonExpandedState
@@ -70,7 +70,7 @@ extension InstUI {
             self.label = label
             self.paddingSet = paddingSet
             self.accessoryIconSize = accessoryIconSize
-            self.content = content
+            self.content = content()
 
             self._isExpanded = isExpanded
             self.expandedState = .init(isExpanded: isExpanded.wrappedValue)
@@ -93,7 +93,7 @@ extension InstUI {
             Section(
                 isExpanded: $isExpanded,
                 content: {
-                    content()
+                    content
                         .accessibilityElement(children: .contain)
                         .accessibilityLabel(listLevelAccessibilityLabel)
                 },
