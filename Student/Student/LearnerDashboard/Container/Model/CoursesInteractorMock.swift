@@ -31,11 +31,19 @@ final class CoursesInteractorMock: CoursesInteractor {
     var acceptBehavior: MockBehavior = .success
     var declineBehavior: MockBehavior = .success
     var mockCoursesResult: CoursesResult = CoursesResult(allCourses: [], invitedCourses: [])
+    var getCoursesDelay: TimeInterval = 0
 
     func getCourses(ignoreCache: Bool) -> AnyPublisher<CoursesResult, Error> {
-        Just(mockCoursesResult)
+        let publisher = Just(mockCoursesResult)
             .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+
+        if getCoursesDelay > 0 {
+            return publisher
+                .delay(for: .seconds(getCoursesDelay), scheduler: DispatchQueue.main)
+                .eraseToAnyPublisher()
+        } else {
+            return publisher.eraseToAnyPublisher()
+        }
     }
 
     func acceptInvitation(courseId: String, enrollmentId: String) -> AnyPublisher<Void, Error> {

@@ -32,11 +32,11 @@ enum LearnerDashboardWidgetAssembly {
 
     static func makeWidgetViewModel(
         config: DashboardWidgetConfig,
-        snackBarViewModel: SnackBarViewModel
+        snackBarViewModel: SnackBarViewModel,
+        coursesInteractor: CoursesInteractor = CoursesInteractorLive(env: .shared)
     ) -> any DashboardWidgetViewModel {
         switch config.id {
         case .courseInvitations:
-            let coursesInteractor = CoursesInteractorLive(env: .shared)
             return CourseInvitationsWidgetViewModel(
                 config: config,
                 interactor: coursesInteractor,

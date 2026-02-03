@@ -44,9 +44,9 @@ struct CourseInvitationsWidgetView: View {
                         InstUI.PageIndicator(currentIndex: currentPage, count: totalPages)
                     }
                 }
+                .animation(.dashboardWidget, value: viewModel.invitations)
             }
         }
-        .animation(.dashboardWidget, value: viewModel.invitations)
     }
 }
 

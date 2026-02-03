@@ -16,7 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
+import CoreData
 import SwiftUI
 
 struct DashboardWidgetLayout: View {
@@ -78,11 +80,55 @@ struct DashboardWidgetLayout: View {
 
 #if DEBUG
 
+private func makePreviewInteractor(context: NSManagedObjectContext) -> CoursesInteractorMock {
+    let mockCourses = [
+        Course.save(
+            .make(
+                id: "1",
+                name: "Introduction to Computer Science",
+                enrollments: [.make(id: "enrollment1", enrollment_state: .invited)]
+            ),
+            in: context
+        ),
+        Course.save(
+            .make(
+                id: "2",
+                name: "Advanced Mathematics",
+                enrollments: [.make(id: "enrollment2", course_section_id: "section2", enrollment_state: .invited)]
+            ),
+            in: context
+        ),
+        Course.save(
+            .make(
+                id: "3",
+                name: "English Literature",
+                enrollments: [.make(id: "enrollment3", enrollment_state: .invited)]
+            ),
+            in: context
+        )
+    ]
+
+    let mockInteractor = CoursesInteractorMock()
+    mockInteractor.mockCoursesResult = CoursesResult(
+        allCourses: mockCourses,
+        invitedCourses: mockCourses
+    )
+    mockInteractor.getCoursesDelay = 2
+    return mockInteractor
+}
+
 #Preview {
+    @Previewable @State var subscriptions = Set<AnyCancellable>()
+
+    let env = PreviewEnvironment()
+    let context = env.database.viewContext
     let snackBarViewModel = SnackBarViewModel()
+    let mockInteractor = makePreviewInteractor(context: context)
+
     let courseInvitations = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
         config: DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true, settings: nil),
-        snackBarViewModel: snackBarViewModel
+        snackBarViewModel: snackBarViewModel,
+        coursesInteractor: mockInteractor
     )
     let widget1 = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
         config: DashboardWidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil),
@@ -97,17 +143,19 @@ struct DashboardWidgetLayout: View {
         snackBarViewModel: snackBarViewModel
     )
 
-    _ = courseInvitations.refresh(ignoreCache: false)
-    _ = widget1.refresh(ignoreCache: false)
-    _ = widget2.refresh(ignoreCache: false)
-    _ = widget3.refresh(ignoreCache: false)
-
-    return ScrollView {
+    ScrollView {
         DashboardWidgetLayout(
             fullWidthWidgets: [courseInvitations],
             gridWidgets: [widget1, widget2, widget3]
         )
         .paddingStyle(.horizontal, .standard)
+        .snackBar(viewModel: snackBarViewModel)
+    }
+    .onAppear {
+        courseInvitations.refresh(ignoreCache: false).sink { _ in }.store(in: &subscriptions)
+        widget1.refresh(ignoreCache: false).sink { _ in }.store(in: &subscriptions)
+        widget2.refresh(ignoreCache: false).sink { _ in }.store(in: &subscriptions)
+        widget3.refresh(ignoreCache: false).sink { _ in }.store(in: &subscriptions)
     }
 }
 
