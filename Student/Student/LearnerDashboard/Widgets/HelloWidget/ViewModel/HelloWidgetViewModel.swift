@@ -93,7 +93,6 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
     func makeView() -> HelloWidgetView {
         HelloWidgetView(viewModel: self)
     }
-
     // MARK: Private methods
     private func setData(shortName: String?) {
         self.message = self.getMessage()
