@@ -123,8 +123,11 @@ private struct ParagraphView<Content: View>: View {
     var body: some View {
         let spacing = UIFontMetrics.default.scaledValue(for: 10)
         VStack(alignment: .leading, spacing: spacing) {
-            title.textStyle(.heading)
-            content().font(.regular16)
+            title
+                .textStyle(.heading)
+                .accessibilityAddTraits(.isHeader)
+            content()
+                .font(.regular16)
         }
     }
 }

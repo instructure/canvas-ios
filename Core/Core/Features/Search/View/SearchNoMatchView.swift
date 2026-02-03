@@ -27,6 +27,7 @@ struct SearchNoMatchView: View {
             Text("No Perfect Match", bundle: .core)
                 .textStyle(.heading)
                 .multilineTextAlignment(.center)
+                .accessibilityAddTraits(.isHeader)
             Text("We didn’t find exactly what you’re looking for. Maybe try searching for something else?", bundle: .core)
                 .font(.regular16, lineHeight: .normal)
                 .multilineTextAlignment(.center)
