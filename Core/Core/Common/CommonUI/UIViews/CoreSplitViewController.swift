@@ -127,14 +127,13 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
     }
 
     public func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
+        guard let secondaryView = secondaryViewController else { return }
 
-        if let secondaryView = secondaryViewController {
-            resetSecondaryViewDisplayModeButton(secondaryView, displayMode: displayMode)
+        resetSecondaryViewDisplayModeButton(secondaryView, displayMode: displayMode)
 
-            if let top = (secondaryView as? UINavigationController)?.topViewController,
-               (top is EmptyViewController) == false {
-                NotificationCenter.default.post(name: NSNotification.Name.SplitViewControllerWillChangeDisplayModeNotification, object: self)
-            }
+        if let top = (secondaryView as? UINavigationController)?.topViewController,
+           (top is EmptyViewController) == false {
+            NotificationCenter.default.post(name: NSNotification.Name.SplitViewControllerWillChangeDisplayModeNotification, object: self)
         }
     }
 
@@ -161,7 +160,7 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
 
         // Return cached secondary controller when called on background
         if let secondaryView = preBackgroundedSecondaryController {
-            resetSecondaryViewStyle(secondaryView, upon: primaryViewController)
+            resetSecondaryViewStyle(secondaryView, from: primaryViewController)
             return secondaryView
         }
 
@@ -182,7 +181,9 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
         }
 
         // Default behaviour of putting the current top viewcontroller into a nav controller and moving it to the detail view
-        if let nav = primaryViewController as? UINavigationController, nav.viewControllers.count >= 2 {
+        if let nav = primaryViewController as? UINavigationController,
+           nav.viewControllers.count >= 2 {
+
             var newDeets = nav.viewControllers[nav.viewControllers.count - 1]
             nav.popViewController(animated: true)
 
@@ -190,7 +191,7 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
                 newDeets = CoreNavigationController(rootViewController: newDeets)
             }
 
-            resetSecondaryViewStyle(newDeets, upon: primaryViewController)
+            resetSecondaryViewStyle(newDeets, from: primaryViewController)
 
             return newDeets
         }
@@ -198,12 +199,17 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
         return nil
     }
 
-    private func resetSecondaryViewStyle(_ newDeets: UIViewController, upon primaryViewController: UIViewController) {
-        resetSecondaryViewDisplayModeButton(newDeets)
+    private func resetSecondaryViewStyle(
+        _ viewController: UIViewController,
+        from primaryViewController: UIViewController
+    ) {
 
-        if let nav = newDeets as? UINavigationController {
-            // If newDeets is a newly created navigation controller then it won't have a splitViewController yet, so syncStyles() won't work at this point.
-            if newDeets.splitViewController == nil, let masterNav = primaryViewController as? UINavigationController {
+        resetSecondaryViewDisplayModeButton(viewController)
+
+        if let nav = viewController as? UINavigationController {
+            // If viewController is a newly created navigation controller then it won't have a splitViewController yet, so syncStyles() won't work at this point.
+            if viewController.splitViewController == nil,
+               let masterNav = primaryViewController as? UINavigationController {
                 nav.syncStyles(from: masterNav, to: nav)
             } else {
                 nav.syncStyles()
@@ -248,7 +254,10 @@ extension CoreSplitViewController: UINavigationControllerDelegate {
 // Needed for the above bug mentioned in comments
 extension CoreSplitViewController: UIGestureRecognizerDelegate { }
 
+// - MARK: Helper Utils
+
 private extension UISplitViewController {
+
     var secondaryViewController: UIViewController? {
         switch style {
         case .doubleColumn, .unspecified:
