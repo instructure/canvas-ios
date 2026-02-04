@@ -24,20 +24,14 @@ import SwiftUI
 struct DashboardWidgetLayout: View {
     let fullWidthWidgets: [any DashboardWidgetViewModel]
     let gridWidgets: [any DashboardWidgetViewModel]
-    @State private var containerWidth: CGFloat = 0
+    let containerWidth: CGFloat
 
     var body: some View {
         VStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
             fullWidthSection()
+                .animation(.dashboardWidget, value: fullWidthWidgets.map(\.layoutIdentifier))
             gridSection(columnCount: Self.columns(for: containerWidth))
-        }
-        .animation(.dashboardWidget, value: fullWidthWidgets.map(\.layoutIdentifier))
-        .animation(.dashboardWidget, value: gridWidgets.map(\.layoutIdentifier))
-        .onWidthChange { width in
-            // Don't animate the first appearance
-            withAnimation(containerWidth == 0 ? .none : .dashboardWidget) {
-                containerWidth = width
-            }
+                .animation(.dashboardWidget, value: gridWidgets.map(\.layoutIdentifier))
         }
     }
 
@@ -143,13 +137,16 @@ private func makePreviewInteractor(context: NSManagedObjectContext) -> CoursesIn
         snackBarViewModel: snackBarViewModel
     )
 
-    ScrollView {
-        DashboardWidgetLayout(
-            fullWidthWidgets: [courseInvitations],
-            gridWidgets: [widget1, widget2, widget3]
-        )
-        .paddingStyle(.horizontal, .standard)
-        .snackBar(viewModel: snackBarViewModel)
+    GeometryReader { geometry in
+        ScrollView {
+            DashboardWidgetLayout(
+                fullWidthWidgets: [courseInvitations],
+                gridWidgets: [widget1, widget2, widget3],
+                containerWidth: geometry.size.width
+            )
+            .paddingStyle(.horizontal, .standard)
+            .snackBar(viewModel: snackBarViewModel)
+        }
     }
     .onAppear {
         courseInvitations.refresh(ignoreCache: false).sink { _ in }.store(in: &subscriptions)

@@ -38,8 +38,13 @@ struct LearnerDashboardScreen: View {
                     completion: completion
                 )
             }
-        ) { _ in
-            content
+        ) { geometry in
+            DashboardWidgetLayout(
+                fullWidthWidgets: viewModel.fullWidthWidgets,
+                gridWidgets: viewModel.gridWidgets,
+                containerWidth: geometry.size.width
+            )
+            .paddingStyle(.all, .standard)
         }
         .snackBar(viewModel: viewModel.snackBarViewModel)
         .navigationBarDashboard()
@@ -75,15 +80,6 @@ struct LearnerDashboardScreen: View {
         .frame(width: 44, height: 44).padding(.leading, -6)
         .identifier("Dashboard.profileButton")
         .accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
-    }
-
-    @ViewBuilder
-    private var content: some View {
-        DashboardWidgetLayout(
-            fullWidthWidgets: viewModel.fullWidthWidgets,
-            gridWidgets: viewModel.gridWidgets
-        )
-        .paddingStyle(.all, .standard)
     }
 }
 
