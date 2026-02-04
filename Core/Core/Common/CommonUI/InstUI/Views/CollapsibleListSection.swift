@@ -43,10 +43,10 @@ extension InstUI {
             paddingSet: InstUI.Styles.PaddingSet = .sectionHeader,
             accessoryIconSize: CGFloat = 18,
             isExpanded: Binding<Bool>,
-            content: @escaping () -> Content
+            @ViewBuilder content: () -> Content
         ) where Label == Text {
             self.init(
-                label: Text(title),
+                label: { Text(title) },
                 accessibilityLabel: customAccessibilityLabel ?? title,
                 headerIdentifier: headerIdentifier,
                 itemCount: itemCount,
@@ -58,16 +58,16 @@ extension InstUI {
         }
 
         public init(
-            label: Label,
+            @ViewBuilder label: () -> Label,
             accessibilityLabel: String,
             headerIdentifier: String? = nil,
             itemCount: Int?,
             paddingSet: InstUI.Styles.PaddingSet = .sectionHeader,
             accessoryIconSize: CGFloat = 18,
             isExpanded: Binding<Bool>,
-            content: @escaping () -> Content
+            @ViewBuilder content: () -> Content
         ) {
-            self.label = label
+            self.label = label()
             self.paddingSet = paddingSet
             self.accessoryIconSize = accessoryIconSize
             self.content = content()
