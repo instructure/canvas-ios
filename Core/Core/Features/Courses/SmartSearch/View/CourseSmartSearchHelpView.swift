@@ -28,20 +28,20 @@ public struct CourseSmartSearchHelpView: View {
     public var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: spacing) {
-                ParagraphView(title: Text("About Smart Search", bundle: .core)) {
+                ParagraphView(title: Text("About IgniteAI Search", bundle: .core)) {
                     Text(
                          """
-                         Smart Search, currently in development for Canvas, uses semantic \
+                         IgniteAI Search, currently in development for Canvas, uses semantic \
                          algorithms and AI to understand query context and semantic meaning, \
                          not just keyword matching.
                          """,
                          bundle: .core
                     )
                 }
-                ParagraphView(title: Text("Using Smart Search", bundle: .core)) {
+                ParagraphView(title: Text("Using IgniteAI Search", bundle: .core)) {
                     Text(
                         """
-                        Smart Search employs \"embeddings\" to mathematically represent \
+                        IgniteAI Search employs \"embeddings\" to mathematically represent \
                         content and queries for comparison, understanding keywords or general \
                         queries in any language, thanks to its multilingual AI model. Write \
                         search queries using keywords, questions, sentences, or whatever is \
@@ -60,28 +60,15 @@ public struct CourseSmartSearchHelpView: View {
                         bundle: .core
                     )
                 }
-                ParagraphView(title: Text("Contributing to Development", bundle: .core)) {
-                    Text(
-                        """
-                        Smart Search is in feature preview. Feedback can be provided through \
-                        result ratings and the Canvas Community space for Smart Search Beta. \
-                        Canvas community space can be found here:
-                        """,
-                        bundle: .core
-                    )
-                    Link(destination: URL(string: "https://community.canvaslms.com/t5/Smart-Search/gh-p/smart_search")!) {
-                        Text("Smart Search Community", bundle: .core)
-                    }
-                }
                 ParagraphView(title: Text("Learn more", bundle: .core)) {
                     VStack(alignment: .leading) {
                         Link(destination: URL(
-                            string: "https://community.canvaslms.com/t5/Smart-Search-Feature-Preview/Smart-Search-FAQ/ta-p/604415")!
+                            string: "https://community.instructure.com/en/kb/articles/662774-what-is-igniteai-search-for-courses")!
                         ) {
-                            Text("Smart Search FAQ", bundle: .core)
+                            Text("IgniteAI Search Guide", bundle: .core)
                         }
                         Link(destination: URL(
-                            string: "https://community.canvaslms.com/t5/Artificial-Intelligence-in/AI-Nutrition-Facts-Canvas-Smart-Search/ta-p/608254"
+                            string: "https://community.instructure.com/en/discussion/608254/igniteai-nutrition-facts-search"
                         )!) {
                             Text("AI Nutrition Facts", bundle: .core)
                         }
