@@ -29,7 +29,7 @@ struct SelectCalendarScreen: View {
 
     public var body: some View {
         InstUI.BaseScreen(state: viewModel.state, config: .notRefreshable) { _ in
-            ConditionallyLazyVStack(spacing: 0) {
+            ConditionallyLazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
                 ForEach(viewModel.sections) { section in
                     if !section.items.isEmpty {
                         SingleSelectionView(
