@@ -25,8 +25,8 @@ enum LearnerDashboardWidgetAssembly {
         [
             DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true, settings: nil),
             DashboardWidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil),
-            DashboardWidgetConfig(id: .widget3, order: 3, isVisible: true, settings: nil),
-            DashboardWidgetConfig(id: .widget2, order: 2, isVisible: true, settings: nil)
+            DashboardWidgetConfig(id: .widget3, order: 2, isVisible: true, settings: nil),
+            DashboardWidgetConfig(id: .widget2, order: 3, isVisible: true, settings: nil)
         ]
     }
 
