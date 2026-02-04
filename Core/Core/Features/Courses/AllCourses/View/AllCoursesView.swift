@@ -63,10 +63,8 @@ public struct AllCoursesView: View, ScreenViewTrackable {
 
     @ViewBuilder
     func sectionsView(sections: AllCoursesSections) -> some View {
-        let pinnedViews: PinnedScrollableViews = if #available(iOS 26, *) { .init() } else { .sectionHeaders }
-
         ScrollViewReader { scrollView in
-            LazyVStack(alignment: sections.isEmpty ? .center : .leading, spacing: 0, pinnedViews: pinnedViews) {
+            VStack(alignment: sections.isEmpty ? .center : .leading, spacing: 0) {
                 let binding = Binding {
                     viewModel.filter.value
                 } set: { newValue, _ in
