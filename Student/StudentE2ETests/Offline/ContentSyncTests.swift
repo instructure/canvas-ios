@@ -536,7 +536,7 @@ class OfflineContentSyncTests: OfflineE2ETestCase {
         let submitAssignmentButton = DetailsHelper.submitAssignmentButton.waitUntil(.visible)
         XCTAssertVisible(submitAssignmentButton)
         XCTAssertEqual(submitAssignmentButton.label, "Submit Assignment")
-        let submissionButton = DetailsHelper.submissionAndRubricButton.waitUntil(.visible)
+        let submissionButton = DetailsHelper.submissionAndFeedbackButton.waitUntil(.visible)
         XCTAssertVisible(submissionButton)
 
         // MARK: Tap on the 'Submission & Rubric' and 'Submit Assignment' buttons and check if the offline mode dialog displayed and dismiss the dialog by hit the 'OK' button on it
