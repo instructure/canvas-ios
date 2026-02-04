@@ -29,9 +29,7 @@ struct SelectCalendarScreen: View {
 
     public var body: some View {
         InstUI.BaseScreen(state: viewModel.state, config: .notRefreshable) { _ in
-            // Replaced: LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
-            // because that causes freezes as of iOS 26.1 - 26.2.1
-            VStack(spacing: 0) {
+            ConditionallyLazyVStack(spacing: 0) {
                 ForEach(viewModel.sections) { section in
                     if !section.items.isEmpty {
                         SingleSelectionView(

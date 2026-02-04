@@ -33,9 +33,7 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
             state: viewModel.state,
             refreshAction: viewModel.refresh
         ) { _ in
-            // Replaced: LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
-            // because that causes freezes as of iOS 26.1 - 26.2.1
-            VStack(spacing: 0) {
+            ConditionallyLazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
                 filterCountInfo
                 userFilter
                 courseFilters
