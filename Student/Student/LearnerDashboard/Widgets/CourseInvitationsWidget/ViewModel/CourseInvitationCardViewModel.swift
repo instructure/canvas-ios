@@ -53,7 +53,7 @@ final class CourseInvitationCardViewModel: Identifiable {
         self.snackBarViewModel = snackBarViewModel
         self.onDismiss = onDismiss
 
-        if let sectionName, sectionName != courseName {
+        if let sectionName, sectionName.isNotEmpty, sectionName != courseName {
             self.displayName = "\(courseName), \(sectionName)"
         } else {
             self.displayName = courseName
