@@ -51,6 +51,7 @@ public class AcceptCourseInvitation: UseCase {
             enrollmentID: enrollmentID,
             isAccepted: true
         )
+        let courseID = courseID
 
         environment.api.makeRequest(handleRequest)
             .flatMap { handleResponse, handleURLResponse -> AnyPublisher<(InvitationAcceptResponse, URLResponse?), Error> in
@@ -59,14 +60,14 @@ public class AcceptCourseInvitation: UseCase {
                         .eraseToAnyPublisher()
                 }
 
-                let getCoursePublisher = environment.api.makeRequest(GetCourseRequest(courseID: self.courseID))
+                let getCoursePublisher = environment.api.makeRequest(GetCourseRequest(courseID: courseID))
                     .map { $0.body }
                     .catch { _ -> Just<APICourse?> in
                         return Just(nil)
                     }
                     .setFailureType(to: Error.self)
 
-                let getEnrollmentsPublisher = environment.api.makeRequest(GetEnrollmentsRequest(context: .course(self.courseID)))
+                let getEnrollmentsPublisher = environment.api.makeRequest(GetEnrollmentsRequest(context: .course(courseID)))
                     .map { $0.body }
                     .catch { _ -> Just<[APIEnrollment]?> in
                         return Just(nil)
@@ -94,11 +95,11 @@ public class AcceptCourseInvitation: UseCase {
                     completionHandler(response, urlResponse, nil)
                 }
             )
-            .store(in: &self.subscriptions)
+            .store(in: &subscriptions)
     }
 
     public func write(response: InvitationAcceptResponse?, urlResponse: URLResponse?, to context: NSManagedObjectContext) {
-        guard let response = response else { return }
+        guard let response else { return }
 
         if let apiCourse = response.course {
             Course.save(apiCourse, in: context)
