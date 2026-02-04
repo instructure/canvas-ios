@@ -54,7 +54,7 @@ struct DashboardWidgetLayout: View {
     }
 
     private func columnView(columnIndex: Int, columnCount: Int) -> some View {
-        LazyVStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
+        ConditionallyLazyVStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
             ForEach(Array(gridWidgets.enumerated()), id: \.element.id) { index, viewModel in
                 if index % columnCount == columnIndex {
                     LearnerDashboardWidgetAssembly.makeView(for: viewModel)

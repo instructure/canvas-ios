@@ -49,6 +49,7 @@ extension InstUI {
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .paragraphStyle(.heading)
+            .accessibilityAddTraits(.isHeader)
         }
     }
 }

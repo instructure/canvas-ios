@@ -63,10 +63,11 @@ public struct AllCoursesView: View, ScreenViewTrackable {
 
     @ViewBuilder
     func sectionsView(sections: AllCoursesSections) -> some View {
+        // Disable pinning on iOS26 as it looks bad with a navbar using the fade effect of LiquidGlass
         let pinnedViews: PinnedScrollableViews = if #available(iOS 26, *) { .init() } else { .sectionHeaders }
 
         ScrollViewReader { scrollView in
-            LazyVStack(alignment: sections.isEmpty ? .center : .leading, spacing: 0, pinnedViews: pinnedViews) {
+            ConditionallyLazyVStack(alignment: sections.isEmpty ? .center : .leading, spacing: 0, pinnedViews: pinnedViews) {
                 let binding = Binding {
                     viewModel.filter.value
                 } set: { newValue, _ in
