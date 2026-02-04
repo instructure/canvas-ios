@@ -47,6 +47,14 @@ final class CoursesInteractorInvitationsTests: StudentTestCase {
             ),
             value: HandleCourseInvitationRequest.Response(success: true)
         )
+        api.mock(
+            GetCourseRequest(courseID: "course1"),
+            value: .make(id: "course1")
+        )
+        api.mock(
+            GetEnrollmentsRequest(context: .course("course1")),
+            value: [.make(id: "enrollment1")]
+        )
 
         XCTAssertFinish(
             testee.acceptInvitation(courseId: "course1", enrollmentId: "enrollment1"),
@@ -62,6 +70,14 @@ final class CoursesInteractorInvitationsTests: StudentTestCase {
                 isAccepted: true
             ),
             value: HandleCourseInvitationRequest.Response(success: true)
+        )
+        api.mock(
+            GetCourseRequest(courseID: "course2"),
+            value: .make(id: "course2")
+        )
+        api.mock(
+            GetEnrollmentsRequest(context: .course("course2")),
+            value: [.make(id: "enrollment2")]
         )
 
         XCTAssertFinish(
@@ -96,6 +112,14 @@ final class CoursesInteractorInvitationsTests: StudentTestCase {
             ),
             value: HandleCourseInvitationRequest.Response(success: true)
         )
+        api.mock(
+            GetCourseRequest(courseID: "specificCourse"),
+            value: .make(id: "specificCourse")
+        )
+        api.mock(
+            GetEnrollmentsRequest(context: .course("specificCourse")),
+            value: [.make(id: "enrollment4")]
+        )
 
         XCTAssertFinish(
             testee.acceptInvitation(courseId: "specificCourse", enrollmentId: "enrollment4"),
@@ -111,6 +135,14 @@ final class CoursesInteractorInvitationsTests: StudentTestCase {
                 isAccepted: true
             ),
             value: HandleCourseInvitationRequest.Response(success: true)
+        )
+        api.mock(
+            GetCourseRequest(courseID: "course5"),
+            value: .make(id: "course5")
+        )
+        api.mock(
+            GetEnrollmentsRequest(context: .course("course5")),
+            value: [.make(id: "specificEnrollment")]
         )
 
         XCTAssertFinish(

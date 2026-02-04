@@ -23,21 +23,21 @@ import Foundation
 extension CoursesInteractorLive {
 
     func acceptInvitation(courseId: String, enrollmentId: String) -> AnyPublisher<Void, Error> {
-        handleInvitation(courseId: courseId, enrollmentId: enrollmentId, isAccepted: true)
+        let useCase = AcceptCourseInvitation(
+            courseID: courseId,
+            enrollmentID: enrollmentId
+        )
+        return useCase.fetchWithFuture(environment: env)
+            .mapToVoid()
+            .eraseToAnyPublisher()
     }
 
     func declineInvitation(courseId: String, enrollmentId: String) -> AnyPublisher<Void, Error> {
-        handleInvitation(courseId: courseId, enrollmentId: enrollmentId, isAccepted: false)
-    }
-
-    private func handleInvitation(courseId: String, enrollmentId: String, isAccepted: Bool) -> AnyPublisher<Void, Error> {
-        let request = HandleCourseInvitationRequest(
+        let useCase = DeclineCourseInvitation(
             courseID: courseId,
-            enrollmentID: enrollmentId,
-            isAccepted: isAccepted
+            enrollmentID: enrollmentId
         )
-
-        return env.api.makeRequest(request)
+        return useCase.fetchWithFuture(environment: env)
             .mapToVoid()
             .eraseToAnyPublisher()
     }
