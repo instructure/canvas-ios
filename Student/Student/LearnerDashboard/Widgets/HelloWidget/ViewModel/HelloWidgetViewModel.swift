@@ -19,7 +19,7 @@
 import Foundation
 import Core
 import Combine
-import CombineSchedulers
+import UIKit
 
 @Observable
 final class HelloWidgetViewModel: DashboardWidgetViewModel {
@@ -48,12 +48,13 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
     private var subscriptions = Set<AnyCancellable>()
     private var periodProvider: DayPeriodProvider
     private let interactor: HelloWidgetInteractor
+    private var shortName: String?
 
     init(
         environment: AppEnvironment = .shared,
         dayPeriodProvider: DayPeriodProvider = .init(),
         interactor: HelloWidgetInteractor = HelloWidgetInteractorLive(),
-        config: DashboardWidgetConfig
+        config: DashboardWidgetConfig,
     ) {
         self.periodProvider = dayPeriodProvider
         self.config = config
@@ -67,24 +68,31 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
                     }
                 },
                 receiveValue: { [weak self] shortName in
-                    self?.setData(shortName: shortName)
+                    self?.shortName = shortName
+                    self?.updateGreetingAndMessage()
                 }
             )
             .store(in: &subscriptions)
+
+        subscribeToNotification()
     }
 
     public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
         interactor.getShortName(ignoreCache: ignoreCache)
             .handleEvents(
                 receiveOutput: { [weak self] shortName in
-                    self?.setData(shortName: shortName)
+                    guard let self else { return }
+
+                    self.periodProvider = .init(date: Clock.now)
+                    self.shortName = shortName
+                    self.updateGreetingAndMessage()
                 }, receiveCompletion: { [weak self] completion in
                     if case .failure = completion {
                         self?.state = .error
                     }
                 }
             )
-            .map { _ in () }
+            .mapToVoid()
             .replaceError(with: ())
             .setFailureType(to: Never.self)
             .eraseToAnyPublisher()
@@ -95,13 +103,24 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
     }
 
     // MARK: Private methods
-    private func setData(shortName: String?) {
-        self.message = self.getMessage()
-        self.greeting = self.getGreeting(to: shortName)
+    private func subscribeToNotification() {
+        NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
+            .sink { _ in
+                if self.periodProvider.current != DayPeriodProvider.period(of: Core.Clock.now) {
+                    self.periodProvider = .init(date: Core.Clock.now)
+                    self.updateGreetingAndMessage()
+                }
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func updateGreetingAndMessage() {
+        self.message = self.dayPeriodMessage()
+        self.greeting = self.dayPeriodGreeting()
         self.state = .data
     }
 
-    private func getGreeting(to shortName: String?) -> String {
+    private func dayPeriodGreeting() -> String {
         if let shortName, shortName.isNotEmptyOrBlank() {
             switch periodProvider.current {
             case .morning: .init(localized: "Good morning \(shortName)!", bundle: .student)
@@ -119,7 +138,7 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
         }
     }
 
-    private func getMessage() -> String {
+    private func dayPeriodMessage() -> String {
         let periodMessages = switch periodProvider.current {
         case .morning: Self.morning
         case .afternoon: Self.afternoon
@@ -127,7 +146,7 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
         case .night: Self.night
         }
 
-        guard let message = (Self.generic + periodMessages).randomElement() else {
+        guard let message = (Self.generic.union(periodMessages)).randomElement() else {
             // arrays are empty, will not happen
             return ""
         }

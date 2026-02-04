@@ -21,31 +21,27 @@ import Core
 import Combine
 
 struct HelloWidgetView: View {
-    @State var viewModel: HelloWidgetViewModel
+    @State private var viewModel: HelloWidgetViewModel
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     init(viewModel: HelloWidgetViewModel) {
         self.viewModel = viewModel
     }
 
     var body: some View {
-        switch viewModel.state {
-        case .data: content
-        default: SwiftUI.EmptyView()
-        }
-    }
+        if viewModel.state == .data {
+            VStack(alignment: .leading, spacing: 2) {
+                Text(viewModel.greeting)
+                    .font(.semibold22, lineHeight: .fit)
 
-    @ViewBuilder
-    private var content: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            Text(viewModel.greeting)
-                .font(.semibold22)
-                .fontWeight(.semibold)
+                Text(viewModel.message)
+                    .font(.regular14, lineHeight: .fit)
 
-            Text(viewModel.message)
-                .font(.regular14)
+            }
+            .accessibilityElement(children: .combine)
+            .foregroundStyle(.textDarkest)
+            .frame(maxWidth: .infinity, alignment: .leading)
         }
-        .foregroundStyle(.textDarkest)
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }
 

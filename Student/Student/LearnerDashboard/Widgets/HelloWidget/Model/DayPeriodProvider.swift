@@ -19,21 +19,19 @@
 import Foundation
 
 public struct DayPeriodProvider {
-    private let calendar: Calendar
-    private let date: Date
+    let current: DayPeriod
 
-    var current: DayPeriod {
+    init(calendar: Calendar = .current, date: Date = .now) {
+        current = Self.period(of: date, with: calendar)
+    }
+
+    static func period(of date: Date, with calendar: Calendar = .current) -> DayPeriod {
         switch calendar.component(.hour, from: date) {
         case 4..<12: .morning
         case 12..<17: .afternoon
         case 17..<21: .evening
         default: .night
         }
-    }
-
-    init(calendar: Calendar = .current, date: Date = .now) {
-        self.calendar = calendar
-        self.date = date
     }
 }
 

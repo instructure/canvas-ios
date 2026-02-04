@@ -18,8 +18,9 @@
 
 import Foundation
 
+// Sets for faster random access
 extension HelloWidgetViewModel {
-    static let generic: [String] = [
+    static let generic: Set<String> = [
         .init(localized: "You've got this.", bundle: .student),
         .init(localized: "Keep going — you're stronger than you feel right now.", bundle: .student),
         .init(localized: "One step at a time is still progress.", bundle: .student),
@@ -69,7 +70,7 @@ extension HelloWidgetViewModel {
         .init(localized: "You're growing in ways you might not see yet.", bundle: .student)
     ]
 
-    static let morning: [String] = [
+    static let morning: Set<String> = [
         .init(localized: "Morning! You've got this — one class, one step at a time.", bundle: .student),
         .init(localized: "Not feeling ready? That's normal. Just start where you are.", bundle: .student),
         .init(localized: "Coffee helps, but kindness to yourself works better.", bundle: .student),
@@ -81,7 +82,7 @@ extension HelloWidgetViewModel {
         .init(localized: "Technology can be tricky, but you're not alone in learning it.", bundle: .student)
     ]
 
-    static let afternoon: [String] = [
+    static let afternoon: Set<String> = [
         .init(localized: "Halfway there — you've already done more than you think.", bundle: .student),
         .init(localized: "Feeling stuck? Everyone hits walls, just don't stop climbing.", bundle: .student),
         .init(localized: "Jobs, grades, the future… no one has it all figured out yet.", bundle: .student),
@@ -93,7 +94,7 @@ extension HelloWidgetViewModel {
         .init(localized: "Reach out if you're stuck — support is always closer than it feels.", bundle: .student)
     ]
 
-    static let evening: [String] = [
+    static let evening: Set<String> = [
         .init(localized: "Made it through the day — that's a win in itself.", bundle: .student),
         .init(localized: "Missing people? Shoot someone a quick \"hey\" — it helps.", bundle: .student),
         .init(localized: "Even if today felt messy, you showed up. That matters.", bundle: .student),
@@ -105,7 +106,7 @@ extension HelloWidgetViewModel {
         .init(localized: "Your effort matters more than perfection.", bundle: .student)
     ]
 
-    static let night: [String] = [
+    static let night: Set<String> = [
         .init(localized: "Still grinding? Respect — but don't forget sleep exists.", bundle: .student),
         .init(localized: "Tomorrow you'll thank yourself for resting tonight.", bundle: .student),
         .init(localized: "Anxiety gets louder at night — don't believe all its noise.", bundle: .student),
