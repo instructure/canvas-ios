@@ -22,15 +22,17 @@ enum LearnerDashboardWidgetAssembly {
 
     static func makeDefaultWidgetConfigs() -> [DashboardWidgetConfig] {
         [
-            DashboardWidgetConfig(id: .fullWidthWidget, order: 0, isVisible: true, settings: nil),
-            DashboardWidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil),
-            DashboardWidgetConfig(id: .widget3, order: 3, isVisible: true, settings: nil),
-            DashboardWidgetConfig(id: .widget2, order: 2, isVisible: true, settings: nil)
+            DashboardWidgetConfig(id: .helloWidget, order: 0, isVisible: true),
+            DashboardWidgetConfig(id: .fullWidthWidget, order: 1, isVisible: true, settings: nil),
+            DashboardWidgetConfig(id: .widget1, order: 2, isVisible: true, settings: nil),
+            DashboardWidgetConfig(id: .widget2, order: 3, isVisible: true, settings: nil),
+            DashboardWidgetConfig(id: .widget3, order: 4, isVisible: true, settings: nil)
         ]
     }
 
     static func makeWidgetViewModel(config: DashboardWidgetConfig) -> any DashboardWidgetViewModel {
         switch config.id {
+        case .helloWidget: HelloWidgetViewModel(config: config)
         case .fullWidthWidget: FullWidthWidgetViewModel(config: config)
         case .widget1: Widget1ViewModel(config: config)
         case .widget2: Widget2ViewModel(config: config)
@@ -41,6 +43,8 @@ enum LearnerDashboardWidgetAssembly {
     @ViewBuilder
     static func makeView(for viewModel: any DashboardWidgetViewModel) -> some View {
         switch viewModel {
+        case let vm as HelloWidgetViewModel:
+            vm.makeView()
         case let vm as FullWidthWidgetViewModel:
             vm.makeView()
         case let vm as Widget1ViewModel:
