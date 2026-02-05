@@ -22,15 +22,15 @@ import CoreData
 import XCTest
 import TestsFoundation
 
+@MainActor
 final class AsyncStoreTests: CoreTestCase {
-    var store: AsyncStore<TestUseCase>!
+    nonisolated var store: AsyncStore<TestUseCase>!
 
     override func tearDown() {
         super.tearDown()
         store = nil
     }
 
-    @MainActor
     func testErrorHandling() async {
         let useCase = TestUseCase(courses: nil, requestError: NSError.instructureError("TestError"))
         let testee = createStore(useCase: useCase)
@@ -72,7 +72,7 @@ final class AsyncStoreTests: CoreTestCase {
         let useCase = TestUseCase(courses: [.make(id: "1")])
         let testee = createStore(useCase: useCase)
 
-        let course = try await testee.getFirstEntity(ignoreCache: true)
+        let course = try await testee.getSingleEntity(ignoreCache: true)
         XCTAssertEqual(course.id, "1")
     }
 
@@ -81,7 +81,7 @@ final class AsyncStoreTests: CoreTestCase {
         let testee = createStore(useCase: useCase)
 
         do {
-            _ = try await testee.getFirstEntity(ignoreCache: true)
+            _ = try await testee.getSingleEntity(ignoreCache: true)
         } catch AsyncStoreError.moreThanOneEntityFound(let count) {
             XCTAssertEqual(2, count)
         } // other errors cause the test to fail
@@ -92,7 +92,7 @@ final class AsyncStoreTests: CoreTestCase {
         let testee = createStore(useCase: useCase)
 
         // We expect no error thrown
-        _ = try await testee.getFirstEntity(ignoreCache: true, assertOnlyOneEntityFound: false)
+        _ = try await testee.getSingleEntity(ignoreCache: true, assertOnlyOneEntityFound: false)
     }
 
     func testFirstEntityThrowsErrorWhenNoEntities() async throws {
@@ -100,7 +100,7 @@ final class AsyncStoreTests: CoreTestCase {
         let testee = createStore(useCase: useCase)
 
         do {
-            _ = try await testee.getFirstEntity(ignoreCache: true)
+            _ = try await testee.getSingleEntity(ignoreCache: true)
         } catch let error as AsyncStoreError {
             XCTAssertEqual(error, AsyncStoreError.noEntityFound)
         } // other errors cause the test to fail
@@ -261,7 +261,12 @@ final class AsyncStoreTests: CoreTestCase {
         let headers = [
             "Link": "<\(curr)>; rel=\"current\",<>;, <\(prev)>; rel=\"prev\", <\(next)>; rel=\"next\"; count=1"
         ]
-        let urlResponse = HTTPURLResponse(url: URL(string: curr)!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
+        let urlResponse = HTTPURLResponse(
+            url: URL(string: curr)!,
+            statusCode: 200, httpVersion: "HTTP/1.1",
+            headerFields: headers
+        )!
+
         let page1 = [APICourse.make(id: "1")]
         let page2 = [APICourse.make(id: "2")]
         let useCase = TestUseCase(courses: page1, urlResponse: urlResponse)
@@ -328,9 +333,9 @@ final class AsyncStoreTests: CoreTestCase {
 
     private func createStore<U: UseCase>(useCase: U) -> AsyncStore<U> {
         AsyncStore(
-            offlineModeInteractor: createOfflineModeInteractor(),
+            useCase: useCase,
             context: environment.database.viewContext,
-            useCase: useCase
+            offlineModeInteractor: createOfflineModeInteractor()
         )
     }
 
@@ -378,7 +383,10 @@ extension AsyncStoreTests {
             return "test-use-case"
         }
 
-        func makeRequest(environment: AppEnvironment, completionHandler: @escaping ([APICourse]?, URLResponse?, Error?) -> Void) {
+        func makeRequest(
+            environment: AppEnvironment,
+            completionHandler: @escaping ([APICourse]?, URLResponse?, Error?) -> Void
+        ) {
             receivedEnvironmentInMakeRequest = environment
             completionHandler(courses, urlResponse, requestError)
         }
