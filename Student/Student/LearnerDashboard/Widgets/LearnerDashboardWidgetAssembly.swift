@@ -48,7 +48,11 @@ enum LearnerDashboardWidgetAssembly {
                 snackBarViewModel: snackBarViewModel
             )
         case .helloWidget:
-            HelloWidgetViewModel(config: config)
+            HelloWidgetViewModel(
+                config: config,
+                interactor: HelloWidgetInteractorLive(),
+                dayPeriodProvider: .init()
+            )
         case .widget1:
             Widget1ViewModel(config: config)
         case .widget2:

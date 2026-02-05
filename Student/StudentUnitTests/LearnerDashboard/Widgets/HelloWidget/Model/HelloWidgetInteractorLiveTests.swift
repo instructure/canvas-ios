@@ -28,7 +28,7 @@ final class HelloWidgetInteractorLiveTests: StudentTestCase {
     override func setUp() {
         super.setUp()
         api.mock(GetUserProfile(userID: "self"), value: .make(short_name: "Test user"))
-        testee = HelloWidgetInteractorLive(environment: env)
+        testee = HelloWidgetInteractorLive(env: env)
     }
 
     func testShortname() {
