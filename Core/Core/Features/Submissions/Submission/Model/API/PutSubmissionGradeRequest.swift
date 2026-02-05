@@ -67,7 +67,12 @@ public struct PutSubmissionGradeRequest: APIRequestable {
                 self.excuse = excuse
                 self.posted_grade = posted_grade
                 self.seconds_late_override = seconds_late_override
-                self.late_policy_status = (seconds_late_override ?? 0) > 0 ? "late" : nil
+
+                if let seconds = seconds_late_override, seconds >= 0 {
+                    self.late_policy_status = "late"
+                } else {
+                    self.late_policy_status = nil
+                }
             }
         }
 
