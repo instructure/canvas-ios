@@ -29,14 +29,9 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
     let config: DashboardWidgetConfig
     let isFullWidth = true
     let isEditable = false
-    var layoutIdentifier: AnyHashable {
-        struct Identifier: Hashable {
-            let state: InstUI.ScreenState
-            let greetingCount: Int
-            let messageCount: Int
-        }
 
-        return Identifier(state: state, greetingCount: greeting.count, messageCount: message.count)
+    var layoutIdentifier: [AnyHashable] {
+        [state, greeting.count, message.count]
     }
 
     // MARK: Outputs
