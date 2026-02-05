@@ -140,7 +140,7 @@ final class AsyncStoreTests: CoreTestCase {
         let expectation2 = expectation(description: "Second iteration")
         var iterationCount = 0
         let task = Task {
-            let stream = try await testee.updates(ignoreCache: false)
+            let stream = try await testee.streamEntities(ignoreCache: false)
 
             for try await courses in stream {
                 iterationCount += 1
@@ -155,7 +155,7 @@ final class AsyncStoreTests: CoreTestCase {
         }
         await fulfillment(of: [expectation1], timeout: 1)
 
-        await testee.forceRefresh(loadAllPages: true)
+        try await testee.forceRefresh(loadAllPages: true)
         await fulfillment(of: [expectation2], timeout: 1)
         task.cancel()
     }
@@ -171,7 +171,7 @@ final class AsyncStoreTests: CoreTestCase {
         var iterationCount = 0
 
         let task = Task {
-            let stream = try await testee.updates()
+            let stream = try await testee.streamEntities()
 
             for try await courses in stream {
                 iterationCount += 1
@@ -202,7 +202,7 @@ final class AsyncStoreTests: CoreTestCase {
         let updatedItemExpectation = expectation(description: "Iteration with updated item")
         var iterationCount = 0
         let task = Task {
-            let stream = try await testee.updates(ignoreCache: false)
+            let stream = try await testee.streamEntities(ignoreCache: false)
 
             for try await courses in stream {
                 iterationCount += 1
@@ -232,7 +232,7 @@ final class AsyncStoreTests: CoreTestCase {
         let deletedItemExpectation = expectation(description: "Iteration with deleted item")
         var iterationCount = 0
         let task = Task {
-            let stream = try await store.updates()
+            let stream = try await store.streamEntities()
 
             for try await courses in stream {
                 iterationCount += 1
