@@ -105,7 +105,9 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
     // MARK: Private methods
     private func subscribeToNotification() {
         NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
-            .sink { _ in
+            .sink { [weak self] _ in
+                guard let self else { return }
+
                 if self.periodProvider.current != DayPeriodProvider.period(of: Core.Clock.now) {
                     self.periodProvider = .init(date: Core.Clock.now)
                     self.updateGreetingAndMessage()
@@ -115,9 +117,9 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
     }
 
     private func updateGreetingAndMessage() {
-        self.message = self.dayPeriodMessage()
-        self.greeting = self.dayPeriodGreeting()
-        self.state = .data
+        message = dayPeriodMessage()
+        greeting = dayPeriodGreeting()
+        state = .data
     }
 
     private func dayPeriodGreeting() -> String {
