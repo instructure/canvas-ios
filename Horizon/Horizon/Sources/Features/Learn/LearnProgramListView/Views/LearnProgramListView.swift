@@ -126,7 +126,7 @@ struct LearnProgramListView: View {
         HorizonUI.Search(
             text: $viewModel.searchText,
             placeholder: String(localized: "Search programs"),
-            size: .large
+            size: .medium
         )
     }
 

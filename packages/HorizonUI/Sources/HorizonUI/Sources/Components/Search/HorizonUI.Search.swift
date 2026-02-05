@@ -29,33 +29,31 @@ public extension HorizonUI {
         @Binding private var text: String
         private let placeholder: String
         private let size: HorizonUI.Search.Size
-        private let hasCancelButton: Bool
 
         // MARK: - Init
 
        public init(
             text: Binding<String>,
             placeholder: String,
-            size: HorizonUI.Search.Size,
-            hasCancelButton: Bool = false
+            size: HorizonUI.Search.Size
         ) {
             _text = text
             self.placeholder = placeholder
             self.size = size
-            self.hasCancelButton = hasCancelButton
         }
 
         public var body: some View {
             HStack(spacing: .huiSpaces.space8) {
                 searchImage
                 textField
-                if hasCancelButton {
+                if text.isEmpty == false {
                     cancelButton
                 }
             }
             .padding(.horizontal, .huiSpaces.space16)
             .frame(height: size.height)
             .background(Capsule().fill(Color.huiColors.surface.cardPrimary))
+            .animation(.smooth, value: text.isEmpty)
             .overlay(
                 Capsule().stroke(
                     isFocused ?
@@ -101,9 +99,9 @@ public extension HorizonUI {
 #Preview {
     @Previewable @State var text: String = ""
     VStack {
-        HorizonUI.Search(text: $text, placeholder: "Search", size: .medium, hasCancelButton: true)
-        HorizonUI.Search(text: $text, placeholder: "Search", size: .large, hasCancelButton: false)
-        HorizonUI.Search(text: $text, placeholder: "Search", size: .small, hasCancelButton: true)
+        HorizonUI.Search(text: $text, placeholder: "Search", size: .medium)
+        HorizonUI.Search(text: $text, placeholder: "Search", size: .large)
+        HorizonUI.Search(text: $text, placeholder: "Search", size: .small)
     }
     .padding()
 }

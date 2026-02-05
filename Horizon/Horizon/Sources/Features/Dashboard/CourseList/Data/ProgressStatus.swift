@@ -58,4 +58,8 @@ enum ProgressStatus: Int, CaseIterable {
     static var programs: [OptionModel] {
         ProgressStatus.allCases.map { OptionModel(id: $0.rawValue, name: $0.title(for: String(localized: "All programs"))) }
     }
+
+    static var firsCourseOption: OptionModel { .init(id: ProgressStatus.all.rawValue, name: String(localized: "All courses")) }
+    
+    static var firsProgramOption: OptionModel { .init(id: ProgressStatus.all.rawValue, name: String(localized: "All programs")) }
 }

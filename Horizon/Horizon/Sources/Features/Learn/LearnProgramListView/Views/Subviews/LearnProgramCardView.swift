@@ -47,7 +47,7 @@ struct LearnProgramCardView: View {
     }
     private var programPercentageView: some View {
         HorizonUI.ProgressBar(
-            progress: program.completionPercent * 100,
+            progress: program.completionPercent,
             progressColor: .huiColors.surface.institution,
             size: .small,
             numberPosition: .outside,

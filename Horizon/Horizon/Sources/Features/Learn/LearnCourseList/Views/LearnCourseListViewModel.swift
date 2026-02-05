@@ -26,7 +26,7 @@ import Foundation
 final class LearnCourseListViewModel {
     // MARK: - Init / Outputs
 
-    var selectedStatus: OptionModel = .init(id: ProgressStatus.all.rawValue, name: String(localized: "All courses"))
+    var selectedStatus: OptionModel = ProgressStatus.firsCourseOption
     var searchText: String = "" {
         didSet {
             paginator.search(query: searchText, status: selectedStatus)

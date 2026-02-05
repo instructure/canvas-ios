@@ -25,17 +25,23 @@ struct CourseImageView: View {
     private let height: CGFloat
     private let width: CGFloat
     private let url: URL?
+    private let corners: HorizonUI.Corners
+    private let level: HorizonUI.CornerRadius
 
     // MARK: - Init
 
     init(
         height: CGFloat = 182,
         width: CGFloat,
-        url: URL?
+        url: URL?,
+        corners: HorizonUI.Corners = [.topLeft, .topRight],
+        level: HorizonUI.CornerRadius = .level5
     ) {
         self.height = height
         self.width = width
         self.url = url
+        self.corners = corners
+        self.level = level
     }
 
     var body: some View {
@@ -44,17 +50,18 @@ struct CourseImageView: View {
             topLeading: 32,
             topTrailing: 32,
             bottomLeading: 0,
-            bottomTrailing: 0
+            bottomTrailing: 0,
         ) { image in
             image
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(height: height)
                 .frame(maxWidth: width)
-                .huiCornerRadius(level: .level5, corners: [.topLeft, .topRight])
+                .huiCornerRadius(level: level, corners: corners)
                 .accessibilityLabel("")
                 .accessibilityRemoveTraits(.isImage)
                 .accessibilityHidden(true)
+                .background(Color.white)
         } placeholder: {
             ZStack {
                 Color.huiColors.primitives.grey14
@@ -70,5 +77,6 @@ struct CourseImageView: View {
         .accessibilityLabel("")
         .accessibilityRemoveTraits(.isImage)
         .accessibilityHidden(true)
+        .background(Color.white)
     }
 }

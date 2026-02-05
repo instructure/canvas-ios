@@ -26,7 +26,7 @@ import Observation
 final class LearnProgramListViewModel {
     // MARK: - Init / Outputs
 
-    var selectedStatus: OptionModel = .init(id: ProgressStatus.all.rawValue, name: String(localized: "All programs"))
+    var selectedStatus: OptionModel = ProgressStatus.firsProgramOption
     var searchText: String = "" {
         didSet {
             paginator.search(query: searchText, status: selectedStatus)

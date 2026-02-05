@@ -37,14 +37,16 @@ struct LearnCourseListView: View {
             if viewModel.hasCourses {
                 headerView
 
-                ScrollView(showsIndicators: false) {
-                    VStack(spacing: .zero) {
-                        helperView
-                        contentView
+                SingleAxisGeometryReader(initialSize: 300) { size in
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: .zero) {
+                            helperView
+                            contentView(width: size - 48)
+                        }
+                        .padding(.horizontal, .huiSpaces.space24)
                     }
-                    .padding(.horizontal, .huiSpaces.space24)
+                    .refreshable { await viewModel.refresh() }
                 }
-                .refreshable { await viewModel.refresh() }
             } else {
                 emptyView
             }
@@ -84,9 +86,9 @@ struct LearnCourseListView: View {
         .background(Color.huiColors.surface.pagePrimary)
     }
 
-    private var contentView: some View {
+    private func contentView(width: CGFloat) -> some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
-            listCourseView
+            listCourseView(width: width)
             if viewModel.filteredCourses.isEmpty {
                 CourseListEmptyView()
             }
@@ -101,7 +103,7 @@ struct LearnCourseListView: View {
         HorizonUI.Search(
             text: $viewModel.searchText,
             placeholder: String(localized: "Search courses"),
-            size: .large
+            size: .medium
         )
     }
 
@@ -133,10 +135,10 @@ struct LearnCourseListView: View {
         }
     }
 
-    private var listCourseView: some View {
+    private func listCourseView(width: CGFloat) -> some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
             ForEach(viewModel.filteredCourses) { course in
-                LearnCourseCardView(model: course) {
+                LearnCourseCardView(model: course, width: width) {
                     lastFocusedCourseID = course.id
                     viewModel.navigateToCourseDetails(
                         id: course.id,

@@ -33,7 +33,7 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
         delegate = self
         setValue(horizonTabBar, forKey: "tabBar")
         horizonTabBar.backgroundColor = .backgroundLightest
-
+        horizonTabBar.isTranslucent = false
         viewControllers = [
             dashboardTab(),
             learnTab(),

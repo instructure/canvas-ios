@@ -21,6 +21,7 @@ import SwiftUI
 
 struct LearnCourseCardView: View {
     let model: CourseListWidgetModel
+    let width: CGFloat
     let onTapCourseDetails: () -> Void
     let onTapLearningObject: ((String, URL?) -> Void)?
 
@@ -83,7 +84,7 @@ struct LearnCourseCardView: View {
 
     private var courseImage: some View {
         CourseImageView(
-            width: UIScreen.width - 48,
+            width: width,
             url: model.imageURL
         )
     }
@@ -129,6 +130,6 @@ struct LearnCourseCardView: View {
             url: nil
         )
     )
-    LearnCourseCardView(model: model, onTapCourseDetails: { }, onTapLearningObject: { _, _ in })
+    LearnCourseCardView(model: model, width: 400, onTapCourseDetails: { }, onTapLearningObject: { _, _ in })
         .padding()
 }
