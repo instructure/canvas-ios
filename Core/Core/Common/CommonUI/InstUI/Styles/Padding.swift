@@ -157,9 +157,13 @@ extension View {
 
     public func paddingStyle(set: InstUI.Styles.PaddingSet) -> some View {
         self
-            .padding(.top, set.config.top?.rawValue ?? 0)
-            .padding(.bottom, set.config.bottom?.rawValue ?? 0)
-            .padding(.leading, set.config.leading?.rawValue ?? 0)
-            .padding(.trailing, set.config.trailing?.rawValue ?? 0)
+            .padding(
+                EdgeInsets(
+                    top: set.config.top?.rawValue ?? 0,
+                    leading: set.config.leading?.rawValue ?? 0,
+                    bottom: set.config.bottom?.rawValue ?? 0,
+                    trailing: set.config.trailing?.rawValue ?? 0
+                )
+            )
     }
 }

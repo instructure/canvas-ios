@@ -88,18 +88,18 @@ public struct SingleSelectionView: View {
     }
 
     public var body: some View {
-        VStack(spacing: 0) {
-            Section {
+        Section {
+            VStack(spacing: 0) {
                 ForEach(viewModel.allOptions) { item in
                     optionCell(with: item)
                         .identifier(identifierGroup, item.id)
                 }
-            } header: {
-                InstUI.ListSectionHeader(title: viewModel.title, itemCount: viewModel.optionCount)
             }
+            .accessibilityElement(children: .contain)
+            .accessibilityLabel(viewModel.listLevelAccessibilityLabel)
+        } header: {
+            InstUI.ListSectionHeader(title: viewModel.title, itemCount: viewModel.optionCount)
         }
-        .accessibilityElement(children: .contain)
-        .accessibilityLabel(viewModel.listLevelAccessibilityLabel)
     }
 
     @ViewBuilder

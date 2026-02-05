@@ -1,0 +1,14 @@
+{
+  "enabledPlugins": {
+    "swiftui-expert@swiftui-expert-skill": true
+  },
+  "extraKnownMarketplaces": {
+    "swiftui-expert-skill": {
+      "source": {
+        "source": "github",
+        "repo": "AvdLee/SwiftUI-Agent-Skill",
+        "ref": "1.1.0"
+      }
+    }
+  }
+}

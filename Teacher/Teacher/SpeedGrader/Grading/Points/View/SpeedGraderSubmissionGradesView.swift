@@ -337,7 +337,7 @@ struct SpeedGraderSubmissionGradesView: View {
 
             if assignment.hasRubrics {
                 InstUI.CollapsibleListSection(
-                    label: header,
+                    label: { header },
                     accessibilityLabel: a11yLabel,
                     itemCount: nil,
                     paddingSet: .iconCell,

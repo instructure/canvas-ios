@@ -26,7 +26,7 @@ extension InstUI {
         private let label: Label
         private let paddingSet: InstUI.Styles.PaddingSet
         private let accessoryIconSize: CGFloat
-        private let content: () -> Content
+        private let content: Content
 
         @Binding private var isExpanded: Bool
         @State private var expandedState: CollapseButtonExpandedState
@@ -43,10 +43,10 @@ extension InstUI {
             paddingSet: InstUI.Styles.PaddingSet = .sectionHeader,
             accessoryIconSize: CGFloat = 18,
             isExpanded: Binding<Bool>,
-            content: @escaping () -> Content
+            @ViewBuilder content: () -> Content
         ) where Label == Text {
             self.init(
-                label: Text(title),
+                label: { Text(title) },
                 accessibilityLabel: customAccessibilityLabel ?? title,
                 headerIdentifier: headerIdentifier,
                 itemCount: itemCount,
@@ -58,19 +58,19 @@ extension InstUI {
         }
 
         public init(
-            label: Label,
+            @ViewBuilder label: () -> Label,
             accessibilityLabel: String,
             headerIdentifier: String? = nil,
             itemCount: Int?,
             paddingSet: InstUI.Styles.PaddingSet = .sectionHeader,
             accessoryIconSize: CGFloat = 18,
             isExpanded: Binding<Bool>,
-            content: @escaping () -> Content
+            @ViewBuilder content: () -> Content
         ) {
-            self.label = label
+            self.label = label()
             self.paddingSet = paddingSet
             self.accessoryIconSize = accessoryIconSize
-            self.content = content
+            self.content = content()
 
             self._isExpanded = isExpanded
             self.expandedState = .init(isExpanded: isExpanded.wrappedValue)
@@ -93,7 +93,7 @@ extension InstUI {
             Section(
                 isExpanded: $isExpanded,
                 content: {
-                    content()
+                    content
                         .accessibilityElement(children: .contain)
                         .accessibilityLabel(listLevelAccessibilityLabel)
                 },
