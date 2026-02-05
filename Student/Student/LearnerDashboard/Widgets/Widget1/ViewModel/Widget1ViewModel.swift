@@ -42,25 +42,6 @@ final class Widget1ViewModel: DashboardWidgetViewModel {
 
     init(config: DashboardWidgetConfig) {
         self.config = config
-        startTextTimer()
-    }
-
-    private func startTextTimer() {
-        timerCancellable = Timer.publish(every: 2, on: .main, in: .common)
-            .autoconnect()
-            .receive(on: DispatchQueue.global(qos: .userInitiated))
-            .map { [weak self] _ -> String in
-                guard let self else { return "" }
-                var newText: String
-                repeat {
-                    newText = DashboardWidgetPlaceholderData.long(Int.random(in: 1...4))
-                } while newText.count == self.text.count
-                return newText
-            }
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] newText in
-                self?.text = newText
-            }
     }
 
     func makeView() -> Widget1View {
