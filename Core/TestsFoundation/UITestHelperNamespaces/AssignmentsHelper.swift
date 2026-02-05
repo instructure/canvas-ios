@@ -127,7 +127,7 @@ public class AssignmentsHelper: BaseHelper {
         public static var editButton: XCUIElement { app.find(label: "Edit", type: .button) }
         public static var isLockedLabel: XCUIElement { app.find(label: "This assignment is locked", type: .staticText) }
         public static var pandaLockedImage: XCUIElement { app.find(id: "PandaLocked", type: .image) }
-        public static var submissionAndRubricButton: XCUIElement { app.find(label: "Submission & Rubric", type: .button) }
+        public static var submissionAndFeedbackButton: XCUIElement { app.find(label: "Submission & Feedback", type: .button) }
 
         // Reminder
         public static var reminder: XCUIElement { app.find(id: "AssignmentDetails.reminder") }
