@@ -38,7 +38,7 @@ class ParentAssignmentDetailsViewController: UIViewController, CoreWebViewLinkDe
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var webViewContainer: UIView!
-    @IBOutlet weak var submissionAndRubricButton: UIButton!
+    @IBOutlet weak var submissionAndFeedbackButton: UIButton!
     let webView = CoreWebView(features: [])
     let refreshControl = UIRefreshControl()
     var selectedDate: Date?
@@ -123,7 +123,7 @@ class ParentAssignmentDetailsViewController: UIViewController, CoreWebViewLinkDe
 
         statusLabel.text = ""
 
-        submissionAndRubricButton.configuration = {
+        submissionAndFeedbackButton.configuration = {
             var config = UIButton.Configuration.borderedProminent()
             config.background.cornerRadius = 6
             config.background.strokeWidth = 1 / UIScreen.main.scale
@@ -136,7 +136,7 @@ class ParentAssignmentDetailsViewController: UIViewController, CoreWebViewLinkDe
             config.imagePadding = 3
             config.imagePlacement = .trailing
             config.attributedTitle = AttributedString(
-                String(localized: "Submission & Rubric", bundle: .core),
+                String(localized: "Submission & Feedback", bundle: .core),
                 attributes: AttributeContainer(
                     [.font: UIFont.scaledNamedFont(.regular16)]
                 )
@@ -311,7 +311,7 @@ class ParentAssignmentDetailsViewController: UIViewController, CoreWebViewLinkDe
         env.router.show(composeController, from: self, options: .modal(isDismissable: false, embedInNav: true), analyticsRoute: "/conversations/compose")
     }
 
-    @IBAction func submissionAndRubricButtonPressed(_ sender: Any) {
+    @IBAction func submissionAndFeedbackButtonPressed(_ sender: Any) {
         guard let assignment = assignment.first,
               let assignmentHtmlURL = assignment.htmlURL else {
             return

@@ -125,13 +125,13 @@ class ParentAssignmentDetailsViewControllerTests: ParentTestCase {
         XCTAssertTrue(router.presented is CoreHostingController<CoreDatePickerActionSheetCard>)
     }
 
-    func testSubmissionAndRubricButtonPresentsSubmissionViewer() {
+    func testSubmissionAndFeedbackButtonPresentsSubmissionViewer() {
         api.mock(controller.assignment, value: .make(description: "", due_at: nil, html_url: url))
         controller.view.layoutIfNeeded()
         controller.viewWillAppear(false)
 
         // WHEN
-        controller.submissionAndRubricButtonPressed(self)
+        controller.submissionAndFeedbackButtonPressed(self)
 
         // THEN
         let presentation = router.viewControllerCalls.last
@@ -155,7 +155,7 @@ class ParentAssignmentDetailsViewControllerTests: ParentTestCase {
         XCTAssertEqual(submissionURLInteractorMock.isSubmissionURLCalled, false)
 
         // WHEN
-        testee.submissionAndRubricButtonPressed(self)
+        testee.submissionAndFeedbackButtonPressed(self)
 
         // THEN
         XCTAssertEqual(submissionURLInteractorMock.isSubmissionURLCalled, true)

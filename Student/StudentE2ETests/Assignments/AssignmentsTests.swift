@@ -95,7 +95,7 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertVisible(submitAssignmentButton)
         XCTAssertEqual(submitAssignmentButton.label, "Submit Assignment")
 
-        let submissionButton = DetailsHelper.submissionAndRubricButton.waitUntil(.visible)
+        let submissionButton = DetailsHelper.submissionAndFeedbackButton.waitUntil(.visible)
         XCTAssertVisible(submissionButton)
 
         GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)

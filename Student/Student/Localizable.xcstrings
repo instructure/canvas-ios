@@ -20999,6 +20999,9 @@
         }
       }
     },
+    "Anxiety gets louder at night — don't believe all its noise." : {
+
+    },
     "Archive" : {
       "comment" : "Archive selected messages button\n   mark a message as archived",
       "extractionState" : "manual",
@@ -22872,6 +22875,9 @@
           }
         }
       }
+    },
+    "Ask for help. Seriously, no one's doing this solo." : {
+
     },
     "Ask me later" : {
       "extractionState" : "manual",
@@ -27406,6 +27412,12 @@
           }
         }
       }
+    },
+    "Big goals are built from small steps." : {
+
+    },
+    "Brain tired? Quick break = better focus later." : {
+
     },
     "Build Avatar" : {
       "comment" : "Link to building panda avatar",
@@ -33285,6 +33297,9 @@
         }
       }
     },
+    "Close the laptop — your brain needs dreams too." : {
+
+    },
     "Closed" : {
       "localizations" : {
         "ar" : {
@@ -33815,6 +33830,9 @@
           }
         }
       }
+    },
+    "Coffee helps, but kindness to yourself works better." : {
+
     },
     "Collaborations" : {
       "comment" : "Title for Collaborations tab",
@@ -46427,6 +46445,12 @@
         }
       }
     },
+    "Don't forget to breathe — you're doing fine." : {
+
+    },
+    "Don't give up — future you will thank you." : {
+
+    },
     "Done" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -52033,6 +52057,9 @@
         }
       }
     },
+    "End the day knowing that trying is already an achievement." : {
+
+    },
     "Enter submission" : {
       "comment" : "Submission input view placeholder text",
       "extractionState" : "manual",
@@ -54193,6 +54220,24 @@
         }
       }
     },
+    "Even if today felt messy, you showed up. That matters." : {
+
+    },
+    "Even messy progress is still progress." : {
+
+    },
+    "Even on tough days, you're moving forward." : {
+
+    },
+    "Even slow progress is still progress." : {
+
+    },
+    "Even small steps this morning move you closer to your goals." : {
+
+    },
+    "Evenings are for reflection — notice what you've learned today, not just what's left to do." : {
+
+    },
     "Event" : {
       "comment" : "Label for a calendar event",
       "extractionState" : "manual",
@@ -54725,6 +54770,12 @@
           }
         }
       }
+    },
+    "Every effort you make adds up." : {
+
+    },
+    "Every try is growth, even if it doesn't feel like it." : {
+
     },
     "Existing Attachments..." : {
       "extractionState" : "manual",
@@ -55802,6 +55853,9 @@
 
     },
     "Failed to decline invitation. Please try again." : {
+
+    },
+    "Feeling stuck? Everyone hits walls, just don't stop climbing." : {
 
     },
     "File" : {
@@ -60629,6 +60683,33 @@
         }
       }
     },
+    "Good afternoon %@!" : {
+
+    },
+    "Good afternoon!" : {
+
+    },
+    "Good evening %@!" : {
+
+    },
+    "Good evening!" : {
+
+    },
+    "Good morning — today is a new chance to learn and grow." : {
+
+    },
+    "Good morning %@!" : {
+
+    },
+    "Good morning!" : {
+
+    },
+    "Good night %@!" : {
+
+    },
+    "Good night!" : {
+
+    },
     "Grade" : {
       "localizations" : {
         "ar" : {
@@ -63589,6 +63670,12 @@
         }
       }
     },
+    "Halfway there — you've already done more than you think." : {
+
+    },
+    "Hang in there — you're not alone in this." : {
+
+    },
     "Have questions about your assignment?\nMessage your instructor." : {
       "localizations" : {
         "ar" : {
@@ -65454,6 +65541,9 @@
           }
         }
       }
+    },
+    "If worries feel heavy, remember you don't have to carry them alone." : {
+
     },
     "Image" : {
       "comment" : "Image file type",
@@ -68654,6 +68744,27 @@
         }
       }
     },
+    "It's okay if the path feels uncertain — skills build step by step." : {
+
+    },
+    "It's okay to learn as you go." : {
+
+    },
+    "It's okay to pause. Breaks are part of learning." : {
+
+    },
+    "It's okay to rest — tomorrow is waiting with new opportunities." : {
+
+    },
+    "It's okay to start again — as many times as you need." : {
+
+    },
+    "It's okay to stumble — you're still on the right path." : {
+
+    },
+    "It's okay to take things slow." : {
+
+    },
     "Item %1$d of %2$d" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -68922,6 +69033,9 @@
           }
         }
       }
+    },
+    "Jobs, grades, the future… no one has it all figured out yet." : {
+
     },
     "Jumps to current day on calendar" : {
       "extractionState" : "manual",
@@ -69460,6 +69574,18 @@
           }
         }
       }
+    },
+    "Keep going — future you will thank you." : {
+
+    },
+    "Keep going — you're stronger than you feel right now." : {
+
+    },
+    "Keep pushing — you're closer than you think." : {
+
+    },
+    "Keep showing up — that's what counts." : {
+
     },
     "Landing Page" : {
       "comment" : "Settings entry title for Choosing a Landing Page",
@@ -70533,6 +70659,12 @@
           }
         }
       }
+    },
+    "Learning is a marathon, not a sprint. Be kind to yourself tonight." : {
+
+    },
+    "Learning is messy — and that's normal." : {
+
     },
     "Leave" : {
       "comment" : "Leave the quiz",
@@ -73211,6 +73343,9 @@
           }
         }
       }
+    },
+    "Made it through the day — that's a win in itself." : {
+
     },
     "Mark as Done" : {
       "comment" : "Button title for mark as done",
@@ -76711,6 +76846,12 @@
         }
       }
     },
+    "Missing friends or mentors? Connection can come in small moments too." : {
+
+    },
+    "Missing people? Shoot someone a quick \"hey\" — it helps." : {
+
+    },
     "Mobile Quiz Warning" : {
       "comment" : "Warnging for taking quizzes on a mobile device",
       "extractionState" : "manual",
@@ -77790,6 +77931,9 @@
           }
         }
       }
+    },
+    "Morning! You've got this — one class, one step at a time." : {
+
     },
     "Multiple Due Dates" : {
       "comment" : "Title of a link to show additional due dates customized for sections or groups.",
@@ -79950,6 +80094,9 @@
           }
         }
       }
+    },
+    "Need a pause? Recharging is part of learning too." : {
+
     },
     "Need SpeedGrader for iPad" : {
       "comment" : "Title notifying user that SpeedGrader is available for iPad",
@@ -86382,6 +86529,12 @@
         }
       }
     },
+    "Not everything needs to be figured out today." : {
+
+    },
+    "Not feeling ready? That's normal. Just start where you are." : {
+
+    },
     "Not graded" : {
       "comment" : "not graded string.",
       "extractionState" : "manual",
@@ -90648,6 +90801,12 @@
           }
         }
       }
+    },
+    "One assignment, one moment, one step at a time." : {
+
+    },
+    "One step at a time is still progress." : {
+
     },
     "Online URL" : {
       "comment" : "Online URL submission type",
@@ -98962,6 +99121,12 @@
         }
       }
     },
+    "Progress > perfection." : {
+
+    },
+    "Progress, not perfection. You're doing great." : {
+
+    },
     "Questions:" : {
       "localizations" : {
         "ar" : {
@@ -101367,6 +101532,9 @@
           }
         }
       }
+    },
+    "Reach out if you're stuck — support is always closer than it feels." : {
+
     },
     "Recipients" : {
       "comment" : "Title for the list of users who will receive a message. 15 characters is about all we have room for here.",
@@ -104053,6 +104221,12 @@
         }
       }
     },
+    "Relax, laugh, or scroll guilt-free — you earned it." : {
+
+    },
+    "Remember: no grade measures your worth." : {
+
+    },
     "Reminder" : {
       "localizations" : {
         "ar" : {
@@ -105918,6 +106092,9 @@
           }
         }
       }
+    },
+    "Rest is part of progress too." : {
+
     },
     "Resubmission Failed" : {
       "localizations" : {
@@ -112046,6 +112223,15 @@
         }
       }
     },
+    "Showing up matters more than you know." : {
+
+    },
+    "Small steps move big mountains." : {
+
+    },
+    "Small wins count too." : {
+
+    },
     "Some items could not be deleted" : {
       "comment" : "Message for an error popup",
       "extractionState" : "manual",
@@ -113929,6 +114115,9 @@
           }
         }
       }
+    },
+    "Still grinding? Respect — but don't forget sleep exists." : {
+
     },
     "Stop" : {
       "comment" : "A button that stops",
@@ -116336,7 +116525,11 @@
         }
       }
     },
+    "Submission & Feedback" : {
+
+    },
     "Submission & Rubric" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -122183,6 +122376,9 @@
         }
       }
     },
+    "Take a breath — you don't need to have everything figured out yet." : {
+
+    },
     "Take a Photo..." : {
       "comment" : "Take a picture to use in a comment.",
       "extractionState" : "manual",
@@ -125127,6 +125323,12 @@
         }
       }
     },
+    "Tech acting up? Happens to all of us — don't stress." : {
+
+    },
+    "Technology can be tricky, but you're not alone in learning it." : {
+
+    },
     "Tell us what's wrong" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -126737,6 +126939,12 @@
           }
         }
       }
+    },
+    "The future isn't built in a day — but you're on the way." : {
+
+    },
+    "The path doesn't need to be clear yet — keep walking." : {
+
     },
     "The recipients could not be added. Please try again. (%@)" : {
       "comment" : "Text explaining the error",
@@ -135545,6 +135753,9 @@
         }
       }
     },
+    "Today doesn't need to be perfect, just possible." : {
+
+    },
     "Toggles selection of current item" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -136082,6 +136293,15 @@
           }
         }
       }
+    },
+    "Tomorrow you'll thank yourself for resting tonight." : {
+
+    },
+    "Trust yourself — you've done hard things before." : {
+
+    },
+    "Trying is already a win." : {
+
     },
     "Turn In" : {
       "comment" : "title for assignment submission button",
@@ -147057,6 +147277,12 @@
         }
       }
     },
+    "Well done getting through the day — progress counts, even when it's quiet." : {
+
+    },
+    "What feels hard now will feel easier later." : {
+
+    },
     "Whoops!" : {
       "comment" : "Error Title",
       "extractionState" : "manual",
@@ -149478,6 +149704,9 @@
         }
       }
     },
+    "You belong here." : {
+
+    },
     "You do not have access to this content. The Course or Group may not have started, or may have been concluded." : {
       "comment" : "Error message for an unauthorized course or group.",
       "extractionState" : "manual",
@@ -150813,6 +151042,9 @@
           }
         }
       }
+    },
+    "You don't have to be perfect to make an impact." : {
+
     },
     "You have already set a reminder for this time." : {
       "localizations" : {
@@ -152158,6 +152390,48 @@
         }
       }
     },
+    "You're building skills, even on slow days." : {
+
+    },
+    "You're capable of more than you think." : {
+
+    },
+    "You're doing better than you realize." : {
+
+    },
+    "You're growing in ways you might not see yet." : {
+
+    },
+    "You're learning, growing, and doing better than you realize." : {
+
+    },
+    "You're moving forward, even on quiet days." : {
+
+    },
+    "You're not behind — you're on your path." : {
+
+    },
+    "You're not behind, you're just on your path." : {
+
+    },
+    "You've already made it this far today — that's something to be proud of." : {
+
+    },
+    "You've done hard things before — you can do this too." : {
+
+    },
+    "You've got this." : {
+
+    },
+    "Your effort matters more than perfection." : {
+
+    },
+    "Your effort matters, even if no one sees it." : {
+
+    },
+    "Your effort today is an investment in tomorrow." : {
+
+    },
     "Your files could not be found" : {
       "comment" : "Error content",
       "extractionState" : "manual",
@@ -152427,6 +152701,9 @@
           }
         }
       }
+    },
+    "Your pace is the right pace." : {
+
     },
     "Your school's configuration does not allow the type of submission selected for this assignment" : {
       "comment" : "Media submission type selected with no Kaltura set up",

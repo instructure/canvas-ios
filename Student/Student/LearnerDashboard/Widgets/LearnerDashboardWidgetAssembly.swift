@@ -24,6 +24,7 @@ enum LearnerDashboardWidgetAssembly {
     static func makeDefaultWidgetConfigs() -> [DashboardWidgetConfig] {
         [
             DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true, settings: nil),
+            DashboardWidgetConfig(id: .helloWidget, order: 0, isVisible: true),
             DashboardWidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil),
             DashboardWidgetConfig(id: .widget3, order: 2, isVisible: true, settings: nil),
             DashboardWidgetConfig(id: .widget2, order: 3, isVisible: true, settings: nil)
@@ -37,17 +38,19 @@ enum LearnerDashboardWidgetAssembly {
     ) -> any DashboardWidgetViewModel {
         switch config.id {
         case .courseInvitations:
-            return CourseInvitationsWidgetViewModel(
+            CourseInvitationsWidgetViewModel(
                 config: config,
                 interactor: coursesInteractor,
                 snackBarViewModel: snackBarViewModel
             )
+        case .helloWidget:
+            HelloWidgetViewModel(config: config)
         case .widget1:
-            return Widget1ViewModel(config: config)
+            Widget1ViewModel(config: config)
         case .widget2:
-            return Widget2ViewModel(config: config)
+            Widget2ViewModel(config: config)
         case .widget3:
-            return Widget3ViewModel(config: config)
+            Widget3ViewModel(config: config)
         }
     }
 
@@ -55,6 +58,8 @@ enum LearnerDashboardWidgetAssembly {
     static func makeView(for viewModel: any DashboardWidgetViewModel) -> some View {
         switch viewModel {
         case let vm as CourseInvitationsWidgetViewModel:
+	        vm.makeView()
+        case let vm as HelloWidgetViewModel:
             vm.makeView()
         case let vm as Widget1ViewModel:
             vm.makeView()

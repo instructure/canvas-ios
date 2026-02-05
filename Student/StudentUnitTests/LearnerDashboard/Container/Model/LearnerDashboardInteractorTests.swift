@@ -65,10 +65,11 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
         XCTAssertEqual(receivedFullWidth?.count, 1)
         XCTAssertEqual(receivedFullWidth?.first?.id, .courseInvitations)
-        XCTAssertEqual(receivedGrid?.count, 3)
-        XCTAssertEqual(receivedGrid?[0].id, .widget1)
-        XCTAssertEqual(receivedGrid?[1].id, .widget3)
-        XCTAssertEqual(receivedGrid?[2].id, .widget2)
+        XCTAssertEqual(receivedGrid?.count, 4)
+        XCTAssertEqual(receivedGrid?[0].id, .helloWidget)
+        XCTAssertEqual(receivedGrid?[1].id, .widget1)
+        XCTAssertEqual(receivedGrid?[2].id, .widget3)
+        XCTAssertEqual(receivedGrid?[3].id, .widget2)
     }
 
     // MARK: - Load widgets with saved configs
@@ -77,6 +78,7 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         userDefaults.learnerDashboardWidgetConfigs = [
             DashboardWidgetConfig(id: .widget3, order: 5, isVisible: true),
             DashboardWidgetConfig(id: .widget1, order: 20, isVisible: false),
+            DashboardWidgetConfig(id: .helloWidget, order: 0, isVisible: true),
             DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
         ]
         testee = LearnerDashboardInteractorLive(
@@ -99,9 +101,10 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         wait(for: [expectation], timeout: 5)
 
         XCTAssertEqual(receivedFullWidth?.count, 0)
-        XCTAssertEqual(receivedGrid?.count, 2)
-        XCTAssertEqual(receivedGrid?[0].id, .widget3)
-        XCTAssertEqual(receivedGrid?[1].id, .widget2)
+        XCTAssertEqual(receivedGrid?.count, 3)
+        XCTAssertEqual(receivedGrid?[0].id, .helloWidget)
+        XCTAssertEqual(receivedGrid?[1].id, .widget3)
+        XCTAssertEqual(receivedGrid?[2].id, .widget2)
     }
 
     func test_loadWidgets_shouldSeparateFullWidthFromGridWidgets() {
