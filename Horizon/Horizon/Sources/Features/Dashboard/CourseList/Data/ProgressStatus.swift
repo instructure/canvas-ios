@@ -60,6 +60,5 @@ enum ProgressStatus: Int, CaseIterable {
     }
 
     static var firsCourseOption: OptionModel { .init(id: ProgressStatus.all.rawValue, name: String(localized: "All courses")) }
-    
     static var firsProgramOption: OptionModel { .init(id: ProgressStatus.all.rawValue, name: String(localized: "All programs")) }
 }
