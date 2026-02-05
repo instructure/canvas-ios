@@ -57,11 +57,13 @@ public struct AsyncStore<U: UseCase> {
     // MARK: - Get Entities
 
     /// Produces a list of entities for the given UseCase.
+    ///
     /// When the device is connected to the internet and there's no valid cache,
     /// it makes a request to the API and saves the response to the database.
     /// If there's valid cache, it returns it.
     /// By default it downloads all pages, and validates cache unless specificied differently.
     /// When the device is offline, it will read data from Core Data.
+    ///
     /// - Parameters:
     ///     - ignoreCache: Indicates if the request should check the available cache first.
     ///       If it's set to **false**, it will validate the cache's expiration and return it if it's still valid.
@@ -72,25 +74,27 @@ public struct AsyncStore<U: UseCase> {
     /// - Returns: A list of entities.
     public func getEntities(ignoreCache: Bool = false, loadAllPages: Bool = true) async throws -> [U.Model] {
         if isOfflineModeEnabled {
-            return try await fetchEntitiesFromDatabase()
+            return try await getEntitiesFromDatabase()
         }
 
         let hasExpired = await useCase.hasCacheExpired(environment: environment)
 
         if ignoreCache || hasExpired {
-            return try await fetchEntitiesFromAPI(loadAllPages: loadAllPages)
-        } else {
-            return try await fetchEntitiesFromDatabase()
+            try await fetchEntitiesFromAPI(loadAllPages: loadAllPages)
         }
+
+        return try await getEntitiesFromDatabase()
     }
 
     /// Produces one non-optional entity for the given UseCase.
     /// Use this variant when the single entity should exist, we just need to fetch it.
+    ///
     /// When the device is connected to the internet and there's no valid cache,
     /// it makes a request to the API and saves the response to the database.
     /// If there's valid cache, it returns it.
     /// By default it downloads all pages, and validates cache unless specificied differently.
     /// When the device is offline, it will read data from Core Data.
+    ///
     /// - Parameters:
     ///     - ignoreCache: Indicates if the request should check the available cache first.
     ///       If it's set to **false**, it will validate the cache's expiration and return it if it's still valid.
@@ -120,36 +124,7 @@ public struct AsyncStore<U: UseCase> {
         return entity
     }
 
-    /// Refreshes the entities by requesting the latest data from the API.
-    public func forceRefresh(loadAllPages: Bool = true) async {
-        _ = try? await getEntities(ignoreCache: true, loadAllPages: loadAllPages)
-    }
-
     public func getEntitiesFromDatabase() async throws -> [U.Model] {
-        try await fetchEntitiesFromDatabase()
-    }
-
-    // MARK: - Get Entities private
-
-    private func fetchEntitiesFromAPI(
-        getNextUseCase: GetNextUseCase<U>? = nil,
-        loadAllPages: Bool
-    ) async throws -> [U.Model] {
-        let urlResponse = try await {
-            if let getNextUseCase {
-                try await getNextUseCase.fetch(environment: environment)
-            } else {
-                try await useCase.fetch(environment: environment)
-            }
-        }()
-
-        let nextResponse = urlResponse.flatMap { useCase.getNext(from: $0) }
-        try await fetchAllPagesIfNeeded(loadAllPages: loadAllPages, nextResponse: nextResponse)
-
-        return try await fetchEntitiesFromDatabase()
-    }
-
-    private func fetchEntitiesFromDatabase() async throws -> [U.Model] {
         try await AsyncFetchedResults(request: request, context: context)
             .fetch()
     }
@@ -157,12 +132,15 @@ public struct AsyncStore<U: UseCase> {
     // MARK: - Stream Entities
 
     /// Produces an async sequence of entities for the given UseCase keeping track of database changes.
+    ///
+    /// - Warning: This stream **DOES NOT terminate**. Ensure proper cancellation of its consuming task.
+    ///
     /// When the device is connected to the internet and there's no valid cache,
     /// it makes a request to the API and saves the response to the database.
     /// If there's valid cache, it returns it.
     /// By default it downloads all pages, and validates cache unless specificied differently.
     /// When the device is offline, it will read data from Core Data.
-    /// - Warning: This stream **does not terminate**. Ensure proper cancellation of its consuming task.
+    ///
     /// - Parameters:
     ///     - ignoreCache: Indicates if the request should check the available cache first.
     ///       If it's set to **false**, it will validate the cache's expiration and return it if it's still valid.
@@ -171,7 +149,7 @@ public struct AsyncStore<U: UseCase> {
     ///       Defaults to **false**.
     ///     - loadAllPages: Tells the request if it should load all the pages or just the first one. Defaults to **true**.
     /// - Returns: An async sequence of list of entities.
-    public func updates(
+    public func streamEntities(
         ignoreCache: Bool = false,
         loadAllPages: Bool = true
     ) async throws -> AsyncThrowingStream<[U.Model], Error> {
@@ -182,20 +160,37 @@ public struct AsyncStore<U: UseCase> {
         let hasExpired = await useCase.hasCacheExpired(environment: environment)
 
         if ignoreCache || hasExpired {
-            try await updateEntitiesFromAPI(loadAllPages: loadAllPages)
+            try await fetchEntitiesFromAPI(loadAllPages: loadAllPages)
         }
 
         return streamEntitiesFromDatabase()
     }
 
-    /// - Warning: This stream **does not terminate**. Ensure proper cancellation of its consuming task.
-    public func updatesFromDatabase() -> AsyncThrowingStream<[U.Model], Error> {
-        streamEntitiesFromDatabase()
+    /// - Warning: This stream **DOES NOT terminate**. Ensure proper cancellation of its consuming task.
+    public func streamEntitiesFromDatabase() -> AsyncThrowingStream<[U.Model], Error> {
+        AsyncFetchedResults(request: request, context: context)
+            .stream()
     }
 
-    // MARK: - Stream Entities private
+    // MARK: - Force Refresh
 
-    private func updateEntitiesFromAPI(getNextUseCase: GetNextUseCase<U>? = nil, loadAllPages: Bool) async throws {
+    /// Refetches the entities from the API and stores the updated data in the local database.
+    /// Does not return the entities themselves.
+    /// Throws any fetching errors, allowing the caller to decide whether to silence them or to handle them.
+    public func forceRefresh(loadAllPages: Bool = true) async throws {
+        if !isOfflineModeEnabled {
+            try await fetchEntitiesFromAPI(loadAllPages: loadAllPages)
+        }
+    }
+
+    // MARK: - Fetch API (private)
+
+    /// Fetches the entities from the API and stores them in the local database.
+    /// Does not return the entities themselves.
+    private func fetchEntitiesFromAPI(
+        getNextUseCase: GetNextUseCase<U>? = nil,
+        loadAllPages: Bool
+    ) async throws {
         let urlResponse = try await {
             if let getNextUseCase {
                 try await getNextUseCase.fetch(environment: environment)
@@ -208,17 +203,10 @@ public struct AsyncStore<U: UseCase> {
         try await fetchAllPagesIfNeeded(loadAllPages: loadAllPages, nextResponse: nextResponse)
     }
 
-    private func streamEntitiesFromDatabase() -> AsyncThrowingStream<[U.Model], Error> {
-        AsyncFetchedResults(request: request, context: context)
-            .stream()
-    }
-
-    // MARK: - Common private
-
     private func fetchAllPagesIfNeeded(loadAllPages: Bool, nextResponse: GetNextRequest<U.Response>?) async throws {
         guard let nextResponse, loadAllPages else { return }
         let nextPageUseCase = GetNextUseCase(parent: useCase, request: nextResponse)
 
-        _ = try await fetchEntitiesFromAPI(getNextUseCase: nextPageUseCase, loadAllPages: true)
+        try await fetchEntitiesFromAPI(getNextUseCase: nextPageUseCase, loadAllPages: true)
     }
 }
