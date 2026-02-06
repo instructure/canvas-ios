@@ -104,6 +104,7 @@ final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
                     }
                 )
             }
+            .sorted { $0.id < $1.id }
         }
         .receive(on: DispatchQueue.main)
         .map { [weak self] conferences in
