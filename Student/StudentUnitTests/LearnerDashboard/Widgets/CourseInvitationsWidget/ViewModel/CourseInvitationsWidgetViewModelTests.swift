@@ -91,7 +91,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
             snackBarViewModel: snackBarViewModel
         )
 
-        mockInteractor.mockCoursesResult = CoursesResult(allCourses: [], invitedCourses: [])
+        mockInteractor.mockCoursesResult = CoursesResult(allCourses: [], invitedCourses: [], groups: [])
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
         XCTAssertEqual(testee.state, .empty)
@@ -113,7 +113,8 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
         )
         mockInteractor.mockCoursesResult = CoursesResult(
             allCourses: [course],
-            invitedCourses: [course]
+            invitedCourses: [course],
+            groups: []
         )
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
@@ -132,7 +133,8 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
         let course2 = makeCourseWithInvitation(id: "2", name: "Chemistry 201", enrollmentId: "e2", sectionId: "s2")
         mockInteractor.mockCoursesResult = CoursesResult(
             allCourses: [course1, course2],
-            invitedCourses: [course1, course2]
+            invitedCourses: [course1, course2],
+            groups: []
         )
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
@@ -157,7 +159,8 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
         )
         mockInteractor.mockCoursesResult = CoursesResult(
             allCourses: [course],
-            invitedCourses: [course]
+            invitedCourses: [course],
+            groups: []
         )
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
@@ -173,7 +176,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
             snackBarViewModel: snackBarViewModel
         )
 
-        mockInteractor.mockCoursesResult = CoursesResult(allCourses: [], invitedCourses: [])
+        mockInteractor.mockCoursesResult = CoursesResult(allCourses: [], invitedCourses: [], groups: [])
 
         XCTAssertFinish(testee.refresh(ignoreCache: true), timeout: 5)
     }
@@ -197,7 +200,8 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
         let activeCourse = makeCourse(id: "2", name: "Chemistry 201")
         mockInteractor.mockCoursesResult = CoursesResult(
             allCourses: [invitedCourse, activeCourse],
-            invitedCourses: [invitedCourse]
+            invitedCourses: [invitedCourse],
+            groups: []
         )
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
@@ -221,7 +225,8 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
         )
         mockInteractor.mockCoursesResult = CoursesResult(
             allCourses: [courseWithoutEnrollmentId],
-            invitedCourses: [courseWithoutEnrollmentId]
+            invitedCourses: [courseWithoutEnrollmentId],
+            groups: []
         )
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
@@ -247,7 +252,8 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
         )
         mockInteractor.mockCoursesResult = CoursesResult(
             allCourses: [course],
-            invitedCourses: [course]
+            invitedCourses: [course],
+            groups: []
         )
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
@@ -264,7 +270,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
             snackBarViewModel: snackBarViewModel
         )
 
-        mockInteractor.mockCoursesResult = CoursesResult(allCourses: [], invitedCourses: [])
+        mockInteractor.mockCoursesResult = CoursesResult(allCourses: [], invitedCourses: [], groups: [])
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
     }
@@ -283,7 +289,8 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
         let course2 = makeCourseWithInvitation(id: "2", name: "Chemistry 201", enrollmentId: "e2", sectionId: "s2")
         mockInteractor.mockCoursesResult = CoursesResult(
             allCourses: [course1, course2],
-            invitedCourses: [course1, course2]
+            invitedCourses: [course1, course2],
+            groups: []
         )
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
@@ -301,7 +308,8 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
         let course = makeCourseWithInvitation(id: "1", name: "Biology 101", enrollmentId: "e1", sectionId: "s1")
         mockInteractor.mockCoursesResult = CoursesResult(
             allCourses: [course],
-            invitedCourses: [course]
+            invitedCourses: [course],
+            groups: []
         )
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
@@ -323,7 +331,8 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
         let course2 = makeCourseWithInvitation(id: "2", name: "Chemistry 201", enrollmentId: "e2", sectionId: "s2")
         mockInteractor.mockCoursesResult = CoursesResult(
             allCourses: [course1, course2],
-            invitedCourses: [course1, course2]
+            invitedCourses: [course1, course2],
+            groups: []
         )
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
@@ -352,7 +361,8 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
         let course = makeCourseWithInvitation(id: "1", name: "Biology 101", enrollmentId: "e1", sectionId: "s1")
         mockInteractor.mockCoursesResult = CoursesResult(
             allCourses: [course],
-            invitedCourses: [course]
+            invitedCourses: [course],
+            groups: []
         )
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
@@ -382,7 +392,8 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
         let course2 = makeCourseWithInvitation(id: "2", name: "Chemistry 201", enrollmentId: "e2", sectionId: "s2")
         mockInteractor.mockCoursesResult = CoursesResult(
             allCourses: [course1, course2],
-            invitedCourses: [course1, course2]
+            invitedCourses: [course1, course2],
+            groups: []
         )
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
@@ -408,7 +419,8 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
         let course = makeCourseWithInvitation(id: "1", name: "Biology 101", enrollmentId: "e1", sectionId: "s1")
         mockInteractor.mockCoursesResult = CoursesResult(
             allCourses: [course],
-            invitedCourses: [course]
+            invitedCourses: [course],
+            groups: []
         )
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)

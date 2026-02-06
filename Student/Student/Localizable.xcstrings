@@ -36772,6 +36772,9 @@
         }
       }
     },
+    "Conference is ongoing" : {
+
+    },
     "Conferences" : {
       "comment" : "Title for Conferences tab",
       "extractionState" : "manual",
@@ -45365,6 +45368,9 @@
           }
         }
       }
+    },
+    "Dismissed %@" : {
+
     },
     "Do you want to masquerade as this user?" : {
       "comment" : "Alert title asking if you want to masquerade",
@@ -69037,6 +69043,9 @@
     "Jobs, grades, the future… no one has it all figured out yet." : {
 
     },
+    "Join" : {
+
+    },
     "Jumps to current day on calendar" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -71199,6 +71208,12 @@
           }
         }
       }
+    },
+    "Live Conferences" : {
+
+    },
+    "Live Conferences (%lld)" : {
+
     },
     "Loading..." : {
       "comment" : "Generic loading title with ellipses\n   Generic loading title with ellipsis",

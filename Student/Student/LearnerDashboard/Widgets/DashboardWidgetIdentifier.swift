@@ -17,6 +17,7 @@
 //
 
 enum DashboardWidgetIdentifier: String, Codable, CaseIterable {
+    case conferences
     case courseInvitations
     case widget1
     case widget2

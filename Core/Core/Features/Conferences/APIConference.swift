@@ -135,23 +135,25 @@ extension APIConferencePlaybackFormat {
 #endif
 
 // https://canvas.instructure.com/doc/api/conferences.html#method.conferences.index
-struct GetConferencesRequest: APIRequestable {
-    struct Response: Codable {
-        let conferences: [APIConference]
+public struct GetConferencesRequest: APIRequestable {
+    public struct Response: Codable {
+        public let conferences: [APIConference]
     }
 
-    let path: String
-    let query: [APIQueryItem]
+    public let path: String
+    public let query: [APIQueryItem]
 
-    init(context: Context, perPage: Int = 100) {
+    public init(context: Context, perPage: Int = 100) {
         path = "\(context.pathComponent)/conferences"
         query = [.perPage(perPage)]
     }
 }
 
 // https://canvas.instructure.com/doc/api/conferences.html#method.conferences.for_user
-struct GetLiveConferencesRequest: APIRequestable {
-    typealias Response = GetConferencesRequest.Response
+public struct GetLiveConferencesRequest: APIRequestable {
+    public typealias Response = GetConferencesRequest.Response
 
-    var path: String { "conferences?state=live" }
+    public var path: String { "conferences?state=live" }
+
+    public init() {}
 }

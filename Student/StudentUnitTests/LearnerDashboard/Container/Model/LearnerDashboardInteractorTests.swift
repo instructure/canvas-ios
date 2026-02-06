@@ -63,8 +63,9 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
         wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(receivedFullWidth?.count, 1)
-        XCTAssertEqual(receivedFullWidth?.first?.id, .courseInvitations)
+        XCTAssertEqual(receivedFullWidth?.count, 2)
+        XCTAssertEqual(receivedFullWidth?[0].id, .conferences)
+        XCTAssertEqual(receivedFullWidth?[1].id, .courseInvitations)
         XCTAssertEqual(receivedGrid?.count, 4)
         XCTAssertEqual(receivedGrid?[0].id, .helloWidget)
         XCTAssertEqual(receivedGrid?[1].id, .widget1)
@@ -158,7 +159,7 @@ private final class MockWidgetViewModel: DashboardWidgetViewModel {
 
     init(config: DashboardWidgetConfig) {
         self.config = config
-        self.isFullWidth = config.id == .courseInvitations
+        self.isFullWidth = config.id == .courseInvitations || config.id == .conferences
     }
 
     func makeView() -> Never {

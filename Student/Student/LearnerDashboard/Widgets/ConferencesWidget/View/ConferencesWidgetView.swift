@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -20,8 +20,8 @@ import Combine
 import Core
 import SwiftUI
 
-struct CourseInvitationsWidgetView: View {
-    @State var viewModel: CourseInvitationsWidgetViewModel
+struct ConferencesWidgetView: View {
+    @State var viewModel: ConferencesWidgetViewModel
     @State private var currentPage: Int = 0
     @State private var totalPages: Int = 1
 
@@ -34,17 +34,17 @@ struct CourseInvitationsWidgetView: View {
                 ) {
                     VStack(spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue) {
                         HorizontalCarouselView(
-                            items: viewModel.invitations,
+                            items: viewModel.conferences,
                             currentPage: $currentPage,
                             totalPages: $totalPages
                         ) { cardViewModel in
-                            CourseInvitationCardView(viewModel: cardViewModel)
+                            ConferenceCardView(viewModel: cardViewModel)
                         }
 
                         InstUI.PageIndicator(currentIndex: currentPage, count: totalPages)
                     }
                 }
-                .animation(.dashboardWidget, value: viewModel.invitations)
+                .animation(.dashboardWidget, value: viewModel.conferences)
             }
         }
     }
@@ -52,16 +52,13 @@ struct CourseInvitationsWidgetView: View {
 
 #if DEBUG
 
-private let snackBarViewModel = SnackBarViewModel()
-
 #Preview {
-    @Previewable @State var viewModel = makePreviewViewModel(snackbarViewModel: snackBarViewModel)
+    @Previewable @State var viewModel = makePreviewViewModel()
     @Previewable @State var subscriptions = Set<AnyCancellable>()
 
-    CourseInvitationsWidgetView(viewModel: viewModel)
+    ConferencesWidgetView(viewModel: viewModel)
         .padding()
         .frame(maxHeight: .infinity, alignment: .top)
-        .snackBar(viewModel: snackBarViewModel)
         .onAppear {
             viewModel.refresh(ignoreCache: false)
                 .sink { _ in }
@@ -69,50 +66,42 @@ private let snackBarViewModel = SnackBarViewModel()
         }
 }
 
-private func makePreviewViewModel(snackbarViewModel: SnackBarViewModel) -> CourseInvitationsWidgetViewModel {
+private func makePreviewViewModel() -> ConferencesWidgetViewModel {
     let env = PreviewEnvironment()
     let context = env.database.viewContext
 
-    let config = DashboardWidgetConfig(id: .courseInvitations, order: 1, isVisible: true, settings: nil)
+    let config = DashboardWidgetConfig(id: .conferences, order: 0, isVisible: true, settings: nil)
     let coursesInteractor = CoursesInteractorMock()
 
     let mockCourses = [
         Course.save(
-            .make(
-                id: "1",
-                name: "Introduction to Computer Science",
-                enrollments: [.make(id: "enrollment1", enrollment_state: .invited)]
-            ),
+            .make(id: "1", name: "Introduction to Computer Science"),
             in: context
         ),
         Course.save(
-            .make(
-                id: "2",
-                name: "Advanced Mathematics",
-                enrollments: [.make(id: "enrollment2", enrollment_state: .invited)]
-            ),
+            .make(id: "2", name: "Advanced Mathematics"),
             in: context
-        ),
-        Course.save(
-            .make(
-                id: "3",
-                name: "English Literature",
-                enrollments: [.make(id: "enrollment3", enrollment_state: .invited)]
-            ),
+        )
+    ]
+
+    let mockGroups = [
+        Group.save(
+            .make(id: "group1", name: "Study Group A"),
             in: context
         )
     ]
 
     coursesInteractor.mockCoursesResult = CoursesResult(
         allCourses: mockCourses,
-        invitedCourses: mockCourses,
-        groups: []
+        invitedCourses: [],
+        groups: mockGroups
     )
 
-    return CourseInvitationsWidgetViewModel(
+    return ConferencesWidgetViewModel(
         config: config,
         interactor: coursesInteractor,
-        snackBarViewModel: snackbarViewModel
+        snackBarViewModel: SnackBarViewModel(),
+        context: context
     )
 }
 

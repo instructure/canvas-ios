@@ -24,6 +24,7 @@ import Foundation
 struct CoursesResult {
     let allCourses: [Course]
     let invitedCourses: [Course]
+    let groups: [Group]
 }
 
 protocol CoursesInteractor {
@@ -69,6 +70,7 @@ final class CoursesInteractorLive: CoursesInteractor {
     private let context: NSManagedObjectContext
     private let coursesStore: ReactiveStore<GetAllUserCourses>
     private let enrollmentsStore: ReactiveStore<GetEnrollments>
+    private let groupsStore: ReactiveStore<GetDashboardGroups>
     private let sortComparator: any SortComparator<Course>
     private var subscriptions = Set<AnyCancellable>()
 
@@ -97,6 +99,11 @@ final class CoursesInteractorLive: CoursesInteractor {
                 context: .currentUser,
                 states: [.active, .completed, .invited]
             ),
+            environment: env
+        )
+        self.groupsStore = ReactiveStore(
+            context: context,
+            useCase: GetDashboardGroups(),
             environment: env
         )
     }
@@ -138,18 +145,19 @@ final class CoursesInteractorLive: CoursesInteractor {
         let shouldIgnoreCache = pendingRequests.contains { $0.ignoreCache }
         currentFetchIgnoresCache = shouldIgnoreCache
 
-        Publishers.Zip(
+        Publishers.Zip3(
             coursesStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true),
-            enrollmentsStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true)
+            enrollmentsStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true),
+            groupsStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true)
         )
-        .map { [sortComparator] courses, _ in
+        .map { [sortComparator] courses, _, groups in
             let allCourses = courses.filter { !$0.isCourseDeleted }
             let invitedCourses = allCourses
                 .filter { course in
                     course.hasInvitedEnrollment
                 }
                 .sorted(using: sortComparator)
-            return CoursesResult(allCourses: allCourses, invitedCourses: invitedCourses)
+            return CoursesResult(allCourses: allCourses, invitedCourses: invitedCourses, groups: groups)
         }
         .sink(
             receiveCompletion: { [weak self] completion in
