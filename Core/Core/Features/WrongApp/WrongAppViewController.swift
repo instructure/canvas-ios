@@ -66,7 +66,7 @@ public class WrongAppViewController: UIViewController {
     }
 
     @IBAction func canvasGuidesButtonPressed(_ sender: UIButton) {
-        guard let url = URL(string: "https://community.canvaslms.com/docs/DOC-9919") else {
+        guard let url = URL(string: "https://community.instructure.com/en/all-guides") else {
             return
         }
         delegate?.openExternalURL(url)
