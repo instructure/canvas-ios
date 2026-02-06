@@ -215,4 +215,3 @@ final class CoursesInteractorLive: CoursesInteractor {
         }
     }
 }
-
