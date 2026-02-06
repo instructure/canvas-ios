@@ -64,12 +64,12 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         wait(for: [expectation], timeout: 5)
 
         XCTAssertEqual(receivedFullWidth?.count, 1)
-        XCTAssertEqual(receivedFullWidth?.first?.id, .fullWidthWidget)
+        XCTAssertEqual(receivedFullWidth?.first?.id, .courseInvitations)
         XCTAssertEqual(receivedGrid?.count, 4)
         XCTAssertEqual(receivedGrid?[0].id, .helloWidget)
         XCTAssertEqual(receivedGrid?[1].id, .widget1)
-        XCTAssertEqual(receivedGrid?[2].id, .widget2)
-        XCTAssertEqual(receivedGrid?[3].id, .widget3)
+        XCTAssertEqual(receivedGrid?[2].id, .widget3)
+        XCTAssertEqual(receivedGrid?[3].id, .widget2)
     }
 
     // MARK: - Load widgets with saved configs
@@ -110,7 +110,7 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
     func test_loadWidgets_shouldSeparateFullWidthFromGridWidgets() {
         userDefaults.learnerDashboardWidgetConfigs = [
             DashboardWidgetConfig(id: .widget1, order: 20, isVisible: true),
-            DashboardWidgetConfig(id: .fullWidthWidget, order: 5, isVisible: true),
+            DashboardWidgetConfig(id: .courseInvitations, order: 5, isVisible: true),
             DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
         ]
         testee = LearnerDashboardInteractorLive(
@@ -133,7 +133,7 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         wait(for: [expectation], timeout: 5)
 
         XCTAssertEqual(receivedFullWidth?.count, 1)
-        XCTAssertEqual(receivedFullWidth?.first?.id, .fullWidthWidget)
+        XCTAssertEqual(receivedFullWidth?.first?.id, .courseInvitations)
         XCTAssertEqual(receivedGrid?.count, 2)
         XCTAssertEqual(receivedGrid?[0].id, .widget2)
         XCTAssertEqual(receivedGrid?[1].id, .widget1)
@@ -158,7 +158,7 @@ private final class MockWidgetViewModel: DashboardWidgetViewModel {
 
     init(config: DashboardWidgetConfig) {
         self.config = config
-        self.isFullWidth = config.id == .fullWidthWidget
+        self.isFullWidth = config.id == .courseInvitations
     }
 
     func makeView() -> Never {

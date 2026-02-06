@@ -831,6 +831,7 @@
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="isFromInvitation" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="lastActivityAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="multipleGradingPeriodsEnabled" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="role" optional="YES" attributeType="String"/>
         <attribute name="roleID" optional="YES" attributeType="String"/>

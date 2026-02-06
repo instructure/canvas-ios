@@ -28,6 +28,7 @@ struct Widget1View: View {
                 VStack(alignment: .leading) {
                     Text(viewModel.text)
                         .foregroundColor(.secondary)
+                        .id(viewModel.text)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .paddingStyle(.standard)
@@ -35,6 +36,5 @@ struct Widget1View: View {
             }
         }
         .animation(.dashboardWidget, value: viewModel.state)
-        .animation(.dashboardWidget, value: viewModel.text)
     }
 }

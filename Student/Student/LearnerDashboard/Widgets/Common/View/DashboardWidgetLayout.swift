@@ -16,26 +16,34 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
+import CoreData
 import SwiftUI
+
+extension DashboardWidgetLayout {
+
+    /// This is the source of truth for column count calculation for all widgets utilizing columns.
+    static func columnCount(for width: CGFloat) -> Int {
+        switch width {
+        case ..<600: 1
+        case 600..<840: 2
+        default: 3
+        }
+    }
+}
 
 struct DashboardWidgetLayout: View {
     let fullWidthWidgets: [any DashboardWidgetViewModel]
     let gridWidgets: [any DashboardWidgetViewModel]
-    @State private var containerWidth: CGFloat = 0
+    let containerWidth: CGFloat
 
     var body: some View {
         VStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
             fullWidthSection()
-            gridSection(columnCount: columns(for: containerWidth))
-        }
-        .animation(.dashboardWidget, value: fullWidthWidgets.map { $0.layoutIdentifier })
-        .animation(.dashboardWidget, value: gridWidgets.map { $0.layoutIdentifier })
-        .onWidthChange { width in
-            // Don't animate the first appearance
-            withAnimation(containerWidth == 0 ? .none : .dashboardWidget) {
-                containerWidth = width
-            }
+                .animation(.dashboardWidget, value: fullWidthWidgets.map(\.layoutIdentifier))
+            gridSection(columnCount: Self.columnCount(for: containerWidth))
+                .animation(.dashboardWidget, value: gridWidgets.map(\.layoutIdentifier))
         }
     }
 
@@ -59,50 +67,96 @@ struct DashboardWidgetLayout: View {
 
     private func columnView(columnIndex: Int, columnCount: Int) -> some View {
         ConditionallyLazyVStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
-            ForEach(Array(gridWidgets.enumerated()), id: \.offset) { index, viewModel in
+            ForEach(Array(gridWidgets.enumerated()), id: \.element.id) { index, viewModel in
                 if index % columnCount == columnIndex {
                     LearnerDashboardWidgetAssembly.makeView(for: viewModel)
                 }
             }
         }
     }
-
-    private func columns(for width: CGFloat) -> Int {
-        switch width {
-        case ..<600: 1
-        case 600..<840: 2
-        default: 3
-        }
-    }
 }
 
 #if DEBUG
 
+private func makePreviewInteractor(context: NSManagedObjectContext) -> CoursesInteractorMock {
+    let mockCourses = [
+        Course.save(
+            .make(
+                id: "1",
+                name: "Introduction to Computer Science",
+                enrollments: [.make(id: "enrollment1", enrollment_state: .invited)]
+            ),
+            in: context
+        ),
+        Course.save(
+            .make(
+                id: "2",
+                name: "Advanced Mathematics",
+                enrollments: [.make(id: "enrollment2", course_section_id: "section2", enrollment_state: .invited)]
+            ),
+            in: context
+        ),
+        Course.save(
+            .make(
+                id: "3",
+                name: "English Literature",
+                enrollments: [.make(id: "enrollment3", enrollment_state: .invited)]
+            ),
+            in: context
+        )
+    ]
+
+    let mockInteractor = CoursesInteractorMock()
+    mockInteractor.mockCoursesResult = CoursesResult(
+        allCourses: mockCourses,
+        invitedCourses: mockCourses
+    )
+    mockInteractor.getCoursesDelay = 2
+    return mockInteractor
+}
+
 #Preview {
-    let fullWidthWidget = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-        config: DashboardWidgetConfig(id: .fullWidthWidget, order: 0, isVisible: true, settings: nil)
+    @Previewable @State var subscriptions = Set<AnyCancellable>()
+
+    let env = PreviewEnvironment()
+    let context = env.database.viewContext
+    let snackBarViewModel = SnackBarViewModel()
+    let mockInteractor = makePreviewInteractor(context: context)
+
+    let courseInvitations = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
+        config: DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true, settings: nil),
+        snackBarViewModel: snackBarViewModel,
+        coursesInteractor: mockInteractor
     )
     let widget1 = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-        config: DashboardWidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil)
+        config: DashboardWidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil),
+        snackBarViewModel: snackBarViewModel
     )
     let widget2 = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-        config: DashboardWidgetConfig(id: .widget2, order: 2, isVisible: true, settings: nil)
+        config: DashboardWidgetConfig(id: .widget2, order: 2, isVisible: true, settings: nil),
+        snackBarViewModel: snackBarViewModel
     )
     let widget3 = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-        config: DashboardWidgetConfig(id: .widget3, order: 3, isVisible: true, settings: nil)
+        config: DashboardWidgetConfig(id: .widget3, order: 3, isVisible: true, settings: nil),
+        snackBarViewModel: snackBarViewModel
     )
 
-    _ = fullWidthWidget.refresh(ignoreCache: false)
-    _ = widget1.refresh(ignoreCache: false)
-    _ = widget2.refresh(ignoreCache: false)
-    _ = widget3.refresh(ignoreCache: false)
-
-    return ScrollView {
-        DashboardWidgetLayout(
-            fullWidthWidgets: [fullWidthWidget],
-            gridWidgets: [widget1, widget2, widget3]
-        )
-        .paddingStyle(.horizontal, .standard)
+    GeometryReader { geometry in
+        ScrollView {
+            DashboardWidgetLayout(
+                fullWidthWidgets: [courseInvitations],
+                gridWidgets: [widget1, widget2, widget3],
+                containerWidth: geometry.size.width
+            )
+            .paddingStyle(.horizontal, .standard)
+            .snackBar(viewModel: snackBarViewModel)
+        }
+    }
+    .onAppear {
+        courseInvitations.refresh(ignoreCache: false).sink { _ in }.store(in: &subscriptions)
+        widget1.refresh(ignoreCache: false).sink { _ in }.store(in: &subscriptions)
+        widget2.refresh(ignoreCache: false).sink { _ in }.store(in: &subscriptions)
+        widget3.refresh(ignoreCache: false).sink { _ in }.store(in: &subscriptions)
     }
 }
 

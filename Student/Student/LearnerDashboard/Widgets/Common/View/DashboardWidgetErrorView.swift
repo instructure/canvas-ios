@@ -33,11 +33,11 @@ struct DashboardWidgetErrorView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text("Oops, Something went wrong", bundle: .student)
                     .font(.semibold16, lineHeight: .fit)
-                    .foregroundColor(.textDarkest)
+                    .foregroundStyle(.textDarkest)
 
                 Text("We weren't able to load this content.\nTry again, or come back later.", bundle: .student)
                     .font(.regular14, lineHeight: .fit)
-                    .foregroundColor(.textDark)
+                    .foregroundStyle(.textDark)
                     .paddingStyle(.bottom, .cellAccessoryPadding)
 
                 Button(action: onRetry) {
@@ -47,11 +47,11 @@ struct DashboardWidgetErrorView: View {
                         Image.refreshSolid
                             .scaledIcon(size: 16)
                     }
-                    .foregroundColor(.textLightest)
+                    .foregroundStyle(.textLightest)
                     .padding(.horizontal, 12)
                     .padding(.vertical, 6)
                     .background(Color(Brand.shared.primary))
-                    .cornerRadius(100)
+                    .clipShape(.rect(cornerRadius: 100))
                 }
             }
         }

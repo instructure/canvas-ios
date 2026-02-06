@@ -45,7 +45,7 @@ final class LearnerDashboardViewModelTests: XCTestCase {
 
     func test_init_shouldLoadWidgets() {
         let fullWidthWidget = MockWidgetViewModel(
-            id: .fullWidthWidget,
+            id: .courseInvitations,
             isFullWidth: true
         )
         let gridWidget = MockWidgetViewModel(
@@ -55,6 +55,7 @@ final class LearnerDashboardViewModelTests: XCTestCase {
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler()
         )
         interactor.loadWidgetsPublisher.send((
@@ -64,7 +65,7 @@ final class LearnerDashboardViewModelTests: XCTestCase {
         scheduler.advance()
 
         XCTAssertEqual(testee.fullWidthWidgets.count, 1)
-        XCTAssertEqual(testee.fullWidthWidgets.first?.id, .fullWidthWidget)
+        XCTAssertEqual(testee.fullWidthWidgets.first?.id, .courseInvitations)
         XCTAssertEqual(testee.gridWidgets.count, 1)
         XCTAssertEqual(testee.gridWidgets.first?.id, .widget1)
     }
@@ -74,6 +75,7 @@ final class LearnerDashboardViewModelTests: XCTestCase {
     func test_screenConfig_shouldBeConfiguredCorrectly() {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler()
         )
 
@@ -91,6 +93,7 @@ final class LearnerDashboardViewModelTests: XCTestCase {
     func test_init_withNoWidgets_shouldKeepLoadingState() {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler()
         )
         interactor.loadWidgetsPublisher.send((fullWidth: [], grid: []))
@@ -104,6 +107,7 @@ final class LearnerDashboardViewModelTests: XCTestCase {
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler()
         )
         interactor.loadWidgetsPublisher.send((fullWidth: [], grid: [widget]))
@@ -117,10 +121,11 @@ final class LearnerDashboardViewModelTests: XCTestCase {
     func test_refresh_shouldCallRefreshOnAllWidgets() {
         let widget1 = MockWidgetViewModel(id: .widget1, isFullWidth: false)
         let widget2 = MockWidgetViewModel(id: .widget2, isFullWidth: false)
-        let fullWidthWidget = MockWidgetViewModel(id: .fullWidthWidget, isFullWidth: true)
+        let fullWidthWidget = MockWidgetViewModel(id: .courseInvitations, isFullWidth: true)
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler()
         )
         interactor.loadWidgetsPublisher.send((
@@ -145,6 +150,7 @@ final class LearnerDashboardViewModelTests: XCTestCase {
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler()
         )
         interactor.loadWidgetsPublisher.send((fullWidth: [], grid: [widget]))

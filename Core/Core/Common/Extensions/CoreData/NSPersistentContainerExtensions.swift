@@ -106,6 +106,16 @@ extension NSPersistentContainer {
         context.perform { block(context) }
     }
 
+    public var backgroundReadContext: NSManagedObjectContext {
+        cachedBackgroundReadContext ?? {
+            let context = newBackgroundContext()
+            context.automaticallyMergesChangesFromParent = true
+            context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+            cachedBackgroundReadContext = context
+            return context
+        }()
+    }
+
     // MARK: - Private Methods
 
     private static func destroyAndReCreatePersistentStore(in container: NSPersistentContainer) {
@@ -141,6 +151,12 @@ extension NSPersistentContainer {
         get { objc_getAssociatedObject(self, &writeContextKey) as? NSManagedObjectContext }
         set { objc_setAssociatedObject(self, &writeContextKey, newValue, .OBJC_ASSOCIATION_RETAIN) }
     }
+
+    private var cachedBackgroundReadContext: NSManagedObjectContext? {
+        get { objc_getAssociatedObject(self, &backgroundReadContextKey) as? NSManagedObjectContext }
+        set { objc_setAssociatedObject(self, &backgroundReadContextKey, newValue, .OBJC_ASSOCIATION_RETAIN) }
+    }
 }
 
 private var writeContextKey: UInt8 = 0
+private var backgroundReadContextKey: UInt8 = 0
