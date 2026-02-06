@@ -61,11 +61,18 @@ public struct PutSubmissionGradeRequest: APIRequestable {
             let excuse: Bool?
             let posted_grade: String?
             let seconds_late_override: Int?
+            let late_policy_status: String?
 
             public init(excuse: Bool?, posted_grade: String?, seconds_late_override: Int?) {
                 self.excuse = excuse
                 self.posted_grade = posted_grade
                 self.seconds_late_override = seconds_late_override
+
+                if let seconds = seconds_late_override, seconds >= 0 {
+                    self.late_policy_status = "late"
+                } else {
+                    self.late_policy_status = nil
+                }
             }
         }
 
