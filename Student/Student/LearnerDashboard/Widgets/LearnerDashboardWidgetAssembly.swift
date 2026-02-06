@@ -23,11 +23,12 @@ enum LearnerDashboardWidgetAssembly {
 
     static func makeDefaultWidgetConfigs() -> [DashboardWidgetConfig] {
         [
-            DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true, settings: nil),
-            DashboardWidgetConfig(id: .helloWidget, order: 0, isVisible: true),
-            DashboardWidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil),
-            DashboardWidgetConfig(id: .widget3, order: 2, isVisible: true, settings: nil),
-            DashboardWidgetConfig(id: .widget2, order: 3, isVisible: true, settings: nil)
+            DashboardWidgetConfig(id: .conferences, order: 0, isVisible: true, settings: nil),
+            DashboardWidgetConfig(id: .courseInvitations, order: 1, isVisible: true, settings: nil),
+            DashboardWidgetConfig(id: .helloWidget, order: 2, isVisible: true),
+            DashboardWidgetConfig(id: .widget1, order: 3, isVisible: true, settings: nil),
+            DashboardWidgetConfig(id: .widget3, order: 4, isVisible: true, settings: nil),
+            DashboardWidgetConfig(id: .widget2, order: 5, isVisible: true, settings: nil)
         ]
     }
 
@@ -37,6 +38,12 @@ enum LearnerDashboardWidgetAssembly {
         coursesInteractor: CoursesInteractor = CoursesInteractorLive(env: .shared)
     ) -> any DashboardWidgetViewModel {
         switch config.id {
+        case .conferences:
+            ConferencesWidgetViewModel(
+                config: config,
+                interactor: coursesInteractor,
+                snackBarViewModel: snackBarViewModel
+            )
         case .courseInvitations:
             CourseInvitationsWidgetViewModel(
                 config: config,
@@ -57,6 +64,8 @@ enum LearnerDashboardWidgetAssembly {
     @ViewBuilder
     static func makeView(for viewModel: any DashboardWidgetViewModel) -> some View {
         switch viewModel {
+        case let vm as ConferencesWidgetViewModel:
+            vm.makeView()
         case let vm as CourseInvitationsWidgetViewModel:
 	        vm.makeView()
         case let vm as HelloWidgetViewModel:
