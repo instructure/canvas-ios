@@ -40,8 +40,8 @@ struct CourseInvitationCardView: View {
             .multilineTextAlignment(.leading)
 
             HStack(spacing: InstUI.Styles.Padding.cellAccessoryPadding.rawValue) {
-                acceptButton
                 declineButton
+                acceptButton
             }
             .paddingStyle(.horizontal, .standard)
             .paddingStyle(.bottom, .standard)

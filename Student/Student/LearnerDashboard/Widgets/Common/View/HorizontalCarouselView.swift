@@ -31,11 +31,11 @@ struct HorizontalCarouselView<Item: Identifiable, CardContent: View>: View {
     var body: some View {
         ScrollView(.horizontal) {
             HStack(alignment: .top, spacing: 0) {
-                ForEach(Array(items.enumerated()), id: \.element.id) { index, item in
+                ForEach(items) { item in
                     cardContent(item)
                         .frame(width: cardContentWidth)
                         .padding(.leading, cardSpacing / 2)
-                        .padding(.trailing, trailingPadding(for: index))
+                        .padding(.trailing, trailingPadding(for: item))
                 }
             }
             .scrollTargetLayout()
@@ -45,13 +45,13 @@ struct HorizontalCarouselView<Item: Identifiable, CardContent: View>: View {
         .scrollIndicators(.hidden)
         .scrollClipDisabled()
         .onWidthChange(update: $containerWidth)
-        .onChange(of: scrollPosition) { _, _ in
+        .onChange(of: scrollPosition) {
             updateCurrentPage()
         }
-        .onChange(of: items.count) { _, _ in
+        .onChange(of: items.count) {
             updateTotalPages()
         }
-        .onChange(of: containerWidth) { _, _ in
+        .onChange(of: containerWidth) {
             updateTotalPages()
         }
         .onAppear {
@@ -61,7 +61,7 @@ struct HorizontalCarouselView<Item: Identifiable, CardContent: View>: View {
     }
 
     private var columnCount: Int {
-        DashboardWidgetLayout.columns(for: containerWidth)
+        DashboardWidgetLayout.columnCount(for: containerWidth)
     }
 
     private var cardContentWidth: CGFloat {
@@ -75,10 +75,10 @@ struct HorizontalCarouselView<Item: Identifiable, CardContent: View>: View {
         return Int(ceil(Double(items.count) / Double(columnCount)))
     }
 
-    private func trailingPadding(for index: Int) -> CGFloat {
+    private func trailingPadding(for item: Item) -> CGFloat {
         guard columnCount > 0 else { return 0 }
 
-        let isLastItem = index == items.count - 1
+        let isLastItem = item.id == items.last?.id
 
         if isLastItem {
             let itemsInLastPage = items.count % columnCount

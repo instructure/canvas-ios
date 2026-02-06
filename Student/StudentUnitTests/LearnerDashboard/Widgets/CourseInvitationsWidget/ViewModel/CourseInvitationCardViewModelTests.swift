@@ -58,15 +58,7 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
     // MARK: - Initialization Tests
 
     func testInit_setsInitialProperties() {
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        testee = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         XCTAssertEqual(testee.id, "enrollment1")
         XCTAssertFalse(testee.isAccepting)
@@ -75,43 +67,19 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
     }
 
     func testInit_displayNameWithoutSection() {
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        testee = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         XCTAssertEqual(testee.displayName, "Biology 101")
     }
 
     func testInit_displayNameWithDifferentSection() {
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: "Section A",
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        testee = .make(sectionName: "Section A", interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         XCTAssertEqual(testee.displayName, "Biology 101, Section A")
     }
 
     func testInit_displayNameWithMatchingSection() {
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: "Biology 101",
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        testee = .make(sectionName: "Biology 101", interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         XCTAssertEqual(testee.displayName, "Biology 101")
     }
@@ -120,15 +88,7 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
 
     func testAccept_setsIsAcceptingDuringOperation() {
         mockInteractor.acceptBehavior = .success
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        testee = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         testee.accept()
         XCTAssertTrue(testee.isAccepting)
@@ -136,15 +96,7 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
 
     func testAccept_showsSuccessSnackbar() {
         mockInteractor.acceptBehavior = .success
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        testee = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         testee.accept()
         waitForAsyncOperation()
@@ -154,11 +106,7 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
 
     func testAccept_callsOnDismissCallback() {
         mockInteractor.acceptBehavior = .success
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
+        testee = .make(
             interactor: mockInteractor,
             snackBarViewModel: mockSnackBar,
             onDismiss: { [weak self] enrollmentId in
@@ -176,15 +124,7 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
 
     func testAccept_resetsIsAcceptingAfterSuccess() {
         mockInteractor.acceptBehavior = .success
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        testee = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         testee.accept()
         XCTAssertTrue(testee.isAccepting)
@@ -196,15 +136,7 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
     func testAccept_showsErrorAlertOnFailure() {
         let testError = NSError(domain: "TestError", code: 1, userInfo: nil)
         mockInteractor.acceptBehavior = .failure(testError)
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        testee = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         testee.accept()
         waitForAsyncOperation()
@@ -216,15 +148,7 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
     func testAccept_resetsIsAcceptingAfterFailure() {
         let testError = NSError(domain: "TestError", code: 1, userInfo: nil)
         mockInteractor.acceptBehavior = .failure(testError)
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        testee = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         testee.accept()
         XCTAssertTrue(testee.isAccepting)
@@ -235,11 +159,7 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
 
     func testAccept_ignoresWhenIsProcessing() {
         mockInteractor.acceptBehavior = .success
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
+        testee = .make(
             interactor: mockInteractor,
             snackBarViewModel: mockSnackBar,
             onDismiss: { [weak self] _ in
@@ -260,15 +180,7 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
 
     func testDecline_setsIsDecliningDuringOperation() {
         mockInteractor.declineBehavior = .success
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        testee = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         testee.decline()
         XCTAssertTrue(testee.isDeclining)
@@ -276,15 +188,7 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
 
     func testDecline_showsSuccessSnackbar() {
         mockInteractor.declineBehavior = .success
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        testee = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         testee.decline()
         waitForAsyncOperation()
@@ -294,11 +198,7 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
 
     func testDecline_callsOnDismissCallback() {
         mockInteractor.declineBehavior = .success
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
+        testee = .make(
             interactor: mockInteractor,
             snackBarViewModel: mockSnackBar,
             onDismiss: { [weak self] enrollmentId in
@@ -316,15 +216,7 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
 
     func testDecline_resetsIsDecliningAfterSuccess() {
         mockInteractor.declineBehavior = .success
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        testee = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         testee.decline()
         XCTAssertTrue(testee.isDeclining)
@@ -336,15 +228,7 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
     func testDecline_showsErrorAlertOnFailure() {
         let testError = NSError(domain: "TestError", code: 1, userInfo: nil)
         mockInteractor.declineBehavior = .failure(testError)
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        testee = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         testee.decline()
         waitForAsyncOperation()
@@ -356,15 +240,7 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
     func testDecline_resetsIsDecliningAfterFailure() {
         let testError = NSError(domain: "TestError", code: 1, userInfo: nil)
         mockInteractor.declineBehavior = .failure(testError)
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        testee = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         testee.decline()
         XCTAssertTrue(testee.isDeclining)
@@ -375,11 +251,7 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
 
     func testDecline_ignoresWhenIsProcessing() {
         mockInteractor.declineBehavior = .success
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
+        testee = .make(
             interactor: mockInteractor,
             snackBarViewModel: mockSnackBar,
             onDismiss: { [weak self] _ in
@@ -400,15 +272,7 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
 
     func testIsProcessing_trueWhenAccepting() {
         mockInteractor.acceptBehavior = .success
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        testee = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         testee.accept()
         XCTAssertTrue(testee.isProcessing)
@@ -416,30 +280,14 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
 
     func testIsProcessing_trueWhenDeclining() {
         mockInteractor.declineBehavior = .success
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        testee = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         testee.decline()
         XCTAssertTrue(testee.isProcessing)
     }
 
     func testIsProcessing_falseWhenIdle() {
-        testee = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        testee = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         XCTAssertFalse(testee.isProcessing)
     }
@@ -447,98 +295,30 @@ final class CourseInvitationCardViewModelTests: XCTestCase {
     // MARK: - Equatable Tests
 
     func testEquatable_sameValuesAreEqual() {
-        let vm1 = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
-
-        let vm2 = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        let vm1: CourseInvitationCardViewModel = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
+        let vm2: CourseInvitationCardViewModel = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         XCTAssertEqual(vm1, vm2)
     }
 
     func testEquatable_differentIdsNotEqual() {
-        let vm1 = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
-
-        let vm2 = CourseInvitationCardViewModel(
-            id: "enrollment2",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        let vm1: CourseInvitationCardViewModel = .make(id: "enrollment1", interactor: mockInteractor, snackBarViewModel: mockSnackBar)
+        let vm2: CourseInvitationCardViewModel = .make(id: "enrollment2", interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         XCTAssertNotEqual(vm1, vm2)
     }
 
     func testEquatable_differentDisplayNamesNotEqual() {
-        let vm1 = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
-
-        let vm2 = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Chemistry 201",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        let vm1: CourseInvitationCardViewModel = .make(courseName: "Biology 101", interactor: mockInteractor, snackBarViewModel: mockSnackBar)
+        let vm2: CourseInvitationCardViewModel = .make(courseName: "Chemistry 201", interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         XCTAssertNotEqual(vm1, vm2)
     }
 
     func testEquatable_differentLoadingStatesNotEqual() {
         mockInteractor.acceptBehavior = .success
-        let vm1 = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
-
-        let vm2 = CourseInvitationCardViewModel(
-            id: "enrollment1",
-            courseId: "course1",
-            courseName: "Biology 101",
-            sectionName: nil,
-            interactor: mockInteractor,
-            snackBarViewModel: mockSnackBar,
-            onDismiss: { _ in }
-        )
+        let vm1: CourseInvitationCardViewModel = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
+        let vm2: CourseInvitationCardViewModel = .make(interactor: mockInteractor, snackBarViewModel: mockSnackBar)
 
         vm1.accept()
 
@@ -551,5 +331,27 @@ private class MockSnackBarViewModel: SnackBarViewModel {
 
     override func showSnack(_ snack: String, swallowDuplicatedSnacks: Bool = false) {
         shownSnacks.append(snack)
+    }
+}
+
+private extension CourseInvitationCardViewModel {
+    static func make(
+        id: String = "enrollment1",
+        courseId: String = "course1",
+        courseName: String = "Biology 101",
+        sectionName: String? = nil,
+        interactor: CoursesInteractor,
+        snackBarViewModel: SnackBarViewModel,
+        onDismiss: @escaping (String) -> Void = { _ in }
+    ) -> CourseInvitationCardViewModel {
+        CourseInvitationCardViewModel(
+            id: id,
+            courseId: courseId,
+            courseName: courseName,
+            sectionName: sectionName,
+            interactor: interactor,
+            snackBarViewModel: snackBarViewModel,
+            onDismiss: onDismiss
+        )
     }
 }

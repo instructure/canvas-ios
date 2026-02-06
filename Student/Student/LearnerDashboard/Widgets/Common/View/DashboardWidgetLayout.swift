@@ -21,6 +21,18 @@ import Core
 import CoreData
 import SwiftUI
 
+extension DashboardWidgetLayout {
+
+    /// This is the source of truth for column count calculation for all widgets utilizing columns.
+    static func columnCount(for width: CGFloat) -> Int {
+        switch width {
+        case ..<600: 1
+        case 600..<840: 2
+        default: 3
+        }
+    }
+}
+
 struct DashboardWidgetLayout: View {
     let fullWidthWidgets: [any DashboardWidgetViewModel]
     let gridWidgets: [any DashboardWidgetViewModel]
@@ -30,7 +42,7 @@ struct DashboardWidgetLayout: View {
         VStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
             fullWidthSection()
                 .animation(.dashboardWidget, value: fullWidthWidgets.map(\.layoutIdentifier))
-            gridSection(columnCount: Self.columns(for: containerWidth))
+            gridSection(columnCount: Self.columnCount(for: containerWidth))
                 .animation(.dashboardWidget, value: gridWidgets.map(\.layoutIdentifier))
         }
     }
@@ -60,14 +72,6 @@ struct DashboardWidgetLayout: View {
                     LearnerDashboardWidgetAssembly.makeView(for: viewModel)
                 }
             }
-        }
-    }
-
-    static func columns(for width: CGFloat) -> Int {
-        switch width {
-        case ..<600: 1
-        case 600..<840: 2
-        default: 3
         }
     }
 }

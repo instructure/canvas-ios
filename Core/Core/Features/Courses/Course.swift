@@ -104,14 +104,6 @@ final public class Course: NSManagedObject, WriteableModel {
         model.imageDownloadURL = URL(string: item.image_download_url ?? "")
         model.syllabusBody = item.syllabus_body
         model.defaultViewRaw = item.default_view?.rawValue
-        model.enrollments?.forEach { enrollment in
-            // We only want to delete enrollments containing grades. These are created from
-            // the minimal enrollments attached to an APICourse and recognizable by not having an enrollment id.
-            if enrollment.id == nil {
-                context.delete(enrollment)
-            }
-        }
-        model.enrollments = nil
 
         if let apiGradingPeriods = item.grading_periods {
             let gradingPeriods: [GradingPeriod] = apiGradingPeriods.map { apiGradingPeriod in
@@ -137,18 +129,7 @@ final public class Course: NSManagedObject, WriteableModel {
         model.termName = item.term?.name
         model.accessRestrictedByDate = item.access_restricted_by_date ?? false
 
-        let gradeEnrollments: [Enrollment] = (item.enrollments ?? []).map { apiItem in
-            /// This enrollment contains the grade fields necessary to calculate grades on the dashboard.
-            /// This is a special enrollment that has no courseID nor enrollmentID and contains no Grade objects.
-            let e: Enrollment = context.insert()
-            e.update(fromApiModel: apiItem, course: model, in: context)
-            return e
-        }
-        // Also link fully qualified enrollment objects of this course already existing in the DB.
-        let fetchedDBEnrollments: [Enrollment] = context.fetch(
-            scope: .where(#keyPath(Enrollment.canvasContextID), equals: model.canvasContextID)
-        ).filter { $0.id != nil }
-        model.enrollments = Set(gradeEnrollments + fetchedDBEnrollments)
+        updateEnrollments(model: model, item: item, in: context)
 
         if let contextColor: ContextColor = context.fetch(scope: .where(#keyPath(ContextColor.canvasContextID), equals: model.canvasContextID)).first {
             model.contextColor = contextColor
@@ -209,6 +190,33 @@ final public class Course: NSManagedObject, WriteableModel {
         }
 
         return model
+    }
+
+    private static func updateEnrollments(
+        model: Course,
+        item: APICourse,
+        in context: NSManagedObjectContext
+    ) {
+        model.enrollments?.forEach { enrollment in
+            // We only want to delete enrollments containing grades. These are created from
+            // the minimal enrollments attached to an APICourse and recognizable by not having an enrollment id.
+            if enrollment.id == nil {
+                context.delete(enrollment)
+            }
+        }
+        let enrollmentsFromCourseAPI: [Enrollment] = (item.enrollments ?? []).map { apiItem in
+            /// This enrollment contains the grade fields necessary to calculate grades on the dashboard.
+            /// This is a special enrollment that has no courseID nor enrollmentID and contains no Grade objects.
+            let enrollment: Enrollment = context.insert()
+            enrollment.update(fromApiModel: apiItem, course: model, in: context)
+            return enrollment
+        }
+        // Also link fully qualified enrollment objects of this course already existing in the DB.
+        // These come from the enrollments API containing an enrollment id.
+        let enrollmentsFromEnrollmentsAPI: [Enrollment] = context.fetch(
+            scope: .where(#keyPath(Enrollment.canvasContextID), equals: model.canvasContextID)
+        ).filter { $0.id != nil } // Filter out enrollments coming with the course without any ids.
+        model.enrollments = Set(enrollmentsFromCourseAPI + enrollmentsFromEnrollmentsAPI)
     }
 }
 
@@ -315,6 +323,18 @@ extension Course {
 
     public var hasTeacherEnrollment: Bool {
         return enrollments?.contains { $0.isTeacher } == true
+    }
+
+    public var hasInvitedEnrollment: Bool {
+        enrollments?.contains { $0.state == .invited && $0.id != nil } ?? false
+    }
+
+    public var invitedEnrollments: [Enrollment] {
+        enrollments?.filter { $0.state == .invited && $0.id != nil } ?? []
+    }
+
+    public var firstInvitedEnrollment: Enrollment? {
+        enrollments?.first { $0.state == .invited && $0.id != nil }
     }
 
     public func enrollmentForGrades(userId: String?, includingCompleted: Bool = false) -> Enrollment? {

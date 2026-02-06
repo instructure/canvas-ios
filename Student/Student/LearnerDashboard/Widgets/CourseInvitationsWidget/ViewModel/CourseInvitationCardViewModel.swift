@@ -68,17 +68,17 @@ final class CourseInvitationCardViewModel: Identifiable {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 guard let self else { return }
-                self.isAccepting = false
-                if case .failure = completion {
-                    self.errorAlert.message = String(localized: "Failed to accept invitation. Please try again.", bundle: .student)
-                    self.isShowingErrorAlert = true
+                isAccepting = false
+                if completion.isFailure {
+                    errorAlert.message = String(localized: "Failed to accept invitation. Please try again.", bundle: .student)
+                    isShowingErrorAlert = true
                 }
             } receiveValue: { [weak self] _ in
                 if let self {
-                    self.snackBarViewModel.showSnack(
-                        String(localized: "Accepted invitation to \(self.displayName)", bundle: .student)
+                    snackBarViewModel.showSnack(
+                        String(localized: "Accepted invitation to \(displayName)", bundle: .student)
                     )
-                    self.onDismiss(self.id)
+                    onDismiss(id)
                 }
             }
             .store(in: &subscriptions)

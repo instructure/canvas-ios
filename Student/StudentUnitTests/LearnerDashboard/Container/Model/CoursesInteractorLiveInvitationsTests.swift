@@ -22,7 +22,7 @@ import Combine
 @testable import TestsFoundation
 import XCTest
 
-final class CoursesInteractorInvitationsTests: StudentTestCase {
+final class CoursesInteractorLiveInvitationsTests: StudentTestCase {
 
     private var testee: CoursesInteractorLive!
 

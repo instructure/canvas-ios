@@ -22,7 +22,7 @@ import Combine
 @testable import TestsFoundation
 import XCTest
 
-final class CoursesLiveInteractorTests: StudentTestCase {
+final class CoursesInteractorLiveTests: StudentTestCase {
 
     private var testee: CoursesInteractorLive!
     private var subscriptions = Set<AnyCancellable>()
@@ -339,15 +339,15 @@ final class CoursesLiveInteractorTests: StudentTestCase {
         error: Error? = nil,
         onActiveCalled: (() -> Void)? = nil
     ) -> (active: APIMock, completed: APIMock, invited: APIMock) {
-        let activeMock = api.mock(testee.useCase.activeRequest) { _ in
+        let activeMock = api.mock(testee.coursesUseCase.activeRequest) { _ in
             onActiveCalled?()
             if let error {
                 return (nil, nil, error)
             }
             return (active, nil, nil)
         }
-        let completedMock = api.mock(testee.useCase.completedRequest, value: completed)
-        let invitedMock = api.mock(testee.useCase.invitedRequest, value: invited)
+        let completedMock = api.mock(testee.coursesUseCase.completedRequest, value: completed)
+        let invitedMock = api.mock(testee.coursesUseCase.invitedRequest, value: invited)
         return (activeMock, completedMock, invitedMock)
     }
 }

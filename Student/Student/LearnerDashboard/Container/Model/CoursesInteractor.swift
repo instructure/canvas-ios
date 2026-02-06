@@ -63,11 +63,12 @@ final class CoursesInteractorLive: CoursesInteractor {
         let subject: PassthroughSubject<CoursesResult, Error>
     }
 
-    let useCase = GetAllUserCourses()
+    internal let coursesUseCase = GetAllUserCourses()
     let env: AppEnvironment
 
     private let context: NSManagedObjectContext
     private let coursesStore: ReactiveStore<GetAllUserCourses>
+    private let enrollmentsStore: ReactiveStore<GetEnrollments>
     private let sortComparator: any SortComparator<Course>
     private var subscriptions = Set<AnyCancellable>()
 
@@ -79,16 +80,24 @@ final class CoursesInteractorLive: CoursesInteractor {
     private var currentFetchIgnoresCache = false
 
     init(
-        env: AppEnvironment = .shared,
-        context: NSManagedObjectContext = AppEnvironment.shared.database.backgroundReadContext,
+        env: AppEnvironment,
         sortComparator: some SortComparator<Course> = InvitedCourseSortComparator()
     ) {
         self.env = env
-        self.context = context
+        self.context = env.database.backgroundReadContext
         self.sortComparator = sortComparator
         self.coursesStore = ReactiveStore(
             context: context,
-            useCase: useCase
+            useCase: coursesUseCase,
+            environment: env
+        )
+        self.enrollmentsStore = ReactiveStore(
+            context: context,
+            useCase: GetEnrollments(
+                context: .currentUser,
+                states: [.active, .completed, .invited]
+            ),
+            environment: env
         )
     }
 
@@ -105,7 +114,7 @@ final class CoursesInteractorLive: CoursesInteractor {
 
         context.perform { [weak self] in
             guard let self else {
-                subject.send(completion: .failure(NSError(domain: "CoursesInteractor", code: -1)))
+                subject.send(completion: .failure(NSError.internalError()))
                 return
             }
             pendingRequests.append(request)
@@ -129,15 +138,6 @@ final class CoursesInteractorLive: CoursesInteractor {
         let shouldIgnoreCache = pendingRequests.contains { $0.ignoreCache }
         currentFetchIgnoresCache = shouldIgnoreCache
 
-        let enrollmentsStore = ReactiveStore(
-            context: context,
-            useCase: GetEnrollments(
-                context: .currentUser,
-                states: [.active, .completed, .invited]
-            ),
-            environment: env
-        )
-
         Publishers.Zip(
             coursesStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true),
             enrollmentsStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true)
@@ -146,7 +146,7 @@ final class CoursesInteractorLive: CoursesInteractor {
             let allCourses = courses.filter { !$0.isCourseDeleted }
             let invitedCourses = allCourses
                 .filter { course in
-                    course.enrollments.hasInvitedEnrollment
+                    course.hasInvitedEnrollment
                 }
                 .sorted(using: sortComparator)
             return CoursesResult(allCourses: allCourses, invitedCourses: invitedCourses)
@@ -216,9 +216,3 @@ final class CoursesInteractorLive: CoursesInteractor {
     }
 }
 
-private extension Optional where Wrapped == Set<Enrollment> {
-
-    var hasInvitedEnrollment: Bool {
-        self?.contains { $0.state == .invited && $0.id != nil } ?? false
-    }
-}

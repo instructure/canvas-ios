@@ -37,8 +37,8 @@ struct InvitedCourseSortComparator: SortComparator {
     ///   - rhs: The second course to compare
     /// - Returns: A `ComparisonResult` indicating the ordering of the two courses
     func compare(_ lhs: Course, _ rhs: Course) -> ComparisonResult {
-        let lhsEnrollment = lhs.enrollments?.first { $0.state == .invited && $0.id != nil }
-        let rhsEnrollment = rhs.enrollments?.first { $0.state == .invited && $0.id != nil }
+        let lhsEnrollment = lhs.firstInvitedEnrollment
+        let rhsEnrollment = rhs.firstInvitedEnrollment
 
         let lhsDate = lhsEnrollment?.createdAt
         let rhsDate = rhsEnrollment?.createdAt

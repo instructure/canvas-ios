@@ -23,6 +23,12 @@ import XCTest
 
 final class InvitedCourseSortComparatorTests: StudentTestCase {
 
+    private enum TestData {
+        static let now = Date.make(year: 2025, month: 1, day: 15)
+        static let yesterday = Date.make(year: 2025, month: 1, day: 14)
+        static let lastWeek = Date.make(year: 2025, month: 1, day: 8)
+    }
+
     private var testee: InvitedCourseSortComparator!
 
     override func setUp() {
@@ -36,13 +42,9 @@ final class InvitedCourseSortComparatorTests: StudentTestCase {
     }
 
     func testSortsByCreationDateAscending() {
-        let now = Date()
-        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: now)!
-        let lastWeek = Calendar.current.date(byAdding: .day, value: -7, to: now)!
-
-        let course1 = makeCourse(id: "1", name: "Zebra Course", createdAt: lastWeek)
-        let course2 = makeCourse(id: "2", name: "Alpha Course", createdAt: now)
-        let course3 = makeCourse(id: "3", name: "Beta Course", createdAt: yesterday)
+        let course1 = makeCourse(id: "1", name: "Zebra Course", createdAt: TestData.lastWeek)
+        let course2 = makeCourse(id: "2", name: "Alpha Course", createdAt: TestData.now)
+        let course3 = makeCourse(id: "3", name: "Beta Course", createdAt: TestData.yesterday)
 
         let sorted = [course1, course2, course3].sorted(using: testee)
 
@@ -52,11 +54,9 @@ final class InvitedCourseSortComparatorTests: StudentTestCase {
     }
 
     func testSortsByNameWhenDatesAreEqual() {
-        let now = Date()
-
-        let course1 = makeCourse(id: "1", name: "Zebra Course", createdAt: now)
-        let course2 = makeCourse(id: "2", name: "Alpha Course", createdAt: now)
-        let course3 = makeCourse(id: "3", name: "Beta Course", createdAt: now)
+        let course1 = makeCourse(id: "1", name: "Zebra Course", createdAt: TestData.now)
+        let course2 = makeCourse(id: "2", name: "Alpha Course", createdAt: TestData.now)
+        let course3 = makeCourse(id: "3", name: "Beta Course", createdAt: TestData.now)
 
         let sorted = [course1, course2, course3].sorted(using: testee)
 
@@ -78,12 +78,9 @@ final class InvitedCourseSortComparatorTests: StudentTestCase {
     }
 
     func testDatedCoursesBeforeUndated() {
-        let now = Date()
-        let yesterday = Calendar.current.date(byAdding: .day, value: -1, to: now)!
-
         let course1 = makeCourse(id: "1", name: "Zebra Course", createdAt: nil)
-        let course2 = makeCourse(id: "2", name: "Alpha Course", createdAt: now)
-        let course3 = makeCourse(id: "3", name: "Mid Course", createdAt: yesterday)
+        let course2 = makeCourse(id: "2", name: "Alpha Course", createdAt: TestData.now)
+        let course3 = makeCourse(id: "3", name: "Mid Course", createdAt: TestData.yesterday)
         let course4 = makeCourse(id: "4", name: "Beta Course", createdAt: nil)
 
         let sorted = [course1, course2, course3, course4].sorted(using: testee)

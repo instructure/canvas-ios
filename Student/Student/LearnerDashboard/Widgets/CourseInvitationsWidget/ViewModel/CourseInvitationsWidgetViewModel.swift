@@ -26,7 +26,6 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = CourseInvitationsWidgetView
 
     let config: DashboardWidgetConfig
-    var id: DashboardWidgetIdentifier { config.id }
     let isFullWidth = true
     let isEditable = false
 
@@ -69,7 +68,7 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
             .map { [weak self, interactor, snackBarViewModel] result in
                 guard let self else { return [] }
                 return result.invitedCourses.compactMap { course in
-                    guard let invitedEnrollment = course.enrollments?.first(where: { $0.state == .invited && $0.id != nil }),
+                    guard let invitedEnrollment = course.firstInvitedEnrollment,
                           let enrollmentID = invitedEnrollment.id else {
                         return nil
                     }
