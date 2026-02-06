@@ -38,15 +38,28 @@ struct HelloWidgetView: View {
                     .font(.regular14, lineHeight: .fit)
 
             }
-            .accessibilityElement(children: .combine)
             .foregroundStyle(.textDarkest)
             .frame(maxWidth: .infinity, alignment: .leading)
+            .accessibilityElement(children: .combine)
         }
     }
 }
 
 #if DEBUG
 #Preview {
-    HelloWidgetView(viewModel: .init(config: .init(id: .helloWidget, order: 0, isVisible: true)))
+    HelloWidgetView(
+        viewModel: .init(
+            config: .init(id: .helloWidget, order: 0, isVisible: true),
+            interactor: HelloWidgetInteractorPreview(),
+            dayPeriodProvider: .init()
+        )
+    )
 }
+
+private class HelloWidgetInteractorPreview: HelloWidgetInteractor {
+    func getShortName(ignoreCache: Bool) -> AnyPublisher<String?, Error> {
+        Publishers.typedJust("Rincewind")
+    }
+}
+
 #endif

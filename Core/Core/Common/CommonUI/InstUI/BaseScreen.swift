@@ -42,14 +42,21 @@ public extension InstUI {
         public let scrollBounce: ScrollBounceBehavior
         public let errorPandaConfig: InteractivePanda.Config
         public let emptyPandaConfig: InteractivePanda.Config
+        public let backgroundColor: Color
         public let loaderBackgroundColor: Color
 
-        /**
-         - parameters:
-         - refreshable: Controls whether pull-to-refresh is available in the data state. Error and empty states are always refreshable.
-         - showsIndicators: Whether to show scroll indicators in the data state.
-         - scrollAxes: The scrollable axes in the data state.
-         */
+        /// - Parameters:
+        ///    - refreshable:
+        ///    Controls whether pull-to-refresh is available in the data state.
+        ///    Error and empty states are always refreshable.
+        ///    - showsScrollIndicators:
+        ///    Whether to show scroll indicators in the data state.
+        ///    - scrollAxes:
+        ///    The scrollable axes in the data state.
+        ///    - backgroundColor:
+        ///    The background color used in data, empty and error states.
+        ///    - loaderBackgroundColor:
+        ///    The background color used in loading state. When set to `nil` this falls back to `backgroundColor`.
         public init(
             refreshable: Bool = true,
             showsScrollIndicators: Bool = true,
@@ -57,7 +64,8 @@ public extension InstUI {
             scrollBounce: ScrollBounceBehavior = .automatic,
             errorPandaConfig: InteractivePanda.Config = AppEnvironment.shared.app == .horizon ? .horizonError() : .error(),
             emptyPandaConfig: InteractivePanda.Config = AppEnvironment.shared.app == .horizon ? .horizonEmpty() : .empty(),
-            loaderBackgroundColor: Color = .backgroundLightest
+            backgroundColor: Color = .backgroundLightest,
+            loaderBackgroundColor: Color? = nil
         ) {
             self.refreshable = refreshable
             self.showsScrollIndicators = showsScrollIndicators
@@ -65,7 +73,8 @@ public extension InstUI {
             self.scrollBounce = scrollBounce
             self.errorPandaConfig = errorPandaConfig
             self.emptyPandaConfig = emptyPandaConfig
-            self.loaderBackgroundColor = loaderBackgroundColor
+            self.backgroundColor = backgroundColor
+            self.loaderBackgroundColor = loaderBackgroundColor ?? backgroundColor
         }
     }
 
@@ -81,11 +90,15 @@ public extension InstUI {
         private let refreshAction: (@escaping RefreshCompletion) -> Void
         private let content: (GeometryProxy) -> Content
 
-        /**
-         - parameters:
-         - refreshAction: A block that gets called when the user performs a pull-to-refresh action. The parameter of this block is a completion callback that needs to be called one time on the main thread to finish the refresh animation.
-         - content: The view to be rendered in the data state. The block receives a GeometryProxy for convenience that fills the available space. The content is embedded into a scroll view and has a .backgroundLightest background color.
-         */
+        /// - Parameters:
+        ///    - refreshAction:
+        ///     A block that gets called when the user performs a pull-to-refresh action.
+        ///     The parameter of this block is a completion callback that needs to be called
+        ///     one time on the main thread to finish the refresh animation.
+        ///    - content:
+        ///    The view to be rendered in the data state.
+        ///    The block receives a `GeometryProxy` for convenience that fills the available space.
+        ///    The content is embedded into a scroll view and has the background color set in `config`.
         public init(
             state: ScreenState,
             config: BaseScreenConfig = .init(),
@@ -129,18 +142,18 @@ public extension InstUI {
                 )
         }
 
-        private func panda(config: InteractivePanda.Config)
+        private func panda(config pandaConfig: InteractivePanda.Config)
         -> some View {
             GeometryReader { geometry in
                 ScrollView {
-                    InteractivePanda(config: config)
+                    InteractivePanda(config: pandaConfig)
                         .frame(
                             minWidth: geometry.size.width,
                             minHeight: geometry.size.height,
                             alignment: .center
                         )
                 }
-                .background(Color.backgroundLightest)
+                .background(config.backgroundColor)
                 .refreshable(action: refreshAction)
             }
         }
@@ -158,7 +171,7 @@ public extension InstUI {
                 .frame(width: geometry.size.width, height: geometry.size.height)
                 .refreshable(action: config.refreshable ? refreshAction : nil)
             }
-            .background(AppEnvironment.shared.app == .horizon ? Color.clear : Color.backgroundLightest)
+            .background(AppEnvironment.shared.app == .horizon ? Color.clear : config.backgroundColor)
             .scrollBounceBehavior(config.scrollBounce)
         }
     }

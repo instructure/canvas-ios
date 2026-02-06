@@ -39,7 +39,8 @@ final class LearnerDashboardViewModel {
                 localized: "You don't have any courses yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity.",
                 bundle: .student
             )
-        )
+        ),
+        backgroundColor: .backgroundLight
     )
 
     private let interactor: LearnerDashboardInteractor

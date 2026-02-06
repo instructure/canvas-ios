@@ -223,15 +223,14 @@ final class HelloWidgetViewModelTests: StudentTestCase {
         dayPeriodProvider: DayPeriodProvider = .init()
     ) -> HelloWidgetViewModel {
         HelloWidgetViewModel(
-            environment: env,
-            dayPeriodProvider: dayPeriodProvider,
-            interactor: interactor,
             config: DashboardWidgetConfig(
                 id: .helloWidget,
                 order: 42,
                 isVisible: true,
                 settings: nil
-            )
+            ),
+            interactor: interactor,
+            dayPeriodProvider: dayPeriodProvider
         )
     }
 }

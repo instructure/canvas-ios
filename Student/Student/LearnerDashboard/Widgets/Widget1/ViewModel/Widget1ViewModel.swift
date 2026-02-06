@@ -30,12 +30,8 @@ final class Widget1ViewModel: DashboardWidgetViewModel {
     let isEditable = false
     var state: InstUI.ScreenState = .loading
 
-    var layoutIdentifier: AnyHashable {
-        struct Identifier: Hashable {
-            let state: InstUI.ScreenState
-            let textCount: Int
-        }
-        return AnyHashable(Identifier(state: state, textCount: text.count))
+    var layoutIdentifier: [AnyHashable] {
+        [state, text.count]
     }
 
     private var timerCancellable: AnyCancellable?

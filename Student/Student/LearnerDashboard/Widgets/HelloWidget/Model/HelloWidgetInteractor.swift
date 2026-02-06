@@ -27,11 +27,11 @@ protocol HelloWidgetInteractor {
 final class HelloWidgetInteractorLive: HelloWidgetInteractor {
     private let store: ReactiveStore<GetUserProfile>
 
-    init(environment: AppEnvironment = .shared) {
+    init(env: AppEnvironment = .shared) {
         self.store = ReactiveStore(
-            context: environment.database.viewContext,
+            context: env.database.viewContext,
             useCase: GetUserProfile(userID: "self"),
-            environment: .shared
+            environment: env
         )
     }
 

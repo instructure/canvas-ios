@@ -22,13 +22,17 @@ import SwiftUI
 enum LearnerDashboardWidgetAssembly {
 
     static func makeDefaultWidgetConfigs() -> [DashboardWidgetConfig] {
-        [
-            DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true, settings: nil),
-            DashboardWidgetConfig(id: .helloWidget, order: 0, isVisible: true),
-            DashboardWidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil),
-            DashboardWidgetConfig(id: .widget3, order: 2, isVisible: true, settings: nil),
-            DashboardWidgetConfig(id: .widget2, order: 3, isVisible: true, settings: nil)
+        let identifiers: [DashboardWidgetIdentifier] = [
+            .courseInvitations,
+            .helloWidget,
+            .widget1,
+            .widget2,
+            .widget3
         ]
+
+        return identifiers.enumerated().map { (index, id) in
+            DashboardWidgetConfig(id: id, order: index, isVisible: true)
+        }
     }
 
     static func makeWidgetViewModel(
@@ -44,7 +48,11 @@ enum LearnerDashboardWidgetAssembly {
                 snackBarViewModel: snackBarViewModel
             )
         case .helloWidget:
-            HelloWidgetViewModel(config: config)
+            HelloWidgetViewModel(
+                config: config,
+                interactor: HelloWidgetInteractorLive(),
+                dayPeriodProvider: .init()
+            )
         case .widget1:
             Widget1ViewModel(config: config)
         case .widget2:
