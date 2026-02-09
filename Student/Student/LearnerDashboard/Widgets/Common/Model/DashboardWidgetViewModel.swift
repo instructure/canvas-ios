@@ -42,7 +42,7 @@ protocol DashboardWidgetViewModel: AnyObject, Identifiable where ID == Dashboard
     /// This is required because widget view models are stored in an array and SwiftUI can't observe
     /// individual view model changes in the array.
     /// Default implementation returns state.
-    var layoutIdentifier: AnyHashable { get }
+    var layoutIdentifier: [AnyHashable] { get }
 
     func makeView() -> ViewType
 
@@ -55,7 +55,7 @@ extension DashboardWidgetViewModel {
         config.id
     }
 
-    var layoutIdentifier: AnyHashable {
-        AnyHashable(state)
+    var layoutIdentifier: [AnyHashable] {
+        [state]
     }
 }

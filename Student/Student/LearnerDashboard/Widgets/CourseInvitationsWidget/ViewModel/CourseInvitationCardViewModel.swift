@@ -74,12 +74,11 @@ final class CourseInvitationCardViewModel: Identifiable {
                     isShowingErrorAlert = true
                 }
             } receiveValue: { [weak self] _ in
-                if let self {
-                    snackBarViewModel.showSnack(
-                        String(localized: "Accepted invitation to \(displayName)", bundle: .student)
-                    )
-                    onDismiss(id)
-                }
+                guard let self else { return }
+                snackBarViewModel.showSnack(
+                    String(localized: "Accepted invitation to \(displayName)", bundle: .student)
+                )
+                onDismiss(id)
             }
             .store(in: &subscriptions)
     }
@@ -92,18 +91,17 @@ final class CourseInvitationCardViewModel: Identifiable {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] completion in
                 guard let self else { return }
-                self.isDeclining = false
-                if case .failure = completion {
-                    self.errorAlert.message = String(localized: "Failed to decline invitation. Please try again.", bundle: .student)
-                    self.isShowingErrorAlert = true
+                isDeclining = false
+                if completion.isFailure {
+                    errorAlert.message = String(localized: "Failed to decline invitation. Please try again.", bundle: .student)
+                    isShowingErrorAlert = true
                 }
             } receiveValue: { [weak self] _ in
-                if let self {
-                    self.snackBarViewModel.showSnack(
-                        String(localized: "Declined invitation to \(self.displayName)", bundle: .student)
-                    )
-                    self.onDismiss(self.id)
-                }
+                guard let self else { return }
+                snackBarViewModel.showSnack(
+                    String(localized: "Declined invitation to \(displayName)", bundle: .student)
+                )
+                onDismiss(id)
             }
             .store(in: &subscriptions)
     }
