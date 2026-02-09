@@ -38,12 +38,8 @@ final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
     private(set) var widgetTitle: String = ""
     private(set) var widgetAccessibilityTitle: String = ""
 
-    var layoutIdentifier: AnyHashable {
-        struct Identifier: Hashable {
-            let state: InstUI.ScreenState
-            let conferenceCount: Int
-        }
-        return AnyHashable(Identifier(state: state, conferenceCount: conferences.count))
+    var layoutIdentifier: [AnyHashable] {
+        [state, conferences.count]
     }
 
     private let interactor: CoursesInteractor
