@@ -107,7 +107,7 @@ extension APIHelpLink {
         text: "Search the Canvas Guides",
         subtext: "Find answers to common questions",
         available_to: [ .user, .student, .teacher, .admin, .observer, .unenrolled ],
-        url: URL(string: "http://community.canvaslms.com/community/answers/guides")!
+        url: URL(string: "https://community.instructure.com/en/all-guides")!
     )
 
     public static var reportProblem = APIHelpLink.make(
