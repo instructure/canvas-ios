@@ -94,7 +94,7 @@ class CourseListInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(list.future.map { $0.courseId }, ["3"])
     }
 
-    func testFutureUnpublishedCoursesAreHiddenForStudents() {
+    func testFutureUnpublishedCoursesAreShownForStudents() {
         let futureCourseRequest = GetAllCoursesCourseListUseCase(enrollmentState: .invited_or_pending)
         api.mock(futureCourseRequest, value: [
             .make(id: "3", name: "ABC", workflow_state: .available),
