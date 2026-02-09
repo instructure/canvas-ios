@@ -36,6 +36,7 @@ final public class Enrollment: NSManagedObject {
     @NSManaged public var observedUser: User?
     @NSManaged public var isFromInvitation: Bool
     @NSManaged public var lastActivityAt: Date?
+    @NSManaged public var createdAt: Date?
 
     @NSManaged public var computedCurrentScoreRaw: NSNumber?
     @NSManaged public var computedCurrentGrade: String?
@@ -192,12 +193,21 @@ extension Enrollment {
         userID = item.user_id.value
         courseSectionID = item.course_section_id?.value
         lastActivityAt = item.last_activity_at
+        createdAt = item.created_at
 
-        if let courseID = item.course_id?.value ?? course?.id {
+        let courseID = item.course_id?.value ?? course?.id
+        if let courseID = courseID {
             canvasContextID = "course_\(courseID)"
         }
 
-        self.course = course
+        // Link enrollment to course, either the provided one or find existing in DB by course ID.
+        // CoreData automatically maintains the inverse relationship, so setting self.course
+        // will automatically add this enrollment to the course's enrollments set.
+        self.course = course ?? {
+            guard let courseID else { return nil }
+            let courses: [Course] = client.fetch(scope: .where(#keyPath(Course.id), equals: courseID))
+            return courses.first
+        }()
 
         if let apiGrades = item.grades {
             let grade = grades.first { $0.gradingPeriodID == gradingPeriodID } ?? client.insert()

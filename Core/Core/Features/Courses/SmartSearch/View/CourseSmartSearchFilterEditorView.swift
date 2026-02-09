@@ -32,8 +32,7 @@ public struct CourseSmartSearchFilterEditorView: View {
     public var body: some View {
         NavigationView {
             ScrollView {
-                LazyVStack(spacing: 0) {
-
+                VStack(spacing: 0) {
                     InstUI.Divider()
 
                     MultiSelectionView(
@@ -52,7 +51,6 @@ public struct CourseSmartSearchFilterEditorView: View {
             .navigationTitle(String(localized: "Search Preferences", bundle: .core))
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-
                 ToolbarItem(placement: .topBarLeading) {
                     Button {
                         viewModel.cancel()

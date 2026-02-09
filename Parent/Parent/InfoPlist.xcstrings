@@ -155,6 +155,12 @@
             "value" : "Canvas 親"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canvas Parent"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -431,6 +437,12 @@
             "value" : "写真やビデオをメッセージやディスカッションの投稿に添付するか、課題の提出に入れます。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사진 및 동영상을 메시지 및 토론 게시물에 첨부하거나 과제물로 제출합니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -693,6 +705,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "オーディオ録音をメッセージやディスカッションの投稿に添付するか、課題の提出に入れます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오디오 녹음을 메시지 및 토론 게시물에 첨부하거나 과제물로 제출합니다."
           }
         },
         "mi" : {
@@ -959,6 +977,12 @@
             "value" : "写真やビデオをメッセージやディスカッションの投稿に添付するか、課題の提出に入れます。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사진 및 동영상을 메시지 및 토론 게시물에 첨부하거나 과제물로 제출합니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1221,6 +1245,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "写真やビデオをメッセージやディスカッションの投稿に添付するか、課題の提出に入れます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사진 및 동영상을 메시지 및 토론 게시물에 첨부하거나 과제물로 제출합니다."
           }
         },
         "mi" : {

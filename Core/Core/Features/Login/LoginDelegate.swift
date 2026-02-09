@@ -36,7 +36,7 @@ public protocol LoginDelegate: AnyObject {
 
 public extension LoginDelegate {
     var supportsCanvasNetwork: Bool { true }
-    var helpURL: URL? { URL(string: "https://community.canvaslms.com/docs/DOC-1543") }
+    var helpURL: URL? { URL(string: "https://community.instructure.com/en/kb/articles/662717-where-do-i-find-my-institutions-url-to-access-canvas") }
     var whatsNewURL: URL? { nil }
     var findSchoolButtonTitle: String { String(localized: "Find my school", bundle: .core) }
 

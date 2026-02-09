@@ -49,12 +49,14 @@ struct SubmissionViewer: View {
                             .disableLinksOverlayPreviews
                         ]
                 )
+                .featuresContext(context)
                 .onLink(openInSafari)
             }
         case .discussion_topic:
             WebSession(url: submission.previewUrl) { url in
                 WebView(url: url,
                         features: [.invertColorsInDarkMode])
+                .featuresContext(context)
                 .onLink(handleLink)
                 .onNavigationFinished(handleRefresh)
             }
@@ -77,6 +79,7 @@ struct SubmissionViewer: View {
                                 .invertColorsInDarkMode,
                                 .disableLinksOverlayPreviews
                             ])
+                    .featuresContext(context)
                     .onLink(handleLink)
                     .onNavigationFinished(handleRefresh)
                 }
@@ -89,6 +92,7 @@ struct SubmissionViewer: View {
                 baseURL: env.currentSession?.baseURL,
                 canToggleTheme: true
             )
+            .featuresContext(context)
             .onLink(handleLink)
         case .online_upload:
             let file = submission.attachments?.first { fileID == $0.id } ??
@@ -161,6 +165,10 @@ struct SubmissionViewer: View {
     func openInSafari(url: URL) -> Bool {
         env.loginDelegate?.openExternalURL(url)
         return true
+    }
+
+    private var context: Context {
+        .course(assignment.courseID)
     }
 }
 
