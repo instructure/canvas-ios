@@ -103,7 +103,7 @@ class CourseListInteractorLiveTests: CoreTestCase {
 
         testee.getCourses()
             .sink(receiveCompletion: { _ in }) { _, _, future in
-                XCTAssertEqual(future.map { $0.courseId }, ["3"])
+                XCTAssertEqual(future.map { $0.courseId }, ["3", "4"])
             }
             .store(in: &subscriptions)
     }
