@@ -45,7 +45,10 @@ enum LearnerDashboardWidgetAssembly {
         case .conferences:
             ConferencesWidgetViewModel(
                 config: config,
-                interactor: coursesInteractor,
+                interactor: .live(
+                    coursesInteractor: coursesInteractor,
+                    env: .shared
+                ),
                 snackBarViewModel: snackBarViewModel
             )
         case .courseInvitations:

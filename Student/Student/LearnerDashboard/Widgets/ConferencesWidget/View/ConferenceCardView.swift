@@ -57,7 +57,10 @@ struct ConferenceCardView: View {
     }
 
     private var joinButton: some View {
-        PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline, action: joinConference) {
+        PrimaryButton(
+            isAvailable: !$offlineModeViewModel.isOffline,
+            action: { viewModel.didTapJoin(controller: controller) }
+        ) {
             Text("Join", bundle: .student)
                 .frame(maxWidth: .infinity)
         }
@@ -65,16 +68,11 @@ struct ConferenceCardView: View {
         .identifier("Conference.\(viewModel.id).joinButton")
     }
 
-    private func joinConference() {
-        if viewModel.joinURL != nil {
-            viewModel.join()
-        } else {
-            env.router.route(to: viewModel.joinRoute, from: controller, options: .modal())
-        }
-    }
-
     private var dismissButton: some View {
-        PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline, action: viewModel.dismiss) {
+        PrimaryButton(
+            isAvailable: !$offlineModeViewModel.isOffline,
+            action: { viewModel.didTapDismiss() }
+        ) {
             Text("Dismiss", bundle: .student)
                 .frame(maxWidth: .infinity)
         }
@@ -86,41 +84,19 @@ struct ConferenceCardView: View {
 #if DEBUG
 
 #Preview {
-    ScrollView {
-        VStack(spacing: 16) {
-            VStack(alignment: .leading, spacing: 4) {
-                Text(verbatim: "With Join URL")
-                ConferenceCardView(
-                    viewModel: ConferenceCardViewModel(
-                        id: "1",
-                        title: "Weekly Team Standup",
-                        contextName: "Introduction to Computer Science",
-                        context: Context(.course, id: "1"),
-                        joinURL: URL(string: "https://example.com/conference/join"),
-                        environment: .shared,
-                        snackBarViewModel: SnackBarViewModel(),
-                        onDismiss: { _ in }
-                    )
-                )
-            }
-
-            VStack(alignment: .leading, spacing: 4) {
-                Text(verbatim: "Without Join URL")
-                ConferenceCardView(
-                    viewModel: ConferenceCardViewModel(
-                        id: "2",
-                        title: "Office Hours",
-                        contextName: "Mobile Development Group",
-                        context: Context(.group, id: "group1"),
-                        joinURL: nil,
-                        environment: .shared,
-                        snackBarViewModel: SnackBarViewModel(),
-                        onDismiss: { _ in }
-                    )
-                )
-            }
-        }
-        .padding()
+    PreviewContainer {
+        ConferenceCardView(
+            viewModel: ConferenceCardViewModel(
+                model: .make(
+                    id: "conf1",
+                    title: "Computer Science Lecture",
+                    contextName: "Introduction to Computer Science"
+                ),
+                snackBarViewModel: SnackBarViewModel(),
+                environment: PreviewEnvironment(),
+                onDismiss: { _ in }
+            )
+        )
     }
 }
 

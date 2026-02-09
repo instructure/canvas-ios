@@ -27,113 +27,94 @@ final class ConferenceCardViewModelTests: StudentTestCase {
         id: "conf1",
         title: "some title",
         contextName: "some contextName",
-        courseId: "course1",
-        groupId: "group1",
-        externalURL: URL(string: "https://example.com/conference")!
+        url: URL(string: "https://example.com/conference")!,
+        route: "some/example/route"
     )
     private lazy var testData = Self.testData
 
     private var testee: ConferenceCardViewModel!
-    private var environment: AppEnvironment!
     private var snackBarViewModel: SnackBarViewModel!
-    private var dismissCalled: Bool!
-    private var dismissedConferenceId: String?
+    private var loginDelegate: TestLoginDelegate!
 
     override func setUp() {
         super.setUp()
-        environment = AppEnvironment.shared
-        snackBarViewModel = SnackBarViewModel()
-        dismissCalled = false
-        dismissedConferenceId = nil
+        snackBarViewModel = .init()
+        loginDelegate = .init()
+        env.loginDelegate = loginDelegate
     }
 
     override func tearDown() {
         testee = nil
-        environment = nil
         snackBarViewModel = nil
-        dismissCalled = nil
-        dismissedConferenceId = nil
+        loginDelegate = nil
         super.tearDown()
     }
 
     // MARK: - Basic properties
 
     func test_basicProperties() {
-        testee = makeViewModel(
+        testee = makeViewModel(model: .make(
             id: testData.id,
             title: testData.title,
-            contextName: testData.contextName,
-            context: Context(.course, id: testData.courseId),
-            joinURL: testData.externalURL
-        )
+            contextName: testData.contextName
+        ))
 
         XCTAssertEqual(testee.id, testData.id)
         XCTAssertEqual(testee.title, testData.title)
         XCTAssertEqual(testee.contextName, testData.contextName)
-        XCTAssertEqual(testee.context.id, testData.courseId)
-        XCTAssertEqual(testee.joinURL, testData.externalURL)
-    }
-
-    // MARK: - Join route
-
-    func test_joinRoute_shouldReturnCorrectPath() {
-        // WHEN course context
-        var testee = makeViewModel(
-            id: testData.id,
-            context: Context(.course, id: testData.courseId)
-        )
-        // THEN
-        XCTAssertEqual(testee.joinRoute, "courses/\(testData.courseId)/conferences/\(testData.id)/join")
-
-        // WHEN group context
-        testee = makeViewModel(
-            id: testData.id,
-            context: Context(.group, id: testData.groupId)
-        )
-        // THEN
-        XCTAssertEqual(testee.joinRoute, "groups/\(testData.groupId)/conferences/\(testData.id)/join")
     }
 
     // MARK: - Join
 
-    func test_join_withExternalURL_shouldOpenExternalURL() {
-        let mockLoginDelegate = MockLoginDelegate()
-        environment.loginDelegate = mockLoginDelegate
-        testee = makeViewModel(joinURL: testData.externalURL)
+    func test_didTapJoin_whenThereIsJoinUrl_shouldOpenExternalURL() {
+        testee = makeViewModel(model: .make(
+            joinRoute: testData.route,
+            joinUrl: testData.url
+        ))
 
-        testee.join()
+        testee.didTapJoin(controller: .init())
 
-        XCTAssertEqual(mockLoginDelegate.openedURL, testData.externalURL)
+        XCTAssertEqual(loginDelegate.externalURL, testData.url)
     }
 
-    func test_join_withNoExternalURL_shouldDoNothing() {
-        let mockLoginDelegate = MockLoginDelegate()
-        environment.loginDelegate = mockLoginDelegate
-        testee = makeViewModel(joinURL: nil)
+    func test_didTapJoin_whenThereIsNoJoinUrl_shouldRouteToRoute() {
+        testee = makeViewModel(model: .make(
+            joinRoute: testData.route,
+            joinUrl: nil
+        ))
+        let vc = UIViewController()
 
-        testee.join()
+        testee.didTapJoin(controller: .init(vc))
 
-        XCTAssertEqual(mockLoginDelegate.openedURL, nil)
+        XCTAssertEqual(router.lastRoutedPath, testData.route)
+        XCTAssertEqual(router.lastRoutedFromVC, vc)
+        XCTAssertEqual(router.lastRoutedOptions?.isModal, true)
     }
 
     // MARK: - Dismiss
 
     func test_dismiss_shouldCallOnDismissWithConferenceId() {
-        testee = makeViewModel(id: testData.id)
+        var dismissCalled = false
+        var dismissedConferenceId: String?
 
-        testee.dismiss()
+        testee = makeViewModel(model: .make(id: testData.id)) { conferenceId in
+            dismissCalled = true
+            dismissedConferenceId = conferenceId
+        }
+
+        testee.didTapDismiss()
 
         XCTAssertEqual(dismissCalled, true)
         XCTAssertEqual(dismissedConferenceId, testData.id)
     }
 
     func test_dismiss_shouldShowSnackbar() {
-        testee = makeViewModel(
+        testee = makeViewModel(model: .make(
             id: testData.id,
             title: testData.title
-        )
+        ))
 
-        testee.dismiss()
+        testee.didTapDismiss()
 
         XCTAssertEqual(snackBarViewModel.visibleSnack, "Dismissed \(testData.title)")
     }
@@ -141,25 +122,53 @@ final class ConferenceCardViewModelTests: StudentTestCase {
     // MARK: - Equality
 
     func test_equality() {
-        let testee1 = makeViewModel(
+        let testee1 = makeViewModel(model: .make(
             id: testData.id,
             title: testData.title,
-            contextName: testData.contextName,
-            joinURL: testData.externalURL
-        )
-        let testee2 = makeViewModel(
+            contextName: testData.contextName
+        ))
+        let testee2 = makeViewModel(model: .make(
             id: testData.id,
             title: testData.title,
-            contextName: testData.contextName,
-            joinURL: testData.externalURL
-        )
+            contextName: testData.contextName
+        ))
 
         XCTAssertEqual(testee1, testee2)
     }
 
     func test_equality_whenDifferentId_shouldNotBeEqual() {
-        let testee1 = makeViewModel(id: "id1")
-        let testee2 = makeViewModel(id: "id2")
+        let testee1 = makeViewModel(model: .make(id: "id1"))
+        let testee2 = makeViewModel(model: .make(id: "id2"))
+
+        XCTAssertNotEqual(testee1, testee2)
+    }
+
+    func test_equality_whenDifferentTitle_shouldNotBeEqual() {
+        let testee1 = makeViewModel(model: .make(
+            id: testData.id,
+            title: "title1",
+            contextName: testData.contextName
+        ))
+        let testee2 = makeViewModel(model: .make(
+            id: testData.id,
+            title: "title2",
+            contextName: testData.contextName
+        ))
+
+        XCTAssertNotEqual(testee1, testee2)
+    }
+
+    func test_equality_whenDifferentContextName_shouldNotBeEqual() {
+        let testee1 = makeViewModel(model: .make(
+            id: testData.id,
+            title: testData.title,
+            contextName: "context1"
+        ))
+        let testee2 = makeViewModel(model: .make(
+            id: testData.id,
+            title: testData.title,
+            contextName: "context2"
+        ))
 
         XCTAssertNotEqual(testee1, testee2)
     }
@@ -167,42 +176,14 @@ final class ConferenceCardViewModelTests: StudentTestCase {
     // MARK: - Private helpers
 
     private func makeViewModel(
-        id: String = "conf1",
-        title: String = "some title",
-        contextName: String = "some contextName",
-        context: Context = Context(.course, id: "course1"),
-        joinURL: URL? = nil
+        model: ConferencesWidgetItem = .make(),
+        onDismiss: @escaping (String) -> Void = { _ in }
     ) -> ConferenceCardViewModel {
         ConferenceCardViewModel(
-            id: id,
-            title: title,
-            contextName: contextName,
-            context: context,
-            joinURL: joinURL,
-            environment: environment,
+            model: model,
             snackBarViewModel: snackBarViewModel,
-            onDismiss: { [weak self] conferenceId in
-                self?.dismissCalled = true
-                self?.dismissedConferenceId = conferenceId
-            }
+            environment: env,
+            onDismiss: onDismiss
         )
     }
-}
-
-private class MockLoginDelegate: LoginDelegate {
-    var openedURL: URL?
-
-    func openExternalURL(_ url: URL) {
-        openedURL = url
-    }
-
-    func userDidLogin(session: LoginSession) {}
-    func userDidLogout(session: LoginSession) {}
-    func changeUser() {}
-    func stopActing() {}
-    func openSFAuthenticationSession(
-        url: URL,
-        callbackURLScheme: String?,
-        completionHandler: @escaping (URL?, (any Error)?) -> Void
-    ) {}
 }

@@ -24,43 +24,39 @@ final class ConferenceCardViewModel: Identifiable, Equatable {
     let id: String
     let title: String
     let contextName: String
-    let context: Context
-    let joinURL: URL?
-    private let environment: AppEnvironment
+
+    private let joinRoute: String
+    private let joinUrl: URL?
+
     private let snackBarViewModel: SnackBarViewModel
+    private let environment: AppEnvironment
     private let onDismiss: (String) -> Void
 
-    var joinRoute: String {
-        "\(context.pathComponent)/conferences/\(id)/join"
-    }
-
     init(
-        id: String,
-        title: String,
-        contextName: String,
-        context: Context,
-        joinURL: URL?,
-        environment: AppEnvironment,
+        model: ConferencesWidgetItem,
         snackBarViewModel: SnackBarViewModel,
+        environment: AppEnvironment,
         onDismiss: @escaping (String) -> Void
     ) {
-        self.id = id
-        self.title = title
-        self.contextName = contextName
-        self.context = context
-        self.joinURL = joinURL
-        self.environment = environment
+        self.id = model.id
+        self.title = model.title
+        self.contextName = model.contextName
+        self.joinRoute = model.joinRoute
+        self.joinUrl = model.joinUrl
         self.snackBarViewModel = snackBarViewModel
+        self.environment = environment
         self.onDismiss = onDismiss
     }
 
-    func join() {
-        if let joinURL {
-            environment.loginDelegate?.openExternalURL(joinURL)
+    func didTapJoin(controller: WeakViewController) {
+        if let joinUrl {
+            environment.loginDelegate?.openExternalURL(joinUrl)
+        } else {
+            environment.router.route(to: joinRoute, from: controller, options: .modal())
         }
     }
 
-    func dismiss() {
+    func didTapDismiss() {
         snackBarViewModel.showSnack(
             String(localized: "Dismissed \(title)", bundle: .student)
         )
@@ -68,9 +64,10 @@ final class ConferenceCardViewModel: Identifiable, Equatable {
     }
 
     static func == (lhs: ConferenceCardViewModel, rhs: ConferenceCardViewModel) -> Bool {
-        lhs.id == rhs.id &&
-        lhs.title == rhs.title &&
-        lhs.contextName == rhs.contextName &&
-        lhs.joinURL == rhs.joinURL
+        lhs.id == rhs.id
+        && lhs.title == rhs.title
+        && lhs.contextName == rhs.contextName
+        && lhs.joinRoute == rhs.joinRoute
+        && lhs.joinUrl == rhs.joinUrl
     }
 }

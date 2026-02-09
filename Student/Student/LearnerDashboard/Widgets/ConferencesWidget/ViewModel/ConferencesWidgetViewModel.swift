@@ -27,14 +27,11 @@ final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = ConferencesWidgetView
 
     let config: DashboardWidgetConfig
-    var id: DashboardWidgetIdentifier { config.id }
     let isFullWidth = true
     let isEditable = false
 
-    private(set) var conferences: [ConferenceCardViewModel] = [] {
-        didSet { updateTitles() }
-    }
     private(set) var state: InstUI.ScreenState = .loading
+    private(set) var conferences: [ConferenceCardViewModel] = []
     private(set) var widgetTitle: String = ""
     private(set) var widgetAccessibilityTitle: String = ""
 
@@ -42,25 +39,23 @@ final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
         [state, conferences.count]
     }
 
-    private let interactor: CoursesInteractor
-    private let context: NSManagedObjectContext
+    private let interactor: ConferencesWidgetInteractor
     private let environment: AppEnvironment
     private let snackBarViewModel: SnackBarViewModel
+
     private var subscriptions = Set<AnyCancellable>()
 
     init(
         config: DashboardWidgetConfig,
-        interactor: CoursesInteractor,
+        interactor: ConferencesWidgetInteractor,
         snackBarViewModel: SnackBarViewModel,
-        context: NSManagedObjectContext = AppEnvironment.shared.database.backgroundReadContext,
         environment: AppEnvironment = .shared
     ) {
         self.config = config
         self.interactor = interactor
-        self.context = context
         self.environment = environment
         self.snackBarViewModel = snackBarViewModel
-        updateTitles()
+        updateWidgetTitle()
     }
 
     func makeView() -> ConferencesWidgetView {
@@ -68,86 +63,49 @@ final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        let conferencesStore = ReactiveStore(
-            context: context,
-            useCase: GetLiveConferences(),
-            environment: environment
-        )
-
-        return Publishers.Zip(
-            conferencesStore.getEntities(ignoreCache: ignoreCache),
-            interactor.getCourses(ignoreCache: ignoreCache)
-        )
-        .map { [weak self] (conferences: [Conference], coursesResult: CoursesResult) -> [ConferenceCardViewModel] in
-            guard let self else { return [] }
-            return conferences.compactMap { conference -> ConferenceCardViewModel? in
-                guard let contextName = self.resolveContextName(
-                    for: conference,
-                    coursesResult: coursesResult
-                ) else {
-                    return nil
+        interactor.getConferences(ignoreCache: ignoreCache)
+            .map { [weak self, environment, snackBarViewModel] items -> [ConferenceCardViewModel] in
+                items.map { item in
+                    ConferenceCardViewModel(
+                        model: item,
+                        snackBarViewModel: snackBarViewModel,
+                        environment: environment,
+                        onDismiss: { conferenceId in
+                            self?.dismissConference(id: conferenceId)
+                        }
+                    )
                 }
-                return ConferenceCardViewModel(
-                    id: conference.id,
-                    title: conference.title,
-                    contextName: contextName,
-                    context: conference.context,
-                    joinURL: conference.joinURL,
-                    environment: self.environment,
-                    snackBarViewModel: self.snackBarViewModel,
-                    onDismiss: { [weak self] conferenceId in
-                        self?.dismissConference(conferenceId: conferenceId)
-                    }
-                )
+                .sorted { $0.id < $1.id }
             }
-            .sorted { $0.id < $1.id }
-        }
-        .receive(on: DispatchQueue.main)
-        .map { [weak self] conferences in
-            self?.conferences = conferences
-            self?.state = conferences.isEmpty ? .empty : .data
-            return ()
-        }
-        .catch { [weak self] _ in
-            self?.state = .error
-            return Just(())
-        }
-        .eraseToAnyPublisher()
-    }
-
-    private func resolveContextName(
-        for conference: Conference,
-        coursesResult: CoursesResult
-    ) -> String? {
-        if conference.context.contextType == .group {
-            coursesResult.groups.first { $0.id == conference.context.id }?.name
-        } else {
-            coursesResult.allCourses.first { $0.id == conference.context.id }?.name
-        }
-    }
-
-    private func dismissConference(conferenceId: String) {
-        context.perform { [weak self] in
-            guard let self else { return }
-            let conference: Conference? = context.first(where: #keyPath(Conference.id), equals: conferenceId)
-            conference?.isIgnored = true
-            try? context.save()
-
-            DispatchQueue.main.async {
-                self.removeConference(id: conferenceId)
+            .receive(on: DispatchQueue.main)
+            .map { [weak self] conferences in
+                self?.conferences = conferences
+                self?.didUpdateConferences()
+                return ()
             }
-        }
+            .catch { [weak self] _ in
+                self?.state = .error
+                return Just(())
+            }
+            .eraseToAnyPublisher()
     }
 
-    @MainActor
-    private func removeConference(id: String) {
-        conferences.removeAll { $0.id == id }
-        if conferences.isEmpty {
-            state = .empty
-        }
+    private func dismissConference(id: String) {
+        interactor.dismissConference(id: id)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.conferences.removeAll { $0.id == id }
+                self?.didUpdateConferences()
+            }
+            .store(in: &subscriptions)
     }
 
-    private func updateTitles() {
+    private func didUpdateConferences() {
+        state = conferences.isEmpty ? .empty : .data
+        updateWidgetTitle()
+    }
+
+    private func updateWidgetTitle() {
         let count = conferences.count
         widgetTitle = String(localized: "Live Conferences (\(count))", bundle: .student)
         widgetAccessibilityTitle = [

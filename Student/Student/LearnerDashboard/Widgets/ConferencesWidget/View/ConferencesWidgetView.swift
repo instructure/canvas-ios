@@ -67,41 +67,27 @@ struct ConferencesWidgetView: View {
 }
 
 private func makePreviewViewModel() -> ConferencesWidgetViewModel {
-    let env = PreviewEnvironment()
-    let context = env.database.viewContext
-
     let config = DashboardWidgetConfig(id: .conferences, order: 0, isVisible: true, settings: nil)
-    let coursesInteractor = CoursesInteractorMock()
+    let interactor = ConferencesWidgetInteractorMock()
 
-    let mockCourses = [
-        Course.save(
-            .make(id: "1", name: "Introduction to Computer Science"),
-            in: context
+    interactor.getConferencesOutputValue = [
+        .make(
+            id: "conf1",
+            title: "Computer Science Lecture",
+            contextName: "Introduction to Computer Science"
         ),
-        Course.save(
-            .make(id: "2", name: "Advanced Mathematics"),
-            in: context
+        .make(
+            id: "conf2",
+            title: "Study Group Meeting",
+            contextName: "Study Group A"
         )
     ]
-
-    let mockGroups = [
-        Group.save(
-            .make(id: "group1", name: "Study Group A"),
-            in: context
-        )
-    ]
-
-    coursesInteractor.mockCoursesResult = CoursesResult(
-        allCourses: mockCourses,
-        invitedCourses: [],
-        groups: mockGroups
-    )
 
     return ConferencesWidgetViewModel(
         config: config,
-        interactor: coursesInteractor,
+        interactor: interactor,
         snackBarViewModel: SnackBarViewModel(),
-        context: context
+        environment: PreviewEnvironment()
     )
 }
 

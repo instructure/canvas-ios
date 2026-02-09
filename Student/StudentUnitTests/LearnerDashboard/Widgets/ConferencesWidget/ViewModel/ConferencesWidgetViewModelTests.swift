@@ -25,34 +25,29 @@ import XCTest
 final class ConferencesWidgetViewModelTests: StudentTestCase {
 
     private static let testData = (
-        courseId: "course1",
-        courseName: "some courseName",
-        groupId: "group1",
-        groupName: "some groupName",
         conferenceId1: "conf1",
         conferenceTitle1: "some conferenceTitle1",
+        courseName: "some courseName",
         conferenceId2: "conf2",
-        conferenceTitle2: "some conferenceTitle2"
+        conferenceTitle2: "some conferenceTitle2",
+        groupName: "some groupName"
     )
     private lazy var testData = Self.testData
 
     private var testee: ConferencesWidgetViewModel!
-    private var coursesInteractor: CoursesInteractorMock!
+    private var interactor: ConferencesWidgetInteractorMock!
     private var snackBarViewModel: SnackBarViewModel!
-    private var subscriptions: Set<AnyCancellable>!
 
     override func setUp() {
         super.setUp()
-        coursesInteractor = CoursesInteractorMock()
+        interactor = ConferencesWidgetInteractorMock()
         snackBarViewModel = SnackBarViewModel()
-        subscriptions = Set<AnyCancellable>()
     }
 
     override func tearDown() {
         testee = nil
-        coursesInteractor = nil
+        interactor = nil
         snackBarViewModel = nil
-        subscriptions = nil
         super.tearDown()
     }
 
@@ -70,33 +65,34 @@ final class ConferencesWidgetViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.conferences.isEmpty, true)
     }
 
-    // MARK: - Refresh with no conferences
+    // MARK: - Refresh
 
     func test_refresh_withNoConferences_shouldSetEmptyState() {
-        setupEmptyConferences()
+        interactor.getConferencesOutputValue = []
         testee = makeViewModel()
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
+
         XCTAssertEqual(testee.state, .empty)
         XCTAssertEqual(testee.conferences.isEmpty, true)
     }
 
-    // MARK: - Refresh with conferences
-
     func test_refresh_withConferences_shouldSetDataState() {
-        setupConferences()
+        setupTwoConferences()
         testee = makeViewModel()
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
+
         XCTAssertEqual(testee.state, .data)
         XCTAssertEqual(testee.conferences.count, 2)
     }
 
     func test_refresh_shouldCreateConferenceCardViewModels() {
-        setupConferences()
+        setupTwoConferences()
         testee = makeViewModel()
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
+
         XCTAssertEqual(testee.conferences.first?.id, testData.conferenceId1)
         XCTAssertEqual(testee.conferences.first?.title, testData.conferenceTitle1)
         XCTAssertEqual(testee.conferences.first?.contextName, testData.courseName)
@@ -105,70 +101,69 @@ final class ConferencesWidgetViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.conferences.last?.contextName, testData.groupName)
     }
 
-    func test_refresh_withMissingContext_shouldFilterOutConference() {
-        setupConferencesWithMissingContext()
+    func test_refresh_shouldSortConferencesByIdAscending() {
+        interactor.getConferencesOutputValue = [
+            .make(id: "conf-z"),
+            .make(id: "conf-a")
+        ]
         testee = makeViewModel()
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
-        XCTAssertEqual(testee.conferences.count, 1)
-        XCTAssertEqual(testee.conferences.first?.id, testData.conferenceId1)
+
+        XCTAssertEqual(testee.conferences.first?.id, "conf-a")
+        XCTAssertEqual(testee.conferences.last?.id, "conf-z")
     }
-
-    // MARK: - Widget titles
-
-    func test_widgetTitle_shouldIncludeConferenceCount() {
-        setupConferences()
-        testee = makeViewModel()
-
-        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
-        XCTAssertEqual(testee.widgetTitle, "Live Conferences (2)")
-    }
-
-    func test_widgetTitle_withNoConferences_shouldShowZeroCount() {
-        setupEmptyConferences()
-        testee = makeViewModel()
-
-        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
-        XCTAssertEqual(testee.widgetTitle, "Live Conferences (0)")
-    }
-
-    // MARK: - Error handling
 
     func test_refresh_onError_shouldSetErrorState() {
-        coursesInteractor.mockCoursesResult = CoursesResult(
-            allCourses: [],
-            invitedCourses: [],
-            groups: []
-        )
-        api.mock(GetLiveConferences(), error: NSError.instructureError("Test error"))
+        interactor.getConferencesOutputError = NSError.instructureError("some error")
         testee = makeViewModel()
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
+
         XCTAssertEqual(testee.state, .error)
+    }
+
+    // MARK: - Widget title
+
+    func test_widgetTitle() {
+        // WHEN no conferences
+        interactor.getConferencesOutputValue = []
+        testee = makeViewModel()
+        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
+        // THEN
+        XCTAssertEqual(testee.widgetTitle, "Live Conferences (0)")
+        XCTAssertEqual(testee.widgetAccessibilityTitle, "Live Conferences, 0 items")
+
+        // WHEN 2 conferences
+        setupTwoConferences()
+        testee = makeViewModel()
+        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
+        // THEN
+        XCTAssertEqual(testee.widgetTitle, "Live Conferences (2)")
+        XCTAssertEqual(testee.widgetAccessibilityTitle, "Live Conferences, 2 items")
     }
 
     // MARK: - Layout identifier
 
     func test_layoutIdentifier_shouldChangeWithStateAndCount() {
-        setupConferences()
+        setupTwoConferences()
         testee = makeViewModel()
         let initialId = testee.layoutIdentifier
 
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
-        let afterRefreshId = testee.layoutIdentifier
-        XCTAssertNotEqual(initialId, afterRefreshId)
+
+        XCTAssertNotEqual(testee.layoutIdentifier, initialId)
     }
 
-    // MARK: - Conference dismissal
+    // MARK: - Dismiss
 
     func test_dismissConference_shouldRemoveFromList() {
-        setupConferences()
+        setupTwoConferences()
         testee = makeViewModel()
-
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
         XCTAssertEqual(testee.conferences.count, 2)
 
-        testee.conferences.first?.dismiss()
+        testee.conferences.first?.didTapDismiss()
 
         waitUntil(shouldFail: false) {
             self.testee.conferences.count == 1 &&
@@ -177,13 +172,12 @@ final class ConferencesWidgetViewModelTests: StudentTestCase {
     }
 
     func test_dismissConference_whenLastConference_shouldSetEmptyState() {
-        setupSingleConference()
+        interactor.getConferencesOutputValue = [.make(id: testData.conferenceId1)]
         testee = makeViewModel()
-
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
         XCTAssertEqual(testee.state, .data)
 
-        testee.conferences.first?.dismiss()
+        testee.conferences.first?.didTapDismiss()
 
         waitUntil(shouldFail: false) {
             self.testee.conferences.isEmpty &&
@@ -191,42 +185,18 @@ final class ConferencesWidgetViewModelTests: StudentTestCase {
         }
     }
 
-    func test_dismissConference_shouldPersistIsIgnoredToDatabase() {
-        setupSingleConference()
+    func test_dismissConference_shouldCallInteractor() {
+        interactor.getConferencesOutputValue = [.make(id: testData.conferenceId1)]
         testee = makeViewModel()
-
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
-        testee.conferences.first?.dismiss()
+        XCTAssertEqual(interactor.dismissConferenceCallCount, 0)
+
+        testee.conferences.first?.didTapDismiss()
 
         waitUntil(shouldFail: false) {
-            let conference: Conference? = self.databaseClient.first(
-                where: #keyPath(Conference.id),
-                equals: self.testData.conferenceId1
-            )
-            return conference?.isIgnored == true
+            self.interactor.dismissConferenceCallCount == 1 &&
+            self.interactor.dismissConferenceInput == self.testData.conferenceId1
         }
-    }
-
-    // MARK: - Context resolution
-
-    func test_contextResolution_shouldMatchCourseIds() {
-        let course = Course.save(.make(id: ID(testData.courseId), name: testData.courseName), in: databaseClient)
-        try? databaseClient.save()
-
-        coursesInteractor.mockCoursesResult = CoursesResult(
-            allCourses: [course],
-            invitedCourses: [],
-            groups: []
-        )
-
-        api.mock(GetLiveConferences(), value: .init(conferences: [
-            .make(context_id: ID(testData.courseId), context_type: "course", id: testData.conferenceId1, started_at: Clock.now.addMinutes(-60), title: testData.conferenceTitle1)
-        ]))
-
-        testee = makeViewModel()
-
-        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
-        XCTAssertEqual(testee.conferences.count, 1)
     }
 
     // MARK: - Private helpers
@@ -236,70 +206,24 @@ final class ConferencesWidgetViewModelTests: StudentTestCase {
     ) -> ConferencesWidgetViewModel {
         ConferencesWidgetViewModel(
             config: config,
-            interactor: coursesInteractor,
+            interactor: interactor,
             snackBarViewModel: snackBarViewModel,
-            context: databaseClient,
             environment: env
         )
     }
 
-    private func setupEmptyConferences() {
-        coursesInteractor.mockCoursesResult = CoursesResult(
-            allCourses: [],
-            invitedCourses: [],
-            groups: []
-        )
-        api.mock(GetLiveConferences(), value: .init(conferences: []))
-    }
-
-    private func setupSingleConference() {
-        // Save course to database and set up mock interactor result
-        let course = Course.save(.make(id: ID(testData.courseId), name: testData.courseName), in: databaseClient)
-        try? databaseClient.save()
-
-        coursesInteractor.mockCoursesResult = CoursesResult(
-            allCourses: [course],
-            invitedCourses: [],
-            groups: []
-        )
-
-        api.mock(GetLiveConferences(), value: .init(conferences: [
-            .make(context_id: ID(testData.courseId), context_type: "course", id: testData.conferenceId1, started_at: Clock.now.addMinutes(-60), title: testData.conferenceTitle1)
-        ]))
-    }
-
-    private func setupConferences() {
-        // Save courses and groups to database and set up mock interactor result
-        let course = Course.save(.make(id: ID(testData.courseId), name: testData.courseName), in: databaseClient)
-        let group = Group.save(.make(id: ID(testData.groupId), name: testData.groupName), in: databaseClient)
-        try? databaseClient.save()
-
-        coursesInteractor.mockCoursesResult = CoursesResult(
-            allCourses: [course],
-            invitedCourses: [],
-            groups: [group]
-        )
-
-        api.mock(GetLiveConferences(), value: .init(conferences: [
-            .make(context_id: ID(testData.courseId), context_type: "course", id: testData.conferenceId1, started_at: Clock.now.addMinutes(-60), title: testData.conferenceTitle1),
-            .make(context_id: ID(testData.groupId), context_type: "group", id: testData.conferenceId2, started_at: Clock.now.addMinutes(-60), title: testData.conferenceTitle2)
-        ]))
-    }
-
-    private func setupConferencesWithMissingContext() {
-        // Save only one course to database - the other conference context won't be found
-        let course = Course.save(.make(id: ID(testData.courseId), name: testData.courseName), in: databaseClient)
-        try? databaseClient.save()
-
-        coursesInteractor.mockCoursesResult = CoursesResult(
-            allCourses: [course],
-            invitedCourses: [],
-            groups: []
-        )
-
-        api.mock(GetLiveConferences(), value: .init(conferences: [
-            .make(context_id: ID(testData.courseId), context_type: "course", id: testData.conferenceId1, started_at: Clock.now.addMinutes(-60), title: testData.conferenceTitle1),
-            .make(context_id: ID("nonexistent-course"), context_type: "course", id: testData.conferenceId2, started_at: Clock.now.addMinutes(-60), title: testData.conferenceTitle2)
-        ]))
+    private func setupTwoConferences() {
+        interactor.getConferencesOutputValue = [
+            .make(
+                id: testData.conferenceId1,
+                title: testData.conferenceTitle1,
+                contextName: testData.courseName
+            ),
+            .make(
+                id: testData.conferenceId2,
+                title: testData.conferenceTitle2,
+                contextName: testData.groupName
+            )
+        ]
     }
 }
