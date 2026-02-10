@@ -22,9 +22,28 @@ import TestsFoundation
 
 class DashboardInvitationsViewModelTests: CoreTestCase {
 
-    func testFetch() {
+    func testFetchOnInitialization() {
         setupMocks()
         let testee = DashboardInvitationsViewModel()
+
+        drainMainQueue(thoroughness: 5)
+
+        XCTAssertEqual(testee.items.count, 1)
+        guard let invitation = testee.items.first else { return }
+
+        XCTAssertEqual(invitation.id, "enrollmentId")
+        XCTAssertEqual(invitation.name, "test course, Section One")
+    }
+
+    func testFetchOnRefresh() {
+        setupMocks()
+
+        let testee = DashboardInvitationsViewModel(loadInvitationsImmediately: false)
+        drainMainQueue(thoroughness: 5)
+
+        // Making sure no initial loading had happened
+        XCTAssertTrue(testee.items.isEmpty)
+
         let viewModelUpdatedExpectation = expectation(description: "view model updated")
         let updateSubscription = testee.objectWillChange.sink {
             viewModelUpdatedExpectation.fulfill()
