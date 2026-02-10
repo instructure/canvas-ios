@@ -42,6 +42,14 @@ public class TestRouter: Router {
     public var last: UIViewController? { viewControllerCalls.last?.0 }
     public var routes = [URLComponents: () -> UIViewController?]()
 
+    public var lastRoutedPath: String? { calls.last?.0?.path }
+    public var lastRoutedFromVC: UIViewController? { calls.last?.1 }
+    public var lastRoutedOptions: RouteOptions? { calls.last?.2 }
+
+    public var lastShownVC: UIViewController? { viewControllerCalls.last?.0 }
+    public var lastShownFromVC: UIViewController? { viewControllerCalls.last?.1 }
+    public var lastShownOptions: RouteOptions? { viewControllerCalls.last?.2 }
+
     public func mock(_ url: URLComponents, factory: @escaping () -> UIViewController?) {
         routes[url] = factory
     }

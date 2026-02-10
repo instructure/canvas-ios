@@ -30,7 +30,7 @@ final class CoursesInteractorMock: CoursesInteractor {
 
     var acceptBehavior: MockBehavior = .success
     var declineBehavior: MockBehavior = .success
-    var mockCoursesResult: CoursesResult = CoursesResult(allCourses: [], invitedCourses: [])
+    var mockCoursesResult: CoursesResult = CoursesResult(allCourses: [], invitedCourses: [], groups: [])
     var getCoursesDelay: TimeInterval = 0
 
     func getCourses(ignoreCache: Bool) -> AnyPublisher<CoursesResult, Error> {

@@ -23,6 +23,7 @@ enum LearnerDashboardWidgetAssembly {
 
     static func makeDefaultWidgetConfigs() -> [DashboardWidgetConfig] {
         let identifiers: [DashboardWidgetIdentifier] = [
+            .conferences,
             .courseInvitations,
             .helloWidget,
             .widget1,
@@ -41,6 +42,15 @@ enum LearnerDashboardWidgetAssembly {
         coursesInteractor: CoursesInteractor = CoursesInteractorLive(env: .shared)
     ) -> any DashboardWidgetViewModel {
         switch config.id {
+        case .conferences:
+            ConferencesWidgetViewModel(
+                config: config,
+                interactor: .live(
+                    coursesInteractor: coursesInteractor,
+                    env: .shared
+                ),
+                snackBarViewModel: snackBarViewModel
+            )
         case .courseInvitations:
             CourseInvitationsWidgetViewModel(
                 config: config,
@@ -65,6 +75,8 @@ enum LearnerDashboardWidgetAssembly {
     @ViewBuilder
     static func makeView(for viewModel: any DashboardWidgetViewModel) -> some View {
         switch viewModel {
+        case let vm as ConferencesWidgetViewModel:
+            vm.makeView()
         case let vm as CourseInvitationsWidgetViewModel:
 	        vm.makeView()
         case let vm as HelloWidgetViewModel:

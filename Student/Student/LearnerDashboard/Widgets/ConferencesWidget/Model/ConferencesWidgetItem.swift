@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,12 +16,34 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum DashboardWidgetIdentifier: String, Codable, CaseIterable {
-    case conferences
-    case courseInvitations
-    case widget1
-    case widget2
-    case widget3
+import Foundation
 
-    case helloWidget
+struct ConferencesWidgetItem: Identifiable, Equatable {
+    let id: String
+    let title: String
+    let contextName: String
+    let joinRoute: String
+    let joinUrl: URL?
 }
+
+#if DEBUG
+
+extension ConferencesWidgetItem {
+    static func make(
+        id: String = "",
+        title: String = "",
+        contextName: String = "",
+        joinRoute: String = "",
+        joinUrl: URL? = nil
+    ) -> ConferencesWidgetItem {
+        ConferencesWidgetItem(
+            id: id,
+            title: title,
+            contextName: contextName,
+            joinRoute: joinRoute,
+            joinUrl: joinUrl
+        )
+    }
+}
+
+#endif

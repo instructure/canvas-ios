@@ -109,7 +109,8 @@ private func makePreviewInteractor(context: NSManagedObjectContext) -> CoursesIn
     let mockInteractor = CoursesInteractorMock()
     mockInteractor.mockCoursesResult = CoursesResult(
         allCourses: mockCourses,
-        invitedCourses: mockCourses
+        invitedCourses: mockCourses,
+        groups: []
     )
     mockInteractor.getCoursesDelay = 2
     return mockInteractor
