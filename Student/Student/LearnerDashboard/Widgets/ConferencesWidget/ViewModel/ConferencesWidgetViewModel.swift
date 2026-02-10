@@ -18,9 +18,7 @@
 
 import Combine
 import Core
-import CoreData
 import Foundation
-import Observation
 
 @Observable
 final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
