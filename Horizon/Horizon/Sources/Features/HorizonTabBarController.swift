@@ -32,8 +32,14 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
         super.viewDidLoad()
         delegate = self
         setValue(horizonTabBar, forKey: "tabBar")
-        horizonTabBar.backgroundColor = .backgroundLightest
-        horizonTabBar.isTranslucent = false
+
+        if #available(iOS 26.0, *) {
+            horizonTabBar.backgroundColor = .clear
+        } else {
+            horizonTabBar.backgroundColor = .backgroundLightest
+        }
+        horizonTabBar.isTranslucent = true
+
         viewControllers = [
             dashboardTab(),
             learnTab(),
