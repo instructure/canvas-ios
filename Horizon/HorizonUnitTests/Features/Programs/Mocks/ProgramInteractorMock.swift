@@ -44,7 +44,7 @@ final class ProgramInteractorMock: ProgramInteractor {
         if shouldFail {
             return Fail(error: error).eraseToAnyPublisher()
         } else {
-            return Just(HProgramStubs.programs)
+            return Just(programsToReturn)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }

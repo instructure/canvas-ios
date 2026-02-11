@@ -89,7 +89,7 @@
     "Horizon\/Horizon\/Sources\/Features\/Account\/Notifications\/View\/NotificationSettingsViewModel.swift",
     "Horizon\/Horizon\/Sources\/Features\/LearningObjects\/Assignment\/AssignmentDetails\/Domain\/AssignmentTextEntryInteractor.swift",
     "Horizon\/Horizon\/Sources\/Common\/Data\/HModuleItemSequenceNode.swift",
-    "Horizon\/Horizon\/Sources\/Features\/Learn\/Learn\/Data\/LearnCourse.swift",
+    "Horizon\/Horizon\/Sources\/Features\/Learn\/ProgramDetails\/Data\/LearnCourse.swift",
     "Horizon\/Horizon\/Sources\/Common\/View\/KeyboardObserver.swift",
     "Horizon\/Horizon\/Sources\/Features\/Assist\/AssistQuiz\/Data\/AssistQuizModel.swift",
     "Horizon\/Horizon\/Sources\/Features\/LearningObjects\/Assignment\/AssignmentDetails\/Data\/HSubmission.swift",
