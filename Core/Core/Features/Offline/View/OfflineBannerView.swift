@@ -34,8 +34,13 @@ class OfflineBannerView: UIView {
 
     private weak var containerController: UIViewController?
     private var bottomConstraint: NSLayoutConstraint?
-    private var contentHeight: CGFloat = 0
-    private var containerBounds: CGRect = .zero
+
+    private lazy var appearanceModel: OfflineBannerAppearanceModel = {
+        OfflineBannerAppearanceModel(
+            contentHeight: offlineContainer.frame.height,
+            containerBounds: containerController?.view.bounds ?? .zero
+        )
+    }()
 
     private var viewModel: OfflineBannerViewModel! {
         didSet {
@@ -87,10 +92,11 @@ class OfflineBannerView: UIView {
 
         viewModel
             .$isOffline
-            .sink { [onlineContainer, offlineContainer] isOffline in
+            .sink { [weak self] isOffline in
+                guard let self else { return }
                 UIView.animate(withDuration: isOffline ? 0 : 0.3) {
-                    onlineContainer?.alpha = isOffline ? 0 : 1
-                    offlineContainer?.alpha = isOffline ? 1 : 0
+                    self.onlineContainer?.alpha = self.appearanceModel.onlineContentOpacityWhen(offline: isOffline)
+                    self.offlineContainer?.alpha = self.appearanceModel.offlineContentOpacityWhen(offline: isOffline)
                 }
             }
             .store(in: &subscriptions)
@@ -101,7 +107,7 @@ class OfflineBannerView: UIView {
                 guard let self else { return }
 
                 UIView.animate(withDuration: isVisible ? 0 : 0.3) {
-                    self.alpha = isVisible ? 1 : 0
+                    self.alpha = self.appearanceModel.viewOpacityWhen(visible: isVisible)
                 }
 
                 accessibilityElementsHidden = !isVisible
@@ -114,24 +120,24 @@ class OfflineBannerView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        // Covers the use case where app is background then put back to foreground
-        if contentHeight != offlineContainer.bounds.height {
-            contentHeight = offlineContainer.bounds.height
-            updateContainerAdditionalInsets(isVisible: viewModel.isVisible)
-            return
-        }
+        guard let changeRequired = appearanceModel
+            .viewChangeRequiredUpdating(
+                contentHeight: offlineContainer.bounds.height,
+                containerBounds: containerController?.view.bounds
+            )
+        else { return }
 
-        // Covers the use case of window re-size on iPadOS 26
-        if let viewBounds = containerController?.view.bounds,
-           containerBounds != viewBounds,
-           viewModel.isVisible {
-            containerBounds = viewBounds
-            updateContentLayout(isVisible: true)
+        switch changeRequired {
+        case .layout:
+            if viewModel.isVisible {
+                updateContentLayout(isVisible: viewModel.isVisible)
+            }
+        case .additionalInsets:
+            updateContainerAdditionalInsets(isVisible: viewModel.isVisible)
         }
     }
 
     private func updateContentLayout(isVisible: Bool, animated: Bool = false) {
-
         let bottomOffset = containerController?.defaultSafeAreaBottomInset ?? 0
         let resetLayout = {
             self.bottomConstraint?.constant = -1 * bottomOffset
@@ -147,12 +153,7 @@ class OfflineBannerView: UIView {
     }
 
     private func updateContainerAdditionalInsets(isVisible: Bool) {
-        containerController?.additionalSafeAreaInsets = UIEdgeInsets(
-            top: 0,
-            left: 0,
-            bottom: isVisible ? contentHeight : 0,
-            right: 0
-        )
+        containerController?.additionalSafeAreaInsets = appearanceModel.containerAdditionalInsets(on: isVisible)
     }
 }
 
