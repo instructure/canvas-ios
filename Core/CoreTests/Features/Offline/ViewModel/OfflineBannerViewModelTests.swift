@@ -27,10 +27,8 @@ class OfflineBannerViewModelTests: XCTestCase {
     public func testBannerBecomesVisibleWhenAppGoesOffline() {
         // GIVEN
         let mockInteractor = MockOfflineModeInteractor()
-        let hostingView = UIViewController()
         let scheduler = DispatchQueue.test.eraseToAnyScheduler()
         let testee = OfflineBannerViewModel(interactor: mockInteractor,
-                                            parent: hostingView,
                                             scheduler: scheduler)
         XCTAssertFalse(testee.isOffline)
         XCTAssertFalse(testee.isVisible)
@@ -41,16 +39,13 @@ class OfflineBannerViewModelTests: XCTestCase {
         // THEN
         XCTAssertTrue(testee.isOffline)
         XCTAssertTrue(testee.isVisible)
-        XCTAssertNotEqual(hostingView.additionalSafeAreaInsets.bottom, 0)
     }
 
     public func testBannerStaysVisibleAndShowsBackOnlineStateWhenAppGoesOnline() {
         // GIVEN
         let mockInteractor = MockOfflineModeInteractor()
-        let hostingView = UIViewController()
         let scheduler = DispatchQueue.test
         let testee = OfflineBannerViewModel(interactor: mockInteractor,
-                                            parent: hostingView,
                                             scheduler: scheduler.eraseToAnyScheduler())
         mockInteractor.offlineMode.accept(true)
 
@@ -64,7 +59,6 @@ class OfflineBannerViewModelTests: XCTestCase {
         XCTAssertTrue(testee.isVisible)
         scheduler.advance(by: .seconds(0.1))
         XCTAssertFalse(testee.isVisible)
-        XCTAssertEqual(hostingView.additionalSafeAreaInsets.bottom, 0)
     }
 
     public func testBannerNotGettingHiddenWhenOfflineModeTriggeredWhileShowingBackOnlineState() {
@@ -73,7 +67,6 @@ class OfflineBannerViewModelTests: XCTestCase {
         let hostingView = UIViewController()
         let scheduler = DispatchQueue.test
         let testee = OfflineBannerViewModel(interactor: mockInteractor,
-                                            parent: hostingView,
                                             scheduler: scheduler.eraseToAnyScheduler())
         mockInteractor.offlineMode.accept(true)
         mockInteractor.offlineMode.accept(false)
