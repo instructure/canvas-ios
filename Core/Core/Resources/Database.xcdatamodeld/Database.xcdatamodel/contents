@@ -156,10 +156,6 @@
         <attribute name="title" attributeType="String"/>
         <attribute name="typeRaw" attributeType="String"/>
     </entity>
-    <entity name="CDAccountInfo" representedClassName="Core.CDAccountInfo" syncable="YES">
-        <attribute name="id" attributeType="String"/>
-        <attribute name="name" attributeType="String"/>
-    </entity>
     <entity name="CDAllCoursesCourseItem" representedClassName="Core.CDAllCoursesCourseItem" syncable="YES">
         <attribute name="courseCode" attributeType="String"/>
         <attribute name="courseId" attributeType="String"/>

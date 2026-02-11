@@ -35,7 +35,6 @@ extension GlobalAnnouncementsWidgetInteractor where Self == GlobalAnnouncementsW
 final class GlobalAnnouncementsWidgetInteractorLive: GlobalAnnouncementsWidgetInteractor {
     private let moContext: NSManagedObjectContext
     private let announcementsStore: ReactiveStore<GetAccountNotifications>
-    private let accountInfoStore: ReactiveStore<GetAccountInfo>
 
     init(env: AppEnvironment) {
         self.moContext = env.database.viewContext
@@ -45,35 +44,25 @@ final class GlobalAnnouncementsWidgetInteractorLive: GlobalAnnouncementsWidgetIn
             useCase: GetAccountNotifications(),
             environment: env
         )
-
-        self.accountInfoStore = ReactiveStore(
-            context: moContext,
-            useCase: GetAccountInfo(),
-            environment: env
-        )
     }
 
     func getAnnouncements(ignoreCache: Bool) -> AnyPublisher<[GlobalAnnouncementsWidgetItem], Error> {
-        return Publishers.Zip(
-            accountInfoStore.getEntities(ignoreCache: ignoreCache)
-                .replaceError(with: []).setFailureType(to: Error.self),
-            announcementsStore.getEntities(ignoreCache: ignoreCache)
-        )
-        .map { (accounts: [CDAccountInfo], announcements: [AccountNotification]) -> [GlobalAnnouncementsWidgetItem] in
-            let accountName = accounts.first?.name ?? "<Account name here>"
-            return announcements
-                .filter { !$0.closed }
-                .map { announcement in
-                    GlobalAnnouncementsWidgetItem(
-                        id: announcement.id,
-                        title: announcement.subject,
-                        icon: announcement.icon,
-                        startDate: announcement.startAt,
-                        isClosed: announcement.closed
-                    )
-                }
-        }
-        .eraseToAnyPublisher()
+        announcementsStore
+            .getEntities(ignoreCache: ignoreCache)
+            .map { (announcements: [AccountNotification]) -> [GlobalAnnouncementsWidgetItem] in
+                announcements
+                    .filter { !$0.closed }
+                    .map { announcement in
+                        GlobalAnnouncementsWidgetItem(
+                            id: announcement.id,
+                            title: announcement.subject,
+                            icon: announcement.icon,
+                            startDate: announcement.startAt,
+                            isClosed: announcement.closed
+                        )
+                    }
+            }
+            .eraseToAnyPublisher()
     }
 
     func markAsRead(id: String) -> AnyPublisher<Void, Never> {
