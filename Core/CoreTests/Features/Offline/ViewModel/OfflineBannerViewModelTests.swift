@@ -64,7 +64,6 @@ class OfflineBannerViewModelTests: XCTestCase {
     public func testBannerNotGettingHiddenWhenOfflineModeTriggeredWhileShowingBackOnlineState() {
         // GIVEN
         let mockInteractor = MockOfflineModeInteractor()
-        let hostingView = UIViewController()
         let scheduler = DispatchQueue.test
         let testee = OfflineBannerViewModel(interactor: mockInteractor,
                                             scheduler: scheduler.eraseToAnyScheduler())
