@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,35 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Foundation
 
-public extension Color {
+// https://developerdocs.instructure.com/services/canvas/resources/accounts#method.accounts.show
+public struct APIAccountInfo: Codable, Equatable {
+    public let id: String
+    public let name: String
 
-    var hexString: String { UIColor(self).hexString }
-    var variantForLightMode: Color { Color(UIColor(self).resolvedColor(with: .light)) }
-    var variantForDarkMode: Color { Color(UIColor(self).resolvedColor(with: .dark)) }
-
-    init?(hexString: String?) {
-        if let color = UIColor(hexString: hexString) {
-            self = Color(color)
-        } else {
-            return nil
-        }
+    public init(id: String, name: String) {
+        self.id = id
+        self.name = name
     }
-
-    var asUIColor: UIColor {
-        UIColor(self)
-    }
+}
 
 #if DEBUG
-
-    static var random: Color {
-        Color(
-            red: .random(in: 0...1),
-            green: .random(in: 0...1),
-            blue: .random(in: 0...1)
+extension APIAccountInfo {
+    public static func make(
+        id: String = "",
+        name: String = ""
+    ) -> APIAccountInfo {
+        return APIAccountInfo(
+            id: id,
+            name: name
         )
     }
-
-#endif
 }
+#endif

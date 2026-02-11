@@ -20999,6 +20999,9 @@
         }
       }
     },
+    "Announcements (%lld)" : {
+
+    },
     "Anxiety gets louder at night — don't believe all its noise." : {
 
     },
@@ -59610,6 +59613,9 @@
         }
       }
     },
+    "Global Announcement" : {
+
+    },
     "Go to App Store" : {
       "comment" : "Action on an alert",
       "extractionState" : "manual",
@@ -67161,6 +67167,9 @@
           }
         }
       }
+    },
+    "Information" : {
+
     },
     "Instructions" : {
       "localizations" : {
@@ -99140,6 +99149,9 @@
 
     },
     "Progress, not perfection. You're doing great." : {
+
+    },
+    "Question" : {
 
     },
     "Questions:" : {

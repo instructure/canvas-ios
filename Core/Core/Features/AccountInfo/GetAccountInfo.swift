@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,13 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum DashboardWidgetIdentifier: String, Codable, CaseIterable {
-    case conferences
-    case courseInvitations
-    case globalAnnouncements
-    case widget1
-    case widget2
-    case widget3
+import CoreData
+import Foundation
 
-    case helloWidget
+public final class GetAccountInfo: APIUseCase {
+    public typealias Model = CDAccountInfo
+
+    public var cacheKey: String? { "accounts/self" }
+    public var request: GetAccountInfoRequest { GetAccountInfoRequest() }
+    public var scope: Scope { .all }
+
+    public init() { }
 }
