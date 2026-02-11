@@ -32,27 +32,18 @@ final class HorizonTabBar: UITabBar {
         return middleButton
     }()
 
-    private var shouldUseNativeAppearance: Bool {
-        if #available(iOS 26.0, *) {
-            return true
-        }
-        return false
-    }
-
     // MARK: - Init
 
     init() {
         super.init(frame: .zero)
         configureShadow()
         removeTabBarBorder()
-        setupAppearance()
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configureShadow()
         removeTabBarBorder()
-        setupAppearance()
     }
 
     override func layoutSubviews() {
@@ -80,19 +71,6 @@ final class HorizonTabBar: UITabBar {
     private func removeTabBarBorder() {
         self.backgroundImage = UIImage()
         self.shadowImage = UIImage()
-    }
-
-    private func setupAppearance() {
-        if shouldUseNativeAppearance {
-            configureNativeAppearance()
-        }
-    }
-
-    private func configureNativeAppearance() {
-        let appearance = UITabBarAppearance()
-        appearance.configureWithDefaultBackground()
-        standardAppearance = appearance
-        scrollEdgeAppearance = appearance
     }
 
     // MARK: - Actions
