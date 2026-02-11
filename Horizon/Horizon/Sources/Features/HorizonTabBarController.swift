@@ -81,7 +81,7 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
     // MARK: - Functions
 
     private func presentChatBot() {
-        let vc = AssistAssembly.makeAssistChatView()
+        let vc = AssistAssembly.makeAssistChatView(courseID: learnTabCourseID)
         vc.modalPresentationStyle = .pageSheet
         router.show(vc, from: self, options: .modal(isDismissable: false))
     }
