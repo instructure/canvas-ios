@@ -19,7 +19,7 @@
 import Core
 import Foundation
 
-struct GlobalAnnouncementsWidgetItem: Identifiable, Equatable {
+struct GlobalAnnouncementsWidgetItem: Equatable {
     let id: String
     let title: String
     let icon: AccountNotificationIcon

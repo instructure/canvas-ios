@@ -28,7 +28,9 @@ final class GlobalAnnouncementCardViewModel: Identifiable, Equatable {
     let date: String?
     let a11yLabel: String
 
-    var id: String { model.id }
+    // Including the whole model to ensure any change triggers a view update.
+    // Using only `model.id` would make the ForEach ignore a title change upon a refresh.
+    var id: GlobalAnnouncementsWidgetItem { model }
 
     private let model: GlobalAnnouncementsWidgetItem
     private let router: Router
