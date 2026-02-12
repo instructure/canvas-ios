@@ -32,12 +32,12 @@ final class GlobalAnnouncementCardViewModel: Identifiable, Equatable {
 
     private let model: GlobalAnnouncementsWidgetItem // stored just for Equatability
     private let router: Router
-    private let onMarkAsRead: (String) -> Void
+    private let onCardTap: (WeakViewController) -> Void
 
     init(
         model: GlobalAnnouncementsWidgetItem,
         router: Router,
-        onMarkAsRead: @escaping (String) -> Void
+        onCardTap: @escaping (WeakViewController) -> Void
     ) {
         self.model = model
 
@@ -53,11 +53,11 @@ final class GlobalAnnouncementCardViewModel: Identifiable, Equatable {
         ].accessibilityJoined()
 
         self.router = router
-        self.onMarkAsRead = onMarkAsRead
+        self.onCardTap = onCardTap
     }
 
-    func didTapCard() {
-        onMarkAsRead(id)
+    func didTapCard(from controller: WeakViewController) {
+        onCardTap(controller)
     }
 
     static func == (lhs: GlobalAnnouncementCardViewModel, rhs: GlobalAnnouncementCardViewModel) -> Bool {

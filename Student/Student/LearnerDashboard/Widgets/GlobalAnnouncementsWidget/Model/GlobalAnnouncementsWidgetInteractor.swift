@@ -24,7 +24,6 @@ import Foundation
 protocol GlobalAnnouncementsWidgetInteractor {
     func getAnnouncements(ignoreCache: Bool) -> AnyPublisher<[GlobalAnnouncementsWidgetItem], Error>
     func deleteAnnouncement(id: String) -> AnyPublisher<Void, Never>
-    func markAsRead(id: String) -> AnyPublisher<Void, Never>
 }
 
 extension GlobalAnnouncementsWidgetInteractor where Self == GlobalAnnouncementsWidgetInteractorLive {
@@ -61,7 +60,8 @@ final class GlobalAnnouncementsWidgetInteractorLive: GlobalAnnouncementsWidgetIn
                             title: announcement.subject,
                             icon: announcement.icon,
                             startDate: announcement.startAt,
-                            isClosed: announcement.closed
+                            isClosed: announcement.closed,
+                            message: announcement.message
                         )
                     }
             }
@@ -77,28 +77,6 @@ final class GlobalAnnouncementsWidgetInteractorLive: GlobalAnnouncementsWidgetIn
         .getEntities(ignoreCache: true)
         .mapToVoid()
         .replaceError(with: ())
-        .eraseToAnyPublisher()
-    }
-
-    func markAsRead(id: String) -> AnyPublisher<Void, Never> {
-        Future { [weak self] promise in
-            guard let self else {
-                promise(.success)
-                return
-            }
-
-            moContext.perform { [weak self] in
-                guard let self else { return }
-
-                let announcement: AccountNotification? = moContext.first(where: \AccountNotification.id, equals: id)
-                announcement?.closed = true
-                try? moContext.save()
-
-                DeleteAccountNotification(id: id).fetch { _, _, _ in
-                    promise(.success)
-                }
-            }
-        }
         .eraseToAnyPublisher()
     }
 }

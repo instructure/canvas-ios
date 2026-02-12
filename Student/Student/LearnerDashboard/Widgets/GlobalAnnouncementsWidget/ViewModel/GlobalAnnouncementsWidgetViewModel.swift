@@ -66,9 +66,8 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
                         GlobalAnnouncementCardViewModel(
                             model: item,
                             router: environment.router,
-                            onMarkAsRead: { announcementId in
-                                self?.deleteAnnouncement(id: announcementId)
-//                                self?.markAsRead(id: announcementId)
+                            onCardTap: { [weak self] controller in
+                                self?.showDetails(for: item, from: controller)
                             }
                         )
                     }
@@ -86,21 +85,24 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
             .eraseToAnyPublisher()
     }
 
-    private func deleteAnnouncement(id: String) {
-        interactor.deleteAnnouncement(id: id)
-            .receive(on: DispatchQueue.main)
-            .sink()
-            .store(in: &subscriptions)
-    }
+    private func showDetails(
+        for item: GlobalAnnouncementsWidgetItem,
+        from controller: WeakViewController
+    ) {
+        let viewModel = GlobalAnnouncementDetailsViewModel(
+            item: item,
+            interactor: interactor,
+            router: environment.router
+        )
+        let detailsVC = CoreHostingController(
+            GlobalAnnouncementDetailsScreen(viewModel: viewModel)
+        )
 
-    private func markAsRead(id: String) {
-        interactor.markAsRead(id: id)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] in
-                self?.announcements.removeAll { $0.id == id }
-                self?.didUpdateAnnouncements()
-            }
-            .store(in: &subscriptions)
+        environment.router.show(
+            detailsVC,
+            from: controller,
+            options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
+        )
     }
 
     private func didUpdateAnnouncements() {

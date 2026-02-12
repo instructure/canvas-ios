@@ -21,11 +21,12 @@ import SwiftUI
 
 struct GlobalAnnouncementCardView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @Environment(\.viewController) private var controller
 
     @State var viewModel: GlobalAnnouncementCardViewModel
 
     var body: some View {
-        Button(action: { viewModel.didTapCard() }) {
+        Button(action: { viewModel.didTapCard(from: controller) }) {
             HStack(alignment: .top, spacing: 8) {
                 icon
                     .alignmentGuide(.top) { $0[.top] - 4 } // to match .leading
@@ -157,7 +158,7 @@ private func makeViewModel(
             startDate: startDate
         ),
         router: PreviewEnvironment().router,
-        onMarkAsRead: { _ in }
+        onCardTap: { _ in }
     )
 }
 

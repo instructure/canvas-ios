@@ -22,24 +22,19 @@ import Foundation
 #if DEBUG
 
 final class GlobalAnnouncementsWidgetInteractorMock: GlobalAnnouncementsWidgetInteractor {
+
+    // MARK: - getAnnouncements
+
     var getAnnouncementsOutputValue: [GlobalAnnouncementsWidgetItem] = []
-    var markAsReadCalled = false
 
     func getAnnouncements(ignoreCache: Bool) -> AnyPublisher<[GlobalAnnouncementsWidgetItem], Error> {
-        Just(getAnnouncementsOutputValue)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+        Publishers.typedJust(getAnnouncementsOutputValue)
     }
+
+    // MARK: - deleteAnnouncement
 
     func deleteAnnouncement(id: String) -> AnyPublisher<Void, Never> {
-        Just(())
-            .eraseToAnyPublisher()
-    }
-
-    func markAsRead(id: String) -> AnyPublisher<Void, Never> {
-        markAsReadCalled = true
-        return Just(())
-            .eraseToAnyPublisher()
+        Publishers.typedJust()
     }
 }
 
