@@ -72,7 +72,7 @@ private func makePreviewViewModel() -> GlobalAnnouncementsWidgetViewModel {
     let config = DashboardWidgetConfig(id: .globalAnnouncements, order: 0, isVisible: true, settings: nil)
     let interactor = GlobalAnnouncementsWidgetInteractorMock()
 
-    interactor.getAnnouncementsOutputValue = [
+    interactor.mockAnnouncements = [
         .make(id: "1", title: "Calendar", icon: .calendar, startDate: Date()),
         .make(id: "2", title: "Information", icon: .information, startDate: Date().addHours(1)),
         .make(id: "3", title: "Question", icon: .question, startDate: Date().addHours(2)),

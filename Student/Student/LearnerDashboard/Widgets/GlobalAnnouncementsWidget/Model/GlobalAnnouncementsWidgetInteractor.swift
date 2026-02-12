@@ -22,7 +22,8 @@ import CoreData
 import Foundation
 
 protocol GlobalAnnouncementsWidgetInteractor {
-    func getAnnouncements(ignoreCache: Bool) -> AnyPublisher<[GlobalAnnouncementsWidgetItem], Error>
+    func loadAnnouncements(ignoreCache: Bool) -> AnyPublisher<Void, Error>
+    func observeAnnouncements() -> AnyPublisher<[GlobalAnnouncementsWidgetItem], Error>
     func deleteAnnouncement(id: String) -> AnyPublisher<Void, Never>
 }
 
@@ -33,24 +34,31 @@ extension GlobalAnnouncementsWidgetInteractor where Self == GlobalAnnouncementsW
 }
 
 final class GlobalAnnouncementsWidgetInteractorLive: GlobalAnnouncementsWidgetInteractor {
-    private let moContext: NSManagedObjectContext
+
     private let env: AppEnvironment
+
     private let announcementsStore: ReactiveStore<GetAccountNotifications>
 
     init(env: AppEnvironment) {
-        self.moContext = env.database.viewContext
         self.env = env
 
         self.announcementsStore = ReactiveStore(
-            context: moContext,
+            context: env.database.viewContext,
             useCase: GetAccountNotifications(),
             environment: env
         )
     }
 
-    func getAnnouncements(ignoreCache: Bool) -> AnyPublisher<[GlobalAnnouncementsWidgetItem], Error> {
+    func loadAnnouncements(ignoreCache: Bool) -> AnyPublisher<Void, Error> {
         announcementsStore
-            .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
+            .getEntities(ignoreCache: ignoreCache)
+            .mapToVoid()
+            .eraseToAnyPublisher()
+    }
+
+    func observeAnnouncements() -> AnyPublisher<[GlobalAnnouncementsWidgetItem], Error> {
+        announcementsStore
+            .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
             .map { (announcements: [AccountNotification]) -> [GlobalAnnouncementsWidgetItem] in
                 announcements
                     .filter {
@@ -73,7 +81,7 @@ final class GlobalAnnouncementsWidgetInteractorLive: GlobalAnnouncementsWidgetIn
 
     func deleteAnnouncement(id: String) -> AnyPublisher<Void, Never> {
         ReactiveStore(
-            context: moContext,
+            context: env.database.viewContext,
             useCase: DeleteAccountNotification(id: id),
             environment: env
         )

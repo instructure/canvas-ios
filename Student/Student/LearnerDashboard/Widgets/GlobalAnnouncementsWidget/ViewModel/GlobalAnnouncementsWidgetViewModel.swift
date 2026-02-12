@@ -50,6 +50,8 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
         self.config = config
         self.interactor = interactor
         self.environment = environment
+
+        observeAnnouncements()
         updateWidgetTitle()
     }
 
@@ -58,7 +60,19 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        interactor.getAnnouncements(ignoreCache: ignoreCache)
+        // This just loads the data. They are handled in the observe method below.
+        // This allows automatic removal of dismissed items.
+        interactor.loadAnnouncements(ignoreCache: ignoreCache)
+            .receive(on: DispatchQueue.main)
+            .catch { [weak self] _ in
+                self?.state = .error
+                return Just(())
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func observeAnnouncements() {
+        interactor.observeAnnouncements()
             .map { [weak self, environment] items -> [GlobalAnnouncementCardViewModel] in
                 items
                     .sorted { $0.startDate ?? Date.distantPast > $1.startDate ?? Date.distantPast }
@@ -73,16 +87,23 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
                     }
             }
             .receive(on: DispatchQueue.main)
-            .map { [weak self] announcements in
-                self?.announcements = announcements
-                self?.didUpdateAnnouncements()
-                return ()
-            }
-            .catch { [weak self] _ in
-                self?.state = .error
-                return Just(())
-            }
-            .eraseToAnyPublisher()
+            .sink(
+                receiveCompletion: { [weak self] in
+                    if $0.isFailure {
+                        self?.state = .error
+                    }
+                },
+                receiveValue: { [weak self] announcements in
+                    self?.announcements = announcements
+                    self?.didUpdateAnnouncements()
+                }
+            )
+            .store(in: &subscriptions)
+    }
+
+    private func didUpdateAnnouncements() {
+        state = announcements.isEmpty ? .empty : .data
+        updateWidgetTitle()
     }
 
     private func showDetails(
@@ -103,11 +124,6 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
             from: controller,
             options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
         )
-    }
-
-    private func didUpdateAnnouncements() {
-        state = announcements.isEmpty ? .empty : .data
-        updateWidgetTitle()
     }
 
     private func updateWidgetTitle() {

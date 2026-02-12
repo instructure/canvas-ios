@@ -30,7 +30,7 @@ final class GlobalAnnouncementCardViewModel: Identifiable, Equatable {
 
     var id: String { model.id }
 
-    private let model: GlobalAnnouncementsWidgetItem // stored just for Equatability
+    private let model: GlobalAnnouncementsWidgetItem
     private let router: Router
     private let onCardTap: (WeakViewController) -> Void
 

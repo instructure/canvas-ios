@@ -23,18 +23,51 @@ import Foundation
 
 final class GlobalAnnouncementsWidgetInteractorMock: GlobalAnnouncementsWidgetInteractor {
 
-    // MARK: - getAnnouncements
+    var mockAnnouncements: [GlobalAnnouncementsWidgetItem] = []
 
-    var getAnnouncementsOutputValue: [GlobalAnnouncementsWidgetItem] = []
+    // MARK: - loadAnnouncements
 
-    func getAnnouncements(ignoreCache: Bool) -> AnyPublisher<[GlobalAnnouncementsWidgetItem], Error> {
-        Publishers.typedJust(getAnnouncementsOutputValue)
+    var loadAnnouncementsCallCount: Int = 0
+    var loadAnnouncementsInput: Bool?
+    var loadAnnouncementsOutputError: Error?
+
+    func loadAnnouncements(ignoreCache: Bool) -> AnyPublisher<Void, any Error> {
+        loadAnnouncementsInput = ignoreCache
+        loadAnnouncementsCallCount += 1
+
+        if let error = loadAnnouncementsOutputError {
+            return Publishers.typedFailure(error: error)
+        }
+
+        return Publishers.typedJust()
+    }
+
+    // MARK: - observeAnnouncements
+
+    var observeAnnouncementsCallCount: Int = 0
+    var observeAnnouncementsOutputValue: [GlobalAnnouncementsWidgetItem] { mockAnnouncements }
+    var observeAnnouncementsOutputError: Error?
+
+    func observeAnnouncements() -> AnyPublisher<[GlobalAnnouncementsWidgetItem], Error> {
+        observeAnnouncementsCallCount += 1
+
+        if let error = observeAnnouncementsOutputError {
+            return Publishers.typedFailure(error: error)
+        }
+
+        return Publishers.typedJust(observeAnnouncementsOutputValue)
     }
 
     // MARK: - deleteAnnouncement
 
+    var deleteAnnouncementCallCount: Int = 0
+    var deleteAnnouncementInput: String?
+
     func deleteAnnouncement(id: String) -> AnyPublisher<Void, Never> {
-        Publishers.typedJust()
+        deleteAnnouncementInput = id
+        deleteAnnouncementCallCount += 1
+
+        return Publishers.typedJust()
     }
 }
 
