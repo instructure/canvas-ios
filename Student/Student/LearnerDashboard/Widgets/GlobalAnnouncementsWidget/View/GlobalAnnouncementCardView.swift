@@ -147,17 +147,11 @@ private struct TypeBadge: View, Equatable {
 private func makeViewModel(
     id: String,
     title: String,
-    icon: AccountNotificationIcon = .information,
+    icon: AccountNotificationIcon,
     startDate: Date? = Date()
 ) -> GlobalAnnouncementCardViewModel {
     .init(
-        model: .make(
-            id: id,
-            title: title,
-            icon: icon,
-            startDate: startDate
-        ),
-        router: PreviewEnvironment().router,
+        model: .make(id: id, title: title, icon: icon, startDate: startDate),
         onCardTap: { _ in }
     )
 }

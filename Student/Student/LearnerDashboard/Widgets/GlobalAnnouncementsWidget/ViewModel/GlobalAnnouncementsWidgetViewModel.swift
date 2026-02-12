@@ -73,14 +73,13 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
 
     private func observeAnnouncements() {
         interactor.observeAnnouncements()
-            .map { [weak self, environment] items -> [GlobalAnnouncementCardViewModel] in
+            .map { [weak self] items -> [GlobalAnnouncementCardViewModel] in
                 items
                     .sorted { $0.startDate ?? Date.distantPast > $1.startDate ?? Date.distantPast }
                     .map { item in
                         GlobalAnnouncementCardViewModel(
                             model: item,
-                            router: environment.router,
-                            onCardTap: { [weak self] controller in
+                            onCardTap: { controller in
                                 self?.showDetails(for: item, from: controller)
                             }
                         )

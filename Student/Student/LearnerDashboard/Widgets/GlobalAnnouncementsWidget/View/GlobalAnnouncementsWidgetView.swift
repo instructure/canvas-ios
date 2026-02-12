@@ -56,16 +56,10 @@ struct GlobalAnnouncementsWidgetView: View {
 
 #Preview {
     @Previewable @State var viewModel = makePreviewViewModel()
-    @Previewable @State var subscriptions = Set<AnyCancellable>()
 
     GlobalAnnouncementsWidgetView(viewModel: viewModel)
         .padding()
         .frame(maxHeight: .infinity, alignment: .top)
-        .onAppear {
-            viewModel.refresh(ignoreCache: false)
-                .sink { _ in }
-                .store(in: &subscriptions)
-        }
 }
 
 private func makePreviewViewModel() -> GlobalAnnouncementsWidgetViewModel {

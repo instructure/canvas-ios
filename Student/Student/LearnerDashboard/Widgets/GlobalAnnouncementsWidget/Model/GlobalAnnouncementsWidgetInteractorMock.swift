@@ -23,7 +23,7 @@ import Foundation
 
 final class GlobalAnnouncementsWidgetInteractorMock: GlobalAnnouncementsWidgetInteractor {
 
-    var mockAnnouncements: [GlobalAnnouncementsWidgetItem] = []
+    var mockAnnouncements: [GlobalAnnouncementsWidgetItem]?
 
     // MARK: - loadAnnouncements
 
@@ -45,17 +45,18 @@ final class GlobalAnnouncementsWidgetInteractorMock: GlobalAnnouncementsWidgetIn
     // MARK: - observeAnnouncements
 
     var observeAnnouncementsCallCount: Int = 0
-    var observeAnnouncementsOutputValue: [GlobalAnnouncementsWidgetItem] { mockAnnouncements }
-    var observeAnnouncementsOutputError: Error?
+    var observeAnnouncementsSubject = PassthroughSubject<[GlobalAnnouncementsWidgetItem], Error>()
 
     func observeAnnouncements() -> AnyPublisher<[GlobalAnnouncementsWidgetItem], Error> {
         observeAnnouncementsCallCount += 1
 
-        if let error = observeAnnouncementsOutputError {
-            return Publishers.typedFailure(error: error)
-        }
+        if let mockAnnouncements {
+            return Publishers.typedJust(mockAnnouncements)
+        } else {
+            return observeAnnouncementsSubject
+                .eraseToAnyPublisher()
 
-        return Publishers.typedJust(observeAnnouncementsOutputValue)
+        }
     }
 
     // MARK: - deleteAnnouncement

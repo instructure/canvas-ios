@@ -33,12 +33,10 @@ final class GlobalAnnouncementCardViewModel: Identifiable, Equatable {
     var id: GlobalAnnouncementsWidgetItem { model }
 
     private let model: GlobalAnnouncementsWidgetItem
-    private let router: Router
     private let onCardTap: (WeakViewController) -> Void
 
     init(
         model: GlobalAnnouncementsWidgetItem,
-        router: Router,
         onCardTap: @escaping (WeakViewController) -> Void
     ) {
         self.model = model
@@ -54,7 +52,6 @@ final class GlobalAnnouncementCardViewModel: Identifiable, Equatable {
             title
         ].accessibilityJoined()
 
-        self.router = router
         self.onCardTap = onCardTap
     }
 
