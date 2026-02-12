@@ -23,6 +23,7 @@ import Foundation
 
 protocol GlobalAnnouncementsWidgetInteractor {
     func getAnnouncements(ignoreCache: Bool) -> AnyPublisher<[GlobalAnnouncementsWidgetItem], Error>
+    func deleteAnnouncement(id: String) -> AnyPublisher<Void, Never>
     func markAsRead(id: String) -> AnyPublisher<Void, Never>
 }
 
@@ -34,10 +35,12 @@ extension GlobalAnnouncementsWidgetInteractor where Self == GlobalAnnouncementsW
 
 final class GlobalAnnouncementsWidgetInteractorLive: GlobalAnnouncementsWidgetInteractor {
     private let moContext: NSManagedObjectContext
+    private let env: AppEnvironment
     private let announcementsStore: ReactiveStore<GetAccountNotifications>
 
     init(env: AppEnvironment) {
         self.moContext = env.database.viewContext
+        self.env = env
 
         self.announcementsStore = ReactiveStore(
             context: moContext,
@@ -48,7 +51,7 @@ final class GlobalAnnouncementsWidgetInteractorLive: GlobalAnnouncementsWidgetIn
 
     func getAnnouncements(ignoreCache: Bool) -> AnyPublisher<[GlobalAnnouncementsWidgetItem], Error> {
         announcementsStore
-            .getEntities(ignoreCache: ignoreCache)
+            .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
             .map { (announcements: [AccountNotification]) -> [GlobalAnnouncementsWidgetItem] in
                 announcements
                     .filter { !$0.closed }
@@ -63,6 +66,18 @@ final class GlobalAnnouncementsWidgetInteractorLive: GlobalAnnouncementsWidgetIn
                     }
             }
             .eraseToAnyPublisher()
+    }
+
+    func deleteAnnouncement(id: String) -> AnyPublisher<Void, Never> {
+        ReactiveStore(
+            context: moContext,
+            useCase: DeleteAccountNotification(id: id),
+            environment: env
+        )
+        .getEntities(ignoreCache: true)
+        .mapToVoid()
+        .replaceError(with: ())
+        .eraseToAnyPublisher()
     }
 
     func markAsRead(id: String) -> AnyPublisher<Void, Never> {

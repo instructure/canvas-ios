@@ -43,6 +43,7 @@ struct GlobalAnnouncementCardView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             }
             .paddingStyle(set: .standardCell)
+            .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
         .elevation(.cardLarge, background: .backgroundLightest)

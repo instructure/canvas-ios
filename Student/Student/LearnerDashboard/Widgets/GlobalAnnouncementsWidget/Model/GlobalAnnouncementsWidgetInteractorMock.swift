@@ -31,6 +31,11 @@ final class GlobalAnnouncementsWidgetInteractorMock: GlobalAnnouncementsWidgetIn
             .eraseToAnyPublisher()
     }
 
+    func deleteAnnouncement(id: String) -> AnyPublisher<Void, Never> {
+        Just(())
+            .eraseToAnyPublisher()
+    }
+
     func markAsRead(id: String) -> AnyPublisher<Void, Never> {
         markAsReadCalled = true
         return Just(())

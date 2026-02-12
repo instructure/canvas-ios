@@ -67,7 +67,8 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
                             model: item,
                             router: environment.router,
                             onMarkAsRead: { announcementId in
-                                self?.markAsRead(id: announcementId)
+                                self?.deleteAnnouncement(id: announcementId)
+//                                self?.markAsRead(id: announcementId)
                             }
                         )
                     }
@@ -83,6 +84,13 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
                 return Just(())
             }
             .eraseToAnyPublisher()
+    }
+
+    private func deleteAnnouncement(id: String) {
+        interactor.deleteAnnouncement(id: id)
+            .receive(on: DispatchQueue.main)
+            .sink()
+            .store(in: &subscriptions)
     }
 
     private func markAsRead(id: String) {
