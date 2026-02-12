@@ -24,7 +24,6 @@ struct GlobalAnnouncementsWidgetItem: Identifiable, Equatable {
     let title: String
     let icon: AccountNotificationIcon
     let startDate: Date?
-    let isClosed: Bool
     let message: String
 }
 
@@ -36,7 +35,6 @@ extension GlobalAnnouncementsWidgetItem {
         title: String = "",
         icon: AccountNotificationIcon = .information,
         startDate: Date? = nil,
-        isClosed: Bool = false,
         message: String = ""
     ) -> GlobalAnnouncementsWidgetItem {
         GlobalAnnouncementsWidgetItem(
@@ -44,7 +42,6 @@ extension GlobalAnnouncementsWidgetItem {
             title: title,
             icon: icon,
             startDate: startDate,
-            isClosed: isClosed,
             message: message
         )
     }

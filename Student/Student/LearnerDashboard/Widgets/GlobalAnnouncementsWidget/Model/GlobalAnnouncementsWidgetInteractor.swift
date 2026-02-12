@@ -53,14 +53,17 @@ final class GlobalAnnouncementsWidgetInteractorLive: GlobalAnnouncementsWidgetIn
             .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
             .map { (announcements: [AccountNotification]) -> [GlobalAnnouncementsWidgetItem] in
                 announcements
-                    .filter { !$0.closed }
+                    .filter {
+                        // Return only Announcements which had not been dismissed before.
+                        // Past Announcements (regardless of `closed` state) are not even received.
+                        !$0.closed
+                    }
                     .map { announcement in
                         GlobalAnnouncementsWidgetItem(
                             id: announcement.id,
                             title: announcement.subject,
                             icon: announcement.icon,
                             startDate: announcement.startAt,
-                            isClosed: announcement.closed,
                             message: announcement.message
                         )
                     }

@@ -52,6 +52,7 @@ struct GlobalAnnouncementDetailsScreen: View {
         VStack(alignment: .leading, spacing: 0) {
             Text(viewModel.title)
                 .paragraphStyle(.heading)
+                .accessibilityAddTraits(.isHeader)
 
             if let date = viewModel.date {
                 InstUI.TextSectionView(

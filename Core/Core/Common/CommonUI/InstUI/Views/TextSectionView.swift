@@ -73,6 +73,7 @@ public extension InstUI {
                             ) {
                                 Text(sectionData.title)
                                     .textStyle(.infoTitle)
+                                    .accessibilityAddTraits(.isHeader)
 
                                 if sectionData.isRichContent {
                                     WebView(

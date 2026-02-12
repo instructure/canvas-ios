@@ -39,6 +39,8 @@ struct GlobalAnnouncementsWidgetView: View {
                             totalPages: $totalPages
                         ) { cardViewModel in
                             GlobalAnnouncementCardView(viewModel: cardViewModel)
+                                .accessibilityElement(children: .contain)
+                                .identifier("Dashboard.GlobalAnnouncementCard.Id.\(cardViewModel.id)")
                         }
 
                         InstUI.PageIndicator(currentIndex: currentPage, count: totalPages)
