@@ -63,14 +63,15 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
         wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(receivedFullWidth?.count, 2)
+        XCTAssertEqual(receivedFullWidth?.count, 4)
         XCTAssertEqual(receivedFullWidth?[0].id, .conferences)
         XCTAssertEqual(receivedFullWidth?[1].id, .courseInvitations)
-        XCTAssertEqual(receivedGrid?.count, 4)
-        XCTAssertEqual(receivedGrid?[0].id, .helloWidget)
-        XCTAssertEqual(receivedGrid?[1].id, .widget1)
-        XCTAssertEqual(receivedGrid?[2].id, .widget2)
-        XCTAssertEqual(receivedGrid?[3].id, .widget3)
+        XCTAssertEqual(receivedFullWidth?[2].id, .globalAnnouncements)
+        XCTAssertEqual(receivedFullWidth?[3].id, .helloWidget)
+        XCTAssertEqual(receivedGrid?.count, 3)
+        XCTAssertEqual(receivedGrid?[0].id, .widget1)
+        XCTAssertEqual(receivedGrid?[1].id, .widget2)
+        XCTAssertEqual(receivedGrid?[2].id, .widget3)
     }
 
     // MARK: - Load widgets with saved configs
@@ -79,7 +80,6 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         userDefaults.learnerDashboardWidgetConfigs = [
             DashboardWidgetConfig(id: .widget3, order: 5, isVisible: true),
             DashboardWidgetConfig(id: .widget1, order: 20, isVisible: false),
-            DashboardWidgetConfig(id: .helloWidget, order: 0, isVisible: true),
             DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
         ]
         testee = LearnerDashboardInteractorLive(
@@ -102,10 +102,9 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         wait(for: [expectation], timeout: 5)
 
         XCTAssertEqual(receivedFullWidth?.count, 0)
-        XCTAssertEqual(receivedGrid?.count, 3)
-        XCTAssertEqual(receivedGrid?[0].id, .helloWidget)
-        XCTAssertEqual(receivedGrid?[1].id, .widget3)
-        XCTAssertEqual(receivedGrid?[2].id, .widget2)
+        XCTAssertEqual(receivedGrid?.count, 2)
+        XCTAssertEqual(receivedGrid?[0].id, .widget3)
+        XCTAssertEqual(receivedGrid?[1].id, .widget2)
     }
 
     func test_loadWidgets_shouldSeparateFullWidthFromGridWidgets() {
@@ -144,12 +143,17 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
     private func makeViewModelFactory() -> (DashboardWidgetConfig) -> any DashboardWidgetViewModel {
         return { config in
-            MockWidgetViewModel(config: config)
+            let actualViewModel = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
+                config: config,
+                snackBarViewModel: .init(),
+                coursesInteractor: CoursesInteractorMock()
+            )
+            return DashboardWidgetViewModelMock(config: config, isFullWidth: actualViewModel.isFullWidth)
         }
     }
 }
 
-private final class MockWidgetViewModel: DashboardWidgetViewModel {
+private final class DashboardWidgetViewModelMock: DashboardWidgetViewModel {
     typealias ViewType = Never
 
     let config: DashboardWidgetConfig
@@ -157,9 +161,9 @@ private final class MockWidgetViewModel: DashboardWidgetViewModel {
     let isEditable = false
     let state: InstUI.ScreenState = .data
 
-    init(config: DashboardWidgetConfig) {
+    init(config: DashboardWidgetConfig, isFullWidth: Bool) {
         self.config = config
-        self.isFullWidth = config.id == .courseInvitations || config.id == .conferences
+        self.isFullWidth = isFullWidth
     }
 
     func makeView() -> Never {

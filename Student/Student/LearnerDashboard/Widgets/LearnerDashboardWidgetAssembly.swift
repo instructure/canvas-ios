@@ -23,10 +23,13 @@ enum LearnerDashboardWidgetAssembly {
 
     static func makeDefaultWidgetConfigs() -> [DashboardWidgetConfig] {
         let identifiers: [DashboardWidgetIdentifier] = [
+            // full width
             .conferences,
             .courseInvitations,
             .globalAnnouncements,
             .helloWidget,
+
+            // grid
             .widget1,
             .widget2,
             .widget3
