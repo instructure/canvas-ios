@@ -23,9 +23,13 @@ enum LearnerDashboardWidgetAssembly {
 
     static func makeDefaultWidgetConfigs() -> [DashboardWidgetConfig] {
         let identifiers: [DashboardWidgetIdentifier] = [
+            // full width
             .conferences,
             .courseInvitations,
+            .globalAnnouncements,
             .helloWidget,
+
+            // grid
             .widget1,
             .widget2,
             .widget3
@@ -57,6 +61,11 @@ enum LearnerDashboardWidgetAssembly {
                 interactor: coursesInteractor,
                 snackBarViewModel: snackBarViewModel
             )
+        case .globalAnnouncements:
+            GlobalAnnouncementsWidgetViewModel(
+                config: config,
+                interactor: .live(env: .shared)
+            )
         case .helloWidget:
             HelloWidgetViewModel(
                 config: config,
@@ -79,6 +88,8 @@ enum LearnerDashboardWidgetAssembly {
             vm.makeView()
         case let vm as CourseInvitationsWidgetViewModel:
 	        vm.makeView()
+        case let vm as GlobalAnnouncementsWidgetViewModel:
+            vm.makeView()
         case let vm as HelloWidgetViewModel:
             vm.makeView()
         case let vm as Widget1ViewModel:

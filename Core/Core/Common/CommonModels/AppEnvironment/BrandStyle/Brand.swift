@@ -17,10 +17,12 @@
 //
 
 import UIKit
+import SwiftUI
 
 public struct Brand: Equatable {
 
-    public var headerImage: UIImage?
+    public var headerUIImage: UIImage?
+    public var headerImage: Image
     public var institutionLogo: URL?
 
     public var buttonPrimaryBackground: UIColor {
@@ -123,7 +125,8 @@ public struct Brand: Equatable {
         primary: UIColor?,
         institutionLogo: URL?
     ) {
-        self.headerImage = headerImage ?? UIImage(named: "defaultHeaderImage", in: .core, compatibleWith: nil)
+        self.headerUIImage = headerImage ?? UIImage(named: "defaultHeaderImage", in: .core, compatibleWith: nil)
+        self.headerImage = headerImage?.asImage ?? Image("defaultHeaderImage", bundle: .core)
         self.institutionLogo = institutionLogo
         self.buttonPrimaryBackgroundLight = buttonPrimaryBackground ?? .backgroundInfo
         self.buttonPrimaryTextLight = buttonPrimaryText != nil ? buttonPrimaryText!.ensureContrast(against: self.buttonPrimaryBackgroundLight) : .textLightest.variantForLightMode
@@ -246,7 +249,7 @@ public struct Brand: Equatable {
         logoView.contentMode = .scaleAspectFit
         logoView.heightAnchor.constraint(equalToConstant: 44).isActive = true
         logoView.widthAnchor.constraint(equalToConstant: 44).isActive = true
-        logoView.image = headerImage
+        logoView.image = headerUIImage
         logoView.backgroundColor = headerImageBackground
         logoView.accessibilityElementsHidden = true
 
@@ -257,5 +260,17 @@ public struct Brand: Equatable {
         }
 
         return logoView
+    }
+}
+
+extension Color {
+    public static var brandPrimary: Color {
+        Color(Brand.shared.primary)
+    }
+}
+
+extension ShapeStyle where Self == Color {
+    public static var brandPrimary: Color {
+        .brandPrimary
     }
 }
