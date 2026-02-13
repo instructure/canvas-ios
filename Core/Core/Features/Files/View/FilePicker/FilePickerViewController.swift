@@ -22,6 +22,7 @@ import MobileCoreServices
 import VisionKit
 import PDFKit
 import UniformTypeIdentifiers
+import PhotosUI
 
 public enum FilePickerSource: Int, CaseIterable {
     case camera, library, files, audio, documentScan
@@ -271,11 +272,8 @@ extension FilePickerViewController: UITabBarDelegate {
                 self.env.router.show(cameraController, from: self, options: .modal())
             }
         case .library:
-            guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
-            let libraryController = UIImagePickerController()
+            let libraryController = PHPickerViewController(configuration: createPHPickerViewConfig())
             libraryController.delegate = self
-            libraryController.sourceType = .photoLibrary
-            libraryController.mediaTypes = mediaTypes
             env.router.show(libraryController, from: self, options: .modal())
         case .files:
             let documentTypes = utis.compactMap { $0.uttype }
@@ -360,6 +358,84 @@ extension FilePickerViewController: UIImagePickerControllerDelegate, UINavigatio
         } catch {
             showError(error)
         }
+    }
+}
+
+extension FilePickerViewController: PHPickerViewControllerDelegate {
+    public func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        for result in results {
+            let itemProvider = result.itemProvider
+            if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                handlePickedImage(itemProvider)
+            } else if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
+                handlePickedVideo(itemProvider)
+            }
+        }
+    }
+
+    private func handlePickedImage(_ provider: NSItemProvider) {
+        provider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+            guard let self else { return }
+            if let error {
+                DispatchQueue.main.async {
+                    self.showError(error)
+                }
+                return
+            }
+            if let image = image as? UIImage {
+                DispatchQueue.main.async {
+                    do {
+                        self.add(try image.normalize().write(), source: .library)
+                    } catch {
+                        self.showError(error)
+                    }
+                }
+            }
+        }
+    }
+
+    private func handlePickedVideo(_ provider: NSItemProvider) {
+        provider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, error in
+            guard let self else { return }
+
+            if let error {
+                DispatchQueue.main.async { self.showError(error) }
+                return
+            }
+
+            guard let url else {
+                DispatchQueue.main.async {
+                    self.showError(message: "Could not load video from library.")
+                }
+                return
+            }
+
+            do {
+                let destination = URL
+                    .Directories
+                    .temporary
+                    .appendingPathComponent("videos", isDirectory: true)
+                    .appendingPathComponent(String(Clock.now.timeIntervalSince1970), isDirectory: true)
+                    .appendingPathExtension(url.pathExtension)
+                try url.copy(to: destination)
+                DispatchQueue.main.async {
+                    self.add(destination, source: .library)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.showError(error)
+                }
+            }
+        }
+    }
+
+    private func createPHPickerViewConfig() -> PHPickerConfiguration {
+        var config = PHPickerConfiguration(photoLibrary: .shared())
+        config.selectionLimit = maxFileCount
+        config.selection = .ordered
+        config.filter = .any(of: [.images, .videos])
+        return config
     }
 }
 
