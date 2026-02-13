@@ -39205,6 +39205,9 @@
         }
       }
     },
+    "Courses & Groups" : {
+
+    },
     "Create Folder" : {
       "comment" : "cancel folder creation",
       "extractionState" : "manual",

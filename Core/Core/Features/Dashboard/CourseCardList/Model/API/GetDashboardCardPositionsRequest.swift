@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,14 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum DashboardWidgetIdentifier: String, Codable, CaseIterable {
-    case conferences
-    case courseInvitations
-    case globalAnnouncements
-    case coursesAndGroups
-    case widget1
-    case widget2
-    case widget3
+public struct GetDashboardCardPositionsRequest: APIRequestable {
+    public typealias Response = APIDashboardCardPositions
 
-    case helloWidget
+    public var path: String { "users/self/dashboard_positions" }
+    public var method: APIMethod { .get }
 }

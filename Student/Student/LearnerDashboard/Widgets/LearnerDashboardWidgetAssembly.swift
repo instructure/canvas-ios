@@ -29,6 +29,7 @@ enum LearnerDashboardWidgetAssembly {
             .helloWidget,
 
             // grid
+            .coursesAndGroups,
             .widget1,
             .widget2,
             .widget3
@@ -48,10 +49,7 @@ enum LearnerDashboardWidgetAssembly {
         case .conferences:
             ConferencesWidgetViewModel(
                 config: config,
-                interactor: .live(
-                    coursesInteractor: coursesInteractor,
-                    env: .shared
-                ),
+                interactor: .live(coursesInteractor: coursesInteractor, env: .shared),
                 snackBarViewModel: snackBarViewModel
             )
         case .courseInvitations:
@@ -64,6 +62,11 @@ enum LearnerDashboardWidgetAssembly {
             GlobalAnnouncementsWidgetViewModel(
                 config: config,
                 interactor: .live(env: .shared)
+            )
+        case .coursesAndGroups:
+            CoursesAndGroupsWidgetViewModel(
+                config: config,
+                interactor: .live(coursesInteractor: coursesInteractor, env: .shared)
             )
         case .helloWidget:
             HelloWidgetViewModel(
@@ -88,6 +91,8 @@ enum LearnerDashboardWidgetAssembly {
         case let vm as CourseInvitationsWidgetViewModel:
 	        vm.makeView()
         case let vm as GlobalAnnouncementsWidgetViewModel:
+            vm.makeView()
+        case let vm as CoursesAndGroupsWidgetViewModel:
             vm.makeView()
         case let vm as HelloWidgetViewModel:
             vm.makeView()
