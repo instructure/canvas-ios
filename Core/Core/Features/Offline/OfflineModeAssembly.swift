@@ -44,7 +44,7 @@ public enum OfflineModeAssembly {
     }
 
     public static func make(parent: UIViewController) -> OfflineBannerViewModel {
-        OfflineBannerViewModel(interactor: make(), parent: parent)
+        OfflineBannerViewModel(interactor: make())
     }
 
     public static func makeViewModel() -> OfflineModeViewModel {

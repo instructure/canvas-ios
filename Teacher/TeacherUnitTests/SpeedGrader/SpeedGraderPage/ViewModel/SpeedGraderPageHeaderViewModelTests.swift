@@ -28,6 +28,7 @@ class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
         let assignment = Assignment(context: databaseClient)
         assignment.gradedIndividually = false
         submission.groupID = "TestGroupID"
+        assignment.groupCategoryID = "TestCategoryID"
 
         let testee = SpeedGraderPageHeaderViewModel(
             assignment: assignment,
@@ -50,6 +51,7 @@ class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
         XCTAssertEqual(testee.userNameModel.name, "Student")
 
         submission.groupID = "TestGroupID"
+        assignment.groupCategoryID = "TestCategoryID"
 
         testee = SpeedGraderPageHeaderViewModel(
             assignment: assignment,
