@@ -228,10 +228,10 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             state: .loading(nil)
         )
 
-        var downloaders = TabName
-            .OfflineSyncableTabs
+        var downloaders = SyncTab
+            .offlineSyncableTabs
             .filter { $0 != .files && $0 != .modules } // files and modules are handled separately
-            .map { downloadTabContent(for: entry, tabName: $0) }
+            .map { downloadTabContent(for: entry, tabType: $0) }
 
         downloaders.append(downloadFiles(for: entry))
         downloaders.append(downloadModules(for: entry))
@@ -266,23 +266,23 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     ///     - We first check if the received tab is already part of the visible course tabs and set the tab id that needs to be updated.
     ///     - If it isn't part of the visible tabs, then this is an "Additional Content" download, so we set the tab id accordingly.
     /// Otherwise we check if the currently received tab has been selected by the user.
-    private func downloadTabContent(for entry: CourseSyncEntry, tabName: TabName) -> AnyPublisher<Void, Never> {
+    private func downloadTabContent(for entry: CourseSyncEntry, tabType: SyncTab) -> AnyPublisher<Void, Never> {
         unowned let unownedSelf = self
 
         var tabId: String?
         var interactor: CourseSyncContentInteractor?
 
         if entry.isFullContentSync {
-            interactor = contentInteractors.first(where: { $0.associatedTabType == tabName })
+            interactor = contentInteractors.first(where: { $0.associatedTabType == tabType.tabName })
 
-            if let tab = entry.tabs.first(where: { $0.type == tabName }) {
+            if let tab = entry.tabs.first(where: { $0.type == tabType }) {
                 tabId = tab.id
             } else if let tab = entry.tabs.first(where: { $0.type == .additionalContent }) {
                 tabId = tab.id
             }
-        } else if entry.selectedTabs.contains(tabName) {
-            interactor = contentInteractors.first(where: { $0.associatedTabType == tabName })
-            tabId = entry.tabs.first(where: { $0.type == tabName })?.id
+        } else if entry.selectedTabs.contains(tabType) {
+            interactor = contentInteractors.first(where: { $0.associatedTabType == tabType.tabName })
+            tabId = entry.tabs.first(where: { $0.type == tabType })?.id
         }
 
         guard
@@ -472,6 +472,148 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         .eraseToAnyPublisher()
     }
 
+    private func downloadStudio(for entry: CourseSyncEntry) -> AnyPublisher<Void, Never> {
+        var tabId: String?
+
+        if entry.isFullContentSync {
+            if let tab = entry.tabs.first(where: { $0.type == .studio }) {
+                tabId = tab.id
+            }
+        } else if entry.selectedTabs.contains(.studio) {
+            tabId = entry.tabs.first(where: { $0.type == .studio })?.id
+        }
+
+        guard
+            let tabId,
+            let tabIndex = entry.tabs.firstIndex(where: { $0.id == tabId }),
+            entry.tabs[tabIndex].selectionState == .selected ||
+            entry.tabs[tabIndex].selectionState == .partiallySelected
+        else {
+            return removeUnavailableStudioMediaItems(
+                courseId: entry.syncID,
+                environment: envResolver.targetEnvironment(for: entry.syncID)
+            )
+        }
+
+        let studioMedia = entry.studioMedia.filter {
+            if entry.isFullContentSync {
+                return true
+            } else {
+                return $0.selectionState == .selected
+            }
+        }
+
+        guard !studioMedia.isEmpty else {
+            return removeUnavailableStudioMediaItems(
+                courseId: entry.syncID,
+                newMediaIDs: studioMedia.map { $0.id },
+                environment: envResolver.targetEnvironment(for: entry.syncID)
+            )
+        }
+
+        unowned let unownedSelf = self
+
+        unownedSelf.setState(
+            selection: .tab(entry.id, entry.tabs[tabIndex].id),
+            state: .loading(nil)
+        )
+
+        return studioMediaInteractor
+            .studioApi(courseSyncID: entry.syncID)
+            .flatMap { api in
+
+                studioMedia.publisher
+                    .eraseToAnyPublisher()
+                    .buffer(size: .max, prefetch: .byRequest, whenFull: .dropOldest)
+                    .receive(on: unownedSelf.scheduler)
+                    .flatMap(maxPublishers: .max(6)) { file in
+                        unownedSelf.downloadMediaItem(
+                            studioApi: api,
+                            entry: entry,
+                            mediaItem: file,
+                            tabIndex: tabIndex,
+                            mediaItems: studioMedia
+                        )
+                    }
+                    .collect()
+                    .handleEvents(
+                        receiveOutput: { _ in
+                            let hasError = unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.hasStudioError ?? false
+                            let state: CourseSyncEntry.State = hasError ? .error : .downloaded
+
+                            unownedSelf.setState(
+                                selection: .tab(entry.id, entry.tabs[tabIndex].id), state: state
+                            )
+                        }
+                    )
+                    .flatMap { _ in
+
+                        unownedSelf.removeUnavailableStudioMediaItems(
+                            courseId: entry.syncID,
+                            newMediaIDs: studioMedia.map { $0.id },
+                            environment: unownedSelf.envResolver.targetEnvironment(for: entry.syncID)
+                        )
+                    }
+                    .eraseToAnyPublisher()
+            }
+            .catch { error in
+                unownedSelf.setState(
+                    selection: .tab(entry.id, entry.tabs[tabIndex].id), state: .error
+                )
+
+                return Just(()).eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
+    }
+
+    private func downloadMediaItem(
+        studioApi: API,
+        entry: CourseSyncEntry,
+        mediaItem: CourseSyncEntry.StudioMediaItem,
+        tabIndex: Array<CourseSyncEntry.Tab>.Index,
+        mediaItems: [CourseSyncEntry.StudioMediaItem]
+    ) -> AnyPublisher<Float, Never> {
+        let mediaIndex = mediaItems.firstIndex(of: mediaItem)!
+        unowned let unownedSelf = self
+
+        setState(
+            selection: .studio(entry.id, mediaItems[mediaIndex].id), state: .loading(nil)
+        )
+
+        return studioMediaInteractor
+            .downloadContent(
+                mediaItem: mediaItem,
+                courseSyncID: entry.syncID,
+                api: studioApi
+            )
+            .throttle(for: .milliseconds(300), scheduler: unownedSelf.scheduler, latest: true)
+            .handleEvents(
+                receiveOutput: { progress in
+                    unownedSelf.setState(
+                        selection: .studio(entry.id, mediaItems[mediaIndex].id), state: .loading(progress)
+                    )
+                    unownedSelf.setState(
+                        selection: .tab(entry.id, entry.tabs[tabIndex].id),
+                        state: .loading(unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.progress)
+                    )
+                },
+                receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        unownedSelf.setState(
+                            selection: .file(entry.id, mediaItems[mediaIndex].id), state: .downloaded
+                        )
+                    case .failure:
+                        unownedSelf.setState(
+                            selection: .file(entry.id, mediaItems[mediaIndex].id), state: .error
+                        )
+                    }
+                }
+            )
+            .catch { _ in Just(0).eraseToAnyPublisher() }
+            .eraseToAnyPublisher()
+    }
+
     /// Downloads modules tab for a single course.
     /// If the user choses to sync the whole course, then:
     ///     - We first check if the modules tab is already part of the visible course tabs and set the tab id that needs to be updated.
@@ -528,7 +670,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                     state: .downloaded
                 )
             }
-            .catch { _ in
+            .catch { error in
                 unownedSelf.setState(
                     selection: .tab(entry.id, entry.tabs[tabIndex].id),
                     state: .error
@@ -585,6 +727,15 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             courseId: courseId,
             newFileIDs: newFileIDs,
             environment: environment
+        )
+        .replaceError(with: ())
+        .eraseToAnyPublisher()
+    }
+
+    private func removeUnavailableStudioMediaItems(courseId: CourseSyncID, newMediaIDs: [String] = [], environment: AppEnvironment) -> AnyPublisher<Void, Never> {
+        studioMediaInteractor.removeUnavailableStudioMediaItems(
+            courseSyncID: courseId,
+            newMediaIDs: newMediaIDs
         )
         .replaceError(with: ())
         .eraseToAnyPublisher()
@@ -711,7 +862,7 @@ private extension Publisher {
 }
 
 private extension Collection where Element == ModuleItem {
-    var tabItemsToRequestByList: [TabName] {
+    var tabItemsToRequestByList: [SyncTab] {
         filter {
             switch $0.type {
             case .assignment:
@@ -723,9 +874,10 @@ private extension Collection where Element == ModuleItem {
             }
         }
         .compactMap { $0.associatedOfflineTab }
+        .compactMap(SyncTab.init)
     }
 
-    var tabItemsToRequestByID: [TabName] {
+    var tabItemsToRequestByID: [SyncTab] {
         filter {
             switch $0.type {
             case .assignment:
@@ -737,6 +889,7 @@ private extension Collection where Element == ModuleItem {
             }
         }
         .compactMap { $0.associatedOfflineTab }
+        .compactMap(SyncTab.init)
     }
 }
 

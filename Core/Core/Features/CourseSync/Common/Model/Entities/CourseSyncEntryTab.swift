@@ -24,7 +24,7 @@ public extension CourseSyncEntry {
 
         let id: String
         let name: String
-        let type: TabName
+        let type: SyncTab
         var isCollapsed: Bool = true
         var state: State = .loading(nil)
         var selectionState: OfflineListCellView.SelectionState = .deselected

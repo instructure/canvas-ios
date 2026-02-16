@@ -27,9 +27,27 @@ public protocol StudioMetadataDownloadInteractor {
         api: API,
         courseID: String
     ) -> AnyPublisher<[APIStudioMediaItem], Error>
+
+    func fetchStudioMediaItem(
+        api: API,
+        mediaID: String,
+        courseID: String
+    ) -> AnyPublisher<APIStudioMediaItem, Error>
 }
 
 class StudioMetadataDownloadInteractorLive: StudioMetadataDownloadInteractor {
+
+    func fetchStudioMediaItem(
+        api: API,
+        mediaID: String,
+        courseID: String
+    ) -> AnyPublisher<APIStudioMediaItem, Error> {
+        let request = GetStudioMediaRequest(courseId: courseID, mediaID: mediaID)
+        return api
+            .makeRequest(request)
+            .map(\.body.media)
+            .eraseToAnyPublisher()
+    }
 
     func fetchStudioMediaItems(
         api: API,

@@ -38,6 +38,10 @@ extension CourseSyncItemSelection {
             if let file = course.files.first(where: { $0.id == self }) {
                 return .file(course.id, file.id)
             }
+
+            if let studioItem = course.studioMedia.first(where: { $0.id == self }) {
+                return .studio(course.id, studioItem.id)
+            }
         }
 
         return nil
@@ -63,6 +67,9 @@ extension CourseSyncItemSelection {
 
             let selectedFiles = syncEntry.files.filter { $0.selectionState == .selected }
             partialResult.append(contentsOf: selectedFiles.map { $0.id })
+
+            let selectedStudio = syncEntry.studioMedia.filter { $0.selectionState == .selected }
+            partialResult.append(contentsOf: selectedStudio.map { $0.id })
         }
     }
 }

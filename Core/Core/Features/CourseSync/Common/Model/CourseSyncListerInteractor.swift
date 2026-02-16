@@ -123,6 +123,8 @@ private extension Array where Element == CourseSyncEntry {
             entriesCpy[id: entryID]?.selectTab(id: tabID, selectionState: .selected)
         case let .file(entryID, fileID):
             entriesCpy[id: entryID]?.selectFile(id: fileID, selectionState: .selected)
+        case let .studio(entryID, mediaID):
+            entriesCpy[id: entryID]?.selectStudioMediaItem(id: mediaID, selectionState: .selected)
         }
 
         return entriesCpy

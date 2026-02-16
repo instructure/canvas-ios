@@ -27,3 +27,15 @@ public struct GetStudioCourseMediaRequest: APIRequestable {
         path = "/api/public/v1/courses/\(courseId)/media"
     }
 }
+
+public struct GetStudioMediaRequest: APIRequestable {
+    public struct Response: Codable {
+        let media: APIStudioMediaItem
+    }
+
+    public let path: String
+
+    public init(courseId: String, mediaID: String) {
+        path = "/api/public/v1/courses/\(courseId)/media/\(mediaID)"
+    }
+}

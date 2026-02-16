@@ -74,3 +74,15 @@ public extension Array where Element == CourseSyncEntry.File {
         }
     }
 }
+
+public extension Array where Element == CourseSyncEntry.StudioMediaItem {
+    subscript(id id: String) -> CourseSyncEntry.StudioMediaItem? {
+        get {
+            self.first(where: { $0.id == id })
+        } set {
+            if let firstIndex = firstIndex(where: { $0.id == id }), let newValue {
+                self[firstIndex] = newValue
+            }
+        }
+    }
+}

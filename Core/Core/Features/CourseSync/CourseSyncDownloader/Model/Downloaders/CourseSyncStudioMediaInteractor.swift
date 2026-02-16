@@ -22,6 +22,12 @@ import Foundation
 
 public protocol CourseSyncStudioMediaInteractor {
     func getContent(courseIDs: [CourseSyncID]) -> AnyPublisher<Void, Never>
+    func studioApi(courseSyncID: CourseSyncID) -> AnyPublisher<API, Error>
+    func downloadContent(mediaItem: CourseSyncEntry.StudioMediaItem, courseSyncID: CourseSyncID, api: API) -> AnyPublisher<Float, Error>
+    func removeUnavailableStudioMediaItems(
+        courseSyncID: CourseSyncID,
+        newMediaIDs: [String]
+    ) -> AnyPublisher<Void, Error>
 }
 
 public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteractor {
@@ -178,6 +184,116 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                 }
                 return ()
             }
+            .eraseToAnyPublisher()
+    }
+
+    private func tweakingIFrameReferences(_ mediaData: CourseMediaData, expectedSize: Int) -> AnyPublisher<Void, Error> {
+
+        guard let mediaItem = mediaData.mediaItems.first else {
+            return Publishers.noInstanceFailure()
+        }
+
+        let studioDirectory = mediaData.studioDirectory
+
+        return Just(mediaItem)
+            .flatMap { [downloadInteractor] item in
+                downloadInteractor
+                    .downloadCaptionsPoster(
+                        item,
+                        expectedSize: expectedSize,
+                        rootDirectory: studioDirectory
+                    )
+            }
+            .tryMap { [studioIFrameReplaceInteractor] offlineVideo in
+                for (htmlURL, iframes) in mediaData.iframes {
+                    try studioIFrameReplaceInteractor.replaceStudioIFrames(
+                        inHtmlAtURL: htmlURL,
+                        iframes: iframes,
+                        offlineVideos: [offlineVideo]
+                    )
+                }
+                return ()
+            }
+            .eraseToAnyPublisher()
+    }
+
+    public func studioApi(courseSyncID: CourseSyncID) -> AnyPublisher<API, Error> {
+        return studioAuthInteractor
+            .makeStudioAPI(env: envResolver.targetEnvironment(for: courseSyncID), courseId: courseSyncID.value)
+            .mapError { $0 as Error }
+            .eraseToAnyPublisher()
+    }
+
+    public func downloadContent(mediaItem: CourseSyncEntry.StudioMediaItem, courseSyncID: CourseSyncID, api: API) -> AnyPublisher<Float, Error> {
+
+        let studioDirectory = envResolver
+            .offlineStudioDirectory(for: courseSyncID)
+
+        let iframesDiscoveryPublisher = studioIFrameDiscoveryInteractor
+            .discoverStudioIFrames(courseID: courseSyncID)
+            .setFailureType(to: Error.self)
+
+        return iframesDiscoveryPublisher
+            .flatMap { [metadataDownloadInteractor, downloadInteractor] iframes in
+
+                return metadataDownloadInteractor
+                    .fetchStudioMediaItem(api: api, mediaID: mediaItem.id, courseID: courseSyncID.localID)
+                    .flatMap { [weak self] item in
+                        guard let self else {
+                            return Publishers.noInstanceFailure(output: APIStudioMediaItem.self)
+                        }
+
+                        return self.tweakingIFrameReferences(
+                            CourseMediaData(
+                                studioDirectory: studioDirectory,
+                                mediaItems: [item],
+                                iframes: iframes
+                            ),
+                            expectedSize: mediaItem.bytesToDownload
+                        )
+                        .map { item }
+                        .eraseToAnyPublisher()
+                    }
+                    .flatMap { fetchedItem in
+                        return downloadInteractor
+                            .download(fetchedItem, expectedSize: mediaItem.bytesToDownload, rootDirectory: studioDirectory)
+                    }
+            }
+            .eraseToAnyPublisher()
+    }
+
+    public func removeUnavailableStudioMediaItems(
+        courseSyncID: CourseSyncID,
+        newMediaIDs: [String]
+    ) -> AnyPublisher<Void, Error> {
+        guard let sessionID = envResolver.loginSession(for: courseSyncID)?.uniqueID else {
+            return Fail(error:
+                NSError.instructureError(
+                    String(localized: "There was an unexpected error. Please try again.", bundle: .core)
+                )
+            )
+            .eraseToAnyPublisher()
+        }
+
+        let fileManager = FileManager.default
+        let studioDirectory = envResolver
+            .offlineStudioDirectory(for: courseSyncID)
+
+        let studioMediaIDsArr: [String] = (try? fileManager.contentsOfDirectory(atPath: studioDirectory.path)) ?? []
+        let studioMediaIDs = Set(studioMediaIDsArr)
+        let mappedNewMediaIDs = newMediaIDs
+
+        let unavailableFileFolderURLs = studioMediaIDs
+            .subtracting(Set(mappedNewMediaIDs))
+            .map { studioDirectory.appendingPathComponent($0) }
+
+        unowned let unownedSelf = self
+
+        return unavailableFileFolderURLs
+            .publisher
+            .tryMap { try fileManager.removeItem(at: $0) }
+            .collect()
+            .map { _ in () }
             .eraseToAnyPublisher()
     }
 }

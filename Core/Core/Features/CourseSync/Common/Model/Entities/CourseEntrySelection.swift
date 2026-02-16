@@ -22,16 +22,19 @@ public enum CourseEntrySelection: Codable, Equatable, Comparable, Hashable {
     public typealias EntryID = String
     public typealias TabID = String
     public typealias FileID = String
+    public typealias MediaID = String
 
     case course(EntryID)
     case tab(EntryID, TabID)
     case file(EntryID, FileID)
+    case studio(EntryID, MediaID)
 
     private var sortPriority: Int {
         switch self {
         case .course: return 0
         case .tab: return 1
         case .file: return 2
+        case .studio: return 3
         }
     }
 
@@ -48,6 +51,8 @@ public enum CourseEntrySelection: Codable, Equatable, Comparable, Hashable {
             return lhsEntryID <= rhsEntryID
         case (let .file(lhsCourseID, lhsFileID), let .file(rhsCourseID, rhsFileID)):
             return lhsCourseID <= rhsCourseID && lhsFileID <= rhsFileID
+        case (let .studio(lhsCourseID, lhsMediaID), let .studio(rhsCourseID, rhsMediaID)):
+            return lhsCourseID <= rhsCourseID && lhsMediaID <= rhsMediaID
         case (let .tab(lhsCourseID, lhsTabID), let .tab(rhsCourseID, rhsTabID)):
             return lhsCourseID <= rhsCourseID && lhsTabID <= rhsTabID
         default:

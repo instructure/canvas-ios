@@ -28,9 +28,16 @@ public protocol CourseSyncEntryComposerInteractor {
 }
 
 public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryComposerInteractor {
+    private let studioInteractor: StudioSyncSelectorInteractor
     private let filesInteractor: CourseSyncFilesInteractor
 
-    init(filesInteractor: CourseSyncFilesInteractor = CourseSyncFilesInteractorLive()) {
+    init(
+        filesInteractor: CourseSyncFilesInteractor = CourseSyncFilesInteractorLive()
+    ) {
+        self.studioInteractor = StudioSyncSelectorInteractorLive(
+            authInteractor: StudioAPIAuthInteractorLive(),
+            metadataDownloadInteractor: StudioMetadataDownloadInteractorLive()
+        )
         self.filesInteractor = filesInteractor
     }
 
@@ -44,13 +51,25 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
             .compactMap({ $0.apiBaseURL })
             .first(where: { $0 != AppEnvironment.shared.api.baseURL })
 
-        var mappedTabs = tabs.map {
+        var mappedTabs = tabs
+            .compactMap { tab -> CourseSyncEntry.Tab? in
+                guard let type = SyncTab(name: tab.name) else { return nil }
+                return CourseSyncEntry.Tab(
+                    id: "courses/\(course.courseId)/tabs/\(tab.id)",
+                    name: tab.label,
+                    type: type
+                )
+            }
+
+        mappedTabs.append(
             CourseSyncEntry.Tab(
-                id: "courses/\(course.courseId)/tabs/\($0.id)",
-                name: $0.label,
-                type: $0.name
+                id: "courses/\(course.courseId)/tabs/studio",
+                name: String(localized: "Studio", bundle: .core),
+                type: .studio,
+                selectionState: .deselected
             )
-        }
+        )
+
         mappedTabs.append(
             CourseSyncEntry.Tab(
                 id: "courses/\(course.courseId)/tabs/additional-content",
@@ -60,7 +79,9 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
             )
         )
 
-        return filesInteractor
+        let courseSyncID = CourseSyncID(value: course.courseId, apiBaseURL: apiBaseURL)
+
+        let filesEntries = filesInteractor
             .getFiles(
                 courseId: course.courseId.localID,
                 useCache: useCache,
@@ -79,14 +100,35 @@ public final class CourseSyncEntryComposerInteractorLive: CourseSyncEntryCompose
                     )
                 }
             }
-            .map { files in
+
+        let studioEntries = studioInteractor
+            .getMediaItems(courseSyncID)
+            .map { items in
+                items.map { item in
+                    CourseSyncEntry.StudioMediaItem(
+                        id: "courses/\(course.courseId)/studio/\(item.source.id)",
+                        lti_launch_id: item.source.lti_launch_id,
+                        title: item.source.title,
+                        mimeType: item.source.mime_type,
+                        bytesToDownload: Int(item.downloadSize),
+                        url: item.source.url
+                    )
+                }
+            }
+            .eraseToAnyPublisher()
+
+        return Publishers
+            .CombineLatest(filesEntries, studioEntries)
+            .map { (files, items) in
+
                 CourseSyncEntry(
                     name: course.name,
                     id: "courses/\(course.courseId)",
                     hasFrontPage: course.hasFrontPage,
                     tabs: mappedTabs,
                     apiBaseURL: apiBaseURL,
-                    files: files
+                    files: files,
+                    studioMedia: items
                 )
             }
             .eraseToAnyPublisher()

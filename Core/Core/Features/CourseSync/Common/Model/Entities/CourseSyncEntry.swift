@@ -51,7 +51,7 @@ public struct CourseSyncEntry: Equatable {
     }
 
     /// Returns partially or fully selected tabs. "Additional Content" doesn't count.
-    var selectedTabs: [TabName] {
+    var selectedTabs: [SyncTab] {
         tabs
             .filter { $0.type != .additionalContent }
             .filter { $0.selectionState == .selected || $0.selectionState == .partiallySelected }
@@ -66,27 +66,45 @@ public struct CourseSyncEntry: Equatable {
     /// "Additional Content" and "Files" tabs don't count towards the final download size.
     var byteCountableSelectedTabs: [CourseSyncEntry.Tab] {
         tabs
-            .filter { $0.type != TabName.files && $0.type != TabName.additionalContent }
+            .filter { $0.type != .files && $0.type != .additionalContent }
             .filter { $0.selectionState == .selected }
     }
 
     var apiBaseURL: URL?
 
     var files: [CourseSyncEntry.File]
+    var studioMedia: [CourseSyncEntry.StudioMediaItem]
     var selectedFilesCount: Int {
         files.reduce(0) { partialResult, file in
             partialResult + (file.selectionState == .selected ? 1 : 0)
         }
     }
 
+    var selectedStudioMediaCount: Int {
+        studioMedia.reduce(0) { partialResult, media in
+            partialResult + (media.selectionState == .selected ? 1 : 0)
+        }
+    }
+
     var selectionCount: Int {
-        (selectedFilesCount + selectedTabsCount) - (selectedFilesCount > 0 ? 1 : 0)
+        var count = selectedTabsCount
+
+        if selectedFilesCount > 0 {
+            count += 1 + selectedFilesCount
+        }
+
+        if selectedStudioMediaCount > 0 {
+            count += 1 + selectedStudioMediaCount
+        }
+
+        return count
     }
 
     var isCollapsed: Bool = true
     var selectionState: OfflineListCellView.SelectionState = .deselected {
         didSet {
-            if isFullContentSync, let index = tabs.firstIndex(where: { $0.type == .additionalContent}) {
+            if isFullContentSync,
+               let index = tabs.firstIndex(where: { $0.type == .additionalContent}) {
                 tabs[index].selectionState = .selected
             }
         }
@@ -104,13 +122,18 @@ public struct CourseSyncEntry: Equatable {
                 partialResult + file.bytesToDownload
             }
 
+        let studioMediaSize = studioMedia
+            .reduce(0) { partialResult, media in
+                partialResult + media.bytesToDownload
+            }
+
         let tabsSize = tabs
-            .filter { $0.type != TabName.files && $0.type != TabName.additionalContent }
+            .filter { $0.type != .files && $0.type != .studio && $0.type != .additionalContent }
             .reduce(0) { partialResult, tab in
                 partialResult + tab.bytesToDownload
             }
 
-        return filesSize + tabsSize
+        return filesSize + studioMediaSize + tabsSize
     }
 
     /// Total size of course files in bytes.
@@ -118,6 +141,14 @@ public struct CourseSyncEntry: Equatable {
         files
             .reduce(0) { partialResult, file in
                 partialResult + file.bytesToDownload
+            }
+    }
+
+    /// Total size of course studio items in bytes.
+    var totalStudioMediaSize: Int {
+        studioMedia
+            .reduce(0) { partialResult, media in
+                partialResult + media.bytesToDownload
             }
     }
 
@@ -132,6 +163,12 @@ public struct CourseSyncEntry: Equatable {
             .filter { $0.selectionState == .selected }
             .reduce(0) { partialResult, file in
                 partialResult + file.bytesToDownload
+            }
+
+        let studioMediaSize = studioMedia
+            .filter { $0.selectionState == .selected }
+            .reduce(0) { partialResult, media in
+                partialResult + media.bytesToDownload
             }
 
         let tabsSize = byteCountableSelectedTabs
@@ -150,17 +187,33 @@ public struct CourseSyncEntry: Equatable {
                 partialResult + file.bytesDownloaded
             }
 
+        let studioMediaSize = studioMedia
+            .filter { $0.selectionState == .selected }
+            .reduce(0) { partialResult, media in
+                partialResult + media.bytesDownloaded
+            }
+
         let tabsSize = byteCountableSelectedTabs
             .reduce(0) { partialResult, tab in
                 partialResult + tab.bytesDownloaded
             }
 
-        return filesSize + tabsSize
+        return filesSize + studioMediaSize + tabsSize
     }
 
     /// Total combined progress of selected file and tabs downloads, ranging from 0 to 1.
     var progress: Float {
         let totalFilesProgress = files
+            .filter { $0.selectionState == .selected }
+            .reduce(0 as Float) { partialResult, file in
+                switch file.state {
+                case .downloaded: return partialResult + 1
+                case let .loading(progress): return partialResult + (progress ?? 0)
+                case .error: return partialResult + 0
+                }
+            }
+
+        let totalStudioMediaProgress = studioMedia
             .filter { $0.selectionState == .selected }
             .reduce(0 as Float) { partialResult, file in
                 switch file.state {
@@ -179,21 +232,30 @@ public struct CourseSyncEntry: Equatable {
                 }
             }
 
-        let selectedCount = (Float(selectedFilesCount) + Float(byteCountableSelectedTabs.count))
+        let selectedCount = (
+            Float(selectedFilesCount) +
+            Float(selectedStudioMediaCount) +
+            Float(byteCountableSelectedTabs.count)
+        )
         guard selectedCount > 0 else { return 0 }
-        return (totalFilesProgress + totalTabsProgress) / selectedCount
+        return (totalFilesProgress + totalStudioMediaProgress + totalTabsProgress) / selectedCount
     }
 
     /// Returns **true** if any of the visible or hidden tabs or files failed to download.
     var hasError: Bool {
         let tabsError = tabs.contains { $0.state == .error }
         let filesError = files.contains { $0.state == .error }
+        let studioError = studioMedia.contains { $0.state == .error }
 
-        return state == .error || tabsError || filesError || hasAdditionalContentError
+        return state == .error || tabsError || filesError || studioError || hasAdditionalContentError
     }
 
     var hasFileError: Bool {
         files.contains { $0.state == .error }
+    }
+
+    var hasStudioError: Bool {
+        studioMedia.contains { $0.state == .error }
     }
 
     var hasAdditionalContentError: Bool {
@@ -206,6 +268,7 @@ public struct CourseSyncEntry: Equatable {
     mutating func selectCourse(selectionState: OfflineListCellView.SelectionState) {
         tabs.indices.forEach { tabs[$0].selectionState = selectionState }
         files.indices.forEach { files[$0].selectionState = selectionState }
+        studioMedia.indices.forEach { studioMedia[$0].selectionState = selectionState }
         self.selectionState = selectionState
     }
 
@@ -216,7 +279,9 @@ public struct CourseSyncEntry: Equatable {
             files.indices.forEach { files[$0].selectionState = selectionState }
         }
 
-        if selectedTabsCount == selectableTabsCount, selectedFilesCount == files.count {
+        if selectedTabsCount == selectableTabsCount,
+            selectedFilesCount == files.count,
+            selectedStudioMediaCount == studioMedia.count {
             self.selectionState = .selected
         } else if selectedTabsCount > 0 {
             self.selectionState = .partiallySelected
@@ -228,7 +293,7 @@ public struct CourseSyncEntry: Equatable {
     mutating func selectFile(id: String, selectionState: OfflineListCellView.SelectionState) {
         files[id: id]?.selectionState = selectionState == .selected ? .selected : .deselected
 
-        guard let fileTabId = tabs.first(where: { $0.type == TabName.files })?.id else {
+        guard let fileTabId = tabs.first(where: { $0.type == .files })?.id else {
             return
         }
 
@@ -241,6 +306,31 @@ public struct CourseSyncEntry: Equatable {
         }
 
         if selectedTabsCount == selectableTabsCount, selectedFilesCount == files.count {
+            self.selectionState = .selected
+        } else if selectedTabsCount > 0 {
+            self.selectionState = .partiallySelected
+        } else {
+            self.selectionState = .deselected
+        }
+    }
+
+    mutating func selectStudioMediaItem(id: String, selectionState: OfflineListCellView.SelectionState) {
+        studioMedia[id: id]?.selectionState = selectionState == .selected ? .selected : .deselected
+
+        guard let studioTabId = tabs.first(where: { $0.type == .studio })?.id else {
+            return
+        }
+
+        if selectedStudioMediaCount == studioMedia.count {
+            tabs[id: studioTabId]?.selectionState = .selected
+        } else if selectedStudioMediaCount > 0 {
+            tabs[id: studioTabId]?.selectionState = .partiallySelected
+        } else {
+            tabs[id: studioTabId]?.selectionState = .deselected
+        }
+
+        if selectedTabsCount == selectableTabsCount,
+            selectedStudioMediaCount == studioMedia.count {
             self.selectionState = .selected
         } else if selectedTabsCount > 0 {
             self.selectionState = .partiallySelected
@@ -265,6 +355,12 @@ public struct CourseSyncEntry: Equatable {
         }
     }
 
+    mutating func updateStudioState(id: String, state: State) {
+        if let index = studioMedia.firstIndex(where: { $0.id == id }) {
+            studioMedia[index].state = state
+        }
+    }
+
     mutating func updateAdditionalContentResults(isSuccessful: Bool) {
         additionalContentDownloadResults.append(isSuccessful)
     }
@@ -281,14 +377,16 @@ extension CourseSyncEntry {
         name: String = "entry",
         id: String = "entry-1",
         tabs: [CourseSyncEntry.Tab] = [],
-        files: [CourseSyncEntry.File] = []
+        files: [CourseSyncEntry.File] = [],
+        studioMedia: [CourseSyncEntry.StudioMediaItem] = []
     ) -> CourseSyncEntry {
         CourseSyncEntry(
             name: name,
             id: id,
             hasFrontPage: false,
             tabs: tabs,
-            files: files
+            files: files,
+            studioMedia: studioMedia
         )
     }
 }
@@ -315,6 +413,28 @@ extension CourseSyncEntry.File {
             state: state,
             selectionState: selectionState,
             bytesToDownload: bytesToDownload
+        )
+    }
+}
+
+extension CourseSyncEntry.StudioMediaItem {
+    static func make(
+        id: String,
+        lti_launch_id: String,
+        title: String,
+        mimeType: String = "jpg",
+        url: URL = URL(string: "1")!,
+        bytesToDownload: Int = 0,
+        state: CourseSyncEntry.State = .loading(nil),
+        selectionState: OfflineListCellView.SelectionState = .deselected
+    ) -> CourseSyncEntry.StudioMediaItem {
+        .init(
+            id: id,
+            lti_launch_id: lti_launch_id,
+            title: title,
+            mimeType: mimeType,
+            bytesToDownload: bytesToDownload,
+            url: url
         )
     }
 }

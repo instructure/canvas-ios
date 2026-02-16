@@ -22,6 +22,9 @@ import Foundation
 public protocol StudioVideoDownloadInteractor {
 
     func download(_ item: APIStudioMediaItem, rootDirectory: URL) -> AnyPublisher<StudioOfflineVideo, Error>
+
+    func download(_ item: APIStudioMediaItem, expectedSize: Int, rootDirectory: URL) -> AnyPublisher<Float, Error>
+    func downloadCaptionsPoster(_ item: APIStudioMediaItem, expectedSize: Int, rootDirectory: URL)  -> AnyPublisher<StudioOfflineVideo, Error>
 }
 
 public class StudioVideoDownloadInteractorLive: StudioVideoDownloadInteractor {
@@ -44,11 +47,72 @@ public class StudioVideoDownloadInteractorLive: StudioVideoDownloadInteractor {
         self.posterInteractor = posterInteractor
     }
 
+    public func download(_ item: APIStudioMediaItem, expectedSize: Int, rootDirectory: URL) -> AnyPublisher<Float, Error> {
+        let videoFileLocation = item.mediaFileLocation(inRootDirectory: rootDirectory)
+        let isVideoCached = videoCacheInteractor
+            .isVideoDownloaded(videoLocation: videoFileLocation, expectedSize: expectedSize)
+
+        if isVideoCached {
+
+            return Just(Float(1))
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+
+        } else {
+
+            return DownloadTaskPublisher(
+                parameters: .init(
+                    remoteURL: item.url,
+                    localURL: videoFileLocation
+                )
+            )
+            .eraseToAnyPublisher()
+        }
+    }
+
+    public func downloadCaptionsPoster(_ item: APIStudioMediaItem, expectedSize: Int, rootDirectory: URL)  -> AnyPublisher<StudioOfflineVideo, Error> {
+        let mediaFolder = item.mediaFolderLocation(inRootDirectory: rootDirectory)
+        let videoFileLocation = item.mediaFileLocation(inRootDirectory: rootDirectory)
+        let documentsDirectory = documentsDirectory
+        let isVideoCached = videoCacheInteractor
+            .isVideoDownloaded(videoLocation: videoFileLocation, expectedSize: expectedSize)
+
+        return Just(isVideoCached)
+            .setFailureType(to: Error.self)
+            .flatMap { [captionsInteractor] isVideoCached in
+                
+                /// Captions are already downloaded with the media metadata so we write them to disk to make sure they are up-to-date
+                captionsInteractor.write(
+                    captions: item.captions,
+                    to: mediaFolder
+                )
+                .map { (isVideoCached, $0) }
+            }
+            .map { [posterInteractor] (isVideoCached: Bool, captionURLs: [URL]) -> ([URL], URL?) in
+                let posterLocation = posterInteractor.createVideoPosterIfNeeded(
+                    isVideoCached: isVideoCached,
+                    mediaFolder: mediaFolder,
+                    videoFile: videoFileLocation
+                )
+
+                return (captionURLs, posterLocation)
+            }
+            .tryMap { (captionURLs, posterURL) in
+                try StudioOfflineVideo(
+                    ltiLaunchID: item.lti_launch_id,
+                    videoLocation: videoFileLocation,
+                    videoPosterLocation: posterURL,
+                    videoMimeType: item.mime_type,
+                    captionLocations: captionURLs,
+                    baseURL: documentsDirectory
+                )
+            }
+            .eraseToAnyPublisher()
+    }
+
     public func download(_ item: APIStudioMediaItem, rootDirectory: URL) -> AnyPublisher<StudioOfflineVideo, Error> {
-        let mediaFolder = rootDirectory.appendingPathComponent(item.id.value, isDirectory: true)
-        let videoFileLocation = mediaFolder
-            .appendingPathComponent(item.id.value, isDirectory: false)
-            .appendingPathExtension(item.url.pathExtension)
+        let mediaFolder = item.mediaFolderLocation(inRootDirectory: rootDirectory)
+        let videoFileLocation = item.mediaFileLocation(inRootDirectory: rootDirectory)
         let documentsDirectory = documentsDirectory
 
         return Just(())
@@ -100,6 +164,27 @@ public class StudioVideoDownloadInteractorLive: StudioVideoDownloadInteractor {
                     baseURL: documentsDirectory
                 )
             }
+            .catch({ failure in
+                print("Failure downloading video: \(failure)")
+                return Fail(
+                    outputType: StudioOfflineVideo.self,
+                    failure: failure
+                ).eraseToAnyPublisher()
+            })
             .eraseToAnyPublisher()
+    }
+}
+
+
+extension APIStudioMediaItem {
+
+    func mediaFolderLocation(inRootDirectory rootDirectory: URL) -> URL {
+        return rootDirectory.appendingPathComponent(id.value, isDirectory: true)
+    }
+
+    func mediaFileLocation(inRootDirectory rootDirectory: URL) -> URL {
+        return mediaFolderLocation(inRootDirectory: rootDirectory)
+            .appendingPathComponent(id.value, isDirectory: false)
+            .appendingPathExtension(url.pathExtension)
     }
 }

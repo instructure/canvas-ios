@@ -50,4 +50,34 @@ public extension CourseSyncEntry {
             }
         }
     }
+
+    struct StudioMediaItem: Equatable {
+
+        let id: String
+        let lti_launch_id: String
+
+        let title: String
+        let mimeType: String
+
+        /// Filesize in bytes, received from the API.
+        let bytesToDownload: Int
+        let url: URL
+
+        var state: State = .loading(nil)
+        var selectionState: OfflineListCellView.SelectionState = .deselected
+
+        /// Downloaded bytes, progress is persisted to Core Data.
+        var bytesDownloaded: Int {
+            switch state {
+            case .downloaded: return bytesToDownload
+            case let .loading(progress):
+                if let progress {
+                    return Int(Float(bytesToDownload) * progress)
+                } else {
+                    return 0
+                }
+            case .error: return 0
+            }
+        }
+    }
 }

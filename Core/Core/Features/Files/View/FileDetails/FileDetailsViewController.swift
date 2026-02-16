@@ -456,7 +456,12 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
         )
         title = localURL?.lastPathComponent
 
-        if let path = localURL?.path, FileManager.default.fileExists(atPath: path) { return downloadComplete(mimeClass: mimeClass, contentType: nil) }
+        if let path = localURL?.path, FileManager.default.fileExists(atPath: path) {
+            downloadComplete(mimeClass: mimeClass, contentType: nil)
+        } else {
+            // MBL-19647 - Execution path
+            showFileNotDownloadedDialog()
+        }
     }
 
     private func loadCoreDataFile(url: URL) {
@@ -522,6 +527,18 @@ extension FileDetailsViewController: URLSessionDownloadDelegate, LocalFileURLCre
     private func showFileNoLongerExistsDialog() {
         let alert = UIAlertController(title: String(localized: "File No Longer Exists", bundle: .core),
                                       message: String(localized: "The file has been deleted by the author.", bundle: .core),
+                                      preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: String(localized: "Close", bundle: .core),
+                                      style: .default,
+                                      handler: { [env] _ in
+            env.router.dismiss(self)
+        }))
+        env.router.show(alert, from: self, options: .modal())
+    }
+
+    private func showFileNotDownloadedDialog() {
+        let alert = UIAlertController(title: String(localized: "File Doesn't Exists", bundle: .core),
+                                      message: String(localized: "The file hasn't been fully downloaded.", bundle: .core),
                                       preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: String(localized: "Close", bundle: .core),
                                       style: .default,

@@ -36,8 +36,55 @@ public enum TabName: String, Codable {
     case grades
     case search
     case additionalContent
+}
 
-    public static let OfflineSyncableTabs: [TabName] = [
+public enum SyncTab: CaseIterable {
+    case assignments
+    case pages
+    case files
+    case grades
+    case syllabus
+    case conferences
+    case announcements
+    case people
+    case quizzes
+    case discussions
+    case modules
+    case studio
+    case additionalContent
+
+    init?(name: TabName) {
+        switch name {
+        case .assignments:
+            self = .assignments
+        case .pages:
+            self = .pages
+        case .files:
+            self = .files
+        case .grades:
+            self = .grades
+        case .syllabus:
+            self = .syllabus
+        case .conferences:
+            self = .conferences
+        case .announcements:
+            self = .announcements
+        case .people:
+            self = .people
+        case .quizzes:
+            self = .quizzes
+        case .discussions:
+            self = .discussions
+        case .modules:
+            self = .modules
+        case .additionalContent:
+            self = .additionalContent
+        case .collaborations, .outcomes, .custom, .search:
+            return nil
+        }
+    }
+
+    public static let offlineSyncableTabs: [SyncTab] = [
         .assignments,
         .pages,
         .files,
@@ -50,4 +97,22 @@ public enum TabName: String, Codable {
         .discussions,
         .modules
     ]
+
+    var tabName: TabName? {
+        switch self {
+        case .assignments: .assignments
+        case .pages: .pages
+        case .files: .files
+        case .grades: .grades
+        case .syllabus: .syllabus
+        case .conferences: .conferences
+        case .announcements: .announcements
+        case .people: .people
+        case .quizzes: .quizzes
+        case .discussions: .discussions
+        case .modules: .modules
+        case .studio: nil
+        case .additionalContent: .additionalContent
+        }
+    }
 }

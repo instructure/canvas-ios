@@ -84,4 +84,8 @@ extension Publisher {
         }
         .eraseToAnyPublisher()
     }
+
+    public func ignoreErrors(replacingWith value: Output) -> AnyPublisher<Output, Failure> {
+        return ignoreErrors({ _ in true }, replacingWith: value)
+    }
 }
