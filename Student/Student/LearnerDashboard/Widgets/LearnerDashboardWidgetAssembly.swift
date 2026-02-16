@@ -20,7 +20,6 @@ import Core
 import SwiftUI
 
 enum LearnerDashboardWidgetAssembly {
-
     static func makeDefaultWidgetConfigs() -> [DashboardWidgetConfig] {
         let identifiers: [DashboardWidgetIdentifier] = [
             .conferences,
@@ -39,7 +38,7 @@ enum LearnerDashboardWidgetAssembly {
     static func makeWidgetViewModel(
         config: DashboardWidgetConfig,
         snackBarViewModel: SnackBarViewModel,
-        coursesInteractor: CoursesInteractor = CoursesInteractorLive(env: .shared)
+        coursesInteractor: CoursesInteractor = makeCoursesInteractor()
     ) -> any DashboardWidgetViewModel {
         switch config.id {
         case .conferences:
@@ -92,6 +91,23 @@ enum LearnerDashboardWidgetAssembly {
                 .onAppear {
                     assertionFailure("Unknown widget view model type")
                 }
+        }
+    }
+
+    // MARK: - Cached Interactor Instance
+
+    private static weak var sharedCoursesInteractor: CoursesInteractorLive?
+    private static let synchronizer = DispatchQueue(label: "LearnerDashboardWidgetAssembly-Synchronizer")
+
+    private static func makeCoursesInteractor() -> CoursesInteractorLive {
+        synchronizer.sync {
+            if let sharedCoursesInteractor {
+                return sharedCoursesInteractor
+            }
+
+            let instance = CoursesInteractorLive(env: .shared)
+            sharedCoursesInteractor = instance
+            return instance
         }
     }
 }
