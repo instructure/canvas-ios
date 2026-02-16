@@ -20,7 +20,7 @@ import HorizonUI
 import SwiftUI
 
 struct OptionModel: Identifiable, Equatable {
-    let id: Int
+    let id: String
     let name: String
 }
 
@@ -66,7 +66,7 @@ struct FilterView: View {
                 )
             )
         )
-        .popover(isPresented: $isListVisiable, attachmentAnchor: .point(.center), arrowEdge: .top) {
+        .popover(isPresented: $isListVisiable, attachmentAnchor: .point(.bottom), arrowEdge: .top) {
             courseListView
                 .presentationCompactAdaptation(.none)
                 .presentationBackground(Color.huiColors.surface.cardPrimary)
@@ -90,7 +90,6 @@ struct FilterView: View {
                     .accessibilityAddTraits(status == selectedOption ? .isSelected : [])
                 }
             }
-            .padding(.vertical, .huiSpaces.space10)
         }
     }
 }

@@ -27,7 +27,7 @@ protocol ProgressStatusProvidable {
 final class PaginatedDataSource<Item> {
     // MARK: - Outputs
 
-    private(set) var visibleItems: [Item] = []
+   var visibleItems: [Item] = []
     private(set) var isSeeMoreVisible: Bool = false
 
     // MARK: - Private
@@ -102,4 +102,22 @@ extension PaginatedDataSource where Item: ProgressStatusProvidable {
             return allItems.filter { $0.status == .inProgress }
         }
     }
+}
+
+extension PaginatedDataSource where Item: PaginatedDataSourceSearchable {
+    func search(query: String) {
+        guard query.isNotEmpty else {
+            apply(items: allItems)
+            return
+        }
+
+        let searched = allItems.filter { item in
+            item.name.localizedCaseInsensitiveContains(query)
+        }
+        apply(items: searched)
+    }
+}
+
+protocol PaginatedDataSourceSearchable {
+    var name: String { get }
 }

@@ -16,11 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum ProgressStatus: Int, CaseIterable {
-    case all
-    case notStarted
-    case inProgress
-    case completed
+enum ProgressStatus: String, CaseIterable {
+    case all = "0"
+    case notStarted = "1"
+    case inProgress = "2"
+    case completed = "3"
 
     init(progress: Double) {
         switch progress {
@@ -33,11 +33,11 @@ enum ProgressStatus: Int, CaseIterable {
         }
     }
 
-    init(rawValue: Int) {
+    init(rawValue: String) {
         switch rawValue {
-        case 0: self = .all
-        case 1: self = .notStarted
-        case 2: self = .inProgress
+        case "0": self = .all
+        case "1": self = .notStarted
+        case "2": self = .inProgress
         default: self = .completed
         }
     }
@@ -52,13 +52,33 @@ enum ProgressStatus: Int, CaseIterable {
     }
 
     static var courses: [OptionModel] {
-        ProgressStatus.allCases.map { OptionModel(id: $0.rawValue, name: $0.title(for: String(localized: "All courses"))) }
+        ProgressStatus.allCases.map {
+            OptionModel(
+                id: $0.rawValue,
+                name: $0.title(for: String(localized: "All courses"))
+            )
+        }
     }
 
     static var programs: [OptionModel] {
-        ProgressStatus.allCases.map { OptionModel(id: $0.rawValue, name: $0.title(for: String(localized: "All programs"))) }
+        ProgressStatus.allCases.map {
+            OptionModel(
+                id: $0.rawValue,
+                name: $0.title(for: String(localized: "All programs"))
+            )
+        }
     }
 
-    static var firsCourseOption: OptionModel { .init(id: ProgressStatus.all.rawValue, name: String(localized: "All courses")) }
-    static var firsProgramOption: OptionModel { .init(id: ProgressStatus.all.rawValue, name: String(localized: "All programs")) }
+    static var firsCourseOption: OptionModel {
+        .init(
+            id: ProgressStatus.all.rawValue,
+            name: String(localized: "All courses")
+        )
+    }
+    static var firsProgramOption: OptionModel {
+        .init(
+            id: ProgressStatus.all.rawValue,
+            name: String(localized: "All programs")
+        )
+    }
 }

@@ -21,15 +21,12 @@ import HorizonUI
 
 struct CourseImageView: View {
     // MARK: - Dependencies
-
     private let height: CGFloat
     private let width: CGFloat
     private let url: URL?
     private let corners: HorizonUI.Corners
     private let level: HorizonUI.CornerRadius
-
     // MARK: - Init
-
     init(
         height: CGFloat = 182,
         width: CGFloat,
@@ -65,7 +62,7 @@ struct CourseImageView: View {
         } placeholder: {
             ZStack {
                 Color.huiColors.primitives.grey14
-                    .huiCornerRadius(level: .level5, corners: [.topLeft, .topRight])
+                    .huiCornerRadius(level: .level5, corners: corners)
                     .accessibilityHidden(true)
                 Image.huiIcons.book2Filled
                     .foregroundStyle(Color.huiColors.surface.institution)
