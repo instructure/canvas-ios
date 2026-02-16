@@ -77,6 +77,7 @@ public extension HorizonUI {
         public let bookmarkAdd = Image(.bookmarkAdd)
         public let book5 = Image(.book5)
         public let bookmark = Image(.bookmark)
+        public let bookmarkFill = Image(.bookmarkFill)
         public let bookmarks = Image(.bookmarks)
         public let borderColor = Image(.iconBorder)
         public let browse = Image(.browse)

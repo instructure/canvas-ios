@@ -69,10 +69,12 @@ public extension HorizonUI {
         private let isSmall: Bool
         private let badgeType: HorizonUI.Badge.BadgeType?
         private let icon: Image?
+        private let isLoading: Bool
         private let action: () -> Void
 
         public init(
             _ icon: Image?,
+            isLoading: Bool = false,
             type: HorizonUI.ButtonStyles.ButtonType = .institution,
             isSmall: Bool = false,
             badgeType: HorizonUI.Badge.BadgeType? = nil,
@@ -80,12 +82,24 @@ public extension HorizonUI {
         ) {
             self.type = type
             self.isSmall = isSmall
+            self.isLoading = isLoading
             self.badgeType = badgeType
             self.icon = icon
             self.action = action
         }
 
         public var body: some View {
+            ZStack {
+                contentView
+                    .opacity(isLoading ? 0 : 1)
+                if isLoading {
+                    loader
+                }
+            }
+            .animation(.smooth, value: isLoading)
+        }
+
+        private var contentView: some View {
             Button("", action: action)
                 .labelStyle(.iconOnly)
                 .buttonStyle(
@@ -96,6 +110,14 @@ public extension HorizonUI {
                         icon: icon
                     )
                 )
+        }
+
+        private var loader: some View {
+            HorizonUI.Spinner(
+                size: .xSmall,
+                showBackground: true
+            )
+            .accessibilityLabel("Loading")
         }
     }
 }

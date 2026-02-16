@@ -32,6 +32,7 @@ public extension HorizonUI.StatusChip {
         case plum
         case violet
         case institution
+        case custom(foregroundColor: Color, backgroundColor: Color)
 
         func foregroundColor(isFilled: Bool) -> Color {
             switch self {
@@ -47,6 +48,7 @@ public extension HorizonUI.StatusChip {
             case .plum: Color.huiColors.primitives.plum90
             case .violet: Color.huiColors.primitives.violet90
             case .institution: isFilled ? Color.huiColors.text.surfaceColored : Color.huiColors.surface.institution
+            case let .custom(foregroundColor, _): foregroundColor
             }
         }
 
@@ -64,6 +66,7 @@ public extension HorizonUI.StatusChip {
             case .plum: Color.huiColors.primitives.plum12
             case .violet: Color.huiColors.primitives.violet12
             case .institution: Color.huiColors.surface.institution
+            case let .custom(_, backgroundColor): backgroundColor
             }
         }
 
@@ -81,6 +84,7 @@ public extension HorizonUI.StatusChip {
             case .plum: Color.huiColors.primitives.plum90
             case .violet: Color.huiColors.primitives.violet90
             case .institution: isFilled ? Color.huiColors.icon.surfaceColored : Color.huiColors.surface.institution
+            case let .custom(foregroundColor, _): foregroundColor
             }
         }
     }

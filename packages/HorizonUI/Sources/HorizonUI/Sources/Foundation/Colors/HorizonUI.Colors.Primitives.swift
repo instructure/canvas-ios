@@ -106,6 +106,7 @@ public extension HorizonUI.Colors {
 
         // MARK: - Copper
 
+        public let copper12 = Color(hexString: "#FFE5D3")
         public let copper30 = Color(hexString: "#EE6D15")
         public let copper35 = Color(hexString: "#DB6414")
         public let copper40 = Color(hexString: "#CD5E12")
@@ -131,6 +132,7 @@ public extension HorizonUI.Colors {
 
         // MARK: - Forest
 
+        public let forest12 = Color(hexString: "#DFEEE0")
         public let forest30 = Color(hexString: "#55A459")
         public let forest35 = Color(hexString: "#409945")
         public let forest40 = Color(hexString: "#319135")
