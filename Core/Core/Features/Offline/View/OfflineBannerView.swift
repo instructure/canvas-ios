@@ -95,8 +95,8 @@ class OfflineBannerView: UIView {
             .sink { [weak self] isOffline in
                 guard let self else { return }
                 UIView.animate(withDuration: isOffline ? 0 : 0.3) {
-                    self.onlineContainer?.alpha = self.appearanceModel.onlineContentOpacityWhen(offline: isOffline)
-                    self.offlineContainer?.alpha = self.appearanceModel.offlineContentOpacityWhen(offline: isOffline)
+                    self.onlineContainer?.alpha = self.appearanceModel.onlineContentOpacity(isOffline: isOffline)
+                    self.offlineContainer?.alpha = self.appearanceModel.offlineContentOpacity(isOffline: isOffline)
                 }
             }
             .store(in: &subscriptions)
@@ -107,7 +107,7 @@ class OfflineBannerView: UIView {
                 guard let self else { return }
 
                 UIView.animate(withDuration: isVisible ? 0 : 0.3) {
-                    self.alpha = self.appearanceModel.viewOpacityWhen(visible: isVisible)
+                    self.alpha = self.appearanceModel.viewOpacity(isVisible: isVisible)
                 }
 
                 accessibilityElementsHidden = !isVisible
@@ -153,7 +153,7 @@ class OfflineBannerView: UIView {
     }
 
     private func updateContainerAdditionalInsets(isVisible: Bool) {
-        containerController?.additionalSafeAreaInsets = appearanceModel.containerAdditionalInsets(on: isVisible)
+        containerController?.additionalSafeAreaInsets = appearanceModel.containerAdditionalInsets(isVisible: isVisible)
     }
 }
 

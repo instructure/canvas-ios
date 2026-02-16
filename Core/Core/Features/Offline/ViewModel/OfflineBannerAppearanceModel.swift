@@ -29,16 +29,16 @@ class OfflineBannerAppearanceModel {
         self.containerBounds = containerBounds
     }
 
-    func offlineContentOpacityWhen(offline: Bool) -> CGFloat {
-        return offline ? 1 : 0
+    func offlineContentOpacity(isOffline: Bool) -> CGFloat {
+        return isOffline ? 1 : 0
     }
 
-    func onlineContentOpacityWhen(offline: Bool) -> CGFloat {
-        return offline ? 0 : 1
+    func onlineContentOpacity(isOffline: Bool) -> CGFloat {
+        return isOffline ? 0 : 1
     }
 
-    func viewOpacityWhen(visible: Bool) -> CGFloat {
-        return visible ? 1 : 0
+    func viewOpacity(isVisible: Bool) -> CGFloat {
+        return isVisible ? 1 : 0
     }
 
     func viewChangeRequiredUpdating(contentHeight: CGFloat, containerBounds: CGRect?) -> ViewChangeRequirement? {
@@ -59,7 +59,7 @@ class OfflineBannerAppearanceModel {
         return changeRequirement
     }
 
-    func containerAdditionalInsets(on isVisible: Bool) -> UIEdgeInsets {
+    func containerAdditionalInsets(isVisible: Bool) -> UIEdgeInsets {
         UIEdgeInsets(
             top: 0,
             left: 0,

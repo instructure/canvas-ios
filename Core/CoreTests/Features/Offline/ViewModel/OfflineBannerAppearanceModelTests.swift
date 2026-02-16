@@ -42,12 +42,12 @@ final class OfflineBannerAppearanceModelTests: CoreTestCase {
         testee = makeModel()
 
         // WHEN offline is true
-        var result = testee.offlineContentOpacityWhen(offline: true)
+        var result = testee.offlineContentOpacity(isOffline: true)
         // THEN
         XCTAssertEqual(result, 1)
 
         // WHEN offline is false
-        result = testee.offlineContentOpacityWhen(offline: false)
+        result = testee.offlineContentOpacity(isOffline: false)
         // THEN
         XCTAssertEqual(result, 0)
     }
@@ -58,12 +58,12 @@ final class OfflineBannerAppearanceModelTests: CoreTestCase {
         testee = makeModel()
 
         // WHEN offline is true
-        var result = testee.onlineContentOpacityWhen(offline: true)
+        var result = testee.onlineContentOpacity(isOffline: true)
         // THEN
         XCTAssertEqual(result, 0)
 
         // WHEN offline is false
-        result = testee.onlineContentOpacityWhen(offline: false)
+        result = testee.onlineContentOpacity(isOffline: false)
         // THEN
         XCTAssertEqual(result, 1)
     }
@@ -74,12 +74,12 @@ final class OfflineBannerAppearanceModelTests: CoreTestCase {
         testee = makeModel()
 
         // WHEN visible is true
-        var result = testee.viewOpacityWhen(visible: true)
+        var result = testee.viewOpacity(isVisible: true)
         // THEN
         XCTAssertEqual(result, 1)
 
         // WHEN visible is false
-        result = testee.viewOpacityWhen(visible: false)
+        result = testee.viewOpacity(isVisible: false)
         // THEN
         XCTAssertEqual(result, 0)
     }
@@ -171,7 +171,7 @@ final class OfflineBannerAppearanceModelTests: CoreTestCase {
         testee = makeModel(contentHeight: testData.contentHeight1)
 
         // WHEN visible is true
-        var result = testee.containerAdditionalInsets(on: true)
+        var result = testee.containerAdditionalInsets(isVisible: true)
         // THEN
         XCTAssertEqual(result.top, 0)
         XCTAssertEqual(result.left, 0)
@@ -179,7 +179,7 @@ final class OfflineBannerAppearanceModelTests: CoreTestCase {
         XCTAssertEqual(result.right, 0)
 
         // WHEN visible is false
-        result = testee.containerAdditionalInsets(on: false)
+        result = testee.containerAdditionalInsets(isVisible: false)
         // THEN
         XCTAssertEqual(result.top, 0)
         XCTAssertEqual(result.left, 0)
