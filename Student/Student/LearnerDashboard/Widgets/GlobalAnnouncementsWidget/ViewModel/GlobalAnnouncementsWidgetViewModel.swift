@@ -112,7 +112,7 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
         let viewModel = GlobalAnnouncementDetailsViewModel(
             item: item,
             interactor: interactor,
-            router: environment.router
+            environment: environment
         )
         let detailsVC = CoreHostingController(
             GlobalAnnouncementDetailsScreen(viewModel: viewModel)

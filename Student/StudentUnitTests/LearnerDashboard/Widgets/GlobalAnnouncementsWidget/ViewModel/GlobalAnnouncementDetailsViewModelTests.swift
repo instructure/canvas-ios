@@ -97,7 +97,7 @@ final class GlobalAnnouncementDetailsViewModelTests: StudentTestCase {
         GlobalAnnouncementDetailsViewModel(
             item: item,
             interactor: interactor,
-            router: env.router
+            environment: env
         )
     }
 }

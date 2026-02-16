@@ -64,7 +64,8 @@ struct GlobalAnnouncementDetailsScreen: View {
             InstUI.TextSectionView(
                 title: String(localized: "Message", bundle: .student),
                 description: viewModel.message,
-                isRichContent: true
+                isRichContent: true,
+                baseUrl: viewModel.baseUrl
             )
         }
     }
@@ -84,7 +85,7 @@ struct GlobalAnnouncementDetailsScreen: View {
     let viewModel = GlobalAnnouncementDetailsViewModel(
         item: item,
         interactor: GlobalAnnouncementsWidgetInteractorMock(),
-        router: PreviewEnvironment().router
+        environment: PreviewEnvironment()
     )
 
     return GlobalAnnouncementDetailsScreen(viewModel: viewModel)

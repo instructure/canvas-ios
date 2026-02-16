@@ -28,6 +28,7 @@ final class GlobalAnnouncementDetailsViewModel {
     let title: String
     let date: String?
     let message: String
+    let baseUrl: URL?
 
     private let interactor: GlobalAnnouncementsWidgetInteractor
     private let router: Router
@@ -37,15 +38,16 @@ final class GlobalAnnouncementDetailsViewModel {
     init(
         item: GlobalAnnouncementsWidgetItem,
         interactor: GlobalAnnouncementsWidgetInteractor,
-        router: Router
+        environment: AppEnvironment
     ) {
         self.id = item.id
         self.title = item.title
         self.date = item.startDate?.dateTimeString
         self.message = item.message
+        self.baseUrl = environment.currentSession?.baseURL
 
         self.interactor = interactor
-        self.router = router
+        self.router = environment.router
     }
 
     func didTapDelete(from controller: WeakViewController) {
