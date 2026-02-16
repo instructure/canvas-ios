@@ -99,7 +99,7 @@ enum LearnerDashboardWidgetAssembly {
     private static weak var sharedCoursesInteractor: CoursesInteractorLive?
     private static let synchronizer = DispatchQueue(label: "LearnerDashboardWidgetAssembly-Synchronizer")
 
-    private static func makeCoursesInteractor() -> CoursesInteractorLive {
+    internal static func makeCoursesInteractor() -> CoursesInteractorLive {
         synchronizer.sync {
             if let sharedCoursesInteractor {
                 return sharedCoursesInteractor
