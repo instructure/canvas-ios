@@ -35,31 +35,33 @@ extension CoursesAndGroupsWidgetInteractor where Self == CoursesAndGroupsWidgetI
 final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteractor {
 
     private let coursesInteractor: CoursesInteractor
-    private let cardPositionStore: ReactiveStore<GetDashboardCardPositions>
+    private let dashboardCardsStore: ReactiveStore<GetDashboardCards>
 
     init(coursesInteractor: CoursesInteractor, env: AppEnvironment) {
         self.coursesInteractor = coursesInteractor
 
-        self.cardPositionStore = ReactiveStore(
+        self.dashboardCardsStore = ReactiveStore(
             context: env.database.viewContext,
-            useCase: GetDashboardCardPositions(),
+            useCase: GetDashboardCards(),
             environment: env
         )
     }
 
     /// Returns a tupple of course items and group items.
-    /// If there are favorite courses: all courses are returned, even the ones only in invited state.
-    /// If there are no favorite courses: only favorite courses are returned.
-    /// All groups coming from the backend are returned.
-    // TODO: refine group filtering
+    ///
+    /// If there are favorite courses: only the favorite and active courses are returned.
+    /// Past courses or courses in invited state are excluded.
+    /// If there are no favorite courses: all active and invited courses are returned.
+    /// Past courses are excluded.
+    /// (This uses the 'dashboard_cards' endpoint which provides an already filtered list of courses to display)
     func getCoursesAndGroups(ignoreCache: Bool) -> AnyPublisher<Model, Error> {
         Publishers.CombineLatest(
-            cardPositionStore.getEntities(ignoreCache: ignoreCache),
+            dashboardCardsStore.getEntities(ignoreCache: ignoreCache),
             coursesInteractor.getCourses(ignoreCache: ignoreCache)
         )
-        .map { (positions: [CDDashboardCardPosition], coursesResult: CoursesResult) -> Model in
+        .map { (cards: [DashboardCard], coursesResult: CoursesResult) -> Model in
             let courses = coursesResult.allCourses
-                .sortedUsingPositions(positions)
+                .filteredAndSortedUsingDashboardCards(cards)
             let courseItems = courses.map {
                 CoursesAndGroupsWidgetCourseItem(
                     id: $0.id,
@@ -86,25 +88,23 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
 }
 
 private extension [Course] {
-    func sortedUsingPositions(_ positions: [CDDashboardCardPosition]) -> [Course] {
-        // Map the array of card position objects into a dictionary of positions
-        let positionMap = Dictionary(uniqueKeysWithValues: positions.map { ($0.courseCode, $0.position) })
-
-        // Sort courses by position. Move courses without position to the end.
-        return self.sorted { course1, course2 in
-            let position1 = positionMap[course1.canvasContextID]
-            let position2 = positionMap[course2.canvasContextID]
-
-            switch (position1, position2) {
-            case let (.some(p1), .some(p2)):
-                return p1 < p2
-            case (.some, .none):
-                return true
-            case (.none, .some):
-                return false
-            case (.none, .none):
-                return false
+    func filteredAndSortedUsingDashboardCards(_ cards: [DashboardCard]) -> [Course] {
+        // Sort cards first by position, then by name, then by id
+        let sortedCards = cards.sorted { card1, card2 in
+            if card1.position != card2.position {
+                return card1.position < card2.position
             }
+
+            if card1.shortName != card2.shortName {
+                return card1.shortName < card2.shortName
+            }
+
+            return card1.id < card2.id
         }
+
+        // Map the course array into a dictionary by id
+        let courseMap = Dictionary(uniqueKeysWithValues: self.map { ($0.id, $0) })
+
+        return sortedCards.compactMap { courseMap[$0.id] }
     }
 }
