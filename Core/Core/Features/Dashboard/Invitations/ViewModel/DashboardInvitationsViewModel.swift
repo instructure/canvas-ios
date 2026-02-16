@@ -27,24 +27,20 @@ public class DashboardInvitationsViewModel: ObservableObject {
         .eraseToAnyPublisher()
 
     // MARK: - Private Properties
-    private var apiTask: APITask?
+    private var isLoading: Bool = false
     private let env: AppEnvironment
     private let coursesChangedSubject = PassthroughSubject<Void, Never>()
 
     // MARK: - Public Methods
 
-    public init(env: AppEnvironment = .shared, loadInvitationsImmediately: Bool = true) {
+    public init(env: AppEnvironment = .shared) {
         self.env = env
-
-        if loadInvitationsImmediately {
-            requestInvitations()
-        }
+        self.requestInvitations()
     }
 
     public func refresh() {
-        if apiTask != nil {
-            return
-        }
+        // Skip if there is a request in place
+        if isLoading { return }
 
         requestInvitations()
     }
@@ -52,8 +48,10 @@ public class DashboardInvitationsViewModel: ObservableObject {
     // MARK: - Private Methods
 
     private func requestInvitations() {
+        isLoading = true
+
         let request = GetEnrollmentsRequest(context: .currentUser, states: [.invited, .current_and_future])
-        apiTask = env.api.makeRequest(request) { [weak self] invitations, _, _ in
+        env.api.makeRequest(request) { [weak self] invitations, _, _ in
             self?.requestCourses(for: (invitations ?? []).invitationAPIItems)
         }
     }
@@ -61,14 +59,14 @@ public class DashboardInvitationsViewModel: ObservableObject {
     private func requestCourses(for items: [DashboardInvitationAPIItem]) {
         if items.isEmpty {
             performUIUpdate {
-                self.apiTask = nil
+                self.isLoading = false
                 self.items = []
             }
             return
         }
 
         let request = GetCoursesRequest(enrollmentState: .invited_or_pending, perPage: 100)
-        apiTask = env.api.makeRequest(request) { [weak self] courses, _, _ in
+        env.api.makeRequest(request) { [weak self] courses, _, _ in
             let invitations = Self.makeInvitations(from: items, courses: courses ?? [], onDismiss: { invitation in
                 withAnimation {
                     self?.items.removeAll { $0.id == invitation.id }
@@ -79,7 +77,7 @@ public class DashboardInvitationsViewModel: ObservableObject {
                 }
             })
             performUIUpdate {
-                self?.apiTask = nil
+                self?.isLoading = false
                 self?.items = invitations
             }
         }
