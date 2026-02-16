@@ -96,18 +96,19 @@ enum LearnerDashboardWidgetAssembly {
 
     // MARK: - Cached Interactor Instance
 
+    private static let lock = NSLock()
     private static weak var sharedCoursesInteractor: CoursesInteractorLive?
-    private static let synchronizer = DispatchQueue(label: "LearnerDashboardWidgetAssembly-Synchronizer")
 
     internal static func makeCoursesInteractor() -> CoursesInteractorLive {
-        synchronizer.sync {
-            if let sharedCoursesInteractor {
-                return sharedCoursesInteractor
-            }
+        lock.lock()
+        defer { lock.unlock() }
 
-            let instance = CoursesInteractorLive(env: .shared)
-            sharedCoursesInteractor = instance
-            return instance
+        if let sharedCoursesInteractor {
+            return sharedCoursesInteractor
         }
+
+        let instance = CoursesInteractorLive(env: .shared)
+        sharedCoursesInteractor = instance
+        return instance
     }
 }

@@ -10,8 +10,7 @@
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-// GNU Affero General Public License for
-// more details.
+// GNU Affero General Public License for more details.
 //
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
@@ -44,5 +43,22 @@ final class LearnerDashboardWidgetAssemblyTests: StudentTestCase {
         let interactor2 = LearnerDashboardWidgetAssembly.makeCoursesInteractor()
 
         XCTAssertNotNil(interactor2)
+    }
+
+    func test_makeCoursesInteractor_withConcurrentAccess_shouldReuseSameInstance() {
+        let expectation = expectation(description: "All tasks complete")
+        expectation.expectedFulfillmentCount = 5
+
+        var interactors: [CoursesInteractorLive?] = Array(repeating: nil, count: 5)
+
+        DispatchQueue.concurrentPerform(iterations: 5) { index in
+            interactors[index] = LearnerDashboardWidgetAssembly.makeCoursesInteractor()
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 5.0)
+
+        let firstInteractor = interactors[0]
+        XCTAssertTrue(interactors.allSatisfy { $0 === firstInteractor })
     }
 }
