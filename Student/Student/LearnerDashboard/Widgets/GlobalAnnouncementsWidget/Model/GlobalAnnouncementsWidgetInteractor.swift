@@ -36,14 +36,16 @@ extension GlobalAnnouncementsWidgetInteractor where Self == GlobalAnnouncementsW
 final class GlobalAnnouncementsWidgetInteractorLive: GlobalAnnouncementsWidgetInteractor {
 
     private let env: AppEnvironment
+    private let moContext: NSManagedObjectContext
 
     private let announcementsStore: ReactiveStore<GetAccountNotifications>
 
     init(env: AppEnvironment) {
         self.env = env
+        self.moContext = env.database.backgroundReadContext
 
         self.announcementsStore = ReactiveStore(
-            context: env.database.viewContext,
+            context: moContext,
             useCase: GetAccountNotifications(),
             environment: env
         )
@@ -81,7 +83,7 @@ final class GlobalAnnouncementsWidgetInteractorLive: GlobalAnnouncementsWidgetIn
 
     func deleteAnnouncement(id: String) -> AnyPublisher<Void, Never> {
         ReactiveStore(
-            context: env.database.viewContext,
+            context: moContext,
             useCase: DeleteAccountNotification(id: id),
             environment: env
         )
