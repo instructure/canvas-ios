@@ -26,4 +26,15 @@ enum ListLearningLibraryAssembly {
     static func makeView() -> LearningLibraryView {
         .init(viewModel: makeViewModel())
     }
+
+    #if DEBUG
+    static func preview() -> LearningLibraryView {
+        LearningLibraryView(
+            viewModel: .init(
+                router: AppEnvironment.shared.router,
+                interactor: LearningLibraryInteractorPreview()
+            )
+        )
+    }
+    #endif
 }

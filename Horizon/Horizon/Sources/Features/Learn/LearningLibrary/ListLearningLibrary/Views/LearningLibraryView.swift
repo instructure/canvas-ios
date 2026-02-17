@@ -181,6 +181,8 @@ struct LearningLibraryView: View {
     }
 }
 
+#if DEBUG
 #Preview {
-    LearningLibraryView(viewModel: LearningLibraryViewModel(router: AppEnvironment.shared.router))
+    ListLearningLibraryAssembly.preview()
 }
+#endif
