@@ -22,6 +22,7 @@ import SwiftUI
 enum LearnerDashboardWidgetAssembly {
     static func makeDefaultWidgetConfigs() -> [DashboardWidgetConfig] {
         let identifiers: [DashboardWidgetIdentifier] = [
+            .progress,
             .conferences,
             .courseInvitations,
             .helloWidget,
@@ -41,6 +42,13 @@ enum LearnerDashboardWidgetAssembly {
         coursesInteractor: CoursesInteractor = makeCoursesInteractor()
     ) -> any DashboardWidgetViewModel {
         switch config.id {
+        case .progress:
+            ProgressWidgetViewModel(
+                config: config,
+                uploadState: .uploading,
+                uploadType: .offlineContent(courseCount: 2),
+                progress: 0.6
+            )
         case .conferences:
             ConferencesWidgetViewModel(
                 config: config,
@@ -74,6 +82,8 @@ enum LearnerDashboardWidgetAssembly {
     @ViewBuilder
     static func makeView(for viewModel: any DashboardWidgetViewModel) -> some View {
         switch viewModel {
+        case let vm as ProgressWidgetViewModel:
+            vm.makeView()
         case let vm as ConferencesWidgetViewModel:
             vm.makeView()
         case let vm as CourseInvitationsWidgetViewModel:

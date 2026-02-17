@@ -2153,6 +2153,9 @@
         }
       }
     },
+    "%@ is now available" : {
+
+    },
     "%@ likes" : {
       "comment" : "Description for how many times a specific discussion has been liked by other users",
       "extractionState" : "manual",
@@ -9165,6 +9168,12 @@
           }
         }
       }
+    },
+    "%lld course failed to sync.\nTry again, or come back later" : {
+
+    },
+    "%lld course is syncing" : {
+
     },
     "%qu bytes" : {
       "comment" : "As in, '15 bytes'",
@@ -38656,6 +38665,9 @@
         }
       }
     },
+    "Couldn't upload %@\nTry again, or come back later" : {
+
+    },
     "Course Invitations" : {
 
     },
@@ -57743,6 +57755,9 @@
           }
         }
       }
+    },
+    "File Upload Failed" : {
+
     },
     "File upload failed." : {
       "comment" : "File upload failed.",
@@ -89240,6 +89255,9 @@
         }
       }
     },
+    "Offline Content Sync Failed" : {
+
+    },
     "Ok" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -118413,6 +118431,9 @@
         }
       }
     },
+    "Submission Upload Failed" : {
+
+    },
     "Submission Uploading..." : {
       "localizations" : {
         "ar" : {
@@ -122138,6 +122159,9 @@
           }
         }
       }
+    },
+    "Syncing Offline Content" : {
+
     },
     "TA" : {
       "comment" : "Short name for TA enrollment",
@@ -143057,6 +143081,12 @@
         }
       }
     },
+    "Uploading File" : {
+
+    },
+    "Uploading Submission" : {
+
+    },
     "Use" : {
       "comment" : "button for using the recorded audio",
       "extractionState" : "manual",
@@ -145993,6 +146023,9 @@
           }
         }
       }
+    },
+    "We couldn't upload your submission.\nTry again, or come back later" : {
+
     },
     "We had a problem loading the submission. Please try again later." : {
       "comment" : "error message for failure to load a file submission",
