@@ -58,7 +58,7 @@ struct CourseListWidgetItemView: View {
         .huiElevation(level: .level4)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(accessibilityLabel)
-        .accessibilityHint(model.accessiblityHintString)
+        .accessibilityHint(model.accessibilityHintString)
         .accessibilityAction {
             onCardTapGesture()
         }
