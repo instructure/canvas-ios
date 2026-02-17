@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+@testable import Core
 import Combine
 import XCTest
 
@@ -26,7 +26,7 @@ class DashboardContainerViewModelTests: CoreTestCase {
     func testCreatesSettingsView() {
         // MARK: - GIVEN
         let viewShownExpectation = expectation(description: "Settings was created")
-        let testee = DashboardContainerViewModel(environment: environment)
+        let testee = DashboardContainerViewModel(environment: environment, defaults: environment.userDefaults!)
         testee.showSettings
             .sink { (view: UIViewController, _) in
                 defer { viewShownExpectation.fulfill() }
@@ -44,5 +44,25 @@ class DashboardContainerViewModelTests: CoreTestCase {
 
         // MARK: - THEN
         waitForExpectations(timeout: 1)
+    }
+
+    func test_checkAndShowFeedbackAlert_whenFlagIsTrue_shouldClearFlag() {
+        environment.userDefaults!.shouldShowDashboardFeedback = true
+        let viewModel = DashboardContainerViewModel(environment: environment, defaults: environment.userDefaults!)
+        let viewController = UIViewController()
+
+        viewModel.checkAndShowFeedbackAlert(from: viewController)
+
+        XCTAssertEqual(environment.userDefaults!.shouldShowDashboardFeedback, false)
+    }
+
+    func test_checkAndShowFeedbackAlert_whenFlagIsFalse_shouldNotClearFlag() {
+        environment.userDefaults!.shouldShowDashboardFeedback = false
+        let viewModel = DashboardContainerViewModel(environment: environment, defaults: environment.userDefaults!)
+        let viewController = UIViewController()
+
+        viewModel.checkAndShowFeedbackAlert(from: viewController)
+
+        XCTAssertEqual(environment.userDefaults!.shouldShowDashboardFeedback, false)
     }
 }

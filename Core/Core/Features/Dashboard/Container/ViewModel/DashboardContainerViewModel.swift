@@ -33,11 +33,16 @@ public class DashboardContainerViewModel: ObservableObject {
 
     private var subscriptions = Set<AnyCancellable>()
     private let groupListStore: ReactiveStore<GetDashboardGroups>
+    private var defaults: SessionDefaults
+    private let environment: AppEnvironment
 
     public init(
         environment: AppEnvironment,
+        defaults: SessionDefaults,
         courseSyncInteractor: CourseSyncInteractor = CourseSyncDownloaderAssembly.makeInteractor()
     ) {
+        self.defaults = defaults
+        self.environment = environment
         settingsButtonTapped
             .map {
                 let interactor = DashboardSettingsInteractorLive(environment: environment, defaults: environment.userDefaults)
@@ -80,5 +85,67 @@ public class DashboardContainerViewModel: ObservableObject {
     public func refreshGroups() -> AnyPublisher<Void, Never> {
         groupListStore.forceRefresh()
             .eraseToAnyPublisher()
+    }
+
+    // MARK: - Learner Dashboard Feedback
+
+    public func checkAndShowFeedbackAlert(from viewController: UIViewController) {
+        guard defaults.shouldShowDashboardFeedback else { return }
+
+        defaults.shouldShowDashboardFeedback = false
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            self?.createAndPresentFeedbackAlert(from: viewController)
+        }
+    }
+
+    private func createAndPresentFeedbackAlert(from viewController: UIViewController) {
+        let feedbackAlert = DashboardFeedbackAlert(
+            onSubmit: { [weak self] reason in
+                self?.submitFeedback(reason: reason)
+            },
+            onSkip: {},
+            onLetUsKnow: { [weak self] in
+                self?.presentFeedbackForm(from: viewController)
+            }
+        )
+
+        let hostingController = CoreHostingController(feedbackAlert)
+        hostingController.modalPresentationStyle = .overFullScreen
+        hostingController.modalTransitionStyle = .crossDissolve
+        hostingController.view.backgroundColor = UIColor.black.withAlphaComponent(0.24)
+
+        environment.router.show(
+            hostingController,
+            from: viewController,
+            options: .modal()
+        )
+    }
+
+    private func presentFeedbackForm(from viewController: UIViewController) {
+        guard let topViewController = viewController.topMostViewController() else { return }
+
+        let feedbackURL = URL(
+            string: "https://canvas.instructure.com/courses/7499065/external_tools/retrieve?" +
+            "display=borderless&url=https%3A%2F%2Finstructure.co1.qualtrics.com%2Fjfe%2Fform%2FSV_eEh4gQq03v5IWyW"
+        )!
+
+        let webViewController = CoreWebViewController()
+        webViewController.webView.load(URLRequest(url: feedbackURL))
+
+        environment.router.show(
+            webViewController,
+            from: topViewController,
+            options: .modal(.formSheet, embedInNav: true, addDoneButton: true)
+        )
+    }
+
+    private func submitFeedback(reason: DashboardFeedbackReason) {
+        Analytics.shared.logEvent(
+            "dashboard_survey_submitted",
+            parameters: [
+                "selected_reason": reason.analyticsValue
+            ]
+        )
     }
 }

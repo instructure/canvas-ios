@@ -327,4 +327,17 @@ public struct SessionDefaults: Equatable {
             self["preferNewLearnerDashboard"] = newValue
         }
     }
+
+    /// Indicates whether the dashboard feedback alert should be shown when the classic dashboard appears.
+    /// This flag is set to `true` when the user switches away from the new learner dashboard.
+    /// The classic dashboard checks this flag and presents a feedback survey if `true`.
+    /// After presenting the survey, the flag is automatically reset to `false`.
+    public var shouldShowDashboardFeedback: Bool {
+        get {
+            (self["shouldShowDashboardFeedback"] as? Bool) ?? false
+        }
+        set {
+            self["shouldShowDashboardFeedback"] = newValue
+        }
+    }
 }

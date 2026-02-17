@@ -20,26 +20,32 @@ import Combine
 import Core
 import Foundation
 import Observation
+import SwiftUI
 import UIKit
 
 @Observable
 final class LearnerDashboardSettingsViewModel {
     var useNewLearnerDashboard: Bool
 
-    let popoverSize = CGSize(width: 350, height: 250)
-
     private var defaults: SessionDefaults
+    private let environment: AppEnvironment
 
-    init(defaults: SessionDefaults) {
+    init(
+        defaults: SessionDefaults,
+        environment: AppEnvironment = .shared
+    ) {
         self.defaults = defaults
+        self.environment = environment
         self.useNewLearnerDashboard = defaults.preferNewLearnerDashboard
     }
 
     func switchToClassicDashboard(viewController: UIViewController) {
         defaults.preferNewLearnerDashboard = false
+        defaults.shouldShowDashboardFeedback = true
         useNewLearnerDashboard = false
 
-        viewController.dismiss(animated: true) {
+        viewController.dismiss(animated: true) { [weak self] in
+            guard let self else { return }
             NotificationCenter.default.post(name: .dashboardPreferenceChanged, object: nil)
         }
     }

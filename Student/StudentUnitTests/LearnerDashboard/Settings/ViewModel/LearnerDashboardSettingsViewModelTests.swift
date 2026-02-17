@@ -56,12 +56,6 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.useNewLearnerDashboard, false)
     }
 
-    func test_popoverSize_shouldBeConfiguredCorrectly() {
-        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults)
-
-        XCTAssertEqual(testee.popoverSize, CGSize(width: 350, height: 250))
-    }
-
     // MARK: - Switch to Classic Dashboard
 
     func test_switchToClassicDashboard_shouldUpdateDefaults() {
@@ -97,15 +91,27 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
         XCTAssertTrue(mockViewController.dismissCalled)
     }
 
-    func test_switchToClassicDashboard_shouldPostNotification() {
-        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults)
+    func test_switchToClassicDashboard_shouldPostNotificationAfterDismiss() {
+        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults, environment: env)
 
         let expectation = expectation(forNotification: .dashboardPreferenceChanged, object: nil)
         let mockViewController = MockViewController()
+        mockViewController.dismissExpectation = expectation
 
         testee.switchToClassicDashboard(viewController: mockViewController)
 
         wait(for: [expectation], timeout: 1)
+    }
+
+    func test_switchToClassicDashboard_shouldSetFeedbackFlag() {
+        testDefaults.preferNewLearnerDashboard = true
+        testDefaults.shouldShowDashboardFeedback = false
+        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults)
+
+        let viewController = UIViewController()
+        testee.switchToClassicDashboard(viewController: viewController)
+
+        XCTAssertEqual(testDefaults.shouldShowDashboardFeedback, true)
     }
 }
 

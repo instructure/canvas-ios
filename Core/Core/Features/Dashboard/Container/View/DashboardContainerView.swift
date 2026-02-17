@@ -59,7 +59,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         colors = env.subscribe(GetCustomColors())
         notifications = env.subscribe(GetAccountNotifications())
         settings = env.subscribe(GetUserSettings(userID: "self"))
-        _viewModel = StateObject(wrappedValue: DashboardContainerViewModel(environment: env))
+        _viewModel = StateObject(wrappedValue: DashboardContainerViewModel(environment: env, defaults: env.userDefaults ?? .fallback))
         self.offlineModeViewModel = offlineViewModel
     }
 
@@ -108,6 +108,9 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         .onReceive(invitationsViewModel.coursesChanged) { _ in refresh(force: true) }
         .onReceive(viewModel.showSettings) { event in
             showSettings(event.view, viewSize: event.viewSize)
+        }
+        .onAppear {
+            viewModel.checkAndShowFeedbackAlert(from: controller.value)
         }
     }
 
