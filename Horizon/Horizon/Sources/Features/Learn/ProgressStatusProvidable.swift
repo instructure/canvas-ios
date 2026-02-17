@@ -75,7 +75,7 @@ final class PaginatedDataSource<Item> {
 }
 
 extension PaginatedDataSource where Item: ProgressStatusProvidable {
-    func search(query: String, status: OptionModel) {
+    func applyFilters(query: String, status: OptionModel) {
         let filteredByStatus = filterBy(status: ProgressStatus(rawValue: status.id))
 
         guard !query.isEmpty else {

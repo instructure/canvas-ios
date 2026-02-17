@@ -9061,6 +9061,12 @@
             "value" : "ダウンロードに失敗"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다운로드 실패"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9315,6 +9321,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "読み込み中"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다운로드"
           }
         },
         "mi" : {
@@ -17959,6 +17971,12 @@
             "value" : "お待ちください..."
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기다려주세요..."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19793,7 +19811,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "관련 항목: %@, 과제 -  %@"
+            "value" : "관련 항목: %@, 과제 - %@"
           }
         },
         "mi" : {
@@ -23986,6 +24004,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイルのダウンロード中にエラーが発生しました。もう一度やり直してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일을 다운로드 데 오류가 있었습니다. 다시 시도하세요."
           }
         },
         "mi" : {

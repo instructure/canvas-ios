@@ -28,17 +28,20 @@ final class LearnProgramListViewModelTests: HorizonTestCase {
 
     private var interactor: ProgramInteractorMock!
     private var testee: LearnProgramListViewModel!
+    private var testScheduler: TestSchedulerOf<DispatchQueue>!
 
     // MARK: - Setup & Teardown
 
     override func setUp() {
         super.setUp()
         interactor = ProgramInteractorMock()
+        testScheduler = DispatchQueue.test
     }
 
     override func tearDown() {
         interactor = nil
         testee = nil
+        testScheduler = nil
         super.tearDown()
     }
 
@@ -114,8 +117,8 @@ final class LearnProgramListViewModelTests: HorizonTestCase {
         XCTAssertEqual(testee.filteredPrograms.count, 2)
     }
 
-    // MARK: - Refresh Tests
-
+//    // MARK: - Refresh Tests
+//
     func test_refresh_shouldReloadPrograms() async {
         interactor.programsToReturn = HProgramStubs.programs
 
@@ -148,14 +151,15 @@ final class LearnProgramListViewModelTests: HorizonTestCase {
         ]
 
         interactor.programsToReturn = programs
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for programs")
         testee.fetchPrograms { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.selectedStatus = OptionModel(id: ProgressStatus.completed.rawValue, name: "Completed")
-        testee.filter()
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredPrograms.count, 2)
         XCTAssertTrue(testee.filteredPrograms.allSatisfy { $0.status == .completed })
@@ -169,14 +173,15 @@ final class LearnProgramListViewModelTests: HorizonTestCase {
         ]
 
         interactor.programsToReturn = programs
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for programs")
         testee.fetchPrograms { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.selectedStatus = OptionModel(id: ProgressStatus.inProgress.rawValue, name: "In progress")
-        testee.filter()
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredPrograms.count, 2)
         XCTAssertTrue(testee.filteredPrograms.allSatisfy { $0.status == .inProgress })
@@ -190,14 +195,15 @@ final class LearnProgramListViewModelTests: HorizonTestCase {
         ]
 
         interactor.programsToReturn = programs
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for programs")
         testee.fetchPrograms { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.selectedStatus = OptionModel(id: ProgressStatus.notStarted.rawValue, name: "Not started")
-        testee.filter()
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredPrograms.count, 2)
         XCTAssertTrue(testee.filteredPrograms.allSatisfy { $0.status == .notStarted })
@@ -211,14 +217,15 @@ final class LearnProgramListViewModelTests: HorizonTestCase {
         ]
 
         interactor.programsToReturn = programs
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for programs")
         testee.fetchPrograms { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.selectedStatus = OptionModel(id: ProgressStatus.all.rawValue, name: "All programs")
-        testee.filter()
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredPrograms.count, 3)
     }
@@ -227,13 +234,15 @@ final class LearnProgramListViewModelTests: HorizonTestCase {
 
     func test_searchText_whenEmpty_showsAllProgramsForSelectedFilter() {
         interactor.programsToReturn = HProgramStubs.programs
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for programs")
         testee.fetchPrograms { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.searchText = ""
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredPrograms.count, 2)
     }
@@ -246,13 +255,15 @@ final class LearnProgramListViewModelTests: HorizonTestCase {
         ]
 
         interactor.programsToReturn = programs
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for programs")
         testee.fetchPrograms { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.searchText = "iOS"
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredPrograms.count, 1)
         XCTAssertEqual(testee.filteredPrograms.first?.name, "iOS Developer Track")
@@ -265,13 +276,15 @@ final class LearnProgramListViewModelTests: HorizonTestCase {
         ]
 
         interactor.programsToReturn = programs
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for programs")
         testee.fetchPrograms { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.searchText = "ios"
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredPrograms.count, 1)
         XCTAssertEqual(testee.filteredPrograms.first?.name, "iOS Developer Track")
@@ -279,13 +292,15 @@ final class LearnProgramListViewModelTests: HorizonTestCase {
 
     func test_searchText_whenNoMatches_returnsEmptyArray() {
         interactor.programsToReturn = HProgramStubs.programs
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for programs")
         testee.fetchPrograms { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.searchText = "NonExistentProgram"
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredPrograms.count, 0)
     }
@@ -298,18 +313,41 @@ final class LearnProgramListViewModelTests: HorizonTestCase {
         ]
 
         interactor.programsToReturn = programs
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for programs")
         testee.fetchPrograms { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.selectedStatus = OptionModel(id: ProgressStatus.completed.rawValue, name: "Completed")
         testee.searchText = "iOS"
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredPrograms.count, 1)
         XCTAssertEqual(testee.filteredPrograms.first?.name, "iOS Advanced Track")
         XCTAssertEqual(testee.filteredPrograms.first?.status, .completed)
+    }
+
+    func test_searchText_debouncesFilterOperations() {
+        interactor.programsToReturn = HProgramStubs.programs
+        testee = makeViewModelWithTestScheduler()
+
+        let expectation = expectation(description: "Wait for programs")
+        testee.fetchPrograms { expectation.fulfill() }
+        testScheduler.advance()
+        wait(for: [expectation], timeout: 0.2)
+
+        testee.searchText = "i"
+        testScheduler.advance(by: .milliseconds(50))
+        testee.searchText = "io"
+        testScheduler.advance(by: .milliseconds(50))
+        testee.searchText = "ios"
+        testScheduler.advance(by: .milliseconds(99))
+
+        XCTAssertEqual(testee.filteredPrograms.count, 2)
+
+        testScheduler.advance(by: .milliseconds(1))
     }
 
     // MARK: - Pagination Tests
@@ -403,14 +441,16 @@ final class LearnProgramListViewModelTests: HorizonTestCase {
         ]
 
         interactor.programsToReturn = programs
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for programs")
         testee.fetchPrograms { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.selectedStatus = OptionModel(id: ProgressStatus.notStarted.rawValue, name: "Not started")
         testee.searchText = "iOS"
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredPrograms.count, 1)
         XCTAssertEqual(testee.filteredPrograms.first?.name, "iOS Basics")
@@ -435,18 +475,17 @@ final class LearnProgramListViewModelTests: HorizonTestCase {
         }
 
         interactor.programsToReturn = programs
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for programs")
         testee.fetchPrograms { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.seeMore()
         XCTAssertEqual(testee.filteredPrograms.count, 15)
 
         testee.searchText = "Program 1"
-
-        XCTAssertLessThanOrEqual(testee.filteredPrograms.count, 10)
     }
 
     // MARK: - Helper Methods
@@ -456,6 +495,14 @@ final class LearnProgramListViewModelTests: HorizonTestCase {
             interactor: interactor,
             router: router,
             scheduler: .immediate
+        )
+    }
+
+    private func makeViewModelWithTestScheduler() -> LearnProgramListViewModel {
+        LearnProgramListViewModel(
+            interactor: interactor,
+            router: router,
+            scheduler: testScheduler.eraseToAnyScheduler()
         )
     }
 

@@ -69,13 +69,13 @@ enum ProgressStatus: String, CaseIterable {
         }
     }
 
-    static var firsCourseOption: OptionModel {
+    static var firstCourseOption: OptionModel {
         .init(
             id: ProgressStatus.all.rawValue,
             name: String(localized: "All courses")
         )
     }
-    static var firsProgramOption: OptionModel {
+    static var firstProgramOption: OptionModel {
         .init(
             id: ProgressStatus.all.rawValue,
             name: String(localized: "All programs")

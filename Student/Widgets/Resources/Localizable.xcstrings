@@ -1988,6 +1988,12 @@
             "value" : "生物学 101"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "생물 101"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3295,6 +3301,12 @@
             "value" : "第5章 ディスカッション"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "5장 토론"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3549,6 +3561,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "化学実験室"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "화학 실험"
           }
         },
         "mi" : {
@@ -4330,6 +4348,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コースシラバス"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과목 강의 계획안"
           }
         },
         "mi" : {
@@ -8266,6 +8290,12 @@
             "value" : "ゲスト講義シリーズ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "게스트 강의 시리즈"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8782,6 +8812,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "歴史202"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "역사 202"
           }
         },
         "mi" : {
@@ -9301,6 +9337,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "心理学入門"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "심리학 개요"
           }
         },
         "mi" : {
@@ -10085,6 +10127,12 @@
             "value" : "実験レポート提出"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "실험 보고서 제출"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10863,6 +10911,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "予定は空いているようです。今後のタスクはありません。するべきことを追加しますか？"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여유 시간인 것 같습니다. 예정된 작업이 없습니다.  할 일을 추가하시겠습니까?"
           }
         },
         "mi" : {
@@ -11908,6 +11962,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "現代文学"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "현대 문학"
           }
         },
         "mi" : {
@@ -13744,7 +13804,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "주말가지 모비딕을 읽습니다."
+            "value" : "주말까지 모비딕을 읽습니다."
           }
         },
         "mi" : {
@@ -14789,6 +14849,12 @@
             "value" : "研究論文草案"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "조사 레포트 초안"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15043,6 +15109,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "復習教材"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "학생 자료 검토"
           }
         },
         "mi" : {
@@ -17400,6 +17472,12 @@
             "value" : "するべきこと"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "할 일"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19229,6 +19307,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Unit 3 小テスト"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "3단원 퀴즈"
           }
         },
         "mi" : {
