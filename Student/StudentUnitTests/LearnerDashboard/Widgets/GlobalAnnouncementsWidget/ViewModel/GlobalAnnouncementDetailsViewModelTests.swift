@@ -63,13 +63,37 @@ final class GlobalAnnouncementDetailsViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.message, testData.message)
     }
 
-    // MARK: - didTapDelete
+    // MARK: - didTapClose
 
-    func test_didTapDelete_shouldCallInteractor() {
+    func test_didTapClose_shouldNotDeleteAnnouncement() {
         testee = makeViewModel(item: .make(id: testData.id))
 
         let controller = WeakViewController()
-        testee.didTapDelete(from: controller)
+        testee.didTapClose(from: controller)
+        waitUntil { router.dismissed != nil }
+
+        XCTAssertEqual(interactor.deleteAnnouncementCallCount, 0)
+    }
+
+    func test_didTapClose_shouldDismissView() {
+        testee = makeViewModel(item: .make(id: testData.id))
+
+        let vc = UIViewController()
+        testee.didTapClose(from: .init(vc))
+
+        waitUntil(shouldFail: true) {
+            router.dismissed != nil
+        }
+        XCTAssertEqual(router.dismissed, vc)
+    }
+
+    // MARK: - didTapDismiss
+
+    func test_didTapDismiss_shouldDeleteAnnouncement() {
+        testee = makeViewModel(item: .make(id: testData.id))
+
+        let controller = WeakViewController()
+        testee.didTapDismiss(from: controller)
 
         waitUntil(shouldFail: true) {
             interactor.deleteAnnouncementCallCount == 1
@@ -77,11 +101,11 @@ final class GlobalAnnouncementDetailsViewModelTests: StudentTestCase {
         XCTAssertEqual(interactor.deleteAnnouncementInput, testData.id)
     }
 
-    func test_didTapDelete_shouldDismissView() {
+    func test_didTapDismiss_shouldDismissView() {
         testee = makeViewModel(item: .make(id: testData.id))
 
         let vc = UIViewController()
-        testee.didTapDelete(from: .init(vc))
+        testee.didTapDismiss(from: .init(vc))
 
         waitUntil(shouldFail: true) {
             router.dismissed != nil

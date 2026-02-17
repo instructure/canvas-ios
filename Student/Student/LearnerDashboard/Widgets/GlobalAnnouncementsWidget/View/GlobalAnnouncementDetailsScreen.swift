@@ -34,15 +34,26 @@ struct GlobalAnnouncementDetailsScreen: View {
         }
         .navigationTitle(String(localized: "Global Announcement", bundle: .student), style: .modal)
         .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button {
+                    viewModel.didTapClose(from: controller)
+                } label: {
+                    Text("Close", bundle: .core)
+                        .font(.regular16)
+                        .foregroundStyle(.brandPrimary)
+                }
+                .identifier("GlobalAnnouncement.closeButton")
+            }
+
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
-                    viewModel.didTapDelete(from: controller)
+                    viewModel.didTapDismiss(from: controller)
                 } label: {
-                    Text("Remove", bundle: .core)
+                    Text("Dismiss", bundle: .core)
                         .font(.semibold16)
-                        .foregroundStyle(.textDanger)
+                        .foregroundStyle(.brandPrimary)
                 }
-                .accessibilityIdentifier("GlobalAnnouncement.deleteButton")
+                .identifier("GlobalAnnouncement.dismissButton")
             }
         }
     }

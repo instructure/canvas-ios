@@ -121,7 +121,7 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
         environment.router.show(
             detailsVC,
             from: controller,
-            options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
+            options: .modal(isDismissable: true, embedInNav: true)
         )
     }
 

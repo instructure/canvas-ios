@@ -50,7 +50,11 @@ final class GlobalAnnouncementDetailsViewModel {
         self.router = environment.router
     }
 
-    func didTapDelete(from controller: WeakViewController) {
+    func didTapClose(from controller: WeakViewController) {
+        router.dismiss(controller)
+    }
+
+    func didTapDismiss(from controller: WeakViewController) {
         interactor.deleteAnnouncement(id: id)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
