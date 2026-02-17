@@ -40,7 +40,7 @@ struct ProfileAdvancedView: View {
                 )
                 HorizonUI.LoadingButton(
                     title: String(localized: "Save Changes", bundle: .horizon),
-                    isLoading: $viewModel.isLoading,
+                    isLoading: viewModel.isLoading,
                     isDisabled: $viewModel.isSaveDisabled,
                     onSave: viewModel.save
                 )

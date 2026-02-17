@@ -26,10 +26,12 @@ struct LearnView: View {
 
     private let listCourseView: LearnCourseListView
     private let listProgramView: LearnProgramListView
+    private let learningLibraryView: LearningLibraryView
 
     init() {
         self.listCourseView = LearnCourseListAssembly.makeView()
         self.listProgramView = LearnProgramListAssembly.makeView()
+        self.learningLibraryView = ListLearningLibraryAssembly.makeView()
     }
 
     var body: some View {
@@ -57,7 +59,7 @@ struct LearnView: View {
                     switch tab {
                     case .courses: listCourseView
                     case .programs: listProgramView
-//                    case .learningLibrary: Text("learningLibrary")
+                    case .learningLibrary: learningLibraryView
                     }
                 }
                 .tag(index)

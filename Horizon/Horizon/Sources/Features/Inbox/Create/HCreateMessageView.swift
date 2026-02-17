@@ -161,7 +161,7 @@ struct HCreateMessageView: View {
                 title: String(localized: "Send"),
                 type: .institution,
                 fillsWidth: false,
-                isLoading: $viewModel.isSending) {
+                isLoading: viewModel.isSending) {
                     viewModel.sendMessage(viewController: viewController)
                 }
                 .disabled(viewModel.isSendDisabled)

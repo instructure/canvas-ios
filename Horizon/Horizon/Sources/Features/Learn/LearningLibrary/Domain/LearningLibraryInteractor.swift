@@ -40,10 +40,17 @@ final class LearningLibraryInteractorLive: LearningLibraryInteractor {
 
     func getLearnLibraryCollections(ignoreCache: Bool) -> AnyPublisher<[LearningLibrarySectionModel], Error> {
         ReactiveStore(useCase: LearningLibraryCollectionUseCase(journey: domainService))
-            .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
+            .getEntities(ignoreCache: ignoreCache)
             .map { collections in
-                collections.map {
-                    LearningLibrarySectionModel(for: $0, items: Array($0.items))
+                let isSingleCollection = collections.count == 1
+                let itemLimit = isSingleCollection ? 4 : 2
+                return collections.map { collection in
+                    let limitedItems = Array(collection.items.prefix(itemLimit))
+                    return LearningLibrarySectionModel(
+                        for: collection,
+                        hasMoreItems: collection.items.count >= itemLimit,
+                        items: limitedItems
+                    )
                 }
             }
             .eraseToAnyPublisher()
@@ -51,7 +58,7 @@ final class LearningLibraryInteractorLive: LearningLibraryInteractor {
 
     func getLearnLibraryItems(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error> {
         ReactiveStore(useCase: LearningLibraryItemUseCase(journey: domainService))
-            .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: false)
+            .getEntities(ignoreCache: ignoreCache)
             .map { items in
                 items.map { LearningLibraryCardModel(for: $0) }
             }

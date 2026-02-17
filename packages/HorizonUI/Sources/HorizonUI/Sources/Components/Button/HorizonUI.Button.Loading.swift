@@ -25,7 +25,7 @@ public extension HorizonUI {
         private let fillsWidth: Bool
         private let isSmall: Bool
         private let type: HorizonUI.ButtonStyles.ButtonType
-        @Binding private var isLoading: Bool
+        private let isLoading: Bool
         @Binding private var isDisabled: Bool
         private let onSave: () -> Void
 
@@ -34,7 +34,7 @@ public extension HorizonUI {
             type: HorizonUI.ButtonStyles.ButtonType = .black,
             isSmall: Bool = false,
             fillsWidth: Bool = true,
-            isLoading: Binding<Bool>,
+            isLoading: Bool,
             isDisabled: Binding<Bool>? = nil,
             onSave: @escaping () -> Void
         ) {
@@ -42,7 +42,7 @@ public extension HorizonUI {
             self.fillsWidth = fillsWidth
             self.type = type
             self.isSmall = isSmall
-            _isLoading = isLoading
+            self.isLoading = isLoading
             _isDisabled = isDisabled ?? .constant(false)
             self.onSave = onSave
         }
@@ -75,7 +75,7 @@ public extension HorizonUI {
         title: "Enrolle",
         type: .institution,
         fillsWidth: false,
-        isLoading: .constant(true),
+        isLoading: true,
         isDisabled: nil
     ) {}
 }

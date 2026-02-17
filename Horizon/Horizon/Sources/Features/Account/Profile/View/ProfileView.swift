@@ -95,7 +95,7 @@ struct ProfileView: View {
     private var saveButton: some View {
         HorizonUI.LoadingButton(
             title: String(localized: "Save Changes", bundle: .horizon),
-            isLoading: $viewModel.saveLoaderIsVisiable,
+            isLoading: viewModel.saveLoaderIsVisiable,
             isDisabled: $viewModel.isSaveDisabled,
             onSave: viewModel.save
         )

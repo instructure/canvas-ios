@@ -16,20 +16,33 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 
-enum LearnTabs: Int, CaseIterable, Identifiable {
-    case courses
-    case programs
-    case learningLibrary
+enum LearningLibraryFilter: String, CaseIterable {
+    case all
+    case completed
+    case bookmarked
 
-    var localizedString: String {
+    var name: String {
         switch self {
-        case .courses: String(localized: "Courses")
-        case .programs: String(localized: "Programs")
-        case .learningLibrary: String(localized: "Learning Library")
+        case .all: String(localized: "All")
+        case .completed: String(localized: "Completed")
+        case .bookmarked: String(localized: "Bookmarked")
         }
     }
 
-    var id: Self { self }
+    static var options: [OptionModel] {
+        LearningLibraryFilter.allCases.map {
+            .init(
+                id: $0.rawValue,
+                name: $0.name
+            )
+        }
+    }
+
+    static var firstOption: OptionModel {
+        .init(
+            id: LearningLibraryFilter.all.rawValue,
+            name: LearningLibraryFilter.all.name
+        )
+    }
 }
