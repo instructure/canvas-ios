@@ -115,7 +115,6 @@ struct LearnCourseListView: View {
                     guard let option else { return }
                     lastFocusedCourseID = selectFilterFocusedID
                     viewModel.selectedStatus = option
-                    viewModel.filter()
                     restoreFocusIfNeeded(after: 1)
                 }
                 .id(selectFilterFocusedID)

@@ -173,7 +173,7 @@ final class PaginatedDataSourceTests: HorizonTestCase {
         let items = createMixedStatusItems()
         testee = PaginatedDataSource(items: items)
 
-        testee.search(query: "", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
+        testee.applyFilters(query: "", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
 
         XCTAssertEqual(testee.visibleItems.count, 10)
     }
@@ -186,7 +186,7 @@ final class PaginatedDataSourceTests: HorizonTestCase {
         ]
         testee = PaginatedDataSource(items: items)
 
-        testee.search(query: "iOS", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
+        testee.applyFilters(query: "iOS", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
 
         XCTAssertEqual(testee.visibleItems.count, 2)
         XCTAssertTrue(testee.visibleItems.allSatisfy { $0.name.contains("iOS") })
@@ -199,7 +199,7 @@ final class PaginatedDataSourceTests: HorizonTestCase {
         ]
         testee = PaginatedDataSource(items: items)
 
-        testee.search(query: "ios", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
+        testee.applyFilters(query: "ios", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
 
         XCTAssertEqual(testee.visibleItems.count, 1)
         XCTAssertEqual(testee.visibleItems.first?.name, "iOS Development")
@@ -209,7 +209,7 @@ final class PaginatedDataSourceTests: HorizonTestCase {
         let items = createMixedStatusItems()
         testee = PaginatedDataSource(items: items)
 
-        testee.search(query: "", status: OptionModel(id: ProgressStatus.completed.rawValue, name: "Completed"))
+        testee.applyFilters(query: "", status: OptionModel(id: ProgressStatus.completed.rawValue, name: "Completed"))
 
         XCTAssertTrue(testee.visibleItems.allSatisfy { $0.status == .completed })
     }
@@ -218,7 +218,7 @@ final class PaginatedDataSourceTests: HorizonTestCase {
         let items = createMixedStatusItems()
         testee = PaginatedDataSource(items: items)
 
-        testee.search(query: "", status: OptionModel(id: ProgressStatus.inProgress.rawValue, name: "In progress"))
+        testee.applyFilters(query: "", status: OptionModel(id: ProgressStatus.inProgress.rawValue, name: "In progress"))
 
         XCTAssertTrue(testee.visibleItems.allSatisfy { $0.status == .inProgress })
     }
@@ -227,7 +227,7 @@ final class PaginatedDataSourceTests: HorizonTestCase {
         let items = createMixedStatusItems()
         testee = PaginatedDataSource(items: items)
 
-        testee.search(query: "", status: OptionModel(id: ProgressStatus.notStarted.rawValue, name: "Not started"))
+        testee.applyFilters(query: "", status: OptionModel(id: ProgressStatus.notStarted.rawValue, name: "Not started"))
 
         XCTAssertTrue(testee.visibleItems.allSatisfy { $0.status == .notStarted })
     }
@@ -241,7 +241,7 @@ final class PaginatedDataSourceTests: HorizonTestCase {
         ]
         testee = PaginatedDataSource(items: items)
 
-        testee.search(query: "iOS", status: OptionModel(id: ProgressStatus.completed.rawValue, name: "Completed"))
+        testee.applyFilters(query: "iOS", status: OptionModel(id: ProgressStatus.completed.rawValue, name: "Completed"))
 
         XCTAssertEqual(testee.visibleItems.count, 1)
         XCTAssertEqual(testee.visibleItems.first?.name, "iOS Development")
@@ -252,7 +252,7 @@ final class PaginatedDataSourceTests: HorizonTestCase {
         let items = createTestItems(count: 10)
         testee = PaginatedDataSource(items: items)
 
-        testee.search(query: "NonExistentItem", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
+        testee.applyFilters(query: "NonExistentItem", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
 
         XCTAssertEqual(testee.visibleItems.count, 0)
     }
@@ -264,7 +264,7 @@ final class PaginatedDataSourceTests: HorizonTestCase {
         testee.seeMore()
         XCTAssertEqual(testee.visibleItems.count, 20)
 
-        testee.search(query: "", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
+        testee.applyFilters(query: "", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
 
         XCTAssertEqual(testee.visibleItems.count, 10)
     }
@@ -302,7 +302,7 @@ final class PaginatedDataSourceTests: HorizonTestCase {
         testee.seeMore()
         XCTAssertEqual(testee.visibleItems.count, 0)
 
-        testee.search(query: "test", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
+        testee.applyFilters(query: "test", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
         XCTAssertEqual(testee.visibleItems.count, 0)
     }
 
@@ -337,7 +337,7 @@ final class PaginatedDataSourceTests: HorizonTestCase {
         testee.seeMore()
         XCTAssertEqual(testee.visibleItems.count, 30)
 
-        testee.search(query: "", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
+        testee.applyFilters(query: "", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
 
         XCTAssertEqual(testee.visibleItems.count, 10)
         XCTAssertTrue(testee.isSeeMoreVisible)
@@ -351,13 +351,13 @@ final class PaginatedDataSourceTests: HorizonTestCase {
         ]
         testee = PaginatedDataSource(items: items)
 
-        testee.search(query: "iOS", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
+        testee.applyFilters(query: "iOS", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
         XCTAssertEqual(testee.visibleItems.count, 2)
 
-        testee.search(query: "Android", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
+        testee.applyFilters(query: "Android", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
         XCTAssertEqual(testee.visibleItems.count, 1)
 
-        testee.search(query: "", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
+        testee.applyFilters(query: "", status: OptionModel(id: ProgressStatus.all.rawValue, name: "All"))
         XCTAssertEqual(testee.visibleItems.count, 3)
     }
 
