@@ -30,17 +30,17 @@ class GetAllUserCourses: UseCase {
     let activeRequest = GetCurrentUserCoursesRequest(
         enrollmentState: .active,
         state: [.current_and_concluded],
-        includes: [.favorites, .term]
+        includes: [.favorites, .term, .tabs]
     )
     let completedRequest = GetCurrentUserCoursesRequest(
         enrollmentState: .completed,
         state: [.current_and_concluded],
-        includes: [.favorites, .term]
+        includes: [.favorites, .term, .tabs]
     )
     let invitedRequest = GetCurrentUserCoursesRequest(
         enrollmentState: .invited_or_pending,
         state: [.current_and_concluded],
-        includes: [.favorites, .term]
+        includes: [.favorites, .term, .tabs]
     )
 
     init() {}
