@@ -58,7 +58,6 @@ final class LearningLibraryDetailsViewModel {
         self.pageType = pageType
         self.router = router
         self.interactor = interactor
-        fetchLearningLibraryItems()
     }
 
     // MARK: - Input Actions

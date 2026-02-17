@@ -60,6 +60,7 @@ struct LearningLibraryDetailsView: View {
         .background(Color.huiColors.surface.pagePrimary)
         .refreshable { await viewModel.refresh() }
         .animation(.easeOut, value: viewModel.filteredItems)
+        .onFirstAppear { viewModel.fetchLearningLibraryItems() }
         .safeAreaInset(edge: .top, spacing: .zero) {
             if isShowHeader { navBarView }
         }
