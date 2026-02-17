@@ -117,7 +117,7 @@ struct ListProgramCards: View {
             programCourse: program,
             isLinear: isLinear,
             status: status,
-            isLoading: .constant(selectedCourse?.id == program.id ? isLoading : false)
+            isLoading: selectedCourse?.id == program.id ? isLoading : false
         ) {
             selectedCourse = program
             onTapEnroll(program)

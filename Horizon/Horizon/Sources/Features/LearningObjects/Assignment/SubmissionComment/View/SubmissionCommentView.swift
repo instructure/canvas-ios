@@ -265,11 +265,8 @@ struct SubmissionCommentView: View {
         .id("PostButton")
     }
 
-    private var postingCommentBinding: Binding<Bool> {
-        Binding(
-            get: { viewModel.viewState == .postingComment },
-            set: { _ in }
-        )
+    private var postingCommentBinding: Bool {
+        viewModel.viewState == .postingComment
     }
 
     private var loadingView: some View {

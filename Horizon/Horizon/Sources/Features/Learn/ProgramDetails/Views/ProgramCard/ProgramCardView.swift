@@ -25,7 +25,7 @@ struct ProgramCardView: View {
     private let programCourse: ProgramCourse
     private let status: ProgramCardStatus
     private let isLinear: Bool
-    @Binding private var isLoading: Bool
+    private let isLoading: Bool
     private let onTapEnroll: () -> Void
 
     // MARK: - UI
@@ -36,13 +36,13 @@ struct ProgramCardView: View {
         programCourse: ProgramCourse,
         isLinear: Bool,
         status: ProgramCardStatus,
-        isLoading: Binding<Bool>,
+        isLoading: Bool,
         onTapEnroll: @escaping () -> Void
     ) {
         self.programCourse = programCourse
         self.isLinear = isLinear
         self.status = status
-        _isLoading = isLoading
+        self.isLoading = isLoading
         self.onTapEnroll = onTapEnroll
     }
 
@@ -98,7 +98,7 @@ struct ProgramCardView: View {
                 title: String(localized: "Enroll"),
                 type: .institution,
                 fillsWidth: false,
-                isLoading: $isLoading,
+                isLoading: isLoading,
                 onSave: onTapEnroll
             )
         }
@@ -129,7 +129,6 @@ struct ProgramCardView: View {
 }
 
 #Preview {
-    @Previewable @State var isLoading: Bool = false
     ProgramCardView(
         programCourse: ProgramCourse(
             id: "12",
@@ -144,5 +143,5 @@ struct ProgramCardView: View {
         ),
         isLinear: true,
         status: .active,
-        isLoading: $isLoading) { isLoading.toggle() }
+        isLoading: true) { }
 }

@@ -16,32 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-enum LearningLibraryFilter: String, CaseIterable {
-    case all
-    case completed
-    case bookmarked
+import Core
 
-    var name: String {
-        switch self {
-        case .all: String(localized: "All")
-        case .completed: String(localized: "Completed")
-        case .bookmarked: String(localized: "Bookmarked")
-        }
+enum ListLearningLibraryAssembly {
+    static private func makeViewModel() -> LearningLibraryViewModel {
+        .init(router: AppEnvironment.shared.router)
     }
 
-    static var options: [OptionModel] {
-        LearningLibraryFilter.allCases.map {
-            .init(
-                id: $0.rawValue,
-                name: $0.name
-            )
-        }
-    }
-
-    static var firstOption: OptionModel {
-        .init(
-            id: LearningLibraryFilter.all.rawValue,
-            name: LearningLibraryFilter.all.name
-        )
+    static func makeView() -> LearningLibraryView {
+        .init(viewModel: makeViewModel())
     }
 }
