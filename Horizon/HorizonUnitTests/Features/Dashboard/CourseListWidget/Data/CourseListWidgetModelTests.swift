@@ -324,13 +324,13 @@ final class CourseListWidgetModelTests: HorizonTestCase {
         let learningObject = makeLearningObject()
         let testee = CourseListWidgetModel(from: makeHCourse(currentLearningObject: learningObject))
 
-        XCTAssertEqual(testee.accessiblityHintString, "Double tap to open learning object")
+        XCTAssertEqual(testee.accessibilityHintString, "Double tap to open learning object")
     }
 
     func test_accessiblityHintString_withoutCurrentLearningObject_shouldReturnOpenCourse() {
         let testee = CourseListWidgetModel(from: makeHCourse(currentLearningObject: nil))
 
-        XCTAssertEqual(testee.accessiblityHintString, "Double tap to open course")
+        XCTAssertEqual(testee.accessibilityHintString, "Double tap to open course")
     }
     func test_accessiblityLearnDescription() {
         let testee = CourseListWidgetModel(from: makeHCourse(
@@ -338,34 +338,7 @@ final class CourseListWidgetModelTests: HorizonTestCase {
             progress: 42
         ))
         let expected = "Course: \(testData.courseName). Progress: 42 percent complete. "
-        XCTAssertEqual(testee.accessiblityLearnDescription, expected)
-    }
-
-    func test_accessiblityLearnHintString_withCurrentLearningObject() {
-        let learningObject = makeLearningObject()
-        var testee = CourseListWidgetModel(from: makeHCourse(
-            progress: 0,
-            currentLearningObject: learningObject
-        ))
-        XCTAssertEqual(testee.accessiblityLearnHintString, "Double tap to Start learning")
-
-        testee = CourseListWidgetModel(from: makeHCourse(
-            progress: 50,
-            currentLearningObject: learningObject
-        ))
-        XCTAssertEqual(testee.accessiblityLearnHintString, "Double tap to Resume learning")
-
-        testee = CourseListWidgetModel(from: makeHCourse(
-            progress: 100,
-            currentLearningObject: learningObject
-        ))
-        XCTAssertEqual(testee.accessiblityLearnHintString, "Double tap to View course")
-    }
-
-    func test_accessiblityLearnHintString_withoutCurrentLearningObject_shouldReturnOpenCourse() {
-        let testee = CourseListWidgetModel(from: makeHCourse(currentLearningObject: nil))
-
-        XCTAssertEqual(testee.accessiblityLearnHintString, "Double tap to open course")
+        XCTAssertEqual(testee.accessibilityLearnDescription, expected)
     }
 
     // MARK: - viewProgramAccessibilityString

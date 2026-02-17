@@ -57,7 +57,7 @@ struct LearnView: View {
                     switch tab {
                     case .courses: listCourseView
                     case .programs: listProgramView
-                    case .learningLibrary: Text("learningLibrary")
+//                    case .learningLibrary: Text("learningLibrary")
                     }
                 }
                 .tag(index)

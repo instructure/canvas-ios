@@ -977,6 +977,12 @@
             "value" : "あなたの近くの学校を見つけられるよう手を貸してください。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "주변의 학교를 찾는 것을 도와주세요."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
