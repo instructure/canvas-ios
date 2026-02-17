@@ -21,6 +21,7 @@ import SwiftUI
 public struct DashboardFeedbackAlert: View {
     @Environment(\.presentationMode) private var presentationMode
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     let onSubmit: (DashboardFeedbackReason) -> Void
     let onSkip: () -> Void
@@ -51,10 +52,10 @@ public struct DashboardFeedbackAlert: View {
                     actionButtons
                 }
                 .background(Color.backgroundLightest)
-                .cornerRadius(8)
+                .clipShape(.rect(cornerRadius: 8))
             }
-            .frame(width: min(350, geometry.size.width * 0.9))
-            .frame(maxHeight: min(500, geometry.size.height * 0.7))
+            .frame(maxHeight: min(uiScale * 500, geometry.size.height * 0.7))
+            .frame(width: min(uiScale * 350, geometry.size.width * 0.9))
             .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 4)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
@@ -118,7 +119,7 @@ public struct DashboardFeedbackAlert: View {
             } label: {
                 Text("Skip", bundle: .core)
                     .font(.regular16, lineHeight: .fit)
-                    .foregroundColor(.brandPrimary)
+                    .foregroundStyle(Color.brandPrimary)
                     .frame(maxWidth: .infinity)
                     .paddingStyle(.vertical, .standard)
             }
@@ -133,7 +134,7 @@ public struct DashboardFeedbackAlert: View {
             } label: {
                 Text("Submit", bundle: .core)
                     .font(.regular16, lineHeight: .fit)
-                    .foregroundColor(selectedReason == nil ? .textDark : .brandPrimary)
+                    .foregroundStyle(selectedReason == nil ? Color.textDark : Color.brandPrimary)
                     .frame(maxWidth: .infinity)
                     .paddingStyle(.vertical, .standard)
             }

@@ -38,8 +38,7 @@ struct LearnerDashboardSettingsView: View {
                         set: { _ in
                             showSwitchAlert = true
                         }
-                    ),
-                    a11yID: "LearnerDashboardSettings.Switch.NewDashboard"
+                    )
                 )
                 Spacer()
             }
@@ -52,11 +51,11 @@ struct LearnerDashboardSettingsView: View {
         }
     }
 
-    private func toggle(text: Text, isOn: Binding<Bool>, a11yID: String) -> some View {
+    private func toggle(text: Text, isOn: Binding<Bool>) -> some View {
         InstUI.Toggle(isOn: isOn) {
             text
                 .font(.semibold16)
-                .foregroundColor(.textDarkest)
+                .foregroundStyle(Color.textDarkest)
         }
         .padding(.vertical, 8)
     }

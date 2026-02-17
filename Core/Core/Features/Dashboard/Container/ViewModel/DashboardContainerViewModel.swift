@@ -94,9 +94,7 @@ public class DashboardContainerViewModel: ObservableObject {
 
         defaults.shouldShowDashboardFeedback = false
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
-            self?.createAndPresentFeedbackAlert(from: viewController)
-        }
+        createAndPresentFeedbackAlert(from: viewController)
     }
 
     private func createAndPresentFeedbackAlert(from viewController: UIViewController) {
@@ -126,8 +124,7 @@ public class DashboardContainerViewModel: ObservableObject {
         guard let topViewController = viewController.topMostViewController() else { return }
 
         let feedbackURL = URL(
-            string: "https://canvas.instructure.com/courses/7499065/external_tools/retrieve?" +
-            "display=borderless&url=https%3A%2F%2Finstructure.co1.qualtrics.com%2Fjfe%2Fform%2FSV_eEh4gQq03v5IWyW"
+            string: "https://instructure.com"
         )!
 
         let webViewController = CoreWebViewController()

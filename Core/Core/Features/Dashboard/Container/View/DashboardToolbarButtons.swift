@@ -97,7 +97,7 @@ public struct DashboardOptionsButton: View {
             isShowingDialog.toggle()
         } label: {
             Image.moreSolid
-                .foregroundColor(Color(Brand.shared.navTextColor))
+                .foregroundStyle(Color(Brand.shared.navTextColor))
         }
         .frame(width: 44, height: 44).padding(.trailing, -6)
         .accessibilityLabel(Text("Dashboard Options", bundle: .core))
@@ -176,7 +176,7 @@ public struct LegacyDashboardSettingsButton: View {
             onTapped()
         } label: {
             Image.settingsLine
-                .foregroundColor(Color(Brand.shared.navTextColor))
+                .foregroundStyle(Color(Brand.shared.navTextColor))
         }
         .frame(width: 44, height: 44).padding(.trailing, -6)
         .accessibilityLabel(Text("Dashboard settings", bundle: .core))
