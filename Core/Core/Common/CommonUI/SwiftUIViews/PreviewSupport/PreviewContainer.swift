@@ -22,20 +22,23 @@ import SwiftUI
 
 /// Moves the `content` to the top, so we don't need to scroll down all the time,
 /// when Preview is displayed at the bottom.
-/// Embeds the `content` in `VStack` with zero padding by default.
+/// Embeds the `content` in `VStack` with zero spacing by default.
 public struct PreviewContainer<Content: View>: View {
 
     private let alignment: HorizontalAlignment
     private let spacing: CGFloat?
+    private let horizontalPadding: CGFloat?
     private let content: () -> Content
 
     public init(
         alignment: HorizontalAlignment = .center,
         spacing: CGFloat? = 0,
+        horizontalPadding: CGFloat? = 0,
         @ViewBuilder content: @escaping () -> Content
     ) {
         self.alignment = alignment
         self.spacing = spacing
+        self.horizontalPadding = horizontalPadding
         self.content = content
     }
 
@@ -45,6 +48,7 @@ public struct PreviewContainer<Content: View>: View {
                 VStack(alignment: alignment, spacing: spacing) {
                     content()
                 }
+                .padding(.horizontal, horizontalPadding)
             }
             .frame(width: geometry.size.width, height: geometry.size.height)
         }

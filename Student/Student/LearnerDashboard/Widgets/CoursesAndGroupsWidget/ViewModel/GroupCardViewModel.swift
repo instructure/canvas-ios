@@ -25,29 +25,35 @@ final class GroupCardViewModel: Identifiable, Equatable {
 
     let title: String
     let courseName: String
-    let color: Color
+    let courseColor: Color
+    let groupColor: Color
+    let memberCount: String
 
     // Including the whole model to ensure any change triggers a view update.
     var id: CoursesAndGroupsWidgetGroupItem { model }
 
     private let model: CoursesAndGroupsWidgetGroupItem
-    private let onCardTap: (WeakViewController) -> Void
+    private let router: Router
 
     init(
         model: CoursesAndGroupsWidgetGroupItem,
-        onCardTap: @escaping (WeakViewController) -> Void
+        router: Router
     ) {
         self.model = model
 
         self.title = model.title
         self.courseName = model.courseName
-        self.color = Color(hexString: model.colorString) ?? .textDark
+        self.courseColor = Color(hexString: model.courseColorString) ?? .textDark
+        self.groupColor = Color(hexString: model.groupColorString) ?? .textDark
+        self.memberCount = String(model.memberCount)
 
-        self.onCardTap = onCardTap
+        self.router = router
     }
 
     func didTapCard(from controller: WeakViewController) {
-        onCardTap(controller)
+        let route = "/groups/\(model.id)"
+
+        router.route(to: route, from: controller)
     }
 
     static func == (lhs: GroupCardViewModel, rhs: GroupCardViewModel) -> Bool {

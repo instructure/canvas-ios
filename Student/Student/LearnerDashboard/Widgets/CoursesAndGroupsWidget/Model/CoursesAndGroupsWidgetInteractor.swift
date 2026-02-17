@@ -80,7 +80,8 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
                     id: $0.id,
                     title: $0.name ?? "",
                     colorString: $0.color.hexString,
-                    imageUrl: $0.imageDownloadURL
+                    imageUrl: $0.imageDownloadURL,
+                    grade: $0.hideTotalGrade ? nil : $0.displayGrade // TODO: use grade without percentage
                 )
             }
 
@@ -90,7 +91,9 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
                     id: $0.id,
                     title: $0.name,
                     courseName: $0.course?.name ?? "",
-                    colorString: $0.color.hexString
+                    courseColorString: $0.course?.color.hexString,
+                    groupColorString: $0.color.hexString,
+                    memberCount: $0.memberCount
                 )
             }
 

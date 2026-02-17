@@ -31,8 +31,11 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var courseCards: [CourseCardViewModel] = []
     private(set) var groupCards: [GroupCardViewModel] = []
-    private(set) var widgetTitle: String = ""
-    private(set) var widgetAccessibilityTitle: String = ""
+
+    private(set) var coursesSectionTitle: String = ""
+    private(set) var coursesSectionAccessibilityTitle: String = ""
+    private(set) var groupsSectionTitle: String = ""
+    private(set) var groupsSectionAccessibilityTitle: String = ""
 
     var layoutIdentifier: [AnyHashable] {
         [state, courseCards.count, groupCards.count]
@@ -52,7 +55,7 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
         self.interactor = interactor
         self.environment = environment
 
-        updateWidgetTitle()
+        updateSectionTitles()
     }
 
     func makeView() -> CoursesAndGroupsWidgetView {
@@ -61,21 +64,25 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
         interactor.getCoursesAndGroups(ignoreCache: ignoreCache)
-            .map { [weak self] (courseItems, groupItems) in
+            .map { [weak self, environment] (courseItems, groupItems) in
                 self?.courseCards = courseItems.map { item in
-                    return CourseCardViewModel(model: item) { controller in
-                        self?.showCourseDetails(for: item, from: controller)
-                    }
+                    CourseCardViewModel(
+                        model: item,
+                        showGrades: true, // TODO: use proper data
+                        showColorOverlay: true, // TODO: use proper data
+                        router: environment.router
+                    )
                 }
 
                 self?.groupCards = groupItems.compactMap { item in
-                    return GroupCardViewModel(model: item) { controller in
-                        self?.showGroupDetails(for: item, from: controller)
-                    }
+                    GroupCardViewModel(
+                        model: item,
+                        router: environment.router
+                    )
                 }
 
                 self?.state = (courseItems.isEmpty && groupItems.isEmpty) ? .empty : .data
-                self?.updateWidgetTitle()
+                self?.updateSectionTitles()
             }
             .receive(on: DispatchQueue.main)
             .catch { [weak self] _ in
@@ -85,29 +92,21 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
             .eraseToAnyPublisher()
     }
 
-    private func showCourseDetails(for item: CoursesAndGroupsWidgetCourseItem, from controller: WeakViewController) {
-        let route: String
-        if let colorWithoutHash = item.colorString?.dropFirst() {
-            route = "/courses/\(item.id)?contextColor=\(colorWithoutHash)"
-        } else {
-            route = "/courses/\(item.id)"
-        }
-
-        environment.router.route(to: route, from: controller)
+    func didTapAllCourses(from controller: WeakViewController) {
+        environment.router.route(to: "/courses", from: controller, options: .push)
     }
 
-    private func showGroupDetails(for item: CoursesAndGroupsWidgetGroupItem, from controller: WeakViewController) {
-        let route = "/groups/\(item.id)"
-        environment.router.route(to: route, from: controller)
-    }
-
-    private func updateWidgetTitle() {
+    private func updateSectionTitles() {
         let courseCount = courseCards.count
-        let groupCount = groupCards.count
-        widgetTitle = String(localized: "Courses & Groups", bundle: .student)
-        widgetAccessibilityTitle = [
+        coursesSectionTitle = String(localized: "Courses (\(courseCount))", bundle: .student)
+        coursesSectionAccessibilityTitle = [
             String(localized: "Courses", bundle: .student),
-            String.format(numberOfItems: courseCount),
+            String.format(numberOfItems: courseCount)
+        ].joined(separator: ", ")
+
+        let groupCount = groupCards.count
+        groupsSectionTitle = String(localized: "Groups (\(groupCount))", bundle: .student)
+        groupsSectionAccessibilityTitle = [
             String(localized: "Groups", bundle: .student),
             String.format(numberOfItems: groupCount)
         ].joined(separator: ", ")

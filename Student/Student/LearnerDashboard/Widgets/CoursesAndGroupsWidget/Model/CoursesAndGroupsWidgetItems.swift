@@ -24,13 +24,16 @@ struct CoursesAndGroupsWidgetCourseItem: Equatable {
     let title: String
     let colorString: String?
     let imageUrl: URL?
+    let grade: String?
 }
 
 struct CoursesAndGroupsWidgetGroupItem: Equatable {
     let id: String
     let title: String
     let courseName: String
-    let colorString: String?
+    let courseColorString: String?
+    let groupColorString: String?
+    let memberCount: Int
 }
 
 #if DEBUG
@@ -40,13 +43,15 @@ extension CoursesAndGroupsWidgetCourseItem {
         id: String = "",
         title: String = "",
         colorString: String? = nil,
-        imageUrl: URL? = nil
+        imageUrl: URL? = nil,
+        grade: String? = nil
     ) -> CoursesAndGroupsWidgetCourseItem {
         .init(
             id: id,
             title: title,
             colorString: colorString,
-            imageUrl: imageUrl
+            imageUrl: imageUrl,
+            grade: grade
         )
     }
 }
@@ -56,13 +61,17 @@ extension CoursesAndGroupsWidgetGroupItem {
         id: String = "",
         title: String = "",
         courseName: String = "",
-        colorString: String? = nil
+        courseColorString: String? = nil,
+        groupColorString: String? = nil,
+        memberCount: Int = 0
     ) -> CoursesAndGroupsWidgetGroupItem {
         .init(
             id: id,
             title: title,
             courseName: courseName,
-            colorString: colorString
+            courseColorString: courseColorString,
+            groupColorString: groupColorString,
+            memberCount: memberCount
         )
     }
 }

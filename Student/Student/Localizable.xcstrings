@@ -19395,6 +19395,9 @@
         }
       }
     },
+    "All Courses" : {
+
+    },
     "All members" : {
       "comment" : "Button to select all members of a group",
       "extractionState" : "manual",
@@ -39205,7 +39208,7 @@
         }
       }
     },
-    "Courses & Groups" : {
+    "Courses (%lld)" : {
 
     },
     "Create Folder" : {
@@ -40813,7 +40816,7 @@
         }
       }
     },
-    "Customize Dashboard" : {
+    "Customize Course" : {
 
     },
     "Dashboard" : {
@@ -63691,6 +63694,9 @@
         }
       }
     },
+    "Groups (%lld)" : {
+
+    },
     "Halfway there — you've already done more than you think." : {
 
     },
@@ -73386,6 +73392,9 @@
     "Made it through the day — that's a win in itself." : {
 
     },
+    "Manage Offline Content" : {
+
+    },
     "Mark as Done" : {
       "comment" : "Button title for mark as done",
       "extractionState" : "manual",
@@ -81212,9 +81221,6 @@
           }
         }
       }
-    },
-    "New Mobile Dashboard" : {
-
     },
     "Next 7 Days" : {
       "extractionState" : "manual",

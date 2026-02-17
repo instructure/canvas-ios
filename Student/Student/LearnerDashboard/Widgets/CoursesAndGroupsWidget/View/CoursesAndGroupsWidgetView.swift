@@ -21,53 +21,71 @@ import Core
 import SwiftUI
 
 struct CoursesAndGroupsWidgetView: View {
+    @Environment(\.viewController) var controller
+
     @State var viewModel: CoursesAndGroupsWidgetViewModel
 
     var body: some View {
         ZStack {
-            if viewModel.state == .data {
-                DashboardTitledWidget(
-                    viewModel.widgetTitle,
-                    customAccessibilityTitle: viewModel.widgetAccessibilityTitle
-                ) {
-                    DashboardWidgetCard {
-                        VStack(alignment: .leading, spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue) {
-                            if !viewModel.courseCards.isEmpty {
-                                coursesSection
-                            }
-
-                            if !viewModel.groupCards.isEmpty {
-                                groupsSection
-                            }
-                        }
-                        .paddingStyle(.standard)
-                    }
-                }
-                .animation(.dashboardWidget, value: viewModel.layoutIdentifier)
+            switch viewModel.state {
+            case .empty:
+                InteractivePanda(config: .empty(
+                    title: String(localized: "Welcome to Canvas!", bundle: .student),
+                    subtitle: String(localized: """
+                        You don't have any courses yet — so things are a bit quiet here. \
+                        Once you enroll in a class, your dashboard will start filling up with new activity.
+                        """, bundle: .student)
+                ))
+            case .data:
+                content
+            case .loading, .error:
+                SwiftUI.EmptyView()
             }
         }
     }
 
-    private var coursesSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Courses", bundle: .student)
-                .font(.semibold14, lineHeight: .fit)
-                .foregroundStyle(.textDark)
+    private var content: some View {
+        VStack(alignment: .center, spacing: 16) {
+            if viewModel.courseCards.isNotEmpty {
+                coursesSection
+            }
 
-            ForEach(viewModel.courseCards) { cardViewModel in
-                CourseCardView(viewModel: cardViewModel)
+            if viewModel.groupCards.isNotEmpty {
+                groupsSection
+            }
+
+            Button(String(localized: "All Courses", bundle: .student)) {
+                viewModel.didTapAllCourses(from: controller)
+            }
+            .buttonStyle(.pillButtonBrandFilled)
+            .identifier("Dashboard.allCoursesButton")
+
+        }
+        .animation(.dashboardWidget, value: viewModel.layoutIdentifier)
+    }
+
+    private var coursesSection: some View {
+        DashboardTitledWidget(
+            viewModel.coursesSectionTitle,
+            customAccessibilityTitle: viewModel.coursesSectionAccessibilityTitle
+        ) {
+            VStack(alignment: .leading, spacing: 4) {
+                ForEach(viewModel.courseCards) { cardViewModel in
+                    CourseCardView(viewModel: cardViewModel)
+                }
             }
         }
     }
 
     private var groupsSection: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            Text("Groups", bundle: .student)
-                .font(.semibold14, lineHeight: .fit)
-                .foregroundStyle(.textDark)
-
-            ForEach(viewModel.groupCards) { cardViewModel in
-                GroupCardView(viewModel: cardViewModel)
+        DashboardTitledWidget(
+            viewModel.groupsSectionTitle,
+            customAccessibilityTitle: viewModel.groupsSectionAccessibilityTitle
+        ) {
+            VStack(alignment: .leading, spacing: 4) {
+                ForEach(viewModel.groupCards) { cardViewModel in
+                    GroupCardView(viewModel: cardViewModel)
+                }
             }
         }
     }
@@ -77,10 +95,15 @@ struct CoursesAndGroupsWidgetView: View {
 
 #Preview {
     @Previewable @State var viewModel = makePreviewViewModel()
+    @Previewable @State var subscriptions = Set<AnyCancellable>()
 
-    CoursesAndGroupsWidgetView(viewModel: viewModel)
-        .padding()
-        .frame(maxHeight: .infinity, alignment: .top)
+    PreviewContainer(horizontalPadding: 16) {
+        CoursesAndGroupsWidgetView(viewModel: viewModel)
+            .onAppear {
+                viewModel.refresh(ignoreCache: false).sink { _ in }.store(in: &subscriptions)
+            }
+    }
+    .background(.backgroundLight)
 }
 
 private func makePreviewViewModel() -> CoursesAndGroupsWidgetViewModel {

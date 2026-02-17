@@ -21,25 +21,72 @@ import SwiftUI
 
 struct GroupCardView: View {
     @Environment(\.viewController) private var controller
+    @Environment(\.dynamicTypeSize) var dynamicTypeSize
 
     @State var viewModel: GroupCardViewModel
+    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
 
     var body: some View {
-        Button(action: { viewModel.didTapCard(from: controller) }) {
-            VStack(alignment: .leading, spacing: 8) {
-                Text(viewModel.title)
-                    .font(.semibold16, lineHeight: .fit)
-                    .foregroundStyle(viewModel.color)
-                    .multilineTextAlignment(.leading)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+        DashboardThumbnailCard(
+            thumbnail: {
+                thumbnail
+            },
+            labels: {
+                courseLabel
+                titleLabel
+            },
+            isAvailable: !$offlineModeViewModel.isOffline,
+            action: {
+                viewModel.didTapCard(from: controller)
             }
-            .paddingStyle(.standard)
-            .contentShape(Rectangle())
-        }
-        .buttonStyle(.plain)
-        .elevation(.cardLarge, background: .backgroundLightest)
+        )
         .accessibilityElement(children: .combine)
         .identifier("Dashboard.GroupCard.cardButton")
+    }
+
+    @ViewBuilder
+    private var thumbnail: some View {
+        Color(viewModel.groupColor)
+            .scaledFrame(size: 72)
+            .overlay(alignment: .bottomLeading) {
+                memberCountPill
+                    .offset(x: 8, y: -8)
+            }
+    }
+
+    private var courseLabel: some View {
+        Text(viewModel.courseName)
+            .font(.regular14, lineHeight: .fit)
+            .foregroundStyle(viewModel.courseColor)
+            .multilineTextAlignment(.leading)
+    }
+
+    private var titleLabel: some View {
+        Text(viewModel.title)
+            .font(.semibold16, lineHeight: .fit)
+            .foregroundStyle(.textDarkest)
+            .multilineTextAlignment(.leading)
+    }
+
+    @ViewBuilder
+    private var memberCountPill: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 24)
+                .fill(.backgroundLightest)
+                .scaledFrame(height: 24, useIconScale: true)
+
+            HStack(spacing: 4) {
+                Text(viewModel.memberCount)
+                    .font(.semibold14, lineHeight: .fit)
+
+                Image.userSolid
+                    .scaledIcon(size: 16)
+            }
+            .padding(.horizontal, 4)
+        }
+        .foregroundStyle(viewModel.groupColor)
+        .fixedSize(horizontal: true, vertical: false)
+        .identifier("Dashboard.CourseCard.gradePill")
     }
 }
 
@@ -47,26 +94,30 @@ struct GroupCardView: View {
 
 extension GroupCardView {
     static let previewData: [CoursesAndGroupsWidgetGroupItem] = [
-        .make(id: "1", title: "Study Group A", colorString: "#4CAF50"),
-        .make(id: "2", title: "Project Team", colorString: "#FF9800")
+        .make(id: "1", title: "Study Group A", courseName: "Introduction to Computer Science", groupColorString: "#4CAF50", memberCount: 42),
+        .make(id: "2", title: .loremIpsumLong, courseName: .loremIpsumLong, groupColorString: "#E91E63", memberCount: 999),
+        .make(id: "3", title: "The Four Horsemen", courseName: "Advanced Mathematics", groupColorString: "#E91E63")
     ]
 }
 
 #Preview {
-    PreviewContainer {
-        VStack(spacing: 16) {
-            GroupCardView(viewModel: GroupCardViewModel(
-                model: GroupCardView.previewData[0],
-                onCardTap: { _ in }
-            ))
+    PreviewContainer(spacing: 4, horizontalPadding: 16) {
+        GroupCardView(viewModel: GroupCardViewModel(
+            model: GroupCardView.previewData[0],
+            router: PreviewEnvironment().router
+        ))
 
-            GroupCardView(viewModel: GroupCardViewModel(
-                model: GroupCardView.previewData[1],
-                onCardTap: { _ in }
-            ))
-        }
-        .padding(.horizontal, 16)
+        GroupCardView(viewModel: GroupCardViewModel(
+            model: GroupCardView.previewData[1],
+            router: PreviewEnvironment().router
+        ))
+
+        GroupCardView(viewModel: GroupCardViewModel(
+            model: GroupCardView.previewData[2],
+            router: PreviewEnvironment().router
+        ))
     }
+    .background(.backgroundLight)
 }
 
 #endif
