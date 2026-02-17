@@ -22,7 +22,7 @@ import Foundation
 struct CoursesAndGroupsWidgetCourseItem: Equatable {
     let id: String
     let title: String
-    let color: String?
+    let colorString: String?
     let imageUrl: URL?
 }
 
@@ -30,7 +30,7 @@ struct CoursesAndGroupsWidgetGroupItem: Equatable {
     let id: String
     let title: String
     let courseName: String
-    let color: String?
+    let colorString: String?
 }
 
 #if DEBUG
@@ -39,13 +39,13 @@ extension CoursesAndGroupsWidgetCourseItem {
     static func make(
         id: String = "",
         title: String = "",
-        color: String? = nil,
+        colorString: String? = nil,
         imageUrl: URL? = nil
     ) -> CoursesAndGroupsWidgetCourseItem {
         .init(
             id: id,
             title: title,
-            color: color,
+            colorString: colorString,
             imageUrl: imageUrl
         )
     }
@@ -56,13 +56,13 @@ extension CoursesAndGroupsWidgetGroupItem {
         id: String = "",
         title: String = "",
         courseName: String = "",
-        color: String? = nil
+        colorString: String? = nil
     ) -> CoursesAndGroupsWidgetGroupItem {
         .init(
             id: id,
             title: title,
             courseName: courseName,
-            color: color
+            colorString: colorString
         )
     }
 }

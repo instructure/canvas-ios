@@ -39,7 +39,7 @@ final class CourseCardViewModel: Identifiable, Equatable {
         self.model = model
 
         self.title = model.title
-        self.color = Color(hexString: model.color) ?? .textDark
+        self.color = Color(hexString: model.colorString) ?? .textDark
 
         self.onCardTap = onCardTap
     }

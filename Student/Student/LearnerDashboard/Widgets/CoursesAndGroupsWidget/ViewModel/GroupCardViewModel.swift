@@ -41,7 +41,7 @@ final class GroupCardViewModel: Identifiable, Equatable {
 
         self.title = model.title
         self.courseName = model.courseName
-        self.color = Color(hexString: model.color) ?? .textDark
+        self.color = Color(hexString: model.colorString) ?? .textDark
 
         self.onCardTap = onCardTap
     }

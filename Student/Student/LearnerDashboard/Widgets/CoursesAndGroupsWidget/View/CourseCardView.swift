@@ -47,8 +47,8 @@ struct CourseCardView: View {
 
 extension CourseCardView {
     static let previewData: [CoursesAndGroupsWidgetCourseItem] = [
-        .make(id: "1", title: "Introduction to Computer Science", color: "#008EE2"),
-        .make(id: "2", title: "Advanced Mathematics", color: "#E91E63")
+        .make(id: "1", title: "Introduction to Computer Science", colorString: "#008EE2"),
+        .make(id: "2", title: "Advanced Mathematics", colorString: "#E91E63")
     ]
 }
 

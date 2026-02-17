@@ -79,7 +79,7 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
                 CoursesAndGroupsWidgetCourseItem(
                     id: $0.id,
                     title: $0.name ?? "",
-                    color: $0.color.hexString,
+                    colorString: $0.color.hexString,
                     imageUrl: $0.imageDownloadURL
                 )
             }
@@ -90,7 +90,7 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
                     id: $0.id,
                     title: $0.name,
                     courseName: $0.course?.name ?? "",
-                    color: $0.color.hexString
+                    colorString: $0.color.hexString
                 )
             }
 

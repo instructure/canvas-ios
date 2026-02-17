@@ -47,8 +47,8 @@ struct GroupCardView: View {
 
 extension GroupCardView {
     static let previewData: [CoursesAndGroupsWidgetGroupItem] = [
-        .make(id: "1", title: "Study Group A", color: "#4CAF50"),
-        .make(id: "2", title: "Project Team", color: "#FF9800")
+        .make(id: "1", title: "Study Group A", colorString: "#4CAF50"),
+        .make(id: "2", title: "Project Team", colorString: "#FF9800")
     ]
 }
 

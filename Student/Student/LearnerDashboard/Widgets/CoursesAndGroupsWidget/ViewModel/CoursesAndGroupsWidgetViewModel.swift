@@ -87,7 +87,7 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
 
     private func showCourseDetails(for item: CoursesAndGroupsWidgetCourseItem, from controller: WeakViewController) {
         let route: String
-        if let colorWithoutHash = item.color?.dropFirst() {
+        if let colorWithoutHash = item.colorString?.dropFirst() {
             route = "/courses/\(item.id)?contextColor=\(colorWithoutHash)"
         } else {
             route = "/courses/\(item.id)"

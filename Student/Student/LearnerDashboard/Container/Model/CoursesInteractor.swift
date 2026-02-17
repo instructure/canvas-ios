@@ -66,12 +66,14 @@ final class CoursesInteractorLive: CoursesInteractor {
 
     internal let coursesUseCase = GetAllUserCourses()
     let env: AppEnvironment
-
     private let context: NSManagedObjectContext
+    private let sortComparator: any SortComparator<Course>
+
     private let coursesStore: ReactiveStore<GetAllUserCourses>
     private let enrollmentsStore: ReactiveStore<GetEnrollments>
     private let groupsStore: ReactiveStore<GetAllCoursesGroupListUseCase>
-    private let sortComparator: any SortComparator<Course>
+    private let colorsStore: ReactiveStore<GetCustomColors>
+
     private var subscriptions = Set<AnyCancellable>()
 
     /// Queue of requests waiting for fetch completion. Protected by context's queue.
@@ -88,6 +90,7 @@ final class CoursesInteractorLive: CoursesInteractor {
         self.env = env
         self.context = env.database.backgroundReadContext
         self.sortComparator = sortComparator
+
         self.coursesStore = ReactiveStore(
             context: context,
             useCase: coursesUseCase,
@@ -104,6 +107,11 @@ final class CoursesInteractorLive: CoursesInteractor {
         self.groupsStore = ReactiveStore(
             context: context,
             useCase: GetAllCoursesGroupListUseCase(),
+            environment: env
+        )
+        self.colorsStore = ReactiveStore(
+            context: context,
+            useCase: GetCustomColors(),
             environment: env
         )
     }
@@ -145,12 +153,13 @@ final class CoursesInteractorLive: CoursesInteractor {
         let shouldIgnoreCache = pendingRequests.contains { $0.ignoreCache }
         currentFetchIgnoresCache = shouldIgnoreCache
 
-        Publishers.Zip3(
+        Publishers.Zip4(
             coursesStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true),
             enrollmentsStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true),
-            groupsStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true)
+            groupsStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true),
+            colorsStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true)
         )
-        .map { [sortComparator] courses, _, groups in
+        .map { [sortComparator] courses, _, groups, _ in
             let allCourses = courses.filter { !$0.isCourseDeleted }
             let invitedCourses = allCourses
                 .filter { course in
