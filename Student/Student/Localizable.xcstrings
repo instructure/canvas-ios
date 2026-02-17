@@ -7433,7 +7433,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%d 항목"
+            "value" : "%d 문항"
           }
         },
         "mi" : {
@@ -35580,7 +35580,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "댓글를 사용 안 함"
+            "value" : "의견/댓글을 사용 안 함"
           }
         },
         "mi" : {
@@ -36659,7 +36659,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "메시시 작성 버튼"
+            "value" : "메시지 작성 버튼"
           }
         },
         "mi" : {
@@ -48725,7 +48725,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "사랍이 부분적으로 열림"
+            "value" : "서랍이 부분적으로 열림"
           }
         },
         "mi" : {
@@ -68370,6 +68370,12 @@
             "value" : "アカウントが学習者ロールとして設定されていないようです。これが間違いだと思われる場合は、管理者またはサポートチームにご連絡ください。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "계정이 학습자 역할로 설정되지 않은 것 같습니다. 오류라고 생각되는 경우, 관리자 또는 지원 팀에게 문의하세요."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -75676,7 +75682,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "모두에게 별도록 메시지를 보내거나 모든 사용자를 그룹 대화에 추가합니까?"
+            "value" : "모두에게 별도로 메시지를 보내거나 모든 사용자를 그룹 대화에 추가합니까?"
           }
         },
         "mi" : {
@@ -91239,6 +91245,12 @@
             "value" : "おっと、何か問題が発生しました"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "죄송합니다. 문제가 발생했습니다"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -93120,7 +93132,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "내가 답변할 때가지 다른 답변은 숨기졈"
+            "value" : "내가 답변할 때가지 다른 답변은 숨겨짐"
           }
         },
         "mi" : {
@@ -99026,6 +99038,12 @@
             "value" : "プロフィールメニュー、終了"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "프로필 메뉴, 닫힘"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -101978,7 +101996,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "녹음/녹화"
+            "value" : "녹화"
           }
         },
         "mi" : {
@@ -105581,7 +105599,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Informa d'un problema"
+            "value" : "Informeu d'un problema"
           }
         },
         "cy" : {
@@ -105785,7 +105803,7 @@
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Poročajte o težavi."
+            "value" : "Poročajte o težavi"
           }
         },
         "sv" : {
@@ -115101,7 +115119,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "미디 댓글 녹화를 중지 "
+            "value" : "미디 댓글 녹화를 중지"
           }
         },
         "mi" : {
@@ -118669,7 +118687,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entrega"
+            "value" : "Entrega-ho"
           }
         },
         "cy" : {
@@ -118741,7 +118759,7 @@
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entregar"
+            "value" : "Enviar"
           }
         },
         "fi" : {
@@ -118789,7 +118807,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Skila"
+            "value" : "Senda"
           }
         },
         "it" : {
@@ -118873,7 +118891,7 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lämna in"
+            "value" : "Skicka in"
           }
         },
         "sv-instk12" : {
@@ -134851,6 +134869,12 @@
             "value" : "するべきこと"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "할 일"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -147182,6 +147206,12 @@
             "value" : "Canvas へようこそ!"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canvas에 오신 것을 환영합니다!"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -150676,6 +150706,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "受講中のコースはまだありません — そのため、ここは少し静かです。クラスに登録すると、ダッシュボードに新しい活動が表示され始めます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아직 과목이 없어서 여기에 표시할 것이 별로 없습니다. 과목에 등록하면 대시보는 새 활동으로 채워지기 시작합니다."
           }
         },
         "mi" : {
