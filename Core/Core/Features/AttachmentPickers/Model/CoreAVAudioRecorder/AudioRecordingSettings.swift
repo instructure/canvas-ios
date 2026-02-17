@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,18 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import AVFoundation
 
-public protocol CoreAVAudioRecorder {
+public enum AudioRecordingSettings {
 
-    var currentTime: TimeInterval { get }
-    var isMeteringEnabled: Bool { get set }
-
-    init(url: URL, settings: [String: Any]) throws
-
-    func prepareToRecord()
-    func record()
-    func updateMeters()
-    func peakPower(forChannel channelNumber: Int) -> Float
-    func stop()
+    public static let `default`: [String: Any] = [
+        AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+        AVSampleRateKey: 12000,
+        AVNumberOfChannelsKey: 1,
+        AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+    ]
 }

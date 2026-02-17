@@ -33,7 +33,7 @@ public class CoreAVAudioRecorderPreview: CoreAVAudioRecorder {
 
     public var isMeteringEnabled: Bool = false
 
-    required public init(url: URL, settings: [String: Int]) throws {}
+    required public init(url: URL, settings: [String: Any]) throws {}
 
     init() {}
 

@@ -69,12 +69,7 @@ public class AudioRecorderViewController: UIViewController, ErrorViewController 
         do {
             try session.setCategory(.record, mode: .default)
             try session.setActive(true)
-            recorder = try AVAudioRecorder(url: url, settings: [
-                AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-                AVSampleRateKey: 22050,
-                AVNumberOfChannelsKey: 2,
-                AVEncoderAudioQualityKey: AVAudioQuality.medium.rawValue
-            ])
+            recorder = try AVAudioRecorder(url: url, settings: AudioRecordingSettings.default)
             recorder?.delegate = self
             if recorder?.record() == true {
                 timer = CADisplayLink(target: self, selector: #selector(tick))
