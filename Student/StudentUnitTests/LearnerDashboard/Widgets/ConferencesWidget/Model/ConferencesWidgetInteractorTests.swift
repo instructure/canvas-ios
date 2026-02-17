@@ -149,7 +149,7 @@ final class ConferencesWidgetInteractorTests: StudentTestCase {
             .make(id: ID(testData.courseId), name: testData.courseName),
             in: databaseClient
         )
-        let group = Group.save(
+        let group = CDAllCoursesGroupItem.save(
             .make(id: ID(testData.groupId), name: testData.groupName),
             in: databaseClient
         )

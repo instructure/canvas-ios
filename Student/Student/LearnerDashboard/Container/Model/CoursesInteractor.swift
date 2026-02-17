@@ -24,7 +24,7 @@ import Foundation
 struct CoursesResult {
     let allCourses: [Course]
     let invitedCourses: [Course]
-    let groups: [Group]
+    let groups: [CDAllCoursesGroupItem]
 }
 
 protocol CoursesInteractor {
@@ -70,7 +70,7 @@ final class CoursesInteractorLive: CoursesInteractor {
     private let context: NSManagedObjectContext
     private let coursesStore: ReactiveStore<GetAllUserCourses>
     private let enrollmentsStore: ReactiveStore<GetEnrollments>
-    private let groupsStore: ReactiveStore<GetDashboardGroups>
+    private let groupsStore: ReactiveStore<GetAllCoursesGroupListUseCase>
     private let sortComparator: any SortComparator<Course>
     private var subscriptions = Set<AnyCancellable>()
 
@@ -103,7 +103,7 @@ final class CoursesInteractorLive: CoursesInteractor {
         )
         self.groupsStore = ReactiveStore(
             context: context,
-            useCase: GetDashboardGroups(),
+            useCase: GetAllCoursesGroupListUseCase(),
             environment: env
         )
     }
