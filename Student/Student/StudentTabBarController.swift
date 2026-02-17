@@ -45,6 +45,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         }
         tabBar.useGlobalNavStyle()
         NotificationCenter.default.addObserver(self, selector: #selector(checkForPolicyChanges), name: UIApplication.didBecomeActiveNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadDashboardTab), name: .dashboardPreferenceChanged, object: nil)
         reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
         addSnackBar()
         registerForTraitChanges()
@@ -95,7 +96,11 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
             tabBarImage =  .homeroomTab
             tabBarImageSelected = .homeroomTabActive
         } else {
-            if ExperimentalFeature.studentLearnerDashboard.isEnabled {
+            let defaults = AppEnvironment.shared.userDefaults ?? .fallback
+            let preferNewDashboard = defaults.preferNewLearnerDashboard
+            let shouldShowNewDashboard = ExperimentalFeature.studentLearnerDashboard.isEnabled && preferNewDashboard
+
+            if shouldShowNewDashboard {
                 let dashboard = CoreHostingController(LearnerDashboardAssembly.makeScreen())
                 result = DashboardContainerViewController(rootViewController: dashboard) { CoreSplitViewController() }
             } else {
@@ -213,6 +218,16 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         LoginUsePolicy.checkAcceptablePolicy(from: self, cancelled: {
             AppEnvironment.shared.loginDelegate?.changeUser()
         })
+    }
+
+    @objc private func reloadDashboardTab() {
+        let newDashboard = dashboardTab()
+
+        if var viewControllers = viewControllers, !viewControllers.isEmpty {
+            viewControllers[0] = newDashboard
+            setViewControllers(viewControllers, animated: false)
+            selectedIndex = 0
+        }
     }
 }
 

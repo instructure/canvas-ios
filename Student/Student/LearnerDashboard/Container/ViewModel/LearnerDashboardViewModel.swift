@@ -21,6 +21,7 @@ import CombineSchedulers
 import Core
 import Foundation
 import Observation
+import UIKit
 
 @Observable
 final class LearnerDashboardViewModel {
@@ -46,32 +47,20 @@ final class LearnerDashboardViewModel {
     private let interactor: LearnerDashboardInteractor
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
+    private let environment: AppEnvironment
 
     init(
         interactor: LearnerDashboardInteractor,
         snackBarViewModel: SnackBarViewModel,
-        mainScheduler: AnySchedulerOf<DispatchQueue> = DispatchQueue.main.eraseToAnyScheduler()
+        mainScheduler: AnySchedulerOf<DispatchQueue> = DispatchQueue.main.eraseToAnyScheduler(),
+        environment: AppEnvironment = .shared
     ) {
         self.interactor = interactor
         self.snackBarViewModel = snackBarViewModel
         self.mainScheduler = mainScheduler
+        self.environment = environment
 
         loadWidgets()
-    }
-
-    private func loadWidgets() {
-        interactor.loadWidgets()
-            .receive(on: mainScheduler)
-            .sink { [weak self] result in
-                guard let self else { return }
-                fullWidthWidgets = result.fullWidth
-                gridWidgets = result.grid
-                if result.fullWidth.isNotEmpty || result.grid.isNotEmpty {
-                    state = .data
-                }
-                refresh(ignoreCache: false)
-            }
-            .store(in: &subscriptions)
     }
 
     func refresh(ignoreCache: Bool, completion: (() -> Void)? = nil) {
@@ -84,6 +73,50 @@ final class LearnerDashboardViewModel {
             .sink { [weak self] _ in
                 guard self != nil else { return }
                 completion?()
+            }
+            .store(in: &subscriptions)
+    }
+
+    func settingsButtonTapped(from presentingViewController: WeakViewController) {
+        let settingsViewController = LearnerDashboardSettingsAssembly.makeViewController()
+        let viewSize = CGSize(width: 350, height: 250)
+
+        settingsViewController.preferredContentSize = viewSize
+        settingsViewController.modalPresentationStyle = .popover
+
+        if let popoverController = settingsViewController.popoverPresentationController {
+            var navButtonView = presentingViewController.value.navigationItem.rightBarButtonItem?.customView
+
+            if navButtonView == nil,
+               let trailingView = presentingViewController.value.navigationItem.trailingItemGroups.first?.barButtonItems.first?.customView {
+                navButtonView = trailingView
+            }
+
+            popoverController.sourceView = navButtonView
+            popoverController.sourceRect = CGRect(x: 26, y: 35, width: 0, height: 0)
+        }
+
+        environment.router.show(
+            settingsViewController,
+            from: presentingViewController,
+            options: .modal(.popover),
+            analyticsRoute: "/learner_dashboard/settings"
+        )
+    }
+
+    // MARK: - Private Methods
+
+    private func loadWidgets() {
+        interactor.loadWidgets()
+            .receive(on: mainScheduler)
+            .sink { [weak self] result in
+                guard let self else { return }
+                fullWidthWidgets = result.fullWidth
+                gridWidgets = result.grid
+                if result.fullWidth.isNotEmpty || result.grid.isNotEmpty {
+                    state = .data
+                }
+                refresh(ignoreCache: false)
             }
             .store(in: &subscriptions)
     }

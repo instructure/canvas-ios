@@ -21,11 +21,17 @@ import SwiftUI
 
 struct LearnerDashboardScreen: View {
     @State private var viewModel: LearnerDashboardViewModel
+    @StateObject private var offlineModeViewModel: OfflineModeViewModel
+    @State private var isShowingKebabDialog = false
     @Environment(\.viewController) private var viewController
     @Environment(\.appEnvironment) private var env
 
-    init(viewModel: LearnerDashboardViewModel) {
+    init(
+        viewModel: LearnerDashboardViewModel,
+        offlineModeViewModel: OfflineModeViewModel = OfflineModeAssembly.makeViewModel()
+    ) {
         _viewModel = State(initialValue: viewModel)
+        _offlineModeViewModel = StateObject(wrappedValue: offlineModeViewModel)
     }
 
     var body: some View {
@@ -51,11 +57,12 @@ struct LearnerDashboardScreen: View {
         .toolbar {
             if #available(iOS 26, *) {
                 ToolbarItem(placement: .topBarLeading) { profileMenuButton }
+                ToolbarItem(placement: .topBarTrailing) { rightNavBarButtons }
             } else {
                 ToolbarItem(placement: .topBarLeading) { legacyProfileMenuButton }
+                ToolbarItem(placement: .topBarTrailing) { legacyRightNavBarButtons }
             }
         }
-
     }
 
     @available(iOS, introduced: 26, message: "Legacy version exists")
@@ -80,6 +87,39 @@ struct LearnerDashboardScreen: View {
         .frame(width: 44, height: 44).padding(.leading, -6)
         .identifier("Dashboard.profileButton")
         .accessibility(label: Text("Profile Menu, Closed", bundle: .core, comment: "Accessibility text describing the Profile Menu button and its state"))
+    }
+
+    @ViewBuilder
+    @available(iOS, introduced: 26, message: "Legacy version exists")
+    private var rightNavBarButtons: some View {
+        if offlineModeViewModel.isOfflineFeatureEnabled {
+            DashboardOptionsMenu(
+                offlineModeViewModel: offlineModeViewModel,
+                onSettingsTapped: { viewModel.settingsButtonTapped(from: viewController) },
+                environment: env
+            )
+        } else {
+            DashboardSettingsButton(
+                onTapped: { viewModel.settingsButtonTapped(from: viewController) }
+            )
+        }
+    }
+
+    @ViewBuilder
+    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
+    private var legacyRightNavBarButtons: some View {
+        if offlineModeViewModel.isOfflineFeatureEnabled {
+            DashboardOptionsButton(
+                isShowingDialog: $isShowingKebabDialog,
+                offlineModeViewModel: offlineModeViewModel,
+                onSettingsTapped: { viewModel.settingsButtonTapped(from: viewController) },
+                environment: env
+            )
+        } else {
+            LegacyDashboardSettingsButton(
+                onTapped: { viewModel.settingsButtonTapped(from: viewController) }
+            )
+        }
     }
 }
 

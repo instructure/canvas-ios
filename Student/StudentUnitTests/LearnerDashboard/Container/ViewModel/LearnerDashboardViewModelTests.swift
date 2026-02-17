@@ -20,9 +20,10 @@ import Combine
 import CombineSchedulers
 @testable import Core
 @testable import Student
+import TestsFoundation
 import XCTest
 
-final class LearnerDashboardViewModelTests: XCTestCase {
+final class LearnerDashboardViewModelTests: StudentTestCase {
 
     private var testee: LearnerDashboardViewModel!
     private var interactor: LearnerDashboardInteractorMock!
@@ -165,6 +166,64 @@ final class LearnerDashboardViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 5)
         XCTAssertEqual(widget.refreshCalled, true)
         XCTAssertEqual(widget.refreshIgnoreCache, false)
+    }
+
+    // MARK: - Settings Button
+
+    func test_settingsButtonTapped_shouldPresentSettingsViewController() {
+        testee = LearnerDashboardViewModel(
+            interactor: interactor,
+            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
+            mainScheduler: scheduler.eraseToAnyScheduler(),
+            environment: env
+        )
+
+        let presentingVC = UIViewController()
+        let weakVC = WeakViewController(presentingVC)
+        testee.settingsButtonTapped(from: weakVC)
+
+        XCTAssertNotNil(router.lastShownVC)
+        XCTAssertEqual(router.lastShownFromVC, presentingVC)
+        XCTAssertEqual(router.lastShownOptions, .modal(.popover))
+    }
+
+    func test_settingsButtonTapped_shouldConfigurePopoverCorrectly() {
+        testee = LearnerDashboardViewModel(
+            interactor: interactor,
+            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
+            mainScheduler: scheduler.eraseToAnyScheduler(),
+            environment: env
+        )
+
+        let presentingVC = UIViewController()
+        let weakVC = WeakViewController(presentingVC)
+        testee.settingsButtonTapped(from: weakVC)
+
+        let settingsVC = router.lastShownVC
+        XCTAssertEqual(settingsVC?.preferredContentSize.width, 350)
+        XCTAssertGreaterThan(settingsVC?.preferredContentSize.height ?? 0, 0)
+        XCTAssertEqual(settingsVC?.modalPresentationStyle, .popover)
+    }
+
+    func test_settingsButtonTapped_shouldConfigurePopoverSourceView() {
+        testee = LearnerDashboardViewModel(
+            interactor: interactor,
+            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
+            mainScheduler: scheduler.eraseToAnyScheduler(),
+            environment: env
+        )
+
+        let presentingVC = UIViewController()
+        let customView = UIView()
+        let barButtonItem = UIBarButtonItem(customView: customView)
+        presentingVC.navigationItem.rightBarButtonItem = barButtonItem
+        let weakVC = WeakViewController(presentingVC)
+
+        testee.settingsButtonTapped(from: weakVC)
+
+        let settingsVC = router.lastShownVC
+        XCTAssertEqual(settingsVC?.popoverPresentationController?.sourceView, customView)
+        XCTAssertEqual(settingsVC?.popoverPresentationController?.sourceRect, CGRect(x: 26, y: 35, width: 0, height: 0))
     }
 }
 

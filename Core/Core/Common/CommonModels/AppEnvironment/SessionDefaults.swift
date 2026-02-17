@@ -318,4 +318,13 @@ public struct SessionDefaults: Equatable {
         get { self["isSpeedGraderAnnotationToolbarVisible"] as? Bool }
         set { self["isSpeedGraderAnnotationToolbarVisible"] = newValue }
     }
+
+    public var preferNewLearnerDashboard: Bool {
+        get {
+            (self["preferNewLearnerDashboard"] as? Bool) ?? true
+        }
+        set {
+            self["preferNewLearnerDashboard"] = newValue
+        }
+    }
 }
