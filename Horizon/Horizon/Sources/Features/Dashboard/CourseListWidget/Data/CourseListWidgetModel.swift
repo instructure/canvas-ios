@@ -131,7 +131,7 @@ struct CourseListWidgetModel: Identifiable, Equatable, ProgressStatusProvidable 
         return description
     }
 
-    var accessiblityHintString: String {
+    var accessibilityHintString: String {
         if hasCurrentLearningObject {
             String(localized: "Double tap to open learning object", bundle: .horizon)
         } else {
@@ -139,7 +139,7 @@ struct CourseListWidgetModel: Identifiable, Equatable, ProgressStatusProvidable 
         }
     }
 
-    var accessiblityLearnDescription: String {
+    var accessibilityLearnDescription: String {
         var description = String.localizedStringWithFormat(
             String(localized: "Course: %@. ", bundle: .horizon),
             name
@@ -150,14 +150,6 @@ struct CourseListWidgetModel: Identifiable, Equatable, ProgressStatusProvidable 
             Int(progress.rounded())
         )
         return description
-    }
-
-    var accessiblityLearnHintString: String {
-        if hasCurrentLearningObject {
-            String(format: String(localized: "Double tap to %@", bundle: .horizon), buttonCourseTitle)
-        } else {
-            String(localized: "Double tap to open course", bundle: .horizon)
-        }
     }
 
     func viewProgramAccessibilityString(_ programName: String) -> String {

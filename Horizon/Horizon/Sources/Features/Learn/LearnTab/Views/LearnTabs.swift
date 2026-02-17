@@ -21,13 +21,13 @@ import Foundation
 enum LearnTabs: Int, CaseIterable, Identifiable {
     case courses
     case programs
-    case learningLibrary
+//    case learningLibrary
 
     var localizedString: String {
         switch self {
         case .courses: String(localized: "Courses")
         case .programs: String(localized: "Programs")
-        case .learningLibrary: String(localized: "Learning Library")
+//        case .learningLibrary: String(localized: "Learning Library")
         }
     }
 

@@ -32,6 +32,7 @@ struct LearnCourseCardView: View {
     private var contentView: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
             courseDetailsButton
+                .accessibilityLabel(model.accessibilityLearnDescription)
             HorizonUI.PrimaryButton(
                 model.buttonCourseTitle,
                 type: .grayOutline,
@@ -53,20 +54,6 @@ struct LearnCourseCardView: View {
         .scrollTransition(.animated) { content, phase in
             content
                 .scaleEffect(phase.isIdentity ? 1 : 0.9)
-        }
-        .accessibilityElement(children: .ignore)
-        .accessibilityLabel(model.accessiblityLearnDescription)
-        .accessibilityHint(model.accessiblityLearnHintString)
-        .accessibilityActions {
-            Button("Open course") {
-                onTapCourseDetails()
-            }
-            if model.hasCurrentLearningObject {
-                Button(model.buttonCourseTitle) {
-
-                    onTapLearningObject?(model.id, model.currentLearningObject?.url)
-                }
-            }
         }
     }
 
