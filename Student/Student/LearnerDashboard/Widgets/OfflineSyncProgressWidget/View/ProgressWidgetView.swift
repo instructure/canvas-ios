@@ -50,7 +50,7 @@ struct ProgressWidgetView: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .accessibilityElement(children: .combine)
 
-            Button { } label: {
+            Button(action: model.dismiss) {
                 Image.xLine
                     .scaledIcon(size: 24 * uiScale.iconScale)
             }
@@ -90,6 +90,7 @@ struct ProgressWidgetView: View {
                 case .file: Text("Uploading File", bundle: .student)
                 }
             case .success:
+                // offline content downloadown does not have a success state
                 if case .submission = model.uploadType {
                     Text("Uploading Submission", bundle: .student)
                 } else if case .file = model.uploadType {

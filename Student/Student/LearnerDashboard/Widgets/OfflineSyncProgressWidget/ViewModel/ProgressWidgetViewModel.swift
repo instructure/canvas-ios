@@ -22,6 +22,7 @@ import Core
 
 @Observable
 final class ProgressWidgetViewModel: DashboardWidgetViewModel {
+    // MARK: - DashboardWidgetViewModel
     typealias ViewType = ProgressWidgetView
     var config: DashboardWidgetConfig
     var state: InstUI.ScreenState = .data
@@ -32,6 +33,7 @@ final class ProgressWidgetViewModel: DashboardWidgetViewModel {
         [uploadState, uploadType]
     }
 
+    // MARK: - State
     private(set) var uploadState: UploadState
     let uploadType: UploadType
 
@@ -53,6 +55,10 @@ final class ProgressWidgetViewModel: DashboardWidgetViewModel {
             default: 0
             }
         }()
+    }
+
+    func dismiss() {
+        
     }
 
     func makeView() -> ProgressWidgetView {
