@@ -125,9 +125,11 @@ public class DashboardContainerViewModel: ObservableObject {
     private func presentFeedbackForm(from viewController: UIViewController) {
         guard let topViewController = viewController.topMostViewController() else { return }
 
-        let feedbackURL = URL(
-            string: "https://instructure.com"
-        )!
+        guard let feedbackString = Secret.learnerDashboardFeedbackURL.string,
+              let feedbackURL = URL(string: feedbackString)
+        else {
+            return
+        }
 
         let webViewController = CoreWebViewController()
         webViewController.webView.load(URLRequest(url: feedbackURL))
