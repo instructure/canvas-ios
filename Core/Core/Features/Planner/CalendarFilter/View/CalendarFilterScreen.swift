@@ -93,6 +93,7 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
                 allOptions: viewModel.userFilterOptions,
                 selectedOptions: viewModel.selectedOptions
             )
+            .id(viewModel.userFilterOptions.multiSelectionViewID(prefix: "user-filters"))
         }
     }
 
@@ -104,6 +105,7 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
                 allOptions: viewModel.courseFilterOptions,
                 selectedOptions: viewModel.selectedOptions
             )
+            .id(viewModel.courseFilterOptions.multiSelectionViewID(prefix: "course-filters"))
         }
     }
 
@@ -115,7 +117,29 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
                 allOptions: viewModel.groupFilterOptions,
                 selectedOptions: viewModel.selectedOptions
             )
+            .id(viewModel.groupFilterOptions.multiSelectionViewID(prefix: "group-filters"))
         }
+    }
+}
+
+/// This is to solve an issue where options cells in selection lists
+/// are not updating when changed on filters ViewModel
+private extension Array where Element == OptionItem {
+
+    var hashValueForViewID: Int {
+        var hasher = Hasher()
+        forEach { item in
+            hasher.combine(item.id)
+            hasher.combine(item.title)
+            hasher.combine(item.headerTitle)
+            hasher.combine(item.subtitle)
+            hasher.combine(item.color)
+        }
+        return hasher.finalize()
+    }
+
+    func multiSelectionViewID(prefix: String) -> String {
+        return "\(prefix)-multi-selection-\(hashValueForViewID)"
     }
 }
 
