@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2020-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,35 +16,35 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import Core
+import Foundation
 
-public extension Color {
-
-    var hexString: String { UIColor(self).hexString }
-    var variantForLightMode: Color { Color(UIColor(self).resolvedColor(with: .light)) }
-    var variantForDarkMode: Color { Color(UIColor(self).resolvedColor(with: .dark)) }
-
-    init?(hexString: String?) {
-        if let color = UIColor(hexString: hexString) {
-            self = Color(color)
-        } else {
-            return nil
-        }
-    }
-
-    var asUIColor: UIColor {
-        UIColor(self)
-    }
+struct GlobalAnnouncementsWidgetItem: Equatable {
+    let id: String
+    let title: String
+    let icon: AccountNotificationIcon
+    let startDate: Date?
+    let message: String
+}
 
 #if DEBUG
 
-    static var random: Color {
-        Color(
-            red: .random(in: 0...1),
-            green: .random(in: 0...1),
-            blue: .random(in: 0...1)
+extension GlobalAnnouncementsWidgetItem {
+    static func make(
+        id: String = "",
+        title: String = "",
+        icon: AccountNotificationIcon = .information,
+        startDate: Date? = nil,
+        message: String = ""
+    ) -> GlobalAnnouncementsWidgetItem {
+        GlobalAnnouncementsWidgetItem(
+            id: id,
+            title: title,
+            icon: icon,
+            startDate: startDate,
+            message: message
         )
     }
+}
 
 #endif
-}

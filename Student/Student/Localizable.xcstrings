@@ -21008,6 +21008,9 @@
         }
       }
     },
+    "Announcements (%lld)" : {
+
+    },
     "Anxiety gets louder at night — don't believe all its noise." : {
 
     },
@@ -41082,6 +41085,9 @@
         }
       }
     },
+    "Date" : {
+
+    },
     "Days Before" : {
       "localizations" : {
         "ar" : {
@@ -59625,6 +59631,9 @@
         }
       }
     },
+    "Global Announcement" : {
+
+    },
     "Go to App Store" : {
       "comment" : "Action on an alert",
       "extractionState" : "manual",
@@ -67176,6 +67185,9 @@
           }
         }
       }
+    },
+    "Information" : {
+
     },
     "Instructions" : {
       "localizations" : {
@@ -75540,6 +75552,9 @@
           }
         }
       }
+    },
+    "Message" : {
+
     },
     "Message everyone separately, or add everyone to a group conversation?" : {
       "extractionState" : "manual",
@@ -99176,6 +99191,9 @@
 
     },
     "Progress, not perfection. You're doing great." : {
+
+    },
+    "Question" : {
 
     },
     "Questions:" : {
