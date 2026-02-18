@@ -47,20 +47,24 @@ final class LearnerDashboardViewModel {
     private let interactor: LearnerDashboardInteractor
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
+    private let courseSyncInteractor: CourseSyncInteractor
     private let environment: AppEnvironment
 
     init(
         interactor: LearnerDashboardInteractor,
         snackBarViewModel: SnackBarViewModel,
         mainScheduler: AnySchedulerOf<DispatchQueue> = DispatchQueue.main.eraseToAnyScheduler(),
+        courseSyncInteractor: CourseSyncInteractor = CourseSyncDownloaderAssembly.makeInteractor(),
         environment: AppEnvironment = .shared
     ) {
         self.interactor = interactor
         self.snackBarViewModel = snackBarViewModel
         self.mainScheduler = mainScheduler
+        self.courseSyncInteractor = courseSyncInteractor
         self.environment = environment
 
         loadWidgets()
+        setupOfflineSyncHandlers()
     }
 
     func refresh(ignoreCache: Bool, completion: (() -> Void)? = nil) {
@@ -118,6 +122,24 @@ final class LearnerDashboardViewModel {
                 }
                 refresh(ignoreCache: false)
             }
+            .store(in: &subscriptions)
+    }
+
+    private func setupOfflineSyncHandlers() {
+        NotificationCenter.default.publisher(for: .OfflineSyncTriggered)
+            .compactMap { $0.object as? [CourseSyncEntry] }
+            .flatMap { [courseSyncInteractor] in
+                courseSyncInteractor.downloadContent(for: $0)
+            }
+            .sink()
+            .store(in: &subscriptions)
+
+        NotificationCenter.default.publisher(for: .OfflineSyncCleanTriggered)
+            .compactMap { $0.object as? [CourseSyncID] }
+            .flatMap { [courseSyncInteractor] in
+                courseSyncInteractor.cleanContent(for: $0)
+            }
+            .sink()
             .store(in: &subscriptions)
     }
 }
