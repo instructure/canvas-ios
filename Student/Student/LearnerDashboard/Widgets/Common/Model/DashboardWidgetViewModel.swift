@@ -37,6 +37,12 @@ protocol DashboardWidgetViewModel: AnyObject, Identifiable where ID == Dashboard
     /// The state helps the dashboard screen to decide if the empty state should be shown or not.
     var state: InstUI.ScreenState { get }
 
+    /// When true, the widget will be completely hidden (not rendered) when state is .empty.
+    /// This prevents empty widgets from creating spacing in the layout.
+    /// Use this for widgets that conditionally render EmptyView in their body when empty,
+    /// such as progress card widgets that should not take up any space when inactive.
+    var isHiddenInEmptyState: Bool { get }
+
     /// Used by the layout to detect when widget size might change and trigger smooth animations.
     /// Override this property to include any size-affecting properties (e.g., text.count).
     /// This is required because widget view models are stored in an array and SwiftUI can't observe
@@ -57,5 +63,9 @@ extension DashboardWidgetViewModel {
 
     var layoutIdentifier: [AnyHashable] {
         [state]
+    }
+
+    var shouldRenderWidget: Bool {
+        !isHiddenInEmptyState || state != .empty 
     }
 }

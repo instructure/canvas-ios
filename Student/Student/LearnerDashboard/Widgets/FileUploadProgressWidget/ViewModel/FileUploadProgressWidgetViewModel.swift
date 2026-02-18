@@ -32,6 +32,7 @@ final class FileUploadProgressWidgetViewModel: DashboardWidgetViewModel {
     private(set) var state: InstUI.ScreenState = .empty
     let isFullWidth = true
     let isEditable = false
+    let isHiddenInEmptyState = true
 
     var layoutIdentifier: [AnyHashable] {
         uploadCards.map(\.id)

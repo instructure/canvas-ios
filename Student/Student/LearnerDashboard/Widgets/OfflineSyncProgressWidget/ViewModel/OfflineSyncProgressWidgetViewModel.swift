@@ -31,6 +31,7 @@ final class OfflineSyncProgressWidgetViewModel: DashboardWidgetViewModel {
     private(set) var state: InstUI.ScreenState = .empty
     let isFullWidth = true
     let isEditable = false
+    let isHiddenInEmptyState = true
 
     var layoutIdentifier: [AnyHashable] {
         [state, progress, progressText, title]
