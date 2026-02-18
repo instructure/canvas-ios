@@ -20,9 +20,9 @@ import Core
 import Foundation
 import SwiftUI
 
-@Observable
-final class CourseCardViewModel: Identifiable, Equatable {
+struct CourseCardViewModel: Identifiable, Equatable {
 
+    let id: String
     let title: String
     let courseColor: Color
     let imageUrl: URL?
@@ -34,11 +34,8 @@ final class CourseCardViewModel: Identifiable, Equatable {
 
     var isAvailableOffline: Bool {
         guard let selections = AppEnvironment.shared.userDefaults?.offlineSyncSelections else { return false }
-        return selections.contains { $0.contains("courses/\(model.id)") }
+        return selections.contains { $0.contains("courses/\(id)") }
     }
-
-    // Including the whole model to ensure any change triggers a view update.
-    var id: CoursesAndGroupsWidgetCourseItem { model }
 
     private let model: CoursesAndGroupsWidgetCourseItem
     private let router: Router
@@ -51,6 +48,7 @@ final class CourseCardViewModel: Identifiable, Equatable {
     ) {
         self.model = model
 
+        self.id = model.id
         self.title = model.title
         self.courseColor = Color(hexString: model.colorString) ?? .textDark
         self.imageUrl = model.imageUrl
@@ -74,23 +72,23 @@ final class CourseCardViewModel: Identifiable, Equatable {
     func didTapCard(from controller: WeakViewController) {
         let route: String
         if let colorWithoutHash = model.colorString?.dropFirst() {
-            route = "/courses/\(model.id)?contextColor=\(colorWithoutHash)"
+            route = "/courses/\(id)?contextColor=\(colorWithoutHash)"
         } else {
-            route = "/courses/\(model.id)"
+            route = "/courses/\(id)"
         }
 
         router.route(to: route, from: controller)
     }
 
     func didTapManageOfflineContent(from controller: WeakViewController) {
-        let route = "/offline/sync_picker/\(model.id)"
+        let route = "/offline/sync_picker/\(id)"
 
         router.route(to: route, from: controller, options: .modal(isDismissable: false, embedInNav: true))
     }
 
     func didTapCustomize(from controller: WeakViewController) {
         let viewModel = CustomizeCourseViewModel(
-            courseId: model.id,
+            courseId: id,
             courseImage: imageUrl,
             courseColor: courseColor.uiColor,
             courseName: title,

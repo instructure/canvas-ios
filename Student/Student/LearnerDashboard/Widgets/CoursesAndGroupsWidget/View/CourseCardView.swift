@@ -23,7 +23,7 @@ struct CourseCardView: View {
     @Environment(\.viewController) private var controller
     @ScaledMetric private var uiScale: CGFloat = 1
 
-    @State var viewModel: CourseCardViewModel
+    private let viewModel: CourseCardViewModel
     @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
 
     @State private var isShowingOptionsDialog = false
@@ -34,6 +34,10 @@ struct CourseCardView: View {
         return isAppOnline || isCourseAvailableOffline
     }
 
+    init(viewModel: CourseCardViewModel) {
+        self.viewModel = viewModel
+    }
+
     var body: some View {
         cardButton
             .overlay(alignment: .topLeading) {
@@ -42,6 +46,7 @@ struct CourseCardView: View {
                     .contentShape(Rectangle())
                     .offset(x: 2, y: 2)
             }
+            .animation(.dashboardWidget, value: viewModel)
             .accessibilityElement(children: .combine)
             .accessibilityLabel(viewModel.a11yLabel)
             .identifier("Dashboard.CourseCard.cardButton")
