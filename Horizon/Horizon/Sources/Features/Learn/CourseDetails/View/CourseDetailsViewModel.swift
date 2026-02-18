@@ -21,7 +21,7 @@ import Core
 import Foundation
 
 @Observable
-final class CourseDetailsViewModel: ProgramSwitcherMapper {
+final class CourseDetailsViewModel {
     typealias ScoresViewModelBuilder = ((String, String) -> ScoresViewModel)
 
     // MARK: - Outputs
@@ -34,18 +34,14 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
         }
     }
     private(set) var isShowHeader = true
-    private(set) var programs: [ProgramSwitcherModel] = []
-    private(set) var selectedCourse: ProgramSwitcherModel.Course?
     private(set) var courses: [LearnCourse] = []
     private(set) var courseTools: [ToolLinkItem] = []
-    private(set) var selectedProgram: ProgramSwitcherModel?
     private(set) var isLoaderVisible: Bool = false
     private(set) var overviewDescription = ""
     private(set) var scoresViewModel: ScoresViewModel?
 
     // MARK: - Inputs
 
-    var onSelectCourse: (ProgramSwitcherModel.Course?) -> Void = { _ in }
     private(set) var showHeaderPublisher = PassthroughSubject<Bool, Never>()
 
     // MARK: - Inputs / Outputs
@@ -64,6 +60,7 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
     private let selectedTab: CourseDetailsTabs?
     private var pullToRefreshCancellable: AnyCancellable?
     private let scoresViewModelBuilder: ScoresViewModelBuilder
+    let programName: String?
 
     // MARK: - Init
 
@@ -76,7 +73,7 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
         courseToolsInteractor: CourseToolsInteractor,
         courseID: String,
         enrollmentID: String,
-        programID: String? = nil,
+        programName: String? = nil,
         course: HCourse?,
         selectedTab: CourseDetailsTabs? = nil,
         scoresViewModelBuilder: @escaping ScoresViewModelBuilder
@@ -88,12 +85,11 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
         self.courseToolsInteractor = courseToolsInteractor
         self.courseID = courseID
         self.course = course ?? .init()
-        self.selectedProgram = .init(id: programID)
         self.isLoaderVisible = true
         self.selectedTab = selectedTab
+        self.programName = programName
         self.scoresViewModelBuilder = scoresViewModelBuilder
         fetchData()
-        observeCourseSelection()
         observeHeaderVisiablity()
     }
 
@@ -115,16 +111,14 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
 
             let syllabusPublisher = getCoursesInteractor
                 .getCourseSyllabus(courseID: course.id, ignoreCache: true)
-            let programsPublisher = getPrograms(ignoreCache: true)
            let toolsPublisher = courseToolsInteractor.getTools(courseID: courseID, ignoreCache: true)
 
-            pullToRefreshCancellable = Publishers.Zip4(coursePublisher, syllabusPublisher, programsPublisher, toolsPublisher)
-                .sink { [weak self] course, syllabus, programs, tools in
+            pullToRefreshCancellable = Publishers.Zip3(coursePublisher, syllabusPublisher, toolsPublisher)
+                .sink { [weak self] course, syllabus, tools in
                     continuation.resume()
                     guard let self = self, let course = course else { return }
                     self.course = course
                     self.courseTools = tools
-                    self.programs = mapPrograms(programs: programs, courses: self.courses)
                     self.overviewDescription = syllabus ?? ""
                 }
         }
@@ -162,26 +156,6 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
 
     // MARK: - Private Functions
 
-    private func observeCourseSelection() {
-        onSelectCourse = { [weak self] selectedCourse in
-            guard let self, let selectedCourse, self.selectedCourse != selectedCourse else {
-                return
-            }
-            self.selectedProgram = selectedCourse.programID != nil ? programs.first(where: { $0.id == selectedCourse.programID }) : nil
-            // Needs to cancel refresh api after change the course
-            pullToRefreshCancellable?.cancel()
-            pullToRefreshCancellable = nil
-            isLoaderVisible = true
-            self.selectedCourse = selectedCourse
-            self.selectedTabIndex = nil
-            getCourse(for: selectedCourse.id)
-                .sink { [weak self] courseInfo in
-                    self?.updateCourse(course: courseInfo.course, syllabus: courseInfo.syllabus)
-                }
-                .store(in: &subscriptions)
-        }
-    }
-
     private func observeHeaderVisiablity() {
         showHeaderPublisher
             .removeDuplicates()
@@ -193,28 +167,18 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
     }
 
     private func fetchData() {
-        Publishers.CombineLatest4(
+        Publishers.CombineLatest3(
             getCourse(for: courseID),
             getCourses(),
-            getPrograms(),
             courseToolsInteractor.getTools(courseID: courseID, ignoreCache: false)
         )
-        .sink { [weak self] courseInfo, courses, allPrograms, tools in
+        .sink { [weak self] courseInfo, courses, tools in
             guard let self else { return }
             self.courses = courses
             self.courseTools = tools
-            self.programs = mapPrograms(programs: allPrograms, courses: courses)
-            selectedProgram = findProgram(containing: courseID, programID: selectedProgram?.id, in: allPrograms)
             updateCourse(course: courseInfo.course, syllabus: courseInfo.syllabus)
         }
         .store(in: &subscriptions)
-    }
-
-    private func getPrograms(ignoreCache: Bool = false) -> AnyPublisher<[Program], Never> {
-        programInteractor
-            .getProgramsWithCourses(ignoreCache: ignoreCache)
-            .replaceError(with: [])
-            .eraseToAnyPublisher()
     }
 
     private func getCourses() -> AnyPublisher<[LearnCourse], Never> {
@@ -236,17 +200,8 @@ final class CourseDetailsViewModel: ProgramSwitcherMapper {
     }
 
     private func updateCourse(course: HCourse?, syllabus: String?) {
-        guard let course, (course.id == selectedCourse?.id || selectedCourse == nil ) else {
-            return
-        }
+        guard let course else { return }
         self.course = course
-        selectedCourse = .init(
-            id: course.id,
-            name: course.name,
-            programID: selectedProgram?.id,
-            programName: selectedProgram?.name,
-            isEnrolled: course.enrollmentID.isNotEmpty
-        )
         overviewDescription = syllabus ?? ""
         if selectedTabIndex == nil {
             selectedTabIndex = if let index = selectedTab?.rawValue {

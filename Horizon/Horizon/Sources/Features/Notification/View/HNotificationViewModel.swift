@@ -92,7 +92,7 @@ final class HNotificationViewModel {
             if let url {
                 router.route(to: url, from: viewController)
             } else {
-                let view = LearnAssembly.makeCourseDetailsViewController(
+                let view = CourseDetailsAssembly.makeCourseDetailsViewController(
                     courseID: notification.courseID,
                     enrollmentID: notification.enrollmentID,
                     shoudHideTabBar: true,

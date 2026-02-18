@@ -51,7 +51,6 @@ class CourseListWidgetViewModel {
     private let courseListWidgetInteractor: CourseListWidgetInteractor
     private let programInteractor: ProgramInteractor
     private let router: Router
-    private let onTapProgram: (ProgramSwitcherModel?, WeakViewController) -> Void
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Private variables
@@ -67,13 +66,11 @@ class CourseListWidgetViewModel {
         courseCardsInteractor: CourseListWidgetInteractor,
         programInteractor: ProgramInteractor,
         router: Router,
-        onTapProgram: @escaping (ProgramSwitcherModel?, WeakViewController) -> Void,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.courseListWidgetInteractor = courseCardsInteractor
         self.programInteractor = programInteractor
         self.router = router
-        self.onTapProgram = onTapProgram
         self.scheduler = scheduler
 
         getCourses()
@@ -192,21 +189,24 @@ class CourseListWidgetViewModel {
     func navigateToCourseDetails(
         id: String,
         enrollmentID: String,
-        programID: String?,
+        programName: String?,
         viewController: WeakViewController
     ) {
         router.show(
-            LearnAssembly.makeCourseDetailsViewController(
+            CourseDetailsAssembly.makeCourseDetailsViewController(
                 courseID: id,
                 enrollmentID: enrollmentID,
-                programID: programID
+                programName: programName
             ),
             from: viewController
         )
     }
 
     func navigateProgram(id: String, viewController: WeakViewController) {
-        onTapProgram(.init(id: id), viewController)
+        router.show(
+            ProgramDetailsAssembly.makeViewController(programID: id),
+            from: viewController
+        )
     }
 
     func navigateToListCourse(viewController: WeakViewController) {

@@ -24,15 +24,11 @@ import XCTest
 final class CourseListWidgetViewModelTests: HorizonTestCase {
     private var courseListWidgetInteractor: CourseListWidgetInteractorMock!
     private var programInteractor: ProgramInteractorMock!
-    private var onTapProgramCalled = false
-    private var onTapProgramModel: ProgramSwitcherModel?
 
     override func setUp() {
         super.setUp()
         courseListWidgetInteractor = CourseListWidgetInteractorMock()
         programInteractor = ProgramInteractorMock()
-        onTapProgramCalled = false
-        onTapProgramModel = nil
     }
 
     override func tearDown() {
@@ -249,7 +245,7 @@ final class CourseListWidgetViewModelTests: HorizonTestCase {
         testee.navigateToCourseDetails(
             id: "course-1",
             enrollmentID: "enrollment-1",
-            programID: "program-1",
+            programName: "program-1",
             viewController: viewController
         )
 
@@ -269,7 +265,7 @@ final class CourseListWidgetViewModelTests: HorizonTestCase {
         testee.navigateToCourseDetails(
             id: "course-1",
             enrollmentID: "enrollment-1",
-            programID: nil,
+            programName: nil,
             viewController: viewController
         )
 
@@ -289,8 +285,8 @@ final class CourseListWidgetViewModelTests: HorizonTestCase {
         testee.navigateProgram(id: "program-1", viewController: viewController)
 
         // Then
-        XCTAssertTrue(onTapProgramCalled)
-        XCTAssertEqual(onTapProgramModel?.id, "program-1")
+        let programDetails = router.lastViewController as? CoreHostingController<ProgramDetailsView>
+        XCTAssertNotNil(programDetails)
     }
 
     func test_isExceededMaxCourses_whenCoursesCountIsLessThanMax() {
@@ -366,10 +362,6 @@ final class CourseListWidgetViewModelTests: HorizonTestCase {
             courseCardsInteractor: courseListWidgetInteractor,
             programInteractor: programInteractor,
             router: router,
-            onTapProgram: { [weak self] model, _ in
-                self?.onTapProgramCalled = true
-                self?.onTapProgramModel = model
-            },
             scheduler: .immediate
         )
     }
