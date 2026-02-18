@@ -40810,6 +40810,9 @@
         }
       }
     },
+    "Customize Dashboard" : {
+
+    },
     "Dashboard" : {
       "comment" : "Tab title, max character count is 14",
       "localizations" : {
@@ -81206,6 +81209,9 @@
           }
         }
       }
+    },
+    "New Mobile Dashboard" : {
+
     },
     "Next 7 Days" : {
       "extractionState" : "manual",
