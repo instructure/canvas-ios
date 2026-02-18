@@ -2153,9 +2153,6 @@
         }
       }
     },
-    "%@ is now available" : {
-
-    },
     "%@ likes" : {
       "comment" : "Description for how many times a specific discussion has been liked by other users",
       "extractionState" : "manual",
@@ -9168,12 +9165,6 @@
           }
         }
       }
-    },
-    "%lld course failed to sync.\nTry again, or come back later" : {
-
-    },
-    "%lld course is syncing" : {
-
     },
     "%qu bytes" : {
       "comment" : "As in, '15 bytes'",
@@ -38668,9 +38659,6 @@
         }
       }
     },
-    "Couldn't upload %@\nTry again, or come back later" : {
-
-    },
     "Course Invitations" : {
 
     },
@@ -57761,9 +57749,6 @@
           }
         }
       }
-    },
-    "File Upload Failed" : {
-
     },
     "File upload failed." : {
       "comment" : "File upload failed.",
@@ -118452,6 +118437,9 @@
     "Submission Upload Failed" : {
 
     },
+    "Submission Uploaded Successfully" : {
+
+    },
     "Submission Uploading..." : {
       "localizations" : {
         "ar" : {
@@ -143099,9 +143087,6 @@
         }
       }
     },
-    "Uploading File" : {
-
-    },
     "Uploading Submission" : {
 
     },
@@ -146041,6 +146026,9 @@
           }
         }
       }
+    },
+    "We couldn't sync your content.\nTry again, or come back later" : {
+
     },
     "We couldn't upload your submission.\nTry again, or come back later" : {
 

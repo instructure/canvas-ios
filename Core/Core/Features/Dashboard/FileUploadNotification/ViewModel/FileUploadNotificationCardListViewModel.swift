@@ -20,7 +20,7 @@ import Combine
 import CoreData
 import SwiftUI
 
-final class FileUploadNotificationCardListViewModel: ObservableObject {
+public final class FileUploadNotificationCardListViewModel: ObservableObject {
     // MARK: - Dependencies
 
     private let environment: AppEnvironment
@@ -39,8 +39,8 @@ final class FileUploadNotificationCardListViewModel: ObservableObject {
      When an upload happens we force refresh quite often the view context to get changes made by out-of-process activities,
      so we use this local context to avoid refreshing the whole app each time.
      */
-    private let localViewContext: NSManagedObjectContext
-    private lazy var fileSubmissions: Store<LocalUseCase<FileSubmission>> = {
+    public let localViewContext: NSManagedObjectContext
+    public private(set) lazy var fileSubmissions: Store<LocalUseCase<FileSubmission>> = {
         let scope = Scope(
             predicate: NSPredicate(format: "%K == false", #keyPath(FileSubmission.isHiddenOnDashboard)),
             order: []
@@ -66,7 +66,7 @@ final class FileUploadNotificationCardListViewModel: ObservableObject {
 
     // MARK: - Init
 
-    init(environment: AppEnvironment = .shared) {
+    public init(environment: AppEnvironment = .shared) {
         self.environment = environment
         self.localViewContext = {
             let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)

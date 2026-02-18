@@ -19,18 +19,19 @@
 import Combine
 import CombineExt
 import CombineSchedulers
+import CoreData
 import Foundation
 
-class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
-    enum ViewState: Equatable {
-        typealias Progress = Float // Ranging from 0 to 1
-        typealias ProgressText = String // Text
+public class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
+    public enum ViewState: Equatable {
+        public typealias Progress = Float // Ranging from 0 to 1
+        public typealias ProgressText = String // Text
 
         case progress(Progress, ProgressText)
         case error
         case hidden
 
-        var isHidden: Bool {
+        public var isHidden: Bool {
             switch self {
             case .hidden: return true
             default: return false

@@ -20,8 +20,8 @@ import CoreData
 import Foundation
 import SwiftUI
 
-final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifiable {
-    enum State {
+public final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifiable {
+    public enum State {
         case uploading, success, failure
 
         var text: String {
@@ -66,7 +66,7 @@ final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifia
 
     // MARK: - Init
 
-    init(
+    public init(
         id: NSManagedObjectID,
         assignmentName: String,
         state: State,

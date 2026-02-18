@@ -23,7 +23,8 @@ enum LearnerDashboardWidgetAssembly {
     static func makeDefaultWidgetConfigs() -> [DashboardWidgetConfig] {
         let identifiers: [DashboardWidgetIdentifier] = [
             // full width
-            .progress,
+            .offlineSyncProgress,
+            .fileUploadProgress,
             .conferences,
             .courseInvitations,
             .globalAnnouncements,
@@ -46,12 +47,15 @@ enum LearnerDashboardWidgetAssembly {
         coursesInteractor: CoursesInteractor = makeCoursesInteractor()
     ) -> any DashboardWidgetViewModel {
         switch config.id {
-        case .progress:
-            ProgressWidgetViewModel(
+        case .offlineSyncProgress:
+            OfflineSyncProgressWidgetViewModel(
                 config: config,
-                uploadState: .uploading,
-                uploadType: .offlineContent(courseCount: 2),
-                progress: 0.6
+                dashboardViewModel: DashboardOfflineSyncProgressCardAssembly.makeViewModel()
+            )
+        case .fileUploadProgress:
+            FileUploadProgressWidgetViewModel(
+                config: config,
+                listViewModel: FileUploadNotificationCardListViewModel()
             )
         case .conferences:
             ConferencesWidgetViewModel(
@@ -91,7 +95,9 @@ enum LearnerDashboardWidgetAssembly {
     @ViewBuilder
     static func makeView(for viewModel: any DashboardWidgetViewModel) -> some View {
         switch viewModel {
-        case let vm as ProgressWidgetViewModel:
+        case let vm as OfflineSyncProgressWidgetViewModel:
+            vm.makeView()
+        case let vm as FileUploadProgressWidgetViewModel:
             vm.makeView()
         case let vm as ConferencesWidgetViewModel:
             vm.makeView()

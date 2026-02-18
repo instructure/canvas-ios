@@ -17,7 +17,8 @@
 //
 
 enum DashboardWidgetIdentifier: String, Codable, CaseIterable {
-    case progress
+    case offlineSyncProgress
+    case fileUploadProgress
     case conferences
     case courseInvitations
     case globalAnnouncements
