@@ -20,10 +20,6 @@ import HorizonUI
 import SwiftUI
 
 struct LearningLibraryCardView: View {
-    // MARK: - Private variables
-
-    @State private var isTooltipVisible = false
-
     // MARK: - Dependencies
 
     private let model: LearningLibraryCardModel
@@ -70,25 +66,14 @@ struct LearningLibraryCardView: View {
 
             HStack(alignment: .bottom, spacing: .huiSpaces.space8) {
                 descriptionView
-                Spacer(minLength: .huiSpaces.space8)
-                HStack(spacing: .huiSpaces.space8) {
-                    if model.isCompleted {
-                        completedIcon
-                    }
-                    bookmarkButton
-                }
-                .fixedSize()
+                bookmarkButton
+                    .fixedSize()
             }
         }
         .padding(.huiSpaces.space24)
         .background(Color.huiColors.surface.pageSecondary)
         .huiCornerRadius(level: .level5)
-        .shadow(
-            color: Color.huiColors.primitives.grey125.opacity(0.18),
-            radius: 4,
-            x: 1,
-            y: 2
-        )
+        .huiElevation(level: .level4)
     }
 
     private var imageView: some View {
@@ -97,7 +82,10 @@ struct LearningLibraryCardView: View {
             width: width,
             url: model.imageURL,
             corners: .all,
-            level: .level1_5
+            level: .level1_5,
+            placeholderIcon: model.itemType.icon,
+            iconForegroundColor: model.itemType.style.foregroundColor(),
+            backgroundColor: model.itemType.style.backgroundColor
         )
     }
 
@@ -110,7 +98,7 @@ struct LearningLibraryCardView: View {
     }
 
     private var descriptionView: some View {
-        HorizonUI.HFlow(spacing: .huiSpaces.space8, lineSpacing: .huiSpaces.space12) {
+        HorizonUI.HFlow(spacing: .huiSpaces.space8, lineSpacing: .huiSpaces.space8) {
             itemTypeView
             if let estimatedTime = model.estimatedTime {
                 defaultChip(title: String(format: "%@ mins", estimatedTime), icon: Image.huiIcons.schedule)
@@ -125,9 +113,11 @@ struct LearningLibraryCardView: View {
                 recommendedView
             }
             if model.isInProgress {
-                defaultChip(
+                HorizonUI.StatusChip(
                     title: String(localized: "In progress"),
-                    icon: Image.huiIcons.trendingUp
+                    style: .gray,
+                    icon: Image.huiIcons.trendingUp,
+                    iconHeight: 10
                 )
             }
             if !model.isEnrolled {
@@ -170,18 +160,6 @@ struct LearningLibraryCardView: View {
             isSmall: false
         ) {
             onBookmarkTap()
-        }
-    }
-
-    private var completedIcon: some View {
-        Button {
-            isTooltipVisible.toggle()
-        } label: {
-            Image.huiIcons.checkCircle
-                .foregroundStyle(Color.huiColors.icon.default)
-        }
-        .huiTooltip(isPresented: $isTooltipVisible, arrowEdge: .bottom, style: .secondary) {
-            Text(String(localized: "Completed"))
         }
     }
 

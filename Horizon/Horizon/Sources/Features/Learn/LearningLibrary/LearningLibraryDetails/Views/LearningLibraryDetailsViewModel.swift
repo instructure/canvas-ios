@@ -17,19 +17,39 @@
 //
 
 import Combine
+import CombineSchedulers
 import Core
 import Foundation
 import Observation
 
 @Observable
 final class LearningLibraryDetailsViewModel {
+    // MARK: - Init / Outputs
+
+    private let searchTextSubject = CurrentValueSubject<String, Never>("")
+    private let selectedLearningObjectSubject = CurrentValueSubject<OptionModel, Never>(LearningLibraryObjectType.firstOption)
+    private let selectedLearningLibrarySubject = CurrentValueSubject<OptionModel, Never>(LearningLibraryFilter.firstOption)
+
+    var selectedLearningObject = LearningLibraryObjectType.firstOption {
+        didSet {
+            selectedLearningObjectSubject.send(selectedLearningObject)
+        }
+    }
+    var selectedLearningLibrary = LearningLibraryFilter.firstOption {
+        didSet {
+            selectedLearningLibrarySubject.send(selectedLearningLibrary)
+        }
+    }
+    var searchText: String = "" {
+        didSet {
+            searchTextSubject.send(searchText)
+        }
+    }
+
     // MARK: - Outputs
 
     private(set) var hasItems = false
     private(set) var isLoaderVisible: Bool = true
-    var selectedLearningObject = LearningLibraryObjectType.firstOption { didSet { filter() }}
-    var selectedLearningLibrary = LearningLibraryFilter.firstOption { didSet { filter() } }
-    var searchText: String = "" { didSet { filter() } }
     var filteredItems: [LearningLibraryCardModel] { paginator.visibleItems }
     var isSeeMoreVisible: Bool { paginator.isSeeMoreVisible }
 
@@ -46,6 +66,7 @@ final class LearningLibraryDetailsViewModel {
     var model: LearningLibrarySectionModel = .init(id: "", name: "", items: [])
     private let router: Router
     private let interactor: LearningLibraryInteractor
+    private let scheduler: AnySchedulerOf<DispatchQueue>
     let pageType: PageType
 
     // MARK: - Init
@@ -53,11 +74,14 @@ final class LearningLibraryDetailsViewModel {
     init(
         interactor: LearningLibraryInteractor,
         router: Router,
-        pageType: PageType
+        pageType: PageType,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.pageType = pageType
         self.router = router
         self.interactor = interactor
+        self.scheduler = scheduler
+        observeFilters()
     }
 
     // MARK: - Input Actions
@@ -67,13 +91,13 @@ final class LearningLibraryDetailsViewModel {
         completion: (() -> Void)? = nil
     ) {
         interactor.getLearnLibraryItems(ignoreCache: ignoreCache)
+            .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] _ in
                 self?.isLoaderVisible = false
                 completion?()
             } receiveValue: { [weak self] items in
                 self?.isLoaderVisible = false
                 self?.configResponse(items: items)
-                self?.filter()
                 completion?()
             }
             .store(in: &subscriptions)
@@ -89,15 +113,15 @@ final class LearningLibraryDetailsViewModel {
         }
     }
 
-    func filter() {
+    private func filter(searchText: String, learningObject: OptionModel, learningLibrary: OptionModel) {
         var items = allItems
         /// -1 refers to `All Items` have been selected for `LearningLibraryObjectType`
-        if selectedLearningObject.id != "-1",
-           let objectType = LearningLibraryObjectType(rawValue: selectedLearningObject.id) {
+        if learningObject.id != "-1",
+           let objectType = LearningLibraryObjectType(rawValue: learningObject.id) {
             items = items.filter { $0.itemType == objectType }
         }
 
-        if let filterType = LearningLibraryFilter(rawValue: selectedLearningLibrary.id) {
+        if let filterType = LearningLibraryFilter(rawValue: learningLibrary.id) {
             switch filterType {
             case .all:
                 break
@@ -115,6 +139,21 @@ final class LearningLibraryDetailsViewModel {
         paginator.setItems(items)
     }
 
+    private func observeFilters() {
+        Publishers.CombineLatest3(
+            searchTextSubject
+                .debounce(for: .milliseconds(200), scheduler: scheduler)
+                .removeDuplicates(),
+            selectedLearningObjectSubject,
+            selectedLearningLibrarySubject
+        )
+        .sink { [weak self] searchText, learningObject, learningLibrary in
+            guard let self else { return }
+            self.filter(searchText: searchText, learningObject: learningObject, learningLibrary: learningLibrary)
+        }
+        .store(in: &subscriptions)
+    }
+
     func seeMore() {
         paginator.seeMore()
     }
@@ -126,6 +165,7 @@ final class LearningLibraryDetailsViewModel {
     func addBookmark(model: LearningLibraryCardModel) {
         bookmarkLoadingStates[model.id] = true
         interactor.bookmark(id: model.id)
+            .receive(on: scheduler)
             .sinkFailureOrValue { error in
                 print(error)
             } receiveValue: { [weak self] item in
@@ -144,6 +184,7 @@ final class LearningLibraryDetailsViewModel {
     func enroll(model: LearningLibraryCardModel) {
         enrollLoadingStates[model.id] = true
         interactor.enroll(id: model.id)
+            .receive(on: scheduler)
             .sinkFailureOrValue { error in
                 print(error)
             } receiveValue: { [weak self] item in
@@ -192,6 +233,11 @@ final class LearningLibraryDetailsViewModel {
             allItems = items.filter { $0.isBookmarked }
         }
         hasItems = allItems.isNotEmpty
+        filter(
+            searchText: searchTextSubject.value,
+            learningObject: selectedLearningObjectSubject.value,
+            learningLibrary: selectedLearningLibrarySubject.value
+        )
     }
 
     private func configItem(item: LearningLibraryCardModel) {

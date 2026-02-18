@@ -34,7 +34,7 @@ public extension HorizonUI.StatusChip {
         case institution
         case custom(foregroundColor: Color, backgroundColor: Color)
 
-        func foregroundColor(isFilled: Bool) -> Color {
+        public func foregroundColor(isFilled: Bool = true) -> Color {
             switch self {
             case .white: isFilled ? Color.huiColors.text.title : Color.huiColors.text.surfaceColored
             case .gray: Color.huiColors.text.title
@@ -52,7 +52,7 @@ public extension HorizonUI.StatusChip {
             }
         }
 
-        var backgroundColor: Color {
+       public var backgroundColor: Color {
             switch self {
             case .white: Color.huiColors.surface.pageSecondary
             case .gray: Color.huiColors.primitives.grey11
@@ -70,7 +70,7 @@ public extension HorizonUI.StatusChip {
             }
         }
 
-        func iconColor(isFilled: Bool) -> Color {
+        public func iconColor(isFilled: Bool) -> Color {
             switch self {
             case .white: isFilled ? Color.huiColors.icon.default : Color.huiColors.icon.surfaceColored
             case .gray: Color.huiColors.icon.default

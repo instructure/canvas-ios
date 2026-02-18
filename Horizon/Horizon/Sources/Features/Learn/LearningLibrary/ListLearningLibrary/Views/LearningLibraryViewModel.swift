@@ -18,11 +18,22 @@
 
 import Core
 import Combine
+import CombineSchedulers
 import Foundation
 import Observation
 
 @Observable
 final class LearningLibraryViewModel {
+    // MARK: - Init / Outputs
+
+    private let searchTextSubject = CurrentValueSubject<String, Never>("")
+
+    var searchText: String = "" {
+        didSet {
+            searchTextSubject.send(searchText)
+        }
+    }
+
     // MARK: - Inputs / Outputs
 
     var isErrorVisible: Bool = false
@@ -34,11 +45,6 @@ final class LearningLibraryViewModel {
     private(set) var isLoaderVisible: Bool = true
     var filteredSections: [LearningLibrarySectionModel] { paginator.visibleItems }
     var isSeeMoreVisible: Bool { paginator.isSeeMoreVisible }
-    var searchText: String = "" {
-        didSet {
-            paginator.search(query: searchText)
-        }
-    }
 
     // MARK: - Private variables
 
@@ -52,21 +58,26 @@ final class LearningLibraryViewModel {
 
     private let router: Router
     private let interactor: LearningLibraryInteractor
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
 
     init(
         router: Router,
-        interactor: LearningLibraryInteractor = LearningLibraryInteractorLive()
+        interactor: LearningLibraryInteractor = LearningLibraryInteractorLive(),
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.router = router
         self.interactor = interactor
+        self.scheduler = scheduler
+        observeSearchText()
     }
 
     // MARK: - Input Actions
 
     func fetchLearningLibrary(ignoreCache: Bool = false, completion: (() -> Void)? = nil) {
         interactor.getLearnLibraryCollections(ignoreCache: ignoreCache)
+            .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] error in
                 self?.isLoaderVisible = false
                 self?.showError(with: error.localizedDescription)
@@ -74,9 +85,10 @@ final class LearningLibraryViewModel {
             } receiveValue: { [weak self] collections in
                 guard let self else { return }
                 isLoaderVisible = false
-                paginator.setItems(collections, currentPage: paginator.currentPage)
                 allItems = collections
                 hasLibrary = collections.isNotEmpty
+                paginator.setItems(collections, currentPage: paginator.currentPage)
+                paginator.search(query: searchTextSubject.value)
                 completion?()
             } .store(in: &subscriptions)
     }
@@ -94,6 +106,7 @@ final class LearningLibraryViewModel {
     func addBookmark(model: LearningLibraryCardModel) {
         bookmarkLoadingStates[model.id] = true
         interactor.bookmark(id: model.id)
+            .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] error in
                 guard let self else { return }
                 self.bookmarkLoadingStates[model.id] = false
@@ -113,6 +126,7 @@ final class LearningLibraryViewModel {
     func enroll(model: LearningLibraryCardModel) {
         enrollLoadingStates[model.id] = true
         interactor.enroll(id: model.id)
+            .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] error in
                 guard let self else { return }
                 enrollLoadingStates[model.id] = false
@@ -201,5 +215,16 @@ final class LearningLibraryViewModel {
     private func showError(with message: String) {
         errorMessage = message
         isErrorVisible = true
+    }
+
+    private func observeSearchText() {
+        searchTextSubject
+            .debounce(for: .milliseconds(200), scheduler: scheduler)
+            .removeDuplicates()
+            .sink { [weak self] searchText in
+                guard let self else { return }
+                self.paginator.search(query: searchText)
+            }
+            .store(in: &subscriptions)
     }
 }

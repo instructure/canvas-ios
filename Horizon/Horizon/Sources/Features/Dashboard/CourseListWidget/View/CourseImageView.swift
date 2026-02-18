@@ -26,19 +26,28 @@ struct CourseImageView: View {
     private let url: URL?
     private let corners: HorizonUI.Corners
     private let level: HorizonUI.CornerRadius
+    private let placeholderIcon: Image
+    private let iconForegroundColor: Color
+    private let backgroundColor: Color
     // MARK: - Init
     init(
         height: CGFloat = 182,
         width: CGFloat,
         url: URL?,
         corners: HorizonUI.Corners = [.topLeft, .topRight],
-        level: HorizonUI.CornerRadius = .level5
+        level: HorizonUI.CornerRadius = .level5,
+        placeholderIcon: Image = Image.huiIcons.book2Filled,
+        iconForegroundColor: Color = Color.huiColors.surface.institution,
+        backgroundColor: Color = Color.huiColors.primitives.grey14
     ) {
         self.height = height
         self.width = width
         self.url = url
         self.corners = corners
         self.level = level
+        self.placeholderIcon = placeholderIcon
+        self.iconForegroundColor = iconForegroundColor
+        self.backgroundColor = backgroundColor
     }
 
     var body: some View {
@@ -61,10 +70,10 @@ struct CourseImageView: View {
                 .background(Color.white)
         } placeholder: {
             ZStack {
-                Color.huiColors.primitives.grey14
-                    .huiCornerRadius(level: .level5, corners: corners)
+                backgroundColor
+                    .huiCornerRadius(level: level, corners: corners)
                     .accessibilityHidden(true)
-                Image.huiIcons.book2Filled
+                placeholderIcon
                     .foregroundStyle(Color.huiColors.surface.institution)
                     .accessibilityHidden(true)
             }
