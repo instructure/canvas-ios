@@ -65,4 +65,31 @@ class DashboardContainerViewModelTests: CoreTestCase {
 
         XCTAssertEqual(environment.userDefaults!.shouldShowDashboardFeedback, false)
     }
+
+    func test_checkAndShowFeedbackAlert_shouldClearFlagImmediately() {
+        environment.userDefaults!.shouldShowDashboardFeedback = true
+        let viewModel = DashboardContainerViewModel(environment: environment, defaults: environment.userDefaults!)
+        let viewController = UIViewController()
+
+        let beforeCallValue = environment.userDefaults!.shouldShowDashboardFeedback
+        viewModel.checkAndShowFeedbackAlert(from: viewController)
+        let afterCallValue = environment.userDefaults!.shouldShowDashboardFeedback
+
+        XCTAssertTrue(beforeCallValue)
+        XCTAssertFalse(afterCallValue)
+    }
+
+    func test_refreshGroups_shouldTriggerForceRefresh() {
+        let viewModel = DashboardContainerViewModel(environment: environment, defaults: environment.userDefaults!)
+        let expectation = expectation(description: "Refresh should complete")
+
+        viewModel.refreshGroups()
+            .sink {
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+
+        waitForExpectations(timeout: 1.0)
+    }
+
 }
