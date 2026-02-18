@@ -39,6 +39,11 @@ final class LearnerDashboardSettingsViewModel {
         self.useNewLearnerDashboard = defaults.preferNewLearnerDashboard
     }
 
+    /// Switches from the new learner dashboard back to the classic dashboard.
+    /// Sets both the preference flag and triggers the feedback flow.
+    /// Note: While `preferNewLearnerDashboard` is also managed by DashboardSettingsInteractorLive,
+    /// the feedback flag (`shouldShowDashboardFeedback`) is only set here to ensure it's
+    /// triggered specifically when users actively switch away from the new dashboard.
     func switchToClassicDashboard(viewController: UIViewController) {
         defaults.preferNewLearnerDashboard = false
         defaults.shouldShowDashboardFeedback = true

@@ -40,6 +40,7 @@ struct LearnerDashboardSettingsView: View {
                         }
                     )
                 )
+                .accessibilityIdentifier("DashboardSettings.newDashboardToggle")
                 Spacer()
             }
             .paddingStyle(.horizontal, .standard)
@@ -58,6 +59,7 @@ struct LearnerDashboardSettingsView: View {
                 .foregroundStyle(Color.textDarkest)
         }
         .padding(.vertical, 8)
+        .testID("DashboardSettings.Switch.NewDashboard", info: ["selected": isOn.wrappedValue])
     }
 
     private var switchDashboardAlert: Alert {

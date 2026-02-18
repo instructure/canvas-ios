@@ -102,6 +102,10 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
             .store(in: &subscriptions)
     }
 
+    /// Saves the new dashboard preference when toggled in settings.
+    /// Note: This only updates `preferNewLearnerDashboard`. The feedback flag
+    /// (`shouldShowDashboardFeedback`) is managed separately by the Student module's
+    /// LearnerDashboardSettingsViewModel when switching away from the new dashboard.
     private func saveNewDashboardToDefaultsOnChange() {
         useNewDashboard
             .dropFirst()

@@ -226,7 +226,6 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         if var viewControllers = viewControllers, !viewControllers.isEmpty {
             viewControllers[0] = newDashboard
             setViewControllers(viewControllers, animated: false)
-            selectedIndex = 0
         }
     }
 }

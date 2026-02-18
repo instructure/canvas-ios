@@ -86,6 +86,7 @@ public struct DashboardFeedbackAlert: View {
                     selectedValue: $selectedReason,
                     dividerStyle: reason == DashboardFeedbackReason.allCases.last ? .hidden : .padded
                 )
+                .identifier("Dashboard.feedbackReason.\(reason.analyticsValue)")
             }
         }
     }

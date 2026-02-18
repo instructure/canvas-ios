@@ -94,7 +94,9 @@ public class DashboardContainerViewModel: ObservableObject {
 
         defaults.shouldShowDashboardFeedback = false
 
-        createAndPresentFeedbackAlert(from: viewController)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.createAndPresentFeedbackAlert(from: viewController)
+        }
     }
 
     private func createAndPresentFeedbackAlert(from viewController: UIViewController) {
