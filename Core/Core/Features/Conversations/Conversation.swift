@@ -56,7 +56,9 @@ final public class Conversation: NSManagedObject, WriteableModel {
 
     @discardableResult
     public static func save(_ item: APIConversation, in context: NSManagedObjectContext) -> Conversation {
-        let model: Conversation = context.first(where: #keyPath(Conversation.id), equals: item.id.value) ?? context.insert()
+        let cachedConversation: Conversation? = context.first(where: #keyPath(Conversation.id), equals: item.id.value)
+        let model: Conversation = cachedConversation ?? context.insert()
+
         model.audienceIDs = item.audience?.map { $0.value } ?? []
         model.avatarURL = item.avatar_url.rawValue
         model.contextCode = item.context_code
@@ -76,8 +78,15 @@ final public class Conversation: NSManagedObject, WriteableModel {
             }
         }
 
+        // StarConversation endpoint does not return this property, in that case we want to preserve the already set value.
+        // If there is no previous save and the property is not present, we fall back to false
+        if cachedConversation == nil {
+            model.cannotReply = item.cannot_reply ?? false
+        } else if let cannotReply = item.cannot_reply {
+            model.cannotReply = cannotReply
+        }
+
         model.starred = item.starred
-        model.cannotReply = item.cannot_reply ?? false
         model.subject = item.subject ?? ""
         model.workflowState = item.workflow_state
         return model
