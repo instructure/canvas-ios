@@ -125,6 +125,18 @@ struct SpeedGraderSubmissionGradesView: View {
             isPresented: $gradeViewModel.isShowingErrorAlert,
             presenting: gradeViewModel.errorAlertViewModel
         )
+        .alert(
+            String(localized: "Oops something went wrong", bundle: .teacher),
+            isPresented: $gradeViewModel.isShowingSavingErrorAlert) {
+                Button("Cancel", role: .cancel) {}
+
+                Button("Retry") {
+                    gradeViewModel.gradeSavingRetryTapped.send()
+                }
+        } message: {
+            Text("There was an error while saving your grade modification. You can retry, or try again later.", bundle: .teacher)
+        }
+
     }
 
     @ViewBuilder
@@ -160,8 +172,7 @@ struct SpeedGraderSubmissionGradesView: View {
                 identifierGroup: "SpeedGrader.GradeInputPickerItem",
                 allOptions: gradeState.gradeOptions,
                 selectOption: gradeViewModel.selectGradeOption,
-                didSelectOption: gradeViewModel.didSelectGradeOption,
-                isSaving: gradeViewModel.isSavingGrade
+                didSelectOption: gradeViewModel.didSelectGradeOption
             )
             .accessibilityLabel(
                 [title, String.format(accessibilityLetterGrade: gradeState.originalGrade)]
@@ -200,7 +211,7 @@ struct SpeedGraderSubmissionGradesView: View {
                 get: { textValue },
                 set: { gradeViewModel.setGradeFromTextField($0, inputType: inputType) }
             ),
-            isSaving: gradeViewModel.isSavingGrade
+            isSaving: .init(false)
         )
     }
 
@@ -230,7 +241,6 @@ struct SpeedGraderSubmissionGradesView: View {
                         .accessibilityLabel(a11ySuffix ?? suffix)
                 }
             }
-            .swapWithSpinner(onSaving: gradeViewModel.isSavingGrade, alignment: .trailing)
         }
         .paddingStyle(set: .standardCell)
         .accessibilityElement(children: .combine)

@@ -27,7 +27,6 @@ struct SpeedGraderPickerCell: View {
     private let title: String
     private let placeholder: String?
     private let identifierGroup: String?
-    private let isSaving: CurrentValueSubject<Bool, Never>
 
     init(
         title: String,
@@ -35,13 +34,11 @@ struct SpeedGraderPickerCell: View {
         identifierGroup: String? = nil,
         allOptions: [OptionItem],
         selectOption: CurrentValueSubject<OptionItem?, Never>,
-        didSelectOption: PassthroughSubject<OptionItem?, Never>,
-        isSaving: CurrentValueSubject<Bool, Never>
+        didSelectOption: PassthroughSubject<OptionItem?, Never>
     ) {
         self.title = title
         self.placeholder = placeholder
         self.identifierGroup = identifierGroup
-        self.isSaving = isSaving
 
         self._viewModel = StateObject(wrappedValue: .init(
             title: nil,
@@ -58,7 +55,6 @@ struct SpeedGraderPickerCell: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
 
             picker
-                .swapWithSpinner(onSaving: isSaving, alignment: .trailing)
         }
         .paddingStyle(set: .standardCell)
         .background(Color.backgroundLightest)
