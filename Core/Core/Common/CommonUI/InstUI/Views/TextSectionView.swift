@@ -27,11 +27,18 @@ public extension InstUI {
             public let title: String
             public let description: String
             public let isRichContent: Bool
+            public let baseUrl: URL?
 
-            public init(title: String, description: String, isRichContent: Bool = false) {
+            public init(
+                title: String,
+                description: String,
+                isRichContent: Bool = false,
+                baseUrl: URL? = nil
+            ) {
                 self.title = title
                 self.description = description
                 self.isRichContent = isRichContent
+                self.baseUrl = baseUrl
             }
         }
 
@@ -42,10 +49,11 @@ public extension InstUI {
         public init(
             title: String,
             description: String,
-            isRichContent: Bool = false
+            isRichContent: Bool = false,
+            baseUrl: URL? = nil
         ) {
             sectionData = [
-                .init(title: title, description: description, isRichContent: isRichContent)
+                .init(title: title, description: description, isRichContent: isRichContent, baseUrl: baseUrl)
             ]
         }
 
@@ -73,10 +81,12 @@ public extension InstUI {
                             ) {
                                 Text(sectionData.title)
                                     .textStyle(.infoTitle)
+                                    .accessibilityAddTraits(.isHeader)
 
                                 if sectionData.isRichContent {
                                     WebView(
                                         html: sectionData.description,
+                                        baseURL: sectionData.baseUrl,
                                         features: [],
                                         canToggleTheme: true
                                     )

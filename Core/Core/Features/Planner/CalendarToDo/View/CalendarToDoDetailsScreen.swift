@@ -65,6 +65,7 @@ public struct CalendarToDoDetailsScreen: View {
             if let title = viewModel.title {
                 Text(title)
                     .paragraphStyle(.heading)
+                    .accessibilityAddTraits(.isHeader)
             }
             if let date = viewModel.date {
                 InstUI.TextSectionView(title: String(localized: "Date", bundle: .core),
