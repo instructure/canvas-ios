@@ -62,6 +62,10 @@ final class OfflineSyncProgressWidgetViewModel: DashboardWidgetViewModel {
         dashboardViewModel.dismissDidTap.accept(())
     }
 
+    func cardTapped(viewController: WeakViewController) {
+        dashboardViewModel.cardDidTap.accept(viewController)
+    }
+
     func makeView() -> OfflineSyncProgressWidgetView {
         OfflineSyncProgressWidgetView(model: self)
     }

@@ -22,37 +22,54 @@ import SwiftUI
 struct OfflineSyncProgressWidgetView: View {
     @State var model: OfflineSyncProgressWidgetViewModel
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @Environment(\.viewController) private var viewController
 
     var body: some View {
         if model.state != .empty {
-            DashboardWidgetCard(backgroundColor: model.backgroundColor) {
-                HStack(alignment: .top, spacing: 8) {
-                    if model.state == .error {
-                        Image.warningLine
-                            .scaledIcon(size: 20)
-                            .accessibilityHidden(true)
-                    }
-
-                    VStack(alignment: .leading, spacing: 2) {
-                        title
-                        subtitle
-
-                        if model.state == .data {
-                            progress
-                        }
-                    }
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .accessibilityElement(children: .combine)
-
-                    Button(action: model.dismiss) {
-                        Image.xLine
-                            .scaledIcon(size: 24)
-                    }
-                    .accessibilityLabel(.init(localized: "Dismiss", bundle: .student))
-                }
-                .paddingStyle(set: .standardCell)
-                .foregroundStyle(.textLightest)
+            Button {
+                model.cardTapped(viewController: viewController)
+            } label: {
+                cardContent
             }
+            .buttonStyle(.plain)
+            .accessibilityAction(named: Text("Show sync details", bundle: .student)) {
+                model.cardTapped(viewController: viewController)
+            }
+            .accessibilityAction(named: Text("Dismiss", bundle: .student)) {
+                model.dismiss()
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var cardContent: some View {
+        DashboardWidgetCard(backgroundColor: model.backgroundColor) {
+            HStack(alignment: .top, spacing: 8) {
+                if model.state == .error {
+                    Image.warningLine
+                        .scaledIcon(size: 20)
+                        .accessibilityHidden(true)
+                }
+
+                VStack(alignment: .leading, spacing: 2) {
+                    title
+                    subtitle
+
+                    if model.state == .data {
+                        progress
+                    }
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .accessibilityElement(children: .combine)
+
+                Button(action: model.dismiss) {
+                    Image.xLine
+                        .scaledIcon(size: 24)
+                }
+                .accessibilityLabel(.init(localized: "Dismiss", bundle: .student))
+            }
+            .paddingStyle(set: .standardCell)
+            .foregroundStyle(.textLightest)
         }
     }
 
