@@ -191,13 +191,6 @@ final class LearningLibraryViewModel {
         )
     }
 
-    func navigateToCompleted(viewController: WeakViewController) {
-        router.show(
-            LearningLibraryAssembly.makeViewController(pageType: .completed),
-            from: viewController
-        )
-    }
-
     // MARK: - Private Functions
 
     private func update(with collection: LearningLibraryCardModel) {

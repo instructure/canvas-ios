@@ -227,8 +227,6 @@ final class LearningLibraryDetailsViewModel {
         switch pageType {
         case .details(let id, _):
             allItems = items.filter { $0.libraryId == id }
-        case .completed:
-            allItems = items.filter { $0.isCompleted }
         case .bookmarks:
             allItems = items.filter { $0.isBookmarked }
         }
@@ -242,7 +240,7 @@ final class LearningLibraryDetailsViewModel {
 
     private func configItem(item: LearningLibraryCardModel) {
         switch pageType {
-        case .details, .completed:
+        case .details:
             update(with: item)
         case .bookmarks:
             delete(with: item)
@@ -267,12 +265,10 @@ final class LearningLibraryDetailsViewModel {
 extension LearningLibraryDetailsViewModel {
     enum PageType {
         case details(id: String, name: String)
-        case completed
         case bookmarks
         var title: String {
             switch self {
             case .details(_, let name): name
-            case .completed: String(localized: "Completed")
             case .bookmarks: String(localized: "Bookmarks")
             }
         }
@@ -280,7 +276,6 @@ extension LearningLibraryDetailsViewModel {
         var emptyStateTitle: String {
             switch self {
             case .details: String(localized: "No content available yet")
-            case .completed: String(localized: "You haven't completed any content yet")
             case .bookmarks: String(localized: "You haven't added any bookmarks yet")
             }
         }

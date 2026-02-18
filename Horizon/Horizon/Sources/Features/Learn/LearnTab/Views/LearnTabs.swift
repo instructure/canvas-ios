@@ -27,7 +27,7 @@ enum LearnTabs: Int, CaseIterable, Identifiable {
         switch self {
         case .courses: String(localized: "Courses")
         case .programs: String(localized: "Programs")
-        case .learningLibrary: String(localized: "Learning Library")
+        case .learningLibrary: String(localized: "Browse")
         }
     }
 

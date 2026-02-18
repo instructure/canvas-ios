@@ -170,7 +170,7 @@ struct LearningLibraryDetailsView: View {
             case .details:
                 learningObjectFilterView
                 learningLibraryTypeFilterView
-            case .completed, .bookmarks:
+            case .bookmarks:
                 learningObjectFilterView
             }
 

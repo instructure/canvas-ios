@@ -139,7 +139,6 @@ struct LearningLibraryView: View {
         HStack(spacing: .huiSpaces.space16) {
             searchView
             bookmarkedButton
-            completedButton
         }
     }
 
@@ -154,13 +153,6 @@ struct LearningLibraryView: View {
     private var bookmarkedButton: some View {
         HorizonUI.IconButton(Image.huiIcons.bookmarks, type: .white) {
             viewModel.navigateToBookmarks(viewController: viewController)
-        }
-        .huiElevation(level: .level2)
-    }
-
-    private var completedButton: some View {
-        HorizonUI.IconButton(Image.huiIcons.history, type: .white) {
-            viewModel.navigateToCompleted(viewController: viewController)
         }
         .huiElevation(level: .level2)
     }
