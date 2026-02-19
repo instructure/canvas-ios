@@ -60,6 +60,16 @@ final class CoursesAndGroupsWidgetInteractorMock: CoursesAndGroupsWidgetInteract
 
         return Publishers.typedJust(getCoursesAndGroupsOutput)
     }
+
+    // MARK: - reorderCourses
+
+    var reorderCoursesCallCount: Int = 0
+    var reorderCoursesInput: [String]?
+
+    func reorderCourses(newOrder: [String]) {
+        reorderCoursesCallCount += 1
+        reorderCoursesInput = newOrder
+    }
 }
 
 #endif

@@ -66,7 +66,7 @@ public class DashboardCourseCardListViewModel: ObservableObject {
 
 extension DashboardCourseCardListViewModel: CourseCardOrderChangeDelegate {
 
-    func orderDidChange(_ newOrder: [CourseCardDropToReorderDelegate.CardID]) {
+    public func orderDidChange(_ newOrder: [CourseCardDropToReorderDelegate.CardID]) {
         for card in courseCardList {
             guard let newIndex = newOrder.firstIndex(of: card.id) else {
                 continue
@@ -75,7 +75,7 @@ extension DashboardCourseCardListViewModel: CourseCardOrderChangeDelegate {
         }
     }
 
-    func reorderDidFinish() {
+    public func reorderDidFinish() {
         interactor.uploadCardPositions()
     }
 }

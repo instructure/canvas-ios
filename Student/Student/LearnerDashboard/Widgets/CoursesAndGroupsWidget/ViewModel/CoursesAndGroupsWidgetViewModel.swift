@@ -134,3 +134,16 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
             .store(in: &subscriptions)
     }
 }
+
+extension CoursesAndGroupsWidgetViewModel: CourseCardOrderChangeDelegate {
+
+    func orderDidChange(_ newOrder: [CourseCardDropToReorderDelegate.CardID]) {
+        courseCards = newOrder.compactMap { id in
+            courseCards.first { $0.id == id }
+        }
+    }
+
+    func reorderDidFinish() {
+        interactor.reorderCourses(newOrder: courseCards.map(\.id))
+    }
+}

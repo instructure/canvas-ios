@@ -229,6 +229,32 @@ final class CoursesAndGroupsWidgetViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.groupsSectionAccessibilityTitle, "Groups, 1 item")
     }
 
+    // MARK: - orderDidChange
+
+    func test_orderDidChange_shouldReorderCourseCards() {
+        testee = makeViewModel()
+        interactor.getCoursesAndGroupsOutput = ([testData.course1, testData.course2], [])
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
+
+        testee.orderDidChange(["course2", "course1"])
+
+        XCTAssertEqual(testee.courseCards.map(\.id), ["course2", "course1"])
+    }
+
+    // MARK: - reorderDidFinish
+
+    func test_reorderDidFinish_shouldCallInteractorWithCurrentCardOrder() {
+        testee = makeViewModel()
+        interactor.getCoursesAndGroupsOutput = ([testData.course1, testData.course2], [])
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
+        testee.orderDidChange(["course2", "course1"])
+
+        testee.reorderDidFinish()
+
+        XCTAssertEqual(interactor.reorderCoursesCallCount, 1)
+        XCTAssertEqual(interactor.reorderCoursesInput, ["course2", "course1"])
+    }
+
     // MARK: - didTapAllCourses
 
     func test_didTapAllCourses_shouldCallRouter() {

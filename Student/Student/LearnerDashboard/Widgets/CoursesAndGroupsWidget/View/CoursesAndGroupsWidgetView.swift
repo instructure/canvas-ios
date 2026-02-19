@@ -23,7 +23,12 @@ import SwiftUI
 struct CoursesAndGroupsWidgetView: View {
     @Environment(\.viewController) var controller
 
-    @State var viewModel: CoursesAndGroupsWidgetViewModel
+    @State private var viewModel: CoursesAndGroupsWidgetViewModel
+    @State private var draggedCourseCardId: String?
+
+    init(viewModel: CoursesAndGroupsWidgetViewModel) {
+        self.viewModel = viewModel
+    }
 
     var body: some View {
         ZStack {
@@ -76,8 +81,22 @@ struct CoursesAndGroupsWidgetView: View {
                         showGrades: viewModel.showGrades,
                         showColorOverlay: viewModel.showColorOverlay
                     )
+                    .onDrag {
+                        draggedCourseCardId = cardViewModel.id
+                        return NSItemProvider(item: nil, typeIdentifier: CourseCardDropToReorderDelegate.DropID)
+                    }
+                    .onDrop(
+                        of: [CourseCardDropToReorderDelegate.DropID],
+                        delegate: CourseCardDropToReorderDelegate(
+                            receiverCardId: cardViewModel.id,
+                            draggedCourseCardId: $draggedCourseCardId,
+                            order: viewModel.courseCards.map { $0.id },
+                            delegate: viewModel
+                        )
+                    )
                 }
             }
+            .animation(.dashboardWidget, value: viewModel.courseCards)
         }
     }
 

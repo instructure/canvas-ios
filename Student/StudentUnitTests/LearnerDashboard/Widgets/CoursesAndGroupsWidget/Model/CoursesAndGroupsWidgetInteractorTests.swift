@@ -239,6 +239,66 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         }
     }
 
+    // MARK: - reorderCourses
+
+    func test_reorderCourses_whenOrderDiffers_shouldUpdateCardPositions() {
+        let course1 = Course.save(.make(id: ID(testData.courseId1)), in: databaseClient)
+        let course2 = Course.save(.make(id: ID(testData.courseId2)), in: databaseClient)
+        try? databaseClient.save()
+        api.mock(GetDashboardCardsRequest(), value: [
+            .make(id: ID(testData.courseId1), position: 0),
+            .make(id: ID(testData.courseId2), position: 1)
+        ])
+        coursesInteractor.mockCoursesResult = .make(allCourses: [course1, course2])
+        testee = makeInteractor()
+        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { _ in }
+        api.mock(PutDashboardCardPositions(cards: []))
+
+        testee.reorderCourses(newOrder: [testData.courseId2, testData.courseId1])
+
+        XCTAssertEqual(fetchCard(testData.courseId1)?.position, 1)
+        XCTAssertEqual(fetchCard(testData.courseId2)?.position, 0)
+    }
+
+    func test_reorderCourses_whenOrderDiffers_shouldSendPutRequest() {
+        let course1 = Course.save(.make(id: ID(testData.courseId1)), in: databaseClient)
+        let course2 = Course.save(.make(id: ID(testData.courseId2)), in: databaseClient)
+        try? databaseClient.save()
+        api.mock(GetDashboardCardsRequest(), value: [
+            .make(id: ID(testData.courseId1), position: 0),
+            .make(id: ID(testData.courseId2), position: 1)
+        ])
+        coursesInteractor.mockCoursesResult = .make(allCourses: [course1, course2])
+        testee = makeInteractor()
+        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { _ in }
+        let putExpectation = expectation(description: "PUT request sent")
+        api.mock(PutDashboardCardPositions(cards: []), expectation: putExpectation)
+
+        testee.reorderCourses(newOrder: [testData.courseId2, testData.courseId1])
+
+        waitForExpectations(timeout: 5)
+    }
+
+    func test_reorderCourses_whenOrderIsUnchanged_shouldNotSendPutRequest() {
+        let course1 = Course.save(.make(id: ID(testData.courseId1)), in: databaseClient)
+        let course2 = Course.save(.make(id: ID(testData.courseId2)), in: databaseClient)
+        try? databaseClient.save()
+        api.mock(GetDashboardCardsRequest(), value: [
+            .make(id: ID(testData.courseId1), position: 0),
+            .make(id: ID(testData.courseId2), position: 1)
+        ])
+        coursesInteractor.mockCoursesResult = .make(allCourses: [course1, course2])
+        testee = makeInteractor()
+        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { _ in }
+        let noRequestExpectation = expectation(description: "PUT request should not be sent")
+        noRequestExpectation.isInverted = true
+        api.mock(PutDashboardCardPositions(cards: []), expectation: noRequestExpectation)
+
+        testee.reorderCourses(newOrder: [testData.courseId1, testData.courseId2])
+
+        waitForExpectations(timeout: 0.5)
+    }
+
     // MARK: - Private helpers
 
     private func makeInteractor() -> CoursesAndGroupsWidgetInteractorLive {
@@ -252,5 +312,9 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         api.mock(GetDashboardCardsRequest(), value: [])
         api.mock(GetFavoriteGroupsRequest(context: .currentUser), value: [])
         api.mock(GetUserSettingsRequest(userID: "self"), value: .make())
+    }
+
+    private func fetchCard(_ id: String) -> DashboardCard? {
+        databaseClient.fetch(scope: .where(\DashboardCard.id, equals: id, ascending: true)).first
     }
 }

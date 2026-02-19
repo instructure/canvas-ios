@@ -27,6 +27,7 @@ protocol CoursesAndGroupsWidgetInteractor {
     var showColorOverlay: CurrentValueSubject<Bool, Never> { get }
 
     func getCoursesAndGroups(ignoreCache: Bool) -> AnyPublisher<Model, Error>
+    func reorderCourses(newOrder: [String])
 }
 
 extension CoursesAndGroupsWidgetInteractor where Self == CoursesAndGroupsWidgetInteractorLive {
@@ -47,6 +48,8 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
 
     private let env: AppEnvironment
     private var subscriptions = Set<AnyCancellable>()
+
+    private var currentDashboardCards: [DashboardCard] = []
 
     init(coursesInteractor: CoursesInteractor, env: AppEnvironment) {
         self.coursesInteractor = coursesInteractor
@@ -96,9 +99,12 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
             favoriteGroupsStore.getEntities(ignoreCache: ignoreCache),
             userSettingsStore.getEntities(ignoreCache: ignoreCache)
         )
-        .map { (coursesResult: CoursesResult, courseCards: [DashboardCard], favoriteGroups: [Group], _) -> Model in
+        .map { [weak self] (coursesResult: CoursesResult, courseCards: [DashboardCard], favoriteGroups: [Group], _) -> Model in
+            let sortedCourseCards = courseCards.sortedForWidget()
+            self?.currentDashboardCards = sortedCourseCards
+
             let courses = coursesResult.allCourses
-                .filteredAndSortedUsingDashboardCards(courseCards)
+                .filterUsingDashboardCards(sortedCourseCards)
             let courseItems = courses.map {
                 CoursesAndGroupsWidgetCourseItem(
                     id: $0.id,
@@ -124,6 +130,18 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
             return (courseItems, groupItems)
         }
         .eraseToAnyPublisher()
+    }
+
+    func reorderCourses(newOrder: [String]) {
+        guard currentDashboardCards.map(\.id) != newOrder else { return }
+
+        for card in currentDashboardCards {
+            guard let newIndex = newOrder.firstIndex(of: card.id) else {
+                continue
+            }
+            card.position = newIndex
+        }
+        PutDashboardCardPositions(cards: currentDashboardCards).fetch()
     }
 
     private func observeShowGrades() {
@@ -156,10 +174,10 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
     }
 }
 
-private extension [Course] {
-    func filteredAndSortedUsingDashboardCards(_ cards: [DashboardCard]) -> [Course] {
-        // Sort cards first by position, then by name, then by id
-        let sortedCards = cards.sorted { card1, card2 in
+private extension [DashboardCard] {
+    /// Sort cards first by position, then by name, then by id
+    func sortedForWidget() -> [DashboardCard] {
+        sorted { card1, card2 in
             if card1.position != card2.position {
                 return card1.position < card2.position
             }
@@ -170,10 +188,15 @@ private extension [Course] {
 
             return card1.id < card2.id
         }
+    }
+}
 
+private extension [Course] {
+    func filterUsingDashboardCards(_ cards: [DashboardCard]) -> [Course] {
         // Map the course array into a dictionary by id
-        let courseMap = Dictionary(uniqueKeysWithValues: self.map { ($0.id, $0) })
+        let keysAndValues = self.map { ($0.id, $0) }
+        let courseMap = Dictionary(keysAndValues) { $1 }
 
-        return sortedCards.compactMap { courseMap[$0.id] }
+        return cards.compactMap { courseMap[$0.id] }
     }
 }
