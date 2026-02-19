@@ -90,7 +90,7 @@ struct FileUploadProgressCardView: View {
 
     @ViewBuilder
     private var subtitle: some View {
-        Text(card.subtitleText)
+        Text(card.state.subtitleText(assignmentName: card.assignmentName))
             .font(.regular14, lineHeight: .fit)
     }
 }

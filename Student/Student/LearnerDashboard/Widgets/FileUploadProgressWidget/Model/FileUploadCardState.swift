@@ -47,12 +47,12 @@ struct FileUploadCardState: Hashable, Identifiable {
             case .failed: String(localized: "Submission Upload Failed", bundle: .student)
             }
         }
-    }
 
-    var subtitleText: String {
-        switch state {
-        case .uploading, .success: assignmentName
-        case .failed: String(localized: "We couldn't upload your submission.\nTry again, or come back later", bundle: .student)
+        func subtitleText(assignmentName: String) -> String {
+            switch self {
+            case .uploading, .success: assignmentName
+            case .failed: String(localized: "We couldn't upload your submission.\nTry again, or come back later", bundle: .student)
+            }
         }
     }
 }
