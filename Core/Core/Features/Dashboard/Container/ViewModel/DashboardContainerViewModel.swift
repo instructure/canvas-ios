@@ -113,7 +113,7 @@ public class DashboardContainerViewModel: ObservableObject {
         let hostingController = CoreHostingController(feedbackAlert)
         hostingController.modalPresentationStyle = .overFullScreen
         hostingController.modalTransitionStyle = .crossDissolve
-        hostingController.view.backgroundColor = UIColor.black.withAlphaComponent(0.24)
+        hostingController.view.backgroundColor = UIColor.black.withAlphaComponent(0.3)
 
         environment.router.show(
             hostingController,

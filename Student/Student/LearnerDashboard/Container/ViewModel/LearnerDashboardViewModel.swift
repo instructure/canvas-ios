@@ -55,7 +55,7 @@ final class LearnerDashboardViewModel {
         snackBarViewModel: SnackBarViewModel,
         mainScheduler: AnySchedulerOf<DispatchQueue> = DispatchQueue.main.eraseToAnyScheduler(),
         courseSyncInteractor: CourseSyncInteractor = CourseSyncDownloaderAssembly.makeInteractor(),
-        environment: AppEnvironment = .shared
+        environment: AppEnvironment
     ) {
         self.interactor = interactor
         self.snackBarViewModel = snackBarViewModel

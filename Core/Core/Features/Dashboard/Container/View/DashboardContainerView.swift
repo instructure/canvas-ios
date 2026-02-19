@@ -128,7 +128,6 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
             }
 
             popoverController.sourceView = navButtonView
-            popoverController.sourceRect = CGRect(x: 26, y: 35, width: 0, height: 0)
         }
 
         env.router.show(
