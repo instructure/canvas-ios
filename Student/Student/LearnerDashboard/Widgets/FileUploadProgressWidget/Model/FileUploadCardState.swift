@@ -23,6 +23,7 @@ import SwiftUI
 struct FileUploadCardState: Hashable, Identifiable {
     let id: String
     let assignmentName: String
+    let assignmentRoute: String
     let state: UploadState
     let progress: Float?
 

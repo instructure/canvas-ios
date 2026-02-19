@@ -22,14 +22,16 @@ import CoreData
 
 struct FileUploadProgressWidgetView: View {
     @State var model: FileUploadProgressWidgetViewModel
+    @Environment(\.viewController) private var controller
 
     var body: some View {
         if model.state != .empty {
-            VStack(spacing: 16) {
+            VStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
                 ForEach(model.uploadCards) { card in
                     FileUploadProgressCardView(
                         card: card,
-                        onDismiss: { model.dismiss(uploadId: card.id) }
+                        onDismiss: { model.dismiss(uploadId: card.id) },
+                        onTap: { model.navigateToAssignment(route: card.assignmentRoute, from: controller) }
                     )
                 }
             }
@@ -86,6 +88,7 @@ struct FileUploadProgressWidgetView: View {
 
     let viewModel = FileUploadProgressWidgetViewModel(
         config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
+        router: env.router,
         listViewModel: FileUploadNotificationCardListViewModel(environment: env)
     )
 

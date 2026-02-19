@@ -44,11 +44,13 @@ final class FileUploadProgressWidgetViewModel: DashboardWidgetViewModel {
 
     // MARK: - Private Properties
 
+    private let router: Router
     private let listViewModel: FileUploadNotificationCardListViewModel
     private var subscriptions = Set<AnyCancellable>()
 
-    init(config: DashboardWidgetConfig, listViewModel: FileUploadNotificationCardListViewModel) {
+    init(config: DashboardWidgetConfig, router: Router, listViewModel: FileUploadNotificationCardListViewModel) {
         self.config = config
+        self.router = router
         self.listViewModel = listViewModel
         setupObserver()
     }
@@ -58,10 +60,14 @@ final class FileUploadProgressWidgetViewModel: DashboardWidgetViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] items in
                 guard let self = self else { return }
-                self.uploadCards = items.map { item in
-                    FileUploadCardState(
+                self.uploadCards = items.compactMap { item in
+                    guard let submission = self.listViewModel.fileSubmissions.first(where: { $0.objectID == item.id }) else {
+                        return nil
+                    }
+                    return FileUploadCardState(
                         id: item.id.uriRepresentation().absoluteString,
                         assignmentName: item.assignmentName,
+                        assignmentRoute: "/courses/\(submission.courseID)/assignments/\(submission.assignmentID)",
                         state: self.mapState(item.state),
                         progress: self.calculateProgress(for: item)
                     )
@@ -87,6 +93,19 @@ final class FileUploadProgressWidgetViewModel: DashboardWidgetViewModel {
         case .success: return .success
         case .failure: return .failed
         }
+    }
+
+    func navigateToAssignment(route: String, from controller: WeakViewController) {
+        router.route(
+            to: route,
+            from: controller,
+            options: .modal(
+                .formSheet,
+                isDismissable: false,
+                embedInNav: true,
+                addDoneButton: true
+            )
+        )
     }
 
     func dismiss(uploadId: String) {

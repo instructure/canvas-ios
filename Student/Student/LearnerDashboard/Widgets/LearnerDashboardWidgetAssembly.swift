@@ -55,6 +55,7 @@ enum LearnerDashboardWidgetAssembly {
         case .fileUploadProgress:
             FileUploadProgressWidgetViewModel(
                 config: config,
+                router: AppEnvironment.shared.router,
                 listViewModel: FileUploadNotificationCardListViewModel()
             )
         case .conferences:

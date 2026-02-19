@@ -66,6 +66,6 @@ extension DashboardWidgetViewModel {
     }
 
     var shouldRenderWidget: Bool {
-        !isHiddenInEmptyState || state != .empty 
+        !isHiddenInEmptyState || state != .empty
     }
 }

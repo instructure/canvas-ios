@@ -24,39 +24,53 @@ struct FileUploadProgressCardView: View {
 
     let card: FileUploadCardState
     let onDismiss: () -> Void
+    let onTap: () -> Void
 
     var body: some View {
-        DashboardWidgetCard(backgroundColor: card.state.backgroundColor) {
-            HStack(alignment: .top, spacing: 8) {
-                if card.state == .success {
-                    Image.publishLine
-                        .scaledIcon(size: 20)
-                        .accessibilityHidden(true)
-                } else if card.state == .failed {
-                    Image.warningLine
-                        .scaledIcon(size: 20)
-                        .accessibilityHidden(true)
-                }
-
-                VStack(alignment: .leading, spacing: 2) {
-                    title
-                    subtitle
-
-                    if card.state == .uploading, let progress = card.progress {
-                        progressBar(progress: progress)
+        Button(action: onTap) {
+            DashboardWidgetCard(backgroundColor: card.state.backgroundColor) {
+                HStack(alignment: .top, spacing: 8) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        HStack(alignment: .center, spacing: 8) {
+                            stateIcon
+                            title
+                        }
+                        HStack(spacing: 8) {
+                            // Hidden icon acts as a fixed-width spacer so the subtitle aligns
+                            // with the title text, not the leading edge of the icon.
+                            stateIcon.hidden()
+                            subtitle
+                        }
+                        if card.state == .uploading, let progress = card.progress {
+                            progressBar(progress: progress)
+                        }
                     }
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .accessibilityElement(children: .combine)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityElement(children: .combine)
 
-                Button(action: onDismiss) {
-                    Image.xLine
-                        .scaledIcon(size: 24)
+                    Button(action: onDismiss) {
+                        Image.xLine
+                            .scaledIcon(size: 24)
+                    }
+                    .accessibilityLabel(.init(localized: "Dismiss", bundle: .student))
                 }
-                .accessibilityLabel(.init(localized: "Dismiss", bundle: .student))
+                .paddingStyle(set: .standardCell)
+                .foregroundStyle(.textLightest)
             }
-            .paddingStyle(set: .standardCell)
-            .foregroundStyle(.textLightest)
+        }
+        .buttonStyle(.plain)
+    }
+
+    @ViewBuilder
+    private var stateIcon: some View {
+        if card.state == .success {
+            Image.publishLine
+                .scaledIcon(size: 20)
+                .accessibilityHidden(true)
+        } else if card.state == .failed {
+            Image.warningLine
+                .scaledIcon(size: 20)
+                .accessibilityHidden(true)
         }
     }
 
@@ -96,10 +110,12 @@ struct FileUploadProgressCardView: View {
                     card: FileUploadCardState(
                         id: "1",
                         assignmentName: "Battery Manufacturing",
+                        assignmentRoute: "/courses/1/assignments/1",
                         state: states[currentStateIndex],
                         progress: states[currentStateIndex] == .uploading ? progress : nil
                     ),
-                    onDismiss: {}
+                    onDismiss: {},
+                    onTap: {}
                 )
             }
             .padding()
@@ -134,30 +150,36 @@ struct FileUploadProgressCardView: View {
             card: FileUploadCardState(
                 id: "1",
                 assignmentName: "Battery Manufacturing",
+                assignmentRoute: "/courses/1/assignments/1",
                 state: .uploading,
                 progress: 0.6
             ),
-            onDismiss: {}
+            onDismiss: {},
+            onTap: {}
         )
 
         FileUploadProgressCardView(
             card: FileUploadCardState(
                 id: "2",
                 assignmentName: "Math Homework",
+                assignmentRoute: "/courses/1/assignments/2",
                 state: .success,
                 progress: nil
             ),
-            onDismiss: {}
+            onDismiss: {},
+            onTap: {}
         )
 
         FileUploadProgressCardView(
             card: FileUploadCardState(
                 id: "3",
                 assignmentName: "Essay Draft",
+                assignmentRoute: "/courses/1/assignments/3",
                 state: .failed,
                 progress: nil
             ),
-            onDismiss: {}
+            onDismiss: {},
+            onTap: {}
         )
     }
     .padding()
