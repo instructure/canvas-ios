@@ -54,6 +54,14 @@ class SpeedGraderPageViewModel: ObservableObject {
     let rubricsViewModel: RubricsViewModel
     let gradeViewModel: SpeedGraderSubmissionGradesViewModel
 
+    var gradeSavingStatePublisher: CurrentValueSubject<GradeSavingState, Never> {
+        gradeViewModel.gradeSavingState
+    }
+
+    var gradeSavingFailureTapped: PassthroughSubject<Void, Never> {
+        gradeViewModel.gradeSavingFailureTapped
+    }
+
     // MARK: - Inputs
 
     // MARK: - Private properties

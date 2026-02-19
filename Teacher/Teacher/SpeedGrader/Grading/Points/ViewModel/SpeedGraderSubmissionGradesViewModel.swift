@@ -33,11 +33,11 @@ enum GradeSavingState: Equatable {
     case saving
     case saved
     case failure
-    case hidden
+    case idle
 }
 
 class SpeedGraderSubmissionGradesViewModel: ObservableObject {
-    private struct GradeSavingParamters {
+    private struct GradeSavingParameters {
         let excused: Bool?
         let grade: String?
     }
@@ -50,8 +50,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     @Published private(set) var gradeState: GradeState
     @Published private(set) var gradeInputType: GradeInputType?
 
-    let isSavingGrade = CurrentValueSubject<Bool, Never>(false)
-    let gradeSavingState = CurrentValueSubject<GradeSavingState, Never>(.hidden)
+    let gradeSavingState = CurrentValueSubject<GradeSavingState, Never>(.idle)
     let gradeSavingFailureTapped = PassthroughSubject<Void, Never>()
     let gradeSavingRetryTapped = PassthroughSubject<Void, Never>()
 
@@ -71,7 +70,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
     // Error alert
     @Published var isShowingErrorAlert: Bool = false
-    @Published var isShowingSavingErrorAlert: Bool = false
+    @Published var isShowingGradeSavingErrorAlert: Bool = false
     private(set) var errorAlertViewModel: ErrorAlertViewModel = .init()
 
     // MARK: - Private Properties
@@ -80,8 +79,8 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     private let gradeInteractor: GradeInteractor
     private var cancellables = Set<AnyCancellable>()
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
-    private var gradeSavingTimer: Timer?
-    private var latestSavingParams: GradeSavingParamters?
+    private var autoHideCancellable: AnyCancellable?
+    private var retryParams: GradeSavingParameters?
 
     // MARK: - Init
 
@@ -118,7 +117,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
         gradeSavingFailureTapped
             .sink { [weak self] in
-                self?.isShowingSavingErrorAlert = true
+                self?.isShowingGradeSavingErrorAlert = true
             }
             .store(in: &cancellables)
 
@@ -126,8 +125,8 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
             .sink { [weak self] in
                 guard let self else { return }
 
-                if let latestSavingParams {
-                    saveGrade(latestSavingParams)
+                if let retryParams {
+                    saveGrade(retryParams)
                 }
             }
             .store(in: &cancellables)
@@ -217,28 +216,18 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     }
 
     private func saveGrade(excused: Bool? = nil, grade: String? = nil) {
-        saveGrade(GradeSavingParamters(excused: excused, grade: grade))
+        saveGrade(GradeSavingParameters(excused: excused, grade: grade))
     }
 
-    private func saveGrade(_ params: GradeSavingParamters) {
-        latestSavingParams = params
-        isSavingGrade.send(true)
+    private func saveGrade(_ params: GradeSavingParameters) {
+        retryParams = params
         reportGradeSavingState(.saving)
-
-        if Int.random(in: 0 ... 1) == 1 {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                self.reportGradeSavingState(.failure)
-            }
-            return
-        }
 
         gradeInteractor.saveGrade(excused: params.excused, grade: params.grade)
             .receive(on: mainScheduler)
             .sink(
                 receiveCompletion: { [weak self] completion in
                     guard let self else { return }
-
-                    isSavingGrade.send(false)
 
                     if case .failure = completion {
                         reportGradeSavingState(.failure)
@@ -252,14 +241,13 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     }
 
     private func reportGradeSavingState(_ state: GradeSavingState) {
-        gradeSavingTimer?.invalidate()
-        gradeSavingTimer = nil
+        autoHideCancellable = nil
         gradeSavingState.send(state)
 
         if state == .saved {
-            gradeSavingTimer = Timer.scheduledTimer(withTimeInterval: 3, repeats: false, block: { [weak self] _ in
-                self?.reportGradeSavingState(.hidden)
-            })
+            autoHideCancellable = Just(GradeSavingState.idle)
+                .delay(for: 3, scheduler: mainScheduler)
+                .sink { [weak self] in self?.gradeSavingState.send($0) }
         }
     }
 

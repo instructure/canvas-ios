@@ -43,6 +43,7 @@ struct SpeedGraderSubmissionGradesView: View {
     }
     @FocusState private var focusedInput: FocusedInput?
     @State private var isCommentsExpanded: Bool = false
+    @State private var isGradeSaving: Bool = false
 
     var body: some View {
         ScrollViewReader { scrollViewProxy in
@@ -65,6 +66,9 @@ struct SpeedGraderSubmissionGradesView: View {
                 }
             }
             .scrollDismissesKeyboard(keyboardDismissalMode)
+        }
+        .onReceive(gradeViewModel.gradeSavingState) { state in
+            isGradeSaving = state == .saving
         }
     }
 
@@ -127,11 +131,15 @@ struct SpeedGraderSubmissionGradesView: View {
         )
         .alert(
             String(localized: "Oops something went wrong", bundle: .teacher),
-            isPresented: $gradeViewModel.isShowingSavingErrorAlert) {
-                Button("Cancel", role: .cancel) {}
+            isPresented: $gradeViewModel.isShowingGradeSavingErrorAlert) {
+                Button(role: .cancel) {} label: {
+                    Text("Cancel", bundle: .teacher)
+                }
 
-                Button("Retry") {
+                Button {
                     gradeViewModel.gradeSavingRetryTapped.send()
+                } label: {
+                    Text("Retry", bundle: .teacher)
                 }
         } message: {
             Text("There was an error while saving your grade modification. You can retry, or try again later.", bundle: .teacher)
@@ -172,7 +180,8 @@ struct SpeedGraderSubmissionGradesView: View {
                 identifierGroup: "SpeedGrader.GradeInputPickerItem",
                 allOptions: gradeState.gradeOptions,
                 selectOption: gradeViewModel.selectGradeOption,
-                didSelectOption: gradeViewModel.didSelectGradeOption
+                didSelectOption: gradeViewModel.didSelectGradeOption,
+                isSaving: $isGradeSaving
             )
             .accessibilityLabel(
                 [title, String.format(accessibilityLetterGrade: gradeState.originalGrade)]
@@ -213,6 +222,7 @@ struct SpeedGraderSubmissionGradesView: View {
             ),
             isSaving: .init(false)
         )
+        .disabled(isGradeSaving)
     }
 
     @ViewBuilder

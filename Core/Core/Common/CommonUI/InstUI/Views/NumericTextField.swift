@@ -85,6 +85,7 @@ extension InstUI {
             textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
             textField.adjustsFontSizeToFitWidth = true
             textField.minimumFontSize = 10
+            textField.isEnabled = context.environment.isEnabled
 
             // Done button
             let doneButton = UIBarButtonItemWithCompletion(
@@ -112,6 +113,8 @@ extension InstUI {
         }
 
         public func updateUIView(_ textField: UITextField, context: Context) {
+            textField.isEnabled = context.environment.isEnabled
+
             if textField.text != text {
                 DispatchQueue.main.async {
                     textField.text = text

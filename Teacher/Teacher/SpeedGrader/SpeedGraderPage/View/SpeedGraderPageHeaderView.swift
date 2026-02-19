@@ -24,7 +24,7 @@ struct SpeedGraderPageHeaderView: View {
     let assignment: Assignment
     let submission: Submission
     let isLandscapeLayout: Bool
-    let gradeSavingStateSubject: CurrentValueSubject<GradeSavingState, Never>
+    let gradeSavingStatePublisher: CurrentValueSubject<GradeSavingState, Never>
     let gradeSavingFailureTapped: PassthroughSubject<Void, Never>
 
     @Environment(\.appEnvironment) var env
@@ -33,10 +33,9 @@ struct SpeedGraderPageHeaderView: View {
 
     @ObservedObject var landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel
     @State private var profileHeight: CGFloat = 0
-    @State private var gradeSavingState: GradeSavingState = .hidden
+    @State private var gradeSavingState: GradeSavingState = .idle
     @StateObject internal var viewModel: SpeedGraderPageHeaderViewModel
-
-    @FocusState private var isSavingLabelFocused: Bool
+    @AccessibilityFocusState private var isSavingIndicatorFocused: Bool
 
     init(
         assignment: Assignment,
@@ -50,9 +49,10 @@ struct SpeedGraderPageHeaderView: View {
         self.submission = submission
         self.isLandscapeLayout = isLandscapeLayout
         self.landscapeSplitLayoutViewModel = landscapeSplitLayoutViewModel
-        self.gradeSavingStateSubject = gradeSavingState
-        self._gradeSavingState = .init(initialValue: gradeSavingState.value)
+        self.gradeSavingStatePublisher = gradeSavingState
         self.gradeSavingFailureTapped = gradeSavingFailureTapped
+
+        _gradeSavingState = .init(initialValue: gradeSavingState.value)
         _viewModel = StateObject(wrappedValue: SpeedGraderPageHeaderViewModel(assignment: assignment, submission: submission))
     }
 
@@ -92,18 +92,20 @@ struct SpeedGraderPageHeaderView: View {
             .identifier("SpeedGrader.userButton")
 
             gradeSavingStateView
+                .accessibilityFocused($isSavingIndicatorFocused)
 
             if isLandscapeLayout {
                 resizeDragger
             }
         }
         .onReceive(
-            gradeSavingStateSubject
+            gradeSavingStatePublisher
                 .debounce(for: 0.3, scheduler: DispatchQueue.main)
         ) { state in
             withAnimation {
                 gradeSavingState = state
             }
+            isSavingIndicatorFocused = state != .idle
         }
     }
 
@@ -179,7 +181,7 @@ struct SpeedGraderPageHeaderView: View {
         case .saving:
 
             HStack(spacing: 4) {
-                Text("Saving")
+                Text("Saving", bundle: .teacher)
                     .font(.regular14)
                     .foregroundStyle(.textDark)
                 ProgressView()
@@ -190,7 +192,7 @@ struct SpeedGraderPageHeaderView: View {
 
         case .saved:
 
-            Text("Saved")
+            Text("Saved", bundle: .teacher)
                 .font(.regular14)
                 .foregroundStyle(.textSuccess)
                 .paddingStyle(.trailing, trailingPadding)
@@ -200,7 +202,7 @@ struct SpeedGraderPageHeaderView: View {
             Button(action: { gradeSavingFailureTapped.send() }) {
 
                 HStack(spacing: 4) {
-                    Text("Failed")
+                    Text("Failed", bundle: .teacher)
                         .font(.regular14)
                         .foregroundStyle(.textDark)
                     Image.infoSolid
@@ -213,7 +215,7 @@ struct SpeedGraderPageHeaderView: View {
             }
             .contentShape(Rectangle())
             .transition(.opacity)
-        case .hidden:
+        case .idle:
             SwiftUI.EmptyView()
         }
     }
@@ -228,7 +230,7 @@ struct SpeedGraderPageHeaderView: View {
         submission: testData.submissions[0],
         isLandscapeLayout: false,
         landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel(),
-        gradeSavingState: .init(.failure),
+        gradeSavingState: .init(.saving),
         gradeSavingFailureTapped: .init()
     )
 }

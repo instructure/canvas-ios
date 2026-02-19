@@ -230,8 +230,8 @@ struct SpeedGraderPageView: View {
             submission: viewModel.submission,
             isLandscapeLayout: isLandscapeLayout,
             landscapeSplitLayoutViewModel: landscapeSplitLayoutViewModel,
-            gradeSavingState: viewModel.gradeViewModel.gradeSavingState,
-            gradeSavingFailureTapped: viewModel.gradeViewModel.gradeSavingFailureTapped
+            gradeSavingState: viewModel.gradeSavingStatePublisher,
+            gradeSavingFailureTapped: viewModel.gradeSavingFailureTapped
         )
     }
 
