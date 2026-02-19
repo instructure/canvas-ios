@@ -92,7 +92,7 @@ struct CourseListWidgetView: View {
                                     viewModel.navigateToCourseDetails(
                                         id: courseId,
                                         enrollmentID: course.enrollmentID,
-                                        programID: course.programs.first?.id,
+                                        programName: course.programs.first?.name,
                                         viewController: viewController
                                     )
                                 },

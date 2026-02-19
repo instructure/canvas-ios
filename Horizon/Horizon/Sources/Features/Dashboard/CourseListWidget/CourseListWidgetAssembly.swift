@@ -25,14 +25,10 @@ enum CourseListWidgetAssembly {
     }
 
     static func makeViewModel() -> CourseListWidgetViewModel {
-        let onTapProgram: (ProgramSwitcherModel?, WeakViewController) -> Void = { program, viewController in
-            AppEnvironment.shared.switchToLearnTab(with: program, from: viewController)
-        }
         return CourseListWidgetViewModel(
             courseCardsInteractor: makeCourseListWidgetInteractor(),
             programInteractor: ProgramInteractorLive(programCourseInteractor: ProgramCourseInteractorLive()),
-            router: AppEnvironment.shared.router,
-            onTapProgram: onTapProgram
+            router: AppEnvironment.shared.router
         )
     }
 
@@ -45,8 +41,7 @@ enum CourseListWidgetAssembly {
             CourseListWidgetView(viewModel: CourseListWidgetViewModel(
                 courseCardsInteractor: CourseListWidgetInteractorPreview(),
                 programInteractor: ProgramInteractorPreview(),
-                router: AppEnvironment.shared.router,
-                onTapProgram: { _, _ in }
+                router: AppEnvironment.shared.router
             ))
         }
     #endif
