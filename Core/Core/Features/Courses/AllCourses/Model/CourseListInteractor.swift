@@ -76,13 +76,6 @@ public class CourseListInteractorLive: CourseListInteractor {
         ),
         Error
     > {
-        let filterUnpublishedCoursesForStudents: (AppEnvironment.App?, [CDAllCoursesCourseItem]) -> [CDAllCoursesCourseItem] = { app, items in
-            if case .student = app {
-                return items.filter { $0.isPublished }
-            } else {
-                return items
-            }
-        }
 
         return Publishers.CombineLatest3(
             activeCoursesStore
@@ -95,7 +88,6 @@ public class CourseListInteractorLive: CourseListInteractor {
                 .map { $0.map { AllCoursesCourseItem.init(from: $0)}},
             futureCoursesStore
                 .getEntities(keepObservingDatabaseChanges: true)
-                .map { [env] in filterUnpublishedCoursesForStudents(env.app, $0) }
                 .filter(with: searchQuery)
                 .map { $0.map { AllCoursesCourseItem.init(from: $0)}}
         )
