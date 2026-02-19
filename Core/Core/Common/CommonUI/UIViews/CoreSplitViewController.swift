@@ -29,6 +29,12 @@ public class CoreSplitViewController: UISplitViewController {
     /// on expansion state configuration (secondary separation delegate's method)
     private var preBackgroundedSecondaryController: UIViewController?
 
+    public override init(style: UISplitViewController.Style) {
+        super.init(style: style)
+        delegate = self
+        setupBackgroundStateObservers()
+    }
+
     public override init(nibName: String? = nil, bundle: Bundle? = nil) {
         super.init(nibName: nibName, bundle: bundle)
         delegate = self
