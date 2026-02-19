@@ -53,7 +53,7 @@ final class LearnerDashboardViewModel {
         interactor: LearnerDashboardInteractor,
         snackBarViewModel: SnackBarViewModel,
         mainScheduler: AnySchedulerOf<DispatchQueue> = DispatchQueue.main.eraseToAnyScheduler(),
-        environment: AppEnvironment = .shared
+        environment: AppEnvironment
     ) {
         self.interactor = interactor
         self.snackBarViewModel = snackBarViewModel

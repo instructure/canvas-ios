@@ -45,7 +45,8 @@ enum LearnerDashboardAssembly {
     ) -> LearnerDashboardViewModel {
         LearnerDashboardViewModel(
             interactor: interactor,
-            snackBarViewModel: snackBarViewModel
+            snackBarViewModel: snackBarViewModel,
+            environment: .shared
         )
     }
 }

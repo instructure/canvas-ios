@@ -57,7 +57,8 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
-            mainScheduler: scheduler.eraseToAnyScheduler()
+            mainScheduler: scheduler.eraseToAnyScheduler(),
+            environment: env
         )
         interactor.loadWidgetsPublisher.send((
             fullWidth: [fullWidthWidget],
@@ -77,7 +78,8 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
-            mainScheduler: scheduler.eraseToAnyScheduler()
+            mainScheduler: scheduler.eraseToAnyScheduler(),
+            environment: env
         )
 
         XCTAssertEqual(testee.screenConfig.refreshable, true)
@@ -95,7 +97,8 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
-            mainScheduler: scheduler.eraseToAnyScheduler()
+            mainScheduler: scheduler.eraseToAnyScheduler(),
+            environment: env
         )
         interactor.loadWidgetsPublisher.send((fullWidth: [], grid: []))
         scheduler.advance()
@@ -109,7 +112,8 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
-            mainScheduler: scheduler.eraseToAnyScheduler()
+            mainScheduler: scheduler.eraseToAnyScheduler(),
+            environment: env
         )
         interactor.loadWidgetsPublisher.send((fullWidth: [], grid: [widget]))
         scheduler.advance()
@@ -127,7 +131,8 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
-            mainScheduler: scheduler.eraseToAnyScheduler()
+            mainScheduler: scheduler.eraseToAnyScheduler(),
+            environment: env
         )
         interactor.loadWidgetsPublisher.send((
             fullWidth: [fullWidthWidget],
@@ -152,7 +157,8 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
-            mainScheduler: scheduler.eraseToAnyScheduler()
+            mainScheduler: scheduler.eraseToAnyScheduler(),
+            environment: env
         )
         interactor.loadWidgetsPublisher.send((fullWidth: [], grid: [widget]))
         scheduler.advance()

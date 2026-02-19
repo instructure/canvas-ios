@@ -49,8 +49,7 @@ final class LearnerDashboardSettingsViewModel {
         defaults.shouldShowDashboardFeedback = true
         useNewLearnerDashboard = false
 
-        viewController.dismiss(animated: true) { [weak self] in
-            guard let self else { return }
+        viewController.dismiss(animated: true) {
             NotificationCenter.default.post(name: .dashboardPreferenceChanged, object: nil)
         }
     }

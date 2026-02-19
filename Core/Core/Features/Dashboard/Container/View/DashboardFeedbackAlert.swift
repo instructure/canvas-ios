@@ -16,18 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import SwiftUI
 
 public struct DashboardFeedbackAlert: View {
     @Environment(\.presentationMode) private var presentationMode
-    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @Environment(\.displayScale) private var displayScale
     @ScaledMetric private var uiScale: CGFloat = 1
 
     let onSubmit: (DashboardFeedbackReason) -> Void
     let onSkip: () -> Void
     let onLetUsKnow: () -> Void
 
-    @State private var selectedReason: DashboardFeedbackReason?
+    // SingleSelectionView requires a CurrentValueSubject, so @State is used to persist the reference
+    // across re-renders. onReceive bridges its emissions into `selectedReason` @State to trigger SwiftUI updates.
+    @State private var selectedReasonSubject = CurrentValueSubject<OptionItem?, Never>(nil)
+    @State private var selectedReason: OptionItem?
 
     public init(
         onSubmit: @escaping (DashboardFeedbackReason) -> Void,
@@ -46,19 +50,20 @@ public struct DashboardFeedbackAlert: View {
                     headerSection
                     InstUI.Divider(.full)
                     radioButtonsSection
-                    InstUI.Divider(.full)
                     feedbackSection
                     InstUI.Divider(.full)
                     actionButtons
                 }
                 .background(Color.backgroundLightest)
                 .clipShape(.rect(cornerRadius: 8))
+                .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.borderMedium, lineWidth: 1 / displayScale))
             }
             .frame(maxHeight: min(uiScale * 500, geometry.size.height * 0.7))
             .frame(width: min(uiScale * 350, geometry.size.width * 0.9))
             .shadow(color: Color.black.opacity(0.1), radius: 10, x: 0, y: 4)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .onReceive(selectedReasonSubject) { selectedReason = $0 }
         .ignoresSafeArea()
     }
 
@@ -78,17 +83,12 @@ public struct DashboardFeedbackAlert: View {
     }
 
     private var radioButtonsSection: some View {
-        VStack(spacing: 0) {
-            ForEach(DashboardFeedbackReason.allCases, id: \.self) { reason in
-                InstUI.RadioButtonCell(
-                    title: reason.title,
-                    value: reason,
-                    selectedValue: $selectedReason,
-                    dividerStyle: reason == DashboardFeedbackReason.allCases.last ? .hidden : .padded
-                )
-                .identifier("Dashboard.feedbackReason.\(reason.analyticsValue)")
-            }
-        }
+        SingleSelectionView(
+            title: nil,
+            identifierGroup: "Dashboard.feedbackReason",
+            allOptions: DashboardFeedbackReason.allCases.map(\.optionItem),
+            selectedOption: selectedReasonSubject
+        )
     }
 
     private var feedbackSection: some View {
@@ -107,6 +107,7 @@ public struct DashboardFeedbackAlert: View {
             }
             .buttonStyle(.pillButtonOutlined(color: .brandPrimary))
             .accessibilityAddTraits(.isLink)
+            .identifier("Dashboard.FeedbackAlert.letUsKnowButton")
         }
         .paddingStyle(.horizontal, .standard)
         .paddingStyle(.vertical, .standard)
@@ -124,11 +125,13 @@ public struct DashboardFeedbackAlert: View {
                     .frame(maxWidth: .infinity)
                     .paddingStyle(.vertical, .standard)
             }
+            .identifier("Dashboard.FeedbackAlert.skipButton")
 
             InstUI.Divider(.full)
 
             Button {
-                if let reason = selectedReason {
+                if let selectedReason,
+                   let reason = DashboardFeedbackReason.allCases.first(where: { $0.analyticsValue == selectedReason.id }) {
                     onSubmit(reason)
                     presentationMode.wrappedValue.dismiss()
                 }
@@ -140,6 +143,7 @@ public struct DashboardFeedbackAlert: View {
                     .paddingStyle(.vertical, .standard)
             }
             .disabled(selectedReason == nil)
+            .identifier("Dashboard.FeedbackAlert.submitButton")
         }
         .fixedSize(horizontal: false, vertical: true)
     }
@@ -165,9 +169,14 @@ public enum DashboardFeedbackReason: CaseIterable, Hashable {
         case .somethingBroken: "something_broken"
         }
     }
+
+    var optionItem: OptionItem {
+        OptionItem(id: analyticsValue, title: title)
+    }
 }
 
 #if DEBUG
+
 #Preview {
     DashboardFeedbackAlert(
         onSubmit: { _ in },
@@ -175,4 +184,5 @@ public enum DashboardFeedbackReason: CaseIterable, Hashable {
         onLetUsKnow: {}
     )
 }
+
 #endif
