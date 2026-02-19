@@ -25,10 +25,12 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
     public let layout: CurrentValueSubject<DashboardLayout, Never>
     public let showGrades: CurrentValueSubject<Bool, Never>
     public let colorOverlay: CurrentValueSubject<Bool, Never>
+    public let useNewDashboard: CurrentValueSubject<Bool, Never>
 
     // MARK: - Outputs
     public let isGradesSwitchVisible: Bool
     public let isColorOverlaySwitchVisible: Bool
+    public let isNewDashboardSwitchVisible: Bool
 
     // MARK: - Private
     private var defaults: SessionDefaults
@@ -42,8 +44,10 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
         self.layout = CurrentValueSubject<DashboardLayout, Never>(storedLayout)
         self.showGrades = CurrentValueSubject<Bool, Never>(defaults.showGradesOnDashboard ?? false)
         self.colorOverlay = CurrentValueSubject<Bool, Never>(true)
+        self.useNewDashboard = CurrentValueSubject<Bool, Never>(defaults.preferNewLearnerDashboard)
         self.isGradesSwitchVisible = (environment.app == .student)
         self.isColorOverlaySwitchVisible = (environment.app == .student || environment.app == .teacher)
+        self.isNewDashboardSwitchVisible = ExperimentalFeature.studentLearnerDashboard.isEnabled
         self.userSettings = environment.subscribe(GetUserSettings(userID: "self")) { [weak self] in
             self?.updateColorOverlay()
         }
@@ -52,6 +56,7 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
         saveLayoutToDefaultsOnChange()
         saveGradesToDefaultsOnChange()
         saveOverlayOnChange()
+        saveNewDashboardToDefaultsOnChange()
         updateLayoutFromDefaultsOnChange()
 
         logAnalytics()
@@ -93,6 +98,20 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
             .removeDuplicates()
             .sink { colorOverlay in
                 UpdateUserSettings(hide_dashcard_color_overlays: !colorOverlay).fetch()
+            }
+            .store(in: &subscriptions)
+    }
+
+    /// Saves the new dashboard preference when toggled in settings.
+    /// Note: This only updates `preferNewLearnerDashboard`. The feedback flag
+    /// (`shouldShowDashboardFeedback`) is managed separately by the Student module's
+    /// LearnerDashboardSettingsViewModel when switching away from the new dashboard.
+    private func saveNewDashboardToDefaultsOnChange() {
+        useNewDashboard
+            .dropFirst()
+            .removeDuplicates()
+            .sink { [weak self] useNewDashboard in
+                self?.defaults.preferNewLearnerDashboard = useNewDashboard
             }
             .store(in: &subscriptions)
     }
