@@ -103,6 +103,7 @@ public class CourseDetailsViewModel: ObservableObject {
         customGradeStatuses.refresh()
         course.refresh()
         colors.refresh()
+        tabs.refresh()
     }
 
     public func retryAfterError() {
@@ -167,7 +168,6 @@ public class CourseDetailsViewModel: ObservableObject {
         legacyHeaderViewModel.courseUpdated(course)
         courseColor = course.color
         setupHome(course: course)
-        tabs.exhaust()
     }
 
     private func setupHome(course: Course) {
@@ -263,11 +263,8 @@ extension CourseDetailsViewModel {
         colors.refresh(force: true)
         course.refresh(force: true)
         return await withCheckedContinuation { continuation in
-            tabs.exhaust(force: true) { [weak self] _ in
-                if self?.tabs.hasNextPage == false {
-                    continuation.resume()
-                }
-                return true
+            tabs.refresh(force: true) { _ in
+                continuation.resume()
             }
         }
     }

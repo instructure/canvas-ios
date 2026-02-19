@@ -269,7 +269,7 @@ class StudentAssignmentDetailsPresenter {
     func viewIsReady() {
         customGradeStatuses.refresh()
         colors.refresh()
-        courses.refresh(force: true)
+        courses.refresh()
         assignments.refresh(force: true)
         arc.refresh()
         onlineUpload.refresh()
