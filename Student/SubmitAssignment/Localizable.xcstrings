@@ -1591,7 +1591,7 @@
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entrega"
+            "value" : "Entrega-ho"
           }
         },
         "cy" : {
@@ -1663,7 +1663,7 @@
         "es-ES" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Entregar"
+            "value" : "Enviar"
           }
         },
         "fi" : {
@@ -1711,7 +1711,7 @@
         "is" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Skila"
+            "value" : "Senda"
           }
         },
         "it" : {
@@ -1795,7 +1795,7 @@
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Lämna in"
+            "value" : "Skicka in"
           }
         },
         "sv-instk12" : {

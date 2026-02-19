@@ -19,7 +19,6 @@
 import SwiftUI
 
 public extension Color {
-    static var brandPrimary: Color { Color(Brand.shared.primary) }
 
     var hexString: String { UIColor(self).hexString }
     var variantForLightMode: Color { Color(UIColor(self).resolvedColor(with: .light)) }

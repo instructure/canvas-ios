@@ -91,6 +91,8 @@ public class GetDashboardGroups: CollectionUseCase {
             ]
         )
     }
+
+    public init() {}
 }
 
 public class GetGroupsInCategory: CollectionUseCase {

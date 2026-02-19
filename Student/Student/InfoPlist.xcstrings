@@ -154,6 +154,12 @@
             "value" : "Canvas"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canvas"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -424,6 +430,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canvas"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Canvas"
