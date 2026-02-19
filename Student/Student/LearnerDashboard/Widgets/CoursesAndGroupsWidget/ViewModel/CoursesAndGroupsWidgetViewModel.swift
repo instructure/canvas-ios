@@ -37,6 +37,9 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
     private(set) var groupsSectionTitle: String = ""
     private(set) var groupsSectionAccessibilityTitle: String = ""
 
+    private(set) var showGrades: Bool = false
+    private(set) var showColorOverlay: Bool = false
+
     var layoutIdentifier: [AnyHashable] {
         [state, courseCards.count, groupCards.count]
     }
@@ -56,6 +59,8 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
         self.environment = environment
 
         updateSectionTitles()
+        updateShowGrades(on: interactor.showGrades)
+        updateShowColorOverlay(on: interactor.showColorOverlay)
     }
 
     func makeView() -> CoursesAndGroupsWidgetView {
@@ -65,24 +70,23 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
         interactor.getCoursesAndGroups(ignoreCache: ignoreCache)
             .map { [weak self, environment] (courseItems, groupItems) in
-                self?.courseCards = courseItems.map { item in
+                guard let self else { return }
+                courseCards = courseItems.map { item in
                     CourseCardViewModel(
                         model: item,
-                        showGrades: true, // TODO: use proper data
-                        showColorOverlay: true, // TODO: use proper data
                         router: environment.router
                     )
                 }
 
-                self?.groupCards = groupItems.compactMap { item in
+                groupCards = groupItems.compactMap { item in
                     GroupCardViewModel(
                         model: item,
                         router: environment.router
                     )
                 }
 
-                self?.state = (courseItems.isEmpty && groupItems.isEmpty) ? .empty : .data
-                self?.updateSectionTitles()
+                state = (courseItems.isEmpty && groupItems.isEmpty) ? .empty : .data
+                updateSectionTitles()
             }
             .receive(on: DispatchQueue.main)
             .catch { [weak self] _ in
@@ -110,5 +114,23 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
             String(localized: "Groups", bundle: .student),
             String.format(numberOfItems: groupCount)
         ].joined(separator: ", ")
+    }
+
+    private func updateShowGrades(on subject: CurrentValueSubject<Bool, Never>) {
+        subject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.showGrades = $0
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func updateShowColorOverlay(on subject: CurrentValueSubject<Bool, Never>) {
+        subject
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] in
+                self?.showColorOverlay = $0
+            }
+            .store(in: &subscriptions)
     }
 }

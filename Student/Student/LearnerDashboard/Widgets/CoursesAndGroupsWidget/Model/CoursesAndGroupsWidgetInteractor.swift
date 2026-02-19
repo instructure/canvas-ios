@@ -23,6 +23,9 @@ import Foundation
 protocol CoursesAndGroupsWidgetInteractor {
     typealias Model = ([CoursesAndGroupsWidgetCourseItem], [CoursesAndGroupsWidgetGroupItem])
 
+    var showGrades: CurrentValueSubject<Bool, Never> { get }
+    var showColorOverlay: CurrentValueSubject<Bool, Never> { get }
+
     func getCoursesAndGroups(ignoreCache: Bool) -> AnyPublisher<Model, Error>
 }
 
@@ -34,9 +37,16 @@ extension CoursesAndGroupsWidgetInteractor where Self == CoursesAndGroupsWidgetI
 
 final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteractor {
 
+    let showGrades: CurrentValueSubject<Bool, Never>
+    let showColorOverlay: CurrentValueSubject<Bool, Never>
+
     private let coursesInteractor: CoursesInteractor
     private let dashboardCardsStore: ReactiveStore<GetDashboardCards>
     private let favoriteGroupsStore: ReactiveStore<GetDashboardGroups>
+    private let userSettingsStore: ReactiveStore<GetUserSettings>
+
+    private let env: AppEnvironment
+    private var subscriptions = Set<AnyCancellable>()
 
     init(coursesInteractor: CoursesInteractor, env: AppEnvironment) {
         self.coursesInteractor = coursesInteractor
@@ -52,6 +62,19 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
             useCase: GetDashboardGroups(),
             environment: env
         )
+
+        self.userSettingsStore = ReactiveStore(
+            context: env.database.viewContext,
+            useCase: GetUserSettings(),
+            environment: env
+        )
+
+        self.env = env
+
+        self.showGrades = .init(env.userDefaults?.showGradesOnDashboard ?? false)
+        self.showColorOverlay = .init(true)
+        observeShowGrades()
+        observeShowColorOverlay()
     }
 
     /// Returns a tupple of course items and group items.
@@ -67,12 +90,13 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
     /// (This uses the 'favorites/groups' endpoint which provides an already filtered list of groups to display,
     /// but it needs to be further filtered for active courses)
     func getCoursesAndGroups(ignoreCache: Bool) -> AnyPublisher<Model, Error> {
-        Publishers.CombineLatest3(
+        Publishers.CombineLatest4(
             coursesInteractor.getCourses(ignoreCache: ignoreCache),
             dashboardCardsStore.getEntities(ignoreCache: ignoreCache),
-            favoriteGroupsStore.getEntities(ignoreCache: ignoreCache)
+            favoriteGroupsStore.getEntities(ignoreCache: ignoreCache),
+            userSettingsStore.getEntities(ignoreCache: ignoreCache)
         )
-        .map { (coursesResult: CoursesResult, courseCards: [DashboardCard], favoriteGroups: [Group]) -> Model in
+        .map { (coursesResult: CoursesResult, courseCards: [DashboardCard], favoriteGroups: [Group], _) -> Model in
             let courses = coursesResult.allCourses
                 .filteredAndSortedUsingDashboardCards(courseCards)
             let courseItems = courses.map {
@@ -100,6 +124,35 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
             return (courseItems, groupItems)
         }
         .eraseToAnyPublisher()
+    }
+
+    private func observeShowGrades() {
+        NotificationCenter.default
+            .publisher(for: .showGradesOnDashboardDidChange)
+            .receive(on: DispatchQueue.main)
+            .map { [env] _ in
+                env.userDefaults?.showGradesOnDashboard ?? false
+            }
+            .removeDuplicates()
+            .sink { [weak self] in
+                self?.showGrades.send($0)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func observeShowColorOverlay() {
+        userSettingsStore
+            .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
+            .map {
+                let hideColorOverlay = $0.first?.hideDashcardColorOverlays ?? false
+                return !hideColorOverlay
+            }
+            .removeDuplicates()
+            .replaceError(with: true)
+            .sink { [weak self] in
+                self?.showColorOverlay.send($0)
+            }
+            .store(in: &subscriptions)
     }
 }
 

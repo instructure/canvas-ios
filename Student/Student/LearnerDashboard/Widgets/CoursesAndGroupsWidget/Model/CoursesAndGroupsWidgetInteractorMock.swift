@@ -21,6 +21,11 @@ import Core
 import Foundation
 
 final class CoursesAndGroupsWidgetInteractorMock: CoursesAndGroupsWidgetInteractor {
+
+    let showGrades: CurrentValueSubject<Bool, Never> = .init(true)
+
+    let showColorOverlay: CurrentValueSubject<Bool, Never> = .init(true)
+
     func getCoursesAndGroups(ignoreCache: Bool) -> AnyPublisher<Model, Error> {
         Publishers.typedJust((CourseCardView.previewData, GroupCardView.previewData))
     }

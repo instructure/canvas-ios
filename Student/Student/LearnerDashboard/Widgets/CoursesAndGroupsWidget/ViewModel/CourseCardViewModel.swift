@@ -27,10 +27,6 @@ struct CourseCardViewModel: Identifiable, Equatable {
     let courseColor: Color
     let imageUrl: URL?
     let grade: String?
-    let a11yLabel: String
-
-    let showGrades: Bool
-    let showColorOverlay: Bool
 
     var isAvailableOffline: Bool {
         guard let selections = AppEnvironment.shared.userDefaults?.offlineSyncSelections else { return false }
@@ -42,8 +38,6 @@ struct CourseCardViewModel: Identifiable, Equatable {
 
     init(
         model: CoursesAndGroupsWidgetCourseItem,
-        showGrades: Bool,
-        showColorOverlay: Bool,
         router: Router
     ) {
         self.model = model
@@ -53,18 +47,6 @@ struct CourseCardViewModel: Identifiable, Equatable {
         self.courseColor = Color(hexString: model.colorString) ?? .textDark
         self.imageUrl = model.imageUrl
         self.grade = model.grade
-
-        self.a11yLabel = {
-            if let grade = model.grade, showGrades {
-                [model.title, String(localized: "Grade", bundle: .core), grade]
-                    .accessibilityJoined()
-            } else {
-                model.title
-            }
-        }()
-
-        self.showGrades = showGrades
-        self.showColorOverlay = showColorOverlay
 
         self.router = router
     }
@@ -86,7 +68,7 @@ struct CourseCardViewModel: Identifiable, Equatable {
         router.route(to: route, from: controller, options: .modal(isDismissable: false, embedInNav: true))
     }
 
-    func didTapCustomize(from controller: WeakViewController) {
+    func didTapCustomize(showColorOverlay: Bool, from controller: WeakViewController) {
         let viewModel = CustomizeCourseViewModel(
             courseId: id,
             courseImage: imageUrl,

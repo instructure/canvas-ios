@@ -71,7 +71,11 @@ struct CoursesAndGroupsWidgetView: View {
         ) {
             VStack(alignment: .leading, spacing: 4) {
                 ForEach(viewModel.courseCards) { cardViewModel in
-                    CourseCardView(viewModel: cardViewModel)
+                    CourseCardView(
+                        viewModel: cardViewModel,
+                        showGrades: viewModel.showGrades,
+                        showColorOverlay: viewModel.showColorOverlay
+                    )
                 }
             }
         }

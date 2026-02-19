@@ -24,8 +24,11 @@ struct CourseCardView: View {
     @ScaledMetric private var uiScale: CGFloat = 1
 
     private let viewModel: CourseCardViewModel
-    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
+    private let showGrades: Bool
+    private let showColorOverlay: Bool
+    private let a11yLabel: String
 
+    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
     @State private var isShowingOptionsDialog = false
 
     private var isAvailable: Bool {
@@ -34,8 +37,22 @@ struct CourseCardView: View {
         return isAppOnline || isCourseAvailableOffline
     }
 
-    init(viewModel: CourseCardViewModel) {
+    init(
+        viewModel: CourseCardViewModel,
+        showGrades: Bool,
+        showColorOverlay: Bool
+    ) {
         self.viewModel = viewModel
+        self.showGrades = showGrades
+        self.showColorOverlay = showColorOverlay
+        self.a11yLabel = {
+            if showGrades, let grade = viewModel.grade {
+                [viewModel.title, String(localized: "Grade", bundle: .core), grade]
+                    .accessibilityJoined()
+            } else {
+                viewModel.title
+            }
+        }()
     }
 
     var body: some View {
@@ -48,7 +65,7 @@ struct CourseCardView: View {
             }
             .animation(.dashboardWidget, value: viewModel)
             .accessibilityElement(children: .combine)
-            .accessibilityLabel(viewModel.a11yLabel)
+            .accessibilityLabel(a11yLabel)
             .identifier("Dashboard.CourseCard.cardButton")
     }
 
@@ -78,15 +95,17 @@ struct CourseCardView: View {
                 .frame(width: scaledSize, height: scaledSize)
             // disable animated GIFs to avoid creating multiple WebViews
             RemoteImage(viewModel.imageUrl, size: scaledSize, shouldHandleAnimatedGif: false)
-                .opacity(viewModel.showColorOverlay ? 0.16 : 1)
+                .opacity(showColorOverlay ? 0.16 : 1)
                 .clipped()
         }
         .overlay(alignment: .bottomLeading) {
-            if viewModel.showGrades {
+            if showGrades {
                 gradePill
                     .offset(x: 8, y: -8)
             }
         }
+        .animation(.dashboardWidget, value: showGrades)
+        .animation(.dashboardWidget, value: showColorOverlay)
     }
 
     private var titleLabel: some View {
@@ -147,7 +166,7 @@ struct CourseCardView: View {
             return UIAlertController.showItemNotAvailableInOfflineAlert()
         }
 
-        viewModel.didTapCustomize(from: controller)
+        viewModel.didTapCustomize(showColorOverlay: showColorOverlay, from: controller)
     }
 
     private var customizeButton: some View {
@@ -213,26 +232,32 @@ extension CourseCardView {
 
 #Preview {
     PreviewContainer(spacing: 4, horizontalPadding: 16) {
-        CourseCardView(viewModel: CourseCardViewModel(
-            model: CourseCardView.previewData[0],
+        CourseCardView(
+            viewModel: CourseCardViewModel(
+                model: CourseCardView.previewData[0],
+                router: PreviewEnvironment().router
+            ),
             showGrades: true,
-            showColorOverlay: true,
-            router: PreviewEnvironment().router
-        ))
+            showColorOverlay: true
+        )
 
-        CourseCardView(viewModel: CourseCardViewModel(
-            model: CourseCardView.previewData[1],
-            showGrades: true,
-            showColorOverlay: true,
-            router: PreviewEnvironment().router
-        ))
-
-        CourseCardView(viewModel: CourseCardViewModel(
-            model: CourseCardView.previewData[2],
+        CourseCardView(
+            viewModel: CourseCardViewModel(
+                model: CourseCardView.previewData[1],
+                router: PreviewEnvironment().router
+            ),
             showGrades: false,
-            showColorOverlay: true,
-            router: PreviewEnvironment().router
-        ))
+            showColorOverlay: false
+        )
+
+        CourseCardView(
+            viewModel: CourseCardViewModel(
+                model: CourseCardView.previewData[2],
+                router: PreviewEnvironment().router
+            ),
+            showGrades: true,
+            showColorOverlay: true
+        )
     }
     .background(.backgroundLight)
 }
