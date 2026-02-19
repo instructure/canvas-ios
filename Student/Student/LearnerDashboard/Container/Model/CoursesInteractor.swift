@@ -21,12 +21,6 @@ import Core
 import CoreData
 import Foundation
 
-struct CoursesResult {
-    let allCourses: [Course]
-    let invitedCourses: [Course]
-    let groups: [CDAllCoursesGroupItem]
-}
-
 protocol CoursesInteractor {
     func getCourses(ignoreCache: Bool) -> AnyPublisher<CoursesResult, Error>
     func acceptInvitation(courseId: String, enrollmentId: String) -> AnyPublisher<Void, Error>

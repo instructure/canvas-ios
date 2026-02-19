@@ -156,9 +156,8 @@ final class ConferencesWidgetInteractorTests: StudentTestCase {
 
         try? databaseClient.save()
 
-        coursesInteractor.mockCoursesResult = CoursesResult(
+        coursesInteractor.mockCoursesResult = .make(
             allCourses: [course],
-            invitedCourses: [],
             groups: [group]
         )
     }
@@ -191,11 +190,7 @@ final class ConferencesWidgetInteractorTests: StudentTestCase {
 
         try? databaseClient.save()
 
-        coursesInteractor.mockCoursesResult = CoursesResult(
-            allCourses: [course],
-            invitedCourses: [],
-            groups: []
-        )
+        coursesInteractor.mockCoursesResult = .make(allCourses: [course])
     }
 
     private func setupConference() -> Conference {

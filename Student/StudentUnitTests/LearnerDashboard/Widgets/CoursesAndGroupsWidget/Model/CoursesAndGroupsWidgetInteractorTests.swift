@@ -118,11 +118,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
             .make(id: ID(testData.courseId2), position: 1, shortName: testData.courseName2)
         ])
 
-        coursesInteractor.mockCoursesResult = CoursesResult(
-            allCourses: [course1, course2],
-            invitedCourses: [],
-            groups: []
-        )
+        coursesInteractor.mockCoursesResult = .make(allCourses: [course1, course2])
         testee = makeInteractor()
 
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, groups) in
@@ -161,11 +157,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
             .make(id: ID(testData.courseId1), position: 1)
         ])
 
-        coursesInteractor.mockCoursesResult = CoursesResult(
-            allCourses: [course1, course2],
-            invitedCourses: [],
-            groups: []
-        )
+        coursesInteractor.mockCoursesResult = .make(allCourses: [course1, course2])
         testee = makeInteractor()
 
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, _) in
@@ -184,11 +176,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
             .make(id: ID(testData.courseId2), position: 0, shortName: testData.courseName2)
         ])
 
-        coursesInteractor.mockCoursesResult = CoursesResult(
-            allCourses: [course1, course2],
-            invitedCourses: [],
-            groups: []
-        )
+        coursesInteractor.mockCoursesResult = .make(allCourses: [course1, course2])
         testee = makeInteractor()
 
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, _) in
@@ -207,11 +195,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
             .make(id: ID(testData.courseId1), position: 0, shortName: "same name")
         ])
 
-        coursesInteractor.mockCoursesResult = CoursesResult(
-            allCourses: [course1, course2],
-            invitedCourses: [],
-            groups: []
-        )
+        coursesInteractor.mockCoursesResult = .make(allCourses: [course1, course2])
         testee = makeInteractor()
 
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, _) in
@@ -231,11 +215,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
             .make(id: ID(testData.courseId1), position: 0)
         ])
 
-        coursesInteractor.mockCoursesResult = CoursesResult(
-            allCourses: [course1, course2],
-            invitedCourses: [],
-            groups: []
-        )
+        coursesInteractor.mockCoursesResult = .make(allCourses: [course1, course2])
         testee = makeInteractor()
 
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, _) in

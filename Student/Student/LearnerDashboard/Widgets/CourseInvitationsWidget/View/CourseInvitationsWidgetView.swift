@@ -103,10 +103,9 @@ private func makePreviewViewModel(snackbarViewModel: SnackBarViewModel) -> Cours
         )
     ]
 
-    coursesInteractor.mockCoursesResult = CoursesResult(
+    coursesInteractor.mockCoursesResult = .make(
         allCourses: mockCourses,
-        invitedCourses: mockCourses,
-        groups: []
+        invitedCourses: mockCourses
     )
 
     return CourseInvitationsWidgetViewModel(
