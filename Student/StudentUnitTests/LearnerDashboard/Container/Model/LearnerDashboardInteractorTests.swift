@@ -63,11 +63,13 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
         wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(receivedFullWidth?.count, 4)
-        XCTAssertEqual(receivedFullWidth?[0].id, .conferences)
-        XCTAssertEqual(receivedFullWidth?[1].id, .courseInvitations)
-        XCTAssertEqual(receivedFullWidth?[2].id, .globalAnnouncements)
-        XCTAssertEqual(receivedFullWidth?[3].id, .helloWidget)
+        XCTAssertEqual(receivedFullWidth?.count, 6)
+        XCTAssertEqual(receivedFullWidth?[0].id, .offlineSyncProgress)
+        XCTAssertEqual(receivedFullWidth?[1].id, .fileUploadProgress)
+        XCTAssertEqual(receivedFullWidth?[2].id, .conferences)
+        XCTAssertEqual(receivedFullWidth?[3].id, .courseInvitations)
+        XCTAssertEqual(receivedFullWidth?[4].id, .globalAnnouncements)
+        XCTAssertEqual(receivedFullWidth?[5].id, .helloWidget)
         XCTAssertEqual(receivedGrid?.count, 3)
         XCTAssertEqual(receivedGrid?[0].id, .widget1)
         XCTAssertEqual(receivedGrid?[1].id, .widget2)
