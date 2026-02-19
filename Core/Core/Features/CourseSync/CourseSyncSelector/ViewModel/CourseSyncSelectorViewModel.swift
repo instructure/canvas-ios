@@ -246,8 +246,8 @@ class CourseSyncSelectorViewModel: ObservableObject {
 }
 
 extension Notification.Name {
-    static let OfflineSyncTriggered = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncTriggered")
-    static let OfflineSyncCleanTriggered = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncCleanTriggered")
-    static let OfflineSyncCancelled = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncCancelled")
-    static let OfflineSyncCompleted = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncCompleted")
+    public static let OfflineSyncTriggered = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncTriggered")
+    public static let OfflineSyncCleanTriggered = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncCleanTriggered")
+    public static let OfflineSyncCancelled = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncCancelled")
+    public static let OfflineSyncCompleted = Notification.Name(rawValue: "com.instructure.core.notification.OfflineSyncCompleted")
 }

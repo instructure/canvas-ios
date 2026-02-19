@@ -27,6 +27,7 @@ final class Widget3ViewModel: DashboardWidgetViewModel {
     let config: DashboardWidgetConfig
     let isFullWidth = false
     let isEditable = false
+    let isHiddenInEmptyState = false
     var state: InstUI.ScreenState = .data
 
     init(config: DashboardWidgetConfig) {

@@ -89261,6 +89261,9 @@
         }
       }
     },
+    "Offline Content Sync Failed" : {
+
+    },
     "Ok" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -112280,6 +112283,9 @@
         }
       }
     },
+    "Show sync details" : {
+
+    },
     "Showing up matters more than you know." : {
 
     },
@@ -118437,6 +118443,12 @@
         }
       }
     },
+    "Submission Upload Failed" : {
+
+    },
+    "Submission Uploaded Successfully" : {
+
+    },
     "Submission Uploading..." : {
       "localizations" : {
         "ar" : {
@@ -122162,6 +122174,9 @@
           }
         }
       }
+    },
+    "Syncing Offline Content" : {
+
     },
     "TA" : {
       "comment" : "Short name for TA enrollment",
@@ -143081,6 +143096,9 @@
         }
       }
     },
+    "Uploading Submission" : {
+
+    },
     "Use" : {
       "comment" : "button for using the recorded audio",
       "extractionState" : "manual",
@@ -146017,6 +146035,12 @@
           }
         }
       }
+    },
+    "We couldn't sync your content.\nTry again, or come back later" : {
+
+    },
+    "We couldn't upload your submission.\nTry again, or come back later" : {
+
     },
     "We had a problem loading the submission. Please try again later." : {
       "comment" : "error message for failure to load a file submission",

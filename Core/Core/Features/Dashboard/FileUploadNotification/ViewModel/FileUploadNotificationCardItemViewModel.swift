@@ -20,8 +20,8 @@ import CoreData
 import Foundation
 import SwiftUI
 
-final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifiable {
-    enum State {
+public final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifiable {
+    public enum State {
         case uploading, success, failure
 
         var text: String {
@@ -53,6 +53,9 @@ final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifia
 
     public let id: NSManagedObjectID
     public let assignmentName: String
+    public let courseID: String
+    public let assignmentID: String
+    public let progress: Float?
     public var state: State
     private let cardDidTap: (
         NSManagedObjectID,
@@ -66,9 +69,12 @@ final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifia
 
     // MARK: - Init
 
-    init(
+    public init(
         id: NSManagedObjectID,
         assignmentName: String,
+        courseID: String,
+        assignmentID: String,
+        progress: Float? = nil,
         state: State,
         isHiddenByUser: Bool,
         cardDidTap: @escaping (
@@ -79,6 +85,9 @@ final class FileUploadNotificationCardItemViewModel: ObservableObject, Identifia
     ) {
         self.id = id
         self.assignmentName = assignmentName
+        self.courseID = courseID
+        self.assignmentID = assignmentID
+        self.progress = progress
         self.state = state
         self.isHiddenByUser = isHiddenByUser
         self.cardDidTap = cardDidTap

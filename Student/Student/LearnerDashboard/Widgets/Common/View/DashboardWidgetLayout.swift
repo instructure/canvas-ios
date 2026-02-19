@@ -50,7 +50,9 @@ struct DashboardWidgetLayout: View {
     @ViewBuilder
     private func fullWidthSection() -> some View {
         ForEach(fullWidthWidgets, id: \.id) { viewModel in
-            LearnerDashboardWidgetAssembly.makeView(for: viewModel)
+            if viewModel.shouldRenderWidget {
+                LearnerDashboardWidgetAssembly.makeView(for: viewModel)
+            }
         }
     }
 
@@ -66,9 +68,9 @@ struct DashboardWidgetLayout: View {
     }
 
     private func columnView(columnIndex: Int, columnCount: Int) -> some View {
-        ConditionallyLazyVStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
+        VStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
             ForEach(Array(gridWidgets.enumerated()), id: \.element.id) { index, viewModel in
-                if index % columnCount == columnIndex {
+                if index % columnCount == columnIndex, viewModel.shouldRenderWidget {
                     LearnerDashboardWidgetAssembly.makeView(for: viewModel)
                 }
             }

@@ -17,12 +17,14 @@
 //
 
 enum DashboardWidgetIdentifier: String, Codable, CaseIterable {
+    case offlineSyncProgress
+    case fileUploadProgress
     case conferences
     case courseInvitations
     case globalAnnouncements
+    case helloWidget
     case widget1
     case widget2
     case widget3
 
-    case helloWidget
 }

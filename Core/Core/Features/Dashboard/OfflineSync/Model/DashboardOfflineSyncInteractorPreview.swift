@@ -21,10 +21,12 @@
 import Combine
 import Foundation
 
-class DashboardOfflineSyncInteractorPreview: CourseSyncProgressObserverInteractor {
+public class DashboardOfflineSyncInteractorPreview: CourseSyncProgressObserverInteractor {
     private let env = PreviewEnvironment()
 
-    func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never> {
+    public init() {}
+
+    public func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never> {
         let bytesToDownload = 10_000_000
         let progressUpdates = stride(from: 0, to: bytesToDownload + 1, by: 1_000_000).map { $0 }
         return Publishers
@@ -42,24 +44,27 @@ class DashboardOfflineSyncInteractorPreview: CourseSyncProgressObserverInteracto
             .eraseToAnyPublisher()
     }
 
-    func observeStateProgress() -> AnyPublisher<[CourseSyncStateProgress], Never> {
+    public func observeStateProgress() -> AnyPublisher<[CourseSyncStateProgress], Never> {
         Just([]).eraseToAnyPublisher()
     }
 }
 
 // swiftlint:disable:next type_name
-class DashboardOfflineSyncProgressWriterInteractorPreview: CourseSyncProgressWriterInteractor {
-    func saveDownloadProgress(entries _: [CourseSyncEntry]) {}
+public class DashboardOfflineSyncProgressWriterInteractorPreview: CourseSyncProgressWriterInteractor {
 
-    func saveDownloadResult(isFinished _: Bool, error _: String?) {}
+    public init() {}
 
-    func cleanUpPreviousDownloadProgress() {}
+    public func saveDownloadProgress(entries _: [CourseSyncEntry]) {}
 
-    func markInProgressDownloadsAsFailed() {}
+    public func saveDownloadResult(isFinished _: Bool, error _: String?) {}
 
-    func setInitialLoadingState(entries _: [CourseSyncEntry]) {}
+    public func cleanUpPreviousDownloadProgress() {}
 
-    func saveStateProgress(id _: String, selection _: CourseEntrySelection, state _: CourseSyncEntry.State) {}
+    public func markInProgressDownloadsAsFailed() {}
+
+    public func setInitialLoadingState(entries _: [CourseSyncEntry]) {}
+
+    public func saveStateProgress(id _: String, selection _: CourseEntrySelection, state _: CourseSyncEntry.State) {}
 }
 
 #endif

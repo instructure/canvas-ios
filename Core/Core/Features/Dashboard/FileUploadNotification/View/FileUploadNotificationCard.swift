@@ -156,6 +156,8 @@ struct FileUploadNotificationCard: View {
             return FileUploadNotificationCardItemViewModel(
                 id: submission.objectID,
                 assignmentName: "Test assignment",
+                courseID: submission.courseID,
+                assignmentID: submission.assignmentID,
                 state: state,
                 isHiddenByUser: false,
                 cardDidTap: { _, _ in },
