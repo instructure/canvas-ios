@@ -48,8 +48,8 @@ final class HelloWidgetViewModelTests: StudentTestCase {
         testee = makeViewModel()
 
         XCTAssertEqual(testee.config.id, .helloWidget)
-        XCTAssertEqual(testee.isFullWidth, true)
-        XCTAssertEqual(testee.isEditable, false)
+        XCTAssertEqual(testee.isFullWidth, false)
+        XCTAssertEqual(testee.isEditable, true)
     }
 
     func test_initialState_shouldBeLoading() {
@@ -223,12 +223,7 @@ final class HelloWidgetViewModelTests: StudentTestCase {
         dayPeriodProvider: DayPeriodProvider = .init()
     ) -> HelloWidgetViewModel {
         HelloWidgetViewModel(
-            config: DashboardWidgetConfig(
-                id: .helloWidget,
-                order: 42,
-                isVisible: true,
-                settings: nil
-            ),
+            config: .make(id: .helloWidget),
             interactor: interactor,
             dayPeriodProvider: dayPeriodProvider
         )

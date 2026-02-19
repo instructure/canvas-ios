@@ -111,14 +111,9 @@ struct CoursesAndGroupsWidgetView: View {
 }
 
 private func makePreviewViewModel() -> CoursesAndGroupsWidgetViewModel {
-    let config = DashboardWidgetConfig(id: .coursesAndGroups, order: 0, isVisible: true, settings: nil)
-    let interactor = CoursesAndGroupsWidgetInteractorMock()
-    interactor.mockCourses = CourseCardView.previewData
-    interactor.mockGroups = GroupCardView.previewData
-
     return CoursesAndGroupsWidgetViewModel(
-        config: config,
-        interactor: interactor,
+        config: .make(id: .coursesAndGroups),
+        interactor: .preview(),
         environment: PreviewEnvironment()
     )
 }

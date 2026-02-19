@@ -73,7 +73,6 @@ private func makePreviewViewModel(snackbarViewModel: SnackBarViewModel) -> Cours
     let env = PreviewEnvironment()
     let context = env.database.viewContext
 
-    let config = DashboardWidgetConfig(id: .courseInvitations, order: 1, isVisible: true, settings: nil)
     let coursesInteractor = CoursesInteractorMock()
 
     let mockCourses = [
@@ -109,7 +108,7 @@ private func makePreviewViewModel(snackbarViewModel: SnackBarViewModel) -> Cours
     )
 
     return CourseInvitationsWidgetViewModel(
-        config: config,
+        config: .make(id: .courseInvitations),
         interactor: coursesInteractor,
         snackBarViewModel: snackbarViewModel
     )

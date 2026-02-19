@@ -121,31 +121,28 @@ private func makePreviewInteractor(context: NSManagedObjectContext) -> CoursesIn
     let env = PreviewEnvironment()
     let context = env.database.viewContext
     let snackBarViewModel = SnackBarViewModel()
-    let mockInteractor = makePreviewInteractor(context: context)
+    let coursesInteractor = makePreviewInteractor(context: context)
 
-    let courseInvitations = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-        config: DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true, settings: nil),
-        snackBarViewModel: snackBarViewModel,
-        coursesInteractor: mockInteractor
-    )
-    let widget1 = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-        config: DashboardWidgetConfig(id: .widget1, order: 1, isVisible: true, settings: nil),
+    let courseInvitations = CourseInvitationsWidgetViewModel(
+        config: .make(id: .courseInvitations, order: 0),
+        interactor: coursesInteractor,
         snackBarViewModel: snackBarViewModel
     )
-    let widget2 = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-        config: DashboardWidgetConfig(id: .widget2, order: 2, isVisible: true, settings: nil),
-        snackBarViewModel: snackBarViewModel
+    let helloWidget = HelloWidgetViewModel(
+        config: .make(id: .helloWidget, order: 1),
+        interactor: HelloWidgetInteractorPreview(),
+        dayPeriodProvider: .init()
     )
-    let widget3 = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-        config: DashboardWidgetConfig(id: .widget3, order: 3, isVisible: true, settings: nil),
-        snackBarViewModel: snackBarViewModel
+    let coursesAndGroups = CoursesAndGroupsWidgetViewModel(
+        config: .make(id: .coursesAndGroups, order: 2),
+        interactor: .preview()
     )
 
     GeometryReader { geometry in
         ScrollView {
             DashboardWidgetLayout(
                 fullWidthWidgets: [courseInvitations],
-                gridWidgets: [widget1, widget2, widget3],
+                gridWidgets: [helloWidget, coursesAndGroups],
                 containerWidth: geometry.size.width
             )
             .paddingStyle(.horizontal, .standard)
@@ -154,9 +151,8 @@ private func makePreviewInteractor(context: NSManagedObjectContext) -> CoursesIn
     }
     .onAppear {
         courseInvitations.refresh(ignoreCache: false).sink { _ in }.store(in: &subscriptions)
-        widget1.refresh(ignoreCache: false).sink { _ in }.store(in: &subscriptions)
-        widget2.refresh(ignoreCache: false).sink { _ in }.store(in: &subscriptions)
-        widget3.refresh(ignoreCache: false).sink { _ in }.store(in: &subscriptions)
+        helloWidget.refresh(ignoreCache: false).sink { _ in }.store(in: &subscriptions)
+        coursesAndGroups.refresh(ignoreCache: false).sink { _ in }.store(in: &subscriptions)
     }
 }
 

@@ -58,7 +58,7 @@ final class GlobalAnnouncementsWidgetViewModelTests: StudentTestCase {
 
     func test_init_shouldSetupCorrectly() {
         testee = makeViewModel(
-            config: .init(id: .globalAnnouncements, order: 42, isVisible: true)
+            config: .make(id: .globalAnnouncements, order: 42)
         )
 
         XCTAssertEqual(testee.config.id, .globalAnnouncements)
@@ -220,7 +220,7 @@ final class GlobalAnnouncementsWidgetViewModelTests: StudentTestCase {
     // MARK: - Private helpers
 
     private func makeViewModel(
-        config: DashboardWidgetConfig = .init(id: .globalAnnouncements, order: 0, isVisible: true)
+        config: DashboardWidgetConfig = .make(id: .globalAnnouncements)
     ) -> GlobalAnnouncementsWidgetViewModel {
         GlobalAnnouncementsWidgetViewModel(
             config: config,

@@ -22,11 +22,18 @@ import Combine
 import Core
 import Foundation
 
-final class CoursesAndGroupsWidgetInteractorMock: CoursesAndGroupsWidgetInteractor {
+extension CoursesAndGroupsWidgetInteractor where Self == CoursesAndGroupsWidgetInteractorMock {
+    static func preview(
+        mockCourses: [CoursesAndGroupsWidgetCourseItem] = CourseCardView.previewData,
+        mockGroups: [CoursesAndGroupsWidgetGroupItem] = GroupCardView.previewData
+    ) -> CoursesAndGroupsWidgetInteractorMock {
+        let interactor = CoursesAndGroupsWidgetInteractorMock()
+        interactor.getCoursesAndGroupsOutput = (mockCourses, mockGroups)
+        return interactor
+    }
+}
 
-    // convenience for previews
-    var mockCourses: [CoursesAndGroupsWidgetCourseItem]?
-    var mockGroups: [CoursesAndGroupsWidgetGroupItem]?
+final class CoursesAndGroupsWidgetInteractorMock: CoursesAndGroupsWidgetInteractor {
 
     // MARK: - showGrades
 
@@ -46,10 +53,6 @@ final class CoursesAndGroupsWidgetInteractorMock: CoursesAndGroupsWidgetInteract
     func getCoursesAndGroups(ignoreCache: Bool) -> AnyPublisher<Model, Error> {
         getCoursesAndGroupsInput = ignoreCache
         getCoursesAndGroupsCallCount += 1
-
-        if let mockCourses, let mockGroups {
-            return Publishers.typedJust((mockCourses, mockGroups))
-        }
 
         if let error = getCoursesAndGroupsOutputError {
             return Publishers.typedFailure(error: error)

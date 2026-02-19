@@ -49,7 +49,7 @@ final class CoursesAndGroupsWidgetViewModelTests: StudentTestCase {
     // MARK: - Initialization
 
     func test_init_shouldSetupCorrectly() {
-        testee = makeViewModel(config: .init(id: .coursesAndGroups, order: 42, isVisible: true))
+        testee = makeViewModel(config: .make(id: .coursesAndGroups, order: 42))
 
         XCTAssertEqual(testee.config.id, .coursesAndGroups)
         XCTAssertEqual(testee.config.order, 42)
@@ -245,7 +245,7 @@ final class CoursesAndGroupsWidgetViewModelTests: StudentTestCase {
     // MARK: - Private helpers
 
     private func makeViewModel(
-        config: DashboardWidgetConfig = .init(id: .coursesAndGroups, order: 0, isVisible: true)
+        config: DashboardWidgetConfig = .make(id: .coursesAndGroups)
     ) -> CoursesAndGroupsWidgetViewModel {
         CoursesAndGroupsWidgetViewModel(
             config: config,

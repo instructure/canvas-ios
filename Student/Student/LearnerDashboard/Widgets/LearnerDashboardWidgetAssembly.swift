@@ -26,13 +26,10 @@ enum LearnerDashboardWidgetAssembly {
             .conferences,
             .courseInvitations,
             .globalAnnouncements,
-            .helloWidget,
 
             // grid
-            .coursesAndGroups,
-            .widget1,
-            .widget2,
-            .widget3
+            .helloWidget,
+            .coursesAndGroups
         ]
 
         return identifiers.enumerated().map { (index, id) in
@@ -63,23 +60,17 @@ enum LearnerDashboardWidgetAssembly {
                 config: config,
                 interactor: .live(env: .shared)
             )
+        case .helloWidget:
+            HelloWidgetViewModel(
+                config: config,
+                interactor: .live(),
+                dayPeriodProvider: .init()
+            )
         case .coursesAndGroups:
             CoursesAndGroupsWidgetViewModel(
                 config: config,
                 interactor: .live(coursesInteractor: coursesInteractor, env: .shared)
             )
-        case .helloWidget:
-            HelloWidgetViewModel(
-                config: config,
-                interactor: HelloWidgetInteractorLive(),
-                dayPeriodProvider: .init()
-            )
-        case .widget1:
-            Widget1ViewModel(config: config)
-        case .widget2:
-            Widget2ViewModel(config: config)
-        case .widget3:
-            Widget3ViewModel(config: config)
         }
     }
 
@@ -92,15 +83,9 @@ enum LearnerDashboardWidgetAssembly {
 	        vm.makeView()
         case let vm as GlobalAnnouncementsWidgetViewModel:
             vm.makeView()
-        case let vm as CoursesAndGroupsWidgetViewModel:
-            vm.makeView()
         case let vm as HelloWidgetViewModel:
             vm.makeView()
-        case let vm as Widget1ViewModel:
-            vm.makeView()
-        case let vm as Widget2ViewModel:
-            vm.makeView()
-        case let vm as Widget3ViewModel:
+        case let vm as CoursesAndGroupsWidgetViewModel:
             vm.makeView()
         default:
             SwiftUI.EmptyView()

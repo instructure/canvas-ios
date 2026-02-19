@@ -49,17 +49,11 @@ struct HelloWidgetView: View {
 #Preview {
     HelloWidgetView(
         viewModel: .init(
-            config: .init(id: .helloWidget, order: 0, isVisible: true),
+            config: .make(id: .helloWidget),
             interactor: HelloWidgetInteractorPreview(),
             dayPeriodProvider: .init()
         )
     )
-}
-
-private class HelloWidgetInteractorPreview: HelloWidgetInteractor {
-    func getShortName(ignoreCache: Bool) -> AnyPublisher<String?, Error> {
-        Publishers.typedJust("Rincewind")
-    }
 }
 
 #endif
