@@ -18,7 +18,6 @@
 
 import Combine
 import Core
-import CoreData
 import Foundation
 import SwiftUI
 
@@ -60,31 +59,18 @@ final class FileUploadProgressWidgetViewModel: DashboardWidgetViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] items in
                 guard let self = self else { return }
-                self.uploadCards = items.compactMap { item in
-                    guard let submission = self.listViewModel.fileSubmissions.first(where: { $0.objectID == item.id }) else {
-                        return nil
-                    }
-                    return FileUploadCardState(
+                self.uploadCards = items.map { item in
+                    FileUploadCardState(
                         id: item.id.uriRepresentation().absoluteString,
                         assignmentName: item.assignmentName,
-                        assignmentRoute: "/courses/\(submission.courseID)/assignments/\(submission.assignmentID)",
+                        assignmentRoute: "/courses/\(item.courseID)/assignments/\(item.assignmentID)",
                         state: self.mapState(item.state),
-                        progress: self.calculateProgress(for: item)
+                        progress: item.progress
                     )
                 }
                 self.state = self.uploadCards.isEmpty ? .empty : .data
             }
             .store(in: &subscriptions)
-    }
-
-    private func calculateProgress(for item: FileUploadNotificationCardItemViewModel) -> Float? {
-        guard case .uploading = item.state else { return nil }
-        guard let submission = listViewModel.fileSubmissions.first(where: { $0.objectID == item.id }) else {
-            return nil
-        }
-        let totalSize = submission.totalSize
-        guard totalSize > 0 else { return 0 }
-        return Float(submission.totalUploadedSize) / Float(totalSize)
     }
 
     private func mapState(_ state: FileUploadNotificationCardItemViewModel.State) -> FileUploadCardState.UploadState {

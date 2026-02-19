@@ -34,6 +34,35 @@ class FileUploadNotificationCardViewModelTests: CoreTestCase {
         super.tearDown()
     }
 
+    func testCourseIDIsMappedFromSubmission() {
+        createSubmission(fileUploadItem: createFileUploadItem())
+        saveFiles()
+
+        XCTAssertEqual(viewModel.items.first?.courseID, "courseID")
+    }
+
+    func testAssignmentIDIsMappedFromSubmission() {
+        createSubmission(fileUploadItem: createFileUploadItem())
+        saveFiles()
+
+        XCTAssertEqual(viewModel.items.first?.assignmentID, "assignmentID")
+    }
+
+    func testProgressIsMappedWhenUploading() {
+        createSubmission(fileUploadItem: createFileUploadItemUploading())
+        saveFiles()
+
+        XCTAssertEqual(viewModel.items.first?.progress, 0.5)
+    }
+
+    func testProgressIsNilWhenNotUploading() {
+        let submission = createSubmission(fileUploadItem: createFileUploadItemUploaded())
+        submission.isSubmitted = true
+        saveFiles()
+
+        XCTAssertNil(viewModel.items.first?.progress)
+    }
+
     func testUploadingStateMapsToUploading() {
         // Given
         createSubmission(fileUploadItem: createFileUploadItemUploading())

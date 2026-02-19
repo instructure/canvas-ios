@@ -53,6 +53,9 @@ public final class FileUploadNotificationCardItemViewModel: ObservableObject, Id
 
     public let id: NSManagedObjectID
     public let assignmentName: String
+    public let courseID: String
+    public let assignmentID: String
+    public let progress: Float?
     public var state: State
     private let cardDidTap: (
         NSManagedObjectID,
@@ -69,6 +72,9 @@ public final class FileUploadNotificationCardItemViewModel: ObservableObject, Id
     public init(
         id: NSManagedObjectID,
         assignmentName: String,
+        courseID: String,
+        assignmentID: String,
+        progress: Float? = nil,
         state: State,
         isHiddenByUser: Bool,
         cardDidTap: @escaping (
@@ -79,6 +85,9 @@ public final class FileUploadNotificationCardItemViewModel: ObservableObject, Id
     ) {
         self.id = id
         self.assignmentName = assignmentName
+        self.courseID = courseID
+        self.assignmentID = assignmentID
+        self.progress = progress
         self.state = state
         self.isHiddenByUser = isHiddenByUser
         self.cardDidTap = cardDidTap

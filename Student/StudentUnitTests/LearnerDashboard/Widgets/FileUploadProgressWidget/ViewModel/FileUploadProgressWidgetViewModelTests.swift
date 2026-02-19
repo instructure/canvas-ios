@@ -27,6 +27,7 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
 
     private var testee: FileUploadProgressWidgetViewModel!
     private var listViewModel: FileUploadNotificationCardListViewModel!
+    private var widgetRouter: Router!
     private var context: NSManagedObjectContext!
 
     override func setUp() {
@@ -34,12 +35,14 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
         context = singleSharedTestDatabase.viewContext
         let environment = AppEnvironment.shared
         environment.database = singleSharedTestDatabase
+        widgetRouter = environment.router
         listViewModel = FileUploadNotificationCardListViewModel(environment: environment)
     }
 
     override func tearDown() {
         testee = nil
         listViewModel = nil
+        widgetRouter = nil
         context = nil
         super.tearDown()
     }
@@ -49,6 +52,7 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
     func testInit_setsInitialState() {
         testee = FileUploadProgressWidgetViewModel(
             config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
+            router: widgetRouter,
             listViewModel: listViewModel
         )
 
@@ -61,6 +65,7 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
     func testUploadCards_emptyWhenNoSubmissions() {
         testee = FileUploadProgressWidgetViewModel(
             config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
+            router: widgetRouter,
             listViewModel: listViewModel
         )
 
@@ -86,6 +91,7 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
 
         testee = FileUploadProgressWidgetViewModel(
             config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
+            router: widgetRouter,
             listViewModel: listViewModel
         )
 
@@ -93,6 +99,7 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
 
         XCTAssertEqual(testee.uploadCards.count, 1)
         XCTAssertEqual(testee.uploadCards.first?.assignmentName, "Test Assignment")
+        XCTAssertEqual(testee.uploadCards.first?.assignmentRoute, "/courses/1/assignments/1")
         XCTAssertEqual(testee.uploadCards.first?.state, .uploading)
         XCTAssertEqual(testee.uploadCards.first?.progress, 0.5)
         XCTAssertEqual(testee.state, .data)
@@ -114,6 +121,7 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
 
         testee = FileUploadProgressWidgetViewModel(
             config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
+            router: widgetRouter,
             listViewModel: listViewModel
         )
 
@@ -141,6 +149,7 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
 
         testee = FileUploadProgressWidgetViewModel(
             config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
+            router: widgetRouter,
             listViewModel: listViewModel
         )
 
@@ -168,6 +177,7 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
 
         testee = FileUploadProgressWidgetViewModel(
             config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
+            router: widgetRouter,
             listViewModel: listViewModel
         )
 
@@ -196,6 +206,7 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
 
         testee = FileUploadProgressWidgetViewModel(
             config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
+            router: widgetRouter,
             listViewModel: listViewModel
         )
 
@@ -217,6 +228,7 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
     func testIsFullWidth_returnsTrue() {
         testee = FileUploadProgressWidgetViewModel(
             config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
+            router: widgetRouter,
             listViewModel: listViewModel
         )
 
@@ -226,6 +238,7 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
     func testIsEditable_returnsFalse() {
         testee = FileUploadProgressWidgetViewModel(
             config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
+            router: widgetRouter,
             listViewModel: listViewModel
         )
 
@@ -235,6 +248,7 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
     func testRefresh_returnsImmediately() {
         testee = FileUploadProgressWidgetViewModel(
             config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
+            router: widgetRouter,
             listViewModel: listViewModel
         )
 

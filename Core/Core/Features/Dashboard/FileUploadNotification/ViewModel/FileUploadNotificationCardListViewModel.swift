@@ -39,8 +39,8 @@ public final class FileUploadNotificationCardListViewModel: ObservableObject {
      When an upload happens we force refresh quite often the view context to get changes made by out-of-process activities,
      so we use this local context to avoid refreshing the whole app each time.
      */
-    public let localViewContext: NSManagedObjectContext
-    public private(set) lazy var fileSubmissions: Store<LocalUseCase<FileSubmission>> = {
+    private let localViewContext: NSManagedObjectContext
+    private lazy var fileSubmissions: Store<LocalUseCase<FileSubmission>> = {
         let scope = Scope(
             predicate: NSPredicate(format: "%K == false", #keyPath(FileSubmission.isHiddenOnDashboard)),
             order: []
@@ -109,6 +109,13 @@ public final class FileUploadNotificationCardListViewModel: ObservableObject {
         }
     }
 
+    private func calculateProgress(for submission: FileSubmission) -> Float? {
+        guard submission.state == .uploading || submission.state == .waiting else { return nil }
+        let totalSize = submission.totalSize
+        guard totalSize > 0 else { return 0 }
+        return Float(submission.totalUploadedSize) / Float(totalSize)
+    }
+
     private func getNotificationCardItemState(
         from state: FileSubmission.State
     ) -> FileUploadNotificationCardItemViewModel.State {
@@ -125,6 +132,9 @@ public final class FileUploadNotificationCardListViewModel: ObservableObject {
         return FileUploadNotificationCardItemViewModel(
             id: submission.objectID,
             assignmentName: submission.assignmentName,
+            courseID: submission.courseID,
+            assignmentID: submission.assignmentID,
+            progress: calculateProgress(for: submission),
             state: getNotificationCardItemState(from: submission.state),
             isHiddenByUser: submission.isHiddenOnDashboard,
             cardDidTap: { [weak self] submissionID, viewController in
