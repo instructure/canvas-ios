@@ -16,17 +16,47 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
+
 import Combine
 import Core
 import Foundation
 
 final class CoursesAndGroupsWidgetInteractorMock: CoursesAndGroupsWidgetInteractor {
 
-    let showGrades: CurrentValueSubject<Bool, Never> = .init(true)
+    // convenience for previews
+    var mockCourses: [CoursesAndGroupsWidgetCourseItem]?
+    var mockGroups: [CoursesAndGroupsWidgetGroupItem]?
+
+    // MARK: - showGrades
+
+    let showGrades: CurrentValueSubject<Bool, Never> = .init(false)
+
+    // MARK: - showColorOverlay
 
     let showColorOverlay: CurrentValueSubject<Bool, Never> = .init(true)
 
+    // MARK: - getCoursesAndGroups
+
+    var getCoursesAndGroupsCallCount: Int = 0
+    var getCoursesAndGroupsInput: Bool?
+    var getCoursesAndGroupsOutput: Model = ([], [])
+    var getCoursesAndGroupsOutputError: Error?
+
     func getCoursesAndGroups(ignoreCache: Bool) -> AnyPublisher<Model, Error> {
-        Publishers.typedJust((CourseCardView.previewData, GroupCardView.previewData))
+        getCoursesAndGroupsInput = ignoreCache
+        getCoursesAndGroupsCallCount += 1
+
+        if let mockCourses, let mockGroups {
+            return Publishers.typedJust((mockCourses, mockGroups))
+        }
+
+        if let error = getCoursesAndGroupsOutputError {
+            return Publishers.typedFailure(error: error)
+        }
+
+        return Publishers.typedJust(getCoursesAndGroupsOutput)
     }
 }
+
+#endif

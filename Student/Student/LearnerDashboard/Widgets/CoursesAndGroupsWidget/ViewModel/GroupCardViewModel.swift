@@ -20,17 +20,14 @@ import Core
 import Foundation
 import SwiftUI
 
-@Observable
-final class GroupCardViewModel: Identifiable, Equatable {
+struct GroupCardViewModel: Identifiable, Equatable {
 
+    let id: String
     let title: String
     let courseName: String
     let courseColor: Color
     let groupColor: Color
     let memberCount: String
-
-    // Including the whole model to ensure any change triggers a view update.
-    var id: CoursesAndGroupsWidgetGroupItem { model }
 
     private let model: CoursesAndGroupsWidgetGroupItem
     private let router: Router
@@ -41,6 +38,7 @@ final class GroupCardViewModel: Identifiable, Equatable {
     ) {
         self.model = model
 
+        self.id = model.id
         self.title = model.title
         self.courseName = model.courseName
         self.courseColor = Color(hexString: model.courseColorString) ?? .textDark
@@ -51,9 +49,9 @@ final class GroupCardViewModel: Identifiable, Equatable {
     }
 
     func didTapCard(from controller: WeakViewController) {
-        let route = "/groups/\(model.id)"
+        let route = "/groups/\(id)"
 
-        router.route(to: route, from: controller)
+        router.route(to: route, from: controller, options: .push)
     }
 
     static func == (lhs: GroupCardViewModel, rhs: GroupCardViewModel) -> Bool {

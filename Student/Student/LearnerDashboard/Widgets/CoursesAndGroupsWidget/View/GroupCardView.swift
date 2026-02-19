@@ -23,8 +23,12 @@ struct GroupCardView: View {
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
 
-    @State var viewModel: GroupCardViewModel
+    private let viewModel: GroupCardViewModel
     @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
+
+    init(viewModel: GroupCardViewModel) {
+        self.viewModel = viewModel
+    }
 
     var body: some View {
         DashboardThumbnailCard(

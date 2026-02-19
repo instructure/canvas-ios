@@ -59,7 +59,7 @@ struct CourseCardViewModel: Identifiable, Equatable {
             route = "/courses/\(id)"
         }
 
-        router.route(to: route, from: controller)
+        router.route(to: route, from: controller, options: .push)
     }
 
     func didTapManageOfflineContent(from controller: WeakViewController) {

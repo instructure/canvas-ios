@@ -136,7 +136,7 @@ final class GlobalAnnouncementsWidgetViewModelTests: StudentTestCase {
         // WHEN interactor sends 0 items
         interactor.observeAnnouncementsSubject.send([])
 
-        // THEN state is data
+        // THEN state is empty
         waitUntil(shouldFail: true) {
             testee.state == .empty
         }
@@ -144,7 +144,7 @@ final class GlobalAnnouncementsWidgetViewModelTests: StudentTestCase {
         // WHEN interactor sends failure
         interactor.observeAnnouncementsSubject.send(completion: .failure(MockError()))
 
-        // THEN state is data
+        // THEN state is error
         waitUntil(shouldFail: true) {
             testee.state == .error
         }
