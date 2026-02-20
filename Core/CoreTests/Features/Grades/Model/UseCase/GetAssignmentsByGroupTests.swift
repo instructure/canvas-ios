@@ -235,4 +235,171 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         XCTAssertEqual(assignments.count, 1)
         XCTAssertEqual(assignments.first?.id, "assignment1")
     }
+
+    func testFiltersAssignmentsByGradingPeriodDateRangeInStudentApp() {
+        environment.app = .student
+        let periodStartDate = Date().addDays(-1)
+        let periodEndDate = Date().addDays(1)
+
+        let assignmentInRangeWithGP = APIAssignment.make(
+            due_at: .now,
+            id: "1",
+            name: "Assignment In Range With GP"
+        )
+        let assignmentInRangeNoGP = APIAssignment.make(
+            due_at: .now,
+            id: "2",
+            name: "Assignment In Range No GP"
+        )
+        let assignmentOutOfRangeNoGP = APIAssignment.make(
+            due_at: .now.addDays(2),
+            id: "3",
+            name: "Assignment Out Of Range No GP"
+        )
+
+        let gradingPeriod = APIGradingPeriod.make(
+            id: "gp1",
+            start_date: periodStartDate,
+            end_date: periodEndDate
+        )
+        let responseWithGP = [GetAssignmentsByGroup.AssignmentGroupsByGradingPeriod(
+            gradingPeriod: gradingPeriod,
+            assignmentGroups: [.make(id: "1", assignments: [assignmentInRangeWithGP])]
+        )]
+        let responseWithoutGP = [GetAssignmentsByGroup.AssignmentGroupsByGradingPeriod(
+            gradingPeriod: nil,
+            assignmentGroups: [.make(id: "1", assignments: [assignmentInRangeNoGP, assignmentOutOfRangeNoGP])]
+        )]
+
+        let writeUseCase = GetAssignmentsByGroup(courseID: "1")
+        writeUseCase.write(response: responseWithGP, urlResponse: nil, to: databaseClient)
+        writeUseCase.write(response: responseWithoutGP, urlResponse: nil, to: databaseClient)
+
+        let testee = GetAssignmentsByGroup(
+            courseID: "1",
+            gradingPeriodID: "gp1",
+            gradingPeriodStartDate: periodStartDate,
+            gradingPeriodEndDate: periodEndDate
+        )
+
+        // WHEN
+        let assignments: [Assignment] = databaseClient.fetch(scope: testee.scope)
+
+        // THEN
+        XCTAssertEqual(assignments.count, 2)
+        XCTAssertTrue(assignments.contains(where: { $0.id == "1" }))
+        XCTAssertTrue(assignments.contains(where: { $0.id == "2" }))
+        XCTAssertFalse(assignments.contains(where: { $0.id == "3" }))
+    }
+
+    func testFiltersAssignmentsByGradingPeriodDateRangeInTeacherApp() {
+        environment.app = .teacher
+        let periodStartDate = Date().addDays(-1)
+        let periodEndDate = Date().addDays(1)
+
+        let assignmentWithGP = APIAssignment.make(
+            all_dates: [.make(due_at: .now.addDays(-2))],
+            due_at: .now.addDays(-2),
+            id: "1",
+            name: "Assignment With GP"
+        )
+        let assignmentWithMultipleDatesInRange = APIAssignment.make(
+            all_dates: [
+                .make(due_at: .now.addDays(-2)),
+                .make(due_at: .now)
+            ],
+            due_at: .now.addDays(-2),
+            id: "2",
+            name: "Assignment With Multiple Dates In Range"
+        )
+        let assignmentWithAllDatesOutsideRange = APIAssignment.make(
+            all_dates: [
+                .make(due_at: .now.addDays(-3)),
+                .make(due_at: .now.addDays(-2))
+            ],
+            due_at: .now.addDays(-2),
+            id: "3",
+            name: "Assignment Outside Range"
+        )
+
+        let gradingPeriod = APIGradingPeriod.make(
+            id: "gp1",
+            start_date: periodStartDate,
+            end_date: periodEndDate
+        )
+        let responseWithGP = [GetAssignmentsByGroup.AssignmentGroupsByGradingPeriod(
+            gradingPeriod: gradingPeriod,
+            assignmentGroups: [.make(id: "1", assignments: [assignmentWithGP])]
+        )]
+        let responseWithoutGP = [GetAssignmentsByGroup.AssignmentGroupsByGradingPeriod(
+            gradingPeriod: nil,
+            assignmentGroups: [.make(id: "1", assignments: [assignmentWithMultipleDatesInRange, assignmentWithAllDatesOutsideRange])]
+        )]
+
+        let writeUseCase = GetAssignmentsByGroup(courseID: "1")
+        writeUseCase.write(response: responseWithGP, urlResponse: nil, to: databaseClient)
+        writeUseCase.write(response: responseWithoutGP, urlResponse: nil, to: databaseClient)
+
+        let testee = GetAssignmentsByGroup(
+            courseID: "1",
+            gradingPeriodID: "gp1",
+            gradingPeriodStartDate: periodStartDate,
+            gradingPeriodEndDate: periodEndDate
+        )
+
+        // WHEN
+        let assignments: [Assignment] = databaseClient.fetch(scope: testee.scope)
+
+        // THEN
+        XCTAssertEqual(assignments.count, 2)
+        XCTAssertTrue(assignments.contains(where: { $0.id == "1" }))
+        XCTAssertTrue(assignments.contains(where: { $0.id == "2" }))
+        XCTAssertFalse(assignments.contains(where: { $0.id == "3" }))
+    }
+
+    func testIncludesAssignmentsAtGradingPeriodBoundaries() {
+        environment.app = .student
+        let periodStartDate = Date().addDays(-1)
+        let periodEndDate = Date().addDays(1)
+
+        let assignmentAtStartDate = APIAssignment.make(
+            due_at: periodStartDate,
+            id: "1",
+            name: "Assignment At Start"
+        )
+        let assignmentAtEndDate = APIAssignment.make(
+            due_at: periodEndDate,
+            id: "2",
+            name: "Assignment At End"
+        )
+        let assignmentJustBeforeStart = APIAssignment.make(
+            due_at: periodStartDate.addingTimeInterval(-1),
+            id: "3",
+            name: "Assignment Just Before Start"
+        )
+
+        let response = [GetAssignmentsByGroup.AssignmentGroupsByGradingPeriod(
+            gradingPeriod: nil,
+            assignmentGroups: [.make(id: "1", assignments: [assignmentAtStartDate, assignmentAtEndDate, assignmentJustBeforeStart])]
+        )]
+
+        let writeUseCase = GetAssignmentsByGroup(courseID: "1")
+        writeUseCase.write(response: response, urlResponse: nil, to: databaseClient)
+
+        let testee = GetAssignmentsByGroup(
+            courseID: "1",
+            gradingPeriodID: "gp1",
+            gradingPeriodStartDate: periodStartDate,
+            gradingPeriodEndDate: periodEndDate
+        )
+
+        // WHEN
+        let assignments: [Assignment] = databaseClient.fetch(scope: testee.scope)
+
+        // THEN
+        XCTAssertEqual(assignments.count, 2)
+        XCTAssertTrue(assignments.contains(where: { $0.id == "1" }))
+        XCTAssertTrue(assignments.contains(where: { $0.id == "2" }))
+        XCTAssertFalse(assignments.contains(where: { $0.id == "3" }))
+    }
 }

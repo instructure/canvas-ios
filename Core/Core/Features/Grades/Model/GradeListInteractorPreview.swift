@@ -28,7 +28,7 @@ final class GradeListInteractorPreview: GradeListInteractor {
     func loadBaseData(ignoreCache: Bool) -> AnyPublisher<GradeListGradingPeriodData, any Error> {
         let result = GradeListGradingPeriodData(
             course: Course.save(.make(), in: context),
-            currentlyActiveGradingPeriodID: nil,
+            currentlyActiveGradingPeriod: nil,
             gradingPeriods: []
         )
         return Just(result)
@@ -41,7 +41,7 @@ final class GradeListInteractorPreview: GradeListInteractor {
     func getGrades(
         arrangeBy _: GradeArrangementOptions,
         baseOnGradedAssignment _: Bool,
-        gradingPeriodID: String?,
+        gradingPeriodData: GradingPeriodData?,
         ignoreCache _: Bool
     ) -> AnyPublisher<GradeListData, Error> {
         return Just(

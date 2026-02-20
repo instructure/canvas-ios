@@ -100,7 +100,14 @@ public final class GradeFilterViewModel: ObservableObject {
 
         let optionId = gradingPeriodOptions.selected.value?.id
         let selectedGradingPeriodId = optionId == OptionItem.allId ? nil : optionId
-        dependency.selectedGradingPeriodPublisher.accept(selectedGradingPeriodId)
+
+        if optionId == OptionItem.allId {
+            dependency.selectedGradingPeriodPublisher.accept(GradingPeriodData(id: nil, startDate: nil, endDate: nil))
+        } else {
+            let gradingPeriod = dependency.gradingPeriods?.first { $0.id == selectedGradingPeriodId }
+            let gradingPeriodData = GradingPeriodData(id: gradingPeriod?.id, startDate: gradingPeriod?.startDate, endDate: gradingPeriod?.endDate)
+            dependency.selectedGradingPeriodPublisher.accept(gradingPeriodData)
+        }
 
         dependency.router.dismiss(viewController) {
             UIAccessibility.announce(String(localized: "Filter applied successfully", bundle: .core))
@@ -119,7 +126,7 @@ extension GradeFilterViewModel {
         let isShowGradingPeriod: Bool
         let initialGradingPeriodID: String?
         var courseName: String?
-        var selectedGradingPeriodPublisher = PassthroughRelay<String?>()
+        var selectedGradingPeriodPublisher = PassthroughRelay<GradingPeriodData>()
         var selectedSortByPublisher = CurrentValueRelay<GradeArrangementOptions>(.dueDate)
         var gradingPeriods: [GradingPeriod]?
         var sortByOptions: [GradeArrangementOptions]

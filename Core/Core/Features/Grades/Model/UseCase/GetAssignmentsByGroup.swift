@@ -35,6 +35,8 @@ public class GetAssignmentsByGroup: UseCase {
     public let scope: Scope
 
     private let gradingPeriodID: String?
+    private let gradingPeriodStartDate: Date?
+    private let gradingPeriodEndDate: Date?
     private let courseID: String
     private let gradedOnly: Bool
     private let userID: String?
@@ -47,11 +49,15 @@ public class GetAssignmentsByGroup: UseCase {
     public init(
         courseID: String,
         gradingPeriodID: String? = nil,
+        gradingPeriodStartDate: Date? = nil,
+        gradingPeriodEndDate: Date? = nil,
         gradedOnly: Bool = false,
         userID: String? = nil
     ) {
         self.courseID = courseID
         self.gradingPeriodID = gradingPeriodID
+        self.gradingPeriodStartDate = gradingPeriodStartDate
+        self.gradingPeriodEndDate = gradingPeriodEndDate
         self.gradedOnly = gradedOnly
         self.userID = userID
 
@@ -64,6 +70,21 @@ public class GetAssignmentsByGroup: UseCase {
 
             if let gradingPeriodID {
                 predicate = predicate.and(NSPredicate(format: "gradingPeriod.id == %@", gradingPeriodID))
+
+                if let gradingPeriodStartDate, let gradingPeriodEndDate {
+                    let datePredicate = NSPredicate(format: "(dueAt >= %@) AND (dueAt <= %@)", gradingPeriodStartDate as NSDate, gradingPeriodEndDate as NSDate)
+                    let multipleDueDatesPredicate = NSPredicate(
+                        format: "SUBQUERY(allDates, $d, $d.dueAt >= %@ AND $d.dueAt <= %@).@count > 0",
+                        gradingPeriodStartDate as NSDate,
+                        gradingPeriodEndDate as NSDate
+                    )
+
+                    if AppEnvironment.shared.app == .teacher {
+                        predicate = predicate.or(multipleDueDatesPredicate)
+                    } else {
+                        predicate = predicate.or(datePredicate)
+                    }
+                }
             }
 
             if let userID {

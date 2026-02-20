@@ -118,10 +118,10 @@ class GradeListViewModelTests: CoreTestCase {
             env: PreviewEnvironment.shared,
             scheduler: .immediate
         )
-        testee.didSelectGradingPeriod.accept("999")
+        testee.didSelectGradingPeriod.accept(GradingPeriodData(id: "999", startDate: nil, endDate: nil))
 
         XCTAssertEqual(interactor.ignoreCache, true)
-        XCTAssertEqual(interactor.gradingPeriod, "999")
+        XCTAssertEqual(interactor.gradingPeriod, GradingPeriodData(id: "999", startDate: nil, endDate: nil))
     }
 
     func testPullToRefresh() {
@@ -188,7 +188,7 @@ private extension GradeListViewModelTests {
         func getGrades(
             arrangeBy: GradeArrangementOptions,
             baseOnGradedAssignment: Bool,
-            gradingPeriodID: String?,
+            gradingPeriodData: GradingPeriodData?,
             ignoreCache: Bool
         ) -> AnyPublisher<Core.GradeListData, Error> {
             Fail(error: NSError.instructureError("")).eraseToAnyPublisher()
@@ -202,7 +202,7 @@ private extension GradeListViewModelTests {
         func loadBaseData(ignoreCache: Bool) -> AnyPublisher<GradeListGradingPeriodData, any Error> {
             let result = GradeListGradingPeriodData(
                 course: .save(.make(), in: singleSharedTestDatabase.viewContext),
-                currentlyActiveGradingPeriodID: nil,
+                currentlyActiveGradingPeriod: nil,
                 gradingPeriods: []
             )
             return Just(result)
@@ -214,7 +214,7 @@ private extension GradeListViewModelTests {
         func getGrades(
             arrangeBy: GradeArrangementOptions,
             baseOnGradedAssignment: Bool,
-            gradingPeriodID: String?,
+            gradingPeriodData: GradingPeriodData?,
             ignoreCache: Bool
         ) -> AnyPublisher<Core.GradeListData, Error> {
             Just(emptySections)
@@ -228,7 +228,7 @@ private extension GradeListViewModelTests {
 
     class GradeListInteractorMock: GradeListInteractor {
         var ignoreCache: Bool?
-        var gradingPeriod: String?
+        var gradingPeriod: GradingPeriodData?
         var arrangeBy: GradeArrangementOptions?
         let dataToReturn: GradeListData?
         var courseID: String { "" }
@@ -240,7 +240,7 @@ private extension GradeListViewModelTests {
         func loadBaseData(ignoreCache: Bool) -> AnyPublisher<Core.GradeListGradingPeriodData, any Error> {
             let result = GradeListGradingPeriodData(
                 course: .save(.make(), in: singleSharedTestDatabase.viewContext),
-                currentlyActiveGradingPeriodID: nil,
+                currentlyActiveGradingPeriod: nil,
                 gradingPeriods: []
             )
             return Just(result)
@@ -251,12 +251,12 @@ private extension GradeListViewModelTests {
         func getGrades(
             arrangeBy: GradeArrangementOptions,
             baseOnGradedAssignment: Bool,
-            gradingPeriodID: String?,
+            gradingPeriodData: GradingPeriodData?,
             ignoreCache: Bool
         ) -> AnyPublisher<Core.GradeListData, Error> {
             self.ignoreCache = ignoreCache
             self.arrangeBy = arrangeBy
-            gradingPeriod = gradingPeriodID
+            gradingPeriod = gradingPeriodData
 
             if let dataToReturn {
                 return Just(dataToReturn)

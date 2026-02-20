@@ -55,7 +55,7 @@ public final class GradeListViewModel: ObservableObject {
     // MARK: - Input
     let pullToRefreshDidTrigger = PassthroughRelay<RefreshCompletion?>()
     let didSelectAssignment = PassthroughRelay<(URL?, String, WeakViewController)>()
-    let didSelectGradingPeriod = PassthroughRelay<String?>()
+    let didSelectGradingPeriod = PassthroughRelay<GradingPeriodData>()
     let confirmRevertAlertViewModel = ConfirmationAlertViewModel(
         title: String(localized: "Revert to Official Score?", bundle: .core),
         message: String(localized: "This will revert all your what-if scores in this course to the official score.", bundle: .core),
@@ -76,7 +76,7 @@ public final class GradeListViewModel: ObservableObject {
     private let gradeFilterInteractor: GradeFilterInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private let triggerGradeRefresh = PassthroughRelay<(IgnoreCache, RefreshCompletion?)>()
-    private var selectedGradingPeriod: String?
+    private var selectedGradingPeriodData: GradingPeriodData?
 
     // MARK: - Init
 
@@ -101,7 +101,7 @@ public final class GradeListViewModel: ObservableObject {
 
         didSelectGradingPeriod
             .sink { [weak self] newGradingPeriod in
-                self?.selectedGradingPeriod = newGradingPeriod
+                self?.selectedGradingPeriodData = newGradingPeriod
                 self?.triggerGradeRefresh.accept((true, nil))
             }
             .store(in: &subscriptions)
@@ -153,7 +153,7 @@ public final class GradeListViewModel: ObservableObject {
             .map { [weak self] gradingPeriodData in
                 // Initial loading selects the currently active grading period
                 if isInitialLoad {
-                    self?.selectedGradingPeriod = gradingPeriodData.currentlyActiveGradingPeriodID
+                    self?.selectedGradingPeriodData = gradingPeriodData.currentlyActiveGradingPeriod
                 }
             }
             .mapToVoid()
@@ -173,7 +173,7 @@ public final class GradeListViewModel: ObservableObject {
         interactor.getGrades(
             arrangeBy: selectedGroupByOption.value,
             baseOnGradedAssignment: baseOnGradedAssignment,
-            gradingPeriodID: selectedGradingPeriod,
+            gradingPeriodData: selectedGradingPeriodData,
             ignoreCache: ignoreCache
         )
         .receive(on: scheduler)
@@ -223,7 +223,7 @@ public final class GradeListViewModel: ObservableObject {
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: isShowGradingPeriod,
-            initialGradingPeriodID: selectedGradingPeriod,
+            initialGradingPeriodID: selectedGradingPeriodData?.id,
             courseName: courseName,
             selectedGradingPeriodPublisher: didSelectGradingPeriod,
             selectedSortByPublisher: selectedGroupByOption,

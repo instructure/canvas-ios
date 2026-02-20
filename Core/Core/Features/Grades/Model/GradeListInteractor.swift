@@ -21,9 +21,21 @@ import CombineExt
 import CombineSchedulers
 import Foundation
 
+public struct GradingPeriodData: Equatable {
+    let id: String?
+    let startDate: Date?
+    let endDate: Date?
+
+    public init(id: String?, startDate: Date?, endDate: Date?) {
+        self.id = id
+        self.startDate = startDate
+        self.endDate = endDate
+    }
+}
+
 public struct GradeListGradingPeriodData {
     let course: Course
-    let currentlyActiveGradingPeriodID: String?
+    let currentlyActiveGradingPeriod: GradingPeriodData?
     let gradingPeriods: [GradingPeriod]
 }
 
@@ -33,7 +45,7 @@ public protocol GradeListInteractor {
     func getGrades(
         arrangeBy: GradeArrangementOptions,
         baseOnGradedAssignment: Bool,
-        gradingPeriodID: String?,
+        gradingPeriodData: GradingPeriodData?,
         ignoreCache: Bool
     ) -> AnyPublisher<GradeListData, Error>
 
@@ -116,9 +128,14 @@ public final class GradeListInteractorLive: GradeListInteractor {
         )
         .map { (_, _, course, gradingPeriods) in
             let courseEnrollment = course.enrollmentForGrades(userId: userID, includingCompleted: true)
+            let gradingPeriod = gradingPeriods.first { $0.id == courseEnrollment?.currentGradingPeriodID }
             return GradeListGradingPeriodData(
                 course: course,
-                currentlyActiveGradingPeriodID: courseEnrollment?.currentGradingPeriodID,
+                currentlyActiveGradingPeriod: GradingPeriodData(
+                    id: courseEnrollment?.currentGradingPeriodID,
+                    startDate: gradingPeriod?.startDate,
+                    endDate: gradingPeriod?.endDate
+                ),
                 gradingPeriods: gradingPeriods
             )
         }
@@ -128,14 +145,14 @@ public final class GradeListInteractorLive: GradeListInteractor {
     public func getGrades(
         arrangeBy: GradeArrangementOptions,
         baseOnGradedAssignment: Bool,
-        gradingPeriodID: String?,
+        gradingPeriodData: GradingPeriodData?,
         ignoreCache: Bool
     ) -> AnyPublisher<GradeListData, Error> {
         let enrollmentListStore = ReactiveStore(
             useCase: GetEnrollments(
                 context: .course(courseID),
                 userID: userID,
-                gradingPeriodID: gradingPeriodID,
+                gradingPeriodID: gradingPeriodData?.id,
                 types: ["StudentEnrollment", "StudentViewEnrollment"],
                 states: [.active, .completed]
             ),
@@ -144,7 +161,9 @@ public final class GradeListInteractorLive: GradeListInteractor {
         let assignmentListStore = ReactiveStore(
             useCase: GetAssignmentsByGroup(
                 courseID: courseID,
-                gradingPeriodID: gradingPeriodID,
+                gradingPeriodID: gradingPeriodData?.id,
+                gradingPeriodStartDate: gradingPeriodData?.startDate,
+                gradingPeriodEndDate: gradingPeriodData?.endDate,
                 gradedOnly: true,
                 userID: filterAssignmentsToUserID ? userID : nil
             ),
@@ -184,7 +203,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
             return calculateTotalGrade(
                 course: course,
                 enrollments: enrollments,
-                gradingPeriodID: gradingPeriodID,
+                gradingPeriodID: gradingPeriodData?.id,
                 baseOnGradedAssignments: baseOnGradedAssignment
             )
             .flatMap { [weak self] totalGradeText -> AnyPublisher<GradeListData, Error> in
@@ -201,7 +220,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
                     assignmentSections: assignmentSections,
                     isGradingPeriodHidden: isGradingPeriodHidden,
                     gradingPeriods: gradingPeriods,
-                    currentGradingPeriod: getGradingPeriod(id: gradingPeriodID, gradingPeriods: gradingPeriods),
+                    currentGradingPeriod: getGradingPeriod(id: gradingPeriodData?.id, gradingPeriods: gradingPeriods),
                     totalGradeText: totalGradeText,
                     currentGradingPeriodID: courseEnrollment?.currentGradingPeriodID
                 ))

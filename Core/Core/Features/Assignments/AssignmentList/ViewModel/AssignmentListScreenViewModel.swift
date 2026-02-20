@@ -156,7 +156,10 @@ public class AssignmentListScreenViewModel: ObservableObject {
             wasCurrentPeriodPreselected = true
         }
 
-        filterOptionsDidUpdate(filterOptionsStudent: selectedFilterOptionsStudent, gradingPeriodId: selectedGradingPeriodId)
+        filterOptionsDidUpdate(
+            filterOptionsStudent: selectedFilterOptionsStudent,
+            gradingPeriodId: selectedGradingPeriodId
+        )
     }
 
     func filterOptionsDidUpdate(
@@ -186,7 +189,16 @@ public class AssignmentListScreenViewModel: ObservableObject {
             isFilterIconSolid = selectedGradingPeriodId != defaultGradingPeriodId || (isFilteringCustom && selectedFilterOptionsStudent != initialFilterOptionsStudent)
         }
 
-        assignmentGroups = env.subscribe(GetAssignmentsByGroup(courseID: courseID, gradingPeriodID: selectedGradingPeriodId)) { [weak self] in
+        let gradingPeriod = gradingPeriods.first { $0.id == selectedGradingPeriodId }
+
+        let useCase = GetAssignmentsByGroup(
+            courseID: courseID,
+            gradingPeriodID: selectedGradingPeriodId,
+            gradingPeriodStartDate: gradingPeriod?.startDate,
+            gradingPeriodEndDate: gradingPeriod?.endDate
+        )
+
+        assignmentGroups = env.subscribe(useCase) { [weak self] in
             self?.assignmentGroupsDidUpdate()
         }
 

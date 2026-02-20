@@ -117,7 +117,7 @@ class CourseTotalGradeInteractorLive: CourseTotalGradeInteractor {
                 .getGrades(
                     arrangeBy: .dueDate,
                     baseOnGradedAssignment: baseOnGradedAssignment,
-                    gradingPeriodID: courseEnrollment?.currentGradingPeriodID,
+                    gradingPeriodData: GradingPeriodData(id: courseEnrollment?.currentGradingPeriodID, startDate: nil, endDate: nil),
                     ignoreCache: false
                 )
                 .map({ listData -> CourseTotalGradeModel.Data in

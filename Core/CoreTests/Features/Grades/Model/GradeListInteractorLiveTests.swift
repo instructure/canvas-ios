@@ -196,7 +196,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         api.mock(assignmentsRequest, value: assignmentGroups)
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .dueDate, baseOnGradedAssignment: true, gradingPeriodID: nil, ignoreCache: true)
+        let subscription = testee.getGrades(arrangeBy: .dueDate, baseOnGradedAssignment: true, gradingPeriodData: nil, ignoreCache: true)
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.assignmentSections.count, 3)
@@ -237,7 +237,12 @@ class GradeListInteractorLiveTests: CoreTestCase {
         api.mock(assignmentsRequest, value: assignmentGroups)
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
+        let subscription = testee.getGrades(
+            arrangeBy: .groupName,
+            baseOnGradedAssignment: true,
+            gradingPeriodData: GradingPeriodData(id: "1", startDate: nil, endDate: nil),
+            ignoreCache: false
+        )
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.assignmentSections.count, 3)
@@ -263,7 +268,12 @@ class GradeListInteractorLiveTests: CoreTestCase {
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
+        let subscription = testee.getGrades(
+            arrangeBy: .groupName,
+            baseOnGradedAssignment: true,
+            gradingPeriodData: GradingPeriodData(id: "1", startDate: nil, endDate: nil),
+            ignoreCache: false
+        )
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.totalGradeText, nil)
@@ -283,7 +293,12 @@ class GradeListInteractorLiveTests: CoreTestCase {
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: nil, ignoreCache: false)
+        let subscription = testee.getGrades(
+            arrangeBy: .groupName,
+            baseOnGradedAssignment: true,
+            gradingPeriodData: nil,
+            ignoreCache: false
+        )
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.totalGradeText, nil)
@@ -304,7 +319,12 @@ class GradeListInteractorLiveTests: CoreTestCase {
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
+        let subscription = testee.getGrades(
+            arrangeBy: .groupName,
+            baseOnGradedAssignment: true,
+            gradingPeriodData: GradingPeriodData(id: "1", startDate: nil, endDate: nil),
+            ignoreCache: false
+        )
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.totalGradeText, nil)
@@ -323,7 +343,12 @@ class GradeListInteractorLiveTests: CoreTestCase {
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
+        let subscription = testee.getGrades(
+            arrangeBy: .groupName,
+            baseOnGradedAssignment: true,
+            gradingPeriodData: GradingPeriodData(id: "1", startDate: nil, endDate: nil),
+            ignoreCache: false
+        )
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.totalGradeText, "42% (C)")
@@ -341,7 +366,12 @@ class GradeListInteractorLiveTests: CoreTestCase {
         )
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: false, gradingPeriodID: nil, ignoreCache: false)
+        let subscription = testee.getGrades(
+            arrangeBy: .groupName,
+            baseOnGradedAssignment: false,
+            gradingPeriodData: nil,
+            ignoreCache: false
+        )
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.totalGradeText, "21%")
@@ -368,7 +398,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         let subscription = testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: false,
-            gradingPeriodID: nil,
+            gradingPeriodData: nil,
             ignoreCache: false
         ).sink(
             receiveCompletion: { _ in }) { data in
@@ -388,7 +418,12 @@ class GradeListInteractorLiveTests: CoreTestCase {
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: false, gradingPeriodID: "1", ignoreCache: false)
+        let subscription = testee.getGrades(
+            arrangeBy: .groupName,
+            baseOnGradedAssignment: false,
+            gradingPeriodData: GradingPeriodData(id: "1", startDate: nil, endDate: nil),
+            ignoreCache: false
+        )
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.totalGradeText, "21%")
@@ -416,7 +451,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         let subscription = testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: true,
-            gradingPeriodID: nil,
+            gradingPeriodData: nil,
             ignoreCache: false
         )
             .sink(
@@ -449,7 +484,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         let subscription = testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: true,
-            gradingPeriodID: nil,
+            gradingPeriodData: nil,
             ignoreCache: false
         )
             .sink(
@@ -472,7 +507,12 @@ class GradeListInteractorLiveTests: CoreTestCase {
 
         let testee = GradeListInteractorLive(env: environment, courseID: "1", userID: currentSession.userID)
         let expectation = expectation(description: "Publisher sends value")
-        let subscription = testee.getGrades(arrangeBy: .groupName, baseOnGradedAssignment: true, gradingPeriodID: "1", ignoreCache: false)
+        let subscription = testee.getGrades(
+            arrangeBy: .groupName,
+            baseOnGradedAssignment: true,
+            gradingPeriodData: GradingPeriodData(id: "1", startDate: nil, endDate: nil),
+            ignoreCache: false
+        )
             .sink(
                 receiveCompletion: { _ in }) { data in
                     XCTAssertEqual(data.totalGradeText, "C")
@@ -496,7 +536,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         let subscription = testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: false,
-            gradingPeriodID: "1",
+            gradingPeriodData: GradingPeriodData(id: "1", startDate: nil, endDate: nil),
             ignoreCache: false
         )
             .sink(
@@ -523,7 +563,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         let subscription = testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: false,
-            gradingPeriodID: nil,
+            gradingPeriodData: nil,
             ignoreCache: false
         )
             .sink(
@@ -550,7 +590,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         let subscription = testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: true,
-            gradingPeriodID: nil,
+            gradingPeriodData: nil,
             ignoreCache: false
         )
             .sink(
@@ -577,7 +617,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         let subscription = testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: true,
-            gradingPeriodID: nil,
+            gradingPeriodData: nil,
             ignoreCache: false
         )
             .sink(
@@ -603,7 +643,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         let subscription = testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: true,
-            gradingPeriodID: nil,
+            gradingPeriodData: nil,
             ignoreCache: false
         )
             .sink(
@@ -625,7 +665,7 @@ class GradeListInteractorLiveTests: CoreTestCase {
         let subscription = testee.getGrades(
             arrangeBy: .groupName,
             baseOnGradedAssignment: true,
-            gradingPeriodID: "1",
+            gradingPeriodData: GradingPeriodData(id: "1", startDate: nil, endDate: nil),
             ignoreCache: false
         )
             .sink(
