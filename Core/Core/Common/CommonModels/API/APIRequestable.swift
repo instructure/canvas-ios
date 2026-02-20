@@ -273,13 +273,17 @@ extension APIRequestable {
 
     public func getNext(from response: URLResponse) -> GetNextRequest<Response>? {
         if let next = response.links?["next"] {
-            return GetNextRequest<Response>(path: next.absoluteString)
+            return GetNextRequest<Response>(path: next.absoluteString, decoder: decode)
         }
         return nil
     }
 
+    public static func defaultDecode<T: Codable>(_ data: Data) throws -> T {
+        try APIJSONDecoder().decode(T.self, from: data)
+    }
+
     public func decode(_ data: Data) throws -> Response {
-        try APIJSONDecoder().decode(Response.self, from: data)
+        try Self.defaultDecode(data)
     }
 
     public func encode(_ body: Body) throws -> Data {
@@ -305,9 +309,28 @@ extension APIRequestable {
     }
 }
 
+/// A paginated follow-up request created by `getNext(from:)` on the originating request.
 public struct GetNextRequest<T: Codable>: APIRequestable {
     public typealias Response = T
     public let path: String
+    private let customDecoder: (Data) throws -> T
+
+    /// - Parameters:
+    ///   - path: The URL path for the next page, taken from the `Link` response header.
+    ///   - decoder: The decode function of the originating request. Forwarding it ensures paginated
+    ///     responses are decoded identically to the first page, which matters for requests that
+    ///     override `decode` to unwrap a JSON envelope.
+    public init(
+        path: String,
+        decoder: @escaping (Data) throws -> T = GetNextRequest.defaultDecode
+    ) {
+        self.path = path
+        self.customDecoder = decoder
+    }
+
+    public func decode(_ data: Data) throws -> T {
+        try customDecoder(data)
+    }
 }
 
 public struct APINoContent: Codable {
