@@ -18,7 +18,7 @@
 
 import Foundation
 
-protocol CourseCardOrderChangeDelegate: AnyObject {
+public protocol CourseCardOrderChangeDelegate: AnyObject {
 
     func orderDidChange(_ newOrder: [CourseCardDropToReorderDelegate.CardID])
     func reorderDidFinish()

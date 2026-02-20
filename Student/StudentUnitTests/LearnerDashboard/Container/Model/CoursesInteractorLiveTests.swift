@@ -313,7 +313,7 @@ final class CoursesInteractorLiveTests: StudentTestCase {
             active: [APICourse.make(id: "1", name: "Course 1")]
         )
         api.mock(
-            GetDashboardGroups(),
+            GetAllCoursesGroupListUseCase(),
             value: [
                 .make(id: "group1", name: "Study Group"),
                 .make(id: "group2", name: "Project Team")

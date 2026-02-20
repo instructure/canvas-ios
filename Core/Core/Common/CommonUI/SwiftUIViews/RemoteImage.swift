@@ -41,6 +41,11 @@ public struct RemoteImage: View {
         self.init(url, width: size, height: size, shouldHandleAnimatedGif: shouldHandleAnimatedGif)
     }
 
+    public init?(_ url: URL?, size: CGFloat, shouldHandleAnimatedGif: Bool = false) {
+        guard let url else { return nil }
+        self.init(url, width: size, height: size, shouldHandleAnimatedGif: shouldHandleAnimatedGif)
+    }
+
     public var body: some View {
         VStack {
             let isURLChanged = url.pathComponents != loadedURL?.pathComponents

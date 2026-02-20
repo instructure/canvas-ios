@@ -36,6 +36,7 @@ public final class Group: NSManagedObject, WriteableModel {
     @NSManaged public var name: String
     @NSManaged public var showOnDashboard: Bool
     @NSManaged public var isFavorite: Bool
+    @NSManaged public var memberCount: Int
 
     public var context: Context? {
         get { contextRaw.flatMap { Context(canvasContextID: $0) } }
@@ -68,6 +69,7 @@ public final class Group: NSManagedObject, WriteableModel {
         model.id = item.id.value
         model.name = item.name
         model.showOnDashboard = !item.concluded
+        model.memberCount = item.members_count
 
         // `is_favorite` always has value when retrieved via `/api/v1/{context}/groups` api,
         // while for api `/api/v1/users/self/favorites/groups`, it always received with no value.

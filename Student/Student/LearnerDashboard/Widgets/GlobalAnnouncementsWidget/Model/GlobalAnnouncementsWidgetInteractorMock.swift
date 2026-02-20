@@ -52,11 +52,10 @@ final class GlobalAnnouncementsWidgetInteractorMock: GlobalAnnouncementsWidgetIn
 
         if let mockAnnouncements {
             return Publishers.typedJust(mockAnnouncements)
-        } else {
-            return observeAnnouncementsSubject
-                .eraseToAnyPublisher()
-
         }
+
+        return observeAnnouncementsSubject
+            .eraseToAnyPublisher()
     }
 
     // MARK: - deleteAnnouncement

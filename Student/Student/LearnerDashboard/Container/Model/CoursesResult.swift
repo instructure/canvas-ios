@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,22 +17,27 @@
 //
 
 import Core
-import SwiftUI
 
-struct Widget3View: View {
+struct CoursesResult {
+    let allCourses: [Course]
+    let invitedCourses: [Course]
+    let groups: [CDAllCoursesGroupItem]
+}
 
-    @State var viewModel: Widget3ViewModel
+#if DEBUG
 
-    var body: some View {
-        DashboardTitledWidget("Widget 3") {
-            DashboardWidgetCard {
-                VStack(alignment: .leading) {
-                    Text(verbatim: DashboardWidgetPlaceholderData.long(2))
-                        .foregroundColor(.secondary)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .paddingStyle(.standard)
-            }
-        }
+extension CoursesResult {
+    static func make(
+        allCourses: [Course] = [],
+        invitedCourses: [Course] = [],
+        groups: [CDAllCoursesGroupItem] = []
+    ) -> CoursesResult {
+        .init(
+            allCourses: allCourses,
+            invitedCourses: invitedCourses,
+            groups: groups
+        )
     }
 }
+
+#endif

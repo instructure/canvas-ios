@@ -24,6 +24,12 @@ protocol HelloWidgetInteractor {
     func getShortName(ignoreCache: Bool) -> AnyPublisher<String?, Error>
 }
 
+extension HelloWidgetInteractor where Self == HelloWidgetInteractorLive {
+    static func live() -> HelloWidgetInteractorLive {
+        .init()
+    }
+}
+
 final class HelloWidgetInteractorLive: HelloWidgetInteractor {
     private let store: ReactiveStore<GetUserProfile>
 

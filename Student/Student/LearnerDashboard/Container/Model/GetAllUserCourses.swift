@@ -27,20 +27,22 @@ class GetAllUserCourses: UseCase {
     let cacheKey: String? = "all-user-courses"
     let scope: Scope = .all
 
+    private static let includes = GetCourseRequest.defaultIncludes + [.tabs]
+
     let activeRequest = GetCurrentUserCoursesRequest(
         enrollmentState: .active,
         state: [.current_and_concluded],
-        includes: [.favorites, .term]
+        includes: includes
     )
     let completedRequest = GetCurrentUserCoursesRequest(
         enrollmentState: .completed,
         state: [.current_and_concluded],
-        includes: [.favorites, .term]
+        includes: includes
     )
     let invitedRequest = GetCurrentUserCoursesRequest(
         enrollmentState: .invited_or_pending,
         state: [.current_and_concluded],
-        includes: [.favorites, .term]
+        includes: includes
     )
 
     init() {}

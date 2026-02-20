@@ -63,7 +63,6 @@ struct GlobalAnnouncementsWidgetView: View {
 }
 
 private func makePreviewViewModel() -> GlobalAnnouncementsWidgetViewModel {
-    let config = DashboardWidgetConfig(id: .globalAnnouncements, order: 0, isVisible: true, settings: nil)
     let interactor = GlobalAnnouncementsWidgetInteractorMock()
 
     interactor.mockAnnouncements = [
@@ -75,7 +74,7 @@ private func makePreviewViewModel() -> GlobalAnnouncementsWidgetViewModel {
     ]
 
     return GlobalAnnouncementsWidgetViewModel(
-        config: config,
+        config: .make(id: .globalAnnouncements),
         interactor: interactor,
         environment: PreviewEnvironment()
     )

@@ -18,18 +18,18 @@
 
 import SwiftUI
 
-struct CustomizeCourseView: View {
+public struct CustomizeCourseView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
     @ObservedObject private var viewModel: CustomizeCourseViewModel
 
-    init(
+    public init(
         viewModel: CustomizeCourseViewModel
     ) {
         self.viewModel = viewModel
     }
 
-    var body: some View { GeometryReader { geometry in
+    public var body: some View { GeometryReader { geometry in
         let width = geometry.size.width
 
         EditorForm(isSpinning: viewModel.isLoading) {

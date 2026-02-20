@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,28 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
+#if DEBUG
+
 import Core
-import SwiftUI
+import Combine
 
-@Observable
-final class Widget3ViewModel: DashboardWidgetViewModel {
-    typealias ViewType = Widget3View
-
-    let config: DashboardWidgetConfig
-    let isFullWidth = false
-    let isEditable = false
-    var state: InstUI.ScreenState = .data
-
-    init(config: DashboardWidgetConfig) {
-        self.config = config
-    }
-
-    func makeView() -> Widget3View {
-        Widget3View(viewModel: self)
-    }
-
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        Just(()).eraseToAnyPublisher()
+class HelloWidgetInteractorPreview: HelloWidgetInteractor {
+    func getShortName(ignoreCache: Bool) -> AnyPublisher<String?, Error> {
+        Publishers.typedJust("Rincewind")
     }
 }
+
+#endif

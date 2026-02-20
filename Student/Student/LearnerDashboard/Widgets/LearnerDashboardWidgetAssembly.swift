@@ -26,12 +26,10 @@ enum LearnerDashboardWidgetAssembly {
             .conferences,
             .courseInvitations,
             .globalAnnouncements,
-            .helloWidget,
 
             // grid
-            .widget1,
-            .widget2,
-            .widget3
+            .helloWidget,
+            .coursesAndGroups
         ]
 
         return identifiers.enumerated().map { (index, id) in
@@ -48,10 +46,7 @@ enum LearnerDashboardWidgetAssembly {
         case .conferences:
             ConferencesWidgetViewModel(
                 config: config,
-                interactor: .live(
-                    coursesInteractor: coursesInteractor,
-                    env: .shared
-                ),
+                interactor: .live(coursesInteractor: coursesInteractor, env: .shared),
                 snackBarViewModel: snackBarViewModel
             )
         case .courseInvitations:
@@ -68,15 +63,14 @@ enum LearnerDashboardWidgetAssembly {
         case .helloWidget:
             HelloWidgetViewModel(
                 config: config,
-                interactor: HelloWidgetInteractorLive(),
+                interactor: .live(),
                 dayPeriodProvider: .init()
             )
-        case .widget1:
-            Widget1ViewModel(config: config)
-        case .widget2:
-            Widget2ViewModel(config: config)
-        case .widget3:
-            Widget3ViewModel(config: config)
+        case .coursesAndGroups:
+            CoursesAndGroupsWidgetViewModel(
+                config: config,
+                interactor: .live(coursesInteractor: coursesInteractor, env: .shared)
+            )
         }
     }
 
@@ -91,11 +85,7 @@ enum LearnerDashboardWidgetAssembly {
             vm.makeView()
         case let vm as HelloWidgetViewModel:
             vm.makeView()
-        case let vm as Widget1ViewModel:
-            vm.makeView()
-        case let vm as Widget2ViewModel:
-            vm.makeView()
-        case let vm as Widget3ViewModel:
+        case let vm as CoursesAndGroupsWidgetViewModel:
             vm.makeView()
         default:
             SwiftUI.EmptyView()
