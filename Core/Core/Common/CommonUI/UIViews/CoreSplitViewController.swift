@@ -205,6 +205,12 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
         return nil
     }
 
+    /// This necessary to fix an issue on iPadOS 26, where app freezes upon window resizing.
+    /// It also mimics the same behavior for other Classic-style split views we use.
+    public func splitViewController(_ svc: UISplitViewController, topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column) -> UISplitViewController.Column {
+        .primary
+    }
+
     private func resetSecondaryViewStyle(
         _ viewController: UIViewController,
         from primaryViewController: UIViewController
