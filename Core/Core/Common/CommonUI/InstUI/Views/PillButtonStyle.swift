@@ -32,15 +32,7 @@ extension InstUI {
 
         public func makeBody(configuration: Configuration) -> some View {
             configuration.label
-                .font(.regular14)
-                .multilineTextAlignment(.center)
-                .foregroundStyle(buttonStyleConfig.foregroundColor)
-                .padding(.horizontal, 12 * uiScale)
-                // A smaller top padding pushes the text up. This makes
-                // the text more centered for the eye than real centering.
-                .padding(.top, 3 * uiScale)
-                .padding(.bottom, 4 * uiScale)
-                .frame(minHeight: 30 * uiScale)
+                .customTint(buttonStyleConfig.foregroundColor)
                 .background(
                     Capsule()
                         .fill(

@@ -99,11 +99,11 @@ public struct DashboardFeedbackAlert: View {
             Button {
                 onLetUsKnow()
             } label: {
-                HStack(spacing: 4) {
-                    Text("Let us know!", bundle: .core)
-                    Image.externalLinkLine
-                        .scaledIcon(size: 16)
-                }
+                InstUI.PillContent(
+                    title: String(localized: "Let us know!", bundle: .core),
+                    trailingIcon: .externalLinkLine,
+                    size: .height30
+                )
             }
             .buttonStyle(.pillButtonOutlined(color: .brandPrimary))
             .accessibilityAddTraits(.isLink)

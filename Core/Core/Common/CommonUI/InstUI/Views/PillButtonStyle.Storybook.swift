@@ -28,14 +28,21 @@ struct PillButtonStorybook: View {
 
                     HStack {
                         Button {} label: {
-                            Text(verbatim: "Brand Primary")
-                                .frame(maxWidth: .infinity)
+                            InstUI.PillContent(
+                                title: "Default Outline",
+                                size: .height24
+                            )
+                            .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(.pillButtonBrandFilled)
 
                         Button {} label: {
-                            Text(verbatim: "Default Outline")
-                                .frame(maxWidth: .infinity)
+                            InstUI.PillContent(
+                                title: "Brand Primary",
+                                size: .height24,
+                                isTextBold: true
+                            )
+                            .frame(maxWidth: .infinity)
                         }
                         .buttonStyle(.pillButtonDefaultOutlined)
                     }
@@ -48,23 +55,27 @@ struct PillButtonStorybook: View {
                         .font(.headline)
 
                     Button {} label: {
-                        Text(verbatim: "Accept")
-                    }
-                    .buttonStyle(.pillButtonFilled(color: .textInfo))
-
-                    Button {
-                    } label: {
-                        HStack(spacing: 2) {
-                            Text(verbatim: "All Courses")
-                            Image.arrowOpenRightSolid
-                                .scaledIcon(size: 16)
-                                .offset(y: 1)
-                        }
+                        InstUI.PillContent(
+                            title: "Accept",
+                            size: .height30
+                        )
                     }
                     .buttonStyle(.pillButtonFilled(color: .textInfo))
 
                     Button {} label: {
-                        Text(verbatim: "Disabled")
+                        InstUI.PillContent(
+                            title: "All Courses",
+                            trailingIcon: .chevronRight,
+                            size: .height30
+                        )
+                    }
+                    .buttonStyle(.pillButtonFilled(color: .textInfo))
+
+                    Button {} label: {
+                        InstUI.PillContent(
+                            title: "Disabled",
+                            size: .height30
+                        )
                     }
                     .buttonStyle(.pillButtonFilled(color: .textInfo))
                     .disabled(true)
@@ -77,23 +88,27 @@ struct PillButtonStorybook: View {
                         .font(.headline)
 
                     Button {} label: {
-                        Text(verbatim: "Decline")
+                        InstUI.PillContent(
+                            title: "Decline",
+                            size: .height30
+                        )
                     }
                     .buttonStyle(.pillButtonOutlined(color: .textDanger))
 
-                    Button {
-                    } label: {
-                        HStack(spacing: 4) {
-                            Image.editLine
-                                .scaledIcon(size: 16)
-                                .offset(y: 1)
-                            Text(verbatim: "Customize Dashboard")
-                        }
+                    Button {} label: {
+                        InstUI.PillContent(
+                            title: "Customize Dashboard",
+                            leadingIcon: .editLine,
+                            size: .height30
+                        )
                     }
                     .buttonStyle(.pillButtonOutlined(color: .textInfo))
 
                     Button {} label: {
-                        Text(verbatim: "Disabled")
+                        InstUI.PillContent(
+                            title: "Disabled",
+                            size: .height30
+                        )
                     }
                     .buttonStyle(.pillButtonOutlined(color: .textDark))
                     .disabled(true)
