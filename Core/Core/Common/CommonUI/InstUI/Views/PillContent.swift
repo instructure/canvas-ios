@@ -47,16 +47,15 @@ extension InstUI {
             HStack(alignment: .center, spacing: size.iconTextSpacing) {
                 leadingIcon?
                     .scaledIcon(size: size.iconSize)
-                    .offset(y: 1)
                     .accessibilityHidden(true)
 
                 Text(title)
                     .font(.scaledNamedFont(isTextBold ? size.fontBold : size.font))
                     .multilineTextAlignment(.center)
+                    .offset(y: -0.5) // Pushing the text up to make it more centered for the eye than real centering.
 
                 trailingIcon?
                     .scaledIcon(size: size.iconSize)
-                    .offset(y: 1)
                     .accessibilityHidden(true)
             }
             .applyTint()
