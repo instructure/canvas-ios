@@ -29,7 +29,18 @@ enum GradeInputType {
     case statusDisplayOnly // for Not Graded
 }
 
+enum GradeSavingState: Equatable {
+    case saving
+    case saved
+    case failure
+    case idle
+}
+
 class SpeedGraderSubmissionGradesViewModel: ObservableObject {
+    private struct GradeSavingParameters {
+        let excused: Bool?
+        let grade: String?
+    }
 
     // MARK: - Outputs
 
@@ -38,7 +49,9 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     // Grading inputs
     @Published private(set) var gradeState: GradeState
     @Published private(set) var gradeInputType: GradeInputType?
-    let isSavingGrade = CurrentValueSubject<Bool, Never>(false)
+
+    let gradeSavingState = CurrentValueSubject<GradeSavingState, Never>(.idle)
+
     let shouldShowPointsInput: Bool
     let shouldShowSlider: Bool
     let shouldShowSelector: Bool
@@ -55,6 +68,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
     // Error alert
     @Published var isShowingErrorAlert: Bool = false
+    @Published var isShowingGradeSavingErrorAlert: Bool = false
     private(set) var errorAlertViewModel: ErrorAlertViewModel = .init()
 
     // MARK: - Private Properties
@@ -63,6 +77,8 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     private let gradeInteractor: GradeInteractor
     private var cancellables = Set<AnyCancellable>()
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
+    private var autoHideCancellable: AnyCancellable?
+    private var retryParams: GradeSavingParameters?
 
     // MARK: - Init
 
@@ -138,6 +154,16 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
         saveGrade(grade: item.id)
     }
 
+    func gradeSavingFailureTapped() {
+        isShowingGradeSavingErrorAlert = true
+    }
+
+    func gradeSavingRetryTapped() {
+        if let retryParams {
+            saveGrade(retryParams)
+        }
+    }
+
     // MARK: - Private Methods
 
     private func observeGradeStateChanges() {
@@ -182,15 +208,23 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     }
 
     private func saveGrade(excused: Bool? = nil, grade: String? = nil) {
-        isSavingGrade.send(true)
+        saveGrade(GradeSavingParameters(excused: excused, grade: grade))
+    }
 
-        gradeInteractor.saveGrade(excused: excused, grade: grade)
+    private func saveGrade(_ params: GradeSavingParameters) {
+        retryParams = params
+        reportGradeSavingState(.saving)
+
+        gradeInteractor.saveGrade(excused: params.excused, grade: params.grade)
             .receive(on: mainScheduler)
             .sink(
                 receiveCompletion: { [weak self] completion in
-                    self?.isSavingGrade.send(false)
-                    if case .failure(let error) = completion {
-                        self?.showError(error)
+                    guard let self else { return }
+
+                    if case .failure = completion {
+                        reportGradeSavingState(.failure)
+                    } else {
+                        reportGradeSavingState(.saved)
                     }
                 },
                 receiveValue: { _ in }
@@ -198,9 +232,15 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
             .store(in: &cancellables)
     }
 
-    private func showError(_ error: Error) {
-        errorAlertViewModel = .init(message: error.localizedDescription)
-        isShowingErrorAlert = true
+    private func reportGradeSavingState(_ state: GradeSavingState) {
+        autoHideCancellable = nil
+        gradeSavingState.send(state)
+
+        if state == .saved {
+            autoHideCancellable = Just(GradeSavingState.idle)
+                .delay(for: 3, scheduler: mainScheduler)
+                .sink { [weak self] in self?.gradeSavingState.send($0) }
+        }
     }
 
     private func showInvalidGradeError(grade: String) {

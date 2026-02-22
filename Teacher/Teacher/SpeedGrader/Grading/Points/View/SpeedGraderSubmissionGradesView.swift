@@ -43,6 +43,7 @@ struct SpeedGraderSubmissionGradesView: View {
     }
     @FocusState private var focusedInput: FocusedInput?
     @State private var isCommentsExpanded: Bool = false
+    @State private var isGradeSaving: Bool = false
 
     var body: some View {
         ScrollViewReader { scrollViewProxy in
@@ -65,6 +66,9 @@ struct SpeedGraderSubmissionGradesView: View {
                 }
             }
             .scrollDismissesKeyboard(keyboardDismissalMode)
+        }
+        .onReceive(gradeViewModel.gradeSavingState) { state in
+            isGradeSaving = state == .saving
         }
     }
 
@@ -125,6 +129,22 @@ struct SpeedGraderSubmissionGradesView: View {
             isPresented: $gradeViewModel.isShowingErrorAlert,
             presenting: gradeViewModel.errorAlertViewModel
         )
+        .alert(
+            String(localized: "Oops something went wrong", bundle: .teacher),
+            isPresented: $gradeViewModel.isShowingGradeSavingErrorAlert) {
+                Button(role: .cancel) {} label: {
+                    Text("Cancel", bundle: .teacher)
+                }
+
+                Button {
+                    gradeViewModel.gradeSavingRetryTapped()
+                } label: {
+                    Text("Retry", bundle: .teacher)
+                }
+        } message: {
+            Text("There was an error while saving your grade modification. You can retry, or try again later.", bundle: .teacher)
+        }
+
     }
 
     @ViewBuilder
@@ -161,7 +181,7 @@ struct SpeedGraderSubmissionGradesView: View {
                 allOptions: gradeState.gradeOptions,
                 selectOption: gradeViewModel.selectGradeOption,
                 didSelectOption: gradeViewModel.didSelectGradeOption,
-                isSaving: gradeViewModel.isSavingGrade
+                isSaving: $isGradeSaving
             )
             .accessibilityLabel(
                 [title, String.format(accessibilityLetterGrade: gradeState.originalGrade)]
@@ -200,8 +220,9 @@ struct SpeedGraderSubmissionGradesView: View {
                 get: { textValue },
                 set: { gradeViewModel.setGradeFromTextField($0, inputType: inputType) }
             ),
-            isSaving: gradeViewModel.isSavingGrade
+            isSaving: .init(false)
         )
+        .disabled(isGradeSaving)
     }
 
     @ViewBuilder
@@ -230,7 +251,6 @@ struct SpeedGraderSubmissionGradesView: View {
                         .accessibilityLabel(a11ySuffix ?? suffix)
                 }
             }
-            .swapWithSpinner(onSaving: gradeViewModel.isSavingGrade, alignment: .trailing)
         }
         .paddingStyle(set: .standardCell)
         .accessibilityElement(children: .combine)

@@ -26,6 +26,7 @@ class SpeedGraderPageHeaderViewModel: ObservableObject {
     let routeToSubmitter: String?
 
     private var subscriptions = Set<AnyCancellable>()
+    private var announcement: AnyCancellable?
 
     init(
         assignment: Assignment,
@@ -51,5 +52,32 @@ class SpeedGraderPageHeaderViewModel: ObservableObject {
                 self?.submissionStatus = updatedSubmission.status.labelModel
             }
             .store(in: &subscriptions)
+    }
+
+    func announceState(_ state: GradeSavingState, completion: @escaping () -> Void) {
+        if let message = state.accessibilityAnnouncmentMessage {
+            announcement?.cancel()
+            announcement = UIAccessibility
+                .announcePersistently(message)
+                .sink(receiveValue: completion)
+        }
+    }
+}
+
+// MARK: - Accessibility Message
+
+private extension GradeSavingState {
+
+    var accessibilityAnnouncmentMessage: String? {
+        switch self {
+        case .saving:
+            String(localized: "Saving grade", bundle: .teacher)
+        case .saved:
+            String(localized: "Grade successfully saved", bundle: .teacher)
+        case .failure:
+            String(localized: "Failed saving grade", bundle: .teacher)
+        case .idle:
+            nil
+        }
     }
 }

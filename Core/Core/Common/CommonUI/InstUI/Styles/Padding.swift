@@ -64,6 +64,7 @@ public extension InstUI.Styles.Padding {
 
     static let selectionLabelVertical = value(6)
     static let selectionLabelHorizontal = value(12)
+    static let zero = value(0)
 }
 
 // MARK: - PaddingSet

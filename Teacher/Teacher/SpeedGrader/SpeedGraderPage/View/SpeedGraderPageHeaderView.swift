@@ -18,11 +18,14 @@
 
 import SwiftUI
 import Core
+import Combine
 
 struct SpeedGraderPageHeaderView: View {
     let assignment: Assignment
     let submission: Submission
     let isLandscapeLayout: Bool
+    let gradeSavingStatePublisher: CurrentValueSubject<GradeSavingState, Never>
+    let gradeSavingFailureTapped: () -> Void
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -30,18 +33,26 @@ struct SpeedGraderPageHeaderView: View {
 
     @ObservedObject var landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel
     @State private var profileHeight: CGFloat = 0
+    @State private var gradeSavingState: GradeSavingState = .idle
     @StateObject internal var viewModel: SpeedGraderPageHeaderViewModel
+    @AccessibilityFocusState private var isSavingFailureFocused: Bool
 
     init(
         assignment: Assignment,
         submission: Submission,
         isLandscapeLayout: Bool,
-        landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel
+        landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel,
+        gradeSavingState: CurrentValueSubject<GradeSavingState, Never>,
+        gradeSavingFailureTapped: @escaping () -> Void
     ) {
         self.assignment = assignment
         self.submission = submission
         self.isLandscapeLayout = isLandscapeLayout
         self.landscapeSplitLayoutViewModel = landscapeSplitLayoutViewModel
+        self.gradeSavingStatePublisher = gradeSavingState
+        self.gradeSavingFailureTapped = gradeSavingFailureTapped
+
+        _gradeSavingState = .init(initialValue: gradeSavingState.value)
         _viewModel = StateObject(wrappedValue: SpeedGraderPageHeaderViewModel(assignment: assignment, submission: submission))
     }
 
@@ -68,11 +79,11 @@ struct SpeedGraderPageHeaderView: View {
                     }
                 }
                 .paddingStyle(.leading, .cellIconLeading)
-                .paddingStyle(.trailing, .standard)
                 .padding(.vertical, 8)
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
             .buttonStyle(.plain)
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .contentShape(Rectangle())
             .onSizeChange { size in
                 if profileHeight != size.height {
                     profileHeight = size.height
@@ -80,8 +91,24 @@ struct SpeedGraderPageHeaderView: View {
             }
             .identifier("SpeedGrader.userButton")
 
+            gradeSavingStateView
+
             if isLandscapeLayout {
                 resizeDragger
+            }
+        }
+        .onReceive(
+            gradeSavingStatePublisher
+                .debounce(for: 0.3, scheduler: DispatchQueue.main)
+        ) { state in
+            withAnimation {
+                gradeSavingState = state
+            }
+
+            viewModel.announceState(state) {
+                if case .failure = state {
+                    isSavingFailureFocused = true
+                }
             }
         }
     }
@@ -149,6 +176,61 @@ struct SpeedGraderPageHeaderView: View {
             landscapeSplitLayoutViewModel.didEndDragGesture()
         }
     }
+
+    @ViewBuilder
+    private var gradeSavingStateView: some View {
+        let trailingPadding: InstUI.Styles.Padding = isLandscapeLayout ? .zero : .standard
+
+        switch gradeSavingState {
+        case .saving:
+
+            HStack(spacing: 4) {
+                Text("Saving", bundle: .teacher)
+                    .font(.regular14)
+                    .foregroundStyle(.textDark)
+                ProgressView()
+                    .progressViewStyle(.circular)
+                    .tint(.textDark)
+            }
+            .paddingStyle(.leading, .standard)
+            .paddingStyle(.trailing, trailingPadding)
+            .transition(.opacity)
+
+        case .saved:
+
+            Text("Saved", bundle: .teacher)
+                .font(.regular14)
+                .foregroundStyle(.textSuccess)
+                .paddingStyle(.leading, .standard)
+                .paddingStyle(.trailing, trailingPadding)
+                .transition(.opacity)
+
+        case .failure:
+            Button(action: gradeSavingFailureTapped) {
+
+                HStack(spacing: 4) {
+                    Text("Failed", bundle: .teacher)
+                        .font(.regular14)
+                        .foregroundStyle(.textDark)
+                    Image.infoSolid
+                        .scaledIcon(size: 16)
+                        .foregroundStyle(.textInfo)
+                }
+                .paddingStyle(.vertical, .cellTop)
+                .paddingStyle(.leading, .standard)
+                .paddingStyle(.trailing, trailingPadding)
+            }
+            .contentShape(Rectangle())
+            .transition(.opacity)
+            .accessibilityLabel(
+                String(localized: "Tap to see why saving failed", bundle: .teacher)
+            )
+            .accessibilityFocused($isSavingFailureFocused)
+
+        case .idle:
+            SwiftUI.EmptyView()
+        }
+    }
 }
 
 #if DEBUG
@@ -158,8 +240,10 @@ struct SpeedGraderPageHeaderView: View {
     SpeedGraderPageHeaderView(
         assignment: testData.assignment,
         submission: testData.submissions[0],
-        isLandscapeLayout: true,
-        landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel()
+        isLandscapeLayout: false,
+        landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel(),
+        gradeSavingState: .init(.saving),
+        gradeSavingFailureTapped: {}
     )
 }
 

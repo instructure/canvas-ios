@@ -23,11 +23,11 @@ import SwiftUI
 struct SpeedGraderPickerCell: View {
 
     @StateObject var viewModel: SingleSelectionViewModel
+    @Binding var isSaving: Bool
 
     private let title: String
     private let placeholder: String?
     private let identifierGroup: String?
-    private let isSaving: CurrentValueSubject<Bool, Never>
 
     init(
         title: String,
@@ -36,12 +36,12 @@ struct SpeedGraderPickerCell: View {
         allOptions: [OptionItem],
         selectOption: CurrentValueSubject<OptionItem?, Never>,
         didSelectOption: PassthroughSubject<OptionItem?, Never>,
-        isSaving: CurrentValueSubject<Bool, Never>
+        isSaving: Binding<Bool>
     ) {
         self.title = title
         self.placeholder = placeholder
         self.identifierGroup = identifierGroup
-        self.isSaving = isSaving
+        self._isSaving = isSaving
 
         self._viewModel = StateObject(wrappedValue: .init(
             title: nil,
@@ -57,8 +57,7 @@ struct SpeedGraderPickerCell: View {
                 .textStyle(.cellLabel)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-            picker
-                .swapWithSpinner(onSaving: isSaving, alignment: .trailing)
+            picker.disabled(isSaving)
         }
         .paddingStyle(set: .standardCell)
         .background(Color.backgroundLightest)

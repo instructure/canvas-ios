@@ -22,7 +22,7 @@ import Combine
 
 class GradeInteractorMock: GradeInteractor {
     let gradeStateSubject = CurrentValueSubject<GradeState, Never>(GradeState.empty)
-    let saveGradeSubject = PassthroughSubject<Void, Error>()
+    var saveGradeSubject = PassthroughSubject<Void, Error>()
 
     var gradeState: AnyPublisher<GradeState, Never> {
         gradeStateSubject.eraseToAnyPublisher()
@@ -37,5 +37,11 @@ class GradeInteractorMock: GradeInteractor {
         lastExcused = excused
         lastGrade = grade
         return saveGradeSubject.eraseToAnyPublisher()
+    }
+
+    func reset() {
+        saveGradeCalled = false
+        lastExcused = nil
+        saveGradeSubject = PassthroughSubject<Void, Error>()
     }
 }
