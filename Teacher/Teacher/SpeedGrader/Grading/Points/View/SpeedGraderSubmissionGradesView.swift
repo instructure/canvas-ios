@@ -137,7 +137,7 @@ struct SpeedGraderSubmissionGradesView: View {
                 }
 
                 Button {
-                    gradeViewModel.gradeSavingRetryTapped.send()
+                    gradeViewModel.gradeSavingRetryTapped()
                 } label: {
                     Text("Retry", bundle: .teacher)
                 }

@@ -58,7 +58,7 @@ class SpeedGraderPageViewModel: ObservableObject {
         gradeViewModel.gradeSavingState
     }
 
-    var gradeSavingFailureTapped: PassthroughSubject<Void, Never> {
+    var gradeSavingFailureTapped: () -> Void {
         gradeViewModel.gradeSavingFailureTapped
     }
 

@@ -51,8 +51,6 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
     @Published private(set) var gradeInputType: GradeInputType?
 
     let gradeSavingState = CurrentValueSubject<GradeSavingState, Never>(.idle)
-    let gradeSavingFailureTapped = PassthroughSubject<Void, Never>()
-    let gradeSavingRetryTapped = PassthroughSubject<Void, Never>()
 
     let shouldShowPointsInput: Bool
     let shouldShowSlider: Bool
@@ -114,22 +112,6 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
         updateGradeOnGradePickerSelection()
         observeGradeStateChanges()
-
-        gradeSavingFailureTapped
-            .sink { [weak self] in
-                self?.isShowingGradeSavingErrorAlert = true
-            }
-            .store(in: &cancellables)
-
-        gradeSavingRetryTapped
-            .sink { [weak self] in
-                guard let self else { return }
-
-                if let retryParams {
-                    saveGrade(retryParams)
-                }
-            }
-            .store(in: &cancellables)
     }
 
     // MARK: - User Actions
@@ -170,6 +152,16 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
     func setGradeOption(_ item: OptionItem) {
         saveGrade(grade: item.id)
+    }
+
+    func gradeSavingFailureTapped() {
+        isShowingGradeSavingErrorAlert = true
+    }
+
+    func gradeSavingRetryTapped() {
+        if let retryParams {
+            saveGrade(retryParams)
+        }
     }
 
     // MARK: - Private Methods

@@ -25,7 +25,7 @@ struct SpeedGraderPageHeaderView: View {
     let submission: Submission
     let isLandscapeLayout: Bool
     let gradeSavingStatePublisher: CurrentValueSubject<GradeSavingState, Never>
-    let gradeSavingFailureTapped: PassthroughSubject<Void, Never>
+    let gradeSavingFailureTapped: () -> Void
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
@@ -43,7 +43,7 @@ struct SpeedGraderPageHeaderView: View {
         isLandscapeLayout: Bool,
         landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel,
         gradeSavingState: CurrentValueSubject<GradeSavingState, Never>,
-        gradeSavingFailureTapped: PassthroughSubject<Void, Never>
+        gradeSavingFailureTapped: @escaping () -> Void
     ) {
         self.assignment = assignment
         self.submission = submission
@@ -199,7 +199,7 @@ struct SpeedGraderPageHeaderView: View {
                 .transition(.opacity)
 
         case .failure:
-            Button(action: { gradeSavingFailureTapped.send() }) {
+            Button(action: gradeSavingFailureTapped) {
 
                 HStack(spacing: 4) {
                     Text("Failed", bundle: .teacher)
@@ -231,7 +231,7 @@ struct SpeedGraderPageHeaderView: View {
         isLandscapeLayout: false,
         landscapeSplitLayoutViewModel: SpeedGraderPageLandscapeSplitLayoutViewModel(),
         gradeSavingState: .init(.saving),
-        gradeSavingFailureTapped: .init()
+        gradeSavingFailureTapped: {}
     )
 }
 
