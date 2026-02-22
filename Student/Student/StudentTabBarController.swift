@@ -107,7 +107,13 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
                 let dashboard = CoreHostingController(
                     DashboardContainerView(shouldShowGroupList: true, showOnlyTeacherEnrollment: false)
                 )
-                result = DashboardContainerViewController(rootViewController: dashboard) { CoreSplitViewController() }
+                result = DashboardContainerViewController(rootViewController: dashboard) {
+                    if #available(iOS 26, *) {
+                        return CoreSplitViewController(style: .doubleColumn)
+                    } else {
+                        return CoreSplitViewController()
+                    }
+                }
             }
 
             tabBarTitle = String(localized: "Dashboard", bundle: .student, comment: "Tab title, max character count is 14")
