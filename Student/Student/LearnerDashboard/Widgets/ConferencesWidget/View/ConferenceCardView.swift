@@ -69,7 +69,7 @@ struct ConferenceCardView: View {
             )
             .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.pillButtonBrandFilled)
+        .buttonStyle(.pillTintFilled)
         .identifier("Conference.\(viewModel.id).joinButton")
     }
 
@@ -84,7 +84,7 @@ struct ConferenceCardView: View {
             )
             .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.pillButtonDefaultOutlined)
+        .buttonStyle(.pillDefaultOutlined)
         .identifier("Conference.\(viewModel.id).dismissButton")
     }
 }

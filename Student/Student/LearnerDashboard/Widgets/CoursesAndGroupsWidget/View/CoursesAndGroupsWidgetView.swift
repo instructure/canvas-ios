@@ -68,9 +68,8 @@ struct CoursesAndGroupsWidgetView: View {
                     size: .height30
                 )
             }
-            .buttonStyle(.pillButtonBrandFilled)
+            .buttonStyle(.pillTintFilled)
             .identifier("Dashboard.allCoursesButton")
-
         }
         .animation(.dashboardWidget, value: viewModel.layoutIdentifier)
     }

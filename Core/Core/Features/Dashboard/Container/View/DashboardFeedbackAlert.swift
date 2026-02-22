@@ -105,7 +105,7 @@ public struct DashboardFeedbackAlert: View {
                     size: .height30
                 )
             }
-            .buttonStyle(.pillButtonOutlined(color: .brandPrimary))
+            .buttonStyle(.pillTintOutlined)
             .accessibilityAddTraits(.isLink)
             .identifier("Dashboard.FeedbackAlert.letUsKnowButton")
         }

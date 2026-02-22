@@ -73,7 +73,7 @@ struct CourseInvitationCardView: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.pillButtonBrandFilled)
+        .buttonStyle(.pillTintFilled)
         .identifier("CourseInvitation.\(viewModel.id).acceptButton")
     }
 
@@ -91,7 +91,7 @@ struct CourseInvitationCardView: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.pillButtonDefaultOutlined)
+        .buttonStyle(.pillDefaultOutlined)
         .identifier("CourseInvitation.\(viewModel.id).rejectButton")
     }
 }
