@@ -70,8 +70,10 @@ extension InstUI {
             let textField = UITextField()
             textField.delegate = context.coordinator
 
+            let isEnabled = context.environment.isEnabled
+
             // Style
-            textField.textColor = style.textColor
+            textField.textColor = isEnabled ? style.textColor : .disabledGray
             textField.font = .scaledNamedFont(style.textFont)
             textField.textAlignment = style.textAlignment
 
@@ -85,7 +87,7 @@ extension InstUI {
             textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
             textField.adjustsFontSizeToFitWidth = true
             textField.minimumFontSize = 10
-            textField.isEnabled = context.environment.isEnabled
+            textField.isEnabled = isEnabled
 
             // Done button
             let doneButton = UIBarButtonItemWithCompletion(
@@ -113,7 +115,9 @@ extension InstUI {
         }
 
         public func updateUIView(_ textField: UITextField, context: Context) {
-            textField.isEnabled = context.environment.isEnabled
+            let isEnabled = context.environment.isEnabled
+            textField.textColor = isEnabled ? style.textColor : .disabledGray
+            textField.isEnabled = isEnabled
 
             if textField.text != text {
                 DispatchQueue.main.async {

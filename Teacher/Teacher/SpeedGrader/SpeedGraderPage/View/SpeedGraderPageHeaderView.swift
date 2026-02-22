@@ -35,7 +35,7 @@ struct SpeedGraderPageHeaderView: View {
     @State private var profileHeight: CGFloat = 0
     @State private var gradeSavingState: GradeSavingState = .idle
     @StateObject internal var viewModel: SpeedGraderPageHeaderViewModel
-    @AccessibilityFocusState private var isSavingIndicatorFocused: Bool
+    @AccessibilityFocusState private var isSavingFailureFocused: Bool
 
     init(
         assignment: Assignment,
@@ -92,7 +92,6 @@ struct SpeedGraderPageHeaderView: View {
             .identifier("SpeedGrader.userButton")
 
             gradeSavingStateView
-                .accessibilityFocused($isSavingIndicatorFocused)
 
             if isLandscapeLayout {
                 resizeDragger
@@ -105,7 +104,12 @@ struct SpeedGraderPageHeaderView: View {
             withAnimation {
                 gradeSavingState = state
             }
-            isSavingIndicatorFocused = state != .idle
+
+            viewModel.announceState(state) {
+                if case .failure = state {
+                    isSavingFailureFocused = true
+                }
+            }
         }
     }
 
@@ -186,7 +190,9 @@ struct SpeedGraderPageHeaderView: View {
                     .foregroundStyle(.textDark)
                 ProgressView()
                     .progressViewStyle(.circular)
+                    .tint(.textDark)
             }
+            .paddingStyle(.leading, .standard)
             .paddingStyle(.trailing, trailingPadding)
             .transition(.opacity)
 
@@ -195,6 +201,7 @@ struct SpeedGraderPageHeaderView: View {
             Text("Saved", bundle: .teacher)
                 .font(.regular14)
                 .foregroundStyle(.textSuccess)
+                .paddingStyle(.leading, .standard)
                 .paddingStyle(.trailing, trailingPadding)
                 .transition(.opacity)
 
@@ -215,6 +222,11 @@ struct SpeedGraderPageHeaderView: View {
             }
             .contentShape(Rectangle())
             .transition(.opacity)
+            .accessibilityLabel(
+                String(localized: "Tap to see why saving failed", bundle: .teacher)
+            )
+            .accessibilityFocused($isSavingFailureFocused)
+
         case .idle:
             SwiftUI.EmptyView()
         }
