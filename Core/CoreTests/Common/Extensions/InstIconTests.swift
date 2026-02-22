@@ -43,6 +43,7 @@ class InstIconTests: XCTestCase {
         XCTAssertEqual(Image.checkbox, Image("checkbox", bundle: .core))
         XCTAssertEqual(Image.checkboxSelected, Image("checkboxSelected", bundle: .core))
         XCTAssertEqual(Image.chevronDown, Image("chevronDown", bundle: .core))
+        XCTAssertEqual(Image.chevronRight, Image("chevronRight", bundle: .core))
         XCTAssertEqual(Image.collaborations, Image("collaborations", bundle: .core))
         XCTAssertEqual(Image.conferences, Image("conferences", bundle: .core))
         XCTAssertEqual(Image.coursesTab, Image("coursesTab", bundle: .core))
