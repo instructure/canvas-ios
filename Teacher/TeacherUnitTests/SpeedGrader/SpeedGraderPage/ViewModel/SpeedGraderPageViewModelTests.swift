@@ -140,12 +140,6 @@ class SpeedGraderPageViewModelTests: TeacherTestCase {
         XCTAssertTrue(testee.gradeSavingStatePublisher === testee.gradeViewModel.gradeSavingState)
     }
 
-    func test_gradeSavingFailureTapped_shouldBeGradeViewModelSubject() {
-        let testee = makeViewModel()
-
-        XCTAssertTrue(testee.gradeSavingFailureTapped === testee.gradeViewModel.gradeSavingFailureTapped)
-    }
-
     // MARK: - Private helpers
 
     private func makeViewModel(

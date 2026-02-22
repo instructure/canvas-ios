@@ -21,7 +21,7 @@ import Core
 import TestsFoundation
 import XCTest
 
-class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
+final class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
 
     func testGroupSubmissionCheck() {
         let submission = Submission(context: databaseClient)
@@ -30,10 +30,7 @@ class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
         submission.groupID = "TestGroupID"
         assignment.groupCategoryID = "TestCategoryID"
 
-        let testee = SpeedGraderPageHeaderViewModel(
-            assignment: assignment,
-            submission: submission
-        )
+        let testee = makeViewModel(assignment: assignment, submission: submission)
 
         XCTAssertTrue(testee.userNameModel.isGroup)
     }
@@ -44,19 +41,13 @@ class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
         assignment.gradedIndividually = false
         submission.groupName = "TestGroup Name"
 
-        var testee = SpeedGraderPageHeaderViewModel(
-            assignment: assignment,
-            submission: submission
-        )
+        var testee = makeViewModel(assignment: assignment, submission: submission)
         XCTAssertEqual(testee.userNameModel.name, "Student")
 
         submission.groupID = "TestGroupID"
         assignment.groupCategoryID = "TestCategoryID"
 
-        testee = SpeedGraderPageHeaderViewModel(
-            assignment: assignment,
-            submission: submission
-        )
+        testee = makeViewModel(assignment: assignment, submission: submission)
 
         XCTAssertEqual(testee.userNameModel.name, "TestGroup Name")
     }
@@ -69,10 +60,7 @@ class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
         submission.userID = "testUserID"
         submission.groupID = "TestGroupID"
 
-        let testee = SpeedGraderPageHeaderViewModel(
-            assignment: assignment,
-            submission: submission
-        )
+        let testee = makeViewModel(assignment: assignment, submission: submission)
 
         XCTAssertNil(testee.routeToSubmitter)
     }
@@ -85,10 +73,7 @@ class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
         submission.userID = "testUserID"
         submission.groupID = "TestGroupID"
 
-        let testee = SpeedGraderPageHeaderViewModel(
-            assignment: assignment,
-            submission: submission
-        )
+        let testee = makeViewModel(assignment: assignment, submission: submission)
 
         XCTAssertEqual(testee.routeToSubmitter, "/courses/testCourseID/users/testUserID")
     }
@@ -100,10 +85,7 @@ class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
         submission.excused = false
         try databaseClient.save()
 
-        let testee = SpeedGraderPageHeaderViewModel(
-            assignment: assignment,
-            submission: submission
-        )
+        let testee = makeViewModel(assignment: assignment, submission: submission)
 
         XCTAssertEqual(testee.submissionStatus, .submitted)
 
@@ -115,5 +97,52 @@ class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
         waitUntil(shouldFail: true) {
             testee.submissionStatus == .excused
         }
+    }
+
+    // MARK: - announceState
+
+    func test_announceState_whenIdle_shouldNotCallCompletion() {
+        let testee = makeViewModel()
+        var completionCalled = false
+
+        testee.announceState(.idle) {
+            completionCalled = true
+        }
+
+        XCTAssertEqual(completionCalled, false)
+    }
+
+    func test_announceState_withNonIdleState_shouldCallCompletion() {
+        let testee = makeViewModel()
+
+        // WHEN .saving
+        var completionCalled = false
+        testee.announceState(.saving) { completionCalled = true }
+        // THEN
+        XCTAssertEqual(completionCalled, true)
+
+        // WHEN .saved
+        completionCalled = false
+        testee.announceState(.saved) { completionCalled = true }
+        // THEN
+        XCTAssertEqual(completionCalled, true)
+
+        // WHEN .failure
+        completionCalled = false
+        testee.announceState(.failure) { completionCalled = true }
+        // THEN
+        XCTAssertEqual(completionCalled, true)
+    }
+
+    // MARK: - Private helpers
+
+    private func makeViewModel(
+        assignment: Assignment? = nil,
+        submission: Submission? = nil
+    ) -> SpeedGraderPageHeaderViewModel {
+        SpeedGraderPageHeaderViewModel(
+            assignment: assignment ?? Assignment(context: databaseClient),
+            submission: submission ?? Submission(context: databaseClient)
+        )
     }
 }

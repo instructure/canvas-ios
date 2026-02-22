@@ -165,7 +165,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
 
         gradeInteractorMock.saveGradeCalled = false
         gradeInteractorMock.lastExcused = nil
-        viewModel.gradeSavingRetryTapped.send()
+        viewModel.gradeSavingRetryTapped()
 
         XCTAssertEqual(gradeInteractorMock.saveGradeCalled, true)
         XCTAssertEqual(gradeInteractorMock.lastExcused, true)
@@ -176,7 +176,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
     func test_isShowingGradeSavingErrorAlert_whenGradeSavingFailureTapped_shouldBeTrue() {
         XCTAssertEqual(viewModel.isShowingGradeSavingErrorAlert, false)
 
-        viewModel.gradeSavingFailureTapped.send()
+        viewModel.gradeSavingFailureTapped()
 
         XCTAssertEqual(viewModel.isShowingGradeSavingErrorAlert, true)
     }
