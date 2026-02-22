@@ -145,6 +145,8 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         testee.setPointsGrade(42)
         gradeInteractorMock.saveGradeSubject.send(())
         gradeInteractorMock.saveGradeSubject.send(completion: .finished)
+
+        scheduler.advance()
         XCTAssertEqual(testee.gradeSavingState.value, .saved)
 
         scheduler.advance(by: .seconds(3))
@@ -163,8 +165,7 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         gradeInteractorMock.saveGradeSubject.send(completion: .failure(NSError.internalError()))
         XCTAssertEqual(viewModel.gradeSavingState.value, .failure)
 
-        gradeInteractorMock.saveGradeCalled = false
-        gradeInteractorMock.lastExcused = nil
+        gradeInteractorMock.reset()
         viewModel.gradeSavingRetryTapped()
 
         XCTAssertEqual(gradeInteractorMock.saveGradeCalled, true)
