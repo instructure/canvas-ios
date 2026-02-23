@@ -48,6 +48,12 @@ struct LearnView: View {
         .background(Color.huiColors.surface.pagePrimary)
         .dismissKeyboardOnTap()
         .scrollDismissesKeyboard(.immediately)
+        .onFirstAppear {
+            ImageCacheConfiguration.configure()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didReceiveMemoryWarningNotification)) { _ in
+            ImageCacheConfiguration.clearMemoryCache()
+        }
     }
 
     private func tabDetailsView() -> some View {

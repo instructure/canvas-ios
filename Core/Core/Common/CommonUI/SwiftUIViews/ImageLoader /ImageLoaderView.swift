@@ -30,7 +30,7 @@ public struct ImageLoaderView: View {
     public init<P: View>(
         url: URL?,
         options: SDWebImageOptions = [.scaleDownLargeImages, .retryFailed, .queryMemoryData],
-        maxImageSize: CGSize? = CGSize(width: 800, height: 800),
+        maxImageSize: CGSize? = CGSize(width: 1000, height: 1000),
         @ViewBuilder placeholder: @escaping () -> P
     ) {
         self.url = url
@@ -51,7 +51,7 @@ public struct ImageLoaderView: View {
     public init(
         url: URL?,
         options: SDWebImageOptions = [.scaleDownLargeImages, .retryFailed, .queryMemoryData],
-        maxImageSize: CGSize? = CGSize(width: 800, height: 800)
+        maxImageSize: CGSize? = CGSize(width: 1000, height: 1000)
     ) {
         self.url = url
         self.options = options
