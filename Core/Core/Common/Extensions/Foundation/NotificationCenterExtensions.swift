@@ -24,6 +24,11 @@ extension NSNotification.Name {
     public static let quizRefresh = Notification.Name("com.instructure.core.notification.quizRefresh")
     public static let celebrateSubmission = Notification.Name("com.instructure.core.notification.celebrateSubmission")
     public static let showGradesOnDashboardDidChange = Notification.Name("com.instructure.core.notification.showGradesOnDashboardDidChange")
+    /// Posted when the user's dashboard preference changes (new learner dashboard vs classic dashboard).
+    /// This notification is used because Core module code cannot directly reference Student-specific types
+    /// like StudentTabBarController. By posting a notification, Core can signal the preference change
+    /// and Student code can observe it to reload the dashboard tab.
+    public static let dashboardPreferenceChanged = Notification.Name("com.instructure.core.notification.dashboardPreferenceChanged")
     public static let favoritesDidChange = Notification.Name("course-favorite-change")
     public static let windowUserInterfaceStyleDidChange = Notification.Name("com.instructure.core.notification.windowUserInterfaceStyleDidChange")
     public static let plannerItemDidChange = Notification.Name("com.instructure.core.notification.plannerItemDidChange")

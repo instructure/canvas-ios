@@ -20,12 +20,15 @@ import Core
 import SwiftUI
 
 enum LearnerDashboardWidgetAssembly {
-
     static func makeDefaultWidgetConfigs() -> [DashboardWidgetConfig] {
         let identifiers: [DashboardWidgetIdentifier] = [
+            // full width
             .conferences,
             .courseInvitations,
+            .globalAnnouncements,
             .helloWidget,
+
+            // grid
             .widget1,
             .widget2,
             .widget3
@@ -39,7 +42,7 @@ enum LearnerDashboardWidgetAssembly {
     static func makeWidgetViewModel(
         config: DashboardWidgetConfig,
         snackBarViewModel: SnackBarViewModel,
-        coursesInteractor: CoursesInteractor = CoursesInteractorLive(env: .shared)
+        coursesInteractor: CoursesInteractor = makeCoursesInteractor()
     ) -> any DashboardWidgetViewModel {
         switch config.id {
         case .conferences:
@@ -56,6 +59,11 @@ enum LearnerDashboardWidgetAssembly {
                 config: config,
                 interactor: coursesInteractor,
                 snackBarViewModel: snackBarViewModel
+            )
+        case .globalAnnouncements:
+            GlobalAnnouncementsWidgetViewModel(
+                config: config,
+                interactor: .live(env: .shared)
             )
         case .helloWidget:
             HelloWidgetViewModel(
@@ -79,6 +87,8 @@ enum LearnerDashboardWidgetAssembly {
             vm.makeView()
         case let vm as CourseInvitationsWidgetViewModel:
 	        vm.makeView()
+        case let vm as GlobalAnnouncementsWidgetViewModel:
+            vm.makeView()
         case let vm as HelloWidgetViewModel:
             vm.makeView()
         case let vm as Widget1ViewModel:
@@ -93,5 +103,23 @@ enum LearnerDashboardWidgetAssembly {
                     assertionFailure("Unknown widget view model type")
                 }
         }
+    }
+
+    // MARK: - Cached Interactor Instance
+
+    private static let lock = NSLock()
+    private static weak var sharedCoursesInteractor: CoursesInteractorLive?
+
+    internal static func makeCoursesInteractor() -> CoursesInteractorLive {
+        lock.lock()
+        defer { lock.unlock() }
+
+        if let sharedCoursesInteractor {
+            return sharedCoursesInteractor
+        }
+
+        let instance = CoursesInteractorLive(env: .shared)
+        sharedCoursesInteractor = instance
+        return instance
     }
 }

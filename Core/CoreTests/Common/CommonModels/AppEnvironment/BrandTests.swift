@@ -42,7 +42,7 @@ class BrandTests: XCTestCase {
 
     func testHeaderImageView() {
         let headerImage = UIImage.addImageLine
-        Brand.shared.headerImage = headerImage
+        Brand.shared.headerUIImage = headerImage
         let view = Brand.shared.headerImageView()
         view.layoutIfNeeded()
         XCTAssertEqual(view.backgroundColor!.hexString, Brand.shared.headerImageBackground.hexString)

@@ -16,70 +16,40 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 import HorizonUI
+import SDWebImage
 
 struct CourseImageView: View {
-    // MARK: - Dependencies
     private let height: CGFloat
-    private let width: CGFloat
     private let url: URL?
-    private let corners: HorizonUI.Corners
-    private let level: HorizonUI.CornerRadius
-    private let placeholderIcon: Image
-    private let iconForegroundColor: Color
-    private let backgroundColor: Color
+
     // MARK: - Init
+
     init(
         height: CGFloat = 182,
-        width: CGFloat,
-        url: URL?,
-        corners: HorizonUI.Corners = [.topLeft, .topRight],
-        level: HorizonUI.CornerRadius = .level5,
-        placeholderIcon: Image = Image.huiIcons.book2Filled,
-        iconForegroundColor: Color = Color.huiColors.surface.institution,
-        backgroundColor: Color = Color.huiColors.primitives.grey14
+        url: URL?
     ) {
         self.height = height
-        self.width = width
         self.url = url
-        self.corners = corners
-        self.level = level
-        self.placeholderIcon = placeholderIcon
-        self.iconForegroundColor = iconForegroundColor
-        self.backgroundColor = backgroundColor
     }
 
     var body: some View {
-        SkeletonRemoteImage(
-            url: url,
-            topLeading: 32,
-            topTrailing: 32,
-            bottomLeading: 0,
-            bottomTrailing: 0,
-        ) { image in
-            image
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(height: height)
-                .frame(maxWidth: width)
-                .huiCornerRadius(level: level, corners: corners)
-                .accessibilityLabel("")
-                .accessibilityRemoveTraits(.isImage)
-                .accessibilityHidden(true)
-                .background(Color.white)
-        } placeholder: {
+        ImageLoaderView(
+            url: url
+        ) {
             ZStack {
-                backgroundColor
-                    .huiCornerRadius(level: level, corners: corners)
-                    .accessibilityHidden(true)
-                placeholderIcon
+                Color.huiColors.primitives.grey14
+                    .huiCornerRadius(level: .level5, corners: [.topLeft, .topRight])
+                Image.huiIcons.book2Filled
                     .foregroundStyle(Color.huiColors.surface.institution)
                     .accessibilityHidden(true)
             }
         }
-        .skeletonLoadable()
+        .huiCornerRadius(level: .level5, corners: [.topLeft, .topRight])
         .frame(height: height)
+        .clipped()
         .accessibilityLabel("")
         .accessibilityRemoveTraits(.isImage)
         .accessibilityHidden(true)

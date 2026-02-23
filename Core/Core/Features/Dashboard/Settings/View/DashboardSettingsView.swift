@@ -20,6 +20,8 @@ import SwiftUI
 
 public struct DashboardSettingsView: View {
     @ObservedObject private var viewModel: DashboardSettingsViewModel
+    @Environment(\.viewController) private var viewController
+    @State private var showDashboardSwitchAlert = false
     private let horizontalPadding: CGFloat = 16
     private let verticalPadding: CGFloat = 24
 
@@ -30,6 +32,22 @@ public struct DashboardSettingsView: View {
     public var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
+                if viewModel.isNewDashboardSwitchVisible {
+                    separator
+                    toggle(
+                        text: Text("New Mobile Dashboard", bundle: .core),
+                        isOn: Binding(
+                            get: { viewModel.useNewLearnerDashboard },
+                            set: { _ in
+                                showDashboardSwitchAlert = true
+                            }
+                        ),
+                        a11yID: "DashboardSettings.Switch.NewDashboard"
+                    )
+                    .accessibilityIdentifier("DashboardSettings.newDashboardToggle")
+                    separator
+                        .padding(.bottom, 32)
+                }
                 header(label: Text("Display As", bundle: .core))
                 HStack(spacing: 0) {
                     Spacer()
@@ -51,8 +69,8 @@ public struct DashboardSettingsView: View {
                            isOn: $viewModel.showGrades,
                            a11yID: "DashboardSettings.Switch.Grades")
                     .accessibilityIdentifier("DashboardSettings.showGradesToggle")
+                    separator
                 }
-                separator
                 if viewModel.isColorOverlaySwitchVisible {
                     toggle(text: Text("Color Overlay", bundle: .core),
                            isOn: $viewModel.colorOverlay,
@@ -78,6 +96,9 @@ public struct DashboardSettingsView: View {
         }
         .background(Color.backgroundLightest.ignoresSafeArea())
         .navigationTitle(String(localized: "Dashboard Settings", bundle: .core), style: .modal)
+        .alert(isPresented: $showDashboardSwitchAlert) {
+            dashboardSwitchAlert
+        }
     }
 
     private func header(label: Text) -> some View {
@@ -102,6 +123,15 @@ public struct DashboardSettingsView: View {
         }
         .padding(.vertical, 8)
         .testID(a11yID, info: ["selected": isOn.wrappedValue])
+    }
+
+    private var dashboardSwitchAlert: Alert {
+        DashboardSwitchAlert.makeAlert(isEnabling: !viewModel.useNewLearnerDashboard) {
+            viewModel.useNewLearnerDashboard.toggle()
+            viewController.value.dismiss(animated: true) {
+                NotificationCenter.default.post(name: .dashboardPreferenceChanged, object: nil)
+            }
+        }
     }
 
     private var gridButton: some View {
@@ -147,14 +177,14 @@ public struct DashboardSettingsView: View {
 
 struct DashboardSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        let interactor1 = DashboardSettingsInteractorPreview()
+        let interactor1 = DashboardSettingsInteractorPreview(isNewDashboardSwitchVisible: true)
         let viewModel1 = DashboardSettingsViewModel(interactor: interactor1)
         DashboardSettingsView(viewModel: viewModel1)
             .frame(width: 400)
             .previewLayout(.sizeThatFits)
-            .previewDisplayName("Both Switches")
+            .previewDisplayName("All Switches")
 
-        let interactor2 = DashboardSettingsInteractorPreview(isGradesSwitchVisible: false)
+        let interactor2 = DashboardSettingsInteractorPreview(isGradesSwitchVisible: false, isNewDashboardSwitchVisible: false)
         let viewModel2 = DashboardSettingsViewModel(interactor: interactor2)
         DashboardSettingsView(viewModel: viewModel2)
             .frame(width: 400)

@@ -47,7 +47,7 @@ class CourseNavigationPresenter {
     func viewIsReady() {
         courses.refresh()
         color.refresh()
-        tabs.exhaust(while: { _ in true })
+        tabs.refresh()
     }
 
     func update() {

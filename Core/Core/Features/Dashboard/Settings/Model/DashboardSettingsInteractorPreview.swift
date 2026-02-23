@@ -26,15 +26,19 @@ class DashboardSettingsInteractorPreview: DashboardSettingsInteractor {
     public let layout = CurrentValueSubject<DashboardLayout, Never>(.grid)
     public let showGrades = CurrentValueSubject<Bool, Never>(false)
     public let colorOverlay = CurrentValueSubject<Bool, Never>(false)
+    public let useNewDashboard = CurrentValueSubject<Bool, Never>(false)
 
     // MARK: - Outputs
     public let isGradesSwitchVisible: Bool
     public let isColorOverlaySwitchVisible: Bool
+    public let isNewDashboardSwitchVisible: Bool
 
     public init(isGradesSwitchVisible: Bool = true,
-                isColorOverlaySwitchVisible: Bool = true) {
+                isColorOverlaySwitchVisible: Bool = true,
+                isNewDashboardSwitchVisible: Bool = false) {
         self.isGradesSwitchVisible = isGradesSwitchVisible
         self.isColorOverlaySwitchVisible = isColorOverlaySwitchVisible
+        self.isNewDashboardSwitchVisible = isNewDashboardSwitchVisible
     }
 }
 

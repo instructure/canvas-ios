@@ -56,7 +56,6 @@ struct FilterView: View {
         CourseSelectionButton(status: selectedOption?.name ?? "") {
             isListVisiable.toggle()
         }
-        .frame(minWidth: 130)
         .accessibilityHint(
             Text(
                 String.localizedStringWithFormat(
@@ -86,6 +85,7 @@ struct FilterView: View {
                             name: status.name,
                             isSelected: status == selectedOption
                         )
+                        .frame(minWidth: 200)
                     }
                     .accessibilityAddTraits(status == selectedOption ? .isSelected : [])
                 }
