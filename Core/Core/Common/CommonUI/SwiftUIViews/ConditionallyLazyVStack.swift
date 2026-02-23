@@ -21,7 +21,7 @@ import SwiftUI
 /// Acts as a `VStack` (and ignores pinning) above iOS 26.
 /// Acts as a `LazyVStack` (including pinning) below that.
 ///
-/// The `ScrollView > LazyVStack > Section` structure causes freezes as of iOS 26.1 - 26.2.1.
+/// The `ScrollView > LazyVStack > Section` structure causes freezes as of iOS 26.1 - 26.3.
 /// A feedback had been sent to Apple (id: FB21857482).
 /// Hopefully that will be fixed and we can revert this in MBL-19759.
 public struct ConditionallyLazyVStack<Content: View>: View {
