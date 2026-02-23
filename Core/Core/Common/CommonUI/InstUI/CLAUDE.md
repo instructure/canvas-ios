@@ -47,13 +47,13 @@
 
 ### Selection & Menus
 - **SingleSelectionView** (`OptionSelection/View/`) — preferred component for radio button groups; handles a11y grouping, header trait, and identifier per item; style variants: `.radioButton` (default) and `.trailingCheckmark`; pair with `SingleSelectionOptions` when you need `.hasChanges` detection and `.resetSelection()`; `OptionItem` supports: `subtitle`, `headerTitle`, `color`, `customAccessibilityLabel`, `accessoryIcon`
-- **SelectionMenu** — standalone menu picker (not a cell) with checkmark for selected option
+- **MultiSelectionView** (`OptionSelection/View/`) — companion to `SingleSelectionView` for checkbox groups; same `OptionItem` model, manages multi-selection state and a11y
 - **PickerMenu** — menu-based picker using SwiftUI Picker under the hood; supports string or integer IDs
 - **SegmentedPicker** — wraps UISegmentedControl; use when you need to detect taps on the already-selected segment
-- **MultiPickerView** — two-column UIPickerView; useful for paired values (e.g. hours + minutes)
+- **MultiPickerView** — two-column UIPickerView for paired-value selection only (e.g. hours + minutes); do NOT use for single-value selection — use `PickerMenu` instead
 
 ### Buttons
-- **PillButtonStyle** — pill-shaped button style; variants: `.brandFilled`, `.defaultOutlined`, `.filled(color:)`, `.outlined(color:)`, `.outlined(textColor:borderColor:)` (separate text and border colors), `.pillButtonOutlined(color:)`
+- **PillButtonStyle** — pill-shaped button style for pill-shaped buttons
 - **MenuItem** — pre-styled button for `Menu` content; variants: `.edit`, `.delete`
 
 ### Layout & Structure
