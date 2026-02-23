@@ -220,9 +220,8 @@ struct SpeedGraderSubmissionGradesView: View {
                 get: { textValue },
                 set: { gradeViewModel.setGradeFromTextField($0, inputType: inputType) }
             ),
-            isSaving: .init(false)
+            isSaving: .init(isGradeSaving)
         )
-        .disabled(isGradeSaving)
     }
 
     @ViewBuilder

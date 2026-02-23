@@ -97,10 +97,8 @@ struct SpeedGraderPageHeaderView: View {
                 resizeDragger
             }
         }
-        .onReceive(
-            gradeSavingStatePublisher
-                .debounce(for: 0.3, scheduler: DispatchQueue.main)
-        ) { state in
+        .onReceive(gradeSavingStatePublisher) { state in
+
             withAnimation {
                 gradeSavingState = state
             }

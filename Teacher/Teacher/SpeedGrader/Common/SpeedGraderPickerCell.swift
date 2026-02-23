@@ -57,7 +57,8 @@ struct SpeedGraderPickerCell: View {
                 .textStyle(.cellLabel)
                 .frame(maxWidth: .infinity, alignment: .leading)
 
-            picker.disabled(isSaving)
+            picker
+                .swapWithSpinner(onSaving: .init(isSaving), alignment: .trailing)
         }
         .paddingStyle(set: .standardCell)
         .background(Color.backgroundLightest)
