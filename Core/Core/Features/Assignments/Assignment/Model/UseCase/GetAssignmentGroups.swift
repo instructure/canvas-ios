@@ -34,6 +34,7 @@ public class GetAssignmentGroups: APIUseCase {
 
     public var request: GetAssignmentGroupsRequest { GetAssignmentGroupsRequest(
         courseID: courseID,
+        scopeAssignmentsToStudent: true,
         perPage: 100
     ) }
 
