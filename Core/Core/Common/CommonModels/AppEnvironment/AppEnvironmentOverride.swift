@@ -25,9 +25,9 @@ public final class AppEnvironmentOverride: AppEnvironment {
 
     let base: AppEnvironment
     let baseURL: URL
-    private(set) var _contextShardID: String?
+    private(set) var _contextShardID: String
 
-    fileprivate init(base: AppEnvironment, baseURL: URL, contextShardID: String?) {
+    fileprivate init(base: AppEnvironment, baseURL: URL, contextShardID: String) {
         self.base = base
         self.baseURL = baseURL
         self._contextShardID = contextShardID
@@ -41,7 +41,7 @@ public final class AppEnvironmentOverride: AppEnvironment {
     public override var root: AppEnvironment { base }
 
     public override var sessionShardID: String? { base.sessionShardID }
-    public override var contextShardID: String? { _contextShardID ?? sessionShardID }
+    public override var contextShardID: String? { _contextShardID }
 
     public override var app: AppEnvironment.App? {
         get { base.app }
@@ -163,7 +163,10 @@ extension AppEnvironment {
     /// doesn't match the one on `AppEnvironment.shared`.
     static func resolved(for url: URLComponents, contextShardID: String?) -> AppEnvironment {
         if let host = url.host, host != shared.api.baseURL.host(),
-           let baseURL = url.with(scheme: shared.api.baseURL.scheme).url?.apiBaseURL {
+           let baseURL = url.with(scheme: shared.api.baseURL.scheme).url?.apiBaseURL,
+           let contextShardID,
+           shared.contextShardID != contextShardID {
+            
             return AppEnvironmentOverride(
                 base: shared,
                 baseURL: baseURL,
