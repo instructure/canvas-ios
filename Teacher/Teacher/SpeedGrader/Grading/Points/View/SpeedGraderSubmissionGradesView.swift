@@ -250,6 +250,7 @@ struct SpeedGraderSubmissionGradesView: View {
                         .accessibilityLabel(a11ySuffix ?? suffix)
                 }
             }
+            .swapWithSpinner(onSaving: .init(isGradeSaving), alignment: .trailing)
         }
         .paddingStyle(set: .standardCell)
         .accessibilityElement(children: .combine)
