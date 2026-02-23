@@ -43,7 +43,7 @@ public struct GetAssignmentGroupsRequest: APIRequestable {
         courseID: String,
         gradingPeriodID: String? = nil,
         include: [Include] = Include.allCases,
-        scopeAssignmentsToStudent: Bool,
+        scopeAssignmentsToStudent: Bool = true,
         perPage: Int? = nil
     ) {
         self.courseID = courseID

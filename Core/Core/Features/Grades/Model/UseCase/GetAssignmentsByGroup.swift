@@ -96,7 +96,6 @@ public class GetAssignmentsByGroup: UseCase {
             let request = GetAssignmentGroupsRequest(
                 courseID: courseID,
                 gradingPeriodID: gradingPeriodID?.value,
-                scopeAssignmentsToStudent: true,
                 perPage: 100
             )
             return environment.api.exhaust(request)
