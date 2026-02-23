@@ -38,6 +38,9 @@ packages:
   Swifter:
     url: https://github.com/httpswift/swifter
     version: 1.5.0
+  SDWebImageSwiftUI:
+    url: https://github.com/SDWebImage/SDWebImageSwiftUI.git
+    version: 3.0.0
 targets:
   Core:    
     type: framework
@@ -50,6 +53,7 @@ targets:
       - package: Lottie
       - package: Pendo
       - package: PSPDFKit
+      - package: SDWebImageSwiftUI
     preBuildScripts:
       - path: ../scripts/xcode-build-phases/swiftLint.sh
         name: SwiftLint
