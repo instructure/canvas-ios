@@ -86,7 +86,7 @@
   2. `DropDownButton(state: $dropdownState) { /* label content */ }` in the view
   3. `.dropDownDetailsContainer(state: $dropdownState) { /* dropdown content */ }` on the parent view
   - Constraints: max width 320pt, 50pt margin from screen edges
-- **DropDownCell** — cell combining a label and a DropDownButton; use for inline dropdown selection inside lists
+- **DropDownCell** — cell combining a label and a DropDownButton; use for multi-selection inline dropdown inside lists; do NOT use for single-value selection — use `PickerMenu` instead
 
 ### Styles & Modifiers (apply via modifiers, not instantiated directly)
 - `.textStyle(.heading / .headingInfo / .infoTitle / .infoDescription / .sectionHeader / .cellLabel / .cellValue / .errorMessage …)` — predefined font + color combos
