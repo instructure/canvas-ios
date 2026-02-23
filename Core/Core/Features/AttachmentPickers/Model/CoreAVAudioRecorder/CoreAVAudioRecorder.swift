@@ -23,7 +23,7 @@ public protocol CoreAVAudioRecorder {
     var currentTime: TimeInterval { get }
     var isMeteringEnabled: Bool { get set }
 
-    init(url: URL, settings: [String: Int]) throws
+    init(url: URL, settings: [String: Any]) throws
 
     func prepareToRecord()
     func record()
