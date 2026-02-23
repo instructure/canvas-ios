@@ -24,4 +24,21 @@ class APIGradingPeriodTests: XCTestCase {
         let req = GetGradingPeriodsRequest(courseID: "1")
         XCTAssertEqual(req.path, "courses/1/grading_periods")
     }
+
+    func testGetNextPropagatesCustomDecode() throws {
+        let req = GetGradingPeriodsRequest(courseID: "2054")
+        let nextURL = URL(string: "https://canvas.instructure.com/api/v1/courses/2054/grading_periods?page=2")!
+        let headers = ["Link": "<\(nextURL.absoluteString)>; rel=\"next\""]
+        let urlResponse = HTTPURLResponse(url: nextURL, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: headers)!
+
+        let nextRequest = try XCTUnwrap(req.getNext(from: urlResponse))
+
+        let period = APIGradingPeriod.make(id: "99", title: "Test Period")
+        let jsonData = try APIJSONEncoder().encode(APIGradingPeriodResponse(grading_periods: [period]))
+
+        let result = try nextRequest.decode(jsonData)
+        XCTAssertEqual(result.count, 1)
+        XCTAssertEqual(result.first?.id.value, "99")
+        XCTAssertEqual(result.first?.title, "Test Period")
+    }
 }
