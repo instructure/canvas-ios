@@ -136,9 +136,7 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
                 env.userDefaults?.showGradesOnDashboard ?? false
             }
             .removeDuplicates()
-            .sink { [weak self] in
-                self?.showGrades.send($0)
-            }
+            .subscribe(showGrades)
             .store(in: &subscriptions)
     }
 
@@ -151,9 +149,7 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
             }
             .removeDuplicates()
             .replaceError(with: true)
-            .sink { [weak self] in
-                self?.showColorOverlay.send($0)
-            }
+            .subscribe(showColorOverlay)
             .store(in: &subscriptions)
     }
 }
