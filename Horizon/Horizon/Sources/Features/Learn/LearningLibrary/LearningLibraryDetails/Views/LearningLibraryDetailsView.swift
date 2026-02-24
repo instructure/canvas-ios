@@ -41,7 +41,7 @@ struct LearningLibraryDetailsView: View {
         VStack(alignment: .leading, spacing: .zero) {
             if viewModel.hasItems {
                 headerView
-                    listLearningLibraryView
+                contentView
             } else {
                 ScrollView {
                     titleView
@@ -86,49 +86,63 @@ struct LearningLibraryDetailsView: View {
         .padding(.horizontal, .huiSpaces.space16)
     }
 
-    private var listLearningLibraryView: some View {
-        ScrollView(showsIndicators: false) {
-            VStack(spacing: .zero) {
-                helperView
-                LazyVStack(spacing: .huiSpaces.space24) {
-                    ForEach(viewModel.filteredItems) { item in
-                        LearningLibraryCardView(
-                            model: item,
-                            isBookmarkLoading: viewModel.isBookmarkLoading(forItemWithId: item.id),
-                            isEnrollLoading: viewModel.isEnrollLoading(forItemWithId: item.id),
-                        ) {
-                            viewModel.addBookmark(model: item)
-                        } enrollTap: {
-                            viewModel.enroll(model: item)
-                        } onTapItem: {
-                            viewModel.navigateToLearningLibraryItem(item, from: viewController)
-                        }
-                    }
+    @ViewBuilder
+    private var contentView: some View {
+        if #available(iOS 18.0, *) {
+            listLearningLibraryView
+                .onScrollGeometryChange(for: CGFloat.self) { geometry in
+                    geometry.contentOffset.y
+                } action: { _, newOffset in
+                    isShowHeader = newOffset <= 200
+                    isShowDivider = newOffset >= 30
                 }
-                .padding(.top, .huiSpaces.space2)
-                if viewModel.filteredItems.isEmpty {
-                    Text("No results found. Try adjusting your search terms.")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .huiTypography(.p1)
-                        .foregroundStyle(Color.huiColors.text.body)
-                }
-
-                if viewModel.isSeeMoreVisible {
-                    seeMoreButton
-                }
-            }
-            .padding(.horizontal, .huiSpaces.space24)
-            .padding(.bottom, .huiSpaces.space16)
+        } else {
+            listLearningLibraryView
         }
     }
 
-    private var helperView: some View {
-        Color.clear
-            .frame(height: 1)
-            .readingFrame { frame in
-                isShowHeader = frame.minY > -100
-                isShowDivider = frame.minY < 100
+    private var listLearningLibraryView: some View {
+        List {
+            ForEach(viewModel.filteredItems) { item in
+                LearningLibraryCardView(
+                    model: item,
+                    isBookmarkLoading: viewModel.isBookmarkLoading(forItemWithId: item.id),
+                    isEnrollLoading: viewModel.isEnrollLoading(forItemWithId: item.id),
+                ) {
+                    viewModel.addBookmark(model: item)
+                } enrollTap: {
+                    viewModel.enroll(model: item)
+                } onTapItem: {
+                    viewModel.navigateToLearningLibraryItem(item, from: viewController)
+                }
             }
+            .padding(.top, .huiSpaces.space2)
+            .padding(.horizontal, .huiSpaces.space24)
+
+            if viewModel.filteredItems.isEmpty {
+                Text("No results found. Try adjusting your search terms.")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .huiTypography(.p1)
+                    .foregroundStyle(Color.huiColors.text.body)
+                    .padding(.horizontal, .huiSpaces.space24)
+                    .listRowInsets(EdgeInsets())
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.huiColors.surface.pagePrimary)
+            }
+
+            if viewModel.isSeeMoreVisible {
+                seeMoreButton
+                    .padding(.horizontal, .huiSpaces.space24)
+                    .padding(.bottom, .huiSpaces.space16)
+                    .listRowInsets(EdgeInsets())
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.huiColors.surface.pagePrimary)
+            }
+        }
+        .scrollContentBackground(.hidden)
+        .listStyle(.plain)
+        .listRowSpacing(.huiSpaces.space24)
+        .scrollIndicators(.hidden)
     }
 
     private var headerView: some View {
@@ -170,6 +184,7 @@ struct LearningLibraryDetailsView: View {
             learningLibraryTypeFilterView
             Spacer()
             countOfVisiableItemsView
+                .hidden(viewModel.filteredItems.isEmpty)
         }
         .padding(.horizontal, .huiSpaces.space24)
     }
@@ -214,7 +229,6 @@ struct LearningLibraryDetailsView: View {
         SeeMoreButton(accessibilityHint: String(localized: "Double tap to load more items")) {
             viewModel.seeMore()
         }
-        .padding(.top, .huiSpaces.space24)
     }
 }
 
