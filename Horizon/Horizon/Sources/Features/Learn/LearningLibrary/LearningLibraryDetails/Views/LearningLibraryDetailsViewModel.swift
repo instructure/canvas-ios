@@ -23,7 +23,7 @@ import Foundation
 import Observation
 
 @Observable
-final class LearningLibraryDetailsViewModel {
+final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     // MARK: - Init / Outputs
 
     private let searchTextSubject = CurrentValueSubject<String, Never>("")
@@ -64,7 +64,8 @@ final class LearningLibraryDetailsViewModel {
     // MARK: - Dependencies
 
     var model: LearningLibrarySectionModel = .init(id: "", name: "", items: [])
-    private let router: Router
+    let router: Router
+    private let didSendEvent: PassthroughSubject<Void, Never>
     private let interactor: LearningLibraryInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
     let pageType: PageType
@@ -74,11 +75,13 @@ final class LearningLibraryDetailsViewModel {
     init(
         interactor: LearningLibraryInteractor,
         router: Router,
+        didSendEvent: PassthroughSubject<Void, Never>,
         pageType: PageType,
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.pageType = pageType
         self.router = router
+        self.didSendEvent = didSendEvent
         self.interactor = interactor
         self.scheduler = scheduler
         observeFilters()
@@ -86,11 +89,41 @@ final class LearningLibraryDetailsViewModel {
 
     // MARK: - Input Actions
 
+    func fetchData(
+        ignoreCache: Bool = false,
+        completion: (() -> Void)? = nil
+    ) {
+        switch pageType {
+        case .details(let id, _):
+            fetchCollectionItems(id: id, ignoreCache: ignoreCache, completion: completion)
+        case .bookmarks:
+            fetchLearningLibraryItems(ignoreCache: ignoreCache, completion: completion)
+        }
+    }
+
     func fetchLearningLibraryItems(
         ignoreCache: Bool = false,
         completion: (() -> Void)? = nil
     ) {
-        interactor.getLearnLibraryItems(ignoreCache: ignoreCache)
+        interactor.getBookmarkedItems(ignoreCache: ignoreCache)
+            .receive(on: scheduler)
+            .sinkFailureOrValue { [weak self] _ in
+                self?.isLoaderVisible = false
+                completion?()
+            } receiveValue: { [weak self] items in
+                self?.isLoaderVisible = false
+                self?.configResponse(items: items)
+                completion?()
+            }
+            .store(in: &subscriptions)
+    }
+
+    func fetchCollectionItems(
+        id: String,
+        ignoreCache: Bool,
+        completion: (() -> Void)? = nil
+    ) {
+        interactor.getCollectionItems(id: id, ignoreCache: ignoreCache)
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] _ in
                 self?.isLoaderVisible = false
@@ -109,7 +142,7 @@ final class LearningLibraryDetailsViewModel {
                 continuation.resume()
                 return
             }
-            fetchLearningLibraryItems(ignoreCache: true) { continuation.resume() }
+            fetchData(ignoreCache: true) { continuation.resume() }
         }
     }
 
@@ -149,13 +182,23 @@ final class LearningLibraryDetailsViewModel {
         )
         .sink { [weak self] searchText, learningObject, learningLibrary in
             guard let self else { return }
-            self.filter(searchText: searchText, learningObject: learningObject, learningLibrary: learningLibrary)
+            self.filter(
+                searchText: searchText,
+                learningObject: learningObject,
+                learningLibrary: learningLibrary
+            )
         }
         .store(in: &subscriptions)
     }
 
     func seeMore() {
         paginator.seeMore()
+    }
+
+    func clearAll() {
+        searchText = ""
+        selectedLearningObject = LearningLibraryObjectType.firstOption
+        selectedLearningLibrary = LearningLibraryFilter.firstOption
     }
 
     func pop(viewController: WeakViewController) {
@@ -166,13 +209,15 @@ final class LearningLibraryDetailsViewModel {
         bookmarkLoadingStates[model.id] = true
         interactor.bookmark(id: model.id)
             .receive(on: scheduler)
-            .sinkFailureOrValue { error in
-                print(error)
+            .sinkFailureOrValue { [weak self] error in
+                guard let self else { return }
+                bookmarkLoadingStates[model.id] = false
             } receiveValue: { [weak self] item in
                 guard let self else { return }
 
                 configItem(item: item)
                 bookmarkLoadingStates[model.id] = false
+                didSendEvent.send(())
             }
             .store(in: &subscriptions)
     }
@@ -185,12 +230,15 @@ final class LearningLibraryDetailsViewModel {
         enrollLoadingStates[model.id] = true
         interactor.enroll(id: model.id)
             .receive(on: scheduler)
-            .sinkFailureOrValue { error in
-                print(error)
+            .sinkFailureOrValue { [weak self] error in
+                guard let self else { return }
+                enrollLoadingStates[model.id] = false
+
             } receiveValue: { [weak self] item in
                 guard let self else { return }
                 configItem(item: item)
                 enrollLoadingStates[model.id] = false
+                didSendEvent.send(())
             }
             .store(in: &subscriptions)
     }
@@ -199,37 +247,10 @@ final class LearningLibraryDetailsViewModel {
         enrollLoadingStates[id] ?? false
     }
 
-    func navigateToDetails(model: LearningLibraryCardModel, viewController: WeakViewController) {
-        switch model.itemType {
-        case .course:
-            router.show(
-                CourseDetailsAssembly.makeCourseDetailsViewController(
-                    courseID: model.itemId,
-                    enrollmentID: model.courseEnrollmentId ?? ""
-                ),
-                from: viewController
-            )
-
-        case .program:
-            router.show(
-                ProgramDetailsAssembly.makeViewController(programID: ""),
-                from: viewController
-            )
-        default:
-            print("Tapped")
-        }
-
-    }
-
     // MARK: - Private Functions
 
     private func configResponse(items: [LearningLibraryCardModel]) {
-        switch pageType {
-        case .details(let id, _):
-            allItems = items.filter { $0.libraryId == id }
-        case .bookmarks:
-            allItems = items.filter { $0.isBookmarked }
-        }
+        allItems = items
         hasItems = allItems.isNotEmpty
         filter(
             searchText: searchTextSubject.value,
@@ -275,8 +296,14 @@ extension LearningLibraryDetailsViewModel {
 
         var emptyStateTitle: String {
             switch self {
-            case .details: String(localized: "No content available yet")
-            case .bookmarks: String(localized: "You haven't added any bookmarks yet")
+            case .details: ""
+            case .bookmarks: String(localized: "Save courses and resources here to revisit them later.")
+            }
+        }
+        var isBookmarked: Bool {
+            switch self {
+            case .details: false
+            case .bookmarks: true
             }
         }
 

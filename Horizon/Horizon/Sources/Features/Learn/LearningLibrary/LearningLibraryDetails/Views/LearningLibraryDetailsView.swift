@@ -41,11 +41,10 @@ struct LearningLibraryDetailsView: View {
         VStack(alignment: .leading, spacing: .zero) {
             if viewModel.hasItems {
                 headerView
-                SingleAxisGeometryReader(initialSize: 300) { size in
-                    listLearningLibraryView(width: size - 32)
-                }
+                    listLearningLibraryView
             } else {
                 ScrollView {
+                    titleView
                     Text(viewModel.pageType.emptyStateTitle)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .huiTypography(.p1)
@@ -59,8 +58,10 @@ struct LearningLibraryDetailsView: View {
         .animation(.linear, value: isShowHeader)
         .background(Color.huiColors.surface.pagePrimary)
         .refreshable { await viewModel.refresh() }
-        .animation(.easeOut, value: viewModel.filteredItems)
         .onFirstAppear { viewModel.fetchLearningLibraryItems() }
+        .onAppear {
+            ImageCacheConfiguration.configure()
+        }
         .safeAreaInset(edge: .top, spacing: .zero) {
             if isShowHeader { navBarView }
         }
@@ -85,15 +86,14 @@ struct LearningLibraryDetailsView: View {
         .padding(.horizontal, .huiSpaces.space16)
     }
 
-    private func listLearningLibraryView(width: CGFloat) -> some View {
+    private var listLearningLibraryView: some View {
         ScrollView(showsIndicators: false) {
             VStack(spacing: .zero) {
                 helperView
-                VStack(spacing: .huiSpaces.space24) {
+                LazyVStack(spacing: .huiSpaces.space24) {
                     ForEach(viewModel.filteredItems) { item in
                         LearningLibraryCardView(
                             model: item,
-                            width: width,
                             isBookmarkLoading: viewModel.isBookmarkLoading(forItemWithId: item.id),
                             isEnrollLoading: viewModel.isEnrollLoading(forItemWithId: item.id),
                         ) {
@@ -101,7 +101,7 @@ struct LearningLibraryDetailsView: View {
                         } enrollTap: {
                             viewModel.enroll(model: item)
                         } onTapItem: {
-                            viewModel.navigateToDetails(model: item, viewController: viewController)
+                            viewModel.navigateToLearningLibraryItem(item, from: viewController)
                         }
                     }
                 }
@@ -166,14 +166,8 @@ struct LearningLibraryDetailsView: View {
 
     private var filterView: some View {
         HStack(spacing: .huiSpaces.space8) {
-            switch viewModel.pageType {
-            case .details:
-                learningObjectFilterView
-                learningLibraryTypeFilterView
-            case .bookmarks:
-                learningObjectFilterView
-            }
-
+            learningObjectFilterView
+            learningLibraryTypeFilterView
             Spacer()
             countOfVisiableItemsView
         }
@@ -203,9 +197,13 @@ struct LearningLibraryDetailsView: View {
             }
     }
 
+    @ViewBuilder
     private var learningLibraryTypeFilterView: some View {
+        let options: [OptionModel] = viewModel.pageType.isBookmarked
+        ? LearningLibraryFilter.options(excluding: [.all, .completed])
+        : LearningLibraryFilter.options(excluding: LearningLibraryFilter.allCases)
         FilterView(
-            items: LearningLibraryFilter.options,
+            items: options,
             selectedOption: viewModel.selectedLearningLibrary) { option in
                 guard let option else { return }
                 viewModel.selectedLearningLibrary = option
