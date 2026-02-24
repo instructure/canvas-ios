@@ -46,68 +46,124 @@ struct LearningLibraryView: View {
         .overlay { loaderView }
         .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
         .animation(.linear, value: isShowHeader)
-        .onAppear { viewModel.fetchLearningLibrary() }
-        .huiToast(
-            viewModel: .init(text: viewModel.errorMessage, style: .error),
-            isPresented: $viewModel.isErrorVisible
-        )
+        .animation(.easeInOut(duration: 0.3), value: viewModel.isGlobalSearchActive)
+        .onFirstAppear { viewModel.fetchCollections() }
+        .alert(isPresented: $viewModel.isErrorVisible) {
+            Alert(title: Text(viewModel.errorMessage))
+        }
     }
 
     private var learningLibraryView: some View {
-        SingleAxisGeometryReader(initialSize: 300) { size in
             VStack(alignment: .leading, spacing: .zero) {
                 headerContainer
-                listLibraryView(width: size - 100)
+                if viewModel.isGlobalSearchActive {
+                    globalSearchContentView
+                } else {
+                    libraryContentView
+                }
             }
-        }
-    }
-    private func listLibraryView(width: CGFloat) -> some View {
-        ScrollView(showsIndicators: false) {
-            VStack(spacing: .zero) {
-                helperView
-                contentView(width: width)
-            }
-            .padding(.horizontal, .huiSpaces.space24)
-        }
-        .refreshable { await viewModel.refresh() }
+            .animation(.easeInOut(duration: 0.3), value: viewModel.isGlobalSearchActive)
     }
 
-    private func contentView(width: CGFloat) -> some View {
-        VStack(spacing: .huiSpaces.space24) {
-            listLearningLibraryView(width: width)
-            if viewModel.filteredSections.isEmpty {
+    @ViewBuilder
+    private var libraryContentView: some View {
+        if #available(iOS 18.0, *) {
+            listLibraryView
+                .onScrollGeometryChange(for: CGFloat.self) { geometry in
+                    geometry.contentOffset.y
+                } action: { _, newOffset in
+                    isShowHeader = newOffset <= 200
+                    isShowDivider = newOffset >= 30
+                }
+        } else {
+            listLibraryView
+        }
+    }
+
+    private var listLibraryView: some View {
+        List {
+            ForEach(viewModel.filteredSections) { item in
+                ListLearningLibraryView(
+                    viewModel: viewModel,
+                    section: item,
+                    isExpendable: viewModel.filteredSections.count > 1
+                )
+                .id(item.id)
+                .listRowBackground(Color.huiColors.surface.pagePrimary)
+            }
+            .padding(.horizontal, .huiSpaces.space24)
+
+            if viewModel.isSeeMoreVisible {
+                seeMoreButton
+                    .padding(.top, .huiSpaces.space16)
+            }
+        }
+        .listSectionSpacing(.zero)
+        .scrollContentBackground(.hidden)
+        .environment(\.defaultMinListHeaderHeight, 0)
+        .listStyle(.grouped)
+        .listRowSpacing(.huiSpaces.space24)
+        .listSectionSpacing(.compact)
+        .listSectionSeparator(.hidden)
+        .scrollIndicators(.hidden)
+        .refreshable { await viewModel.refresh() }
+        .transition(.opacity.combined(with: .move(edge: .leading)))
+    }
+
+    @ViewBuilder
+    private var globalSearchContentView: some View {
+        if #available(iOS 18.0, *) {
+            globalSearchListView
+                .onScrollGeometryChange(for: CGFloat.self) { geometry in
+                    geometry.contentOffset.y
+                } action: { _, newOffset in
+                    isShowHeader = newOffset <= 200
+                    isShowDivider = newOffset >= 30
+                }
+        } else {
+            globalSearchListView
+        }
+    }
+
+    private var globalSearchListView: some View {
+        List {
+            ForEach(viewModel.globalSearchItems) { item in
+                LearningLibraryCardView(
+                    model: item,
+                    isBookmarkLoading: viewModel.isBookmarkLoading(forItemWithId: item.id),
+                    isEnrollLoading: viewModel.isEnrollLoading(forItemWithId: item.id),
+                    onBookmarkTap: {
+                        viewModel.addBookmark(model: item)
+                    }, enrollTap: {
+                        viewModel.enroll(model: item)
+                    }, onTapItem: {
+                        viewModel.navigateToLearningLibraryItem(item, from: viewController)
+                    }
+                )
+                .id(item.id)
+                .padding(.top, .huiSpaces.space2)
+            }
+            .background(Color.huiColors.surface.pagePrimary)
+            .padding(.horizontal, .huiSpaces.space24)
+
+            if viewModel.globalSearchItems.isEmpty && !viewModel.isGlobalSearchLoading {
                 Text("No results found. Try adjusting your search terms.")
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .huiTypography(.p1)
                     .foregroundStyle(Color.huiColors.text.body)
-            }
-
-            if viewModel.isSeeMoreVisible {
-                seeMoreButton
+                    .background(Color.huiColors.surface.pagePrimary)
+                    .padding(.horizontal, .huiSpaces.space24)
+                    .listRowInsets(EdgeInsets())
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.huiColors.surface.pagePrimary)
             }
         }
-    }
-
-    private func listLearningLibraryView(width: CGFloat) -> some View {
-        ForEach(viewModel.filteredSections) { item in
-            ListLearningLibraryView(
-                section: item,
-                viewModel: viewModel,
-                availableWidth: width,
-                isExpendable: viewModel.filteredSections.count > 1
-            )
-            Divider()
-                .hidden(viewModel.filteredSections.last == item)
-        }
-    }
-
-    private var helperView: some View {
-        Color.clear
-            .frame(height: 1)
-            .readingFrame { frame in
-                isShowHeader = frame.minY > -100
-                isShowDivider = frame.minY < 100
-            }
+        .overlay { globalSearchLoaderView }
+        .scrollContentBackground(.hidden)
+        .listStyle(.plain)
+        .listRowSpacing(.huiSpaces.space24)
+        .scrollIndicators(.hidden)
+        .transition(.opacity.combined(with: .move(edge: .trailing)))
     }
 
     @ViewBuilder
@@ -121,11 +177,22 @@ struct LearningLibraryView: View {
         }
     }
 
+    @ViewBuilder
+    private var globalSearchLoaderView: some View {
+        if viewModel.isGlobalSearchLoading {
+            ZStack {
+                Color.huiColors.surface.pagePrimary
+                    .ignoresSafeArea()
+                HorizonUI.Spinner(size: .small, showBackground: true)
+            }
+        }
+    }
     private var headerContainer: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
             headerView
                 .padding(.horizontal, .huiSpaces.space24)
                 .padding(.top, .huiSpaces.space2)
+            filterView
             Rectangle()
                 .fill(Color.huiColors.primitives.grey14)
                 .frame(height: 1.5)
@@ -162,6 +229,10 @@ struct LearningLibraryView: View {
             viewModel.seeMore()
         }
         .padding(.bottom, .huiSpaces.space16)
+        .padding(.horizontal, .huiSpaces.space24)
+        .listRowInsets(EdgeInsets())
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.huiColors.surface.pagePrimary)
     }
 
     private var emptyView: some View {
@@ -170,6 +241,47 @@ struct LearningLibraryView: View {
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
             .foregroundStyle(Color.huiColors.text.body)
             .huiTypography(.h3)
+    }
+
+    private var filterView: some View {
+        HStack(spacing: .huiSpaces.space8) {
+            learningObjectFilterView
+            learningLibraryTypeFilterView
+            HorizonUI.IconButton(Image.huiIcons.close, type: .gray) {
+                viewModel.clearAll()
+            }
+            .hidden(!viewModel.isGlobalSearchActive)
+            Spacer()
+            countOfVisibleItemsView
+        }
+        .padding(.horizontal, .huiSpaces.space24)
+    }
+
+    private var learningObjectFilterView: some View {
+        FilterView(
+            items: LearningLibraryObjectType.options,
+            selectedOption: viewModel.selectedLearningObject
+        ) { option in
+            guard let option else { return }
+            viewModel.selectedLearningObject = option
+        }
+    }
+
+    private var learningLibraryTypeFilterView: some View {
+        FilterView(
+            items: LearningLibraryFilter.options(excluding: LearningLibraryFilter.allCases),
+            selectedOption: viewModel.selectedLearningLibrary
+        ) { option in
+            guard let option else { return }
+            viewModel.selectedLearningLibrary = option
+        }
+    }
+
+    private var countOfVisibleItemsView: some View {
+        Text("\(viewModel.globalSearchItems.count)")
+            .foregroundStyle(Color.huiColors.text.dataPoint)
+            .huiTypography(.p1)
+            .hidden(viewModel.globalSearchItems.isEmpty || !viewModel.isGlobalSearchActive)
     }
 }
 

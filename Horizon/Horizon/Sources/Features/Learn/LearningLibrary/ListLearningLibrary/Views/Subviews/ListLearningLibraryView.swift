@@ -21,28 +21,44 @@ import HorizonUI
 import SwiftUI
 
 struct ListLearningLibraryView: View {
+    // MARK: - Private variables
+
     @State private var isExpanded: Bool = true
     @Environment(\.viewController) private var viewController
+
+    // MARK: - Dependencies
+
+    @State var viewModel: LearningLibraryViewModel
     let section: LearningLibrarySectionModel
-    let viewModel: LearningLibraryViewModel
-    let availableWidth: CGFloat
     let isExpendable: Bool
 
     var body: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.space24) {
-            headerView
-
+        Section(header: sectionHeaderContainer) {
             if isExpanded {
-                VStack(spacing: .huiSpaces.space24) {
-                    itemsView
-                    viewAllCollectionsButton
-                }
+                items
+                viewAllCollectionsButton
             }
+        }
+        .listRowInsets(EdgeInsets())
+        .listRowSeparator(.hidden)
+        .listSectionSeparatorTint(Color.huiColors.surface.pagePrimary)
+    }
+
+    private var sectionHeaderContainer: some View {
+        VStack(spacing: .zero) {
+            headerView
+            Rectangle()
+                .fill(
+                    isExpanded
+                    ? Color.clear
+                    : Color.huiColors.lineAndBorders.lineStroke
+                )
+                .frame(height: 1)
         }
     }
 
     private var headerView: some View {
-        HStack {
+        HStack(alignment: .top) {
             Text(section.name)
                 .foregroundStyle(Color.huiColors.text.body)
                 .huiTypography(.h3)
@@ -63,13 +79,13 @@ struct ListLearningLibraryView: View {
                 }
             }
         }
+        .padding(.vertical, .huiSpaces.space24)
     }
 
-    private var itemsView: some View {
+    private var items: some View {
         ForEach(section.sortedItems) { item in
             LearningLibraryCardView(
                 model: item,
-                width: availableWidth,
                 isBookmarkLoading: viewModel.isBookmarkLoading(forItemWithId: item.id),
                 isEnrollLoading: viewModel.isEnrollLoading(forItemWithId: item.id),
                 onBookmarkTap: {
@@ -77,9 +93,12 @@ struct ListLearningLibraryView: View {
                 }, enrollTap: {
                     viewModel.enroll(model: item)
                 }, onTapItem: {
-                    viewModel.navigateToItem(model: item, viewController: viewController)
+                    viewModel.navigateToLearningLibraryItem(item, from: viewController)
                 }
             )
+            .listRowInsets(EdgeInsets())
+            .listRowSeparator(.hidden)
+            .listRowSeparatorTint(Color.huiColors.surface.pagePrimary)
             .id(item.id)
         }
     }
@@ -110,7 +129,7 @@ struct ListLearningLibraryView: View {
 
 #Preview {
     ListLearningLibraryView(
-        section: LearningLibrarySectionModel(
+        viewModel: LearningLibraryViewModel(router: AppEnvironment.shared.router), section: LearningLibrarySectionModel(
             id: "1",
             name: "Learning Library Name",
             hasMoreItems: true,
@@ -128,8 +147,6 @@ struct ListLearningLibraryView: View {
                 )
             ]
         ),
-        viewModel: LearningLibraryViewModel(router: AppEnvironment.shared.router),
-        availableWidth: 343,
         isExpendable: true
     )
     .padding()
