@@ -73,8 +73,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
             RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window?.rootViewController)
         }
 
-        handleLaunchOptionsNotifications(launchOptions)
-
         return true
     }
 
@@ -164,19 +162,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
             ])
         }
         completionHandler()
-    }
-
-    func handleLaunchOptionsNotifications(_ launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
-        if
-            let notification = launchOptions?[.remoteNotification] as? [AnyHashable: AnyObject],
-            let aps = notification["aps"] as? [String: AnyObject] {
-            if let url = notification.routeURL {
-                openURL(url, userInfo: [
-                    "forceRefresh": true,
-                    "pushNotification": aps
-                ])
-            }
-        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
