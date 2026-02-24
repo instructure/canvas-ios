@@ -59,20 +59,19 @@ public struct GetHLearningLibraryItemRequest: APIGraphQLPagedRequestable, Learni
     // MARK: - Init
 
     public init(
-        limit: Int = 100,
         cursor: String? = nil,
-        forward: Bool = true,
         bookmarkedOnly: Bool = false,
         completedOnly: Bool = false,
-        searchTerm: String? = nil
+        searchTerm: String? = nil,
+        types: [String]? = []
     ) {
         self.variables = Input(
-            limit: limit,
+            limit: 100,
             cursor: cursor,
-            forward: forward,
+            forward: true,
             bookmarkedOnly: bookmarkedOnly,
             completedOnly: completedOnly,
-            types: types,
+            types: types ?? self.types,
             searchTerm: searchTerm
         )
     }

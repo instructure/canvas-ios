@@ -17,27 +17,27 @@
 //
 
 public struct LearningLibraryItemsResponse: Codable {
-    let id: String
-    let libraryId: String?
-    let itemType: String
-    let displayOrder: Int?
-    let isBookmarked: Bool?
-    let completionPercentage: Double?
-    let isEnrolledInCanvas: Bool?
-    let createdAt: String?
-    let updatedAt: String?
-    let canvasCourse: CanvasCourse?
-    let programId: String?
-    let programCourseId: String?
-    let canvasEnrollmentId: String?
+    public let id: String
+    public let libraryId: String?
+    public let itemType: String
+    public let displayOrder: Int?
+    public let isBookmarked: Bool?
+    public let completionPercentage: Double?
+    public let isEnrolledInCanvas: Bool?
+    public let createdAt: String?
+    public let updatedAt: String?
+    public let canvasCourse: CanvasCourse?
+    public let programId: String?
+    public let programCourseId: String?
+    public let canvasEnrollmentId: String?
 
-    struct CanvasCourse: Codable {
-        let courseId: String
-        let courseName: String
-        let canvasUrl: String?
-        let courseImageUrl: String?
-        let moduleCount: Int?
-        let moduleItemCount: Int?
-        let estimatedDurationMinutes: Int?
+    public struct CanvasCourse: Codable {
+        public let courseId: String
+        public let courseName: String
+        public let canvasUrl: String?
+        public let courseImageUrl: String?
+        public let moduleCount: Int?
+        public let moduleItemCount: Int?
+        public let estimatedDurationMinutes: Int?
     }
 }
