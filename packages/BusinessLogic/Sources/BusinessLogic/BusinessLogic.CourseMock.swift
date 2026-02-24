@@ -1,3 +1,4 @@
+//
 // This file is part of Canvas.
 // Copyright (C) 2026-present  Instructure, Inc.
 //
