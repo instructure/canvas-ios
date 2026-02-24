@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import BusinessLogic
 import Combine
 import Core
 import CoreData
@@ -72,6 +73,7 @@ final class CoursesInteractorLive: CoursesInteractor {
     private let enrollmentsStore: ReactiveStore<GetEnrollments>
     private let groupsStore: ReactiveStore<GetDashboardGroups>
     private let sortComparator: any SortComparator<Course>
+    private let courseLogic: any BusinessLogic.Course
     private var subscriptions = Set<AnyCancellable>()
 
     /// Queue of requests waiting for fetch completion. Protected by context's queue.
@@ -83,11 +85,13 @@ final class CoursesInteractorLive: CoursesInteractor {
 
     init(
         env: AppEnvironment,
-        sortComparator: some SortComparator<Course> = InvitedCourseSortComparator()
+        sortComparator: some SortComparator<Course> = InvitedCourseSortComparator(),
+        courseLogic: any BusinessLogic.Course = .live
     ) {
         self.env = env
         self.context = env.database.backgroundReadContext
         self.sortComparator = sortComparator
+        self.courseLogic = courseLogic
         self.coursesStore = ReactiveStore(
             context: context,
             useCase: coursesUseCase,
@@ -150,12 +154,10 @@ final class CoursesInteractorLive: CoursesInteractor {
             enrollmentsStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true),
             groupsStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true)
         )
-        .map { [sortComparator] courses, _, groups in
+        .map { [sortComparator, courseLogic] courses, _, groups in
             let allCourses = courses.filter { !$0.isCourseDeleted }
             let invitedCourses = allCourses
-                .filter { course in
-                    course.hasInvitedEnrollment
-                }
+                .filter { courseLogic.shouldShowAsInvitedCourse(isCourseClosed: $0.isPastEnrollment, hasInvitedEnrollment: $0.hasInvitedEnrollment) }
                 .sorted(using: sortComparator)
             return CoursesResult(allCourses: allCourses, invitedCourses: invitedCourses, groups: groups)
         }

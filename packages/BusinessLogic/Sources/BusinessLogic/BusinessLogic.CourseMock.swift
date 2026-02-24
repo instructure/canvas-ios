@@ -22,14 +22,14 @@ extension BusinessLogic {
     public final class CourseMock: Course {
 
         public var shouldShowAsInvitedCourseReturnValue = false
-        public private(set) var shouldShowAsInvitedCourseReceivedArguments: (isCourseClosed: Bool, hasInvitedEnrollment: Bool)?
+        public private(set) var shouldShowAsInvitedCourseReceivedInvocations: [(isCourseClosed: Bool, hasInvitedEnrollment: Bool)] = []
 
         public init(shouldShowAsInvitedCourseReturnValue: Bool = false) {
             self.shouldShowAsInvitedCourseReturnValue = shouldShowAsInvitedCourseReturnValue
         }
 
         public func shouldShowAsInvitedCourse(isCourseClosed: Bool, hasInvitedEnrollment: Bool) -> Bool {
-            shouldShowAsInvitedCourseReceivedArguments = (isCourseClosed, hasInvitedEnrollment)
+            shouldShowAsInvitedCourseReceivedInvocations.append((isCourseClosed, hasInvitedEnrollment))
             return shouldShowAsInvitedCourseReturnValue
         }
     }
