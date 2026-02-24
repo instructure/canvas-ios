@@ -21,8 +21,9 @@ import SwiftUI
 
 struct CourseInvitationCardView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @Environment(\.offlineMode) private var offlineMode
+
     @State var viewModel: CourseInvitationCardViewModel
-    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -58,7 +59,7 @@ struct CourseInvitationCardView: View {
     }
 
     private var acceptButton: some View {
-        PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline, action: viewModel.accept) {
+        PrimaryButton(isAvailable: offlineMode.isAppOnline, action: viewModel.accept) {
             ZStack {
                 if viewModel.isAccepting {
                     ProgressView()
@@ -74,7 +75,7 @@ struct CourseInvitationCardView: View {
     }
 
     private var declineButton: some View {
-        PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline, action: viewModel.decline) {
+        PrimaryButton(isAvailable: offlineMode.isAppOnline, action: viewModel.decline) {
             ZStack {
                 if viewModel.isDeclining {
                     ProgressView()

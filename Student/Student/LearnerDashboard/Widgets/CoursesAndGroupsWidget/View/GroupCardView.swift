@@ -22,9 +22,9 @@ import SwiftUI
 struct GroupCardView: View {
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
+    @Environment(\.offlineMode) private var offlineMode
 
     private let viewModel: GroupCardViewModel
-    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
 
     init(viewModel: GroupCardViewModel) {
         self.viewModel = viewModel
@@ -39,7 +39,7 @@ struct GroupCardView: View {
                 courseLabel
                 titleLabel
             },
-            isAvailable: !offlineModeViewModel.isOffline,
+            isAvailable: offlineMode.isAppOnline,
             action: {
                 viewModel.didTapCard(from: controller)
             }

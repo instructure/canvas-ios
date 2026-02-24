@@ -21,6 +21,7 @@ import SwiftUI
 
 struct CourseCardView: View {
     @Environment(\.viewController) private var controller
+    @Environment(\.offlineMode) private var offlineMode
     @ScaledMetric private var uiScale: CGFloat = 1
 
     private let viewModel: CourseCardViewModel
@@ -28,13 +29,10 @@ struct CourseCardView: View {
     private let showColorOverlay: Bool
     private let a11yLabel: String
 
-    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
     @State private var isShowingOptionsDialog = false
 
     private var isAvailable: Bool {
-        let isAppOnline = !offlineModeViewModel.isOffline
-        let isCourseAvailableOffline = viewModel.isAvailableOffline
-        return isAppOnline || isCourseAvailableOffline
+        offlineMode.isAppOnline || viewModel.isAvailableOffline
     }
 
     init(
@@ -119,7 +117,7 @@ struct CourseCardView: View {
 
     @ViewBuilder
     private var kebabButton: some View {
-        if offlineModeViewModel.isOfflineFeatureEnabled {
+        if offlineMode.isOfflineFeatureEnabled {
             optionsButton
         } else {
             customizeButton
@@ -127,7 +125,7 @@ struct CourseCardView: View {
     }
 
     private var optionsButton: some View {
-        PrimaryButton(isAvailable: !offlineModeViewModel.isOffline) {
+        PrimaryButton(isAvailable: offlineMode.isAppOnline) {
             isShowingOptionsDialog.toggle()
         } label: {
             kebabIcon
@@ -154,7 +152,7 @@ struct CourseCardView: View {
     }
 
     private func didTapManageOfflineContent() {
-        if offlineModeViewModel.isOffline {
+        guard offlineMode.isAppOnline else {
             return UIAlertController.showItemNotAvailableInOfflineAlert()
         }
 
@@ -162,7 +160,7 @@ struct CourseCardView: View {
     }
 
     private func didTapCustomize() {
-        if offlineModeViewModel.isOffline {
+        guard offlineMode.isAppOnline else {
             return UIAlertController.showItemNotAvailableInOfflineAlert()
         }
 
@@ -170,7 +168,7 @@ struct CourseCardView: View {
     }
 
     private var customizeButton: some View {
-        PrimaryButton(isAvailable: !offlineModeViewModel.isOffline) {
+        PrimaryButton(isAvailable: offlineMode.isAppOnline) {
             didTapCustomize()
         } label: {
             kebabIcon

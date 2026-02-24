@@ -23,8 +23,9 @@ struct ConferenceCardView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
+    @Environment(\.offlineMode) private var offlineMode
+
     @State var viewModel: ConferenceCardViewModel
-    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -58,7 +59,7 @@ struct ConferenceCardView: View {
 
     private var joinButton: some View {
         PrimaryButton(
-            isAvailable: !$offlineModeViewModel.isOffline,
+            isAvailable: offlineMode.isAppOnline,
             action: { viewModel.didTapJoin(controller: controller) }
         ) {
             Text("Join", bundle: .student)
@@ -70,7 +71,7 @@ struct ConferenceCardView: View {
 
     private var dismissButton: some View {
         PrimaryButton(
-            isAvailable: !$offlineModeViewModel.isOffline,
+            isAvailable: offlineMode.isAppOnline,
             action: { viewModel.didTapDismiss() }
         ) {
             Text("Dismiss", bundle: .student)
