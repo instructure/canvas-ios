@@ -21,19 +21,25 @@ import Combine
 import Foundation
 
 final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
+    func searchCollectionItem(bookmarkedOnly: Bool, completedOnly: Bool, types: [String]?, searchTerm: String?) -> AnyPublisher<[LearningLibraryCardModel], any Error> {
+        Just(mockItems)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+
     func getLearnLibraryCollections(ignoreCache: Bool) -> AnyPublisher<[LearningLibrarySectionModel], Error> {
         Just(mockCollections)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
-    func getLearnLibraryItems(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error> {
+    func getBookmarkedItems(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error> {
         Just(mockItems)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 
-    func bookmark(id: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
+    func bookmark(id: String, itemID: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
         let item = mockItems.first { $0.id == id } ?? mockItems[0]
         var updatedItem = item
         updatedItem.isBookmarked.toggle()
@@ -47,6 +53,12 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
         var updatedItem = item
         updatedItem.isEnrolled = true
         return Just(updatedItem)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+
+    func getCollectionItems(id: String, ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error> {
+        Just(mockItems)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }

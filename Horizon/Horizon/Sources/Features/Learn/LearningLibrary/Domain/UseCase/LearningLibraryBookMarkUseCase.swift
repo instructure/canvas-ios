@@ -17,43 +17,56 @@
 //
 
 import Core
-import CoreData
 import Combine
+import CoreData
+import Foundation
 
-final class LearningLibraryItemUseCase: APIUseCase {
+final class LearningLibraryBookMarkUseCase: APIUseCase {
     public typealias Model = CDHLearningLibraryCollectionItem
 
     // MARK: - Properties
 
     private var subscriptions = Set<AnyCancellable>()
-    public var cacheKey: String? { "Learning-Library-Items" }
-    public var request: GetHLearningLibraryItemRequest { GetHLearningLibraryItemRequest() }
-    var scope: Scope { .all }
+    public var cacheKey: String? { nil }
+    public var request: LearningLibraryBookMarkRequest { LearningLibraryBookMarkRequest(id: id) }
+    public var scope: Scope { .where(#keyPath(CDHLearningLibraryCollectionItem.id), equals: id) }
 
     // MARK: - Dependencies
 
     private let journey: DomainServiceProtocol
+    private let id: String
+    private let itemID: String
 
     // MARK: - Init
 
-    init(journey: DomainServiceProtocol = DomainService()) {
+    init(
+        journey: DomainServiceProtocol = DomainService(),
+        id: String,
+        itemID: String
+    ) {
         self.journey = journey
+        self.id = id
+        self.itemID = itemID
     }
 
     func write(
-        response: [LearningLibraryItemsResponse]?,
+        response: LearningLibraryBookMarkResponse?,
         urlResponse: URLResponse?,
         to client: NSManagedObjectContext
     ) {
-        let items = response ?? []
-        items.forEach {
-            CDHLearningLibraryCollectionItem.save($0, in: client)
+        if let isBookmarked = response?.data.toggleCollectionItemBookmark.isBookmarked {
+            CDHLearningLibraryCollectionItem.updateBookmark(
+                id,
+                itemID: itemID,
+                isBookmarked: isBookmarked,
+                in: client
+            )
         }
     }
 
     public func makeRequest(
         environment: AppEnvironment,
-        completionHandler: @escaping ([LearningLibraryItemsResponse]?, URLResponse?, Error?) -> Void
+        completionHandler: @escaping (LearningLibraryBookMarkResponse?, URLResponse?, Error?) -> Void
     ) {
         journey
             .api()
@@ -61,7 +74,7 @@ final class LearningLibraryItemUseCase: APIUseCase {
                 completionHandler(nil, nil, error)
             }, receiveValue: { [weak self] api in
                 guard let self = self else { return }
-                api.exhaust(self.request, callback: completionHandler)
+                api.makeRequest(self.request, callback: completionHandler)
             })
             .store(in: &subscriptions)
     }

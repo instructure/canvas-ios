@@ -75,17 +75,16 @@ final public class CDHLearningLibraryCollectionItem: NSManagedObject {
 }
 
 extension CDHLearningLibraryCollectionItem {
-    @discardableResult
      public static func updateBookmark(
           _ id: String,
+          itemID: String,
           isBookmarked: Bool = false,
           in context: NSManagedObjectContext
-     ) -> CDHLearningLibraryCollectionItem {
-         let dbEntity: CDHLearningLibraryCollectionItem = context.first(
-             where: #keyPath(CDHLearningLibraryCollectionItem.id),
-             equals: id
-         ) ?? context.insert()
-         dbEntity.isBookmarked = isBookmarked
-         return dbEntity
+     )  {
+         let predicate = NSPredicate(format: "%K == %@", #keyPath(CDHLearningLibraryCollectionItem.itemId), itemID)
+         let dbEntities: [CDHLearningLibraryCollectionItem] = context.fetch(predicate)
+         dbEntities.forEach {
+             $0.isBookmarked = isBookmarked
+         }
      }
 }

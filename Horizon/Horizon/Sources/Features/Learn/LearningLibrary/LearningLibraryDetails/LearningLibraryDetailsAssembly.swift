@@ -17,24 +17,35 @@
 //
 
 import Core
+import Combine
 import UIKit
 
 enum LearningLibraryAssembly {
-    static private func makeViewModel(pageType: LearningLibraryDetailsViewModel.PageType) -> LearningLibraryDetailsViewModel {
+    static private func makeViewModel(
+        pageType: LearningLibraryDetailsViewModel.PageType,
+        didSendEvent: PassthroughSubject<Void,Never>
+    ) -> LearningLibraryDetailsViewModel {
         let router = AppEnvironment.shared.router
         return LearningLibraryDetailsViewModel(
             interactor: LearningLibraryInteractorLive(),
             router: router,
+            didSendEvent: didSendEvent,
             pageType: pageType
         )
     }
 
-    static func makeView(pageType: LearningLibraryDetailsViewModel.PageType) -> LearningLibraryDetailsView {
-        .init(viewModel: makeViewModel(pageType: pageType))
+    static func makeView(
+        pageType: LearningLibraryDetailsViewModel.PageType,
+        didSendEvent: PassthroughSubject<Void,Never>
+    ) -> LearningLibraryDetailsView {
+        .init(viewModel: makeViewModel(pageType: pageType, didSendEvent: didSendEvent))
     }
 
-    static func makeViewController(pageType: LearningLibraryDetailsViewModel.PageType) -> UIViewController {
-        CoreHostingController(makeView(pageType: pageType))
+    static func makeViewController(
+        pageType: LearningLibraryDetailsViewModel.PageType,
+        didSendEvent: PassthroughSubject<Void,Never>
+    ) -> UIViewController {
+        CoreHostingController(makeView(pageType: pageType, didSendEvent: didSendEvent))
     }
 
     #if DEBUG
@@ -43,6 +54,7 @@ enum LearningLibraryAssembly {
             viewModel: .init(
                 interactor: LearningLibraryInteractorPreview(),
                 router: AppEnvironment.shared.router,
+                didSendEvent: PassthroughSubject<Void, Never>(),
                 pageType: .bookmarks
             )
         )

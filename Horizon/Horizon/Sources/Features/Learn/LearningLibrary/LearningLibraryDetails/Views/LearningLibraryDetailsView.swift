@@ -58,7 +58,7 @@ struct LearningLibraryDetailsView: View {
         .animation(.linear, value: isShowHeader)
         .background(Color.huiColors.surface.pagePrimary)
         .refreshable { await viewModel.refresh() }
-        .onFirstAppear { viewModel.fetchLearningLibraryItems() }
+        .onFirstAppear { viewModel.fetchData() }
         .onAppear {
             ImageCacheConfiguration.configure()
         }

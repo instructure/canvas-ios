@@ -22,9 +22,16 @@ import Foundation
 
 protocol LearningLibraryInteractor {
     func getLearnLibraryCollections(ignoreCache: Bool) -> AnyPublisher<[LearningLibrarySectionModel], Error>
-    func getLearnLibraryItems(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error>
-    func bookmark(id: String) -> AnyPublisher<LearningLibraryCardModel, Error>
+    func getBookmarkedItems(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error>
+    func bookmark(id: String, itemID: String) -> AnyPublisher<LearningLibraryCardModel, Error>
     func enroll(id: String) -> AnyPublisher<LearningLibraryCardModel, Error>
+    func getCollectionItems(id: String, ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error>
+    func searchCollectionItem(
+        bookmarkedOnly: Bool,
+        completedOnly: Bool,
+        types: [String]?,
+        searchTerm: String?
+    ) -> AnyPublisher<[LearningLibraryCardModel], Error>
 }
 
 final class LearningLibraryInteractorLive: LearningLibraryInteractor {
@@ -45,10 +52,13 @@ final class LearningLibraryInteractorLive: LearningLibraryInteractor {
                 let isSingleCollection = collections.count == 1
                 let itemLimit = isSingleCollection ? 4 : 2
                 return collections.map { collection in
-                    let limitedItems = Array(collection.items.prefix(itemLimit))
+                    let sortedItems = collection.items.sorted {
+                        ($0.name) < ($1.name)
+                    }
+                    let limitedItems = Array(sortedItems.prefix(itemLimit))
                     return LearningLibrarySectionModel(
                         for: collection,
-                        hasMoreItems: collection.items.count >= itemLimit,
+                        hasMoreItems: sortedItems.count >= itemLimit,
                         items: limitedItems
                     )
                 }
@@ -56,8 +66,42 @@ final class LearningLibraryInteractorLive: LearningLibraryInteractor {
             .eraseToAnyPublisher()
     }
 
-    func getLearnLibraryItems(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error> {
-        ReactiveStore(useCase: LearningLibraryItemUseCase(journey: domainService))
+    func getBookmarkedItems(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error> {
+        ReactiveStore(useCase: GetCollectionItemBookmarkedUseCase(journey: domainService))
+            .getEntities(ignoreCache: ignoreCache)
+            .map { items in
+                items.map { LearningLibraryCardModel(for: $0) }
+                    .removingDuplicates(by: \.itemId)
+            }
+            .eraseToAnyPublisher()
+    }
+
+    func searchCollectionItem(
+        bookmarkedOnly: Bool,
+        completedOnly: Bool,
+        types: [String]?,
+        searchTerm: String?
+    ) -> AnyPublisher<[LearningLibraryCardModel], Error> {
+        let request = GetHLearningLibraryItemRequest(
+            bookmarkedOnly: bookmarkedOnly,
+            completedOnly: completedOnly,
+            searchTerm: searchTerm,
+            types: types
+        )
+        return domainService.api()
+            .flatMap { api in
+                api.exhaust(request)
+            }
+            .map(\.body)
+            .map { items in
+                items.map { LearningLibraryCardModel(for: $0) }
+                    .removingDuplicates(by: \.itemId)
+            }
+            .eraseToAnyPublisher()
+    }
+
+    func getCollectionItems(id: String, ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error> {
+        ReactiveStore(useCase: LearningLibraryCollectionItemUseCase(id: id, journey: domainService))
             .getEntities(ignoreCache: ignoreCache)
             .map { items in
                 items.map { LearningLibraryCardModel(for: $0) }
@@ -65,8 +109,8 @@ final class LearningLibraryInteractorLive: LearningLibraryInteractor {
             .eraseToAnyPublisher()
     }
 
-    func bookmark(id: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
-        ReactiveStore(useCase: LearningLibraryBookMarkUseCase(journey: domainService, id: id))
+    func bookmark(id: String, itemID: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
+        ReactiveStore(useCase: LearningLibraryBookMarkUseCase(journey: domainService, id: id, itemID: itemID))
             .getEntities()
             .compactMap { $0.first }
             .map { LearningLibraryCardModel(for: $0) }
@@ -79,5 +123,12 @@ final class LearningLibraryInteractorLive: LearningLibraryInteractor {
             .compactMap { $0.first }
             .map { LearningLibraryCardModel(for: $0) }
             .eraseToAnyPublisher()
+    }
+}
+
+extension Sequence {
+    func removingDuplicates<T: Hashable>(by keyPath: KeyPath<Element, T>) -> [Element] {
+        var seen = Set<T>()
+        return filter { seen.insert($0[keyPath: keyPath]).inserted }
     }
 }

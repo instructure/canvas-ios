@@ -23,14 +23,26 @@ import Foundation
 import Observation
 
 @Observable
-final class LearningLibraryViewModel {
+final class LearningLibraryViewModel: LearningLibraryItemNavigating {
     // MARK: - Init / Outputs
 
     private let searchTextSubject = CurrentValueSubject<String, Never>("")
+    private let selectedLearningObjectSubject = CurrentValueSubject<OptionModel, Never>(LearningLibraryObjectType.firstOption)
+    private let selectedLearningLibrarySubject = CurrentValueSubject<OptionModel, Never>(LearningLibraryFilter.firstOption)
 
     var searchText: String = "" {
         didSet {
             searchTextSubject.send(searchText)
+        }
+    }
+    var selectedLearningObject = LearningLibraryObjectType.firstOption {
+        didSet {
+            selectedLearningObjectSubject.send(selectedLearningObject)
+        }
+    }
+    var selectedLearningLibrary = LearningLibraryFilter.firstOption {
+        didSet {
+            selectedLearningLibrarySubject.send(selectedLearningLibrary)
         }
     }
 
@@ -43,20 +55,25 @@ final class LearningLibraryViewModel {
     private(set) var errorMessage = ""
     private(set) var hasLibrary: Bool = false
     private(set) var isLoaderVisible: Bool = true
+    private(set) var globalSearchItems: [LearningLibraryCardModel] = []
+
+    private(set) var isGlobalSearchActive: Bool = false
+    private(set) var isGlobalSearchLoading: Bool = false
     var filteredSections: [LearningLibrarySectionModel] { paginator.visibleItems }
     var isSeeMoreVisible: Bool { paginator.isSeeMoreVisible }
 
     // MARK: - Private variables
 
-    private var subscriptions = Set<AnyCancellable>()
     private var bookmarkLoadingStates: [String: Bool] = [:]
     private var enrollLoadingStates: [String: Bool] = [:]
-    private var allItems: [LearningLibrarySectionModel] = []
+    private var reloadCollections = PassthroughSubject<Void, Never>()
+    private var subscriptions = Set<AnyCancellable>()
+    private var globalSearchCancellable: AnyCancellable?
     private let paginator = PaginatedDataSource<LearningLibrarySectionModel>(items: [], pageSize: 3)
 
     // MARK: - Dependencies
 
-    private let router: Router
+    let router: Router
     private let interactor: LearningLibraryInteractor
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
@@ -70,12 +87,22 @@ final class LearningLibraryViewModel {
         self.router = router
         self.interactor = interactor
         self.scheduler = scheduler
-        observeSearchText()
+        observeSearchAndFilters()
+        reloadCollections
+            .sink { [weak self] in
+            self?.fetchCollections()
+        }
+        .store(in: &subscriptions)
+    }
+
+    deinit {
+        globalSearchCancellable?.cancel()
+        globalSearchCancellable = nil
     }
 
     // MARK: - Input Actions
 
-    func fetchLearningLibrary(ignoreCache: Bool = false, completion: (() -> Void)? = nil) {
+    func fetchCollections(ignoreCache: Bool = false, completion: (() -> Void)? = nil) {
         interactor.getLearnLibraryCollections(ignoreCache: ignoreCache)
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] error in
@@ -85,10 +112,13 @@ final class LearningLibraryViewModel {
             } receiveValue: { [weak self] collections in
                 guard let self else { return }
                 isLoaderVisible = false
-                allItems = collections
                 hasLibrary = collections.isNotEmpty
-                paginator.setItems(collections, currentPage: paginator.currentPage)
-                paginator.search(query: searchTextSubject.value)
+                if paginator.currentPage == 0 {
+                    paginator.setItems(collections)
+                } else {
+                    /// Need to save the `currentPage` index when reload data after adding bookmark or enrolling
+                    paginator.visibleItems = collections
+                }
                 completion?()
             } .store(in: &subscriptions)
     }
@@ -99,13 +129,13 @@ final class LearningLibraryViewModel {
                 continuation.resume()
                 return
             }
-            fetchLearningLibrary(ignoreCache: true) { continuation.resume() }
+            fetchCollections(ignoreCache: true) { continuation.resume() }
         }
     }
 
     func addBookmark(model: LearningLibraryCardModel) {
         bookmarkLoadingStates[model.id] = true
-        interactor.bookmark(id: model.id)
+        interactor.bookmark(id: model.id, itemID: model.itemId)
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] error in
                 guard let self else { return }
@@ -147,6 +177,12 @@ final class LearningLibraryViewModel {
         paginator.seeMore()
     }
 
+    func clearAll() {
+        searchText = ""
+        selectedLearningObject = LearningLibraryObjectType.firstOption
+        selectedLearningLibrary = LearningLibraryFilter.firstOption
+    }
+
     // MARK: - Navigations
 
     func navigateToDetails(
@@ -154,39 +190,23 @@ final class LearningLibraryViewModel {
         viewController: WeakViewController
     ) {
         router.show(
-            LearningLibraryAssembly.makeViewController(pageType: .details(id: section.id, name: section.name)),
+            LearningLibraryAssembly.makeViewController(
+                pageType: .details(
+                    id: section.id,
+                    name: section.name
+                ),
+                didSendEvent: reloadCollections
+            ),
             from: viewController
         )
     }
 
-    func navigateToItem(model: LearningLibraryCardModel, viewController: WeakViewController) {
-        switch model.itemType {
-        case .course:
-            guard let courseEnrollmentId = model.courseEnrollmentId else {
-                return
-            }
-            router.show(
-                CourseDetailsAssembly.makeCourseDetailsViewController(
-                    courseID: model.itemId,
-                    enrollmentID: courseEnrollmentId
-                ),
-                from: viewController
-            )
-
-        case .program:
-            router.show(
-                ProgramDetailsAssembly.makeViewController(programID: ""),
-                from: viewController
-            )
-        default:
-            print("Tapped")
-        }
-
-    }
-
     func navigateToBookmarks(viewController: WeakViewController) {
         router.show(
-            LearningLibraryAssembly.makeViewController(pageType: .bookmarks),
+            LearningLibraryAssembly.makeViewController(
+                pageType: .bookmarks,
+                didSendEvent: reloadCollections
+            ),
             from: viewController
         )
     }
@@ -194,14 +214,10 @@ final class LearningLibraryViewModel {
     // MARK: - Private Functions
 
     private func update(with collection: LearningLibraryCardModel) {
-        if let index = self.allItems.firstIndex(where: { $0.id == collection.libraryId }) {
-            allItems[index].update(item: collection)
-        }
-
-        if let visibleIndex = self.paginator.visibleItems.firstIndex(where: { $0.id == collection.libraryId }) {
-            if let index = self.paginator.visibleItems[visibleIndex].items.firstIndex(where: { $0.id == collection.id }) {
-                paginator.visibleItems[visibleIndex].items[index] = collection
-            }
+        fetchCollections()
+        guard isGlobalSearchActive else { return }
+        if let index = globalSearchItems.firstIndex(where: { $0.id == collection.id }) {
+            globalSearchItems[index].update(with: collection)
         }
     }
 
@@ -210,14 +226,69 @@ final class LearningLibraryViewModel {
         isErrorVisible = true
     }
 
-    private func observeSearchText() {
-        searchTextSubject
-            .debounce(for: .milliseconds(200), scheduler: scheduler)
-            .removeDuplicates()
-            .sink { [weak self] searchText in
-                guard let self else { return }
-                self.paginator.search(query: searchText)
+    private func observeSearchAndFilters() {
+        Publishers.CombineLatest3(
+            searchTextSubject
+                .debounce(for: .milliseconds(500), scheduler: scheduler)
+                .removeDuplicates(),
+            selectedLearningObjectSubject
+                .removeDuplicates(),
+            selectedLearningLibrarySubject
+                .removeDuplicates()
+        )
+        .sink { [weak self] searchText, learningObject, learningLibrary in
+            guard let self else { return }
+            let hasSearchText = searchText.trimmedEmptyLines.isNotEmpty
+            let hasObjectFilter = learningObject.id != LearningLibraryObjectType.firstOption.id
+            let hasLibraryFilter = learningLibrary.id != LearningLibraryFilter.firstOption.id
+
+            self.isGlobalSearchActive = hasSearchText || hasObjectFilter || hasLibraryFilter
+
+            if self.isGlobalSearchActive {
+                self.globalSearchCancellable?.cancel()
+                self.performGlobalSearch(
+                    searchText: searchText,
+                    learningObject: learningObject,
+                    learningLibrary: learningLibrary
+                )
+            } else {
+                self.globalSearchCancellable?.cancel()
+                self.isGlobalSearchLoading = false
             }
-            .store(in: &subscriptions)
+        }
+        .store(in: &subscriptions)
+    }
+
+    private func performGlobalSearch(
+        searchText: String,
+        learningObject: OptionModel,
+        learningLibrary: OptionModel
+    ) {
+        isGlobalSearchLoading = true
+
+        let bookmarkedOnly = learningLibrary.id == LearningLibraryFilter.bookmarked.rawValue
+        let completedOnly = learningLibrary.id == LearningLibraryFilter.completed.rawValue
+
+        let types: [String]?
+        if learningObject.id == LearningLibraryObjectType.firstOption.id {
+            types = nil
+        } else {
+            types = [learningObject.id]
+        }
+
+        globalSearchCancellable = interactor.searchCollectionItem(
+            bookmarkedOnly: bookmarkedOnly,
+            completedOnly: completedOnly,
+            types: types,
+            searchTerm: searchText.trimmedEmptyLines.isEmpty ? nil : searchText
+        )
+        .receive(on: scheduler)
+        .sinkFailureOrValue { [weak self] error in
+            self?.isGlobalSearchLoading = false
+            self?.showError(with: error.localizedDescription)
+        } receiveValue: { [weak self] collections in
+            self?.isGlobalSearchLoading = false
+            self?.globalSearchItems = collections
+        }
     }
 }

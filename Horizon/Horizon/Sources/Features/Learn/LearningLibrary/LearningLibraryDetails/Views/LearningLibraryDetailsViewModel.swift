@@ -106,7 +106,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
         }
     }
 
-    func fetchLearningLibraryItems(
+   private func fetchLearningLibraryItems(
         ignoreCache: Bool = false,
         completion: (() -> Void)? = nil
     ) {
@@ -123,7 +123,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
             .store(in: &subscriptions)
     }
 
-    func fetchCollectionItems(
+   private func fetchCollectionItems(
         id: String,
         ignoreCache: Bool,
         completion: (() -> Void)? = nil
@@ -212,7 +212,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
 
     func addBookmark(model: LearningLibraryCardModel) {
         bookmarkLoadingStates[model.id] = true
-        interactor.bookmark(id: model.id)
+        interactor.bookmark(id: model.id, itemID: model.itemId)
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] error in
                 guard let self else { return }

@@ -17,52 +17,55 @@
 //
 
 import Core
-import Combine
 import CoreData
+import Combine
 import Foundation
 
-final class LearningLibraryBookMarkUseCase: APIUseCase {
+final class LearningLibraryCollectionItemUseCase: APIUseCase {
     public typealias Model = CDHLearningLibraryCollectionItem
 
     // MARK: - Properties
 
     private var subscriptions = Set<AnyCancellable>()
-    public var cacheKey: String? { nil }
-    public var request: LearningLibraryBookMarkRequest { LearningLibraryBookMarkRequest(id: id) }
-    public var scope: Scope { .where(#keyPath(CDHLearningLibraryCollectionItem.id), equals: id) }
-
+    public var cacheKey: String? { "Learning-Library-Collection-Item-\(collectionId)" }
+    public var request: GetHLearningLibraryCollectionItemRequest { .init(id: collectionId) }
+    var scope: Scope {
+        .where(
+            #keyPath(CDHLearningLibraryCollectionItem.libraryId),
+            equals: collectionId,
+            orderBy: #keyPath(CDHLearningLibraryCollectionItem.displayOrder),
+            ascending: true
+        )
+    }
     // MARK: - Dependencies
 
+    private let collectionId: String
     private let journey: DomainServiceProtocol
-    private let id: String
 
     // MARK: - Init
 
     init(
-        journey: DomainServiceProtocol = DomainService(),
-        id: String
+        id: String,
+        journey: DomainServiceProtocol = DomainService()
     ) {
+        self.collectionId = id
         self.journey = journey
-        self.id = id
     }
 
     func write(
-        response: LearningLibraryBookMarkResponse?,
+        response: GetHLearningLibraryCollectionItemResponse?,
         urlResponse: URLResponse?,
         to client: NSManagedObjectContext
     ) {
-        if let isBookmarked = response?.data.toggleCollectionItemBookmark.isBookmarked {
-            CDHLearningLibraryCollectionItem.updateBookmark(
-                id,
-                isBookmarked: isBookmarked,
-                in: client
-            )
+        let items = response?.data?.enrolledLearningLibraryCollection?.items ?? []
+        items.forEach {
+            CDHLearningLibraryCollectionItem.save($0, in: client)
         }
     }
 
     public func makeRequest(
         environment: AppEnvironment,
-        completionHandler: @escaping (LearningLibraryBookMarkResponse?, URLResponse?, Error?) -> Void
+        completionHandler: @escaping (GetHLearningLibraryCollectionItemResponse?, URLResponse?, Error?) -> Void
     ) {
         journey
             .api()

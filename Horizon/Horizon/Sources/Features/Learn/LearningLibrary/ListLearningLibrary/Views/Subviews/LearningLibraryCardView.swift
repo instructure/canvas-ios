@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import HorizonUI
 import SwiftUI
 
@@ -23,7 +24,6 @@ struct LearningLibraryCardView: View {
     // MARK: - Dependencies
 
     private let model: LearningLibraryCardModel
-    private let width: CGFloat
     private let isBookmarkLoading: Bool
     private let isEnrollLoading: Bool
     private let onBookmarkTap: (() -> Void)
@@ -34,7 +34,6 @@ struct LearningLibraryCardView: View {
 
     init(
         model: LearningLibraryCardModel,
-        width: CGFloat,
         isBookmarkLoading: Bool = false,
         isEnrollLoading: Bool = false,
         onBookmarkTap: @escaping (() -> Void),
@@ -42,7 +41,6 @@ struct LearningLibraryCardView: View {
         onTapItem: @escaping (() -> Void)
     ) {
         self.model = model
-        self.width = width
         self.isBookmarkLoading = isBookmarkLoading
         self.isEnrollLoading = isEnrollLoading
         self.onBookmarkTap = onBookmarkTap
@@ -74,19 +72,26 @@ struct LearningLibraryCardView: View {
         .background(Color.huiColors.surface.pageSecondary)
         .huiCornerRadius(level: .level5)
         .huiElevation(level: .level4)
+        .listRowInsets(EdgeInsets())
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.huiColors.surface.pagePrimary)
     }
 
     private var imageView: some View {
-        CourseImageView(
-            height: 155,
-            width: width,
-            url: model.imageURL,
-            corners: .all,
-            level: .level1_5,
-            placeholderIcon: model.itemType.icon,
-            iconForegroundColor: model.itemType.style.foregroundColor(),
-            backgroundColor: model.itemType.style.backgroundColor
-        )
+        ImageLoaderView(url: model.imageURL) {
+            ZStack {
+                model.itemType.style.backgroundColor
+                model.itemType.icon
+                    .foregroundStyle(model.itemType.style.foregroundColor())
+            }
+        }
+        .huiCornerRadius(level: .level1_5, corners: .all)
+        .frame(height: 155)
+        .clipped()
+        .accessibilityLabel("")
+        .accessibilityRemoveTraits(.isImage)
+        .accessibilityHidden(true)
+        .background(Color.white)
     }
 
     private var titleView: some View {
@@ -120,11 +125,14 @@ struct LearningLibraryCardView: View {
                     iconHeight: 10
                 )
             }
+            Rectangle()
+                .fill(Color.clear)
+                .frame(height: 1)
+                .frame(maxWidth: .infinity)
             if !model.isEnrolled {
                 enrollButton
             }
         }
-        .frame(maxWidth: width - (.huiSpaces.space24 * 2), alignment: .leading)
         .fixedSize(horizontal: false, vertical: true)
     }
 
@@ -187,7 +195,6 @@ struct LearningLibraryCardView: View {
             isBookmarked: true,
             numberOfUnits: 100
         ),
-        width: 300,
         isBookmarkLoading: true,
         isEnrollLoading: true,
         onBookmarkTap: { },
