@@ -182,6 +182,10 @@ struct LearningLibraryDetailsView: View {
         HStack(spacing: .huiSpaces.space8) {
             learningObjectFilterView
             learningLibraryTypeFilterView
+            HorizonUI.IconButton(Image.huiIcons.close, type: .gray) {
+                viewModel.clearAll()
+            }
+            .hidden(!viewModel.isClearButtonVisible)
             Spacer()
             countOfVisiableItemsView
                 .hidden(viewModel.filteredItems.isEmpty)

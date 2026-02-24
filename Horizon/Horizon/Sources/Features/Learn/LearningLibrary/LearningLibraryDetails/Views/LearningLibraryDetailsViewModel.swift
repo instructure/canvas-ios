@@ -52,6 +52,11 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     private(set) var isLoaderVisible: Bool = true
     var filteredItems: [LearningLibraryCardModel] { paginator.visibleItems }
     var isSeeMoreVisible: Bool { paginator.isSeeMoreVisible }
+    var isClearButtonVisible: Bool {
+        searchText.trimmedEmptyLines.isNotEmpty ||
+        selectedLearningObject.id != LearningLibraryObjectType.firstOption.id ||
+        selectedLearningLibrary.id != LearningLibraryFilter.firstOption.id
+    }
 
     // MARK: - Private variables
 
