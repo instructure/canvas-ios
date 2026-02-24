@@ -328,6 +328,32 @@ final class CoursesInteractorLiveTests: StudentTestCase {
         }
     }
 
+    func test_getCourses_shouldReturnCourseCards() {
+        _ = mockCourseRequests(
+            dashboardCards: [
+                .make(id: "card 1"),
+                .make(id: "card 2")
+            ]
+        )
+
+        XCTAssertSingleOutputAndFinish(testee.getCourses(ignoreCache: false), timeout: 5) { result in
+            XCTAssertEqual(result.courseCards.count, 2)
+        }
+    }
+
+    func test_getCourses_shouldReturnFavoriteGroups() {
+        _ = mockCourseRequests(
+            favoriteGroups: [
+                .make(id: "group 1"),
+                .make(id: "group 2")
+            ]
+        )
+
+        XCTAssertSingleOutputAndFinish(testee.getCourses(ignoreCache: false), timeout: 5) { result in
+            XCTAssertEqual(result.favoriteGroups.count, 2)
+        }
+    }
+
     // MARK: - Helpers
 
     private class MockCourseSortComparator: SortComparator {
@@ -356,9 +382,13 @@ final class CoursesInteractorLiveTests: StudentTestCase {
         active: [APICourse] = [],
         completed: [APICourse] = [],
         invited: [APICourse] = [],
+        dashboardCards: [APIDashboardCard] = [],
+        favoriteGroups: [APIGroup] = [],
         error: Error? = nil,
         onActiveCalled: (() -> Void)? = nil
     ) -> (active: APIMock, completed: APIMock, invited: APIMock) {
+        api.mock(GetDashboardCardsRequest(), value: dashboardCards)
+        api.mock(GetFavoriteGroupsRequest(context: .currentUser), value: favoriteGroups)
         let activeMock = api.mock(testee.coursesUseCase.activeRequest) { _ in
             onActiveCalled?()
             if let error {

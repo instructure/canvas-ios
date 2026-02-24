@@ -109,16 +109,16 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
     // MARK: - getCoursesAndGroups
 
     func test_getCoursesAndGroups_shouldReturnMappedCourseItems() {
-        let course1 = Course.save(.make(id: ID(testData.courseId1), name: testData.courseName1), in: databaseClient)
-        let course2 = Course.save(.make(id: ID(testData.courseId2), name: testData.courseName2), in: databaseClient)
-        try? databaseClient.save()
-
-        api.mock(GetDashboardCardsRequest(), value: [
-            .make(id: ID(testData.courseId1), position: 0, shortName: testData.courseName1),
-            .make(id: ID(testData.courseId2), position: 1, shortName: testData.courseName2)
-        ])
-
-        coursesInteractor.mockCoursesResult = .make(allCourses: [course1, course2])
+        coursesInteractor.mockCoursesResult = .make(
+            allCourses: [
+                saveCourse(id: testData.courseId1, name: testData.courseName1),
+                saveCourse(id: testData.courseId2, name: testData.courseName2)
+            ],
+            courseCards: [
+                saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0),
+                saveDashboardCard(id: testData.courseId2, shortName: testData.courseName2, position: 1)
+            ]
+        )
         testee = makeInteractor()
 
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, groups) in
@@ -132,9 +132,9 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
     }
 
     func test_getCoursesAndGroups_shouldReturnMappedGroupItems() {
-        api.mock(GetFavoriteGroupsRequest(context: .currentUser), value: [
-            .make(id: ID(testData.groupId1), name: testData.groupName1, members_count: 42, course_id: nil)
-        ])
+        coursesInteractor.mockCoursesResult = .make(
+            favoriteGroups: [saveGroup(id: testData.groupId1, name: testData.groupName1, courseId: nil, membersCount: 42)]
+        )
         testee = makeInteractor()
 
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (_, groups) in
@@ -148,16 +148,16 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
     // MARK: - Course sorting
 
     func test_getCoursesAndGroups_shouldSortCoursesByDashboardCardPosition() {
-        let course1 = Course.save(.make(id: ID(testData.courseId1), name: testData.courseName1), in: databaseClient)
-        let course2 = Course.save(.make(id: ID(testData.courseId2), name: testData.courseName2), in: databaseClient)
-        try? databaseClient.save()
-
-        api.mock(GetDashboardCardsRequest(), value: [
-            .make(id: ID(testData.courseId2), position: 0),
-            .make(id: ID(testData.courseId1), position: 1)
-        ])
-
-        coursesInteractor.mockCoursesResult = .make(allCourses: [course1, course2])
+        coursesInteractor.mockCoursesResult = .make(
+            allCourses: [
+                saveCourse(id: testData.courseId1, name: testData.courseName1),
+                saveCourse(id: testData.courseId2, name: testData.courseName2)
+            ],
+            courseCards: [
+                saveDashboardCard(id: testData.courseId2, shortName: testData.courseName2, position: 0),
+                saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 1)
+            ]
+        )
         testee = makeInteractor()
 
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, _) in
@@ -167,16 +167,17 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
     }
 
     func test_getCoursesAndGroups_whenPositionsAreEqual_shouldSortCoursesByName() {
-        let course1 = Course.save(.make(id: ID(testData.courseId1), name: testData.courseName1), in: databaseClient)
-        let course2 = Course.save(.make(id: ID(testData.courseId2), name: testData.courseName2), in: databaseClient)
-        try? databaseClient.save()
+        coursesInteractor.mockCoursesResult = .make(
+            allCourses: [
+                saveCourse(id: testData.courseId1, name: testData.courseName1),
+                saveCourse(id: testData.courseId2, name: testData.courseName2)
+            ],
+            courseCards: [
+                saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0),
+                saveDashboardCard(id: testData.courseId2, shortName: testData.courseName2, position: 0)
+            ]
+        )
 
-        api.mock(GetDashboardCardsRequest(), value: [
-            .make(id: ID(testData.courseId1), position: 0, shortName: testData.courseName1),
-            .make(id: ID(testData.courseId2), position: 0, shortName: testData.courseName2)
-        ])
-
-        coursesInteractor.mockCoursesResult = .make(allCourses: [course1, course2])
         testee = makeInteractor()
 
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, _) in
@@ -186,16 +187,17 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
     }
 
     func test_getCoursesAndGroups_whenPositionsAndNamesAreEqual_shouldSortCoursesByID() {
-        let course1 = Course.save(.make(id: ID(testData.courseId1), name: testData.courseName1), in: databaseClient)
-        let course2 = Course.save(.make(id: ID(testData.courseId2), name: testData.courseName2), in: databaseClient)
-        try? databaseClient.save()
+        coursesInteractor.mockCoursesResult = .make(
+            allCourses: [
+                saveCourse(id: testData.courseId1, name: testData.courseName1),
+                saveCourse(id: testData.courseId2, name: testData.courseName2)
+            ],
+            courseCards: [
+                saveDashboardCard(id: testData.courseId2, shortName: "same name", position: 0),
+                saveDashboardCard(id: testData.courseId1, shortName: "same name", position: 0)
+            ]
+        )
 
-        api.mock(GetDashboardCardsRequest(), value: [
-            .make(id: ID(testData.courseId2), position: 0, shortName: "same name"),
-            .make(id: ID(testData.courseId1), position: 0, shortName: "same name")
-        ])
-
-        coursesInteractor.mockCoursesResult = .make(allCourses: [course1, course2])
         testee = makeInteractor()
 
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, _) in
@@ -207,15 +209,16 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
     // MARK: - Course filtering
 
     func test_getCoursesAndGroups_shouldExcludeCoursesMissingFromDashboardCards() {
-        let course1 = Course.save(.make(id: ID(testData.courseId1)), in: databaseClient)
-        let course2 = Course.save(.make(id: ID(testData.courseId2)), in: databaseClient)
-        try? databaseClient.save()
+        coursesInteractor.mockCoursesResult = .make(
+            allCourses: [
+                saveCourse(id: testData.courseId1),
+                saveCourse(id: testData.courseId2)
+            ],
+            courseCards: [
+                saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0)
+            ]
+        )
 
-        api.mock(GetDashboardCardsRequest(), value: [
-            .make(id: ID(testData.courseId1), position: 0)
-        ])
-
-        coursesInteractor.mockCoursesResult = .make(allCourses: [course1, course2])
         testee = makeInteractor()
 
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, _) in
@@ -227,10 +230,13 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
     // MARK: - Group filtering
 
     func test_getCoursesAndGroups_shouldFilterInactiveGroups() {
-        api.mock(GetFavoriteGroupsRequest(context: .currentUser), value: [
-            .make(id: ID(testData.groupId1), name: testData.groupName1, course_id: nil),
-            .make(id: ID(testData.groupId2), name: testData.groupName2, course_id: "nonexistent_course_id")
-        ])
+        coursesInteractor.mockCoursesResult = .make(
+            favoriteGroups: [
+                saveGroup(id: testData.groupId1, name: testData.groupName1, courseId: nil),
+                saveGroup(id: testData.groupId2, name: testData.groupName2, courseId: "nonexistent_course_id")
+            ]
+        )
+
         testee = makeInteractor()
 
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (_, groups) in
@@ -242,14 +248,14 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
     // MARK: - reorderCourses
 
     func test_reorderCourses_whenOrderDiffers_shouldUpdateCardPositions() {
-        let course1 = Course.save(.make(id: ID(testData.courseId1)), in: databaseClient)
-        let course2 = Course.save(.make(id: ID(testData.courseId2)), in: databaseClient)
-        try? databaseClient.save()
-        api.mock(GetDashboardCardsRequest(), value: [
-            .make(id: ID(testData.courseId1), position: 0),
-            .make(id: ID(testData.courseId2), position: 1)
-        ])
-        coursesInteractor.mockCoursesResult = .make(allCourses: [course1, course2])
+        coursesInteractor.mockCoursesResult = .make(
+            allCourses: [saveCourse(id: testData.courseId1), saveCourse(id: testData.courseId2)],
+            courseCards: [
+                saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0),
+                saveDashboardCard(id: testData.courseId2, shortName: testData.courseName2, position: 1)
+            ]
+        )
+
         testee = makeInteractor()
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { _ in }
         api.mock(PutDashboardCardPositions(cards: []))
@@ -261,14 +267,13 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
     }
 
     func test_reorderCourses_whenOrderDiffers_shouldSendPutRequest() {
-        let course1 = Course.save(.make(id: ID(testData.courseId1)), in: databaseClient)
-        let course2 = Course.save(.make(id: ID(testData.courseId2)), in: databaseClient)
-        try? databaseClient.save()
-        api.mock(GetDashboardCardsRequest(), value: [
-            .make(id: ID(testData.courseId1), position: 0),
-            .make(id: ID(testData.courseId2), position: 1)
-        ])
-        coursesInteractor.mockCoursesResult = .make(allCourses: [course1, course2])
+        coursesInteractor.mockCoursesResult = .make(
+            allCourses: [saveCourse(id: testData.courseId1), saveCourse(id: testData.courseId2)],
+            courseCards: [
+                saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0),
+                saveDashboardCard(id: testData.courseId2, shortName: testData.courseName2, position: 1)
+            ]
+        )
         testee = makeInteractor()
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { _ in }
         let putExpectation = expectation(description: "PUT request sent")
@@ -280,14 +285,14 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
     }
 
     func test_reorderCourses_whenOrderIsUnchanged_shouldNotSendPutRequest() {
-        let course1 = Course.save(.make(id: ID(testData.courseId1)), in: databaseClient)
-        let course2 = Course.save(.make(id: ID(testData.courseId2)), in: databaseClient)
-        try? databaseClient.save()
-        api.mock(GetDashboardCardsRequest(), value: [
-            .make(id: ID(testData.courseId1), position: 0),
-            .make(id: ID(testData.courseId2), position: 1)
-        ])
-        coursesInteractor.mockCoursesResult = .make(allCourses: [course1, course2])
+        coursesInteractor.mockCoursesResult = .make(
+            allCourses: [saveCourse(id: testData.courseId1), saveCourse(id: testData.courseId2)],
+            courseCards: [
+                saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0),
+                saveDashboardCard(id: testData.courseId2, shortName: testData.courseName2, position: 1)
+            ]
+        )
+
         testee = makeInteractor()
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { _ in }
         let noRequestExpectation = expectation(description: "PUT request should not be sent")
@@ -308,9 +313,19 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         )
     }
 
+    private func saveCourse(id: String, name: String? = nil) -> Course {
+        Course.save(.make(id: ID(id), name: name), in: databaseClient)
+    }
+
+    private func saveGroup(id: String, name: String = "", courseId: String?, membersCount: Int = 1) -> Group {
+        Group.save(.make(id: ID(id), name: name, members_count: membersCount, course_id: ID(courseId)), in: databaseClient)
+    }
+
+    private func saveDashboardCard(id: String, shortName: String, position: Int) -> DashboardCard {
+        DashboardCard.save(.make(id: ID(id), position: position, shortName: shortName), position: position, in: databaseClient)
+    }
+
     private func setupDefaultAPIMocks() {
-        api.mock(GetDashboardCardsRequest(), value: [])
-        api.mock(GetFavoriteGroupsRequest(context: .currentUser), value: [])
         api.mock(GetUserSettingsRequest(userID: "self"), value: .make())
     }
 

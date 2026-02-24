@@ -22,6 +22,8 @@ struct CoursesResult {
     let allCourses: [Course]
     let invitedCourses: [Course]
     let groups: [CDAllCoursesGroupItem]
+    let courseCards: [DashboardCard]
+    let favoriteGroups: [Group]
 }
 
 #if DEBUG
@@ -30,12 +32,16 @@ extension CoursesResult {
     static func make(
         allCourses: [Course] = [],
         invitedCourses: [Course] = [],
-        groups: [CDAllCoursesGroupItem] = []
+        groups: [CDAllCoursesGroupItem] = [],
+        courseCards: [DashboardCard] = [],
+        favoriteGroups: [Group] = []
     ) -> CoursesResult {
         .init(
             allCourses: allCourses,
             invitedCourses: invitedCourses,
-            groups: groups
+            groups: groups,
+            courseCards: courseCards,
+            favoriteGroups: favoriteGroups
         )
     }
 }

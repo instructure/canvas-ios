@@ -42,8 +42,6 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
     let showColorOverlay: CurrentValueSubject<Bool, Never>
 
     private let coursesInteractor: CoursesInteractor
-    private let dashboardCardsStore: ReactiveStore<GetDashboardCards>
-    private let favoriteGroupsStore: ReactiveStore<GetDashboardGroups>
     private let userSettingsStore: ReactiveStore<GetUserSettings>
 
     private let env: AppEnvironment
@@ -53,18 +51,6 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
 
     init(coursesInteractor: CoursesInteractor, env: AppEnvironment) {
         self.coursesInteractor = coursesInteractor
-
-        self.dashboardCardsStore = ReactiveStore(
-            context: env.database.viewContext,
-            useCase: GetDashboardCards(),
-            environment: env
-        )
-
-        self.favoriteGroupsStore = ReactiveStore(
-            context: env.database.viewContext,
-            useCase: GetDashboardGroups(),
-            environment: env
-        )
 
         self.userSettingsStore = ReactiveStore(
             context: env.database.viewContext,
@@ -93,14 +79,12 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
     /// (This uses the 'favorites/groups' endpoint which provides an already filtered list of groups to display,
     /// but it needs to be further filtered for active courses)
     func getCoursesAndGroups(ignoreCache: Bool) -> AnyPublisher<Model, Error> {
-        Publishers.CombineLatest4(
+        Publishers.CombineLatest(
             coursesInteractor.getCourses(ignoreCache: ignoreCache),
-            dashboardCardsStore.getEntities(ignoreCache: ignoreCache),
-            favoriteGroupsStore.getEntities(ignoreCache: ignoreCache),
             userSettingsStore.getEntities(ignoreCache: ignoreCache)
         )
-        .map { [weak self] (coursesResult: CoursesResult, courseCards: [DashboardCard], favoriteGroups: [Group], _) -> Model in
-            let sortedCourseCards = courseCards.sortedForWidget()
+        .map { [weak self] (coursesResult: CoursesResult, _) -> Model in
+            let sortedCourseCards = coursesResult.courseCards.sortedForWidget()
             self?.currentDashboardCards = sortedCourseCards
 
             let courses = coursesResult.allCourses
@@ -115,7 +99,7 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
                 )
             }
 
-            let groups = favoriteGroups.filter { $0.isActive }
+            let groups = coursesResult.favoriteGroups.filter { $0.isActive }
             let groupItems = groups.map {
                 CoursesAndGroupsWidgetGroupItem(
                     id: $0.id,
