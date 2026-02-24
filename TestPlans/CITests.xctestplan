@@ -59,6 +59,20 @@
   "testTargets" : [
     {
       "target" : {
+        "containerPath" : "container:Teacher\/Teacher.xcodeproj",
+        "identifier" : "4F93B7247D9941F0080F583E",
+        "name" : "TeacherUnitTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:packages\/BusinessLogic",
+        "identifier" : "BusinessLogicTests",
+        "name" : "BusinessLogicTests"
+      }
+    },
+    {
+      "target" : {
         "containerPath" : "container:Student\/Student.xcodeproj",
         "identifier" : "4DF9E94388E5DAB2630B064B",
         "name" : "StudentUnitTests"
@@ -66,9 +80,9 @@
     },
     {
       "target" : {
-        "containerPath" : "container:Core\/Core.xcodeproj",
-        "identifier" : "73B1A2AD90A7970B7DB39CDC",
-        "name" : "CoreTests"
+        "containerPath" : "container:Parent\/Parent.xcodeproj",
+        "identifier" : "41BA2B211CB47478407A6101",
+        "name" : "ParentUnitTests"
       }
     },
     {
@@ -80,9 +94,9 @@
     },
     {
       "target" : {
-        "containerPath" : "container:Parent\/Parent.xcodeproj",
-        "identifier" : "41BA2B211CB47478407A6101",
-        "name" : "ParentUnitTests"
+        "containerPath" : "container:Core\/Core.xcodeproj",
+        "identifier" : "73B1A2AD90A7970B7DB39CDC",
+        "name" : "CoreTests"
       }
     }
   ],
