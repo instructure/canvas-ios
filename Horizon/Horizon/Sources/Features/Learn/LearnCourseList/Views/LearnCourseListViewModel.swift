@@ -49,7 +49,7 @@ final class LearnCourseListViewModel {
 
     // MARK: - Private variables
 
-    private let paginator = PaginatedDataSource<CourseListWidgetModel>(items: [])
+    private let paginator = PaginatedDataSource<CourseListWidgetModel>(items: [], pageSize: 1000)
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: GetCoursesInteractor
     private let router: Router
@@ -93,6 +93,63 @@ final class LearnCourseListViewModel {
                 completion?()
             }
             .store(in: &subscriptions)
+    }
+
+    func loadTestData(itemCount: Int = 200) {
+        let testCourses = generateTestCourses(count: itemCount)
+        paginator.setItems(testCourses)
+        isLoaderVisiable = false
+        hasCourses = true
+    }
+
+    private func generateTestCourses(count: Int) -> [CourseListWidgetModel] {
+        let courseNames = [
+            "Introduction to Computer Science",
+            "Advanced Mathematics",
+            "Business Management",
+            "Digital Marketing Fundamentals",
+            "Web Development Bootcamp",
+            "Data Science with Python",
+            "Graphic Design Essentials",
+            "Project Management Professional"
+        ]
+
+        let programNames = [
+            "Computer Science Degree",
+            "Business Administration",
+            "Digital Marketing Certificate",
+            "Software Engineering Program"
+        ]
+
+        return (1...count).map { index in
+            let progress = Double.random(in: 0...100)
+            let hasLearningObject = progress < 100 && Bool.random()
+            let hasImage = index % 3 != 0
+
+            return CourseListWidgetModel(
+                id: "test-course-\(index)",
+                enrollmentID: "enrollment-\(index)",
+                name: "\(courseNames[index % courseNames.count]) \(index)",
+                imageURL: hasImage ? URL(string: "https://picsum.photos/400/300?random=\(index)") : nil,
+                progress: progress,
+                lastActivityAt: Date(),
+                programs: [
+                    CourseListWidgetModel.ProgramInfo(
+                        id: "program-\(index)",
+                        name: programNames[index % programNames.count]
+                    )
+                ],
+                currentLearningObject: hasLearningObject ? CourseListWidgetModel.LearningObjectInfo(
+                    name: "Module \(index % 10 + 1) Activity",
+                    id: "learning-object-\(index)",
+                    moduleTitle: "Module \(index % 10 + 1)",
+                    type: .assignment,
+                    dueDate: "Dec \(index % 28 + 1), 2026",
+                    estimatedDuration: "\(index % 60 + 10) min",
+                    url: URL(string: "https://example.com/course/\(index)")
+                ) : nil
+            )
+        }
     }
 
     func refresh() async {

@@ -34,15 +34,18 @@ final class LearningLibraryEnrollUseCase: APIUseCase {
 
     private let journey: DomainServiceProtocol
     private let id: String
+    private let itemID: String
 
     // MARK: - Init
 
     init(
         journey: DomainServiceProtocol = DomainService(),
-        id: String
+        id: String,
+        itemID: String
     ) {
         self.journey = journey
         self.id = id
+        self.itemID = itemID
     }
 
     func write(
@@ -51,7 +54,7 @@ final class LearningLibraryEnrollUseCase: APIUseCase {
         to client: NSManagedObjectContext
     ) {
         if let item = response?.data.enrollLearnerInCollectionItem.item {
-            CDHLearningLibraryCollectionItem.save(item, in: client)
+            CDHLearningLibraryCollectionItem.updateEnroll(id, itemID: itemID, in: client)
         }
     }
 

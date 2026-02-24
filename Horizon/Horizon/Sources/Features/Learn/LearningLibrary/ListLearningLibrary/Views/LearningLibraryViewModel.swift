@@ -155,7 +155,7 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
 
     func enroll(model: LearningLibraryCardModel) {
         enrollLoadingStates[model.id] = true
-        interactor.enroll(id: model.id)
+        interactor.enroll(id: model.id, itemID: model.itemId)
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] error in
                 guard let self else { return }

@@ -48,7 +48,7 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
             .eraseToAnyPublisher()
     }
 
-    func enroll(id: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
+    func enroll(id: String, itemID: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
         let item = mockItems.first { $0.id == id } ?? mockItems[0]
         var updatedItem = item
         updatedItem.isEnrolled = true
