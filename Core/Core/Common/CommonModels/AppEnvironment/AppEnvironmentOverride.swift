@@ -166,7 +166,7 @@ extension AppEnvironment {
            let baseURL = url.with(scheme: shared.api.baseURL.scheme).url?.apiBaseURL,
            let contextShardID,
            shared.contextShardID != contextShardID {
-            
+
             return AppEnvironmentOverride(
                 base: shared,
                 baseURL: baseURL,
