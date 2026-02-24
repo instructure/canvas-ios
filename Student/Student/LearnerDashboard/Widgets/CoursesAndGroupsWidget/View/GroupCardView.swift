@@ -39,7 +39,7 @@ struct GroupCardView: View {
                 courseLabel
                 titleLabel
             },
-            isAvailable: !$offlineModeViewModel.isOffline,
+            isAvailable: !offlineModeViewModel.isOffline,
             action: {
                 viewModel.didTapCard(from: controller)
             }

@@ -24,25 +24,25 @@ struct DashboardThumbnailCard<Thumbnail: View, Labels: View, Accessory: View>: V
     private let thumbnail: Thumbnail
     private let labels: Labels
     private let accessory: Accessory
-    @Binding var isAvailable: Bool
+    private let isAvailable: Bool
     private let action: () -> Void
 
     public init(
         @ViewBuilder thumbnail: () -> Thumbnail,
         @ViewBuilder labels: () -> Labels,
         @ViewBuilder accessory: () -> Accessory = { SwiftUI.EmptyView() },
-        isAvailable: Binding<Bool>,
+        isAvailable: Bool,
         action: @escaping () -> Void
     ) {
         self.thumbnail = thumbnail()
         self.labels = labels()
         self.accessory = accessory()
-        self._isAvailable = isAvailable
+        self.isAvailable = isAvailable
         self.action = action
     }
 
     var body: some View {
-        PrimaryButton(isAvailable: $isAvailable, action: action) {
+        PrimaryButton(isAvailable: isAvailable, action: action) {
             HStack(alignment: .center, spacing: 0) {
                 thumbnail
                     .clipShape(RoundedRectangle(cornerRadius: 22))

@@ -79,7 +79,7 @@ struct CourseCardView: View {
             labels: {
                 titleLabel
             },
-            isAvailable: Binding(get: { isAvailable }, set: { _ in }),
+            isAvailable: isAvailable,
             action: {
                 viewModel.didTapCard(from: controller)
             }
@@ -127,7 +127,7 @@ struct CourseCardView: View {
     }
 
     private var optionsButton: some View {
-        PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
+        PrimaryButton(isAvailable: !offlineModeViewModel.isOffline) {
             isShowingOptionsDialog.toggle()
         } label: {
             kebabIcon
@@ -170,7 +170,7 @@ struct CourseCardView: View {
     }
 
     private var customizeButton: some View {
-        PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline) {
+        PrimaryButton(isAvailable: !offlineModeViewModel.isOffline) {
             didTapCustomize()
         } label: {
             kebabIcon
