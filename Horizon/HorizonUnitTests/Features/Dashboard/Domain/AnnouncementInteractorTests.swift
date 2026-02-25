@@ -23,11 +23,13 @@ import TestsFoundation
 import XCTest
 
 final class AnnouncementInteractorTests: HorizonTestCase {
+    private let testDate = Date.make(year: 2026, month: 1, day: 15)
     private var testee: AnnouncementInteractorLive!
     private var learnCoursesInteractor: GetLearnCoursesInteractorMock!
 
     override func setUp() {
         super.setUp()
+        Clock.mockNow(testDate)
         learnCoursesInteractor = GetLearnCoursesInteractorMock()
         testee = AnnouncementInteractorLive(
             userID: "test-user-123",
@@ -37,6 +39,7 @@ final class AnnouncementInteractorTests: HorizonTestCase {
     }
 
     override func tearDown() {
+        Clock.reset()
         testee = nil
         learnCoursesInteractor = nil
         super.tearDown()
@@ -285,9 +288,6 @@ final class AnnouncementInteractorTests: HorizonTestCase {
     }
 
     private func mockDiscussionTopics() {
-        let now = Date.now
-        let startDate = now.addYears(-1)
-
         api.mock(
             GetAllAnnouncementsRequest(
                 contextCodes: [
@@ -297,15 +297,15 @@ final class AnnouncementInteractorTests: HorizonTestCase {
                 ],
                 activeOnly: nil,
                 latestOnly: nil,
-                startDate: startDate,
-                endDate: now
+                startDate: testDate.addYears(-1),
+                endDate: testDate
             ),
             value: [
                 APIDiscussionTopic.make(
                     context_code: "course_ID-1",
                     id: "discussion-1",
                     message: "Message 1",
-                    posted_at: now,
+                    posted_at: testDate,
                     title: "Course Announcement 1",
                     read_state: "unread"
                 ),
@@ -313,7 +313,7 @@ final class AnnouncementInteractorTests: HorizonTestCase {
                     context_code: "course_ID-2",
                     id: "discussion-2",
                     message: "Message 2",
-                    posted_at: now,
+                    posted_at: testDate,
                     title: "Course Announcement 2", read_state: "unread"
                 )
             ]
@@ -321,9 +321,6 @@ final class AnnouncementInteractorTests: HorizonTestCase {
     }
 
     private func mockEmptyDiscussionTopics() {
-        let now = Date.now
-        let startDate = now.addYears(-1)
-
         api.mock(
             GetAllAnnouncementsRequest(
                 contextCodes: [
@@ -333,17 +330,15 @@ final class AnnouncementInteractorTests: HorizonTestCase {
                 ],
                 activeOnly: nil,
                 latestOnly: nil,
-                startDate: startDate,
-                endDate: now
+                startDate: testDate.addYears(-1),
+                endDate: testDate
             ),
             value: []
         )
     }
 
     private func mockDiscussionTopicsWithDates() {
-        let now = Date.now
-        let threeDaysAgo = Calendar.current.date(byAdding: .day, value: -3, to: now)!
-        let startDate = now.addYears(-1)
+        let threeDaysAgo = Calendar.current.date(byAdding: .day, value: -3, to: testDate)!
 
         api.mock(
             GetAllAnnouncementsRequest(
@@ -354,15 +349,15 @@ final class AnnouncementInteractorTests: HorizonTestCase {
                 ],
                 activeOnly: nil,
                 latestOnly: nil,
-                startDate: startDate,
-                endDate: now
+                startDate: testDate.addYears(-1),
+                endDate: testDate
             ),
             value: [
                 APIDiscussionTopic.make(
                     context_code: "course_ID-1",
                     id: "discussion-1",
                     message: "Message 1",
-                    posted_at: now,
+                    posted_at: testDate,
                     title: "Recent Course Announcement",
                     read_state: "unread"
                 ),
