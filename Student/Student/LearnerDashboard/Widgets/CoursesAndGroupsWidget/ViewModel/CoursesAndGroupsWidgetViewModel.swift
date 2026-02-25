@@ -70,6 +70,7 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
         interactor.getCoursesAndGroups(ignoreCache: ignoreCache)
+            .receive(on: DispatchQueue.main)
             .map { [weak self, environment] (courseItems, groupItems) in
                 guard let self else { return }
                 courseCards = courseItems.map { item in
@@ -89,7 +90,6 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
                 state = (courseItems.isEmpty && groupItems.isEmpty) ? .empty : .data
                 updateSectionTitles()
             }
-            .receive(on: DispatchQueue.main)
             .catch { [weak self] _ in
                 self?.state = .error
                 return Just(())

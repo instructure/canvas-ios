@@ -44,7 +44,7 @@ struct CourseCardViewModel: Identifiable, Equatable {
 
         self.id = model.id
         self.title = model.title
-        self.courseColor = Color(hexString: model.colorString) ?? .textDark
+        self.courseColor = model.color
         self.imageUrl = model.imageUrl
         self.grade = model.grade
 
@@ -52,12 +52,8 @@ struct CourseCardViewModel: Identifiable, Equatable {
     }
 
     func didTapCard(from controller: WeakViewController) {
-        let route: String
-        if let colorWithoutHash = model.colorString?.dropFirst() {
-            route = "/courses/\(id)?contextColor=\(colorWithoutHash)"
-        } else {
-            route = "/courses/\(id)"
-        }
+        // No need to add contextColor to the query, since at this point the contextColor is available via CoreData
+        let route = "/courses/\(id)"
 
         router.route(to: route, from: controller, options: .push)
     }

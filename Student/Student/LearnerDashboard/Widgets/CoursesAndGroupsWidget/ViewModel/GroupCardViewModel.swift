@@ -41,8 +41,8 @@ struct GroupCardViewModel: Identifiable, Equatable {
         self.id = model.id
         self.title = model.title
         self.courseName = model.courseName
-        self.courseColor = Color(hexString: model.courseColorString) ?? .textDark
-        self.groupColor = Color(hexString: model.groupColorString) ?? .textDark
+        self.courseColor = model.courseColor
+        self.groupColor = model.groupColor
         self.memberCount = String(model.memberCount)
 
         self.router = router

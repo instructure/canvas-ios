@@ -18,11 +18,12 @@
 
 import Core
 import Foundation
+import SwiftUI
 
 struct CoursesAndGroupsWidgetCourseItem: Equatable {
     let id: String
     let title: String
-    let colorString: String?
+    let color: Color
     let imageUrl: URL?
     let grade: String?
 }
@@ -31,8 +32,8 @@ struct CoursesAndGroupsWidgetGroupItem: Equatable {
     let id: String
     let title: String
     let courseName: String
-    let courseColorString: String?
-    let groupColorString: String?
+    let courseColor: Color
+    let groupColor: Color
     let memberCount: Int
 }
 
@@ -42,14 +43,14 @@ extension CoursesAndGroupsWidgetCourseItem {
     static func make(
         id: String = "",
         title: String = "",
-        colorString: String? = nil,
+        color: Color = .clear,
         imageUrl: URL? = nil,
         grade: String? = nil
     ) -> CoursesAndGroupsWidgetCourseItem {
         .init(
             id: id,
             title: title,
-            colorString: colorString,
+            color: color,
             imageUrl: imageUrl,
             grade: grade
         )
@@ -61,16 +62,16 @@ extension CoursesAndGroupsWidgetGroupItem {
         id: String = "",
         title: String = "",
         courseName: String = "",
-        courseColorString: String? = nil,
-        groupColorString: String? = nil,
+        courseColor: Color = .clear,
+        groupColor: Color = .clear,
         memberCount: Int = 0
     ) -> CoursesAndGroupsWidgetGroupItem {
         .init(
             id: id,
             title: title,
             courseName: courseName,
-            courseColorString: courseColorString,
-            groupColorString: groupColorString,
+            courseColor: courseColor,
+            groupColor: groupColor,
             memberCount: memberCount
         )
     }

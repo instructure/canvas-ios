@@ -28,8 +28,8 @@ final class GroupCardViewModelTests: StudentTestCase {
         id: "group1",
         title: "some title",
         courseName: "some courseName",
-        courseColorString: "#4A90D9",
-        groupColorString: "#E91E63",
+        courseColor: Color.course4,
+        groupColor: Color.course7,
         memberCount: 42
     )
     private lazy var testData = Self.testData
@@ -48,16 +48,16 @@ final class GroupCardViewModelTests: StudentTestCase {
             id: testData.id,
             title: testData.title,
             courseName: testData.courseName,
-            courseColorString: testData.courseColorString,
-            groupColorString: testData.groupColorString,
+            courseColor: testData.courseColor,
+            groupColor: testData.groupColor,
             memberCount: testData.memberCount
         ))
 
         XCTAssertEqual(testee.id, testData.id)
         XCTAssertEqual(testee.title, testData.title)
         XCTAssertEqual(testee.courseName, testData.courseName)
-        XCTAssertEqual(testee.courseColor.hexString, testData.courseColorString.lowercased())
-        XCTAssertEqual(testee.groupColor.hexString, testData.groupColorString.lowercased())
+        XCTAssertEqual(testee.courseColor, testData.courseColor)
+        XCTAssertEqual(testee.groupColor, testData.groupColor)
         XCTAssertEqual(testee.memberCount, String(testData.memberCount))
     }
 

@@ -93,7 +93,7 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
                 CoursesAndGroupsWidgetCourseItem(
                     id: $0.id,
                     title: $0.name ?? "",
-                    colorString: $0.color.hexString,
+                    color: $0.color.asColor,
                     imageUrl: $0.imageDownloadURL,
                     grade: $0.hideTotalGrade ? nil : $0.displayGrade // TODO: use grade without percentage
                 )
@@ -105,8 +105,8 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
                     id: $0.id,
                     title: $0.name,
                     courseName: $0.course?.name ?? "",
-                    courseColorString: $0.course?.color.hexString,
-                    groupColorString: $0.color.hexString,
+                    courseColor: $0.course?.color.asColor ?? .textDark,
+                    groupColor: $0.color.asColor,
                     memberCount: $0.memberCount
                 )
             }

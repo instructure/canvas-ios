@@ -27,7 +27,7 @@ final class CourseCardViewModelTests: StudentTestCase {
     private static let testData = (
         id: "course1",
         title: "some title",
-        colorString: "#4A90D9",
+        color: Color.course4,
         imageUrl: URL(string: "https://example.com/image.jpg")!,
         grade: "some grade"
     )
@@ -46,14 +46,14 @@ final class CourseCardViewModelTests: StudentTestCase {
         testee = makeViewModel(model: .make(
             id: testData.id,
             title: testData.title,
-            colorString: testData.colorString,
+            color: testData.color,
             imageUrl: testData.imageUrl,
             grade: testData.grade
         ))
 
         XCTAssertEqual(testee.id, testData.id)
         XCTAssertEqual(testee.title, testData.title)
-        XCTAssertEqual(testee.courseColor.hexString, testData.colorString.lowercased())
+        XCTAssertEqual(testee.courseColor, testData.color)
         XCTAssertEqual(testee.imageUrl, testData.imageUrl)
         XCTAssertEqual(testee.grade, testData.grade)
     }
@@ -78,19 +78,8 @@ final class CourseCardViewModelTests: StudentTestCase {
 
     // MARK: - didTapCard
 
-    func test_didTapCard_withColorString_shouldRouteWithContextColor() {
-        testee = makeViewModel(model: .make(id: testData.id, colorString: testData.colorString))
-        let vc = UIViewController()
-
-        testee.didTapCard(from: .init(vc))
-
-        XCTAssertEqual(router.lastRoutedTo("/courses/course1?contextColor=4A90D9"), true)
-        XCTAssertEqual(router.lastRoutedFromVC, vc)
-        XCTAssertEqual(router.lastRoutedOptions, .push)
-    }
-
-    func test_didTapCard_withNoColorString_shouldRouteWithoutContextColor() {
-        testee = makeViewModel(model: .make(id: testData.id, colorString: nil))
+    func test_didTapCard_shouldRouteToCourse() {
+        testee = makeViewModel(model: .make(id: testData.id))
         let vc = UIViewController()
 
         testee.didTapCard(from: .init(vc))

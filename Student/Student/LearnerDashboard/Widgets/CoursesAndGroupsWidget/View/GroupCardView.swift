@@ -98,9 +98,9 @@ struct GroupCardView: View {
 
 extension GroupCardView {
     static let previewData: [CoursesAndGroupsWidgetGroupItem] = [
-        .make(id: "1", title: "Study Group A", courseName: "Introduction to Computer Science", groupColorString: "#4CAF50", memberCount: 42),
-        .make(id: "2", title: .loremIpsumLong, courseName: .loremIpsumLong, groupColorString: "#E91E63", memberCount: 999),
-        .make(id: "3", title: "The Four Horsemen", courseName: "Advanced Mathematics", groupColorString: "#E91E63")
+        .make(id: "1", title: "Study Group A", courseName: "Introduction to Computer Science", courseColor: .course1, groupColor: .course8, memberCount: 42),
+        .make(id: "2", title: .loremIpsumLong, courseName: .loremIpsumLong, courseColor: .course4, groupColor: .course2, memberCount: 999),
+        .make(id: "3", title: "The Four Horsemen", courseName: "Advanced Mathematics", courseColor: .course11, groupColor: .course5)
     ]
 }
 
