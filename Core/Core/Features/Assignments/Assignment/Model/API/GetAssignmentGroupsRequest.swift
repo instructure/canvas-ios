@@ -35,6 +35,7 @@ public struct GetAssignmentGroupsRequest: APIRequestable {
 
     let courseID: String
     let gradingPeriodID: String?
+    // This has no effect when sent from a teacher or parent, it can always be true
     let scopeAssignmentsToStudent: Bool
     let include: [Include]
     let perPage: Int?
