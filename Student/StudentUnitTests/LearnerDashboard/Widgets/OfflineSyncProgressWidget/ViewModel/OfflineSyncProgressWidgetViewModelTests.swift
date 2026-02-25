@@ -155,13 +155,7 @@ final class OfflineSyncProgressWidgetViewModelTests: StudentTestCase {
             dashboardViewModel: dashboardViewModel
         )
 
-        let expectation = expectation(description: "refresh completes")
-        let subscription = testee.refresh(ignoreCache: true).sink {
-            expectation.fulfill()
-        }
-
-        wait(for: [expectation], timeout: 1)
-        subscription.cancel()
+        XCTAssertFinish(testee.refresh(ignoreCache: true))
     }
 }
 

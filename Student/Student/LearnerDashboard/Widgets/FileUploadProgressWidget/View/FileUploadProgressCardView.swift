@@ -74,7 +74,6 @@ struct FileUploadProgressCardView: View {
         }
     }
 
-    @ViewBuilder
     private func progressBar(progress: Float) -> some View {
         ProgressView(value: progress)
             .paddingStyle(.vertical, .textVertical)
@@ -82,13 +81,11 @@ struct FileUploadProgressCardView: View {
             .progressViewStyle(.determinateBorderedBar(color: .textLightest))
     }
 
-    @ViewBuilder
     private var title: some View {
         Text(card.state.title)
             .font(.semibold16, lineHeight: .fit)
     }
 
-    @ViewBuilder
     private var subtitle: some View {
         Text(card.state.subtitleText(assignmentName: card.assignmentName))
             .font(.regular14, lineHeight: .fit)

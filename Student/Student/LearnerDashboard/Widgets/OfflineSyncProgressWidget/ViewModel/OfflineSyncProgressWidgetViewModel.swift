@@ -103,7 +103,7 @@ final class OfflineSyncProgressWidgetViewModel: DashboardWidgetViewModel {
                     self.progressText = ""
                     self.backgroundColor = .backgroundDanger
                     self.title = String(localized: "Offline Content Sync Failed", bundle: .student)
-                    self.subtitleText = String(localized: "We couldn't sync your content.\nTry again, or come back later", bundle: .student)
+                    self.subtitleText = String(localized: "We couldn't sync your content.\nTry again, or come back later.", bundle: .student)
                 }
             }
             .store(in: &subscriptions)

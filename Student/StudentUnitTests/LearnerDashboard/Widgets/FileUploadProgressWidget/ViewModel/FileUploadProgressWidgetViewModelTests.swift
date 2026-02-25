@@ -95,7 +95,7 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
             listViewModel: listViewModel
         )
 
-        drainMainQueue()
+        waitUntil { testee.uploadCards.count == 1 }
 
         XCTAssertEqual(testee.uploadCards.count, 1)
         XCTAssertEqual(testee.uploadCards.first?.assignmentName, "Test Assignment")
@@ -125,8 +125,6 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
             listViewModel: listViewModel
         )
 
-        drainMainQueue()
-
         XCTAssertEqual(testee.uploadCards.count, 0)
         XCTAssertEqual(testee.state, .empty)
     }
@@ -153,7 +151,7 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
             listViewModel: listViewModel
         )
 
-        drainMainQueue()
+        waitUntil { testee.uploadCards.count == 1 }
 
         XCTAssertEqual(testee.uploadCards.count, 1)
         XCTAssertEqual(testee.uploadCards.first?.state, .success)
@@ -181,7 +179,7 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
             listViewModel: listViewModel
         )
 
-        drainMainQueue()
+        waitUntil { testee.uploadCards.count == 1 }
 
         XCTAssertEqual(testee.uploadCards.count, 1)
         XCTAssertEqual(testee.uploadCards.first?.state, .failed)
@@ -210,14 +208,14 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
             listViewModel: listViewModel
         )
 
-        drainMainQueue()
+        waitUntil { testee.uploadCards.count == 1 }
 
         XCTAssertEqual(testee.uploadCards.count, 1)
 
         let uploadId = testee.uploadCards.first!.id
         testee.dismiss(uploadId: uploadId)
 
-        drainMainQueue()
+        waitUntil { testee.uploadCards.isEmpty }
 
         XCTAssertEqual(testee.uploadCards.count, 0)
         XCTAssertEqual(testee.state, .empty)
@@ -252,12 +250,6 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
             listViewModel: listViewModel
         )
 
-        let expectation = expectation(description: "refresh completes")
-        let subscription = testee.refresh(ignoreCache: true).sink {
-            expectation.fulfill()
-        }
-
-        wait(for: [expectation], timeout: 1)
-        subscription.cancel()
+        XCTAssertFinish(testee.refresh(ignoreCache: true))
     }
 }

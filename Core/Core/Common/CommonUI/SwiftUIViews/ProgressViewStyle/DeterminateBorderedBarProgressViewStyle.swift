@@ -23,7 +23,8 @@ public struct DeterminateBorderedBarProgressViewStyle: ProgressViewStyle {
     private let borderColor: Color
     private let backgroundColor: Color
 
-    private let barHeight: CGFloat = 4
+    @ScaledMetric private var uiScale: CGFloat = 1
+    private var barHeight: CGFloat { 4 * uiScale.iconScale }
     private let borderWidth: CGFloat = 0.5
 
     public init(
@@ -85,6 +86,8 @@ public extension ProgressViewStyle where Self == DeterminateBorderedBarProgressV
     }
 }
 
+#if DEBUG
+
 #Preview("Stepper") {
     @Previewable @State var value = 0.5
 
@@ -134,3 +137,5 @@ public extension ProgressViewStyle where Self == DeterminateBorderedBarProgressV
     .frame(maxHeight: .infinity)
     .background(.backgroundDarkest)
 }
+
+#endif
