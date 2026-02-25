@@ -378,6 +378,7 @@ open class Router {
 
         if let apiHostOverride = contextBaseUrlInteractor.baseUrlHostOverride(for: url) {
             url.host = apiHostOverride
+            url = url.transformingContentIDsToLocalForm()
         }
 
         return url
@@ -386,5 +387,54 @@ open class Router {
     private func handler(for url: URLComponents) -> RouteHandler? {
         let url = cleanURL(url)
         return handlers.first { $0.match(url) != nil }
+    }
+}
+
+// MARK: - Helpers
+
+private extension URLComponents {
+
+    ///
+    /// Only to be applied when URL host get overridden.
+    /// Transforms the content IDs found in the URL's path to their local form.
+    ///
+    /// This ensures a consistent form of ID for objects saved to the CoreData store,
+    /// allowing the app to reliably match local and remote representations of data.
+    ///
+    /// This is achieved by iterating over all context types that support base URL overrides (course & group),
+    /// attempting to match the URL's path with a route pattern that includes `contextID` and `itemID`
+    /// parameters. If any such parameters are found, their values in the path are replaced with their
+    /// corresponding local IDs.
+    ///
+    /// ### Examples:
+    /// ```
+    /// /courses/COURSE_ID/files/FILE_ID → /courses/{localCourseID}/files/{localFileID}
+    /// /groups/GROUP_ID/assignments/ASSIGNMENT_ID → /groups/{localGroupID}/assignments/{localAssignmentID}
+    /// ```
+    ///
+    /// - Returns: A new `URLComponents` instance with applicable `contextID` and `itemID` path components
+    ///   replaced by their local forms, if found. If no replacements are made, returns a copy of the
+    ///   original components.
+    func transformingContentIDsToLocalForm() -> URLComponents {
+        var url = self
+        ContextType
+            .baseUrlOverridableTypes
+            .forEach { contextType in
+                let params = Route(
+                    "/\(contextType.pathComponent)/:contextID/:section/:itemID",
+                    expandTildeID: false
+                ).match(url)
+
+                /// Check if itemID belongs to the same context
+                /// This normally the case, but let's check on it any way.
+                guard let contextID = params?["contextID"],
+                      let itemID = params?["itemID"],
+                      let itemShardID = itemID.shardID,
+                      itemShardID == contextID.shardID
+                else { return }
+
+                url.path = url.path.replacingOccurrences(of: itemID, with: itemID.localID)
+            }
+        return url
     }
 }
