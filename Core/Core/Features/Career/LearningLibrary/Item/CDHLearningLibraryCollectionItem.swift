@@ -91,12 +91,14 @@ extension CDHLearningLibraryCollectionItem {
     public static func updateEnroll(
         _ id: String,
         itemID: String,
+        enrollmentID: String,
         in context: NSManagedObjectContext
     ) {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(CDHLearningLibraryCollectionItem.itemId), itemID)
         let dbEntities: [CDHLearningLibraryCollectionItem] = context.fetch(predicate)
         dbEntities.forEach {
             $0.isEnrolledInCanvas = true
+            $0.canvasEnrollmentId = enrollmentID
         }
     }
 }

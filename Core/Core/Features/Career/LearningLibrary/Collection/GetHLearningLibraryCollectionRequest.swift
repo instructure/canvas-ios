@@ -63,6 +63,7 @@ public struct GetHLearningLibraryCollectionRequest: APIGraphQLRequestable, Learn
               description
               createdAt
               updatedAt
+              totalItemCount
               \(itemsQuery)
             }
           }

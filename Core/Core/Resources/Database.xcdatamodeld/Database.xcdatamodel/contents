@@ -312,6 +312,7 @@
     <entity name="CDHLearningLibraryCollection" representedClassName=".CDHLearningLibraryCollection" syncable="YES">
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
+        <attribute name="totalItemCount" attributeType="String"/>
         <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHLearningLibraryCollectionItem" inverseName="relationship" inverseEntity="CDHLearningLibraryCollectionItem"/>
     </entity>
     <entity name="CDHLearningLibraryCollectionItem" representedClassName=".CDHLearningLibraryCollectionItem" syncable="YES">

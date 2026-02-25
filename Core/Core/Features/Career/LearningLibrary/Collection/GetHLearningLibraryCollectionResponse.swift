@@ -33,6 +33,7 @@ public struct GetHLearningLibraryCollectionResponse: Codable {
          let id, name, publicName: String
          let description: String?
          let createdAt, updatedAt: String
+         let totalItemCount: Int?
          let items: [LearningLibraryItemsResponse]?
     }
 }

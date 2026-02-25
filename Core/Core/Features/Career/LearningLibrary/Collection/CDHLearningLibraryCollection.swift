@@ -21,6 +21,7 @@ import CoreData
 final public class CDHLearningLibraryCollection: NSManagedObject {
     @NSManaged public var id: String
     @NSManaged public var name: String
+    @NSManaged public var totalItemCount: String
     @NSManaged public var items: Set<CDHLearningLibraryCollectionItem>
 
     @discardableResult
@@ -44,6 +45,7 @@ final public class CDHLearningLibraryCollection: NSManagedObject {
             )
         }
         dbEntity.items = Set(dbCollectionItems)
+        dbEntity.totalItemCount = String(apiEntity.totalItemCount.defaultToZero)
         return dbEntity
     }
 }
