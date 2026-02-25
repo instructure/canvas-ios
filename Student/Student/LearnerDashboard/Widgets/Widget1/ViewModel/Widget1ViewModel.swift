@@ -28,6 +28,7 @@ final class Widget1ViewModel: DashboardWidgetViewModel {
     let config: DashboardWidgetConfig
     let isFullWidth = false
     let isEditable = false
+    let isHiddenInEmptyState = false
     var state: InstUI.ScreenState = .loading
 
     var layoutIdentifier: [AnyHashable] {

@@ -27,6 +27,7 @@ final class Widget2ViewModel: DashboardWidgetViewModel {
     let config: DashboardWidgetConfig
     let isFullWidth = false
     let isEditable = false
+    let isHiddenInEmptyState = false
     var state: InstUI.ScreenState = .data
     private var subscriptions = Set<AnyCancellable>()
 
