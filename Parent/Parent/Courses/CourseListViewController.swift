@@ -122,7 +122,7 @@ class CourseListCell: UITableViewCell {
     }
 
     func displayGrade(_ course: Course?, studentID: String) -> String {
-        guard let course = course, let enrollment = course.enrollments?.first(where: { $0.userID == studentID && $0.isStudent }) else {
+        guard let course = course, let enrollment = course.enrollments?.first(where: { $0.userID == studentID && $0.isStudent && $0.id == nil }) else {
             return ""
         }
 

@@ -42,7 +42,7 @@ struct AssignmentListView: View {
     }
 
     var body: some View {
-        LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
+        ConditionallyLazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
             ForEach(sections) { section in
                 let isExpanded = Binding(
                     get: { sectionExpandedStates[section.id] ?? true },
