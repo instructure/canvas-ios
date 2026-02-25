@@ -25,7 +25,6 @@ struct LearningLibraryCardView: View {
 
     private let model: LearningLibraryCardModel
     private let isBookmarkLoading: Bool
-    private let isEnrollLoading: Bool
     private let onBookmarkTap: (() -> Void)
     private let enrollTap: (() -> Void)
     private let onTapItem: (() -> Void)
@@ -35,14 +34,12 @@ struct LearningLibraryCardView: View {
     init(
         model: LearningLibraryCardModel,
         isBookmarkLoading: Bool = false,
-        isEnrollLoading: Bool = false,
         onBookmarkTap: @escaping (() -> Void),
         enrollTap: @escaping (() -> Void),
         onTapItem: @escaping (() -> Void)
     ) {
         self.model = model
         self.isBookmarkLoading = isBookmarkLoading
-        self.isEnrollLoading = isEnrollLoading
         self.onBookmarkTap = onBookmarkTap
         self.enrollTap = enrollTap
         self.onTapItem = onTapItem
@@ -64,8 +61,14 @@ struct LearningLibraryCardView: View {
 
             HStack(alignment: .bottom, spacing: .huiSpaces.space8) {
                 descriptionView
-                bookmarkButton
-                    .fixedSize()
+                HStack(alignment: .center, spacing: .huiSpaces.space8) {
+                    if model.isCompleted {
+                        Image.huiIcons.checkCircle
+                            .foregroundStyle(Color.huiColors.icon.default)
+                    }
+                    bookmarkButton
+                        .fixedSize()
+                }
             }
         }
         .padding(.huiSpaces.space24)
@@ -176,7 +179,7 @@ struct LearningLibraryCardView: View {
             title: String(localized: "Enroll"),
             type: .darkOutline,
             fillsWidth: true,
-            isLoading: isEnrollLoading
+            isLoading: false
         ) {
             enrollTap()
         }
@@ -196,7 +199,6 @@ struct LearningLibraryCardView: View {
             numberOfUnits: 100
         ),
         isBookmarkLoading: true,
-        isEnrollLoading: true,
         onBookmarkTap: { },
         enrollTap: { },
         onTapItem: {}

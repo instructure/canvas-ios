@@ -45,7 +45,8 @@ struct LearningLibraryView: View {
         .background(Color.huiColors.surface.pagePrimary)
         .overlay { loaderView }
         .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
-        .animation(.linear, value: isShowHeader)
+        .preference(key: EnrollConfirmationPreferenceKey.self, value: viewModel.enrollConfirmationViewModel)
+        .animation(.linear, value: [isShowHeader, isShowDivider])
         .animation(.easeInOut(duration: 0.3), value: viewModel.isGlobalSearchActive)
         .onFirstAppear { viewModel.fetchCollections() }
         .alert(isPresented: $viewModel.isErrorVisible) {
@@ -69,11 +70,20 @@ struct LearningLibraryView: View {
     private var libraryContentView: some View {
         if #available(iOS 18.0, *) {
             listLibraryView
-                .onScrollGeometryChange(for: CGFloat.self) { geometry in
-                    geometry.contentOffset.y
-                } action: { _, newOffset in
-                    isShowHeader = newOffset <= 200
-                    isShowDivider = newOffset >= 30
+                .onScrollGeometryChange(for: ScrollData.self) { geometry in
+                    ScrollData(
+                        offset: geometry.contentOffset.y,
+                        contentHeight: geometry.contentSize.height
+                    )
+                } action: { _, newValue in
+                    let viewportHeight = UIScreen.main.bounds.height
+                    if newValue.contentHeight > viewportHeight + 200 {
+                        isShowHeader = newValue.offset <= 200
+                        isShowDivider = newValue.offset >= 10
+                    } else {
+                        isShowHeader = true
+                        isShowDivider = false
+                    }
                 }
         } else {
             listLibraryView
@@ -106,6 +116,8 @@ struct LearningLibraryView: View {
         .listSectionSpacing(.compact)
         .listSectionSeparator(.hidden)
         .scrollIndicators(.hidden)
+        .dismissKeyboardOnTap()
+        .scrollDismissesKeyboard(.immediately)
         .refreshable { await viewModel.refresh() }
         .transition(.opacity.combined(with: .move(edge: .leading)))
     }
@@ -114,11 +126,20 @@ struct LearningLibraryView: View {
     private var globalSearchContentView: some View {
         if #available(iOS 18.0, *) {
             globalSearchListView
-                .onScrollGeometryChange(for: CGFloat.self) { geometry in
-                    geometry.contentOffset.y
-                } action: { _, newOffset in
-                    isShowHeader = newOffset <= 200
-                    isShowDivider = newOffset >= 30
+                .onScrollGeometryChange(for: ScrollData.self) { geometry in
+                    ScrollData(
+                        offset: geometry.contentOffset.y,
+                        contentHeight: geometry.contentSize.height
+                    )
+                } action: { _, newValue in
+                    let viewportHeight = UIScreen.main.bounds.height
+                    if newValue.contentHeight > viewportHeight + 200 {
+                        isShowHeader = newValue.offset <= 200
+                        isShowDivider = newValue.offset >= 10
+                    } else {
+                        isShowHeader = true
+                        isShowDivider = false
+                    }
                 }
         } else {
             globalSearchListView
@@ -131,11 +152,10 @@ struct LearningLibraryView: View {
                 LearningLibraryCardView(
                     model: item,
                     isBookmarkLoading: viewModel.isBookmarkLoading(forItemWithId: item.id),
-                    isEnrollLoading: viewModel.isEnrollLoading(forItemWithId: item.id),
                     onBookmarkTap: {
                         viewModel.addBookmark(model: item)
                     }, enrollTap: {
-                        viewModel.enroll(model: item)
+                        viewModel.showEnrollConfirmation(model: item, viewController: viewController)
                     }, onTapItem: {
                         viewModel.navigateToLearningLibraryItem(item, from: viewController)
                     }
@@ -163,7 +183,6 @@ struct LearningLibraryView: View {
         .listStyle(.plain)
         .listRowSpacing(.huiSpaces.space24)
         .scrollIndicators(.hidden)
-        .transition(.opacity.combined(with: .move(edge: .trailing)))
     }
 
     @ViewBuilder
@@ -192,7 +211,10 @@ struct LearningLibraryView: View {
             headerView
                 .padding(.horizontal, .huiSpaces.space24)
                 .padding(.top, .huiSpaces.space2)
-            filterView
+            if !isShowDivider {
+                filterView
+                    .transition(.move(edge: .top).combined(with: .opacity))
+            }
             Rectangle()
                 .fill(Color.huiColors.primitives.grey14)
                 .frame(height: 1.5)
@@ -245,8 +267,8 @@ struct LearningLibraryView: View {
 
     private var filterView: some View {
         HStack(spacing: .huiSpaces.space8) {
-            learningObjectFilterView
             learningLibraryTypeFilterView
+            learningObjectFilterView
             HorizonUI.IconButton(Image.huiIcons.close, type: .gray) {
                 viewModel.clearAll()
             }

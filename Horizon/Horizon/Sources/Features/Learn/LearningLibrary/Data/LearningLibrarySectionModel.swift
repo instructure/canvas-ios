@@ -25,17 +25,20 @@ struct LearningLibrarySectionModel: Identifiable, Equatable, PaginatedDataSource
     let id: String
     let name: String
     let hasMoreItems: Bool
+    let totalItemCount: String
     var items: [LearningLibraryCardModel]
 
     init(
         id: String,
         name: String,
         hasMoreItems: Bool = false,
+        totalItemCount: String = "",
         items: [LearningLibraryCardModel]
     ) {
         self.id = id
         self.name = name
         self.hasMoreItems = hasMoreItems
+        self.totalItemCount = totalItemCount
         self.items = items
     }
 
@@ -47,6 +50,7 @@ struct LearningLibrarySectionModel: Identifiable, Equatable, PaginatedDataSource
         self.id = entity.id
         self.name = entity.name
         self.hasMoreItems = hasMoreItems
+        self.totalItemCount = entity.totalItemCount
         self.items = items.map { .init(for: $0) }
     }
 

@@ -20,6 +20,11 @@ import Core
 import HorizonUI
 import SwiftUI
 
+struct ScrollData: Equatable {
+    let offset: CGFloat
+    let contentHeight: CGFloat
+}
+
 struct LearningLibraryDetailsView: View {
     // MARK: - Properties
 
@@ -58,6 +63,8 @@ struct LearningLibraryDetailsView: View {
         .animation(.linear, value: isShowHeader)
         .background(Color.huiColors.surface.pagePrimary)
         .refreshable { await viewModel.refresh() }
+        .dismissKeyboardOnTap()
+        .scrollDismissesKeyboard(.immediately)
         .onFirstAppear { viewModel.fetchData() }
         .onAppear {
             ImageCacheConfiguration.configure()
@@ -70,6 +77,20 @@ struct LearningLibraryDetailsView: View {
             topPadding: 44,
             backgroundColor: Color.huiColors.surface.pagePrimary
         )
+        .huiToast(
+            viewModel: .init(
+                text: viewModel.errorMessage,
+                style: .error
+            ),
+            isPresented: $viewModel.isErrorVisible
+        )
+        .overlay {
+            EnrollConfirmationView(
+                isPresented: $viewModel.enrollConfirmation.isPresented,
+                isLoading: viewModel.enrollConfirmation.isLoading,
+                onTap: viewModel.enrollConfirmation.onTap
+            )
+        }
     }
 
     private var navBarView: some View {
@@ -90,11 +111,21 @@ struct LearningLibraryDetailsView: View {
     private var contentView: some View {
         if #available(iOS 18.0, *) {
             listLearningLibraryView
-                .onScrollGeometryChange(for: CGFloat.self) { geometry in
-                    geometry.contentOffset.y
-                } action: { _, newOffset in
-                    isShowHeader = newOffset <= 200
-                    isShowDivider = newOffset >= 30
+                .onScrollGeometryChange(for: ScrollData.self) { geometry in
+                    ScrollData(
+                        offset: geometry.contentOffset.y,
+                        contentHeight: geometry.contentSize.height
+                    )
+                } action: { _, newValue in
+                    let viewportHeight = UIScreen.main.bounds.height
+
+                    if newValue.contentHeight > viewportHeight + 200 {
+                        isShowHeader = newValue.offset <= 200
+                        isShowDivider = newValue.offset >= 10
+                    } else {
+                        isShowHeader = true
+                        isShowDivider = newValue.offset >= 10
+                    }
                 }
         } else {
             listLearningLibraryView
@@ -106,12 +137,11 @@ struct LearningLibraryDetailsView: View {
             ForEach(viewModel.filteredItems) { item in
                 LearningLibraryCardView(
                     model: item,
-                    isBookmarkLoading: viewModel.isBookmarkLoading(forItemWithId: item.id),
-                    isEnrollLoading: viewModel.isEnrollLoading(forItemWithId: item.id),
+                    isBookmarkLoading: viewModel.isBookmarkLoading(forItemWithId: item.id)
                 ) {
                     viewModel.addBookmark(model: item)
                 } enrollTap: {
-                    viewModel.enroll(model: item)
+                    viewModel.showEnrollConfirmation(model: item, viewController: viewController)
                 } onTapItem: {
                     viewModel.navigateToLearningLibraryItem(item, from: viewController)
                 }
@@ -180,20 +210,20 @@ struct LearningLibraryDetailsView: View {
 
     private var filterView: some View {
         HStack(spacing: .huiSpaces.space8) {
-            learningObjectFilterView
             learningLibraryTypeFilterView
+            learningObjectFilterView
             HorizonUI.IconButton(Image.huiIcons.close, type: .gray) {
                 viewModel.clearAll()
             }
             .hidden(!viewModel.isClearButtonVisible)
             Spacer()
-            countOfVisiableItemsView
+            countOfVisibleItemsView
                 .hidden(viewModel.filteredItems.isEmpty)
         }
         .padding(.horizontal, .huiSpaces.space24)
     }
 
-    private var countOfVisiableItemsView: some View {
+    private var countOfVisibleItemsView: some View {
         Text("\(viewModel.filteredItems.count)")
             .foregroundStyle(Color.huiColors.text.dataPoint)
             .huiTypography(.p1)
@@ -214,6 +244,7 @@ struct LearningLibraryDetailsView: View {
                 guard let option else { return }
                 viewModel.selectedLearningObject = option
             }
+            .frame(width: 120)
     }
 
     @ViewBuilder
@@ -227,6 +258,7 @@ struct LearningLibraryDetailsView: View {
                 guard let option else { return }
                 viewModel.selectedLearningLibrary = option
             }
+            .frame(width: 120)
     }
 
     private var seeMoreButton: some View {

@@ -23,7 +23,7 @@ import UIKit
 enum LearningLibraryAssembly {
     static private func makeViewModel(
         pageType: LearningLibraryDetailsViewModel.PageType,
-        didSendEvent: PassthroughSubject<Void,Never>
+        didSendEvent: PassthroughSubject<Void, Never>
     ) -> LearningLibraryDetailsViewModel {
         let router = AppEnvironment.shared.router
         return LearningLibraryDetailsViewModel(
@@ -36,14 +36,14 @@ enum LearningLibraryAssembly {
 
     static func makeView(
         pageType: LearningLibraryDetailsViewModel.PageType,
-        didSendEvent: PassthroughSubject<Void,Never>
+        didSendEvent: PassthroughSubject<Void, Never>
     ) -> LearningLibraryDetailsView {
         .init(viewModel: makeViewModel(pageType: pageType, didSendEvent: didSendEvent))
     }
 
     static func makeViewController(
         pageType: LearningLibraryDetailsViewModel.PageType,
-        didSendEvent: PassthroughSubject<Void,Never>
+        didSendEvent: PassthroughSubject<Void, Never>
     ) -> UIViewController {
         CoreHostingController(makeView(pageType: pageType, didSendEvent: didSendEvent))
     }

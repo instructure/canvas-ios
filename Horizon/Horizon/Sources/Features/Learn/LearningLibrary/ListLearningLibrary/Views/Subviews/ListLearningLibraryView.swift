@@ -87,11 +87,10 @@ struct ListLearningLibraryView: View {
             LearningLibraryCardView(
                 model: item,
                 isBookmarkLoading: viewModel.isBookmarkLoading(forItemWithId: item.id),
-                isEnrollLoading: viewModel.isEnrollLoading(forItemWithId: item.id),
                 onBookmarkTap: {
                     viewModel.addBookmark(model: item)
                 }, enrollTap: {
-                    viewModel.enroll(model: item)
+                    viewModel.showEnrollConfirmation(model: item, viewController: viewController)
                 }, onTapItem: {
                     viewModel.navigateToLearningLibraryItem(item, from: viewController)
                 }
@@ -107,7 +106,7 @@ struct ListLearningLibraryView: View {
     private var viewAllCollectionsButton: some View {
         if section.hasMoreItems {
             HStack {
-                Text(String(format: String(localized: "%d items"), section.items.count))
+                Text(String(format: String(localized: "%@ items"), section.totalItemCount))
                     .foregroundStyle(Color.huiColors.text.dataPoint)
                     .huiTypography(.p2)
                     .frame(maxWidth: .infinity, alignment: .leading)
@@ -133,6 +132,7 @@ struct ListLearningLibraryView: View {
             id: "1",
             name: "Learning Library Name",
             hasMoreItems: true,
+            totalItemCount: "10",
             items: [
                 .init(
                     id: "ID-1",

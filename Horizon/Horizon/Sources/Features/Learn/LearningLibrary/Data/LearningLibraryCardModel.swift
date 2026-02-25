@@ -77,11 +77,30 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         self.isRecommended = false
         self.isCompleted = entity.completionPercentage == 100
         self.isBookmarked = entity.isBookmarked
-        self.numberOfUnits = entity.moduleItemCount?.intValue
+        self.numberOfUnits = entity.moduleCount?.intValue
         self.isEnrolled = entity.isEnrolledInCanvas
         self.isInProgress = (entity.completionPercentage >= 0 && !isCompleted && isEnrolled)
         self.courseEnrollmentId = entity.canvasEnrollmentId
         self.libraryId = entity.libraryId
+    }
+
+    init(for response: LearningLibraryItemsResponse) {
+        self.id = response.id
+        self.itemId = response.canvasCourse?.courseId ?? ""
+        self.name = response.canvasCourse?.courseName ?? ""
+        self.imageURL = response.canvasCourse?.courseImageUrl.flatMap { URL(string: $0) }
+        self.itemType = LearningLibraryObjectType(rawValue: response.itemType) ?? .course
+        self.estimatedTime = response.canvasCourse?.estimatedDurationMinutes.map { String(describing: $0) }
+        self.numberOfUnits = response.canvasCourse?.moduleCount
+        self.isRecommended = false
+        let completionPercentage = response.completionPercentage ?? 0
+        self.isCompleted = completionPercentage == 100
+        self.isBookmarked = response.isBookmarked ?? false
+        let isEnrolled = response.isEnrolledInCanvas ?? false
+        self.isEnrolled = isEnrolled
+        self.isInProgress = (completionPercentage >= 0 && !self.isCompleted && isEnrolled)
+        self.libraryId = response.libraryId ?? ""
+        self.courseEnrollmentId = response.canvasEnrollmentId
     }
 
     mutating func update(with: LearningLibraryCardModel) {

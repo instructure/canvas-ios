@@ -51,7 +51,7 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
     var isErrorVisible: Bool = false
 
     // MARK: - Outputs
-
+    var enrollConfirmationViewModel: EnrollConfirmationViewModel?
     private(set) var errorMessage = ""
     private(set) var hasLibrary: Bool = false
     private(set) var isLoaderVisible: Bool = true
@@ -65,7 +65,6 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
     // MARK: - Private variables
 
     private var bookmarkLoadingStates: [String: Bool] = [:]
-    private var enrollLoadingStates: [String: Bool] = [:]
     private var reloadCollections = PassthroughSubject<Void, Never>()
     private var subscriptions = Set<AnyCancellable>()
     private var globalSearchCancellable: AnyCancellable?
@@ -153,24 +152,28 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
         bookmarkLoadingStates[id] ?? false
     }
 
-    func enroll(model: LearningLibraryCardModel) {
-        enrollLoadingStates[model.id] = true
+   private func enroll(model: LearningLibraryCardModel, viewController: WeakViewController) {
         interactor.enroll(id: model.id, itemID: model.itemId)
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] error in
                 guard let self else { return }
-                enrollLoadingStates[model.id] = false
                 showError(with: error.localizedDescription)
-            } receiveValue: { [weak self] collection in
+            } receiveValue: { [weak self] item in
                 guard let self else { return }
-                self.update(with: collection)
-                enrollLoadingStates[collection.id] = false
+                self.update(with: item)
+                self.handleEnrollState(item: item, viewController: viewController)
             }
             .store(in: &subscriptions)
     }
 
-    func isEnrollLoading(forItemWithId id: String) -> Bool {
-        enrollLoadingStates[id] ?? false
+    func showEnrollConfirmation(
+        model: LearningLibraryCardModel,
+        viewController: WeakViewController
+    ) {
+        enrollConfirmationViewModel = EnrollConfirmationViewModel(isLoading: false, isPresented: true) { [weak self] in
+            self?.enrollConfirmationViewModel?.isLoading = true
+            self?.enroll(model: model, viewController: viewController)
+        }
     }
 
     func seeMore() {
@@ -213,6 +216,12 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
 
     // MARK: - Private Functions
 
+    private func handleEnrollState(item: LearningLibraryCardModel, viewController: WeakViewController) {
+        enrollConfirmationViewModel?.isPresented = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.navigateToLearningLibraryItem(item, from: viewController)
+        }
+    }
     private func update(with collection: LearningLibraryCardModel) {
         fetchCollections()
         guard isGlobalSearchActive else { return }

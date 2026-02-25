@@ -50,6 +50,9 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
 
     private(set) var hasItems = false
     private(set) var isLoaderVisible: Bool = true
+    private(set) var errorMessage = ""
+    var enrollConfirmation = EnrollConfirmationViewModel()
+    var isErrorVisible: Bool = false
     var filteredItems: [LearningLibraryCardModel] { paginator.visibleItems }
     var isSeeMoreVisible: Bool { paginator.isSeeMoreVisible }
     var isClearButtonVisible: Bool {
@@ -61,7 +64,6 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     // MARK: - Private variables
 
     private var bookmarkLoadingStates: [String: Bool] = [:]
-    private var enrollLoadingStates: [String: Bool] = [:]
     private var allItems: [LearningLibraryCardModel] = []
     private let paginator = PaginatedDataSource<LearningLibraryCardModel>(items: [], pageSize: 6)
     private var subscriptions = Set<AnyCancellable>()
@@ -112,8 +114,9 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     ) {
         interactor.getBookmarkedItems(ignoreCache: ignoreCache)
             .receive(on: scheduler)
-            .sinkFailureOrValue { [weak self] _ in
+            .sinkFailureOrValue { [weak self] error in
                 self?.isLoaderVisible = false
+                self?.showError(message: error.localizedDescription)
                 completion?()
             } receiveValue: { [weak self] items in
                 self?.isLoaderVisible = false
@@ -130,8 +133,9 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     ) {
         interactor.getCollectionItems(id: id, ignoreCache: ignoreCache)
             .receive(on: scheduler)
-            .sinkFailureOrValue { [weak self] _ in
+            .sinkFailureOrValue { [weak self] error in
                 self?.isLoaderVisible = false
+                self?.showError(message: error.localizedDescription)
                 completion?()
             } receiveValue: { [weak self] items in
                 self?.isLoaderVisible = false
@@ -217,9 +221,9 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
             .sinkFailureOrValue { [weak self] error in
                 guard let self else { return }
                 bookmarkLoadingStates[model.id] = false
+                showError(message: error.localizedDescription)
             } receiveValue: { [weak self] item in
                 guard let self else { return }
-
                 configItem(item: item)
                 bookmarkLoadingStates[model.id] = false
                 didSendEvent.send(())
@@ -231,25 +235,30 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
         bookmarkLoadingStates[id] ?? false
     }
 
-    func enroll(model: LearningLibraryCardModel) {
-        enrollLoadingStates[model.id] = true
+   private func enroll(model: LearningLibraryCardModel, viewController: WeakViewController) {
         interactor.enroll(id: model.id, itemID: model.itemId)
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] error in
                 guard let self else { return }
-                enrollLoadingStates[model.id] = false
+                showError(message: error.localizedDescription)
 
             } receiveValue: { [weak self] item in
                 guard let self else { return }
                 configItem(item: item)
-                enrollLoadingStates[model.id] = false
+                handleEnrollState(item: item, viewController: viewController)
                 didSendEvent.send(())
             }
             .store(in: &subscriptions)
     }
 
-    func isEnrollLoading(forItemWithId id: String) -> Bool {
-        enrollLoadingStates[id] ?? false
+    func showEnrollConfirmation(
+        model: LearningLibraryCardModel,
+        viewController: WeakViewController
+    ) {
+        enrollConfirmation = EnrollConfirmationViewModel(isLoading: false, isPresented: true) { [weak self] in
+            self?.enrollConfirmation.isLoading = true
+            self?.enroll(model: model, viewController: viewController)
+        }
     }
 
     // MARK: - Private Functions
@@ -285,6 +294,19 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     private func delete(with item: LearningLibraryCardModel) {
         allItems.removeAll(where: { item.id == $0.id })
         paginator.visibleItems.removeAll(where: { item.id == $0.id })
+        hasItems = allItems.isNotEmpty
+    }
+
+    private func showError(message: String) {
+        errorMessage = message
+        isErrorVisible = true
+    }
+
+    private func handleEnrollState(item: LearningLibraryCardModel, viewController: WeakViewController) {
+        enrollConfirmation.isPresented = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
+            self?.navigateToLearningLibraryItem(item, from: viewController)
+        }
     }
 }
 
@@ -311,6 +333,5 @@ extension LearningLibraryDetailsViewModel {
             case .bookmarks: true
             }
         }
-
     }
 }

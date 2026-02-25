@@ -21,13 +21,13 @@ import SwiftUI
 
 enum LearningLibraryObjectType: String, CaseIterable {
     case course = "COURSE"
-    case page = "PAGE"
-    case file = "FILE"
-    case externalLink = "EXTERNAL_URL"
-    case assessment = "QUIZ"
-    case assignment = "ASSIGNMENT"
-    case externalTool = "EXTERNAL_TOOL"
     case program = "PROGRAM"
+    case page = "PAGE"
+    case assignment = "ASSIGNMENT"
+    case assessment = "QUIZ"
+    case externalLink = "EXTERNAL_URL"
+    case externalTool = "EXTERNAL_TOOL"
+    case file = "FILE"
 
     var name: String {
         switch self {
@@ -87,6 +87,6 @@ enum LearningLibraryObjectType: String, CaseIterable {
     }
 
     static var firstOption: OptionModel {
-        OptionModel(id: "-1", name: String(localized: "All item types"))
+        OptionModel(id: "-1", name: String(localized: "Any type"))
     }
 }

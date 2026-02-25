@@ -23,19 +23,19 @@ enum LearningLibraryFilter: String, CaseIterable {
 
     var name: String {
         switch self {
-        case .all: String(localized: "All")
+        case .all: String(localized: "Any status")
         case .completed: String(localized: "Completed")
         case .bookmarked: String(localized: "Bookmarked")
         }
     }
 
-    static var options: [OptionModel] {
-        LearningLibraryFilter.allCases.map {
-            .init(
-                id: $0.rawValue,
-                name: $0.name
-            )
-        }
+    static func options(excluding filters: [LearningLibraryFilter]) -> [OptionModel] {
+        filters.map {
+                .init(
+                    id: $0.rawValue,
+                    name: $0.name
+                )
+            }
     }
 
     static var firstOption: OptionModel {

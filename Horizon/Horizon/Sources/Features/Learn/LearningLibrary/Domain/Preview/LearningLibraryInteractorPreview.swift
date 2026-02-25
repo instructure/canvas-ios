@@ -136,12 +136,14 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
                 id: "collection-1",
                 name: "Recommended Courses",
                 hasMoreItems: true,
+                totalItemCount: "11",
                 items: Array(mockItems.prefix(2))
             ),
             LearningLibrarySectionModel(
                 id: "collection-2",
                 name: "Development Resources",
                 hasMoreItems: false,
+                totalItemCount: "11",
                 items: Array(mockItems.suffix(2))
             )
         ]
