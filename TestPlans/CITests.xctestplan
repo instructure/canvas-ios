@@ -66,16 +66,16 @@
     },
     {
       "target" : {
-        "containerPath" : "container:packages\/BusinessLogic",
-        "identifier" : "BusinessLogicTests",
-        "name" : "BusinessLogicTests"
+        "containerPath" : "container:Student\/Student.xcodeproj",
+        "identifier" : "4DF9E94388E5DAB2630B064B",
+        "name" : "StudentUnitTests"
       }
     },
     {
       "target" : {
-        "containerPath" : "container:Student\/Student.xcodeproj",
-        "identifier" : "4DF9E94388E5DAB2630B064B",
-        "name" : "StudentUnitTests"
+        "containerPath" : "container:..\/packages\/BusinessLogic",
+        "identifier" : "BusinessLogicTests",
+        "name" : "BusinessLogicTests"
       }
     },
     {
