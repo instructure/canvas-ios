@@ -48,7 +48,7 @@ final class HelloWidgetViewModelTests: StudentTestCase {
         testee = makeViewModel()
 
         XCTAssertEqual(testee.config.id, .helloWidget)
-        XCTAssertEqual(testee.isFullWidth, false)
+        XCTAssertEqual(testee.isFullWidth, true)
         XCTAssertEqual(testee.isEditable, true)
     }
 
