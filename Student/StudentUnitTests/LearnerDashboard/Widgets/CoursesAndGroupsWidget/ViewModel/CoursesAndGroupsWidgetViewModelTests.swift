@@ -59,11 +59,6 @@ final class CoursesAndGroupsWidgetViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.state, .loading)
         XCTAssertEqual(testee.courseCards.isEmpty, true)
         XCTAssertEqual(testee.groupCards.isEmpty, true)
-
-        XCTAssertEqual(testee.coursesSectionTitle, "Courses (0)")
-        XCTAssertEqual(testee.coursesSectionAccessibilityTitle, "Courses, 0 items")
-        XCTAssertEqual(testee.groupsSectionTitle, "Groups (0)")
-        XCTAssertEqual(testee.groupsSectionAccessibilityTitle, "Groups, 0 items")
     }
 
     // MARK: - Layout identifier
@@ -213,20 +208,6 @@ final class CoursesAndGroupsWidgetViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.groupCards.first?.title, testData.group1.title)
         XCTAssertEqual(testee.groupCards.last?.id, testData.group2.id)
         XCTAssertEqual(testee.groupCards.last?.title, testData.group2.title)
-    }
-
-    // MARK: - Refresh - Section titles
-
-    func test_refresh_shouldUpdateSectionTitles() {
-        testee = makeViewModel()
-
-        interactor.getCoursesAndGroupsOutput = ([testData.course1, testData.course2], [testData.group1])
-        XCTAssertFinish(testee.refresh(ignoreCache: false))
-
-        XCTAssertEqual(testee.coursesSectionTitle, "Courses (2)")
-        XCTAssertEqual(testee.coursesSectionAccessibilityTitle, "Courses, 2 items")
-        XCTAssertEqual(testee.groupsSectionTitle, "Groups (1)")
-        XCTAssertEqual(testee.groupsSectionAccessibilityTitle, "Groups, 1 item")
     }
 
     // MARK: - orderDidChange

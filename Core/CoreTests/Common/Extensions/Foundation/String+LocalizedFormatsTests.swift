@@ -42,6 +42,12 @@ class StringLocalizedFormatsTests: XCTestCase {
         XCTAssertEqual(String.format(accessibilityListCount: 0), "List, 0 items")
     }
 
+    func test_format_countSuffixed() {
+        XCTAssertEqual(String.format(countSuffixed: "Courses", count: 1), "Courses (1)")
+        XCTAssertEqual(String.format(countSuffixed: "Courses", count: 5), "Courses (5)")
+        XCTAssertEqual(String.format(countSuffixed: "Courses", count: 0), "Courses (0)")
+    }
+
     func test_format_pts() {
         XCTAssertEqual(String.format(pts: 1), "1 pt")
         XCTAssertEqual(String.format(pts: 5), "5 pts")
