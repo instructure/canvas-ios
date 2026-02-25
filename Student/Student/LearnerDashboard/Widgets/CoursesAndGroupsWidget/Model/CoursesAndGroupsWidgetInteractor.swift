@@ -53,7 +53,7 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
         self.coursesInteractor = coursesInteractor
 
         self.userSettingsStore = ReactiveStore(
-            context: env.database.viewContext,
+            context: env.database.backgroundReadContext,
             useCase: GetUserSettings(),
             environment: env
         )
