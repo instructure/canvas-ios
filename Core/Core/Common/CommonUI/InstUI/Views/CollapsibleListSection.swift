@@ -48,7 +48,7 @@ extension InstUI {
                 let visibleTitle = config.showItemCount ? String.format(countSuffixed: title, count: itemCount) : title
                 self.label = label(visibleTitle)
                 self.headerAccessibilityLabel = [title, String.format(numberOfItems: itemCount)]
-                    .joined(separator: ", ")
+                    .accessibilityJoined()
                 self.listLevelAccessibilityLabel = config.readListItemCount ? String.format(accessibilityListCount: itemCount) : nil
             } else {
                 self.label = label(title)

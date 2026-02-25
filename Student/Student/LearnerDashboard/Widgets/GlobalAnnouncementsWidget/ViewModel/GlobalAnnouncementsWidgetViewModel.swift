@@ -132,6 +132,6 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
         widgetAccessibilityTitle = [
             String(localized: "Announcements", bundle: .student),
             String.format(numberOfItems: count)
-        ].joined(separator: ", ")
+        ].accessibilityJoined()
     }
 }

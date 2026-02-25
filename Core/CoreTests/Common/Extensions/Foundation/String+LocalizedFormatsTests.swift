@@ -32,8 +32,8 @@ class StringLocalizedFormatsTests: XCTestCase {
         XCTAssertEqual(String.format(numberOfItems: 0), "0 items")
 
         let optionalValue: Int? = 5
-        XCTAssertEqual(String.format(numberOfItems: optionalValue), "5 items")
-        XCTAssertEqual(String.format(numberOfItems: nil), nil)
+        XCTAssertEqual(String.format(numberOfItemsOrNil: optionalValue), "5 items")
+        XCTAssertEqual(String.format(numberOfItemsOrNil: nil), nil)
     }
 
     func test_format_accessibilityListCount() {
@@ -55,8 +55,8 @@ class StringLocalizedFormatsTests: XCTestCase {
         XCTAssertEqual(String.format(pts: 12.345678), "12.3457 pts")
 
         let optionalValue: Double? = 5
-        XCTAssertEqual(String.format(pts: optionalValue), "5 pts")
-        XCTAssertEqual(String.format(pts: nil), nil)
+        XCTAssertEqual(String.format(ptsOrNil: optionalValue), "5 pts")
+        XCTAssertEqual(String.format(ptsOrNil: nil), nil)
     }
 
     func test_format_points() {
@@ -66,8 +66,8 @@ class StringLocalizedFormatsTests: XCTestCase {
         XCTAssertEqual(String.format(points: 12.345678), "12.3457 points")
 
         let optionalValue: Double? = 5
-        XCTAssertEqual(String.format(points: optionalValue), "5 points")
-        XCTAssertEqual(String.format(points: nil), nil)
+        XCTAssertEqual(String.format(pointsOrNil: optionalValue), "5 points")
+        XCTAssertEqual(String.format(pointsOrNil: nil), nil)
     }
 
     func test_format_needsGrading() {

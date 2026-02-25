@@ -114,6 +114,6 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
         widgetAccessibilityTitle = [
             String(localized: "Course Invitations", bundle: .student),
             String.format(numberOfItems: count)
-        ].joined(separator: ", ")
+        ].accessibilityJoined()
     }
 }

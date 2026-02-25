@@ -40,7 +40,7 @@ extension String {
         )
     }
     /// Localized string for number of items. Example: "5 items"
-    public static func format(numberOfItems count: Int?) -> String? {
+    public static func format(numberOfItemsOrNil count: Int?) -> String? {
         count.map(format(numberOfItems:))
     }
 
@@ -75,7 +75,7 @@ extension String {
     }
 
     /// Localized string for number of points, abbreviated to "pts". Example: "5 pts"
-    public static func format(pts points: Double?) -> String? {
+    public static func format(ptsOrNil points: Double?) -> String? {
         points.map(format(pts:))
     }
 
@@ -88,7 +88,7 @@ extension String {
     }
 
     /// Localized string for number of points, not abbreviated, primarily for accessibility usage. Example: "5 points"
-    public static func format(points: Double?) -> String? {
+    public static func format(pointsOrNil points: Double?) -> String? {
         points.map(format(points:))
     }
 
