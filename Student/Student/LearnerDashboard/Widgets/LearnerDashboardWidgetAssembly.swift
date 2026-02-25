@@ -28,9 +28,9 @@ enum LearnerDashboardWidgetAssembly {
             .conferences,
             .courseInvitations,
             .globalAnnouncements,
+            .helloWidget,
 
             // grid
-            .helloWidget,
             .coursesAndGroups
         ]
 

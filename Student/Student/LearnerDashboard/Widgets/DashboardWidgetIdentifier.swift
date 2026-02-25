@@ -22,7 +22,7 @@ enum DashboardWidgetIdentifier: String, Codable, CaseIterable {
     case conferences
     case courseInvitations
     case globalAnnouncements
-
     case helloWidget
+
     case coursesAndGroups
 }

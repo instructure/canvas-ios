@@ -27,6 +27,7 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
     let config: DashboardWidgetConfig
     let isFullWidth = false
     let isEditable = false
+    let isHiddenInEmptyState = true
 
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var courseCards: [CourseCardViewModel] = []
