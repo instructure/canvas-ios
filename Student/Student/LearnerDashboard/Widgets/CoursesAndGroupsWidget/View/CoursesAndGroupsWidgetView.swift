@@ -22,9 +22,12 @@ import SwiftUI
 
 struct CoursesAndGroupsWidgetView: View {
     @Environment(\.viewController) var controller
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @Environment(\.containerSize) private var containerSize
 
     @State private var viewModel: CoursesAndGroupsWidgetViewModel
     @State private var draggedCourseCardId: String?
+    private let cardSpacing: CGFloat = 4
 
     init(viewModel: CoursesAndGroupsWidgetViewModel) {
         self.viewModel = viewModel
@@ -49,14 +52,18 @@ struct CoursesAndGroupsWidgetView: View {
         }
     }
 
+    @ViewBuilder
     private var content: some View {
+        let columnCount = DashboardWidgetLayout.columnCount(for: containerSize.width)
+        let itemWidth = itemWidth(containerWidth: containerSize.width, columnCount: columnCount)
+
         VStack(alignment: .center, spacing: 16) {
             if viewModel.courseCards.isNotEmpty {
-                coursesSection
+                coursesSection(itemWidth: itemWidth, columnCount: columnCount)
             }
 
             if viewModel.groupCards.isNotEmpty {
-                groupsSection
+                groupsSection(itemWidth: itemWidth, columnCount: columnCount)
             }
 
             Button(String(localized: "All Courses", bundle: .student)) {
@@ -64,53 +71,65 @@ struct CoursesAndGroupsWidgetView: View {
             }
             .buttonStyle(.pillButtonBrandFilled)
             .identifier("Dashboard.allCoursesButton")
-
         }
+        .animation(.dashboardWidget, value: columnCount)
         .animation(.dashboardWidget, value: viewModel.layoutIdentifier)
     }
 
-    private var coursesSection: some View {
+    private func coursesSection(itemWidth: CGFloat, columnCount: Int) -> some View {
         DashboardTitledWidget(
             viewModel.coursesSectionTitle,
             customAccessibilityTitle: viewModel.coursesSectionAccessibilityTitle
         ) {
-            VStack(alignment: .leading, spacing: 4) {
-                ForEach(viewModel.courseCards) { cardViewModel in
-                    CourseCardView(
-                        viewModel: cardViewModel,
-                        showGrades: viewModel.showGrades,
-                        showColorOverlay: viewModel.showColorOverlay
-                    )
-                    .onDrag {
-                        draggedCourseCardId = cardViewModel.id
-                        return NSItemProvider(item: nil, typeIdentifier: CourseCardDropToReorderDelegate.DropID)
-                    }
-                    .onDrop(
-                        of: [CourseCardDropToReorderDelegate.DropID],
-                        delegate: CourseCardDropToReorderDelegate(
-                            receiverCardId: cardViewModel.id,
-                            draggedCourseCardId: $draggedCourseCardId,
-                            order: viewModel.courseCards.map { $0.id },
-                            delegate: viewModel
-                        )
-                    )
+            DashboardGrid(
+                itemIDs: viewModel.courseCards.map(\.id),
+                itemWidth: itemWidth,
+                spacing: cardSpacing,
+                columnCount: columnCount
+            ) { index in
+                let cardViewModel = viewModel.courseCards[index]
+                CourseCardView(
+                    viewModel: cardViewModel,
+                    showGrades: viewModel.showGrades,
+                    showColorOverlay: viewModel.showColorOverlay
+                )
+                .onDrag {
+                    draggedCourseCardId = cardViewModel.id
+                    return NSItemProvider(item: nil, typeIdentifier: CourseCardDropToReorderDelegate.DropID)
                 }
+                .onDrop(
+                    of: [CourseCardDropToReorderDelegate.DropID],
+                    delegate: CourseCardDropToReorderDelegate(
+                        receiverCardId: cardViewModel.id,
+                        draggedCourseCardId: $draggedCourseCardId,
+                        order: viewModel.courseCards.map { $0.id },
+                        delegate: viewModel
+                    )
+                )
             }
             .animation(.dashboardWidget, value: viewModel.courseCards)
         }
     }
 
-    private var groupsSection: some View {
+    private func groupsSection(itemWidth: CGFloat, columnCount: Int) -> some View {
         DashboardTitledWidget(
             viewModel.groupsSectionTitle,
             customAccessibilityTitle: viewModel.groupsSectionAccessibilityTitle
         ) {
-            VStack(alignment: .leading, spacing: 4) {
-                ForEach(viewModel.groupCards) { cardViewModel in
-                    GroupCardView(viewModel: cardViewModel)
-                }
+            DashboardGrid(
+                itemIDs: viewModel.groupCards.map(\.id),
+                itemWidth: itemWidth,
+                spacing: cardSpacing,
+                columnCount: columnCount
+            ) { index in
+                GroupCardView(viewModel: viewModel.groupCards[index])
             }
         }
+    }
+
+    private func itemWidth(containerWidth: CGFloat, columnCount: Int) -> CGFloat {
+        guard containerWidth > 0, columnCount > 0 else { return 0 }
+        return (containerWidth - CGFloat(columnCount - 1) * cardSpacing) / CGFloat(columnCount)
     }
 }
 

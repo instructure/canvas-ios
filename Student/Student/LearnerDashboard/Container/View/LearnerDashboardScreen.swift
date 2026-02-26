@@ -44,7 +44,7 @@ struct LearnerDashboardScreen: View {
                     completion: completion
                 )
             }
-        ) { _ in
+        ) { geometry in
             VStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
                 ForEach(viewModel.widgets, id: \.id) { widgetViewModel in
                     if widgetViewModel.shouldRenderWidget {
@@ -54,6 +54,7 @@ struct LearnerDashboardScreen: View {
             }
             .animation(.dashboardWidget, value: viewModel.widgets.map(\.layoutIdentifier))
             .paddingStyle(.all, .standard)
+            .environment(\.containerSize, geometry.size)
         }
         .snackBar(viewModel: viewModel.snackBarViewModel)
         .navigationBarDashboard()
