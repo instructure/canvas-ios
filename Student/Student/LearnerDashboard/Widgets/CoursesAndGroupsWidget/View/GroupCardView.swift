@@ -51,7 +51,7 @@ struct GroupCardView: View {
     @ViewBuilder
     private var thumbnail: some View {
         Color(viewModel.groupColor)
-            .scaledFrame(size: 72)
+            .scaledFrame(size: 72, useIconScale: true)
             .overlay(alignment: .bottomLeading) {
                 memberCountPill
                     .offset(x: 8, y: -8)
