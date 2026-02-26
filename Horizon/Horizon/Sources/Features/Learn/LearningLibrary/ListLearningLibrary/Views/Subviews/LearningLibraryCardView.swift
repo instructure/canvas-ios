@@ -61,14 +61,9 @@ struct LearningLibraryCardView: View {
 
             HStack(alignment: .bottom, spacing: .huiSpaces.space8) {
                 descriptionView
-                HStack(alignment: .center, spacing: .huiSpaces.space8) {
-                    if model.isCompleted {
-                        Image.huiIcons.checkCircle
-                            .foregroundStyle(Color.huiColors.icon.default)
-                    }
-                    bookmarkButton
-                        .fixedSize()
-                }
+                bookmarkButton
+                    .fixedSize()
+
             }
         }
         .padding(.huiSpaces.space24)
@@ -126,6 +121,13 @@ struct LearningLibraryCardView: View {
                     style: .gray,
                     icon: Image.huiIcons.trendingUp,
                     iconHeight: 10
+                )
+            }
+            if model.isCompleted {
+                HorizonUI.StatusChip(
+                    title: String(localized: "Completed"),
+                    style: .green,
+                    icon: Image.huiIcons.checkCircle,
                 )
             }
             Rectangle()
