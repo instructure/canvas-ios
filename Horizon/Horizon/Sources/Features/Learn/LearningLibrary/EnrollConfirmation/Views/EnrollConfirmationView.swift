@@ -19,7 +19,6 @@
 import HorizonUI
 import SwiftUI
 
-
 struct EnrollConfirmationView: View {
     @Binding private var isPresented: Bool
     private let isLoading: Bool

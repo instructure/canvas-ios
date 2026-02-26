@@ -127,6 +127,7 @@ struct LearnCourseListView: View {
             Text(viewModel.filteredCourses.count.description)
                 .foregroundStyle(Color.huiColors.text.dataPoint)
                 .huiTypography(.p1)
+                .hidden(viewModel.filteredCourses.isEmpty)
                 .accessibilityLabel(
                     Text(
                         String(

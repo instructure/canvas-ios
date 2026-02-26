@@ -49,7 +49,7 @@ final class LearnCourseListViewModel {
 
     // MARK: - Private variables
 
-    private let paginator = PaginatedDataSource<CourseListWidgetModel>(items: [], pageSize: 1000)
+    private let paginator = PaginatedDataSource<CourseListWidgetModel>(items: [], pageSize: 10)
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: GetCoursesInteractor
     private let router: Router
@@ -88,6 +88,7 @@ final class LearnCourseListViewModel {
             .sink { [weak self] courses in
                 guard let self else { return }
                 self.paginator.setItems(courses)
+                self.paginator.applyFilters(query: self.searchText, status: self.selectedStatus)
                 self.isLoaderVisiable = false
                 self.hasCourses = courses.isNotEmpty
                 completion?()
