@@ -53,7 +53,6 @@ final class CoursesAndGroupsWidgetViewModelTests: StudentTestCase {
 
         XCTAssertEqual(testee.config.id, .coursesAndGroups)
         XCTAssertEqual(testee.config.order, 42)
-        XCTAssertEqual(testee.isFullWidth, false)
         XCTAssertEqual(testee.isEditable, false)
 
         XCTAssertEqual(testee.state, .loading)

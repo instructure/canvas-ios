@@ -25,7 +25,6 @@ final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = ConferencesWidgetView
 
     let config: DashboardWidgetConfig
-    let isFullWidth = true
     let isEditable = false
     let isHiddenInEmptyState = true
 

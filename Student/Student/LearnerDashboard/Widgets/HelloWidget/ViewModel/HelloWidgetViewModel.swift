@@ -26,7 +26,6 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = HelloWidgetView
 
     let config: DashboardWidgetConfig
-    let isFullWidth = true
     let isEditable = true
     let isHiddenInEmptyState = true
 

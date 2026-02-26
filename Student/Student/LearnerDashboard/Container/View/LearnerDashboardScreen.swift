@@ -44,12 +44,15 @@ struct LearnerDashboardScreen: View {
                     completion: completion
                 )
             }
-        ) { geometry in
-            DashboardWidgetLayout(
-                fullWidthWidgets: viewModel.fullWidthWidgets,
-                gridWidgets: viewModel.gridWidgets,
-                containerWidth: geometry.size.width
-            )
+        ) { _ in
+            VStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
+                ForEach(viewModel.widgets, id: \.id) { widgetViewModel in
+                    if widgetViewModel.shouldRenderWidget {
+                        LearnerDashboardWidgetAssembly.makeView(for: widgetViewModel)
+                    }
+                }
+            }
+            .animation(.dashboardWidget, value: viewModel.widgets.map(\.layoutIdentifier))
             .paddingStyle(.all, .standard)
         }
         .snackBar(viewModel: viewModel.snackBarViewModel)
