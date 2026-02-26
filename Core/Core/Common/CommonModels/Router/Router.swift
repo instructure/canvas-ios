@@ -403,17 +403,17 @@ private extension URLComponents {
     ///
     /// This is achieved by iterating over all context types that support base URL overrides (course & group),
     /// attempting to match the URL's path with a route pattern that includes `contextID` and `itemID`
-    /// parameters. If any such parameters are found, their values in the path are replaced with their
-    /// corresponding local IDs.
+    /// parameters. If such pattern are found, `itemID` value in the path are replaced with its
+    /// corresponding local ID (removing shardID).
     ///
     /// ### Examples:
     /// ```
-    /// /courses/COURSE_ID/files/FILE_ID → /courses/{localCourseID}/files/{localFileID}
-    /// /groups/GROUP_ID/assignments/ASSIGNMENT_ID → /groups/{localGroupID}/assignments/{localAssignmentID}
+    /// /courses/COURSE_ID/files/FILE_ID → /courses/COURSE_ID/files/FILE_LOCAL_ID
+    /// /groups/GROUP_ID/assignments/ASSIGNMENT_ID → /groups/GROUP_ID/assignments/ASSIGNMENT_LOCAL_ID
     /// ```
     ///
     /// - Returns: A new `URLComponents` instance with applicable `contextID` and `itemID` path components
-    ///   replaced by their local forms, if found. If no replacements are made, returns a copy of the
+    ///   replaced by `itemID` local forms, if found. If no replacements are made, returns a copy of the
     ///   original components.
     func transformingContentIDsToLocalForm() -> URLComponents {
         var url = self
