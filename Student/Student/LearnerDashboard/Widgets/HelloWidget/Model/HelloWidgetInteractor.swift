@@ -35,7 +35,7 @@ final class HelloWidgetInteractorLive: HelloWidgetInteractor {
 
     init(env: AppEnvironment = .shared) {
         self.store = ReactiveStore(
-            context: env.database.backgroundReadContext,
+            context: env.database.viewContext,
             useCase: GetUserProfile(userID: "self"),
             environment: env
         )

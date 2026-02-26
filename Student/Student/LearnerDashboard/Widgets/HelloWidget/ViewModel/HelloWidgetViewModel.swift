@@ -55,7 +55,6 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
         self.interactor = interactor
 
         interactor.getShortName(ignoreCache: false)
-            .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { [weak self] completion in
                     if completion.isFailure {
@@ -78,7 +77,6 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
 
     public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
         interactor.getShortName(ignoreCache: ignoreCache)
-            .receive(on: DispatchQueue.main)
             .handleEvents(
                 receiveOutput: { [weak self] shortName in
                     guard let self else { return }
