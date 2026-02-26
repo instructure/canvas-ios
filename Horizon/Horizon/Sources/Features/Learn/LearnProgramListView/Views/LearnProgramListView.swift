@@ -138,7 +138,7 @@ struct LearnProgramListView: View {
                     guard let option else { return }
                     lastFocusedProgramID = selectFilterFocusedID
                     viewModel.selectedStatus = option
-                    restoreFocusIfNeeded(after: 1.6)
+                    restoreFocusIfNeeded(after: 1.55)
                 }
                 .id(lastFocusedProgramID)
                 .accessibilityFocused($focusedProgramID, equals: selectFilterFocusedID)

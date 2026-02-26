@@ -26,6 +26,13 @@ struct ScrollData: Equatable {
 }
 
 struct LearningLibraryDetailsView: View {
+    // MARK: - VO Properties
+
+    @State private var lastFocusedItemID: String?
+    @AccessibilityFocusState private var focusedItemID: String?
+    private let selectLOFilterFocusedID = "selectLOFilterFocusedID"
+    private let selectTypeFilterFocusedID = "selectTypeFilterFocusedID"
+
     // MARK: - Properties
 
     @Environment(\.viewController) private var viewController
@@ -105,6 +112,9 @@ struct LearningLibraryDetailsView: View {
         }
         .background(Color.huiColors.surface.pagePrimary)
         .padding(.horizontal, .huiSpaces.space16)
+        .accessibilityElement(children: .combine)
+        .accessibilityAddTraits(.isButton)
+        .accessibilityLabel(Text("Back"))
     }
 
     @ViewBuilder
@@ -139,12 +149,17 @@ struct LearningLibraryDetailsView: View {
                     model: item,
                     isBookmarkLoading: viewModel.isBookmarkLoading(forItemWithId: item.id)
                 ) {
+                    lastFocusedItemID = item.id
                     viewModel.addBookmark(model: item)
                 } enrollTap: {
+                    lastFocusedItemID = item.id
                     viewModel.showEnrollConfirmation(model: item, viewController: viewController)
                 } onTapItem: {
+                    lastFocusedItemID = item.id
                     viewModel.navigateToLearningLibraryItem(item, from: viewController)
                 }
+                .id(item.id)
+                .accessibilityFocused($focusedItemID, equals: item.id)
             }
             .padding(.top, .huiSpaces.space2)
             .padding(.horizontal, .huiSpaces.space24)
@@ -197,6 +212,7 @@ struct LearningLibraryDetailsView: View {
             .huiTypography(.h3)
             .foregroundStyle(Color.huiColors.text.title)
             .padding(.horizontal, .huiSpaces.space24)
+            .accessibilityAddTraits(.isHeader)
     }
 
     private var searchView: some View {
@@ -242,9 +258,13 @@ struct LearningLibraryDetailsView: View {
             items: LearningLibraryObjectType.options,
             selectedOption: viewModel.selectedLearningObject) { option in
                 guard let option else { return }
+                lastFocusedItemID = selectLOFilterFocusedID
                 viewModel.selectedLearningObject = option
+                restoreFocusIfNeeded(after: 1.55)
             }
             .frame(width: 120)
+            .id(selectLOFilterFocusedID)
+            .accessibilityFocused($focusedItemID, equals: selectLOFilterFocusedID)
     }
 
     @ViewBuilder
@@ -256,14 +276,25 @@ struct LearningLibraryDetailsView: View {
             items: options,
             selectedOption: viewModel.selectedLearningLibrary) { option in
                 guard let option else { return }
+                lastFocusedItemID = selectTypeFilterFocusedID
                 viewModel.selectedLearningLibrary = option
+                restoreFocusIfNeeded(after: 1.55)
             }
             .frame(width: 120)
+            .id(selectTypeFilterFocusedID)
+            .accessibilityFocused($focusedItemID, equals: selectTypeFilterFocusedID)
     }
 
     private var seeMoreButton: some View {
         SeeMoreButton(accessibilityHint: String(localized: "Double tap to load more items")) {
             viewModel.seeMore()
+        }
+    }
+
+    private func restoreFocusIfNeeded(after: Double) {
+        guard let lastFocusedItemID else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + after) {
+            focusedItemID = lastFocusedItemID
         }
     }
 }
