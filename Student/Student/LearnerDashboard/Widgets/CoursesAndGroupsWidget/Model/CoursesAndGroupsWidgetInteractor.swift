@@ -104,8 +104,7 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
                 CoursesAndGroupsWidgetGroupItem(
                     id: $0.id,
                     title: $0.name,
-                    courseName: $0.course?.name ?? "",
-                    courseColor: $0.course?.color.asColor ?? .textDark,
+                    contextName: $0.customizedContextName,
                     groupColor: $0.color.asColor,
                     memberCount: $0.memberCount
                 )

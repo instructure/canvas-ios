@@ -36,7 +36,7 @@ struct GroupCardView: View {
                 thumbnail
             },
             labels: {
-                courseLabel
+                contextLabel
                 titleLabel
             },
             isAvailable: offlineMode.isAppOnline,
@@ -58,10 +58,10 @@ struct GroupCardView: View {
             }
     }
 
-    private var courseLabel: some View {
-        Text(viewModel.courseName)
+    private var contextLabel: some View {
+        Text(viewModel.contextName)
             .font(.regular14, lineHeight: .fit)
-            .foregroundStyle(viewModel.courseColor)
+            .foregroundStyle(viewModel.groupColor)
             .multilineTextAlignment(.leading)
     }
 
@@ -98,9 +98,9 @@ struct GroupCardView: View {
 
 extension GroupCardView {
     static let previewData: [CoursesAndGroupsWidgetGroupItem] = [
-        .make(id: "1", title: "Study Group A", courseName: "Introduction to Computer Science", courseColor: .course1, groupColor: .course8, memberCount: 42),
-        .make(id: "2", title: .loremIpsumLong, courseName: .loremIpsumLong, courseColor: .course4, groupColor: .course2, memberCount: 999),
-        .make(id: "3", title: "The Four Horsemen", courseName: "Advanced Mathematics", courseColor: .course11, groupColor: .course5)
+        .make(id: "1", title: "Study Group A", contextName: "Introduction to Computer Science", groupColor: .course8, memberCount: 42),
+        .make(id: "2", title: .loremIpsumLong, contextName: .loremIpsumLong, groupColor: .course2, memberCount: 999),
+        .make(id: "3", title: "The Four Horsemen", contextName: "Advanced Mathematics", groupColor: .course5)
     ]
 }
 
