@@ -142,6 +142,7 @@ struct LearnProgramListView: View {
                 }
                 .id(lastFocusedProgramID)
                 .accessibilityFocused($focusedProgramID, equals: selectFilterFocusedID)
+                .frame(width: 130)
             Spacer()
             Text(viewModel.filteredPrograms.count.description)
                 .foregroundStyle(Color.huiColors.text.dataPoint)
