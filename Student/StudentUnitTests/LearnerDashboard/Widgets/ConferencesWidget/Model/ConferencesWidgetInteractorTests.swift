@@ -41,6 +41,7 @@ final class ConferencesWidgetInteractorTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
+        databaseContextToUse = .backgroundRead
         coursesInteractor = CoursesInteractorMock()
     }
 

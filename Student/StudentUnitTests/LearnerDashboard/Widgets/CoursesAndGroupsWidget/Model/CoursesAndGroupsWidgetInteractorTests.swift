@@ -41,6 +41,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
+        databaseContextToUse = .backgroundRead
         coursesInteractor = .init()
         setupDefaultAPIMocks()
     }
