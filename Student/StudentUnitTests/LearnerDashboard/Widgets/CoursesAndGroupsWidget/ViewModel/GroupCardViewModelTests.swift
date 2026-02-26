@@ -27,8 +27,7 @@ final class GroupCardViewModelTests: StudentTestCase {
     private static let testData = (
         id: "group1",
         title: "some title",
-        courseName: "some courseName",
-        courseColor: Color.course4,
+        contextName: "some contextName",
         groupColor: Color.course7,
         memberCount: 42
     )
@@ -47,16 +46,14 @@ final class GroupCardViewModelTests: StudentTestCase {
         testee = makeViewModel(model: .make(
             id: testData.id,
             title: testData.title,
-            courseName: testData.courseName,
-            courseColor: testData.courseColor,
+            contextName: testData.contextName,
             groupColor: testData.groupColor,
             memberCount: testData.memberCount
         ))
 
         XCTAssertEqual(testee.id, testData.id)
         XCTAssertEqual(testee.title, testData.title)
-        XCTAssertEqual(testee.courseName, testData.courseName)
-        XCTAssertEqual(testee.courseColor, testData.courseColor)
+        XCTAssertEqual(testee.contextName, testData.contextName)
         XCTAssertEqual(testee.groupColor, testData.groupColor)
         XCTAssertEqual(testee.memberCount, String(testData.memberCount))
     }

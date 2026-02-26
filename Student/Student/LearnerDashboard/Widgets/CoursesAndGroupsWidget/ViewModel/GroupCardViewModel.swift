@@ -24,8 +24,7 @@ struct GroupCardViewModel: Identifiable, Equatable {
 
     let id: String
     let title: String
-    let courseName: String
-    let courseColor: Color
+    let contextName: String
     let groupColor: Color
     let memberCount: String
 
@@ -40,8 +39,7 @@ struct GroupCardViewModel: Identifiable, Equatable {
 
         self.id = model.id
         self.title = model.title
-        self.courseName = model.courseName
-        self.courseColor = model.courseColor
+        self.contextName = model.contextName
         self.groupColor = model.groupColor
         self.memberCount = String(model.memberCount)
 

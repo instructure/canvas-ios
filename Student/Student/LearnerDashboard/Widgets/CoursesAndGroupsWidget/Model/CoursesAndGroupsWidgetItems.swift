@@ -31,8 +31,7 @@ struct CoursesAndGroupsWidgetCourseItem: Equatable {
 struct CoursesAndGroupsWidgetGroupItem: Equatable {
     let id: String
     let title: String
-    let courseName: String
-    let courseColor: Color
+    let contextName: String
     let groupColor: Color
     let memberCount: Int
 }
@@ -61,16 +60,14 @@ extension CoursesAndGroupsWidgetGroupItem {
     static func make(
         id: String = "",
         title: String = "",
-        courseName: String = "",
-        courseColor: Color = .clear,
+        contextName: String = "",
         groupColor: Color = .clear,
         memberCount: Int = 0
     ) -> CoursesAndGroupsWidgetGroupItem {
         .init(
             id: id,
             title: title,
-            courseName: courseName,
-            courseColor: courseColor,
+            contextName: contextName,
             groupColor: groupColor,
             memberCount: memberCount
         )
