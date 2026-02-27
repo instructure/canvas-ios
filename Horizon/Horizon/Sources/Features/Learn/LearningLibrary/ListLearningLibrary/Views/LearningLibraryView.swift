@@ -54,7 +54,8 @@ struct LearningLibraryView: View {
         .overlay { loaderView }
         .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
         .animation(.linear, value: [isShowHeader, isShowDivider])
-        .animation(.easeInOut(duration: 0.3), value: viewModel.isGlobalSearchActive)
+        .animation(.easeInOut, value: viewModel.isGlobalSearchActive)
+        .animation(.easeInOut, value: [viewModel.filteredSections.count, viewModel.globalSearchItems.count])
         .onFirstAppear { viewModel.fetchCollections() }
         .alert(isPresented: $viewModel.isErrorVisible) {
             Alert(title: Text(viewModel.errorMessage))
