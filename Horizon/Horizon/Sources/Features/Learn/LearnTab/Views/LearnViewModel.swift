@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,12 +16,23 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import UIKit
+import Combine
+import Observation
 
-struct LearnAssembly {
-    static func makeLearnView() -> UIViewController {
-        let viewModel = LearnViewModel(interactor: LearningLibraryInteractorLive())
-        return CoreHostingController( LearnView(viewModel: viewModel))
+@Observable
+final class LearnViewModel {
+
+    private(set) var tabs: [LearnTabs] = [.courses, .programs]
+    private var subscriptions = Set<AnyCancellable>()
+
+    init(interactor: LearningLibraryInteractor) {
+        interactor.getLearnLibraryCollections(ignoreCache: true)
+            .replaceError(with: [])
+            .sink { [weak self] collections in
+                if collections.isNotEmpty {
+                    self?.tabs.append(.learningLibrary)
+                }
+            }
+            .store(in: &subscriptions)
     }
 }

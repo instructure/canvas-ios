@@ -72,6 +72,7 @@ struct LearningLibraryDetailsView: View {
         .refreshable { await viewModel.refresh() }
         .dismissKeyboardOnTap()
         .scrollDismissesKeyboard(.immediately)
+        .animation(.easeInOut, value: viewModel.filteredItems.count)
         .onFirstAppear { viewModel.fetchData() }
         .onAppear {
             ImageCacheConfiguration.configure()

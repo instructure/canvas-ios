@@ -28,7 +28,11 @@ struct LearnView: View {
     private let listProgramView: LearnProgramListView
     private let learningLibraryView: LearningLibraryView
 
-    init() {
+    // MARK: - Dependencies
+    @State private var viewModel: LearnViewModel
+
+    init(viewModel: LearnViewModel) {
+        self._viewModel = State(initialValue: viewModel)
         self.listCourseView = LearnCourseListAssembly.makeView()
         self.listProgramView = LearnProgramListAssembly.makeView()
         self.learningLibraryView = ListLearningLibraryAssembly.makeView()
@@ -60,7 +64,7 @@ struct LearnView: View {
 
     private func tabDetailsView() -> some View {
         TabView(selection: $selectedTabIndex) {
-            ForEach(Array(LearnTabs.allCases.enumerated()), id: \.offset) { index, tab in
+            ForEach(Array(viewModel.tabs.enumerated()), id: \.offset) { index, tab in
                 Group {
                     switch tab {
                     case .courses: listCourseView
@@ -76,7 +80,7 @@ struct LearnView: View {
 
     private var tabsView: some View {
         HorizonUI.Tabs(
-            tabs: LearnTabs.allCases.map(\.localizedString),
+            tabs: viewModel.tabs.map(\.localizedString),
             selectTabIndex: Binding(
                 get: { selectedTabIndex },
                 set: { selectedTabIndex = $0 ?? 0 }
@@ -89,5 +93,5 @@ struct LearnView: View {
 }
 
 #Preview {
-    LearnView()
+    LearnView(viewModel: .init(interactor: LearningLibraryInteractorLive()))
 }
