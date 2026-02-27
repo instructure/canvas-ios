@@ -50,8 +50,7 @@ struct LearnerDashboardScreen: View {
                 gridWidgets: viewModel.gridWidgets,
                 containerWidth: geometry.size.width
             )
-            .paddingStyle(.horizontal, .standard)
-            .paddingStyle(.bottom, .standard)
+            .paddingStyle(.all, .standard)
         }
         .snackBar(viewModel: viewModel.snackBarViewModel)
         .navigationBarDashboard()

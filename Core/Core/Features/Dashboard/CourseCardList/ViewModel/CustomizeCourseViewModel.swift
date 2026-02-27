@@ -19,7 +19,7 @@
 import Combine
 import SwiftUI
 
-class CustomizeCourseViewModel: ObservableObject {
+public class CustomizeCourseViewModel: ObservableObject {
     public struct AlertMessage: Identifiable, Equatable {
         public var id: String { message }
         public let message: String
@@ -46,7 +46,7 @@ class CustomizeCourseViewModel: ObservableObject {
     private var originalCourseColor: UIColor
     private var subscriptions = Set<AnyCancellable>()
 
-    init(
+    public init(
         courseId: String,
         courseImage: URL?,
         courseColor: UIColor,
