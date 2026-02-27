@@ -102,34 +102,6 @@ extension InstUI {
             }
         }
     }
-
-    private struct BackgroundView2: View {
-        @Environment(\.colorScheme) private var colorScheme
-        @ScaledMetric private var uiScale: CGFloat = 1
-
-        let isFilled: Bool
-        let isPressed: Bool
-        let borderColor: AnyShapeStyle
-
-        var body: some View {
-            let shape = Capsule()
-
-            if isFilled {
-                shape.fill(.tint)
-            } else {
-                if isPressed {
-                    // In dark mode we need stronger colors to be as prominent as in light mode
-                    let bgOpacity = colorScheme == .dark ? 0.3 : 0.1
-                    shape
-                        .fill(borderColor.opacity(bgOpacity))
-                        .stroke(borderColor, lineWidth: uiScale)
-                } else {
-                    shape
-                        .stroke(borderColor, lineWidth: uiScale)
-                }
-            }
-        }
-    }
 }
 
 private extension Color? {
