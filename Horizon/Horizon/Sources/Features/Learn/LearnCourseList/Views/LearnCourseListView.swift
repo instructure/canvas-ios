@@ -36,17 +36,17 @@ struct LearnCourseListView: View {
         VStack(spacing: .zero) {
             if viewModel.hasCourses {
                 headerView
-
-                SingleAxisGeometryReader(initialSize: 300) { size in
-                    ScrollView(showsIndicators: false) {
-                        VStack(spacing: .zero) {
-                            helperView
-                            contentView(width: size - 48)
+                if #available(iOS 18.0, *) {
+                    contentView
+                        .onScrollGeometryChange(for: CGFloat.self) { geometry in geometry.contentOffset.y
+                        } action: { _, newOffset in
+                            isShowHeader = newOffset <= 200
+                            isShowDivider = newOffset >= 30
                         }
-                        .padding(.horizontal, .huiSpaces.space24)
-                    }
-                    .refreshable { await viewModel.refresh() }
+                } else {
+                    contentView
                 }
+
             } else {
                 emptyView
             }
@@ -58,15 +58,6 @@ struct LearnCourseListView: View {
         .background(Color.huiColors.surface.pagePrimary)
         .animation(.linear, value: isShowHeader)
         .onAppear { restoreFocusIfNeeded(after: 0.1) }
-    }
-
-    private var helperView: some View {
-        Color.clear
-            .frame(height: 1)
-            .readingFrame { frame in
-                isShowHeader = frame.minY > -100
-                isShowDivider = frame.minY < 100
-            }
     }
 
     private var headerView: some View {
@@ -86,17 +77,29 @@ struct LearnCourseListView: View {
         .background(Color.huiColors.surface.pagePrimary)
     }
 
-    private func contentView(width: CGFloat) -> some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.space16) {
-            listCourseView(width: width)
+    private var contentView: some View {
+        List {
+            listCourseView
+                .padding(.bottom, .huiSpaces.space16)
+                .padding(.horizontal, .huiSpaces.space24)
+                .background(Color.huiColors.surface.pagePrimary)
             if viewModel.filteredCourses.isEmpty {
                 CourseListEmptyView()
+                    .padding(.horizontal, .huiSpaces.space24)
+                    .listRowInsets(EdgeInsets())
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.huiColors.surface.pagePrimary)
             }
 
             if viewModel.isSeeMoreVisible {
                 seeMoreButton
             }
         }
+        .listRowSpacing(.huiSpaces.space8)
+        .background(Color.huiColors.surface.pagePrimary)
+        .listStyle(.plain)
+        .scrollIndicators(.hidden)
+        .refreshable { await viewModel.refresh() }
     }
 
     private var searchView: some View {
@@ -115,7 +118,6 @@ struct LearnCourseListView: View {
                     guard let option else { return }
                     lastFocusedCourseID = selectFilterFocusedID
                     viewModel.selectedStatus = option
-                    viewModel.filter()
                     restoreFocusIfNeeded(after: 1)
                 }
                 .id(selectFilterFocusedID)
@@ -135,31 +137,31 @@ struct LearnCourseListView: View {
         }
     }
 
-    private func listCourseView(width: CGFloat) -> some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.space16) {
-            ForEach(viewModel.filteredCourses) { course in
-                LearnCourseCardView(model: course, width: width) {
+    private var listCourseView: some View {
+        ForEach(viewModel.filteredCourses) { course in
+            LearnCourseCardView(model: course) {
+                lastFocusedCourseID = course.id
+                viewModel.navigateToCourseDetails(
+                    id: course.id,
+                    enrollmentID: course.enrollmentID,
+                    programName: course.programs.first?.name,
+                    viewController: viewController
+                )
+            } onTapLearningObject: { _, url in
+                if let url = url,
+                   let currentLearningObject = course.currentLearningObject {
                     lastFocusedCourseID = course.id
-                    viewModel.navigateToCourseDetails(
-                        id: course.id,
-                        enrollmentID: course.enrollmentID,
-                        programName: course.programs.first?.name,
+                    viewModel.navigateToItemSequence(
+                        url: url,
+                        learningObject: currentLearningObject,
                         viewController: viewController
                     )
-                } onTapLearningObject: { _, url in
-                    if let url = url,
-                       let currentLearningObject = course.currentLearningObject {
-                        lastFocusedCourseID = course.id
-                        viewModel.navigateToItemSequence(
-                            url: url,
-                            learningObject: currentLearningObject,
-                            viewController: viewController
-                        )
-                    }
                 }
-                .id(course.id)
-                .accessibilityFocused($focusedCourseID, equals: course.id)
             }
+            .listRowInsets(EdgeInsets())
+            .listRowSeparator(.hidden)
+            .id(course.id)
+            .accessibilityFocused($focusedCourseID, equals: course.id)
         }
     }
 
@@ -167,6 +169,10 @@ struct LearnCourseListView: View {
         SeeMoreButton(accessibilityHint: String(localized: "Double tap to load more courses")) {
             viewModel.seeMore()
         }
+        .padding(.horizontal, .huiSpaces.space24)
+        .listRowInsets(EdgeInsets())
+        .listRowSeparator(.hidden)
+        .listRowBackground(Color.huiColors.surface.pagePrimary)
     }
 
     @ViewBuilder

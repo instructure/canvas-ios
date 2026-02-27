@@ -26,10 +26,17 @@ import Observation
 final class LearnProgramListViewModel {
     // MARK: - Init / Outputs
 
-    var selectedStatus: OptionModel = ProgressStatus.firsProgramOption
+    private let searchTextSubject = CurrentValueSubject<String, Never>("")
+    private let selectedStatusSubject = CurrentValueSubject<OptionModel, Never>(ProgressStatus.firstProgramOption)
+
+    var selectedStatus: OptionModel = ProgressStatus.firstProgramOption {
+        didSet {
+            selectedStatusSubject.send(selectedStatus)
+        }
+    }
     var searchText: String = "" {
         didSet {
-            paginator.search(query: searchText, status: selectedStatus)
+            searchTextSubject.send(searchText)
         }
     }
 
@@ -61,6 +68,7 @@ final class LearnProgramListViewModel {
         self.interactor = interactor
         self.router = router
         self.scheduler = scheduler
+        observeSearchText()
     }
 
     // MARK: - Action Functions
@@ -92,11 +100,21 @@ final class LearnProgramListViewModel {
         paginator.seeMore()
     }
 
-    func filter() {
-        paginator.search(query: searchText, status: selectedStatus)
-    }
-
     func navigateToProgramDetails(id: String, viewController: WeakViewController) {
         router.show(ProgramDetailsAssembly.makeViewController(programID: id), from: viewController)
+    }
+
+    private func observeSearchText() {
+        Publishers.CombineLatest(
+            searchTextSubject
+                .debounce(for: .milliseconds(200), scheduler: scheduler)
+                .removeDuplicates(),
+            selectedStatusSubject
+        )
+        .sink { [weak self] searchText, status in
+            guard let self else { return }
+            self.paginator.applyFilters(query: searchText, status: status)
+        }
+        .store(in: &subscriptions)
     }
 }

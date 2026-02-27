@@ -43,13 +43,13 @@ class CDBrandVariablesTests: CoreTestCase {
         )
         let defaultImage = UIImage(named: "defaultHeaderImage", in: .core, compatibleWith: nil)
         XCTAssertEqual(Brand.shared.primary.hexString, UIColor.textInfo.hexString)
-        XCTAssertEqual(Brand.shared.headerImage, defaultImage)
+        XCTAssertEqual(Brand.shared.headerUIImage, defaultImage)
 
         // WHEN
         testee.applyBrandTheme()
 
         // THEN
         XCTAssertEqual(Brand.shared.primary.hexString, "#ff0000")
-        XCTAssertNotEqual(Brand.shared.headerImage, defaultImage)
+        XCTAssertNotEqual(Brand.shared.headerUIImage, defaultImage)
     }
 }

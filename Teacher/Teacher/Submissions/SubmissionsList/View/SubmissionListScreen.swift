@@ -53,7 +53,7 @@ struct SubmissionListScreen: View {
     }
 
     private var listView: some View {
-        LazyVStack {
+        ConditionallyLazyVStack {
             Section {
                 HeaderView(courseName: viewModel.assignment?.name ?? "")
             }

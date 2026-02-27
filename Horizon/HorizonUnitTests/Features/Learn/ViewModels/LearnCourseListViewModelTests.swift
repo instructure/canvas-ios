@@ -28,17 +28,20 @@ final class LearnCourseListViewModelTests: HorizonTestCase {
 
     private var interactor: GetCoursesInteractorMock!
     private var testee: LearnCourseListViewModel!
+    private var testScheduler: TestSchedulerOf<DispatchQueue>!
 
     // MARK: - Setup & Teardown
 
     override func setUp() {
         super.setUp()
         interactor = GetCoursesInteractorMock()
+        testScheduler = DispatchQueue.test
     }
 
     override func tearDown() {
         interactor = nil
         testee = nil
+        testScheduler = nil
         super.tearDown()
     }
 
@@ -184,14 +187,15 @@ final class LearnCourseListViewModelTests: HorizonTestCase {
         ]
 
         interactor.coursesToReturn = courses
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for courses")
         testee.getCourses { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.selectedStatus = OptionModel(id: ProgressStatus.completed.rawValue, name: "Completed")
-        testee.filter()
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredCourses.count, 2)
         XCTAssertTrue(testee.filteredCourses.allSatisfy { $0.status == .completed })
@@ -205,14 +209,15 @@ final class LearnCourseListViewModelTests: HorizonTestCase {
         ]
 
         interactor.coursesToReturn = courses
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for courses")
         testee.getCourses { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.selectedStatus = OptionModel(id: ProgressStatus.inProgress.rawValue, name: "In progress")
-        testee.filter()
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredCourses.count, 2)
         XCTAssertTrue(testee.filteredCourses.allSatisfy { $0.status == .inProgress })
@@ -226,14 +231,15 @@ final class LearnCourseListViewModelTests: HorizonTestCase {
         ]
 
         interactor.coursesToReturn = courses
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for courses")
         testee.getCourses { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.selectedStatus = OptionModel(id: ProgressStatus.notStarted.rawValue, name: "Not started")
-        testee.filter()
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredCourses.count, 2)
         XCTAssertTrue(testee.filteredCourses.allSatisfy { $0.status == .notStarted })
@@ -247,14 +253,15 @@ final class LearnCourseListViewModelTests: HorizonTestCase {
         ]
 
         interactor.coursesToReturn = courses
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for courses")
         testee.getCourses { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.selectedStatus = OptionModel(id: ProgressStatus.all.rawValue, name: "All courses")
-        testee.filter()
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredCourses.count, 3)
     }
@@ -263,26 +270,30 @@ final class LearnCourseListViewModelTests: HorizonTestCase {
 
     func test_searchText_whenEmpty_showsAllCoursesForSelectedFilter() {
         interactor.coursesToReturn = HCourseStubs.activeCourses
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for courses")
         testee.getCourses { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.searchText = ""
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredCourses.count, 3)
     }
 
     func test_searchText_whenNotEmpty_filtersCoursesBasedOnName() {
         interactor.coursesToReturn = HCourseStubs.activeCourses
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for courses")
         testee.getCourses { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.searchText = "iOS"
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredCourses.count, 2)
         XCTAssertEqual(testee.filteredCourses.first?.name, "iOS Development 101")
@@ -290,13 +301,15 @@ final class LearnCourseListViewModelTests: HorizonTestCase {
 
     func test_searchText_isCaseInsensitive() {
         interactor.coursesToReturn = HCourseStubs.activeCourses
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for courses")
         testee.getCourses { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.searchText = "ios"
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredCourses.count, 2)
         XCTAssertEqual(testee.filteredCourses.first?.name, "iOS Development 101")
@@ -304,13 +317,15 @@ final class LearnCourseListViewModelTests: HorizonTestCase {
 
     func test_searchText_whenNoMatches_returnsEmptyArray() {
         interactor.coursesToReturn = HCourseStubs.activeCourses
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for courses")
         testee.getCourses { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.searchText = "NonExistentCourse"
+        testScheduler.advance(by: .milliseconds(200))
 
         XCTAssertEqual(testee.filteredCourses.count, 0)
     }
@@ -323,20 +338,43 @@ final class LearnCourseListViewModelTests: HorizonTestCase {
         ]
 
         interactor.coursesToReturn = courses
-        testee = makeViewModel()
+        testee = makeViewModelWithTestScheduler()
 
         let expectation = expectation(description: "Wait for courses")
         testee.getCourses { expectation.fulfill() }
+        testScheduler.advance()
         wait(for: [expectation], timeout: 0.2)
 
         testee.selectedStatus = OptionModel(id: ProgressStatus.completed.rawValue, name: "Completed")
         testee.searchText = "iOS"
+        testScheduler.advance(by: .milliseconds(200))
 
         print(testee.filteredCourses.count, " testee.filteredCourses.count ")
 
         XCTAssertEqual(testee.filteredCourses.count, 1)
         XCTAssertEqual(testee.filteredCourses.first?.name, "iOS Testing")
         XCTAssertEqual(testee.filteredCourses.first?.status, .completed)
+    }
+
+    func test_searchText_debouncesFilterOperations() {
+        interactor.coursesToReturn = HCourseStubs.activeCourses
+        testee = makeViewModelWithTestScheduler()
+
+        let expectation = expectation(description: "Wait for courses")
+        testee.getCourses { expectation.fulfill() }
+        testScheduler.advance()
+        wait(for: [expectation], timeout: 0.2)
+
+        testee.searchText = "i"
+        testScheduler.advance(by: .milliseconds(50))
+        testee.searchText = "io"
+        testScheduler.advance(by: .milliseconds(50))
+        testee.searchText = "ios"
+        testScheduler.advance(by: .milliseconds(99))
+
+        XCTAssertEqual(testee.filteredCourses.count, 3)
+
+        testScheduler.advance(by: .milliseconds(1))
     }
 
     // MARK: - Pagination Tests
@@ -453,6 +491,14 @@ final class LearnCourseListViewModelTests: HorizonTestCase {
             interactor: interactor,
             router: router,
             scheduler: .immediate
+        )
+    }
+
+    private func makeViewModelWithTestScheduler() -> LearnCourseListViewModel {
+        LearnCourseListViewModel(
+            interactor: interactor,
+            router: router,
+            scheduler: testScheduler.eraseToAnyScheduler()
         )
     }
 

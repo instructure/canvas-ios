@@ -26,10 +26,17 @@ import Foundation
 final class LearnCourseListViewModel {
     // MARK: - Init / Outputs
 
-    var selectedStatus: OptionModel = ProgressStatus.firsCourseOption
+    private let searchTextSubject = CurrentValueSubject<String, Never>("")
+    private let selectedStatusSubject = CurrentValueSubject<OptionModel, Never>(ProgressStatus.firstCourseOption)
+
+    var selectedStatus: OptionModel = ProgressStatus.firstCourseOption {
+        didSet {
+            selectedStatusSubject.send(selectedStatus)
+        }
+    }
     var searchText: String = "" {
         didSet {
-            paginator.search(query: searchText, status: selectedStatus)
+            searchTextSubject.send(searchText)
         }
     }
 
@@ -58,6 +65,7 @@ final class LearnCourseListViewModel {
         self.interactor = interactor
         self.router = router
         self.scheduler = scheduler
+        observeSearchText()
     }
 
     func getCourses(ignoreCache: Bool = false, completion: (() -> Void)? = nil) {
@@ -97,12 +105,22 @@ final class LearnCourseListViewModel {
         }
     }
 
-    func filter() {
-        paginator.search(query: searchText, status: selectedStatus)
-    }
-
     func seeMore() {
         paginator.seeMore()
+    }
+
+    private func observeSearchText() {
+        Publishers.CombineLatest(
+            searchTextSubject
+                .debounce(for: .milliseconds(200), scheduler: scheduler)
+                .removeDuplicates(),
+            selectedStatusSubject
+        )
+        .sink { [weak self] searchText, status in
+            guard let self else { return }
+            self.paginator.applyFilters(query: searchText, status: status)
+        }
+        .store(in: &subscriptions)
     }
 
     func navigateToItemSequence(

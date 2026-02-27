@@ -23,11 +23,13 @@ public class DashboardSettingsViewModel: ObservableObject {
     // MARK: - Inputs & Outputs
     @Published public var showGrades: Bool
     @Published public var colorOverlay: Bool
+    @Published public var useNewLearnerDashboard: Bool
 
     // MARK: - Outputs
     @Published public private(set) var layout: DashboardLayout
     public let isGradesSwitchVisible: Bool
     public let isColorOverlaySwitchVisible: Bool
+    public let isNewDashboardSwitchVisible: Bool
     public let popoverSize: CGSize
 
     // MARK: - Inputs
@@ -42,11 +44,19 @@ public class DashboardSettingsViewModel: ObservableObject {
         self.layout = interactor.layout.value
         self.showGrades = interactor.showGrades.value
         self.colorOverlay = interactor.colorOverlay.value
+        self.useNewLearnerDashboard = interactor.useNewDashboard.value
         self.isGradesSwitchVisible = interactor.isGradesSwitchVisible
         self.isColorOverlaySwitchVisible = interactor.isColorOverlaySwitchVisible
+        self.isNewDashboardSwitchVisible = interactor.isNewDashboardSwitchVisible
         self.popoverSize = {
-            let largeLayout = interactor.isGradesSwitchVisible && interactor.isColorOverlaySwitchVisible
-            return CGSize(width: 350, height: largeLayout ? 560 : 510)
+            var height = 510
+            if interactor.isGradesSwitchVisible && interactor.isColorOverlaySwitchVisible {
+                height = 560
+            }
+            if interactor.isNewDashboardSwitchVisible {
+                height += 50
+            }
+            return CGSize(width: 350, height: height)
         }()
         bindInteractorOutputsToSelf()
         bindUserInputsToInteractor()
@@ -70,6 +80,10 @@ public class DashboardSettingsViewModel: ObservableObject {
 
         $colorOverlay
             .subscribe(interactor.colorOverlay)
+            .store(in: &subscriptions)
+
+        $useNewLearnerDashboard
+            .subscribe(interactor.useNewDashboard)
             .store(in: &subscriptions)
     }
 }
