@@ -27,7 +27,6 @@ struct CoursesAndGroupsWidgetView: View {
 
     @State private var viewModel: CoursesAndGroupsWidgetViewModel
     @State private var draggedCourseCardId: String?
-    private let cardSpacing: CGFloat = 4
 
     init(viewModel: CoursesAndGroupsWidgetViewModel) {
         self.viewModel = viewModel
@@ -84,7 +83,7 @@ struct CoursesAndGroupsWidgetView: View {
             DashboardGrid(
                 itemIDs: viewModel.courseCards.map(\.id),
                 itemWidth: itemWidth,
-                spacing: cardSpacing,
+                spacing: cardSpacing(columnCount),
                 columnCount: columnCount
             ) { index in
                 let cardViewModel = viewModel.courseCards[index]
@@ -120,7 +119,7 @@ struct CoursesAndGroupsWidgetView: View {
             DashboardGrid(
                 itemIDs: viewModel.groupCards.map(\.id),
                 itemWidth: itemWidth,
-                spacing: cardSpacing,
+                spacing: cardSpacing(columnCount),
                 columnCount: columnCount
             ) { index in
                 GroupCardView(viewModel: viewModel.groupCards[index])
@@ -130,7 +129,11 @@ struct CoursesAndGroupsWidgetView: View {
 
     private func itemWidth(containerWidth: CGFloat, columnCount: Int) -> CGFloat {
         guard containerWidth > 0, columnCount > 0 else { return 0 }
-        return (containerWidth - CGFloat(columnCount - 1) * cardSpacing) / CGFloat(columnCount)
+        return (containerWidth - CGFloat(columnCount - 1) * cardSpacing(columnCount)) / CGFloat(columnCount)
+    }
+
+    private func cardSpacing(_ columnCount: Int) -> CGFloat {
+        (columnCount == 1) ? 4 : 8
     }
 }
 
