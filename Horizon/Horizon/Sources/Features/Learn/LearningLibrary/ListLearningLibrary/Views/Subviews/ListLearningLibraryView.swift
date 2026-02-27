@@ -21,6 +21,11 @@ import HorizonUI
 import SwiftUI
 
 struct ListLearningLibraryView: View {
+    // MARK: - VO Properties
+
+    @AccessibilityFocusState private var focusedItemID: String?
+    private var expandButtonFocusedID: String { "expandButton_\(section.id)" }
+
     // MARK: - Private variables
 
     @State private var isExpanded: Bool = true
@@ -31,6 +36,7 @@ struct ListLearningLibraryView: View {
     @State var viewModel: LearningLibraryViewModel
     let section: LearningLibrarySectionModel
     let isExpendable: Bool
+    @Binding var lastFocusedItemID: String?
 
     var body: some View {
         Section(header: sectionHeaderContainer) {
@@ -64,6 +70,7 @@ struct ListLearningLibraryView: View {
                 .huiTypography(.h3)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .multilineTextAlignment(.leading)
+                .accessibilityHidden(isExpendable)
 
             Spacer()
 
@@ -77,6 +84,10 @@ struct ListLearningLibraryView: View {
                         isExpanded.toggle()
                     }
                 }
+                .accessibilityAddTraits(.isHeader)
+                .accessibilityLabel(Text(section.name))
+                .accessibilityValue(Text(isExpanded ? String(localized: "Expanded") : String(localized: "Collapsed")))
+                .accessibilityHint(Text(isExpanded ? String(localized: "Double tap to collapse section") : String(localized: "Double tap to expand section")))
             }
         }
         .padding(.vertical, .huiSpaces.space24)
@@ -88,10 +99,13 @@ struct ListLearningLibraryView: View {
                 model: item,
                 isBookmarkLoading: viewModel.isBookmarkLoading(forItemWithId: item.id),
                 onBookmarkTap: {
+                    lastFocusedItemID = item.id
                     viewModel.addBookmark(model: item)
                 }, enrollTap: {
+                    lastFocusedItemID = item.id
                     viewModel.showEnrollConfirmation(model: item, viewController: viewController)
                 }, onTapItem: {
+                    lastFocusedItemID = item.id
                     viewModel.navigateToLearningLibraryItem(item, from: viewController)
                 }
             )
@@ -99,6 +113,7 @@ struct ListLearningLibraryView: View {
             .listRowSeparator(.hidden)
             .listRowSeparatorTint(Color.huiColors.surface.pagePrimary)
             .id(item.id)
+            .accessibilityFocused($focusedItemID, equals: item.id)
         }
     }
 
@@ -124,31 +139,48 @@ struct ListLearningLibraryView: View {
             }
         }
     }
+
+    private func restoreFocusIfNeeded() {
+        guard let lastFocusedItemID else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            focusedItemID = lastFocusedItemID
+        }
+    }
 }
 
 #Preview {
-    ListLearningLibraryView(
-        viewModel: LearningLibraryViewModel(router: AppEnvironment.shared.router), section: LearningLibrarySectionModel(
-            id: "1",
-            name: "Learning Library Name",
-            hasMoreItems: true,
-            totalItemCount: "10",
-            items: [
-                .init(
-                    id: "ID-1",
-                    name: "Adipiscing Elit Learning Object Name Here",
-                    imageURL: nil,
-                    itemType: .assessment,
-                    estimatedTime: "10 mins",
-                    isRecommended: true,
-                    isCompleted: true,
-                    isBookmarked: true,
-                    numberOfUnits: 10
-                )
-            ]
-        ),
-        isExpendable: true
-    )
-    .padding()
-    .background(Color.huiColors.surface.cardSecondary)
+    struct PreviewWrapper: View {
+        @State private var lastFocusedItemID: String?
+
+        var body: some View {
+            ListLearningLibraryView(
+                viewModel: LearningLibraryViewModel(router: AppEnvironment.shared.router),
+                section: LearningLibrarySectionModel(
+                    id: "1",
+                    name: "Learning Library Name",
+                    hasMoreItems: true,
+                    totalItemCount: "10",
+                    items: [
+                        .init(
+                            id: "ID-1",
+                            name: "Adipiscing Elit Learning Object Name Here",
+                            imageURL: nil,
+                            itemType: .assessment,
+                            estimatedTime: "10 mins",
+                            isRecommended: true,
+                            isCompleted: true,
+                            isBookmarked: true,
+                            numberOfUnits: 10
+                        )
+                    ]
+                ),
+                isExpendable: true,
+                lastFocusedItemID: $lastFocusedItemID
+            )
+            .padding()
+            .background(Color.huiColors.surface.cardSecondary)
+        }
+    }
+
+    return PreviewWrapper()
 }

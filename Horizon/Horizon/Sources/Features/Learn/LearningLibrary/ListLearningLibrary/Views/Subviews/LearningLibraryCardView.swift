@@ -58,12 +58,20 @@ struct LearningLibraryCardView: View {
                 }
             }
             .buttonStyle(.plain)
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel(cardAccessibilityLabel)
+            .accessibilityValue(cardAccessibilityValue)
+            .accessibilityHint(String(localized: "Double tap to view details"))
+            .accessibilityAddTraits(.isButton)
 
             HStack(alignment: .bottom, spacing: .huiSpaces.space8) {
                 descriptionView
+
                 bookmarkButton
                     .fixedSize()
-
+                    .accessibilityLabel(bookmarkAccessibilityLabel)
+                    .accessibilityHint(String(localized: "Double tap to toggle bookmark"))
+                    .accessibilityAddTraits(.isButton)
             }
         }
         .padding(.huiSpaces.space24)
@@ -73,6 +81,50 @@ struct LearningLibraryCardView: View {
         .listRowInsets(EdgeInsets())
         .listRowSeparator(.hidden)
         .listRowBackground(Color.huiColors.surface.pagePrimary)
+    }
+
+    private var cardAccessibilityLabel: String {
+        var components: [String] = [model.name]
+        components.append(model.itemType.name)
+        return components.joined(separator: ", ")
+    }
+
+    private var cardAccessibilityValue: String {
+        var components: [String] = []
+
+        if let estimatedTime = model.estimatedTime {
+            components.append(String(format: String(localized: "Estimated time %@ minutes"), estimatedTime))
+        }
+
+        if let units = model.numberOfUnits {
+            components.append(String(format: String(localized: "number of units %d"), units))
+        }
+
+        if model.isRecommended {
+            components.append(String(localized: "Recommended"))
+        }
+
+        if model.isInProgress {
+            components.append(String(localized: "In progress"))
+        }
+
+        if model.isCompleted {
+            components.append(String(localized: "Completed"))
+        }
+
+        if !model.isEnrolled {
+            components.append(String(localized: "Not enrolled"))
+        }
+
+        return components.joined(separator: ", ")
+    }
+
+    private var bookmarkAccessibilityLabel: String {
+        if model.isBookmarked {
+            return String(localized: "Remove bookmark")
+        } else {
+            return String(localized: "Add bookmark")
+        }
     }
 
     private var imageView: some View {
@@ -122,6 +174,7 @@ struct LearningLibraryCardView: View {
                     icon: Image.huiIcons.trendingUp,
                     iconHeight: 10
                 )
+                .accessibilityHidden(true)
             }
             if model.isCompleted {
                 HorizonUI.StatusChip(
@@ -129,11 +182,13 @@ struct LearningLibraryCardView: View {
                     style: .green,
                     icon: Image.huiIcons.checkCircle,
                 )
+                .accessibilityHidden(true)
             }
             Rectangle()
                 .fill(Color.clear)
                 .frame(height: 1)
                 .frame(maxWidth: .infinity)
+                .accessibilityHidden(true)
             if !model.isEnrolled {
                 enrollButton
             }
@@ -147,6 +202,7 @@ struct LearningLibraryCardView: View {
             style: model.itemType.style,
             icon: model.itemType.icon
         )
+        .accessibilityHidden(true)
     }
 
     private var recommendedView: some View {
@@ -155,6 +211,7 @@ struct LearningLibraryCardView: View {
             style: .honey,
             icon: Image.huiIcons.star
         )
+        .accessibilityHidden(true)
     }
 
     private func defaultChip(title: String, icon: Image) -> some View {
@@ -163,6 +220,7 @@ struct LearningLibraryCardView: View {
             style: .gray,
             icon: icon
         )
+        .accessibilityHidden(true)
     }
 
     private var bookmarkButton: some View {
@@ -185,6 +243,8 @@ struct LearningLibraryCardView: View {
         ) {
             enrollTap()
         }
+        .accessibilityLabel(String(localized: "Enroll in \(model.name)"))
+        .accessibilityHint(String(localized: "Double tap to enroll"))
     }
 }
 #Preview {

@@ -51,7 +51,6 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     private(set) var hasItems = false
     private(set) var isLoaderVisible: Bool = true
     private(set) var errorMessage = ""
-    var enrollConfirmation = EnrollConfirmationViewModel()
     var isErrorVisible: Bool = false
     var filteredItems: [LearningLibraryCardModel] { paginator.visibleItems }
     var isSeeMoreVisible: Bool { paginator.isSeeMoreVisible }
@@ -235,30 +234,16 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
         bookmarkLoadingStates[id] ?? false
     }
 
-   private func enroll(model: LearningLibraryCardModel, viewController: WeakViewController) {
-        interactor.enroll(id: model.id, itemID: model.itemId)
-            .receive(on: scheduler)
-            .sinkFailureOrValue { [weak self] error in
-                guard let self else { return }
-                showError(message: error.localizedDescription)
-
-            } receiveValue: { [weak self] item in
-                guard let self else { return }
-                configItem(item: item)
-                handleEnrollState(item: item, viewController: viewController)
-                didSendEvent.send(())
-            }
-            .store(in: &subscriptions)
-    }
-
     func showEnrollConfirmation(
         model: LearningLibraryCardModel,
         viewController: WeakViewController
     ) {
-        enrollConfirmation = EnrollConfirmationViewModel(isLoading: false, isPresented: true) { [weak self] in
-            self?.enrollConfirmation.isLoading = true
-            self?.enroll(model: model, viewController: viewController)
+        let enrollViewController = EnrollConfirmationAssembly.makeView(model: model) { [weak self] item in
+            self?.configItem(item: item)
+            self?.didSendEvent.send(())
+            self?.navigateToLearningLibraryItem(item, from: viewController)
         }
+        router.show(enrollViewController, from: viewController, options: .modal(.fullScreen))
     }
 
     // MARK: - Private Functions
@@ -300,13 +285,6 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     private func showError(message: String) {
         errorMessage = message
         isErrorVisible = true
-    }
-
-    private func handleEnrollState(item: LearningLibraryCardModel, viewController: WeakViewController) {
-        enrollConfirmation.isPresented = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            self?.navigateToLearningLibraryItem(item, from: viewController)
-        }
     }
 }
 

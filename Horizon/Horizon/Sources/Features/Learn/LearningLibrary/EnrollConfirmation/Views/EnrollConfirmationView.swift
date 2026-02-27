@@ -16,49 +16,40 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import HorizonUI
 import SwiftUI
 
 struct EnrollConfirmationView: View {
-    @Binding private var isPresented: Bool
-    private let isLoading: Bool
-    private let onTap: () -> Void
-
-    init( isPresented: Binding<Bool>, isLoading: Bool, onTap: @escaping () -> Void) {
-        self.isLoading = isLoading
-        self.onTap = onTap
-        self._isPresented = isPresented
-    }
-
+    @Environment(\.viewController) private var viewController
+    @State var viewModel: EnrollConfirmationViewModel
     var body: some View {
-        ZStack {
-            Color.huiColors.surface.inverseSecondary.opacity(0.75)
-                .ignoresSafeArea()
-                .onTapGesture {
-                    isPresented.toggle()
-                }
-            contentView
-                .padding(.horizontal, .huiSpaces.space24)
-                .scaleEffect(isPresented ? 1 : 0.6)
-        }
-        .opacity(isPresented ? 1 : 0)
-        .animation(.spring, value: isPresented)
+        contentView
     }
 
     private var contentView: some View {
-        VStack(spacing: .huiSpaces.space16) {
+        VStack(spacing: .zero) {
             headerView
-            Text("Enroll to access the course and start learning")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .multilineTextAlignment(.leading)
-                .huiTypography(.p1)
-                .foregroundStyle(Color.huiColors.text.body)
-                .padding(.horizontal, .huiSpaces.space16)
-                .padding(.vertical, .huiSpaces.space10)
+            if let overView = viewModel.overView {
+               ScrollView {
+                    WebView(html: overView, isScrollEnabled: false)
+                        .frameToFit()
+                }
+            } else {
+                Text("Enroll to access the course and start learning")
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .multilineTextAlignment(.leading)
+                    .huiTypography(.p1)
+                    .foregroundStyle(Color.huiColors.text.body)
+                    .padding(.horizontal, .huiSpaces.space16)
+                    .padding(.vertical, .huiSpaces.space24)
+            }
+            Spacer()
             footer
         }
         .background(Color.huiColors.surface.pageSecondary)
         .huiCornerRadius(level: .level4)
+        .huiLoader(isVisible: viewModel.isLoaderVisible)
     }
 
     private var headerView: some View {
@@ -68,10 +59,11 @@ struct EnrollConfirmationView: View {
                     .huiTypography(.h3)
                     .foregroundStyle(Color.huiColors.text.title)
                 Spacer()
-                HorizonUI.IconButton(Image.huiIcons.close, type: .gray) {
-                    isPresented.toggle()
+                HorizonUI.IconButton(Image.huiIcons.close, type: .white) {
+                    viewModel.dismiss(viewController: viewController)
                 }
                 .padding(.trailing, .huiSpaces.space8)
+                .disabled(viewModel.isEnrollLoaderVisible)
             }
             .padding(.leading, .huiSpaces.space16)
             .padding(.top, .huiSpaces.space24)
@@ -83,16 +75,26 @@ struct EnrollConfirmationView: View {
        VStack {
            lineView
             HStack {
+                HorizonUI.PrimaryButton(
+                    String(localized: "Not now"),
+                    type: .white,
+                    fillsWidth: false
+                ) {
+                    viewModel.dismiss(viewController: viewController)
+                }
+                .padding(.horizontal, .huiSpaces.space16)
+                .padding(.top, .huiSpaces.space12)
+                .disabled(viewModel.isEnrollLoaderVisible)
+
                 Spacer()
                 HorizonUI.LoadingButton(
                         title: String(localized: "Enroll"),
                         type: .black,
                         fillsWidth: false,
-                        isLoading: isLoading
+                        isLoading: viewModel.isEnrollLoaderVisible
                     ) {
-                        onTap()
+                        viewModel.enroll(viewController: viewController)
                 }
-                .padding(.bottom, .huiSpaces.space24)
                 .padding(.horizontal, .huiSpaces.space16)
                 .padding(.top, .huiSpaces.space12)
             }
@@ -104,8 +106,4 @@ struct EnrollConfirmationView: View {
             .fill(Color.huiColors.lineAndBorders.lineDivider)
             .frame(height: 1)
     }
-}
-
-#Preview {
-    EnrollConfirmationView(isPresented: .constant(true), isLoading: false) {}
 }

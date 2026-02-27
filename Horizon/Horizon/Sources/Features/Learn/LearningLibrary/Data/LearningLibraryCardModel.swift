@@ -32,8 +32,8 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
     let libraryId: String
     let numberOfUnits: Int?
     var isEnrolled: Bool
-    let isInProgress: Bool
-    let courseEnrollmentId: String?
+    var isInProgress: Bool
+    var courseEnrollmentId: String?
 
     init(
         id: String,
@@ -106,5 +106,7 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
     mutating func update(with: LearningLibraryCardModel) {
         self.isBookmarked = with.isBookmarked
         self.isEnrolled = with.isEnrolled
+        self.courseEnrollmentId = with.courseEnrollmentId
+        self.isInProgress = with.isEnrolled
     }
 }

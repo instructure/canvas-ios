@@ -21,7 +21,6 @@ import SwiftUI
 import HorizonUI
 
 struct LearnView: View {
-    @State private var enrollConfirmationModel = EnrollConfirmationViewModel()
     @State private var isShowTabs: Bool = true
     @State private var selectedTabIndex: Int? = 0
 
@@ -41,11 +40,6 @@ struct LearnView: View {
                 .onPreferenceChange(HeaderVisibilityKey.self) { isShow in
                     isShowTabs = isShow
                 }
-                .onPreferenceChange(EnrollConfirmationPreferenceKey.self) { model in
-                    if let model {
-                        enrollConfirmationModel = model
-                    }
-                }
         }
         .safeAreaInset(edge: .top, spacing: .zero) {
             if isShowTabs { tabsView }
@@ -61,12 +55,6 @@ struct LearnView: View {
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didReceiveMemoryWarningNotification)) { _ in
             ImageCacheConfiguration.clearMemoryCache()
-        }
-        .overlay {
-            EnrollConfirmationView(
-                isPresented: $enrollConfirmationModel.isPresented,
-                isLoading: enrollConfirmationModel.isLoading,
-                onTap: enrollConfirmationModel.onTap)
         }
     }
 

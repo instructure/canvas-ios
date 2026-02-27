@@ -16,34 +16,87 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Observation
+import Core
+import Combine
+import CombineSchedulers
 import Foundation
-import SwiftUI
+import Observation
 
 @Observable
 final class EnrollConfirmationViewModel {
-    let id = UUID().uuidString
-    var isLoading: Bool
-    var isPresented: Bool
-    let onTap: () -> Void
+    // MARK: - Outputs
 
-    init(isLoading: Bool = false, isPresented: Bool = false, onTap: @escaping () -> Void = {}) {
-        self.isLoading = isLoading
-        self.isPresented = isPresented
+    private(set) var isEnrollLoaderVisible: Bool = false
+    private(set) var isLoaderVisible: Bool = true
+    private(set) var overView: String?
+    private(set) var errorMessage = ""
+
+    // MARK: - Inputs / Outputs
+
+    var isErrorVisible: Bool = false
+
+    // MARK: - Private variables
+
+    private var subscriptions = Set<AnyCancellable>()
+
+    // MARK: - Dependencies
+
+    private let model: LearningLibraryCardModel
+    private let interactor: LearningLibraryInteractor
+    private let router: Router
+    private let scheduler: AnySchedulerOf<DispatchQueue>
+    private let onTap: (LearningLibraryCardModel) -> Void
+
+    // MARK: - Init
+
+    init(
+        model: LearningLibraryCardModel,
+        router: Router,
+        interactor: LearningLibraryInteractor = LearningLibraryInteractorLive(),
+        scheduler: AnySchedulerOf<DispatchQueue> = .main,
+        onTap: @escaping (LearningLibraryCardModel) -> Void
+    ) {
         self.onTap = onTap
+        self.interactor = interactor
+        self.scheduler = scheduler
+        self.router = router
+        self.model = model
+        getCourseSyllabus()
     }
-}
 
-extension EnrollConfirmationViewModel: Equatable {
-    static func == (lhs: EnrollConfirmationViewModel, rhs: EnrollConfirmationViewModel) -> Bool {
-        lhs.id == rhs.id && lhs.isPresented == rhs.isPresented && lhs.isLoading == rhs.isLoading
+    private func getCourseSyllabus() {
+        ReactiveStore(useCase: GetCourse(courseID: model.itemId))
+            .getEntities()
+            .receive(on: scheduler)
+            .replaceError(with: [])
+            .map { $0.first?.syllabusBody }
+            .sink { [weak self] syllabus in
+                self?.overView = syllabus
+                self?.isLoaderVisible = false
+            }
+            .store(in: &subscriptions)
     }
-}
 
-struct EnrollConfirmationPreferenceKey: PreferenceKey {
-    static var defaultValue: EnrollConfirmationViewModel?
+     func enroll(viewController: WeakViewController) {
+         isEnrollLoaderVisible = true
+         interactor.enroll(id: model.id, itemID: model.itemId)
+             .receive(on: scheduler)
+             .sinkFailureOrValue { [weak self] error in
+                 guard let self else { return }
+                 self.errorMessage = error.localizedDescription
+                 self.isErrorVisible = true
+                 isEnrollLoaderVisible = false
+             } receiveValue: { [weak self] item in
+                 guard let self else { return }
+                 isEnrollLoaderVisible = false
+                 dismiss(viewController: viewController) { [weak self] in
+                     self?.onTap(item)
+                 }
+             }
+             .store(in: &subscriptions)
+     }
 
-    static func reduce(value: inout EnrollConfirmationViewModel?, nextValue: () -> EnrollConfirmationViewModel?) {
-        value = nextValue()
+    func dismiss(viewController: WeakViewController, completion: (() -> Void)? = nil) {
+        router.dismiss(viewController, completion: completion)
     }
 }

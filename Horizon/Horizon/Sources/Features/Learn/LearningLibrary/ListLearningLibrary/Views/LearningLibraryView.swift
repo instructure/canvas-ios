@@ -21,6 +21,14 @@ import HorizonUI
 import SwiftUI
 
 struct LearningLibraryView: View {
+    // MARK: - VO Properties
+
+    @State private var lastFocusedItemID: String?
+    @AccessibilityFocusState private var focusedItemID: String?
+    private let selectLOFilterFocusedID = "selectLOFilterFocusedID"
+    private let selectTypeFilterFocusedID = "selectTypeFilterFocusedID"
+    private let bookMarkButtonFocusedID = "bookMarkButtonFocusedID"
+
     // MARK: - Properties
 
     @Environment(\.viewController) private var viewController
@@ -45,12 +53,14 @@ struct LearningLibraryView: View {
         .background(Color.huiColors.surface.pagePrimary)
         .overlay { loaderView }
         .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
-        .preference(key: EnrollConfirmationPreferenceKey.self, value: viewModel.enrollConfirmationViewModel)
         .animation(.linear, value: [isShowHeader, isShowDivider])
         .animation(.easeInOut(duration: 0.3), value: viewModel.isGlobalSearchActive)
         .onFirstAppear { viewModel.fetchCollections() }
         .alert(isPresented: $viewModel.isErrorVisible) {
             Alert(title: Text(viewModel.errorMessage))
+        }
+        .onAppear {
+            restoreFocusIfNeeded(after: 0.5)
         }
     }
 
@@ -96,7 +106,8 @@ struct LearningLibraryView: View {
                 ListLearningLibraryView(
                     viewModel: viewModel,
                     section: item,
-                    isExpendable: viewModel.filteredSections.count > 1
+                    isExpendable: viewModel.filteredSections.count > 1,
+                    lastFocusedItemID: $lastFocusedItemID
                 )
                 .id(item.id)
                 .listRowBackground(Color.huiColors.surface.pagePrimary)
@@ -153,14 +164,18 @@ struct LearningLibraryView: View {
                     model: item,
                     isBookmarkLoading: viewModel.isBookmarkLoading(forItemWithId: item.id),
                     onBookmarkTap: {
+                        lastFocusedItemID = item.id
                         viewModel.addBookmark(model: item)
                     }, enrollTap: {
+                        lastFocusedItemID = item.id
                         viewModel.showEnrollConfirmation(model: item, viewController: viewController)
                     }, onTapItem: {
+                        lastFocusedItemID = item.id
                         viewModel.navigateToLearningLibraryItem(item, from: viewController)
                     }
                 )
                 .id(item.id)
+                .accessibilityFocused($focusedItemID, equals: item.id)
                 .padding(.top, .huiSpaces.space2)
             }
             .background(Color.huiColors.surface.pagePrimary)
@@ -242,8 +257,10 @@ struct LearningLibraryView: View {
     private var bookmarkedButton: some View {
         HorizonUI.IconButton(Image.huiIcons.bookmarks, type: .white) {
             viewModel.navigateToBookmarks(viewController: viewController)
+            lastFocusedItemID = bookMarkButtonFocusedID
         }
         .huiElevation(level: .level2)
+        .accessibilityFocused($focusedItemID, equals: bookMarkButtonFocusedID)
     }
 
     private var seeMoreButton: some View {
@@ -285,8 +302,12 @@ struct LearningLibraryView: View {
             selectedOption: viewModel.selectedLearningObject
         ) { option in
             guard let option else { return }
+            lastFocusedItemID = selectLOFilterFocusedID
             viewModel.selectedLearningObject = option
+            restoreFocusIfNeeded(after: 1.6)
         }
+        .id(selectLOFilterFocusedID)
+        .accessibilityFocused($focusedItemID, equals: selectLOFilterFocusedID)
     }
 
     private var learningLibraryTypeFilterView: some View {
@@ -295,8 +316,12 @@ struct LearningLibraryView: View {
             selectedOption: viewModel.selectedLearningLibrary
         ) { option in
             guard let option else { return }
+            lastFocusedItemID = selectTypeFilterFocusedID
             viewModel.selectedLearningLibrary = option
+            restoreFocusIfNeeded(after: 1.6)
         }
+        .id(selectTypeFilterFocusedID)
+        .accessibilityFocused($focusedItemID, equals: selectTypeFilterFocusedID)
     }
 
     private var countOfVisibleItemsView: some View {
@@ -304,6 +329,13 @@ struct LearningLibraryView: View {
             .foregroundStyle(Color.huiColors.text.dataPoint)
             .huiTypography(.p1)
             .hidden(viewModel.globalSearchItems.isEmpty || !viewModel.isGlobalSearchActive)
+    }
+
+    private func restoreFocusIfNeeded(after: Double) {
+        guard let lastFocusedItemID else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + after) {
+            focusedItemID = lastFocusedItemID
+        }
     }
 }
 

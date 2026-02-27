@@ -91,13 +91,6 @@ struct LearningLibraryDetailsView: View {
             ),
             isPresented: $viewModel.isErrorVisible
         )
-        .overlay {
-            EnrollConfirmationView(
-                isPresented: $viewModel.enrollConfirmation.isPresented,
-                isLoading: viewModel.enrollConfirmation.isLoading,
-                onTap: viewModel.enrollConfirmation.onTap
-            )
-        }
     }
 
     private var navBarView: some View {
@@ -110,11 +103,10 @@ struct LearningLibraryDetailsView: View {
                 .foregroundColor(Color.huiColors.text.title)
             Spacer()
         }
-        .background(Color.huiColors.surface.pagePrimary)
-        .padding(.horizontal, .huiSpaces.space16)
-        .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel(Text("Back"))
+        .background(Color.huiColors.surface.pagePrimary)
+        .padding(.horizontal, .huiSpaces.space16)
     }
 
     @ViewBuilder
