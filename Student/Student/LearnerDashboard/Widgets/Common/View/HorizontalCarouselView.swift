@@ -24,7 +24,7 @@ struct HorizontalCarouselView<Item: Identifiable, CardContent: View>: View {
     var currentPage: Binding<Int>?
     var totalPages: Binding<Int>?
     let cardContent: (Item) -> CardContent
-    @State private var containerWidth: CGFloat = 0
+    @Environment(\.containerSize) private var containerSize
     @State private var scrollPosition: Item.ID?
     private let cardSpacing: CGFloat = 8
 
@@ -45,14 +45,13 @@ struct HorizontalCarouselView<Item: Identifiable, CardContent: View>: View {
         .scrollTargetBehavior(.paging)
         .scrollIndicators(.hidden)
         .scrollClipDisabled()
-        .onWidthChange(update: $containerWidth)
         .onChange(of: scrollPosition) {
             updateCurrentPage()
         }
         .onChange(of: items.count) {
             updateTotalPages()
         }
-        .onChange(of: containerWidth) {
+        .onChange(of: containerSize) {
             updateTotalPages()
         }
         .onAppear {
@@ -62,12 +61,12 @@ struct HorizontalCarouselView<Item: Identifiable, CardContent: View>: View {
     }
 
     private var columnCount: Int {
-        DashboardWidgetLayout.columnCount(for: containerWidth)
+        DashboardWidgetLayout.columnCount(for: containerSize.width)
     }
 
     private var cardContentWidth: CGFloat {
-        guard containerWidth > 0, columnCount > 0 else { return 0 }
-        let slotWidth = containerWidth / CGFloat(columnCount)
+        guard containerSize.width > 0, columnCount > 0 else { return 0 }
+        let slotWidth = containerSize.width / CGFloat(columnCount)
         return slotWidth - cardSpacing
     }
 
@@ -87,7 +86,7 @@ struct HorizontalCarouselView<Item: Identifiable, CardContent: View>: View {
             let missingItems = columnCount - itemsInLastPageCount
 
             if missingItems > 0 {
-                let extraPaddingForMissingSlots = CGFloat(missingItems) * (containerWidth / CGFloat(columnCount))
+                let extraPaddingForMissingSlots = CGFloat(missingItems) * (containerSize.width / CGFloat(columnCount))
                 return (cardSpacing / 2) + extraPaddingForMissingSlots
             }
         }

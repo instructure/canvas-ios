@@ -27,6 +27,7 @@ struct LearnerDashboardScreen: View {
     @Environment(\.appEnvironment) private var env
 
     private let screenPadding = InstUI.Styles.Padding.standard
+    @State private var isAnimationEnabled = false
 
     init(
         viewModel: LearnerDashboardViewModel,
@@ -54,8 +55,13 @@ struct LearnerDashboardScreen: View {
                     }
                 }
             }
-            .animation(.dashboardWidget, value: viewModel.widgets.map(\.layoutIdentifier))
             .paddingStyle(.all, screenPadding)
+            .animation(isAnimationEnabled ? .dashboardWidget : nil, value: viewModel.widgets.map(\.layoutIdentifier))
+            .onFirstAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    isAnimationEnabled = true
+                }
+            }
             .environment(
                 \.containerSize,
                 CGSize(
