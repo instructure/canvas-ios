@@ -39,6 +39,7 @@ struct HorizontalCarouselView<Item: Identifiable, CardContent: View>: View {
                 }
             }
             .scrollTargetLayout()
+            .animation(.dashboardWidget, value: columnCount)
         }
         .scrollPosition(id: $scrollPosition)
         .scrollTargetBehavior(.paging)

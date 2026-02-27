@@ -93,6 +93,7 @@ struct CoursesAndGroupsWidgetView: View {
                     showGrades: viewModel.showGrades,
                     showColorOverlay: viewModel.showColorOverlay
                 )
+                .contentShape(.dragPreview, RoundedRectangle(cornerRadius: InstUI.Styles.Elevation.Shape.cardLarge.cornerRadius))
                 .onDrag {
                     draggedCourseCardId = cardViewModel.id
                     return NSItemProvider(item: nil, typeIdentifier: CourseCardDropToReorderDelegate.DropID)
