@@ -51,7 +51,6 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
     var isErrorVisible: Bool = false
 
     // MARK: - Outputs
-    
     private(set) var errorMessage = ""
     private(set) var hasLibrary: Bool = false
     private(set) var isLoaderVisible: Bool = true
