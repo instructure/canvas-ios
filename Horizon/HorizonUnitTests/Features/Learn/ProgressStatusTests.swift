@@ -48,25 +48,25 @@ final class ProgressStatusTests: HorizonTestCase {
     // MARK: - Initialization from RawValue Tests
 
     func test_init_withRawValue0_shouldReturnAll() {
-        let status = ProgressStatus(rawValue: 0)
+        let status = ProgressStatus(rawValue: "0")
 
         XCTAssertEqual(status, .all)
     }
 
     func test_init_withRawValue1_shouldReturnNotStarted() {
-        let status = ProgressStatus(rawValue: 1)
+        let status = ProgressStatus(rawValue: "1")
 
         XCTAssertEqual(status, .notStarted)
     }
 
     func test_init_withRawValue2_shouldReturnInProgress() {
-        let status = ProgressStatus(rawValue: 2)
+        let status = ProgressStatus(rawValue: "2")
 
         XCTAssertEqual(status, .inProgress)
     }
 
     func test_init_withRawValue3OrHigher_shouldReturnCompleted() {
-        let testCases = [3, 4, 5, 100]
+        let testCases = ["3", "4", "5", "100"]
 
         for rawValue in testCases {
             let status = ProgressStatus(rawValue: rawValue)
@@ -158,10 +158,10 @@ final class ProgressStatusTests: HorizonTestCase {
     // MARK: - RawValue Tests
 
     func test_rawValue_shouldMatchExpectedValues() {
-        XCTAssertEqual(ProgressStatus.all.rawValue, 0)
-        XCTAssertEqual(ProgressStatus.notStarted.rawValue, 1)
-        XCTAssertEqual(ProgressStatus.inProgress.rawValue, 2)
-        XCTAssertEqual(ProgressStatus.completed.rawValue, 3)
+        XCTAssertEqual(ProgressStatus.all.rawValue, "0")
+        XCTAssertEqual(ProgressStatus.notStarted.rawValue, "1")
+        XCTAssertEqual(ProgressStatus.inProgress.rawValue, "2")
+        XCTAssertEqual(ProgressStatus.completed.rawValue, "3")
     }
 
     // MARK: - Edge Cases Tests
