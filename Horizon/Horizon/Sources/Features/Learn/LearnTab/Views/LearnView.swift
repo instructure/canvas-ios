@@ -48,7 +48,7 @@ struct LearnView: View {
         .background(Color.huiColors.surface.pagePrimary)
         .dismissKeyboardOnTap()
         .scrollDismissesKeyboard(.immediately)
-        .onFirstAppear {
+        .onAppear {
             ImageCacheConfiguration.configure()
         }
         .onReceive(NotificationCenter.default.publisher(for: UIApplication.didReceiveMemoryWarningNotification)) { _ in
