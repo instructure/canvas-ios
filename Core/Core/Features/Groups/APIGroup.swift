@@ -35,6 +35,7 @@ public struct APIGroup: Codable, Equatable {
     let members_count: Int
     let avatar_url: URL?
     // let context_type: String
+    let context_name: String
     let course_id: ID?
     // let role: String?
     let group_category_id: ID
@@ -67,6 +68,7 @@ extension APIGroup {
         concluded: Bool = false,
         members_count: Int = 1,
         avatar_url: URL? = nil,
+        context_name: String = "",
         course_id: ID? = nil,
         group_category_id: ID = "1",
         permissions: Permissions? = nil,
@@ -79,6 +81,7 @@ extension APIGroup {
             concluded: concluded,
             members_count: members_count,
             avatar_url: avatar_url,
+            context_name: context_name,
             course_id: course_id,
             group_category_id: group_category_id,
             permissions: permissions,

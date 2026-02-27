@@ -43,7 +43,7 @@ final class ConferencesWidgetInteractorLive: ConferencesWidgetInteractor {
         env: AppEnvironment
     ) {
         self.coursesInteractor = coursesInteractor
-        self.moContext = env.database.viewContext
+        self.moContext = env.database.backgroundReadContext
 
         self.conferencesStore = ReactiveStore(
             context: moContext,
