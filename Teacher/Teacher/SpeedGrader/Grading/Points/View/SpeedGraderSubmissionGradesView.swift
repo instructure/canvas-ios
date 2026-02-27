@@ -338,7 +338,7 @@ struct SpeedGraderSubmissionGradesView: View {
                 )
             } else {
                 let visibleTitle = String.format(countSuffixed: title, count: commentCount)
-                let a11yLabel = [title, String.format(numberOfItems: commentCount)].joined(separator: ", ")
+                let a11yLabel = [title, String.format(numberOfItems: commentCount)].accessibilityJoined()
                 commentsHeaderLabel(title: visibleTitle)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .paddingStyle(set: .iconCell)
