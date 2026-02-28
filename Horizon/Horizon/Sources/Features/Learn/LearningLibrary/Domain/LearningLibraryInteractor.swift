@@ -37,11 +37,11 @@ protocol LearningLibraryInteractor {
 final class LearningLibraryInteractorLive: LearningLibraryInteractor {
     // MARK: - Dependencies
 
-    private let domainService: DomainService
+    private let domainService: DomainServiceProtocol
 
     // MARK: - Init
 
-    init(domainService: DomainService = .init()) {
+    init(domainService: DomainServiceProtocol =  DomainService()) {
         self.domainService = domainService
     }
 

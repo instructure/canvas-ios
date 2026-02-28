@@ -56,7 +56,6 @@ struct LearningLibrarySectionModel: Identifiable, Equatable, PaginatedDataSource
 
     var sortedItems: [LearningLibraryCardModel] {
         items.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
-//        items.sorted { $0.isRecommended && !$1.isRecommended }
     }
 
    mutating func update(item: LearningLibraryCardModel) {
