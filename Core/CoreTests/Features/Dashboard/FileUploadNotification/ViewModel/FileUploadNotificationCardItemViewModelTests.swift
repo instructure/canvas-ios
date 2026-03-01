@@ -79,6 +79,8 @@ class FileUploadNotificationCardItemViewModelTests: CoreTestCase {
         return FileUploadNotificationCardItemViewModel(
             id: submission.objectID,
             assignmentName: submission.assignmentName,
+            courseID: submission.courseID,
+            assignmentID: submission.assignmentID,
             state: state,
             isHiddenByUser: false,
             cardDidTap: { _, _ in },

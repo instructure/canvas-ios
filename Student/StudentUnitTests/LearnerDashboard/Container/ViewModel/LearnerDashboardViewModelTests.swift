@@ -27,17 +27,20 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
 
     private var testee: LearnerDashboardViewModel!
     private var interactor: LearnerDashboardInteractorMock!
+    private var courseSyncInteractor: CourseSyncInteractorMock!
     private var scheduler: TestSchedulerOf<DispatchQueue>!
 
     override func setUp() {
         super.setUp()
         scheduler = DispatchQueue.test
         interactor = LearnerDashboardInteractorMock()
+        courseSyncInteractor = CourseSyncInteractorMock()
     }
 
     override func tearDown() {
         testee = nil
         interactor = nil
+        courseSyncInteractor = nil
         scheduler = nil
         super.tearDown()
     }
@@ -50,7 +53,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
             isFullWidth: true
         )
         let gridWidget = MockWidgetViewModel(
-            id: .widget1,
+            id: .helloWidget,
             isFullWidth: false
         )
 
@@ -58,6 +61,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
             interactor: interactor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
+            courseSyncInteractor: courseSyncInteractor,
             environment: env
         )
         interactor.loadWidgetsPublisher.send((
@@ -69,7 +73,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.fullWidthWidgets.count, 1)
         XCTAssertEqual(testee.fullWidthWidgets.first?.id, .courseInvitations)
         XCTAssertEqual(testee.gridWidgets.count, 1)
-        XCTAssertEqual(testee.gridWidgets.first?.id, .widget1)
+        XCTAssertEqual(testee.gridWidgets.first?.id, .helloWidget)
     }
 
     // MARK: - Screen config
@@ -79,6 +83,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
             interactor: interactor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
+            courseSyncInteractor: courseSyncInteractor,
             environment: env
         )
 
@@ -98,6 +103,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
             interactor: interactor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
+            courseSyncInteractor: courseSyncInteractor,
             environment: env
         )
         interactor.loadWidgetsPublisher.send((fullWidth: [], grid: []))
@@ -107,12 +113,13 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     }
 
     func test_init_withWidgets_shouldSetDataState() {
-        let widget = MockWidgetViewModel(id: .widget1, isFullWidth: false)
+        let widget = MockWidgetViewModel(id: .helloWidget, isFullWidth: false)
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
+            courseSyncInteractor: courseSyncInteractor,
             environment: env
         )
         interactor.loadWidgetsPublisher.send((fullWidth: [], grid: [widget]))
@@ -124,14 +131,15 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     // MARK: - Refresh
 
     func test_refresh_shouldCallRefreshOnAllWidgets() {
-        let widget1 = MockWidgetViewModel(id: .widget1, isFullWidth: false)
-        let widget2 = MockWidgetViewModel(id: .widget2, isFullWidth: false)
+        let widget1 = MockWidgetViewModel(id: .helloWidget, isFullWidth: false)
+        let widget2 = MockWidgetViewModel(id: .coursesAndGroups, isFullWidth: false)
         let fullWidthWidget = MockWidgetViewModel(id: .courseInvitations, isFullWidth: true)
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
+            courseSyncInteractor: courseSyncInteractor,
             environment: env
         )
         interactor.loadWidgetsPublisher.send((
@@ -152,12 +160,13 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     }
 
     func test_refresh_shouldCallCompletionWhenAllWidgetsFinish() {
-        let widget = MockWidgetViewModel(id: .widget1, isFullWidth: false)
+        let widget = MockWidgetViewModel(id: .helloWidget, isFullWidth: false)
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
+            courseSyncInteractor: courseSyncInteractor,
             environment: env
         )
         interactor.loadWidgetsPublisher.send((fullWidth: [], grid: [widget]))
@@ -231,6 +240,46 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         XCTAssertEqual(settingsVC?.popoverPresentationController?.sourceView, customView)
         XCTAssertEqual(settingsVC?.popoverPresentationController?.sourceRect, CGRect(x: 26, y: 35, width: 0, height: 0))
     }
+
+    // MARK: - Offline Sync Handlers
+
+    func test_offlineSyncTriggered_shouldStartDownload() {
+        testee = LearnerDashboardViewModel(
+            interactor: interactor,
+            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
+            mainScheduler: scheduler.eraseToAnyScheduler(),
+            courseSyncInteractor: courseSyncInteractor,
+            environment: env
+        )
+
+        let entries = [CourseSyncEntry.make()]
+        NotificationCenter.default.post(
+            name: .OfflineSyncTriggered,
+            object: entries
+        )
+
+        XCTAssertEqual(courseSyncInteractor.downloadContentCalled, true)
+        XCTAssertEqual(courseSyncInteractor.downloadContentEntries?.count, 1)
+    }
+
+    func test_offlineSyncCleanTriggered_shouldCleanContent() {
+        testee = LearnerDashboardViewModel(
+            interactor: interactor,
+            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
+            mainScheduler: scheduler.eraseToAnyScheduler(),
+            courseSyncInteractor: courseSyncInteractor,
+            environment: env
+        )
+
+        let ids = [CourseSyncID(value: "1")]
+        NotificationCenter.default.post(
+            name: .OfflineSyncCleanTriggered,
+            object: ids
+        )
+
+        XCTAssertEqual(courseSyncInteractor.cleanContentCalled, true)
+        XCTAssertEqual(courseSyncInteractor.cleanContentIds?.count, 1)
+    }
 }
 
 private final class MockWidgetViewModel: DashboardWidgetViewModel {
@@ -239,6 +288,7 @@ private final class MockWidgetViewModel: DashboardWidgetViewModel {
     let config: DashboardWidgetConfig
     let isFullWidth: Bool
     let isEditable = false
+    let isHiddenInEmptyState = false
     let state: InstUI.ScreenState = .data
 
     var refreshCalled = false
@@ -246,7 +296,7 @@ private final class MockWidgetViewModel: DashboardWidgetViewModel {
 
     init(id: DashboardWidgetIdentifier, isFullWidth: Bool) {
         self.isFullWidth = isFullWidth
-        self.config = DashboardWidgetConfig(id: id, order: 7, isVisible: true)
+        self.config = .make(id: id, order: 7)
     }
 
     func makeView() -> Never {
@@ -258,4 +308,25 @@ private final class MockWidgetViewModel: DashboardWidgetViewModel {
         refreshIgnoreCache = ignoreCache
         return Just(()).eraseToAnyPublisher()
     }
+}
+
+private final class CourseSyncInteractorMock: CourseSyncInteractor {
+    var downloadContentCalled = false
+    var downloadContentEntries: [CourseSyncEntry]?
+    var cleanContentCalled = false
+    var cleanContentIds: [CourseSyncID]?
+
+    func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never> {
+        downloadContentCalled = true
+        downloadContentEntries = entries
+        return Just(entries).eraseToAnyPublisher()
+    }
+
+    func cleanContent(for ids: [CourseSyncID]) -> AnyPublisher<Void, Never> {
+        cleanContentCalled = true
+        cleanContentIds = ids
+        return Just(()).eraseToAnyPublisher()
+    }
+
+    func cancel() {}
 }

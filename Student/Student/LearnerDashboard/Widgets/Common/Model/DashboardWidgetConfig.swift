@@ -37,3 +37,18 @@ extension Array where Element == DashboardWidgetConfig {
         return (fullWidth, grid)
     }
 }
+
+#if DEBUG
+
+extension DashboardWidgetConfig {
+    static func make(
+        id: DashboardWidgetIdentifier = .helloWidget,
+        order: Int = 0,
+        isVisible: Bool = true,
+        settings: String? = nil
+    ) -> DashboardWidgetConfig {
+        .init(id: id, order: order, isVisible: isVisible, settings: settings)
+    }
+}
+
+#endif
