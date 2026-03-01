@@ -20,7 +20,7 @@ import Combine
 import CoreData
 import Foundation
 
-protocol CourseSyncProgressObserverInteractor {
+public protocol CourseSyncProgressObserverInteractor {
     func observeDownloadProgress() -> AnyPublisher<CourseSyncDownloadProgress, Never>
     func observeStateProgress() -> AnyPublisher<[CourseSyncStateProgress], Never>
 }
