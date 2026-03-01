@@ -120,14 +120,11 @@ class AudioPickerInteractorLive: NSObject, AudioPickerInteractor {
         try recordingSession.setCategory(.record, mode: .default)
         try recordingSession.setActive(true)
 
-        let settings = [
-                    AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-                    AVSampleRateKey: 12000,
-                    AVNumberOfChannelsKey: 1,
-                    AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-                ]
+        let audioRecorder = try CoreAVAudioRecorderLive(
+            url: url,
+            settings: AudioRecordingSettings.default
+        )
 
-        let audioRecorder = try CoreAVAudioRecorderLive(url: url, settings: settings)
         audioRecorder.isMeteringEnabled = true
 
         return audioRecorder

@@ -202,7 +202,7 @@ final class ConferencesWidgetViewModelTests: StudentTestCase {
     // MARK: - Private helpers
 
     private func makeViewModel(
-        config: DashboardWidgetConfig = DashboardWidgetConfig(id: .conferences, order: 0, isVisible: true)
+        config: DashboardWidgetConfig = .make(id: .conferences)
     ) -> ConferencesWidgetViewModel {
         ConferencesWidgetViewModel(
             config: config,

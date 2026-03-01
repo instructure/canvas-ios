@@ -93,11 +93,6 @@ extension HorizonUI.ProgressBar {
                             .frame(minWidth: width, alignment: .trailing)
                             .foregroundStyle(textColor)
                     }
-                    if numberPosition == .outside {
-                        progressText
-                            .frame(minWidth: width, alignment: .trailing)
-                            .foregroundStyle(Color.clear)
-                    }
                 }
                 .huiCornerRadius(level: cornerRadius)
             }

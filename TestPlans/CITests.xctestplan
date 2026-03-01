@@ -59,9 +59,9 @@
   "testTargets" : [
     {
       "target" : {
-        "containerPath" : "container:Student\/Student.xcodeproj",
-        "identifier" : "4DF9E94388E5DAB2630B064B",
-        "name" : "StudentUnitTests"
+        "containerPath" : "container:Parent\/Parent.xcodeproj",
+        "identifier" : "41BA2B211CB47478407A6101",
+        "name" : "ParentUnitTests"
       }
     },
     {
@@ -73,6 +73,13 @@
     },
     {
       "target" : {
+        "containerPath" : "container:Teacher\/Teacher.xcodeproj",
+        "identifier" : "4F93B7247D9941F0080F583E",
+        "name" : "TeacherUnitTests"
+      }
+    },
+    {
+      "target" : {
         "containerPath" : "container:Horizon\/Horizon.xcodeproj",
         "identifier" : "CA820CCB914839A59CE7D531",
         "name" : "HorizonUnitTests"
@@ -80,9 +87,9 @@
     },
     {
       "target" : {
-        "containerPath" : "container:Parent\/Parent.xcodeproj",
-        "identifier" : "41BA2B211CB47478407A6101",
-        "name" : "ParentUnitTests"
+        "containerPath" : "container:Student\/Student.xcodeproj",
+        "identifier" : "4DF9E94388E5DAB2630B064B",
+        "name" : "StudentUnitTests"
       }
     }
   ],

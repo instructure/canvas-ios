@@ -26,20 +26,18 @@ final class LearnViewModelTests: HorizonTestCase {
         // Given
         let interactor = ProgramInteractorMock()
         let learnCoursesInteractor = GetLearnCoursesInteractorMock()
-        let testee = LearnViewModel(
+        let testee = ProgramDetailsViewModel(
             interactor: interactor,
             learnCoursesInteractor: learnCoursesInteractor,
-            router: router
+            router: router,
+            programID: "ID-1"
         )
         // When
         let expection = expectation(description: "Wait for completion")
         testee.fetchPrograms {
             expection.fulfill()
-            XCTAssertEqual(testee.programs.count, 2)
             XCTAssertTrue(testee.shouldShowProgress)
-            XCTAssertEqual(testee.dropdownMenuPrograms.count, 3)
             XCTAssertEqual(testee.currentProgram?.id, HProgramStubs.programs.first?.id)
-            XCTAssertEqual(testee.selectedProgram?.id, HProgramStubs.programs.first?.id)
             XCTAssertFalse(testee.isLoaderVisible)
             XCTAssertFalse(testee.hasError)
 
@@ -57,19 +55,17 @@ final class LearnViewModelTests: HorizonTestCase {
         let interactor = ProgramInteractorMock()
         let learnCoursesInteractor = GetLearnCoursesInteractorMock()
         interactor.shouldFail = true
-        let testee = LearnViewModel(
+        let testee = ProgramDetailsViewModel(
             interactor: interactor,
             learnCoursesInteractor: learnCoursesInteractor,
-            router: router
+            router: router,
+            programID: "12"
         )
         // When
         let expection = expectation(description: "Wait for completion")
         testee.fetchPrograms {
             expection.fulfill()
-            XCTAssertEqual(testee.programs.count, 0)
-            XCTAssertEqual(testee.dropdownMenuPrograms.count, 0)
             XCTAssertNil(testee.currentProgram)
-            XCTAssertNil(testee.selectedProgram)
             XCTAssertFalse(testee.isLoaderVisible)
             XCTAssertTrue(testee.hasError)
             XCTAssertTrue(testee.toastIsPresented)
@@ -79,30 +75,15 @@ final class LearnViewModelTests: HorizonTestCase {
         wait(for: [expection], timeout: 0.2)
     }
 
-    func testFetchPullToRefresh() async {
-        // Given
-        let interactor = ProgramInteractorMock()
-        let learnCoursesInteractor = GetLearnCoursesInteractorMock()
-        let testee = LearnViewModel(
-            interactor: interactor,
-            learnCoursesInteractor: learnCoursesInteractor,
-            router: router
-        )
-
-        // When
-        await testee.refreshPrograms()
-        // Then
-        XCTAssertEqual(testee.programs.count, 2)
-    }
-
     func testNavigateToCourseDetails() {
         // Given
         let interactor = ProgramInteractorMock()
         let learnCoursesInteractor = GetLearnCoursesInteractorMock()
-        let testee = LearnViewModel(
+        let testee = ProgramDetailsViewModel(
             interactor: interactor,
             learnCoursesInteractor: learnCoursesInteractor,
             router: router,
+            programID: "ID-1",
             scheduler: .immediate
         )
         let sourceView = UIViewController()
@@ -118,7 +99,6 @@ final class LearnViewModelTests: HorizonTestCase {
         // Then
         let courseDetailsView = router.lastViewController as? CoreHostingController<Horizon.CourseDetailsView>
         XCTAssertNotNil(courseDetailsView)
-
         wait(for: [router.showExpectation], timeout: 1)
     }
 
@@ -126,17 +106,17 @@ final class LearnViewModelTests: HorizonTestCase {
         // Given
         let interactor = ProgramInteractorMock()
         let learnCoursesInteractor = GetLearnCoursesInteractorMock()
-        let testee = LearnViewModel(
+        let testee = ProgramDetailsViewModel(
             interactor: interactor,
             learnCoursesInteractor: learnCoursesInteractor,
             router: router,
+            programID: "12",
             scheduler: .immediate
         )
 
         // When
         testee.enrollInProgram(course: HProgramStubs.courses[0])
         // Then
-        XCTAssertEqual(testee.programs.count, 1)
         XCTAssertEqual(testee.toastMessage, "You’ve been enrolled in Course Introduction to SwiftUI")
         XCTAssertTrue(testee.toastIsPresented)
         XCTAssertFalse(testee.isLoadingEnrollButton)
@@ -147,12 +127,17 @@ final class LearnViewModelTests: HorizonTestCase {
         let interactor = ProgramInteractorMock()
         let learnCoursesInteractor = GetLearnCoursesInteractorMock()
         interactor.shouldFail = true
-        let testee = LearnViewModel(interactor: interactor, learnCoursesInteractor: learnCoursesInteractor, router: router, scheduler: .immediate)
+        let testee = ProgramDetailsViewModel(
+            interactor: interactor,
+            learnCoursesInteractor: learnCoursesInteractor,
+            router: router,
+            programID: "12",
+            scheduler: .immediate
+        )
 
         // When
         testee.enrollInProgram(course: HProgramStubs.courses[0])
         // Then
-        XCTAssertEqual(testee.programs.count, 0)
         XCTAssertNotEqual(testee.toastMessage, "You’ve been enrolled in Course Introduction to SwiftUI")
         XCTAssertTrue(testee.toastIsPresented)
         XCTAssertFalse(testee.isLoadingEnrollButton)
@@ -163,14 +148,16 @@ final class LearnViewModelTests: HorizonTestCase {
         // Given
         let interactor = ProgramInteractorMock()
         let learnCoursesInteractor = GetLearnCoursesInteractorMock()
-        let testee = LearnViewModel(interactor: interactor, learnCoursesInteractor: learnCoursesInteractor, router: router)
+        let testee = ProgramDetailsViewModel(
+            interactor: interactor,
+            learnCoursesInteractor: learnCoursesInteractor,
+            router: router,
+            programID: "ID-1"
+        )
 
         // When
         await testee.refreshPrograms()
-        testee.onSelectProgram(
-            ProgramSwitcherModel(id: HProgramStubs.programs.last!.id, name: HProgramStubs.programs.last!.name)
-        )
 
-        XCTAssertEqual(testee.currentProgram?.id, HProgramStubs.programs.last!.id)
+        XCTAssertEqual(testee.currentProgram?.id, HProgramStubs.programs.first!.id)
     }
 }
