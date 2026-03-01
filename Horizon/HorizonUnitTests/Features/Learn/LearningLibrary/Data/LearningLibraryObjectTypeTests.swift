@@ -56,17 +56,6 @@ final class LearningLibraryObjectTypeTests: XCTestCase {
         XCTAssertEqual(LearningLibraryObjectType.file.name, "File")
     }
 
-//    func testIconsAreNotNil() {
-//        XCTAssertNotNil(LearningLibraryObjectType.course.icon)
-//        XCTAssertNotNil(LearningLibraryObjectType.program.icon)
-//        XCTAssertNotNil(LearningLibraryObjectType.page.icon)
-//        XCTAssertNotNil(LearningLibraryObjectType.assignment.icon)
-//        XCTAssertNotNil(LearningLibraryObjectType.assessment.icon)
-//        XCTAssertNotNil(LearningLibraryObjectType.externalLink.icon)
-//        XCTAssertNotNil(LearningLibraryObjectType.externalTool.icon)
-//        XCTAssertNotNil(LearningLibraryObjectType.file.icon)
-//    }
-
     func testStylesAreNotNil() {
         XCTAssertNotNil(LearningLibraryObjectType.course.style)
         XCTAssertNotNil(LearningLibraryObjectType.program.style)
