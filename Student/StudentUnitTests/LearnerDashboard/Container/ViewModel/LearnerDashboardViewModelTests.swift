@@ -53,7 +53,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
             isFullWidth: true
         )
         let gridWidget = MockWidgetViewModel(
-            id: .widget1,
+            id: .helloWidget,
             isFullWidth: false
         )
 
@@ -73,7 +73,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.fullWidthWidgets.count, 1)
         XCTAssertEqual(testee.fullWidthWidgets.first?.id, .courseInvitations)
         XCTAssertEqual(testee.gridWidgets.count, 1)
-        XCTAssertEqual(testee.gridWidgets.first?.id, .widget1)
+        XCTAssertEqual(testee.gridWidgets.first?.id, .helloWidget)
     }
 
     // MARK: - Screen config
@@ -113,7 +113,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     }
 
     func test_init_withWidgets_shouldSetDataState() {
-        let widget = MockWidgetViewModel(id: .widget1, isFullWidth: false)
+        let widget = MockWidgetViewModel(id: .helloWidget, isFullWidth: false)
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
@@ -131,8 +131,8 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     // MARK: - Refresh
 
     func test_refresh_shouldCallRefreshOnAllWidgets() {
-        let widget1 = MockWidgetViewModel(id: .widget1, isFullWidth: false)
-        let widget2 = MockWidgetViewModel(id: .widget2, isFullWidth: false)
+        let widget1 = MockWidgetViewModel(id: .helloWidget, isFullWidth: false)
+        let widget2 = MockWidgetViewModel(id: .coursesAndGroups, isFullWidth: false)
         let fullWidthWidget = MockWidgetViewModel(id: .courseInvitations, isFullWidth: true)
 
         testee = LearnerDashboardViewModel(
@@ -160,7 +160,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     }
 
     func test_refresh_shouldCallCompletionWhenAllWidgetsFinish() {
-        let widget = MockWidgetViewModel(id: .widget1, isFullWidth: false)
+        let widget = MockWidgetViewModel(id: .helloWidget, isFullWidth: false)
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
@@ -296,7 +296,7 @@ private final class MockWidgetViewModel: DashboardWidgetViewModel {
 
     init(id: DashboardWidgetIdentifier, isFullWidth: Bool) {
         self.isFullWidth = isFullWidth
-        self.config = DashboardWidgetConfig(id: id, order: 7, isVisible: true)
+        self.config = .make(id: id, order: 7)
     }
 
     func makeView() -> Never {

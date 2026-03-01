@@ -70,50 +70,17 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         XCTAssertEqual(receivedFullWidth?[3].id, .courseInvitations)
         XCTAssertEqual(receivedFullWidth?[4].id, .globalAnnouncements)
         XCTAssertEqual(receivedFullWidth?[5].id, .helloWidget)
-        XCTAssertEqual(receivedGrid?.count, 3)
-        XCTAssertEqual(receivedGrid?[0].id, .widget1)
-        XCTAssertEqual(receivedGrid?[1].id, .widget2)
-        XCTAssertEqual(receivedGrid?[2].id, .widget3)
+        XCTAssertEqual(receivedGrid?.count, 1)
+        XCTAssertEqual(receivedGrid?[0].id, .coursesAndGroups)
     }
 
     // MARK: - Load widgets with saved configs
 
     func test_loadWidgets_withSavedConfigs_shouldFilterVisibleAndSort() {
         userDefaults.learnerDashboardWidgetConfigs = [
-            DashboardWidgetConfig(id: .widget3, order: 5, isVisible: true),
-            DashboardWidgetConfig(id: .widget1, order: 20, isVisible: false),
-            DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
-        ]
-        testee = LearnerDashboardInteractorLive(
-            userDefaults: userDefaults,
-            widgetViewModelFactory: makeViewModelFactory()
-        )
-
-        let expectation = expectation(description: "loadWidgets")
-        var receivedFullWidth: [any DashboardWidgetViewModel]?
-        var receivedGrid: [any DashboardWidgetViewModel]?
-
-        testee.loadWidgets()
-            .sink { result in
-                receivedFullWidth = result.fullWidth
-                receivedGrid = result.grid
-                expectation.fulfill()
-            }
-            .store(in: &subscriptions)
-
-        wait(for: [expectation], timeout: 5)
-
-        XCTAssertEqual(receivedFullWidth?.count, 0)
-        XCTAssertEqual(receivedGrid?.count, 2)
-        XCTAssertEqual(receivedGrid?[0].id, .widget3)
-        XCTAssertEqual(receivedGrid?[1].id, .widget2)
-    }
-
-    func test_loadWidgets_shouldSeparateFullWidthFromGridWidgets() {
-        userDefaults.learnerDashboardWidgetConfigs = [
-            DashboardWidgetConfig(id: .widget1, order: 20, isVisible: true),
-            DashboardWidgetConfig(id: .courseInvitations, order: 5, isVisible: true),
-            DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
+            DashboardWidgetConfig(id: .helloWidget, order: 10, isVisible: true),
+            DashboardWidgetConfig(id: .conferences, order: 20, isVisible: false),
+            DashboardWidgetConfig(id: .coursesAndGroups, order: 5, isVisible: true)
         ]
         testee = LearnerDashboardInteractorLive(
             userDefaults: userDefaults,
@@ -135,10 +102,41 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         wait(for: [expectation], timeout: 5)
 
         XCTAssertEqual(receivedFullWidth?.count, 1)
-        XCTAssertEqual(receivedFullWidth?.first?.id, .courseInvitations)
-        XCTAssertEqual(receivedGrid?.count, 2)
-        XCTAssertEqual(receivedGrid?[0].id, .widget2)
-        XCTAssertEqual(receivedGrid?[1].id, .widget1)
+        XCTAssertEqual(receivedFullWidth?[0].id, .helloWidget)
+        XCTAssertEqual(receivedGrid?.count, 1)
+        XCTAssertEqual(receivedGrid?[0].id, .coursesAndGroups)
+    }
+
+    func test_loadWidgets_shouldSeparateFullWidthFromGridWidgets() {
+        userDefaults.learnerDashboardWidgetConfigs = [
+            DashboardWidgetConfig(id: .helloWidget, order: 20, isVisible: true),
+            DashboardWidgetConfig(id: .courseInvitations, order: 5, isVisible: true),
+            DashboardWidgetConfig(id: .coursesAndGroups, order: 10, isVisible: true)
+        ]
+        testee = LearnerDashboardInteractorLive(
+            userDefaults: userDefaults,
+            widgetViewModelFactory: makeViewModelFactory()
+        )
+
+        let expectation = expectation(description: "loadWidgets")
+        var receivedFullWidth: [any DashboardWidgetViewModel]?
+        var receivedGrid: [any DashboardWidgetViewModel]?
+
+        testee.loadWidgets()
+            .sink { result in
+                receivedFullWidth = result.fullWidth
+                receivedGrid = result.grid
+                expectation.fulfill()
+            }
+            .store(in: &subscriptions)
+
+        wait(for: [expectation], timeout: 5)
+
+        XCTAssertEqual(receivedFullWidth?.count, 2)
+        XCTAssertEqual(receivedFullWidth?[0].id, .courseInvitations)
+        XCTAssertEqual(receivedFullWidth?[1].id, .helloWidget)
+        XCTAssertEqual(receivedGrid?.count, 1)
+        XCTAssertEqual(receivedGrid?[0].id, .coursesAndGroups)
     }
 
     // MARK: - Private helpers
