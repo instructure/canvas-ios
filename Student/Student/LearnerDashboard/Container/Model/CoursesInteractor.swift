@@ -70,7 +70,7 @@ final class CoursesInteractorLive: CoursesInteractor {
     private let colorsStore: ReactiveStore<GetCustomColors>
     private let dashboardCardsStore: ReactiveStore<GetDashboardCards>
     private let favoriteGroupsStore: ReactiveStore<GetDashboardGroups>
-    private let courseLogic: any BusinessLogic.Course
+    private let courseLogic: BusinessLogic.Course
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -84,7 +84,7 @@ final class CoursesInteractorLive: CoursesInteractor {
     init(
         env: AppEnvironment,
         sortComparator: some SortComparator<Course> = InvitedCourseSortComparator(),
-        courseLogic: any BusinessLogic.Course = .live
+        courseLogic: BusinessLogic.Course = .live
     ) {
         self.env = env
         self.context = env.database.backgroundReadContext
