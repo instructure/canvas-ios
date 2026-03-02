@@ -94,7 +94,7 @@ open class CoreWebView: WKWebView {
     ) {
 
         configuration.applyDefaultSettings()
-        let features = features + [.dynamicFontSize, .canvasLTIPostMessageHandler]
+        let features = features + [.dynamicFontSize, .canvasLTIPostMessageHandler, .blobURLDownload]
         features.forEach { $0.apply(on: configuration) }
 
         super.init(frame: .zero, configuration: configuration)
@@ -584,6 +584,10 @@ extension CoreWebView: WKNavigationDelegate {
                 addDoneButton: true
             )
             env.router.show(controller, from: viewController, options: routeOptions)
+            return decisionHandler(.cancel)
+        }
+
+        if action.request.url?.scheme == "blob" {
             return decisionHandler(.cancel)
         }
 
