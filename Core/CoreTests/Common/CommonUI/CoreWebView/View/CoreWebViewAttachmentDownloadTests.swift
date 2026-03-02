@@ -146,9 +146,25 @@ class CoreWebViewAttachmentDownloadTests: CoreTestCase {
     }
 
     @MainActor
-    func test_blobDownload_withInvalidBase64_doesNotCallDelegate() {
+    func test_blobDownload_withInvalidBase64_doesNotCallAnyDelegate() {
         webView.handleBlobDownload(base64: "not-valid-base64!!!", mimeType: "text/plain", fileName: "file")
 
+        XCTAssertNil(linkDelegate.startedAttachment)
+        XCTAssertNil(linkDelegate.finishedAttachment)
+        XCTAssertNil(linkDelegate.failedAttachment)
+        XCTAssertFalse(webView.isDownloadingAttachment)
+    }
+
+    @MainActor
+    func test_blobDownload_writeFails_callsFailDelegate() throws {
+        let base64 = Data("content".utf8).base64EncodedString()
+
+        // A fileName with a non-existent intermediate directory causes data.write(to:) to throw
+        webView.handleBlobDownload(base64: base64, mimeType: "text/plain", fileName: "nonexistent-dir/file")
+
+        let failed = try XCTUnwrap(linkDelegate.failedAttachment)
+        XCTAssertTrue(failed.originIsBlob)
+        XCTAssertNotNil(linkDelegate.failure)
         XCTAssertNil(linkDelegate.startedAttachment)
         XCTAssertNil(linkDelegate.finishedAttachment)
         XCTAssertFalse(webView.isDownloadingAttachment)
