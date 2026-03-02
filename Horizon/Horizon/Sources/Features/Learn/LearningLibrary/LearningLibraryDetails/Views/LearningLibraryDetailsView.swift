@@ -225,6 +225,7 @@ struct LearningLibraryDetailsView: View {
                 viewModel.clearAll()
             }
             .hidden(!viewModel.isClearButtonVisible)
+            .accessibilityLabel(String(localized: "Clear filters"))
             Spacer()
             countOfVisibleItemsView
                 .hidden(viewModel.filteredItems.isEmpty)

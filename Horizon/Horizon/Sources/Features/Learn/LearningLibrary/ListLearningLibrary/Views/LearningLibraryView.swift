@@ -291,6 +291,7 @@ struct LearningLibraryView: View {
                 viewModel.clearAll()
             }
             .hidden(!viewModel.isGlobalSearchActive)
+            .accessibilityLabel(String(localized: "Clear filters"))
             Spacer()
             countOfVisibleItemsView
         }
@@ -330,6 +331,14 @@ struct LearningLibraryView: View {
             .foregroundStyle(Color.huiColors.text.dataPoint)
             .huiTypography(.p1)
             .hidden(viewModel.globalSearchItems.isEmpty || !viewModel.isGlobalSearchActive)
+            .accessibilityLabel(
+                Text(
+                    String(
+                        format: String(localized: "Count of visible items is %d"),
+                        viewModel.globalSearchItems.count
+                    )
+                )
+            )
     }
 
     private func restoreFocusIfNeeded(after: Double) {

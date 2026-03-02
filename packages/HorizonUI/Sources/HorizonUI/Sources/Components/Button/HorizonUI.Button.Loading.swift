@@ -72,7 +72,7 @@ public extension HorizonUI {
 
 #Preview {
     HorizonUI.LoadingButton(
-        title: "Enrolle",
+        title: "Enroll",
         type: .institution,
         fillsWidth: false,
         isLoading: true,

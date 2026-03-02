@@ -117,7 +117,7 @@ public extension HorizonUI {
                 size: .xSmall,
                 showBackground: true
             )
-            .accessibilityLabel("Loading")
+            .accessibilityLabel(String(localized: "Loading"))
         }
     }
 }
