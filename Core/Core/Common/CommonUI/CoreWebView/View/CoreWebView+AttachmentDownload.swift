@@ -124,15 +124,18 @@ extension CoreWebView {
         }
 
         let url = URL.Directories.temporary.appending(component: fullName)
+        let attachment = CoreWebAttachment(url: url, contentType: mimeType, isBlob: true)
 
         do {
             if FileManager.default.fileExists(atPath: url.path()) {
                 try FileManager.default.removeItem(at: url)
             }
             try data.write(to: url)
-        } catch { return }
+        } catch {
+            linkDelegate?.coreWebView(self, didFailAttachmentDownload: attachment, with: error)
+            return
+        }
 
-        let attachment = CoreWebAttachment(url: url, contentType: mimeType, isBlob: true)
         downloadingAttachment = attachment
         linkDelegate?.coreWebView(self, didStartDownloadAttachment: attachment)
         linkDelegate?.coreWebView(self, didFinishAttachmentDownload: attachment)
