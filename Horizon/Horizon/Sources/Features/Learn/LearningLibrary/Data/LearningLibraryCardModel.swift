@@ -34,6 +34,8 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
     var isEnrolled: Bool
     var isInProgress: Bool
     var courseEnrollmentId: String?
+    let moduleItemID: String?
+    let canvasUrl: URL?
 
     init(
         id: String,
@@ -49,7 +51,9 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         isEnrolled: Bool = false,
         isInProgress: Bool = false,
         courseEnrollmentId: String? = nil,
-        libraryId: String = ""
+        libraryId: String = "",
+        moduleItemID: String? = nil,
+        canvasUrl: URL? = nil
     ) {
         self.id = id
         self.courseID = courseID
@@ -65,6 +69,8 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         self.isInProgress = isInProgress
         self.courseEnrollmentId = courseEnrollmentId
         self.libraryId = libraryId
+        self.moduleItemID = moduleItemID
+        self.canvasUrl = canvasUrl
     }
 
     init(for entity: CDHLearningLibraryCollectionItem) {
@@ -82,6 +88,8 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         self.isInProgress = (entity.completionPercentage >= 0 && !isCompleted && isEnrolled)
         self.courseEnrollmentId = entity.canvasEnrollmentId
         self.libraryId = entity.libraryId
+        self.moduleItemID = entity.canvasModuleItemId
+        self.canvasUrl = entity.canvasUrl
     }
 
     init(for response: LearningLibraryItemsResponse) {
@@ -101,6 +109,8 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         self.isInProgress = (completionPercentage >= 0 && !self.isCompleted && isEnrolled)
         self.libraryId = response.libraryId ?? ""
         self.courseEnrollmentId = response.canvasEnrollmentId
+        self.moduleItemID = response.canvasModuleItemId
+        self.canvasUrl = response.canvasCourse?.canvasUrl
     }
 
     mutating func update(with: LearningLibraryCardModel) {
@@ -109,5 +119,13 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         self.courseEnrollmentId = with.courseEnrollmentId
         /// When the user enrolls in the course, update the state to "in progress".
         self.isInProgress = with.isEnrolled
+    }
+
+    var shouldShowEnrollButton: Bool {
+        !isEnrolled && (itemType == .course || itemType == .program)
+    }
+
+    var shouldShowProgressStatus: Bool {
+        itemType == .course || itemType == .program
     }
 }

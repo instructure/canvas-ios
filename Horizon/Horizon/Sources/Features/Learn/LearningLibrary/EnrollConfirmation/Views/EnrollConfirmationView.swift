@@ -50,6 +50,13 @@ struct EnrollConfirmationView: View {
         .background(Color.huiColors.surface.pageSecondary)
         .huiCornerRadius(level: .level4)
         .huiLoader(isVisible: viewModel.isLoaderVisible)
+        .huiToast(
+            viewModel: .init(
+                text: viewModel.errorMessage,
+                style: .error
+            ),
+            isPresented: $viewModel.isErrorVisible
+        )
     }
 
     private var headerView: some View {

@@ -35,7 +35,9 @@ final public class CDHLearningLibraryCollectionItem: NSManagedObject {
     @NSManaged public var programCourseId: String?
     @NSManaged public var programId: String?
     @NSManaged public var canvasEnrollmentId: String?
-
+    @NSManaged public var canvasModuleId: String?
+    @NSManaged public var canvasModuleItemId: String?
+    @NSManaged public var canvasUrl: URL?
     @discardableResult
      public static func save(
           _ apiEntity: LearningLibraryItemsResponse,
@@ -56,6 +58,9 @@ final public class CDHLearningLibraryCollectionItem: NSManagedObject {
          dbEntity.courseID = (apiEntity.canvasCourse?.courseId).defaultToEmpty
          dbEntity.itemType = apiEntity.itemType
          dbEntity.libraryId = apiEntity.libraryId.defaultToEmpty
+         dbEntity.canvasModuleId = apiEntity.canvasModuleId
+         dbEntity.canvasModuleItemId = apiEntity.canvasModuleItemId
+         dbEntity.canvasUrl = apiEntity.canvasCourse?.canvasUrl
          if let moduleCount = apiEntity.canvasCourse?.moduleCount, moduleCount > 0 {
              dbEntity.moduleCount = NSNumber(value: moduleCount)
          } else {

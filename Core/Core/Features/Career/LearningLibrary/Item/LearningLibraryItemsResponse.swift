@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 public struct LearningLibraryItemsResponse: Codable {
     public let id: String
     public let libraryId: String?
@@ -36,7 +38,7 @@ public struct LearningLibraryItemsResponse: Codable {
     public struct CanvasCourse: Codable {
         public let courseId: String
         public let courseName: String
-        public let canvasUrl: String?
+        public let canvasUrl: URL?
         public let courseImageUrl: String?
         public let moduleCount: Int?
         public let moduleItemCount: Int?

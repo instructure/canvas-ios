@@ -317,6 +317,9 @@
     </entity>
     <entity name="CDHLearningLibraryCollectionItem" representedClassName=".CDHLearningLibraryCollectionItem" syncable="YES">
         <attribute name="canvasEnrollmentId" optional="YES" attributeType="String"/>
+        <attribute name="canvasModuleId" optional="YES" attributeType="String"/>
+        <attribute name="canvasModuleItemId" optional="YES" attributeType="String"/>
+        <attribute name="canvasUrl" optional="YES" attributeType="URI"/>
         <attribute name="completionPercentage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="courseID" attributeType="String"/>
         <attribute name="displayOrder" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
