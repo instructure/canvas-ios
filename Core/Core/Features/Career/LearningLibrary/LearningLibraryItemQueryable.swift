@@ -51,6 +51,8 @@ extension LearningLibraryItemQueryable {
         isEnrolledInCanvas
         createdAt
         updatedAt
+        canvasModuleId
+        canvasModuleItemId
         canvasEnrollmentId
         canvasCourse {
           courseId

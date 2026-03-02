@@ -26,7 +26,7 @@ final public class CDHLearningLibraryCollectionItem: NSManagedObject {
     @NSManaged public var imageUrl: String?
     @NSManaged public var isBookmarked: Bool
     @NSManaged public var isEnrolledInCanvas: Bool
-    @NSManaged public var itemId: String
+    @NSManaged public var courseID: String
     @NSManaged public var itemType: String
     @NSManaged public var libraryId: String
     @NSManaged public var moduleCount: NSNumber?
@@ -53,7 +53,7 @@ final public class CDHLearningLibraryCollectionItem: NSManagedObject {
          dbEntity.imageUrl = apiEntity.canvasCourse?.courseImageUrl
          dbEntity.isBookmarked = apiEntity.isBookmarked.defaultToFalse
          dbEntity.isEnrolledInCanvas = apiEntity.isEnrolledInCanvas.defaultToFalse
-         dbEntity.itemId = (apiEntity.canvasCourse?.courseId).defaultToEmpty
+         dbEntity.courseID = (apiEntity.canvasCourse?.courseId).defaultToEmpty
          dbEntity.itemType = apiEntity.itemType
          dbEntity.libraryId = apiEntity.libraryId.defaultToEmpty
          if let moduleCount = apiEntity.canvasCourse?.moduleCount, moduleCount > 0 {
@@ -76,11 +76,11 @@ final public class CDHLearningLibraryCollectionItem: NSManagedObject {
 
 extension CDHLearningLibraryCollectionItem {
     public static func updateBookmark(
-        itemID: String,
+        courseID: String,
         isBookmarked: Bool = false,
         in context: NSManagedObjectContext
     ) {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(CDHLearningLibraryCollectionItem.itemId), itemID)
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(CDHLearningLibraryCollectionItem.courseID), courseID)
         let dbEntities: [CDHLearningLibraryCollectionItem] = context.fetch(predicate)
         dbEntities.forEach {
             $0.isBookmarked = isBookmarked
@@ -88,11 +88,11 @@ extension CDHLearningLibraryCollectionItem {
     }
 
     public static func updateEnroll(
-        itemID: String,
+        courseID: String,
         enrollmentID: String,
         in context: NSManagedObjectContext
     ) {
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(CDHLearningLibraryCollectionItem.itemId), itemID)
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(CDHLearningLibraryCollectionItem.courseID), courseID)
         let dbEntities: [CDHLearningLibraryCollectionItem] = context.fetch(predicate)
         dbEntities.forEach {
             $0.isEnrolledInCanvas = true

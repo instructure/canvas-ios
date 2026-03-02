@@ -223,7 +223,7 @@ final class EnrollConfirmationViewModelTests: HorizonTestCase {
     ) -> LearningLibraryCardModel {
         LearningLibraryCardModel(
             id: "item-1",
-            itemId: "course-123",
+            courseID: "course-123",
             name: "Test Course",
             imageURL: nil,
             itemType: .course,

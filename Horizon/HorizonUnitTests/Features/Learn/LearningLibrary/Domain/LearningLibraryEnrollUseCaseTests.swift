@@ -28,7 +28,7 @@ final class LearningLibraryEnrollUseCaseTests: HorizonTestCase {
     private let testItemId = "course-456"
 
     override func setUpWithError() throws {
-        testee = LearningLibraryEnrollUseCase(id: testId, itemID: testItemId)
+        testee = LearningLibraryEnrollUseCase(id: testId, courseID: testItemId)
     }
 
     override func tearDownWithError() throws {
@@ -52,7 +52,7 @@ final class LearningLibraryEnrollUseCaseTests: HorizonTestCase {
         testee = LearningLibraryEnrollUseCase(
             journey: DomainServiceMock(result: .success(api)),
             id: testId,
-            itemID: testItemId
+            courseID: testItemId
         )
         let expectation = expectation(description: "Wait for completion")
         api.mock(
@@ -85,7 +85,7 @@ final class LearningLibraryEnrollUseCaseTests: HorizonTestCase {
         testee = LearningLibraryEnrollUseCase(
             journey: domainService,
             id: testId,
-            itemID: testItemId
+            courseID: testItemId
         )
         let expectation = expectation(description: "Wait for completion")
         api.mock(
@@ -105,7 +105,7 @@ final class LearningLibraryEnrollUseCaseTests: HorizonTestCase {
     func testWriteUpdatesEnrollment() {
         CDHLearningLibraryCollectionItem.save(LearningLibraryItemStubs.bookmarkedItem1, in: databaseClient)
         let item: CDHLearningLibraryCollectionItem? = databaseClient.first(
-            where: #keyPath(CDHLearningLibraryCollectionItem.itemId),
+            where: #keyPath(CDHLearningLibraryCollectionItem.courseID),
             equals: "course-123"
         )
         XCTAssertEqual(item?.isEnrolledInCanvas, true)
@@ -120,11 +120,11 @@ final class LearningLibraryEnrollUseCaseTests: HorizonTestCase {
             )
         )
 
-        testee = LearningLibraryEnrollUseCase(id: "item-1", itemID: "course-123")
+        testee = LearningLibraryEnrollUseCase(id: "item-1", courseID: "course-123")
         testee.write(response: response, urlResponse: nil, to: databaseClient)
 
         let updatedItem: CDHLearningLibraryCollectionItem? = databaseClient.first(
-            where: #keyPath(CDHLearningLibraryCollectionItem.itemId),
+            where: #keyPath(CDHLearningLibraryCollectionItem.courseID),
             equals: "course-123"
         )
         XCTAssertEqual(updatedItem?.isEnrolledInCanvas, true)
@@ -134,7 +134,7 @@ final class LearningLibraryEnrollUseCaseTests: HorizonTestCase {
     func testWriteWithNewEnrollmentId() {
         CDHLearningLibraryCollectionItem.save(LearningLibraryItemStubs.bookmarkedItem2, in: databaseClient)
         let item: CDHLearningLibraryCollectionItem? = databaseClient.first(
-            where: #keyPath(CDHLearningLibraryCollectionItem.itemId),
+            where: #keyPath(CDHLearningLibraryCollectionItem.courseID),
             equals: "course-456"
         )
         XCTAssertNil(item?.canvasEnrollmentId)
@@ -170,11 +170,11 @@ final class LearningLibraryEnrollUseCaseTests: HorizonTestCase {
             )
         )
 
-        testee = LearningLibraryEnrollUseCase(id: "item-2", itemID: "course-456")
+        testee = LearningLibraryEnrollUseCase(id: "item-2", courseID: "course-456")
         testee.write(response: response, urlResponse: nil, to: databaseClient)
 
         let updatedItem: CDHLearningLibraryCollectionItem? = databaseClient.first(
-            where: #keyPath(CDHLearningLibraryCollectionItem.itemId),
+            where: #keyPath(CDHLearningLibraryCollectionItem.courseID),
             equals: "course-456"
         )
         XCTAssertEqual(updatedItem?.isEnrolledInCanvas, true)
@@ -184,7 +184,7 @@ final class LearningLibraryEnrollUseCaseTests: HorizonTestCase {
     func testWriteWithNilEnrollmentId() {
         CDHLearningLibraryCollectionItem.save(LearningLibraryItemStubs.bookmarkedItem1, in: databaseClient)
         let item: CDHLearningLibraryCollectionItem? = databaseClient.first(
-            where: #keyPath(CDHLearningLibraryCollectionItem.itemId),
+            where: #keyPath(CDHLearningLibraryCollectionItem.courseID),
             equals: "course-123"
         )
         let originalEnrollmentId = item?.canvasEnrollmentId
@@ -207,11 +207,11 @@ final class LearningLibraryEnrollUseCaseTests: HorizonTestCase {
             )
         )
 
-        testee = LearningLibraryEnrollUseCase(id: "item-1", itemID: "course-123")
+        testee = LearningLibraryEnrollUseCase(id: "item-1", courseID: "course-123")
         testee.write(response: response, urlResponse: nil, to: databaseClient)
 
         let updatedItem: CDHLearningLibraryCollectionItem? = databaseClient.first(
-            where: #keyPath(CDHLearningLibraryCollectionItem.itemId),
+            where: #keyPath(CDHLearningLibraryCollectionItem.courseID),
             equals: "course-123"
         )
         XCTAssertEqual(updatedItem?.canvasEnrollmentId, originalEnrollmentId)
@@ -220,16 +220,16 @@ final class LearningLibraryEnrollUseCaseTests: HorizonTestCase {
     func testWriteWithNilResponse() {
         CDHLearningLibraryCollectionItem.save(LearningLibraryItemStubs.bookmarkedItem1, in: databaseClient)
         let item: CDHLearningLibraryCollectionItem? = databaseClient.first(
-            where: #keyPath(CDHLearningLibraryCollectionItem.itemId),
+            where: #keyPath(CDHLearningLibraryCollectionItem.courseID),
             equals: "course-123"
         )
         let originalEnrollmentId = item?.canvasEnrollmentId
 
-        testee = LearningLibraryEnrollUseCase(id: "item-1", itemID: "course-123")
+        testee = LearningLibraryEnrollUseCase(id: "item-1", courseID: "course-123")
         testee.write(response: nil, urlResponse: nil, to: databaseClient)
 
         let updatedItem: CDHLearningLibraryCollectionItem? = databaseClient.first(
-            where: #keyPath(CDHLearningLibraryCollectionItem.itemId),
+            where: #keyPath(CDHLearningLibraryCollectionItem.courseID),
             equals: "course-123"
         )
         XCTAssertEqual(updatedItem?.canvasEnrollmentId, originalEnrollmentId)

@@ -34,18 +34,18 @@ final class LearningLibraryEnrollUseCase: APIUseCase {
 
     private let journey: DomainServiceProtocol
     private let id: String
-    private let itemID: String
+    private let courseID: String
 
     // MARK: - Init
 
     init(
         journey: DomainServiceProtocol = DomainService(),
         id: String,
-        itemID: String
+        courseID: String
     ) {
         self.journey = journey
         self.id = id
-        self.itemID = itemID
+        self.courseID = courseID
     }
 
     func write(
@@ -54,7 +54,7 @@ final class LearningLibraryEnrollUseCase: APIUseCase {
         to client: NSManagedObjectContext
     ) {
         if let canvasEnrollmentId = response?.data.enrollLearnerInCollectionItem.item.canvasEnrollmentId {
-            CDHLearningLibraryCollectionItem.updateEnroll(itemID: itemID, enrollmentID: canvasEnrollmentId, in: client)
+            CDHLearningLibraryCollectionItem.updateEnroll(courseID: courseID, enrollmentID: canvasEnrollmentId, in: client)
         }
     }
 

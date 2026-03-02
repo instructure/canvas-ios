@@ -26,7 +26,7 @@ final class LearningLibraryItemNavigatingTests: HorizonTestCase {
         let testNavigator = TestNavigator(router: router)
         let courseCard = LearningLibraryCardModel(
             id: "item-1",
-            itemId: "course-123",
+            courseID: "course-123",
             name: "Swift Course",
             imageURL: nil,
             itemType: .course,
@@ -51,7 +51,7 @@ final class LearningLibraryItemNavigatingTests: HorizonTestCase {
         let testNavigator = TestNavigator(router: router)
         let courseCard = LearningLibraryCardModel(
             id: "item-1",
-            itemId: "course-123",
+            courseID: "course-123",
             name: "Swift Course",
             imageURL: nil,
             itemType: .course,
@@ -74,7 +74,7 @@ final class LearningLibraryItemNavigatingTests: HorizonTestCase {
         let testNavigator = TestNavigator(router: router)
         let programCard = LearningLibraryCardModel(
             id: "item-2",
-            itemId: "program-789",
+            courseID: "program-789",
             name: "Career Program",
             imageURL: nil,
             itemType: .program,
@@ -97,7 +97,7 @@ final class LearningLibraryItemNavigatingTests: HorizonTestCase {
         let testNavigator = TestNavigator(router: router)
         let pageCard = LearningLibraryCardModel(
             id: "item-3",
-            itemId: "page-123",
+            courseID: "page-123",
             name: "Resource Page",
             imageURL: nil,
             itemType: .page,
@@ -118,7 +118,7 @@ final class LearningLibraryItemNavigatingTests: HorizonTestCase {
         let testNavigator = TestNavigator(router: router)
         let assignmentCard = LearningLibraryCardModel(
             id: "item-4",
-            itemId: "assignment-123",
+            courseID: "assignment-123",
             name: "Assignment",
             imageURL: nil,
             itemType: .assignment,
@@ -139,7 +139,7 @@ final class LearningLibraryItemNavigatingTests: HorizonTestCase {
         let testNavigator = TestNavigator(router: router)
         let fileCard = LearningLibraryCardModel(
             id: "item-5",
-            itemId: "file-123",
+            courseID: "file-123",
             name: "PDF File",
             imageURL: nil,
             itemType: .file,

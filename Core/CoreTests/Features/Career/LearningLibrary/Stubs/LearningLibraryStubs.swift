@@ -40,6 +40,8 @@ enum LearningLibraryStubs {
         isEnrolledInCanvas: true,
         createdAt: "2026-01-01T00:00:00Z",
         updatedAt: "2026-02-01T00:00:00Z",
+        canvasModuleId: "11",
+        canvasModuleItemId: "21",
         canvasCourse: canvasCourse,
         programId: "program-789",
         programCourseId: "program-course-012",

@@ -21,7 +21,7 @@ import Foundation
 
 struct LearningLibraryCardModel: Identifiable, Equatable {
     let id: String
-    let itemId: String
+    let courseID: String
     let name: String
     let imageURL: URL?
     let itemType: LearningLibraryObjectType
@@ -37,7 +37,7 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
 
     init(
         id: String,
-        itemId: String = "",
+        courseID: String = "",
         name: String,
         imageURL: URL?,
         itemType: LearningLibraryObjectType,
@@ -52,7 +52,7 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         libraryId: String = ""
     ) {
         self.id = id
-        self.itemId = itemId
+        self.courseID = courseID
         self.name = name
         self.imageURL = imageURL
         self.itemType = itemType
@@ -69,7 +69,7 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
 
     init(for entity: CDHLearningLibraryCollectionItem) {
         self.id = entity.id
-        self.itemId = entity.itemId
+        self.courseID = entity.courseID
         self.name = entity.name
         self.imageURL = URL(string: entity.imageUrl.defaultToEmpty)
         self.itemType = LearningLibraryObjectType(rawValue: entity.itemType) ?? .course
@@ -86,7 +86,7 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
 
     init(for response: LearningLibraryItemsResponse) {
         self.id = response.id
-        self.itemId = response.canvasCourse?.courseId ?? ""
+        self.courseID = response.canvasCourse?.courseId ?? ""
         self.name = response.canvasCourse?.courseName ?? ""
         self.imageURL = response.canvasCourse?.courseImageUrl.flatMap { URL(string: $0) }
         self.itemType = LearningLibraryObjectType(rawValue: response.itemType) ?? .course

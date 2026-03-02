@@ -26,6 +26,8 @@ public struct LearningLibraryItemsResponse: Codable {
     public let isEnrolledInCanvas: Bool?
     public let createdAt: String?
     public let updatedAt: String?
+    public let canvasModuleId: String?
+    public let canvasModuleItemId: String?
     public let canvasCourse: CanvasCourse?
     public let programId: String?
     public let programCourseId: String?

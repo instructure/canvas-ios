@@ -318,13 +318,13 @@
     <entity name="CDHLearningLibraryCollectionItem" representedClassName=".CDHLearningLibraryCollectionItem" syncable="YES">
         <attribute name="canvasEnrollmentId" optional="YES" attributeType="String"/>
         <attribute name="completionPercentage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="courseID" attributeType="String"/>
         <attribute name="displayOrder" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="estimatedDurationMinutes" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="imageUrl" optional="YES" attributeType="String"/>
         <attribute name="isBookmarked" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="isEnrolledInCanvas" attributeType="Boolean" usesScalarValueType="YES"/>
-        <attribute name="itemId" attributeType="String"/>
         <attribute name="itemType" attributeType="String"/>
         <attribute name="libraryId" attributeType="String"/>
         <attribute name="moduleCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
