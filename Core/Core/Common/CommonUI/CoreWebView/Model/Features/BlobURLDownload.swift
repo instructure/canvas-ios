@@ -45,6 +45,9 @@ private class BlobURLDownload: CoreWebViewFeature {
                         });
                     };
                     reader.readAsDataURL(blob);
+                })
+                .catch(function(err) {
+                    console.error('BlobURLDownload fetch error:', err);
                 });
         }, true);
         """

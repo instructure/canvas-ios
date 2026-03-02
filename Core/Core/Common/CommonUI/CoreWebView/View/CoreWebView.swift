@@ -587,7 +587,7 @@ extension CoreWebView: WKNavigationDelegate {
             return decisionHandler(.cancel)
         }
 
-        if action.request.url?.scheme == "blob" {
+        if action.navigationType == .linkActivated, action.request.url?.scheme == "blob" {
             return decisionHandler(.cancel)
         }
 

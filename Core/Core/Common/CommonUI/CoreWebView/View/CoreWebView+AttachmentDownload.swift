@@ -117,7 +117,7 @@ extension CoreWebView {
 
         let ext = UTType(mimeType: mimeType)?.preferredFilenameExtension
         let fullName: String
-        if let ext, !fileName.contains(".") {
+        if let ext, URL(fileURLWithPath: fileName).pathExtension.isEmpty {
             fullName = "\(fileName.isEmpty ? "download" : fileName).\(ext)"
         } else {
             fullName = fileName.isEmpty ? "download" : fileName

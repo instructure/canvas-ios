@@ -820,7 +820,6 @@ extension FileDetailsViewController: PDFViewControllerDelegate, FlexibleToolbarC
     }
 
     public func coreWebView(_ webView: CoreWebView, didFinishAttachmentDownload attachment: CoreWebAttachment) {
-        if attachment.originIsBlob { return showShareSheet(for: attachment) }
 
         localURL = attachment.url
         shareButton.isEnabled = true
