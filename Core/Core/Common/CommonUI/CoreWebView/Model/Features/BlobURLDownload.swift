@@ -22,7 +22,7 @@ import Foundation
 /// iframes) by injecting a capture-phase click listener. Running the script in each frame's own
 /// JS context avoids the same-origin restriction that would block a `fetch()` issued from the
 /// main frame against a blob URL that was created inside a cross-origin iframe.
-private class BlobURLDownload: CoreWebViewFeature {
+class BlobURLDownload: CoreWebViewFeature {
 
     static let messageHandlerName = "blobDownload"
 
