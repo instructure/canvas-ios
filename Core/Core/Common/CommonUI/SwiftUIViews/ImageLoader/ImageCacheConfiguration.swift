@@ -20,7 +20,7 @@ import Foundation
 import SDWebImage
 import UIKit
 
-public enum ImageCacheConfiguration: ~Copyable {
+public enum ImageCacheConfiguration {
     /// Maximum memory cache size in bytes (50 MB)
     private static let memoryMaxCost: Int = 52_428_800 // 50 * 1024 * 1024
     private static let memoryMaxCount: Int = 100

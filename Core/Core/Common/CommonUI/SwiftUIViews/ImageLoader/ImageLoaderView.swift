@@ -41,7 +41,7 @@ public struct ImageLoaderView: View {
         if let maxSize = maxImageSize {
             self.context = [
                 .imageThumbnailPixelSize: maxSize,
-                .imageScaleFactor: UIScreen.main.scale
+                .imageScaleFactor: UITraitCollection.current.displayScale
             ]
         } else {
             self.context = nil
@@ -61,7 +61,7 @@ public struct ImageLoaderView: View {
         if let maxSize = maxImageSize {
             self.context = [
                 .imageThumbnailPixelSize: maxSize,
-                .imageScaleFactor: UIScreen.main.scale
+                .imageScaleFactor: UITraitCollection.current.displayScale
             ]
         } else {
             self.context = nil
