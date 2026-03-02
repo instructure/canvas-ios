@@ -39,10 +39,7 @@ public struct ImageLoaderView: View {
         self.placeholder = { AnyView(placeholder()) }
 
         if let maxSize = maxImageSize {
-            self.context = [
-                .imageThumbnailPixelSize: maxSize,
-                .imageScaleFactor: UITraitCollection.current.displayScale
-            ]
+            self.context = Self.makeContext(maxImageSize: maxSize)
         } else {
             self.context = nil
         }
@@ -59,10 +56,7 @@ public struct ImageLoaderView: View {
         self.placeholder = nil
 
         if let maxSize = maxImageSize {
-            self.context = [
-                .imageThumbnailPixelSize: maxSize,
-                .imageScaleFactor: UITraitCollection.current.displayScale
-            ]
+            self.context = Self.makeContext(maxImageSize: maxSize)
         } else {
             self.context = nil
         }
@@ -85,5 +79,13 @@ public struct ImageLoaderView: View {
                 .resizable()
                 .indicator(.activity)
         }
+    }
+
+    private static func makeContext(maxImageSize: CGSize?) -> [SDWebImageContextOption: Any]? {
+        guard let maxSize = maxImageSize else { return nil }
+        return [
+            .imageThumbnailPixelSize: maxSize,
+            .imageScaleFactor: UITraitCollection.current.displayScale
+        ]
     }
 }
