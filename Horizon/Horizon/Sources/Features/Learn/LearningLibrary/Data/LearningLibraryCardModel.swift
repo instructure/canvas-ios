@@ -107,6 +107,7 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         self.isBookmarked = with.isBookmarked
         self.isEnrolled = with.isEnrolled
         self.courseEnrollmentId = with.courseEnrollmentId
+        /// When the user enrolls in the course, update the state to "in progress".
         self.isInProgress = with.isEnrolled
     }
 }

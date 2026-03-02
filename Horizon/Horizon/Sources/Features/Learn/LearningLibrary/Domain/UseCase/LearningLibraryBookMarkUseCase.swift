@@ -56,7 +56,6 @@ final class LearningLibraryBookMarkUseCase: APIUseCase {
     ) {
         if let isBookmarked = response?.data.toggleCollectionItemBookmark.isBookmarked {
             CDHLearningLibraryCollectionItem.updateBookmark(
-                id,
                 itemID: itemID,
                 isBookmarked: isBookmarked,
                 in: client

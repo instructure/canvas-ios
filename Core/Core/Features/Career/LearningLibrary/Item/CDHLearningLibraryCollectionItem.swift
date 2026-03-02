@@ -76,7 +76,6 @@ final public class CDHLearningLibraryCollectionItem: NSManagedObject {
 
 extension CDHLearningLibraryCollectionItem {
     public static func updateBookmark(
-        _ id: String,
         itemID: String,
         isBookmarked: Bool = false,
         in context: NSManagedObjectContext
@@ -89,7 +88,6 @@ extension CDHLearningLibraryCollectionItem {
     }
 
     public static func updateEnroll(
-        _ id: String,
         itemID: String,
         enrollmentID: String,
         in context: NSManagedObjectContext

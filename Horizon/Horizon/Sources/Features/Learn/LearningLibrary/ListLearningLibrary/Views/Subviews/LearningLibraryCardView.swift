@@ -235,11 +235,10 @@ struct LearningLibraryCardView: View {
     }
 
     private var enrollButton: some View {
-        HorizonUI.LoadingButton(
-            title: String(localized: "Enroll"),
+        HorizonUI.PrimaryButton(
+            String(localized: "Enroll"),
             type: .darkOutline,
-            fillsWidth: true,
-            isLoading: false
+            fillsWidth: true
         ) {
             enrollTap()
         }

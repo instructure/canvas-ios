@@ -58,7 +58,7 @@ final class LearningLibraryInteractorLive: LearningLibraryInteractor {
                     let limitedItems = Array(sortedItems.prefix(itemLimit))
                     return LearningLibrarySectionModel(
                         for: collection,
-                        hasMoreItems: sortedItems.count >= itemLimit,
+                        hasMoreItems: sortedItems.count > itemLimit,
                         items: limitedItems
                     )
                 }

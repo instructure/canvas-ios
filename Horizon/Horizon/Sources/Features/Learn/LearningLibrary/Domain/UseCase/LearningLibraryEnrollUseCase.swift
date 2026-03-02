@@ -54,7 +54,7 @@ final class LearningLibraryEnrollUseCase: APIUseCase {
         to client: NSManagedObjectContext
     ) {
         if let canvasEnrollmentId = response?.data.enrollLearnerInCollectionItem.item.canvasEnrollmentId {
-            CDHLearningLibraryCollectionItem.updateEnroll(id, itemID: itemID, enrollmentID: canvasEnrollmentId, in: client)
+            CDHLearningLibraryCollectionItem.updateEnroll(itemID: itemID, enrollmentID: canvasEnrollmentId, in: client)
         }
     }
 
