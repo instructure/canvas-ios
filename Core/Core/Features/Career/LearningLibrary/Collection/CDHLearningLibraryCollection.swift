@@ -38,12 +38,19 @@ final public class CDHLearningLibraryCollection: NSManagedObject {
         dbEntity.name = apiEntity.name
 
         let collectionItems = apiEntity.items ?? []
+
         let dbCollectionItems = collectionItems.map { item in
             CDHLearningLibraryCollectionItem.save(
                 item,
                 in: context
             )
         }
+
+        let newItemIds = Set(dbCollectionItems.map { $0.id })
+        dbEntity.items
+            .filter { !newItemIds.contains($0.id) }
+            .forEach { context.delete($0) }
+
         dbEntity.items = Set(dbCollectionItems)
         dbEntity.totalItemCount = String(apiEntity.totalItemCount.defaultToZero)
         return dbEntity
