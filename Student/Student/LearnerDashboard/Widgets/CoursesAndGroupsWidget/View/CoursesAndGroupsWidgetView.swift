@@ -63,12 +63,17 @@ struct CoursesAndGroupsWidgetView: View {
                 groupsSection
             }
 
-            Button(String(localized: "All Courses", bundle: .student)) {
+            Button {
                 viewModel.didTapAllCourses(from: controller)
+            } label: {
+                InstUI.PillContent(
+                    title: String(localized: "All Courses", bundle: .student),
+                    trailingIcon: .chevronRight,
+                    size: .height30
+                )
             }
-            .buttonStyle(.pillButtonBrandFilled)
+            .buttonStyle(.pillTintFilled)
             .identifier("Dashboard.allCoursesButton")
-
         }
         .animation(.dashboardWidget, value: viewModel.layoutIdentifier)
     }

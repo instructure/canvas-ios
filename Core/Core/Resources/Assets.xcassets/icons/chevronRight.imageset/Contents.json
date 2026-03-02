@@ -1,8 +1,9 @@
 {
   "images" : [
     {
-      "filename" : "share.svg",
-      "idiom" : "universal"
+      "filename" : "chevron-right.svg",
+      "idiom" : "universal",
+      "language-direction" : "left-to-right"
     }
   ],
   "info" : {
@@ -10,6 +11,7 @@
     "version" : 1
   },
   "properties" : {
+    "preserves-vector-representation" : true,
     "template-rendering-intent" : "template"
   }
 }

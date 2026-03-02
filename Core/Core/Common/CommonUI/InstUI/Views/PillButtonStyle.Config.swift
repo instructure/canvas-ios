@@ -20,97 +20,55 @@ import SwiftUI
 
 extension InstUI.PillButtonStyle {
 
-    public struct Config {
-        public let foregroundColor: Color
-        public let backgroundColor: Color
-        public let borderColor: Color
-        private let borderWidth: CGFloat
+    public struct Config: Equatable {
+        public let isFilled: Bool
+        public let foregroundColor: Color?
+        public let borderColor: Color?
 
         private init(
-            foregroundColor: Color,
-            backgroundColor: Color,
-            borderColor: Color,
-            borderWidth: CGFloat
+            isFilled: Bool,
+            foregroundColor: Color?,
+            borderColor: Color?
         ) {
+            self.isFilled = isFilled
             self.foregroundColor = foregroundColor
-            self.backgroundColor = backgroundColor
             self.borderColor = borderColor
-            self.borderWidth = borderWidth
-        }
-
-        public func borderWidth(uiScale: CGFloat) -> CGFloat {
-            borderWidth * uiScale
-        }
-
-        /// Buttons without a background color are considered outlined style buttons
-        public var isOutlined: Bool {
-            backgroundColor == .clear
-        }
-
-        public func backgroundColor(isPressed: Bool, isDarkMode: Bool) -> Color {
-            // Filled styles always have solid backgrounds and selection is handled with opacity
-            guard isOutlined else {
-                return backgroundColor
-            }
-
-            if isPressed {
-                // In dark mode we need stronger colors to be as prominent as in light mode
-                let opacity = isDarkMode ? 0.3 : 0.1
-                return borderColor.opacity(opacity)
-            } else {
-                return Color.clear
-            }
-        }
-
-        public func opacity(isPressed: Bool, isEnabled: Bool) -> Double {
-            if isOutlined {
-                return isEnabled ? 1.0 : 0.7
-            }
-            return isPressed || !isEnabled ? 0.7 : 1.0
         }
     }
 }
 
 extension InstUI.PillButtonStyle.Config {
 
-    public static var brandFilled: Self {
+    public static var tintFilled: Self {
         Self(
+            isFilled: true,
             foregroundColor: .textLightest,
-            backgroundColor: .brandPrimary,
-            borderColor: .clear,
-            borderWidth: 0
+            borderColor: .clear
+        )
+    }
+
+    public static var tintOutlined: Self {
+        Self(
+            isFilled: false,
+            foregroundColor: nil,
+            borderColor: nil
         )
     }
 
     public static var defaultOutlined: Self {
         Self(
+            isFilled: false,
             foregroundColor: .textDarkest,
-            backgroundColor: .clear,
-            borderColor: .borderMedium,
-            borderWidth: 1
+            borderColor: .borderMedium
         )
     }
 
-    public static func filled(color: Color) -> Self {
+    public static func customOutlined(textColor: Color, borderColor: Color) -> Self {
         Self(
-            foregroundColor: .textLightest,
-            backgroundColor: color,
-            borderColor: .clear,
-            borderWidth: 0
-        )
-    }
-
-    public static func outlined(textColor: Color, borderColor: Color) -> Self {
-        Self(
+            isFilled: false,
             foregroundColor: textColor,
-            backgroundColor: .clear,
-            borderColor: borderColor,
-            borderWidth: 1
+            borderColor: borderColor
         )
-    }
-
-    public static func outlined(color: Color) -> Self {
-        outlined(textColor: color, borderColor: color)
     }
 }
 
