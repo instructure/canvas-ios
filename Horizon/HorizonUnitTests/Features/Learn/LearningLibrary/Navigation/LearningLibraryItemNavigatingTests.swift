@@ -70,6 +70,31 @@ final class LearningLibraryItemNavigatingTests: HorizonTestCase {
         XCTAssertFalse(router.showExpectation.isInverted)
     }
 
+    func test_navigateToItemSequence_callsRouterWithCorrectParameters() {
+        let testNavigator = TestNavigator(router: router)
+        let model = LearningLibraryCardModel(
+            id: "item-2",
+            courseID: "12",
+            name: "Career Program",
+            imageURL: nil,
+            itemType: .assessment,
+            estimatedTime: nil,
+            isRecommended: false,
+            isCompleted: false,
+            isBookmarked: false,
+            numberOfUnits: nil,
+            isEnrolled: false,
+            moduleItemID: "100",
+            canvasUrl: URL(string: "https://example.com")
+        )
+
+        let url = URL(string: "https://example.com/courses/12/modules/items/100")!
+        testNavigator.navigateToLearningLibraryItem(model, from: WeakViewController(UIViewController()))
+
+        XCTAssertEqual(router.calls.count, 1)
+        XCTAssertEqual(router.calls[0].0?.url, url)
+    }
+
     func testNavigateToProgramShowsProgramDetails() {
         let testNavigator = TestNavigator(router: router)
         let programCard = LearningLibraryCardModel(

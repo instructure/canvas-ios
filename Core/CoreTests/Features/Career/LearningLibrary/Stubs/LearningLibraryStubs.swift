@@ -23,7 +23,7 @@ enum LearningLibraryStubs {
     static let canvasCourse = LearningLibraryItemsResponse.CanvasCourse(
         courseId: "course-123",
         courseName: "Introduction to Swift",
-        canvasUrl: "https://canvas.example.com/courses/123",
+        canvasUrl: URL(string: "https://canvas.example.com/courses/123"),
         courseImageUrl: "https://canvas.example.com/images/course.jpg",
         moduleCount: 5,
         moduleItemCount: 20,

@@ -98,7 +98,7 @@ final class CDHLearningLibraryCollectionItemTests: CoreTestCase {
             canvasCourse: LearningLibraryItemsResponse.CanvasCourse(
                 courseId: "course-345",
                 courseName: "Test Course",
-                canvasUrl: "https://canvas.example.com",
+                canvasUrl: URL(string: "https://canvas.example.com"),
                 courseImageUrl: nil,
                 moduleCount: 0,
                 moduleItemCount: 0,
