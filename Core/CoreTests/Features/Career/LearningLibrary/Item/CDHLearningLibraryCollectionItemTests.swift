@@ -117,7 +117,6 @@ final class CDHLearningLibraryCollectionItemTests: CoreTestCase {
         XCTAssertTrue(savedEntity.isBookmarked)
 
         CDHLearningLibraryCollectionItem.updateBookmark(
-            savedEntity.id,
             itemID: savedEntity.itemId,
             isBookmarked: false,
             in: databaseClient
@@ -133,7 +132,6 @@ final class CDHLearningLibraryCollectionItemTests: CoreTestCase {
         XCTAssertEqual(savedEntity.canvasEnrollmentId, "enrollment-345")
 
         CDHLearningLibraryCollectionItem.updateEnroll(
-            savedEntity.id,
             itemID: savedEntity.itemId,
             enrollmentID: "new-enrollment-678",
             in: databaseClient
