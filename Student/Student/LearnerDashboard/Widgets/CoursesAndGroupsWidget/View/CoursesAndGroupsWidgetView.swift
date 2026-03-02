@@ -22,9 +22,13 @@ import SwiftUI
 
 struct CoursesAndGroupsWidgetView: View {
     @Environment(\.viewController) var controller
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     @State private var viewModel: CoursesAndGroupsWidgetViewModel
+
     @State private var draggedCourseCardId: String?
+    @State private var isCoursesExpanded: Bool = true
+    @State private var isGroupsExpanded: Bool = true
 
     init(viewModel: CoursesAndGroupsWidgetViewModel) {
         self.viewModel = viewModel
@@ -70,9 +74,10 @@ struct CoursesAndGroupsWidgetView: View {
     }
 
     private var coursesSection: some View {
-        DashboardTitledWidget(
-            viewModel.coursesSectionTitle,
-            customAccessibilityTitle: viewModel.coursesSectionAccessibilityTitle
+        collapsibleSection(
+            title: String(localized: "Courses", bundle: .student),
+            itemCount: viewModel.courseCards.count,
+            isExpanded: $isCoursesExpanded
         ) {
             VStack(alignment: .leading, spacing: 4) {
                 ForEach(viewModel.courseCards) { cardViewModel in
@@ -101,15 +106,39 @@ struct CoursesAndGroupsWidgetView: View {
     }
 
     private var groupsSection: some View {
-        DashboardTitledWidget(
-            viewModel.groupsSectionTitle,
-            customAccessibilityTitle: viewModel.groupsSectionAccessibilityTitle
+        collapsibleSection(
+            title: String(localized: "Groups", bundle: .student),
+            itemCount: viewModel.groupCards.count,
+            isExpanded: $isGroupsExpanded
         ) {
             VStack(alignment: .leading, spacing: 4) {
                 ForEach(viewModel.groupCards) { cardViewModel in
                     GroupCardView(viewModel: cardViewModel)
                 }
             }
+        }
+    }
+
+    private func collapsibleSection(title: String, itemCount: Int, isExpanded: Binding<Bool>, @ViewBuilder content: () -> some View) -> some View {
+        VStack(alignment: .leading, spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue) {
+            InstUI.CollapsibleListSection(
+                title: title,
+                label: {
+                    Text($0)
+                        .font(.regular14, lineHeight: .fit)
+                        .foregroundStyle(.textDarkest)
+                },
+                itemCount: itemCount,
+                config: .init(
+                    showItemCount: true,
+                    headerPaddingSet: .zero,
+                    collapseIconSize: 16,
+                    headerDividerStyle: .hidden,
+                    sectionBackgroundColor: .backgroundLight
+                ),
+                isExpanded: isExpanded,
+                content: content
+            )
         }
     }
 }

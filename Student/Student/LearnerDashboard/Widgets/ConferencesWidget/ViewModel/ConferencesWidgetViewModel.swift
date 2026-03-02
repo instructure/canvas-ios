@@ -110,6 +110,6 @@ final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
         widgetAccessibilityTitle = [
             String(localized: "Live Conferences", bundle: .student),
             String.format(numberOfItems: count)
-        ].joined(separator: ", ")
+        ].accessibilityJoined()
     }
 }
