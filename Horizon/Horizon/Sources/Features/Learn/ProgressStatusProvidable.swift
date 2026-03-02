@@ -27,7 +27,7 @@ protocol ProgressStatusProvidable {
 final class PaginatedDataSource<Item> {
     // MARK: - Outputs
 
-    private(set) var visibleItems: [Item] = []
+   var visibleItems: [Item] = []
     private(set) var isSeeMoreVisible: Bool = false
 
     // MARK: - Private
@@ -35,7 +35,7 @@ final class PaginatedDataSource<Item> {
     private var allItems: [Item] = []
     private var pages: [[Item]] = []
     private var pageSize: Int
-    private var currentPage: Int = 0 {
+    var currentPage: Int = 0 {
         didSet {
             updateSeeMoreVisibility()
         }
@@ -51,14 +51,14 @@ final class PaginatedDataSource<Item> {
         self.setItems(items)
     }
 
-    func setItems(_ items: [Item]) {
+    func setItems(_ items: [Item], currentPage: Int = 0) {
         self.allItems = items
-        self.apply(items: allItems)
+        self.apply(items: allItems, currentPage: currentPage)
     }
 
-    func apply(items: [Item]) {
+    func apply(items: [Item], currentPage: Int = 0) {
         self.pages = items.chunked(into: pageSize)
-        self.currentPage = 0
+        self.currentPage = currentPage
         self.visibleItems = pages.first ?? []
         updateSeeMoreVisibility()
     }
@@ -102,4 +102,22 @@ extension PaginatedDataSource where Item: ProgressStatusProvidable {
             return allItems.filter { $0.status == .inProgress }
         }
     }
+}
+
+extension PaginatedDataSource where Item: PaginatedDataSourceSearchable {
+    func search(query: String) {
+        guard query.isNotEmpty else {
+            apply(items: allItems)
+            return
+        }
+
+        let searched = allItems.filter { item in
+            item.name.localizedCaseInsensitiveContains(query)
+        }
+        apply(items: searched)
+    }
+}
+
+protocol PaginatedDataSourceSearchable {
+    var name: String { get }
 }

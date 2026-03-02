@@ -176,7 +176,7 @@ struct HMessageDetailsView: View {
             title: String(localized: "Send"),
             type: .institution,
             fillsWidth: false,
-            isLoading: $viewModel.isSending
+            isLoading: viewModel.isSending
         ) {
             ScrollOffsetReader.dismissKeyboard()
             viewModel.sendMessage(viewController: viewController)

@@ -41,7 +41,7 @@ struct LearnCourseListView: View {
                         .onScrollGeometryChange(for: CGFloat.self) { geometry in geometry.contentOffset.y
                         } action: { _, newOffset in
                             isShowHeader = newOffset <= 200
-                            isShowDivider = newOffset >= 30
+                            isShowDivider = newOffset >= 10
                         }
                 } else {
                     contentView
@@ -118,14 +118,16 @@ struct LearnCourseListView: View {
                     guard let option else { return }
                     lastFocusedCourseID = selectFilterFocusedID
                     viewModel.selectedStatus = option
-                    restoreFocusIfNeeded(after: 1)
+                    restoreFocusIfNeeded(after: 1.6)
                 }
                 .id(selectFilterFocusedID)
                 .accessibilityFocused($focusedCourseID, equals: selectFilterFocusedID)
+                .frame(width: 130)
             Spacer()
             Text(viewModel.filteredCourses.count.description)
                 .foregroundStyle(Color.huiColors.text.dataPoint)
                 .huiTypography(.p1)
+                .hidden(viewModel.filteredCourses.isEmpty)
                 .accessibilityLabel(
                     Text(
                         String(

@@ -100,7 +100,7 @@ struct LearnProgramListView: View {
             .frame(height: 1)
             .readingFrame { frame in
                 isShowHeader = frame.minY > -100
-                isShowDivider = frame.minY < 100
+                isShowDivider = frame.minY < 220
             }
     }
 
@@ -138,14 +138,16 @@ struct LearnProgramListView: View {
                     guard let option else { return }
                     lastFocusedProgramID = selectFilterFocusedID
                     viewModel.selectedStatus = option
-                    restoreFocusIfNeeded(after: 1)
+                    restoreFocusIfNeeded(after: 1.6)
                 }
                 .id(lastFocusedProgramID)
                 .accessibilityFocused($focusedProgramID, equals: selectFilterFocusedID)
+                .frame(width: 130)
             Spacer()
             Text(viewModel.filteredPrograms.count.description)
                 .foregroundStyle(Color.huiColors.text.dataPoint)
                 .huiTypography(.p1)
+                .hidden(viewModel.filteredPrograms.isEmpty)
                 .accessibilityLabel(
                     Text(
                         String(

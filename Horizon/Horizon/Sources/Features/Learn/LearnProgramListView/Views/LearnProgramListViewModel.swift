@@ -78,9 +78,11 @@ final class LearnProgramListViewModel {
             .replaceError(with: [])
             .receive(on: scheduler)
             .sink { [weak self] programs in
-                self?.paginator.setItems(programs)
-                self?.isLoaderVisiable = false
-                self?.hasPrograms = programs.isNotEmpty
+                guard let self else { return }
+                self.paginator.setItems(programs)
+                self.isLoaderVisiable = false
+                self.hasPrograms = programs.isNotEmpty
+                self.paginator.applyFilters(query: searchText, status: selectedStatus)
                 completion?()
             }
             .store(in: &subscriptions)

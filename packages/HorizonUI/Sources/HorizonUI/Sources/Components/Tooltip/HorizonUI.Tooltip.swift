@@ -20,7 +20,7 @@ import SwiftUI
 
 /// The intention is to call this in the same was as .popover
 /// e.g., Button("Pop!").tooltip($isPresented)
-extension View {
+public extension View {
     func huiTooltip(
         isPresented: Binding<Bool>,
         arrowEdge: Edge? = nil,
@@ -38,7 +38,7 @@ extension View {
 }
 
 extension HorizonUI {
-    struct Tooltip: ViewModifier {
+   public struct Tooltip: ViewModifier {
         // MARK: - Dependencies
 
         private let arrowEdge: Edge?
@@ -60,7 +60,7 @@ extension HorizonUI {
             self.isPresented = isPresented
         }
 
-        func body(content: Content) -> some View {
+       public func body(content: Content) -> some View {
             content
                 .popover(
                     isPresented: isPresented,
@@ -74,7 +74,7 @@ extension HorizonUI {
                 }
         }
 
-        enum Style: String, CaseIterable {
+       public enum Style: String, CaseIterable {
             case primary = "Primary"
             case secondary = "Secondary"
 
