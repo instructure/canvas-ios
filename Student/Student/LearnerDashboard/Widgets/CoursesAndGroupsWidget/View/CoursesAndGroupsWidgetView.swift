@@ -26,7 +26,10 @@ struct CoursesAndGroupsWidgetView: View {
     @Environment(\.containerSize) private var containerSize
 
     @State private var viewModel: CoursesAndGroupsWidgetViewModel
+
     @State private var draggedCourseCardId: String?
+    @State private var isCoursesExpanded: Bool = true
+    @State private var isGroupsExpanded: Bool = true
 
     init(viewModel: CoursesAndGroupsWidgetViewModel) {
         self.viewModel = viewModel
@@ -65,10 +68,16 @@ struct CoursesAndGroupsWidgetView: View {
                 groupsSection(itemWidth: itemWidth, columnCount: columnCount)
             }
 
-            Button(String(localized: "All Courses", bundle: .student)) {
+            Button {
                 viewModel.didTapAllCourses(from: controller)
+            } label: {
+                InstUI.PillContent(
+                    title: String(localized: "All Courses", bundle: .student),
+                    trailingIcon: .chevronRight,
+                    size: .height30
+                )
             }
-            .buttonStyle(.pillButtonBrandFilled)
+            .buttonStyle(.pillTintFilled)
             .identifier("Dashboard.allCoursesButton")
         }
         .animation(.dashboardWidget, value: columnCount)
@@ -76,9 +85,10 @@ struct CoursesAndGroupsWidgetView: View {
     }
 
     private func coursesSection(itemWidth: CGFloat, columnCount: Int) -> some View {
-        DashboardTitledWidget(
-            viewModel.coursesSectionTitle,
-            customAccessibilityTitle: viewModel.coursesSectionAccessibilityTitle
+        collapsibleSection(
+            title: String(localized: "Courses", bundle: .student),
+            itemCount: viewModel.courseCards.count,
+            isExpanded: $isCoursesExpanded
         ) {
             DashboardGrid(
                 itemIDs: viewModel.courseCards.map(\.id),
@@ -112,9 +122,10 @@ struct CoursesAndGroupsWidgetView: View {
     }
 
     private func groupsSection(itemWidth: CGFloat, columnCount: Int) -> some View {
-        DashboardTitledWidget(
-            viewModel.groupsSectionTitle,
-            customAccessibilityTitle: viewModel.groupsSectionAccessibilityTitle
+        collapsibleSection(
+            title: String(localized: "Groups", bundle: .student),
+            itemCount: viewModel.groupCards.count,
+            isExpanded: $isGroupsExpanded
         ) {
             DashboardGrid(
                 itemIDs: viewModel.groupCards.map(\.id),
@@ -134,6 +145,29 @@ struct CoursesAndGroupsWidgetView: View {
 
     private func cardSpacing(_ columnCount: Int) -> CGFloat {
         (columnCount == 1) ? 4 : 8
+	}
+
+    private func collapsibleSection(title: String, itemCount: Int, isExpanded: Binding<Bool>, @ViewBuilder content: () -> some View) -> some View {
+        VStack(alignment: .leading, spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue) {
+            InstUI.CollapsibleListSection(
+                title: title,
+                label: {
+                    Text($0)
+                        .font(.regular14, lineHeight: .fit)
+                        .foregroundStyle(.textDarkest)
+                },
+                itemCount: itemCount,
+                config: .init(
+                    showItemCount: true,
+                    headerPaddingSet: .zero,
+                    collapseIconSize: 16,
+                    headerDividerStyle: .hidden,
+                    sectionBackgroundColor: .backgroundLight
+                ),
+                isExpanded: isExpanded,
+                content: content
+            )
+        }
     }
 }
 

@@ -32,11 +32,6 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
     private(set) var courseCards: [CourseCardViewModel] = []
     private(set) var groupCards: [GroupCardViewModel] = []
 
-    private(set) var coursesSectionTitle: String = ""
-    private(set) var coursesSectionAccessibilityTitle: String = ""
-    private(set) var groupsSectionTitle: String = ""
-    private(set) var groupsSectionAccessibilityTitle: String = ""
-
     private(set) var showGrades: Bool = false
     private(set) var showColorOverlay: Bool = false
 
@@ -58,7 +53,6 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
         self.interactor = interactor
         self.environment = environment
 
-        updateSectionTitles()
         updateShowGrades(on: interactor.showGrades)
         updateShowColorOverlay(on: interactor.showColorOverlay)
     }
@@ -87,7 +81,6 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
                 }
 
                 state = (courseItems.isEmpty && groupItems.isEmpty) ? .empty : .data
-                updateSectionTitles()
             }
             .catch { [weak self] _ in
                 self?.state = .error
@@ -98,22 +91,6 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
 
     func didTapAllCourses(from controller: WeakViewController) {
         environment.router.route(to: "/courses", from: controller, options: .push)
-    }
-
-    private func updateSectionTitles() {
-        let courseCount = courseCards.count
-        coursesSectionTitle = String(localized: "Courses (\(courseCount))", bundle: .student)
-        coursesSectionAccessibilityTitle = [
-            String(localized: "Courses", bundle: .student),
-            String.format(numberOfItems: courseCount)
-        ].joined(separator: ", ")
-
-        let groupCount = groupCards.count
-        groupsSectionTitle = String(localized: "Groups (\(groupCount))", bundle: .student)
-        groupsSectionAccessibilityTitle = [
-            String(localized: "Groups", bundle: .student),
-            String.format(numberOfItems: groupCount)
-        ].joined(separator: ", ")
     }
 
     private func updateShowGrades(on subject: CurrentValueSubject<Bool, Never>) {

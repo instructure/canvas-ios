@@ -81,6 +81,10 @@ public extension Font {
             return .custom(name, size: fontName.fontSize, relativeTo: fontName.style)
         }
     }
+
+    static func scaledNamedFont(_ name: UIFont.Name) -> Font {
+        Font(UIFont.scaledNamedFont(name))
+    }
 }
 
 extension UIFont.Name {

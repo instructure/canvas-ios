@@ -253,6 +253,7 @@ public extension UIImage {
     static var checkbox: UIImage { UIImage(named: "checkbox", in: .core, compatibleWith: nil)! }
     static var checkboxSelected: UIImage { UIImage(named: "checkboxSelected", in: .core, compatibleWith: nil)! }
     static var chevronDown: UIImage { UIImage(named: "chevronDown", in: .core, compatibleWith: nil)! }
+    static var chevronRight: UIImage { UIImage(named: "chevronRight", in: .core, compatibleWith: nil)! }
     static var collaborations: UIImage { UIImage(named: "collaborations", in: .core, compatibleWith: nil)! }
     static var conferences: UIImage { UIImage(named: "conferences", in: .core, compatibleWith: nil)! }
     static var coursesTab: UIImage { UIImage(named: "coursesTab", in: .core, compatibleWith: nil)! }
@@ -526,6 +527,7 @@ public extension Image {
     static var checkbox: Image { Image("checkbox", bundle: .core) }
     static var checkboxSelected: Image { Image("checkboxSelected", bundle: .core) }
     static var chevronDown: Image { Image("chevronDown", bundle: .core) }
+    static var chevronRight: Image { Image("chevronRight", bundle: .core) }
     static var collaborations: Image { Image("collaborations", bundle: .core) }
     static var conferences: Image { Image("conferences", bundle: .core) }
     static var coursesTab: Image { Image("coursesTab", bundle: .core) }
