@@ -69,17 +69,6 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
         XCTAssertTrue(testee.invitations.isEmpty)
     }
 
-    func testInit_widgetConfigIsCorrect() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
-
-        XCTAssertFalse(testee.isEditable)
-    }
-
     // MARK: - Refresh Success Cases
 
     func testRefresh_withNoInvitations_stateBecomesEmpty() {

@@ -31,17 +31,20 @@ struct LearnerDashboardColorSelectorView: View {
                     Button {
                         selectedColor = colorData.color
                     } label: {
+                        let isSelected = colorData.color == selectedColor
+
                         Circle()
                             .fill(colorData.color)
                             .stroke(.borderLight, style: .init(lineWidth: 0.5))
                             .overlay {
-                                if colorData.color == selectedColor {
+                                if isSelected {
                                     Image.checkLine
                                         .foregroundStyle(.textLightest)
                                 }
                             }
                             .frame(width: 40, height: 40)
                             .accessibilityLabel(colorData.description)
+                            .accessibilityAddTraits(isSelected ? .isSelected : [])
                     }
                 }
             }

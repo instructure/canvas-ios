@@ -25,9 +25,6 @@ struct LearnerDashboardCourseSettingsView: View {
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
     @ScaledMetric private var uiScale: CGFloat = 1
 
-    // Example username for preview and accessibility labels
-    let username = "Riley"
-
     var body: some View {
         VStack(spacing: 8) {
             Text("Widgets", bundle: .core)
@@ -60,13 +57,12 @@ struct LearnerDashboardCourseSettingsView: View {
                 buttons(config: config)
 
                 InstUI.Toggle(isOn: binding) {
-                    // Example username
-                    Text(config.id.title(username: username))
+                    Text(config.id.title(username: viewModel.username))
                         .font(.semibold16, lineHeight: .fit)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .accessibilityLabel(String(
-                    localized: "\(config.id.title(username: username)) widget visibility",
+                    localized: "\(config.id.title(username: viewModel.username)) widget visibility",
                     bundle: .student
                 ))
             }
@@ -106,12 +102,12 @@ struct LearnerDashboardCourseSettingsView: View {
             disabledButtons
 
             InstUI.Toggle(isOn: binding) {
-                Text(config.id.title(username: username))
+                Text(config.id.title(username: viewModel.username))
                     .font(.semibold16, lineHeight: .fit)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
             .accessibilityLabel(String(
-                localized: "\(config.id.title(username: username)) widget visibility",
+                localized: "\(config.id.title(username: viewModel.username)) widget visibility",
                 bundle: .student
             ))
         }
@@ -135,7 +131,7 @@ struct LearnerDashboardCourseSettingsView: View {
             }
             .disabled(viewModel.visibleConfigs.first == config)
             .accessibilityLabel(String(
-                localized: "Move \(config.id.title(username: username)) widget up",
+                localized: "Move \(config.id.title(username: viewModel.username)) widget up",
                 bundle: .student
             ))
 
@@ -151,7 +147,7 @@ struct LearnerDashboardCourseSettingsView: View {
             }
             .disabled(viewModel.visibleConfigs.last == config)
             .accessibilityLabel(String(
-                localized: "Move \(config.id.title(username: username)) widget down",
+                localized: "Move \(config.id.title(username: viewModel.username)) widget down",
                 bundle: .student
             ))
         }

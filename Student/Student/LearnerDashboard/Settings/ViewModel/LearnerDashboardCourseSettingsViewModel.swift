@@ -24,6 +24,9 @@ final class LearnerDashboardCourseSettingsViewModel {
     var visibleConfigs: [Config]
     var hiddenConfigs: [Config]
 
+    // Example username for preview and accessibility labels
+    let username = "Riley"
+
     init(configs: [Config]) {
         visibleConfigs = configs.filter { $0.isVisible }.sorted()
         hiddenConfigs = configs.filter { !$0.isVisible }.sorted()
