@@ -55,7 +55,7 @@ struct WeeklySummaryWidgetSegmentedControl: View {
             VStack(spacing: 0) {
                 ZStack {
                     // Adding extra spaces so the redaction looks wider and better
-                    Text("\(redactionReasons.isPlaceholder ? "  " : "")\(filter.count)")
+                    Text(verbatim: "\(redactionReasons.isPlaceholder ? "  " : "")\(filter.count)")
                         .font(.bold22)
                         .foregroundStyle(Color.textDarkest)
                         .frame(maxWidth: .infinity)
