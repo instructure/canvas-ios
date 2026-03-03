@@ -42,6 +42,7 @@ class GradeInteractorMock: GradeInteractor {
     func reset() {
         saveGradeCalled = false
         lastExcused = nil
+        lastGrade = nil
         saveGradeSubject = PassthroughSubject<Void, Error>()
     }
 }
