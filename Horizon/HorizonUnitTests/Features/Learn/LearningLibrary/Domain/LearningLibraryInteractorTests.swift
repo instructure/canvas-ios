@@ -113,7 +113,7 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
         mockBookmarkedItemsWithDuplicates()
 
         XCTAssertSingleOutputAndFinish(testee.getBookmarkedItems(ignoreCache: false)) { items in
-            let uniqueItemIds = Set(items.map { $0.itemId })
+            let uniqueItemIds = Set(items.map { $0.courseID })
             XCTAssertEqual(items.count, uniqueItemIds.count)
         }
     }
@@ -194,7 +194,7 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
                 searchTerm: nil
             )
         ) { items in
-            let uniqueItemIds = Set(items.map { $0.itemId })
+            let uniqueItemIds = Set(items.map { $0.courseID })
             XCTAssertEqual(items.count, uniqueItemIds.count)
         }
     }
@@ -217,7 +217,7 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
         CDHLearningLibraryCollectionItem.save(LearningLibraryItemStubs.bookmarkedItem1, in: databaseClient)
         mockBookmarkToggleResponse(isBookmarked: false)
 
-        XCTAssertSingleOutputAndFinish(testee.bookmark(id: "item-1", itemID: "course-123")) { item in
+        XCTAssertSingleOutputAndFinish(testee.bookmark(id: "item-1", courseID: "course-123")) { item in
             XCTAssertNotNil(item)
             XCTAssertEqual(item.id, "item-1")
         }
@@ -229,8 +229,8 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
         CDHLearningLibraryCollectionItem.save(LearningLibraryItemStubs.bookmarkedItem2, in: databaseClient)
         mockBookmarkToggleResponse(isBookmarked: true)
 
-        XCTAssertSingleOutputAndFinish(testee.bookmark(id: "item-2", itemID: "course-456")) { item in
-            XCTAssertEqual(item.itemId, "course-456")
+        XCTAssertSingleOutputAndFinish(testee.bookmark(id: "item-2", courseID: "course-456")) { item in
+            XCTAssertEqual(item.courseID, "course-456")
         }
     }
 
@@ -242,7 +242,7 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
         CDHLearningLibraryCollectionItem.save(LearningLibraryItemStubs.bookmarkedItem1, in: databaseClient)
         mockEnrollResponse(enrollmentId: "enrollment-999")
 
-        XCTAssertSingleOutputAndFinish(testee.enroll(id: "item-1", itemID: "course-123")) { item in
+        XCTAssertSingleOutputAndFinish(testee.enroll(id: "item-1", courseID: "course-123")) { item in
             XCTAssertNotNil(item)
             XCTAssertEqual(item.id, "item-1")
         }
@@ -254,8 +254,8 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
         CDHLearningLibraryCollectionItem.save(LearningLibraryItemStubs.bookmarkedItem2, in: databaseClient)
         mockEnrollResponse(enrollmentId: "enrollment-888")
 
-        XCTAssertSingleOutputAndFinish(testee.enroll(id: "item-2", itemID: "course-456")) { item in
-            XCTAssertEqual(item.itemId, "course-456")
+        XCTAssertSingleOutputAndFinish(testee.enroll(id: "item-2", courseID: "course-456")) { item in
+            XCTAssertEqual(item.courseID, "course-456")
         }
     }
 

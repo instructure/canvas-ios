@@ -65,7 +65,7 @@ final class EnrollConfirmationViewModel {
     }
 
     private func getCourseSyllabus() {
-        ReactiveStore(useCase: GetCourse(courseID: model.itemId))
+        ReactiveStore(useCase: GetCourse(courseID: model.courseID))
             .getEntities()
             .receive(on: scheduler)
             .replaceError(with: [])
@@ -79,7 +79,7 @@ final class EnrollConfirmationViewModel {
 
      func enroll(viewController: WeakViewController) {
          isEnrollLoaderVisible = true
-         interactor.enroll(id: model.id, itemID: model.itemId)
+         interactor.enroll(id: model.id, courseID: model.courseID)
              .receive(on: scheduler)
              .sinkFailureOrValue { [weak self] error in
                  guard let self else { return }

@@ -21,7 +21,7 @@ import Foundation
 
 struct LearningLibraryCardModel: Identifiable, Equatable {
     let id: String
-    let itemId: String
+    let courseID: String
     let name: String
     let imageURL: URL?
     let itemType: LearningLibraryObjectType
@@ -34,10 +34,12 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
     var isEnrolled: Bool
     var isInProgress: Bool
     var courseEnrollmentId: String?
+    let moduleItemID: String?
+    let canvasUrl: URL?
 
     init(
         id: String,
-        itemId: String = "",
+        courseID: String = "",
         name: String,
         imageURL: URL?,
         itemType: LearningLibraryObjectType,
@@ -49,10 +51,12 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         isEnrolled: Bool = false,
         isInProgress: Bool = false,
         courseEnrollmentId: String? = nil,
-        libraryId: String = ""
+        libraryId: String = "",
+        moduleItemID: String? = nil,
+        canvasUrl: URL? = nil
     ) {
         self.id = id
-        self.itemId = itemId
+        self.courseID = courseID
         self.name = name
         self.imageURL = imageURL
         self.itemType = itemType
@@ -65,11 +69,13 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         self.isInProgress = isInProgress
         self.courseEnrollmentId = courseEnrollmentId
         self.libraryId = libraryId
+        self.moduleItemID = moduleItemID
+        self.canvasUrl = canvasUrl
     }
 
     init(for entity: CDHLearningLibraryCollectionItem) {
         self.id = entity.id
-        self.itemId = entity.itemId
+        self.courseID = entity.courseID
         self.name = entity.name
         self.imageURL = URL(string: entity.imageUrl.defaultToEmpty)
         self.itemType = LearningLibraryObjectType(rawValue: entity.itemType) ?? .course
@@ -82,11 +88,13 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         self.isInProgress = (entity.completionPercentage >= 0 && !isCompleted && isEnrolled)
         self.courseEnrollmentId = entity.canvasEnrollmentId
         self.libraryId = entity.libraryId
+        self.moduleItemID = entity.canvasModuleItemId
+        self.canvasUrl = entity.canvasUrl
     }
 
     init(for response: LearningLibraryItemsResponse) {
         self.id = response.id
-        self.itemId = response.canvasCourse?.courseId ?? ""
+        self.courseID = response.canvasCourse?.courseId ?? ""
         self.name = response.canvasCourse?.courseName ?? ""
         self.imageURL = response.canvasCourse?.courseImageUrl.flatMap { URL(string: $0) }
         self.itemType = LearningLibraryObjectType(rawValue: response.itemType) ?? .course
@@ -101,6 +109,8 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         self.isInProgress = (completionPercentage >= 0 && !self.isCompleted && isEnrolled)
         self.libraryId = response.libraryId ?? ""
         self.courseEnrollmentId = response.canvasEnrollmentId
+        self.moduleItemID = response.canvasModuleItemId
+        self.canvasUrl = response.canvasCourse?.canvasUrl
     }
 
     mutating func update(with: LearningLibraryCardModel) {
@@ -109,5 +119,13 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         self.courseEnrollmentId = with.courseEnrollmentId
         /// When the user enrolls in the course, update the state to "in progress".
         self.isInProgress = with.isEnrolled
+    }
+
+    var shouldShowEnrollButton: Bool {
+        !isEnrolled && (itemType == .course || itemType == .program)
+    }
+
+    var shouldShowProgressStatus: Bool {
+        itemType == .course || itemType == .program
     }
 }

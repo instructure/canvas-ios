@@ -133,7 +133,7 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
 
     func addBookmark(model: LearningLibraryCardModel) {
         bookmarkLoadingStates[model.id] = true
-        interactor.bookmark(id: model.id, itemID: model.itemId)
+        interactor.bookmark(id: model.id, courseID: model.courseID)
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] error in
                 guard let self else { return }

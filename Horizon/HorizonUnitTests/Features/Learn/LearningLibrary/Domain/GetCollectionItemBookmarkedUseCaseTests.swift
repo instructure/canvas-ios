@@ -112,14 +112,14 @@ final class GetCollectionItemBookmarkedUseCaseTests: HorizonTestCase {
         let item2 = stored.first { $0.id == "item-2" }
 
         XCTAssertEqual(item1?.id, "item-1")
-        XCTAssertEqual(item1?.itemId, "course-123")
+        XCTAssertEqual(item1?.courseID, "course-123")
         XCTAssertEqual(item1?.name, "Introduction to Swift")
         XCTAssertEqual(item1?.isBookmarked, true)
         XCTAssertEqual(item1?.completionPercentage, 0.65)
         XCTAssertEqual(item1?.displayOrder, NSNumber(value: 1))
 
         XCTAssertEqual(item2?.id, "item-2")
-        XCTAssertEqual(item2?.itemId, "course-456")
+        XCTAssertEqual(item2?.courseID, "course-456")
         XCTAssertEqual(item2?.name, "Advanced SwiftUI")
         XCTAssertEqual(item2?.isBookmarked, true)
         XCTAssertEqual(item2?.completionPercentage, 0.30)

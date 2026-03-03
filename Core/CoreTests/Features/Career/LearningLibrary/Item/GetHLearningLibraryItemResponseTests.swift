@@ -98,7 +98,7 @@ final class GetHLearningLibraryItemResponseTests: CoreTestCase {
         XCTAssertEqual(firstItem?.canvasEnrollmentId, "enrollment-1")
         XCTAssertEqual(firstItem?.canvasCourse?.courseId, "course-123")
         XCTAssertEqual(firstItem?.canvasCourse?.courseName, "Introduction to Swift")
-        XCTAssertEqual(firstItem?.canvasCourse?.canvasUrl, "https://canvas.example.com/courses/123")
+        XCTAssertEqual(firstItem?.canvasCourse?.canvasUrl?.absoluteString, "https://canvas.example.com/courses/123")
         XCTAssertEqual(firstItem?.canvasCourse?.courseImageUrl, "https://canvas.example.com/images/course.jpg")
         XCTAssertEqual(firstItem?.canvasCourse?.moduleCount, 5)
         XCTAssertEqual(firstItem?.canvasCourse?.moduleItemCount, 20)

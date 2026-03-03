@@ -32,7 +32,7 @@ final class CDHLearningLibraryCollectionItemTests: CoreTestCase {
         XCTAssertEqual(savedEntity.imageUrl, LearningLibraryStubs.canvasCourse.courseImageUrl)
         XCTAssertEqual(savedEntity.isBookmarked, LearningLibraryStubs.learningLibraryItem.isBookmarked ?? false)
         XCTAssertEqual(savedEntity.isEnrolledInCanvas, LearningLibraryStubs.learningLibraryItem.isEnrolledInCanvas ?? false)
-        XCTAssertEqual(savedEntity.itemId, LearningLibraryStubs.canvasCourse.courseId)
+        XCTAssertEqual(savedEntity.courseID, LearningLibraryStubs.canvasCourse.courseId)
         XCTAssertEqual(savedEntity.itemType, LearningLibraryStubs.learningLibraryItem.itemType)
         XCTAssertEqual(savedEntity.libraryId, LearningLibraryStubs.learningLibraryItem.libraryId ?? "")
         XCTAssertEqual(savedEntity.moduleCount, NSNumber(value: LearningLibraryStubs.canvasCourse.moduleCount ?? 0))
@@ -54,6 +54,8 @@ final class CDHLearningLibraryCollectionItemTests: CoreTestCase {
             isEnrolledInCanvas: nil,
             createdAt: nil,
             updatedAt: nil,
+            canvasModuleId: nil,
+            canvasModuleItemId: nil,
             canvasCourse: nil,
             programId: nil,
             programCourseId: nil,
@@ -69,7 +71,7 @@ final class CDHLearningLibraryCollectionItemTests: CoreTestCase {
         XCTAssertNil(savedEntity.imageUrl)
         XCTAssertFalse(savedEntity.isBookmarked)
         XCTAssertFalse(savedEntity.isEnrolledInCanvas)
-        XCTAssertEqual(savedEntity.itemId, "")
+        XCTAssertEqual(savedEntity.courseID, "")
         XCTAssertEqual(savedEntity.itemType, "page")
         XCTAssertEqual(savedEntity.libraryId, "library-789")
         XCTAssertNil(savedEntity.moduleCount)
@@ -91,10 +93,12 @@ final class CDHLearningLibraryCollectionItemTests: CoreTestCase {
             isEnrolledInCanvas: false,
             createdAt: "2026-01-01T00:00:00Z",
             updatedAt: "2026-02-01T00:00:00Z",
+            canvasModuleId: "12",
+            canvasModuleItemId: "1212",
             canvasCourse: LearningLibraryItemsResponse.CanvasCourse(
                 courseId: "course-345",
                 courseName: "Test Course",
-                canvasUrl: "https://canvas.example.com",
+                canvasUrl: URL(string: "https://canvas.example.com"),
                 courseImageUrl: nil,
                 moduleCount: 0,
                 moduleItemCount: 0,
@@ -117,7 +121,7 @@ final class CDHLearningLibraryCollectionItemTests: CoreTestCase {
         XCTAssertTrue(savedEntity.isBookmarked)
 
         CDHLearningLibraryCollectionItem.updateBookmark(
-            itemID: savedEntity.itemId,
+            courseID: savedEntity.courseID,
             isBookmarked: false,
             in: databaseClient
         )
@@ -132,7 +136,7 @@ final class CDHLearningLibraryCollectionItemTests: CoreTestCase {
         XCTAssertEqual(savedEntity.canvasEnrollmentId, "enrollment-345")
 
         CDHLearningLibraryCollectionItem.updateEnroll(
-            itemID: savedEntity.itemId,
+            courseID: savedEntity.courseID,
             enrollmentID: "new-enrollment-678",
             in: databaseClient
         )

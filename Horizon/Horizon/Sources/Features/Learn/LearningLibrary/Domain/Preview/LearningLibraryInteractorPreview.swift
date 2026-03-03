@@ -39,7 +39,7 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
             .eraseToAnyPublisher()
     }
 
-    func bookmark(id: String, itemID: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
+    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
         let item = mockItems.first { $0.id == id } ?? mockItems[0]
         var updatedItem = item
         updatedItem.isBookmarked.toggle()
@@ -48,7 +48,7 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
             .eraseToAnyPublisher()
     }
 
-    func enroll(id: String, itemID: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
+    func enroll(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
         let item = mockItems.first { $0.id == id } ?? mockItems[0]
         var updatedItem = item
         updatedItem.isEnrolled = true
@@ -67,7 +67,7 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
         [
             LearningLibraryCardModel(
                 id: "1",
-                itemId: "item-1",
+                courseID: "item-1",
                 name: "Introduction to Swift",
                 imageURL: URL(string: "https://example.com/swift.jpg"),
                 itemType: .course,
@@ -82,7 +82,7 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
             ),
             LearningLibraryCardModel(
                 id: "2",
-                itemId: "item-2",
+                courseID: "item-2",
                 name: "Advanced iOS Development",
                 imageURL: URL(string: "https://example.com/ios.jpg"),
                 itemType: .course,
@@ -98,7 +98,7 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
             ),
             LearningLibraryCardModel(
                 id: "3",
-                itemId: "item-3",
+                courseID: "item-3",
                 name: "SwiftUI Fundamentals",
                 imageURL: URL(string: "https://example.com/swiftui.jpg"),
                 itemType: .program,
@@ -114,7 +114,7 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
             ),
             LearningLibraryCardModel(
                 id: "4",
-                itemId: "item-4",
+                courseID: "item-4",
                 name: "API Integration Guide",
                 imageURL: URL(string: "https://example.com/api.jpg"),
                 itemType: .page,
