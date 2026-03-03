@@ -21,10 +21,10 @@ import Foundation
 
 // MARK: - Filter Entity
 
-struct WeeklySummaryFilterViewModel: Identifiable, Equatable {
+struct WeeklySummaryWidgetFilterViewModel: Identifiable, Equatable {
     let id: String
     let label: String
-    let assignments: [WeeklySummaryAssignment]
+    let assignments: [WeeklySummaryWidgetAssignment]
     let emptyStateText: String
     let emptyStateIconName: String
     let accessibilityLabel: String
@@ -33,7 +33,7 @@ struct WeeklySummaryFilterViewModel: Identifiable, Equatable {
 
     var count: Int { assignments.count }
 
-    func withExpandedState(_ isExpanded: Bool) -> WeeklySummaryFilterViewModel {
+    func withExpandedState(_ isExpanded: Bool) -> WeeklySummaryWidgetFilterViewModel {
         var copy = self
         let state = InstUI.CollapseButtonExpandedState(isExpanded: isExpanded)
         copy.accessibilityValue = state.a11yValue
@@ -41,18 +41,18 @@ struct WeeklySummaryFilterViewModel: Identifiable, Equatable {
         return copy
     }
 
-    static func == (lhs: WeeklySummaryFilterViewModel, rhs: WeeklySummaryFilterViewModel) -> Bool {
+    static func == (lhs: WeeklySummaryWidgetFilterViewModel, rhs: WeeklySummaryWidgetFilterViewModel) -> Bool {
         lhs.id == rhs.id
     }
 }
 
 // MARK: - Filter Factories
 
-extension WeeklySummaryFilterViewModel {
-    static func missing(assignments: [WeeklySummaryAssignment]) -> WeeklySummaryFilterViewModel {
+extension WeeklySummaryWidgetFilterViewModel {
+    static func missing(assignments: [WeeklySummaryWidgetAssignment]) -> WeeklySummaryWidgetFilterViewModel {
         let count = assignments.count
         let expandedState = InstUI.CollapseButtonExpandedState(isExpanded: false)
-        return WeeklySummaryFilterViewModel(
+        return WeeklySummaryWidgetFilterViewModel(
             id: "missing",
             label: String(localized: "Missing", bundle: .student),
             assignments: assignments,
@@ -66,10 +66,10 @@ extension WeeklySummaryFilterViewModel {
         )
     }
 
-    static func due(assignments: [WeeklySummaryAssignment]) -> WeeklySummaryFilterViewModel {
+    static func due(assignments: [WeeklySummaryWidgetAssignment]) -> WeeklySummaryWidgetFilterViewModel {
         let count = assignments.count
         let expandedState = InstUI.CollapseButtonExpandedState(isExpanded: false)
-        return WeeklySummaryFilterViewModel(
+        return WeeklySummaryWidgetFilterViewModel(
             id: "due",
             label: String(localized: "Due", bundle: .student),
             assignments: assignments,
@@ -83,10 +83,10 @@ extension WeeklySummaryFilterViewModel {
         )
     }
 
-    static func newGrades(assignments: [WeeklySummaryAssignment]) -> WeeklySummaryFilterViewModel {
+    static func newGrades(assignments: [WeeklySummaryWidgetAssignment]) -> WeeklySummaryWidgetFilterViewModel {
         let count = assignments.count
         let expandedState = InstUI.CollapseButtonExpandedState(isExpanded: false)
-        return WeeklySummaryFilterViewModel(
+        return WeeklySummaryWidgetFilterViewModel(
             id: "newGrades",
             label: String(localized: "New Grades", bundle: .student),
             assignments: assignments,

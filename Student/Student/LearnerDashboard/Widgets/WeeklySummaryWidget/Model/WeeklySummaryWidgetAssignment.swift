@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct WeeklySummaryAssignment: Identifiable {
+struct WeeklySummaryWidgetAssignment: Identifiable {
     let id: String
     let courseId: String
     let courseCode: String

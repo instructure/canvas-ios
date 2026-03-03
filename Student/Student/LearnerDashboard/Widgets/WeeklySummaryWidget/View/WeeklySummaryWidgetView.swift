@@ -34,8 +34,8 @@ struct WeeklySummaryWidgetView: View {
         DashboardTitledWidget(String(localized: "Weekly Summary", bundle: .student)) {
             DashboardWidgetCard(background: .tint) {
                 VStack(spacing: 8) {
-                    WeeklySummaryWeekSelectorView(viewModel: viewModel)
-                    WeeklySummarySegmentedControl(viewModel: viewModel)
+                    WeeklySummaryWidgetWeekSelectorView(viewModel: viewModel)
+                    WeeklySummaryWidgetSegmentedControl(viewModel: viewModel)
                     assignmentList
                 }
                 .paddingStyle(.top, .sectionHeaderVertical)
@@ -52,10 +52,10 @@ struct WeeklySummaryWidgetView: View {
         ZStack {
             if let expanded = viewModel.expandedFilter {
                 if expanded.assignments.isEmpty {
-                    WeeklySummaryEmptyView(filter: expanded)
+                    WeeklySummaryWidgetEmptyView(filter: expanded)
                         .transition(.opacity.combined(with: .offset(y: -20)))
                 } else {
-                    WeeklySummaryAssignmentListView(
+                    WeeklySummaryWidgetAssignmentListView(
                         viewModel: viewModel,
                         assignments: expanded.assignments,
                         controller: controller

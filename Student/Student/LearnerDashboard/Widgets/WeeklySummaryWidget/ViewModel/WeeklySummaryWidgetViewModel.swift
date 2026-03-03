@@ -35,10 +35,10 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
 
     // MARK: - Filters
 
-    private(set) var expandedFilter: WeeklySummaryFilterViewModel?
-    private(set) var missingFilter: WeeklySummaryFilterViewModel
-    private(set) var dueFilter: WeeklySummaryFilterViewModel
-    private(set) var newGradesFilter: WeeklySummaryFilterViewModel
+    private(set) var expandedFilter: WeeklySummaryWidgetFilterViewModel?
+    private(set) var missingFilter: WeeklySummaryWidgetFilterViewModel
+    private(set) var dueFilter: WeeklySummaryWidgetFilterViewModel
+    private(set) var newGradesFilter: WeeklySummaryWidgetFilterViewModel
 
     // MARK: - Week Selection
 
@@ -83,14 +83,14 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
         weekRangeText = Self.makeWeekRangeText(from: weekStartDate)
     }
 
-    func toggleFilter(_ filter: WeeklySummaryFilterViewModel) {
+    func toggleFilter(_ filter: WeeklySummaryWidgetFilterViewModel) {
         expandedFilter = (expandedFilter == filter) ? nil : filter
         missingFilter = missingFilter.withExpandedState(missingFilter == expandedFilter)
         dueFilter = dueFilter.withExpandedState(dueFilter == expandedFilter)
         newGradesFilter = newGradesFilter.withExpandedState(newGradesFilter == expandedFilter)
     }
 
-    func didTapAssignment(_ assignment: WeeklySummaryAssignment, from controller: WeakViewController) {
+    func didTapAssignment(_ assignment: WeeklySummaryWidgetAssignment, from controller: WeakViewController) {
         router.route(
             to: "/courses/\(assignment.courseId)/assignments/\(assignment.id)",
             from: controller,

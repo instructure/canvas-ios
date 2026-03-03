@@ -19,9 +19,9 @@
 import Core
 import SwiftUI
 
-struct WeeklySummaryEmptyView: View {
+struct WeeklySummaryWidgetEmptyView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    let filter: WeeklySummaryFilterViewModel
+    let filter: WeeklySummaryWidgetFilterViewModel
 
     var body: some View {
         DashboardWidgetCard {
@@ -35,6 +35,7 @@ struct WeeklySummaryEmptyView: View {
                     .font(.regular14)
                     .foregroundStyle(Color.textDark)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .multilineTextAlignment(.center)
             }
             .padding(.horizontal, 8)
             .padding(.vertical, 2)
@@ -46,9 +47,9 @@ struct WeeklySummaryEmptyView: View {
 
 #Preview {
     VStack(spacing: 12) {
-        WeeklySummaryEmptyView(filter: .missing(assignments: []))
-        WeeklySummaryEmptyView(filter: .due(assignments: []))
-        WeeklySummaryEmptyView(filter: .newGrades(assignments: []))
+        WeeklySummaryWidgetEmptyView(filter: .missing(assignments: []))
+        WeeklySummaryWidgetEmptyView(filter: .due(assignments: []))
+        WeeklySummaryWidgetEmptyView(filter: .newGrades(assignments: []))
     }
     .padding(16)
     .background(Color.course4)

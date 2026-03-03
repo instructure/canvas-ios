@@ -19,11 +19,11 @@
 import Core
 import SwiftUI
 
-struct WeeklySummaryAssignmentListView: View {
+struct WeeklySummaryWidgetAssignmentListView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var viewModel: WeeklySummaryWidgetViewModel
-    var assignments: [WeeklySummaryAssignment]
+    var assignments: [WeeklySummaryWidgetAssignment]
     var controller: WeakViewController
 
     var body: some View {
@@ -32,7 +32,7 @@ struct WeeklySummaryAssignmentListView: View {
                 Button {
                     viewModel.didTapAssignment(item, from: controller)
                 } label: {
-                    WeeklySummaryAssignmentRow(assignment: item)
+                    WeeklySummaryWidgetAssignmentRow(assignment: item)
                 }
                 .buttonStyle(.plain)
                 if index < assignments.count - 1 {
@@ -44,11 +44,11 @@ struct WeeklySummaryAssignmentListView: View {
     }
 }
 
-private struct WeeklySummaryAssignmentRow: View {
+private struct WeeklySummaryWidgetAssignmentRow: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.displayScale) private var displayScale
 
-    let assignment: WeeklySummaryAssignment
+    let assignment: WeeklySummaryWidgetAssignment
 
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
@@ -115,7 +115,7 @@ private struct WeeklySummaryAssignmentRow: View {
         config: .make(id: .weeklySummary),
         router: PreviewEnvironment().router
     )
-    WeeklySummaryAssignmentListView(
+    WeeklySummaryWidgetAssignmentListView(
         viewModel: viewModel,
         assignments: viewModel.dueFilter.assignments,
         controller: WeakViewController()

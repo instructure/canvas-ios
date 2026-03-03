@@ -19,7 +19,7 @@
 import Core
 import SwiftUI
 
-struct WeeklySummarySegmentedControl: View {
+struct WeeklySummaryWidgetSegmentedControl: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     var viewModel: WeeklySummaryWidgetViewModel
 
@@ -46,7 +46,7 @@ struct WeeklySummarySegmentedControl: View {
         }
     }
 
-    private func categoryButton(_ filter: WeeklySummaryFilterViewModel) -> some View {
+    private func categoryButton(_ filter: WeeklySummaryWidgetFilterViewModel) -> some View {
         let isExpanded = viewModel.expandedFilter == filter
         return Button {
             viewModel.toggleFilter(filter)
@@ -72,10 +72,7 @@ struct WeeklySummarySegmentedControl: View {
             .padding(.vertical, 3)
             .padding(.horizontal, 8)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background {
-                Color.clear
-                    .matchedGeometryEffect(id: filter.id, in: selectionNamespace, isSource: true)
-            }
+            .matchedGeometryEffect(id: filter.id, in: selectionNamespace, isSource: true)
         }
         .accessibilityLabel(filter.accessibilityLabel)
         .accessibilityValue(filter.accessibilityValue)
@@ -95,7 +92,7 @@ struct WeeklySummarySegmentedControl: View {
         }
     }
 
-    private func divider(between leading: WeeklySummaryFilterViewModel, and trailing: WeeklySummaryFilterViewModel) -> some View {
+    private func divider(between leading: WeeklySummaryWidgetFilterViewModel, and trailing: WeeklySummaryWidgetFilterViewModel) -> some View {
         let isHidden = viewModel.expandedFilter == leading || viewModel.expandedFilter == trailing
         return InstUI.Divider()
             .padding(.vertical, 8)
@@ -110,7 +107,7 @@ struct WeeklySummarySegmentedControl: View {
         config: .make(id: .weeklySummary),
         router: PreviewEnvironment().router
     )
-    WeeklySummarySegmentedControl(viewModel: viewModel)
+    WeeklySummaryWidgetSegmentedControl(viewModel: viewModel)
         .padding(16)
         .background(Color.course4)
 }

@@ -21,11 +21,11 @@ import SwiftUI
 
 enum WeeklySummaryWidgetInteractorMock {
 
-    static func makeFilters() -> (missing: WeeklySummaryFilterViewModel, due: WeeklySummaryFilterViewModel, newGrades: WeeklySummaryFilterViewModel) {
+    static func makeFilters() -> (missing: WeeklySummaryWidgetFilterViewModel, due: WeeklySummaryWidgetFilterViewModel, newGrades: WeeklySummaryWidgetFilterViewModel) {
         return (
             missing: .missing(assignments: []),
             due: .due(assignments: [
-                WeeklySummaryAssignment(
+                WeeklySummaryWidgetAssignment(
                     id: "1",
                     courseId: "101",
                     courseCode: "COGS101",
@@ -36,7 +36,7 @@ enum WeeklySummaryWidgetInteractorMock {
                     pointsText: "20 pts",
                     gradeWeightText: nil
                 ),
-                WeeklySummaryAssignment(
+                WeeklySummaryWidgetAssignment(
                     id: "2",
                     courseId: "204",
                     courseCode: "POLI204",
@@ -47,7 +47,7 @@ enum WeeklySummaryWidgetInteractorMock {
                     pointsText: "100 pts",
                     gradeWeightText: "20% of final grade"
                 ),
-                WeeklySummaryAssignment(
+                WeeklySummaryWidgetAssignment(
                     id: "3",
                     courseId: "150",
                     courseCode: "ENVS150",
@@ -60,7 +60,7 @@ enum WeeklySummaryWidgetInteractorMock {
                 )
             ]),
             newGrades: .newGrades(assignments: [
-                WeeklySummaryAssignment(
+                WeeklySummaryWidgetAssignment(
                     id: "4",
                     courseId: "101",
                     courseCode: "COGS101",
@@ -71,7 +71,7 @@ enum WeeklySummaryWidgetInteractorMock {
                     pointsText: "85 pts",
                     gradeWeightText: "30% of final grade"
                 ),
-                WeeklySummaryAssignment(
+                WeeklySummaryWidgetAssignment(
                     id: "5",
                     courseId: "204",
                     courseCode: "POLI204",

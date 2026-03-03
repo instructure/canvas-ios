@@ -19,7 +19,7 @@
 import Core
 import SwiftUI
 
-struct WeeklySummaryWeekSelectorView: View {
+struct WeeklySummaryWidgetWeekSelectorView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     var viewModel: WeeklySummaryWidgetViewModel
 
@@ -68,7 +68,7 @@ struct WeeklySummaryWeekSelectorView: View {
 #if DEBUG
 
 #Preview {
-    WeeklySummaryWeekSelectorView(
+    WeeklySummaryWidgetWeekSelectorView(
         viewModel: WeeklySummaryWidgetViewModel(
             config: .make(id: .weeklySummary),
             router: PreviewEnvironment().router
