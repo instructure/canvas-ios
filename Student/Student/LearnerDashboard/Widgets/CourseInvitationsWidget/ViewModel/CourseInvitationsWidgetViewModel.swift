@@ -27,7 +27,6 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
 
     let config: DashboardWidgetConfig
     let isFullWidth = true
-    let isEditable = false
     let isHiddenInEmptyState = true
 
     private(set) var invitations: [CourseInvitationCardViewModel] = [] {

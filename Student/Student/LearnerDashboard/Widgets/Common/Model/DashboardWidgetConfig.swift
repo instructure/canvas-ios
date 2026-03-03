@@ -36,6 +36,12 @@ extension Array where Element == DashboardWidgetConfig {
         let grid = filter { !isFullWidth($0) }.sorted()
         return (fullWidth, grid)
     }
+
+    static let preview: [DashboardWidgetConfig] = [
+        .init(id: .helloWidget, order: 0, isVisible: true),
+        .init(id: .coursesAndGroups, order: 1, isVisible: false),
+        .init(id: .conferences, order: 2, isVisible: true)
+    ]
 }
 
 #if DEBUG

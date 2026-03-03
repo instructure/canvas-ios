@@ -287,7 +287,6 @@ private final class MockWidgetViewModel: DashboardWidgetViewModel {
 
     let config: DashboardWidgetConfig
     let isFullWidth: Bool
-    let isEditable = false
     let isHiddenInEmptyState = false
     let state: InstUI.ScreenState = .data
 

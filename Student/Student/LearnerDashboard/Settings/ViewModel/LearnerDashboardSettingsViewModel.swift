@@ -26,6 +26,7 @@ import UIKit
 @Observable
 final class LearnerDashboardSettingsViewModel {
     var useNewLearnerDashboard: Bool
+    var mainColor: Color = .course1
 
     private var defaults: SessionDefaults
     private let environment: AppEnvironment

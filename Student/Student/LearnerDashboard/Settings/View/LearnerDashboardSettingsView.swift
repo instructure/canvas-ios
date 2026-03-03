@@ -41,12 +41,26 @@ struct LearnerDashboardSettingsView: View {
                     )
                 )
                 .accessibilityIdentifier("DashboardSettings.newDashboardToggle")
+
+                Spacer()
+                    .frame(height: 16)
+
+                LearnerDashboardColorSelectorView(selectedColor: $viewModel.mainColor)
+
+                InstUI.Divider()
+
+                Spacer()
+                    .frame(height: 16)
+
+                LearnerDashboardCourseSettingsView()
+
                 Spacer()
             }
             .paddingStyle(.horizontal, .standard)
         }
-        .background(Color.backgroundLightest.ignoresSafeArea())
+        .background(Color.backgroundLight.ignoresSafeArea())
         .navigationTitle(String(localized: "Customize Dashboard", bundle: .student), style: .modal)
+        .toolbarBackground(.backgroundLight, for: .navigationBar)
         .alert(isPresented: $showSwitchAlert) {
             switchDashboardAlert
         }
