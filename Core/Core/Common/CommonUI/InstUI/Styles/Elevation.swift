@@ -42,7 +42,7 @@ extension View {
 
     public func elevation(
         _ shape: InstUI.Styles.Elevation.Shape,
-        background: Color
+        background: some ShapeStyle
     ) -> some View {
         self
             .background(background)
