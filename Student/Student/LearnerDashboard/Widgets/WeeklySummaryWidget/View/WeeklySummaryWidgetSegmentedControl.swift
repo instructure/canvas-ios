@@ -31,8 +31,8 @@ struct WeeklySummaryWidgetSegmentedControl: View {
             buttonsRow
         }
         .padding(2)
-        .background(Color.backgroundLight, in: RoundedRectangle(cornerRadius: 8))
         .frame(minHeight: 64)
+        .elevation(cornerRadius: 8, background: Color.backgroundLight)
         .animation(WeeklySummaryWidgetView.animation, value: viewModel.expandedFilter)
     }
 
@@ -92,7 +92,10 @@ struct WeeklySummaryWidgetSegmentedControl: View {
         }
     }
 
-    private func divider(between leading: WeeklySummaryWidgetFilterViewModel, and trailing: WeeklySummaryWidgetFilterViewModel) -> some View {
+    private func divider(
+        between leading: WeeklySummaryWidgetFilterViewModel,
+        and trailing: WeeklySummaryWidgetFilterViewModel
+    ) -> some View {
         let isHidden = viewModel.expandedFilter == leading || viewModel.expandedFilter == trailing
         return InstUI.Divider()
             .padding(.vertical, 8)

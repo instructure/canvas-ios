@@ -5,6 +5,7 @@
 - For 1-physical-pixel borders: `@Environment(\.displayScale) private var displayScale` and `lineWidth: 1 / displayScale`
 - `@Environment(\.dynamicTypeSize) private var dynamicTypeSize` declared but not used in body is intentional — it triggers view re-renders on font size changes. Do NOT remove it as "unused"
 - When a view must pass a `CurrentValueSubject` to a child component but also react to its changes: use `@State` to persist the subject reference (class type, safe in `@State`) and `.onReceive` to bridge emissions into a separate `@State` var that drives the UI
+- `@Observable` tracks mutations via synthesized property setters — in-place array element mutation (e.g. `array[i].prop = x`) does NOT trigger observation because the subscript setter bypasses the tracked property. Always reassign the whole array (`array = array.map { … }`) to ensure observation fires. Prefer named stored fields over a fixed-size array to avoid this entirely.
 
 ### Fonts (`Core/Core/Common/CommonUI/Fonts/FontExtensions.swift`)
 - Use named `Font` extensions instead of system fonts: `.regular14`, `.semibold16`, `.bold17`, etc.; weights: `regular`, `medium`, `semibold`, `bold`, `heavy`; monodigit variants: `.regular11Monodigit`, `.regular20Monodigit`

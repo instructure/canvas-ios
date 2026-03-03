@@ -65,7 +65,6 @@ struct WeeklySummaryWidgetView: View {
             }
         }
         .frame(maxWidth: .infinity)
-        .clipped()
     }
 }
 
