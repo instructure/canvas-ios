@@ -48,14 +48,8 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     // MARK: - Initialization
 
     func test_init_shouldLoadWidgets() {
-        let fullWidthWidget = MockWidgetViewModel(
-            id: .courseInvitations,
-            isFullWidth: true
-        )
-        let gridWidget = MockWidgetViewModel(
-            id: .helloWidget,
-            isFullWidth: false
-        )
+        let widget1 = MockWidgetViewModel(id: .courseInvitations)
+        let widget2 = MockWidgetViewModel(id: .helloWidget)
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
@@ -64,16 +58,12 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
             courseSyncInteractor: courseSyncInteractor,
             environment: env
         )
-        interactor.loadWidgetsPublisher.send((
-            fullWidth: [fullWidthWidget],
-            grid: [gridWidget]
-        ))
+        interactor.loadWidgetsPublisher.send([widget1, widget2])
         scheduler.advance()
 
-        XCTAssertEqual(testee.fullWidthWidgets.count, 1)
-        XCTAssertEqual(testee.fullWidthWidgets.first?.id, .courseInvitations)
-        XCTAssertEqual(testee.gridWidgets.count, 1)
-        XCTAssertEqual(testee.gridWidgets.first?.id, .helloWidget)
+        XCTAssertEqual(testee.widgets.count, 2)
+        XCTAssertEqual(testee.widgets[0].id, .courseInvitations)
+        XCTAssertEqual(testee.widgets[1].id, .helloWidget)
     }
 
     // MARK: - Screen config
@@ -106,14 +96,14 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
             courseSyncInteractor: courseSyncInteractor,
             environment: env
         )
-        interactor.loadWidgetsPublisher.send((fullWidth: [], grid: []))
+        interactor.loadWidgetsPublisher.send([])
         scheduler.advance()
 
         XCTAssertEqual(testee.state, .loading)
     }
 
     func test_init_withWidgets_shouldSetDataState() {
-        let widget = MockWidgetViewModel(id: .helloWidget, isFullWidth: false)
+        let widget = MockWidgetViewModel(id: .helloWidget)
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
@@ -122,7 +112,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
             courseSyncInteractor: courseSyncInteractor,
             environment: env
         )
-        interactor.loadWidgetsPublisher.send((fullWidth: [], grid: [widget]))
+        interactor.loadWidgetsPublisher.send([widget])
         scheduler.advance()
 
         XCTAssertEqual(testee.state, .data)
@@ -131,9 +121,9 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     // MARK: - Refresh
 
     func test_refresh_shouldCallRefreshOnAllWidgets() {
-        let widget1 = MockWidgetViewModel(id: .helloWidget, isFullWidth: false)
-        let widget2 = MockWidgetViewModel(id: .coursesAndGroups, isFullWidth: false)
-        let fullWidthWidget = MockWidgetViewModel(id: .courseInvitations, isFullWidth: true)
+        let widget1 = MockWidgetViewModel(id: .helloWidget)
+        let widget2 = MockWidgetViewModel(id: .coursesAndGroups)
+        let widget3 = MockWidgetViewModel(id: .courseInvitations)
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
@@ -142,10 +132,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
             courseSyncInteractor: courseSyncInteractor,
             environment: env
         )
-        interactor.loadWidgetsPublisher.send((
-            fullWidth: [fullWidthWidget],
-            grid: [widget1, widget2]
-        ))
+        interactor.loadWidgetsPublisher.send([widget3, widget1, widget2])
         scheduler.advance()
 
         testee.refresh(ignoreCache: true)
@@ -155,12 +142,12 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         XCTAssertEqual(widget1.refreshIgnoreCache, true)
         XCTAssertEqual(widget2.refreshCalled, true)
         XCTAssertEqual(widget2.refreshIgnoreCache, true)
-        XCTAssertEqual(fullWidthWidget.refreshCalled, true)
-        XCTAssertEqual(fullWidthWidget.refreshIgnoreCache, true)
+        XCTAssertEqual(widget3.refreshCalled, true)
+        XCTAssertEqual(widget3.refreshIgnoreCache, true)
     }
 
     func test_refresh_shouldCallCompletionWhenAllWidgetsFinish() {
-        let widget = MockWidgetViewModel(id: .helloWidget, isFullWidth: false)
+        let widget = MockWidgetViewModel(id: .helloWidget)
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
@@ -169,7 +156,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
             courseSyncInteractor: courseSyncInteractor,
             environment: env
         )
-        interactor.loadWidgetsPublisher.send((fullWidth: [], grid: [widget]))
+        interactor.loadWidgetsPublisher.send([widget])
         scheduler.advance()
 
         let expectation = expectation(description: "refresh completion")
@@ -286,7 +273,6 @@ private final class MockWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = Never
 
     let config: DashboardWidgetConfig
-    let isFullWidth: Bool
     let isEditable = false
     let isHiddenInEmptyState = false
     let state: InstUI.ScreenState = .data
@@ -294,8 +280,7 @@ private final class MockWidgetViewModel: DashboardWidgetViewModel {
     var refreshCalled = false
     var refreshIgnoreCache: Bool?
 
-    init(id: DashboardWidgetIdentifier, isFullWidth: Bool) {
-        self.isFullWidth = isFullWidth
+    init(id: DashboardWidgetIdentifier) {
         self.config = .make(id: id, order: 7)
     }
 

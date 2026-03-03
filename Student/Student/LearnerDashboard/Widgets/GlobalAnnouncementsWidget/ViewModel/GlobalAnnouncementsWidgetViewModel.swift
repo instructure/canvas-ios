@@ -25,7 +25,6 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = GlobalAnnouncementsWidgetView
 
     let config: DashboardWidgetConfig
-    let isFullWidth = true
     let isEditable = false
     let isHiddenInEmptyState = true
 
@@ -132,6 +131,6 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
         widgetAccessibilityTitle = [
             String(localized: "Announcements", bundle: .student),
             String.format(numberOfItems: count)
-        ].joined(separator: ", ")
+        ].accessibilityJoined()
     }
 }

@@ -18,12 +18,34 @@
 
 import SwiftUI
 
+// MARK: - ButtonStyle members
+
+extension ButtonStyle where Self == InstUI.PillButtonStyle {
+
+    public static var pillTintFilled: Self {
+        InstUI.PillButtonStyle(.tintFilled)
+    }
+
+    public static var pillTintOutlined: Self {
+        InstUI.PillButtonStyle(.tintOutlined)
+    }
+
+    public static var pillDefaultOutlined: Self {
+        InstUI.PillButtonStyle(.defaultOutlined)
+    }
+
+    public static func pillCustomOutlined(textColor: Color, borderColor: Color) -> Self {
+        InstUI.PillButtonStyle(.customOutlined(textColor: textColor, borderColor: borderColor))
+    }
+}
+
+// MARK: - PillButtonStyle struct
+
 extension InstUI {
 
     public struct PillButtonStyle: ButtonStyle {
         @Environment(\.isEnabled) private var isEnabled
-        @Environment(\.colorScheme) private var colorScheme
-        @ScaledMetric private var uiScale: CGFloat = 1
+
         private let buttonStyleConfig: InstUI.PillButtonStyle.Config
 
         public init(_ buttonStyleConfig: InstUI.PillButtonStyle.Config) {
@@ -32,58 +54,59 @@ extension InstUI {
 
         public func makeBody(configuration: Configuration) -> some View {
             configuration.label
-                .font(.regular14)
-                .multilineTextAlignment(.center)
-                .foregroundStyle(buttonStyleConfig.foregroundColor)
-                .padding(.horizontal, 12 * uiScale)
-                // A smaller top padding pushes the text up. This makes
-                // the text more centered for the eye than real centering.
-                .padding(.top, 3 * uiScale)
-                .padding(.bottom, 4 * uiScale)
-                .frame(minHeight: 30 * uiScale)
+                .customTint(buttonStyleConfig.foregroundColor)
                 .background(
-                    Capsule()
-                        .fill(
-                            buttonStyleConfig.backgroundColor(
-                                isPressed: configuration.isPressed,
-                                isDarkMode: colorScheme == .dark
-                            )
-                        )
-                        .stroke(
-                            buttonStyleConfig.borderColor,
-                            lineWidth: buttonStyleConfig.borderWidth(uiScale: uiScale)
-                        )
+                    BackgroundView(
+                        isFilled: buttonStyleConfig.isFilled,
+                        isPressed: configuration.isPressed,
+                        borderColor: buttonStyleConfig.borderColor.colorOrTint,
+                    )
                 )
                 .contentShape(Capsule())
-                .opacity(buttonStyleConfig.opacity(isPressed: configuration.isPressed, isEnabled: isEnabled))
+                .opacity(buttonOpacity(isFilled: buttonStyleConfig.isFilled, isPressed: configuration.isPressed))
+        }
+
+        private func buttonOpacity(isFilled: Bool, isPressed: Bool) -> Double {
+            if isFilled {
+                isPressed || !isEnabled ? 0.7 : 1.0
+            } else {
+                isEnabled ? 1.0 : 0.7
+            }
+        }
+    }
+
+    private struct BackgroundView: View {
+        @Environment(\.colorScheme) private var colorScheme
+        @ScaledMetric private var uiScale: CGFloat = 1
+
+        let isFilled: Bool
+        let isPressed: Bool
+        let borderColor: AnyShapeStyle
+
+        var body: some View {
+            Capsule()
+                .fill(fillStyle)
+                .strokeBorder(borderColor, lineWidth: isFilled ? 0 : uiScale)
+        }
+
+        private var fillStyle: some ShapeStyle {
+            if isFilled {
+                AnyShapeStyle(.tint)
+            } else {
+                if isPressed {
+                    // In dark mode we need stronger colors to be as prominent as in light mode
+                    AnyShapeStyle(borderColor.opacity(colorScheme == .dark ? 0.3 : 0.1))
+                } else {
+                    AnyShapeStyle(.clear)
+                }
+            }
         }
     }
 }
 
-extension ButtonStyle where Self == InstUI.PillButtonStyle {
-
-    public static func pillButton(_ configuration: InstUI.PillButtonStyle.Config) -> Self {
-        InstUI.PillButtonStyle(configuration)
-    }
-
-    public static var pillButtonBrandFilled: Self {
-        pillButton(.brandFilled)
-    }
-
-    public static var pillButtonDefaultOutlined: Self {
-        pillButton(.defaultOutlined)
-    }
-
-    public static func pillButtonFilled(color: Color) -> Self {
-        pillButton(.filled(color: color))
-    }
-
-    public static func pillButtonOutlined(color: Color) -> Self {
-        pillButton(.outlined(color: color))
-    }
-
-    public static func pillButtonOutlined(textColor: Color, borderColor: Color) -> Self {
-        pillButton(.outlined(textColor: textColor, borderColor: borderColor))
+private extension Color? {
+    var colorOrTint: AnyShapeStyle {
+        self.map(AnyShapeStyle.init) ?? AnyShapeStyle(.tint)
     }
 }
 

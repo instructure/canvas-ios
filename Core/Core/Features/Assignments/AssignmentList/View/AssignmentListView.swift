@@ -92,8 +92,8 @@ struct AssignmentListSectionView: View {
     var body: some View {
         InstUI.CollapsibleListSection(
             title: section.title,
-            headerIdentifier: sectionIdentifier,
             itemCount: section.rows.count,
+            headerIdentifier: sectionIdentifier,
             isExpanded: $isExpanded
         ) {
             ForEach(section.rows) { row in

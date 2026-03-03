@@ -85,6 +85,8 @@ extension InstUI.Styles {
 
         case selectionValueLabel
 
+        case zero
+
         var config: Config {
             switch self {
             case .standardCell:
@@ -130,6 +132,9 @@ extension InstUI.Styles {
                     leading: .selectionLabelHorizontal,
                     trailing: .selectionLabelHorizontal
                 )
+
+            case .zero:
+                Config(top: .zero, bottom: .zero, leading: .zero, trailing: .zero)
             }
         }
 
