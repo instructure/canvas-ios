@@ -98,7 +98,6 @@ struct SpeedGraderPageHeaderView: View {
             }
         }
         .onReceive(gradeSavingStatePublisher) { state in
-
             withAnimation {
                 gradeSavingState = state
             }

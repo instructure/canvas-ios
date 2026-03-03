@@ -27,15 +27,18 @@ class SpeedGraderPageHeaderViewModel: ObservableObject {
 
     private var subscriptions = Set<AnyCancellable>()
     private var announcement: AnyCancellable?
+    private let accessibilityHandler: AccessibilityNotificationHandler
 
     init(
         assignment: Assignment,
-        submission: Submission
+        submission: Submission,
+        handler: AccessibilityNotificationHandler = DefaultAccessibilityNotificationHandler()
     ) {
         userNameModel = .init(submission: submission, assignment: assignment)
         let isGroupSubmission = !assignment.gradedIndividually && (submission.groupID != nil || submission.fetchedGroup != nil)
         routeToSubmitter = isGroupSubmission ? nil : "/courses/\(assignment.courseID)/users/\(submission.userID)"
         submissionStatus = submission.status.labelModel
+        accessibilityHandler = handler
         observeSubmissionStatusInDatabase(submission)
     }
 
@@ -55,10 +58,10 @@ class SpeedGraderPageHeaderViewModel: ObservableObject {
     }
 
     func announceState(_ state: GradeSavingState, completion: @escaping () -> Void) {
-        if let message = state.accessibilityAnnouncmentMessage {
+        if let message = state.accessibilityAnnouncementMessage {
             announcement?.cancel()
             announcement = UIAccessibility
-                .announcePersistently(message)
+                .announcePersistently(message, handler: accessibilityHandler)
                 .sink(receiveValue: completion)
         }
     }
@@ -66,9 +69,9 @@ class SpeedGraderPageHeaderViewModel: ObservableObject {
 
 // MARK: - Accessibility Message
 
-private extension GradeSavingState {
+extension GradeSavingState {
 
-    var accessibilityAnnouncmentMessage: String? {
+    var accessibilityAnnouncementMessage: String? {
         switch self {
         case .saving:
             String(localized: "Saving grade", bundle: .teacher)

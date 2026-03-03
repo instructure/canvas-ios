@@ -102,47 +102,51 @@ final class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
     // MARK: - announceState
 
     func test_announceState_whenIdle_shouldNotCallCompletion() {
-        let testee = makeViewModel()
-        var completionCalled = false
+        let handler = MockAccessabilityHandler()
+        let testee = makeViewModel(handler: handler)
 
-        testee.announceState(.idle) {
-            completionCalled = true
-        }
+        // Given
+        testee.announceState(.idle) { }
 
-        XCTAssertEqual(completionCalled, false)
+        // THEN
+        XCTAssertEqual(handler.attempts.count, 0)
     }
 
     func test_announceState_withNonIdleState_shouldCallCompletion() {
-        let testee = makeViewModel()
 
-        // WHEN .saving
-        var completionCalled = false
-        testee.announceState(.saving) { completionCalled = true }
-        // THEN
-        XCTAssertEqual(completionCalled, true)
+        GradeSavingState.allCases.forEach { state in
+            guard state != .idle else { return }
 
-        // WHEN .saved
-        completionCalled = false
-        testee.announceState(.saved) { completionCalled = true }
-        // THEN
-        XCTAssertEqual(completionCalled, true)
+            let handler = MockAccessabilityHandler()
+            let testee = makeViewModel(handler: handler)
 
-        // WHEN .failure
-        completionCalled = false
-        testee.announceState(.failure) { completionCalled = true }
-        // THEN
-        XCTAssertEqual(completionCalled, true)
+            // Given
+            let completed = expectation(description: "\(state) announcement completed")
+            testee.announceState(state) { completed.fulfill() }
+
+            // Then
+            XCTAssertEqual(handler.attempts.count, 1)
+
+            // WHEN
+            handler.postDidFinishNotificationForLastAttempt(isSuccessful: true)
+
+            // THEN
+            wait(for: [completed]) // Completion called
+            XCTAssertEqual(handler.attempts.last?.value, state.accessibilityAnnouncementMessage)
+        }
     }
 
     // MARK: - Private helpers
 
     private func makeViewModel(
         assignment: Assignment? = nil,
-        submission: Submission? = nil
+        submission: Submission? = nil,
+        handler: MockAccessabilityHandler = MockAccessabilityHandler()
     ) -> SpeedGraderPageHeaderViewModel {
-        SpeedGraderPageHeaderViewModel(
+        return SpeedGraderPageHeaderViewModel(
             assignment: assignment ?? Assignment(context: databaseClient),
-            submission: submission ?? Submission(context: databaseClient)
+            submission: submission ?? Submission(context: databaseClient),
+            handler: handler
         )
     }
 }

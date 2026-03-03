@@ -20,6 +20,7 @@ import UIKit
 import Combine
 import XCTest
 import Core
+import TestsFoundation
 
 class UIAccessibilityAnnouncementTests: XCTestCase {
 
@@ -135,20 +136,4 @@ class UIAccessibilityAnnouncementTests: XCTestCase {
             userInfo: userInfo
         )
     }
-}
-
-class MockAccessabilityHandler: AccessibilityNotificationHandler {
-
-    struct Attempt {
-        let notificaiton: UIAccessibility.Notification
-        let value: String?
-    }
-
-    private(set) var attempts: [Attempt] = []
-    func post(notification: UIAccessibility.Notification, argument: Any?) {
-        let message = (argument as? NSAttributedString)?.string
-        attempts.append(Attempt(notificaiton: notification, value: message))
-    }
-
-    var isVoiceOverRunning: Bool = true
 }

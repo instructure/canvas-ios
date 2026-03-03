@@ -29,7 +29,7 @@ enum GradeInputType {
     case statusDisplayOnly // for Not Graded
 }
 
-enum GradeSavingState: Equatable {
+enum GradeSavingState: Equatable, CaseIterable {
     case saving
     case saved
     case failure
