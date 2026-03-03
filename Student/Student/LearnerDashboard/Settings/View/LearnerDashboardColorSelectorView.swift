@@ -87,10 +87,7 @@ struct PlainDisclosureGroupStyle: DisclosureGroupStyle {
 
             if configuration.isExpanded {
                 configuration.content
-                    .transition(.asymmetric(
-                        insertion: .push(from: .top),
-                        removal: .push(from: .bottom))
-                    )
+                    .transition(.opacity)
             }
         }
     }
