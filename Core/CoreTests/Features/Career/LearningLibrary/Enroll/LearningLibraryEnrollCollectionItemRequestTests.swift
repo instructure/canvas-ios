@@ -55,6 +55,8 @@ final class LearningLibraryEnrollCollectionItemRequestTests: CoreTestCase {
         isEnrolledInCanvas
         createdAt
         updatedAt
+        canvasModuleId
+        canvasModuleItemId
         canvasEnrollmentId
         canvasCourse {
           courseId
