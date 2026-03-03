@@ -195,6 +195,14 @@ extension LearnerDashboardCourseSettingsView {
     typealias Config = DashboardWidgetConfig
 }
 
+extension Array where Element == DashboardWidgetConfig {
+    static let preview: [DashboardWidgetConfig] = [
+        .init(id: .helloWidget, order: 0, isVisible: true),
+        .init(id: .coursesAndGroups, order: 1, isVisible: false),
+        .init(id: .conferences, order: 2, isVisible: true)
+    ]
+}
+
 #Preview {
     VStack {
         LearnerDashboardCourseSettingsView()

@@ -28,22 +28,6 @@ struct DashboardWidgetConfig: Codable, Comparable, Identifiable {
     }
 }
 
-extension Array where Element == DashboardWidgetConfig {
-    func partitionedByLayout(
-        isFullWidth: (DashboardWidgetConfig) -> Bool
-    ) -> (fullWidth: [DashboardWidgetConfig], grid: [DashboardWidgetConfig]) {
-        let fullWidth = filter { isFullWidth($0) }.sorted()
-        let grid = filter { !isFullWidth($0) }.sorted()
-        return (fullWidth, grid)
-    }
-
-    static let preview: [DashboardWidgetConfig] = [
-        .init(id: .helloWidget, order: 0, isVisible: true),
-        .init(id: .coursesAndGroups, order: 1, isVisible: false),
-        .init(id: .conferences, order: 2, isVisible: true)
-    ]
-}
-
 #if DEBUG
 
 extension DashboardWidgetConfig {

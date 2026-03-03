@@ -28,10 +28,6 @@ protocol DashboardWidgetViewModel: AnyObject, Identifiable where ID == Dashboard
     /// User configurable widget settings.
     var config: DashboardWidgetConfig { get }
 
-    /// Non-editable, widget specific property used for layouting.
-    /// Full width widgets are put at the top of the screen outside of the widget grid.
-    var isFullWidth: Bool { get }
-
     /// The state helps the dashboard screen to decide if the empty state should be shown or not.
     var state: InstUI.ScreenState { get }
 

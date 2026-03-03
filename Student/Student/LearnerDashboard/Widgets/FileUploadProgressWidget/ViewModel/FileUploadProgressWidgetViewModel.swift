@@ -29,7 +29,6 @@ final class FileUploadProgressWidgetViewModel: DashboardWidgetViewModel {
 
     let config: DashboardWidgetConfig
     private(set) var state: InstUI.ScreenState = .empty
-    let isFullWidth = true
     let isHiddenInEmptyState = true
 
     var layoutIdentifier: [AnyHashable] {

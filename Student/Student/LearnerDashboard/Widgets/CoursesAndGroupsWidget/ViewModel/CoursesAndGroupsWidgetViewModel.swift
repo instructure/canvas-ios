@@ -25,7 +25,6 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = CoursesAndGroupsWidgetView
 
     let config: DashboardWidgetConfig
-    let isFullWidth = false
     let isHiddenInEmptyState = true
 
     private(set) var state: InstUI.ScreenState = .loading
