@@ -26,7 +26,6 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = CourseInvitationsWidgetView
 
     let config: DashboardWidgetConfig
-    let isFullWidth = true
     let isEditable = false
     let isHiddenInEmptyState = true
 

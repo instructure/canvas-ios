@@ -25,7 +25,6 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = GlobalAnnouncementsWidgetView
 
     let config: DashboardWidgetConfig
-    let isFullWidth = true
     let isEditable = false
     let isHiddenInEmptyState = true
 

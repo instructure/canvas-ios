@@ -22,15 +22,12 @@ import SwiftUI
 enum LearnerDashboardWidgetAssembly {
     static func makeDefaultWidgetConfigs() -> [DashboardWidgetConfig] {
         let identifiers: [DashboardWidgetIdentifier] = [
-            // full width
             .offlineSyncProgress,
             .fileUploadProgress,
             .conferences,
             .courseInvitations,
             .globalAnnouncements,
             .helloWidget,
-
-            // grid
             .coursesAndGroups
         ]
 
