@@ -65,15 +65,14 @@ extension LearningLibraryItemNavigating {
 
          let url = baseURL.appendingPathComponent("courses")
              .appendingPathComponent(courseID)
-             .appendingPathComponent("modules/items")
+             .appendingPathComponent("modules")
+             .appendingPathComponent("items")
              .appendingPathComponent(itemID)
 
          let moduleItem = HModuleItem(
              id: itemID,
              title: model.name,
              htmlURL: url,
-             /// `isCompleted` is set to `false` because this is the next module item
-             /// the learner must complete. If it were `true`, it would no longer appear here.
              isCompleted: false
          )
          router.route(to: url, userInfo: ["moduleItem": moduleItem], from: viewController)
