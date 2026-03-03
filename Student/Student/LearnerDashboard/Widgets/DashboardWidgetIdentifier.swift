@@ -33,16 +33,17 @@ enum DashboardWidgetIdentifier: String, Codable, CaseIterable {
         case .conferences: String(localized: "Conferences", bundle: .student)
         case .helloWidget: String(localized: "Hello \(username)", bundle: .student)
         case .coursesAndGroups: String(localized: "Courses & Groups", bundle: .student)
-        default: fatalError("\(self) widget should not appear among Dashboard settings")
+        case .offlineSyncProgress, .fileUploadProgress, .globalAnnouncements, .courseInvitations:
+            fatalError("\(self) widget should not appear among Dashboard settings")
         }
     }
 
     var isEditable: Bool {
         switch self {
         case .offlineSyncProgress, .fileUploadProgress, .globalAnnouncements, .courseInvitations:
-            true
-        default:
             false
+        case .conferences, .helloWidget, .coursesAndGroups:
+            true
         }
     }
 }
