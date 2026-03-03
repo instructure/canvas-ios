@@ -43,7 +43,10 @@ class BlobURLDownload: CoreWebViewFeature {
                             mimeType: blob.type || 'application/octet-stream',
                             fileName: fileName
                         });
-                    };
+                    }
+                    reader.onerror = function(err) {
+                        console.error('BlobURLDownload FileReader error:', err);
+                    }
                     reader.readAsDataURL(blob);
                 })
                 .catch(function(err) {
