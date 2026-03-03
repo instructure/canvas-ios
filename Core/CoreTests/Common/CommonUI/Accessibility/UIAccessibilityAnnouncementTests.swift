@@ -24,12 +24,12 @@ import TestsFoundation
 
 class UIAccessibilityAnnouncementTests: XCTestCase {
 
-    private var handler: MockAccessabilityHandler!
+    private var handler: MockAccessibilityHandler!
     private var subscription: AnyCancellable?
 
     override func setUp() {
         super.setUp()
-        handler = MockAccessabilityHandler()
+        handler = MockAccessibilityHandler()
     }
 
     override func tearDown() {

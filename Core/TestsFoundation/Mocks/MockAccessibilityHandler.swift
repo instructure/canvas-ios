@@ -19,10 +19,10 @@
 import UIKit
 @testable import Core
 
-public class MockAccessabilityHandler: AccessibilityNotificationHandler {
+public class MockAccessibilityHandler: AccessibilityNotificationHandler {
 
     public struct Attempt {
-        let notificaiton: UIAccessibility.Notification
+        let notification: UIAccessibility.Notification
         public let value: String?
     }
 
@@ -36,7 +36,7 @@ public class MockAccessabilityHandler: AccessibilityNotificationHandler {
 
     public func post(notification: UIAccessibility.Notification, argument: Any?) {
         let message = (argument as? NSAttributedString)?.string
-        attempts.append(Attempt(notificaiton: notification, value: message))
+        attempts.append(Attempt(notification: notification, value: message))
     }
 
     public func postDidFinishNotificationForLastAttempt(isSuccessful: Bool) {

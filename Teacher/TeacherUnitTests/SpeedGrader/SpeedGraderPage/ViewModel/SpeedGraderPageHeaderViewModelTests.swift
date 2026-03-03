@@ -102,7 +102,7 @@ final class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
     // MARK: - announceState
 
     func test_announceState_whenIdle_shouldNotCallCompletion() {
-        let handler = MockAccessabilityHandler()
+        let handler = MockAccessibilityHandler()
         let testee = makeViewModel(handler: handler)
 
         // Given
@@ -117,7 +117,7 @@ final class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
         GradeSavingState.allCases.forEach { state in
             guard state != .idle else { return }
 
-            let handler = MockAccessabilityHandler()
+            let handler = MockAccessibilityHandler()
             let testee = makeViewModel(handler: handler)
 
             // Given
@@ -141,7 +141,7 @@ final class SpeedGraderPageHeaderViewModelTests: TeacherTestCase {
     private func makeViewModel(
         assignment: Assignment? = nil,
         submission: Submission? = nil,
-        handler: MockAccessabilityHandler = MockAccessabilityHandler()
+        handler: MockAccessibilityHandler = MockAccessibilityHandler()
     ) -> SpeedGraderPageHeaderViewModel {
         return SpeedGraderPageHeaderViewModel(
             assignment: assignment ?? Assignment(context: databaseClient),
