@@ -16,73 +16,85 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
+
+import Combine
 import Core
 import SwiftUI
 
-enum WeeklySummaryWidgetInteractorMock {
+final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
 
-    static func makeFilters() -> (missing: WeeklySummaryWidgetFilterViewModel, due: WeeklySummaryWidgetFilterViewModel, newGrades: WeeklySummaryWidgetFilterViewModel) {
-        return (
-            missing: .missing(assignments: []),
-            due: .due(assignments: [
-                WeeklySummaryWidgetAssignment(
-                    id: "1",
-                    courseId: "101",
-                    courseCode: "COGS101",
-                    courseColor: .course2,
-                    icon: .quizLine,
-                    title: "Chapter 5 Quiz",
-                    dueDateText: "Tomorrow at 11:59 PM",
-                    pointsText: "20 pts",
-                    gradeWeightText: nil
-                ),
-                WeeklySummaryWidgetAssignment(
-                    id: "2",
-                    courseId: "204",
-                    courseCode: "POLI204",
-                    courseColor: .course5,
-                    icon: .assignmentLine,
-                    title: "Policy Analysis Essay",
-                    dueDateText: "Thu at 11:59 PM",
-                    pointsText: "100 pts",
-                    gradeWeightText: "20% of final grade"
-                ),
-                WeeklySummaryWidgetAssignment(
-                    id: "3",
-                    courseId: "150",
-                    courseCode: "ENVS150",
-                    courseColor: .course8,
-                    icon: .assignmentLine,
-                    title: "Lab Report: Water Quality",
-                    dueDateText: "Sat at 11:59 PM",
-                    pointsText: "50 pts",
-                    gradeWeightText: nil
-                )
-            ]),
-            newGrades: .newGrades(assignments: [
-                WeeklySummaryWidgetAssignment(
-                    id: "4",
-                    courseId: "101",
-                    courseCode: "COGS101",
-                    courseColor: .course2,
-                    icon: .assignmentLine,
-                    title: "Midterm Reflection",
-                    dueDateText: nil,
-                    pointsText: "85 pts",
-                    gradeWeightText: "30% of final grade"
-                ),
-                WeeklySummaryWidgetAssignment(
-                    id: "5",
-                    courseId: "204",
-                    courseCode: "POLI204",
-                    courseColor: .course5,
-                    icon: .assignmentLine,
-                    title: "Discussion Board Week 4",
-                    dueDateText: nil,
-                    pointsText: "15 pts",
-                    gradeWeightText: nil
-                )
-            ])
-        )
+    var outputValue = WeeklySummaryWidgetFilters(
+        missing: [],
+        due: [
+            WeeklySummaryWidgetAssignment(
+                id: "1",
+                courseId: "101",
+                courseCode: "COGS101",
+                courseColor: .course2,
+                icon: .quizLine,
+                title: "Chapter 5 Quiz",
+                dueDateText: "Tomorrow at 11:59 PM",
+                pointsText: "20 pts",
+                gradeWeightText: nil
+            ),
+            WeeklySummaryWidgetAssignment(
+                id: "2",
+                courseId: "204",
+                courseCode: "POLI204",
+                courseColor: .course5,
+                icon: .assignmentLine,
+                title: "Policy Analysis Essay",
+                dueDateText: "Thu at 11:59 PM",
+                pointsText: "100 pts",
+                gradeWeightText: "20% of final grade"
+            ),
+            WeeklySummaryWidgetAssignment(
+                id: "3",
+                courseId: "150",
+                courseCode: "ENVS150",
+                courseColor: .course8,
+                icon: .assignmentLine,
+                title: "Lab Report: Water Quality",
+                dueDateText: "Sat at 11:59 PM",
+                pointsText: "50 pts",
+                gradeWeightText: nil
+            )
+        ],
+        newGrades: [
+            WeeklySummaryWidgetAssignment(
+                id: "4",
+                courseId: "101",
+                courseCode: "COGS101",
+                courseColor: .course2,
+                icon: .assignmentLine,
+                title: "Midterm Reflection",
+                dueDateText: nil,
+                pointsText: "85 pts",
+                gradeWeightText: "30% of final grade"
+            ),
+            WeeklySummaryWidgetAssignment(
+                id: "5",
+                courseId: "204",
+                courseCode: "POLI204",
+                courseColor: .course5,
+                icon: .assignmentLine,
+                title: "Discussion Board Week 4",
+                dueDateText: nil,
+                pointsText: "15 pts",
+                gradeWeightText: nil
+            )
+        ]
+    )
+
+    var outputError: Error?
+
+    func getSummary(ignoreCache: Bool) -> AnyPublisher<WeeklySummaryWidgetFilters, Error> {
+        if let error = outputError {
+            return Fail(error: error).eraseToAnyPublisher()
+        }
+        return Publishers.typedJust(outputValue)
     }
 }
+
+#endif

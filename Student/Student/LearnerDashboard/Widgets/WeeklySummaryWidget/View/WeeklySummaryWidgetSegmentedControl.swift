@@ -21,6 +21,7 @@ import SwiftUI
 
 struct WeeklySummaryWidgetSegmentedControl: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @Environment(\.redactionReasons) private var redactionReasons
     var viewModel: WeeklySummaryWidgetViewModel
 
     @Namespace private var selectionNamespace
@@ -53,7 +54,8 @@ struct WeeklySummaryWidgetSegmentedControl: View {
         } label: {
             VStack(spacing: 0) {
                 ZStack {
-                    Text(filter.count, format: .number)
+                    // Adding extra spaces so the redaction looks wider and better
+                    Text("\(redactionReasons.isPlaceholder ? "  " : "")\(filter.count)")
                         .font(.bold22)
                         .foregroundStyle(Color.textDarkest)
                         .frame(maxWidth: .infinity)
@@ -64,10 +66,12 @@ struct WeeklySummaryWidgetSegmentedControl: View {
                             .foregroundStyle(Color.textDarkest)
                             .rotationEffect(isExpanded ? .degrees(180) : .zero)
                     }
+                    .unredacted()
                 }
                 Text(filter.label)
                     .font(.regular12)
                     .foregroundStyle(Color.textDark)
+                    .unredacted()
             }
             .padding(.vertical, 3)
             .padding(.horizontal, 8)
@@ -110,9 +114,13 @@ struct WeeklySummaryWidgetSegmentedControl: View {
         config: .make(id: .weeklySummary),
         router: PreviewEnvironment().router
     )
-    WeeklySummaryWidgetSegmentedControl(viewModel: viewModel)
-        .padding(16)
-        .background(Color.course4)
+    VStack {
+        WeeklySummaryWidgetSegmentedControl(viewModel: viewModel)
+        WeeklySummaryWidgetSegmentedControl(viewModel: viewModel)
+            .redacted(reason: .placeholder)
+    }
+    .padding(16)
+    .background(Color.course4)
 }
 
 #endif

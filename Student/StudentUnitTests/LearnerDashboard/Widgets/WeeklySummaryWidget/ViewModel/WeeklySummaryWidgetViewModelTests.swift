@@ -30,6 +30,17 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.config.id, .weeklySummary)
         XCTAssertEqual(testee.isEditable, false)
         XCTAssertEqual(testee.isHiddenInEmptyState, false)
+        XCTAssertEqual(testee.state, .loading)
+    }
+
+    // MARK: - refresh
+
+    func test_refresh_shouldTransitionToDataState() {
+        let testee = makeViewModel()
+        XCTAssertEqual(testee.state, .loading)
+
+        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
+
         XCTAssertEqual(testee.state, .data)
     }
 

@@ -24,7 +24,7 @@ import Foundation
 final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = WeeklySummaryWidgetView
 
-    private(set) var state: InstUI.ScreenState = .data
+    private(set) var state: InstUI.ScreenState = .loading
     let config: DashboardWidgetConfig
     let isEditable = false
     let isHiddenInEmptyState = false
@@ -49,18 +49,24 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
 
     // MARK: - Init
 
+    private let interactor: WeeklySummaryWidgetInteractor
     private let router: Router
+    private var retrySubscription: AnyCancellable?
 
-    init(config: DashboardWidgetConfig, router: Router = AppEnvironment.shared.router) {
+    init(
+        config: DashboardWidgetConfig,
+        interactor: WeeklySummaryWidgetInteractor = WeeklySummaryWidgetInteractorMock(),
+        router: Router = AppEnvironment.shared.router
+    ) {
         self.config = config
+        self.interactor = interactor
         self.router = router
         let weekStartDate = Self.mondayOfCurrentWeek()
         self.weekStartDate = weekStartDate
         self.weekRangeText = Self.makeWeekRangeText(from: weekStartDate)
-        let mockData = WeeklySummaryWidgetInteractorMock.makeFilters()
-        self.missingFilter = mockData.missing
-        self.dueFilter = mockData.due
-        self.newGradesFilter = mockData.newGrades
+        self.missingFilter = .missing(assignments: [])
+        self.dueFilter = .due(assignments: [])
+        self.newGradesFilter = .newGrades(assignments: [])
     }
 
     func makeView() -> WeeklySummaryWidgetView {
@@ -68,7 +74,26 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        Just(()).eraseToAnyPublisher()
+        interactor.getSummary(ignoreCache: ignoreCache)
+            .delay(for: .seconds(2), scheduler: DispatchQueue.main)
+            .receive(on: DispatchQueue.main)
+            .handleEvents(receiveOutput: { [weak self] filters in
+                self?.missingFilter = .missing(assignments: filters.missing)
+                self?.dueFilter = .due(assignments: filters.due)
+                self?.newGradesFilter = .newGrades(assignments: filters.newGrades)
+                self?.state = .data
+            })
+            .map { _ in }
+            .catch { [weak self] _ in
+                self?.state = .error
+                return Just(())
+            }
+            .eraseToAnyPublisher()
+    }
+
+    func retryRefresh() {
+        state = .loading
+        retrySubscription = refresh(ignoreCache: true).sink { _ in }
     }
 
     // MARK: - User Actions

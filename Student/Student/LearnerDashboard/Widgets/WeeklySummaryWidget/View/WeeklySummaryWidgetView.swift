@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 import SwiftUI
 
@@ -32,19 +33,30 @@ struct WeeklySummaryWidgetView: View {
 
     var body: some View {
         DashboardTitledWidget(String(localized: "Weekly Summary", bundle: .student)) {
-            DashboardWidgetCard(background: .tint) {
-                VStack(spacing: 8) {
-                    WeeklySummaryWidgetWeekSelectorView(viewModel: viewModel)
-                    WeeklySummaryWidgetSegmentedControl(viewModel: viewModel)
-                    assignmentList
+            if viewModel.state == .error {
+                DashboardWidgetCard {
+                    DashboardWidgetErrorView {
+                        viewModel.retryRefresh()
+                    }
                 }
-                .paddingStyle(.top, .sectionHeaderVertical)
-                .paddingStyle(.horizontal, .standard)
-                .paddingStyle(.bottom, .standard)
+            } else {
+                DashboardWidgetCard(background: .tint) {
+                    VStack(spacing: 8) {
+                        WeeklySummaryWidgetWeekSelectorView(viewModel: viewModel)
+                        WeeklySummaryWidgetSegmentedControl(viewModel: viewModel)
+                        assignmentList
+                    }
+                    .redacted(reason: viewModel.state == .loading ? .placeholder : [])
+                    .allowsHitTesting(viewModel.state != .loading)
+                    .paddingStyle(.top, .sectionHeaderVertical)
+                    .paddingStyle(.horizontal, .standard)
+                    .paddingStyle(.bottom, .standard)
+                }
+                .animation(Self.animation, value: viewModel.expandedFilter)
+                .animation(Self.animation, value: viewModel.weekStartDate)
             }
-            .animation(Self.animation, value: viewModel.expandedFilter)
-            .animation(Self.animation, value: viewModel.weekStartDate)
         }
+        .animation(Self.animation, value: viewModel.state)
     }
 
     @ViewBuilder
@@ -70,7 +82,23 @@ struct WeeklySummaryWidgetView: View {
 
 #if DEBUG
 
-#Preview {
+#Preview("Data") {
+    @Previewable @State var subscriptions = Set<AnyCancellable>()
+    @Previewable @State var viewModel = makeWeeklySummaryDataPreviewViewModel()
+
+    WeeklySummaryWidgetView(viewModel: viewModel)
+        .padding()
+        .frame(maxHeight: .infinity, alignment: .top)
+        .background(Color.backgroundLight)
+        .tint(.course4)
+        .onAppear {
+            viewModel.refresh(ignoreCache: false)
+                .sink { _ in }
+                .store(in: &subscriptions)
+        }
+}
+
+#Preview("Loading") {
     WeeklySummaryWidgetView(
         viewModel: WeeklySummaryWidgetViewModel(
             config: .make(id: .weeklySummary)
@@ -80,6 +108,32 @@ struct WeeklySummaryWidgetView: View {
     .frame(maxHeight: .infinity, alignment: .top)
     .background(Color.backgroundLight)
     .tint(.course4)
+}
+
+#Preview("Error") {
+    @Previewable @State var subscriptions = Set<AnyCancellable>()
+    @Previewable @State var viewModel = makeWeeklySummaryErrorPreviewViewModel()
+
+    WeeklySummaryWidgetView(viewModel: viewModel)
+        .padding()
+        .frame(maxHeight: .infinity, alignment: .top)
+        .background(Color.backgroundLight)
+        .tint(.course4)
+        .onAppear {
+            viewModel.refresh(ignoreCache: false)
+                .sink { _ in }
+                .store(in: &subscriptions)
+        }
+}
+
+private func makeWeeklySummaryDataPreviewViewModel() -> WeeklySummaryWidgetViewModel {
+    WeeklySummaryWidgetViewModel(config: .make(id: .weeklySummary))
+}
+
+private func makeWeeklySummaryErrorPreviewViewModel() -> WeeklySummaryWidgetViewModel {
+    let mock = WeeklySummaryWidgetInteractorMock()
+    mock.outputError = NSError.internalError()
+    return WeeklySummaryWidgetViewModel(config: .make(id: .weeklySummary), interactor: mock)
 }
 
 #endif

@@ -38,6 +38,7 @@ struct WeeklySummaryWidgetWeekSelectorView: View {
                     .rotationEffect(.degrees(180))
             }
             .accessibilityLabel(viewModel.previousWeekA11yLabel)
+            .unredacted()
 
             Text(viewModel.weekRangeText)
                 .font(.regular16)
@@ -58,6 +59,7 @@ struct WeeklySummaryWidgetWeekSelectorView: View {
                     .scaledIcon(size: 18)
             }
             .accessibilityLabel(viewModel.nextWeekA11yLabel)
+            .unredacted()
         }
         .padding(.vertical, 8)
         .foregroundStyle(Color.textLightest)
