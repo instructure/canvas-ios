@@ -21,7 +21,10 @@ import HorizonUI
 
 struct LearnerDashboardColorSelectorView: View {
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
+    @ScaledMetric private var uiScale: CGFloat = 1
     @Binding var selectedColor: Color
+
+    let whiteColor = Color.backgroundLightest.variantForLightMode
 
     var body: some View {
         DisclosureGroup {
@@ -39,10 +42,14 @@ struct LearnerDashboardColorSelectorView: View {
                             .overlay {
                                 if isSelected {
                                     Image.checkLine
-                                        .foregroundStyle(.textLightest)
+                                        .foregroundStyle(
+                                            selectedColor == whiteColor
+                                            ? .textLightest.variantForDarkMode
+                                            : .textLightest.variantForLightMode
+                                        )
                                 }
                             }
-                            .frame(width: 40, height: 40)
+                            .frame(width: 40 * uiScale, height: 40 * uiScale)
                             .accessibilityLabel(colorData.description)
                             .accessibilityAddTraits(isSelected ? .isSelected : [])
                     }
@@ -51,10 +58,11 @@ struct LearnerDashboardColorSelectorView: View {
             .padding(.bottom, 16)
         } label: {
             HStack(spacing: 8) {
-                Text("Dashboard main color", bundle: .student)
+                Text("Dashboard Main Color", bundle: .student)
                     .foregroundStyle(.textDarkest)
                     .font(.semibold16, lineHeight: .fit)
                     .frame(maxWidth: .infinity, alignment: .leading)
+                    .accessibilityAddTraits(.isHeader)
 
                 Circle()
                     .fill(selectedColor)

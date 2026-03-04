@@ -42,12 +42,13 @@ extension View {
 
     public func elevation(
         _ shape: InstUI.Styles.Elevation.Shape,
-        background: Color
+        background: Color,
+        shadowColor: Color = .black
     ) -> some View {
         self
             .background(background)
             .cornerRadius(shape.cornerRadius)
-            .shadow(color: .black.opacity(0.08), radius: 2, y: 2)
-            .shadow(color: .black.opacity(0.16), radius: 2, y: 1)
+            .shadow(color: shadowColor.opacity(0.08), radius: 2, y: 2)
+            .shadow(color: shadowColor.opacity(0.16), radius: 2, y: 1)
     }
 }

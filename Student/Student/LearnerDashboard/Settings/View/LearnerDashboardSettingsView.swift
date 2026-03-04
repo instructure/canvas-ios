@@ -55,9 +55,15 @@ struct LearnerDashboardSettingsView: View {
                 LearnerDashboardCourseSettingsView()
 
                 Spacer()
+                    .frame(height: 16)
+
+                feedback
+
+                Spacer()
             }
             .paddingStyle(.horizontal, .standard)
         }
+        .tint(viewModel.mainColor)
         .background(Color.backgroundLight.ignoresSafeArea())
         .navigationTitle(String(localized: "Customize Dashboard", bundle: .student), style: .modal)
         .toolbarBackground(.backgroundLight, for: .navigationBar)
@@ -80,6 +86,31 @@ struct LearnerDashboardSettingsView: View {
         DashboardSwitchAlert.makeAlert(isEnabling: false) {
             viewModel.switchToClassicDashboard(viewController: viewController.value)
         }
+    }
+
+    @ViewBuilder
+    private var feedback: some View {
+        VStack(spacing: 16) {
+            Text("What do you think of the new dashboard?", bundle: .student)
+                .font(.regular14, lineHeight: .fit)
+                .foregroundStyle(.textDarkest)
+
+            Button {
+
+            } label: {
+                HStack(spacing: 6) {
+                    Text("Let us know!", bundle: .student)
+
+                    Image.externalLinkLine
+                }
+                .padding(.vertical, 4)
+                .padding(.leading, 12)
+                .padding(.trailing, 8)
+                .foregroundStyle(.tint)
+            }
+            .buttonStyle(.pillTintOutlined)
+        }
+        .frame(maxWidth: .infinity)
     }
 }
 

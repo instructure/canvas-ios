@@ -18,46 +18,62 @@
 
 import Core
 import Observation
+import SwiftUI
 
 @Observable
 final class LearnerDashboardCourseSettingsViewModel {
-    var visibleConfigs: [Config]
-    var hiddenConfigs: [Config]
+    var configs: [Config]
 
     // Example username for preview and accessibility labels
     let username = "Riley"
 
     init(configs: [Config]) {
-        visibleConfigs = configs.filter { $0.isVisible }.sorted()
-        hiddenConfigs = configs.filter { !$0.isVisible }.sorted()
+        let visibleConfigs = configs.filter { $0.isVisible }.sorted()
+        let hiddenConfigs = configs.filter { !$0.isVisible }.sorted()
+
+        self.configs = visibleConfigs + hiddenConfigs
     }
 
     func toggleVisibility(of config: Config, to isVisible: Bool) {
-        if isVisible {
-            guard let index = hiddenConfigs.firstIndex(of: config) else { return }
-            var toggledConfig = hiddenConfigs.remove(at: index)
-            toggledConfig.isVisible = isVisible
-            visibleConfigs.append(toggledConfig)
-        } else {
-            guard let index = visibleConfigs.firstIndex(of: config) else { return }
-            var toggledConfig = visibleConfigs.remove(at: index)
-            toggledConfig.isVisible = isVisible
-            hiddenConfigs.append(toggledConfig)
-        }
+        guard let index = configs.firstIndex(of: config) else { return }
+
+        configs[index].isVisible = isVisible
+
+        let visibleConfigs = configs.filter { $0.isVisible }
+        let hiddenConfigs = configs.filter { !$0.isVisible }
+
+        configs = visibleConfigs + hiddenConfigs
     }
 
     func moveUp(_ config: Config) {
-        guard let index = visibleConfigs.firstIndex(of: config), index > visibleConfigs.startIndex else { return }
-        let previousConfigIndex = visibleConfigs.index(before: index)
+        guard let index = configs.firstIndex(of: config), index > configs.startIndex else { return }
+        let previousConfigIndex = configs.index(before: index)
 
-        visibleConfigs.swapAt(index, previousConfigIndex)
+        withAnimation {
+            configs.swapAt(index, previousConfigIndex)
+        }
+    }
+
+    func isMoveUpDisabled(of config: Config) -> Bool {
+        guard let index = configs.firstIndex(of: config), index > configs.startIndex else { return true }
+
+        return !config.isVisible
     }
 
     func moveDown(_ config: Config) {
-        guard let index = visibleConfigs.firstIndex(of: config), index < visibleConfigs.endIndex - 1 else { return }
-        let nextConfigIndex = visibleConfigs.index(after: index)
+        guard let index = configs.firstIndex(of: config), index < configs.endIndex - 1 else { return }
+        let nextConfigIndex = configs.index(after: index)
 
-        visibleConfigs.swapAt(index, nextConfigIndex)
+        withAnimation {
+            configs.swapAt(index, nextConfigIndex)
+        }
+    }
+
+    func isMoveDownDisabled(of config: Config) -> Bool {
+        guard let index = configs.firstIndex(of: config), index < configs.endIndex - 1 else { return true }
+        let nextConfigIndex = configs.index(after: index)
+
+        return !configs[nextConfigIndex].isVisible || !config.isVisible
     }
 }
 

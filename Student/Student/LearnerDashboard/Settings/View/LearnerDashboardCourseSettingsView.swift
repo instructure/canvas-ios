@@ -31,14 +31,11 @@ struct LearnerDashboardCourseSettingsView: View {
                 .foregroundStyle(.textDarkest)
                 .font(.regular14, lineHeight: .fit)
                 .frame(maxWidth: .infinity, alignment: .leading)
+                .accessibilityAddTraits(.isHeader)
 
             VStack(spacing: 16) {
-                ForEach(viewModel.visibleConfigs) { config in
+                ForEach(viewModel.configs) { config in
                     settingCard(config: config)
-                }
-
-                ForEach(viewModel.hiddenConfigs) { config in
-                    disabledSettingCard(config: config)
                 }
             }
         }
@@ -55,6 +52,7 @@ struct LearnerDashboardCourseSettingsView: View {
         VStack(spacing: 0) {
             HStack(spacing: 8) {
                 buttons(config: config)
+                    .tint(.accentColor)
 
                 InstUI.Toggle(isOn: binding) {
                     Text(config.id.title(username: viewModel.username))
@@ -87,7 +85,11 @@ struct LearnerDashboardCourseSettingsView: View {
             }
         }
         .padding(.horizontal, 16)
-        .elevation(.cardLarge, background: .backgroundLightest)
+        .elevation(
+            .cardLarge,
+            background: .backgroundLightest,
+            shadowColor: config.isVisible ? .black : .clear
+        )
     }
 
     @ViewBuilder
@@ -120,6 +122,10 @@ struct LearnerDashboardCourseSettingsView: View {
 
     @ViewBuilder
     private func buttons(config: Config) -> some View {
+        let isMoveDownDisabled = viewModel.isMoveDownDisabled(of: config)
+        let isMoveUpDisabled = viewModel.isMoveUpDisabled(of: config)
+        let allButtonsDisabled = isMoveDownDisabled && isMoveUpDisabled
+
         HStack(spacing: 4) {
             Button {
                 viewModel.moveUp(config)
@@ -129,7 +135,7 @@ struct LearnerDashboardCourseSettingsView: View {
                     .frame(width: 24 * uiScale, height: 24 * uiScale)
                     .rotationEffect(.degrees(180))
             }
-            .disabled(viewModel.visibleConfigs.first == config)
+            .disabled(isMoveUpDisabled)
             .accessibilityLabel(String(
                 localized: "Move \(config.id.title(username: viewModel.username)) widget up",
                 bundle: .student
@@ -145,7 +151,7 @@ struct LearnerDashboardCourseSettingsView: View {
                     .resizable()
                     .frame(width: 24 * uiScale, height: 24 * uiScale)
             }
-            .disabled(viewModel.visibleConfigs.last == config)
+            .disabled(isMoveDownDisabled)
             .accessibilityLabel(String(
                 localized: "Move \(config.id.title(username: viewModel.username)) widget down",
                 bundle: .student
@@ -153,7 +159,11 @@ struct LearnerDashboardCourseSettingsView: View {
         }
         .padding(.horizontal, 8)
         .fixedSize(horizontal: false, vertical: true)
-        .elevation(.cardSmall, background: .backgroundLightest)
+        .elevation(
+            .cardSmall,
+            background: allButtonsDisabled ? .backgroundLight : .backgroundLightest,
+            shadowColor: allButtonsDisabled ? .clear : .black
+        )
     }
 
     @ViewBuilder
@@ -207,4 +217,5 @@ extension Array where Element == DashboardWidgetConfig {
     }
     .padding()
     .background(.backgroundLight)
+    .tint(.yellow)
 }

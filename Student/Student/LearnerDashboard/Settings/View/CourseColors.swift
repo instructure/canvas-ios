@@ -32,7 +32,7 @@ extension LearnerDashboardColorSelectorView {
         .init(color: .course10, description: String(localized: "Copper", bundle: .core, comment: "This is a name of a color.")),
         .init(color: .course11, description: String(localized: "Rose", bundle: .core, comment: "This is a name of a color.")),
         .init(color: .course12, description: String(localized: "Stone", bundle: .core, comment: "This is a name of a color.")),
-        .init(color: .backgroundLightest, description: String(localized: "White", bundle: .core, comment: "This is a name of a color.")),
+        .init(color: .backgroundLightest.variantForLightMode, description: String(localized: "White", bundle: .core, comment: "This is a name of a color.")),
         .init(color: .backgroundLightest.variantForDarkMode, description: String(localized: "Black", bundle: .core, comment: "This is a name of a color."))
     ]
 
