@@ -13,3 +13,4 @@ targets:
           - ".swiftlint.yml"
     dependencies:
       - target: Student
+      - package: BusinessLogic

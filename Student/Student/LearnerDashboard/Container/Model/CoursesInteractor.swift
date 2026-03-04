@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import BusinessLogic
 import Combine
 import Core
 import CoreData
@@ -69,6 +70,7 @@ final class CoursesInteractorLive: CoursesInteractor {
     private let colorsStore: ReactiveStore<GetCustomColors>
     private let dashboardCardsStore: ReactiveStore<GetDashboardCards>
     private let favoriteGroupsStore: ReactiveStore<GetDashboardGroups>
+    private let courseLogic: BusinessLogic.Course
 
     private var subscriptions = Set<AnyCancellable>()
 
@@ -81,11 +83,13 @@ final class CoursesInteractorLive: CoursesInteractor {
 
     init(
         env: AppEnvironment,
-        sortComparator: some SortComparator<Course> = InvitedCourseSortComparator()
+        sortComparator: some SortComparator<Course> = InvitedCourseSortComparator(),
+        courseLogic: BusinessLogic.Course = .live
     ) {
         self.env = env
         self.context = env.database.backgroundReadContext
         self.sortComparator = sortComparator
+        self.courseLogic = courseLogic
 
         self.coursesStore = ReactiveStore(
             context: context,
@@ -185,10 +189,10 @@ final class CoursesInteractorLive: CoursesInteractor {
             groupsPublisher,
             favoritesPublisher
         )
-        .map { [sortComparator] courses, groups, favorites in
+        .map { [sortComparator, courseLogic] courses, groups, favorites in
             let allCourses = courses.filter { !$0.isCourseDeleted }
             let invitedCourses = allCourses
-                .filter { $0.hasInvitedEnrollment }
+                .filter { courseLogic.shouldShowAsInvitedCourse(isCourseClosed: $0.isPastEnrollment, hasInvitedEnrollment: $0.hasInvitedEnrollment) }
                 .sorted(using: sortComparator)
 
             return CoursesResult(
