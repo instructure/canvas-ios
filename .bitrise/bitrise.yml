@@ -19,7 +19,6 @@ workflows:
             # write your script here
             sudo systemsetup -settimezone America/Denver
         title: Set System Time to America
-    - activate-ssh-key: {}
     - git::https://github.com/instructure/steps-verify-pr.git@master:
         title: Verify PR
     - git-clone:
