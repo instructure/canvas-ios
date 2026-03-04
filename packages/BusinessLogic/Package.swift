@@ -1,6 +1,7 @@
+// swift-tools-version: 6.0
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2025-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,28 +17,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-import Core
-import SwiftUI
+import PackageDescription
 
-@Observable
-final class Widget3ViewModel: DashboardWidgetViewModel {
-    typealias ViewType = Widget3View
-
-    let config: DashboardWidgetConfig
-    let isFullWidth = false
-    let isEditable = false
-    var state: InstUI.ScreenState = .data
-
-    init(config: DashboardWidgetConfig) {
-        self.config = config
-    }
-
-    func makeView() -> Widget3View {
-        Widget3View(viewModel: self)
-    }
-
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        Just(()).eraseToAnyPublisher()
-    }
-}
+let package = Package(
+    name: "BusinessLogic",
+    platforms: [
+        .iOS(.v17)
+    ],
+    products: [
+        .library(
+            name: "BusinessLogic",
+            targets: ["BusinessLogic"]
+        ),
+    ],
+    targets: [
+        .target(
+            name: "BusinessLogic"
+        ),
+        .testTarget(
+            name: "BusinessLogicTests",
+            dependencies: ["BusinessLogic"]
+        ),
+    ]
+)

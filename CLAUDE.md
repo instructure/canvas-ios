@@ -30,7 +30,7 @@ The workspace root contains the following key projects:
 - **Shared utilities**: `Core/Core/Common/Extensions/`
 - **Shared components**: `Core/Core/Common/CommonUI/`
 - **Shared models**: `Core/Core/Common/CommonModels/`
-- **InstUI Design System**: `Core/Core/Common/CommonUI/InstUI/`
+- **InstUI Design System**: `Core/Core/Common/CommonUI/InstUI/` — see @Core/Core/Common/CommonUI/InstUI/CLAUDE.md for patterns
 - **HorizonUI Design System**: `Horizon/Horizon/Sources/Common/View/`
 
 ## Response Preferences
@@ -64,4 +64,5 @@ The workspace root contains the following key projects:
 - Ensure the code compiles and runs without errors
 - After creating new files or modifying project settings, run `make sync` to update Xcode projects via XcodeGen
 - When writing tests, make sure the tests pass
-- When you are asked to write tests, follow the conventions outlined in CLAUDE-unit-tests.md
+- When you are asked to write or modify tests, follow the conventions outlined in CLAUDE-unit-tests.md
+

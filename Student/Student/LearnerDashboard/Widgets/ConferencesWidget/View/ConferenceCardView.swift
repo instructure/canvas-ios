@@ -23,8 +23,9 @@ struct ConferenceCardView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.appEnvironment) private var env
     @Environment(\.viewController) private var controller
+    @Environment(\.offlineMode) private var offlineMode
+
     @State var viewModel: ConferenceCardViewModel
-    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -58,25 +59,32 @@ struct ConferenceCardView: View {
 
     private var joinButton: some View {
         PrimaryButton(
-            isAvailable: !$offlineModeViewModel.isOffline,
+            isAvailable: offlineMode.isAppOnline,
             action: { viewModel.didTapJoin(controller: controller) }
         ) {
-            Text("Join", bundle: .student)
-                .frame(maxWidth: .infinity)
+            InstUI.PillContent(
+                title: String(localized: "Join", bundle: .student),
+                size: .height24,
+                isTextBold: true
+            )
+            .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.pillButtonBrandFilled)
+        .buttonStyle(.pillTintFilled)
         .identifier("Conference.\(viewModel.id).joinButton")
     }
 
     private var dismissButton: some View {
         PrimaryButton(
-            isAvailable: !$offlineModeViewModel.isOffline,
+            isAvailable: offlineMode.isAppOnline,
             action: { viewModel.didTapDismiss() }
         ) {
-            Text("Dismiss", bundle: .student)
-                .frame(maxWidth: .infinity)
+            InstUI.PillContent(
+                title: String(localized: "Dismiss", bundle: .student),
+                size: .height24
+            )
+            .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.pillButtonDefaultOutlined)
+        .buttonStyle(.pillDefaultOutlined)
         .identifier("Conference.\(viewModel.id).dismissButton")
     }
 }

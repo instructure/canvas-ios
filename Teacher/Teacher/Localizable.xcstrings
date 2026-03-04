@@ -12825,6 +12825,7 @@
       }
     },
     "Comments (%lld)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {

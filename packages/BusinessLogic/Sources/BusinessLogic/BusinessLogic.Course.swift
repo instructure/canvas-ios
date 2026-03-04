@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,23 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import SwiftUI
+extension BusinessLogic {
 
-struct Widget3View: View {
+    public protocol Course {
+        func shouldShowAsInvitedCourse(isCourseClosed: Bool, hasInvitedEnrollment: Bool) -> Bool
+    }
 
-    @State var viewModel: Widget3ViewModel
+    public struct CourseLive: Course, Sendable {
 
-    var body: some View {
-        DashboardTitledWidget("Widget 3") {
-            DashboardWidgetCard {
-                VStack(alignment: .leading) {
-                    Text(verbatim: DashboardWidgetPlaceholderData.long(2))
-                        .foregroundColor(.secondary)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .paddingStyle(.standard)
-            }
+        public init() {}
+
+        public func shouldShowAsInvitedCourse(isCourseClosed: Bool, hasInvitedEnrollment: Bool) -> Bool {
+            !isCourseClosed && hasInvitedEnrollment
         }
     }
+}
+
+extension BusinessLogic.Course where Self == BusinessLogic.CourseLive {
+    public static var live: BusinessLogic.CourseLive { .init() }
 }

@@ -985,11 +985,13 @@
         <attribute name="canCreateAnnouncement" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="canCreateDiscussionTopic" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="concluded" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="contextName" attributeType="String"/>
         <attribute name="contextRaw" optional="YES" attributeType="String"/>
         <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="groupCategoryID" attributeType="String" defaultValueString=""/>
         <attribute name="id" attributeType="String"/>
         <attribute name="isFavorite" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="memberCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="showOnDashboard" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="groups" inverseEntity="ContextColor"/>

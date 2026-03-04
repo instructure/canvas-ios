@@ -25,8 +25,8 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = GlobalAnnouncementsWidgetView
 
     let config: DashboardWidgetConfig
-    let isFullWidth = true
     let isEditable = false
+    let isHiddenInEmptyState = true
 
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var announcements: [GlobalAnnouncementCardViewModel] = []
@@ -131,6 +131,6 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
         widgetAccessibilityTitle = [
             String(localized: "Announcements", bundle: .student),
             String.format(numberOfItems: count)
-        ].joined(separator: ", ")
+        ].accessibilityJoined()
     }
 }

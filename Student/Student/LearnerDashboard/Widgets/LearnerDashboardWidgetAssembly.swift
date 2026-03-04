@@ -22,16 +22,13 @@ import SwiftUI
 enum LearnerDashboardWidgetAssembly {
     static func makeDefaultWidgetConfigs() -> [DashboardWidgetConfig] {
         let identifiers: [DashboardWidgetIdentifier] = [
-            // full width
+            .offlineSyncProgress,
+            .fileUploadProgress,
             .conferences,
             .courseInvitations,
             .globalAnnouncements,
             .helloWidget,
-
-            // grid
-            .widget1,
-            .widget2,
-            .widget3
+            .coursesAndGroups
         ]
 
         return identifiers.enumerated().map { (index, id) in
@@ -45,13 +42,21 @@ enum LearnerDashboardWidgetAssembly {
         coursesInteractor: CoursesInteractor = makeCoursesInteractor()
     ) -> any DashboardWidgetViewModel {
         switch config.id {
+        case .offlineSyncProgress:
+            OfflineSyncProgressWidgetViewModel(
+                config: config,
+                dashboardViewModel: DashboardOfflineSyncProgressCardAssembly.makeViewModel()
+            )
+        case .fileUploadProgress:
+            FileUploadProgressWidgetViewModel(
+                config: config,
+                router: AppEnvironment.shared.router,
+                listViewModel: FileUploadNotificationCardListViewModel()
+            )
         case .conferences:
             ConferencesWidgetViewModel(
                 config: config,
-                interactor: .live(
-                    coursesInteractor: coursesInteractor,
-                    env: .shared
-                ),
+                interactor: .live(coursesInteractor: coursesInteractor, env: .shared),
                 snackBarViewModel: snackBarViewModel
             )
         case .courseInvitations:
@@ -68,21 +73,24 @@ enum LearnerDashboardWidgetAssembly {
         case .helloWidget:
             HelloWidgetViewModel(
                 config: config,
-                interactor: HelloWidgetInteractorLive(),
+                interactor: .live(),
                 dayPeriodProvider: .init()
             )
-        case .widget1:
-            Widget1ViewModel(config: config)
-        case .widget2:
-            Widget2ViewModel(config: config)
-        case .widget3:
-            Widget3ViewModel(config: config)
+        case .coursesAndGroups:
+            CoursesAndGroupsWidgetViewModel(
+                config: config,
+                interactor: .live(coursesInteractor: coursesInteractor, env: .shared)
+            )
         }
     }
 
     @ViewBuilder
     static func makeView(for viewModel: any DashboardWidgetViewModel) -> some View {
         switch viewModel {
+        case let vm as OfflineSyncProgressWidgetViewModel:
+            vm.makeView()
+        case let vm as FileUploadProgressWidgetViewModel:
+            vm.makeView()
         case let vm as ConferencesWidgetViewModel:
             vm.makeView()
         case let vm as CourseInvitationsWidgetViewModel:
@@ -91,11 +99,7 @@ enum LearnerDashboardWidgetAssembly {
             vm.makeView()
         case let vm as HelloWidgetViewModel:
             vm.makeView()
-        case let vm as Widget1ViewModel:
-            vm.makeView()
-        case let vm as Widget2ViewModel:
-            vm.makeView()
-        case let vm as Widget3ViewModel:
+        case let vm as CoursesAndGroupsWidgetViewModel:
             vm.makeView()
         default:
             SwiftUI.EmptyView()

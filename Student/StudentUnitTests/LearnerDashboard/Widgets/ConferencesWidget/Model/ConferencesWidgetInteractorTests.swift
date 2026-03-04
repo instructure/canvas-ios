@@ -41,6 +41,7 @@ final class ConferencesWidgetInteractorTests: StudentTestCase {
 
     override func setUp() {
         super.setUp()
+        databaseContextToUse = .backgroundRead
         coursesInteractor = CoursesInteractorMock()
     }
 
@@ -149,16 +150,15 @@ final class ConferencesWidgetInteractorTests: StudentTestCase {
             .make(id: ID(testData.courseId), name: testData.courseName),
             in: databaseClient
         )
-        let group = Group.save(
+        let group = CDAllCoursesGroupItem.save(
             .make(id: ID(testData.groupId), name: testData.groupName),
             in: databaseClient
         )
 
         try? databaseClient.save()
 
-        coursesInteractor.mockCoursesResult = CoursesResult(
+        coursesInteractor.mockCoursesResult = .make(
             allCourses: [course],
-            invitedCourses: [],
             groups: [group]
         )
     }
@@ -191,11 +191,7 @@ final class ConferencesWidgetInteractorTests: StudentTestCase {
 
         try? databaseClient.save()
 
-        coursesInteractor.mockCoursesResult = CoursesResult(
-            allCourses: [course],
-            invitedCourses: [],
-            groups: []
-        )
+        coursesInteractor.mockCoursesResult = .make(allCourses: [course])
     }
 
     private func setupConference() -> Conference {

@@ -16,16 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import BusinessLogic
 import Combine
 import Core
 import CoreData
 import Foundation
-
-struct CoursesResult {
-    let allCourses: [Course]
-    let invitedCourses: [Course]
-    let groups: [Group]
-}
 
 protocol CoursesInteractor {
     func getCourses(ignoreCache: Bool) -> AnyPublisher<CoursesResult, Error>
@@ -66,12 +61,17 @@ final class CoursesInteractorLive: CoursesInteractor {
 
     internal let coursesUseCase = GetAllUserCourses()
     let env: AppEnvironment
-
     private let context: NSManagedObjectContext
+    private let sortComparator: any SortComparator<Course>
+
     private let coursesStore: ReactiveStore<GetAllUserCourses>
     private let enrollmentsStore: ReactiveStore<GetEnrollments>
-    private let groupsStore: ReactiveStore<GetDashboardGroups>
-    private let sortComparator: any SortComparator<Course>
+    private let groupsStore: ReactiveStore<GetAllCoursesGroupListUseCase>
+    private let colorsStore: ReactiveStore<GetCustomColors>
+    private let dashboardCardsStore: ReactiveStore<GetDashboardCards>
+    private let favoriteGroupsStore: ReactiveStore<GetDashboardGroups>
+    private let courseLogic: BusinessLogic.Course
+
     private var subscriptions = Set<AnyCancellable>()
 
     /// Queue of requests waiting for fetch completion. Protected by context's queue.
@@ -83,16 +83,20 @@ final class CoursesInteractorLive: CoursesInteractor {
 
     init(
         env: AppEnvironment,
-        sortComparator: some SortComparator<Course> = InvitedCourseSortComparator()
+        sortComparator: some SortComparator<Course> = InvitedCourseSortComparator(),
+        courseLogic: BusinessLogic.Course = .live
     ) {
         self.env = env
         self.context = env.database.backgroundReadContext
         self.sortComparator = sortComparator
+        self.courseLogic = courseLogic
+
         self.coursesStore = ReactiveStore(
             context: context,
             useCase: coursesUseCase,
             environment: env
         )
+
         self.enrollmentsStore = ReactiveStore(
             context: context,
             useCase: GetEnrollments(
@@ -101,7 +105,26 @@ final class CoursesInteractorLive: CoursesInteractor {
             ),
             environment: env
         )
+
         self.groupsStore = ReactiveStore(
+            context: context,
+            useCase: GetAllCoursesGroupListUseCase(),
+            environment: env
+        )
+
+        self.colorsStore = ReactiveStore(
+            context: context,
+            useCase: GetCustomColors(),
+            environment: env
+        )
+
+        self.dashboardCardsStore = ReactiveStore(
+            context: context,
+            useCase: GetDashboardCards(),
+            environment: env
+        )
+
+        self.favoriteGroupsStore = ReactiveStore(
             context: context,
             useCase: GetDashboardGroups(),
             environment: env
@@ -145,23 +168,44 @@ final class CoursesInteractorLive: CoursesInteractor {
         let shouldIgnoreCache = pendingRequests.contains { $0.ignoreCache }
         currentFetchIgnoresCache = shouldIgnoreCache
 
-        Publishers.Zip3(
+        let coursesPublisher: AnyPublisher<[Course], Error> = Publishers.Zip3(
             coursesStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true),
             enrollmentsStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true),
-            groupsStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true)
+            colorsStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true)
         )
-        .map { [sortComparator] courses, _, groups in
+        .map { courses, _, _ in courses }
+        .eraseToAnyPublisher()
+
+        let groupsPublisher = groupsStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true)
+
+        let favoritesPublisher: AnyPublisher<([DashboardCard], [Group]), Error> = Publishers.Zip(
+            dashboardCardsStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true),
+            favoriteGroupsStore.getEntities(ignoreCache: shouldIgnoreCache, loadAllPages: true)
+        )
+        .eraseToAnyPublisher()
+
+        Publishers.Zip3(
+            coursesPublisher,
+            groupsPublisher,
+            favoritesPublisher
+        )
+        .map { [sortComparator, courseLogic] courses, groups, favorites in
             let allCourses = courses.filter { !$0.isCourseDeleted }
             let invitedCourses = allCourses
-                .filter { course in
-                    course.hasInvitedEnrollment
-                }
+                .filter { courseLogic.shouldShowAsInvitedCourse(isCourseClosed: $0.isPastEnrollment, hasInvitedEnrollment: $0.hasInvitedEnrollment) }
                 .sorted(using: sortComparator)
-            return CoursesResult(allCourses: allCourses, invitedCourses: invitedCourses, groups: groups)
+
+            return CoursesResult(
+                allCourses: allCourses,
+                invitedCourses: invitedCourses,
+                groups: groups,
+                courseCards: favorites.0,
+                favoriteGroups: favorites.1
+            )
         }
         .sink(
             receiveCompletion: { [weak self] completion in
-                guard case .failure(let error) = completion else { return }
+                guard let error = completion.error else { return }
                 self?.handleFetchError(error)
             },
             receiveValue: { [weak self] result in

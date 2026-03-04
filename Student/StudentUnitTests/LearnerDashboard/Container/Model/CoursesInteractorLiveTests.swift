@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import BusinessLogic
 import Combine
 @testable import Core
 @testable import Student
@@ -282,6 +283,58 @@ final class CoursesInteractorLiveTests: StudentTestCase {
         }
     }
 
+    func testGetCourses_forwardsCorrectArgumentsToBusinessLogic() {
+        let courseLogicMock = BusinessLogic.CourseMock()
+        testee = CoursesInteractorLive(env: env, courseLogic: courseLogicMock)
+
+        _ = mockCourseRequests(
+            active: [
+                APICourse.make(
+                    id: "1",
+                    workflow_state: .available,
+                    enrollments: [APIEnrollment.make(id: "e1", enrollment_state: .active)]
+                ),
+                APICourse.make(
+                    id: "2",
+                    workflow_state: .completed,
+                    enrollments: [APIEnrollment.make(id: "e2", enrollment_state: .invited)]
+                )
+            ]
+        )
+
+        XCTAssertSingleOutputAndFinish(testee.getCourses(ignoreCache: false), timeout: 5) { _ in
+            let invocations = courseLogicMock.shouldShowAsInvitedCourseReceivedInvocations
+            XCTAssertEqual(invocations.count, 2)
+            XCTAssertTrue(invocations.contains { !$0.isCourseClosed && !$0.hasInvitedEnrollment })
+            XCTAssertTrue(invocations.contains { $0.isCourseClosed && $0.hasInvitedEnrollment })
+        }
+    }
+
+    func testGetCourses_businessLogicReturnValueControlsInvitedCourses() {
+        let courseLogicMock = BusinessLogic.CourseMock(shouldShowAsInvitedCourseReturnValue: true)
+        testee = CoursesInteractorLive(env: env, courseLogic: courseLogicMock)
+
+        _ = mockCourseRequests(
+            active: [
+                APICourse.make(id: "1", name: "Course 1"),
+                APICourse.make(id: "2", name: "Course 2")
+            ],
+            invited: [
+                APICourse.make(
+                    id: "3",
+                    name: "Course 3",
+                    workflow_state: .deleted,
+                    enrollments: [APIEnrollment.make(id: "e3", enrollment_state: .invited)]
+                )
+            ]
+        )
+
+        XCTAssertSingleOutputAndFinish(testee.getCourses(ignoreCache: false), timeout: 5) { result in
+            XCTAssertEqual(result.allCourses.count, 2)
+            XCTAssertEqual(result.invitedCourses.count, 2)
+        }
+    }
+
     func testGetCoursesInvokesSortComparator() throws {
         let mockComparator = MockCourseSortComparator()
         testee = CoursesInteractorLive(env: env, sortComparator: mockComparator)
@@ -313,7 +366,7 @@ final class CoursesInteractorLiveTests: StudentTestCase {
             active: [APICourse.make(id: "1", name: "Course 1")]
         )
         api.mock(
-            GetDashboardGroups(),
+            GetAllCoursesGroupListUseCase(),
             value: [
                 .make(id: "group1", name: "Study Group"),
                 .make(id: "group2", name: "Project Team")
@@ -325,6 +378,32 @@ final class CoursesInteractorLiveTests: StudentTestCase {
             XCTAssertEqual(result.groups.count, 2)
             XCTAssertEqual(result.groups.first?.name, "Project Team")
             XCTAssertEqual(result.groups.last?.name, "Study Group")
+        }
+    }
+
+    func test_getCourses_shouldReturnCourseCards() {
+        _ = mockCourseRequests(
+            dashboardCards: [
+                .make(id: "card 1"),
+                .make(id: "card 2")
+            ]
+        )
+
+        XCTAssertSingleOutputAndFinish(testee.getCourses(ignoreCache: false), timeout: 5) { result in
+            XCTAssertEqual(result.courseCards.count, 2)
+        }
+    }
+
+    func test_getCourses_shouldReturnFavoriteGroups() {
+        _ = mockCourseRequests(
+            favoriteGroups: [
+                .make(id: "group 1"),
+                .make(id: "group 2")
+            ]
+        )
+
+        XCTAssertSingleOutputAndFinish(testee.getCourses(ignoreCache: false), timeout: 5) { result in
+            XCTAssertEqual(result.favoriteGroups.count, 2)
         }
     }
 
@@ -356,9 +435,13 @@ final class CoursesInteractorLiveTests: StudentTestCase {
         active: [APICourse] = [],
         completed: [APICourse] = [],
         invited: [APICourse] = [],
+        dashboardCards: [APIDashboardCard] = [],
+        favoriteGroups: [APIGroup] = [],
         error: Error? = nil,
         onActiveCalled: (() -> Void)? = nil
     ) -> (active: APIMock, completed: APIMock, invited: APIMock) {
+        api.mock(GetDashboardCardsRequest(), value: dashboardCards)
+        api.mock(GetFavoriteGroupsRequest(context: .currentUser), value: favoriteGroups)
         let activeMock = api.mock(testee.coursesUseCase.activeRequest) { _ in
             onActiveCalled?()
             if let error {

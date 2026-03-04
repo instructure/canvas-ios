@@ -21,8 +21,9 @@ import SwiftUI
 
 struct CourseInvitationCardView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @Environment(\.offlineMode) private var offlineMode
+
     @State var viewModel: CourseInvitationCardViewModel
-    @StateObject private var offlineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -58,35 +59,57 @@ struct CourseInvitationCardView: View {
     }
 
     private var acceptButton: some View {
-        PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline, action: viewModel.accept) {
+        PrimaryButton(isAvailable: offlineMode.isAppOnline, action: viewModel.accept) {
             ZStack {
                 if viewModel.isAccepting {
-                    ProgressView()
-                        .progressViewStyle(.indeterminateCircle(size: 16, lineWidth: 2, color: .textLightest))
+                    PillContentProgressView(size: .height24, color: .textLightest)
                 } else {
-                    Text("Accept", bundle: .student)
+                    InstUI.PillContent(
+                        title: String(localized: "Accept", bundle: .student),
+                        size: .height24,
+                        isTextBold: true
+                    )
                 }
             }
             .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.pillButtonBrandFilled)
+        .buttonStyle(.pillTintFilled)
         .identifier("CourseInvitation.\(viewModel.id).acceptButton")
     }
 
     private var declineButton: some View {
-        PrimaryButton(isAvailable: !$offlineModeViewModel.isOffline, action: viewModel.decline) {
+        PrimaryButton(isAvailable: offlineMode.isAppOnline, action: viewModel.decline) {
             ZStack {
                 if viewModel.isDeclining {
-                    ProgressView()
-                        .progressViewStyle(.indeterminateCircle(size: 16, lineWidth: 2, color: .textDarkest))
+                    PillContentProgressView(size: .height24, color: .textDarkest)
                 } else {
-                    Text("Decline", bundle: .student)
+                    InstUI.PillContent(
+                        title: String(localized: "Decline", bundle: .student),
+                        size: .height24
+                    )
                 }
             }
             .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.pillButtonDefaultOutlined)
+        .buttonStyle(.pillDefaultOutlined)
         .identifier("CourseInvitation.\(viewModel.id).rejectButton")
+    }
+}
+
+private struct PillContentProgressView: View {
+    @ScaledMetric private var uiScale: CGFloat = 1
+
+    let size: InstUI.PillContent.SizeConfig
+    let color: Color
+
+    var body: some View {
+        ProgressView()
+            .progressViewStyle(.indeterminateCircle(
+                size: size.iconSize * uiScale.iconScale,
+                lineWidth: 2 * uiScale.iconScale,
+                color: color
+            ))
+            .frame(minHeight: size.height * uiScale)
     }
 }
 

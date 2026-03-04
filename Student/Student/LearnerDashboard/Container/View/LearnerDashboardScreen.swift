@@ -26,6 +26,9 @@ struct LearnerDashboardScreen: View {
     @Environment(\.viewController) private var viewController
     @Environment(\.appEnvironment) private var env
 
+    private let screenPadding = InstUI.Styles.Padding.standard
+    @State private var isAnimationEnabled = false
+
     init(
         viewModel: LearnerDashboardViewModel,
         offlineModeViewModel: OfflineModeViewModel = OfflineModeAssembly.makeViewModel()
@@ -45,13 +48,27 @@ struct LearnerDashboardScreen: View {
                 )
             }
         ) { geometry in
-            DashboardWidgetLayout(
-                fullWidthWidgets: viewModel.fullWidthWidgets,
-                gridWidgets: viewModel.gridWidgets,
-                containerWidth: geometry.size.width
+            VStack(spacing: screenPadding.rawValue) {
+                ForEach(viewModel.widgets, id: \.id) { widgetViewModel in
+                    if widgetViewModel.shouldRenderWidget {
+                        LearnerDashboardWidgetAssembly.makeView(for: widgetViewModel)
+                    }
+                }
+            }
+            .paddingStyle(.all, screenPadding)
+            .animation(isAnimationEnabled ? .dashboardWidget : nil, value: viewModel.widgets.map(\.layoutIdentifier))
+            .onFirstAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    isAnimationEnabled = true
+                }
+            }
+            .environment(
+                \.containerSize,
+                CGSize(
+                    width: geometry.size.width - 2 * screenPadding.rawValue,
+                    height: geometry.size.height - 2 * screenPadding.rawValue
+                )
             )
-            .paddingStyle(.horizontal, .standard)
-            .paddingStyle(.bottom, .standard)
         }
         .snackBar(viewModel: viewModel.snackBarViewModel)
         .navigationBarDashboard()
