@@ -58,3 +58,10 @@ private struct UrnIetfMobileVerifyStrategy: MobileVerifyStrategy {
         return nil
     }
 }
+
+#if DEBUG
+extension MobileVerify {
+    static var defaultStrategy: MobileVerifyStrategy { DefaultMobileVerifyStrategy() }
+    static var urnIetfStrategy: MobileVerifyStrategy { UrnIetfMobileVerifyStrategy() }
+}
+#endif
