@@ -29,10 +29,7 @@ struct ToDoWidgetView: View {
     @ScaledMetric private var calendarRowHeight: CGFloat = 80
 
     var body: some View {
-        VStack(
-            alignment: .leading,
-            spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue
-        ) {
+        VStack(alignment: .leading, spacing: 0) {
             titleRow
             ZStack(alignment: .top) {
                 DashboardWidgetCard {
@@ -61,7 +58,7 @@ struct ToDoWidgetView: View {
                     }
                     .offset(x: 8)
                 }
-                .frame(height: calendarRowHeight + 8)
+                .frame(height: calendarRowHeight)
                 .padding(.top, cardHeaderHeight)
             }
         }
@@ -91,6 +88,7 @@ struct ToDoWidgetView: View {
                 .tint(.accentColor)
             }
         }
+        .padding(.bottom, 8)
     }
 
     // MARK: - Card Header
@@ -122,7 +120,8 @@ struct ToDoWidgetView: View {
             GeometryReader { geometry in
                 Color.clear
                     .onAppear { cardHeaderHeight = geometry.size.height }
-                    .onChange(of: geometry.size.height) { _, value in cardHeaderHeight = value }
+                    .onChange(of: geometry.size.height) { _, value in cardHeaderHeight = value
+                    }
             }
         }
     }
@@ -137,7 +136,6 @@ struct ToDoWidgetView: View {
             weekDays: weekDays(forOffset:)
         )
         .frame(height: calendarRowHeight)
-        //.padding(.vertical, 8)
         .padding(.horizontal, 32)
     }
 
