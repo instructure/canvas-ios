@@ -85,7 +85,7 @@ struct LearningLibraryCardView: View {
 
     private var cardAccessibilityLabel: String {
         var components: [String] = [model.name]
-        components.append(model.itemType.name)
+        components.append(String(format: "Item type %@", model.itemType.name))
         return components.joined(separator: ", ")
     }
 
@@ -158,7 +158,7 @@ struct LearningLibraryCardView: View {
             if let estimatedTime = model.estimatedTime {
                 defaultChip(title: String(format: "%@ mins", estimatedTime), icon: Image.huiIcons.schedule)
             }
-            if let units = model.numberOfUnits {
+            if let units = model.numberOfUnits, model.shouldShowProgressStatus {
                 defaultChip(
                     title: String(format: String(localized: "%d units"), units),
                     icon: Image.huiIcons.coursesFormatListBulleted
@@ -167,7 +167,7 @@ struct LearningLibraryCardView: View {
             if model.isRecommended {
                 recommendedView
             }
-            if model.isInProgress {
+            if model.isInProgress, model.shouldShowProgressStatus {
                 HorizonUI.StatusChip(
                     title: String(localized: "In progress"),
                     style: .gray,
@@ -176,7 +176,7 @@ struct LearningLibraryCardView: View {
                 )
                 .accessibilityHidden(true)
             }
-            if model.isCompleted {
+            if model.isCompleted, model.shouldShowProgressStatus {
                 HorizonUI.StatusChip(
                     title: String(localized: "Completed"),
                     style: .green,
@@ -189,7 +189,7 @@ struct LearningLibraryCardView: View {
                 .frame(height: 1)
                 .frame(maxWidth: .infinity)
                 .accessibilityHidden(true)
-            if !model.isEnrolled {
+            if model.shouldShowEnrollButton {
                 enrollButton
             }
         }

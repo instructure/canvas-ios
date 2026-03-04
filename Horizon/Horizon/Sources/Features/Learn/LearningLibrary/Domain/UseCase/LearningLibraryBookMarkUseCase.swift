@@ -35,18 +35,18 @@ final class LearningLibraryBookMarkUseCase: APIUseCase {
 
     private let journey: DomainServiceProtocol
     private let id: String
-    private let itemID: String
+    private let courseID: String
 
     // MARK: - Init
 
     init(
         journey: DomainServiceProtocol = DomainService(),
         id: String,
-        itemID: String
+        courseID: String
     ) {
         self.journey = journey
         self.id = id
-        self.itemID = itemID
+        self.courseID = courseID
     }
 
     func write(
@@ -56,7 +56,7 @@ final class LearningLibraryBookMarkUseCase: APIUseCase {
     ) {
         if let isBookmarked = response?.data.toggleCollectionItemBookmark.isBookmarked {
             CDHLearningLibraryCollectionItem.updateBookmark(
-                itemID: itemID,
+                courseID: courseID,
                 isBookmarked: isBookmarked,
                 in: client
             )

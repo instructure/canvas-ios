@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 protocol LearningLibraryItemNavigating {
     var router: Router { get }
@@ -39,7 +40,7 @@ extension LearningLibraryItemNavigating {
             }
             router.show(
                 CourseDetailsAssembly.makeCourseDetailsViewController(
-                    courseID: model.itemId,
+                    courseID: model.courseID,
                     enrollmentID: enrollmentId
                 ),
                 from: viewController
@@ -50,7 +51,30 @@ extension LearningLibraryItemNavigating {
                 from: viewController
             )
         default:
-            break
+            navigateToItemSequence(model: model, viewController: viewController)
         }
     }
+
+    private func navigateToItemSequence(
+         model: LearningLibraryCardModel,
+         viewController: WeakViewController
+     ) {
+
+         guard let baseURL = model.canvasUrl, let itemID = model.moduleItemID else { return }
+         let courseID = model.courseID
+
+         let url = baseURL.appendingPathComponent("courses")
+             .appendingPathComponent(courseID)
+             .appendingPathComponent("modules")
+             .appendingPathComponent("items")
+             .appendingPathComponent(itemID)
+
+         let moduleItem = HModuleItem(
+             id: itemID,
+             title: model.name,
+             htmlURL: url,
+             isCompleted: false
+         )
+         router.route(to: url, userInfo: ["moduleItem": moduleItem], from: viewController)
+     }
 }

@@ -66,6 +66,8 @@ final class GetHLearningLibraryCollectionRequestTests: CoreTestCase {
         isEnrolledInCanvas
         createdAt
         updatedAt
+        canvasModuleId
+        canvasModuleItemId
         canvasEnrollmentId
         canvasCourse {
           courseId

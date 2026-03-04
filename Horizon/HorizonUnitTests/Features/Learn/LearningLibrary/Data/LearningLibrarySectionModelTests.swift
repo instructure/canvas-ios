@@ -174,7 +174,7 @@ final class LearningLibrarySectionModelTests: HorizonTestCase {
     ) -> LearningLibraryCardModel {
         LearningLibraryCardModel(
             id: id,
-            itemId: "course-\(id)",
+            courseID: "course-\(id)",
             name: name,
             imageURL: nil,
             itemType: .course,

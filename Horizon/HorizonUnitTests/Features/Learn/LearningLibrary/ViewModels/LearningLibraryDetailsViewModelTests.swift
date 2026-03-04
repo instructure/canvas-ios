@@ -30,7 +30,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let mockItems = [
             LearningLibraryCardModel(
                 id: "item-1",
-                itemId: "course-123",
+                courseID: "course-123",
                 name: "Swift Course",
                 imageURL: nil,
                 itemType: .course,
@@ -43,7 +43,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
             ),
             LearningLibraryCardModel(
                 id: "item-2",
-                itemId: "course-456",
+                courseID: "course-456",
                 name: "SwiftUI Course",
                 imageURL: nil,
                 itemType: .course,
@@ -114,7 +114,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let mockItems = [
             LearningLibraryCardModel(
                 id: "item-1",
-                itemId: "course-123",
+                courseID: "course-123",
                 name: "Bookmarked Course",
                 imageURL: nil,
                 itemType: .course,
@@ -183,7 +183,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let mockItems = [
             LearningLibraryCardModel(
                 id: "item-1",
-                itemId: "course-123",
+                courseID: "course-123",
                 name: "Test Course",
                 imageURL: nil,
                 itemType: .course,
@@ -217,7 +217,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let mockItems = [
             LearningLibraryCardModel(
                 id: "item-1",
-                itemId: "course-123",
+                courseID: "course-123",
                 name: "Swift Programming",
                 imageURL: nil,
                 itemType: .course,
@@ -230,7 +230,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
             ),
             LearningLibraryCardModel(
                 id: "item-2",
-                itemId: "course-456",
+                courseID: "course-456",
                 name: "Python Basics",
                 imageURL: nil,
                 itemType: .course,
@@ -265,7 +265,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let mockItems = [
             LearningLibraryCardModel(
                 id: "item-1",
-                itemId: "course-123",
+                courseID: "course-123",
                 name: "Swift Course",
                 imageURL: nil,
                 itemType: .course,
@@ -278,7 +278,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
             ),
             LearningLibraryCardModel(
                 id: "item-2",
-                itemId: "page-456",
+                courseID: "page-456",
                 name: "Resource Page",
                 imageURL: nil,
                 itemType: .page,
@@ -313,7 +313,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let mockItems = [
             LearningLibraryCardModel(
                 id: "item-1",
-                itemId: "course-123",
+                courseID: "course-123",
                 name: "Bookmarked Course",
                 imageURL: nil,
                 itemType: .course,
@@ -326,7 +326,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
             ),
             LearningLibraryCardModel(
                 id: "item-2",
-                itemId: "course-456",
+                courseID: "course-456",
                 name: "Regular Course",
                 imageURL: nil,
                 itemType: .course,
@@ -361,7 +361,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let mockItems = [
             LearningLibraryCardModel(
                 id: "item-1",
-                itemId: "course-123",
+                courseID: "course-123",
                 name: "Completed Course",
                 imageURL: nil,
                 itemType: .course,
@@ -374,7 +374,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
             ),
             LearningLibraryCardModel(
                 id: "item-2",
-                itemId: "course-456",
+                courseID: "course-456",
                 name: "In Progress Course",
                 imageURL: nil,
                 itemType: .course,
@@ -409,7 +409,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let mockItems = [
             LearningLibraryCardModel(
                 id: "item-1",
-                itemId: "course-123",
+                courseID: "course-123",
                 name: "Swift Programming",
                 imageURL: nil,
                 itemType: .course,
@@ -422,7 +422,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
             ),
             LearningLibraryCardModel(
                 id: "item-2",
-                itemId: "course-456",
+                courseID: "course-456",
                 name: "Swift Advanced",
                 imageURL: nil,
                 itemType: .course,
@@ -528,7 +528,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
     func testAddBookmarkInDetailsPageUpdatesItem() {
         let mockCard = LearningLibraryCardModel(
             id: "item-1",
-            itemId: "course-123",
+            courseID: "course-123",
             name: "Test Course",
             imageURL: nil,
             itemType: .course,
@@ -541,7 +541,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         )
         let updatedCard = LearningLibraryCardModel(
             id: "item-1",
-            itemId: "course-123",
+            courseID: "course-123",
             name: "Test Course",
             imageURL: nil,
             itemType: .course,
@@ -574,7 +574,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
     func testAddBookmarkInBookmarksPageRemovesItem() {
         let mockCard = LearningLibraryCardModel(
             id: "item-1",
-            itemId: "course-123",
+            courseID: "course-123",
             name: "Test Course",
             imageURL: nil,
             itemType: .course,
@@ -587,7 +587,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         )
         let updatedCard = LearningLibraryCardModel(
             id: "item-1",
-            itemId: "course-123",
+            courseID: "course-123",
             name: "Test Course",
             imageURL: nil,
             itemType: .course,
@@ -622,7 +622,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
     func testAddBookmarkSendsDidSendEvent() {
         let mockCard = LearningLibraryCardModel(
             id: "item-1",
-            itemId: "course-123",
+            courseID: "course-123",
             name: "Test Course",
             imageURL: nil,
             itemType: .course,
@@ -655,7 +655,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
     func testAddBookmarkErrorShowsError() {
         let mockCard = LearningLibraryCardModel(
             id: "item-1",
-            itemId: "course-123",
+            courseID: "course-123",
             name: "Test Course",
             imageURL: nil,
             itemType: .course,
@@ -688,7 +688,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
     func testShowEnrollConfirmationShowsModal() {
         let mockCard = LearningLibraryCardModel(
             id: "item-1",
-            itemId: "course-123",
+            courseID: "course-123",
             name: "Test Course",
             imageURL: nil,
             itemType: .course,
@@ -722,7 +722,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let items = (1...20).map { i in
             LearningLibraryCardModel(
                 id: "item-\(i)",
-                itemId: "course-\(i)",
+                courseID: "course-\(i)",
                 name: "Course \(i)",
                 imageURL: nil,
                 itemType: .course,
@@ -755,7 +755,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let items = (1...20).map { i in
             LearningLibraryCardModel(
                 id: "item-\(i)",
-                itemId: "course-\(i)",
+                courseID: "course-\(i)",
                 name: "Course \(i)",
                 imageURL: nil,
                 itemType: .course,
@@ -786,7 +786,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let items = [
             LearningLibraryCardModel(
                 id: "item-1",
-                itemId: "course-123",
+                courseID: "course-123",
                 name: "Course 1",
                 imageURL: nil,
                 itemType: .course,

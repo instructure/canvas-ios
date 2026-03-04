@@ -61,6 +61,7 @@ struct LearnProgramListView: View {
                 contentView
             }
             .padding(.horizontal, .huiSpaces.space24)
+            .padding(.top, .huiSpaces.space10)
         }
         .refreshable { await viewModel.refresh() }
     }
