@@ -44,12 +44,20 @@ struct CourseCardView: View {
         self.showGrades = showGrades
         self.showColorOverlay = showColorOverlay
         self.a11yLabel = {
+            var gradeLabel: String?
             if showGrades, let grade = viewModel.grade {
-                [viewModel.title, String(localized: "Grade", bundle: .core), grade]
+                gradeLabel = [String(localized: "Grade", bundle: .core), grade]
                     .accessibilityJoined()
-            } else {
-                viewModel.title
             }
+
+            var announcementsLabel: String?
+            if viewModel.shouldShowAnnouncementsButton {
+                let count = String(viewModel.unreadAnnouncementCount)
+                announcementsLabel = [String(localized: "New Announcements", bundle: .core), count]
+                    .accessibilityJoined()
+            }
+
+            return [viewModel.title, gradeLabel, announcementsLabel].accessibilityJoined()
         }()
     }
 
@@ -76,6 +84,11 @@ struct CourseCardView: View {
             },
             labels: {
                 titleLabel
+            },
+            accessory: {
+                if viewModel.shouldShowAnnouncementsButton {
+                    announcementsButton
+                }
             },
             isAvailable: isAvailable,
             action: {
@@ -214,6 +227,22 @@ struct CourseCardView: View {
         .fixedSize(horizontal: true, vertical: false)
         .identifier("Dashboard.CourseCard.gradePill")
     }
+
+    // MARK: - Announcements button
+
+    private var announcementsButton: some View {
+        PrimaryButton(isAvailable: isAvailable) {
+            viewModel.didTapAnnouncements(from: controller)
+        } label: {
+            Image.announcementSolid
+                .scaledIcon()
+                .foregroundStyle(.textDark)
+                .instBadge(viewModel.unreadAnnouncementCount, style: .accessory)
+                .scaledFrame(height: 72, useIconScale: true) // increases tap area
+        }
+        .accessibilityLabel(viewModel.openAnnouncementsA11yLabel)
+        .identifier("Dashboard.CourseCard.announcementsButton")
+    }
 }
 
 // MARK: - Preview
@@ -223,8 +252,8 @@ struct CourseCardView: View {
 extension CourseCardView {
     static let previewData: [CoursesAndGroupsWidgetCourseItem] = [
         .make(id: "1", title: "Introduction to Computer Science", color: .course1, grade: "A+"),
-        .make(id: "2", title: .loremIpsumLong, color: .course4),
-        .make(id: "3", title: "Advanced Mathematics", color: .course11)
+        .make(id: "2", title: .loremIpsumLong, color: .course4, unreadAnnouncementCount: 1),
+        .make(id: "3", title: "Advanced Mathematics", color: .course11, unreadAnnouncementCount: 42)
     ]
 }
 

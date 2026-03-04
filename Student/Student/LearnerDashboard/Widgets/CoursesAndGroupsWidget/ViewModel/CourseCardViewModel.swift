@@ -28,6 +28,10 @@ struct CourseCardViewModel: Identifiable, Equatable {
     let imageUrl: URL?
     let grade: String?
 
+    let unreadAnnouncementCount: Int
+    let shouldShowAnnouncementsButton: Bool
+    let openAnnouncementsA11yLabel: String
+
     var isAvailableOffline: Bool {
         guard let selections = AppEnvironment.shared.userDefaults?.offlineSyncSelections else { return false }
         return selections.contains { $0.contains("courses/\(id)") }
@@ -47,6 +51,12 @@ struct CourseCardViewModel: Identifiable, Equatable {
         self.courseColor = model.color
         self.imageUrl = model.imageUrl
         self.grade = model.grade
+
+        self.unreadAnnouncementCount = model.unreadAnnouncementCount
+        self.shouldShowAnnouncementsButton = model.unreadAnnouncementCount > 0
+        self.openAnnouncementsA11yLabel = model.unreadAnnouncementCount == 1
+            ? String(localized: "Open New Announcement", bundle: .student)
+            : String(localized: "Open Announcements", bundle: .student)
 
         self.router = router
     }
@@ -79,6 +89,17 @@ struct CourseCardViewModel: Identifiable, Equatable {
             options: .modal(.formSheet, isDismissable: false, embedInNav: true),
             analyticsRoute: "/dashboard/customize_course"
         )
+    }
+
+    func didTapAnnouncements(from controller: WeakViewController) {
+        let route: String
+        if let announcementId = model.singleUnreadAnnouncementId {
+            route = "/courses/\(id)/announcements/\(announcementId)"
+        } else {
+            route = "/courses/\(id)/announcements"
+        }
+
+        router.route(to: route, from: controller, options: .push)
     }
 
     static func == (lhs: CourseCardViewModel, rhs: CourseCardViewModel) -> Bool {

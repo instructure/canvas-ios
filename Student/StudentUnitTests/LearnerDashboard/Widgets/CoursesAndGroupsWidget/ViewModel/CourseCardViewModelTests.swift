@@ -29,7 +29,8 @@ final class CourseCardViewModelTests: StudentTestCase {
         title: "some title",
         color: Color.course4,
         imageUrl: URL(string: "https://example.com/image.jpg")!,
-        grade: "some grade"
+        grade: "some grade",
+        announcementId: "announcement1"
     )
     private lazy var testData = Self.testData
 
@@ -48,7 +49,8 @@ final class CourseCardViewModelTests: StudentTestCase {
             title: testData.title,
             color: testData.color,
             imageUrl: testData.imageUrl,
-            grade: testData.grade
+            grade: testData.grade,
+            unreadAnnouncementCount: 42
         ))
 
         XCTAssertEqual(testee.id, testData.id)
@@ -56,6 +58,7 @@ final class CourseCardViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.courseColor, testData.color)
         XCTAssertEqual(testee.imageUrl, testData.imageUrl)
         XCTAssertEqual(testee.grade, testData.grade)
+        XCTAssertEqual(testee.unreadAnnouncementCount, 42)
     }
 
     // MARK: - isAvailableOffline
@@ -74,6 +77,39 @@ final class CourseCardViewModelTests: StudentTestCase {
         // selection is empty
         env.userDefaults?.offlineSyncSelections = []
         XCTAssertEqual(testee.isAvailableOffline, false)
+    }
+
+    // MARK: - shouldShowAnnouncementsButton
+
+    func test_shouldShowAnnouncementsButton() {
+        // WHEN unreadAnnouncementCount is 0
+        var testee = makeViewModel(model: .make(unreadAnnouncementCount: 0))
+        // THEN
+        XCTAssertEqual(testee.shouldShowAnnouncementsButton, false)
+
+        // WHEN unreadAnnouncementCount is 1
+        testee = makeViewModel(model: .make(unreadAnnouncementCount: 1))
+        // THEN
+        XCTAssertEqual(testee.shouldShowAnnouncementsButton, true)
+
+        // WHEN unreadAnnouncementCount is greater than 1
+        testee = makeViewModel(model: .make(unreadAnnouncementCount: 3))
+        // THEN
+        XCTAssertEqual(testee.shouldShowAnnouncementsButton, true)
+    }
+
+    // MARK: - openAnnouncementsA11yLabel
+
+    func test_openAnnouncementsA11yLabel() {
+        // WHEN unreadAnnouncementCount is 1
+        testee = makeViewModel(model: .make(unreadAnnouncementCount: 1))
+        // THEN
+        XCTAssertEqual(testee.openAnnouncementsA11yLabel, "Open New Announcement")
+
+        // WHEN unreadAnnouncementCount is greater than 1
+        testee = makeViewModel(model: .make(unreadAnnouncementCount: 3))
+        // THEN
+        XCTAssertEqual(testee.openAnnouncementsA11yLabel, "Open Announcements")
     }
 
     // MARK: - didTapCard
@@ -100,6 +136,36 @@ final class CourseCardViewModelTests: StudentTestCase {
         XCTAssertEqual(router.lastRoutedPath, "/offline/sync_picker/\(testData.id)")
         XCTAssertEqual(router.lastRoutedFromVC, vc)
         XCTAssertEqual(router.lastRoutedOptions?.isModal, true)
+    }
+
+    // MARK: - didTapAnnouncements
+
+    func test_didTapAnnouncements_withSingleUnreadAnnouncement_shouldRouteToAnnouncement() {
+        testee = makeViewModel(model: .make(
+            id: testData.id,
+            singleUnreadAnnouncementId: testData.announcementId
+        ))
+        let vc = UIViewController()
+
+        testee.didTapAnnouncements(from: .init(vc))
+
+        XCTAssertEqual(router.lastRoutedPath, "/courses/\(testData.id)/announcements/\(testData.announcementId)")
+        XCTAssertEqual(router.lastRoutedFromVC, vc)
+        XCTAssertEqual(router.lastRoutedOptions, .push)
+    }
+
+    func test_didTapAnnouncements_withMultipleUnreadAnnouncements_shouldRouteToAnnouncementsList() {
+        testee = makeViewModel(model: .make(
+            id: testData.id,
+            singleUnreadAnnouncementId: nil
+        ))
+        let vc = UIViewController()
+
+        testee.didTapAnnouncements(from: .init(vc))
+
+        XCTAssertEqual(router.lastRoutedPath, "/courses/\(testData.id)/announcements")
+        XCTAssertEqual(router.lastRoutedFromVC, vc)
+        XCTAssertEqual(router.lastRoutedOptions, .push)
     }
 
     // MARK: - Equatability
