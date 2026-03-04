@@ -20,9 +20,9 @@ import Combine
 @testable import Student
 
 final class LearnerDashboardInteractorMock: LearnerDashboardInteractor {
-    var loadWidgetsPublisher = PassthroughSubject<(fullWidth: [any DashboardWidgetViewModel], grid: [any DashboardWidgetViewModel]), Never>()
+    var loadWidgetsPublisher = PassthroughSubject<[any DashboardWidgetViewModel], Never>()
 
-    func loadWidgets() -> AnyPublisher<(fullWidth: [any DashboardWidgetViewModel], grid: [any DashboardWidgetViewModel]), Never> {
+    func loadWidgets() -> AnyPublisher<[any DashboardWidgetViewModel], Never> {
         loadWidgetsPublisher.eraseToAnyPublisher()
     }
 }

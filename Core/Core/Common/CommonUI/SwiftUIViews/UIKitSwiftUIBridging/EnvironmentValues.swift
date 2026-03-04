@@ -63,4 +63,6 @@ extension EnvironmentValues {
 
     // Used for passing colors to NavigationBar components.
     @Entry var navBarColors: NavigationBarColorConfiguration = .init(style: .modal)
+
+    @Entry public var offlineMode: OfflineMode = .init()
 }

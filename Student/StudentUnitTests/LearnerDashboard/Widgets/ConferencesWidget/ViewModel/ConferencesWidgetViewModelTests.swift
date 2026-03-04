@@ -59,7 +59,6 @@ final class ConferencesWidgetViewModelTests: StudentTestCase {
 
         XCTAssertEqual(testee.config.id, .conferences)
         XCTAssertEqual(testee.config.order, 42)
-        XCTAssertEqual(testee.isFullWidth, true)
         XCTAssertEqual(testee.isEditable, false)
         XCTAssertEqual(testee.state, .loading)
         XCTAssertEqual(testee.conferences.isEmpty, true)
@@ -202,7 +201,7 @@ final class ConferencesWidgetViewModelTests: StudentTestCase {
     // MARK: - Private helpers
 
     private func makeViewModel(
-        config: DashboardWidgetConfig = DashboardWidgetConfig(id: .conferences, order: 0, isVisible: true)
+        config: DashboardWidgetConfig = .make(id: .conferences)
     ) -> ConferencesWidgetViewModel {
         ConferencesWidgetViewModel(
             config: config,

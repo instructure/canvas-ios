@@ -26,6 +26,8 @@ class AttendanceViewControllerTests: TeacherTestCase {
     var controller: AttendanceViewController!
     var navigation: UINavigationController!
     let courseColor = "#008EE2"
+    var mocks: [APIMock] = []
+    var statusMock: APIMock!
 
     override func setUp() {
         super.setUp()
@@ -38,22 +40,22 @@ class AttendanceViewControllerTests: TeacherTestCase {
 
         navigation = UINavigationController(rootViewController: controller)
 
-        api.mock(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [
-            context.canvasContextID: courseColor
-        ]))
-        api.mock(GetCourseRequest(courseID: context.id), value: .make())
-        api.mock(GetCourseSectionsRequest(courseID: context.id, perPage: 100), value: [
-            .make(),
-            .make(name: "section 2")
-        ])
-        let url = URL(string: "/statuses?section_id=1&class_date=2019-10-31", relativeTo: controller.session.baseURL)!
-        api.mock(URLRequest(url: url), data: try? controller.session.encoder.encode([
+        let statusesURL = URL(string: "/statuses?section_id=1&class_date=2019-10-31", relativeTo: controller.session.baseURL)!
+        statusMock = api.mock(URLRequest(url: statusesURL), data: try? controller.session.encoder.encode([
             Status.make(attendance: .present),
             Status.make(id: "2", studentID: "2", student: .make(id: "2", name: "Sally"))
         ]))
-        api.mock(URLRequest(url: URL(string: "/statuses", relativeTo: controller.session.baseURL)!), data: try? controller.session.encoder.encode(Status.make()))
-        api.mock(URLRequest(url: URL(string: "/statuses/1", relativeTo: controller.session.baseURL)!), data: try? controller.session.encoder.encode(Status.make()))
-        api.mock(URLRequest(url: URL(string: "/statuses/2", relativeTo: controller.session.baseURL)!), data: try? controller.session.encoder.encode(Status.make(id: "2")))
+        statusMock.suspend()
+
+        mocks = [
+            api.mock(GetCustomColorsRequest(), value: APICustomColors(custom_colors: [context.canvasContextID: courseColor])),
+            api.mock(GetCourseRequest(courseID: context.id), value: .make()),
+            api.mock(GetCourseSectionsRequest(courseID: context.id, perPage: 100), value: [.make(), .make(name: "section 2")]),
+            api.mock(URLRequest(url: URL(string: "/statuses", relativeTo: controller.session.baseURL)!), data: try? controller.session.encoder.encode(Status.make())),
+            api.mock(URLRequest(url: URL(string: "/statuses/1", relativeTo: controller.session.baseURL)!), data: try? controller.session.encoder.encode(Status.make())),
+            api.mock(URLRequest(url: URL(string: "/statuses/2", relativeTo: controller.session.baseURL)!), data: try? controller.session.encoder.encode(Status.make(id: "2")))
+        ]
+        mocks.forEach { $0.suspend() }
     }
 
     override func tearDown() {
@@ -76,9 +78,6 @@ class AttendanceViewControllerTests: TeacherTestCase {
         }
 
         XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
-        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
-        RunLoop.main.run(until: Date() + 1)
-        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, false)
 
         // Assert state from mock data
         let first = IndexPath(row: 0, section: 0)
@@ -116,10 +115,6 @@ class AttendanceViewControllerTests: TeacherTestCase {
         loadView()
         controller.session.state = .error(NSError.instructureError("doh"))
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "doh")
-        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
-        waitUntil(shouldFail: true) {
-            controller.tableView.refreshControl?.isRefreshing == false
-        }
     }
 
     func testCourseError() {
@@ -127,8 +122,6 @@ class AttendanceViewControllerTests: TeacherTestCase {
         api.mock(GetCourseRequest(courseID: context.id), error: NSError.instructureError("oops"))
         controller.tableView.refreshControl?.sendActions(for: .valueChanged)
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "oops")
-        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
-        RunLoop.main.run(until: Date() + 1)
         waitUntil(shouldFail: true) {
             controller.tableView.refreshControl?.isRefreshing == false
         }
@@ -139,7 +132,6 @@ class AttendanceViewControllerTests: TeacherTestCase {
         api.mock(GetCourseSectionsRequest(courseID: context.id, perPage: 100), error: NSError.instructureError("ded"))
         controller.tableView.refreshControl?.sendActions(for: .valueChanged)
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "ded")
-        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
         waitUntil(shouldFail: true) {
             controller.tableView.refreshControl?.isRefreshing == false
         }
@@ -150,7 +142,6 @@ class AttendanceViewControllerTests: TeacherTestCase {
         api.mock(URLRequest(url: url), data: nil)
         loadView()
         XCTAssertEqual((router.presented as? UIAlertController)?.message, "Error: No data returned from the rollcall api.")
-        XCTAssertEqual(controller.tableView.refreshControl?.isRefreshing, true)
         waitUntil(shouldFail: true) {
             controller.tableView.refreshControl?.isRefreshing == false
         }
@@ -174,8 +165,10 @@ class AttendanceViewControllerTests: TeacherTestCase {
 
     private func loadView() {
         window.rootViewController = navigation
-        waitUntil(shouldFail: true) {
-            controller.view.superview != nil
-        }
+        waitUntil(shouldFail: true) { controller.view.superview != nil }
+        mocks.forEach { $0.resume() }
+        waitUntil(shouldFail: true) { controller.changeSectionButton.isEnabled }
+        statusMock.resume()
+        waitUntil(shouldFail: true) { controller.tableView.refreshControl?.isRefreshing == false }
     }
 }

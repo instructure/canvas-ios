@@ -30,7 +30,7 @@ public struct ImageLoaderView: View {
     public init<P: View>(
         url: URL?,
         options: SDWebImageOptions = [.scaleDownLargeImages, .retryFailed, .queryMemoryData],
-        maxImageSize: CGSize? = CGSize(width: 1000, height: 1000),
+        maxImageSize: CGSize? = CGSize(width: 800, height: 800),
         @ViewBuilder placeholder: @escaping () -> P
     ) {
         self.url = url
@@ -39,10 +39,7 @@ public struct ImageLoaderView: View {
         self.placeholder = { AnyView(placeholder()) }
 
         if let maxSize = maxImageSize {
-            self.context = [
-                .imageThumbnailPixelSize: maxSize,
-                .imageScaleFactor: UIScreen.main.scale
-            ]
+            self.context = Self.makeContext(maxImageSize: maxSize)
         } else {
             self.context = nil
         }
@@ -51,7 +48,7 @@ public struct ImageLoaderView: View {
     public init(
         url: URL?,
         options: SDWebImageOptions = [.scaleDownLargeImages, .retryFailed, .queryMemoryData],
-        maxImageSize: CGSize? = CGSize(width: 1000, height: 1000)
+        maxImageSize: CGSize? = CGSize(width: 800, height: 800)
     ) {
         self.url = url
         self.options = options
@@ -59,10 +56,7 @@ public struct ImageLoaderView: View {
         self.placeholder = nil
 
         if let maxSize = maxImageSize {
-            self.context = [
-                .imageThumbnailPixelSize: maxSize,
-                .imageScaleFactor: UIScreen.main.scale
-            ]
+            self.context = Self.makeContext(maxImageSize: maxSize)
         } else {
             self.context = nil
         }
@@ -85,5 +79,13 @@ public struct ImageLoaderView: View {
                 .resizable()
                 .indicator(.activity)
         }
+    }
+
+    private static func makeContext(maxImageSize: CGSize?) -> [SDWebImageContextOption: Any]? {
+        guard let maxSize = maxImageSize else { return nil }
+        return [
+            .imageThumbnailPixelSize: maxSize,
+            .imageScaleFactor: UITraitCollection.current.displayScale
+        ]
     }
 }

@@ -28,45 +28,61 @@ struct PillButtonStorybook: View {
 
                     HStack {
                         Button {} label: {
-                            Text(verbatim: "Brand Primary")
-                                .frame(maxWidth: .infinity)
+                            InstUI.PillContent(
+                                title: "Default Outline",
+                                size: .height24
+                            )
+                            .frame(maxWidth: .infinity)
                         }
-                        .buttonStyle(.pillButtonBrandFilled)
+                        .buttonStyle(.pillDefaultOutlined)
+                        .tint(.green) // should be ignored
 
                         Button {} label: {
-                            Text(verbatim: "Default Outline")
-                                .frame(maxWidth: .infinity)
+                            InstUI.PillContent(
+                                title: "Brand Primary",
+                                size: .height24,
+                                isTextBold: true
+                            )
+                            .frame(maxWidth: .infinity)
                         }
-                        .buttonStyle(.pillButtonDefaultOutlined)
+                        .buttonStyle(.pillTintFilled)
+                        .tint(.textInfo)
                     }
                 }
 
                 InstUI.Divider()
 
                 VStack(spacing: 16) {
-                    Text(verbatim: "Filled Style")
+                    Text(verbatim: "Filled Style (always tinted)")
                         .font(.headline)
 
                     Button {} label: {
-                        Text(verbatim: "Accept")
+                        InstUI.PillContent(
+                            title: "Accept",
+                            size: .height30
+                        )
                     }
-                    .buttonStyle(.pillButtonFilled(color: .textInfo))
-
-                    Button {
-                    } label: {
-                        HStack(spacing: 2) {
-                            Text(verbatim: "All Courses")
-                            Image.arrowOpenRightSolid
-                                .scaledIcon(size: 16)
-                                .offset(y: 1)
-                        }
-                    }
-                    .buttonStyle(.pillButtonFilled(color: .textInfo))
+                    .buttonStyle(.pillTintFilled)
+                    .tint(.textInfo)
 
                     Button {} label: {
-                        Text(verbatim: "Disabled")
+                        InstUI.PillContent(
+                            title: "All Courses",
+                            trailingIcon: .chevronRight,
+                            size: .height30
+                        )
                     }
-                    .buttonStyle(.pillButtonFilled(color: .textInfo))
+                    .buttonStyle(.pillTintFilled)
+                    .tint(.textInfo)
+
+                    Button {} label: {
+                        InstUI.PillContent(
+                            title: "Disabled",
+                            size: .height30
+                        )
+                    }
+                    .buttonStyle(.pillTintFilled)
+                    .tint(.textInfo)
                     .disabled(true)
                 }
 
@@ -77,26 +93,74 @@ struct PillButtonStorybook: View {
                         .font(.headline)
 
                     Button {} label: {
-                        Text(verbatim: "Decline")
+                        InstUI.PillContent(
+                            title: "Decline",
+                            size: .height30
+                        )
                     }
-                    .buttonStyle(.pillButtonOutlined(color: .textDanger))
-
-                    Button {
-                    } label: {
-                        HStack(spacing: 4) {
-                            Image.editLine
-                                .scaledIcon(size: 16)
-                                .offset(y: 1)
-                            Text(verbatim: "Customize Dashboard")
-                        }
-                    }
-                    .buttonStyle(.pillButtonOutlined(color: .textInfo))
+                    .buttonStyle(.pillTintOutlined)
+                    .tint(.textDanger)
 
                     Button {} label: {
-                        Text(verbatim: "Disabled")
+                        InstUI.PillContent(
+                            title: "Customize Dashboard",
+                            leadingIcon: .editLine,
+                            size: .height30
+                        )
                     }
-                    .buttonStyle(.pillButtonOutlined(color: .textDark))
+                    .buttonStyle(.pillTintOutlined)
+                    .tint(.textInfo)
+
+                    Button {} label: {
+                        InstUI.PillContent(
+                            title: "Disabled",
+                            size: .height30
+                        )
+                    }
+                    .buttonStyle(.pillTintOutlined)
+                    .tint(.textDark)
                     .disabled(true)
+                }
+
+                InstUI.Divider()
+
+                VStack(spacing: 16) {
+                    Text(verbatim: "Size options")
+                        .font(.headline)
+
+                    HStack(alignment: .top) {
+                        Button {} label: {
+                            InstUI.PillContent(title: "Height 30", trailingIcon: .infoLine, size: .height30)
+                        }
+                        .buttonStyle(.pillDefaultOutlined)
+
+                        Button {} label: {
+                            InstUI.PillContent(title: "Height 24", trailingIcon: .infoLine, size: .height24)
+                        }
+                        .buttonStyle(.pillDefaultOutlined)
+
+                        Button {} label: {
+                            InstUI.PillContent(title: "Height 20", trailingIcon: .infoLine, size: .height20)
+                        }
+                        .buttonStyle(.pillDefaultOutlined)
+                    }
+
+                    HStack(alignment: .top) {
+                        Button {} label: {
+                            InstUI.PillContent(title: "Height 30", trailingIcon: .infoLine, size: .height30)
+                        }
+                        .buttonStyle(.pillTintFilled)
+
+                        Button {} label: {
+                            InstUI.PillContent(title: "Height 24", trailingIcon: .infoLine, size: .height24)
+                        }
+                        .buttonStyle(.pillTintFilled)
+
+                        Button {} label: {
+                            InstUI.PillContent(title: "Height 20", trailingIcon: .infoLine, size: .height20)
+                        }
+                        .buttonStyle(.pillTintFilled)
+                    }
                 }
             }
             .padding()

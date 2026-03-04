@@ -25,80 +25,21 @@ final class DashboardWidgetConfigTests: XCTestCase {
 
     func test_comparable_shouldCompareByOrder() {
         // WHEN lhs.order < rhs.order
-        var lhs = DashboardWidgetConfig(id: .widget1, order: 5, isVisible: true)
-        var rhs = DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
+        var lhs = DashboardWidgetConfig(id: .helloWidget, order: 5, isVisible: true)
+        var rhs = DashboardWidgetConfig(id: .coursesAndGroups, order: 10, isVisible: true)
         // THEN
         XCTAssertEqual(lhs < rhs, true)
 
         // WHEN lhs.order > rhs.order
-        lhs = DashboardWidgetConfig(id: .widget1, order: 15, isVisible: true)
-        rhs = DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
+        lhs = DashboardWidgetConfig(id: .helloWidget, order: 15, isVisible: true)
+        rhs = DashboardWidgetConfig(id: .coursesAndGroups, order: 10, isVisible: true)
         // THEN
         XCTAssertEqual(lhs < rhs, false)
 
         // WHEN lhs.order == rhs.order
-        lhs = DashboardWidgetConfig(id: .widget1, order: 10, isVisible: true)
-        rhs = DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
+        lhs = DashboardWidgetConfig(id: .helloWidget, order: 10, isVisible: true)
+        rhs = DashboardWidgetConfig(id: .coursesAndGroups, order: 10, isVisible: true)
         // THEN
         XCTAssertEqual(lhs < rhs, false)
-    }
-
-    // MARK: - Array extension
-
-    func test_partitionedByLayout_shouldSeparateAndSortWidgets() {
-        let widgets = [
-            DashboardWidgetConfig(id: .widget1, order: 20, isVisible: true),
-            DashboardWidgetConfig(id: .courseInvitations, order: 5, isVisible: true),
-            DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true),
-            DashboardWidgetConfig(id: .widget3, order: 30, isVisible: true)
-        ]
-
-        let result = widgets.partitionedByLayout { config in
-            config.id == .courseInvitations
-        }
-
-        XCTAssertEqual(result.fullWidth.count, 1)
-        XCTAssertEqual(result.fullWidth.first?.id, .courseInvitations)
-        XCTAssertEqual(result.grid.count, 3)
-        XCTAssertEqual(result.grid[0].id, .widget2)
-        XCTAssertEqual(result.grid[1].id, .widget1)
-        XCTAssertEqual(result.grid[2].id, .widget3)
-    }
-
-    func test_partitionedByLayout_withAllFullWidth_shouldReturnAllInFullWidthArray() {
-        let widgets = [
-            DashboardWidgetConfig(id: .widget1, order: 20, isVisible: true),
-            DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
-        ]
-
-        let result = widgets.partitionedByLayout { _ in true }
-
-        XCTAssertEqual(result.fullWidth.count, 2)
-        XCTAssertEqual(result.fullWidth[0].id, .widget2)
-        XCTAssertEqual(result.fullWidth[1].id, .widget1)
-        XCTAssertEqual(result.grid.count, 0)
-    }
-
-    func test_partitionedByLayout_withAllGrid_shouldReturnAllInGridArray() {
-        let widgets = [
-            DashboardWidgetConfig(id: .widget1, order: 20, isVisible: true),
-            DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
-        ]
-
-        let result = widgets.partitionedByLayout { _ in false }
-
-        XCTAssertEqual(result.fullWidth.count, 0)
-        XCTAssertEqual(result.grid.count, 2)
-        XCTAssertEqual(result.grid[0].id, .widget2)
-        XCTAssertEqual(result.grid[1].id, .widget1)
-    }
-
-    func test_partitionedByLayout_withEmptyArray_shouldReturnEmptyArrays() {
-        let widgets: [DashboardWidgetConfig] = []
-
-        let result = widgets.partitionedByLayout { _ in true }
-
-        XCTAssertEqual(result.fullWidth.count, 0)
-        XCTAssertEqual(result.grid.count, 0)
     }
 }

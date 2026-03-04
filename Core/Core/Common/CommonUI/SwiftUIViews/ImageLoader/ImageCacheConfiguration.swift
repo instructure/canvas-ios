@@ -20,7 +20,7 @@ import Foundation
 import SDWebImage
 import UIKit
 
-public enum ImageCacheConfiguration: ~Copyable {
+public enum ImageCacheConfiguration {
     /// Maximum memory cache size in bytes (50 MB)
     private static let memoryMaxCost: Int = 52_428_800 // 50 * 1024 * 1024
     private static let memoryMaxCount: Int = 100
@@ -28,7 +28,12 @@ public enum ImageCacheConfiguration: ~Copyable {
     private static let diskMaxSize: UInt = 104_857_600 // 100 * 1024 * 1024
     private static let diskMaxAge: TimeInterval = 7 * 24 * 60 * 60
 
-    private static var isConfigured = false
+    private static let configurationQueue = DispatchQueue(label: "ImageCacheConfiguration", attributes: .concurrent)
+    private static var _isConfigured = false
+    private static var isConfigured: Bool {
+        get { configurationQueue.sync { _isConfigured } }
+        set { configurationQueue.async(flags: .barrier) { _isConfigured = newValue } }
+    }
     private static var memoryWarningObserver: NSObjectProtocol?
 
     public static func configure() {
