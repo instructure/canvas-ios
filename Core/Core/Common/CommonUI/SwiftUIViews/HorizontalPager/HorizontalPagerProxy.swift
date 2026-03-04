@@ -22,6 +22,8 @@ import Combine
  A utility entity which can be passed to a `HorizontalPager` in order to change pages programatically.
  */
 public struct HorizontalPagerProxy {
+    public init() {}
+
     public let scrollToNextPageSubject = PassthroughSubject<Void, Never>()
     public let scrollToPreviousPageSubject = PassthroughSubject<Void, Never>()
     public let scrollToPageSubject = PassthroughSubject<(pageIndex: Int, animated: Bool), Never>()

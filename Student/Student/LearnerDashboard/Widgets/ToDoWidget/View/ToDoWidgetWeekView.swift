@@ -19,109 +19,25 @@
 import Core
 import SwiftUI
 
-struct ToDoWidgetWeekView: View {
+struct ToDoWeekPageView: View {
+    let weekDays: [Date]
     let selectedDay: Date
-    let weekStart: Date
     let datesWithItems: Set<Date>
-    let showCompleted: Bool
-    let onPreviousWeek: () -> Void
-    let onNextWeek: () -> Void
     let onSelectDay: (Date) -> Void
-    let onToggleShowCompleted: () -> Void
-
-    private var weekDays: [Date] {
-        (0..<7).compactMap {
-            Calendar.current.date(byAdding: .day, value: $0, to: weekStart)
-        }
-    }
-
-    private var isCurrentYear: Bool {
-        Calendar.current.isDate(selectedDay, equalTo: Clock.now, toGranularity: .year)
-    }
 
     var body: some View {
-        VStack(spacing: 0) {
-            headerRow
-                .paddingStyle(.horizontal, .standard)
-                .padding(.bottom, 4)
-            showCompletedRow
-                .paddingStyle(.horizontal, .standard)
-                .padding(.bottom, 8)
-            calendarRow
-        }
-        .padding(.vertical, 8)
-    }
-
-    private var headerRow: some View {
-        HStack(alignment: .bottom) {
-            VStack(alignment: .leading, spacing: 0) {
-                if !isCurrentYear {
-                    Text(selectedDay.formatted(.dateTime.year()))
-                        .font(.regular12, lineHeight: .fit)
-                        .foregroundStyle(Color.textDark)
-                }
-                Text(selectedDay.formatted(.dateTime.month(.wide)))
-                    .font(.semibold22)
-                    .foregroundStyle(Color.textDarkest)
-            }
-            Spacer()
-        }
-    }
-
-    private var showCompletedRow: some View {
-        let binding = Binding<Bool>(
-            get: { showCompleted },
-            set: { _ in onToggleShowCompleted() }
-        )
-        return InstUI.Toggle(isOn: binding) {
-            Text("Show completed", bundle: .core)
-                .font(.regular14)
-                .foregroundStyle(Color.textDark)
-        }
-    }
-
-    private var calendarRow: some View {
-        ZStack {
-            HStack(spacing: 0) {
-                ForEach(weekDays, id: \.self) { day in
-                    ToDoWidgetDayCell(
-                        date: day,
-                        isSelected: Calendar.current.isDate(day, inSameDayAs: selectedDay),
-                        isToday: Calendar.current.isDateInToday(day),
-                        hasItems: datesWithItems.contains(day)
-                    )
-                    .onTapGesture { onSelectDay(day) }
-                    .frame(maxWidth: .infinity)
-                }
-            }
-            .paddingStyle(.horizontal, .standard)
-
-            HStack {
-                circleNavButton(
-                    systemImage: "chevron.left",
-                    a11yLabel: String(localized: "Previous week", bundle: .student),
-                    action: onPreviousWeek
+        HStack(spacing: 0) {
+            ForEach(weekDays, id: \.self) { day in
+                ToDoWidgetDayCell(
+                    date: day,
+                    isSelected: Calendar.current.isDate(day, inSameDayAs: selectedDay),
+                    isToday: Calendar.current.isDateInToday(day),
+                    hasItems: datesWithItems.contains(day)
                 )
-                Spacer()
-                circleNavButton(
-                    systemImage: "chevron.right",
-                    a11yLabel: String(localized: "Next week", bundle: .student),
-                    action: onNextWeek
-                )
+                .onTapGesture { onSelectDay(day) }
+                .frame(maxWidth: .infinity)
             }
-            .paddingStyle(.horizontal, .standard)
         }
-    }
-
-    private func circleNavButton(systemImage: String, a11yLabel: String, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Image(systemName: systemImage)
-                .font(.system(size: 12, weight: .semibold))
-                .foregroundStyle(Color.textLightest)
-                .frame(width: 24, height: 24)
-                .background(Circle().fill(Color.accentColor))
-        }
-        .accessibilityLabel(a11yLabel)
     }
 }
 

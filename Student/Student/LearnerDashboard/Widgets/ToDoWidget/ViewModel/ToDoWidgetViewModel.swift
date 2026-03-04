@@ -330,7 +330,15 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         markDoneTimers.removeValue(forKey: item.plannableId)
     }
 
-    private static func startOfWeek(for date: Date) -> Date {
+    func setWeek(absoluteOffset offset: Int) {
+        let base = Self.startOfWeek(for: Clock.now)
+        guard let newWeekStart = Calendar.current.date(byAdding: .weekOfYear, value: offset, to: base) else { return }
+        weekStart = newWeekStart
+        let today = Calendar.current.startOfDay(for: Clock.now)
+        selectedDay = Calendar.current.date(byAdding: .weekOfYear, value: offset, to: today) ?? today
+    }
+
+    internal static func startOfWeek(for date: Date) -> Date {
         Calendar.current.dateInterval(of: .weekOfYear, for: date)?.start ?? Calendar.current.startOfDay(for: date)
     }
 }
