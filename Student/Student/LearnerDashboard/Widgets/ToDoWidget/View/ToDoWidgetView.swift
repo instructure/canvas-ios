@@ -92,15 +92,12 @@ struct ToDoWidgetView: View {
                     .foregroundStyle(Color.textDarkest)
             }
             Spacer()
-            HStack(spacing: 8) {
+            InstUI.Toggle(isOn: showCompletedBinding) {
                 Text("Show Completed", bundle: .core)
                     .font(.regular14)
                     .foregroundStyle(Color.accentColor)
-                Toggle("", isOn: showCompletedBinding)
-                    .labelsHidden()
-                    .tint(Color.accentColor)
-                    .fixedSize()
             }
+            .fixedSize()
         }
         .paddingStyle(.horizontal, .standard)
         .padding(.top, 12)
@@ -126,9 +123,7 @@ struct ToDoWidgetView: View {
             ) { pageIndex in
                 ToDoWeekPageView(
                     weekDays: weekDays(forPageIndex: pageIndex),
-                    selectedDay: viewModel.selectedDay,
-                    datesWithItems: viewModel.datesWithItems,
-                    onSelectDay: viewModel.selectDay
+                    viewModel: viewModel
                 )
             }
             .frame(height: calendarRowHeight)
@@ -140,7 +135,7 @@ struct ToDoWidgetView: View {
                 pagerProxy.scrollToNextPage()
             }
         }
-        .paddingStyle(.horizontal, .standard)
+        .padding(.horizontal, 8)
         .padding(.vertical, 8)
     }
 
@@ -213,6 +208,7 @@ struct ToDoWidgetView: View {
                     onSwipeCommitted: { viewModel.handleSwipeCommitted($0) },
                     isSwiping: .constant(false)
                 )
+                .paddingStyle(.leading, .standard)
                 InstUI.Divider(.padded)
             }
             addToDoButton

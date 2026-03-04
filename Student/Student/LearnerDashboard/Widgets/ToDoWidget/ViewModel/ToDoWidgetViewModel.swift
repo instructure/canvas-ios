@@ -44,7 +44,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     }
 
     var datesWithItems: Set<Date> {
-        Set(allGroups.map { $0.date })
+        Set(allGroups.map { Calendar.current.startOfDay(for: $0.date) })
     }
 
     var isShowingToday: Bool {
@@ -143,9 +143,12 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     }
 
     func createToDo(from viewController: WeakViewController) {
+        let weakVC = WeakViewController()
         let vc = PlannerAssembly.makeCreateToDoViewController(selectedDate: selectedDay) { [weak self] _ in
+            self?.router.dismiss(weakVC)
             self?.loadItems(ignorePlannablesCache: true, ignoreCoursesCache: false)
         }
+        weakVC.setValue(vc)
         router.show(vc, from: viewController, options: .modal(embedInNav: true))
     }
 

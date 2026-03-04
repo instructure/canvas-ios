@@ -21,20 +21,18 @@ import SwiftUI
 
 struct ToDoWeekPageView: View {
     let weekDays: [Date]
-    let selectedDay: Date
-    let datesWithItems: Set<Date>
-    let onSelectDay: (Date) -> Void
+    let viewModel: ToDoWidgetViewModel
 
     var body: some View {
         HStack(spacing: 0) {
             ForEach(weekDays, id: \.self) { day in
                 ToDoWidgetDayCell(
                     date: day,
-                    isSelected: Calendar.current.isDate(day, inSameDayAs: selectedDay),
+                    isSelected: Calendar.current.isDate(day, inSameDayAs: viewModel.selectedDay),
                     isToday: Calendar.current.isDateInToday(day),
-                    hasItems: datesWithItems.contains(day)
+                    hasItems: viewModel.datesWithItems.contains(day)
                 )
-                .onTapGesture { onSelectDay(day) }
+                .onTapGesture { viewModel.selectDay(day) }
                 .frame(maxWidth: .infinity)
             }
         }
