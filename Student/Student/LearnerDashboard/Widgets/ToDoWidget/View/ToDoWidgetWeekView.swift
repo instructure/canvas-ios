@@ -23,11 +23,11 @@ struct ToDoWidgetWeekView: View {
     let selectedDay: Date
     let weekStart: Date
     let datesWithItems: Set<Date>
-    let isShowingCurrentWeek: Bool
+    let showCompleted: Bool
     let onPreviousWeek: () -> Void
     let onNextWeek: () -> Void
-    let onToday: () -> Void
     let onSelectDay: (Date) -> Void
+    let onToggleShowCompleted: () -> Void
 
     private var weekDays: [Date] {
         (0..<7).compactMap {
@@ -35,65 +35,93 @@ struct ToDoWidgetWeekView: View {
         }
     }
 
+    private var isCurrentYear: Bool {
+        Calendar.current.isDate(selectedDay, equalTo: Clock.now, toGranularity: .year)
+    }
+
     var body: some View {
         VStack(spacing: 0) {
             headerRow
-            dayRow
+                .paddingStyle(.horizontal, .standard)
+                .padding(.bottom, 4)
+            showCompletedRow
+                .paddingStyle(.horizontal, .standard)
+                .padding(.bottom, 8)
+            calendarRow
         }
         .padding(.vertical, 8)
     }
 
     private var headerRow: some View {
-        HStack(spacing: 0) {
-            Button(action: onPreviousWeek) {
-                Image.huiIcons.chevronLeft
-                    .scaledIcon(size: 20)
-                    .padding(8)
+        HStack(alignment: .bottom) {
+            VStack(alignment: .leading, spacing: 0) {
+                if !isCurrentYear {
+                    Text(selectedDay.formatted(.dateTime.year()))
+                        .font(.regular12, lineHeight: .fit)
+                        .foregroundStyle(Color.textDark)
+                }
+                Text(selectedDay.formatted(.dateTime.month(.wide)))
+                    .font(.semibold22)
+                    .foregroundStyle(Color.textDarkest)
             }
-            .foregroundStyle(Color.textDark)
-            .accessibilityLabel(String(localized: "Previous week", bundle: .student))
-
-            Text(monthYearText)
-                .font(.semibold16)
-                .foregroundStyle(Color.textDarkest)
-                .frame(maxWidth: .infinity)
-
-            if !isShowingCurrentWeek {
-                Button(String(localized: "Today", bundle: .core), action: onToday)
-                    .font(.regular14)
-                    .foregroundStyle(Color.accentColor)
-                    .padding(.horizontal, 8)
-            }
-
-            Button(action: onNextWeek) {
-                Image.chevronRight
-                    .scaledIcon(size: 20)
-                    .padding(8)
-            }
-            .foregroundStyle(Color.textDark)
-            .accessibilityLabel(String(localized: "Next week", bundle: .student))
+            Spacer()
         }
-        .paddingStyle(.horizontal, .standard)
     }
 
-    private var dayRow: some View {
-        HStack(spacing: 0) {
-            ForEach(weekDays, id: \.self) { day in
-                ToDoWidgetDayCell(
-                    date: day,
-                    isSelected: Calendar.current.isDate(day, inSameDayAs: selectedDay),
-                    isToday: Calendar.current.isDateInToday(day),
-                    hasItems: datesWithItems.contains(day)
+    private var showCompletedRow: some View {
+        let binding = Binding<Bool>(
+            get: { showCompleted },
+            set: { _ in onToggleShowCompleted() }
+        )
+        return InstUI.Toggle(isOn: binding) {
+            Text("Show completed", bundle: .core)
+                .font(.regular14)
+                .foregroundStyle(Color.textDark)
+        }
+    }
+
+    private var calendarRow: some View {
+        ZStack {
+            HStack(spacing: 0) {
+                ForEach(weekDays, id: \.self) { day in
+                    ToDoWidgetDayCell(
+                        date: day,
+                        isSelected: Calendar.current.isDate(day, inSameDayAs: selectedDay),
+                        isToday: Calendar.current.isDateInToday(day),
+                        hasItems: datesWithItems.contains(day)
+                    )
+                    .onTapGesture { onSelectDay(day) }
+                    .frame(maxWidth: .infinity)
+                }
+            }
+            .paddingStyle(.horizontal, .standard)
+
+            HStack {
+                circleNavButton(
+                    systemImage: "chevron.left",
+                    a11yLabel: String(localized: "Previous week", bundle: .student),
+                    action: onPreviousWeek
                 )
-                .onTapGesture { onSelectDay(day) }
-                .frame(maxWidth: .infinity)
+                Spacer()
+                circleNavButton(
+                    systemImage: "chevron.right",
+                    a11yLabel: String(localized: "Next week", bundle: .student),
+                    action: onNextWeek
+                )
             }
+            .paddingStyle(.horizontal, .standard)
         }
-        .paddingStyle(.horizontal, .standard)
     }
 
-    private var monthYearText: String {
-        selectedDay.formatted(.dateTime.month(.wide).year())
+    private func circleNavButton(systemImage: String, a11yLabel: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Image(systemName: systemImage)
+                .font(.system(size: 12, weight: .semibold))
+                .foregroundStyle(Color.textLightest)
+                .frame(width: 24, height: 24)
+                .background(Circle().fill(Color.accentColor))
+        }
+        .accessibilityLabel(a11yLabel)
     }
 }
 

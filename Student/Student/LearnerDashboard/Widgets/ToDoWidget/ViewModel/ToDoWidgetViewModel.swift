@@ -33,6 +33,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var selectedDay: Date
     private(set) var weekStart: Date
+    private(set) var showCompleted: Bool
 
     private var allGroups: [TodoGroupViewModel] = []
 
@@ -46,17 +47,17 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         Set(allGroups.map { $0.date })
     }
 
-    var isShowingCurrentWeek: Bool {
-        let todayWeekStart = Self.startOfWeek(for: Clock.now)
-        return Calendar.current.isDate(weekStart, inSameDayAs: todayWeekStart)
+    var isShowingToday: Bool {
+        Calendar.current.isDateInToday(selectedDay)
     }
 
     var layoutIdentifier: [AnyHashable] {
-        [state, dayItems.count, selectedDay]
+        [state, dayItems.count, selectedDay, showCompleted]
     }
 
     private let interactor: TodoInteractor
     private let router: Router
+    private var sessionDefaults: SessionDefaults
     private var subscriptions = Set<AnyCancellable>()
     private var markDoneTimers: [String: AnyCancellable] = [:]
 
@@ -64,12 +65,15 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         config: DashboardWidgetConfig,
         interactor: TodoInteractor,
         router: Router,
-        snackBarViewModel: SnackBarViewModel
+        snackBarViewModel: SnackBarViewModel,
+        sessionDefaults: SessionDefaults
     ) {
         self.config = config
         self.interactor = interactor
         self.router = router
         self.snackBarViewModel = snackBarViewModel
+        self.sessionDefaults = sessionDefaults
+        self.showCompleted = sessionDefaults.todoFilterOptions?.visibilityOptions.contains(.showCompleted) ?? false
         let today = Calendar.current.startOfDay(for: Clock.now)
         self.selectedDay = today
         self.weekStart = Self.startOfWeek(for: today)
@@ -147,6 +151,23 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
 
     func retryLoad() {
         state = .loading
+        loadItems(ignorePlannablesCache: true, ignoreCoursesCache: false)
+    }
+
+    func toggleShowCompleted() {
+        var opts = sessionDefaults.todoFilterOptions ?? .default
+        var visibility = opts.visibilityOptions
+        if showCompleted {
+            visibility.remove(.showCompleted)
+        } else {
+            visibility.insert(.showCompleted)
+        }
+        sessionDefaults.todoFilterOptions = TodoFilterOptions(
+            visibilityOptions: visibility,
+            dateRangeStart: opts.dateRangeStart,
+            dateRangeEnd: opts.dateRangeEnd
+        )
+        showCompleted.toggle()
         loadItems(ignorePlannablesCache: true, ignoreCoursesCache: false)
     }
 

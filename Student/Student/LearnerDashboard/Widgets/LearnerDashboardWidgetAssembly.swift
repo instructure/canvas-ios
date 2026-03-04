@@ -83,17 +83,26 @@ enum LearnerDashboardWidgetAssembly {
                 interactor: .live(coursesInteractor: coursesInteractor, env: .shared)
             )
         case .toDo:
-            ToDoWidgetViewModel(
-                config: config,
-                interactor: TodoInteractorLive(
-                    alwaysExcludeCompleted: false,
-                    sessionDefaults: AppEnvironment.shared.userDefaults ?? .fallback,
-                    env: .shared
-                ),
-                router: AppEnvironment.shared.router,
-                snackBarViewModel: snackBarViewModel
-            )
+            makeToDoWidgetViewModel(config: config, snackBarViewModel: snackBarViewModel)
         }
+    }
+
+    private static func makeToDoWidgetViewModel(
+        config: DashboardWidgetConfig,
+        snackBarViewModel: SnackBarViewModel
+    ) -> ToDoWidgetViewModel {
+        let sessionDefaults = AppEnvironment.shared.userDefaults ?? .fallback
+        return ToDoWidgetViewModel(
+            config: config,
+            interactor: TodoInteractorLive(
+                alwaysExcludeCompleted: false,
+                sessionDefaults: sessionDefaults,
+                env: .shared
+            ),
+            router: AppEnvironment.shared.router,
+            snackBarViewModel: snackBarViewModel,
+            sessionDefaults: sessionDefaults
+        )
     }
 
     @ViewBuilder

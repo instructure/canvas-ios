@@ -22,20 +22,42 @@ import SwiftUI
 struct ToDoWidgetView: View {
     @State var viewModel: ToDoWidgetViewModel
     @Environment(\.viewController) private var viewController
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @State private var isSwiping = false
 
     var body: some View {
-        DashboardTitledWidget(String(localized: "To Do", bundle: .student)) {
+        VStack(
+            alignment: .leading,
+            spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue
+        ) {
+            HStack(alignment: .center) {
+                Text("To Do", bundle: .student)
+                    .font(.regular14, lineHeight: .fit)
+                    .foregroundStyle(.textDarkest)
+                    .accessibilityAddTraits(.isHeader)
+                Spacer()
+                if !viewModel.isShowingToday {
+                    Button { viewModel.navigateToToday() } label: {
+                        InstUI.PillContent(
+                            title: String(localized: "Today", bundle: .core),
+                            size: .height24
+                        )
+                    }
+                    .buttonStyle(.pillTintFilled)
+                    .tint(.accentColor)
+                }
+            }
+
             VStack(spacing: 0) {
                 ToDoWidgetWeekView(
                     selectedDay: viewModel.selectedDay,
                     weekStart: viewModel.weekStart,
                     datesWithItems: viewModel.datesWithItems,
-                    isShowingCurrentWeek: viewModel.isShowingCurrentWeek,
+                    showCompleted: viewModel.showCompleted,
                     onPreviousWeek: viewModel.navigateToPreviousWeek,
                     onNextWeek: viewModel.navigateToNextWeek,
-                    onToday: viewModel.navigateToToday,
-                    onSelectDay: viewModel.selectDay
+                    onSelectDay: viewModel.selectDay,
+                    onToggleShowCompleted: viewModel.toggleShowCompleted
                 )
 
                 InstUI.Divider(.full)
@@ -81,25 +103,26 @@ struct ToDoWidgetView: View {
     }
 
     private var emptyDayView: some View {
-        VStack(spacing: 8) {
-            EmptyPanda(
-                .NoEvents,
-                title: Text("No To-dos!", bundle: .student),
-                message: Text("It looks like a great time to rest, relax, and recharge.", bundle: .core)
-            )
-            Button {
-                viewModel.createToDo(from: viewController)
-            } label: {
-                Label {
-                    Text("Add To Do", bundle: .core)
-                } icon: {
-                    Image.noteLine
-                }
+        HStack(spacing: 12) {
+            Image.emptyLine
+                .scaledIcon(size: 48)
+                .foregroundStyle(Color.textLight)
+
+            VStack(alignment: .leading, spacing: 4) {
+                Text("No To-dos!", bundle: .student)
+                    .font(.semibold16)
+                    .foregroundStyle(Color.textDarkest)
+                Text("It looks like a great time to rest, relax, and recharge.", bundle: .core)
+                    .font(.regular14)
+                    .foregroundStyle(Color.textDark)
+                addToDoButton
+                    .padding(.top, 4)
             }
-            .font(.semibold14)
-            .foregroundStyle(Color.accentColor)
-            .padding(.bottom)
+
+            Spacer(minLength: 0)
         }
+        .paddingStyle(.horizontal, .standard)
+        .padding(.vertical, 16)
     }
 
     private var itemListView: some View {
@@ -115,7 +138,24 @@ struct ToDoWidgetView: View {
                 )
                 InstUI.Divider(.padded)
             }
+            addToDoButton
+                .padding(.horizontal, 80)
+                .padding(.vertical, 16)
         }
+    }
+
+    private var addToDoButton: some View {
+        Button {
+            viewModel.createToDo(from: viewController)
+        } label: {
+            InstUI.PillContent(
+                title: String(localized: "Add To Do", bundle: .core),
+                leadingIcon: Image.noteLine,
+                size: .height30
+            )
+        }
+        .buttonStyle(.pillTintFilled)
+        .tint(.accentColor)
     }
 }
 
@@ -144,7 +184,8 @@ private func makePreviewViewModel() -> ToDoWidgetViewModel {
         config: config,
         interactor: interactor,
         router: AppEnvironment.shared.router,
-        snackBarViewModel: SnackBarViewModel()
+        snackBarViewModel: SnackBarViewModel(),
+        sessionDefaults: AppEnvironment.shared.userDefaults ?? .fallback
     )
 }
 
