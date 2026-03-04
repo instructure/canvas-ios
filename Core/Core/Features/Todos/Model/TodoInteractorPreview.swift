@@ -54,6 +54,16 @@ public final class TodoInteractorPreview: TodoInteractor {
         return Publishers.typedJust()
     }
 
+    public func refresh(
+        startDate: Date,
+        endDate: Date,
+        ignorePlannablesCache: Bool,
+        ignoreCoursesCache: Bool
+    ) -> AnyPublisher<Void, Error> {
+        todoGroups.send(todoGroups.value)
+        return Publishers.typedJust()
+    }
+
     public func isCacheExpired() -> AnyPublisher<Bool, Never> {
         Just(false).eraseToAnyPublisher()
     }

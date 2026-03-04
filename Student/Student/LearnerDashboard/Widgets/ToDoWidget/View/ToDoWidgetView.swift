@@ -24,11 +24,9 @@ struct ToDoWidgetView: View {
     @Environment(\.viewController) private var viewController
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-    @State private var currentPageIndex: Int = 500
-    @State private var pagerProxy = HorizontalPagerProxy()
+    @State private var weekPagerProxy = WeekPagerProxy()
     @State private var cardHeaderHeight: CGFloat = 42
     @ScaledMetric private var calendarRowHeight: CGFloat = 80
-    private let initialPageIndex = 500
 
     var body: some View {
         VStack(
@@ -43,7 +41,7 @@ struct ToDoWidgetView: View {
                         calendarRow
                         InstUI.Divider(.full)
                         contentView
-                            .animation(.dashboardWidget, value: viewModel.dayItems.count)
+                            .animation(.dashboardWidget, value: viewModel.layoutIdentifier)
                     }
                 }
                 HStack {
@@ -51,7 +49,7 @@ struct ToDoWidgetView: View {
                         systemImage: "chevron.left",
                         a11yLabel: String(localized: "Previous week", bundle: .student)
                     ) {
-                        pagerProxy.scrollToPreviousPage()
+                        weekPagerProxy.scrollToPreviousWeek()
                     }
                     .offset(x: -12)
                     Spacer()
@@ -59,16 +57,13 @@ struct ToDoWidgetView: View {
                         systemImage: "chevron.right",
                         a11yLabel: String(localized: "Next week", bundle: .student)
                     ) {
-                        pagerProxy.scrollToNextPage()
+                        weekPagerProxy.scrollToNextWeek()
                     }
                     .offset(x: 12)
                 }
                 .frame(height: calendarRowHeight + 16)
                 .padding(.top, cardHeaderHeight)
             }
-        }
-        .onChange(of: currentPageIndex) { _, newIndex in
-            viewModel.setWeek(absoluteOffset: newIndex - initialPageIndex)
         }
         .snackBar(viewModel: viewModel.snackBarViewModel)
     }
@@ -85,11 +80,10 @@ struct ToDoWidgetView: View {
             if !viewModel.isShowingToday {
                 Button {
                     viewModel.navigateToToday()
-                    pagerProxy.scrollToPage(initialPageIndex, animated: true)
+                    weekPagerProxy.scrollToToday()
                 } label: {
                     InstUI.PillContent(
                         title: String(localized: "Today", bundle: .core),
-                        trailingIcon: Image.calendarMonthSolid,
                         size: .height24
                     )
                 }
@@ -136,17 +130,12 @@ struct ToDoWidgetView: View {
     // MARK: - Calendar Row
 
     private var calendarRow: some View {
-        HorizontalPager(
-            pageCount: 1001,
-            initialPageIndex: initialPageIndex,
-            currentPageIndex: $currentPageIndex,
-            pagerProxy: pagerProxy
-        ) { pageIndex in
-            ToDoWeekPageView(
-                weekDays: weekDays(forPageIndex: pageIndex),
-                viewModel: viewModel
-            )
-        }
+        ToDoWeekPager(
+            viewModel: viewModel,
+            proxy: weekPagerProxy,
+            onWeekOffsetChanged: { viewModel.setWeek(absoluteOffset: $0) },
+            weekDays: weekDays(forOffset:)
+        )
         .frame(height: calendarRowHeight)
         .padding(.vertical, 8)
     }
@@ -178,10 +167,21 @@ struct ToDoWidgetView: View {
             .padding()
 
         case .data, .empty:
-            if viewModel.dayItems.isEmpty {
+            if viewModel.isDayLoading {
+                skeletonView
+            } else if viewModel.dayItems.isEmpty {
                 emptyDayView
             } else {
                 itemListView
+            }
+        }
+    }
+
+    private var skeletonView: some View {
+        VStack(spacing: 0) {
+            ForEach(0..<3, id: \.self) { _ in
+                ToDoSkeletonCell()
+                InstUI.Divider(.padded)
             }
         }
     }
@@ -256,11 +256,10 @@ struct ToDoWidgetView: View {
         )
     }
 
-    private func weekDays(forPageIndex pageIndex: Int) -> [Date] {
-        let weekOffset = pageIndex - initialPageIndex
+    private func weekDays(forOffset offset: Int) -> [Date] {
         let base = Calendar.current.dateInterval(of: .weekOfYear, for: Clock.now)?.start
             ?? Calendar.current.startOfDay(for: Clock.now)
-        guard let start = Calendar.current.date(byAdding: .weekOfYear, value: weekOffset, to: base) else { return [] }
+        guard let start = Calendar.current.date(byAdding: .weekOfYear, value: offset, to: base) else { return [] }
         return (0..<7).compactMap { Calendar.current.date(byAdding: .day, value: $0, to: start) }
     }
 
@@ -273,6 +272,40 @@ struct ToDoWidgetView: View {
                 .background(Circle().fill(Color.accentColor))
         }
         .accessibilityLabel(a11yLabel)
+    }
+}
+
+// MARK: - Skeleton Cell
+
+private struct ToDoSkeletonCell: View {
+    @ScaledMetric private var uiScale: CGFloat = 1
+    @State private var isAnimating = false
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Circle()
+                .fill(Color.backgroundMedium)
+                .frame(width: 24 * uiScale, height: 24 * uiScale)
+
+            VStack(alignment: .leading, spacing: 6) {
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(Color.backgroundMedium)
+                    .frame(height: 14 * uiScale)
+
+                RoundedRectangle(cornerRadius: 4)
+                    .fill(Color.backgroundMedium)
+                    .frame(height: 12 * uiScale)
+                    .padding(.trailing, 60)
+            }
+        }
+        .padding(.vertical, 12)
+        .paddingStyle(.horizontal, .standard)
+        .opacity(isAnimating ? 0.4 : 1.0)
+        .onAppear {
+            withAnimation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true)) {
+                isAnimating = true
+            }
+        }
     }
 }
 

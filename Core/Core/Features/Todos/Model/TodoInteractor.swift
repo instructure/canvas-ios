@@ -49,6 +49,22 @@ public protocol TodoInteractor {
     /// - Returns: A publisher that completes when the refresh operation finishes.
     func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Error>
 
+    /// Fetches todos for a specific date range without affecting the badge count.
+    /// Intended for use by the widget to load data lazily per visible week.
+    ///
+    /// - Parameters:
+    ///   - startDate: The start of the date range to fetch.
+    ///   - endDate: The end of the date range to fetch.
+    ///   - ignorePlannablesCache: If `true`, forces a fetch of plannables from the API.
+    ///   - ignoreCoursesCache: If `true`, forces a fetch of courses from the API.
+    /// - Returns: A publisher that completes when the refresh operation finishes.
+    func refresh(
+        startDate: Date,
+        endDate: Date,
+        ignorePlannablesCache: Bool,
+        ignoreCoursesCache: Bool
+    ) -> AnyPublisher<Void, Error>
+
     /// Checks if the cache has expired for todo data.
     ///
     /// Returns `true` if the cache has expired and the next `refresh()` call will fetch from the API.
@@ -94,7 +110,36 @@ public final class TodoInteractorLive: TodoInteractor {
     // MARK: - Public Methods
 
     public func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Error> {
-        refresh(ignorePlannablesCache: ignorePlannablesCache, ignoreCoursesCache: ignoreCoursesCache, retryCount: 0)
+        refresh(
+            plannablesStore: makePlannablesStore(),
+            ignorePlannablesCache: ignorePlannablesCache,
+            ignoreCoursesCache: ignoreCoursesCache,
+            skipBadgeUpdate: false,
+            retryCount: 0
+        )
+    }
+
+    public func refresh(
+        startDate: Date,
+        endDate: Date,
+        ignorePlannablesCache: Bool,
+        ignoreCoursesCache: Bool
+    ) -> AnyPublisher<Void, Error> {
+        let useCase = GetPlannables(
+            startDate: startDate,
+            endDate: endDate,
+            contextCodes: nil,
+            allowEmptyContextCodesFetch: true,
+            useCaseID: nil
+        )
+        let store = ReactiveStore(useCase: useCase, environment: env)
+        return refresh(
+            plannablesStore: store,
+            ignorePlannablesCache: ignorePlannablesCache,
+            ignoreCoursesCache: ignoreCoursesCache,
+            skipBadgeUpdate: true,
+            retryCount: 0
+        )
     }
 
     public func isCacheExpired() -> AnyPublisher<Bool, Never> {
@@ -135,17 +180,21 @@ public final class TodoInteractorLive: TodoInteractor {
 
     // MARK: - Private Methods
 
-    private func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool, retryCount: Int) -> AnyPublisher<Void, Error> {
-        let plannableStore = makePlannablesStore()
-
+    private func refresh(
+        plannablesStore: ReactiveStore<GetPlannables>,
+        ignorePlannablesCache: Bool,
+        ignoreCoursesCache: Bool,
+        skipBadgeUpdate: Bool,
+        retryCount: Int
+    ) -> AnyPublisher<Void, Error> {
         return Publishers.Zip3(
-            plannableStore.getEntities(ignoreCache: ignorePlannablesCache, loadAllPages: true),
+            plannablesStore.getEntities(ignoreCache: ignorePlannablesCache, loadAllPages: true),
             coursesStore.getEntities(ignoreCache: ignoreCoursesCache),
             contextColorsStore.getEntities(ignoreCache: ignoreCoursesCache)
         )
         .tryMap { [weak self] plannables, courses, _ in
             guard let self else { return }
-            try self.filterAndGroupTodos(plannables: plannables, courses: courses)
+            try self.filterAndGroupTodos(plannables: plannables, courses: courses, skipBadgeUpdate: skipBadgeUpdate)
             self.logFilterAnalytics()
         }
         .catch { [weak self] error -> AnyPublisher<Void, Error> in
@@ -162,8 +211,10 @@ public final class TodoInteractorLive: TodoInteractor {
                 .delay(for: .seconds(0.5), scheduler: scheduler)
                 .flatMap { [weak self] _ in
                     self?.refresh(
+                        plannablesStore: plannablesStore,
                         ignorePlannablesCache: ignorePlannablesCache,
                         ignoreCoursesCache: true,
+                        skipBadgeUpdate: skipBadgeUpdate,
                         retryCount: retryCount + 1
                     ) ?? Publishers.noInstanceFailure()
                 }
@@ -176,7 +227,7 @@ public final class TodoInteractorLive: TodoInteractor {
         ReactiveStore(useCase: GetPlannables.makeTodoFetchUseCase(), environment: env)
     }
 
-    private func filterAndGroupTodos(plannables: [Plannable], courses: [Course]) throws {
+    private func filterAndGroupTodos(plannables: [Plannable], courses: [Course], skipBadgeUpdate: Bool) throws {
         let filterOptions = sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
 
         let hasDeletedCourses = courses.contains { $0.isDeleted }
@@ -205,7 +256,9 @@ public final class TodoInteractorLive: TodoInteractor {
             }
 
         let notDoneTodos = todos.filter { $0.markAsDoneState == .notDone }
-        TabBarBadgeCounts.todoListCount = UInt(notDoneTodos.count)
+        if !skipBadgeUpdate {
+            TabBarBadgeCounts.todoListCount = UInt(notDoneTodos.count)
+        }
 
         let groupedTodos = (alwaysExcludeCompleted ? notDoneTodos : todos).groupByDay()
         todoGroups.value = groupedTodos

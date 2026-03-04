@@ -34,6 +34,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     private(set) var selectedDay: Date
     private(set) var weekStart: Date
     private(set) var showCompleted: Bool
+    private(set) var isDayLoading: Bool = false
 
     private var allGroups: [TodoGroupViewModel] = []
 
@@ -58,7 +59,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     }
 
     var layoutIdentifier: [AnyHashable] {
-        [state, dayItems.count, selectedDay, showCompleted]
+        [state, dayItems.count, selectedDay, showCompleted, isDayLoading]
     }
 
     private let interactor: TodoInteractor
@@ -84,7 +85,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         self.selectedDay = today
         self.weekStart = Self.startOfWeek(for: today)
         setupSubscriptions()
-        loadItems(ignorePlannablesCache: false, ignoreCoursesCache: false)
+        loadItems(for: self.weekStart, ignorePlannablesCache: false)
     }
 
     func makeView() -> ToDoWidgetView {
@@ -92,8 +93,10 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        interactor
-            .refresh(ignorePlannablesCache: ignoreCache, ignoreCoursesCache: ignoreCache)
+        let start = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: weekStart) ?? weekStart
+        let end = Calendar.current.date(byAdding: .weekOfYear, value: 2, to: weekStart) ?? weekStart
+        return interactor
+            .refresh(startDate: start, endDate: end, ignorePlannablesCache: ignoreCache, ignoreCoursesCache: ignoreCache)
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveCompletion: { [weak self] completion in
                 if case .failure = completion {
@@ -105,18 +108,6 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     }
 
     // MARK: - Week Navigation
-
-    func navigateToPreviousWeek() {
-        guard let newDay = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: selectedDay) else { return }
-        selectedDay = newDay
-        weekStart = Self.startOfWeek(for: newDay)
-    }
-
-    func navigateToNextWeek() {
-        guard let newDay = Calendar.current.date(byAdding: .weekOfYear, value: 1, to: selectedDay) else { return }
-        selectedDay = newDay
-        weekStart = Self.startOfWeek(for: newDay)
-    }
 
     func navigateToToday() {
         let today = Calendar.current.startOfDay(for: Clock.now)
@@ -151,8 +142,9 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     func createToDo(from viewController: WeakViewController) {
         let weakVC = WeakViewController()
         let vc = PlannerAssembly.makeCreateToDoViewController(selectedDate: selectedDay) { [weak self] _ in
-            self?.router.dismiss(weakVC)
-            self?.loadItems(ignorePlannablesCache: true, ignoreCoursesCache: false)
+            guard let self else { return }
+            self.router.dismiss(weakVC)
+            self.loadItems(for: self.weekStart, ignorePlannablesCache: true)
         }
         weakVC.setValue(vc)
         router.show(vc, from: viewController, options: .modal(embedInNav: true))
@@ -160,7 +152,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
 
     func retryLoad() {
         state = .loading
-        loadItems(ignorePlannablesCache: true, ignoreCoursesCache: false)
+        loadItems(for: weekStart, ignorePlannablesCache: true)
     }
 
     func toggleShowCompleted() {
@@ -177,7 +169,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
             dateRangeEnd: opts.dateRangeEnd
         )
         showCompleted.toggle()
-        loadItems(ignorePlannablesCache: true, ignoreCoursesCache: false)
+        loadItems(for: weekStart, ignorePlannablesCache: true)
     }
 
     func markItemAsDone(_ item: TodoItemViewModel) {
@@ -210,6 +202,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
             .sink { [weak self] groups in
                 guard let self else { return }
                 allGroups = groups
+                isDayLoading = false
                 if state != .error {
                     state = groups.isEmpty ? .empty : .data
                 }
@@ -217,14 +210,17 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
             .store(in: &subscriptions)
     }
 
-    private func loadItems(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) {
+    private func loadItems(for weekStart: Date, ignorePlannablesCache: Bool) {
+        let start = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: weekStart) ?? weekStart
+        let end = Calendar.current.date(byAdding: .weekOfYear, value: 2, to: weekStart) ?? weekStart
         interactor
-            .refresh(ignorePlannablesCache: ignorePlannablesCache, ignoreCoursesCache: ignoreCoursesCache)
+            .refresh(startDate: start, endDate: end, ignorePlannablesCache: ignorePlannablesCache, ignoreCoursesCache: false)
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { [weak self] completion in
                     if case .failure = completion {
                         self?.state = .error
+                        self?.isDayLoading = false
                     }
                 },
                 receiveValue: { }
@@ -345,6 +341,8 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         weekStart = newWeekStart
         let today = Calendar.current.startOfDay(for: Clock.now)
         selectedDay = Calendar.current.date(byAdding: .weekOfYear, value: offset, to: today) ?? today
+        isDayLoading = dayItems.isEmpty
+        loadItems(for: newWeekStart, ignorePlannablesCache: false)
     }
 
     internal static func startOfWeek(for date: Date) -> Date {
