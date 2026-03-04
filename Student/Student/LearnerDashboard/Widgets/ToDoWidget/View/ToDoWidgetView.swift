@@ -51,7 +51,7 @@ struct ToDoWidgetView: View {
                     ) {
                         weekPagerProxy.scrollToPreviousWeek()
                     }
-                    .offset(x: -12)
+                    .offset(x: -8)
                     Spacer()
                     circleNavButton(
                         systemImage: "chevron.right",
@@ -59,9 +59,9 @@ struct ToDoWidgetView: View {
                     ) {
                         weekPagerProxy.scrollToNextWeek()
                     }
-                    .offset(x: 12)
+                    .offset(x: 8)
                 }
-                .frame(height: calendarRowHeight + 16)
+                .frame(height: calendarRowHeight + 8)
                 .padding(.top, cardHeaderHeight)
             }
         }
@@ -137,7 +137,8 @@ struct ToDoWidgetView: View {
             weekDays: weekDays(forOffset:)
         )
         .frame(height: calendarRowHeight)
-        .padding(.vertical, 8)
+        //.padding(.vertical, 8)
+        .padding(.horizontal, 32)
     }
 
     // MARK: - Content
