@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct TodoListItemCell: View {
+public struct TodoListItemCell: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.viewController) private var viewController
 
@@ -31,7 +31,7 @@ struct TodoListItemCell: View {
 
     private static let hapticGenerator = UIImpactFeedbackGenerator(style: .light)
 
-    init(
+    public init(
         item: TodoItemViewModel,
         onTap: @escaping (TodoItemViewModel, WeakViewController) -> Void,
         onMarkAsDone: @escaping (TodoItemViewModel) -> Void,
@@ -47,7 +47,7 @@ struct TodoListItemCell: View {
         self._isSwiping = isSwiping
     }
 
-    var body: some View {
+    public var body: some View {
         HStack(spacing: 0) {
             TodoItemContentView(item: item, isCompactLayout: false)
 
