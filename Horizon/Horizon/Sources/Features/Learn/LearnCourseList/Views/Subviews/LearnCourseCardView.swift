@@ -61,6 +61,7 @@ struct LearnCourseCardView: View {
                 coursePercentageView
             }
         }
+        .buttonStyle(.plain)
     }
 
     private var courseImage: some View {
