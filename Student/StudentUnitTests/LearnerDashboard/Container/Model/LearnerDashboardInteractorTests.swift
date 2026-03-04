@@ -50,37 +50,34 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         )
 
         let expectation = expectation(description: "loadWidgets")
-        var receivedFullWidth: [any DashboardWidgetViewModel]?
-        var receivedGrid: [any DashboardWidgetViewModel]?
+        var received: [any DashboardWidgetViewModel]?
 
         testee.loadWidgets()
             .sink { result in
-                receivedFullWidth = result.fullWidth
-                receivedGrid = result.grid
+                received = result
                 expectation.fulfill()
             }
             .store(in: &subscriptions)
 
         wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(receivedFullWidth?.count, 4)
-        XCTAssertEqual(receivedFullWidth?[0].id, .conferences)
-        XCTAssertEqual(receivedFullWidth?[1].id, .courseInvitations)
-        XCTAssertEqual(receivedFullWidth?[2].id, .globalAnnouncements)
-        XCTAssertEqual(receivedFullWidth?[3].id, .helloWidget)
-        XCTAssertEqual(receivedGrid?.count, 3)
-        XCTAssertEqual(receivedGrid?[0].id, .widget1)
-        XCTAssertEqual(receivedGrid?[1].id, .widget2)
-        XCTAssertEqual(receivedGrid?[2].id, .widget3)
+        XCTAssertEqual(received?.count, 7)
+        XCTAssertEqual(received?[0].id, .offlineSyncProgress)
+        XCTAssertEqual(received?[1].id, .fileUploadProgress)
+        XCTAssertEqual(received?[2].id, .conferences)
+        XCTAssertEqual(received?[3].id, .courseInvitations)
+        XCTAssertEqual(received?[4].id, .globalAnnouncements)
+        XCTAssertEqual(received?[5].id, .helloWidget)
+        XCTAssertEqual(received?[6].id, .coursesAndGroups)
     }
 
     // MARK: - Load widgets with saved configs
 
     func test_loadWidgets_withSavedConfigs_shouldFilterVisibleAndSort() {
         userDefaults.learnerDashboardWidgetConfigs = [
-            DashboardWidgetConfig(id: .widget3, order: 5, isVisible: true),
-            DashboardWidgetConfig(id: .widget1, order: 20, isVisible: false),
-            DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
+            DashboardWidgetConfig(id: .helloWidget, order: 10, isVisible: true),
+            DashboardWidgetConfig(id: .conferences, order: 20, isVisible: false),
+            DashboardWidgetConfig(id: .coursesAndGroups, order: 5, isVisible: true)
         ]
         testee = LearnerDashboardInteractorLive(
             userDefaults: userDefaults,
@@ -88,30 +85,27 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         )
 
         let expectation = expectation(description: "loadWidgets")
-        var receivedFullWidth: [any DashboardWidgetViewModel]?
-        var receivedGrid: [any DashboardWidgetViewModel]?
+        var received: [any DashboardWidgetViewModel]?
 
         testee.loadWidgets()
             .sink { result in
-                receivedFullWidth = result.fullWidth
-                receivedGrid = result.grid
+                received = result
                 expectation.fulfill()
             }
             .store(in: &subscriptions)
 
         wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(receivedFullWidth?.count, 0)
-        XCTAssertEqual(receivedGrid?.count, 2)
-        XCTAssertEqual(receivedGrid?[0].id, .widget3)
-        XCTAssertEqual(receivedGrid?[1].id, .widget2)
+        XCTAssertEqual(received?.count, 2)
+        XCTAssertEqual(received?[0].id, .coursesAndGroups)
+        XCTAssertEqual(received?[1].id, .helloWidget)
     }
 
-    func test_loadWidgets_shouldSeparateFullWidthFromGridWidgets() {
+    func test_loadWidgets_shouldReturnWidgetsInOrder() {
         userDefaults.learnerDashboardWidgetConfigs = [
-            DashboardWidgetConfig(id: .widget1, order: 20, isVisible: true),
+            DashboardWidgetConfig(id: .helloWidget, order: 20, isVisible: true),
             DashboardWidgetConfig(id: .courseInvitations, order: 5, isVisible: true),
-            DashboardWidgetConfig(id: .widget2, order: 10, isVisible: true)
+            DashboardWidgetConfig(id: .coursesAndGroups, order: 10, isVisible: true)
         ]
         testee = LearnerDashboardInteractorLive(
             userDefaults: userDefaults,
@@ -119,36 +113,28 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         )
 
         let expectation = expectation(description: "loadWidgets")
-        var receivedFullWidth: [any DashboardWidgetViewModel]?
-        var receivedGrid: [any DashboardWidgetViewModel]?
+        var received: [any DashboardWidgetViewModel]?
 
         testee.loadWidgets()
             .sink { result in
-                receivedFullWidth = result.fullWidth
-                receivedGrid = result.grid
+                received = result
                 expectation.fulfill()
             }
             .store(in: &subscriptions)
 
         wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(receivedFullWidth?.count, 1)
-        XCTAssertEqual(receivedFullWidth?.first?.id, .courseInvitations)
-        XCTAssertEqual(receivedGrid?.count, 2)
-        XCTAssertEqual(receivedGrid?[0].id, .widget2)
-        XCTAssertEqual(receivedGrid?[1].id, .widget1)
+        XCTAssertEqual(received?.count, 3)
+        XCTAssertEqual(received?[0].id, .courseInvitations)
+        XCTAssertEqual(received?[1].id, .coursesAndGroups)
+        XCTAssertEqual(received?[2].id, .helloWidget)
     }
 
     // MARK: - Private helpers
 
     private func makeViewModelFactory() -> (DashboardWidgetConfig) -> any DashboardWidgetViewModel {
         return { config in
-            let actualViewModel = LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-                config: config,
-                snackBarViewModel: .init(),
-                coursesInteractor: CoursesInteractorMock()
-            )
-            return DashboardWidgetViewModelMock(config: config, isFullWidth: actualViewModel.isFullWidth)
+            DashboardWidgetViewModelMock(config: config)
         }
     }
 }
@@ -157,13 +143,12 @@ private final class DashboardWidgetViewModelMock: DashboardWidgetViewModel {
     typealias ViewType = Never
 
     let config: DashboardWidgetConfig
-    let isFullWidth: Bool
     let isEditable = false
+    let isHiddenInEmptyState = false
     let state: InstUI.ScreenState = .data
 
-    init(config: DashboardWidgetConfig, isFullWidth: Bool) {
+    init(config: DashboardWidgetConfig) {
         self.config = config
-        self.isFullWidth = isFullWidth
     }
 
     func makeView() -> Never {

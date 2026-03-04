@@ -30,7 +30,7 @@ extension String {
         )
     }
 
-    // MARK: - Items: "5 items" / "List, 5 items"
+    // MARK: - Items: "5 items" / "List, 5 items" / "Courses (5)"
 
     /// Localized string for number of items. Example: "5 items"
     public static func format(numberOfItems count: Int) -> String {
@@ -40,7 +40,7 @@ extension String {
         )
     }
     /// Localized string for number of items. Example: "5 items"
-    public static func format(numberOfItems count: Int?) -> String? {
+    public static func format(numberOfItemsOrNil count: Int?) -> String? {
         count.map(format(numberOfItems:))
     }
 
@@ -51,6 +51,17 @@ extension String {
         // It's okay to not translate the comma, because VoiceOver (with captions enabled) uses commas for separation,
         // even when language & region both are set to a language which doesn't (like Danish)
         return "\(listText), \(countText)"
+    }
+
+    /// Localized string to be used as section header with item count in parentheses.
+    /// The `itemsText` itself is expected to be localized already.
+    /// Example: "Courses (5)"
+    public static func format(countSuffixed itemsText: String, count: Int) -> String {
+        localizedStringWithFormat(
+            String(localized: "%@ (%d)", bundle: .core, comment: "Example: 'Courses (5)'"),
+            itemsText,
+            count
+        )
     }
 
     // MARK: - Points: "5 pts" / "5 points"
@@ -64,7 +75,7 @@ extension String {
     }
 
     /// Localized string for number of points, abbreviated to "pts". Example: "5 pts"
-    public static func format(pts points: Double?) -> String? {
+    public static func format(ptsOrNil points: Double?) -> String? {
         points.map(format(pts:))
     }
 
@@ -77,7 +88,7 @@ extension String {
     }
 
     /// Localized string for number of points, not abbreviated, primarily for accessibility usage. Example: "5 points"
-    public static func format(points: Double?) -> String? {
+    public static func format(pointsOrNil points: Double?) -> String? {
         points.map(format(points:))
     }
 

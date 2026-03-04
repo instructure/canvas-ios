@@ -28,14 +28,16 @@ protocol DashboardWidgetViewModel: AnyObject, Identifiable where ID == Dashboard
     /// User configurable widget settings.
     var config: DashboardWidgetConfig { get }
 
-    /// Non-editable, widget specific property used for layouting.
-    /// Full width widgets are put at the top of the screen outside of the widget grid.
-    var isFullWidth: Bool { get }
-
     var isEditable: Bool { get }
 
     /// The state helps the dashboard screen to decide if the empty state should be shown or not.
     var state: InstUI.ScreenState { get }
+
+    /// When true, the widget will be completely hidden (not rendered) when state is .empty.
+    /// This prevents empty widgets from creating spacing in the layout.
+    /// Use this for widgets that conditionally render EmptyView in their body when empty,
+    /// such as progress card widgets that should not take up any space when inactive.
+    var isHiddenInEmptyState: Bool { get }
 
     /// Used by the layout to detect when widget size might change and trigger smooth animations.
     /// Override this property to include any size-affecting properties (e.g., text.count).
@@ -57,5 +59,9 @@ extension DashboardWidgetViewModel {
 
     var layoutIdentifier: [AnyHashable] {
         [state]
+    }
+
+    var shouldRenderWidget: Bool {
+        !isHiddenInEmptyState || state != .empty
     }
 }

@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,23 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+#if DEBUG
+
 import Core
-import SwiftUI
+import Combine
 
-struct Widget3View: View {
-
-    @State var viewModel: Widget3ViewModel
-
-    var body: some View {
-        DashboardTitledWidget("Widget 3") {
-            DashboardWidgetCard {
-                VStack(alignment: .leading) {
-                    Text(verbatim: DashboardWidgetPlaceholderData.long(2))
-                        .foregroundColor(.secondary)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .paddingStyle(.standard)
-            }
-        }
+class HelloWidgetInteractorPreview: HelloWidgetInteractor {
+    func getShortName(ignoreCache: Bool) -> AnyPublisher<String?, Error> {
+        Publishers.typedJust("Rincewind")
     }
 }
+
+#endif

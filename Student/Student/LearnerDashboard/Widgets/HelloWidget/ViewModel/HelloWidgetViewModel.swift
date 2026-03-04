@@ -26,8 +26,8 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = HelloWidgetView
 
     let config: DashboardWidgetConfig
-    let isFullWidth = true
-    let isEditable = false
+    let isEditable = true
+    let isHiddenInEmptyState = true
 
     var layoutIdentifier: [AnyHashable] {
         [state, greeting.count, message.count]
@@ -52,21 +52,6 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
         self.config = config
         self.dayPeriodProvider = dayPeriodProvider
         self.interactor = interactor
-
-        interactor.getShortName(ignoreCache: false)
-            .sink(
-                receiveCompletion: { [weak self] completion in
-                    if completion.isFailure {
-                        self?.state = .error
-                    }
-                },
-                receiveValue: { [weak self] shortName in
-                    self?.shortName = shortName
-                    self?.updateGreetingAndMessage()
-                }
-            )
-            .store(in: &subscriptions)
-
         subscribeToNotification()
     }
 

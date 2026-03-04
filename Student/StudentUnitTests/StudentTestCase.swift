@@ -23,11 +23,21 @@ import CoreData
 @testable import Student
 
 class StudentTestCase: XCTestCase {
+    enum DatabaseContextType {
+        case view
+        case backgroundRead
+    }
+
     var database: NSPersistentContainer {
         return singleSharedTestDatabase
     }
+
+    var databaseContextToUse: DatabaseContextType = .view
     var databaseClient: NSManagedObjectContext {
-        return database.viewContext
+        switch databaseContextToUse {
+        case .view: database.viewContext
+        case .backgroundRead: database.backgroundReadContext
+        }
     }
 
     var api: API { env.api }

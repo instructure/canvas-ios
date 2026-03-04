@@ -26,8 +26,8 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = CourseInvitationsWidgetView
 
     let config: DashboardWidgetConfig
-    let isFullWidth = true
     let isEditable = false
+    let isHiddenInEmptyState = true
 
     private(set) var invitations: [CourseInvitationCardViewModel] = [] {
         didSet { updateTitles() }
@@ -113,6 +113,6 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
         widgetAccessibilityTitle = [
             String(localized: "Course Invitations", bundle: .student),
             String.format(numberOfItems: count)
-        ].joined(separator: ", ")
+        ].accessibilityJoined()
     }
 }
