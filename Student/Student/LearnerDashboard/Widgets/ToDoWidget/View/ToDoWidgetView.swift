@@ -26,6 +26,7 @@ struct ToDoWidgetView: View {
 
     @State private var currentPageIndex: Int = 500
     @State private var pagerProxy = HorizontalPagerProxy()
+    @State private var cardHeaderHeight: CGFloat = 42
     @ScaledMetric private var calendarRowHeight: CGFloat = 80
     private let initialPageIndex = 500
 
@@ -35,14 +36,35 @@ struct ToDoWidgetView: View {
             spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue
         ) {
             titleRow
-            DashboardWidgetCard {
-                VStack(spacing: 0) {
-                    cardHeader
-                    calendarRow
-                    InstUI.Divider(.full)
-                    contentView
-                        .animation(.dashboardWidget, value: viewModel.dayItems.count)
+            ZStack(alignment: .top) {
+                DashboardWidgetCard {
+                    VStack(spacing: 0) {
+                        cardHeader
+                        calendarRow
+                        InstUI.Divider(.full)
+                        contentView
+                            .animation(.dashboardWidget, value: viewModel.dayItems.count)
+                    }
                 }
+                HStack {
+                    circleNavButton(
+                        systemImage: "chevron.left",
+                        a11yLabel: String(localized: "Previous week", bundle: .student)
+                    ) {
+                        pagerProxy.scrollToPreviousPage()
+                    }
+                    .offset(x: -12)
+                    Spacer()
+                    circleNavButton(
+                        systemImage: "chevron.right",
+                        a11yLabel: String(localized: "Next week", bundle: .student)
+                    ) {
+                        pagerProxy.scrollToNextPage()
+                    }
+                    .offset(x: 12)
+                }
+                .frame(height: calendarRowHeight + 16)
+                .padding(.top, cardHeaderHeight)
             }
         }
         .onChange(of: currentPageIndex) { _, newIndex in
@@ -102,40 +124,30 @@ struct ToDoWidgetView: View {
         .paddingStyle(.horizontal, .standard)
         .padding(.top, 12)
         .padding(.bottom, 4)
+        .background {
+            GeometryReader { geometry in
+                Color.clear
+                    .onAppear { cardHeaderHeight = geometry.size.height }
+                    .onChange(of: geometry.size.height) { _, value in cardHeaderHeight = value }
+            }
+        }
     }
 
     // MARK: - Calendar Row
 
     private var calendarRow: some View {
-        HStack(spacing: 4) {
-            circleNavButton(
-                systemImage: "chevron.left",
-                a11yLabel: String(localized: "Previous week", bundle: .student)
-            ) {
-                pagerProxy.scrollToPreviousPage()
-            }
-
-            HorizontalPager(
-                pageCount: 1001,
-                initialPageIndex: initialPageIndex,
-                currentPageIndex: $currentPageIndex,
-                pagerProxy: pagerProxy
-            ) { pageIndex in
-                ToDoWeekPageView(
-                    weekDays: weekDays(forPageIndex: pageIndex),
-                    viewModel: viewModel
-                )
-            }
-            .frame(height: calendarRowHeight)
-
-            circleNavButton(
-                systemImage: "chevron.right",
-                a11yLabel: String(localized: "Next week", bundle: .student)
-            ) {
-                pagerProxy.scrollToNextPage()
-            }
+        HorizontalPager(
+            pageCount: 1001,
+            initialPageIndex: initialPageIndex,
+            currentPageIndex: $currentPageIndex,
+            pagerProxy: pagerProxy
+        ) { pageIndex in
+            ToDoWeekPageView(
+                weekDays: weekDays(forPageIndex: pageIndex),
+                viewModel: viewModel
+            )
         }
-        .padding(.horizontal, 8)
+        .frame(height: calendarRowHeight)
         .padding(.vertical, 8)
     }
 

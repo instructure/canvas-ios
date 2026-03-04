@@ -30,7 +30,7 @@ struct ToDoWeekPageView: View {
                     date: day,
                     isSelected: Calendar.current.isDate(day, inSameDayAs: viewModel.selectedDay),
                     isToday: Calendar.current.isDateInToday(day),
-                    hasItems: viewModel.datesWithItems.contains(day)
+                    itemCount: viewModel.itemCounts[day, default: 0]
                 )
                 .onTapGesture { viewModel.selectDay(day) }
                 .frame(maxWidth: .infinity)
@@ -45,7 +45,7 @@ private struct ToDoWidgetDayCell: View {
     let date: Date
     let isSelected: Bool
     let isToday: Bool
-    let hasItems: Bool
+    let itemCount: Int
 
     var body: some View {
         VStack(spacing: 0) {
@@ -70,11 +70,15 @@ private struct ToDoWidgetDayCell: View {
             }
             .padding(.top, 2)
 
-            Circle()
-                .fill(Color.accentColor)
-                .frame(width: 4 * uiScale, height: 4 * uiScale)
-                .padding(.top, 3)
-                .opacity(hasItems ? 1 : 0)
+            HStack(spacing: 3) {
+                ForEach(0..<min(itemCount, 3), id: \.self) { _ in
+                    Circle()
+                        .fill(Color.accentColor)
+                        .frame(width: 4 * uiScale, height: 4 * uiScale)
+                }
+            }
+            .frame(height: 4 * uiScale)
+            .padding(.top, 3)
         }
         .padding(.vertical, 4)
         .contentShape(Rectangle())

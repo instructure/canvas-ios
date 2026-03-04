@@ -47,6 +47,12 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         Set(allGroups.map { Calendar.current.startOfDay(for: $0.date) })
     }
 
+    var itemCounts: [Date: Int] {
+        allGroups.reduce(into: [:]) { result, group in
+            result[Calendar.current.startOfDay(for: group.date)] = group.items.count
+        }
+    }
+
     var isShowingToday: Bool {
         Calendar.current.isDateInToday(selectedDay)
     }
