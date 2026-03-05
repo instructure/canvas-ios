@@ -333,8 +333,7 @@ private func makePreviewViewModel() -> ToDoWidgetViewModel {
         config: config,
         interactor: interactor,
         router: AppEnvironment.shared.router,
-        snackBarViewModel: SnackBarViewModel(),
-        sessionDefaults: AppEnvironment.shared.userDefaults ?? .fallback
+        snackBarViewModel: SnackBarViewModel()
     )
 }
 

@@ -39,9 +39,10 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     private var allGroups: [TodoGroupViewModel] = []
 
     var dayItems: [TodoItemViewModel] {
-        allGroups
+        let items = allGroups
             .first { Calendar.current.isDate($0.date, inSameDayAs: selectedDay) }?
             .items ?? []
+        return showCompleted ? items : items.filter { $0.markAsDoneState != .done }
     }
 
     var datesWithItems: Set<Date> {
@@ -50,7 +51,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
 
     var itemCounts: [Date: Int] {
         allGroups.reduce(into: [:]) { result, group in
-            result[Calendar.current.startOfDay(for: group.date)] = group.items.count
+            result[Calendar.current.startOfDay(for: group.date)] = (showCompleted ? group.items : group.items.filter { $0.markAsDoneState != .done }).count
         }
     }
 
@@ -64,7 +65,6 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
 
     private let interactor: TodoInteractor
     private let router: Router
-    private var sessionDefaults: SessionDefaults
     private var subscriptions = Set<AnyCancellable>()
     private var markDoneTimers: [String: AnyCancellable] = [:]
 
@@ -72,15 +72,13 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         config: DashboardWidgetConfig,
         interactor: TodoInteractor,
         router: Router,
-        snackBarViewModel: SnackBarViewModel,
-        sessionDefaults: SessionDefaults
+        snackBarViewModel: SnackBarViewModel
     ) {
         self.config = config
         self.interactor = interactor
         self.router = router
         self.snackBarViewModel = snackBarViewModel
-        self.sessionDefaults = sessionDefaults
-        self.showCompleted = sessionDefaults.todoFilterOptions?.visibilityOptions.contains(.showCompleted) ?? false
+        self.showCompleted = false
         let today = Calendar.current.startOfDay(for: Clock.now)
         self.selectedDay = today
         self.weekStart = Self.startOfWeek(for: today)
@@ -96,7 +94,15 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         let start = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: weekStart) ?? weekStart
         let end = Calendar.current.date(byAdding: .weekOfYear, value: 2, to: weekStart) ?? weekStart
         return interactor
-            .refresh(startDate: start, endDate: end, ignorePlannablesCache: ignoreCache, ignoreCoursesCache: ignoreCache)
+            .refresh(
+                startDate: start,
+                endDate: end,
+                ignorePlannablesCache: ignoreCache,
+                ignoreCoursesCache: ignoreCache,
+                filterOptions: TodoFilterOptions(
+                    visibilityOptions: [.showCalendarEvents, .showCompleted, .showPersonalTodos], dateRangeStart: .lastWeek, dateRangeEnd: .nextWeek
+                )
+            )
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveCompletion: { [weak self] completion in
                 if case .failure = completion {
@@ -156,20 +162,17 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     }
 
     func toggleShowCompleted() {
-        var opts = sessionDefaults.todoFilterOptions ?? .default
-        var visibility = opts.visibilityOptions
-        if showCompleted {
-            visibility.remove(.showCompleted)
-        } else {
-            visibility.insert(.showCompleted)
-        }
-        sessionDefaults.todoFilterOptions = TodoFilterOptions(
-            visibilityOptions: visibility,
-            dateRangeStart: opts.dateRangeStart,
-            dateRangeEnd: opts.dateRangeEnd
-        )
         showCompleted.toggle()
-        loadItems(for: weekStart, ignorePlannablesCache: true)
+        if showCompleted {
+            markDoneTimers.values.forEach { $0.cancel() }
+            markDoneTimers.removeAll()
+            allGroups = interactor.todoGroups.value
+        }
+        for group in allGroups {
+            for item in group.items {
+                item.shouldKeepCompletedItemsVisible = showCompleted
+            }
+        }
     }
 
     func markItemAsDone(_ item: TodoItemViewModel) {
@@ -201,6 +204,11 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] groups in
                 guard let self else { return }
+                for group in groups {
+                    for item in group.items {
+                        item.shouldKeepCompletedItemsVisible = showCompleted
+                    }
+                }
                 allGroups = groups
                 isDayLoading = false
                 if state != .error {
@@ -214,7 +222,15 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         let start = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: weekStart) ?? weekStart
         let end = Calendar.current.date(byAdding: .weekOfYear, value: 2, to: weekStart) ?? weekStart
         interactor
-            .refresh(startDate: start, endDate: end, ignorePlannablesCache: ignorePlannablesCache, ignoreCoursesCache: false)
+            .refresh(
+                startDate: start,
+                endDate: end,
+                ignorePlannablesCache: ignorePlannablesCache,
+                ignoreCoursesCache: false,
+                filterOptions: TodoFilterOptions(
+                    visibilityOptions: [.showCalendarEvents, .showCompleted, .showPersonalTodos], dateRangeStart: .lastWeek, dateRangeEnd: .nextWeek
+                )
+            )
             .receive(on: DispatchQueue.main)
             .sink(
                 receiveCompletion: { [weak self] completion in
@@ -242,14 +258,14 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
                 item.overrideId = overrideId
                 item.markAsDoneState = .done
                 guard !item.shouldKeepCompletedItemsVisible else { return }
+                let plannableId = item.plannableId
                 let timer = Just(())
                     .delay(for: .seconds(3), scheduler: DispatchQueue.main)
-                    .sink { [weak self, weak item] in
-                        guard let item else { return }
-                        withAnimation { self?.removeItem(item) }
-                        self?.markDoneTimers.removeValue(forKey: item.plannableId)
+                    .sink { [weak self] in
+                        withAnimation { self?.removeItem(withId: plannableId) }
+                        self?.markDoneTimers.removeValue(forKey: plannableId)
                     }
-                markDoneTimers[item.plannableId] = timer
+                markDoneTimers[plannableId] = timer
             }
             .store(in: &subscriptions)
     }
@@ -300,8 +316,12 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     }
 
     private func removeItem(_ item: TodoItemViewModel) {
+        removeItem(withId: item.plannableId)
+    }
+
+    private func removeItem(withId plannableId: String) {
         allGroups = allGroups.compactMap { group in
-            let filtered = group.items.filter { $0.plannableId != item.plannableId }
+            let filtered = group.items.filter { $0.plannableId != plannableId }
             return filtered.isEmpty ? nil : TodoGroupViewModel(date: group.date, items: filtered)
         }
         if allGroups.isEmpty { state = .empty }

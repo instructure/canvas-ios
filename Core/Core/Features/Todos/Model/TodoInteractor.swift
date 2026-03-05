@@ -62,7 +62,8 @@ public protocol TodoInteractor {
         startDate: Date,
         endDate: Date,
         ignorePlannablesCache: Bool,
-        ignoreCoursesCache: Bool
+        ignoreCoursesCache: Bool,
+        filterOptions: TodoFilterOptions?
     ) -> AnyPublisher<Void, Error>
 
     /// Checks if the cache has expired for todo data.
@@ -123,7 +124,8 @@ public final class TodoInteractorLive: TodoInteractor {
         startDate: Date,
         endDate: Date,
         ignorePlannablesCache: Bool,
-        ignoreCoursesCache: Bool
+        ignoreCoursesCache: Bool,
+        filterOptions: TodoFilterOptions? = nil
     ) -> AnyPublisher<Void, Error> {
         let useCase = GetPlannables(
             startDate: startDate,
@@ -133,11 +135,13 @@ public final class TodoInteractorLive: TodoInteractor {
             useCaseID: nil
         )
         let store = ReactiveStore(useCase: useCase, environment: env)
+        let widgetFilterOptions = filterOptions ?? sessionDefaults.todoFilterOptions ?? .default
         return refresh(
             plannablesStore: store,
             ignorePlannablesCache: ignorePlannablesCache,
             ignoreCoursesCache: ignoreCoursesCache,
             skipBadgeUpdate: true,
+            filterOptions: widgetFilterOptions,
             retryCount: 0
         )
     }
@@ -185,6 +189,7 @@ public final class TodoInteractorLive: TodoInteractor {
         ignorePlannablesCache: Bool,
         ignoreCoursesCache: Bool,
         skipBadgeUpdate: Bool,
+        filterOptions: TodoFilterOptions? = nil,
         retryCount: Int
     ) -> AnyPublisher<Void, Error> {
         return Publishers.Zip3(
@@ -194,7 +199,7 @@ public final class TodoInteractorLive: TodoInteractor {
         )
         .tryMap { [weak self] plannables, courses, _ in
             guard let self else { return }
-            try self.filterAndGroupTodos(plannables: plannables, courses: courses, skipBadgeUpdate: skipBadgeUpdate)
+            try self.filterAndGroupTodos(plannables: plannables, courses: courses, skipBadgeUpdate: skipBadgeUpdate, filterOptions: filterOptions)
             self.logFilterAnalytics()
         }
         .catch { [weak self] error -> AnyPublisher<Void, Error> in
@@ -215,6 +220,7 @@ public final class TodoInteractorLive: TodoInteractor {
                         ignorePlannablesCache: ignorePlannablesCache,
                         ignoreCoursesCache: true,
                         skipBadgeUpdate: skipBadgeUpdate,
+                        filterOptions: filterOptions,
                         retryCount: retryCount + 1
                     ) ?? Publishers.noInstanceFailure()
                 }
@@ -227,8 +233,8 @@ public final class TodoInteractorLive: TodoInteractor {
         ReactiveStore(useCase: GetPlannables.makeTodoFetchUseCase(), environment: env)
     }
 
-    private func filterAndGroupTodos(plannables: [Plannable], courses: [Course], skipBadgeUpdate: Bool) throws {
-        let filterOptions = sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
+    private func filterAndGroupTodos(plannables: [Plannable], courses: [Course], skipBadgeUpdate: Bool, filterOptions passedFilterOptions: TodoFilterOptions? = nil) throws {
+        let filterOptions = passedFilterOptions ?? sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
 
         let hasDeletedCourses = courses.contains { $0.isDeleted }
         if hasDeletedCourses {

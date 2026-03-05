@@ -91,17 +91,15 @@ enum LearnerDashboardWidgetAssembly {
         config: DashboardWidgetConfig,
         snackBarViewModel: SnackBarViewModel
     ) -> ToDoWidgetViewModel {
-        let sessionDefaults = AppEnvironment.shared.userDefaults ?? .fallback
         return ToDoWidgetViewModel(
             config: config,
             interactor: TodoInteractorLive(
                 alwaysExcludeCompleted: false,
-                sessionDefaults: sessionDefaults,
+                sessionDefaults: AppEnvironment.shared.userDefaults ?? .fallback,
                 env: .shared
             ),
             router: AppEnvironment.shared.router,
-            snackBarViewModel: snackBarViewModel,
-            sessionDefaults: sessionDefaults
+            snackBarViewModel: snackBarViewModel
         )
     }
 
