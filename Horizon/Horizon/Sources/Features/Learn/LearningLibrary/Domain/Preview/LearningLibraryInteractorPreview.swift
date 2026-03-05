@@ -101,7 +101,7 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
                 courseID: "item-3",
                 name: "SwiftUI Fundamentals",
                 imageURL: URL(string: "https://example.com/swiftui.jpg"),
-                itemType: .program,
+                itemType: .assignment,
                 estimatedTime: "180",
                 isRecommended: true,
                 isCompleted: true,
