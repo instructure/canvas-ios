@@ -25,7 +25,6 @@ final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = ConferencesWidgetView
 
     let config: DashboardWidgetConfig
-    let isFullWidth = true
     let isEditable = false
     let isHiddenInEmptyState = true
 
@@ -110,6 +109,6 @@ final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
         widgetAccessibilityTitle = [
             String(localized: "Live Conferences", bundle: .student),
             String.format(numberOfItems: count)
-        ].joined(separator: ", ")
+        ].accessibilityJoined()
     }
 }

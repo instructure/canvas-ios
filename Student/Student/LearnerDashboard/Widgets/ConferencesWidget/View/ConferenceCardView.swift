@@ -62,10 +62,14 @@ struct ConferenceCardView: View {
             isAvailable: offlineMode.isAppOnline,
             action: { viewModel.didTapJoin(controller: controller) }
         ) {
-            Text("Join", bundle: .student)
-                .frame(maxWidth: .infinity)
+            InstUI.PillContent(
+                title: String(localized: "Join", bundle: .student),
+                size: .height24,
+                isTextBold: true
+            )
+            .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.pillButtonBrandFilled)
+        .buttonStyle(.pillTintFilled)
         .identifier("Conference.\(viewModel.id).joinButton")
     }
 
@@ -74,10 +78,13 @@ struct ConferenceCardView: View {
             isAvailable: offlineMode.isAppOnline,
             action: { viewModel.didTapDismiss() }
         ) {
-            Text("Dismiss", bundle: .student)
-                .frame(maxWidth: .infinity)
+            InstUI.PillContent(
+                title: String(localized: "Dismiss", bundle: .student),
+                size: .height24
+            )
+            .frame(maxWidth: .infinity)
         }
-        .buttonStyle(.pillButtonDefaultOutlined)
+        .buttonStyle(.pillDefaultOutlined)
         .identifier("Conference.\(viewModel.id).dismissButton")
     }
 }

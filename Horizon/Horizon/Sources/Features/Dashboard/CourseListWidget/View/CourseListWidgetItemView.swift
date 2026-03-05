@@ -21,7 +21,6 @@ import SwiftUI
 
 struct CourseListWidgetItemView: View {
     let model: CourseListWidgetModel
-    let width: CGFloat
     let currentIndex: Int
     let totalCount: Int
     let onCourseTap: (String) -> Void
@@ -109,7 +108,6 @@ struct CourseListWidgetItemView: View {
     private var courseImageSection: some View {
         CourseImageView(
             height: imageHeight,
-            width: width,
             url: model.imageURL
         )
         .padding(.bottom, .huiSpaces.space16)
@@ -298,7 +296,6 @@ struct CourseListWidgetItemView: View {
                             url: nil
                         )
                     ),
-                    width: 300,
                     currentIndex: 1,
                     totalCount: 10,
                     onCourseTap: { _ in },
@@ -327,7 +324,6 @@ struct CourseListWidgetItemView: View {
                             url: nil
                         )
                     ),
-                    width: 300,
                     currentIndex: 2,
                     totalCount: 10,
                     onCourseTap: { _ in },
@@ -359,7 +355,6 @@ struct CourseListWidgetItemView: View {
                             url: nil
                         )
                     ),
-                    width: 300,
                     currentIndex: 3,
                     totalCount: 10,
                     onCourseTap: { _ in },
@@ -386,7 +381,6 @@ struct CourseListWidgetItemView: View {
                             url: nil
                         )
                     ),
-                    width: 300,
                     currentIndex: 3,
                     totalCount: 10,
                     onCourseTap: { _ in },
@@ -405,7 +399,6 @@ struct CourseListWidgetItemView: View {
                         programs: [],
                         currentLearningObject: nil
                     ),
-                    width: 300,
                     currentIndex: 3,
                     totalCount: 10,
                     onCourseTap: { _ in },

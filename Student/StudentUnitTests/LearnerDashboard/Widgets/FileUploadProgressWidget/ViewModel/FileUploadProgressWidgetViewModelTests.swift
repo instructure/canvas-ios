@@ -223,16 +223,6 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
 
     // MARK: - Protocol Conformance
 
-    func testIsFullWidth_returnsTrue() {
-        testee = FileUploadProgressWidgetViewModel(
-            config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
-            router: widgetRouter,
-            listViewModel: listViewModel
-        )
-
-        XCTAssertEqual(testee.isFullWidth, true)
-    }
-
     func testIsEditable_returnsFalse() {
         testee = FileUploadProgressWidgetViewModel(
             config: .init(id: .fileUploadProgress, order: 1, isVisible: true),

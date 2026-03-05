@@ -21,68 +21,48 @@ import SwiftUI
 extension InstUI {
 
     public struct CollapsibleListSection<Label: View, Content: View>: View {
+
         @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
         private let label: Label
-        private let paddingSet: InstUI.Styles.PaddingSet
-        private let accessoryIconSize: CGFloat
+        private let headerAccessibilityLabel: String
+        private let listLevelAccessibilityLabel: String?
+        private let headerIdentifier: String?
+
+        private let config: Config
         private let content: Content
 
         @Binding private var isExpanded: Bool
         @State private var expandedState: CollapseButtonExpandedState
 
-        private let headerAccessibilityLabel: String
-        private let listLevelAccessibilityLabel: String?
-        private let headerIdentifier: String?
-
         public init(
             title: String,
-            customAccessibilityLabel: String? = nil,
-            headerIdentifier: String? = nil,
+            @ViewBuilder label: (String) -> Label = { Text($0) },
             itemCount: Int?,
-            paddingSet: InstUI.Styles.PaddingSet = .sectionHeader,
-            accessoryIconSize: CGFloat = 18,
-            isExpanded: Binding<Bool>,
-            @ViewBuilder content: () -> Content
-        ) where Label == Text {
-            self.init(
-                label: { Text(title) },
-                accessibilityLabel: customAccessibilityLabel ?? title,
-                headerIdentifier: headerIdentifier,
-                itemCount: itemCount,
-                paddingSet: paddingSet,
-                accessoryIconSize: accessoryIconSize,
-                isExpanded: isExpanded,
-                content: content
-            )
-        }
-
-        public init(
-            @ViewBuilder label: () -> Label,
-            accessibilityLabel: String,
             headerIdentifier: String? = nil,
-            itemCount: Int?,
-            paddingSet: InstUI.Styles.PaddingSet = .sectionHeader,
-            accessoryIconSize: CGFloat = 18,
+            config: Config = .init(),
             isExpanded: Binding<Bool>,
             @ViewBuilder content: () -> Content
         ) {
-            self.label = label()
-            self.paddingSet = paddingSet
-            self.accessoryIconSize = accessoryIconSize
+            if let itemCount {
+                let visibleTitle = config.showItemCount ? String.format(countSuffixed: title, count: itemCount) : title
+                self.label = label(visibleTitle)
+                self.headerAccessibilityLabel = [title, String.format(numberOfItems: itemCount)]
+                    .accessibilityJoined()
+                self.listLevelAccessibilityLabel = config.readListItemCount ? String.format(accessibilityListCount: itemCount) : nil
+            } else {
+                self.label = label(title)
+                self.headerAccessibilityLabel = title
+                self.listLevelAccessibilityLabel = nil
+            }
+
+            self.headerIdentifier = headerIdentifier
+            self.config = config
             self.content = content()
 
             self._isExpanded = isExpanded
             self.expandedState = .init(isExpanded: isExpanded.wrappedValue)
 
-            self.headerAccessibilityLabel = [
-                accessibilityLabel,
-                String.format(numberOfItems: itemCount)
-            ].accessibilityJoined()
-
-            self.listLevelAccessibilityLabel = itemCount.map(String.format(accessibilityListCount:))
-
-            self.headerIdentifier = headerIdentifier
         }
 
         // MARK: - Body
@@ -106,30 +86,30 @@ extension InstUI {
                                 }
                             },
                             label: {
-                                header()
-                                    .paddingStyle(set: paddingSet)
+                                header
+                                    .paddingStyle(set: config.headerPaddingSet)
                                     .contentShape(Rectangle())
                             }
                         )
                         .buttonStyle(.plain)
 
-                        InstUI.Divider()
+                        InstUI.Divider(config.headerDividerStyle)
                     }
                 }
             )
-            .background(.backgroundLightest) // to stop collapsing views above showing through
+            .background(config.sectionBackgroundColor) // to stop collapsing views above showing through
             .onChange(of: isExpanded) {
                 expandedState = .init(isExpanded: isExpanded)
             }
         }
 
-        private func header() -> some View {
+        private var header: some View {
             HStack(alignment: .center, spacing: 0) {
                 label
                     .textStyle(.sectionHeader)
                     .frame(maxWidth: .infinity, alignment: .leading)
 
-                CollapseButtonIcon(size: accessoryIconSize, isExpanded: $isExpanded)
+                CollapseButtonIcon(size: config.collapseIconSize, isExpanded: $isExpanded)
                     .paddingStyle(.leading, .cellAccessoryPadding)
             }
             .accessibilityElement(children: .ignore)
@@ -138,6 +118,36 @@ extension InstUI {
             .accessibilityHint(expandedState.a11yHint)
             .accessibilityAddTraits([.isHeader])
             .identifier(headerIdentifier)
+        }
+    }
+}
+
+// MARK: - Config
+
+extension InstUI.CollapsibleListSection {
+
+    public struct Config: Equatable {
+        let showItemCount: Bool
+        let readListItemCount: Bool
+        let headerPaddingSet: InstUI.Styles.PaddingSet
+        let collapseIconSize: CGFloat
+        let headerDividerStyle: InstUI.Divider.Style
+        let sectionBackgroundColor: Color
+
+        public init(
+            showItemCount: Bool = false,
+            readListItemCount: Bool = true,
+            headerPaddingSet: InstUI.Styles.PaddingSet = .sectionHeader,
+            collapseIconSize: CGFloat = 18,
+            headerDividerStyle: InstUI.Divider.Style = .full,
+            sectionBackgroundColor: Color = .backgroundLightest
+        ) {
+            self.showItemCount = showItemCount
+            self.readListItemCount = readListItemCount
+            self.headerPaddingSet = headerPaddingSet
+            self.collapseIconSize = collapseIconSize
+            self.headerDividerStyle = headerDividerStyle
+            self.sectionBackgroundColor = sectionBackgroundColor
         }
     }
 }

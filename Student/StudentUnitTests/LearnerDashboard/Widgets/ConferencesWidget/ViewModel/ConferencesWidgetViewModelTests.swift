@@ -59,7 +59,6 @@ final class ConferencesWidgetViewModelTests: StudentTestCase {
 
         XCTAssertEqual(testee.config.id, .conferences)
         XCTAssertEqual(testee.config.order, 42)
-        XCTAssertEqual(testee.isFullWidth, true)
         XCTAssertEqual(testee.isEditable, false)
         XCTAssertEqual(testee.state, .loading)
         XCTAssertEqual(testee.conferences.isEmpty, true)

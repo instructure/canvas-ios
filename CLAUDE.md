@@ -64,5 +64,5 @@ The workspace root contains the following key projects:
 - Ensure the code compiles and runs without errors
 - After creating new files or modifying project settings, run `make sync` to update Xcode projects via XcodeGen
 - When writing tests, make sure the tests pass
-- When you are asked to write tests, follow the conventions outlined in CLAUDE-unit-tests.md
+- When you are asked to write or modify tests, follow the conventions outlined in CLAUDE-unit-tests.md
 

@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import BusinessLogic
 import Combine
 @testable import Core
 @testable import Student
@@ -278,6 +279,58 @@ final class CoursesInteractorLiveTests: StudentTestCase {
 
         XCTAssertSingleOutputAndFinish(testee.getCourses(ignoreCache: false), timeout: 5) { result in
             XCTAssertEqual(result.allCourses.count, 3)
+            XCTAssertEqual(result.invitedCourses.count, 2)
+        }
+    }
+
+    func testGetCourses_forwardsCorrectArgumentsToBusinessLogic() {
+        let courseLogicMock = BusinessLogic.CourseMock()
+        testee = CoursesInteractorLive(env: env, courseLogic: courseLogicMock)
+
+        _ = mockCourseRequests(
+            active: [
+                APICourse.make(
+                    id: "1",
+                    workflow_state: .available,
+                    enrollments: [APIEnrollment.make(id: "e1", enrollment_state: .active)]
+                ),
+                APICourse.make(
+                    id: "2",
+                    workflow_state: .completed,
+                    enrollments: [APIEnrollment.make(id: "e2", enrollment_state: .invited)]
+                )
+            ]
+        )
+
+        XCTAssertSingleOutputAndFinish(testee.getCourses(ignoreCache: false), timeout: 5) { _ in
+            let invocations = courseLogicMock.shouldShowAsInvitedCourseReceivedInvocations
+            XCTAssertEqual(invocations.count, 2)
+            XCTAssertTrue(invocations.contains { !$0.isCourseClosed && !$0.hasInvitedEnrollment })
+            XCTAssertTrue(invocations.contains { $0.isCourseClosed && $0.hasInvitedEnrollment })
+        }
+    }
+
+    func testGetCourses_businessLogicReturnValueControlsInvitedCourses() {
+        let courseLogicMock = BusinessLogic.CourseMock(shouldShowAsInvitedCourseReturnValue: true)
+        testee = CoursesInteractorLive(env: env, courseLogic: courseLogicMock)
+
+        _ = mockCourseRequests(
+            active: [
+                APICourse.make(id: "1", name: "Course 1"),
+                APICourse.make(id: "2", name: "Course 2")
+            ],
+            invited: [
+                APICourse.make(
+                    id: "3",
+                    name: "Course 3",
+                    workflow_state: .deleted,
+                    enrollments: [APIEnrollment.make(id: "e3", enrollment_state: .invited)]
+                )
+            ]
+        )
+
+        XCTAssertSingleOutputAndFinish(testee.getCourses(ignoreCache: false), timeout: 5) { result in
+            XCTAssertEqual(result.allCourses.count, 2)
             XCTAssertEqual(result.invitedCourses.count, 2)
         }
     }

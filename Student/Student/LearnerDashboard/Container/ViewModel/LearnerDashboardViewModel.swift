@@ -26,8 +26,7 @@ import UIKit
 @Observable
 final class LearnerDashboardViewModel {
     private(set) var state: InstUI.ScreenState = .loading
-    private(set) var fullWidthWidgets: [any DashboardWidgetViewModel] = []
-    private(set) var gridWidgets: [any DashboardWidgetViewModel] = []
+    private(set) var widgets: [any DashboardWidgetViewModel] = []
     let snackBarViewModel: SnackBarViewModel
 
     let screenConfig = InstUI.BaseScreenConfig(
@@ -68,8 +67,7 @@ final class LearnerDashboardViewModel {
     }
 
     func refresh(ignoreCache: Bool, completion: (() -> Void)? = nil) {
-        let allWidgets = fullWidthWidgets + gridWidgets
-        let publishers = allWidgets.map { $0.refresh(ignoreCache: ignoreCache) }
+        let publishers = widgets.map { $0.refresh(ignoreCache: ignoreCache) }
 
         Publishers.MergeMany(publishers)
             .collect()
@@ -115,9 +113,8 @@ final class LearnerDashboardViewModel {
             .receive(on: mainScheduler)
             .sink { [weak self] result in
                 guard let self else { return }
-                fullWidthWidgets = result.fullWidth
-                gridWidgets = result.grid
-                if result.fullWidth.isNotEmpty || result.grid.isNotEmpty {
+                widgets = result
+                if result.isNotEmpty {
                     state = .data
                 }
                 refresh(ignoreCache: false)

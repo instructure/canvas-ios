@@ -34,13 +34,13 @@ class APILoginWebTests: CoreTestCase {
         XCTAssertEqual(LoginWebRequest(authMethod: .normalLogin, clientID: "1", provider: nil).query, [
             .value("client_id", "1"),
             .value("response_type", "code"),
-            .value("redirect_uri", "https://canvas/login"),
+            .value("redirect_uri", "https://sso.canvaslms.com/canvas/login"),
             .value("mobile", "1")
         ])
         XCTAssertEqual(LoginWebRequest(authMethod: .canvasLogin, clientID: "1", provider: "p").query, [
             .value("client_id", "1"),
             .value("response_type", "code"),
-            .value("redirect_uri", "https://canvas/login"),
+            .value("redirect_uri", "https://sso.canvaslms.com/canvas/login"),
             .value("mobile", "1"),
             .value("canvas_login", "1"),
             .value("authentication_provider", "p")
