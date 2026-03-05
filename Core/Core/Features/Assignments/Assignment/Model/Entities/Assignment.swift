@@ -44,7 +44,7 @@ public class Assignment: NSManagedObject {
     @NSManaged public var externalToolContentID: String?
     @NSManaged public var freeFormCriterionCommentsOnRubric: Bool
     @NSManaged public var gradedIndividually: Bool
-    @NSManaged public var gradingPeriod: GradingPeriod?
+    @NSManaged public var gradingPeriods: Set<GradingPeriod>
     @NSManaged public var gradingStandardId: String?
     @NSManaged public var gradingTypeRaw: String
     @NSManaged public var groupCategoryID: String?

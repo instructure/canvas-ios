@@ -20,15 +20,16 @@ import UIKit
 import Combine
 import XCTest
 import Core
+import TestsFoundation
 
 class UIAccessibilityAnnouncementTests: XCTestCase {
 
-    private var handler: MockAccessabilityHandler!
+    private var handler: MockAccessibilityHandler!
     private var subscription: AnyCancellable?
 
     override func setUp() {
         super.setUp()
-        handler = MockAccessabilityHandler()
+        handler = MockAccessibilityHandler()
     }
 
     override func tearDown() {
@@ -135,20 +136,4 @@ class UIAccessibilityAnnouncementTests: XCTestCase {
             userInfo: userInfo
         )
     }
-}
-
-class MockAccessabilityHandler: AccessibilityNotificationHandler {
-
-    struct Attempt {
-        let notificaiton: UIAccessibility.Notification
-        let value: String?
-    }
-
-    private(set) var attempts: [Attempt] = []
-    func post(notification: UIAccessibility.Notification, argument: Any?) {
-        let message = (argument as? NSAttributedString)?.string
-        attempts.append(Attempt(notificaiton: notification, value: message))
-    }
-
-    var isVoiceOverRunning: Bool = true
 }

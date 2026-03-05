@@ -21,7 +21,7 @@ import Core
 import Foundation
 
 protocol LearnerDashboardInteractor {
-    func loadWidgets() -> AnyPublisher<(fullWidth: [any DashboardWidgetViewModel], grid: [any DashboardWidgetViewModel]), Never>
+    func loadWidgets() -> AnyPublisher<[any DashboardWidgetViewModel], Never>
 }
 
 final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
@@ -36,7 +36,7 @@ final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
         self.widgetViewModelFactory = widgetViewModelFactory
     }
 
-    func loadWidgets() -> AnyPublisher<(fullWidth: [any DashboardWidgetViewModel], grid: [any DashboardWidgetViewModel]), Never> {
+    func loadWidgets() -> AnyPublisher<[any DashboardWidgetViewModel], Never> {
         Just(())
             .subscribe(on: DispatchQueue.global(qos: .userInitiated))
             .map { [userDefaults, widgetViewModelFactory] _ in
@@ -47,11 +47,7 @@ final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
                     configs = LearnerDashboardWidgetAssembly.makeDefaultWidgetConfigs().sorted()
                 }
 
-                let viewModels = configs.map { widgetViewModelFactory($0) }
-                let fullWidth = viewModels.filter { $0.isFullWidth }
-                let grid = viewModels.filter { !$0.isFullWidth }
-
-                return (fullWidth, grid)
+                return configs.map { widgetViewModelFactory($0) }
             }
             .eraseToAnyPublisher()
     }

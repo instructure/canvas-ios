@@ -43,6 +43,7 @@ struct SpeedGraderSubmissionGradesView: View {
     }
     @FocusState private var focusedInput: FocusedInput?
     @State private var isCommentsExpanded: Bool = false
+    @State private var isGradeSaving: Bool = false
 
     var body: some View {
         ScrollViewReader { scrollViewProxy in
@@ -65,6 +66,9 @@ struct SpeedGraderSubmissionGradesView: View {
                 }
             }
             .scrollDismissesKeyboard(keyboardDismissalMode)
+        }
+        .onReceive(gradeViewModel.gradeSavingState) { state in
+            isGradeSaving = state == .saving
         }
     }
 
@@ -125,6 +129,22 @@ struct SpeedGraderSubmissionGradesView: View {
             isPresented: $gradeViewModel.isShowingErrorAlert,
             presenting: gradeViewModel.errorAlertViewModel
         )
+        .alert(
+            String(localized: "Oops something went wrong", bundle: .teacher),
+            isPresented: $gradeViewModel.isShowingGradeSavingErrorAlert) {
+                Button(role: .cancel) {} label: {
+                    Text("Cancel", bundle: .teacher)
+                }
+
+                Button {
+                    gradeViewModel.gradeSavingRetryTapped()
+                } label: {
+                    Text("Retry", bundle: .teacher)
+                }
+        } message: {
+            Text("There was an error while saving your grade modification. You can retry, or try again later.", bundle: .teacher)
+        }
+
     }
 
     @ViewBuilder
@@ -161,7 +181,7 @@ struct SpeedGraderSubmissionGradesView: View {
                 allOptions: gradeState.gradeOptions,
                 selectOption: gradeViewModel.selectGradeOption,
                 didSelectOption: gradeViewModel.didSelectGradeOption,
-                isSaving: gradeViewModel.isSavingGrade
+                isSaving: $isGradeSaving
             )
             .accessibilityLabel(
                 [title, String.format(accessibilityLetterGrade: gradeState.originalGrade)]
@@ -200,7 +220,7 @@ struct SpeedGraderSubmissionGradesView: View {
                 get: { textValue },
                 set: { gradeViewModel.setGradeFromTextField($0, inputType: inputType) }
             ),
-            isSaving: gradeViewModel.isSavingGrade
+            isSaving: .init(isGradeSaving)
         )
     }
 
@@ -230,7 +250,7 @@ struct SpeedGraderSubmissionGradesView: View {
                         .accessibilityLabel(a11ySuffix ?? suffix)
                 }
             }
-            .swapWithSpinner(onSaving: gradeViewModel.isSavingGrade, alignment: .trailing)
+            .swapWithSpinner(onSaving: .init(isGradeSaving), alignment: .trailing)
         }
         .paddingStyle(set: .standardCell)
         .accessibilityElement(children: .combine)
@@ -311,21 +331,8 @@ struct SpeedGraderSubmissionGradesView: View {
 
     @ViewBuilder
     private var comments: some View {
+        let title = String(localized: "Comments", bundle: .teacher)
         let commentCount = commentListViewModel.commentCount
-        let a11yLabel = [
-            String(localized: "Comments", bundle: .core),
-            String.format(numberOfItems: commentCount)
-        ].joined(separator: ", ")
-        let header = HStack(spacing: InstUI.Styles.Padding.cellIconText.rawValue) {
-            Image.discussionLine
-                .scaledIcon()
-                .foregroundStyle(.tint)
-                .accessibilityHidden(true)
-
-            Text("Comments (\(commentCount))", bundle: .teacher)
-                .foregroundStyle(.textDarkest)
-                .font(.semibold16)
-        }
         let content = SubmissionCommentListView(
             viewModel: commentListViewModel,
             attempt: attempt,
@@ -337,16 +344,22 @@ struct SpeedGraderSubmissionGradesView: View {
 
             if assignment.hasRubrics {
                 InstUI.CollapsibleListSection(
-                    label: { header },
-                    accessibilityLabel: a11yLabel,
-                    itemCount: nil,
-                    paddingSet: .iconCell,
-                    accessoryIconSize: 24,
+                    title: title,
+                    label: { commentsHeaderLabel(title: $0) },
+                    itemCount: commentCount,
+                    config: .init(
+                        showItemCount: true,
+                        readListItemCount: false,
+                        headerPaddingSet: .iconCell,
+                        collapseIconSize: 24
+                    ),
                     isExpanded: $isCommentsExpanded,
                     content: { content }
                 )
             } else {
-                header
+                let visibleTitle = String.format(countSuffixed: title, count: commentCount)
+                let a11yLabel = [title, String.format(numberOfItems: commentCount)].accessibilityJoined()
+                commentsHeaderLabel(title: visibleTitle)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .paddingStyle(set: .iconCell)
                     .accessibilityLabel(a11yLabel)
@@ -358,6 +371,19 @@ struct SpeedGraderSubmissionGradesView: View {
             }
         }
         .padding(.top, 16)
+    }
+
+    private func commentsHeaderLabel(title: String) -> some View {
+        HStack(spacing: InstUI.Styles.Padding.cellIconText.rawValue) {
+            Image.discussionLine
+                .scaledIcon()
+                .applyTint()
+                .accessibilityHidden(true)
+
+            Text(title)
+                .foregroundStyle(.textDarkest)
+                .font(.semibold16)
+        }
     }
 
     // MARK: - Rubrics

@@ -35,9 +35,11 @@ projectReferences:
   Horizon:
     path: ../Horizon/Horizon.xcodeproj
 packages:
+  BusinessLogic:
+    path: ../packages/BusinessLogic
   Pendo:
     url: https://github.com/pendo-io/pendo-mobile-sdk
-    exactVersion: 3.11.2
+    exactVersion: 3.11.3
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
     exactVersion: 14.2.0

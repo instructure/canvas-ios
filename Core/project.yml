@@ -31,13 +31,16 @@ packages:
     exactVersion: 3.5.0
   Pendo:
     url: https://github.com/pendo-io/pendo-mobile-sdk
-    exactVersion: 3.11.2
+    exactVersion: 3.11.3
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
     exactVersion: 14.2.0
   Swifter:
     url: https://github.com/httpswift/swifter
     version: 1.5.0
+  SDWebImageSwiftUI:
+    url: https://github.com/SDWebImage/SDWebImageSwiftUI.git
+    version: 3.0.0
 targets:
   Core:    
     type: framework
@@ -50,6 +53,7 @@ targets:
       - package: Lottie
       - package: Pendo
       - package: PSPDFKit
+      - package: SDWebImageSwiftUI
     preBuildScripts:
       - path: ../scripts/xcode-build-phases/swiftLint.sh
         name: SwiftLint
