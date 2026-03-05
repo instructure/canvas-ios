@@ -42,7 +42,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         let items = allGroups
             .first { Calendar.current.isDate($0.date, inSameDayAs: selectedDay) }?
             .items ?? []
-        return showCompleted ? items : items.filter { $0.markAsDoneState != .done }
+        return visibleItems(from: items)
     }
 
     var datesWithItems: Set<Date> {
@@ -51,7 +51,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
 
     var itemCounts: [Date: Int] {
         allGroups.reduce(into: [:]) { result, group in
-            result[Calendar.current.startOfDay(for: group.date)] = (showCompleted ? group.items : group.items.filter { $0.markAsDoneState != .done }).count
+            result[Calendar.current.startOfDay(for: group.date)] = visibleItems(from: group.items).count
         }
     }
 
@@ -66,6 +66,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     private let interactor: TodoInteractor
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
+    private var loadCancellable: AnyCancellable?
     private var markDoneTimers: [String: AnyCancellable] = [:]
 
     init(
@@ -198,6 +199,10 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
 
     // MARK: - Private
 
+    private func visibleItems(from items: [TodoItemViewModel]) -> [TodoItemViewModel] {
+        showCompleted ? items : items.filter { $0.markAsDoneState != .done }
+    }
+
     private func setupSubscriptions() {
         interactor.todoGroups
             .dropFirst()
@@ -221,7 +226,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     private func loadItems(for weekStart: Date, ignorePlannablesCache: Bool) {
         let start = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: weekStart) ?? weekStart
         let end = Calendar.current.date(byAdding: .weekOfYear, value: 2, to: weekStart) ?? weekStart
-        interactor
+        loadCancellable = interactor
             .refresh(
                 startDate: start,
                 endDate: end,
@@ -241,7 +246,6 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
                 },
                 receiveValue: { }
             )
-            .store(in: &subscriptions)
     }
 
     private func performMarkAsDone(_ item: TodoItemViewModel) {
@@ -275,6 +279,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
 
     private func performMarkAsUndone(_ item: TodoItemViewModel) {
         cancelDelayedRemove(for: item)
+        let itemTitle = item.title
         item.markAsDoneState = .loading
         interactor.markItemAsDone(item, done: false)
             .receive(on: DispatchQueue.main)
@@ -284,13 +289,14 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
             } receiveValue: { [weak self, weak item] overrideId in
                 item?.overrideId = overrideId
                 item?.markAsDoneState = .notDone
-                self?.snackBarViewModel.showSnack(String(localized: "\(item?.title ?? "") marked as not done", bundle: .core))
+                self?.snackBarViewModel.showSnack(String(localized: "\(itemTitle) marked as not done", bundle: .core))
             }
             .store(in: &subscriptions)
     }
 
     private func toggleItemStateInPlace(_ item: TodoItemViewModel) {
         let isCurrentlyDone = item.markAsDoneState == .done
+        let itemTitle = item.title
         item.markAsDoneState = .loading
         interactor.markItemAsDone(item, done: !isCurrentlyDone)
             .receive(on: DispatchQueue.main)
@@ -301,9 +307,9 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
                 item?.overrideId = overrideId
                 item?.markAsDoneState = isCurrentlyDone ? .notDone : .done
                 if isCurrentlyDone {
-                    self?.snackBarViewModel.showSnack(String(localized: "\(item?.title ?? "") marked as not done", bundle: .core))
+                    self?.snackBarViewModel.showSnack(String(localized: "\(itemTitle) marked as not done", bundle: .core))
                 } else {
-                    self?.snackBarViewModel.showSnack(String(localized: "\(item?.title ?? "") marked as done", bundle: .core))
+                    self?.snackBarViewModel.showSnack(String(localized: "\(itemTitle) marked as done", bundle: .core))
                 }
             }
             .store(in: &subscriptions)
@@ -311,6 +317,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
 
     private func removeItemWithOptimisticUI(_ item: TodoItemViewModel) {
         let itemId = item.plannableId
+        let itemTitle = item.title
         withAnimation { removeItem(item) }
         interactor.markItemAsDone(item, done: true)
             .receive(on: DispatchQueue.main)
@@ -320,7 +327,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
             } receiveValue: { [weak self, weak item] overrideId in
                 item?.overrideId = overrideId
                 item?.markAsDoneState = .done
-                self?.snackBarViewModel.showSnack(String(localized: "\(item?.title ?? "") marked as done", bundle: .core))
+                self?.snackBarViewModel.showSnack(String(localized: "\(itemTitle) marked as done", bundle: .core))
             }
             .store(in: &subscriptions)
     }

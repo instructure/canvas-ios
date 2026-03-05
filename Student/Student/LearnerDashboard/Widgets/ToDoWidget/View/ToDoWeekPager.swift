@@ -82,6 +82,7 @@ struct ToDoWeekPager: UIViewRepresentable {
 }
 
 final class ToDoWeekPagerCoordinator: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    private static let hostedViewTag = 493820
 
     private let viewModel: ToDoWidgetViewModel
     private let weekDays: (Int) -> [Date]
@@ -124,14 +125,12 @@ final class ToDoWeekPagerCoordinator: NSObject, UICollectionViewDataSource, UICo
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let embeddedViewTag = 493820
-
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         cell.backgroundColor = .clear
-        cell.viewWithTag(embeddedViewTag)?.removeFromSuperview()
+        cell.viewWithTag(Self.hostedViewTag)?.removeFromSuperview()
 
-        let hcView = hostingControllers[indexPath.row].view!
-        hcView.tag = embeddedViewTag
+        guard let hcView = hostingControllers[indexPath.row].view else { return cell }
+        hcView.tag = Self.hostedViewTag
         hcView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         hcView.frame = CGRect(origin: .zero, size: cell.frame.size)
         cell.addSubview(hcView)
@@ -148,8 +147,7 @@ final class ToDoWeekPagerCoordinator: NSObject, UICollectionViewDataSource, UICo
     }
 
     func collectionView(_ collectionView: UICollectionView, targetContentOffsetForProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
-        guard let currentCellIndex = collectionView.indexPathsForVisibleItems.first else { return collectionView.contentOffset }
-        return CGPoint(x: collectionView.frame.size.width * CGFloat(currentCellIndex.row), y: 0)
+        CGPoint(x: collectionView.frame.size.width, y: 0)
     }
 
     // MARK: - UICollectionViewDelegateFlowLayout
@@ -194,6 +192,7 @@ final class ToDoWeekPagerCoordinator: NSObject, UICollectionViewDataSource, UICo
     // MARK: - Private
 
     private func handleScrollEnd(_ collectionView: UICollectionView) {
+        guard collectionView.frame.width > 0 else { return }
         let page = Int(round(collectionView.contentOffset.x / collectionView.frame.width))
         guard page != 1 else { return }
 

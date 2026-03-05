@@ -20,13 +20,18 @@ import Core
 import SwiftUI
 
 struct ToDoWidgetView: View {
-    @State var viewModel: ToDoWidgetViewModel
+    @State private var viewModel: ToDoWidgetViewModel
     @Environment(\.viewController) private var viewController
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     @State private var weekPagerProxy = WeekPagerProxy()
     @State private var cardHeaderHeight: CGFloat = 42
     @ScaledMetric private var calendarRowHeight: CGFloat = 80
+    @State private var swipingItemId: String?
+
+    init(viewModel: ToDoWidgetViewModel) {
+        _viewModel = State(wrappedValue: viewModel)
+    }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -235,7 +240,6 @@ struct ToDoWidgetView: View {
         .padding(.vertical, 16)
     }
 
-
     private var itemListView: some View {
         VStack(spacing: 0) {
             ForEach(viewModel.dayItems, id: \.id) { item in
@@ -245,7 +249,7 @@ struct ToDoWidgetView: View {
                     onMarkAsDone: { viewModel.markItemAsDone($0) },
                     onSwipe: { viewModel.handleSwipeAction($0) },
                     onSwipeCommitted: { viewModel.handleSwipeCommitted($0) },
-                    isSwiping: .constant(false)
+                    isSwiping: isSwipingBinding(for: item)
                 )
                 .paddingStyle(.leading, .standard)
                 InstUI.Divider(.padded)
@@ -254,6 +258,13 @@ struct ToDoWidgetView: View {
                 .padding(.horizontal, 80)
                 .padding(.vertical, 16)
         }
+    }
+
+    private func isSwipingBinding(for item: TodoItemViewModel) -> Binding<Bool> {
+        Binding(
+            get: { swipingItemId == item.id },
+            set: { isSwiping in swipingItemId = isSwiping ? item.id : nil }
+        )
     }
 
     private var addToDoButton: some View {

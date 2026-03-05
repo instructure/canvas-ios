@@ -91,6 +91,10 @@ private struct ToDoWidgetDayCell: View {
     }
 
     private var accessibilityLabel: String {
-        date.formatted(.dateTime.weekday(.wide).month(.wide).day())
+        let dateLabel = date.formatted(.dateTime.weekday(.wide).month(.wide).day())
+        if itemCount == 0 {
+            return dateLabel
+        }
+        return "\(dateLabel), \(itemCount) \(itemCount == 1 ? String(localized: "item", bundle: .core) : String(localized: "items", bundle: .core))"
     }
 }
