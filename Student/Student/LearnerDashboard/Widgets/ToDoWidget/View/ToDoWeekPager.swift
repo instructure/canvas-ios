@@ -30,10 +30,6 @@ struct ToDoWeekPager: UIViewRepresentable {
     let onWeekOffsetChanged: (Int) -> Void
     let weekDays: (Int) -> [Date]
 
-    @State private var prevSubscription: AnyCancellable?
-    @State private var nextSubscription: AnyCancellable?
-    @State private var todaySubscription: AnyCancellable?
-
     func makeCoordinator() -> ToDoWeekPagerCoordinator {
         ToDoWeekPagerCoordinator(
             viewModel: viewModel,
@@ -58,21 +54,7 @@ struct ToDoWeekPager: UIViewRepresentable {
         let coordinator = context.coordinator
         coordinator.collectionView = collectionView
         coordinator.observeFrameChange(on: collectionView)
-
-        DispatchQueue.main.async { [weak coordinator] in
-            prevSubscription = proxy.scrollToPreviousWeekSubject.sink { [weak coordinator] in
-                guard let coordinator, let collectionView = coordinator.collectionView else { return }
-                coordinator.scrollToPrevious(collectionView)
-            }
-            nextSubscription = proxy.scrollToNextWeekSubject.sink { [weak coordinator] in
-                guard let coordinator, let collectionView = coordinator.collectionView else { return }
-                coordinator.scrollToNext(collectionView)
-            }
-            todaySubscription = proxy.scrollToTodaySubject.sink { [weak coordinator] in
-                guard let coordinator, let collectionView = coordinator.collectionView else { return }
-                coordinator.scrollToToday(collectionView)
-            }
-        }
+        coordinator.setupProxySubscriptions(proxy)
 
         return collectionView
     }
@@ -93,6 +75,7 @@ final class ToDoWeekPagerCoordinator: NSObject, UICollectionViewDataSource, UICo
     private var hostingControllers: [UIHostingController<ToDoWeekPageView>]
     private var didScrollToInitialPage = false
     private var observation: NSKeyValueObservation?
+    private var subscriptions = Set<AnyCancellable>()
 
     weak var collectionView: UICollectionView?
 
@@ -116,6 +99,32 @@ final class ToDoWeekPagerCoordinator: NSObject, UICollectionViewDataSource, UICo
         observation = collectionView.observe(\.frame) { collectionView, _ in
             collectionView.collectionViewLayout.invalidateLayout()
         }
+    }
+
+    func setupProxySubscriptions(_ proxy: WeekPagerProxy) {
+        proxy.scrollToPreviousWeekSubject
+            .sink { [weak self] in
+                guard let self else { return }
+                guard let collectionView else { return }
+                scrollToPrevious(collectionView)
+            }
+            .store(in: &subscriptions)
+
+        proxy.scrollToNextWeekSubject
+            .sink { [weak self] in
+                guard let self else { return }
+                guard let collectionView else { return }
+                scrollToNext(collectionView)
+            }
+            .store(in: &subscriptions)
+
+        proxy.scrollToTodaySubject
+            .sink { [weak self] in
+                guard let self else { return }
+                guard let collectionView else { return }
+                scrollToToday(collectionView)
+            }
+            .store(in: &subscriptions)
     }
 
     // MARK: - UICollectionViewDataSource

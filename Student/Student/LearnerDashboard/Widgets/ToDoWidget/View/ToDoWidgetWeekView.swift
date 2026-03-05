@@ -57,17 +57,16 @@ private struct ToDoWidgetDayCell: View {
                 if isSelected {
                     Circle()
                         .fill(Color.accentColor)
-                        .scaledFrame(size: 32, useIconScale: true)
                 } else if isToday {
                     Circle()
                         .stroke(Color.accentColor)
-                        .scaledFrame(size: 32, useIconScale: true)
                 }
 
                 Text(date.dayString)
                     .font(isSelected || isToday ? .bold12 : .regular12, lineHeight: .fit)
                     .foregroundStyle(isSelected ? Color.textLightest : labelColor)
             }
+            .scaledFrame(size: 32, useIconScale: true)
             .padding(.top, 2)
 
             HStack(spacing: 3) {
@@ -95,6 +94,6 @@ private struct ToDoWidgetDayCell: View {
         if itemCount == 0 {
             return dateLabel
         }
-        return "\(dateLabel), \(itemCount) \(itemCount == 1 ? String(localized: "item", bundle: .core) : String(localized: "items", bundle: .core))"
+        return "\(dateLabel), \(itemCount) \(String(localized: "items", bundle: .core))"
     }
 }

@@ -36,7 +36,9 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     private(set) var showCompleted: Bool
     private(set) var isDayLoading: Bool = false
 
-    private var allGroups: [TodoGroupViewModel] = []
+    private var allGroups: [TodoGroupViewModel] = [] {
+        didSet { updateItemCounts() }
+    }
 
     var dayItems: [TodoItemViewModel] {
         let items = allGroups
@@ -49,11 +51,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         Set(allGroups.map { Calendar.current.startOfDay(for: $0.date) })
     }
 
-    var itemCounts: [Date: Int] {
-        allGroups.reduce(into: [:]) { result, group in
-            result[Calendar.current.startOfDay(for: group.date)] = visibleItems(from: group.items).count
-        }
-    }
+    private(set) var itemCounts: [Date: Int] = [:]
 
     var isShowingToday: Bool {
         Calendar.current.isDateInToday(selectedDay)
@@ -174,6 +172,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
                 item.shouldKeepCompletedItemsVisible = showCompleted
             }
         }
+        updateItemCounts()
     }
 
     func markItemAsDone(_ item: TodoItemViewModel) {
@@ -203,6 +202,12 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         showCompleted ? items : items.filter { $0.markAsDoneState != .done }
     }
 
+    private func updateItemCounts() {
+        itemCounts = allGroups.reduce(into: [:]) { result, group in
+            result[Calendar.current.startOfDay(for: group.date)] = visibleItems(from: group.items).count
+        }
+    }
+
     private func setupSubscriptions() {
         interactor.todoGroups
             .dropFirst()
@@ -216,9 +221,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
                 }
                 allGroups = groups
                 isDayLoading = false
-                if state != .error {
-                    state = groups.isEmpty ? .empty : .data
-                }
+                state = groups.isEmpty ? .empty : .data
             }
             .store(in: &subscriptions)
     }
