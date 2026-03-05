@@ -111,13 +111,26 @@ struct LearningLibraryView: View {
                     lastFocusedItemID: $lastFocusedItemID
                 )
                 .id(item.id)
-                .listRowBackground(Color.huiColors.surface.pagePrimary)
+                // Add line
+                Rectangle()
+                    .fill(Color.huiColors.lineAndBorders.lineStroke)
+                    .frame(height: 1)
+                    .listRowBackground(Color.huiColors.surface.pagePrimary)
+                    .listRowInsets(EdgeInsets())
+                    .listRowSeparator(.hidden)
+                    .listRowSeparatorTint(Color.huiColors.surface.pagePrimary)
+                    .listSectionSeparatorTint(Color.huiColors.surface.pagePrimary)
             }
             .padding(.horizontal, .huiSpaces.space24)
+            .listRowSpacing(.huiSpaces.space24)
 
             if viewModel.isSeeMoreVisible {
                 seeMoreButton
                     .padding(.top, .huiSpaces.space16)
+                    .listRowBackground(Color.huiColors.surface.pagePrimary)
+                    .listRowInsets(EdgeInsets())
+                    .listRowSeparator(.hidden)
+                    .listSectionSeparatorTint(Color.huiColors.surface.pagePrimary)
             }
             extraPadding
                 .listRowBackground(Color.huiColors.surface.pagePrimary)
@@ -130,7 +143,8 @@ struct LearningLibraryView: View {
         .scrollContentBackground(.hidden)
         .environment(\.defaultMinListHeaderHeight, 0)
         .listStyle(.grouped)
-        .listRowSpacing(.huiSpaces.space24)
+//        .listRowSpacing(.huiSpaces.space24)
+        .listRowSpacing(0)
         .listSectionSpacing(.compact)
         .listSectionSeparator(.hidden)
         .scrollIndicators(.hidden)
