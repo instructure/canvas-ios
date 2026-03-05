@@ -66,6 +66,7 @@ public class HTMLParserLive: HTMLParser {
             .eraseToAnyPublisher()
     }
 
+    // swiftlint:disable:next function_body_length
     public func parse(_ content: String, resourceId: String, courseId: CourseSyncID, baseURL: URL? = nil) -> AnyPublisher<String, Error> {
         let imageURLs = findRegexMatches(content, pattern: imageRegex)
         let fileURLs = Array(Set(findRegexMatches(content, pattern: fileRegex)))
