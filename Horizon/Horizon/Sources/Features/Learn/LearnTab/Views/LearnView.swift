@@ -86,7 +86,7 @@ struct LearnView: View {
                 set: { selectedTabIndex = $0 ?? 0 }
             )
         )
-        .padding(.top, .huiSpaces.space8)
+        .padding(.top, .huiSpaces.space16)
         .padding(.bottom, .huiSpaces.space24)
         .background(Color.huiColors.surface.pagePrimary)
     }
