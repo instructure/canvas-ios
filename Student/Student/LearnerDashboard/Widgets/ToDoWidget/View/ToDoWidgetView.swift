@@ -81,6 +81,7 @@ struct ToDoWidgetView: View {
                 } label: {
                     InstUI.PillContent(
                         title: String(localized: "Today", bundle: .core),
+                        trailingIcon: Image.calendarTodayLine,
                         size: .height24
                     )
                 }
@@ -145,25 +146,10 @@ struct ToDoWidgetView: View {
     private var contentView: some View {
         switch viewModel.state {
         case .loading:
-            HStack {
-                Spacer()
-                ProgressView()
-                    .progressViewStyle(.indeterminateCircle(size: 32))
-                Spacer()
-            }
-            .padding()
+            skeletonView
 
         case .error:
-            VStack(spacing: 16) {
-                Text("Oops, something went wrong", bundle: .student)
-                    .textStyle(.infoDescription)
-                Button(String(localized: "Refresh", bundle: .core)) {
-                    viewModel.retryLoad()
-                }
-                .font(.semibold14)
-                .foregroundStyle(Color.accentColor)
-            }
-            .padding()
+            errorDayView
 
         case .data, .empty:
             if viewModel.isDayLoading {
@@ -186,20 +172,24 @@ struct ToDoWidgetView: View {
     }
 
     private var emptyDayView: some View {
-        HStack(spacing: 12) {
-            Image.emptyLine
-                .scaledIcon(size: 48)
-                .foregroundStyle(Color.textLight)
+        HStack(alignment: .top, spacing: 8) {
+            Image("PandaNoEvents", bundle: .core)
+                .scaledIcon(size: 40)
+                .accessibilityHidden(true)
+                .padding(.trailing, 8)
 
-            VStack(alignment: .leading, spacing: 4) {
+            VStack(alignment: .leading, spacing: 0) {
                 Text("You're all done for now!", bundle: .student)
                     .font(.semibold16)
                     .foregroundStyle(Color.textDarkest)
-                Text("Looks like you're free for this day. Do you want to add some To-dos?", bundle: .student)
+                    .padding(.bottom, 2)
+
+                Text("Looks like you're free for this day.\nDo you want to add some To-dos?", bundle: .student)
                     .font(.regular14)
                     .foregroundStyle(Color.textDark)
+                    .padding(.bottom, 12)
+
                 addToDoButton
-                    .padding(.top, 4)
             }
 
             Spacer(minLength: 0)
@@ -207,6 +197,44 @@ struct ToDoWidgetView: View {
         .paddingStyle(.horizontal, .standard)
         .padding(.vertical, 16)
     }
+
+    private var errorDayView: some View {
+        HStack(alignment: .top, spacing: 8) {
+            Image("PandaUnsupported", bundle: .core)
+                .scaledIcon(size: 40)
+                .accessibilityHidden(true)
+                .padding(.trailing, 8)
+
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Oops, something went wrong", bundle: .student)
+                    .font(.semibold16)
+                    .foregroundStyle(Color.textDarkest)
+                    .padding(.bottom, 2)
+
+                Text("We weren’t able to load your To-dos.\nTry again, or come back later.", bundle: .student)
+                    .font(.regular14)
+                    .foregroundStyle(Color.textDark)
+                    .padding(.bottom, 12)
+
+                Button {
+                    viewModel.retryLoad()
+                } label: {
+                    InstUI.PillContent(
+                        title: String(localized: "Refresh", bundle: .student),
+                        leadingIcon: Image.refreshLine,
+                        size: .height30
+                    )
+                }
+                .buttonStyle(.pillTintFilled)
+                .tint(.accentColor)
+            }
+
+            Spacer(minLength: 0)
+        }
+        .paddingStyle(.horizontal, .standard)
+        .padding(.vertical, 16)
+    }
+
 
     private var itemListView: some View {
         VStack(spacing: 0) {
@@ -234,7 +262,7 @@ struct ToDoWidgetView: View {
         } label: {
             InstUI.PillContent(
                 title: String(localized: "Add To-do", bundle: .student),
-                leadingIcon: Image.noteLine,
+                leadingIcon: Image.addLine,
                 size: .height30
             )
         }
