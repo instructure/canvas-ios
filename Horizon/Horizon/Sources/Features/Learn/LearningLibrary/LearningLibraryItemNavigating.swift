@@ -45,11 +45,11 @@ extension LearningLibraryItemNavigating {
                 ),
                 from: viewController
             )
-        case .program:
-            router.show(
-                ProgramDetailsAssembly.makeViewController(programID: ""),
-                from: viewController
-            )
+//        case .program:
+//            router.show(
+//                ProgramDetailsAssembly.makeViewController(programID: ""),
+//                from: viewController
+//            )
         default:
             navigateToItemSequence(model: model, viewController: viewController)
         }
