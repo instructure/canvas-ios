@@ -246,6 +246,17 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
         router.show(enrollViewController, from: viewController, options: .modal(.fullScreen))
     }
 
+    func navigateToLearningLibraryItemDetails(
+        _ model: LearningLibraryCardModel,
+        from viewController: WeakViewController
+    ) {
+        if model.itemType == .course && !model.isEnrolled {
+            showEnrollConfirmation(model: model, viewController: viewController)
+        } else {
+            navigateToLearningLibraryItem(model, from: viewController)
+        }
+    }
+
     // MARK: - Private Functions
 
     private func configResponse(items: [LearningLibraryCardModel]) {

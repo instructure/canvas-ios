@@ -172,7 +172,7 @@ struct LearningLibraryView: View {
                         viewModel.showEnrollConfirmation(model: item, viewController: viewController)
                     }, onTapItem: {
                         lastFocusedItemID = item.id
-                        viewModel.navigateToLearningLibraryItem(item, from: viewController)
+                        viewModel.navigateToLearningLibraryItemDetails(item, from: viewController)
                     }
                 )
                 .id(item.id)
