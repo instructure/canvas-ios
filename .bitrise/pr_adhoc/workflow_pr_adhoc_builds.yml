@@ -102,7 +102,7 @@ workflows:
     - comment-on-github-pull-request@0:
         inputs:
         - body: $PR_BUILDS_COMMENT
-        - personal_access_token: $GITHUB_API_TOKEN
+        - personal_access_token: $GIT_HTTP_PASSWORD
         - update_comment_tag: bitrise_adhoc_builds
         is_always_run: false
     triggers:
