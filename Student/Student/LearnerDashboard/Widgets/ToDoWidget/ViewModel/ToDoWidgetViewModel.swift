@@ -257,6 +257,9 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
                 guard let self, let item else { return }
                 item.overrideId = overrideId
                 item.markAsDoneState = .done
+
+                self.snackBarViewModel.showSnack(String(localized: "\(item.title) marked as done", bundle: .core))
+
                 guard !item.shouldKeepCompletedItemsVisible else { return }
                 let plannableId = item.plannableId
                 let timer = Just(())
@@ -278,9 +281,10 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
             .sinkFailureOrValue { [weak self, weak item] _ in
                 item?.markAsDoneState = .done
                 self?.snackBarViewModel.showSnack(String(localized: "Failed to mark item as not done", bundle: .core))
-            } receiveValue: { [weak item] overrideId in
+            } receiveValue: { [weak self, weak item] overrideId in
                 item?.overrideId = overrideId
                 item?.markAsDoneState = .notDone
+                self?.snackBarViewModel.showSnack(String(localized: "\(item?.title ?? "") marked as not done", bundle: .core))
             }
             .store(in: &subscriptions)
     }
@@ -293,9 +297,14 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
             .sinkFailureOrValue { [weak self, weak item] _ in
                 item?.markAsDoneState = isCurrentlyDone ? .done : .notDone
                 self?.snackBarViewModel.showSnack(String(localized: "Failed to update item", bundle: .core))
-            } receiveValue: { [weak item] overrideId in
+            } receiveValue: { [weak self, weak item] overrideId in
                 item?.overrideId = overrideId
                 item?.markAsDoneState = isCurrentlyDone ? .notDone : .done
+                if isCurrentlyDone {
+                    self?.snackBarViewModel.showSnack(String(localized: "\(item?.title ?? "") marked as not done", bundle: .core))
+                } else {
+                    self?.snackBarViewModel.showSnack(String(localized: "\(item?.title ?? "") marked as done", bundle: .core))
+                }
             }
             .store(in: &subscriptions)
     }
@@ -308,9 +317,10 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
             .sinkFailureOrValue { [weak self] _ in
                 self?.restoreItem(withId: itemId)
                 self?.snackBarViewModel.showSnack(String(localized: "Failed to mark item as done", bundle: .core))
-            } receiveValue: { [weak item] overrideId in
+            } receiveValue: { [weak self, weak item] overrideId in
                 item?.overrideId = overrideId
                 item?.markAsDoneState = .done
+                self?.snackBarViewModel.showSnack(String(localized: "\(item?.title ?? "") marked as done", bundle: .core))
             }
             .store(in: &subscriptions)
     }
