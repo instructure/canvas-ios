@@ -118,6 +118,14 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                 return self.downloadMediaTweakingIFrameReferences(mediaData)
                     .map({ nil as CourseSyncID? })
                     .catch { error -> AnyPublisher<CourseSyncID?, Error> in
+
+                        Logger.shared.error("Studio Offline Sync Failed for Course:" + error.debugDescription)
+
+                        RemoteLogger.shared.logError(
+                            name: "Studio Offline Sync Failed for Course",
+                            reason: error.debugDescription
+                        )
+
                         return Publishers.typedJust(mediaData.courseID)
                     }
                     .eraseToAnyPublisher()
