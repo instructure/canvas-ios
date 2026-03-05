@@ -219,7 +219,6 @@ struct LearningLibraryView: View {
         .overlay { globalSearchLoaderView }
         .scrollContentBackground(.hidden)
         .listStyle(.plain)
-        .listRowSpacing(.huiSpaces.space24)
         .scrollIndicators(.hidden)
     }
 

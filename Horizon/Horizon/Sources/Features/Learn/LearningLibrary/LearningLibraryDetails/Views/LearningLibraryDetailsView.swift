@@ -237,6 +237,7 @@ struct LearningLibraryDetailsView: View {
             Spacer()
             countOfVisibleItemsView
                 .hidden(viewModel.filteredItems.isEmpty)
+                .fixedSize(horizontal: true, vertical: false)
         }
         .padding(.horizontal, .huiSpaces.space24)
     }
@@ -264,7 +265,7 @@ struct LearningLibraryDetailsView: View {
                 viewModel.selectedLearningObject = option
                 restoreFocusIfNeeded(after: 1.55)
             }
-            .frame(width: 120)
+            .frame(width: 110)
             .id(selectLOFilterFocusedID)
             .accessibilityFocused($focusedItemID, equals: selectLOFilterFocusedID)
     }
@@ -282,7 +283,7 @@ struct LearningLibraryDetailsView: View {
                 viewModel.selectedLearningLibrary = option
                 restoreFocusIfNeeded(after: 1.55)
             }
-            .frame(width: 120)
+            .frame(width: 110)
             .id(selectTypeFilterFocusedID)
             .accessibilityFocused($focusedItemID, equals: selectTypeFilterFocusedID)
     }
