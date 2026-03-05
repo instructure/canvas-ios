@@ -30,11 +30,11 @@ protocol MobileVerifyStrategy {
 }
 
 private struct DefaultMobileVerifyStrategy: MobileVerifyStrategy {
-    let urlString = "https://sso.canvaslms.com/api/v1/mobile_verify.json"
-    let redirectUri = "https://sso.canvaslms.com/canvas/login"
+    let urlString =  API.loginURLString(path: "/api/v1/mobile_verify.json")
+    let redirectUri = API.loginURLString(path: "/canvas/login")
 
     func getAuthenticationCode(client: APIVerifyClient, url: URL) -> String? {
-        if url.host == "sso.canvaslms.com", url.path == "/canvas/login" {
+        if url.host == API.loginEndpointsDomain, url.path == "/canvas/login" {
             return url.queryValue(for: "code")
         }
         return nil
@@ -46,7 +46,7 @@ private struct DefaultMobileVerifyStrategy: MobileVerifyStrategy {
 /// buttons. `getAuthenticationCode` returns `code` value only when tapping
 /// "Authorize" button.
 private struct UrnIetfMobileVerifyStrategy: MobileVerifyStrategy {
-    let urlString = "https://sso.canvaslms.com/api/v1/mobile_verify.json"
+    let urlString = API.loginURLString(path: "/api/v1/mobile_verify.json")
     let redirectUri = "urn:ietf:wg:oauth:2.0:oob"
 
     func getAuthenticationCode(client: APIVerifyClient, url: URL) -> String? {
@@ -58,6 +58,29 @@ private struct UrnIetfMobileVerifyStrategy: MobileVerifyStrategy {
         return nil
     }
 }
+
+// MARK: - Helpers
+
+extension API {
+    static let loginEndpointsDomain = "sso.canvaslms.com"
+
+    static func loginURLString(path: String) -> String {
+        let delimiter = path.hasPrefix("/") ? "" : "/"
+        return "https://\(API.loginEndpointsDomain)" + delimiter + path
+    }
+}
+
+extension URL {
+
+    init?(loginApiPath path: String) {
+        if let url = URL(string: API.loginURLString(path: path)) {
+            self = url
+        }
+        return nil
+    }
+}
+
+// MARK: - Testing
 
 #if DEBUG
 extension MobileVerify {
