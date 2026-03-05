@@ -35,7 +35,7 @@ workflows:
             echo "BITRISE_SCHEME set to: All"
             echo "BITRISE_CONFIGURATION set to: Adhoc"
         title: Set Scheme and Configuration for Secrets Setup
-    - git::git@github.com:instructure/steps-canvas-ios-secrets.git@master:
+    - git::https://github.com/instructure/steps-canvas-ios-secrets.git@master:
         title: Canvas iOS Secrets
     - script@1:
         title: XcodeGen
