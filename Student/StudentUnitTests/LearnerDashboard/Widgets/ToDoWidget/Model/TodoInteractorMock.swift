@@ -16,9 +16,9 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Core
 import Combine
 import Foundation
+@testable import Core
 
 final class TodoInteractorMock: TodoInteractor {
     var todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([])

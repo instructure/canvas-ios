@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 import SwiftUI
 
@@ -97,3 +98,37 @@ private struct ToDoWidgetDayCell: View {
         return "\(dateLabel), \(itemCount) \(String(localized: "items", bundle: .core))"
     }
 }
+
+#if DEBUG
+
+#Preview("Current week") {
+    ToDoWeekPageView(
+        weekDays: (0..<7).compactMap {
+            Calendar.current.date(byAdding: .day, value: $0, to: ToDoWidgetViewModel.startOfWeek(for: Clock.now))
+        },
+        viewModel: ToDoWidgetViewModel(
+            config: DashboardWidgetConfig(id: .toDo, order: 0, isVisible: true, settings: nil),
+            interactor: TodoInteractorPreview(),
+            router: AppEnvironment.shared.router,
+            snackBarViewModel: SnackBarViewModel()
+        )
+    )
+    .padding()
+}
+
+#Preview("Individual day cells") {
+    let today = Clock.now
+    HStack(spacing: 0) {
+        ToDoWidgetDayCell(date: today, isSelected: false, isToday: false, itemCount: 0)
+            .frame(maxWidth: .infinity)
+        ToDoWidgetDayCell(date: today, isSelected: false, isToday: true, itemCount: 2)
+            .frame(maxWidth: .infinity)
+        ToDoWidgetDayCell(date: today, isSelected: true, isToday: false, itemCount: 3)
+            .frame(maxWidth: .infinity)
+        ToDoWidgetDayCell(date: today, isSelected: true, isToday: true, itemCount: 1)
+            .frame(maxWidth: .infinity)
+    }
+    .padding()
+}
+
+#endif

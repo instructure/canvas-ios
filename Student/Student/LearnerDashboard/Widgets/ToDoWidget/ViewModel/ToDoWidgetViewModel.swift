@@ -54,7 +54,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     private(set) var itemCounts: [Date: Int] = [:]
 
     var isShowingToday: Bool {
-        Calendar.current.isDateInToday(selectedDay)
+        Calendar.current.isDate(selectedDay, inSameDayAs: Clock.now)
     }
 
     var layoutIdentifier: [AnyHashable] {
@@ -221,7 +221,8 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
                 }
                 allGroups = groups
                 isDayLoading = false
-                state = groups.isEmpty ? .empty : .data
+                let hasVisibleItems = !groups.flatMap { self.visibleItems(from: $0.items) }.isEmpty
+                state = hasVisibleItems ? .data : .empty
             }
             .store(in: &subscriptions)
     }
