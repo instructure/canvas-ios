@@ -146,7 +146,7 @@ struct LegacyStudentHeaderView: View {
                 .resizable()
                 .size(menuIconSize)
                 .foregroundColor(Color.textLightest)
-                .instBadge(viewModel.badgeCount)
+                .instBadge(viewModel.badgeCount, color: .backgroundDanger)
         }
         .padding(.leading, horizontalPadding)
         .padding(.top, isVerticallyCompact ? 0 : 12)

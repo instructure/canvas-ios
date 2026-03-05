@@ -25,12 +25,13 @@ extension View {
     ///   - isOverlayed:
     ///     - If `true`, the badge behaves like an `overlay` and the trailing part of the badge is ignored for horizontal layout.
     ///     - If `false`, the badge behaves like a `ZStack` and the trailing part of the badge is respected for horizontal layout.
+    ///   - color: The fill color of the badge's pill. If it's `nil` then the current `.tint` color is used.
     @ViewBuilder
     public func instBadge(
         _ count: Int?,
         style: InstUI.BadgeStyle = .hostSize24,
         isOverlayed: Bool = true,
-        color: Color = .backgroundDanger
+        color: Color? = nil
     ) -> some View {
         modifier(InstUI.BadgeModifier(count: count ?? 0, style: style, isOverlayed: isOverlayed, color: color))
     }
@@ -76,7 +77,7 @@ extension InstUI {
         private let text: String?
         private let style: BadgeStyle
         private let isOverlayed: Bool
-        private let color: Color
+        private let color: Color?
 
         @ScaledMetric(relativeTo: .body) private var uiScaleBody: CGFloat = 1
         @ScaledMetric(relativeTo: .caption2) private var uiScaleCaption2: CGFloat = 1
@@ -89,7 +90,7 @@ extension InstUI {
 
         @State private var badgedContentWidth: CGFloat = 0
 
-        init(count: Int, style: BadgeStyle, isOverlayed: Bool, color: Color) {
+        init(count: Int, style: BadgeStyle, isOverlayed: Bool, color: Color?) {
             text = switch count {
             case ...0:
                 nil
@@ -133,8 +134,9 @@ extension InstUI {
                 .padding(style.edgeInsets * uiScale)
                 .background(
                     Capsule()
-                        .fill(color)
+                        .fill(.tint)
                         .stroke(Color.textLightest, lineWidth: style.borderWidth)
+                        .customTint(color)
                 )
                 .fixedSize(horizontal: true, vertical: false)
                 .transition(.push(from: .top))
@@ -178,11 +180,11 @@ extension InstUI {
         Divider()
 
         HStack(spacing: 10) {
-            doc18.instBadge(nil, style: .hostSize18)
-            doc18.instBadge(1, style: .hostSize18)
-            doc18.instBadge(3, style: .hostSize18)
-            doc18.instBadge(99, style: .hostSize18)
-            doc18.instBadge(100, style: .hostSize18)
+            doc18.instBadge(nil, style: .hostSize18, color: .textSuccess)
+            doc18.instBadge(1, style: .hostSize18, color: .textSuccess)
+            doc18.instBadge(3, style: .hostSize18, color: .textSuccess)
+            doc18.instBadge(99, style: .hostSize18, color: .textSuccess)
+            doc18.instBadge(100, style: .hostSize18, color: .textSuccess)
         }
         Divider()
 
@@ -192,6 +194,15 @@ extension InstUI {
             menu24.instBadge(3, style: .hostSize24)
             menu24.instBadge(99, style: .hostSize24)
             menu24.instBadge(100, style: .hostSize24)
+        }
+        Divider()
+
+        HStack(spacing: 10) {
+            Button {} label: { menu24.instBadge(nil, style: .hostSize24) }
+            Button {} label: { menu24.instBadge(1, style: .hostSize24) }
+            Button {} label: { menu24.instBadge(3, style: .hostSize24) }
+            Button {} label: { menu24.instBadge(99, style: .hostSize24) }
+            Button {} label: { menu24.instBadge(100, style: .hostSize24) }
         }
         Divider()
 
@@ -213,10 +224,13 @@ extension InstUI {
                 }
             } label: {
                 Text(verbatim: "Change!")
+                    .foregroundStyle(.course3)
             }
             Image.alertsTab.instBadge(badgeValues[badgeValueIndex])
         }
     }
+    .foregroundStyle(.textDarkest)
+    .tint(.backgroundDanger)
     .background(Color.backgroundLightest)
 }
 

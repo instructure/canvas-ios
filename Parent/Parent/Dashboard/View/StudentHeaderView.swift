@@ -161,7 +161,7 @@ struct StudentHeaderView: View {
                 // Could not find a better way to make the button a circle
                 .frame(height: 34)
         }
-        .instBadge(viewModel.badgeCount)
+        .instBadge(viewModel.badgeCount, color: .backgroundDanger)
         .buttonStyle(.glass)
         .padding(.leading, horizontalPadding)
         .padding(.top, isVerticallyCompact ? 0 : 12)
