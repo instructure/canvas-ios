@@ -81,6 +81,7 @@ struct LearningLibraryCardView: View {
         .listRowInsets(EdgeInsets())
         .listRowSeparator(.hidden)
         .listRowBackground(Color.huiColors.surface.pagePrimary)
+        .padding(.bottom, .huiSpaces.space24)
     }
 
     private var cardAccessibilityLabel: String {

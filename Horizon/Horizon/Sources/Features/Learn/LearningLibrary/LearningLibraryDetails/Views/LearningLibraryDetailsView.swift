@@ -176,10 +176,18 @@ struct LearningLibraryDetailsView: View {
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.huiColors.surface.pagePrimary)
             }
+
+            // Add extra padding at the botttom
+            Rectangle()
+                .fill(Color.clear)
+                .frame(height: 10)
+                .listRowInsets(EdgeInsets())
+                .listRowSeparator(.hidden)
+                .listRowBackground(Color.huiColors.surface.pagePrimary)
         }
         .scrollContentBackground(.hidden)
         .listStyle(.plain)
-        .listRowSpacing(.huiSpaces.space24)
+        .listRowSpacing(0)
         .scrollIndicators(.hidden)
     }
 

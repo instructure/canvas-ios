@@ -119,6 +119,12 @@ struct LearningLibraryView: View {
                 seeMoreButton
                     .padding(.top, .huiSpaces.space16)
             }
+            extraPadding
+                .listRowBackground(Color.huiColors.surface.pagePrimary)
+                .listRowInsets(EdgeInsets())
+                .listRowSeparator(.hidden)
+                .listRowSeparatorTint(Color.huiColors.surface.pagePrimary)
+                .listSectionSeparatorTint(Color.huiColors.surface.pagePrimary)
         }
         .listSectionSpacing(.zero)
         .scrollContentBackground(.hidden)
@@ -193,12 +199,26 @@ struct LearningLibraryView: View {
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.huiColors.surface.pagePrimary)
             }
+
+            extraPadding
         }
         .overlay { globalSearchLoaderView }
         .scrollContentBackground(.hidden)
         .listStyle(.plain)
         .listRowSpacing(.huiSpaces.space24)
         .scrollIndicators(.hidden)
+    }
+
+    private var extraPadding: some View {
+        // Add extra padding at the bottom
+        Rectangle()
+            .fill(Color.clear)
+            .frame(height: 10)
+            .listRowInsets(EdgeInsets())
+            .listRowSeparator(.hidden)
+            .listRowSeparatorTint(Color.huiColors.surface.pagePrimary)
+            .listRowBackground(Color.huiColors.surface.pagePrimary)
+            .listSectionSeparatorTint(Color.huiColors.surface.pagePrimary)
     }
 
     @ViewBuilder
