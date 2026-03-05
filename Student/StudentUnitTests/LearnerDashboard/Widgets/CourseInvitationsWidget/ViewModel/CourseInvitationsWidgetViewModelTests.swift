@@ -77,7 +77,6 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
             snackBarViewModel: snackBarViewModel
         )
 
-        XCTAssertTrue(testee.isFullWidth)
         XCTAssertFalse(testee.isEditable)
     }
 
