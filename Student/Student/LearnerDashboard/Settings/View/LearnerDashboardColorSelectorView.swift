@@ -18,6 +18,7 @@
 
 import SwiftUI
 import HorizonUI
+import Core
 
 struct LearnerDashboardColorSelectorView: View {
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
@@ -25,12 +26,13 @@ struct LearnerDashboardColorSelectorView: View {
     @Binding var selectedColor: Color
 
     let whiteColor = Color.backgroundLightest.variantForLightMode
+    let colors: [ColorData]
 
     var body: some View {
         DisclosureGroup {
             // Need to implement our own HFlow, this uses fixed spacing, we need flexible
             HorizonUI.HFlow {
-                ForEach(Self.colors, id: \.self) { colorData in
+                ForEach(colors) { colorData in
                     Button {
                         selectedColor = colorData.color
                     } label: {
@@ -50,6 +52,8 @@ struct LearnerDashboardColorSelectorView: View {
                                 }
                             }
                             .frame(width: 40 * uiScale, height: 40 * uiScale)
+                            .shadow(color: .black.opacity(0.08), radius: 2, y: 2)
+                            .shadow(color: .black.opacity(0.16), radius: 2, y: 1)
                             .accessibilityLabel(colorData.description)
                             .accessibilityAddTraits(isSelected ? .isSelected : [])
                     }
@@ -73,6 +77,33 @@ struct LearnerDashboardColorSelectorView: View {
             .paddingStyle(.bottom, .cellBottom)
         }
         .disclosureGroupStyle(PlainDisclosureGroupStyle())
+    }
+
+    init(selectedColor: Binding<Color>) {
+        self._selectedColor = selectedColor
+
+        let courseColors = CourseColorsInteractorLive.colors.map {
+            ColorData(color: $0.key.asColor, description: $0.value)
+        }
+        let additionalColors = [
+            ColorData(
+                color: .backgroundLightest.variantForLightMode,
+                description: String(localized: "White", bundle: .core, comment: "This is a name of a color.")
+            ),
+            ColorData(
+                color: .backgroundLightest.variantForDarkMode,
+                description: String(localized: "Black", bundle: .core, comment: "This is a name of a color.")
+            )
+        ]
+
+        colors =  courseColors + additionalColors
+    }
+
+    struct ColorData: Identifiable {
+        let color: Color
+        let description: String
+
+        var id: String { description }
     }
 }
 
