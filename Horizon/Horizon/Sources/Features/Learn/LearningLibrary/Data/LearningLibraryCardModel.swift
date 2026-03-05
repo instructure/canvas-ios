@@ -122,10 +122,10 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
     }
 
     var shouldShowEnrollButton: Bool {
-        !isEnrolled && (itemType == .course || itemType == .program)
+        !isEnrolled && itemType == .course
     }
 
     var shouldShowProgressStatus: Bool {
-        itemType == .course || itemType == .program
+        itemType == .course
     }
 }

@@ -21,7 +21,7 @@ import SwiftUI
 
 enum LearningLibraryObjectType: String, CaseIterable {
     case course = "COURSE"
-    case program = "PROGRAM"
+//    case program = "PROGRAM"
     case page = "PAGE"
     case assignment = "ASSIGNMENT"
     case assessment = "QUIZ"
@@ -38,7 +38,7 @@ enum LearningLibraryObjectType: String, CaseIterable {
         case .assessment: String(localized: "Assessment")
         case .assignment: String(localized: "Assignment")
         case .externalTool: String(localized: "External Tool")
-        case .program: String(localized: "Program")
+//        case .program: String(localized: "Program")
         }
     }
 
@@ -51,7 +51,7 @@ enum LearningLibraryObjectType: String, CaseIterable {
         case .assessment: Image.huiIcons.factCheck
         case .assignment: Image.huiIcons.editDocumentAssignment
         case .externalTool: Image.huiIcons.noteAlt
-        case .program: Image.huiIcons.book5
+//        case .program: Image.huiIcons.book5
         }
     }
 
@@ -76,7 +76,7 @@ enum LearningLibraryObjectType: String, CaseIterable {
         )
         case .assignment: .plum
         case .externalTool: .honey
-        case .program: .violet
+//        case .program: .violet
         }
     }
 
