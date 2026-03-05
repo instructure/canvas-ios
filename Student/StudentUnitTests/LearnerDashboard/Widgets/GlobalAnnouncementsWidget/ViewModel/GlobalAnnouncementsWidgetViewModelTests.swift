@@ -63,7 +63,6 @@ final class GlobalAnnouncementsWidgetViewModelTests: StudentTestCase {
 
         XCTAssertEqual(testee.config.id, .globalAnnouncements)
         XCTAssertEqual(testee.config.order, 42)
-        XCTAssertEqual(testee.isFullWidth, true)
         XCTAssertEqual(testee.isEditable, false)
 
         XCTAssertEqual(testee.state, .loading)

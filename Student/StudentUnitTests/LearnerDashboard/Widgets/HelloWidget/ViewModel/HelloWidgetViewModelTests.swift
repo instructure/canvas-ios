@@ -48,7 +48,6 @@ final class HelloWidgetViewModelTests: StudentTestCase {
         testee = makeViewModel()
 
         XCTAssertEqual(testee.config.id, .helloWidget)
-        XCTAssertEqual(testee.isFullWidth, true)
         XCTAssertEqual(testee.isEditable, true)
     }
 
@@ -61,12 +60,10 @@ final class HelloWidgetViewModelTests: StudentTestCase {
     // MARK: - State management
 
     func test_state_whenDataLoadsSuccessfully_shouldBeData() {
-        let shortNameExpectation = expectation(description: "Short name expectation")
-        let interactor = HelloWidgetInteractorMock(shortNameExpectation: shortNameExpectation)
+        testee = makeViewModel(interactor: HelloWidgetInteractorMock())
 
-        testee = makeViewModel(interactor: interactor)
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
 
-        wait(for: [shortNameExpectation], timeout: 1)
         XCTAssertEqual(testee.state, .data)
     }
 
@@ -74,146 +71,122 @@ final class HelloWidgetViewModelTests: StudentTestCase {
 
     func test_greeting_withUserShortName_shouldIncludeShortName() {
         let shortName = "Test user"
-        let shortNameExpectation = expectation(description: "Short name expectation")
-        let interactor = HelloWidgetInteractorMock(shortName: shortName, shortNameExpectation: shortNameExpectation)
+        testee = makeViewModel(interactor: HelloWidgetInteractorMock(shortName: shortName))
 
-        testee = makeViewModel(interactor: interactor, dayPeriodProvider: .init(date: testData.morningDate))
+        Clock.mockNow(testData.morningDate)
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
 
-        wait(for: [shortNameExpectation])
         XCTAssertEqual(testee.greeting, "Good morning \(shortName)!")
     }
 
     func test_greeting_withEmptyShortName_shouldNotIncludeShortName() {
-        let shortNameExpectation = expectation(description: "Short name expectation")
-        let interactor = HelloWidgetInteractorMock(shortNameExpectation: shortNameExpectation)
+        testee = makeViewModel(interactor: HelloWidgetInteractorMock())
 
-        testee = makeViewModel(interactor: interactor, dayPeriodProvider: .init(date: testData.morningDate))
-        wait(for: [shortNameExpectation])
+        Clock.mockNow(testData.morningDate)
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
+
         XCTAssertEqual(testee.greeting, "Good morning!")
     }
 
     func test_greeting_basedOnDayPeriod() {
-        // MARK: - Morning
         let shortName = "Test user"
-        let morningShortNameExpectation = expectation(description: "Morning short name expectation")
-        var interactor = HelloWidgetInteractorMock(shortName: shortName, shortNameExpectation: morningShortNameExpectation)
 
-        var testee = makeViewModel(interactor: interactor, dayPeriodProvider: .init(date: testData.morningDate))
-        wait(for: [morningShortNameExpectation])
+        // MARK: - Morning
+        var testee = makeViewModel(interactor: HelloWidgetInteractorMock(shortName: shortName))
+        Clock.mockNow(testData.morningDate)
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertEqual(testee.greeting, "Good morning \(shortName)!")
 
         // MARK: - Afternoon
-        let afternoonShortNameExpectation = expectation(description: "Afternoon short name expectation")
-        interactor = HelloWidgetInteractorMock(shortName: shortName, shortNameExpectation: afternoonShortNameExpectation)
-
-        testee = makeViewModel(interactor: interactor, dayPeriodProvider: .init(date: testData.afternoonDate))
-        wait(for: [afternoonShortNameExpectation])
+        testee = makeViewModel(interactor: HelloWidgetInteractorMock(shortName: shortName))
+        Clock.mockNow(testData.afternoonDate)
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertEqual(testee.greeting, "Good afternoon \(shortName)!")
 
         // MARK: - Evening
-        let eveningShortNameExpectation = expectation(description: "Evening short name expectation")
-        interactor = HelloWidgetInteractorMock(shortName: shortName, shortNameExpectation: eveningShortNameExpectation)
-
-        testee = makeViewModel(interactor: interactor, dayPeriodProvider: .init(date: testData.eveningDate))
-        wait(for: [eveningShortNameExpectation])
+        testee = makeViewModel(interactor: HelloWidgetInteractorMock(shortName: shortName))
+        Clock.mockNow(testData.eveningDate)
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertEqual(testee.greeting, "Good evening \(shortName)!")
 
         // MARK: - Night
-        let nightShortNameExpectation = expectation(description: "Night short name expectation")
-        interactor = HelloWidgetInteractorMock(shortName: shortName, shortNameExpectation: nightShortNameExpectation)
-
-        testee = makeViewModel(interactor: interactor, dayPeriodProvider: .init(date: testData.nightDate))
-        wait(for: [nightShortNameExpectation])
+        testee = makeViewModel(interactor: HelloWidgetInteractorMock(shortName: shortName))
+        Clock.mockNow(testData.nightDate)
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertEqual(testee.greeting, "Good night \(shortName)!")
     }
 
     // MARK: - Message
 
     func test_message_shouldNotBeEmpty() {
-        let shortNameExpectation = expectation(description: "Short name expectation")
-        let interactor = HelloWidgetInteractorMock(shortNameExpectation: shortNameExpectation)
+        testee = makeViewModel(interactor: HelloWidgetInteractorMock())
 
-        testee = makeViewModel(interactor: interactor)
-        wait(for: [shortNameExpectation])
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
+
         XCTAssertEqual(testee.message.isEmpty, false)
     }
 
     func test_message_shouldBeFromCorrectPeriodArray() {
         // MARK: - Morning
-        let morningShortNameExpectation = expectation(description: "Morning short name expectation")
-        var interactor = HelloWidgetInteractorMock(shortNameExpectation: morningShortNameExpectation)
         let morningMessages = HelloWidgetViewModel.generic.union(HelloWidgetViewModel.morning)
-
-        var testee = makeViewModel(interactor: interactor, dayPeriodProvider: .init(date: testData.morningDate))
-        wait(for: [morningShortNameExpectation], timeout: 1)
+        var testee = makeViewModel(interactor: HelloWidgetInteractorMock())
+        Clock.mockNow(testData.morningDate)
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertTrue(morningMessages.contains(testee.message))
 
         // MARK: - Afternoon
-        let afternoonShortNameExpectation = expectation(description: "Afternoon short name expectation")
-        interactor = HelloWidgetInteractorMock(shortNameExpectation: afternoonShortNameExpectation)
         let afternoonMessages = HelloWidgetViewModel.generic.union(HelloWidgetViewModel.afternoon)
-
-        testee = makeViewModel(interactor: interactor, dayPeriodProvider: .init(date: testData.afternoonDate))
-        wait(for: [afternoonShortNameExpectation], timeout: 1)
+        testee = makeViewModel(interactor: HelloWidgetInteractorMock())
+        Clock.mockNow(testData.afternoonDate)
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertTrue(afternoonMessages.contains(testee.message))
 
         // MARK: - Evening
-        let eveningShortNameExpectation = expectation(description: "Evening short name expectation")
-        interactor = HelloWidgetInteractorMock(shortNameExpectation: eveningShortNameExpectation)
         let eveningMessages = HelloWidgetViewModel.generic.union(HelloWidgetViewModel.evening)
-
-        testee = makeViewModel(interactor: interactor, dayPeriodProvider: .init(date: testData.eveningDate))
-        wait(for: [eveningShortNameExpectation], timeout: 1)
+        testee = makeViewModel(interactor: HelloWidgetInteractorMock())
+        Clock.mockNow(testData.eveningDate)
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertTrue(eveningMessages.contains(testee.message))
 
         // MARK: - Night
-        let nightShortNameExpectation = expectation(description: "Night short name expectation")
-        interactor = HelloWidgetInteractorMock(shortNameExpectation: nightShortNameExpectation)
         let nightMessages = HelloWidgetViewModel.generic.union(HelloWidgetViewModel.night)
-
-        testee = makeViewModel(interactor: interactor, dayPeriodProvider: .init(date: testData.nightDate))
-        wait(for: [nightShortNameExpectation], timeout: 1)
+        testee = makeViewModel(interactor: HelloWidgetInteractorMock())
+        Clock.mockNow(testData.nightDate)
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertTrue(nightMessages.contains(testee.message))
     }
 
     // MARK: - Refresh
 
     func test_refresh_shouldTriggerStoreAndDateRefresh() {
-        let shortNameExpectation = expectation(description: "Short name expectation")
-        shortNameExpectation.assertForOverFulfill = false
-        let refreshExpectation = expectation(description: "Refresh expectation")
         let shortName1 = "Test user 1"
-        let interactor = HelloWidgetInteractorMock(shortName: shortName1, shortNameExpectation: shortNameExpectation)
+        let interactor = HelloWidgetInteractorMock(shortName: shortName1)
+        testee = makeViewModel(interactor: interactor)
 
-        testee = makeViewModel(interactor: interactor, dayPeriodProvider: .init(date: testData.morningDate))
-        wait(for: [shortNameExpectation], timeout: 1)
+        Clock.mockNow(testData.morningDate)
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertEqual(testee.greeting, "Good morning \(shortName1)!")
 
         let shortName2 = "Test user 2"
         interactor.shortName = shortName2
         Clock.mockNow(testData.nightDate)
 
-        let subscription = testee.refresh(ignoreCache: true)
-            .sink(receiveCompletion: { _ in refreshExpectation.fulfill() }, receiveValue: { _ in })
-
-        wait(for: [refreshExpectation], timeout: 1)
+        XCTAssertFinish(testee.refresh(ignoreCache: true))
         XCTAssertEqual(testee.greeting, "Good night \(shortName2)!")
-        subscription.cancel()
     }
 
-    // MARK: - timer
-    func test_applicationBecomActive_shouldUpdateGreeting() {
-        let shortNameExpectation = expectation(description: "Short name expectation")
-        let interactor = HelloWidgetInteractorMock(shortNameExpectation: shortNameExpectation)
+    // MARK: - App Foreground
 
-        testee = makeViewModel(interactor: interactor, dayPeriodProvider: .init(date: testData.morningDate))
-        wait(for: [shortNameExpectation], timeout: 1)
-        XCTAssertEqual(testee.greeting, "Good morning!")
+    func test_applicationBecomActive_shouldUpdateGreeting() {
+        testee = makeViewModel(interactor: HelloWidgetInteractorMock())
+
+        Clock.mockNow(testData.morningDate)
+        XCTAssertFinish(testee.refresh(ignoreCache: false))
 
         Clock.mockNow(testData.nightDate)
         NotificationCenter.default.post(name: UIApplication.didBecomeActiveNotification, object: nil)
 
-        XCTAssertEqual(testee.greeting, "Good night!")
+        waitUntil(shouldFail: true) { testee.greeting == "Good night!" }
     }
 
     // MARK: - Private helpers

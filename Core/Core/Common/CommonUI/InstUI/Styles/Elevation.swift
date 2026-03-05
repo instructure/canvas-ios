@@ -27,7 +27,7 @@ extension InstUI.Styles {
             case cardLarge
             case pill
 
-            var cornerRadius: CGFloat {
+            public var cornerRadius: CGFloat {
                 switch self {
                 case .cardSmall: 6
                 case .cardLarge: 24
