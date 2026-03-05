@@ -37,7 +37,7 @@ protocol HTMLDownloadInteractor {
         _ url: URL,
         courseId: CourseSyncID,
         resourceId: String
-    ) -> AnyPublisher<String, Never>
+    ) -> AnyPublisher<String, Error>
 
     func saveBaseContent(
         content: String,
@@ -72,7 +72,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         _ url: URL,
         courseId: CourseSyncID,
         resourceId: String
-    ) -> AnyPublisher<String, Never> {
+    ) -> AnyPublisher<String, Error> {
         let fileID = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
         return Just(url)
             .setFailureType(to: Error.self)
@@ -121,7 +121,6 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
                     }
                     .eraseToAnyPublisher()
             }
-            .replaceError(with: "")
             .eraseToAnyPublisher()
     }
 

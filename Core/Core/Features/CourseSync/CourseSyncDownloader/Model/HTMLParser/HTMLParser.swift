@@ -103,15 +103,6 @@ public class HTMLParserLive: HTMLParser {
                     .map { urlPath -> (URL, String)? in
                         return (originalURL, urlPath)
                     }
-                    .flatMap({ values -> AnyPublisher<(URL, String)?, Error> in
-
-                        if Int.random(in: 1 ... 3) == 2 {
-                            return Publishers.typedFailure(error: NSError.instructureError("", code: HttpError.notFound))
-                        } else {
-                            return Publishers.typedJust(values)
-                        }
-
-                    })
                     .catch { error -> AnyPublisher<(URL, String)?, Error> in
                         self?.embeddedContentFailureSubject.send(courseId)
 
@@ -155,17 +146,6 @@ public class HTMLParserLive: HTMLParser {
                 .map { url -> (URL, String)? in
                     return (originalURL, url)
                 }
-                .flatMap({ values -> AnyPublisher<(URL, String)?, Error> in
-
-                    if Int.random(in: 1 ... 3) == 2 {
-                        return Publishers.typedFailure(
-                            error: NSError.instructureError("random", code: HttpError.notFound)
-                        )
-                    } else {
-                        return Publishers.typedJust(values)
-                    }
-
-                })
                 .catch { error -> AnyPublisher<(URL, String)?, Error> in
                     self?.embeddedContentFailureSubject.send(courseId)
 

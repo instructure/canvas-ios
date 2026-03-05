@@ -115,10 +115,6 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                     return Publishers.noInstanceFailure(output: CourseSyncID?.self)
                 }
 
-                if Int.random(in: 1 ... 3) == 2 {
-                    return Publishers.typedJust(nil)
-                }
-
                 return self.downloadMediaTweakingIFrameReferences(mediaData)
                     .map({ nil as CourseSyncID? })
                     .catch { error -> AnyPublisher<CourseSyncID?, Error> in
@@ -128,8 +124,6 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
             }
             .compactMap({ $0 })
             .collect()
-            //.map { _ in Int.random(in: 1 ... 3)  == 2 ? true : false }
-            //.map { _ in false }
             .catch { error -> AnyPublisher<[CourseSyncID], Never> in
                 Logger.shared.error("Studio Offline Sync Failed: " + error.debugDescription)
                 RemoteLogger.shared.logError(
