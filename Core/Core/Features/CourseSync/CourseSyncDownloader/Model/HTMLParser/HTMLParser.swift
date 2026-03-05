@@ -22,6 +22,7 @@ import Combine
 public protocol HTMLParser {
     var sectionName: String { get }
     var envResolver: CourseSyncEnvironmentResolver { get }
+    var embeddedContentFailurePublisher: AnyPublisher<CourseSyncID, Never> { get }
 
     func sectionFolder(for courseId: CourseSyncID) -> URL
     func parse(_ content: String, resourceId: String, courseId: CourseSyncID, baseURL: URL?) -> AnyPublisher<String, Error>
@@ -37,6 +38,11 @@ public class HTMLParserLive: HTMLParser {
         interactor.envResolver
     }
 
+    public var embeddedContentFailurePublisher: AnyPublisher<CourseSyncID, Never> {
+        embeddedContentFailureSubject.eraseToAnyPublisher()
+    }
+
+    private let embeddedContentFailureSubject = PassthroughSubject<CourseSyncID, Never>()
     private let imageRegex: NSRegularExpression
     private let fileRegex: NSRegularExpression
     private let relativeURLRegex: NSRegularExpression
@@ -92,13 +98,30 @@ public class HTMLParserLive: HTMLParser {
                     return Just((url, url)).setFailureType(to: Error.self).eraseToAnyPublisher()
                 }
             }
-            .flatMap { [interactor] (fileURL, originalURL) in
+            .flatMap { [interactor, weak self] (fileURL, originalURL) in
                 return interactor.downloadFile(fileURL, courseId: courseId, resourceId: resourceId)
                     .map { urlPath -> (URL, String)? in
                         return (originalURL, urlPath)
                     }
+                    .flatMap({ values -> AnyPublisher<(URL, String)?, Error> in
+
+                        if Int.random(in: 1 ... 3) == 2 {
+                            return Publishers.typedFailure(error: NSError.instructureError("", code: HttpError.notFound))
+                        } else {
+                            return Publishers.typedJust(values)
+                        }
+
+                    })
+                    .catch { error -> AnyPublisher<(URL, String)?, Error> in
+                        self?.embeddedContentFailureSubject.send(courseId)
+
+                        if error.isForbidden || error.isNotFound {
+                            return Just(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
+                        }
+
+                        return Fail(error: error).eraseToAnyPublisher()
+                    }
             }
-            .ignoreForbiddenNotFoundErrors(replacingWith: nil)
             .compactMap { $0 }
             .collect()
             .eraseToAnyPublisher()
@@ -122,7 +145,7 @@ public class HTMLParserLive: HTMLParser {
                     return Just((url, url)).setFailureType(to: Error.self).eraseToAnyPublisher()
                 }
             }
-            .flatMap { [interactor] (fileURL, originalURL) in // Download images to local Documents folder, return the (original link - local link) tuple
+            .flatMap { [interactor, weak self] (fileURL, originalURL) in // Download images to local Documents folder, return the (original link - local link) tuple
                 return interactor.download(
                     fileURL,
                     courseId: courseId,
@@ -132,7 +155,26 @@ public class HTMLParserLive: HTMLParser {
                 .map { url -> (URL, String)? in
                     return (originalURL, url)
                 }
-                .ignoreForbiddenNotFoundErrors(replacingWith: nil)
+                .flatMap({ values -> AnyPublisher<(URL, String)?, Error> in
+
+                    if Int.random(in: 1 ... 3) == 2 {
+                        return Publishers.typedFailure(
+                            error: NSError.instructureError("random", code: HttpError.notFound)
+                        )
+                    } else {
+                        return Publishers.typedJust(values)
+                    }
+
+                })
+                .catch { error -> AnyPublisher<(URL, String)?, Error> in
+                    self?.embeddedContentFailureSubject.send(courseId)
+
+                    if error.isForbidden || error.isNotFound {
+                        return Just(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
+                    }
+
+                    return Fail(error: error).eraseToAnyPublisher()
+                }
             }
             .compactMap { $0 }
             .collect() // Wait for all image download to finish and handle as an array

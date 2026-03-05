@@ -125,7 +125,7 @@ class CourseSyncProgressViewModel: ObservableObject {
             interactor.observeDownloadProgress().setFailureType(to: Error.self),
             interactor.observeEntries()
         )
-        .map { ($0.0, $0.1.makeSyncProgressViewModelItems(interactor: interactor)) }
+        .map { ($0.0, $0.1.makeSyncProgressViewModelItems(interactor: interactor, downloadProgress: $0.0)) }
         .receive(on: DispatchQueue.main)
         .handleEvents(receiveOutput: { [unowned self] downloadProgress, entryProgressList in
             if entryProgressList.count > 0 {

@@ -21,11 +21,12 @@ import CombineSchedulers
 import Foundation
 
 public protocol CourseSyncStudioMediaInteractor {
-    func getContent(courseIDs: [CourseSyncID]) -> AnyPublisher<Void, Never>
+    func getContent(courseIDs: [CourseSyncID]) -> AnyPublisher<[CourseSyncID], Never>
 }
 
 public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteractor {
     private struct CourseMediaData {
+        let courseID: CourseSyncID
         let studioDirectory: URL
         var mediaItems: [APIStudioMediaItem] = []
         var iframes: StudioIFramesByLocation = [:]
@@ -66,32 +67,33 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
         self.envResolver = envResolver
     }
 
-    public func getContent(courseIDs: [CourseSyncID]) -> AnyPublisher<Void, Never> {
-        let groupMediaByStudioDirectory: ([CourseMediaData]) -> AnyPublisher<CourseMediaData, Never> = { allCoursesMedia in
+    public func getContent(courseIDs: [CourseSyncID]) -> AnyPublisher<[CourseSyncID], Never> {
+        let removeNoLongerNeededMedia: ([CourseMediaData]) -> AnyPublisher<CourseMediaData, Error> = { [cleanupInteractor] allCoursesMedia in
             let mediaListByStudioDirectory: [URL: [CourseMediaData]] = Dictionary(
                 grouping: allCoursesMedia,
                 by: { $0.studioDirectory }
             )
-            return Publishers.Sequence(sequence: mediaListByStudioDirectory)
-                .map { (studioDirectory, mediaList) -> CourseMediaData in
-                    var group = CourseMediaData(studioDirectory: studioDirectory)
-                    mediaList.forEach { courseMedia in
-                        group.iframes.merge(courseMedia.iframes) { $0 + $1 }
-                        group.mediaItems.append(contentsOf: courseMedia.mediaItems)
-                    }
-                    return group
-                }
-                .eraseToAnyPublisher()
-        }
 
-        let removeNoLongerNeededVideos: (CourseMediaData) -> AnyPublisher<CourseMediaData, Error> = { [cleanupInteractor] mediaData in
-            cleanupInteractor
-                .removeNoLongerNeededVideos(
-                    allMediaItemsOnAPI: mediaData.mediaItems,
-                    mediaLTIIDsUsedInOfflineMode: mediaData.idsToDownload,
-                    offlineStudioDirectory: mediaData.studioDirectory
-                )
-                .map { mediaData }
+            return mediaListByStudioDirectory
+                .publisher
+                .flatMap { (studioDirectory, mediaList) -> AnyPublisher<Void, Error> in
+
+                    var mediaItems: [APIStudioMediaItem] = []
+                    var idsToDownload: Set<String> = []
+                    mediaList.forEach { courseMedia in
+                        idsToDownload.formUnion(courseMedia.idsToDownload)
+                        mediaItems.append(contentsOf: courseMedia.mediaItems)
+                    }
+
+                    return cleanupInteractor
+                        .removeNoLongerNeededVideos(
+                            allMediaItemsOnAPI: Array(mediaItems),
+                            mediaLTIIDsUsedInOfflineMode: Array(idsToDownload),
+                            offlineStudioDirectory: studioDirectory
+                        )
+                }
+                .collect()
+                .flatMap({ _ in allCoursesMedia.publisher })
                 .eraseToAnyPublisher()
         }
 
@@ -107,22 +109,35 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
             .collect()
 
         return collectCourseMedia
-            .flatMap(groupMediaByStudioDirectory)
-            .flatMap(removeNoLongerNeededVideos)
-            .flatMap { [weak self] mediaData in
-                guard let self else { return Publishers.noInstanceFailure(output: Void.self) }
+            .flatMap(removeNoLongerNeededMedia)
+            .flatMap { [weak self] mediaData -> AnyPublisher<CourseSyncID?, Error>  in
+                guard let self else {
+                    return Publishers.noInstanceFailure(output: CourseSyncID?.self)
+                }
+
+                if Int.random(in: 1 ... 3) == 2 {
+                    return Publishers.typedJust(nil)
+                }
+
                 return self.downloadMediaTweakingIFrameReferences(mediaData)
+                    .map({ nil as CourseSyncID? })
+                    .catch { error -> AnyPublisher<CourseSyncID?, Error> in
+                        return Publishers.typedJust(mediaData.courseID)
+                    }
+                    .eraseToAnyPublisher()
             }
-            .catch { error -> AnyPublisher<Void, Never> in
+            .compactMap({ $0 })
+            .collect()
+            //.map { _ in Int.random(in: 1 ... 3)  == 2 ? true : false }
+            //.map { _ in false }
+            .catch { error -> AnyPublisher<[CourseSyncID], Never> in
                 Logger.shared.error("Studio Offline Sync Failed: " + error.debugDescription)
                 RemoteLogger.shared.logError(
                     name: "Studio Offline Sync Failed",
                     reason: error.debugDescription
                 )
-                return Just(()).eraseToAnyPublisher()
+                return Just([]).eraseToAnyPublisher()
             }
-            .collect()
-            .mapToVoid()
             .eraseToAnyPublisher()
     }
 
@@ -146,6 +161,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                     .fetchStudioMediaItems(api: api, courseID: courseSyncID.localID)
                     .map { mediaItems in
                         return CourseMediaData(
+                            courseID: courseSyncID,
                             studioDirectory: studioDirectory,
                             mediaItems: mediaItems,
                             iframes: iframes

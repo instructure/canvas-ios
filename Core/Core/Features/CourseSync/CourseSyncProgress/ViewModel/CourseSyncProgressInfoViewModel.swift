@@ -39,7 +39,10 @@ class CourseSyncProgressInfoViewModel: ObservableObject {
             .receive(on: scheduler)
             .map { progress in
                 if progress.isFinished {
-                    if progress.error != nil {
+                    if progress.isEmbeddedContentError {
+                        return .finishedWithError(title: String(localized: "Offline Content Sync Incomplete", bundle: .core),
+                                                  subtitle: String(localized: "Some embedded media failed to download. Core content is still available offline.", bundle: .core))
+                    } else if progress.error != nil {
                         return .finishedWithError(title: String(localized: "Offline Content Sync Failed", bundle: .core),
                                                   subtitle: String(localized: "One or more items failed to sync. Please check your internet connection and retry syncing.", bundle: .core))
                     } else {

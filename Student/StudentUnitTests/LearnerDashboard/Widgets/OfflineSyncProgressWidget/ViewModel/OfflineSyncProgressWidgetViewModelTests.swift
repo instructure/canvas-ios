@@ -162,7 +162,7 @@ private final class CourseSyncProgressObserverInteractorMock: CourseSyncProgress
 
 private final class CourseSyncProgressWriterInteractorMock: CourseSyncProgressWriterInteractor {
     func saveDownloadProgress(entries: [CourseSyncEntry]) {}
-    func saveDownloadResult(isFinished: Bool, error: String?) {}
+    func saveDownloadResult(isFinished: Bool, error: String?, embeddedContentErrorCourseIds: [String]) {}
     func cleanUpPreviousDownloadProgress() {}
     func markInProgressDownloadsAsFailed() {}
     func setInitialLoadingState(entries: [CourseSyncEntry]) {}

@@ -922,6 +922,66 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         XCTAssertTrue(backgroundActivityMock.stopInvoked)
         subscription.cancel()
     }
+
+    func testReportsErrorOnStudioMediaSyncFailure() {
+        // GIVEN
+        let studioInteractorMock = CourseSyncStudioMediaInteractorMock()
+        studioInteractorMock.mockedHadError = true
+        let testee = CourseSyncInteractorLive(
+            brandThemeInteractor: BrandThemeDownloaderInteractorMock(),
+            contentInteractors: [],
+            filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
+            notificationInteractor: CourseSyncNotificationMock(progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            courseListInteractor: CourseListInteractorMock(),
+            studioMediaInteractor: studioInteractorMock,
+            backgroundActivity: BackgroundActivityMock(),
+            scheduler: .immediate,
+            envResolver: envResolver
+        )
+
+        // WHEN
+        let subscription = testee.downloadContent(for: entries).sink()
+
+        // THEN
+        let downloadProgresses: [CDCourseSyncDownloadProgress] = databaseClient.fetch()
+        XCTAssertEqual(downloadProgresses.count, 1)
+        guard let downloadProgress = downloadProgresses.first else { return XCTFail() }
+        XCTAssertTrue(downloadProgress.isFinished)
+        XCTAssertNotNil(downloadProgress.error)
+        subscription.cancel()
+    }
+
+    func testReportsErrorOnEmbeddedPageContentFailure() {
+        // GIVEN
+        let pagesWithFailureMock = CourseSyncPagesWithEmbeddedFailureMock()
+        let testee = CourseSyncInteractorLive(
+            brandThemeInteractor: BrandThemeDownloaderInteractorMock(),
+            contentInteractors: [pagesWithFailureMock],
+            filesInteractor: filesInteractor,
+            modulesInteractor: modulesInteractor,
+            progressWriterInteractor: CourseSyncProgressWriterInteractorLive(container: database),
+            notificationInteractor: CourseSyncNotificationMock(progressInteractor: CourseSyncProgressObserverInteractorMock()),
+            courseListInteractor: CourseListInteractorMock(),
+            studioMediaInteractor: CourseSyncStudioMediaInteractorMock(),
+            backgroundActivity: BackgroundActivityMock(),
+            scheduler: .immediate,
+            envResolver: envResolver
+        )
+        entries[0].tabs[1].selectionState = .selected // pages tab
+
+        // WHEN
+        let subscription = testee.downloadContent(for: entries).sink()
+
+        // THEN
+        let downloadProgresses: [CDCourseSyncDownloadProgress] = databaseClient.fetch()
+        XCTAssertEqual(downloadProgresses.count, 1)
+        guard let downloadProgress = downloadProgresses.first else { return XCTFail() }
+        XCTAssertTrue(downloadProgress.isFinished)
+        XCTAssertEqual(downloadProgress.error, CourseSyncDownloadProgress.embeddedContentErrorMessage)
+        subscription.cancel()
+    }
 }
 
 // MARK: - Mocks
@@ -1131,9 +1191,54 @@ private class BrandThemeDownloaderInteractorMock: BrandThemeDownloaderInteractor
 
 private class CourseSyncStudioMediaInteractorMock: CourseSyncStudioMediaInteractor {
     public var getContentCalled = false
+    public var mockedHadError = false
 
-    func getContent(courseIDs: [CourseSyncID]) -> AnyPublisher<Void, Never> {
+    func getContent(courseIDs: [CourseSyncID]) -> AnyPublisher<[CourseSyncID], Never> {
         getContentCalled = true
-        return Just(()).eraseToAnyPublisher()
+        return Just(mockedHadError ? courseIDs : []).eraseToAnyPublisher()
+    }
+}
+
+private class CourseSyncPagesWithEmbeddedFailureMock: CourseSyncHtmlContentInteractor {
+    var associatedTabType: TabName { .pages }
+
+    private let failureSubject = PassthroughSubject<CourseSyncID, Never>()
+
+    lazy var htmlParser: HTMLParser = HTMLParserEmbeddedFailureMock(failureSubject: failureSubject)
+
+    func getContent(courseId: CourseSyncID) -> AnyPublisher<Void, Error> {
+        failureSubject.send(courseId)
+        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
+
+    func cleanContent(courseId: CourseSyncID) -> AnyPublisher<Void, Never> {
+        Just(()).eraseToAnyPublisher()
+    }
+}
+
+private class HTMLParserEmbeddedFailureMock: HTMLParser {
+    var envResolver: CourseSyncEnvironmentResolver = .mocked()
+    var sectionName: String = "mockSection"
+
+    var embeddedContentFailurePublisher: AnyPublisher<CourseSyncID, Never> {
+        failureSubject.eraseToAnyPublisher()
+    }
+
+    private let failureSubject: PassthroughSubject<CourseSyncID, Never>
+
+    init(failureSubject: PassthroughSubject<CourseSyncID, Never>) {
+        self.failureSubject = failureSubject
+    }
+
+    func parse(_ content: String, resourceId: String, courseId: CourseSyncID, baseURL: URL?) -> AnyPublisher<String, Error> {
+        Just(content).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
+
+    func downloadAttachment(_ url: URL, courseId: CourseSyncID, resourceId: String) -> AnyPublisher<String, Error> {
+        Just("").setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
+
+    func sectionFolder(for courseId: CourseSyncID) -> URL {
+        envResolver.folderURL(forSection: sectionName, ofCourse: courseId)
     }
 }

@@ -93,17 +93,17 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
         var course = CourseSyncEntry(name: "test", id: "testID", hasFrontPage: false, tabs: [.init(id: "0", name: "Assignments", type: .assignments)], files: [])
 
         course.isCollapsed = true
-        XCTAssertEqual([course].makeSyncProgressViewModelItems(interactor: mockInteractor).count, 1)
+        XCTAssertEqual([course].makeSyncProgressViewModelItems(interactor: mockInteractor, downloadProgress: .make()).count, 1)
 
         course.isCollapsed = false
-        XCTAssertEqual([course].makeSyncProgressViewModelItems(interactor: mockInteractor).count, 2)
+        XCTAssertEqual([course].makeSyncProgressViewModelItems(interactor: mockInteractor, downloadProgress: .make()).count, 2)
     }
 
     func testExpandedEmptyCourse() {
         var course = CourseSyncEntry(name: "test", id: "testID", hasFrontPage: false, tabs: [], files: [])
         course.isCollapsed = false
 
-        let testee = [course].makeSyncProgressViewModelItems(interactor: mockInteractor)
+        let testee = [course].makeSyncProgressViewModelItems(interactor: mockInteractor, downloadProgress: .make())
 
         XCTAssertEqual(testee.count, 2)
 
@@ -154,12 +154,12 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
 
         filesTab.isCollapsed = true
         var course = CourseSyncEntry(name: "test", id: "testID", hasFrontPage: false, tabs: [filesTab], files: [file], isCollapsed: false)
-        XCTAssertEqual([course].makeSyncProgressViewModelItems(interactor: mockInteractor).count, 2)
+        XCTAssertEqual([course].makeSyncProgressViewModelItems(interactor: mockInteractor, downloadProgress: .make()).count, 2)
 
         filesTab.isCollapsed = false
         course = CourseSyncEntry(name: "test", id: "testID", hasFrontPage: false, tabs: [filesTab], files: [file], isCollapsed: false)
         course.isCollapsed = false
-        XCTAssertEqual([course].makeSyncProgressViewModelItems(interactor: mockInteractor).count, 3)
+        XCTAssertEqual([course].makeSyncProgressViewModelItems(interactor: mockInteractor, downloadProgress: .make()).count, 3)
     }
 
     // MARK: - Files
@@ -193,7 +193,7 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
                                    files: [],
                                    isCollapsed: false,
                                    selectionState: .deselected)
-        let testee = [data].makeSyncProgressViewModelItems(interactor: mockInteractor)
+        let testee = [data].makeSyncProgressViewModelItems(interactor: mockInteractor, downloadProgress: .make())
 
         guard case let .item(item) = testee[0] else {
             return XCTFail()
@@ -216,7 +216,7 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
                                    ],
                                    isCollapsed: false,
                                    selectionState: .deselected)
-        let testee = [data].makeSyncProgressViewModelItems(interactor: mockInteractor)
+        let testee = [data].makeSyncProgressViewModelItems(interactor: mockInteractor, downloadProgress: .make())
 
         guard case let .item(item) = testee[1] else {
             return XCTFail()
@@ -225,6 +225,36 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
         item.collapseDidToggle?()
         XCTAssertEqual(mockInteractor.lastCollapsed?.selection, CourseEntrySelection.tab("testID", "0"))
         XCTAssertEqual(mockInteractor.lastCollapsed?.isCollapsed, true)
+    }
+
+    func testDownloadedCourseShowsErrorOnEmbeddedContentFailure() {
+        var course = CourseSyncEntry(name: "test", id: "testID", hasFrontPage: false, tabs: [], files: [])
+        course.updateCourseState(state: .downloaded)
+
+        let embeddedContentProgress = CourseSyncDownloadProgress.make(
+            isFinished: true,
+            error: CourseSyncDownloadProgress.embeddedContentErrorMessage,
+            embeddedContentErrorCourseIds: [course.courseId]
+        )
+        let testee = [course].makeSyncProgressViewModelItems(interactor: mockInteractor, downloadProgress: embeddedContentProgress)
+
+        guard case let .item(item) = testee[0] else { return XCTFail() }
+        XCTAssertEqual(item.state, .error)
+    }
+
+    func testOtherCourseDoesNotShowErrorOnEmbeddedContentFailure() {
+        var course = CourseSyncEntry(name: "test", id: "testID", hasFrontPage: false, tabs: [], files: [])
+        course.updateCourseState(state: .downloaded)
+
+        let embeddedContentProgress = CourseSyncDownloadProgress.make(
+            isFinished: true,
+            error: CourseSyncDownloadProgress.embeddedContentErrorMessage,
+            embeddedContentErrorCourseIds: ["otherCourseID"]
+        )
+        let testee = [course].makeSyncProgressViewModelItems(interactor: mockInteractor, downloadProgress: embeddedContentProgress)
+
+        guard case let .item(item) = testee[0] else { return XCTFail() }
+        XCTAssertEqual(item.state, .downloaded)
     }
 }
 
