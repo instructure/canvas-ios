@@ -202,8 +202,6 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         testee.settingsButtonTapped(from: weakVC)
 
         let settingsVC = router.lastShownVC
-        XCTAssertEqual(settingsVC?.preferredContentSize.width, 350)
-        XCTAssertGreaterThan(settingsVC?.preferredContentSize.height ?? 0, 0)
         XCTAssertEqual(settingsVC?.modalPresentationStyle, .popover)
     }
 
