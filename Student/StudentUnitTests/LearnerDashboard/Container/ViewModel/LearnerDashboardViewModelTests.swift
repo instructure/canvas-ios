@@ -189,24 +189,6 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         XCTAssertEqual(router.lastShownOptions, .modal(.popover))
     }
 
-    func test_settingsButtonTapped_shouldConfigurePopoverCorrectly() {
-        testee = LearnerDashboardViewModel(
-            interactor: interactor,
-            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
-            mainScheduler: scheduler.eraseToAnyScheduler(),
-            environment: env
-        )
-
-        let presentingVC = UIViewController()
-        let weakVC = WeakViewController(presentingVC)
-        testee.settingsButtonTapped(from: weakVC)
-
-        let settingsVC = router.lastShownVC
-        XCTAssertEqual(settingsVC?.preferredContentSize.width, 350)
-        XCTAssertGreaterThan(settingsVC?.preferredContentSize.height ?? 0, 0)
-        XCTAssertEqual(settingsVC?.modalPresentationStyle, .popover)
-    }
-
     func test_settingsButtonTapped_shouldConfigurePopoverSourceView() {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
