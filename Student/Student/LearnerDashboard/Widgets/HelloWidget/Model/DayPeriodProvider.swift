@@ -17,16 +17,16 @@
 //
 
 import Foundation
+import Core
 
-public struct DayPeriodProvider {
-    let current: DayPeriod
+struct DayPeriodProvider {
 
-    init(calendar: Calendar = .current, date: Date = .now) {
-        current = Self.period(of: date, with: calendar)
+    var currentPeriod: DayPeriod {
+        Self.period(for: Clock.now)
     }
 
-    static func period(of date: Date, with calendar: Calendar = .current) -> DayPeriod {
-        switch calendar.component(.hour, from: date) {
+    static func period(for date: Date) -> DayPeriod {
+        switch Cal.currentCalendar.component(.hour, from: date) {
         case 4..<12: .morning
         case 12..<17: .afternoon
         case 17..<21: .evening

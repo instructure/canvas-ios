@@ -23,15 +23,7 @@ import XCTest
 
 final class HelloWidgetInteractorMock: HelloWidgetInteractor {
     var shortName: String?
-    let shortNameExpectation: XCTestExpectation?
-
-    init(
-        shortName: String? = nil,
-        shortNameExpectation: XCTestExpectation? = nil,
-    ) {
-        self.shortName = shortName
-        self.shortNameExpectation = shortNameExpectation
-    }
+    var shortNameExpectation: XCTestExpectation?
 
     func getShortName(ignoreCache: Bool = false) -> AnyPublisher<String?, Error> {
         Just(shortName)

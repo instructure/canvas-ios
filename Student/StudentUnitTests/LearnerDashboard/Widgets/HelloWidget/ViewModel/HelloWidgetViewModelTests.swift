@@ -31,13 +31,16 @@ final class HelloWidgetViewModelTests: StudentTestCase {
     )
 
     private var testee: HelloWidgetViewModel!
+    private var interactor: HelloWidgetInteractorMock!
 
     override func setUp() {
         super.setUp()
+        interactor = .init()
         api.mock(GetUserProfile(userID: "self"), value: nil)
     }
 
     override func tearDown() {
+        interactor = nil
         testee = nil
         super.tearDown()
     }
@@ -60,7 +63,7 @@ final class HelloWidgetViewModelTests: StudentTestCase {
     // MARK: - State management
 
     func test_state_whenDataLoadsSuccessfully_shouldBeData() {
-        testee = makeViewModel(interactor: HelloWidgetInteractorMock())
+        testee = makeViewModel()
 
         XCTAssertFinish(testee.refresh(ignoreCache: false))
 
@@ -71,7 +74,8 @@ final class HelloWidgetViewModelTests: StudentTestCase {
 
     func test_greeting_withUserShortName_shouldIncludeShortName() {
         let shortName = "Test user"
-        testee = makeViewModel(interactor: HelloWidgetInteractorMock(shortName: shortName))
+        interactor.shortName = shortName
+        testee = makeViewModel()
 
         Clock.mockNow(testData.morningDate)
         XCTAssertFinish(testee.refresh(ignoreCache: false))
@@ -80,7 +84,7 @@ final class HelloWidgetViewModelTests: StudentTestCase {
     }
 
     func test_greeting_withEmptyShortName_shouldNotIncludeShortName() {
-        testee = makeViewModel(interactor: HelloWidgetInteractorMock())
+        testee = makeViewModel()
 
         Clock.mockNow(testData.morningDate)
         XCTAssertFinish(testee.refresh(ignoreCache: false))
@@ -90,27 +94,28 @@ final class HelloWidgetViewModelTests: StudentTestCase {
 
     func test_greeting_basedOnDayPeriod() {
         let shortName = "Test user"
+        interactor.shortName = shortName
 
         // MARK: - Morning
-        var testee = makeViewModel(interactor: HelloWidgetInteractorMock(shortName: shortName))
+        var testee = makeViewModel()
         Clock.mockNow(testData.morningDate)
         XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertEqual(testee.greeting, "Good morning \(shortName)!")
 
         // MARK: - Afternoon
-        testee = makeViewModel(interactor: HelloWidgetInteractorMock(shortName: shortName))
+        testee = makeViewModel()
         Clock.mockNow(testData.afternoonDate)
         XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertEqual(testee.greeting, "Good afternoon \(shortName)!")
 
         // MARK: - Evening
-        testee = makeViewModel(interactor: HelloWidgetInteractorMock(shortName: shortName))
+        testee = makeViewModel()
         Clock.mockNow(testData.eveningDate)
         XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertEqual(testee.greeting, "Good evening \(shortName)!")
 
         // MARK: - Night
-        testee = makeViewModel(interactor: HelloWidgetInteractorMock(shortName: shortName))
+        testee = makeViewModel()
         Clock.mockNow(testData.nightDate)
         XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertEqual(testee.greeting, "Good night \(shortName)!")
@@ -119,7 +124,7 @@ final class HelloWidgetViewModelTests: StudentTestCase {
     // MARK: - Message
 
     func test_message_shouldNotBeEmpty() {
-        testee = makeViewModel(interactor: HelloWidgetInteractorMock())
+        testee = makeViewModel()
 
         XCTAssertFinish(testee.refresh(ignoreCache: false))
 
@@ -129,28 +134,28 @@ final class HelloWidgetViewModelTests: StudentTestCase {
     func test_message_shouldBeFromCorrectPeriodArray() {
         // MARK: - Morning
         let morningMessages = HelloWidgetViewModel.generic.union(HelloWidgetViewModel.morning)
-        var testee = makeViewModel(interactor: HelloWidgetInteractorMock())
+        var testee = makeViewModel()
         Clock.mockNow(testData.morningDate)
         XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertTrue(morningMessages.contains(testee.message))
 
         // MARK: - Afternoon
         let afternoonMessages = HelloWidgetViewModel.generic.union(HelloWidgetViewModel.afternoon)
-        testee = makeViewModel(interactor: HelloWidgetInteractorMock())
+        testee = makeViewModel()
         Clock.mockNow(testData.afternoonDate)
         XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertTrue(afternoonMessages.contains(testee.message))
 
         // MARK: - Evening
         let eveningMessages = HelloWidgetViewModel.generic.union(HelloWidgetViewModel.evening)
-        testee = makeViewModel(interactor: HelloWidgetInteractorMock())
+        testee = makeViewModel()
         Clock.mockNow(testData.eveningDate)
         XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertTrue(eveningMessages.contains(testee.message))
 
         // MARK: - Night
         let nightMessages = HelloWidgetViewModel.generic.union(HelloWidgetViewModel.night)
-        testee = makeViewModel(interactor: HelloWidgetInteractorMock())
+        testee = makeViewModel()
         Clock.mockNow(testData.nightDate)
         XCTAssertFinish(testee.refresh(ignoreCache: false))
         XCTAssertTrue(nightMessages.contains(testee.message))
@@ -160,8 +165,8 @@ final class HelloWidgetViewModelTests: StudentTestCase {
 
     func test_refresh_shouldTriggerStoreAndDateRefresh() {
         let shortName1 = "Test user 1"
-        let interactor = HelloWidgetInteractorMock(shortName: shortName1)
-        testee = makeViewModel(interactor: interactor)
+        interactor.shortName = shortName1
+        testee = makeViewModel()
 
         Clock.mockNow(testData.morningDate)
         XCTAssertFinish(testee.refresh(ignoreCache: false))
@@ -178,7 +183,7 @@ final class HelloWidgetViewModelTests: StudentTestCase {
     // MARK: - App Foreground
 
     func test_applicationBecomActive_shouldUpdateGreeting() {
-        testee = makeViewModel(interactor: HelloWidgetInteractorMock())
+        testee = makeViewModel()
 
         Clock.mockNow(testData.morningDate)
         XCTAssertFinish(testee.refresh(ignoreCache: false))
@@ -191,14 +196,11 @@ final class HelloWidgetViewModelTests: StudentTestCase {
 
     // MARK: - Private helpers
 
-    private func makeViewModel(
-        interactor: HelloWidgetInteractor = HelloWidgetInteractorLive(),
-        dayPeriodProvider: DayPeriodProvider = .init()
-    ) -> HelloWidgetViewModel {
+    private func makeViewModel() -> HelloWidgetViewModel {
         HelloWidgetViewModel(
             config: .make(id: .helloWidget),
             interactor: interactor,
-            dayPeriodProvider: dayPeriodProvider
+            dayPeriodProvider: .init()
         )
     }
 }
