@@ -19,19 +19,25 @@
 import SwiftUI
 
 struct SideMenuFooterView: View {
-    @Environment(\.appEnvironment) private var env
-
-    var appName: String {
-        switch env.app {
-        case .student: "Canvas"
-        default: "Canvas \(env.app?.rawValue.capitalized ?? "")"
+    @State private var versionLabel: String? = {
+        let appName: String = {
+            switch AppEnvironment.shared.app {
+            case .student: "Canvas"
+            default: "Canvas \(AppEnvironment.shared.app?.rawValue.capitalized ?? "")"
+            }
+        }()
+        if let pr = Bundle.main.object(forInfoDictionaryKey: "PRNumber") as? String, !pr.isEmpty,
+           let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String {
+            return "\(appName) PR #\(pr) (build \(build))"
         }
-    }
+        guard let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else { return nil }
+        return "\(appName) v\(version)"
+    }()
 
     var body: some View {
-        if let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+        if let label = versionLabel {
             HStack {
-                Text(verbatim: "\(appName) V. \(version)")
+                Text(verbatim: label)
                     .padding(.leading, 10)
                     .font(.regular14)
                     .foregroundColor(.textDark)
