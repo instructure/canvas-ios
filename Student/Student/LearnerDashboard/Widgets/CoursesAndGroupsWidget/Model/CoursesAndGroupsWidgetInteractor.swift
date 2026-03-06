@@ -108,7 +108,7 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
                     title: $0.name ?? "",
                     color: $0.color.asColor,
                     imageUrl: $0.imageDownloadURL,
-                    grade: $0.hideTotalGrade ? nil : $0.displayGrade, // TODO: use grade without percentage
+                    grade: $0.hideTotalGrade ? nil : $0.displayGradeForLearnerDashboard,
                     unreadAnnouncementCount: announcements.count,
                     singleUnreadAnnouncementId: announcements.count == 1 ? announcements.first?.id : nil
                 )
