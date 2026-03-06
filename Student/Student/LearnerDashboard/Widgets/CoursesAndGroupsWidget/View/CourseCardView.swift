@@ -45,7 +45,7 @@ struct CourseCardView: View {
         self.showColorOverlay = showColorOverlay
         self.a11yLabel = {
             var gradeLabel: String?
-            if showGrades, let grade = viewModel.grade {
+            if showGrades, let grade = String.format(accessibilityLetterGrade: viewModel.grade) {
                 gradeLabel = [String(localized: "Grade", bundle: .core), grade]
                     .accessibilityJoined()
             }
