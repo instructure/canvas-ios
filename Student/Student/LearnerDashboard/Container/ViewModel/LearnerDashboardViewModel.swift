@@ -81,7 +81,9 @@ final class LearnerDashboardViewModel {
 
     func settingsButtonTapped(from presentingViewController: WeakViewController) {
         let settingsViewController = LearnerDashboardSettingsAssembly.makeViewController()
+        let viewSize = CGSize(width: 400, height: 700)
 
+        settingsViewController.preferredContentSize = viewSize
         settingsViewController.modalPresentationStyle = .popover
 
         if let popoverController = settingsViewController.popoverPresentationController {
