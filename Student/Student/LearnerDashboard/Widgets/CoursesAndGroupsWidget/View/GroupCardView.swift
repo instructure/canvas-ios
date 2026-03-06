@@ -39,6 +39,9 @@ struct GroupCardView: View {
                 contextLabel
                 titleLabel
             },
+            accessory: {
+                messageButton
+            },
             isAvailable: offlineMode.isAppOnline,
             action: {
                 viewModel.didTapCard(from: controller)
@@ -90,7 +93,20 @@ struct GroupCardView: View {
         }
         .foregroundStyle(viewModel.groupColor)
         .fixedSize(horizontal: true, vertical: false)
-        .identifier("Dashboard.CourseCard.gradePill")
+        .identifier("Dashboard.GroupCard.memberCountPill")
+    }
+
+    private var messageButton: some View {
+        PrimaryButton(isAvailable: offlineMode.isAppOnline) {
+            viewModel.didTapMessageButton(from: controller)
+        } label: {
+            Image.emailLine
+                .scaledIcon()
+                .foregroundStyle(.textDark)
+                .scaledFrame(height: 72, useIconScale: true) // increases tap area
+        }
+        .accessibilityLabel(String(localized: "Send message to members", bundle: .student))
+        .identifier("Dashboard.GroupCard.messageButton")
     }
 }
 
@@ -105,20 +121,25 @@ extension GroupCardView {
 }
 
 #Preview {
+    let environment = PreviewEnvironment()
+
     PreviewContainer(spacing: 4, horizontalPadding: 16) {
         GroupCardView(viewModel: GroupCardViewModel(
             model: GroupCardView.previewData[0],
-            router: PreviewEnvironment().router
+            router: environment.router,
+            environment: environment
         ))
 
         GroupCardView(viewModel: GroupCardViewModel(
             model: GroupCardView.previewData[1],
-            router: PreviewEnvironment().router
+            router: environment.router,
+            environment: environment
         ))
 
         GroupCardView(viewModel: GroupCardViewModel(
             model: GroupCardView.previewData[2],
-            router: PreviewEnvironment().router
+            router: environment.router,
+            environment: environment
         ))
     }
     .background(.backgroundLight)

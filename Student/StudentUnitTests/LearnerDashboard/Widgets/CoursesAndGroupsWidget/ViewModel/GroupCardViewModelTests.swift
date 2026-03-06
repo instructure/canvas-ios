@@ -71,6 +71,19 @@ final class GroupCardViewModelTests: StudentTestCase {
         XCTAssertEqual(router.lastRoutedOptions, .push)
     }
 
+    // MARK: - didTapMessageButton
+
+    func test_didTapMessageButton_shouldShowComposeMessageScreen() {
+        testee = makeViewModel(model: .make(id: testData.id, title: testData.title))
+        let vc = UIViewController()
+
+        testee.didTapMessageButton(from: .init(vc))
+
+        XCTAssertEqual(router.lastShownVC is CoreHostingController<ComposeMessageView>, true)
+        XCTAssertEqual(router.lastShownFromVC, vc)
+        XCTAssertEqual(router.lastShownOptions, .modal(isDismissable: false, embedInNav: true))
+    }
+
     // MARK: - Equatability
 
     func test_equatable_withSameModel_shouldBeEqual() {
@@ -94,7 +107,8 @@ final class GroupCardViewModelTests: StudentTestCase {
     ) -> GroupCardViewModel {
         GroupCardViewModel(
             model: model,
-            router: router
+            router: router,
+            environment: env
         )
     }
 }

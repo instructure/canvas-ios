@@ -76,7 +76,8 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
                 groupCards = groupItems.compactMap { item in
                     GroupCardViewModel(
                         model: item,
-                        router: environment.router
+                        router: environment.router,
+                        environment: environment
                     )
                 }
 
