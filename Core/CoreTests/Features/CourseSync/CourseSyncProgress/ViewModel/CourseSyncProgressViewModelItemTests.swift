@@ -239,7 +239,7 @@ class CourseSyncProgressViewModelItemTests: XCTestCase {
         let testee = [course].makeSyncProgressViewModelItems(interactor: mockInteractor, downloadProgress: embeddedContentProgress)
 
         guard case let .item(item) = testee[0] else { return XCTFail() }
-        XCTAssertEqual(item.state, .error)
+        XCTAssertEqual(item.state, .downloaded(isEmbeddedMediaComplete: false))
     }
 
     func testOtherCourseDoesNotShowErrorOnEmbeddedContentFailure() {
