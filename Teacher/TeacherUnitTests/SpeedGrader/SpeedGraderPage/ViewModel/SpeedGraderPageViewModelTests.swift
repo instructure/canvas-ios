@@ -132,6 +132,14 @@ class SpeedGraderPageViewModelTests: TeacherTestCase {
         XCTAssertEqual(gradeStatusInteractorMock.observeGradeStatusChangesInput?.attempt, 42)
     }
 
+    // MARK: - Grade saving forwarding
+
+    func test_gradeSavingStatePublisher_shouldBeGradeViewModelPublisher() {
+        let testee = makeViewModel()
+
+        XCTAssertTrue(testee.gradeSavingStatePublisher === testee.gradeViewModel.gradeSavingState)
+    }
+
     // MARK: - Private helpers
 
     private func makeViewModel(

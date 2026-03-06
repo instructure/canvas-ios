@@ -63,7 +63,7 @@ public class GetAssignmentsByGroup: UseCase {
             }
 
             if let gradingPeriodID {
-                predicate = predicate.and(NSPredicate(format: "gradingPeriod.id == %@", gradingPeriodID))
+                predicate = predicate.and(NSPredicate(format: "ANY gradingPeriods.id == %@", gradingPeriodID))
             }
 
             if let userID {
@@ -175,7 +175,9 @@ public class GetAssignmentsByGroup: UseCase {
                 apiAssignmentGroup.assignments?.map(\.id.value).forEach { assignmentId in
                     let predicate = NSPredicate(format: "id == %@", assignmentId)
                     if let assignment = (client.fetch(predicate) as [Assignment]).first {
-                        assignment.gradingPeriod = gradingPeriod
+                        if let gradingPeriod {
+                            assignment.gradingPeriods.insert(gradingPeriod)
+                        }
                     }
                 }
             }

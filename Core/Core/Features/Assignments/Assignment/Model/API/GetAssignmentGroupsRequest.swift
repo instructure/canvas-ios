@@ -35,6 +35,8 @@ public struct GetAssignmentGroupsRequest: APIRequestable {
 
     let courseID: String
     let gradingPeriodID: String?
+    // This has no effect when sent from a teacher or parent, it can always be true
+    let scopeAssignmentsToStudent: Bool
     let include: [Include]
     let perPage: Int?
 
@@ -42,11 +44,13 @@ public struct GetAssignmentGroupsRequest: APIRequestable {
         courseID: String,
         gradingPeriodID: String? = nil,
         include: [Include] = Include.allCases,
+        scopeAssignmentsToStudent: Bool = true,
         perPage: Int? = nil
     ) {
         self.courseID = courseID
         self.gradingPeriodID = gradingPeriodID
         self.include = include
+        self.scopeAssignmentsToStudent = scopeAssignmentsToStudent
         self.perPage = perPage
     }
 
@@ -58,7 +62,8 @@ public struct GetAssignmentGroupsRequest: APIRequestable {
         [
             .include(include.map { $0.rawValue }),
             .perPage(perPage),
-            .optionalValue("grading_period_id", gradingPeriodID)
+            .optionalValue("grading_period_id", gradingPeriodID),
+            .value("scope_assignments_to_student", scopeAssignmentsToStudent.description)
         ]
     }
 }

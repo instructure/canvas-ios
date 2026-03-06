@@ -266,11 +266,11 @@ extension LoginWebViewController: WKNavigationDelegate {
             return decisionHandler(.cancel)
         }
 
-        let queryItems = components.queryItems
-        if // wait for "https://canvas/login?code="
-            url.absoluteString.hasPrefix("https://canvas/login"),
-            let code = queryItems?.first(where: { $0.name == "code" })?.value, !code.isEmpty,
-            let mobileVerify = mobileVerifyModel, let baseURL = mobileVerify.base_url {
+        // Wait for authentication code
+        if let mobileVerify = mobileVerifyModel,
+           let baseURL = mobileVerify.base_url,
+           let code = MobileVerify.strategy.getAuthenticationCode(client: mobileVerify, url: url) {
+
             task?.cancel()
             task = API().makeRequest(PostLoginOAuthRequest(client: mobileVerify, code: code)) { [weak self] (response, _, error) in performUIUpdate {
                 guard let self = self else { return }
@@ -299,7 +299,7 @@ extension LoginWebViewController: WKNavigationDelegate {
                 }
             } }
             return decisionHandler(.cancel)
-        } else if queryItems?.first(where: { $0.name == "error" })?.value == "access_denied" {
+        } else if components.queryItems?.first(where: { $0.name == "error" })?.value == "access_denied" {
             // access_denied is the only currently implemented error code
             // https://canvas.instructure.com/doc/api/file.oauth.html#oauth2-flow-2
             let error = NSError.instructureError(String(localized: "Authentication failed. Most likely the user denied the request for access.", bundle: .core))
