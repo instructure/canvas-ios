@@ -41,6 +41,7 @@ public extension Font {
     static var medium16: Font { Font(UIFont.scaledNamedFont(.medium16)) }
     static var medium20: Font { Font(UIFont.scaledNamedFont(.medium20)) }
 
+    static var semibold10: Font { Font(UIFont.scaledNamedFont(.semibold10)) }
     static var semibold11: Font { Font(UIFont.scaledNamedFont(.semibold11)) }
     static var semibold12: Font { Font(UIFont.scaledNamedFont(.semibold12)) }
     static var semibold13: Font { Font(UIFont.scaledNamedFont(.semibold13)) }
@@ -128,7 +129,7 @@ extension UIFont.Name {
         case .regular10, .regular11Monodigit, .regular12, .regular13, .regular14, .regular14Italic,
                 .regular15, .regular16, .regular17, .regular22, .regular23, .regular24,
                 .medium12, .medium14,
-                .semibold11, .semibold12, .semibold13,
+                .semibold10, .semibold11, .semibold12, .semibold13,
                 .bold10, .bold11, .bold12, .bold13:
             return .body
         case .regular20, .semibold14, .semibold16, .semibold16Italic, .semibold17:

@@ -80,7 +80,7 @@ extension InstUI {
             switch self {
             case .hostSize24: .semibold12
             case .hostSize18: .regular10
-            case .accessory: .regular10
+            case .accessory: .semibold10
             }
         }
     }
@@ -98,7 +98,7 @@ extension InstUI {
             switch style {
             case .hostSize24: uiScaleBody
             case .hostSize18: uiScaleCaption2
-            case .accessory: uiScaleCaption2
+            case .accessory: uiScaleBody
             }
         }
 
