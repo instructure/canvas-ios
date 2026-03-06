@@ -55,12 +55,12 @@ struct LearnerDashboardCourseSettingsView: View {
                     .tint(.accentColor)
 
                 InstUI.Toggle(isOn: binding) {
-                    Text(config.id.title(username: viewModel.username))
+                    Text(config.id.settingsTitle(username: viewModel.username))
                         .font(.semibold16, lineHeight: .fit)
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 .accessibilityLabel(String(
-                    localized: "\(config.id.title(username: viewModel.username)) widget visibility",
+                    localized: "\(config.id.settingsTitle(username: viewModel.username)) widget visibility",
                     bundle: .student
                 ))
             }
@@ -104,12 +104,12 @@ struct LearnerDashboardCourseSettingsView: View {
             disabledButtons
 
             InstUI.Toggle(isOn: binding) {
-                Text(config.id.title(username: viewModel.username))
+                Text(config.id.settingsTitle(username: viewModel.username))
                     .font(.semibold16, lineHeight: .fit)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
             .accessibilityLabel(String(
-                localized: "\(config.id.title(username: viewModel.username)) widget visibility",
+                localized: "\(config.id.settingsTitle(username: viewModel.username)) widget visibility",
                 bundle: .student
             ))
         }
@@ -137,7 +137,7 @@ struct LearnerDashboardCourseSettingsView: View {
             }
             .disabled(isMoveUpDisabled)
             .accessibilityLabel(String(
-                localized: "Move \(config.id.title(username: viewModel.username)) widget up",
+                localized: "Move \(config.id.settingsTitle(username: viewModel.username)) widget up",
                 bundle: .student
             ))
 
@@ -153,7 +153,7 @@ struct LearnerDashboardCourseSettingsView: View {
             }
             .disabled(isMoveDownDisabled)
             .accessibilityLabel(String(
-                localized: "Move \(config.id.title(username: viewModel.username)) widget down",
+                localized: "Move \(config.id.settingsTitle(username: viewModel.username)) widget down",
                 bundle: .student
             ))
         }
@@ -192,8 +192,8 @@ struct LearnerDashboardCourseSettingsView: View {
         .accessibilityHidden(true)
     }
 
-    init() {
-        self.viewModel = .init(configs: .preview)
+    init(viewModel: LearnerDashboardCourseSettingsViewModel) {
+        _viewModel = State(initialValue: viewModel)
     }
 }
 
@@ -201,17 +201,22 @@ extension LearnerDashboardCourseSettingsView {
     typealias Config = DashboardWidgetConfig
 }
 
-extension Array where Element == DashboardWidgetConfig {
-    static let preview: [DashboardWidgetConfig] = [
-        .init(id: .helloWidget, order: 0, isVisible: true),
-        .init(id: .coursesAndGroups, order: 1, isVisible: false),
-        .init(id: .conferences, order: 2, isVisible: true)
-    ]
-}
-
 #Preview {
     VStack {
-        LearnerDashboardCourseSettingsView()
+        LearnerDashboardCourseSettingsView(viewModel: {
+            let defaults = SessionDefaults.fallback
+            let configs: [DashboardWidgetConfig] = [
+                .init(id: .helloWidget, order: 0, isVisible: true),
+                .init(id: .coursesAndGroups, order: 1, isVisible: false),
+                .init(id: .conferences, order: 2, isVisible: true)
+            ]
+            return LearnerDashboardCourseSettingsViewModel(
+                userDefaults: defaults,
+                configs: configs,
+                username: "Riley",
+                onConfigsChanged: {}
+            )
+        }())
 
         Spacer()
     }

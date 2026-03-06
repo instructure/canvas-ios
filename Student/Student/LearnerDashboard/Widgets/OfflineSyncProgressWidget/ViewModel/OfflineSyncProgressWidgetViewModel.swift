@@ -18,16 +18,14 @@
 
 import Combine
 import Core
-import Foundation
 import SwiftUI
 
 @Observable
 final class OfflineSyncProgressWidgetViewModel: DashboardWidgetViewModel {
-    typealias ViewType = OfflineSyncProgressWidgetView
 
     // MARK: - Protocol Properties
 
-    let config: DashboardWidgetConfig
+    let id: String = SystemWidgetIdentifier.offlineSyncProgress.rawValue
     private(set) var state: InstUI.ScreenState = .empty
     let isHiddenInEmptyState = true
 
@@ -49,10 +47,8 @@ final class OfflineSyncProgressWidgetViewModel: DashboardWidgetViewModel {
     private var subscriptions = Set<AnyCancellable>()
 
     init(
-        config: DashboardWidgetConfig,
         dashboardViewModel: DashboardOfflineSyncProgressCardViewModel
     ) {
-        self.config = config
         self.dashboardViewModel = dashboardViewModel
         setupObserver()
     }
@@ -65,8 +61,8 @@ final class OfflineSyncProgressWidgetViewModel: DashboardWidgetViewModel {
         dashboardViewModel.cardDidTap.accept(viewController)
     }
 
-    func makeView() -> OfflineSyncProgressWidgetView {
-        OfflineSyncProgressWidgetView(model: self)
+    func makeView() -> AnyView {
+        AnyView(OfflineSyncProgressWidgetView(model: self))
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {

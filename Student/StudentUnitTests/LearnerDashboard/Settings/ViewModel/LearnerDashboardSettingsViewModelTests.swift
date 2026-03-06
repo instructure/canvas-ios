@@ -43,7 +43,7 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
     func test_init_shouldSetUseNewLearnerDashboardFromDefaults() {
         testDefaults.preferNewLearnerDashboard = true
 
-        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults)
+        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults, courseSettingsViewModel: makeCourseSettingsViewModel())
 
         XCTAssertEqual(testee.useNewLearnerDashboard, true)
     }
@@ -51,7 +51,7 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
     func test_init_withFalseDefault_shouldSetUseNewLearnerDashboardToFalse() {
         testDefaults.preferNewLearnerDashboard = false
 
-        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults)
+        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults, courseSettingsViewModel: makeCourseSettingsViewModel())
 
         XCTAssertEqual(testee.useNewLearnerDashboard, false)
     }
@@ -60,7 +60,7 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
 
     func test_switchToClassicDashboard_shouldUpdateDefaults() {
         testDefaults.preferNewLearnerDashboard = true
-        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults)
+        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults, courseSettingsViewModel: makeCourseSettingsViewModel())
 
         let viewController = UIViewController()
         testee.switchToClassicDashboard(viewController: viewController)
@@ -70,7 +70,7 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
 
     func test_switchToClassicDashboard_shouldUpdateLocalState() {
         testDefaults.preferNewLearnerDashboard = true
-        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults)
+        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults, courseSettingsViewModel: makeCourseSettingsViewModel())
 
         let viewController = UIViewController()
         testee.switchToClassicDashboard(viewController: viewController)
@@ -79,7 +79,7 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
     }
 
     func test_switchToClassicDashboard_shouldDismissViewController() {
-        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults)
+        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults, courseSettingsViewModel: makeCourseSettingsViewModel())
 
         let expectation = expectation(description: "dismiss called")
         let mockViewController = MockViewController()
@@ -92,7 +92,7 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
     }
 
     func test_switchToClassicDashboard_shouldPostNotificationAfterDismiss() {
-        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults, environment: env)
+        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults, courseSettingsViewModel: makeCourseSettingsViewModel(), environment: env)
 
         let expectation = expectation(forNotification: .dashboardPreferenceChanged, object: nil)
         let mockViewController = MockViewController()
@@ -106,12 +106,22 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
     func test_switchToClassicDashboard_shouldSetFeedbackFlag() {
         testDefaults.preferNewLearnerDashboard = true
         testDefaults.shouldShowDashboardFeedback = false
-        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults)
+        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults, courseSettingsViewModel: makeCourseSettingsViewModel())
 
         let viewController = UIViewController()
         testee.switchToClassicDashboard(viewController: viewController)
 
         XCTAssertEqual(testDefaults.shouldShowDashboardFeedback, true)
+    }
+
+    // MARK: - Private helpers
+
+    private func makeCourseSettingsViewModel() -> LearnerDashboardCourseSettingsViewModel {
+        LearnerDashboardCourseSettingsViewModel(
+            userDefaults: testDefaults,
+            configs: LearnerDashboardWidgetAssembly.makeDefaultEditableWidgetConfigs(),
+            username: ""
+        )
     }
 }
 

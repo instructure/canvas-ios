@@ -52,7 +52,7 @@ struct LearnerDashboardSettingsView: View {
                 Spacer()
                     .frame(height: 16)
 
-                LearnerDashboardCourseSettingsView()
+                LearnerDashboardCourseSettingsView(viewModel: viewModel.courseSettingsViewModel)
 
                 Spacer()
                     .frame(height: 16)
@@ -121,7 +121,14 @@ struct LearnerDashboardSettingsView: View {
         viewModel: {
             var defaults = SessionDefaults.fallback
             defaults.preferNewLearnerDashboard = true
-            return LearnerDashboardSettingsViewModel(defaults: defaults)
+            let configs = LearnerDashboardWidgetAssembly.makeDefaultEditableWidgetConfigs()
+            let courseSettingsVM = LearnerDashboardCourseSettingsViewModel(
+                userDefaults: defaults,
+                configs: configs,
+                username: "Riley",
+                onConfigsChanged: {}
+            )
+            return LearnerDashboardSettingsViewModel(defaults: defaults, courseSettingsViewModel: courseSettingsVM)
         }()
     )
 }
@@ -131,7 +138,14 @@ struct LearnerDashboardSettingsView: View {
         viewModel: {
             var defaults = SessionDefaults.fallback
             defaults.preferNewLearnerDashboard = false
-            return LearnerDashboardSettingsViewModel(defaults: defaults)
+            let configs = LearnerDashboardWidgetAssembly.makeDefaultEditableWidgetConfigs()
+            let courseSettingsVM = LearnerDashboardCourseSettingsViewModel(
+                userDefaults: defaults,
+                configs: configs,
+                username: "Riley",
+                onConfigsChanged: {}
+            )
+            return LearnerDashboardSettingsViewModel(defaults: defaults, courseSettingsViewModel: courseSettingsVM)
         }()
     )
 }

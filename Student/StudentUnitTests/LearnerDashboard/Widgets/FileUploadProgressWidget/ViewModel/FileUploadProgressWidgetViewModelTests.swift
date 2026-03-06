@@ -51,7 +51,6 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
 
     func testInit_setsInitialState() {
         testee = FileUploadProgressWidgetViewModel(
-            config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
             router: widgetRouter,
             listViewModel: listViewModel
         )
@@ -64,7 +63,6 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
 
     func testUploadCards_emptyWhenNoSubmissions() {
         testee = FileUploadProgressWidgetViewModel(
-            config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
             router: widgetRouter,
             listViewModel: listViewModel
         )
@@ -90,7 +88,6 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
         try? context.save()
 
         testee = FileUploadProgressWidgetViewModel(
-            config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
             router: widgetRouter,
             listViewModel: listViewModel
         )
@@ -120,7 +117,6 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
         try? context.save()
 
         testee = FileUploadProgressWidgetViewModel(
-            config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
             router: widgetRouter,
             listViewModel: listViewModel
         )
@@ -146,7 +142,6 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
         try? context.save()
 
         testee = FileUploadProgressWidgetViewModel(
-            config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
             router: widgetRouter,
             listViewModel: listViewModel
         )
@@ -174,7 +169,6 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
         try? context.save()
 
         testee = FileUploadProgressWidgetViewModel(
-            config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
             router: widgetRouter,
             listViewModel: listViewModel
         )
@@ -203,7 +197,6 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
         try? context.save()
 
         testee = FileUploadProgressWidgetViewModel(
-            config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
             router: widgetRouter,
             listViewModel: listViewModel
         )
@@ -225,7 +218,6 @@ final class FileUploadProgressWidgetViewModelTests: StudentTestCase {
 
     func testRefresh_returnsImmediately() {
         testee = FileUploadProgressWidgetViewModel(
-            config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
             router: widgetRouter,
             listViewModel: listViewModel
         )

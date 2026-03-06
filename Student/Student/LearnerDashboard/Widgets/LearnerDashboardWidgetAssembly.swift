@@ -20,55 +20,50 @@ import Core
 import SwiftUI
 
 enum LearnerDashboardWidgetAssembly {
-    static func makeDefaultWidgetConfigs() -> [DashboardWidgetConfig] {
-        let identifiers: [DashboardWidgetIdentifier] = [
-            .offlineSyncProgress,
-            .fileUploadProgress,
-            .conferences,
-            .courseInvitations,
-            .globalAnnouncements,
-            .helloWidget,
-            .coursesAndGroups
-        ]
-
-        return identifiers.enumerated().map { (index, id) in
+    static func makeDefaultEditableWidgetConfigs() -> [DashboardWidgetConfig] {
+        EditableWidgetIdentifier.allCases.enumerated().map { (index, id) in
             DashboardWidgetConfig(id: id, order: index, isVisible: true)
         }
     }
 
-    static func makeWidgetViewModel(
-        config: DashboardWidgetConfig,
+    static func makeSystemWidgetViewModel(
+        for widgetId: SystemWidgetIdentifier,
         snackBarViewModel: SnackBarViewModel,
         coursesInteractor: CoursesInteractor = makeCoursesInteractor()
     ) -> any DashboardWidgetViewModel {
-        switch config.id {
+        switch widgetId {
         case .offlineSyncProgress:
             OfflineSyncProgressWidgetViewModel(
-                config: config,
                 dashboardViewModel: DashboardOfflineSyncProgressCardAssembly.makeViewModel()
             )
         case .fileUploadProgress:
             FileUploadProgressWidgetViewModel(
-                config: config,
                 router: AppEnvironment.shared.router,
                 listViewModel: FileUploadNotificationCardListViewModel()
             )
-        case .conferences:
-            ConferencesWidgetViewModel(
-                config: config,
-                interactor: .live(coursesInteractor: coursesInteractor, env: .shared),
-                snackBarViewModel: snackBarViewModel
-            )
         case .courseInvitations:
             CourseInvitationsWidgetViewModel(
-                config: config,
                 interactor: coursesInteractor,
                 snackBarViewModel: snackBarViewModel
             )
         case .globalAnnouncements:
             GlobalAnnouncementsWidgetViewModel(
-                config: config,
                 interactor: .live(env: .shared)
+            )
+        }
+    }
+
+    static func makeEditableWidgetViewModel(
+        config: DashboardWidgetConfig,
+        snackBarViewModel: SnackBarViewModel,
+        coursesInteractor: CoursesInteractor = makeCoursesInteractor()
+    ) -> any DashboardWidgetViewModel {
+        switch config.id {
+        case .conferences:
+            ConferencesWidgetViewModel(
+                config: config,
+                interactor: .live(coursesInteractor: coursesInteractor, env: .shared),
+                snackBarViewModel: snackBarViewModel
             )
         case .helloWidget:
             HelloWidgetViewModel(
@@ -81,31 +76,6 @@ enum LearnerDashboardWidgetAssembly {
                 config: config,
                 interactor: .live(coursesInteractor: coursesInteractor, env: .shared)
             )
-        }
-    }
-
-    @ViewBuilder
-    static func makeView(for viewModel: any DashboardWidgetViewModel) -> some View {
-        switch viewModel {
-        case let vm as OfflineSyncProgressWidgetViewModel:
-            vm.makeView()
-        case let vm as FileUploadProgressWidgetViewModel:
-            vm.makeView()
-        case let vm as ConferencesWidgetViewModel:
-            vm.makeView()
-        case let vm as CourseInvitationsWidgetViewModel:
-	        vm.makeView()
-        case let vm as GlobalAnnouncementsWidgetViewModel:
-            vm.makeView()
-        case let vm as HelloWidgetViewModel:
-            vm.makeView()
-        case let vm as CoursesAndGroupsWidgetViewModel:
-            vm.makeView()
-        default:
-            SwiftUI.EmptyView()
-                .onAppear {
-                    assertionFailure("Unknown widget view model type")
-                }
         }
     }
 

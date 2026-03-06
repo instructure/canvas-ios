@@ -51,7 +51,7 @@ struct LearnerDashboardScreen: View {
             VStack(spacing: screenPadding.rawValue) {
                 ForEach(viewModel.widgets, id: \.id) { widgetViewModel in
                     if widgetViewModel.shouldRenderWidget {
-                        LearnerDashboardWidgetAssembly.makeView(for: widgetViewModel)
+                        widgetViewModel.makeView()
                     }
                 }
             }

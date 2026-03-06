@@ -53,7 +53,6 @@ final class OfflineSyncProgressWidgetViewModelTests: StudentTestCase {
 
     func testInit_setsInitialState() {
         testee = OfflineSyncProgressWidgetViewModel(
-            config: .init(id: .offlineSyncProgress, order: 1, isVisible: true),
             dashboardViewModel: dashboardViewModel
         )
 
@@ -66,7 +65,6 @@ final class OfflineSyncProgressWidgetViewModelTests: StudentTestCase {
 
     func testInit_subscribesToDashboardViewModel() {
         testee = OfflineSyncProgressWidgetViewModel(
-            config: .init(id: .offlineSyncProgress, order: 1, isVisible: true),
             dashboardViewModel: dashboardViewModel
         )
 
@@ -78,7 +76,6 @@ final class OfflineSyncProgressWidgetViewModelTests: StudentTestCase {
 
     func testStateMapping_hiddenMapsToEmpty() {
         testee = OfflineSyncProgressWidgetViewModel(
-            config: .init(id: .offlineSyncProgress, order: 1, isVisible: true),
             dashboardViewModel: dashboardViewModel
         )
 
@@ -94,7 +91,6 @@ final class OfflineSyncProgressWidgetViewModelTests: StudentTestCase {
 
     func testDismiss_callsDashboardViewModelDismiss() {
         testee = OfflineSyncProgressWidgetViewModel(
-            config: .init(id: .offlineSyncProgress, order: 1, isVisible: true),
             dashboardViewModel: dashboardViewModel
         )
 
@@ -113,7 +109,6 @@ final class OfflineSyncProgressWidgetViewModelTests: StudentTestCase {
 
     func testCardTapped_callsDashboardViewModelCardTap() {
         testee = OfflineSyncProgressWidgetViewModel(
-            config: .init(id: .offlineSyncProgress, order: 1, isVisible: true),
             dashboardViewModel: dashboardViewModel
         )
 
@@ -133,7 +128,6 @@ final class OfflineSyncProgressWidgetViewModelTests: StudentTestCase {
 
     func testRefresh_returnsImmediately() {
         testee = OfflineSyncProgressWidgetViewModel(
-            config: .init(id: .offlineSyncProgress, order: 1, isVisible: true),
             dashboardViewModel: dashboardViewModel
         )
 

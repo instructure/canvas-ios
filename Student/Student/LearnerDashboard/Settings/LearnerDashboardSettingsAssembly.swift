@@ -20,9 +20,21 @@ import Core
 import UIKit
 
 enum LearnerDashboardSettingsAssembly {
-    static func makeViewController(env: AppEnvironment = .shared) -> UIViewController {
+    static func makeViewController(env: AppEnvironment = .shared, onConfigsChanged: @escaping () -> Void) -> UIViewController {
         let defaults = env.userDefaults ?? .fallback
-        let viewModel = LearnerDashboardSettingsViewModel(defaults: defaults)
+        let username = env.currentSession?.userName ?? ""
+        let configs = defaults.learnerDashboardWidgetConfigs
+            ?? LearnerDashboardWidgetAssembly.makeDefaultEditableWidgetConfigs()
+        let courseSettingsViewModel = LearnerDashboardCourseSettingsViewModel(
+            userDefaults: defaults,
+            configs: configs,
+            username: username,
+            onConfigsChanged: onConfigsChanged
+        )
+        let viewModel = LearnerDashboardSettingsViewModel(
+            defaults: defaults,
+            courseSettingsViewModel: courseSettingsViewModel
+        )
         let view = LearnerDashboardSettingsView(viewModel: viewModel)
         let hostingController = CoreHostingController(view)
         hostingController.addDoneButton(side: .right)

@@ -22,31 +22,27 @@ enum LearnerDashboardAssembly {
 
     static func makeScreen() -> LearnerDashboardScreen {
         let snackBarViewModel = SnackBarViewModel()
-        let widgetFactory: (DashboardWidgetConfig) -> any DashboardWidgetViewModel = { config in
-            LearnerDashboardWidgetAssembly.makeWidgetViewModel(
+        let systemFactory: (SystemWidgetIdentifier) -> any DashboardWidgetViewModel = { widgetId in
+            LearnerDashboardWidgetAssembly.makeSystemWidgetViewModel(
+                for: widgetId,
+                snackBarViewModel: snackBarViewModel
+            )
+        }
+        let editableFactory: (DashboardWidgetConfig) -> any DashboardWidgetViewModel = { config in
+            LearnerDashboardWidgetAssembly.makeEditableWidgetViewModel(
                 config: config,
                 snackBarViewModel: snackBarViewModel
             )
         }
-        let interactor = makeInteractor(widgetViewModelFactory: widgetFactory)
-        let viewModel = makeViewModel(interactor: interactor, snackBarViewModel: snackBarViewModel)
-        return LearnerDashboardScreen(viewModel: viewModel)
-    }
-
-    private static func makeInteractor(
-        widgetViewModelFactory: @escaping (DashboardWidgetConfig) -> any DashboardWidgetViewModel
-    ) -> LearnerDashboardInteractor {
-        LearnerDashboardInteractorLive(widgetViewModelFactory: widgetViewModelFactory)
-    }
-
-    private static func makeViewModel(
-        interactor: LearnerDashboardInteractor,
-        snackBarViewModel: SnackBarViewModel
-    ) -> LearnerDashboardViewModel {
-        LearnerDashboardViewModel(
+        let interactor = LearnerDashboardInteractorLive(
+            systemWidgetFactory: systemFactory,
+            editableWidgetFactory: editableFactory
+        )
+        let viewModel = LearnerDashboardViewModel(
             interactor: interactor,
             snackBarViewModel: snackBarViewModel,
             environment: .shared
         )
+        return LearnerDashboardScreen(viewModel: viewModel)
     }
 }

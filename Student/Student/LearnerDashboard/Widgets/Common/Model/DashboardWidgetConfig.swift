@@ -16,8 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+// Persisted user preference for a single editable dashboard widget.
+// Configs are stored as a list in SessionDefaults and loaded on dashboard startup.
 struct DashboardWidgetConfig: Codable, Comparable, Identifiable {
-    let id: DashboardWidgetIdentifier
+    let id: EditableWidgetIdentifier
     var order: Int
     var isVisible: Bool
     /// Widget-specific settings encoded into a JSON to be persisted.
@@ -32,7 +34,7 @@ struct DashboardWidgetConfig: Codable, Comparable, Identifiable {
 
 extension DashboardWidgetConfig {
     static func make(
-        id: DashboardWidgetIdentifier = .helloWidget,
+        id: EditableWidgetIdentifier = .helloWidget,
         order: Int = 0,
         isVisible: Bool = true,
         settings: String? = nil

@@ -27,16 +27,19 @@ import UIKit
 final class LearnerDashboardSettingsViewModel {
     var useNewLearnerDashboard: Bool
     var mainColor: Color = .course1
+    let courseSettingsViewModel: LearnerDashboardCourseSettingsViewModel
 
     private var defaults: SessionDefaults
     private let environment: AppEnvironment
 
     init(
         defaults: SessionDefaults,
+        courseSettingsViewModel: LearnerDashboardCourseSettingsViewModel,
         environment: AppEnvironment = .shared
     ) {
         self.defaults = defaults
         self.environment = environment
+        self.courseSettingsViewModel = courseSettingsViewModel
         self.useNewLearnerDashboard = defaults.preferNewLearnerDashboard
     }
 

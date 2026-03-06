@@ -80,7 +80,9 @@ final class LearnerDashboardViewModel {
     }
 
     func settingsButtonTapped(from presentingViewController: WeakViewController) {
-        let settingsViewController = LearnerDashboardSettingsAssembly.makeViewController()
+        let settingsViewController = LearnerDashboardSettingsAssembly.makeViewController(onConfigsChanged: { [weak self] in
+            self?.loadWidgets()
+        })
         let viewSize = CGSize(width: 400, height: 700)
 
         settingsViewController.preferredContentSize = viewSize

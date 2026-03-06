@@ -17,63 +17,81 @@
 //
 
 import Core
+import Foundation
 import Observation
 import SwiftUI
 
 @Observable
 final class LearnerDashboardCourseSettingsViewModel {
-    var configs: [Config]
+    var visibleConfigs: [Config]
+    var hiddenConfigs: [Config]
+    let username: String
 
-    // Example username for preview and accessibility labels
-    let username = "Riley"
+    var configs: [Config] { visibleConfigs + hiddenConfigs }
 
-    init(configs: [Config]) {
-        let visibleConfigs = configs.filter { $0.isVisible }.sorted()
-        let hiddenConfigs = configs.filter { !$0.isVisible }.sorted()
+    private var userDefaults: SessionDefaults
+    private let onConfigsChanged: () -> Void
 
-        self.configs = visibleConfigs + hiddenConfigs
+    init(userDefaults: SessionDefaults, configs: [Config], username: String, onConfigsChanged: @escaping () -> Void) {
+        self.userDefaults = userDefaults
+        self.username = username
+        self.onConfigsChanged = onConfigsChanged
+        visibleConfigs = configs.filter { $0.isVisible }.sorted()
+        hiddenConfigs = configs.filter { !$0.isVisible }.sorted()
     }
 
     func toggleVisibility(of config: Config, to isVisible: Bool) {
-        guard let index = configs.firstIndex(of: config) else { return }
-
-        configs[index].isVisible = isVisible
-
-        let visibleConfigs = configs.filter { $0.isVisible }
-        let hiddenConfigs = configs.filter { !$0.isVisible }
-
-        configs = visibleConfigs + hiddenConfigs
+        if isVisible {
+            guard let index = hiddenConfigs.firstIndex(of: config) else { return }
+            var toggledConfig = hiddenConfigs.remove(at: index)
+            toggledConfig.isVisible = isVisible
+            visibleConfigs.append(toggledConfig)
+        } else {
+            guard let index = visibleConfigs.firstIndex(of: config) else { return }
+            var toggledConfig = visibleConfigs.remove(at: index)
+            toggledConfig.isVisible = isVisible
+            hiddenConfigs.append(toggledConfig)
+        }
+        saveAndNotify()
     }
 
     func moveUp(_ config: Config) {
-        guard let index = configs.firstIndex(of: config), index > configs.startIndex else { return }
-        let previousConfigIndex = configs.index(before: index)
-
-        withAnimation {
-            configs.swapAt(index, previousConfigIndex)
-        }
+        guard let index = visibleConfigs.firstIndex(of: config), index > visibleConfigs.startIndex else { return }
+        let previousConfigIndex = visibleConfigs.index(before: index)
+        visibleConfigs.swapAt(index, previousConfigIndex)
+        saveAndNotify()
     }
 
     func isMoveUpDisabled(of config: Config) -> Bool {
-        guard let index = configs.firstIndex(of: config), index > configs.startIndex else { return true }
-
-        return !config.isVisible
+        guard let index = visibleConfigs.firstIndex(of: config) else { return true }
+        return index == visibleConfigs.startIndex
     }
 
     func moveDown(_ config: Config) {
-        guard let index = configs.firstIndex(of: config), index < configs.endIndex - 1 else { return }
-        let nextConfigIndex = configs.index(after: index)
-
-        withAnimation {
-            configs.swapAt(index, nextConfigIndex)
-        }
+        guard let index = visibleConfigs.firstIndex(of: config), index < visibleConfigs.endIndex - 1 else { return }
+        let nextConfigIndex = visibleConfigs.index(after: index)
+        visibleConfigs.swapAt(index, nextConfigIndex)
+        saveAndNotify()
     }
 
     func isMoveDownDisabled(of config: Config) -> Bool {
-        guard let index = configs.firstIndex(of: config), index < configs.endIndex - 1 else { return true }
-        let nextConfigIndex = configs.index(after: index)
+        guard let index = visibleConfigs.firstIndex(of: config) else { return true }
+        return index == visibleConfigs.endIndex - 1
+    }
 
-        return !configs[nextConfigIndex].isVisible || !config.isVisible
+    private func saveAndNotify() {
+        let updatedVisible = visibleConfigs.enumerated().map { (index, config) -> Config in
+            var updated = config
+            updated.order = index
+            return updated
+        }
+        let updatedHidden = hiddenConfigs.enumerated().map { (index, config) -> Config in
+            var updated = config
+            updated.order = visibleConfigs.count + index
+            return updated
+        }
+        userDefaults.learnerDashboardWidgetConfigs = updatedVisible + updatedHidden
+        onConfigsChanged()
     }
 }
 

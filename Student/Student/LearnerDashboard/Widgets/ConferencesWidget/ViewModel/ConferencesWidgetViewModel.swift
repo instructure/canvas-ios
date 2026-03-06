@@ -18,13 +18,13 @@
 
 import Combine
 import Core
-import Foundation
+import SwiftUI
 
 @Observable
 final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
-    typealias ViewType = ConferencesWidgetView
 
     let config: DashboardWidgetConfig
+    var id: String { config.id.rawValue }
     let isHiddenInEmptyState = true
 
     private(set) var state: InstUI.ScreenState = .loading
@@ -55,8 +55,8 @@ final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
         updateWidgetTitle()
     }
 
-    func makeView() -> ConferencesWidgetView {
-        ConferencesWidgetView(viewModel: self)
+    func makeView() -> AnyView {
+        AnyView(ConferencesWidgetView(viewModel: self))
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
