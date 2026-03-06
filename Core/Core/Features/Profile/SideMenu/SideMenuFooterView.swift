@@ -20,20 +20,18 @@ import SwiftUI
 
 struct SideMenuFooterView: View {
     @State private var versionLabel: String? = {
-        guard let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else { return nil }
         let appName: String = {
             switch AppEnvironment.shared.app {
             case .student: "Canvas"
             default: "Canvas \(AppEnvironment.shared.app?.rawValue.capitalized ?? "")"
             }
         }()
-        var result = "\(appName) v\(version)"
-
         if let pr = Bundle.main.object(forInfoDictionaryKey: "PRNumber") as? String, !pr.isEmpty,
            let build = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String {
-            result.append("(\(build)) PR#\(pr)")
+            return "\(appName) PR #\(pr) (build \(build))"
         }
-        return result
+        guard let version = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String else { return nil }
+        return "\(appName) v\(version)"
     }()
 
     var body: some View {
