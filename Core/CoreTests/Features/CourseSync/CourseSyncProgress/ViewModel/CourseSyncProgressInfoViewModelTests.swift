@@ -126,4 +126,30 @@ class CourseSyncProgressInfoViewModelTests: CoreTestCase {
             .downloadStarting(message: "Downloading Zero KB of 1 KB")
         )
     }
+
+    func testEmbeddedContentErrorShowsIncompleteState() {
+        // GIVEN
+        let testee = CourseSyncProgressInfoViewModel(
+            interactor: courseSyncProgressInteractorMock,
+            scheduler: .immediate
+        )
+        let fileProgress = CourseSyncDownloadProgress.make(
+            bytesToDownload: 1000,
+            bytesDownloaded: 800,
+            isFinished: true,
+            error: CourseSyncDownloadProgress.embeddedContentErrorMessage
+        )
+
+        // WHEN
+        courseSyncProgressInteractorMock.courseSyncFileProgressSubject.send(fileProgress)
+
+        // THEN
+        XCTAssertSingleOutputEquals(
+            testee.$state,
+            .finishedWithError(
+                title: "Offline Content Sync Incomplete",
+                subtitle: "Some embedded media failed to download. Core content is still available offline."
+            )
+        )
+    }
 }
