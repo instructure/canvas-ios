@@ -20,7 +20,10 @@ import Core
 
 enum ListLearningLibraryAssembly {
     static private func makeViewModel() -> LearningLibraryViewModel {
-        .init(router: AppEnvironment.shared.router)
+        .init(
+            router: AppEnvironment.shared.router,
+            bookmarkManager: BookmarkManager()
+        )
     }
 
     static func makeView() -> LearningLibraryView {

@@ -115,4 +115,20 @@ final class LearningLibraryInteractorMock: LearningLibraryInteractor {
                 .eraseToAnyPublisher()
         }
     }
+
+    func searchWithFilters(
+        searchText: String?,
+        objectType: LearningLibraryObjectType?,
+        libraryFilter: LearningLibraryFilter
+    ) -> AnyPublisher<[LearningLibraryCardModel], Error> {
+        let bookmarkedOnly = libraryFilter == .bookmarked
+        let completedOnly = libraryFilter == .completed
+        let types = objectType.map { [$0.rawValue] }
+        return searchCollectionItem(
+            bookmarkedOnly: bookmarkedOnly,
+            completedOnly: completedOnly,
+            types: types,
+            searchTerm: searchText
+        )
+    }
 }

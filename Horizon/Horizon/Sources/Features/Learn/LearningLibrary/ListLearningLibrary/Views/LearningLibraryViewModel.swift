@@ -53,7 +53,6 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
     // MARK: - Outputs
     private(set) var errorMessage = ""
     private(set) var isLoaderVisible: Bool = true
-    private(set) var accessibilityMessagePublisher = PassthroughSubject<String, Never>()
     private(set) var globalSearchItems: [LearningLibraryCardModel] = []
 
     private(set) var isGlobalSearchActive: Bool = false
@@ -61,9 +60,17 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
     var filteredSections: [LearningLibrarySectionModel] { paginator.visibleItems }
     var isSeeMoreVisible: Bool { paginator.isSeeMoreVisible }
 
+    var accessibilityMessagePublisher: AnyPublisher<String, Never> {
+        Publishers.Merge(
+            bookmarkManager.accessibilityPublisher,
+            internalAccessibilityPublisher
+        )
+        .eraseToAnyPublisher()
+    }
+
     // MARK: - Private variables
 
-    private var bookmarkLoadingStates: [String: Bool] = [:]
+    private var internalAccessibilityPublisher = PassthroughSubject<String, Never>()
     private var reloadCollections = PassthroughSubject<Void, Never>()
     private var subscriptions = Set<AnyCancellable>()
     private var globalSearchCancellable: AnyCancellable?
@@ -73,6 +80,7 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
 
     let router: Router
     private let interactor: LearningLibraryInteractor
+    private let bookmarkManager: BookmarkManager
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
@@ -80,10 +88,12 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
     init(
         router: Router,
         interactor: LearningLibraryInteractor = LearningLibraryInteractorLive(),
+        bookmarkManager: BookmarkManager = BookmarkManager(),
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.router = router
         self.interactor = interactor
+        self.bookmarkManager = bookmarkManager
         self.scheduler = scheduler
         observeSearchAndFilters()
         reloadCollections
@@ -91,11 +101,7 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
                 guard let self else { return }
                 fetchCollections()
                 if isGlobalSearchActive {
-                    performGlobalSearch(
-                        searchText: searchText,
-                        learningObject: selectedLearningObjectSubject.value,
-                        learningLibrary: selectedLearningLibrarySubject.value
-                    )
+                    performGlobalSearch()
                 }
 
             }
@@ -140,29 +146,17 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
     }
 
     func addBookmark(model: LearningLibraryCardModel) {
-        bookmarkLoadingStates[model.id] = true
-        interactor.bookmark(id: model.id, courseID: model.courseID)
-            .receive(on: scheduler)
+        bookmarkManager.toggleBookmark(model, using: interactor, scheduler: scheduler)
             .sinkFailureOrValue { [weak self] error in
-                guard let self else { return }
-                self.bookmarkLoadingStates[model.id] = false
-                showError(with: error.localizedDescription)
-            } receiveValue: { [weak self] _ in
-                guard let self else { return }
-                self.bookmarkLoadingStates[model.id] = false
-                var model = model
-                model.isBookmarked = !model.isBookmarked
-                self.update(with: model)
-                let message = model.isBookmarked
-                ? String(localized: "Added to bookmarks")
-                : String(localized: "Removed from bookmarks")
-                self.accessibilityMessagePublisher.send(message)
+                self?.showError(with: error.localizedDescription)
+            } receiveValue: { [weak self] updatedItem in
+                self?.update(with: updatedItem)
             }
             .store(in: &subscriptions)
     }
 
     func isBookmarkLoading(forItemWithId id: String) -> Bool {
-        bookmarkLoadingStates[id] ?? false
+        bookmarkManager.isLoading(itemId: id)
     }
 
     func showEnrollConfirmation(
@@ -172,7 +166,7 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
         let enrollViewController = EnrollConfirmationAssembly.makeView(model: model) { [weak self] item in
             self?.update(with: item)
             self?.navigateToLearningLibraryItem(item, from: viewController)
-            self?.accessibilityMessagePublisher.send(String(localized: "Enrolled successfully"))
+            self?.internalAccessibilityPublisher.send(String(localized: "Enrolled successfully"))
         }
         router.show(enrollViewController, from: viewController, options: .modal(.fullScreen))
     }
@@ -261,11 +255,7 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
 
             if self.isGlobalSearchActive {
                 self.globalSearchCancellable?.cancel()
-                self.performGlobalSearch(
-                    searchText: searchText,
-                    learningObject: learningObject,
-                    learningLibrary: learningLibrary
-                )
+                self.performGlobalSearch()
             } else {
                 self.globalSearchCancellable?.cancel()
                 self.isGlobalSearchLoading = false
@@ -274,28 +264,19 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
         .store(in: &subscriptions)
     }
 
-    private func performGlobalSearch(
-        searchText: String,
-        learningObject: OptionModel,
-        learningLibrary: OptionModel
-    ) {
+    private func performGlobalSearch() {
         isGlobalSearchLoading = true
 
-        let bookmarkedOnly = learningLibrary.id == LearningLibraryFilter.bookmarked.rawValue
-        let completedOnly = learningLibrary.id == LearningLibraryFilter.completed.rawValue
+        let objectType = selectedLearningObjectSubject.value.id == LearningLibraryObjectType.firstOption.id
+            ? nil
+            : LearningLibraryObjectType(rawValue: selectedLearningObjectSubject.value.id)
 
-        let types: [String]?
-        if learningObject.id == LearningLibraryObjectType.firstOption.id {
-            types = nil
-        } else {
-            types = [learningObject.id]
-        }
+        let libraryFilter = LearningLibraryFilter(rawValue: selectedLearningLibrarySubject.value.id) ?? .all
 
-        globalSearchCancellable = interactor.searchCollectionItem(
-            bookmarkedOnly: bookmarkedOnly,
-            completedOnly: completedOnly,
-            types: types,
-            searchTerm: searchText.trimmedEmptyLines.isEmpty ? nil : searchText
+        globalSearchCancellable = interactor.searchWithFilters(
+            searchText: searchTextSubject.value,
+            objectType: objectType,
+            libraryFilter: libraryFilter
         )
         .receive(on: scheduler)
         .sinkFailureOrValue { [weak self] error in
@@ -319,6 +300,6 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
         } else {
             message = String(format: String(localized: "Found %d results"), count)
         }
-        accessibilityMessagePublisher.send(message)
+        internalAccessibilityPublisher.send(message)
     }
 }
