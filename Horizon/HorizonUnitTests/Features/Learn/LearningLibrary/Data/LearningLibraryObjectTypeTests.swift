@@ -25,7 +25,6 @@ final class LearningLibraryObjectTypeTests: XCTestCase {
         let allCases = LearningLibraryObjectType.allCases
         XCTAssertEqual(allCases.count, 7)
         XCTAssertTrue(allCases.contains(.course))
-        // XCTAssertTrue(allCases.contains(.program))
         XCTAssertTrue(allCases.contains(.page))
         XCTAssertTrue(allCases.contains(.assignment))
         XCTAssertTrue(allCases.contains(.assessment))
