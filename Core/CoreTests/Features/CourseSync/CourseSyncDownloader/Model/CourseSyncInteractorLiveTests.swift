@@ -949,7 +949,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(downloadProgresses.count, 1)
         guard let downloadProgress = downloadProgresses.first else { return XCTFail() }
         XCTAssertTrue(downloadProgress.isFinished)
-        XCTAssertNotNil(downloadProgress.error)
+        XCTAssertEqual(downloadProgress.error, CourseSyncDownloadProgress.embeddedContentErrorMessage)
         subscription.cancel()
     }
 

@@ -146,13 +146,143 @@ class CourseSyncListInteractorLiveTests: CoreTestCase {
         XCTAssertFinish(testee.getCourseSyncEntries(filter: .all))
         XCTAssertEqual(environment.userDefaults?.offlineSyncSelections, ["courses/1"])
     }
+
+    // MARK: - Embedded Content Error
+
+    func testEmbeddedContentErrorCourseIsIncludedWhenDeselected() {
+        // GIVEN
+        CourseSyncSelectorCourse.save(.make(id: "1", name: "1"), in: databaseClient)
+        try? databaseClient.save()
+        let progress = CourseSyncDownloadProgress.make(
+            isFinished: true,
+            error: CourseSyncDownloadProgress.embeddedContentErrorMessage,
+            embeddedContentErrorCourseIds: ["1"]
+        )
+
+        // WHEN
+        var entries = [CourseSyncEntry]()
+        let subscription = testee.getCourseSyncEntries(filter: .courseIds(["1"]), progress: progress)
+            .sink(receiveCompletion: { _ in }) { entries = $0 }
+        drainMainQueue()
+
+        // THEN
+        XCTAssertEqual(entries.count, 1)
+        XCTAssertEqual(entries[0].courseId, "1")
+        XCTAssertEqual(entries[0].state, .downloaded(isEmbeddedMediaComplete: false))
+        subscription.cancel()
+    }
+
+    func testEmbeddedContentErrorCourseIsExcludedWhenProgressIsNil() {
+        // GIVEN
+        CourseSyncSelectorCourse.save(.make(id: "1", name: "1"), in: databaseClient)
+        try? databaseClient.save()
+
+        // WHEN
+        var entries = [CourseSyncEntry]()
+        let subscription = testee.getCourseSyncEntries(filter: .courseIds(["1"]))
+            .sink(receiveCompletion: { _ in }) { entries = $0 }
+        drainMainQueue()
+
+        // THEN
+        XCTAssertTrue(entries.isEmpty)
+        subscription.cancel()
+    }
+
+    func testEmbeddedContentErrorCourseIsExcludedWhenCourseIdNotInErrorList() {
+        // GIVEN
+        CourseSyncSelectorCourse.save(.make(id: "1", name: "1"), in: databaseClient)
+        try? databaseClient.save()
+        let progress = CourseSyncDownloadProgress.make(
+            isFinished: true,
+            error: CourseSyncDownloadProgress.embeddedContentErrorMessage,
+            embeddedContentErrorCourseIds: ["2"]
+        )
+
+        // WHEN
+        var entries = [CourseSyncEntry]()
+        let subscription = testee.getCourseSyncEntries(filter: .courseIds(["1"]), progress: progress)
+            .sink(receiveCompletion: { _ in }) { entries = $0 }
+        drainMainQueue()
+
+        // THEN
+        XCTAssertTrue(entries.isEmpty)
+        subscription.cancel()
+    }
+
+    func testEmbeddedContentErrorSelectedEntryTakesPrecedence() {
+        // GIVEN — course is fully selected AND has an embedded content error
+        environment.userDefaults?.offlineSyncSelections = ["courses/1"]
+        CourseSyncSelectorCourse.save(.make(id: "1", name: "1"), in: databaseClient)
+        try? databaseClient.save()
+        let progress = CourseSyncDownloadProgress.make(
+            isFinished: true,
+            error: CourseSyncDownloadProgress.embeddedContentErrorMessage,
+            embeddedContentErrorCourseIds: ["1"]
+        )
+
+        // WHEN
+        var entries = [CourseSyncEntry]()
+        let subscription = testee.getCourseSyncEntries(filter: .courseIds(["1"]), progress: progress)
+            .sink(receiveCompletion: { _ in }) { entries = $0 }
+        drainMainQueue()
+
+        // THEN — entry appears once via the limitedResults path, not the error path
+        XCTAssertEqual(entries.count, 1)
+        XCTAssertEqual(entries[0].courseId, "1")
+        XCTAssertNotEqual(entries[0].state, .downloaded(isEmbeddedMediaComplete: false))
+        subscription.cancel()
+    }
+
+    func testEmbeddedContentErrorEntryHasDeselectedTabsAndFilesRemoved() {
+        // GIVEN
+        let selectedTab = CourseSyncEntry.Tab(id: "tab-pages", name: "Pages", type: .pages, isCollapsed: false, selectionState: .selected)
+        let deselectedTab = CourseSyncEntry.Tab(id: "tab-assignments", name: "Assignments", type: .assignments, isCollapsed: false, selectionState: .deselected)
+        let file = CourseSyncEntry.File.make(id: "file-1", displayName: "doc.pdf")
+        let mockEntry = CourseSyncEntry.make(
+            id: "courses/1",
+            tabs: [selectedTab, deselectedTab],
+            files: [file]
+        )
+        let mockComposer = MockCourseSyncEntryComposerInteractor(mockEntry: mockEntry)
+        let localTestee = CourseSyncListInteractorLive(
+            entryComposerInteractor: mockComposer,
+            scheduler: .immediate
+        )
+        CourseSyncSelectorCourse.save(.make(id: "1", name: "1"), in: databaseClient)
+        try? databaseClient.save()
+        let progress = CourseSyncDownloadProgress.make(
+            isFinished: true,
+            error: CourseSyncDownloadProgress.embeddedContentErrorMessage,
+            embeddedContentErrorCourseIds: ["1"]
+        )
+
+        // WHEN
+        var entries = [CourseSyncEntry]()
+        let subscription = localTestee.getCourseSyncEntries(filter: .courseIds(["1"]), progress: progress)
+            .sink(receiveCompletion: { _ in }) { entries = $0 }
+        drainMainQueue()
+
+        // THEN
+        XCTAssertEqual(entries.count, 1)
+        XCTAssertEqual(entries[0].state, .downloaded(isEmbeddedMediaComplete: false))
+        XCTAssertEqual(entries[0].tabs.count, 1)
+        XCTAssertEqual(entries[0].tabs[0].id, "tab-pages")
+        XCTAssertTrue(entries[0].files.isEmpty)
+        subscription.cancel()
+    }
 }
 
 class MockCourseSyncEntryComposerInteractor: CourseSyncEntryComposerInteractor {
+    private let mockEntry: CourseSyncEntry
+
+    init(mockEntry: CourseSyncEntry = .make()) {
+        self.mockEntry = mockEntry
+    }
+
     func composeEntry(from _: CourseSyncSelectorCourse,
                       useCache _: Bool)
         -> AnyPublisher<CourseSyncEntry, Error> {
-        Just(.make())
+        Just(mockEntry)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
