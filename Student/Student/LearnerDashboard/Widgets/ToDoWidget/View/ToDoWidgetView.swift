@@ -28,6 +28,7 @@ struct ToDoWidgetView: View {
     @State private var cardHeaderHeight: CGFloat = 42
     @ScaledMetric private var calendarRowHeight: CGFloat = 80
     @State private var swipingItemId: String?
+    @AccessibilityFocusState private var isTitleFocused: Bool
 
     init(viewModel: ToDoWidgetViewModel) {
         _viewModel = State(wrappedValue: viewModel)
@@ -65,6 +66,7 @@ struct ToDoWidgetView: View {
                 }
                 .frame(height: calendarRowHeight)
                 .padding(.top, cardHeaderHeight)
+                .accessibilityHidden(true)
             }
         }
         .snackBar(viewModel: viewModel.snackBarViewModel)
@@ -78,9 +80,11 @@ struct ToDoWidgetView: View {
                 .font(.regular14, lineHeight: .fit)
                 .foregroundStyle(.textDarkest)
                 .accessibilityAddTraits(.isHeader)
+                .accessibilityFocused($isTitleFocused)
             Spacer()
             if !viewModel.isShowingToday {
                 Button {
+                    isTitleFocused = true
                     viewModel.navigateToToday()
                     weekPagerProxy.scrollToToday()
                 } label: {
@@ -143,6 +147,27 @@ struct ToDoWidgetView: View {
         )
         .frame(height: calendarRowHeight)
         .padding(.horizontal, 32)
+        .accessibilityRepresentation {
+            HStack(spacing: 0) {
+                circleNavButton(
+                    systemImage: "chevron.left",
+                    a11yLabel: String(localized: "Previous week", bundle: .student)
+                ) {
+                    weekPagerProxy.scrollToPreviousWeek()
+                }
+                ToDoWeekPageView(weekDays: currentWeekDays, viewModel: viewModel)
+                circleNavButton(
+                    systemImage: "chevron.right",
+                    a11yLabel: String(localized: "Next week", bundle: .student)
+                ) {
+                    weekPagerProxy.scrollToNextWeek()
+                }
+            }
+        }
+    }
+
+    private var currentWeekDays: [Date] {
+        (0..<7).compactMap { Calendar.current.date(byAdding: .day, value: $0, to: viewModel.weekStart) }
     }
 
     // MARK: - Content
