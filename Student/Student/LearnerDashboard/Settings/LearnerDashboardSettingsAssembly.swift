@@ -20,7 +20,11 @@ import Core
 import UIKit
 
 enum LearnerDashboardSettingsAssembly {
-    static func makeViewController(env: AppEnvironment = .shared, onConfigsChanged: @escaping () -> Void) -> UIViewController {
+    static func makeViewController(
+        env: AppEnvironment = .shared,
+        colorInteractor: LearnerDashboardColorInteractor,
+        onConfigsChanged: @escaping () -> Void
+    ) -> UIViewController {
         let defaults = env.userDefaults ?? .fallback
         let username = env.currentSession?.userName ?? ""
         let configs = defaults.learnerDashboardWidgetConfigs
@@ -33,6 +37,7 @@ enum LearnerDashboardSettingsAssembly {
         )
         let viewModel = LearnerDashboardSettingsViewModel(
             defaults: defaults,
+            colorInteractor: colorInteractor,
             courseSettingsViewModel: courseSettingsViewModel
         )
         let view = LearnerDashboardSettingsView(viewModel: viewModel)

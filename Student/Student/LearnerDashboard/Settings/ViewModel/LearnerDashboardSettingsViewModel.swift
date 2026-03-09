@@ -26,21 +26,28 @@ import UIKit
 @Observable
 final class LearnerDashboardSettingsViewModel {
     var useNewLearnerDashboard: Bool
-    var mainColor: Color = .course1
+    var mainColor: Color {
+        didSet { colorInteractor.selectColor(mainColor) }
+    }
+    var colors: [LearnerDashboardColorData] { colorInteractor.availableColors }
     let courseSettingsViewModel: LearnerDashboardCourseSettingsViewModel
 
     private var defaults: SessionDefaults
     private let environment: AppEnvironment
+    private let colorInteractor: LearnerDashboardColorInteractor
 
     init(
         defaults: SessionDefaults,
+        colorInteractor: LearnerDashboardColorInteractor,
         courseSettingsViewModel: LearnerDashboardCourseSettingsViewModel,
         environment: AppEnvironment = .shared
     ) {
         self.defaults = defaults
         self.environment = environment
+        self.colorInteractor = colorInteractor
         self.courseSettingsViewModel = courseSettingsViewModel
         self.useNewLearnerDashboard = defaults.preferNewLearnerDashboard
+        self.mainColor = colorInteractor.dashboardColor.value
     }
 
     /// Switches from the new learner dashboard back to the classic dashboard.

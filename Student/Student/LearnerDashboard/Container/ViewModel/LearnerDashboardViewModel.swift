@@ -21,12 +21,14 @@ import CombineSchedulers
 import Core
 import Foundation
 import Observation
+import SwiftUI
 import UIKit
 
 @Observable
 final class LearnerDashboardViewModel {
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var widgets: [any DashboardWidgetViewModel] = []
+    private(set) var mainColor: Color
     let snackBarViewModel: SnackBarViewModel
 
     let screenConfig = InstUI.BaseScreenConfig(
@@ -44,6 +46,7 @@ final class LearnerDashboardViewModel {
     )
 
     private let interactor: LearnerDashboardInteractor
+    private let colorInteractor: LearnerDashboardColorInteractor
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
     private let courseSyncInteractor: CourseSyncInteractor
@@ -51,19 +54,23 @@ final class LearnerDashboardViewModel {
 
     init(
         interactor: LearnerDashboardInteractor,
+        colorInteractor: LearnerDashboardColorInteractor,
         snackBarViewModel: SnackBarViewModel,
         mainScheduler: AnySchedulerOf<DispatchQueue> = DispatchQueue.main.eraseToAnyScheduler(),
         courseSyncInteractor: CourseSyncInteractor = CourseSyncDownloaderAssembly.makeInteractor(),
         environment: AppEnvironment
     ) {
         self.interactor = interactor
+        self.colorInteractor = colorInteractor
         self.snackBarViewModel = snackBarViewModel
         self.mainScheduler = mainScheduler
         self.courseSyncInteractor = courseSyncInteractor
         self.environment = environment
+        self.mainColor = colorInteractor.dashboardColor.value
 
         loadWidgets()
         setupOfflineSyncHandlers()
+        observeColorChanges()
     }
 
     func refresh(ignoreCache: Bool, completion: (() -> Void)? = nil) {
@@ -80,9 +87,10 @@ final class LearnerDashboardViewModel {
     }
 
     func settingsButtonTapped(from presentingViewController: WeakViewController) {
-        let settingsViewController = LearnerDashboardSettingsAssembly.makeViewController(onConfigsChanged: { [weak self] in
-            self?.loadWidgets()
-        })
+        let settingsViewController = LearnerDashboardSettingsAssembly.makeViewController(
+            colorInteractor: colorInteractor,
+            onConfigsChanged: { [weak self] in self?.loadWidgets() }
+        )
         let viewSize = CGSize(width: 400, height: 700)
 
         settingsViewController.preferredContentSize = viewSize
@@ -109,6 +117,13 @@ final class LearnerDashboardViewModel {
     }
 
     // MARK: - Private Methods
+
+    private func observeColorChanges() {
+        colorInteractor.dashboardColor
+            .receive(on: mainScheduler)
+            .sink { [weak self] color in self?.mainColor = color }
+            .store(in: &subscriptions)
+    }
 
     private func loadWidgets() {
         interactor.loadWidgets()

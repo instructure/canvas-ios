@@ -22,6 +22,9 @@ enum LearnerDashboardAssembly {
 
     static func makeScreen() -> LearnerDashboardScreen {
         let snackBarViewModel = SnackBarViewModel()
+        let colorInteractor = LearnerDashboardColorInteractorLive(
+            defaults: AppEnvironment.shared.userDefaults ?? .fallback
+        )
         let systemFactory: (SystemWidgetIdentifier) -> any DashboardWidgetViewModel = { widgetId in
             LearnerDashboardWidgetAssembly.makeSystemWidgetViewModel(
                 for: widgetId,
@@ -40,6 +43,7 @@ enum LearnerDashboardAssembly {
         )
         let viewModel = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: snackBarViewModel,
             environment: .shared
         )

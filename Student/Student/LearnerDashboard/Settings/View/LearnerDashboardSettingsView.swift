@@ -45,7 +45,7 @@ struct LearnerDashboardSettingsView: View {
                 Spacer()
                     .frame(height: 16)
 
-                LearnerDashboardColorSelectorView(selectedColor: $viewModel.mainColor)
+                LearnerDashboardColorSelectorView(selectedColor: $viewModel.mainColor, colors: viewModel.colors)
 
                 InstUI.Divider()
 
@@ -128,7 +128,7 @@ struct LearnerDashboardSettingsView: View {
                 username: "Riley",
                 onConfigsChanged: {}
             )
-            return LearnerDashboardSettingsViewModel(defaults: defaults, courseSettingsViewModel: courseSettingsVM)
+            return LearnerDashboardSettingsViewModel(defaults: defaults, colorInteractor: LearnerDashboardColorInteractorLive(defaults: defaults), courseSettingsViewModel: courseSettingsVM)
         }()
     )
 }
@@ -145,7 +145,7 @@ struct LearnerDashboardSettingsView: View {
                 username: "Riley",
                 onConfigsChanged: {}
             )
-            return LearnerDashboardSettingsViewModel(defaults: defaults, courseSettingsViewModel: courseSettingsVM)
+            return LearnerDashboardSettingsViewModel(defaults: defaults, colorInteractor: LearnerDashboardColorInteractorLive(defaults: defaults), courseSettingsViewModel: courseSettingsVM)
         }()
     )
 }

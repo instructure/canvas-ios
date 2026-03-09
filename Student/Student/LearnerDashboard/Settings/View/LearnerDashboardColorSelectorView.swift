@@ -25,8 +25,13 @@ struct LearnerDashboardColorSelectorView: View {
     @ScaledMetric private var uiScale: CGFloat = 1
     @Binding var selectedColor: Color
 
+    let colors: [LearnerDashboardColorData]
     let whiteColor = Color.backgroundLightest.variantForLightMode
-    let colors: [ColorData]
+
+    init(selectedColor: Binding<Color>, colors: [LearnerDashboardColorData]) {
+        self._selectedColor = selectedColor
+        self.colors = colors
+    }
 
     var body: some View {
         DisclosureGroup {
@@ -78,33 +83,6 @@ struct LearnerDashboardColorSelectorView: View {
         }
         .disclosureGroupStyle(PlainDisclosureGroupStyle())
     }
-
-    init(selectedColor: Binding<Color>) {
-        self._selectedColor = selectedColor
-
-        let courseColors = CourseColorsInteractorLive.colors.map {
-            ColorData(color: $0.key.asColor, description: $0.value)
-        }
-        let additionalColors = [
-            ColorData(
-                color: .backgroundLightest.variantForLightMode,
-                description: String(localized: "White", bundle: .core, comment: "This is a name of a color.")
-            ),
-            ColorData(
-                color: .backgroundLightest.variantForDarkMode,
-                description: String(localized: "Black", bundle: .core, comment: "This is a name of a color.")
-            )
-        ]
-
-        colors =  courseColors + additionalColors
-    }
-
-    struct ColorData: Identifiable {
-        let color: Color
-        let description: String
-
-        var id: String { description }
-    }
 }
 
 struct PlainDisclosureGroupStyle: DisclosureGroupStyle {
@@ -139,7 +117,7 @@ struct PlainDisclosureGroupStyle: DisclosureGroupStyle {
     @Previewable @State var selectedColor: Color = .course1
 
     VStack {
-        LearnerDashboardColorSelectorView(selectedColor: $selectedColor)
+        LearnerDashboardColorSelectorView(selectedColor: $selectedColor, colors: LearnerDashboardColorInteractorLive(defaults: .fallback).availableColors)
             .padding(.horizontal)
 
         Spacer()

@@ -70,6 +70,8 @@ struct LearnerDashboardScreen: View {
                 )
             )
         }
+        .tint(viewModel.mainColor)
+        .animation(.dashboardWidget, value: viewModel.mainColor)
         .snackBar(viewModel: viewModel.snackBarViewModel)
         .navigationBarDashboard()
         .toolbar {
