@@ -78,9 +78,7 @@ struct LearningLibraryCardView: View {
         .background(Color.huiColors.surface.pageSecondary)
         .huiCornerRadius(level: .level5)
         .huiElevation(level: .level4)
-        .listRowInsets(EdgeInsets())
-        .listRowSeparator(.hidden)
-        .listRowBackground(Color.huiColors.surface.pagePrimary)
+        .plainListRowStyle()
         .padding(.bottom, .huiSpaces.space24)
     }
 
