@@ -130,11 +130,14 @@ class CourseSyncProgressViewModel: ObservableObject {
         .handleEvents(receiveOutput: { [unowned self] downloadProgress, entryProgressList in
             if entryProgressList.count > 0 {
                 state = .data
+            }
 
-                if downloadProgress.isFinished, downloadProgress.error != nil {
+            if downloadProgress.isFinished {
+                if downloadProgress.error != nil {
                     state = .dataWithError
-                } else if downloadProgress.isFinished, downloadProgress.error == nil {
+                } else {
                     isSyncFinished = true
+                    state = .data
                 }
             }
         }, receiveCompletion: { [unowned self] result in

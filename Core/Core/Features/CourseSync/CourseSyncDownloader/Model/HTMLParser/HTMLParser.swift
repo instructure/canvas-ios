@@ -107,10 +107,12 @@ public class HTMLParserLive: HTMLParser {
                     .catch { error -> AnyPublisher<(URL, String)?, Error> in
                         self?.embeddedContentFailureSubject.send(courseId)
 
+                        // Non-blocking, Non-fatal errors, will get reported as warning
                         if error.isForbidden || error.isNotFound {
                             return Just(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
                         }
 
+                        // Blocking failure, will get reported as failure
                         return Fail(error: error).eraseToAnyPublisher()
                     }
             }
@@ -150,10 +152,12 @@ public class HTMLParserLive: HTMLParser {
                 .catch { error -> AnyPublisher<(URL, String)?, Error> in
                     self?.embeddedContentFailureSubject.send(courseId)
 
+                    // Non-blocking failure, Non-fatal errors, will get reported as warning
                     if error.isForbidden || error.isNotFound {
                         return Just(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
                     }
 
+                    // Blocking failure, will get reported as failure
                     return Fail(error: error).eraseToAnyPublisher()
                 }
             }
