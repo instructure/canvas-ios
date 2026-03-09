@@ -29,6 +29,7 @@ class CourseSyncListInteractorLiveTests: CoreTestCase {
 
     override func setUp() {
         super.setUp()
+        environment.userDefaults?.offlineSyncSelections = []
         entryComposerMock = MockCourseSyncEntryComposerInteractor()
         scheduler = .immediate
         testee = CourseSyncListInteractorLive(
