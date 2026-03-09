@@ -40,16 +40,7 @@ struct LearningLibraryView: View {
     @State var viewModel: LearningLibraryViewModel
 
     var body: some View {
-        VStack(alignment: .leading, spacing: .zero) {
-            if viewModel.hasLibrary {
-                learningLibraryView
-            } else {
-                ScrollView {
-                    emptyView
-                }
-                .refreshable { await viewModel.refresh() }
-            }
-        }
+        learningLibraryView
         .background(Color.huiColors.surface.pagePrimary)
         .overlay { loaderView }
         .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
@@ -62,6 +53,11 @@ struct LearningLibraryView: View {
         }
         .onAppear {
             restoreFocusIfNeeded(after: 0.5)
+        }
+        .onReceive(viewModel.accessibilityMessagePublisher) { message in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIAccessibility.post(notification: .announcement, argument: message)
+            }
         }
     }
 
@@ -286,6 +282,10 @@ struct LearningLibraryView: View {
             placeholder: String(localized: "Search"),
             size: .medium
         )
+        .submitLabel(.return)
+        .onSubmit {
+            setFocusToFirstResult()
+        }
     }
 
     private var bookmarkedButton: some View {
@@ -306,14 +306,6 @@ struct LearningLibraryView: View {
         .listRowInsets(EdgeInsets())
         .listRowSeparator(.hidden)
         .listRowBackground(Color.huiColors.surface.pagePrimary)
-    }
-
-    private var emptyView: some View {
-        Text("There is no any learning library yet.", bundle: .horizon)
-            .padding(.horizontal, .huiSpaces.space24)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .foregroundStyle(Color.huiColors.text.body)
-            .huiTypography(.h3)
     }
 
     private var filterView: some View {
@@ -379,6 +371,14 @@ struct LearningLibraryView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + after) {
             focusedItemID = lastFocusedItemID
         }
+    }
+
+    private func setFocusToFirstResult() {
+        guard let firstItem = viewModel.globalSearchItems.first else {
+            return
+        }
+        lastFocusedItemID = firstItem.id
+        restoreFocusIfNeeded(after: 1.8)
     }
 }
 

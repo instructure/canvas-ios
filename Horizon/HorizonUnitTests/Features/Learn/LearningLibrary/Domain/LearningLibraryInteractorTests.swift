@@ -219,7 +219,7 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
 
         XCTAssertSingleOutputAndFinish(testee.bookmark(id: "item-1", courseID: "course-123")) { item in
             XCTAssertNotNil(item)
-            XCTAssertEqual(item.id, "item-1")
+            XCTAssertEqual(item?.id, "item-1")
         }
     }
 
@@ -230,7 +230,7 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
         mockBookmarkToggleResponse(isBookmarked: true)
 
         XCTAssertSingleOutputAndFinish(testee.bookmark(id: "item-2", courseID: "course-456")) { item in
-            XCTAssertEqual(item.courseID, "course-456")
+            XCTAssertEqual(item?.courseID, "course-456")
         }
     }
 

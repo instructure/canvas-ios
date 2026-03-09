@@ -92,6 +92,11 @@ struct LearningLibraryDetailsView: View {
             ),
             isPresented: $viewModel.isErrorVisible
         )
+        .onReceive(viewModel.accessibilityMessagePublisher) { message in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIAccessibility.post(notification: .announcement, argument: message)
+            }
+        }
     }
 
     private var navBarView: some View {
@@ -223,6 +228,10 @@ struct LearningLibraryDetailsView: View {
             size: .medium
         )
         .padding(.horizontal, .huiSpaces.space24)
+        .submitLabel(.return)
+        .onSubmit {
+            setFocusToFirstResult()
+        }
     }
 
     private var filterView: some View {
@@ -283,7 +292,7 @@ struct LearningLibraryDetailsView: View {
                 viewModel.selectedLearningLibrary = option
                 restoreFocusIfNeeded(after: 1.55)
             }
-            .frame(width: 110)
+            .frame(width: 120)
             .id(selectTypeFilterFocusedID)
             .accessibilityFocused($focusedItemID, equals: selectTypeFilterFocusedID)
     }
@@ -299,6 +308,14 @@ struct LearningLibraryDetailsView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + after) {
             focusedItemID = lastFocusedItemID
         }
+    }
+
+    private func setFocusToFirstResult() {
+        guard let firstItem = viewModel.filteredItems.first else {
+            return
+        }
+        lastFocusedItemID = firstItem.id
+        restoreFocusIfNeeded(after: 1)
     }
 }
 

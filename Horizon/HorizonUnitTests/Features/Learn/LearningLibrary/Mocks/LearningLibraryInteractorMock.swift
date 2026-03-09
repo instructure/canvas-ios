@@ -67,7 +67,7 @@ final class LearningLibraryInteractorMock: LearningLibraryInteractor {
         }
     }
 
-    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
+    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel?, Error> {
         if hasError {
             return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
         } else if let response = bookmarkResponse {

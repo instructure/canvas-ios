@@ -52,8 +52,8 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
 
     // MARK: - Outputs
     private(set) var errorMessage = ""
-    private(set) var hasLibrary: Bool = false
     private(set) var isLoaderVisible: Bool = true
+    private(set) var accessibilityMessagePublisher = PassthroughSubject<String, Never>()
     private(set) var globalSearchItems: [LearningLibraryCardModel] = []
 
     private(set) var isGlobalSearchActive: Bool = false
@@ -88,8 +88,17 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
         observeSearchAndFilters()
         reloadCollections
             .sink { [weak self] in
-            self?.fetchCollections()
-        }
+                guard let self else { return }
+                fetchCollections()
+                if isGlobalSearchActive {
+                    performGlobalSearch(
+                        searchText: searchText,
+                        learningObject: selectedLearningObjectSubject.value,
+                        learningLibrary: selectedLearningLibrarySubject.value
+                    )
+                }
+
+            }
         .store(in: &subscriptions)
     }
 
@@ -110,7 +119,6 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
             } receiveValue: { [weak self] collections in
                 guard let self else { return }
                 isLoaderVisible = false
-                hasLibrary = collections.isNotEmpty
                 if paginator.currentPage == 0 {
                     paginator.setItems(collections)
                 } else {
@@ -139,10 +147,16 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
                 guard let self else { return }
                 self.bookmarkLoadingStates[model.id] = false
                 showError(with: error.localizedDescription)
-            } receiveValue: { [weak self] collection in
+            } receiveValue: { [weak self] _ in
                 guard let self else { return }
-                self.update(with: collection)
-                self.bookmarkLoadingStates[collection.id] = false
+                self.bookmarkLoadingStates[model.id] = false
+                var model = model
+                model.isBookmarked = !model.isBookmarked
+                self.update(with: model)
+                let message = model.isBookmarked
+                ? String(localized: "Added to bookmarks")
+                : String(localized: "Removed from bookmarks")
+                self.accessibilityMessagePublisher.send(message)
             }
             .store(in: &subscriptions)
     }
@@ -158,6 +172,7 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
         let enrollViewController = EnrollConfirmationAssembly.makeView(model: model) { [weak self] item in
             self?.update(with: item)
             self?.navigateToLearningLibraryItem(item, from: viewController)
+            self?.accessibilityMessagePublisher.send(String(localized: "Enrolled successfully"))
         }
         router.show(enrollViewController, from: viewController, options: .modal(.fullScreen))
     }
@@ -287,8 +302,23 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
             self?.isGlobalSearchLoading = false
             self?.showError(with: error.localizedDescription)
         } receiveValue: { [weak self] collections in
-            self?.isGlobalSearchLoading = false
-            self?.globalSearchItems = collections
+            guard let self else { return }
+            self.isGlobalSearchLoading = false
+            self.globalSearchItems = collections
+            self.announceSearchResults()
         }
+    }
+
+    private func announceSearchResults() {
+        let count = globalSearchItems.count
+        var message = ""
+        if count == 0 {
+            message = String(localized: "No results found")
+        } else if count == 1 {
+            message = String(localized: "Found 1 result")
+        } else {
+            message = String(format: String(localized: "Found %d results"), count)
+        }
+        accessibilityMessagePublisher.send(message)
     }
 }

@@ -97,7 +97,7 @@ struct LearningLibraryCardView: View {
             components.append(String(format: String(localized: "Estimated time %@ minutes"), estimatedTime))
         }
 
-        if let units = model.numberOfUnits {
+        if let units = model.numberOfUnits, model.itemType == .course {
             components.append(String(format: String(localized: "number of units %d"), units))
         }
 

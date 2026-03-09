@@ -39,7 +39,7 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
             .eraseToAnyPublisher()
     }
 
-    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
+    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel?, Error> {
         let item = mockItems.first { $0.id == id } ?? mockItems[0]
         var updatedItem = item
         updatedItem.isBookmarked.toggle()

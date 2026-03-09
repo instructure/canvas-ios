@@ -51,6 +51,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     private(set) var hasItems = false
     private(set) var isLoaderVisible: Bool = true
     private(set) var errorMessage = ""
+    private(set) var accessibilityMessagePublisher = PassthroughSubject<String, Never>()
     var isErrorVisible: Bool = false
     var filteredItems: [LearningLibraryCardModel] { paginator.visibleItems }
     var isSeeMoreVisible: Bool { paginator.isSeeMoreVisible }
@@ -178,6 +179,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
         }
 
         paginator.setItems(items)
+        announceSearchResults()
     }
 
     private func observeFilters() {
@@ -222,10 +224,14 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
                 bookmarkLoadingStates[model.id] = false
                 showError(message: error.localizedDescription)
             } receiveValue: { [weak self] item in
-                guard let self else { return }
+                guard let self, let item else { return }
                 configItem(item: item)
                 bookmarkLoadingStates[model.id] = false
                 didSendEvent.send(())
+                let message = item.isBookmarked
+                ? String(localized: "Added to bookmarks")
+                : String(localized: "Removed from bookmarks")
+                self.accessibilityMessagePublisher.send(message)
             }
             .store(in: &subscriptions)
     }
@@ -242,6 +248,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
             self?.configItem(item: item)
             self?.didSendEvent.send(())
             self?.navigateToLearningLibraryItem(item, from: viewController)
+            self?.accessibilityMessagePublisher.send(String(localized: "Enrolled successfully"))
         }
         router.show(enrollViewController, from: viewController, options: .modal(.fullScreen))
     }
@@ -296,6 +303,19 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     private func showError(message: String) {
         errorMessage = message
         isErrorVisible = true
+    }
+
+    private func announceSearchResults() {
+        let count = paginator.visibleItems.count
+        var message = ""
+        if count == 0 {
+            message = String(localized: "No results found")
+        } else if count == 1 {
+            message = String(localized: "Found 1 result")
+        } else {
+            message = String(format: String(localized: "Found %d results"), count)
+        }
+        accessibilityMessagePublisher.send(message)
     }
 }
 

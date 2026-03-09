@@ -23,7 +23,7 @@ import Foundation
 protocol LearningLibraryInteractor {
     func getLearnLibraryCollections(ignoreCache: Bool) -> AnyPublisher<[LearningLibrarySectionModel], Error>
     func getBookmarkedItems(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error>
-    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel, Error>
+    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel?, Error>
     func enroll(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel, Error>
     func getCollectionItems(id: String, ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error>
     func searchCollectionItem(
@@ -109,17 +109,18 @@ final class LearningLibraryInteractorLive: LearningLibraryInteractor {
             .eraseToAnyPublisher()
     }
 
-    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
+    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel?, Error> {
         ReactiveStore(useCase: LearningLibraryBookMarkUseCase(journey: domainService, id: id, courseID: courseID))
             .getEntities()
-            .compactMap { $0.first }
-            .map { LearningLibraryCardModel(for: $0) }
+            .map { entities in
+                entities.first.map { LearningLibraryCardModel(for: $0) }
+            }
             .eraseToAnyPublisher()
     }
 
     func enroll(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
         ReactiveStore(useCase: LearningLibraryEnrollUseCase(journey: domainService, id: id, courseID: courseID))
-            .getEntities()
+            .getEntities(ignoreCache: true)
             .compactMap { $0.first }
             .map { LearningLibraryCardModel(for: $0) }
             .eraseToAnyPublisher()
