@@ -191,6 +191,7 @@ final class CourseCardViewModelTests: StudentTestCase {
     ) -> CourseCardViewModel {
         CourseCardViewModel(
             model: model,
+            didSaveChanges: .init(),
             router: router
         )
     }

@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 import Foundation
 import SwiftUI
@@ -38,10 +39,12 @@ struct CourseCardViewModel: Identifiable, Equatable {
     }
 
     private let model: CoursesAndGroupsWidgetCourseItem
+    private let didSaveChanges: PassthroughSubject<Void, Never>
     private let router: Router
 
     init(
         model: CoursesAndGroupsWidgetCourseItem,
+        didSaveChanges: PassthroughSubject<Void, Never>,
         router: Router
     ) {
         self.model = model
@@ -58,6 +61,7 @@ struct CourseCardViewModel: Identifiable, Equatable {
             ? String(localized: "Open New Announcement", bundle: .student)
             : String(localized: "Open Announcements", bundle: .student)
 
+        self.didSaveChanges = didSaveChanges
         self.router = router
     }
 
@@ -80,7 +84,8 @@ struct CourseCardViewModel: Identifiable, Equatable {
             courseImage: imageUrl,
             courseColor: courseColor.uiColor,
             courseName: title,
-            hideColorOverlay: !showColorOverlay
+            hideColorOverlay: !showColorOverlay,
+            didSaveChanges: didSaveChanges
         )
 
         router.show(

@@ -262,6 +262,7 @@ extension CourseCardView {
         CourseCardView(
             viewModel: CourseCardViewModel(
                 model: CourseCardView.previewData[0],
+                didSaveChanges: .init(),
                 router: PreviewEnvironment().router
             ),
             showGrades: true,
@@ -271,6 +272,7 @@ extension CourseCardView {
         CourseCardView(
             viewModel: CourseCardViewModel(
                 model: CourseCardView.previewData[1],
+                didSaveChanges: .init(),
                 router: PreviewEnvironment().router
             ),
             showGrades: false,
@@ -280,6 +282,7 @@ extension CourseCardView {
         CourseCardView(
             viewModel: CourseCardViewModel(
                 model: CourseCardView.previewData[2],
+                didSaveChanges: .init(),
                 router: PreviewEnvironment().router
             ),
             showGrades: true,
