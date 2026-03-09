@@ -137,7 +137,8 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
         LearnerDashboardCourseSettingsViewModel(
             userDefaults: testDefaults,
             configs: LearnerDashboardWidgetAssembly.makeDefaultEditableWidgetConfigs(),
-            username: ""
+            username: "",
+            onConfigsChanged: {}
         )
     }
 }

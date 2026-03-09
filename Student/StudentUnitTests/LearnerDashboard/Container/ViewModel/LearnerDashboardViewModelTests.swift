@@ -28,21 +28,29 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
 
     private var testee: LearnerDashboardViewModel!
     private var interactor: LearnerDashboardInteractorMock!
+    private var colorInteractor: LearnerDashboardColorInteractorLive!
     private var courseSyncInteractor: CourseSyncInteractorMock!
     private var scheduler: TestSchedulerOf<DispatchQueue>!
+    private var testDefaults: SessionDefaults!
 
     override func setUp() {
         super.setUp()
         scheduler = DispatchQueue.test
         interactor = LearnerDashboardInteractorMock()
         courseSyncInteractor = CourseSyncInteractorMock()
+        testDefaults = SessionDefaults(sessionID: "test-session")
+        testDefaults.reset()
+        colorInteractor = LearnerDashboardColorInteractorLive(defaults: testDefaults)
     }
 
     override func tearDown() {
         testee = nil
         interactor = nil
+        colorInteractor = nil
         courseSyncInteractor = nil
         scheduler = nil
+        testDefaults.reset()
+        testDefaults = nil
         super.tearDown()
     }
 
@@ -54,6 +62,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             courseSyncInteractor: courseSyncInteractor,
@@ -72,6 +81,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     func test_screenConfig_shouldBeConfiguredCorrectly() {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             courseSyncInteractor: courseSyncInteractor,
@@ -92,6 +102,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     func test_init_withNoWidgets_shouldKeepLoadingState() {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             courseSyncInteractor: courseSyncInteractor,
@@ -108,6 +119,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             courseSyncInteractor: courseSyncInteractor,
@@ -128,6 +140,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             courseSyncInteractor: courseSyncInteractor,
@@ -152,6 +165,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             courseSyncInteractor: courseSyncInteractor,
@@ -176,6 +190,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     func test_settingsButtonTapped_shouldPresentSettingsViewController() {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             environment: env
@@ -193,6 +208,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     func test_settingsButtonTapped_shouldConfigurePopoverCorrectly() {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             environment: env
@@ -211,6 +227,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     func test_settingsButtonTapped_shouldConfigurePopoverSourceView() {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             environment: env
@@ -234,6 +251,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     func test_offlineSyncTriggered_shouldStartDownload() {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             courseSyncInteractor: courseSyncInteractor,
@@ -253,6 +271,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     func test_offlineSyncCleanTriggered_shouldCleanContent() {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             courseSyncInteractor: courseSyncInteractor,
