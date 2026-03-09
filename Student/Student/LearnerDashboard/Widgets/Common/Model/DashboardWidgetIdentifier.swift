@@ -25,18 +25,17 @@ enum SystemWidgetIdentifier: String, CaseIterable {
     case fileUploadProgress
     case courseInvitations
     case globalAnnouncements
+    case conferences
 }
 
 // User-configurable widgets whose visibility and order can be changed in dashboard settings.
 // The declaration order defines the default display order when no saved configuration exists.
 enum EditableWidgetIdentifier: String, Codable, CaseIterable {
-    case conferences
     case helloWidget
     case coursesAndGroups
 
     func settingsTitle(username: String) -> String {
         switch self {
-        case .conferences: String(localized: "Conferences", bundle: .student)
         case .helloWidget: String(localized: "Hello \(username)", bundle: .student)
         case .coursesAndGroups: String(localized: "Courses & Groups", bundle: .student)
         }

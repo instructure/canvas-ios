@@ -67,21 +67,11 @@ struct LearnerDashboardCourseSettingsView: View {
             .padding(.top, 12)
             .padding(.bottom, 14)
 
-            InstUI.Divider()
-                .padding(.horizontal, -16)
-
-            // Example data
-            ForEach(0..<2) { index in
-                InstUI.Toggle(isOn: .constant(true)) {
-                    Text("Example setting \(index)", bundle: .core)
-                        .font(.semibold16, lineHeight: .fit)
-                }
-                .padding(.top, 12)
-                .padding(.bottom, 14)
-
-                if index != 1 {
-                    InstUI.Divider()
-                }
+            if let subSettings = viewModel.subSettingsViews[config.id] {
+                InstUI.Divider()
+                    .padding(.horizontal, -16)
+                subSettings
+                    .padding(.horizontal, -16)
             }
         }
         .padding(.horizontal, 16)
@@ -90,34 +80,6 @@ struct LearnerDashboardCourseSettingsView: View {
             background: .backgroundLightest,
             shadowColor: config.isVisible ? .black : .clear
         )
-    }
-
-    @ViewBuilder
-    private func disabledSettingCard(config: Config) -> some View {
-        let binding = Binding {
-            config.isVisible
-        } set: {
-            viewModel.toggleVisibility(of: config, to: $0)
-        }
-
-        HStack(spacing: 8) {
-            disabledButtons
-
-            InstUI.Toggle(isOn: binding) {
-                Text(config.id.settingsTitle(username: viewModel.username))
-                    .font(.semibold16, lineHeight: .fit)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            .accessibilityLabel(String(
-                localized: "\(config.id.settingsTitle(username: viewModel.username)) widget visibility",
-                bundle: .student
-            ))
-        }
-        .padding(.horizontal, 16)
-        .padding(.top, 12)
-        .padding(.bottom, 14)
-        .background(.backgroundLightest)
-        .cornerRadius(InstUI.Styles.Elevation.Shape.cardLarge.cornerRadius)
     }
 
     @ViewBuilder
@@ -166,32 +128,6 @@ struct LearnerDashboardCourseSettingsView: View {
         )
     }
 
-    @ViewBuilder
-    private var disabledButtons: some View {
-        HStack(spacing: 4) {
-            Image.chevronDown
-                .resizable()
-                .frame(width: 24 * uiScale, height: 24 * uiScale)
-                .foregroundStyle(.disabledGray)
-                .rotationEffect(.degrees(180))
-
-            InstUI.Divider()
-                .padding(.vertical, 4)
-
-            Image.chevronDown
-                .resizable()
-                .frame(width: 24 * uiScale, height: 24 * uiScale)
-                .foregroundStyle(.disabledGray)
-        }
-        .padding(.horizontal, 8)
-        .fixedSize(horizontal: false, vertical: true)
-        .background(
-            .backgroundLight,
-            in: RoundedRectangle(cornerRadius: InstUI.Styles.Elevation.Shape.cardSmall.cornerRadius)
-        )
-        .accessibilityHidden(true)
-    }
-
     init(viewModel: LearnerDashboardCourseSettingsViewModel) {
         _viewModel = State(initialValue: viewModel)
     }
@@ -207,8 +143,7 @@ extension LearnerDashboardCourseSettingsView {
             let defaults = SessionDefaults.fallback
             let configs: [DashboardWidgetConfig] = [
                 .init(id: .helloWidget, order: 0, isVisible: true),
-                .init(id: .coursesAndGroups, order: 1, isVisible: false),
-                .init(id: .conferences, order: 2, isVisible: true)
+                .init(id: .coursesAndGroups, order: 1, isVisible: false)
             ]
             return LearnerDashboardCourseSettingsViewModel(
                 userDefaults: defaults,

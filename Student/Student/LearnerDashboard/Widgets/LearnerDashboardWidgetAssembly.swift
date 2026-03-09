@@ -50,6 +50,11 @@ enum LearnerDashboardWidgetAssembly {
             GlobalAnnouncementsWidgetViewModel(
                 interactor: .live(env: .shared)
             )
+        case .conferences:
+            ConferencesWidgetViewModel(
+                interactor: .live(coursesInteractor: coursesInteractor, env: .shared),
+                snackBarViewModel: snackBarViewModel
+            )
         }
     }
 
@@ -59,12 +64,6 @@ enum LearnerDashboardWidgetAssembly {
         coursesInteractor: CoursesInteractor = makeCoursesInteractor()
     ) -> any DashboardWidgetViewModel {
         switch config.id {
-        case .conferences:
-            ConferencesWidgetViewModel(
-                config: config,
-                interactor: .live(coursesInteractor: coursesInteractor, env: .shared),
-                snackBarViewModel: snackBarViewModel
-            )
         case .helloWidget:
             HelloWidgetViewModel(
                 config: config,

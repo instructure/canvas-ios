@@ -23,8 +23,7 @@ import SwiftUI
 @Observable
 final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
 
-    let config: DashboardWidgetConfig
-    var id: String { config.id.rawValue }
+    let id: String = SystemWidgetIdentifier.conferences.rawValue
     let isHiddenInEmptyState = true
 
     private(set) var state: InstUI.ScreenState = .loading
@@ -43,12 +42,10 @@ final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
     private var subscriptions = Set<AnyCancellable>()
 
     init(
-        config: DashboardWidgetConfig,
         interactor: ConferencesWidgetInteractor,
         snackBarViewModel: SnackBarViewModel,
         environment: AppEnvironment = .shared
     ) {
-        self.config = config
         self.interactor = interactor
         self.environment = environment
         self.snackBarViewModel = snackBarViewModel

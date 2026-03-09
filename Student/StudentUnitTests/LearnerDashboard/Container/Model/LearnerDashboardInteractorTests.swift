@@ -68,7 +68,7 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         XCTAssertEqual(received?[1].id, SystemWidgetIdentifier.fileUploadProgress.rawValue)
         XCTAssertEqual(received?[2].id, SystemWidgetIdentifier.courseInvitations.rawValue)
         XCTAssertEqual(received?[3].id, SystemWidgetIdentifier.globalAnnouncements.rawValue)
-        XCTAssertEqual(received?[4].id, EditableWidgetIdentifier.conferences.rawValue)
+        XCTAssertEqual(received?[4].id, SystemWidgetIdentifier.conferences.rawValue)
         XCTAssertEqual(received?[5].id, EditableWidgetIdentifier.helloWidget.rawValue)
         XCTAssertEqual(received?[6].id, EditableWidgetIdentifier.coursesAndGroups.rawValue)
     }
@@ -78,7 +78,6 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
     func test_loadWidgets_withSavedConfigs_shouldIncludeAllSystemAndFilterVisibleEditable() {
         userDefaults.learnerDashboardWidgetConfigs = [
             DashboardWidgetConfig(id: .helloWidget, order: 10, isVisible: true),
-            DashboardWidgetConfig(id: .conferences, order: 20, isVisible: false),
             DashboardWidgetConfig(id: .coursesAndGroups, order: 5, isVisible: true)
         ]
         testee = LearnerDashboardInteractorLive(
@@ -99,19 +98,19 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
         wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(received?.count, 6)
+        XCTAssertEqual(received?.count, 7)
         XCTAssertEqual(received?[0].id, SystemWidgetIdentifier.offlineSyncProgress.rawValue)
         XCTAssertEqual(received?[1].id, SystemWidgetIdentifier.fileUploadProgress.rawValue)
         XCTAssertEqual(received?[2].id, SystemWidgetIdentifier.courseInvitations.rawValue)
         XCTAssertEqual(received?[3].id, SystemWidgetIdentifier.globalAnnouncements.rawValue)
-        XCTAssertEqual(received?[4].id, EditableWidgetIdentifier.coursesAndGroups.rawValue)
-        XCTAssertEqual(received?[5].id, EditableWidgetIdentifier.helloWidget.rawValue)
+        XCTAssertEqual(received?[4].id, SystemWidgetIdentifier.conferences.rawValue)
+        XCTAssertEqual(received?[5].id, EditableWidgetIdentifier.coursesAndGroups.rawValue)
+        XCTAssertEqual(received?[6].id, EditableWidgetIdentifier.helloWidget.rawValue)
     }
 
     func test_loadWidgets_shouldReturnEditableWidgetsInOrder() {
         userDefaults.learnerDashboardWidgetConfigs = [
             DashboardWidgetConfig(id: .helloWidget, order: 20, isVisible: true),
-            DashboardWidgetConfig(id: .conferences, order: 5, isVisible: true),
             DashboardWidgetConfig(id: .coursesAndGroups, order: 10, isVisible: true)
         ]
         testee = LearnerDashboardInteractorLive(
@@ -133,7 +132,7 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         wait(for: [expectation], timeout: 5)
 
         XCTAssertEqual(received?.count, 7)
-        XCTAssertEqual(received?[4].id, EditableWidgetIdentifier.conferences.rawValue)
+        XCTAssertEqual(received?[4].id, SystemWidgetIdentifier.conferences.rawValue)
         XCTAssertEqual(received?[5].id, EditableWidgetIdentifier.coursesAndGroups.rawValue)
         XCTAssertEqual(received?[6].id, EditableWidgetIdentifier.helloWidget.rawValue)
     }

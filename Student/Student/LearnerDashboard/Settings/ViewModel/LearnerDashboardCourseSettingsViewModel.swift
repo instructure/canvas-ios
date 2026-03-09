@@ -26,15 +26,23 @@ final class LearnerDashboardCourseSettingsViewModel {
     var visibleConfigs: [Config]
     var hiddenConfigs: [Config]
     let username: String
+    let subSettingsViews: [EditableWidgetIdentifier: AnyView]
 
     var configs: [Config] { visibleConfigs + hiddenConfigs }
 
     private var userDefaults: SessionDefaults
     private let onConfigsChanged: () -> Void
 
-    init(userDefaults: SessionDefaults, configs: [Config], username: String, onConfigsChanged: @escaping () -> Void) {
+    init(
+        userDefaults: SessionDefaults,
+        configs: [Config],
+        username: String,
+        subSettingsViews: [EditableWidgetIdentifier: AnyView] = [:],
+        onConfigsChanged: @escaping () -> Void
+    ) {
         self.userDefaults = userDefaults
         self.username = username
+        self.subSettingsViews = subSettingsViews
         self.onConfigsChanged = onConfigsChanged
         visibleConfigs = configs.filter { $0.isVisible }.sorted()
         hiddenConfigs = configs.filter { !$0.isVisible }.sorted()

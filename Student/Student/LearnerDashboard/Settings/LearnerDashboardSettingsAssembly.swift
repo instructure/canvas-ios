@@ -17,6 +17,7 @@
 //
 
 import Core
+import SwiftUI
 import UIKit
 
 enum LearnerDashboardSettingsAssembly {
@@ -29,10 +30,15 @@ enum LearnerDashboardSettingsAssembly {
         let username = env.currentSession?.userName ?? ""
         let configs = defaults.learnerDashboardWidgetConfigs
             ?? LearnerDashboardWidgetAssembly.makeDefaultEditableWidgetConfigs()
+        let coursesAndGroupsSettingsVM = CoursesAndGroupsWidgetSettingsViewModel(env: env)
+        let subSettingsViews: [EditableWidgetIdentifier: AnyView] = [
+            .coursesAndGroups: AnyView(CoursesAndGroupsWidgetSettingsView(viewModel: coursesAndGroupsSettingsVM))
+        ]
         let courseSettingsViewModel = LearnerDashboardCourseSettingsViewModel(
             userDefaults: defaults,
             configs: configs,
             username: username,
+            subSettingsViews: subSettingsViews,
             onConfigsChanged: onConfigsChanged
         )
         let viewModel = LearnerDashboardSettingsViewModel(
