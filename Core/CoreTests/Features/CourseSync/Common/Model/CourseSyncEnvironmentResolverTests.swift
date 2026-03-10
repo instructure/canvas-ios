@@ -85,7 +85,7 @@ class CourseSyncEnvironmentResolverTests: CoreTestCase {
         // Given
         let exampleBaseURL = URL(string: "https://random-school-034.instructure.com")
         let courseID = CourseSyncID(
-            value: TestConstants.courseID,
+            value: "12345~\(TestConstants.courseID)",
             apiBaseURL: exampleBaseURL
         )
 
