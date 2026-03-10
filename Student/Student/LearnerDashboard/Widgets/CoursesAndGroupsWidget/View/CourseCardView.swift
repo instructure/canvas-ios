@@ -31,10 +31,6 @@ struct CourseCardView: View {
 
     @State private var isShowingOptionsDialog = false
 
-    private var isAvailable: Bool {
-        offlineMode.isAppOnline || viewModel.isAvailableOffline
-    }
-
     init(
         viewModel: CourseCardViewModel,
         showGrades: Bool,
@@ -90,7 +86,7 @@ struct CourseCardView: View {
                     announcementsButton
                 }
             },
-            isAvailable: isAvailable,
+            isAvailableOffline: viewModel.isAvailableOffline,
             action: {
                 viewModel.didTapCard(from: controller)
             }
@@ -131,19 +127,14 @@ struct CourseCardView: View {
     @ViewBuilder
     private var kebabButton: some View {
         if offlineMode.isOfflineFeatureEnabled {
-            optionsButton
+            optionsMenu
         } else {
             customizeButton
         }
     }
 
-    private var optionsButton: some View {
-        PrimaryButton(isAvailable: offlineMode.isAppOnline) {
-            isShowingOptionsDialog.toggle()
-        } label: {
-            kebabIcon
-        }
-        .confirmationDialog(Text(verbatim: ""), isPresented: $isShowingOptionsDialog) {
+    private var optionsMenu: some View {
+        OfflineObservingMenu {
             Button(String(localized: "Manage Offline Content", bundle: .student)) {
                 didTapManageOfflineContent()
             }
@@ -153,6 +144,8 @@ struct CourseCardView: View {
                 didTapCustomize()
             }
             .identifier("Dashboard.CourseCard.customizeButton")
+        } label: {
+            kebabIcon
         }
         .accessibilityElement(children: .ignore)
         .accessibilityAction(named: String(localized: "Customize Course", bundle: .student)) {
@@ -181,7 +174,7 @@ struct CourseCardView: View {
     }
 
     private var customizeButton: some View {
-        PrimaryButton(isAvailable: offlineMode.isAppOnline) {
+        OfflineObservingButton {
             didTapCustomize()
         } label: {
             kebabIcon
@@ -231,7 +224,7 @@ struct CourseCardView: View {
     // MARK: - Announcements button
 
     private var announcementsButton: some View {
-        PrimaryButton(isAvailable: isAvailable) {
+        OfflineObservingButton(isAvailableOffline: viewModel.isAvailableOffline) {
             viewModel.didTapAnnouncements(from: controller)
         } label: {
             Image.announcementSolid

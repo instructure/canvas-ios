@@ -65,17 +65,17 @@ extension InstUI {
         @ViewBuilder
         private var button: some View {
             if let menuContent {
-                if isAvailableOffline {
-                    Menu(content: { menuContent }, label: label)
-                } else {
-                    OfflineObservingMenu(content: { menuContent }, label: label)
-                }
+                OfflineObservingMenu(
+                    isAvailableOffline: isAvailableOffline,
+                    content: { menuContent },
+                    label: label
+                )
             } else {
-                if isAvailableOffline {
-                    Button(action: action, label: label)
-                } else {
-                    OfflineObservingButton(action: action, label: label)
-                }
+                OfflineObservingButton(
+                    isAvailableOffline: isAvailableOffline,
+                    action: action,
+                    label: label
+                )
             }
         }
 

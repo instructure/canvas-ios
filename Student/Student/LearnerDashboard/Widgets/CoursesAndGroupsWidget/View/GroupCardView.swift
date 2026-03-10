@@ -22,7 +22,6 @@ import SwiftUI
 struct GroupCardView: View {
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
-    @Environment(\.offlineMode) private var offlineMode
 
     private let viewModel: GroupCardViewModel
 
@@ -42,7 +41,7 @@ struct GroupCardView: View {
             accessory: {
                 messageButton
             },
-            isAvailable: offlineMode.isAppOnline,
+            isAvailableOffline: false,
             action: {
                 viewModel.didTapCard(from: controller)
             }
@@ -97,7 +96,7 @@ struct GroupCardView: View {
     }
 
     private var messageButton: some View {
-        PrimaryButton(isAvailable: offlineMode.isAppOnline) {
+        OfflineObservingButton {
             viewModel.didTapMessageButton(from: controller)
         } label: {
             Image.emailLine
