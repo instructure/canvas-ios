@@ -42,7 +42,7 @@ final class SessionDefaultsDashboardWidgetConfigTests: XCTestCase {
     }
 
     func test_getter_whenInvalidDataStored_shouldReturnNil() {
-        testee["dashboardWidgetConfigs"] = Data("invalid json".utf8)
+        testee["learnerDashboardWidgetConfigs"] = Data("invalid json".utf8)
 
         XCTAssertEqual(testee.learnerDashboardWidgetConfigs, nil)
     }
@@ -53,7 +53,7 @@ final class SessionDefaultsDashboardWidgetConfigTests: XCTestCase {
             DashboardWidgetConfig(id: .coursesAndGroups, order: 42, isVisible: false, settings: nil)
         ]
         let data = try! JSONEncoder().encode(configs)
-        testee["dashboardWidgetConfigs"] = data
+        testee["learnerDashboardWidgetConfigs"] = data
 
         let result = testee.learnerDashboardWidgetConfigs
 
@@ -78,7 +78,7 @@ final class SessionDefaultsDashboardWidgetConfigTests: XCTestCase {
 
         testee.learnerDashboardWidgetConfigs = configs
 
-        let storedData = testee["dashboardWidgetConfigs"] as? Data
+        let storedData = testee["learnerDashboardWidgetConfigs"] as? Data
         XCTAssertNotEqual(storedData, nil)
 
         let decoded = try! JSONDecoder().decode([DashboardWidgetConfig].self, from: storedData!)
@@ -92,10 +92,10 @@ final class SessionDefaultsDashboardWidgetConfigTests: XCTestCase {
     func test_setter_withNil_shouldRemoveStoredData() {
         let configs = [DashboardWidgetConfig(id: .helloWidget, order: 7, isVisible: true)]
         testee.learnerDashboardWidgetConfigs = configs
-        XCTAssertNotNil(testee["dashboardWidgetConfigs"])
+        XCTAssertNotNil(testee["learnerDashboardWidgetConfigs"])
 
         testee.learnerDashboardWidgetConfigs = nil
 
-        XCTAssertNil(testee["dashboardWidgetConfigs"])
+        XCTAssertNil(testee["learnerDashboardWidgetConfigs"])
     }
 }
