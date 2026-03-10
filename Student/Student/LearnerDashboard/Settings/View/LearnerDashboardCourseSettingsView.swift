@@ -23,7 +23,6 @@ import HorizonUI
 struct LearnerDashboardCourseSettingsView: View {
     @State var viewModel: LearnerDashboardCourseSettingsViewModel
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
-    @ScaledMetric private var uiScale: CGFloat = 1
 
     var body: some View {
         VStack(spacing: 8) {
@@ -94,7 +93,7 @@ struct LearnerDashboardCourseSettingsView: View {
             } label: {
                 Image.chevronDown
                     .resizable()
-                    .frame(width: 24 * uiScale, height: 24 * uiScale)
+                    .scaledFrame(size: 24)
                     .rotationEffect(.degrees(180))
             }
             .disabled(isMoveUpDisabled)
@@ -111,7 +110,7 @@ struct LearnerDashboardCourseSettingsView: View {
             } label: {
                 Image.chevronDown
                     .resizable()
-                    .frame(width: 24 * uiScale, height: 24 * uiScale)
+                    .scaledFrame(size: 24)
             }
             .disabled(isMoveDownDisabled)
             .accessibilityLabel(String(

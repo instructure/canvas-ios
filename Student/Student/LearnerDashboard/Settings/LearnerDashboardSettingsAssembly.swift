@@ -21,11 +21,12 @@ import SwiftUI
 import UIKit
 
 enum LearnerDashboardSettingsAssembly {
-    static func makeViewController(
+
+    static func makeViewModel(
         env: AppEnvironment = .shared,
         colorInteractor: LearnerDashboardColorInteractor,
         onConfigsChanged: @escaping () -> Void
-    ) -> UIViewController {
+    ) -> LearnerDashboardSettingsViewModel {
         let defaults = env.userDefaults ?? .fallback
         let username = env.currentSession?.userName ?? ""
         let configs = defaults.learnerDashboardWidgetConfigs
@@ -34,6 +35,7 @@ enum LearnerDashboardSettingsAssembly {
         let subSettingsViews: [EditableWidgetIdentifier: AnyView] = [
             .coursesAndGroups: AnyView(CoursesAndGroupsWidgetSettingsView(viewModel: coursesAndGroupsSettingsVM))
         ]
+
         let courseSettingsViewModel = LearnerDashboardCourseSettingsViewModel(
             userDefaults: defaults,
             configs: configs,
@@ -41,14 +43,12 @@ enum LearnerDashboardSettingsAssembly {
             subSettingsViews: subSettingsViews,
             onConfigsChanged: onConfigsChanged
         )
+
         let viewModel = LearnerDashboardSettingsViewModel(
             defaults: defaults,
             colorInteractor: colorInteractor,
             courseSettingsViewModel: courseSettingsViewModel
         )
-        let view = LearnerDashboardSettingsView(viewModel: viewModel)
-        let hostingController = CoreHostingController(view)
-        hostingController.addDoneButton(side: .right)
-        return CoreNavigationController(rootViewController: hostingController)
+        return viewModel
     }
 }

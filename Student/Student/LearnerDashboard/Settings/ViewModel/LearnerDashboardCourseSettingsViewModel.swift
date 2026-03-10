@@ -66,7 +66,9 @@ final class LearnerDashboardCourseSettingsViewModel {
     func moveUp(_ config: Config) {
         guard let index = visibleConfigs.firstIndex(of: config), index > visibleConfigs.startIndex else { return }
         let previousConfigIndex = visibleConfigs.index(before: index)
-        visibleConfigs.swapAt(index, previousConfigIndex)
+        withAnimation(.dashboardWidget) {
+            visibleConfigs.swapAt(index, previousConfigIndex)
+        }
         saveAndNotify()
     }
 
@@ -78,7 +80,9 @@ final class LearnerDashboardCourseSettingsViewModel {
     func moveDown(_ config: Config) {
         guard let index = visibleConfigs.firstIndex(of: config), index < visibleConfigs.endIndex - 1 else { return }
         let nextConfigIndex = visibleConfigs.index(after: index)
-        visibleConfigs.swapAt(index, nextConfigIndex)
+        withAnimation(.dashboardWidget) {
+            visibleConfigs.swapAt(index, nextConfigIndex)
+        }
         saveAndNotify()
     }
 

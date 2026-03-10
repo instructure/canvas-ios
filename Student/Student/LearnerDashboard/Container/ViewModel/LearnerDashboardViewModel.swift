@@ -86,33 +86,11 @@ final class LearnerDashboardViewModel {
             .store(in: &subscriptions)
     }
 
-    func settingsButtonTapped(from presentingViewController: WeakViewController) {
-        let settingsViewController = LearnerDashboardSettingsAssembly.makeViewController(
+    func makeSettingsViewModel() -> LearnerDashboardSettingsViewModel {
+        LearnerDashboardSettingsAssembly.makeViewModel(
+            env: environment,
             colorInteractor: colorInteractor,
             onConfigsChanged: { [weak self] in self?.loadWidgets() }
-        )
-        let viewSize = CGSize(width: 400, height: 700)
-
-        settingsViewController.preferredContentSize = viewSize
-        settingsViewController.modalPresentationStyle = .popover
-
-        if let popoverController = settingsViewController.popoverPresentationController {
-            var navButtonView = presentingViewController.value.navigationItem.rightBarButtonItem?.customView
-
-            if navButtonView == nil,
-               let trailingView = presentingViewController.value.navigationItem.trailingItemGroups.first?.barButtonItems.first?.customView {
-                navButtonView = trailingView
-            }
-
-            popoverController.sourceView = navButtonView
-            popoverController.sourceRect = CGRect(x: 26, y: 35, width: 0, height: 0)
-        }
-
-        environment.router.show(
-            settingsViewController,
-            from: presentingViewController,
-            options: .modal(.popover),
-            analyticsRoute: "/learner_dashboard/settings"
         )
     }
 

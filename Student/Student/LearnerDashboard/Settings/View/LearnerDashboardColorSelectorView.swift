@@ -22,7 +22,6 @@ import Core
 
 struct LearnerDashboardColorSelectorView: View {
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
-    @ScaledMetric private var uiScale: CGFloat = 1
     @Binding var selectedColor: Color
 
     let colors: [CourseColorData]
@@ -49,6 +48,8 @@ struct LearnerDashboardColorSelectorView: View {
                             .overlay {
                                 if isSelected {
                                     Image.checkLine
+                                        .resizable()
+                                        .scaledFrame(size: 24)
                                         .foregroundStyle(
                                             selectedColor == whiteColor
                                             ? .textLightest.variantForDarkMode
@@ -56,7 +57,7 @@ struct LearnerDashboardColorSelectorView: View {
                                         )
                                 }
                             }
-                            .frame(width: 40 * uiScale, height: 40 * uiScale)
+                            .scaledFrame(size: 40)
                             .shadow(color: .black.opacity(0.08), radius: 2, y: 2)
                             .shadow(color: .black.opacity(0.16), radius: 2, y: 1)
                             .accessibilityLabel(colorData.name)
@@ -75,8 +76,7 @@ struct LearnerDashboardColorSelectorView: View {
 
                 Circle()
                     .fill(selectedColor)
-                    .frame(width: 15, height: 15)
-
+                    .scaledFrame(size: 15)
             }
             .paddingStyle(.top, .cellTop)
             .paddingStyle(.bottom, .cellBottom)

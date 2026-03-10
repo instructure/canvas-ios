@@ -75,9 +75,14 @@ extension View {
     @ViewBuilder
     public func navigationTitle(_ title: String, style: NavigationBarStyle) -> some View {
         // TODO: Replace with commented version after a11y issues are fixed (see comments for `NavigationBarTitleView`)
-        self
-            .navigationBarTitleView(title: title, subtitle: nil)
-            .navigationBarStyle(style)
+        if #available(iOS 26, *) {
+            self
+                .navigationBarTitleView(title: title, subtitle: nil)
+        } else {
+            self
+                .navigationBarTitleView(title: title, subtitle: nil)
+                .navigationBarStyle(style)
+        }
 
 //        if #available(iOS 26, *) {
 //            self
@@ -92,9 +97,14 @@ extension View {
     @ViewBuilder
     public func navigationTitles(title: String, subtitle: String?, style: NavigationBarStyle) -> some View {
         // TODO: Replace with commented version after a11y issues are fixed (see comments for `NavigationBarTitleView`)
-        self
-            .navigationBarTitleView(title: title, subtitle: subtitle)
-            .navigationBarStyle(style)
+        if #available(iOS 26, *) {
+            self
+                .navigationBarTitleView(title: title, subtitle: subtitle)
+        } else {
+            self
+                .navigationBarTitleView(title: title, subtitle: subtitle)
+                .navigationBarStyle(style)
+        }
 
 //        if #available(iOS 26, *) {
 //            if let subtitle {

@@ -20,8 +20,9 @@ import Core
 import SwiftUI
 
 struct LearnerDashboardSettingsView: View {
-    @State private var viewModel: LearnerDashboardSettingsViewModel
     @Environment(\.viewController) private var viewController
+    @Environment(\.dismiss) private var dismiss
+    @State private var viewModel: LearnerDashboardSettingsViewModel
     @State private var showSwitchAlert = false
 
     init(viewModel: LearnerDashboardSettingsViewModel) {
@@ -66,9 +67,22 @@ struct LearnerDashboardSettingsView: View {
         .tint(viewModel.mainColor)
         .background(Color.backgroundLight.ignoresSafeArea())
         .navigationTitle(String(localized: "Customize Dashboard", bundle: .student), style: .modal)
-        .toolbarBackground(.backgroundLight, for: .navigationBar)
+        .navigationBarTitleDisplayMode(.inline)
         .alert(isPresented: $showSwitchAlert) {
             switchDashboardAlert
+        }
+        .toolbar {
+            let label = Text("Done", bundle: .core)
+            if #available(iOS 26, *) {
+                Button(action: dismiss.callAsFunction) {
+                    label
+                }
+                .buttonStyle(.borderedProminent)
+            } else {
+                Button(action: dismiss.callAsFunction) {
+                    label
+                }
+            }
         }
     }
 
@@ -96,10 +110,11 @@ struct LearnerDashboardSettingsView: View {
                 .foregroundStyle(.textDarkest)
 
             Button {
-
+                viewModel.letUsKnow(from: viewController.value)
             } label: {
                 HStack(spacing: 6) {
                     Text("Let us know!", bundle: .student)
+                        .font(.regular14, lineHeight: .normal)
 
                     Image.externalLinkLine
                 }
