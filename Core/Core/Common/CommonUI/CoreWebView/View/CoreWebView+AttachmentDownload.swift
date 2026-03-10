@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UniformTypeIdentifiers
 import WebKit
 
 // MARK: Navigation's Delegate Methods
@@ -41,10 +42,12 @@ extension CoreWebView {
 public struct CoreWebAttachment: Equatable {
     public let url: URL
     public let contentType: String?
+    public let originIsBlob: Bool
 
-    fileprivate init(url: URL, contentType: String?) {
+    fileprivate init(url: URL, contentType: String?, isBlob: Bool = false) {
         self.url = url
         self.contentType = contentType
+        self.originIsBlob = isBlob
     }
 }
 
@@ -100,6 +103,41 @@ extension CoreWebView: WKDownloadDelegate {
             fileURL == attachment.url
         else { return }
 
+        linkDelegate?.coreWebView(self, didFinishAttachmentDownload: attachment)
+        downloadingAttachment = nil
+    }
+}
+
+// MARK: - Blob URL Download
+
+extension CoreWebView {
+
+    func handleBlobDownload(base64: String, mimeType: String, fileName: String) {
+        guard let data = Data(base64Encoded: base64) else { return }
+
+        let ext = UTType(mimeType: mimeType)?.preferredFilenameExtension
+        let fullName: String
+        if let ext, URL(fileURLWithPath: fileName).pathExtension.isEmpty {
+            fullName = "\(fileName.isEmpty ? "download" : fileName).\(ext)"
+        } else {
+            fullName = fileName.isEmpty ? "download" : fileName
+        }
+
+        let url = URL.Directories.temporary.appending(component: fullName)
+        let attachment = CoreWebAttachment(url: url, contentType: mimeType, isBlob: true)
+
+        do {
+            if FileManager.default.fileExists(atPath: url.path()) {
+                try FileManager.default.removeItem(at: url)
+            }
+            try data.write(to: url)
+        } catch {
+            linkDelegate?.coreWebView(self, didFailAttachmentDownload: attachment, with: error)
+            return
+        }
+
+        downloadingAttachment = attachment
+        linkDelegate?.coreWebView(self, didStartDownloadAttachment: attachment)
         linkDelegate?.coreWebView(self, didFinishAttachmentDownload: attachment)
         downloadingAttachment = nil
     }

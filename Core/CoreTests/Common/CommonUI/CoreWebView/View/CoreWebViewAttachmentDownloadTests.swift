@@ -112,6 +112,7 @@ class CoreWebViewAttachmentDownloadTests: CoreTestCase {
         XCTAssertEqual(linkDelegate.startedAttachment, attachment)
         XCTAssertEqual(attachment.url, expectedURL)
         XCTAssertEqual(attachment.contentType, "video/mp4")
+        XCTAssertFalse(attachment.originIsBlob)
 
         // Pre-check
         XCTAssertNil(linkDelegate.finishedAttachment)
@@ -124,6 +125,49 @@ class CoreWebViewAttachmentDownloadTests: CoreTestCase {
         let finishedAttachment = try XCTUnwrap(linkDelegate.finishedAttachment)
         XCTAssertEqual(finishedAttachment.url, expectedURL)
         XCTAssertEqual(finishedAttachment.contentType, "video/mp4")
+        XCTAssertFalse(finishedAttachment.originIsBlob)
+    }
+
+    @MainActor
+    func test_blobDownload_callsStartAndFinishDelegates() throws {
+        let data = Data("blob content".utf8)
+        let base64 = data.base64EncodedString()
+
+        webView.handleBlobDownload(base64: base64, mimeType: "text/plain", fileName: "report")
+
+        let started = try XCTUnwrap(linkDelegate.startedAttachment)
+        let finished = try XCTUnwrap(linkDelegate.finishedAttachment)
+
+        XCTAssertTrue(started.url.lastPathComponent.hasPrefix("report"))
+        XCTAssertEqual(started.contentType, "text/plain")
+        XCTAssertTrue(started.originIsBlob)
+        XCTAssertEqual(started, finished)
+        XCTAssertFalse(webView.isDownloadingAttachment)
+    }
+
+    @MainActor
+    func test_blobDownload_withInvalidBase64_doesNotCallAnyDelegate() {
+        webView.handleBlobDownload(base64: "not-valid-base64!!!", mimeType: "text/plain", fileName: "file")
+
+        XCTAssertNil(linkDelegate.startedAttachment)
+        XCTAssertNil(linkDelegate.finishedAttachment)
+        XCTAssertNil(linkDelegate.failedAttachment)
+        XCTAssertFalse(webView.isDownloadingAttachment)
+    }
+
+    @MainActor
+    func test_blobDownload_writeFails_callsFailDelegate() throws {
+        let base64 = Data("content".utf8).base64EncodedString()
+
+        // A fileName with a non-existent intermediate directory causes data.write(to:) to throw
+        webView.handleBlobDownload(base64: base64, mimeType: "text/plain", fileName: "nonexistent-dir/file")
+
+        let failed = try XCTUnwrap(linkDelegate.failedAttachment)
+        XCTAssertTrue(failed.originIsBlob)
+        XCTAssertNotNil(linkDelegate.failure)
+        XCTAssertNil(linkDelegate.startedAttachment)
+        XCTAssertNil(linkDelegate.finishedAttachment)
+        XCTAssertFalse(webView.isDownloadingAttachment)
     }
 
     @MainActor
@@ -153,6 +197,7 @@ class CoreWebViewAttachmentDownloadTests: CoreTestCase {
 
         XCTAssertEqual(failedAttachment.url, expectedURL)
         XCTAssertEqual(failedAttachment.contentType, "video/mp4")
+        XCTAssertFalse(failedAttachment.originIsBlob)
         XCTAssertEqual(failure, error)
     }
 }

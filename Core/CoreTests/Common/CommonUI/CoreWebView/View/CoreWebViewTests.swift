@@ -316,9 +316,9 @@ class CoreWebViewTests: CoreTestCase {
 
     func test_addsDynamicFontFeature_whenLoaded() {
         var testee = CoreWebView(features: [])
-        XCTAssertEqual(testee.features.count, 2)
+        XCTAssertEqual(testee.features.count, 3)
         XCTAssertTrue(testee.features.first is DynamicFontSize)
-        XCTAssertTrue(testee.features.last is CanvasLTIPostMessageHandler)
+        XCTAssertTrue(testee.features.last is BlobURLDownload)
 
         testee = CoreWebView()
         XCTAssertEqual(testee.features.count, 0)

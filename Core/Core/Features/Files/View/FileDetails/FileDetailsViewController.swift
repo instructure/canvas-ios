@@ -820,6 +820,7 @@ extension FileDetailsViewController: PDFViewControllerDelegate, FlexibleToolbarC
     }
 
     public func coreWebView(_ webView: CoreWebView, didFinishAttachmentDownload attachment: CoreWebAttachment) {
+
         localURL = attachment.url
         shareButton.isEnabled = true
         spinnerView.isHidden = true
