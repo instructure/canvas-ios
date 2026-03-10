@@ -42,7 +42,9 @@ final class LearnerDashboardCourseSettingsViewModel {
         let visibleConfigs = configs.filter { $0.isVisible }
         let hiddenConfigs = configs.filter { !$0.isVisible }
 
-        configs = visibleConfigs + hiddenConfigs
+        withAnimation {
+            configs = visibleConfigs + hiddenConfigs
+        }
     }
 
     func moveUp(_ config: Config) {

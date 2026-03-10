@@ -20,9 +20,11 @@ import Core
 import SwiftUI
 
 struct LearnerDashboardScreen: View {
+    let settingsViewModel: LearnerDashboardSettingsViewModel
     @State private var viewModel: LearnerDashboardViewModel
     @StateObject private var offlineModeViewModel: OfflineModeViewModel
     @State private var isShowingKebabDialog = false
+    @State private var isSettingsPresented = false
     @Environment(\.viewController) private var viewController
     @Environment(\.appEnvironment) private var env
 
@@ -35,6 +37,7 @@ struct LearnerDashboardScreen: View {
     ) {
         _viewModel = State(initialValue: viewModel)
         _offlineModeViewModel = StateObject(wrappedValue: offlineModeViewModel)
+        settingsViewModel = .init(defaults: viewModel.environment.userDefaults ?? .fallback)
     }
 
     var body: some View {
@@ -110,33 +113,49 @@ struct LearnerDashboardScreen: View {
     @ViewBuilder
     @available(iOS, introduced: 26, message: "Legacy version exists")
     private var rightNavBarButtons: some View {
-        if offlineModeViewModel.isOfflineFeatureEnabled {
-            DashboardOptionsMenu(
-                offlineModeViewModel: offlineModeViewModel,
-                onSettingsTapped: { viewModel.settingsButtonTapped(from: viewController) },
-                environment: env
-            )
-        } else {
-            DashboardSettingsButton(
-                onTapped: { viewModel.settingsButtonTapped(from: viewController) }
-            )
+        Group {
+            if offlineModeViewModel.isOfflineFeatureEnabled {
+                DashboardOptionsMenu(
+                    offlineModeViewModel: offlineModeViewModel,
+                    onSettingsTapped: { isSettingsPresented.toggle() },
+                    environment: env
+                )
+            } else {
+                DashboardSettingsButton(
+                    onTapped: { isSettingsPresented.toggle() }
+                )
+            }
+        }
+        .popover(isPresented: $isSettingsPresented) {
+            // NavigationStack is needed to add content to the toolbar
+            NavigationStack {
+                LearnerDashboardSettingsView(viewModel: settingsViewModel)
+            }
         }
     }
 
     @ViewBuilder
     @available(iOS, deprecated: 26, message: "Non-legacy version exists")
     private var legacyRightNavBarButtons: some View {
-        if offlineModeViewModel.isOfflineFeatureEnabled {
-            DashboardOptionsButton(
-                isShowingDialog: $isShowingKebabDialog,
-                offlineModeViewModel: offlineModeViewModel,
-                onSettingsTapped: { viewModel.settingsButtonTapped(from: viewController) },
-                environment: env
-            )
-        } else {
-            LegacyDashboardSettingsButton(
-                onTapped: { viewModel.settingsButtonTapped(from: viewController) }
-            )
+        Group {
+            if offlineModeViewModel.isOfflineFeatureEnabled {
+                DashboardOptionsButton(
+                    isShowingDialog: $isShowingKebabDialog,
+                    offlineModeViewModel: offlineModeViewModel,
+                    onSettingsTapped: { isSettingsPresented.toggle() },
+                    environment: env
+                )
+            } else {
+                LegacyDashboardSettingsButton(
+                    onTapped: { isSettingsPresented.toggle() }
+                )
+            }
+        }
+        .popover(isPresented: $isSettingsPresented) {
+            // NavigationStack is needed to add content to the toolbar
+            NavigationStack {
+                LearnerDashboardSettingsView(viewModel: settingsViewModel)
+            }
         }
     }
 }

@@ -40,6 +40,25 @@ final class LearnerDashboardSettingsViewModel {
         self.useNewLearnerDashboard = defaults.preferNewLearnerDashboard
     }
 
+    func letUsKnow(from viewController: UIViewController) {
+        guard let topViewController = viewController.topMostViewController() else { return }
+
+        guard let feedbackString = Secret.learnerDashboardFeedbackURL.string,
+              let feedbackURL = URL(string: feedbackString)
+        else {
+            return
+        }
+
+        let webViewController = CoreWebViewController()
+        webViewController.webView.load(URLRequest(url: feedbackURL))
+
+        environment.router.show(
+            webViewController,
+            from: topViewController,
+            options: .modal(.formSheet, embedInNav: true, addDoneButton: true)
+        )
+    }
+
     /// Switches from the new learner dashboard back to the classic dashboard.
     /// Sets both the preference flag and triggers the feedback flow.
     /// Note: While `preferNewLearnerDashboard` is also managed by DashboardSettingsInteractorLive,

@@ -23,7 +23,6 @@ import HorizonUI
 struct LearnerDashboardCourseSettingsView: View {
     @State var viewModel: LearnerDashboardCourseSettingsViewModel
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
-    @ScaledMetric private var uiScale: CGFloat = 1
 
     var body: some View {
         VStack(spacing: 8) {
@@ -93,34 +92,6 @@ struct LearnerDashboardCourseSettingsView: View {
     }
 
     @ViewBuilder
-    private func disabledSettingCard(config: Config) -> some View {
-        let binding = Binding {
-            config.isVisible
-        } set: {
-            viewModel.toggleVisibility(of: config, to: $0)
-        }
-
-        HStack(spacing: 8) {
-            disabledButtons
-
-            InstUI.Toggle(isOn: binding) {
-                Text(config.id.title(username: viewModel.username))
-                    .font(.semibold16, lineHeight: .fit)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-            }
-            .accessibilityLabel(String(
-                localized: "\(config.id.title(username: viewModel.username)) widget visibility",
-                bundle: .student
-            ))
-        }
-        .padding(.horizontal, 16)
-        .padding(.top, 12)
-        .padding(.bottom, 14)
-        .background(.backgroundLightest)
-        .cornerRadius(InstUI.Styles.Elevation.Shape.cardLarge.cornerRadius)
-    }
-
-    @ViewBuilder
     private func buttons(config: Config) -> some View {
         let isMoveDownDisabled = viewModel.isMoveDownDisabled(of: config)
         let isMoveUpDisabled = viewModel.isMoveUpDisabled(of: config)
@@ -132,7 +103,7 @@ struct LearnerDashboardCourseSettingsView: View {
             } label: {
                 Image.chevronDown
                     .resizable()
-                    .frame(width: 24 * uiScale, height: 24 * uiScale)
+                    .scaledFrame(size: 24)
                     .rotationEffect(.degrees(180))
             }
             .disabled(isMoveUpDisabled)
@@ -149,7 +120,7 @@ struct LearnerDashboardCourseSettingsView: View {
             } label: {
                 Image.chevronDown
                     .resizable()
-                    .frame(width: 24 * uiScale, height: 24 * uiScale)
+                    .scaledFrame(size: 24)
             }
             .disabled(isMoveDownDisabled)
             .accessibilityLabel(String(
@@ -171,7 +142,7 @@ struct LearnerDashboardCourseSettingsView: View {
         HStack(spacing: 4) {
             Image.chevronDown
                 .resizable()
-                .frame(width: 24 * uiScale, height: 24 * uiScale)
+                .scaledFrame(size: 24)
                 .foregroundStyle(.disabledGray)
                 .rotationEffect(.degrees(180))
 
@@ -180,7 +151,7 @@ struct LearnerDashboardCourseSettingsView: View {
 
             Image.chevronDown
                 .resizable()
-                .frame(width: 24 * uiScale, height: 24 * uiScale)
+                .scaledFrame(size: 24)
                 .foregroundStyle(.disabledGray)
         }
         .padding(.horizontal, 8)
