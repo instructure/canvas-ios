@@ -99,6 +99,8 @@ struct LearningLibraryView: View {
 
     private var listLibraryView: some View {
         List {
+            LearningLibraryRecommendationListView()
+                .plainListRowStyle()
             Section(header: Rectangle().fill(Color.clear).frame(height: 0)) {
                 collectionView
             }
