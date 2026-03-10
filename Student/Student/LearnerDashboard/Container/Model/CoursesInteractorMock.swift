@@ -32,8 +32,12 @@ final class CoursesInteractorMock: CoursesInteractor {
     var declineBehavior: MockBehavior = .success
     var mockCoursesResult: CoursesResult = .make()
     var getCoursesDelay: TimeInterval = 0
+    var acceptDeclineDelay: TimeInterval = 0
+
+    var getCoursesInput: Bool?
 
     func getCourses(ignoreCache: Bool) -> AnyPublisher<CoursesResult, Error> {
+        getCoursesInput = ignoreCache
         let publisher = Just(mockCoursesResult)
             .setFailureType(to: Error.self)
 
@@ -50,12 +54,12 @@ final class CoursesInteractorMock: CoursesInteractor {
         switch acceptBehavior {
         case .success:
             return Just(())
-                .delay(for: .seconds(2), scheduler: DispatchQueue.main)
+                .delay(for: .seconds(acceptDeclineDelay), scheduler: DispatchQueue.main)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         case .failure(let error):
             return Fail(error: error)
-                .delay(for: .seconds(2), scheduler: DispatchQueue.main)
+                .delay(for: .seconds(acceptDeclineDelay), scheduler: DispatchQueue.main)
                 .eraseToAnyPublisher()
         }
     }
@@ -64,12 +68,12 @@ final class CoursesInteractorMock: CoursesInteractor {
         switch declineBehavior {
         case .success:
             return Just(())
-                .delay(for: .seconds(2), scheduler: DispatchQueue.main)
+                .delay(for: .seconds(acceptDeclineDelay), scheduler: DispatchQueue.main)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         case .failure(let error):
             return Fail(error: error)
-                .delay(for: .seconds(2), scheduler: DispatchQueue.main)
+                .delay(for: .seconds(acceptDeclineDelay), scheduler: DispatchQueue.main)
                 .eraseToAnyPublisher()
         }
     }

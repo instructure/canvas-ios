@@ -48,34 +48,19 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     // MARK: - Initialization Tests
 
     func testInit_stateIsLoading() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
+        testee = makeViewModel()
 
         XCTAssertEqual(testee.state, .loading)
     }
 
     func testInit_invitationsAreEmpty() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
+        testee = makeViewModel()
 
         XCTAssertTrue(testee.invitations.isEmpty)
     }
 
     func testInit_widgetConfigIsCorrect() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
+        testee = makeViewModel()
 
         XCTAssertFalse(testee.isEditable)
     }
@@ -83,12 +68,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     // MARK: - Refresh Success Cases
 
     func testRefresh_withNoInvitations_stateBecomesEmpty() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
+        testee = makeViewModel()
 
         mockInteractor.mockCoursesResult = .make()
 
@@ -97,12 +77,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     func testRefresh_withInvitations_stateBecomesData() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
+        testee = makeViewModel()
 
         let course = makeCourseWithInvitation(
             id: "1",
@@ -120,12 +95,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     func testRefresh_createsCorrectNumberOfCardViewModels() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
+        testee = makeViewModel()
 
         let course1 = makeCourseWithInvitation(id: "1", name: "Biology 101", enrollmentId: "e1", sectionId: "s1")
         let course2 = makeCourseWithInvitation(id: "2", name: "Chemistry 201", enrollmentId: "e2", sectionId: "s2")
@@ -139,12 +109,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     func testRefresh_cardViewModelsHaveCorrectProperties() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
+        testee = makeViewModel()
 
         let section = makeSection(id: "s1", name: "Section A")
         let course = makeCourseWithInvitation(
@@ -165,12 +130,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     func testRefresh_passesIgnoreCacheParameter() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
+        testee = makeViewModel()
 
         mockInteractor.mockCoursesResult = .make()
 
@@ -180,12 +140,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     // MARK: - Refresh Filtering
 
     func testRefresh_onlyIncludesCoursesWithInvitedEnrollments() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
+        testee = makeViewModel()
 
         let invitedCourse = makeCourseWithInvitation(
             id: "1",
@@ -205,12 +160,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     func testRefresh_skipsEnrollmentsWithoutIds() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
+        testee = makeViewModel()
 
         let courseWithoutEnrollmentId = makeCourseWithInvitation(
             id: "1",
@@ -229,12 +179,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     func testRefresh_mapsSectionNameFromCourseSectionID() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
+        testee = makeViewModel()
 
         let section = makeSection(id: "s1", name: "Advanced Section")
         let course = makeCourseWithInvitation(
@@ -256,12 +201,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     // MARK: - Refresh Failure
 
     func testRefresh_onError_stateBecomesError() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
+        testee = makeViewModel()
 
         mockInteractor.mockCoursesResult = .make()
 
@@ -271,12 +211,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     // MARK: - Titles
 
     func testTitle_showsCorrectCount() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
+        testee = makeViewModel()
 
         let course1 = makeCourseWithInvitation(id: "1", name: "Biology 101", enrollmentId: "e1", sectionId: "s1")
         let course2 = makeCourseWithInvitation(id: "2", name: "Chemistry 201", enrollmentId: "e2", sectionId: "s2")
@@ -290,12 +225,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     func testAccessibilityTitle_includesFormattedCount() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
+        testee = makeViewModel()
 
         let course = makeCourseWithInvitation(id: "1", name: "Biology 101", enrollmentId: "e1", sectionId: "s1")
         mockInteractor.mockCoursesResult = .make(
@@ -308,99 +238,62 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
         XCTAssertTrue(testee.widgetAccessibilityTitle.contains("1"))
     }
 
-    // MARK: - Invitation Removal
+    // MARK: - onDismiss sends requestDashboardRefresh
 
-    func testRemoveInvitation_removesFromList() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
-
-        let course1 = makeCourseWithInvitation(id: "1", name: "Biology 101", enrollmentId: "e1", sectionId: "s1")
-        let course2 = makeCourseWithInvitation(id: "2", name: "Chemistry 201", enrollmentId: "e2", sectionId: "s2")
-        mockInteractor.mockCoursesResult = .make(
-            allCourses: [course1, course2],
-            invitedCourses: [course1, course2]
-        )
-
-        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
-        XCTAssertEqual(testee.invitations.count, 2)
-
-        let removalExpectation = self.expectation(description: "removal")
-        testee.invitations.first?.accept()
-
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.1) {
-            removalExpectation.fulfill()
-        }
-        wait(for: [removalExpectation], timeout: 3)
-
-        XCTAssertEqual(testee.invitations.count, 1)
-        XCTAssertEqual(testee.invitations.first?.displayName, "Chemistry 201")
-    }
-
-    func testRemoveInvitation_lastRemoval_stateBecomesEmpty() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
+    func testOnDismiss_afterAccept_sendsRequestDashboardRefresh() {
+        testee = makeViewModel()
 
         let course = makeCourseWithInvitation(id: "1", name: "Biology 101", enrollmentId: "e1", sectionId: "s1")
         mockInteractor.mockCoursesResult = .make(
             allCourses: [course],
             invitedCourses: [course]
         )
-
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
-        XCTAssertEqual(testee.state, .data)
 
-        let removalExpectation = self.expectation(description: "removal")
+        var receivedRefresh = false
+        var subscriptions = Set<AnyCancellable>()
+        testee.requestDashboardRefresh
+            .sink { receivedRefresh = true }
+            .store(in: &subscriptions)
+
         testee.invitations.first?.accept()
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.1) {
-            removalExpectation.fulfill()
-        }
-        wait(for: [removalExpectation], timeout: 3)
+        let expectation = expectation(description: "requestDashboardRefresh sent")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { expectation.fulfill() }
+        wait(for: [expectation], timeout: 3)
 
-        XCTAssertTrue(testee.invitations.isEmpty)
-        XCTAssertEqual(testee.state, .empty)
+        XCTAssertTrue(receivedRefresh)
     }
 
-    func testRemoveInvitation_nonLastRemoval_stateStaysData() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
+    func testOnDismiss_afterDecline_sendsRequestDashboardRefresh() {
+        testee = makeViewModel()
 
-        let course1 = makeCourseWithInvitation(id: "1", name: "Biology 101", enrollmentId: "e1", sectionId: "s1")
-        let course2 = makeCourseWithInvitation(id: "2", name: "Chemistry 201", enrollmentId: "e2", sectionId: "s2")
+        let course = makeCourseWithInvitation(id: "1", name: "Biology 101", enrollmentId: "e1", sectionId: "s1")
         mockInteractor.mockCoursesResult = .make(
-            allCourses: [course1, course2],
-            invitedCourses: [course1, course2]
+            allCourses: [course],
+            invitedCourses: [course]
         )
-
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
 
-        testee.invitations.first?.accept()
-        scheduler.advance(by: .seconds(3))
+        var receivedRefresh = false
+        var subscriptions = Set<AnyCancellable>()
+        testee.requestDashboardRefresh
+            .sink { receivedRefresh = true }
+            .store(in: &subscriptions)
 
-        XCTAssertEqual(testee.state, .data)
+        testee.invitations.first?.decline()
+
+        let expectation = expectation(description: "requestDashboardRefresh sent")
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { expectation.fulfill() }
+        wait(for: [expectation], timeout: 3)
+
+        XCTAssertTrue(receivedRefresh)
     }
 
     // MARK: - Layout Identifier
 
     func testLayoutIdentifier_changesWithStateAndCount() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
-        testee = CourseInvitationsWidgetViewModel(
-            config: config,
-            interactor: mockInteractor,
-            snackBarViewModel: snackBarViewModel
-        )
+        testee = makeViewModel()
 
         let initialId = testee.layoutIdentifier
 
@@ -417,6 +310,14 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     // MARK: - Test Helpers
+
+    private func makeViewModel() -> CourseInvitationsWidgetViewModel {
+        .init(
+            config: .make(id: .courseInvitations),
+            interactor: mockInteractor,
+            snackBarViewModel: snackBarViewModel
+        )
+    }
 
     private func makeCourse(id: String, name: String) -> Course {
         let course: Course = databaseClient.insert()

@@ -319,6 +319,49 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         Clock.reset()
     }
 
+    // MARK: - favoritesDidChange
+
+    func test_getCoursesAndGroups_whenFavoritesDidChange_shouldForceIgnoreCacheTrue() {
+        coursesInteractor.mockCoursesResult = .make(
+            allCourses: [saveCourse(id: testData.courseId1, name: testData.courseName1)],
+            courseCards: [saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0)]
+        )
+        testee = makeInteractor()
+
+        NotificationCenter.default.post(name: .favoritesDidChange, object: nil)
+
+        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5)
+
+        XCTAssertEqual(coursesInteractor.getCoursesInput, true)
+    }
+
+    func test_getCoursesAndGroups_whenFavoritesDidChange_flagIsResetAfterNextCall() {
+        coursesInteractor.mockCoursesResult = .make(
+            allCourses: [saveCourse(id: testData.courseId1, name: testData.courseName1)],
+            courseCards: [saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0)]
+        )
+        testee = makeInteractor()
+
+        NotificationCenter.default.post(name: .favoritesDidChange, object: nil)
+        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5)
+
+        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5)
+
+        XCTAssertEqual(coursesInteractor.getCoursesInput, false)
+    }
+
+    func test_getCoursesAndGroups_withoutFavoritesDidChange_shouldNotForceIgnoreCache() {
+        coursesInteractor.mockCoursesResult = .make(
+            allCourses: [saveCourse(id: testData.courseId1, name: testData.courseName1)],
+            courseCards: [saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0)]
+        )
+        testee = makeInteractor()
+
+        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5)
+
+        XCTAssertEqual(coursesInteractor.getCoursesInput, false)
+    }
+
     // MARK: - reorderCourses
 
     func test_reorderCourses_whenOrderDiffers_shouldUpdateCardPositions() {
@@ -331,7 +374,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         )
 
         testee = makeInteractor()
-        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { _ in }
+        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5)
         api.mock(PutDashboardCardPositions(cards: []))
 
         testee.reorderCourses(newOrder: [testData.courseId2, testData.courseId1])
@@ -349,7 +392,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
             ]
         )
         testee = makeInteractor()
-        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { _ in }
+        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5)
         let putExpectation = expectation(description: "PUT request sent")
         api.mock(PutDashboardCardPositions(cards: []), expectation: putExpectation)
 
@@ -368,7 +411,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         )
 
         testee = makeInteractor()
-        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { _ in }
+        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5)
         let noRequestExpectation = expectation(description: "PUT request should not be sent")
         noRequestExpectation.isInverted = true
         api.mock(PutDashboardCardPositions(cards: []), expectation: noRequestExpectation)
