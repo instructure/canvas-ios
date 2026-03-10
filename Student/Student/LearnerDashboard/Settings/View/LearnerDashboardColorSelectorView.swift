@@ -25,10 +25,10 @@ struct LearnerDashboardColorSelectorView: View {
     @ScaledMetric private var uiScale: CGFloat = 1
     @Binding var selectedColor: Color
 
-    let colors: [LearnerDashboardColorData]
+    let colors: [CourseColorData]
     let whiteColor = Color.backgroundLightest.variantForLightMode
 
-    init(selectedColor: Binding<Color>, colors: [LearnerDashboardColorData]) {
+    init(selectedColor: Binding<Color>, colors: [CourseColorData]) {
         self._selectedColor = selectedColor
         self.colors = colors
     }
@@ -39,12 +39,12 @@ struct LearnerDashboardColorSelectorView: View {
             HorizonUI.HFlow {
                 ForEach(colors) { colorData in
                     Button {
-                        selectedColor = colorData.color
+                        selectedColor = colorData.color.asColor
                     } label: {
-                        let isSelected = colorData.color == selectedColor
+                        let isSelected = colorData.color.asColor == selectedColor
 
                         Circle()
-                            .fill(colorData.color)
+                            .fill(colorData.color.asColor)
                             .stroke(.borderLight, style: .init(lineWidth: 0.5))
                             .overlay {
                                 if isSelected {
@@ -59,7 +59,7 @@ struct LearnerDashboardColorSelectorView: View {
                             .frame(width: 40 * uiScale, height: 40 * uiScale)
                             .shadow(color: .black.opacity(0.08), radius: 2, y: 2)
                             .shadow(color: .black.opacity(0.16), radius: 2, y: 1)
-                            .accessibilityLabel(colorData.description)
+                            .accessibilityLabel(colorData.name)
                             .accessibilityAddTraits(isSelected ? .isSelected : [])
                     }
                 }

@@ -29,7 +29,7 @@ final class LearnerDashboardSettingsViewModel {
     var mainColor: Color {
         didSet { colorInteractor.selectColor(mainColor) }
     }
-    var colors: [LearnerDashboardColorData] { colorInteractor.availableColors }
+    var colors: [CourseColorData] { colorInteractor.availableColors }
     let courseSettingsViewModel: LearnerDashboardCourseSettingsViewModel
 
     private var defaults: SessionDefaults

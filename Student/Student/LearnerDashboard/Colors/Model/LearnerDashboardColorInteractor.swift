@@ -20,62 +20,50 @@ import Combine
 import Core
 import SwiftUI
 
-struct LearnerDashboardColorData: Identifiable {
-    let color: Color
-    let description: String
-
-    var id: String { description }
-}
-
 protocol LearnerDashboardColorInteractor: AnyObject {
-    var availableColors: [LearnerDashboardColorData] { get }
+    var availableColors: [CourseColorData] { get }
     var dashboardColor: CurrentValueSubject<Color, Never> { get }
     func selectColor(_ color: Color)
 }
 
 final class LearnerDashboardColorInteractorLive: LearnerDashboardColorInteractor {
-    var availableColors: [LearnerDashboardColorData] { Self.allColors }
+    var availableColors: [CourseColorData] { Self.allColors }
     let dashboardColor: CurrentValueSubject<Color, Never>
 
     private var defaults: SessionDefaults
 
     init(defaults: SessionDefaults) {
         self.defaults = defaults
-        let index = defaults.learnerDashboardColorIndex
-        let initialColor: Color
-        if let index, Self.allColors.indices.contains(index) {
-            initialColor = Self.allColors[index].color
-        } else {
-            initialColor = Self.defaultColor
-        }
+        let savedId = defaults.learnerDashboardColorId
+        let initialColor = Self.allColors.first(where: { $0.persistentId == savedId })?.color.asColor ?? Self.defaultColor
         self.dashboardColor = CurrentValueSubject(initialColor)
     }
 
     func selectColor(_ color: Color) {
-        guard let index = availableColors.firstIndex(where: { $0.color == color }) else {
+        guard let colorData = availableColors.first(where: { $0.color.asColor == color }) else {
             return
         }
 
-        defaults.learnerDashboardColorIndex = index
+        defaults.learnerDashboardColorId = colorData.persistentId
         dashboardColor.send(color)
     }
 }
 
 extension LearnerDashboardColorInteractorLive {
 
-    private static let defaultColor: Color = Color(CourseColorsInteractorLive.colors[0].key)
-    private static let allColors: [LearnerDashboardColorData] = {
-        let courseColors = CourseColorsInteractorLive.colors.map {
-            LearnerDashboardColorData(color: $0.key.asColor, description: $0.value)
-        }
+    private static let defaultColor: Color = CourseColorsInteractorLive.colors[0].color.asColor
+    private static let allColors: [CourseColorData] = {
+        let courseColors = CourseColorsInteractorLive.colors
         let additionalColors = [
-            LearnerDashboardColorData(
-                color: .backgroundLightest.variantForLightMode,
-                description: String(localized: "White", bundle: .core, comment: "This is a name of a color.")
+            CourseColorData(
+                persistentId: "white",
+                color: UIColor.backgroundLightest.variantForLightMode,
+                name: String(localized: "White", bundle: .core, comment: "This is a name of a color.")
             ),
-            LearnerDashboardColorData(
-                color: .backgroundLightest.variantForDarkMode,
-                description: String(localized: "Black", bundle: .core, comment: "This is a name of a color.")
+            CourseColorData(
+                persistentId: "black",
+                color: UIColor.backgroundLightest.variantForDarkMode,
+                name: String(localized: "Black", bundle: .core, comment: "This is a name of a color.")
             )
         ]
         return courseColors + additionalColors

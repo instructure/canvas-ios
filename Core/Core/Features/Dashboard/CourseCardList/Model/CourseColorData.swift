@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,15 +16,18 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import Foundation
+import UIKit
 
-extension SessionDefaults {
-    private static let learnerDashboardColorIdKey = "learnerDashboardColorId"
+public struct CourseColorData: Identifiable {
+    public let persistentId: String
+    public let color: UIColor
+    public let name: String
 
-    /// The `persistentId` of the selected `CourseColorData`.
-    var learnerDashboardColorId: String? {
-        get { self[Self.learnerDashboardColorIdKey] as? String }
-        set { self[Self.learnerDashboardColorIdKey] = newValue }
+    public var id: String { persistentId }
+
+    public init(persistentId: String, color: UIColor, name: String) {
+        self.persistentId = persistentId
+        self.color = color
+        self.name = name
     }
 }

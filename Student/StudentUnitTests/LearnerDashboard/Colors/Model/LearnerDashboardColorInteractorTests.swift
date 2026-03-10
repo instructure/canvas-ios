@@ -40,30 +40,30 @@ final class LearnerDashboardColorInteractorTests: XCTestCase {
 
     // MARK: - Initialization
 
-    func test_init_withNoSavedIndex_defaultsToFirstColor() {
-        userDefaults.learnerDashboardColorIndex = nil
+    func test_init_withNoSavedId_defaultsToFirstColor() {
+        userDefaults.learnerDashboardColorId = nil
 
         testee = LearnerDashboardColorInteractorLive(defaults: userDefaults)
 
-        let expectedColor = testee.availableColors[0].color
+        let expectedColor = testee.availableColors[0].color.asColor
         XCTAssertEqual(testee.dashboardColor.value, expectedColor)
     }
 
-    func test_init_withSavedIndex_restoresColor() {
-        userDefaults.learnerDashboardColorIndex = 3
+    func test_init_withSavedId_restoresColor() {
+        let targetColor = LearnerDashboardColorInteractorLive(defaults: userDefaults).availableColors[3]
+        userDefaults.learnerDashboardColorId = targetColor.persistentId
 
         testee = LearnerDashboardColorInteractorLive(defaults: userDefaults)
 
-        let expectedColor = testee.availableColors[3].color
-        XCTAssertEqual(testee.dashboardColor.value, expectedColor)
+        XCTAssertEqual(testee.dashboardColor.value, targetColor.color.asColor)
     }
 
-    func test_init_withOutOfBoundsIndex_defaultsToFirstColor() {
-        userDefaults.learnerDashboardColorIndex = 9999
+    func test_init_withUnknownId_defaultsToFirstColor() {
+        userDefaults.learnerDashboardColorId = "not-a-real-color-id"
 
         testee = LearnerDashboardColorInteractorLive(defaults: userDefaults)
 
-        let expectedColor = testee.availableColors[0].color
+        let expectedColor = testee.availableColors[0].color.asColor
         XCTAssertEqual(testee.dashboardColor.value, expectedColor)
     }
 
@@ -81,25 +81,24 @@ final class LearnerDashboardColorInteractorTests: XCTestCase {
 
     func test_selectColor_updatesSubject() {
         testee = LearnerDashboardColorInteractorLive(defaults: userDefaults)
-        let colorToSelect = testee.availableColors[2].color
+        let colorToSelect = testee.availableColors[2].color.asColor
 
         testee.selectColor(colorToSelect)
 
         XCTAssertEqual(testee.dashboardColor.value, colorToSelect)
     }
 
-    func test_selectColor_persistsIndexToDefaults() {
+    func test_selectColor_persistsIdToDefaults() {
         testee = LearnerDashboardColorInteractorLive(defaults: userDefaults)
-        let targetIndex = 4
-        let colorToSelect = testee.availableColors[targetIndex].color
+        let targetColor = testee.availableColors[4]
 
-        testee.selectColor(colorToSelect)
+        testee.selectColor(targetColor.color.asColor)
 
-        XCTAssertEqual(userDefaults.learnerDashboardColorIndex, targetIndex)
+        XCTAssertEqual(userDefaults.learnerDashboardColorId, targetColor.persistentId)
     }
 
     func test_selectColor_withUnknownColor_doesNotChange() {
-        userDefaults.learnerDashboardColorIndex = 0
+        userDefaults.learnerDashboardColorId = testee?.availableColors[0].persistentId
         testee = LearnerDashboardColorInteractorLive(defaults: userDefaults)
         let originalColor = testee.dashboardColor.value
 
