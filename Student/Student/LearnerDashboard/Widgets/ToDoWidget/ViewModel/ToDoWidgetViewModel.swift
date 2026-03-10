@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import Core
 import Foundation
 import SwiftUI
@@ -61,8 +62,15 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         [state, dayItems.count, selectedDay, showCompleted, isDayLoading]
     }
 
+    private static let widgetFilterOptions = TodoFilterOptions(
+        visibilityOptions: [.showCalendarEvents, .showCompleted, .showPersonalTodos],
+        dateRangeStart: .lastWeek,
+        dateRangeEnd: .nextWeek
+    )
+
     private let interactor: TodoInteractor
     private let router: Router
+    private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
     private var loadCancellable: AnyCancellable?
     private var markDoneTimers: [String: AnyCancellable] = [:]
@@ -71,12 +79,14 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         config: DashboardWidgetConfig,
         interactor: TodoInteractor,
         router: Router,
-        snackBarViewModel: SnackBarViewModel
+        snackBarViewModel: SnackBarViewModel,
+        scheduler: AnySchedulerOf<DispatchQueue> = DispatchQueue.main.eraseToAnyScheduler()
     ) {
         self.config = config
         self.interactor = interactor
         self.router = router
         self.snackBarViewModel = snackBarViewModel
+        self.scheduler = scheduler
         self.showCompleted = false
         let today = Calendar.current.startOfDay(for: Clock.now)
         self.selectedDay = today
@@ -90,17 +100,14 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        let start = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: weekStart) ?? weekStart
-        let end = Calendar.current.date(byAdding: .weekOfYear, value: 2, to: weekStart) ?? weekStart
+        let (start, end) = widgetDateRange(for: weekStart)
         return interactor
             .refresh(
                 startDate: start,
                 endDate: end,
                 ignorePlannablesCache: ignoreCache,
                 ignoreCoursesCache: ignoreCache,
-                filterOptions: TodoFilterOptions(
-                    visibilityOptions: [.showCalendarEvents, .showCompleted, .showPersonalTodos], dateRangeStart: .lastWeek, dateRangeEnd: .nextWeek
-                )
+                filterOptions: Self.widgetFilterOptions
             )
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveCompletion: { [weak self] completion in
@@ -208,6 +215,12 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         }
     }
 
+    private func widgetDateRange(for weekStart: Date) -> (start: Date, end: Date) {
+        let start = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: weekStart) ?? weekStart
+        let end = Calendar.current.date(byAdding: .weekOfYear, value: 2, to: weekStart) ?? weekStart
+        return (start, end)
+    }
+
     private func setupSubscriptions() {
         interactor.todoGroups
             .dropFirst()
@@ -228,17 +241,14 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     }
 
     private func loadItems(for weekStart: Date, ignorePlannablesCache: Bool) {
-        let start = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: weekStart) ?? weekStart
-        let end = Calendar.current.date(byAdding: .weekOfYear, value: 2, to: weekStart) ?? weekStart
+        let (start, end) = widgetDateRange(for: weekStart)
         loadCancellable = interactor
             .refresh(
                 startDate: start,
                 endDate: end,
                 ignorePlannablesCache: ignorePlannablesCache,
                 ignoreCoursesCache: false,
-                filterOptions: TodoFilterOptions(
-                    visibilityOptions: [.showCalendarEvents, .showCompleted, .showPersonalTodos], dateRangeStart: .lastWeek, dateRangeEnd: .nextWeek
-                )
+                filterOptions: Self.widgetFilterOptions
             )
             .receive(on: DispatchQueue.main)
             .sink(
@@ -271,7 +281,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
                 guard !item.shouldKeepCompletedItemsVisible else { return }
                 let plannableId = item.plannableId
                 let timer = Just(())
-                    .delay(for: .seconds(3), scheduler: DispatchQueue.main)
+                    .delay(for: .seconds(3), scheduler: scheduler)
                     .sink { [weak self] in
                         withAnimation { self?.removeItem(withId: plannableId) }
                         self?.markDoneTimers.removeValue(forKey: plannableId)

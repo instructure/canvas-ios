@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 @testable import Core
 @testable import Student
 @testable import TestsFoundation
@@ -37,18 +38,21 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
     private var testee: ToDoWidgetViewModel!
     private var interactor: TodoInteractorMock!
     private var snackBarViewModel: SnackBarViewModel!
+    private var scheduler: TestSchedulerOf<DispatchQueue>!
 
     override func setUp() {
         super.setUp()
         Clock.mockNow(testData.today)
         interactor = TodoInteractorMock()
         snackBarViewModel = SnackBarViewModel()
+        scheduler = DispatchQueue.test
     }
 
     override func tearDown() {
         testee = nil
         interactor = nil
         snackBarViewModel = nil
+        scheduler = nil
         super.tearDown()
     }
 
@@ -335,12 +339,10 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
         waitUntil(shouldFail: true) { self.testee.dayItems.count == 1 }
 
         testee.markItemAsDone(item)
+        waitUntil(shouldFail: true) { item.markAsDoneState == .done }
 
-        let expectation = expectation(description: "Item removed after 3-second delay")
-        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-            expectation.fulfill()
-        }
-        wait(for: [expectation], timeout: 5)
+        scheduler.advance(by: .seconds(3))
+
         XCTAssertEqual(testee.dayItems.isEmpty, true)
     }
 
@@ -409,7 +411,8 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
             config: .make(id: .toDo),
             interactor: interactor,
             router: router,
-            snackBarViewModel: snackBarViewModel
+            snackBarViewModel: snackBarViewModel,
+            scheduler: scheduler.eraseToAnyScheduler()
         )
     }
 
