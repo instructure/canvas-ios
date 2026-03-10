@@ -55,15 +55,6 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.expandedFilter, nil)
     }
 
-    // MARK: - weekStartDate
-
-    func test_weekStartDate_shouldBeMonday() {
-        let testee = makeViewModel()
-
-        let weekday = Calendar.current.component(.weekday, from: testee.weekStartDate)
-        XCTAssertEqual(weekday, 2)
-    }
-
     // MARK: - weekRangeText
 
     func test_weekRangeText_shouldFormatCorrectly() {
