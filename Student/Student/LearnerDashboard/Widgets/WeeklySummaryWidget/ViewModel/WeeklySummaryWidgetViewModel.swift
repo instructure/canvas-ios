@@ -40,6 +40,9 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     private(set) var dueFilter: WeeklySummaryWidgetFilterViewModel
     private(set) var newGradesFilter: WeeklySummaryWidgetFilterViewModel
 
+    var showMissingDueDivider: Bool { expandedFilter == nil || expandedFilter == newGradesFilter }
+    var showDueNewGradesDivider: Bool { expandedFilter == nil || expandedFilter == missingFilter }
+
     // MARK: - Week Selection
 
     private(set) var weekStartDate: Date
@@ -61,7 +64,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
         self.config = config
         self.interactor = interactor
         self.router = router
-        let weekStartDate = Self.mondayOfCurrentWeek()
+        let weekStartDate = Clock.now.startOfWeek()
         self.weekStartDate = weekStartDate
         self.weekRangeText = Self.makeWeekRangeText(from: weekStartDate)
         self.missingFilter = .missing(assignments: [])
@@ -129,12 +132,5 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
         let endDate = weekStartDate.addDays(6)
         let year = Calendar.current.component(.year, from: endDate)
         return "\(weekStartDate.shortDayMonth) - \(endDate.shortDayMonth) \(year)"
-    }
-
-    private static func mondayOfCurrentWeek() -> Date {
-        var calendar = Calendar.current
-        calendar.firstWeekday = 2
-        let components = calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: Date.now)
-        return calendar.date(from: components) ?? Date.now
     }
 }

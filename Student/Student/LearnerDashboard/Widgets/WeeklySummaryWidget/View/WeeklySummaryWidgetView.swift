@@ -44,7 +44,9 @@ struct WeeklySummaryWidgetView: View {
                     VStack(spacing: 8) {
                         WeeklySummaryWidgetWeekSelectorView(viewModel: viewModel)
                         WeeklySummaryWidgetSegmentedControl(viewModel: viewModel)
-                        assignmentList
+                        if let expanded = viewModel.expandedFilter {
+                            assignmentList(filter: expanded)
+                        }
                     }
                     .redacted(reason: viewModel.state == .loading ? .placeholder : [])
                     .allowsHitTesting(viewModel.state != .loading)
@@ -60,23 +62,18 @@ struct WeeklySummaryWidgetView: View {
     }
 
     @ViewBuilder
-    private var assignmentList: some View {
-        ZStack {
-            if let expanded = viewModel.expandedFilter {
-                if expanded.assignments.isEmpty {
-                    WeeklySummaryWidgetEmptyView(filter: expanded)
-                        .transition(.opacity.combined(with: .offset(y: -20)))
-                } else {
-                    WeeklySummaryWidgetAssignmentListView(
-                        viewModel: viewModel,
-                        assignments: expanded.assignments,
-                        controller: controller
-                    )
-                    .transition(.opacity.combined(with: .offset(y: -20)))
-                }
-            }
+    private func assignmentList(filter: WeeklySummaryWidgetFilterViewModel) -> some View {
+        if filter.assignments.isEmpty {
+            WeeklySummaryWidgetEmptyView(filter: filter)
+                .transition(.opacity.combined(with: .offset(y: -20)))
+        } else {
+            WeeklySummaryWidgetAssignmentListView(
+                viewModel: viewModel,
+                assignments: filter.assignments,
+                controller: controller
+            )
+            .transition(.opacity.combined(with: .offset(y: -20)))
         }
-        .frame(maxWidth: .infinity)
     }
 }
 

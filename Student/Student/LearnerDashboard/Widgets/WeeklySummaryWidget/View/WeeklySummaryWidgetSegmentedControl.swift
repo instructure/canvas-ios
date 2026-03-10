@@ -40,9 +40,9 @@ struct WeeklySummaryWidgetSegmentedControl: View {
     private var buttonsRow: some View {
         HStack(spacing: 0) {
             categoryButton(viewModel.missingFilter)
-            divider(between: viewModel.missingFilter, and: viewModel.dueFilter)
+            divider(isVisible: viewModel.showMissingDueDivider)
             categoryButton(viewModel.dueFilter)
-            divider(between: viewModel.dueFilter, and: viewModel.newGradesFilter)
+            divider(isVisible: viewModel.showDueNewGradesDivider)
             categoryButton(viewModel.newGradesFilter)
         }
     }
@@ -87,23 +87,18 @@ struct WeeklySummaryWidgetSegmentedControl: View {
     @ViewBuilder
     private var selectionIndicator: some View {
         if let selected = viewModel.expandedFilter {
-            RoundedRectangle(cornerRadius: 6)
-                .fill(Color.backgroundLightest)
-                .shadow(color: .black.opacity(0.12), radius: 4, x: 0, y: 2)
+            Color.clear
+                .elevation(.cardSmall, background: Color.backgroundLightest)
                 .matchedGeometryEffect(id: selected.id, in: selectionNamespace, isSource: false)
                 .transition(.scale.combined(with: .opacity))
                 .allowsHitTesting(false)
         }
     }
 
-    private func divider(
-        between leading: WeeklySummaryWidgetFilterViewModel,
-        and trailing: WeeklySummaryWidgetFilterViewModel
-    ) -> some View {
-        let isHidden = viewModel.expandedFilter == leading || viewModel.expandedFilter == trailing
-        return InstUI.Divider()
-            .padding(.vertical, 8)
-            .opacity(isHidden ? 0 : 1)
+    private func divider(isVisible: Bool) -> some View {
+        InstUI.Divider()
+            .padding(.vertical, 10)
+            .opacity(isVisible ? 1 : 0)
     }
 }
 

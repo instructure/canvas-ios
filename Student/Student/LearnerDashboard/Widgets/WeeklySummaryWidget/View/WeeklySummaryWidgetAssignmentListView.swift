@@ -28,23 +28,21 @@ struct WeeklySummaryWidgetAssignmentListView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            ForEach(Array(assignments.enumerated()), id: \.element.id) { index, item in
+            ForEach(assignments) { item in
                 Button {
                     viewModel.didTapAssignment(item, from: controller)
                 } label: {
-                    WeeklySummaryWidgetAssignmentRow(assignment: item)
+                    WeeklySummaryWidgetAssignmentCell(assignment: item)
                 }
                 .buttonStyle(.plain)
-                if index < assignments.count - 1 {
-                    InstUI.Divider(.padded)
-                }
+                InstUI.Divider(item.id != assignments.last?.id ? .padded : .hidden)
             }
         }
         .elevation(.cardLarge, background: .backgroundLightest)
     }
 }
 
-private struct WeeklySummaryWidgetAssignmentRow: View {
+private struct WeeklySummaryWidgetAssignmentCell: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.displayScale) private var displayScale
 
@@ -52,60 +50,62 @@ private struct WeeklySummaryWidgetAssignmentRow: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            HStack(spacing: 4) {
-                assignment.icon
-                    .scaledIcon(size: 16)
-                    .foregroundStyle(assignment.courseColor)
-                InstUI.SubtitleTextDivider()
-                    .scaledFrame(height: 12)
-                    .padding(.vertical, 1)
-                Text(assignment.courseCode)
-                    .font(.regular12)
-                    .foregroundStyle(assignment.courseColor)
-            }
+            InstUI.JoinedSubtitleLabels(
+                label1: {
+                    assignment.icon
+                        .scaledIcon(size: 16)
+                },
+                label2: {
+                    Text(assignment.courseCode)
+                        .font(.regular12)
+                }
+            )
+            .applyTint()
             Text(assignment.title)
-                .font(.semibold14)
+                .font(.semibold14, lineHeight: .fit)
                 .foregroundStyle(Color.textDarkest)
                 .multilineTextAlignment(.leading)
-            bottomRow
+            bottomLabels
         }
-        .padding(.horizontal, 12)
-        .padding(.vertical, 10)
+        .paddingStyle(.horizontal, .standard)
+        .padding(.vertical, 8)
         .frame(maxWidth: .infinity, alignment: .leading)
         .contentShape(Rectangle())
+        .tint(assignment.courseColor)
     }
 
     @ViewBuilder
-    private var bottomRow: some View {
-        HStack(spacing: 4) {
+    private var bottomLabels: some View {
+        VStack(alignment: .leading, spacing: 2) {
             if let dueDateText = assignment.dueDateText {
                 Text(dueDateText)
                     .font(.regular12)
                     .foregroundStyle(Color.textDark)
             }
-            if let pointsText = assignment.pointsText {
-                if assignment.dueDateText != nil {
-                    InstUI.SubtitleTextDivider()
-                        .scaledFrame(height: 12)
-                }
-                Text(pointsText)
-                    .font(.regular12)
-                    .foregroundStyle(Color.textDark)
-            }
-            if let gradeWeightText = assignment.gradeWeightText {
-                InstUI.SubtitleTextDivider()
-                    .scaledFrame(height: 12)
-                Text(gradeWeightText)
-                    .font(.regular12)
-                    .foregroundStyle(assignment.courseColor)
-                    .padding(.horizontal, 6)
-                    .padding(.vertical, 2)
-                    .overlay(
-                        Capsule()
-                            .stroke(assignment.courseColor, lineWidth: 1 / displayScale)
-                    )
+
+            if let pointsText = assignment.pointsText, let gradeWeightText = assignment.gradeWeightText {
+                InstUI.JoinedSubtitleLabels(
+                    label1: { pointsLabel(pointsText) },
+                    label2: { gradeWeightPill(gradeWeightText) }
+                )
+            } else if let pointsText = assignment.pointsText {
+                pointsLabel(pointsText)
             }
         }
+    }
+
+    private func pointsLabel(_ text: String) -> some View {
+        Text(text)
+            .font(.regular12)
+            .foregroundStyle(Color.textDark)
+    }
+
+    private func gradeWeightPill(_ text: String) -> some View {
+        InstUI.PillContent(title: text, size: .height20)
+            .overlay(
+                Capsule()
+                    .stroke(assignment.courseColor, lineWidth: 1 / displayScale)
+            )
     }
 }
 
