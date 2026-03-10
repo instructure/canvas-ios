@@ -28,14 +28,18 @@ public struct Route {
 
     public let template: String
     public let segments: [Segment]
+    private let expandTildeID: Bool
 
-    public init(_ template: String) {
+    public init(_ template: String, expandTildeID: Bool = true) {
         self.template = template
+        self.expandTildeID = expandTildeID
         self.segments = template.split(separator: "/").map { part in
             if part.hasPrefix("*") {
                 return .splat(String(part.dropFirst()))
             } else if part.hasPrefix(":") {
-                return .param(ID.expandTildeID(String(part.dropFirst())))
+                let firstPart = String(part.dropFirst())
+                let pathValue = expandTildeID ? ID.expandTildeID(firstPart) : firstPart
+                return .param(pathValue)
             }
             return .literal(String(part))
         }
@@ -54,7 +58,8 @@ public struct Route {
                 guard parts.removeFirst() == template else { return nil }
             case .param(let name):
                 guard !parts.isEmpty else { return nil } // too short
-                params[name] = ID.expandTildeID(String(parts.removeFirst()))
+                let firstPart = String(parts.removeFirst())
+                params[name] = expandTildeID ? ID.expandTildeID(firstPart) : firstPart
             case .splat(let name):
                 params[name] = parts.joined(separator: "/")
                 parts = []

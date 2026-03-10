@@ -28,6 +28,14 @@ public enum ContextType: String, Codable {
     }
 
     public var pathComponent: String { "\(self)s" }
+
+    public static var baseUrlOverridableTypes: [ContextType] {
+        return [.course, .group]
+    }
+
+    public var isBaseUrlOverridable: Bool {
+        Self.baseUrlOverridableTypes.contains(self)
+    }
 }
 
 public struct Context: Codable, Equatable, Hashable {
