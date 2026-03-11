@@ -141,13 +141,13 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         switch item.type {
         case .planner_note:
             let vc = PlannerAssembly.makeToDoDetailsViewController(plannableId: item.plannableId)
-            router.show(vc, from: viewController, options: .detail)
+            router.show(vc, from: viewController, options: .modal(embedInNav: true, addDoneButton: true))
         case .calendar_event:
             let vc = PlannerAssembly.makeEventDetailsViewController(eventId: item.plannableId)
-            router.show(vc, from: viewController, options: .detail)
+            router.show(vc, from: viewController, options: .modal(embedInNav: true, addDoneButton: true))
         default:
             guard let url = item.htmlURL else { return }
-            router.route(to: url.appendingOrigin("todo"), from: viewController, options: .detail)
+            router.route(to: url.appendingOrigin("todo"), from: viewController, options: .modal(embedInNav: true, addDoneButton: true))
         }
     }
 
@@ -158,7 +158,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
             self.router.dismiss(weakVC)
         }
         weakVC.setValue(vc)
-        router.show(vc, from: viewController, options: .modal(embedInNav: true))
+        router.show(vc, from: viewController, options: .modal(embedInNav: true, addDoneButton: true))
     }
 
     func retryLoad() {
