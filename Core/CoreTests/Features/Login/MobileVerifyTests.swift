@@ -65,7 +65,6 @@ final class DefaultMobileVerifyStrategyTests: XCTestCase {
 }
 
 final class CareerMobileVerifyStrategyTests: XCTestCase {
-
     private let testee = MobileVerify.strategy(for: "horizon.instructure.com")
     private let client = APIVerifyClient(
         authorized: true,
