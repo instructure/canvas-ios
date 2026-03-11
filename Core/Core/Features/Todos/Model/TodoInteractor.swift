@@ -93,6 +93,8 @@ public final class TodoInteractorLive: TodoInteractor {
     private let alwaysExcludeCompleted: Bool
     private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
+    private var cachedCourses: [Course]?
+    private var lastUsedFilterOptions: TodoFilterOptions?
 
     public init(
         alwaysExcludeCompleted: Bool,
@@ -106,6 +108,7 @@ public final class TodoInteractorLive: TodoInteractor {
         self.scheduler = scheduler
         self.coursesStore = ReactiveStore(useCase: GetCourses(), environment: env)
         self.contextColorsStore = ReactiveStore(useCase: GetCustomColors(), environment: env)
+        setupLocalObservation()
     }
 
     // MARK: - Public Methods
@@ -184,6 +187,27 @@ public final class TodoInteractorLive: TodoInteractor {
 
     // MARK: - Private Methods
 
+    private func setupLocalObservation() {
+        let localUseCase = LocalUseCase<Plannable>(scope: GetPlannables.makeTodoFetchUseCase().scope)
+        ReactiveStore(useCase: localUseCase, environment: env)
+            .getEntitiesFromDatabase(keepObservingDatabaseChanges: true)
+            .dropFirst()
+            .debounce(for: .milliseconds(100), scheduler: scheduler)
+            .sink { _ in
+            } receiveValue: { [weak self] plannables in
+                guard let self,
+                      let courses = self.cachedCourses,
+                      let filterOptions = self.lastUsedFilterOptions else { return }
+                try? self.filterAndGroupTodos(
+                    plannables: plannables,
+                    courses: courses,
+                    skipBadgeUpdate: self.alwaysExcludeCompleted,
+                    filterOptions: filterOptions
+                )
+            }
+            .store(in: &subscriptions)
+    }
+
     private func refresh(
         plannablesStore: ReactiveStore<GetPlannables>,
         ignorePlannablesCache: Bool,
@@ -235,6 +259,8 @@ public final class TodoInteractorLive: TodoInteractor {
 
     private func filterAndGroupTodos(plannables: [Plannable], courses: [Course], skipBadgeUpdate: Bool, filterOptions passedFilterOptions: TodoFilterOptions? = nil) throws {
         let filterOptions = passedFilterOptions ?? sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
+        cachedCourses = courses
+        lastUsedFilterOptions = filterOptions
 
         let hasDeletedCourses = courses.contains { $0.isDeleted }
         if hasDeletedCourses {

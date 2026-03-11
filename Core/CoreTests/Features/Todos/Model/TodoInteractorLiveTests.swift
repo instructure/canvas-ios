@@ -682,6 +682,109 @@ class TodoInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(TabBarBadgeCounts.todoListCount, 3)
     }
 
+    // MARK: - Local Observation Tests
+
+    func test_localObservation_updatesTodosAfterMarkAsDoneUpdatesCorData() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let plannable = Plannable.save(
+            APIPlannable.make(plannable_id: ID("obs-1"), plannable_type: "assignment", plannable: .make(title: "Observed Item")),
+            userId: nil,
+            useCase: .todo,
+            in: databaseClient
+        )
+        let item = TodoItemViewModel(plannable)!
+        let createRequest = CreatePlannerOverrideRequest(
+            body: .init(plannable_type: "assignment", plannable_id: "obs-1", marked_complete: true)
+        )
+        api.mock(createRequest, value: APIPlannerOverride.make(id: "override-1", marked_complete: true))
+
+        mockCourses(courses)
+        mockPlannables([makePlannable(courseId: "1", plannableId: "obs-1", type: "assignment", title: "Observed Item")])
+        XCTAssertFinish(testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false), timeout: 5)
+
+        // WHEN - mark item done (MarkPlannableItemDone.write() updates isMarkedComplete in CoreData)
+        let updateExpectation = expectation(description: "todoGroups re-emitted after CoreData mark-done update")
+        var subscription: AnyCancellable?
+        subscription = testee.todoGroups
+            .dropFirst()
+            .first()
+            .sink { groups in
+                let allItems = groups.flatMap { $0.items }
+                XCTAssertEqual(allItems.first(where: { $0.plannableId == "obs-1" })?.markAsDoneState, .done)
+                updateExpectation.fulfill()
+                subscription?.cancel()
+            }
+
+        XCTAssertFinish(testee.markItemAsDone(item, done: true))
+
+        wait(for: [updateExpectation], timeout: 2)
+    }
+
+    func test_localObservation_updatesWhenNewPlannableWithTodoUseCaseIsInserted() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+
+        mockCourses(courses)
+        mockPlannables([makePlannable(courseId: "1", plannableId: "first-1", type: "assignment", title: "First Item")])
+        XCTAssertFinish(testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false), timeout: 5)
+
+        XCTAssertFirstValue(testee.todoGroups, timeout: 2) { groups in
+            XCTAssertEqual(groups.flatMap { $0.items }.count, 1)
+        }
+
+        // WHEN - simulate a new todo being inserted with .todo use case ID (as GetPlannables.write() does after API refresh)
+        let updateExpectation = expectation(description: "todoGroups updated after new item inserted")
+        var subscription: AnyCancellable?
+        subscription = testee.todoGroups
+            .dropFirst()
+            .first()
+            .sink { groups in
+                let allItems = groups.flatMap { $0.items }
+                XCTAssertEqual(allItems.count, 2)
+                XCTAssertTrue(allItems.contains(where: { $0.plannableId == "new-1" }))
+                updateExpectation.fulfill()
+                subscription?.cancel()
+            }
+
+        Plannable.save(
+            APIPlannable.make(
+                course_id: ID("1"),
+                plannable_id: ID("new-1"),
+                plannable_type: "assignment",
+                plannable: .make(title: "New Item"),
+                plannable_date: Self.mockDate.addDays(1)
+            ),
+            userId: nil,
+            useCase: .todo,
+            in: databaseClient
+        )
+
+        wait(for: [updateExpectation], timeout: 2)
+    }
+
+    func test_localObservation_doesNotUpdateTodosBeforeInitialRefresh() {
+        // GIVEN - interactor created, refresh() not yet called (cachedCourses is nil)
+        // WHEN - a plannable is inserted directly into CoreData
+        Plannable.save(
+            APIPlannable.make(
+                course_id: ID("1"),
+                plannable_id: ID("early-1"),
+                plannable_type: "assignment",
+                plannable: .make(title: "Early Item"),
+                plannable_date: Self.mockDate.addDays(1)
+            ),
+            userId: nil,
+            useCase: .todo,
+            in: databaseClient
+        )
+
+        // THEN - todoGroups stays empty because cachedCourses is nil and the observation is skipped
+        XCTAssertFirstValue(testee.todoGroups, timeout: 1) { groups in
+            XCTAssertTrue(groups.isEmpty)
+        }
+    }
+
     // MARK: - Helpers
 
     private func mockCourses(_ courses: [APICourse]) {

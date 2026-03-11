@@ -156,7 +156,6 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         let vc = PlannerAssembly.makeCreateToDoViewController(selectedDate: selectedDay) { [weak self] _ in
             guard let self else { return }
             self.router.dismiss(weakVC)
-            self.loadItems(for: self.weekStart, ignorePlannablesCache: true)
         }
         weakVC.setValue(vc)
         router.show(vc, from: viewController, options: .modal(embedInNav: true))
@@ -236,6 +235,14 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
                 isDayLoading = false
                 let hasVisibleItems = !groups.flatMap { self.visibleItems(from: $0.items) }.isEmpty
                 state = hasVisibleItems ? .data : .empty
+            }
+            .store(in: &subscriptions)
+
+        NotificationCenter.default.publisher(for: .plannerItemDidChange)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                guard let self else { return }
+                loadItems(for: weekStart, ignorePlannablesCache: true)
             }
             .store(in: &subscriptions)
     }

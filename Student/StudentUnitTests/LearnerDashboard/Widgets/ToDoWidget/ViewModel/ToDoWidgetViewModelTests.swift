@@ -383,6 +383,18 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
         XCTAssertEqual(interactor.markItemAsDoneCalled, true)
     }
 
+    // MARK: - plannerItemDidChange notification
+
+    func test_plannerItemDidChange_shouldTriggerRangedRefresh() {
+        makeTestee()
+        let countBefore = interactor.rangedRefreshCallCount
+
+        NotificationCenter.default.post(name: .plannerItemDidChange, object: nil)
+
+        waitUntil(shouldFail: true) { self.interactor.rangedRefreshCallCount == countBefore + 1 }
+        XCTAssertEqual(interactor.rangedRefreshCallCount, countBefore + 1)
+    }
+
     // MARK: - retryLoad
 
     func test_retryLoad_shouldSetLoadingState() {
