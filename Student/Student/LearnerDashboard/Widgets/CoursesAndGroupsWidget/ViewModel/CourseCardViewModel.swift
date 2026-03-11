@@ -97,14 +97,25 @@ struct CourseCardViewModel: Identifiable, Equatable {
     }
 
     func didTapAnnouncements(from controller: WeakViewController) {
-        let route: String
         if let announcementId = model.singleUnreadAnnouncementId {
-            route = "/courses/\(id)/announcements/\(announcementId)"
-        } else {
-            route = "/courses/\(id)/announcements"
-        }
+            router.route(
+                to: "/courses/\(id)/announcements/\(announcementId)",
+                from: controller,
+                options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
+            )
 
-        router.route(to: route, from: controller, options: .push)
+            // Wait a little to allow the details screen to open,
+            // and mark announcement as read before triggering a soft-refresh.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                didSaveChanges.send()
+            }
+        } else {
+            router.route(
+                to: "/courses/\(id)/announcements",
+                from: controller,
+                options: .push
+            )
+        }
     }
 
     static func == (lhs: CourseCardViewModel, rhs: CourseCardViewModel) -> Bool {

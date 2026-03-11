@@ -591,42 +591,13 @@ private func discussionViewController(
         let discussionId = params["discussionID"] ?? params["announcementID"]
     else { return nil }
 
-    if context.contextType == .course, !url.originIsModuleItemDetails {
-        return ModuleItemSequenceViewController.create(
-            env: environment,
-            courseID: context.id,
-            assetType: .discussion,
-            assetID: discussionId,
-            url: url
-        )
-    }
-
-    if OfflineModeAssembly.make().isOfflineModeEnabled() {
-        return DiscussionDetailsViewController
-            .create(
-                context: context,
-                topicID: discussionId,
-                env: environment
-            )
-    } else {
-        let isAnnouncement = (params["announcementID"] != nil)
-        let webPageModel = DiscussionDetailsWebViewModel(
-            discussionId: discussionId,
-            isAnnouncement: isAnnouncement
-        )
-        let viewModel = EmbeddedWebPageContainerViewModel(
-            context: context,
-            webPageModel: webPageModel,
-            env: environment
-        )
-        return CoreHostingController(
-            EmbeddedWebPageContainerScreen(
-                viewModel: viewModel,
-                isPullToRefreshEnabled: true
-            ),
-            env: environment
-        )
-    }
+    return DiscussionsAssembly.makeDiscussionDetailsViewController(
+        context: context,
+        discussionId: discussionId,
+        isAnnouncement: params["announcementID"] != nil,
+        url: url,
+        environment: environment
+    )
 }
 
 private func contextCard(url _: URLComponents, params: [String: String], userInfo _: [String: Any]?, env: AppEnvironment) -> UIViewController? {

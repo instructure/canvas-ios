@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 @testable import Core
 @testable import Student
 @testable import TestsFoundation
@@ -35,8 +36,20 @@ final class CourseCardViewModelTests: StudentTestCase {
     private lazy var testData = Self.testData
 
     private var testee: CourseCardViewModel!
+    private let didSaveChanges = PassthroughSubject<Void, Never>()
+
+    private var didSaveChangesCallCount = 0
+    private var subscriptions = Set<AnyCancellable>()
+
+    override func setUp() {
+        super.setUp()
+        didSaveChanges
+            .sink { [weak self] in self?.didSaveChangesCallCount += 1 }
+            .store(in: &subscriptions)
+    }
 
     override func tearDown() {
+        subscriptions.removeAll()
         testee = nil
         super.tearDown()
     }
@@ -138,6 +151,19 @@ final class CourseCardViewModelTests: StudentTestCase {
         XCTAssertEqual(router.lastRoutedOptions?.isModal, true)
     }
 
+    // MARK: - didTapCustomize
+
+    func test_didTapCustomize_shouldShowCustomizeCourseView() {
+        testee = makeViewModel(model: .make(id: testData.id))
+        let vc = UIViewController()
+
+        testee.didTapCustomize(showColorOverlay: true, from: .init(vc))
+
+        XCTAssertTrue(router.lastShownVC is CoreHostingController<CustomizeCourseView>)
+        XCTAssertEqual(router.lastShownFromVC, vc)
+        XCTAssertEqual(router.lastShownOptions?.isModal, true)
+    }
+
     // MARK: - didTapAnnouncements
 
     func test_didTapAnnouncements_withSingleUnreadAnnouncement_shouldRouteToAnnouncement() {
@@ -151,7 +177,11 @@ final class CourseCardViewModelTests: StudentTestCase {
 
         XCTAssertEqual(router.lastRoutedPath, "/courses/\(testData.id)/announcements/\(testData.announcementId)")
         XCTAssertEqual(router.lastRoutedFromVC, vc)
-        XCTAssertEqual(router.lastRoutedOptions, .push)
+        XCTAssertEqual(router.lastRoutedOptions?.isModal, true)
+
+        waitUntil(1, shouldFail: true) {
+            didSaveChangesCallCount == 1
+        }
     }
 
     func test_didTapAnnouncements_withMultipleUnreadAnnouncements_shouldRouteToAnnouncementsList() {
@@ -191,7 +221,7 @@ final class CourseCardViewModelTests: StudentTestCase {
     ) -> CourseCardViewModel {
         CourseCardViewModel(
             model: model,
-            didSaveChanges: .init(),
+            didSaveChanges: didSaveChanges,
             router: router
         )
     }
