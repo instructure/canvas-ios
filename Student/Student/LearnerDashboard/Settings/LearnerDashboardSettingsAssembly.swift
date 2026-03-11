@@ -28,8 +28,11 @@ enum LearnerDashboardSettingsAssembly {
     ) -> LearnerDashboardSettingsViewModel {
         let defaults = env.userDefaults ?? .fallback
         let username = env.currentSession?.userName ?? ""
-        let configs = defaults.learnerDashboardWidgetConfigs
-            ?? EditableWidgetIdentifier.makeDefaultConfigs()
+        let defaultConfigs = EditableWidgetIdentifier.makeDefaultConfigs()
+        let savedConfigs = defaults.learnerDashboardWidgetConfigs ?? []
+        let configs = defaultConfigs.map { defaultConfig in
+            savedConfigs.first { $0.id == defaultConfig.id } ?? defaultConfig
+        }
         let subSettingsViews = EditableWidgetIdentifier.allCases.reduce(into: [EditableWidgetIdentifier: AnyView]()) { result, id in
             result[id] = id.makeSubSettingsView(env: env)
         }

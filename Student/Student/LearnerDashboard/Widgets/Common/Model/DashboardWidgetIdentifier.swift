@@ -66,11 +66,13 @@ enum SystemWidgetIdentifier: String, CaseIterable {
 enum EditableWidgetIdentifier: String, Codable, CaseIterable {
     case helloWidget
     case coursesAndGroups
+    case weeklySummary
 
     func settingsTitle(username: String) -> String {
         switch self {
         case .helloWidget: String(localized: "Hello \(username)", bundle: .student)
         case .coursesAndGroups: String(localized: "Courses & Groups", bundle: .student)
+        case .weeklySummary: String(localized: "Weekly Summary", bundle: .student)
         }
     }
 
@@ -91,12 +93,14 @@ enum EditableWidgetIdentifier: String, Codable, CaseIterable {
                 config: config,
                 interactor: .live(coursesInteractor: coursesInteractor, env: .shared)
             )
+        case .weeklySummary:
+            WeeklySummaryWidgetViewModel(config: config)
         }
     }
 
     func makeSubSettingsView(env: AppEnvironment) -> AnyView? {
         switch self {
-        case .helloWidget:
+        case .helloWidget, .weeklySummary:
             nil
         case .coursesAndGroups:
             AnyView(CoursesAndGroupsWidgetSettingsView(viewModel: CoursesAndGroupsWidgetSettingsViewModel(env: env)))

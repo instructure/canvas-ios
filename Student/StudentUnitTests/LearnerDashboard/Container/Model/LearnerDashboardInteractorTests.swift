@@ -63,7 +63,7 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
         wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(received?.count, 7)
+        XCTAssertEqual(received?.count, 8)
         XCTAssertEqual(received?[0].id, SystemWidgetIdentifier.offlineSyncProgress.rawValue)
         XCTAssertEqual(received?[1].id, SystemWidgetIdentifier.fileUploadProgress.rawValue)
         XCTAssertEqual(received?[2].id, SystemWidgetIdentifier.courseInvitations.rawValue)
@@ -71,6 +71,7 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         XCTAssertEqual(received?[4].id, SystemWidgetIdentifier.conferences.rawValue)
         XCTAssertEqual(received?[5].id, EditableWidgetIdentifier.helloWidget.rawValue)
         XCTAssertEqual(received?[6].id, EditableWidgetIdentifier.coursesAndGroups.rawValue)
+        XCTAssertEqual(received?[7].id, EditableWidgetIdentifier.weeklySummary.rawValue)
     }
 
     // MARK: - Load widgets with saved configs
@@ -98,14 +99,15 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
         wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(received?.count, 7)
+        XCTAssertEqual(received?.count, 8)
         XCTAssertEqual(received?[0].id, SystemWidgetIdentifier.offlineSyncProgress.rawValue)
         XCTAssertEqual(received?[1].id, SystemWidgetIdentifier.fileUploadProgress.rawValue)
         XCTAssertEqual(received?[2].id, SystemWidgetIdentifier.courseInvitations.rawValue)
         XCTAssertEqual(received?[3].id, SystemWidgetIdentifier.globalAnnouncements.rawValue)
         XCTAssertEqual(received?[4].id, SystemWidgetIdentifier.conferences.rawValue)
-        XCTAssertEqual(received?[5].id, EditableWidgetIdentifier.coursesAndGroups.rawValue)
-        XCTAssertEqual(received?[6].id, EditableWidgetIdentifier.helloWidget.rawValue)
+        XCTAssertEqual(received?[5].id, EditableWidgetIdentifier.weeklySummary.rawValue)
+        XCTAssertEqual(received?[6].id, EditableWidgetIdentifier.coursesAndGroups.rawValue)
+        XCTAssertEqual(received?[7].id, EditableWidgetIdentifier.helloWidget.rawValue)
     }
 
     func test_loadWidgets_shouldReturnEditableWidgetsInOrder() {
@@ -131,10 +133,11 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
         wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(received?.count, 7)
+        XCTAssertEqual(received?.count, 8)
         XCTAssertEqual(received?[4].id, SystemWidgetIdentifier.conferences.rawValue)
-        XCTAssertEqual(received?[5].id, EditableWidgetIdentifier.coursesAndGroups.rawValue)
-        XCTAssertEqual(received?[6].id, EditableWidgetIdentifier.helloWidget.rawValue)
+        XCTAssertEqual(received?[5].id, EditableWidgetIdentifier.weeklySummary.rawValue)
+        XCTAssertEqual(received?[6].id, EditableWidgetIdentifier.coursesAndGroups.rawValue)
+        XCTAssertEqual(received?[7].id, EditableWidgetIdentifier.helloWidget.rawValue)
     }
 
     // MARK: - Private helpers
