@@ -687,31 +687,25 @@ class TodoInteractorLiveTests: CoreTestCase {
     func test_localObservation_updatesTodosAfterMarkAsDoneUpdatesCoreData() {
         // GIVEN
         let courses = [makeCourse(id: "1", name: "Course 1")]
-        let plannable = Plannable.save(
-            APIPlannable.make(plannable_id: ID("obs-1"), plannable_type: "assignment", plannable: .make(title: "Observed Item")),
-            userId: nil,
-            useCase: .todo,
-            in: databaseClient
-        )
-        let item = TodoItemViewModel(plannable)!
         let createRequest = CreatePlannerOverrideRequest(
             body: .init(plannable_type: "assignment", plannable_id: "obs-1", marked_complete: true)
         )
         api.mock(createRequest, value: APIPlannerOverride.make(id: "override-1", marked_complete: true))
-
         mockCourses(courses)
         mockPlannables([makePlannable(courseId: "1", plannableId: "obs-1", type: "assignment", title: "Observed Item")])
         XCTAssertFinish(testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false), timeout: 5)
+        guard let item = testee.todoGroups.value.flatMap({ $0.items }).first(where: { $0.plannableId == "obs-1" }) else {
+            return XCTFail("Expected item 'obs-1' to be present after refresh")
+        }
 
         // WHEN - mark item done (MarkPlannableItemDone.write() updates isMarkedComplete in CoreData)
         let updateExpectation = expectation(description: "todoGroups re-emitted after CoreData mark-done update")
         var subscription: AnyCancellable?
         subscription = testee.todoGroups
-            .dropFirst()
-            .first()
-            .sink { groups in
-                let allItems = groups.flatMap { $0.items }
-                XCTAssertEqual(allItems.first(where: { $0.plannableId == "obs-1" })?.markAsDoneState, .done)
+            .first { groups in
+                groups.flatMap { $0.items }.first { $0.plannableId == "obs-1" }?.markAsDoneState == .done
+            }
+            .sink { _ in
                 updateExpectation.fulfill()
                 subscription?.cancel()
             }
