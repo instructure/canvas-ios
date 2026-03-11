@@ -20,7 +20,7 @@ import Foundation
 
 enum MobileVerify {
     static func strategy(for host: String) -> MobileVerifyStrategy {
-        host.contains("horizon")
+        host.contains("horizon.cd.instructure.com")
             ? CareerMobileVerifyStrategy()
             : DefaultMobileVerifyStrategy()
     }
