@@ -19,7 +19,7 @@
 import Core
 import SwiftUI
 
-struct LearnerDashboardSettingsView: View {
+struct LearnerDashboardSettingsScreen: View {
     @Environment(\.viewController) private var viewController
     @Environment(\.dismiss) private var dismiss
     @State private var viewModel: LearnerDashboardSettingsViewModel
@@ -132,7 +132,7 @@ struct LearnerDashboardSettingsView: View {
 #if DEBUG
 
 #Preview("New Dashboard Enabled") {
-    LearnerDashboardSettingsView(
+    LearnerDashboardSettingsScreen(
         viewModel: {
             var defaults = SessionDefaults.fallback
             defaults.preferNewLearnerDashboard = true
@@ -149,7 +149,7 @@ struct LearnerDashboardSettingsView: View {
 }
 
 #Preview("New Dashboard Disabled") {
-    LearnerDashboardSettingsView(
+    LearnerDashboardSettingsScreen(
         viewModel: {
             var defaults = SessionDefaults.fallback
             defaults.preferNewLearnerDashboard = false

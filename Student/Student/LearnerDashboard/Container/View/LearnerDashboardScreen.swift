@@ -129,7 +129,7 @@ struct LearnerDashboardScreen: View {
         .popover(isPresented: $isSettingsPresented) {
             // NavigationStack is needed to add content to the toolbar
             NavigationStack {
-                LearnerDashboardSettingsView(viewModel: viewModel.makeSettingsViewModel())
+                LearnerDashboardSettingsScreen(viewModel: viewModel.makeSettingsViewModel())
             }
         }
     }
@@ -154,7 +154,7 @@ struct LearnerDashboardScreen: View {
         .popover(isPresented: $isSettingsPresented) {
             // NavigationStack is needed to add content to the toolbar
             NavigationStack {
-                LearnerDashboardSettingsView(viewModel: viewModel.makeSettingsViewModel())
+                LearnerDashboardSettingsScreen(viewModel: viewModel.makeSettingsViewModel())
             }
         }
     }
