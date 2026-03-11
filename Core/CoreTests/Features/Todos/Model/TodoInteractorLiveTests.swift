@@ -684,7 +684,7 @@ class TodoInteractorLiveTests: CoreTestCase {
 
     // MARK: - Local Observation Tests
 
-    func test_localObservation_updatesTodosAfterMarkAsDoneUpdatesCorData() {
+    func test_localObservation_updatesTodosAfterMarkAsDoneUpdatesCoreData() {
         // GIVEN
         let courses = [makeCourse(id: "1", name: "Course 1")]
         let plannable = Plannable.save(
