@@ -58,7 +58,7 @@ final class LearnerDashboardCourseSettingsViewModel {
             guard let index = visibleConfigs.firstIndex(of: config) else { return }
             var toggledConfig = visibleConfigs.remove(at: index)
             toggledConfig.isVisible = isVisible
-            hiddenConfigs.append(toggledConfig)
+            hiddenConfigs.insert(toggledConfig, at: 0)
         }
         saveAndNotify()
     }

@@ -98,6 +98,19 @@ final class LearnerDashboardCourseSettingsViewModelTests: XCTestCase {
         XCTAssertTrue(testee.visibleConfigs.contains { $0.id == .helloWidget })
     }
 
+    func test_toggleVisibility_hidingVisibleWidget_insertsAtTopOfHidden() {
+        let configs = [
+            DashboardWidgetConfig.make(id: .helloWidget, order: 0, isVisible: true),
+            DashboardWidgetConfig.make(id: .coursesAndGroups, order: 1, isVisible: false)
+        ]
+        testee = makeTestee(configs: configs)
+
+        testee.toggleVisibility(of: testee.visibleConfigs[0], to: false)
+
+        XCTAssertEqual(testee.hiddenConfigs[0].id, .helloWidget)
+        XCTAssertEqual(testee.hiddenConfigs[1].id, .coursesAndGroups)
+    }
+
     func test_toggleVisibility_savesToDefaultsAndCallsCallback() {
         let configs = [
             DashboardWidgetConfig.make(id: .helloWidget, order: 0, isVisible: true),
