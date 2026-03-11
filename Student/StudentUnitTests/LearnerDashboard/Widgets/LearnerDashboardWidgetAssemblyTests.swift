@@ -34,7 +34,7 @@ final class LearnerDashboardWidgetAssemblyTests: StudentTestCase {
 
     func test_makeCoursesInteractor_afterDeallocation_shouldCreateNewInstance() {
         var interactor1: CoursesInteractorLive? = LearnerDashboardWidgetAssembly.makeCoursesInteractor()
-        weak let weakInteractor1 = interactor1
+        weak var weakInteractor1 = interactor1
 
         interactor1 = nil
 
