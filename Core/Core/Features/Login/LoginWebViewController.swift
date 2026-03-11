@@ -199,7 +199,7 @@ public class LoginWebViewController: UIViewController, ErrorViewController {
             return
         }
 
-        let requestable = LoginWebRequest(authMethod: method, clientID: clientID, provider: authenticationProvider)
+        let requestable = LoginWebRequest(authMethod: method, clientID: clientID, provider: authenticationProvider, host: host)
         if var request = try? requestable.urlRequest(relativeTo: url, accessToken: nil, actAsUserID: nil) {
             request.timeoutInterval = 30
             webView.load(request)
@@ -269,7 +269,7 @@ extension LoginWebViewController: WKNavigationDelegate {
         // Wait for authentication code
         if let mobileVerify = mobileVerifyModel,
            let baseURL = mobileVerify.base_url,
-           let code = MobileVerify.strategy.getAuthenticationCode(client: mobileVerify, url: url) {
+           let code = MobileVerify.strategy(for: host).getAuthenticationCode(client: mobileVerify, url: url) {
 
             task?.cancel()
             task = API().makeRequest(PostLoginOAuthRequest(client: mobileVerify, code: code)) { [weak self] (response, _, error) in performUIUpdate {

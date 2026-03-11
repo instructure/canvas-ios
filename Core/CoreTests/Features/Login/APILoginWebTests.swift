@@ -21,23 +21,23 @@ import XCTest
 
 class APILoginWebTests: CoreTestCase {
     func testHeaders() {
-        XCTAssertEqual(LoginWebRequest(authMethod: .normalLogin, clientID: "1", provider: nil).headers, [
+        XCTAssertEqual(LoginWebRequest(authMethod: .normalLogin, clientID: "1", provider: nil, host: "").headers, [
             HttpHeader.userAgent: UserAgent.safari.description
         ])
-        XCTAssertEqual(LoginWebRequest(authMethod: .siteAdminLogin, clientID: "1", provider: nil).headers, [
+        XCTAssertEqual(LoginWebRequest(authMethod: .siteAdminLogin, clientID: "1", provider: nil, host: "").headers, [
             HttpHeader.userAgent: UserAgent.safari.description,
             HttpHeader.cookie: "canvas_sa_delegated=1"
         ])
     }
 
     func testQuery() {
-        XCTAssertEqual(LoginWebRequest(authMethod: .normalLogin, clientID: "1", provider: nil).query, [
+        XCTAssertEqual(LoginWebRequest(authMethod: .normalLogin, clientID: "1", provider: nil, host: "").query, [
             .value("client_id", "1"),
             .value("response_type", "code"),
             .value("redirect_uri", "https://sso.canvaslms.com/canvas/login"),
             .value("mobile", "1")
         ])
-        XCTAssertEqual(LoginWebRequest(authMethod: .canvasLogin, clientID: "1", provider: "p").query, [
+        XCTAssertEqual(LoginWebRequest(authMethod: .canvasLogin, clientID: "1", provider: "p", host: "").query, [
             .value("client_id", "1"),
             .value("response_type", "code"),
             .value("redirect_uri", "https://sso.canvaslms.com/canvas/login"),

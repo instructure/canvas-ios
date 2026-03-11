@@ -19,7 +19,11 @@
 import Foundation
 
 enum MobileVerify {
-    static var strategy: MobileVerifyStrategy = DefaultMobileVerifyStrategy()
+    static func strategy(for host: String) -> MobileVerifyStrategy {
+        host.contains("horizon")
+            ? CareerMobileVerifyStrategy()
+            : DefaultMobileVerifyStrategy()
+    }
 }
 
 protocol MobileVerifyStrategy {
@@ -27,6 +31,18 @@ protocol MobileVerifyStrategy {
     var redirectUri: String { get }
 
     func getAuthenticationCode(client: APIVerifyClient, url: URL) -> String?
+}
+
+private struct CareerMobileVerifyStrategy: MobileVerifyStrategy {
+    let urlString =  API.loginURLString(path: "/api/v1/mobile_verify.json")
+    let redirectUri = "https://canvas/login"
+
+    func getAuthenticationCode(client: APIVerifyClient, url: URL) -> String? {
+        guard let components = URLComponents(url: url, resolvingAgainstBaseURL: false), let queryItems = components.queryItems else {
+            return nil
+        }
+        return  queryItems.first(where: { $0.name == "code" })?.value
+    }
 }
 
 private struct DefaultMobileVerifyStrategy: MobileVerifyStrategy {

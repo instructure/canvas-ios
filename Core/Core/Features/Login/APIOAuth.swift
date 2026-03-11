@@ -124,7 +124,7 @@ struct GetMobileVerifyRequest: APIRequestable {
         if let overrideUrl = ProcessInfo.processInfo.environment["OVERRIDE_MOBILE_VERIFY_URL"] {
             return overrideUrl
         }
-        return MobileVerify.strategy.urlString
+        return MobileVerify.strategy(for: domain).urlString
     }
 
     var query: [APIQueryItem] {

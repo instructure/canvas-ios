@@ -64,6 +64,61 @@ final class DefaultMobileVerifyStrategyTests: XCTestCase {
     }
 }
 
+final class CareerMobileVerifyStrategyTests: XCTestCase {
+
+    private let testee = MobileVerify.strategy(for: "horizon.instructure.com")
+    private let client = APIVerifyClient(
+        authorized: true,
+        base_url: URL(string: "https://some.domain.com"),
+        client_id: "some-id",
+        client_secret: "some-secret"
+    )
+
+    // MARK: - urlString
+
+    func test_urlString() {
+        XCTAssertEqual(testee.urlString, "https://sso.canvaslms.com/api/v1/mobile_verify.json")
+    }
+
+    // MARK: - redirectUri
+
+    func test_redirectUri() {
+        XCTAssertEqual(testee.redirectUri, "https://canvas/login")
+    }
+
+    // MARK: - getAuthenticationCode
+
+    func test_getAuthenticationCode_whenCodeParamExists_shouldReturnCode() {
+        let url = URL(string: "https://canvas/login?code=some-code")!
+        XCTAssertEqual(testee.getAuthenticationCode(client: client, url: url), "some-code")
+    }
+
+    func test_getAuthenticationCode_whenCodeParamExistsWithDifferentHost_shouldReturnCode() {
+        let url = URL(string: "https://other.domain.com/path?code=some-code")!
+        XCTAssertEqual(testee.getAuthenticationCode(client: client, url: url), "some-code")
+    }
+
+    func test_getAuthenticationCode_whenCodeParamExistsWithDifferentPath_shouldReturnCode() {
+        let url = URL(string: "https://canvas/other/path?code=some-code")!
+        XCTAssertEqual(testee.getAuthenticationCode(client: client, url: url), "some-code")
+    }
+
+    func test_getAuthenticationCode_whenCodeParamMissing_shouldReturnNil() {
+        let url = URL(string: "https://canvas/login?error=access_denied")!
+        XCTAssertEqual(testee.getAuthenticationCode(client: client, url: url), nil)
+    }
+
+    func test_getAuthenticationCode_whenNoQueryParams_shouldReturnNil() {
+        let url = URL(string: "https://canvas/login")!
+        XCTAssertEqual(testee.getAuthenticationCode(client: client, url: url), nil)
+    }
+
+    func test_getAuthenticationCode_whenMultipleQueryParams_shouldReturnCodeValue() {
+        let url = URL(string: "https://canvas/login?state=some-state&code=some-code&other=value")!
+        XCTAssertEqual(testee.getAuthenticationCode(client: client, url: url), "some-code")
+    }
+}
+
 final class UrnIetfMobileVerifyStrategyTests: XCTestCase {
 
     private let testee = MobileVerify.urnIetfStrategy

@@ -23,6 +23,7 @@ struct LoginWebRequest: APIRequestable {
     let authMethod: AuthenticationMethod
     let clientID: String
     let provider: String?
+    let host: String
 
     let path = "/login/oauth2/auth"
     let shouldAddNoVerifierQuery = false
@@ -31,7 +32,7 @@ struct LoginWebRequest: APIRequestable {
         var items: [APIQueryItem] = [
             .value("client_id", clientID),
             .value("response_type", "code"),
-            .value("redirect_uri", MobileVerify.strategy.redirectUri),
+            .value("redirect_uri", MobileVerify.strategy(for: host).redirectUri),
             .value("mobile", "1")
         ]
 

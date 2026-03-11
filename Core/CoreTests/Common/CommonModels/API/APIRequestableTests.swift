@@ -215,7 +215,7 @@ class APIRequestableTests: XCTestCase {
     }
 
     func testUrlRequestIgnoresNoVerifierParameterForExcludedRequest() throws {
-        let noVerifierRequest = LoginWebRequest(authMethod: .siteAdminLogin, clientID: "", provider: "")
+        let noVerifierRequest = LoginWebRequest(authMethod: .siteAdminLogin, clientID: "", provider: "", host: "")
 
         let request = try noVerifierRequest.urlRequest(relativeTo: baseURL, accessToken: "token", actAsUserID: "123")
 
