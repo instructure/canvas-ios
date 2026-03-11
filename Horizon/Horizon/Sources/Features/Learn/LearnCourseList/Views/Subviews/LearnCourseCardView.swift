@@ -21,7 +21,6 @@ import SwiftUI
 
 struct LearnCourseCardView: View {
     let model: CourseListWidgetModel
-    let width: CGFloat
     let onTapCourseDetails: () -> Void
     let onTapLearningObject: ((String, URL?) -> Void)?
 
@@ -47,14 +46,9 @@ struct LearnCourseCardView: View {
             }
             .padding([.horizontal, .bottom], .huiSpaces.space24)
         }
-
         .background(Color.huiColors.surface.pageSecondary)
         .huiCornerRadius(level: .level5)
         .huiElevation(level: .level4)
-        .scrollTransition(.animated) { content, phase in
-            content
-                .scaleEffect(phase.isIdentity ? 1 : 0.9)
-        }
     }
 
     private var courseDetailsButton: some View {
@@ -67,13 +61,11 @@ struct LearnCourseCardView: View {
                 coursePercentageView
             }
         }
+        .buttonStyle(.plain)
     }
 
     private var courseImage: some View {
-        CourseImageView(
-            width: width,
-            url: model.imageURL
-        )
+        CourseImageView(url: model.imageURL)
     }
 
     private var courseNameView: some View {
@@ -117,6 +109,6 @@ struct LearnCourseCardView: View {
             url: nil
         )
     )
-    LearnCourseCardView(model: model, width: 400, onTapCourseDetails: { }, onTapLearningObject: { _, _ in })
+    LearnCourseCardView(model: model, onTapCourseDetails: { }, onTapLearningObject: { _, _ in })
         .padding()
 }
