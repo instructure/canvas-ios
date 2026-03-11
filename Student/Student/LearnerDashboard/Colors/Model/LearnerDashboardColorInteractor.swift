@@ -56,13 +56,8 @@ extension LearnerDashboardColorInteractorLive {
         let courseColors = CourseColorsInteractorLive.colors
         let additionalColors = [
             CourseColorData(
-                persistentId: "white",
-                color: UIColor.backgroundLightest.variantForLightMode,
-                name: String(localized: "White", bundle: .core, comment: "This is a name of a color.")
-            ),
-            CourseColorData(
                 persistentId: "black",
-                color: UIColor.backgroundLightest.variantForDarkMode,
+                color: UIColor.backgroundDarkest,
                 name: String(localized: "Black", bundle: .core, comment: "This is a name of a color.")
             )
         ]

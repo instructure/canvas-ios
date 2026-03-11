@@ -64,7 +64,8 @@ struct LearnerDashboardSettingsScreen: View {
             }
             .paddingStyle(.horizontal, .standard)
         }
-        .tint(viewModel.mainColor)
+        .accentColor(Brand.shared.primary.asColor) // required for toggle items
+        .tint(Brand.shared.primary.asColor)
         .background(Color.backgroundLight.ignoresSafeArea())
         .navigationTitle(String(localized: "Customize Dashboard", bundle: .student), style: .modal)
         .navigationBarTitleDisplayMode(.inline)
@@ -112,16 +113,11 @@ struct LearnerDashboardSettingsScreen: View {
             Button {
                 viewModel.letUsKnow(from: viewController.value)
             } label: {
-                HStack(spacing: 6) {
-                    Text("Let us know!", bundle: .student)
-                        .font(.regular14, lineHeight: .normal)
-
-                    Image.externalLinkLine
-                }
-                .padding(.vertical, 4)
-                .padding(.leading, 12)
-                .padding(.trailing, 8)
-                .foregroundStyle(.tint)
+                InstUI.PillContent(
+                    title: String(localized: "Let us know!", bundle: .student),
+                    trailingIcon: .externalLinkLine,
+                    size: .height30
+                )
             }
             .buttonStyle(.pillTintOutlined)
         }
