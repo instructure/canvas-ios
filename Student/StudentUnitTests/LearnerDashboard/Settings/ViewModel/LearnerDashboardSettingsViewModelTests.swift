@@ -136,7 +136,7 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
     private func makeCourseSettingsViewModel() -> LearnerDashboardCourseSettingsViewModel {
         LearnerDashboardCourseSettingsViewModel(
             userDefaults: testDefaults,
-            configs: LearnerDashboardWidgetAssembly.makeDefaultEditableWidgetConfigs(),
+            configs: EditableWidgetIdentifier.makeDefaultConfigs(),
             username: "",
             onConfigsChanged: {}
         )

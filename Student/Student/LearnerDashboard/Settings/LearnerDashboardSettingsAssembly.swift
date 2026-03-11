@@ -30,7 +30,7 @@ enum LearnerDashboardSettingsAssembly {
         let defaults = env.userDefaults ?? .fallback
         let username = env.currentSession?.userName ?? ""
         let configs = defaults.learnerDashboardWidgetConfigs
-            ?? LearnerDashboardWidgetAssembly.makeDefaultEditableWidgetConfigs()
+            ?? EditableWidgetIdentifier.makeDefaultConfigs()
         let coursesAndGroupsSettingsVM = CoursesAndGroupsWidgetSettingsViewModel(env: env)
         let subSettingsViews: [EditableWidgetIdentifier: AnyView] = [
             .coursesAndGroups: AnyView(CoursesAndGroupsWidgetSettingsView(viewModel: coursesAndGroupsSettingsVM))

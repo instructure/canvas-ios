@@ -25,17 +25,12 @@ enum LearnerDashboardAssembly {
         let colorInteractor = LearnerDashboardColorInteractorLive(
             defaults: AppEnvironment.shared.userDefaults ?? .fallback
         )
+        let coursesInteractor = LearnerDashboardWidgetAssembly.makeCoursesInteractor()
         let systemFactory: (SystemWidgetIdentifier) -> any DashboardWidgetViewModel = { widgetId in
-            LearnerDashboardWidgetAssembly.makeSystemWidgetViewModel(
-                for: widgetId,
-                snackBarViewModel: snackBarViewModel
-            )
+            widgetId.makeViewModel(snackBarViewModel: snackBarViewModel, coursesInteractor: coursesInteractor)
         }
         let editableFactory: (DashboardWidgetConfig) -> any DashboardWidgetViewModel = { config in
-            LearnerDashboardWidgetAssembly.makeEditableWidgetViewModel(
-                config: config,
-                snackBarViewModel: snackBarViewModel
-            )
+            config.id.makeViewModel(config: config, snackBarViewModel: snackBarViewModel, coursesInteractor: coursesInteractor)
         }
         let interactor = LearnerDashboardInteractorLive(
             systemWidgetFactory: systemFactory,

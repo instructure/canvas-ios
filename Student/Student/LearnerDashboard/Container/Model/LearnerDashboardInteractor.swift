@@ -45,7 +45,7 @@ final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
             .map { [userDefaults, systemWidgetFactory, editableWidgetFactory] _ in
                 let systemVMs = SystemWidgetIdentifier.allCases.map { systemWidgetFactory($0) }
 
-                let defaultConfigs = LearnerDashboardWidgetAssembly.makeDefaultEditableWidgetConfigs()
+                let defaultConfigs = EditableWidgetIdentifier.makeDefaultConfigs()
                 let savedConfigs = userDefaults.learnerDashboardWidgetConfigs ?? []
                 // Merge saved and default configs so that widgets added in future app versions
                 // always appear even when the user already has a saved configuration.

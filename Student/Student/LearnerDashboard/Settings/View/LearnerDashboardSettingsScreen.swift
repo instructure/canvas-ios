@@ -136,7 +136,7 @@ struct LearnerDashboardSettingsScreen: View {
         viewModel: {
             var defaults = SessionDefaults.fallback
             defaults.preferNewLearnerDashboard = true
-            let configs = LearnerDashboardWidgetAssembly.makeDefaultEditableWidgetConfigs()
+            let configs = EditableWidgetIdentifier.makeDefaultConfigs()
             let courseSettingsVM = LearnerDashboardCourseSettingsViewModel(
                 userDefaults: defaults,
                 configs: configs,
@@ -153,7 +153,7 @@ struct LearnerDashboardSettingsScreen: View {
         viewModel: {
             var defaults = SessionDefaults.fallback
             defaults.preferNewLearnerDashboard = false
-            let configs = LearnerDashboardWidgetAssembly.makeDefaultEditableWidgetConfigs()
+            let configs = EditableWidgetIdentifier.makeDefaultConfigs()
             let courseSettingsVM = LearnerDashboardCourseSettingsViewModel(
                 userDefaults: defaults,
                 configs: configs,

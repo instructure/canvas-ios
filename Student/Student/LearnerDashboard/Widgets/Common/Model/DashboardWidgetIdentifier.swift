@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import Foundation
 
 // Widgets that appear at the top of the dashboard in declaration order when they have content to show.
@@ -26,6 +27,37 @@ enum SystemWidgetIdentifier: String, CaseIterable {
     case courseInvitations
     case globalAnnouncements
     case conferences
+
+    func makeViewModel(
+        snackBarViewModel: SnackBarViewModel,
+        coursesInteractor: CoursesInteractor
+    ) -> any DashboardWidgetViewModel {
+        switch self {
+        case .offlineSyncProgress:
+            OfflineSyncProgressWidgetViewModel(
+                dashboardViewModel: DashboardOfflineSyncProgressCardAssembly.makeViewModel()
+            )
+        case .fileUploadProgress:
+            FileUploadProgressWidgetViewModel(
+                router: AppEnvironment.shared.router,
+                listViewModel: FileUploadNotificationCardListViewModel()
+            )
+        case .courseInvitations:
+            CourseInvitationsWidgetViewModel(
+                interactor: coursesInteractor,
+                snackBarViewModel: snackBarViewModel
+            )
+        case .globalAnnouncements:
+            GlobalAnnouncementsWidgetViewModel(
+                interactor: .live(env: .shared)
+            )
+        case .conferences:
+            ConferencesWidgetViewModel(
+                interactor: .live(coursesInteractor: coursesInteractor, env: .shared),
+                snackBarViewModel: snackBarViewModel
+            )
+        }
+    }
 }
 
 // User-configurable widgets whose visibility and order can be changed in dashboard settings.
@@ -38,6 +70,34 @@ enum EditableWidgetIdentifier: String, Codable, CaseIterable {
         switch self {
         case .helloWidget: String(localized: "Hello \(username)", bundle: .student)
         case .coursesAndGroups: String(localized: "Courses & Groups", bundle: .student)
+        }
+    }
+
+    func makeViewModel(
+        config: DashboardWidgetConfig,
+        snackBarViewModel: SnackBarViewModel,
+        coursesInteractor: CoursesInteractor
+    ) -> any DashboardWidgetViewModel {
+        switch self {
+        case .helloWidget:
+            HelloWidgetViewModel(
+                config: config,
+                interactor: .live(),
+                dayPeriodProvider: .init()
+            )
+        case .coursesAndGroups:
+            CoursesAndGroupsWidgetViewModel(
+                config: config,
+                interactor: .live(coursesInteractor: coursesInteractor, env: .shared)
+            )
+        }
+    }
+}
+
+extension EditableWidgetIdentifier {
+    static func makeDefaultConfigs() -> [DashboardWidgetConfig] {
+        allCases.enumerated().map { index, id in
+            DashboardWidgetConfig(id: id, order: index, isVisible: true)
         }
     }
 }
