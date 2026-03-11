@@ -69,7 +69,6 @@ struct ToDoWidgetView: View {
                 .accessibilityHidden(true)
             }
         }
-        .snackBar(viewModel: viewModel.snackBarViewModel)
     }
 
     // MARK: - Title Row
