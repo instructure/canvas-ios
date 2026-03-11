@@ -73,7 +73,7 @@ final class LearnerDashboardColorInteractorTests: XCTestCase {
         testee = LearnerDashboardColorInteractorLive(defaults: userDefaults)
 
         let courseColorCount = CourseColorsInteractorLive.colors.count
-        let additionalColorCount = 2 // white and black
+        let additionalColorCount = 1 // black
         XCTAssertEqual(testee.availableColors.count, courseColorCount + additionalColorCount)
     }
 

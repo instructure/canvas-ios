@@ -64,8 +64,8 @@ struct LearnerDashboardSettingsScreen: View {
             }
             .paddingStyle(.horizontal, .standard)
         }
-        .accentColor(Brand.shared.primary.asColor) // required for toggle items
-        .tint(Brand.shared.primary.asColor)
+        .accentColor(.brandPrimary) // required for toggle items
+        .tint(.brandPrimary)
         .background(Color.backgroundLight.ignoresSafeArea())
         .navigationTitle(String(localized: "Customize Dashboard", bundle: .student), style: .modal)
         .navigationBarTitleDisplayMode(.inline)
@@ -79,10 +79,12 @@ struct LearnerDashboardSettingsScreen: View {
                     label
                 }
                 .buttonStyle(.borderedProminent)
+                .tint(.brandPrimary)
             } else {
                 Button(action: dismiss.callAsFunction) {
                     label
                 }
+                .tint(.brandPrimary)
             }
         }
     }
