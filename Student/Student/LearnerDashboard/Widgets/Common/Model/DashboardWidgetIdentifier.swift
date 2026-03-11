@@ -18,6 +18,7 @@
 
 import Core
 import Foundation
+import SwiftUI
 
 // Widgets that appear at the top of the dashboard in declaration order when they have content to show.
 // The user cannot reorder or hide these.
@@ -90,6 +91,15 @@ enum EditableWidgetIdentifier: String, Codable, CaseIterable {
                 config: config,
                 interactor: .live(coursesInteractor: coursesInteractor, env: .shared)
             )
+        }
+    }
+
+    func makeSubSettingsView(env: AppEnvironment) -> AnyView? {
+        switch self {
+        case .helloWidget:
+            nil
+        case .coursesAndGroups:
+            AnyView(CoursesAndGroupsWidgetSettingsView(viewModel: CoursesAndGroupsWidgetSettingsViewModel(env: env)))
         }
     }
 }

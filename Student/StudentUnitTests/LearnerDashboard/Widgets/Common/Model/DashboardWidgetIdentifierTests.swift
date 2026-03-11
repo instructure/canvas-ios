@@ -135,4 +135,14 @@ final class DashboardWidgetIdentifierTests: StudentTestCase {
         )
         XCTAssertTrue(viewModel is CoursesAndGroupsWidgetViewModel)
     }
+
+    // MARK: - EditableWidgetIdentifier.makeSubSettingsView
+
+    func test_makeSubSettingsView_helloWidget_returnsNil() {
+        XCTAssertNil(EditableWidgetIdentifier.helloWidget.makeSubSettingsView(env: env))
+    }
+
+    func test_makeSubSettingsView_coursesAndGroups_returnsView() {
+        XCTAssertNotNil(EditableWidgetIdentifier.coursesAndGroups.makeSubSettingsView(env: env))
+    }
 }
