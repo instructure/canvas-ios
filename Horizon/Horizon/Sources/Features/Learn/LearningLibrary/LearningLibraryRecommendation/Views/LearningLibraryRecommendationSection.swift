@@ -21,6 +21,7 @@ import SwiftUI
 
 struct LearningLibraryRecommendationSection: View {
     let items: [LearningLibraryCardModel]
+    @State var viewModel: LearningLibraryRecommendationListViewModel
     @State private var scrollPosition: String?
 
     private var currentIndex: Int {
@@ -128,6 +129,7 @@ struct LearningLibraryRecommendationSection: View {
     }
 }
 
+#if DEBUG
 #Preview {
     ScrollView {
         LearningLibraryRecommendationSection(
@@ -143,8 +145,9 @@ struct LearningLibraryRecommendationSection: View {
                     isBookmarked: true,
                     numberOfUnits: 100
                 )
-            }
+            }, viewModel: LearningLibraryRecommendationListViewModel(interactor: LearningLibraryInteractorPreview())
         )
     }
     .background(Color.huiColors.surface.pagePrimary)
 }
+#endif

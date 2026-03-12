@@ -31,7 +31,10 @@ struct LearningLibraryRecommendationListView: View {
 
     private var contentView: some View {
         Section(header: collectionView) {
-            LearningLibraryRecommendationSection(items: viewModel.recommendedItems)
+            LearningLibraryRecommendationSection(
+                items: viewModel.recommendedItems,
+                viewModel: viewModel
+            )
         }
         .plainListRowStyle()
         .animation(.smooth, value: viewModel.recommendedItems)
