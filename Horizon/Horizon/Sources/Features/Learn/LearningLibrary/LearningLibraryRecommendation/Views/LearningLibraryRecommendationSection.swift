@@ -120,10 +120,11 @@ struct LearningLibraryRecommendationSection: View {
     private func stepButton(image: Image, disabled: Bool, action: @escaping () -> Void) -> some View {
         HorizonUI.IconButton(
             image,
-            type: .white,
+            type: .whiteGrayOutline,
             action: action
         )
         .disabled(disabled)
+        .opacity(disabled ? 0.5 : 1)
     }
 }
 

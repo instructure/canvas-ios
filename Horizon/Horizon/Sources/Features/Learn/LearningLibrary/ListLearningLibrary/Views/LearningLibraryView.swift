@@ -34,10 +34,18 @@ struct LearningLibraryView: View {
     @Environment(\.viewController) private var viewController
     @State private var isShowHeader: Bool = true
     @State private var isShowDivider: Bool = false
+    private let recommendationListView: LearningLibraryRecommendationListView
 
     // MARK: - Dependencies
 
     @State var viewModel: LearningLibraryViewModel
+
+    // MARK: - Init
+
+    init(viewModel: LearningLibraryViewModel) {
+        _viewModel = State(initialValue: viewModel)
+        self.recommendationListView = LearningLibraryRecommendationAssembly.makeView()
+    }
 
     var body: some View {
         learningLibraryView
@@ -99,7 +107,7 @@ struct LearningLibraryView: View {
 
     private var listLibraryView: some View {
         List {
-            LearningLibraryRecommendationListView()
+            recommendationListView
                 .plainListRowStyle()
             Section(header: Rectangle().fill(Color.clear).frame(height: 0)) {
                 collectionView

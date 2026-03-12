@@ -69,6 +69,12 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
             .eraseToAnyPublisher()
     }
 
+    func getRecommendations(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error> {
+        Just(mockItems)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+
     private var mockItems: [LearningLibraryCardModel] {
         [
             LearningLibraryCardModel(

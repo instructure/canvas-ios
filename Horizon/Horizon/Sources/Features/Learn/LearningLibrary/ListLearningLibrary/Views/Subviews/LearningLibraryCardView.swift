@@ -55,6 +55,11 @@ struct LearningLibraryCardView: View {
                     titleView
                         .padding(.top, .huiSpaces.space16)
                         .padding(.bottom, .huiSpaces.space12)
+
+                    if let recommendationText = model.recommendationText {
+                        recommendationView(text: recommendationText)
+                            .padding(.bottom, .huiSpaces.space16)
+                    }
                 }
             }
             .buttonStyle(.plain)
@@ -147,6 +152,14 @@ struct LearningLibraryCardView: View {
         Text(model.name)
             .huiTypography(.labelLargeBold)
             .foregroundStyle(Color.huiColors.text.body)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .multilineTextAlignment(.leading)
+    }
+
+    private func recommendationView(text: String) -> some View {
+        Text(text)
+            .huiTypography(.p2)
+            .foregroundStyle(Color.huiColors.text.dataPoint)
             .frame(maxWidth: .infinity, alignment: .leading)
             .multilineTextAlignment(.leading)
     }

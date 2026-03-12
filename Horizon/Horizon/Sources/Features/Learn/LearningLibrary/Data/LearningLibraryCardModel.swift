@@ -37,6 +37,11 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
     let moduleItemID: String?
     let canvasUrl: URL?
     let completionPercentage: Double
+    // Recommendation
+    var primaryReason: RecommendationReason?
+    var sourceCourseId: String?
+    var sourceCourseName: String?
+    var sourceSkillName: String?
 
     init(
         id: String,
@@ -94,6 +99,10 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         self.moduleItemID = entity.canvasModuleItemId
         self.canvasUrl = entity.canvasUrl
         self.completionPercentage = entity.completionPercentage
+        self.primaryReason = RecommendationReason(rawValue: entity.primaryReason.defaultToEmpty)
+        self.sourceCourseId = entity.sourceCourseId
+        self.sourceCourseName = entity.sourceCourseName
+        self.sourceSkillName = entity.sourceSkillName
     }
 
     init(for response: LearningLibraryItemsResponse) {
@@ -132,5 +141,26 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
 
     var shouldShowProgressStatus: Bool {
         itemType == .course
+    }
+
+    var recommendationText: String? {
+        guard let primaryReason else { return nil }
+        switch primaryReason {
+        case .pastLearnings:
+            return String(format: String(localized: "A next step after %@"), arguments: [sourceCourseName.defaultToEmpty])
+        case .bookmarkedItems:
+            return String(localized: "Related to content you're interested in")
+        case .existingSkills:
+            return String(format: String(localized: "To deepen your skills in %@"), arguments: [sourceSkillName.defaultToEmpty])
+        case .popularity:
+            return String(localized: "Popular with learners at your organization")
+        }
+    }
+
+    enum RecommendationReason: String {
+        case pastLearnings = "PAST_LEARNINGS"      // Recommended based on previously completed courses
+        case bookmarkedItems = "BOOKMARKED_ITEMS"  // Recommended based on bookmarked courses
+        case existingSkills = "EXISTING_SKILLS"    // Recommended based on the user's skill profile
+        case popularity = "POPULARITY"             // Recommended because it's popular among other learners
     }
 }

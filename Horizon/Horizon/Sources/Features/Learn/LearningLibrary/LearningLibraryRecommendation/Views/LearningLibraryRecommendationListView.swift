@@ -16,34 +16,41 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import HorizonUI
 import SwiftUI
 
 struct LearningLibraryRecommendationListView: View {
-    @State var viewModel = LearningLibraryRecommendationListViewModel()
+    @State var viewModel: LearningLibraryRecommendationListViewModel
+
     var body: some View {
-//        VStack {
-            ForEach(viewModel.sections) { section in
-                Section(header: collectionView) {
-                    LearningLibraryRecommendationSection(items: section.items)
-                }
-                .plainListRowStyle()
-            }
-//        }
+        if viewModel.recommendedItems.isNotEmpty {
+            contentView
+        }
+    }
+
+    private var contentView: some View {
+        Section(header: collectionView) {
+            LearningLibraryRecommendationSection(items: viewModel.recommendedItems)
+        }
+        .plainListRowStyle()
+        .animation(.smooth, value: viewModel.recommendedItems)
     }
 
     private var collectionView: some View {
         HStack(spacing: .huiSpaces.space8) {
-            Image.huiIcons.stacksFilled
-                .foregroundStyle(Color.huiColors.primitives.grey45)
-                .padding(.huiSpaces.space8)
-                .background(Color.huiColors.primitives.grey12)
+            Image.huiIcons.aiFilled
+                .foregroundStyle(Color.huiColors.icon.default)
+                .frame(width: 30, height: 30)
+                .background(Color.huiColors.surface.cardPrimary.opacity(0.85))
+                .background(Color.huiColors.surface.igniteAIPrimaryGradient)
                 .clipShape(.circle)
-            Text("Collections")
+            Text("Recommended for you")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundStyle(Color.huiColors.text.dataPoint)
                 .huiTypography(.labelMediumBold)
         }
         .padding(.horizontal, .huiSpaces.space24)
+        .padding(.bottom, .huiSpaces.space16)
     }
 }
