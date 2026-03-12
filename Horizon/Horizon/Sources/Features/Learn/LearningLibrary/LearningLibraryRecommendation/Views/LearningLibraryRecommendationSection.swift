@@ -22,27 +22,6 @@ import SwiftUI
 struct LearningLibraryRecommendationSection: View {
     let items: [LearningLibraryCardModel]
     @State var viewModel: LearningLibraryRecommendationListViewModel
-    @State private var scrollPosition: String?
-
-    private var currentIndex: Int {
-        guard let scrollPosition,
-              let index = items.firstIndex(where: { $0.id == scrollPosition }) else {
-            return 0
-        }
-        return index
-    }
-
-    private var isAtStart: Bool {
-        currentIndex == 0
-    }
-
-    private var isAtEnd: Bool {
-        currentIndex == items.count - 1
-    }
-
-    private var shouldShowButtons: Bool {
-        items.count > 1
-    }
 
     var body: some View {
         VStack(spacing: .zero) {
@@ -65,12 +44,12 @@ struct LearningLibraryRecommendationSection: View {
                 .frame(maxWidth: .infinity, alignment: .center)
             }
             .scrollTargetBehavior(.viewAligned)
-            .scrollPosition(id: $scrollPosition)
-            .animation(.smooth, value: scrollPosition)
+            .scrollPosition(id: $viewModel.scrollPosition)
+            .animation(.smooth, value: viewModel.scrollPosition)
             .contentMargins(.horizontal, .huiSpaces.space24, for: .scrollContent)
             .plainListRowStyle()
 
-            if shouldShowButtons {
+            if viewModel.shouldShowButtons {
                 HStack(spacing: HorizonUI.spaces.space16) {
                     previousButton
                     nextButton
@@ -85,9 +64,11 @@ struct LearningLibraryRecommendationSection: View {
     private var previousButton: some View {
         stepButton(
             image: Image.huiIcons.chevronLeft,
-            disabled: isAtStart
+            disabled: viewModel.isAtStart
         ) {
-            goToPreviousCard()
+            withAnimation(.smooth(duration: 0.3)) {
+                viewModel.goToPreviousCard()
+            }
         }
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel(String(localized: "Go to previous item"))
@@ -96,26 +77,14 @@ struct LearningLibraryRecommendationSection: View {
     private var nextButton: some View {
         stepButton(
             image: Image.huiIcons.chevronRight,
-            disabled: isAtEnd
+            disabled: viewModel.isAtEnd
         ) {
-            goToNextCard()
+            withAnimation(.smooth(duration: 0.3)) {
+                viewModel.goToNextCard()
+            }
         }
         .accessibilityAddTraits(.isButton)
         .accessibilityLabel(String(localized: "Go to next item"))
-    }
-
-    private func goToPreviousCard() {
-        let newIndex = max(0, currentIndex - 1)
-        withAnimation(.smooth(duration: 0.3)) {
-            scrollPosition = items[newIndex].id
-        }
-    }
-
-    private func goToNextCard() {
-        let newIndex = min(items.count - 1, currentIndex + 1)
-        withAnimation(.smooth(duration: 0.3)) {
-            scrollPosition = items[newIndex].id
-        }
     }
 
     private func stepButton(image: Image, disabled: Bool, action: @escaping () -> Void) -> some View {

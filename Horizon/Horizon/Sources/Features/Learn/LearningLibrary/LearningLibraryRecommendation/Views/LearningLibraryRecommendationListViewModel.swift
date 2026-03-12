@@ -26,6 +26,10 @@ final class LearningLibraryRecommendationListViewModel {
     // MARK: - Outputs
 
     private(set) var recommendedItems: [LearningLibraryCardModel] = []
+    var shouldShowButtons: Bool {
+        recommendedItems.count > 1
+    }
+    var scrollPosition: String?
 
     // MARK: - Private variables
 
@@ -55,5 +59,31 @@ final class LearningLibraryRecommendationListViewModel {
                 self?.recommendedItems = items
             }
             .store(in: &subscriptions)
+    }
+
+    var currentIndex: Int {
+        guard let scrollPosition,
+              let index = recommendedItems.firstIndex(where: { $0.id == scrollPosition }) else {
+            return 0
+        }
+        return index
+    }
+
+    var isAtStart: Bool {
+        currentIndex == 0
+    }
+
+    var isAtEnd: Bool {
+        currentIndex == recommendedItems.count - 1
+    }
+
+    func goToPreviousCard() {
+        let newIndex = max(0, currentIndex - 1)
+        scrollPosition = recommendedItems[newIndex].id
+    }
+
+    func goToNextCard() {
+        let newIndex = min(recommendedItems.count - 1, currentIndex + 1)
+        scrollPosition = recommendedItems[newIndex].id
     }
 }
