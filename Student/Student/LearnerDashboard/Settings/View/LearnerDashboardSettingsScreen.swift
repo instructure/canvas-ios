@@ -31,36 +31,11 @@ struct LearnerDashboardSettingsScreen: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                toggle(
-                    text: Text("New Mobile Dashboard", bundle: .student),
-                    isOn: Binding(
-                        get: { viewModel.useNewLearnerDashboard },
-                        set: { _ in
-                            showSwitchAlert = true
-                        }
-                    )
-                )
-                .accessibilityIdentifier("DashboardSettings.newDashboardToggle")
-
-                Spacer()
-                    .frame(height: 16)
-
-                LearnerDashboardColorSelectorView(selectedColor: $viewModel.mainColor, colors: viewModel.colors)
-
-                InstUI.Divider()
-
-                Spacer()
-                    .frame(height: 16)
-
-                LearnerDashboardCourseSettingsView(viewModel: viewModel.courseSettingsViewModel)
-
-                Spacer()
-                    .frame(height: 16)
-
-                feedback
-
-                Spacer()
+            VStack(alignment: .leading, spacing: 16) {
+                newDashboardToggle
+                dashboardColorSelector
+                widgetsSection
+                feedbackSection
             }
             .paddingStyle(.horizontal, .standard)
         }
@@ -73,40 +48,43 @@ struct LearnerDashboardSettingsScreen: View {
             switchDashboardAlert
         }
         .toolbar {
-            let label = Text("Done", bundle: .core)
-            if #available(iOS 26, *) {
-                Button(action: dismiss.callAsFunction) {
-                    label
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(action: { dismiss() }) {
+                    Text("Done", bundle: .student)
+                        .font(.semibold16)
+                        .foregroundStyle(.brandPrimary)
                 }
-                .buttonStyle(.borderedProminent)
-                .tint(.brandPrimary)
-            } else {
-                Button(action: dismiss.callAsFunction) {
-                    label
-                }
-                .tint(.brandPrimary)
+                .identifier("DashboardSettings.doneButton")
             }
         }
     }
 
-    private func toggle(text: Text, isOn: Binding<Bool>) -> some View {
-        InstUI.Toggle(isOn: isOn) {
-            text
-                .font(.semibold16)
-                .foregroundStyle(Color.textDarkest)
-        }
-        .padding(.vertical, 8)
-        .testID("DashboardSettings.Switch.NewDashboard", info: ["selected": isOn.wrappedValue])
+    private var newDashboardToggle: some View {
+        toggle(
+            text: Text("New Mobile Dashboard", bundle: .student),
+            isOn: Binding(
+                get: { viewModel.useNewLearnerDashboard },
+                set: { _ in
+                    showSwitchAlert = true
+                }
+            )
+        )
+        .accessibilityIdentifier("DashboardSettings.newDashboardToggle")
     }
 
-    private var switchDashboardAlert: Alert {
-        DashboardSwitchAlert.makeAlert(isEnabling: false) {
-            viewModel.switchToClassicDashboard(viewController: viewController.value)
+    private var dashboardColorSelector: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            LearnerDashboardColorSelectorView(selectedColor: $viewModel.mainColor, colors: viewModel.colors)
+            InstUI.Divider()
         }
+    }
+
+    private var widgetsSection: some View {
+        LearnerDashboardSettingsWidgetsSectionView(viewModel: viewModel.courseSettingsViewModel)
     }
 
     @ViewBuilder
-    private var feedback: some View {
+    private var feedbackSection: some View {
         VStack(spacing: 16) {
             Text("What do you think of the new dashboard?", bundle: .student)
                 .font(.regular14, lineHeight: .fit)
@@ -125,6 +103,22 @@ struct LearnerDashboardSettingsScreen: View {
         }
         .frame(maxWidth: .infinity)
     }
+
+    private func toggle(text: Text, isOn: Binding<Bool>) -> some View {
+        InstUI.Toggle(isOn: isOn) {
+            text
+                .font(.semibold16)
+                .foregroundStyle(Color.textDarkest)
+        }
+        .padding(.vertical, 8)
+        .testID("DashboardSettings.Switch.NewDashboard", info: ["selected": isOn.wrappedValue])
+    }
+
+    private var switchDashboardAlert: Alert {
+        DashboardSwitchAlert.makeAlert(isEnabling: false) {
+            viewModel.switchToClassicDashboard(viewController: viewController.value)
+        }
+    }
 }
 
 #if DEBUG
@@ -135,7 +129,7 @@ struct LearnerDashboardSettingsScreen: View {
             var defaults = SessionDefaults.fallback
             defaults.preferNewLearnerDashboard = true
             let configs = EditableWidgetIdentifier.makeDefaultConfigs()
-            let courseSettingsVM = LearnerDashboardCourseSettingsViewModel(
+            let courseSettingsVM = LearnerDashboardSettingsWidgetsSectionViewModel(
                 userDefaults: defaults,
                 configs: configs,
                 username: "Riley",
@@ -152,7 +146,7 @@ struct LearnerDashboardSettingsScreen: View {
             var defaults = SessionDefaults.fallback
             defaults.preferNewLearnerDashboard = false
             let configs = EditableWidgetIdentifier.makeDefaultConfigs()
-            let courseSettingsVM = LearnerDashboardCourseSettingsViewModel(
+            let courseSettingsVM = LearnerDashboardSettingsWidgetsSectionViewModel(
                 userDefaults: defaults,
                 configs: configs,
                 username: "Riley",

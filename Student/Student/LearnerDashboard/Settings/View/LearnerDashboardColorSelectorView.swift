@@ -85,7 +85,7 @@ struct LearnerDashboardColorSelectorView: View {
     }
 }
 
-struct PlainDisclosureGroupStyle: DisclosureGroupStyle {
+private struct PlainDisclosureGroupStyle: DisclosureGroupStyle {
     func makeBody(configuration: Configuration) -> some View {
         VStack(spacing: 0) {
             Button {
@@ -96,12 +96,7 @@ struct PlainDisclosureGroupStyle: DisclosureGroupStyle {
                 HStack {
                     configuration.label
 
-                    Image.chevronDown
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 16)
-                        .foregroundStyle(.textDark)
-                        .rotationEffect(configuration.isExpanded ? .degrees(180) : .degrees(0))
+                    InstUI.CollapseButtonIcon(isExpanded: configuration.$isExpanded)
                 }
             }
 

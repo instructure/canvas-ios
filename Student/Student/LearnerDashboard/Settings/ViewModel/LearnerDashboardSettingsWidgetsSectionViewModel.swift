@@ -22,20 +22,20 @@ import Observation
 import SwiftUI
 
 @Observable
-final class LearnerDashboardCourseSettingsViewModel {
-    var visibleConfigs: [Config]
-    var hiddenConfigs: [Config]
+final class LearnerDashboardSettingsWidgetsSectionViewModel {
+    var visibleConfigs: [DashboardWidgetConfig]
+    var hiddenConfigs: [DashboardWidgetConfig]
     let username: String
     let subSettingsViews: [EditableWidgetIdentifier: AnyView]
 
-    var configs: [Config] { visibleConfigs + hiddenConfigs }
+    var configs: [DashboardWidgetConfig] { visibleConfigs + hiddenConfigs }
 
     private var userDefaults: SessionDefaults
     private let onConfigsChanged: () -> Void
 
     init(
         userDefaults: SessionDefaults,
-        configs: [Config],
+        configs: [DashboardWidgetConfig],
         username: String,
         subSettingsViews: [EditableWidgetIdentifier: AnyView] = [:],
         onConfigsChanged: @escaping () -> Void
@@ -48,7 +48,7 @@ final class LearnerDashboardCourseSettingsViewModel {
         hiddenConfigs = configs.filter { !$0.isVisible }.sorted()
     }
 
-    func toggleVisibility(of config: Config, to isVisible: Bool) {
+    func toggleVisibility(of config: DashboardWidgetConfig, to isVisible: Bool) {
         if isVisible {
             guard let index = hiddenConfigs.firstIndex(of: config) else { return }
             var toggledConfig = hiddenConfigs.remove(at: index)
@@ -63,7 +63,7 @@ final class LearnerDashboardCourseSettingsViewModel {
         saveAndNotify()
     }
 
-    func moveUp(_ config: Config) {
+    func moveUp(_ config: DashboardWidgetConfig) {
         guard let index = visibleConfigs.firstIndex(of: config), index > visibleConfigs.startIndex else { return }
         let previousConfigIndex = visibleConfigs.index(before: index)
         withAnimation(.dashboardWidget) {
@@ -72,12 +72,12 @@ final class LearnerDashboardCourseSettingsViewModel {
         saveAndNotify()
     }
 
-    func isMoveUpDisabled(of config: Config) -> Bool {
+    func isMoveUpDisabled(of config: DashboardWidgetConfig) -> Bool {
         guard let index = visibleConfigs.firstIndex(of: config) else { return true }
         return index == visibleConfigs.startIndex
     }
 
-    func moveDown(_ config: Config) {
+    func moveDown(_ config: DashboardWidgetConfig) {
         guard let index = visibleConfigs.firstIndex(of: config), index < visibleConfigs.endIndex - 1 else { return }
         let nextConfigIndex = visibleConfigs.index(after: index)
         withAnimation(.dashboardWidget) {
@@ -86,18 +86,18 @@ final class LearnerDashboardCourseSettingsViewModel {
         saveAndNotify()
     }
 
-    func isMoveDownDisabled(of config: Config) -> Bool {
+    func isMoveDownDisabled(of config: DashboardWidgetConfig) -> Bool {
         guard let index = visibleConfigs.firstIndex(of: config) else { return true }
         return index == visibleConfigs.endIndex - 1
     }
 
     private func saveAndNotify() {
-        let updatedVisible = visibleConfigs.enumerated().map { (index, config) -> Config in
+        let updatedVisible = visibleConfigs.enumerated().map { (index, config) -> DashboardWidgetConfig in
             var updated = config
             updated.order = index
             return updated
         }
-        let updatedHidden = hiddenConfigs.enumerated().map { (index, config) -> Config in
+        let updatedHidden = hiddenConfigs.enumerated().map { (index, config) -> DashboardWidgetConfig in
             var updated = config
             updated.order = visibleConfigs.count + index
             return updated
@@ -105,8 +105,4 @@ final class LearnerDashboardCourseSettingsViewModel {
         userDefaults.learnerDashboardWidgetConfigs = updatedVisible + updatedHidden
         onConfigsChanged()
     }
-}
-
-extension LearnerDashboardCourseSettingsViewModel {
-    typealias Config = DashboardWidgetConfig
 }

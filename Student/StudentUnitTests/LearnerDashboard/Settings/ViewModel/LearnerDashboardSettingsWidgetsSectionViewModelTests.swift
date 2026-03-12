@@ -20,9 +20,9 @@
 @testable import Student
 import XCTest
 
-final class LearnerDashboardCourseSettingsViewModelTests: XCTestCase {
+final class LearnerDashboardSettingsWidgetsSectionViewModelTests: XCTestCase {
 
-    private var testee: LearnerDashboardCourseSettingsViewModel!
+    private var testee: LearnerDashboardSettingsWidgetsSectionViewModel!
     private var userDefaults: SessionDefaults!
     private var onConfigsChangedCallCount = 0
 
@@ -247,8 +247,8 @@ final class LearnerDashboardCourseSettingsViewModelTests: XCTestCase {
 
     // MARK: - Private helpers
 
-    private func makeTestee(configs: [DashboardWidgetConfig]) -> LearnerDashboardCourseSettingsViewModel {
-        LearnerDashboardCourseSettingsViewModel(
+    private func makeTestee(configs: [DashboardWidgetConfig]) -> LearnerDashboardSettingsWidgetsSectionViewModel {
+        LearnerDashboardSettingsWidgetsSectionViewModel(
             userDefaults: userDefaults,
             configs: configs,
             username: "Test User",

@@ -37,7 +37,7 @@ enum LearnerDashboardSettingsAssembly {
             result[id] = id.makeSubSettingsView(env: env)
         }
 
-        let courseSettingsViewModel = LearnerDashboardCourseSettingsViewModel(
+        let courseSettingsViewModel = LearnerDashboardSettingsWidgetsSectionViewModel(
             userDefaults: defaults,
             configs: configs,
             username: username,
