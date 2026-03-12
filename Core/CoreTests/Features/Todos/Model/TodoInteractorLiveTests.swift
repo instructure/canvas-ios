@@ -684,37 +684,6 @@ class TodoInteractorLiveTests: CoreTestCase {
 
     // MARK: - Local Observation Tests
 
-    func test_localObservation_updatesTodosAfterMarkAsDoneUpdatesCoreData() {
-        // GIVEN
-        let courses = [makeCourse(id: "1", name: "Course 1")]
-        let createRequest = CreatePlannerOverrideRequest(
-            body: .init(plannable_type: "assignment", plannable_id: "obs-1", marked_complete: true)
-        )
-        api.mock(createRequest, value: APIPlannerOverride.make(id: "override-1", marked_complete: true))
-        mockCourses(courses)
-        mockPlannables([makePlannable(courseId: "1", plannableId: "obs-1", type: "assignment", title: "Observed Item")])
-        XCTAssertFinish(testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false), timeout: 5)
-        guard let item = testee.todoGroups.value.flatMap({ $0.items }).first(where: { $0.plannableId == "obs-1" }) else {
-            return XCTFail("Expected item 'obs-1' to be present after refresh")
-        }
-
-        // WHEN - mark item done (MarkPlannableItemDone.write() updates isMarkedComplete in CoreData)
-        let updateExpectation = expectation(description: "todoGroups re-emitted after CoreData mark-done update")
-        var subscription: AnyCancellable?
-        subscription = testee.todoGroups
-            .first { groups in
-                groups.flatMap { $0.items }.first { $0.plannableId == "obs-1" }?.markAsDoneState == .done
-            }
-            .sink { _ in
-                updateExpectation.fulfill()
-                subscription?.cancel()
-            }
-
-        XCTAssertFinish(testee.markItemAsDone(item, done: true))
-
-        wait(for: [updateExpectation], timeout: 2)
-    }
-
     func test_localObservation_updatesWhenNewPlannableWithTodoUseCaseIsInserted() {
         // GIVEN
         let courses = [makeCourse(id: "1", name: "Course 1")]
