@@ -42,11 +42,21 @@ extension View {
 
     public func elevation(
         _ shape: InstUI.Styles.Elevation.Shape,
-        background: Color
+        background: some ShapeStyle
+    ) -> some View {
+        self.elevation(
+            cornerRadius: shape.cornerRadius,
+            background: background
+        )
+    }
+
+    public func elevation(
+        cornerRadius: CGFloat,
+        background: some ShapeStyle
     ) -> some View {
         self
             .background(background)
-            .cornerRadius(shape.cornerRadius)
+            .cornerRadius(cornerRadius)
             .shadow(color: .black.opacity(0.08), radius: 2, y: 2)
             .shadow(color: .black.opacity(0.16), radius: 2, y: 1)
     }

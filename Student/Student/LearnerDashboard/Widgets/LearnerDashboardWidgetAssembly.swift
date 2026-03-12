@@ -29,6 +29,8 @@ enum LearnerDashboardWidgetAssembly {
             .globalAnnouncements,
             .helloWidget,
             .coursesAndGroups,
+            .weeklySummary,
+            .coursesAndGroups
             .toDo
         ]
 
@@ -82,6 +84,8 @@ enum LearnerDashboardWidgetAssembly {
                 config: config,
                 interactor: .live(coursesInteractor: coursesInteractor, env: .shared)
             )
+        case .weeklySummary:
+            WeeklySummaryWidgetViewModel(config: config)
         case .toDo:
             ToDoWidgetViewModel(
                 config: config,
@@ -112,6 +116,8 @@ enum LearnerDashboardWidgetAssembly {
         case let vm as HelloWidgetViewModel:
             vm.makeView()
         case let vm as CoursesAndGroupsWidgetViewModel:
+            vm.makeView()
+        case let vm as WeeklySummaryWidgetViewModel:
             vm.makeView()
         case let vm as ToDoWidgetViewModel:
             vm.makeView()
