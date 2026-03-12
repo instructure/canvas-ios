@@ -85,18 +85,19 @@ struct CoursesAndGroupsWidgetView: View {
     }
 
     private func coursesSection(itemWidth: CGFloat, columnCount: Int) -> some View {
-        collapsibleSection(
+        let courseCards = viewModel.courseCards
+        return collapsibleSection(
             title: String(localized: "Courses", bundle: .student),
-            itemCount: viewModel.courseCards.count,
+            itemCount: courseCards.count,
             isExpanded: $isCoursesExpanded
         ) {
             DashboardGrid(
-                itemIDs: viewModel.courseCards.map(\.id),
+                itemIDs: courseCards.map(\.id),
                 itemWidth: itemWidth,
                 spacing: cardSpacing(columnCount),
                 columnCount: columnCount
             ) { index in
-                let cardViewModel = viewModel.courseCards[index]
+                let cardViewModel = courseCards[index]
                 CourseCardView(
                     viewModel: cardViewModel,
                     showGrades: viewModel.showGrades,
@@ -112,28 +113,29 @@ struct CoursesAndGroupsWidgetView: View {
                     delegate: CourseCardDropToReorderDelegate(
                         receiverCardId: cardViewModel.id,
                         draggedCourseCardId: $draggedCourseCardId,
-                        order: viewModel.courseCards.map { $0.id },
+                        order: courseCards.map { $0.id },
                         delegate: viewModel
                     )
                 )
             }
-            .animation(.dashboardWidget, value: viewModel.courseCards)
+            .animation(.dashboardWidget, value: courseCards)
         }
     }
 
     private func groupsSection(itemWidth: CGFloat, columnCount: Int) -> some View {
-        collapsibleSection(
+        let groupCards = viewModel.groupCards
+        return collapsibleSection(
             title: String(localized: "Groups", bundle: .student),
-            itemCount: viewModel.groupCards.count,
+            itemCount: groupCards.count,
             isExpanded: $isGroupsExpanded
         ) {
             DashboardGrid(
-                itemIDs: viewModel.groupCards.map(\.id),
+                itemIDs: groupCards.map(\.id),
                 itemWidth: itemWidth,
                 spacing: cardSpacing(columnCount),
                 columnCount: columnCount
             ) { index in
-                GroupCardView(viewModel: viewModel.groupCards[index])
+                GroupCardView(viewModel: groupCards[index])
             }
         }
     }
