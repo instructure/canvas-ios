@@ -42,9 +42,9 @@ struct LearningLibraryView: View {
 
     // MARK: - Init
 
-    init(viewModel: LearningLibraryViewModel) {
+    init(viewModel: LearningLibraryViewModel, recommendationListView: LearningLibraryRecommendationListView) {
         _viewModel = State(initialValue: viewModel)
-        self.recommendationListView = LearningLibraryRecommendationAssembly.makeView()
+        self.recommendationListView = recommendationListView
     }
 
     var body: some View {

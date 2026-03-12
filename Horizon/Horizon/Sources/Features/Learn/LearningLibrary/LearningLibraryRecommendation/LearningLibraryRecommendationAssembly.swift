@@ -16,11 +16,17 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
+import Combine
 import Foundation
 
 enum LearningLibraryRecommendationAssembly {
-    static func makeView() -> LearningLibraryRecommendationListView {
-        let viewModel = LearningLibraryRecommendationListViewModel(interactor: LearningLibraryInteractorLive())
+    static func makeView(didSendEvent: PassthroughSubject<Void, Never>) -> LearningLibraryRecommendationListView {
+        let viewModel = LearningLibraryRecommendationListViewModel(
+            interactor: LearningLibraryInteractorLive(),
+            router: AppEnvironment.shared.router,
+            didSendEvent: didSendEvent
+        )
         return LearningLibraryRecommendationListView(viewModel: viewModel)
     }
 }

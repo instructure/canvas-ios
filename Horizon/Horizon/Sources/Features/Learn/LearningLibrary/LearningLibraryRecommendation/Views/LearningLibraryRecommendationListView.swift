@@ -26,6 +26,11 @@ struct LearningLibraryRecommendationListView: View {
     var body: some View {
         if viewModel.recommendedItems.isNotEmpty {
             contentView
+                .onReceive(viewModel.accessibilityMessagePublisher) { message in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        UIAccessibility.post(notification: .announcement, argument: message)
+                    }
+                }
         }
     }
 

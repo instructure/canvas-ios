@@ -16,12 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import HorizonUI
 import SwiftUI
 
 struct LearningLibraryRecommendationSection: View {
     let items: [LearningLibraryCardModel]
     @State var viewModel: LearningLibraryRecommendationListViewModel
+    @Environment(\.viewController) private var viewController
 
     var body: some View {
         VStack(spacing: .zero) {
@@ -30,10 +32,16 @@ struct LearningLibraryRecommendationSection: View {
                     ForEach(items) { item in
                         LearningLibraryCardView(
                             model: item,
-                            isBookmarkLoading: true,
-                            onBookmarkTap: { },
-                            enrollTap: { },
-                            onTapItem: {}
+                            isBookmarkLoading: viewModel.isBookmarkLoading(forItemWithId: item.id),
+                            onBookmarkTap: {
+                                viewModel.addBookmark(model: item)
+                            },
+                            enrollTap: {
+                                viewModel.showEnrollConfirmation(model: item, viewController: viewController)
+                            },
+                            onTapItem: {
+                                viewModel.navigateToLearningLibraryItemDetails(item, from: viewController)
+                            }
                         )
                         .plainListRowStyle()
                         .padding(.top, .huiSpaces.space8)
@@ -114,7 +122,11 @@ struct LearningLibraryRecommendationSection: View {
                     isBookmarked: true,
                     numberOfUnits: 100
                 )
-            }, viewModel: LearningLibraryRecommendationListViewModel(interactor: LearningLibraryInteractorPreview())
+            }, viewModel: LearningLibraryRecommendationListViewModel(
+                interactor: LearningLibraryInteractorPreview(),
+                router: AppEnvironment.shared.router,
+                didSendEvent: .init()
+            )
         )
     }
     .background(Color.huiColors.surface.pagePrimary)
