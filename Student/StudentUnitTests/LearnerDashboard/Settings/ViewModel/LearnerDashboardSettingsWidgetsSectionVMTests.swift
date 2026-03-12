@@ -20,7 +20,7 @@
 @testable import Student
 import XCTest
 
-final class LearnerDashboardSettingsWidgetsSectionViewModelTests: XCTestCase {
+final class LearnerDashboardSettingsWidgetsSectionVMTests: XCTestCase {
 
     private var testee: LearnerDashboardSettingsWidgetsSectionViewModel!
     private var userDefaults: SessionDefaults!
