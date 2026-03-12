@@ -30,7 +30,7 @@ enum LearnerDashboardWidgetAssembly {
             .helloWidget,
             .coursesAndGroups,
             .weeklySummary,
-            .coursesAndGroups
+            .coursesAndGroups,
             .toDo
         ]
 
