@@ -144,7 +144,6 @@ private final class DashboardWidgetViewModelMock: DashboardWidgetViewModel {
     typealias ViewType = Never
 
     let config: DashboardWidgetConfig
-    let isEditable = false
     let isHiddenInEmptyState = false
     let state: InstUI.ScreenState = .data
 

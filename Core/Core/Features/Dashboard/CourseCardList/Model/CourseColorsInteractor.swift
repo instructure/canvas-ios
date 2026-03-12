@@ -28,7 +28,8 @@ public protocol CourseColorsInteractor {
 }
 
 public class CourseColorsInteractorLive: CourseColorsInteractor {
-    public let colors: KeyValuePairs<UIColor, String> = [
+    // Used elsewhere without the live interactor's logic
+    public static let colors: KeyValuePairs<UIColor, String> = [
         .course1: String(localized: "Plum", bundle: .core, comment: "This is a name of a color."),
         .course2: String(localized: "Fuchsia", bundle: .core, comment: "This is a name of a color."),
         .course3: String(localized: "Violet", bundle: .core, comment: "This is a name of a color."),
@@ -42,6 +43,10 @@ public class CourseColorsInteractorLive: CourseColorsInteractor {
         .course11: String(localized: "Rose", bundle: .core, comment: "This is a name of a color."),
         .course12: String(localized: "Stone", bundle: .core, comment: "This is a name of a color.")
     ]
+
+    public var colors: KeyValuePairs<UIColor, String> {
+        Self.colors
+    }
 
     public init() {
     }

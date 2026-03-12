@@ -23,6 +23,7 @@ struct LearnerDashboardSettingsView: View {
     @State private var viewModel: LearnerDashboardSettingsViewModel
     @Environment(\.viewController) private var viewController
     @State private var showSwitchAlert = false
+    @Environment(\.dismiss) private var dismiss
 
     init(viewModel: LearnerDashboardSettingsViewModel) {
         _viewModel = State(initialValue: viewModel)
@@ -41,14 +42,47 @@ struct LearnerDashboardSettingsView: View {
                     )
                 )
                 .accessibilityIdentifier("DashboardSettings.newDashboardToggle")
+
+                Spacer()
+                    .frame(height: 16)
+
+                LearnerDashboardColorSelectorView(selectedColor: $viewModel.mainColor)
+
+                InstUI.Divider()
+
+                Spacer()
+                    .frame(height: 16)
+
+                LearnerDashboardCourseSettingsView()
+
+                Spacer()
+                    .frame(height: 16)
+
+                feedback
+
                 Spacer()
             }
             .paddingStyle(.horizontal, .standard)
         }
-        .background(Color.backgroundLightest.ignoresSafeArea())
+        .tint(viewModel.mainColor)
+        .background(Color.backgroundLight.ignoresSafeArea())
         .navigationTitle(String(localized: "Customize Dashboard", bundle: .student), style: .modal)
+        .navigationBarTitleDisplayMode(.inline)
         .alert(isPresented: $showSwitchAlert) {
             switchDashboardAlert
+        }
+        .toolbar {
+            let label = Text("Done", bundle: .core)
+            if #available(iOS 26, *) {
+                Button(action: dismiss.callAsFunction) {
+                    label
+                }
+                .buttonStyle(.borderedProminent)
+            } else {
+                Button(action: dismiss.callAsFunction) {
+                    label
+                }
+            }
         }
     }
 
@@ -66,6 +100,32 @@ struct LearnerDashboardSettingsView: View {
         DashboardSwitchAlert.makeAlert(isEnabling: false) {
             viewModel.switchToClassicDashboard(viewController: viewController.value)
         }
+    }
+
+    @ViewBuilder
+    private var feedback: some View {
+        VStack(spacing: 16) {
+            Text("What do you think of the new dashboard?", bundle: .student)
+                .font(.regular14, lineHeight: .fit)
+                .foregroundStyle(.textDarkest)
+
+            Button {
+                viewModel.letUsKnow(from: viewController.value)
+            } label: {
+                HStack(spacing: 6) {
+                    Text("Let us know!", bundle: .student)
+                        .font(.regular14, lineHeight: .normal)
+
+                    Image.externalLinkLine
+                }
+                .padding(.vertical, 4)
+                .padding(.leading, 12)
+                .padding(.trailing, 8)
+                .foregroundStyle(.tint)
+            }
+            .buttonStyle(.pillTintOutlined)
+        }
+        .frame(maxWidth: .infinity)
     }
 }
 
