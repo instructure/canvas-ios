@@ -61,7 +61,7 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
         wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(received?.count, 9)
+        XCTAssertEqual(received?.count, 10)
         XCTAssertEqual(received?[0].id, .offlineSyncProgress)
         XCTAssertEqual(received?[1].id, .fileUploadProgress)
         XCTAssertEqual(received?[2].id, .conferences)
@@ -69,9 +69,9 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         XCTAssertEqual(received?[4].id, .globalAnnouncements)
         XCTAssertEqual(received?[5].id, .helloWidget)
         XCTAssertEqual(received?[6].id, .coursesAndGroups)
-        XCTAssertEqual(received?[6].id, .weeklySummary)
-        XCTAssertEqual(received?[7].id, .coursesAndGroups)
-        XCTAssertEqual(received?[8].id, .toDo)
+        XCTAssertEqual(received?[7].id, .weeklySummary)
+        XCTAssertEqual(received?[8].id, .coursesAndGroups)
+        XCTAssertEqual(received?[9].id, .toDo)
     }
 
     // MARK: - Load widgets with saved configs
