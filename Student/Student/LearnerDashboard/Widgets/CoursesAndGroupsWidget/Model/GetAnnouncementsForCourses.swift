@@ -31,6 +31,8 @@ struct GetAnnouncementsForCourses: CollectionUseCase {
     }
 
     var request: GetAllAnnouncementsRequest {
+        // Setting up the start and end dates to include all announcements.
+        // This is needed for consistency with other endpoints which does not filter by date.
         GetAllAnnouncementsRequest(
             contextCodes: courseContextIds,
             startDate: Self.distantPastDate,
