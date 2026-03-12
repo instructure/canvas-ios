@@ -92,5 +92,5 @@ jobs:
 
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
           # or https://docs.claude.com/en/docs/claude-code/cli-reference for available options
-          claude_args: '--allowedTools "mcp__github__create_pending_pull_request_review,mcp__github__add_comment_to_pending_review,mcp__github__submit_pending_pull_request_review,mcp__github__get_pull_request_diff,mcp__github__list_reviews,mcp__github__get_review,mcp__github__list_review_comments,mcp__github__update_review_comment,mcp__github__create_or_update_pull_request_review_comment,mcp__github__create_or_update_issue_comment,mcp__github__list_issue_comments,mcp__github__resolve_review_thread"'
+          claude_args: '--allowedTools mcp__github__create_pending_pull_request_review,mcp__github__add_comment_to_pending_review,mcp__github__submit_pending_pull_request_review,mcp__github__get_pull_request_diff,mcp__github__list_reviews,mcp__github__get_review,mcp__github__list_review_comments,mcp__github__update_review_comment,mcp__github__create_or_update_pull_request_review_comment,mcp__github__create_or_update_issue_comment,mcp__github__list_issue_comments,mcp__github__resolve_review_thread'
 
