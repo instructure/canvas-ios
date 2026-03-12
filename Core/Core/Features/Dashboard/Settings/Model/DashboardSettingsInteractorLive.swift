@@ -47,7 +47,7 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
         self.useNewDashboard = CurrentValueSubject<Bool, Never>(defaults.preferNewLearnerDashboard)
         self.isGradesSwitchVisible = (environment.app == .student)
         self.isColorOverlaySwitchVisible = (environment.app == .student || environment.app == .teacher)
-        self.isNewDashboardSwitchVisible = ExperimentalFeature.studentLearnerDashboard.isEnabled
+        self.isNewDashboardSwitchVisible = ExperimentalFeature.studentLearnerDashboard.isEnabled && defaults.learnerDashboardEnabledOnInstance
         self.userSettings = environment.subscribe(GetUserSettings(userID: "self")) { [weak self] in
             self?.updateColorOverlay()
         }

@@ -46,7 +46,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         return env
     }()
 
-    private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
     private var shouldSetK5StudentView = false
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
 
@@ -125,7 +124,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                 let userProfile = list.first
                 return unownedSelf.setupUserEnvironment()
                     .flatMap { _ in unownedSelf.getFeatureFlags() }
-                    .map { unownedSelf.initializeTracking(environmentFeatureFlags: $0) }
+                    .map { featureFlags in
+                        unownedSelf.environment.userDefaults?.learnerDashboardEnabledOnInstance = featureFlags.isFeatureEnabled(.widget_dashboard)
+                        unownedSelf.initializeTracking(environmentFeatureFlags: featureFlags)
+                    }
                     .map { _ in unownedSelf.requestNotificationAuthorizationForUITests() }
                     .map { _ in unownedSelf.setK5StudentViewIfNeeded(userProfile: userProfile) }
                     .flatMap { _ in unownedSelf.showLanguageAlertIfNeeded(locale: userProfile?.locale ?? session.locale) }
