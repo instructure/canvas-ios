@@ -67,13 +67,18 @@ extension CourseSyncProgressViewModel {
 
 extension Array where Element == CourseSyncEntry {
 
-    func makeSyncProgressViewModelItems(interactor: CourseSyncProgressInteractor) -> [CourseSyncProgressViewModel.Cell] {
+    func makeSyncProgressViewModelItems(
+        interactor: CourseSyncProgressInteractor,
+        downloadProgress: CourseSyncDownloadProgress
+    ) -> [CourseSyncProgressViewModel.Cell] {
         weak var interactor = interactor
+        let embeddedContentErrorCourseIds = Set(downloadProgress.embeddedContentErrorCourseIds)
 
         var cells: [CourseSyncProgressViewModel.Cell] = []
 
         for course in self {
-            var courseItem = course.makeSyncProgressViewModelItem()
+            let hasEmbeddedContentError = embeddedContentErrorCourseIds.contains(course.courseId)
+            var courseItem = course.makeSyncProgressViewModelItem(hasEmbeddedContentError: hasEmbeddedContentError)
             courseItem.collapseDidToggle = {
                 interactor?.setCollapsed(
                     selection: .course(course.id),
@@ -125,13 +130,17 @@ extension Array where Element == CourseSyncEntry {
 
 extension CourseSyncEntry {
 
-    func makeSyncProgressViewModelItem() -> CourseSyncProgressViewModel.Item {
-        .init(id: id,
-              title: name,
-              subtitle: totalSizeFormattedString,
-              isCollapsed: isCollapsed,
-              cellStyle: .mainAccordionHeader,
-              state: state)
+    func makeSyncProgressViewModelItem(hasEmbeddedContentError: Bool = false) -> CourseSyncProgressViewModel.Item {
+        let displayState: CourseSyncEntry.State = hasEmbeddedContentError && state == .downloaded
+            ? .downloaded(isEmbeddedMediaComplete: false)
+            : state
+
+        return .init(id: id,
+                     title: name,
+                     subtitle: totalSizeFormattedString,
+                     isCollapsed: isCollapsed,
+                     cellStyle: .mainAccordionHeader,
+                     state: displayState)
     }
 }
 

@@ -22,7 +22,7 @@ import Foundation
 
 public protocol CourseSyncProgressWriterInteractor {
     func saveDownloadProgress(entries: [CourseSyncEntry])
-    func saveDownloadResult(isFinished: Bool, error: String?)
+    func saveDownloadResult(isFinished: Bool, error: String?, embeddedContentErrorCourseIds: [String])
     func cleanUpPreviousDownloadProgress()
     func markInProgressDownloadsAsFailed()
     func setInitialLoadingState(entries: [CourseSyncEntry])
@@ -51,11 +51,12 @@ public final class CourseSyncProgressWriterInteractorLive: CourseSyncProgressWri
         }
     }
 
-    public func saveDownloadResult(isFinished: Bool, error: String?) {
+    public func saveDownloadResult(isFinished: Bool, error: String?, embeddedContentErrorCourseIds: [String]) {
         context.performAndWait {
             let progress: CDCourseSyncDownloadProgress = context.fetch(scope: .all).first ?? context.insert()
             progress.isFinished = isFinished
             progress.error = error
+            progress.embeddedContentErrorCourseIds = embeddedContentErrorCourseIds
             try? context.save()
         }
     }

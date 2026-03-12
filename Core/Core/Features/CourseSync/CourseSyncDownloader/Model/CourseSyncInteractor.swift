@@ -72,10 +72,11 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         label: "com.instructure.icanvas.core.course-sync-utility",
         attributes: .concurrent
     )
-    private let fileErrorMessage = String(localized: "File download failed.", bundle: .core)
     private let notificationInteractor: CourseSyncNotificationInteractor
     internal private(set) var downloadSubscription: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
+    private var embeddedContentFailureSubscriptions = Set<AnyCancellable>()
+    private let secondaryContentFailureSubject = CurrentValueSubject<Set<CourseSyncID>, Never>([])
     private let courseListInteractor: CourseListInteractor
     private let backgroundActivity: BackgroundActivity
     private let envResolver: CourseSyncEnvironmentResolver
@@ -132,18 +133,56 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         progressWriterInteractor.cleanUpPreviousDownloadProgress()
         progressWriterInteractor.setInitialLoadingState(entries: entriesWithInitialLoadingState)
 
+        secondaryContentFailureSubject.send([])
+        embeddedContentFailureSubscriptions.removeAll()
+
+        contentInteractors
+            .compactMap { $0 as? CourseSyncHtmlContentInteractor }
+            .forEach { htmlInteractor in
+                htmlInteractor
+                    .htmlParser
+                    .embeddedContentFailurePublisher
+                    .sink { [weak self] courseId in
+                        guard let self else { return }
+                        var courseIds = secondaryContentFailureSubject.value
+                        courseIds.insert(courseId)
+                        secondaryContentFailureSubject.send(courseIds)
+                    }
+                    .store(in: &embeddedContentFailureSubscriptions)
+            }
+
         let sendFinishedNotification: () -> AnyPublisher<Void, Never> = { [notificationInteractor] in
-            let hasError = unownedSelf.safeCourseSyncEntriesValue.hasError
+            let hasMainError = unownedSelf.safeCourseSyncEntriesValue.hasError
+            let embeddedErrorCourseIds = unownedSelf.secondaryContentFailureSubject.value
+            let errorMessage: String?
+            if hasMainError {
+                errorMessage = CourseSyncDownloadProgress.fileErrorMessage
+            } else if !embeddedErrorCourseIds.isEmpty {
+                errorMessage = CourseSyncDownloadProgress.embeddedContentErrorMessage
+            } else {
+                errorMessage = nil
+            }
             unownedSelf.progressWriterInteractor.saveDownloadResult(
                 isFinished: true,
-                error: hasError ? unownedSelf.fileErrorMessage : nil
+                error: errorMessage,
+                embeddedContentErrorCourseIds: embeddedErrorCourseIds.map { $0.value }
             )
 
             return notificationInteractor.send()
         }
         let syncStudioMedia: () -> AnyPublisher<Void, Never> = { [studioMediaInteractor] in
             let courseIDs = entries.map { $0.syncID }
-            return studioMediaInteractor.getContent(courseIDs: courseIDs)
+            return studioMediaInteractor
+                .getContent(courseIDs: courseIDs)
+                .handleEvents(receiveOutput: { failedCourseIDs in
+                    if !failedCourseIDs.isEmpty {
+                        var courseIds = unownedSelf.secondaryContentFailureSubject.value
+                        failedCourseIDs.forEach { courseIds.insert($0) }
+                        unownedSelf.secondaryContentFailureSubject.send(courseIds)
+                    }
+                })
+                .mapToVoid()
+                .eraseToAnyPublisher()
         }
         let downloadContentContainingStudioMedia: AnyPublisher<Void, Never> = backgroundActivity
             .start { unownedSelf.handleSyncInterruptByOS() }
@@ -204,6 +243,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
     public func cancel() {
         downloadSubscription?.cancel()
         downloadSubscription = nil
+        embeddedContentFailureSubscriptions.removeAll()
         progressWriterInteractor.cleanUpPreviousDownloadProgress()
         backgroundActivity.stopAndWait()
     }
@@ -684,8 +724,11 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         downloadSubscription?.cancel()
         downloadSubscription = nil
         progressWriterInteractor.markInProgressDownloadsAsFailed()
-        progressWriterInteractor.saveDownloadResult(isFinished: true,
-                                                    error: String(localized: "Offline sync was interrupted by the operating system", bundle: .core))
+        progressWriterInteractor.saveDownloadResult(
+            isFinished: true,
+            error: String(localized: "Offline sync was interrupted by the operating system", bundle: .core),
+            embeddedContentErrorCourseIds: []
+        )
         notificationInteractor.sendFailedNotification()
     }
 }

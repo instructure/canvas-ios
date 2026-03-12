@@ -48,10 +48,11 @@ class HTMLDownloadInteractorMock: HTMLDownloadInteractor {
             .eraseToAnyPublisher()
     }
 
-    func downloadFile(_ url: URL, courseId: CourseSyncID, resourceId: String) -> AnyPublisher<String, Never> {
+    func downloadFile(_ url: URL, courseId: CourseSyncID, resourceId: String) -> AnyPublisher<String, Error> {
         fileNames.append(url.lastPathComponent)
 
         return Just(url.path)
+            .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
 

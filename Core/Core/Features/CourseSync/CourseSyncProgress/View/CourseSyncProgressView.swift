@@ -138,14 +138,23 @@ struct CourseSyncProgressView: View {
                                                collapseDidToggle: item.collapseDidToggle,
                                                removeItemPressed: item.removeItemPressed,
                                                state: .loading(progress)))
-            case .downloaded:
-                OfflineListCellView(OfflineListCellViewModel(cellStyle: item.cellStyle,
-                                               title: item.title,
-                                               subtitle: item.subtitle,
-                                               isCollapsed: item.isCollapsed,
-                                               collapseDidToggle: item.collapseDidToggle,
-                                               removeItemPressed: item.removeItemPressed,
-                                               state: .downloaded))
+            case .downloaded(let isMediaComplete):
+                OfflineListCellView(
+                    OfflineListCellViewModel(
+                        cellStyle: item.cellStyle,
+                        title: item.title,
+                        subtitle: item.subtitle,
+                        isCollapsed: item.isCollapsed,
+                        collapseDidToggle: item.collapseDidToggle,
+                        removeItemPressed: item.removeItemPressed,
+                        state: isMediaComplete
+                        ? .downloaded
+                        : .error(
+                            String(localized: "Embedded Media Incomplete", bundle: .core),
+                            true
+                        )
+                    )
+                )
             case .error:
                 OfflineListCellView(OfflineListCellViewModel(cellStyle: item.cellStyle,
                                                title: item.title,
