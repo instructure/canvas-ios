@@ -22,7 +22,7 @@ import SwiftUI
 public struct MultiSelectionView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-    @StateObject private var viewModel: MultiSelectionViewModel
+    @ObservedObject private var viewModel: MultiSelectionViewModel
 
     private let identifierGroup: String?
     private let hasAllSelectionButton: Bool
@@ -36,12 +36,11 @@ public struct MultiSelectionView: View {
     ) {
         self.identifierGroup = identifierGroup
         self.hasAllSelectionButton = hasAllSelectionButton
-
-        self._viewModel = StateObject(wrappedValue: .init(
+        self.viewModel = .init(
             title: title,
             allOptions: allOptions,
             selectedOptions: selectedOptions
-        ))
+        )
     }
 
     public init(
