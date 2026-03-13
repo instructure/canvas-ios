@@ -21,7 +21,7 @@ import Core
 import Foundation
 
 @Observable
-final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
+final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel, DashboardMutatorWidget {
     typealias ViewType = CoursesAndGroupsWidgetView
 
     let config: DashboardWidgetConfig
@@ -37,6 +37,8 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
     var layoutIdentifier: [AnyHashable] {
         [state, courseCards.count, groupCards.count]
     }
+
+    var requestDashboardRefresh = PassthroughSubject<Void, Never>()
 
     private let interactor: CoursesAndGroupsWidgetInteractor
     private let environment: AppEnvironment
@@ -68,6 +70,7 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
                 courseCards = courseItems.map { item in
                     CourseCardViewModel(
                         model: item,
+                        didSaveChanges: self.requestDashboardRefresh,
                         router: environment.router
                     )
                 }
@@ -75,7 +78,8 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
                 groupCards = groupItems.compactMap { item in
                     GroupCardViewModel(
                         model: item,
-                        router: environment.router
+                        router: environment.router,
+                        environment: environment
                     )
                 }
 

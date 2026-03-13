@@ -666,6 +666,40 @@ class ComposeMessageViewModelTests: CoreTestCase {
         XCTAssertNoOutput(pub)
     }
 
+    func test_selectAllRecipientsInitially_true_allRecipientsAreAutoSelected() {
+        // Given
+        let context = RecipientContext(course: Course.make())
+        let options = ComposeMessageOptions(
+            fieldsContents: .init(selectedContext: context),
+            extras: .init(selectAllRecipientsInitially: true)
+        )
+
+        // When
+        testee = makeViewModel(options: options)
+
+        // Then
+        XCTAssertEqual(testee.selectedRecipients.value, ReceiptStub.recipients)
+    }
+
+    func test_selectAllRecipientsInitially_true_autoSelectOnlyHappensOnce() {
+        // Given
+        let context = RecipientContext(course: Course.make())
+        let options = ComposeMessageOptions(
+            fieldsContents: .init(selectedContext: context),
+            extras: .init(selectAllRecipientsInitially: true)
+        )
+        testee = makeViewModel(options: options)
+        XCTAssertEqual(testee.selectedRecipients.value.count, ReceiptStub.recipients.count)
+
+        // When - switching to a new context should not auto-select recipients again
+        let newContext = RecipientContext(course: Course.make())
+        let viewController = WeakViewController(UIViewController())
+        testee.courseDidSelect(selectedContext: newContext, viewController: viewController)
+
+        // Then
+        XCTAssertEqual(testee.selectedRecipients.value.count, 0)
+    }
+
     private func makeViewModel(options: ComposeMessageOptions) -> ComposeMessageViewModel {
         .init(
             options: options,

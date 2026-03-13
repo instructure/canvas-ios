@@ -48,16 +48,10 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     // MARK: - Initialization
 
     func test_init_shouldLoadWidgets() {
-        let widget1 = MockWidgetViewModel(id: .courseInvitations)
-        let widget2 = MockWidgetViewModel(id: .helloWidget)
+        let widget1 = WidgetViewModelMock(id: .courseInvitations)
+        let widget2 = WidgetViewModelMock(id: .helloWidget)
 
-        testee = LearnerDashboardViewModel(
-            interactor: interactor,
-            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
-            mainScheduler: scheduler.eraseToAnyScheduler(),
-            courseSyncInteractor: courseSyncInteractor,
-            environment: env
-        )
+        testee = makeViewModel()
         interactor.loadWidgetsPublisher.send([widget1, widget2])
         scheduler.advance()
 
@@ -69,13 +63,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     // MARK: - Screen config
 
     func test_screenConfig_shouldBeConfiguredCorrectly() {
-        testee = LearnerDashboardViewModel(
-            interactor: interactor,
-            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
-            mainScheduler: scheduler.eraseToAnyScheduler(),
-            courseSyncInteractor: courseSyncInteractor,
-            environment: env
-        )
+        testee = makeViewModel()
 
         XCTAssertEqual(testee.screenConfig.refreshable, true)
         XCTAssertEqual(testee.screenConfig.showsScrollIndicators, false)
@@ -89,13 +77,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     // MARK: - State management
 
     func test_init_withNoWidgets_shouldKeepLoadingState() {
-        testee = LearnerDashboardViewModel(
-            interactor: interactor,
-            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
-            mainScheduler: scheduler.eraseToAnyScheduler(),
-            courseSyncInteractor: courseSyncInteractor,
-            environment: env
-        )
+        testee = makeViewModel()
         interactor.loadWidgetsPublisher.send([])
         scheduler.advance()
 
@@ -103,15 +85,9 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     }
 
     func test_init_withWidgets_shouldSetDataState() {
-        let widget = MockWidgetViewModel(id: .helloWidget)
+        let widget = WidgetViewModelMock(id: .helloWidget)
 
-        testee = LearnerDashboardViewModel(
-            interactor: interactor,
-            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
-            mainScheduler: scheduler.eraseToAnyScheduler(),
-            courseSyncInteractor: courseSyncInteractor,
-            environment: env
-        )
+        testee = makeViewModel()
         interactor.loadWidgetsPublisher.send([widget])
         scheduler.advance()
 
@@ -121,17 +97,11 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     // MARK: - Refresh
 
     func test_refresh_shouldCallRefreshOnAllWidgets() {
-        let widget1 = MockWidgetViewModel(id: .helloWidget)
-        let widget2 = MockWidgetViewModel(id: .coursesAndGroups)
-        let widget3 = MockWidgetViewModel(id: .courseInvitations)
+        let widget1 = WidgetViewModelMock(id: .helloWidget)
+        let widget2 = WidgetViewModelMock(id: .coursesAndGroups)
+        let widget3 = WidgetViewModelMock(id: .courseInvitations)
 
-        testee = LearnerDashboardViewModel(
-            interactor: interactor,
-            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
-            mainScheduler: scheduler.eraseToAnyScheduler(),
-            courseSyncInteractor: courseSyncInteractor,
-            environment: env
-        )
+        testee = makeViewModel()
         interactor.loadWidgetsPublisher.send([widget3, widget1, widget2])
         scheduler.advance()
 
@@ -147,15 +117,9 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     }
 
     func test_refresh_shouldCallCompletionWhenAllWidgetsFinish() {
-        let widget = MockWidgetViewModel(id: .helloWidget)
+        let widget = WidgetViewModelMock(id: .helloWidget)
 
-        testee = LearnerDashboardViewModel(
-            interactor: interactor,
-            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
-            mainScheduler: scheduler.eraseToAnyScheduler(),
-            courseSyncInteractor: courseSyncInteractor,
-            environment: env
-        )
+        testee = makeViewModel()
         interactor.loadWidgetsPublisher.send([widget])
         scheduler.advance()
 
@@ -170,16 +134,31 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         XCTAssertEqual(widget.refreshIgnoreCache, false)
     }
 
+    // MARK: - Refresh DashboardMutatorWidget
+
+    func test_refresh_whenRequestDashboardRefreshFires_shouldTriggerRefresh() {
+        let mutatorWidget = MutatorWidgetViewModelMock(id: .courseInvitations)
+        let regularWidget = WidgetViewModelMock(id: .helloWidget)
+
+        testee = makeViewModel()
+        interactor.loadWidgetsPublisher.send([mutatorWidget, regularWidget])
+        scheduler.advance()
+        regularWidget.refreshCalled = false
+        mutatorWidget.refreshCalled = false
+
+        mutatorWidget.requestDashboardRefresh.send()
+        scheduler.advance()
+
+        XCTAssertEqual(regularWidget.refreshCalled, true)
+        XCTAssertEqual(regularWidget.refreshIgnoreCache, false)
+        XCTAssertEqual(mutatorWidget.refreshCalled, true)
+        XCTAssertEqual(mutatorWidget.refreshIgnoreCache, false)
+    }
+
     // MARK: - Offline Sync Handlers
 
     func test_offlineSyncTriggered_shouldStartDownload() {
-        testee = LearnerDashboardViewModel(
-            interactor: interactor,
-            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
-            mainScheduler: scheduler.eraseToAnyScheduler(),
-            courseSyncInteractor: courseSyncInteractor,
-            environment: env
-        )
+        testee = makeViewModel()
 
         let entries = [CourseSyncEntry.make()]
         NotificationCenter.default.post(
@@ -192,13 +171,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     }
 
     func test_offlineSyncCleanTriggered_shouldCleanContent() {
-        testee = LearnerDashboardViewModel(
-            interactor: interactor,
-            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
-            mainScheduler: scheduler.eraseToAnyScheduler(),
-            courseSyncInteractor: courseSyncInteractor,
-            environment: env
-        )
+        testee = makeViewModel()
 
         let ids = [CourseSyncID(value: "1")]
         NotificationCenter.default.post(
@@ -209,9 +182,21 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         XCTAssertEqual(courseSyncInteractor.cleanContentCalled, true)
         XCTAssertEqual(courseSyncInteractor.cleanContentIds?.count, 1)
     }
+
+    // MARK: - Private helpers
+
+    private func makeViewModel() -> LearnerDashboardViewModel {
+        .init(
+            interactor: interactor,
+            snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
+            mainScheduler: scheduler.eraseToAnyScheduler(),
+            courseSyncInteractor: courseSyncInteractor,
+            environment: env
+        )
+    }
 }
 
-private final class MockWidgetViewModel: DashboardWidgetViewModel {
+private class WidgetViewModelMock: DashboardWidgetViewModel {
     typealias ViewType = Never
 
     let config: DashboardWidgetConfig
@@ -234,6 +219,10 @@ private final class MockWidgetViewModel: DashboardWidgetViewModel {
         refreshIgnoreCache = ignoreCache
         return Just(()).eraseToAnyPublisher()
     }
+}
+
+private final class MutatorWidgetViewModelMock: WidgetViewModelMock, DashboardMutatorWidget {
+    var requestDashboardRefresh = PassthroughSubject<Void, Never>()
 }
 
 private final class CourseSyncInteractorMock: CourseSyncInteractor {

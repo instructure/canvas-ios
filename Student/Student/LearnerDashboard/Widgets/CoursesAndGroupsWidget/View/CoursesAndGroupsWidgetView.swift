@@ -85,7 +85,7 @@ struct CoursesAndGroupsWidgetView: View {
     }
 
     private func coursesSection(itemWidth: CGFloat, columnCount: Int) -> some View {
-        collapsibleSection(
+        return collapsibleSection(
             title: String(localized: "Courses", bundle: .student),
             itemCount: viewModel.courseCards.count,
             isExpanded: $isCoursesExpanded
@@ -95,8 +95,8 @@ struct CoursesAndGroupsWidgetView: View {
                 itemWidth: itemWidth,
                 spacing: cardSpacing(columnCount),
                 columnCount: columnCount
-            ) { index in
-                let cardViewModel = viewModel.courseCards[index]
+            ) { [courseCards = viewModel.courseCards] index in
+                let cardViewModel = courseCards[index]
                 CourseCardView(
                     viewModel: cardViewModel,
                     showGrades: viewModel.showGrades,
@@ -112,7 +112,7 @@ struct CoursesAndGroupsWidgetView: View {
                     delegate: CourseCardDropToReorderDelegate(
                         receiverCardId: cardViewModel.id,
                         draggedCourseCardId: $draggedCourseCardId,
-                        order: viewModel.courseCards.map { $0.id },
+                        order: courseCards.map { $0.id },
                         delegate: viewModel
                     )
                 )
@@ -122,7 +122,7 @@ struct CoursesAndGroupsWidgetView: View {
     }
 
     private func groupsSection(itemWidth: CGFloat, columnCount: Int) -> some View {
-        collapsibleSection(
+        return collapsibleSection(
             title: String(localized: "Groups", bundle: .student),
             itemCount: viewModel.groupCards.count,
             isExpanded: $isGroupsExpanded
@@ -132,8 +132,8 @@ struct CoursesAndGroupsWidgetView: View {
                 itemWidth: itemWidth,
                 spacing: cardSpacing(columnCount),
                 columnCount: columnCount
-            ) { index in
-                GroupCardView(viewModel: viewModel.groupCards[index])
+            ) { [groupCards = viewModel.groupCards] index in
+                GroupCardView(viewModel: groupCards[index])
             }
         }
     }

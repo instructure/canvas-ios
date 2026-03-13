@@ -63,3 +63,7 @@ extension DashboardWidgetViewModel {
         !isHiddenInEmptyState || state != .empty
     }
 }
+
+protocol DashboardMutatorWidget: AnyObject {
+    var requestDashboardRefresh: PassthroughSubject<Void, Never> { get set }
+}

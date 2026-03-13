@@ -22,7 +22,6 @@ import SwiftUI
 struct GroupCardView: View {
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
-    @Environment(\.offlineMode) private var offlineMode
 
     private let viewModel: GroupCardViewModel
 
@@ -39,7 +38,10 @@ struct GroupCardView: View {
                 contextLabel
                 titleLabel
             },
-            isAvailable: offlineMode.isAppOnline,
+            accessory: {
+                messageButton
+            },
+            isAvailableOffline: false,
             action: {
                 viewModel.didTapCard(from: controller)
             }
@@ -90,7 +92,20 @@ struct GroupCardView: View {
         }
         .foregroundStyle(viewModel.groupColor)
         .fixedSize(horizontal: true, vertical: false)
-        .identifier("Dashboard.CourseCard.gradePill")
+        .identifier("Dashboard.GroupCard.memberCountPill")
+    }
+
+    private var messageButton: some View {
+        OfflineObservingButton {
+            viewModel.didTapMessageButton(from: controller)
+        } label: {
+            Image.emailLine
+                .scaledIcon()
+                .foregroundStyle(.textDark)
+                .scaledFrame(height: 72, useIconScale: true) // increases tap area
+        }
+        .accessibilityLabel(String(localized: "Send message to members", bundle: .student))
+        .identifier("Dashboard.GroupCard.messageButton")
     }
 }
 
@@ -105,20 +120,25 @@ extension GroupCardView {
 }
 
 #Preview {
+    let environment = PreviewEnvironment()
+
     PreviewContainer(spacing: 4, horizontalPadding: 16) {
         GroupCardView(viewModel: GroupCardViewModel(
             model: GroupCardView.previewData[0],
-            router: PreviewEnvironment().router
+            router: environment.router,
+            environment: environment
         ))
 
         GroupCardView(viewModel: GroupCardViewModel(
             model: GroupCardView.previewData[1],
-            router: PreviewEnvironment().router
+            router: environment.router,
+            environment: environment
         ))
 
         GroupCardView(viewModel: GroupCardViewModel(
             model: GroupCardView.previewData[2],
-            router: PreviewEnvironment().router
+            router: environment.router,
+            environment: environment
         ))
     }
     .background(.backgroundLight)

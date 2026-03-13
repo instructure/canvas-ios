@@ -22,7 +22,7 @@ import Foundation
 import Observation
 
 @Observable
-final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
+final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel, DashboardMutatorWidget {
     typealias ViewType = CourseInvitationsWidgetView
 
     let config: DashboardWidgetConfig
@@ -38,6 +38,8 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
     var layoutIdentifier: [AnyHashable] {
         [state, invitations.count]
     }
+
+    var requestDashboardRefresh = PassthroughSubject<Void, Never>()
 
     private let interactor: CoursesInteractor
     private let snackBarViewModel: SnackBarViewModel
@@ -61,8 +63,7 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
         interactor.getCourses(ignoreCache: ignoreCache)
             .map { [weak self, interactor, snackBarViewModel] result in
-                guard let self else { return [] }
-                return result.invitedCourses.compactMap { course in
+                result.invitedCourses.compactMap { course in
                     guard let invitedEnrollment = course.firstInvitedEnrollment,
                           let enrollmentID = invitedEnrollment.id else {
                         return nil
@@ -77,10 +78,8 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
                         sectionName: section?.name,
                         interactor: interactor,
                         snackBarViewModel: snackBarViewModel,
-                        onDismiss: { [weak self] enrollmentId in
-                            DispatchQueue.main.async {
-                                self?.removeInvitation(id: enrollmentId)
-                            }
+                        onDismiss: { _ in
+                            self?.requestDashboardRefresh.send()
                         }
                     )
                 }
@@ -96,14 +95,6 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
                 return Just(())
             }
             .eraseToAnyPublisher()
-    }
-
-    @MainActor
-    private func removeInvitation(id: String) {
-        invitations.removeAll { $0.id == id }
-        if invitations.isEmpty {
-            state = .empty
-        }
     }
 
     private func updateTitles() {

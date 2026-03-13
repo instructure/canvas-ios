@@ -65,6 +65,10 @@ struct LearnerDashboardScreen: View {
                     isAnimationEnabled = true
                 }
             }
+            .onAppear {
+                // trigger a soft-refresh to apply any changes made on pushed screens
+                viewModel.refresh(ignoreCache: false)
+            }
             .environment(
                 \.containerSize,
                 CGSize(

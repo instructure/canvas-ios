@@ -104,6 +104,7 @@ final class ComposeMessageViewModel: ObservableObject {
     private var allRecipients = CurrentValueSubject<[Recipient], Never>([])
     private var hiddenMessage: String = ""
     private var autoTeacherSelect: Bool = false
+    private var autoSelectAllRecipients: Bool = false
     private var teacherOnly: Bool = false
     private var sendIndividualToggleLastValue: Bool = false
     private let maxRecipientCount = 100
@@ -144,7 +145,14 @@ final class ComposeMessageViewModel: ObservableObject {
                 }
             }
             .sink { [weak self] result in
-                self?.allRecipients.send(result)
+                guard let self else { return }
+
+                allRecipients.send(result)
+
+                if autoSelectAllRecipients {
+                    autoSelectAllRecipients = false
+                    selectedRecipients.send(result)
+                }
             }
             .store(in: &subscriptions)
 
@@ -383,6 +391,7 @@ final class ComposeMessageViewModel: ObservableObject {
         self.autoTeacherSelect = extras.autoTeacherSelect
         self.alwaysShowRecipients = extras.alwaysShowRecipients
         self.teacherOnly = extras.teacherOnly
+        self.autoSelectAllRecipients = extras.selectAllRecipientsInitially
         // Set initial Message Values so can check if there are any changes or not
         initialMessageProperties.courseName = selectedContext?.name
         initialMessageProperties.recipients = fieldContents.selectedRecipients

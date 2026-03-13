@@ -25,12 +25,13 @@ extension View {
     ///   - isOverlayed:
     ///     - If `true`, the badge behaves like an `overlay` and the trailing part of the badge is ignored for horizontal layout.
     ///     - If `false`, the badge behaves like a `ZStack` and the trailing part of the badge is respected for horizontal layout.
+    ///   - color: The fill color of the badge's pill. If it's `nil` then the current `.tint` color is used.
     @ViewBuilder
     public func instBadge(
         _ count: Int?,
         style: InstUI.BadgeStyle = .hostSize24,
         isOverlayed: Bool = true,
-        color: Color = .backgroundDanger
+        color: Color? = nil
     ) -> some View {
         modifier(InstUI.BadgeModifier(count: count ?? 0, style: style, isOverlayed: isOverlayed, color: color))
     }
@@ -41,11 +42,21 @@ extension InstUI {
     public enum BadgeStyle {
         case hostSize24
         case hostSize18
+        case accessory
+
+        var offsetBase: Alignment {
+            switch self {
+            case .hostSize24: .leading
+            case .hostSize18: .leading
+            case .accessory: .bottomTrailing
+            }
+        }
 
         var offset: CGPoint {
             switch self {
             case .hostSize24: CGPoint(x: 10, y: -2)
             case .hostSize18: CGPoint(x: 6, y: -2)
+            case .accessory: CGPoint(x: -8, y: -6)
             }
         }
 
@@ -53,6 +64,7 @@ extension InstUI {
             switch self {
             case .hostSize24: EdgeInsets(top: 2.5, leading: 6.5, bottom: 3, trailing: 6.5)
             case .hostSize18: EdgeInsets(top: 0.75, leading: 4, bottom: 1.25, trailing: 4)
+            case .accessory: EdgeInsets(top: 1.75, leading: 5, bottom: 2.25, trailing: 5)
             }
         }
 
@@ -60,6 +72,7 @@ extension InstUI {
             switch self {
             case .hostSize24: 0
             case .hostSize18: 1
+            case .accessory: 0.5
             }
         }
 
@@ -67,6 +80,7 @@ extension InstUI {
             switch self {
             case .hostSize24: .semibold12
             case .hostSize18: .regular10
+            case .accessory: .semibold10
             }
         }
     }
@@ -76,7 +90,7 @@ extension InstUI {
         private let text: String?
         private let style: BadgeStyle
         private let isOverlayed: Bool
-        private let color: Color
+        private let color: Color?
 
         @ScaledMetric(relativeTo: .body) private var uiScaleBody: CGFloat = 1
         @ScaledMetric(relativeTo: .caption2) private var uiScaleCaption2: CGFloat = 1
@@ -84,12 +98,13 @@ extension InstUI {
             switch style {
             case .hostSize24: uiScaleBody
             case .hostSize18: uiScaleCaption2
+            case .accessory: uiScaleBody
             }
         }
 
         @State private var badgedContentWidth: CGFloat = 0
 
-        init(count: Int, style: BadgeStyle, isOverlayed: Bool, color: Color) {
+        init(count: Int, style: BadgeStyle, isOverlayed: Bool, color: Color?) {
             text = switch count {
             case ...0:
                 nil
@@ -116,8 +131,8 @@ extension InstUI {
                             let deltaX = style.offset.x * uiScale.iconScale
                             let deltaY = style.offset.y * uiScale.iconScale
                             pill(text)
-                                .alignmentGuide(.trailing) { $0[HorizontalAlignment.leading] + deltaX }
-                                .alignmentGuide(.top) { $0[VerticalAlignment.center] + deltaY }
+                                .alignmentGuide(.trailing) { $0[style.offsetBase.horizontal] + deltaX }
+                                .alignmentGuide(.top) { $0[style.offsetBase.vertical] + deltaY }
                         }
                     }
                     .onSizeChange {
@@ -133,8 +148,9 @@ extension InstUI {
                 .padding(style.edgeInsets * uiScale)
                 .background(
                     Capsule()
-                        .fill(color)
+                        .fill(.tint)
                         .stroke(Color.textLightest, lineWidth: style.borderWidth)
+                        .customTint(color)
                 )
                 .fixedSize(horizontal: true, vertical: false)
                 .transition(.push(from: .top))
@@ -147,7 +163,7 @@ extension InstUI {
 
 #Preview {
     @Previewable @State var badgeValueIndex: Int = 0
-    let badgeValues: [Int?] = [nil, 1, 99, 100]
+    let badgeValues: [Int?] = [nil, 1, 3, 99, 100]
 
     let clock18 = Image.clockLine.scaledIcon(size: 18)
     let doc18 = Image.documentLine.scaledIcon(size: 18)
@@ -157,50 +173,52 @@ extension InstUI {
         Divider()
 
         HStack(spacing: 10) {
-            SwiftUI.Group {
-                clock18.instBadge(nil, style: .hostSize18)
-                clock18.instBadge(1, style: .hostSize18)
-                clock18.instBadge(3, style: .hostSize18)
-                clock18.instBadge(99, style: .hostSize18)
-                clock18.instBadge(100, style: .hostSize18)
+            ForEach(badgeValues, id: \.self) {
+                clock18.instBadge($0, style: .hostSize18)
             }
             .background(.green)
         }
         Divider()
 
         HStack(spacing: 10) {
-            clock18.instBadge(nil, style: .hostSize18)
-            clock18.instBadge(1, style: .hostSize18)
-            clock18.instBadge(3, style: .hostSize18)
-            clock18.instBadge(99, style: .hostSize18)
-            clock18.instBadge(100, style: .hostSize18)
+            ForEach(badgeValues, id: \.self) {
+                clock18.instBadge($0, style: .hostSize18)
+            }
         }
         Divider()
 
         HStack(spacing: 10) {
-            doc18.instBadge(nil, style: .hostSize18)
-            doc18.instBadge(1, style: .hostSize18)
-            doc18.instBadge(3, style: .hostSize18)
-            doc18.instBadge(99, style: .hostSize18)
-            doc18.instBadge(100, style: .hostSize18)
+            ForEach(badgeValues, id: \.self) {
+                doc18.instBadge($0, style: .hostSize18, color: .textSuccess)
+            }
         }
         Divider()
 
         HStack(spacing: 10) {
-            menu24.instBadge(nil, style: .hostSize24)
-            menu24.instBadge(1, style: .hostSize24)
-            menu24.instBadge(3, style: .hostSize24)
-            menu24.instBadge(99, style: .hostSize24)
-            menu24.instBadge(100, style: .hostSize24)
+            ForEach(badgeValues, id: \.self) {
+                menu24.instBadge($0, style: .hostSize24)
+            }
         }
         Divider()
 
         HStack(spacing: 10) {
-            Image.alertsTab.instBadge(nil)
-            Image.alertsTab.instBadge(1)
-            Image.alertsTab.instBadge(3)
-            Image.alertsTab.instBadge(99)
-            Image.alertsTab.instBadge(100)
+            ForEach(badgeValues, id: \.self) { value in
+                Button {} label: { menu24.instBadge(value, style: .hostSize24) }
+            }
+        }
+        Divider()
+
+        HStack(spacing: 10) {
+            ForEach(badgeValues, id: \.self) {
+                Image.alertsTab.instBadge($0)
+            }
+        }
+        Divider()
+
+        HStack(spacing: 10) {
+            ForEach(badgeValues, id: \.self) {
+                Image.announcementSolid.instBadge($0, style: .accessory)
+            }
         }
         Divider()
 
@@ -213,10 +231,13 @@ extension InstUI {
                 }
             } label: {
                 Text(verbatim: "Change!")
+                    .foregroundStyle(.course3)
             }
             Image.alertsTab.instBadge(badgeValues[badgeValueIndex])
         }
     }
+    .foregroundStyle(.textDarkest)
+    .tint(.backgroundDanger)
     .background(Color.backgroundLightest)
 }
 

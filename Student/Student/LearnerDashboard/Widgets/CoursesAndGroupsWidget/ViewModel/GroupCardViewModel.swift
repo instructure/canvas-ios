@@ -30,10 +30,12 @@ struct GroupCardViewModel: Identifiable, Equatable {
 
     private let model: CoursesAndGroupsWidgetGroupItem
     private let router: Router
+    private let environment: AppEnvironment
 
     init(
         model: CoursesAndGroupsWidgetGroupItem,
-        router: Router
+        router: Router,
+        environment: AppEnvironment
     ) {
         self.model = model
 
@@ -44,12 +46,28 @@ struct GroupCardViewModel: Identifiable, Equatable {
         self.memberCount = String(model.memberCount)
 
         self.router = router
+        self.environment = environment
     }
 
     func didTapCard(from controller: WeakViewController) {
         let route = "/groups/\(id)"
 
         router.route(to: route, from: controller, options: .push)
+    }
+
+    func didTapMessageButton(from controller: WeakViewController) {
+        let recipientContext = RecipientContext(name: title, context: .group(id))
+
+        let vc = ComposeMessageAssembly.makeComposeMessageViewController(
+            options: .init(
+                disabledFields: .init(contextDisabled: true),
+                fieldsContents: .init(selectedContext: recipientContext),
+                extras: .init(selectAllRecipientsInitially: true)
+            ),
+            env: environment
+        )
+
+        router.show(vc, from: controller, options: .modal(isDismissable: false, embedInNav: true))
     }
 
     static func == (lhs: GroupCardViewModel, rhs: GroupCardViewModel) -> Bool {

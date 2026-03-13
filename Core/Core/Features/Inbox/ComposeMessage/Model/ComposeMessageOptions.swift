@@ -55,12 +55,20 @@ public struct ExtraMessageOptions {
     var autoTeacherSelect: Bool
     var alwaysShowRecipients: Bool
     var teacherOnly: Bool
+    var selectAllRecipientsInitially: Bool = false
 
-    public init(hiddenMessage: String = "", autoTeacherSelect: Bool = false, alwaysShowRecipients: Bool = false, teacherOnly: Bool = false) {
+    public init(
+        hiddenMessage: String = "",
+        autoTeacherSelect: Bool = false,
+        alwaysShowRecipients: Bool = false,
+        teacherOnly: Bool = false,
+        selectAllRecipientsInitially: Bool = false
+    ) {
         self.hiddenMessage = hiddenMessage
         self.autoTeacherSelect = autoTeacherSelect
         self.alwaysShowRecipients = alwaysShowRecipients
         self.teacherOnly = teacherOnly
+        self.selectAllRecipientsInitially = selectAllRecipientsInitially
     }
 }
 

@@ -24,25 +24,25 @@ struct DashboardThumbnailCard<Thumbnail: View, Labels: View, Accessory: View>: V
     private let thumbnail: Thumbnail
     private let labels: Labels
     private let accessory: Accessory
-    private let isAvailable: Bool
+    private let isAvailableOffline: Bool
     private let action: () -> Void
 
     public init(
         @ViewBuilder thumbnail: () -> Thumbnail,
         @ViewBuilder labels: () -> Labels,
         @ViewBuilder accessory: () -> Accessory = { SwiftUI.EmptyView() },
-        isAvailable: Bool,
+        isAvailableOffline: Bool,
         action: @escaping () -> Void
     ) {
         self.thumbnail = thumbnail()
         self.labels = labels()
         self.accessory = accessory()
-        self.isAvailable = isAvailable
+        self.isAvailableOffline = isAvailableOffline
         self.action = action
     }
 
     var body: some View {
-        PrimaryButton(isAvailable: isAvailable, action: action) {
+        OfflineObservingButton(isAvailableOffline: isAvailableOffline, action: action) {
             HStack(alignment: .center, spacing: 0) {
                 thumbnail
                     .clipShape(RoundedRectangle(cornerRadius: 22))

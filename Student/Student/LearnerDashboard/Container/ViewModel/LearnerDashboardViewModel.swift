@@ -45,9 +45,11 @@ final class LearnerDashboardViewModel {
 
     private let interactor: LearnerDashboardInteractor
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
-    private var subscriptions = Set<AnyCancellable>()
     private let courseSyncInteractor: CourseSyncInteractor
     let environment: AppEnvironment
+    private let widgetDidRequestRefresh = PassthroughSubject<Void, Never>()
+
+    private var subscriptions = Set<AnyCancellable>()
 
     init(
         interactor: LearnerDashboardInteractor,
@@ -61,6 +63,12 @@ final class LearnerDashboardViewModel {
         self.mainScheduler = mainScheduler
         self.courseSyncInteractor = courseSyncInteractor
         self.environment = environment
+
+        widgetDidRequestRefresh
+            .sink { [weak self] in
+                self?.refresh(ignoreCache: false)
+            }
+            .store(in: &subscriptions)
 
         loadWidgets()
         setupOfflineSyncHandlers()
@@ -87,6 +95,10 @@ final class LearnerDashboardViewModel {
             .sink { [weak self] result in
                 guard let self else { return }
                 widgets = result
+                widgets.forEach {
+                    guard let mutatorWidget = $0 as? DashboardMutatorWidget else { return }
+                    mutatorWidget.requestDashboardRefresh = self.widgetDidRequestRefresh
+                }
                 if result.isNotEmpty {
                     state = .data
                 }

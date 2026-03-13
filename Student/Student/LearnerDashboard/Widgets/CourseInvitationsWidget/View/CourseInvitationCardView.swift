@@ -134,6 +134,7 @@ private struct CourseInvitationCardPreviewContainer: View {
         let coursesInteractor = CoursesInteractorMock()
         coursesInteractor.acceptBehavior = acceptBehavior
         coursesInteractor.declineBehavior = declineBehavior
+        coursesInteractor.acceptDeclineDelay = 2
         let viewModel = CourseInvitationCardViewModel(
             id: "1",
             courseId: "course1",

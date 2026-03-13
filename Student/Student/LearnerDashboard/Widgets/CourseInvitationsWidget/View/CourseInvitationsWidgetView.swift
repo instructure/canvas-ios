@@ -74,6 +74,7 @@ private func makePreviewViewModel(snackbarViewModel: SnackBarViewModel) -> Cours
     let context = env.database.viewContext
 
     let coursesInteractor = CoursesInteractorMock()
+    coursesInteractor.acceptDeclineDelay = 2
 
     let mockCourses = [
         Course.save(
