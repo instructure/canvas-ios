@@ -19925,6 +19925,9 @@
         }
       }
     },
+    "Add widgets using Customize Dashboard or Dashboard Settings." : {
+
+    },
     "All Courses" : {
 
     },
@@ -20197,6 +20200,9 @@
           }
         }
       }
+    },
+    "All widgets are turned off" : {
+
     },
     "Allowed Attempts:" : {
       "localizations" : {

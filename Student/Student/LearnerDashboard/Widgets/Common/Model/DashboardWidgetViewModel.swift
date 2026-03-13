@@ -54,3 +54,9 @@ extension DashboardWidgetViewModel {
         !isHiddenInEmptyState || state != .empty
     }
 }
+
+extension [any DashboardWidgetViewModel] {
+    var allEditableWidgetsTurnedOff: Bool {
+        allSatisfy { EditableWidgetIdentifier(rawValue: $0.id) == nil }
+    }
+}

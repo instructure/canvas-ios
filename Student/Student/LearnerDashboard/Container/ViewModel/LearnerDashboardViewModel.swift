@@ -29,19 +29,12 @@ final class LearnerDashboardViewModel {
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var widgets: [any DashboardWidgetViewModel] = []
     private(set) var mainColor: Color
+    private(set) var showWidgetsTurnedOffPanda: Bool = false
     let snackBarViewModel: SnackBarViewModel
 
     let screenConfig = InstUI.BaseScreenConfig(
         refreshable: true,
         showsScrollIndicators: false,
-        emptyPandaConfig: .init(
-            scene: SpacePanda(),
-            title: String(localized: "Welcome to Canvas!", bundle: .student),
-            subtitle: String(
-                localized: "You don't have any courses yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity.",
-                bundle: .student
-            )
-        ),
         backgroundColor: .backgroundLight
     )
 
@@ -109,9 +102,8 @@ final class LearnerDashboardViewModel {
             .sink { [weak self] result in
                 guard let self else { return }
                 widgets = result
-                if result.isNotEmpty {
-                    state = .data
-                }
+                showWidgetsTurnedOffPanda = result.allEditableWidgetsTurnedOff
+                state = .data
                 refresh(ignoreCache: false)
             }
             .store(in: &subscriptions)

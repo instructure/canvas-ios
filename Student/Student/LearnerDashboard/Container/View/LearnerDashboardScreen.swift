@@ -55,6 +55,9 @@ struct LearnerDashboardScreen: View {
                         widgetViewModel.makeView()
                     }
                 }
+                if viewModel.showWidgetsTurnedOffPanda {
+                    LearnerDashboardAllWidgetsTurnedOffView()
+                }
 
                 customizeDashboardButton
             }
