@@ -48,15 +48,19 @@ struct LearningLibraryRecommendationListView: View {
     private var collectionView: some View {
         HStack(spacing: .huiSpaces.space8) {
             Image.huiIcons.aiFilled
+                .resizable()
+                .frame(width: 15, height: 15)
                 .foregroundStyle(Color.huiColors.icon.default)
                 .frame(width: 30, height: 30)
                 .background(Color.huiColors.surface.cardPrimary.opacity(0.85))
                 .background(Color.huiColors.surface.igniteAIPrimaryGradient)
                 .clipShape(.circle)
+                .accessibilityHidden(true)
             Text("Recommended for you")
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundStyle(Color.huiColors.text.dataPoint)
                 .huiTypography(.labelMediumBold)
+                .accessibilityAddTraits(.isHeader)
         }
         .padding(.horizontal, .huiSpaces.space24)
         .padding(.bottom, .huiSpaces.space16)
