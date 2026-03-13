@@ -26,6 +26,7 @@ struct LearnerDashboardScreen: View {
     @State private var isSettingsPresented = false
     @Environment(\.viewController) private var viewController
     @Environment(\.appEnvironment) private var env
+    @Environment(\.colorScheme) private var colorScheme
 
     private let screenPadding = InstUI.Styles.Padding.standard
     @State private var isAnimationEnabled = false
@@ -149,6 +150,7 @@ struct LearnerDashboardScreen: View {
             NavigationStack {
                 LearnerDashboardSettingsScreen(viewModel: viewModel.makeSettingsViewModel())
             }
+            .environment(\.colorScheme, colorScheme)
             .accentColor(.brandPrimary)
             .tint(.brandPrimary)
         }
@@ -176,6 +178,7 @@ struct LearnerDashboardScreen: View {
             NavigationStack {
                 LearnerDashboardSettingsScreen(viewModel: viewModel.makeSettingsViewModel())
             }
+            .environment(\.colorScheme, colorScheme)
             .accentColor(.brandPrimary)
             .tint(.brandPrimary)
         }
