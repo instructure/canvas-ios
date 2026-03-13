@@ -28,8 +28,6 @@ protocol DashboardWidgetViewModel: AnyObject, Identifiable where ID == Dashboard
     /// User configurable widget settings.
     var config: DashboardWidgetConfig { get }
 
-    var isEditable: Bool { get }
-
     /// The state helps the dashboard screen to decide if the empty state should be shown or not.
     var state: InstUI.ScreenState { get }
 
