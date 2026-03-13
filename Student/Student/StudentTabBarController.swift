@@ -97,8 +97,12 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
             tabBarImageSelected = .homeroomTabActive
         } else {
             let defaults = AppEnvironment.shared.userDefaults ?? .fallback
+
+            let isNewDashboardEnabledByRemoteConfig = ExperimentalFeature.studentLearnerDashboard.isEnabled
+            let isNewDashboardEnabledOnInstance = defaults.learnerDashboardEnabledOnInstance
             let preferNewDashboard = defaults.preferNewLearnerDashboard
-            let shouldShowNewDashboard = ExperimentalFeature.studentLearnerDashboard.isEnabled && preferNewDashboard
+
+            let shouldShowNewDashboard = isNewDashboardEnabledByRemoteConfig && isNewDashboardEnabledOnInstance && preferNewDashboard
 
             if shouldShowNewDashboard {
                 let dashboard = CoreHostingController(LearnerDashboardAssembly.makeScreen())
