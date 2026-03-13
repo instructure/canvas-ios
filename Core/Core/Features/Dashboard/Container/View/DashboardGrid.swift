@@ -19,29 +19,14 @@
 import SwiftUI
 
 public struct DashboardGrid<Content: View, ID: Hashable>: View {
-    private struct Row {
-        let id: String
-        let items: [(index: Int, id: ID)]
-    }
-
     private let itemIDs: [ID]
-    private let itemCount: Int
     private let itemWidth: CGFloat
     private let spacing: CGFloat
     private let columnCount: Int
     private let content: (Int) -> Content
 
-    private var rows: [Row] {
-        stride(from: 0, to: itemCount, by: columnCount).map {
-            let itemIndexes = stride(from: $0, to: min($0 + columnCount, itemCount), by: 1).map { $0 }
-            let items = itemIndexes.map { (index: $0, id: itemIDs[$0]) }
-            return Row(id: "\($0 / columnCount)", items: items)
-        }
-    }
-
     public init(itemIDs: [ID], itemWidth: CGFloat, spacing: CGFloat, columnCount: Int, @ViewBuilder content: @escaping (Int) -> Content) {
         self.itemIDs = itemIDs
-        self.itemCount = itemIDs.count
         self.itemWidth = itemWidth
         self.spacing = spacing
         self.columnCount = columnCount
@@ -49,11 +34,8 @@ public struct DashboardGrid<Content: View, ID: Hashable>: View {
     }
 
     public var body: some View {
-        let columns = Array(repeating: GridItem(.fixed(itemWidth)), count: columnCount)
-        LazyVGrid(columns: columns, spacing: spacing) {
-            let items: [(index: Int, id: ID)] = itemIDs.enumerated().map {
-                (index: $0.offset, id: $0.element)
-            }
+        let items = itemIDs.enumerated().map { (index: $0.offset, id: $0.element) }
+        DashboardGridLayout(columnCount: columnCount, itemWidth: itemWidth, spacing: spacing) {
             ForEach(items, id: \.id) { item in
                 content(item.index)
             }

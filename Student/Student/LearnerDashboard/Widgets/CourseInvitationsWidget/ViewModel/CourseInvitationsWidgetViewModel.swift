@@ -26,7 +26,6 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel, Dashboar
     typealias ViewType = CourseInvitationsWidgetView
 
     let config: DashboardWidgetConfig
-    let isEditable = false
     let isHiddenInEmptyState = true
 
     private(set) var invitations: [CourseInvitationCardViewModel] = [] {

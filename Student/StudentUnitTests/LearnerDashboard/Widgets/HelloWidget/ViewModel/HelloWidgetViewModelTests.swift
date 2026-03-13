@@ -47,11 +47,10 @@ final class HelloWidgetViewModelTests: StudentTestCase {
 
     // MARK: - Basic properties
 
-    func test_basicProperties() {
+    func test_basicConfig() {
         testee = makeViewModel()
 
         XCTAssertEqual(testee.config.id, .helloWidget)
-        XCTAssertEqual(testee.isEditable, true)
     }
 
     func test_initialState_shouldBeLoading() {

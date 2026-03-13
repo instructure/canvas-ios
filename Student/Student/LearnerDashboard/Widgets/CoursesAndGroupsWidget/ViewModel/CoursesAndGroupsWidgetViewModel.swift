@@ -25,7 +25,6 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel, Dashboard
     typealias ViewType = CoursesAndGroupsWidgetView
 
     let config: DashboardWidgetConfig
-    let isEditable = false
     let isHiddenInEmptyState = true
 
     private(set) var state: InstUI.ScreenState = .loading

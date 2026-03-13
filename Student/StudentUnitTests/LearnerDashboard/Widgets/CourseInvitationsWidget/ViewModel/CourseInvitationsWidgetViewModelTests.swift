@@ -59,12 +59,6 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
         XCTAssertTrue(testee.invitations.isEmpty)
     }
 
-    func testInit_widgetConfigIsCorrect() {
-        testee = makeViewModel()
-
-        XCTAssertFalse(testee.isEditable)
-    }
-
     // MARK: - Refresh Success Cases
 
     func testRefresh_withNoInvitations_stateBecomesEmpty() {

@@ -155,49 +155,6 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         XCTAssertEqual(mutatorWidget.refreshIgnoreCache, false)
     }
 
-    // MARK: - Settings Button
-
-    func test_settingsButtonTapped_shouldPresentSettingsViewController() {
-        testee = makeViewModel()
-
-        let presentingVC = UIViewController()
-        let weakVC = WeakViewController(presentingVC)
-        testee.settingsButtonTapped(from: weakVC)
-
-        XCTAssertNotNil(router.lastShownVC)
-        XCTAssertEqual(router.lastShownFromVC, presentingVC)
-        XCTAssertEqual(router.lastShownOptions, .modal(.popover))
-    }
-
-    func test_settingsButtonTapped_shouldConfigurePopoverCorrectly() {
-        testee = makeViewModel()
-
-        let presentingVC = UIViewController()
-        let weakVC = WeakViewController(presentingVC)
-        testee.settingsButtonTapped(from: weakVC)
-
-        let settingsVC = router.lastShownVC
-        XCTAssertEqual(settingsVC?.preferredContentSize.width, 350)
-        XCTAssertGreaterThan(settingsVC?.preferredContentSize.height ?? 0, 0)
-        XCTAssertEqual(settingsVC?.modalPresentationStyle, .popover)
-    }
-
-    func test_settingsButtonTapped_shouldConfigurePopoverSourceView() {
-        testee = makeViewModel()
-
-        let presentingVC = UIViewController()
-        let customView = UIView()
-        let barButtonItem = UIBarButtonItem(customView: customView)
-        presentingVC.navigationItem.rightBarButtonItem = barButtonItem
-        let weakVC = WeakViewController(presentingVC)
-
-        testee.settingsButtonTapped(from: weakVC)
-
-        let settingsVC = router.lastShownVC
-        XCTAssertEqual(settingsVC?.popoverPresentationController?.sourceView, customView)
-        XCTAssertEqual(settingsVC?.popoverPresentationController?.sourceRect, CGRect(x: 26, y: 35, width: 0, height: 0))
-    }
-
     // MARK: - Offline Sync Handlers
 
     func test_offlineSyncTriggered_shouldStartDownload() {
@@ -243,7 +200,6 @@ private class WidgetViewModelMock: DashboardWidgetViewModel {
     typealias ViewType = Never
 
     let config: DashboardWidgetConfig
-    let isEditable = false
     let isHiddenInEmptyState = false
     let state: InstUI.ScreenState = .data
 
