@@ -30,8 +30,8 @@ extension InstUI {
         public init(
             label: Label,
             value: Binding<Bool>,
-            dividerStyle: InstUI.Divider.Style = .full)
-        {
+            dividerStyle: InstUI.Divider.Style = .full
+        ) {
             self.label = label
             self._value = value
             self.dividerStyle = dividerStyle
