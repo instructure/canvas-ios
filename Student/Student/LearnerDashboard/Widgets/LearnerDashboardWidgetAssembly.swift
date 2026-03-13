@@ -28,6 +28,7 @@ enum LearnerDashboardWidgetAssembly {
             .courseInvitations,
             .globalAnnouncements,
             .helloWidget,
+            .weeklySummary,
             .coursesAndGroups
         ]
 
@@ -81,6 +82,8 @@ enum LearnerDashboardWidgetAssembly {
                 config: config,
                 interactor: .live(coursesInteractor: coursesInteractor, env: .shared)
             )
+        case .weeklySummary:
+            WeeklySummaryWidgetViewModel(config: config)
         }
     }
 
@@ -100,6 +103,8 @@ enum LearnerDashboardWidgetAssembly {
         case let vm as HelloWidgetViewModel:
             vm.makeView()
         case let vm as CoursesAndGroupsWidgetViewModel:
+            vm.makeView()
+        case let vm as WeeklySummaryWidgetViewModel:
             vm.makeView()
         default:
             SwiftUI.EmptyView()

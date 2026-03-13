@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,16 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import UIKit
+import SwiftUI
 
-enum LearnerDashboardSettingsAssembly {
-    static func makeViewController(env: AppEnvironment = .shared) -> UIViewController {
-        let defaults = env.userDefaults ?? .fallback
-        let viewModel = LearnerDashboardSettingsViewModel(defaults: defaults)
-        let view = LearnerDashboardSettingsView(viewModel: viewModel)
-        let hostingController = CoreHostingController(view)
-        hostingController.addDoneButton(side: .right)
-        return CoreNavigationController(rootViewController: hostingController)
+public extension RedactionReasons {
+    var isPlaceholder: Bool {
+        contains(.placeholder)
     }
 }
