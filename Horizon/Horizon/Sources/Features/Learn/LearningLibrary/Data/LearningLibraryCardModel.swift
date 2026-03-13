@@ -88,7 +88,7 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         self.imageURL = URL(string: entity.imageUrl.defaultToEmpty)
         self.itemType = LearningLibraryObjectType(rawValue: entity.itemType) ?? .course
         self.estimatedTime = entity.estimatedDurationMinutes.map { String(describing: $0) }
-        self.isRecommended = false
+        self.isRecommended = entity.primaryReason != nil
         self.isCompleted = entity.completionPercentage == 100
         self.isBookmarked = entity.isBookmarked
         self.numberOfUnits = entity.moduleCount?.intValue

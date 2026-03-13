@@ -150,7 +150,9 @@ struct LearningLibraryView: View {
         .scrollIndicators(.hidden)
         .dismissKeyboardOnTap()
         .scrollDismissesKeyboard(.immediately)
-        .refreshable { await viewModel.refresh() }
+        .refreshable {
+            _ = await (viewModel.refresh(), recommendationListView.reloadData())
+        }
         .transition(.opacity.combined(with: .move(edge: .leading)))
     }
 

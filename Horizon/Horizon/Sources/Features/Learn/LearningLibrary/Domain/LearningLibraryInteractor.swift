@@ -160,7 +160,7 @@ final class LearningLibraryInteractorLive: LearningLibraryInteractor {
 
     func getRecommendations(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error> {
         ReactiveStore(useCase: LearningLibraryRecommendationUseCase(journey: domainService))
-            .getEntities(ignoreCache: ignoreCache)
+            .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
             .map { items in
                 items.map { LearningLibraryCardModel(for: $0) }
             }

@@ -25,6 +25,7 @@ struct LearningLibraryCardView: View {
 
     private let model: LearningLibraryCardModel
     private let isBookmarkLoading: Bool
+    private let shouldShowRecommended: Bool
     private let onBookmarkTap: (() -> Void)
     private let enrollTap: (() -> Void)
     private let onTapItem: (() -> Void)
@@ -34,12 +35,14 @@ struct LearningLibraryCardView: View {
     init(
         model: LearningLibraryCardModel,
         isBookmarkLoading: Bool = false,
+        shouldShowRecommended: Bool = false,
         onBookmarkTap: @escaping (() -> Void),
         enrollTap: @escaping (() -> Void),
         onTapItem: @escaping (() -> Void)
     ) {
         self.model = model
         self.isBookmarkLoading = isBookmarkLoading
+        self.shouldShowRecommended = shouldShowRecommended
         self.onBookmarkTap = onBookmarkTap
         self.enrollTap = enrollTap
         self.onTapItem = onTapItem
@@ -56,7 +59,7 @@ struct LearningLibraryCardView: View {
                         .padding(.top, .huiSpaces.space16)
                         .padding(.bottom, .huiSpaces.space12)
 
-                    if let recommendationText = model.recommendationText {
+                    if let recommendationText = model.recommendationText, shouldShowRecommended {
                         recommendationView(text: recommendationText)
                             .padding(.bottom, .huiSpaces.space16)
                     }
@@ -104,7 +107,7 @@ struct LearningLibraryCardView: View {
             components.append(String(format: String(localized: "number of units %d"), units))
         }
 
-        if model.isRecommended {
+        if model.isRecommended, shouldShowRecommended {
             components.append(String(localized: "Recommended"))
         }
 
@@ -176,7 +179,7 @@ struct LearningLibraryCardView: View {
                     icon: Image.huiIcons.coursesFormatListBulleted
                 )
             }
-            if model.isRecommended {
+            if model.isRecommended, shouldShowRecommended {
                 recommendedView
             }
             if model.isInProgress, model.shouldShowProgressStatus {

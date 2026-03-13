@@ -28,11 +28,12 @@ struct LearningLibraryRecommendationSection: View {
     var body: some View {
         VStack(spacing: .zero) {
             ScrollView(.horizontal) {
-                LazyHStack(spacing: .huiSpaces.space24) {
+                HStack(alignment: .top, spacing: .huiSpaces.space24) {
                     ForEach(items) { item in
                         LearningLibraryCardView(
                             model: item,
                             isBookmarkLoading: viewModel.isBookmarkLoading(forItemWithId: item.id),
+                            shouldShowRecommended: true,
                             onBookmarkTap: {
                                 viewModel.addBookmark(model: item)
                             },
@@ -45,7 +46,7 @@ struct LearningLibraryRecommendationSection: View {
                         )
                         .plainListRowStyle()
                         .padding(.top, .huiSpaces.space8)
-                        .containerRelativeFrame(.horizontal)
+                        .frame(width: UIScreen.main.bounds.width - (.huiSpaces.space24 * 2))
                     }
                 }
                 .scrollTargetLayout()

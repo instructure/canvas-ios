@@ -70,12 +70,13 @@ final class LearningLibraryRecommendationListViewModel: LearningLibraryItemNavig
         loadItems()
     }
 
-    func loadItems(ignoreCache: Bool = true) {
+    func loadItems(ignoreCache: Bool = false, completion: (() -> Void)? = nil) {
         interactor.getRecommendations(ignoreCache: ignoreCache)
             .receive(on: scheduler)
             .replaceError(with: [])
             .sink { [weak self] items in
                 self?.recommendedItems = items
+                completion?()
             }
             .store(in: &subscriptions)
     }
@@ -148,6 +149,16 @@ final class LearningLibraryRecommendationListViewModel: LearningLibraryItemNavig
     private func updateItem(item: LearningLibraryCardModel) {
         if let index = recommendedItems.firstIndex(where: { $0.id == item.id }) {
             recommendedItems[index].update(with: item)
+        }
+    }
+
+    func refresh() async {
+        await withCheckedContinuation { [weak self]  continuation in
+            guard let self else {
+                continuation.resume()
+                return
+            }
+            loadItems(ignoreCache: true) { continuation.resume() }
         }
     }
 }

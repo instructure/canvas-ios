@@ -61,4 +61,8 @@ struct LearningLibraryRecommendationListView: View {
         .padding(.horizontal, .huiSpaces.space24)
         .padding(.bottom, .huiSpaces.space16)
     }
+
+    func reloadData() async {
+       await viewModel.refresh()
+    }
 }
