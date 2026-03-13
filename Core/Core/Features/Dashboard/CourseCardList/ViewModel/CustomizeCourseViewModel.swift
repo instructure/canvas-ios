@@ -27,7 +27,7 @@ public class CustomizeCourseViewModel: ObservableObject {
 
     // MARK: - Outputs
     @Published public private(set) var isLoading: Bool = false
-    public let colors: KeyValuePairs<UIColor, String>
+    public let colors: [CourseColorData]
     public let courseImage: URL?
     public let hideColorOverlay: Bool
     public let dismissView = PassthroughSubject<Void, Never>()

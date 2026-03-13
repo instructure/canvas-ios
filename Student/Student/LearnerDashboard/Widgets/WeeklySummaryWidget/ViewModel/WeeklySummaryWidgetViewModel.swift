@@ -19,10 +19,11 @@
 import Combine
 import Core
 import Foundation
+import SwiftUI
 
 @Observable
 final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
-    typealias ViewType = WeeklySummaryWidgetView
+    let id: String = EditableWidgetIdentifier.weeklySummary.rawValue
 
     private(set) var state: InstUI.ScreenState = .loading
     let config: DashboardWidgetConfig
@@ -72,8 +73,8 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
         self.newGradesFilter = .newGrades(assignments: [])
     }
 
-    func makeView() -> WeeklySummaryWidgetView {
-        WeeklySummaryWidgetView(viewModel: self)
+    func makeView() -> AnyView {
+        AnyView(WeeklySummaryWidgetView(viewModel: self))
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {

@@ -48,9 +48,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     // MARK: - Initialization Tests
 
     func testInit_stateIsLoading() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
         testee = CourseInvitationsWidgetViewModel(
-            config: config,
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )
@@ -59,9 +57,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     func testInit_invitationsAreEmpty() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
         testee = CourseInvitationsWidgetViewModel(
-            config: config,
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )
@@ -72,9 +68,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     // MARK: - Refresh Success Cases
 
     func testRefresh_withNoInvitations_stateBecomesEmpty() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
         testee = CourseInvitationsWidgetViewModel(
-            config: config,
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )
@@ -86,9 +80,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     func testRefresh_withInvitations_stateBecomesData() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
         testee = CourseInvitationsWidgetViewModel(
-            config: config,
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )
@@ -109,9 +101,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     func testRefresh_createsCorrectNumberOfCardViewModels() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
         testee = CourseInvitationsWidgetViewModel(
-            config: config,
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )
@@ -128,9 +118,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     func testRefresh_cardViewModelsHaveCorrectProperties() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
         testee = CourseInvitationsWidgetViewModel(
-            config: config,
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )
@@ -154,9 +142,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     func testRefresh_passesIgnoreCacheParameter() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
         testee = CourseInvitationsWidgetViewModel(
-            config: config,
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )
@@ -169,9 +155,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     // MARK: - Refresh Filtering
 
     func testRefresh_onlyIncludesCoursesWithInvitedEnrollments() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
         testee = CourseInvitationsWidgetViewModel(
-            config: config,
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )
@@ -194,9 +178,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     func testRefresh_skipsEnrollmentsWithoutIds() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
         testee = CourseInvitationsWidgetViewModel(
-            config: config,
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )
@@ -218,9 +200,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     func testRefresh_mapsSectionNameFromCourseSectionID() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
         testee = CourseInvitationsWidgetViewModel(
-            config: config,
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )
@@ -245,9 +225,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     // MARK: - Refresh Failure
 
     func testRefresh_onError_stateBecomesError() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
         testee = CourseInvitationsWidgetViewModel(
-            config: config,
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )
@@ -260,9 +238,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     // MARK: - Titles
 
     func testTitle_showsCorrectCount() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
         testee = CourseInvitationsWidgetViewModel(
-            config: config,
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )
@@ -279,9 +255,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     func testAccessibilityTitle_includesFormattedCount() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
         testee = CourseInvitationsWidgetViewModel(
-            config: config,
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )
@@ -300,9 +274,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     // MARK: - Invitation Removal
 
     func testRemoveInvitation_removesFromList() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
         testee = CourseInvitationsWidgetViewModel(
-            config: config,
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )
@@ -330,9 +302,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     func testRemoveInvitation_lastRemoval_stateBecomesEmpty() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
         testee = CourseInvitationsWidgetViewModel(
-            config: config,
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )
@@ -359,9 +329,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     }
 
     func testRemoveInvitation_nonLastRemoval_stateStaysData() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
         testee = CourseInvitationsWidgetViewModel(
-            config: config,
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )
@@ -384,9 +352,7 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
     // MARK: - Layout Identifier
 
     func testLayoutIdentifier_changesWithStateAndCount() {
-        let config = DashboardWidgetConfig(id: .courseInvitations, order: 0, isVisible: true)
         testee = CourseInvitationsWidgetViewModel(
-            config: config,
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )

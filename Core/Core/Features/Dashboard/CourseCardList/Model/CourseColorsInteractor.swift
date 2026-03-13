@@ -19,8 +19,8 @@
 import UIKit
 
 public protocol CourseColorsInteractor {
-    /// These are the pre-defined course colors the user can choose from. The values are the color names for accessibility.
-    var colors: KeyValuePairs<UIColor, String> { get }
+    /// These are the pre-defined course colors the user can choose from.
+    var colors: [CourseColorData] { get }
 
     /// - parameters:
     ///   - colorHex: The hex color of the color in light theme.
@@ -28,33 +28,16 @@ public protocol CourseColorsInteractor {
 }
 
 public class CourseColorsInteractorLive: CourseColorsInteractor {
-    // Used elsewhere without the live interactor's logic
-    public static let colors: KeyValuePairs<UIColor, String> = [
-        .course1: String(localized: "Plum", bundle: .core, comment: "This is a name of a color."),
-        .course2: String(localized: "Fuchsia", bundle: .core, comment: "This is a name of a color."),
-        .course3: String(localized: "Violet", bundle: .core, comment: "This is a name of a color."),
-        .course4: String(localized: "Ocean", bundle: .core, comment: "This is a name of a color."),
-        .course5: String(localized: "Sky", bundle: .core, comment: "This is a name of a color."),
-        .course6: String(localized: "Sea", bundle: .core, comment: "This is a name of a color."),
-        .course7: String(localized: "Aurora", bundle: .core, comment: "This is a name of a color."),
-        .course8: String(localized: "Forest", bundle: .core, comment: "This is a name of a color."),
-        .course9: String(localized: "Honey", bundle: .core, comment: "This is a name of a color."),
-        .course10: String(localized: "Copper", bundle: .core, comment: "This is a name of a color."),
-        .course11: String(localized: "Rose", bundle: .core, comment: "This is a name of a color."),
-        .course12: String(localized: "Stone", bundle: .core, comment: "This is a name of a color.")
-    ]
+    public let colors: [CourseColorData]
 
-    public var colors: KeyValuePairs<UIColor, String> {
-        Self.colors
-    }
-
-    public init() {
+    public init(colors: [CourseColorData] = CourseColorData.all) {
+        self.colors = colors
     }
 
     public func courseColorFromAPIColor(_ colorHex: String) -> UIColor {
-        let predefinedColor = colors.first { (color, _) in
-            color.variantForLightMode.hexString == colorHex
-        }?.key
+        let predefinedColor = colors.first {
+            $0.color.variantForLightMode.hexString == colorHex
+        }?.color
 
         if let predefinedColor {
             return predefinedColor

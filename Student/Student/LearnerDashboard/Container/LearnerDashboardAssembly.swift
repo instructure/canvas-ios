@@ -22,31 +22,26 @@ enum LearnerDashboardAssembly {
 
     static func makeScreen() -> LearnerDashboardScreen {
         let snackBarViewModel = SnackBarViewModel()
-        let widgetFactory: (DashboardWidgetConfig) -> any DashboardWidgetViewModel = { config in
-            LearnerDashboardWidgetAssembly.makeWidgetViewModel(
-                config: config,
-                snackBarViewModel: snackBarViewModel
-            )
+        let colorInteractor = LearnerDashboardColorInteractorLive(
+            defaults: AppEnvironment.shared.userDefaults ?? .fallback
+        )
+        let coursesInteractor = LearnerDashboardWidgetAssembly.makeCoursesInteractor()
+        let systemFactory: (SystemWidgetIdentifier) -> any DashboardWidgetViewModel = { widgetId in
+            widgetId.makeViewModel(snackBarViewModel: snackBarViewModel, coursesInteractor: coursesInteractor)
         }
-        let interactor = makeInteractor(widgetViewModelFactory: widgetFactory)
-        let viewModel = makeViewModel(interactor: interactor, snackBarViewModel: snackBarViewModel)
-        return LearnerDashboardScreen(viewModel: viewModel)
-    }
-
-    private static func makeInteractor(
-        widgetViewModelFactory: @escaping (DashboardWidgetConfig) -> any DashboardWidgetViewModel
-    ) -> LearnerDashboardInteractor {
-        LearnerDashboardInteractorLive(widgetViewModelFactory: widgetViewModelFactory)
-    }
-
-    private static func makeViewModel(
-        interactor: LearnerDashboardInteractor,
-        snackBarViewModel: SnackBarViewModel
-    ) -> LearnerDashboardViewModel {
-        LearnerDashboardViewModel(
+        let editableFactory: (DashboardWidgetConfig) -> any DashboardWidgetViewModel = { config in
+            config.id.makeViewModel(config: config, snackBarViewModel: snackBarViewModel, coursesInteractor: coursesInteractor)
+        }
+        let interactor = LearnerDashboardInteractorLive(
+            systemWidgetFactory: systemFactory,
+            editableWidgetFactory: editableFactory
+        )
+        let viewModel = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: snackBarViewModel,
             environment: .shared
         )
+        return LearnerDashboardScreen(viewModel: viewModel)
     }
 }

@@ -54,11 +54,9 @@ final class ConferencesWidgetViewModelTests: StudentTestCase {
     // MARK: - Initialization
 
     func test_init_shouldSetupCorrectly() {
-        let config = DashboardWidgetConfig(id: .conferences, order: 42, isVisible: true)
-        testee = makeViewModel(config: config)
+        testee = makeViewModel()
 
-        XCTAssertEqual(testee.config.id, .conferences)
-        XCTAssertEqual(testee.config.order, 42)
+        XCTAssertEqual(testee.id, SystemWidgetIdentifier.conferences.rawValue)
         XCTAssertEqual(testee.state, .loading)
         XCTAssertEqual(testee.conferences.isEmpty, true)
     }
@@ -199,11 +197,8 @@ final class ConferencesWidgetViewModelTests: StudentTestCase {
 
     // MARK: - Private helpers
 
-    private func makeViewModel(
-        config: DashboardWidgetConfig = .make(id: .conferences)
-    ) -> ConferencesWidgetViewModel {
+    private func makeViewModel() -> ConferencesWidgetViewModel {
         ConferencesWidgetViewModel(
-            config: config,
             interactor: interactor,
             snackBarViewModel: snackBarViewModel,
             environment: env

@@ -26,28 +26,38 @@ protocol LearnerDashboardInteractor {
 
 final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
     private let userDefaults: SessionDefaults
-    private let widgetViewModelFactory: (DashboardWidgetConfig) -> any DashboardWidgetViewModel
+    private let systemWidgetFactory: (SystemWidgetIdentifier) -> any DashboardWidgetViewModel
+    private let editableWidgetFactory: (DashboardWidgetConfig) -> any DashboardWidgetViewModel
 
     init(
         userDefaults: SessionDefaults = AppEnvironment.shared.userDefaults ?? .fallback,
-        widgetViewModelFactory: @escaping (DashboardWidgetConfig) -> any DashboardWidgetViewModel
+        systemWidgetFactory: @escaping (SystemWidgetIdentifier) -> any DashboardWidgetViewModel,
+        editableWidgetFactory: @escaping (DashboardWidgetConfig) -> any DashboardWidgetViewModel
     ) {
         self.userDefaults = userDefaults
-        self.widgetViewModelFactory = widgetViewModelFactory
+        self.systemWidgetFactory = systemWidgetFactory
+        self.editableWidgetFactory = editableWidgetFactory
     }
 
     func loadWidgets() -> AnyPublisher<[any DashboardWidgetViewModel], Never> {
         Just(())
             .subscribe(on: DispatchQueue.global(qos: .userInitiated))
-            .map { [userDefaults, widgetViewModelFactory] _ in
-                let configs: [DashboardWidgetConfig]
-                if let savedWidgets = userDefaults.learnerDashboardWidgetConfigs {
-                    configs = savedWidgets.filter { $0.isVisible }.sorted()
-                } else {
-                    configs = LearnerDashboardWidgetAssembly.makeDefaultWidgetConfigs().sorted()
-                }
+            .map { [userDefaults, systemWidgetFactory, editableWidgetFactory] _ in
+                let systemVMs = SystemWidgetIdentifier.allCases.map { systemWidgetFactory($0) }
 
-                return configs.map { widgetViewModelFactory($0) }
+                let defaultConfigs = EditableWidgetIdentifier.makeDefaultConfigs()
+                let savedConfigs = userDefaults.learnerDashboardWidgetConfigs ?? []
+                // Merge saved and default configs so that widgets added in future app versions
+                // always appear even when the user already has a saved configuration.
+                let mergedConfigs = defaultConfigs.map { defaultConfig in
+                    savedConfigs.first { $0.id == defaultConfig.id } ?? defaultConfig
+                }
+                let editableConfigs = mergedConfigs
+                    .filter { $0.isVisible }
+                    .sorted()
+                let editableVMs = editableConfigs.map { editableWidgetFactory($0) }
+
+                return systemVMs + editableVMs
             }
             .eraseToAnyPublisher()
     }

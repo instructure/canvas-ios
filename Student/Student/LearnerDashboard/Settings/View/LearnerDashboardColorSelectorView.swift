@@ -24,21 +24,25 @@ struct LearnerDashboardColorSelectorView: View {
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
     @Binding var selectedColor: Color
 
+    let colors: [CourseColorData]
     let whiteColor = Color.backgroundLightest.variantForLightMode
-    let colors: [ColorData]
+
+    init(selectedColor: Binding<Color>, colors: [CourseColorData]) {
+        self._selectedColor = selectedColor
+        self.colors = colors
+    }
 
     var body: some View {
         DisclosureGroup {
-            // Need to implement our own HFlow, this uses fixed spacing, we need flexible
-            HorizonUI.HFlow {
+            FlexibleGrid(minimumSpacing: 16, lineSpacing: 16) {
                 ForEach(colors) { colorData in
                     Button {
-                        selectedColor = colorData.color
+                        selectedColor = colorData.color.asColor
                     } label: {
-                        let isSelected = colorData.color == selectedColor
+                        let isSelected = colorData.color.asColor == selectedColor
 
                         Circle()
-                            .fill(colorData.color)
+                            .fill(colorData.color.asColor)
                             .stroke(.borderLight, style: .init(lineWidth: 0.5))
                             .overlay {
                                 if isSelected {
@@ -55,7 +59,7 @@ struct LearnerDashboardColorSelectorView: View {
                             .scaledFrame(size: 40)
                             .shadow(color: .black.opacity(0.08), radius: 2, y: 2)
                             .shadow(color: .black.opacity(0.16), radius: 2, y: 1)
-                            .accessibilityLabel(colorData.description)
+                            .accessibilityLabel(colorData.name)
                             .accessibilityAddTraits(isSelected ? .isSelected : [])
                     }
                 }
@@ -78,36 +82,9 @@ struct LearnerDashboardColorSelectorView: View {
         }
         .disclosureGroupStyle(PlainDisclosureGroupStyle())
     }
-
-    init(selectedColor: Binding<Color>) {
-        self._selectedColor = selectedColor
-
-        let courseColors = CourseColorsInteractorLive.colors.map {
-            ColorData(color: $0.key.asColor, description: $0.value)
-        }
-        let additionalColors = [
-            ColorData(
-                color: .backgroundLightest.variantForLightMode,
-                description: String(localized: "White", bundle: .core, comment: "This is a name of a color.")
-            ),
-            ColorData(
-                color: .backgroundLightest.variantForDarkMode,
-                description: String(localized: "Black", bundle: .core, comment: "This is a name of a color.")
-            )
-        ]
-
-        colors =  courseColors + additionalColors
-    }
-
-    struct ColorData: Identifiable {
-        let color: Color
-        let description: String
-
-        var id: String { description }
-    }
 }
 
-struct PlainDisclosureGroupStyle: DisclosureGroupStyle {
+private struct PlainDisclosureGroupStyle: DisclosureGroupStyle {
     func makeBody(configuration: Configuration) -> some View {
         VStack(spacing: 0) {
             Button {
@@ -118,12 +95,7 @@ struct PlainDisclosureGroupStyle: DisclosureGroupStyle {
                 HStack {
                     configuration.label
 
-                    Image.chevronDown
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 16)
-                        .foregroundStyle(.textDark)
-                        .rotationEffect(configuration.isExpanded ? .degrees(180) : .degrees(0))
+                    InstUI.CollapseButtonIcon(isExpanded: configuration.$isExpanded)
                 }
             }
 
@@ -139,7 +111,7 @@ struct PlainDisclosureGroupStyle: DisclosureGroupStyle {
     @Previewable @State var selectedColor: Color = .course1
 
     VStack {
-        LearnerDashboardColorSelectorView(selectedColor: $selectedColor)
+        LearnerDashboardColorSelectorView(selectedColor: $selectedColor, colors: LearnerDashboardColorInteractorLive(defaults: .fallback).availableColors)
             .padding(.horizontal)
 
         Spacer()

@@ -20,6 +20,7 @@ import Combine
 import CombineSchedulers
 @testable import Core
 @testable import Student
+import SwiftUI
 import TestsFoundation
 import XCTest
 
@@ -27,32 +28,41 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
 
     private var testee: LearnerDashboardViewModel!
     private var interactor: LearnerDashboardInteractorMock!
+    private var colorInteractor: LearnerDashboardColorInteractorLive!
     private var courseSyncInteractor: CourseSyncInteractorMock!
     private var scheduler: TestSchedulerOf<DispatchQueue>!
+    private var testDefaults: SessionDefaults!
 
     override func setUp() {
         super.setUp()
         scheduler = DispatchQueue.test
         interactor = LearnerDashboardInteractorMock()
         courseSyncInteractor = CourseSyncInteractorMock()
+        testDefaults = SessionDefaults(sessionID: "test-session")
+        testDefaults.reset()
+        colorInteractor = LearnerDashboardColorInteractorLive(defaults: testDefaults)
     }
 
     override func tearDown() {
         testee = nil
         interactor = nil
+        colorInteractor = nil
         courseSyncInteractor = nil
         scheduler = nil
+        testDefaults.reset()
+        testDefaults = nil
         super.tearDown()
     }
 
     // MARK: - Initialization
 
     func test_init_shouldLoadWidgets() {
-        let widget1 = MockWidgetViewModel(id: .courseInvitations)
-        let widget2 = MockWidgetViewModel(id: .helloWidget)
+        let widget1 = MockWidgetViewModel(id: SystemWidgetIdentifier.courseInvitations.rawValue)
+        let widget2 = MockWidgetViewModel(id: EditableWidgetIdentifier.helloWidget.rawValue)
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             courseSyncInteractor: courseSyncInteractor,
@@ -62,8 +72,8 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         scheduler.advance()
 
         XCTAssertEqual(testee.widgets.count, 2)
-        XCTAssertEqual(testee.widgets[0].id, .courseInvitations)
-        XCTAssertEqual(testee.widgets[1].id, .helloWidget)
+        XCTAssertEqual(testee.widgets[0].id, SystemWidgetIdentifier.courseInvitations.rawValue)
+        XCTAssertEqual(testee.widgets[1].id, EditableWidgetIdentifier.helloWidget.rawValue)
     }
 
     // MARK: - Screen config
@@ -71,6 +81,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     func test_screenConfig_shouldBeConfiguredCorrectly() {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             courseSyncInteractor: courseSyncInteractor,
@@ -91,6 +102,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     func test_init_withNoWidgets_shouldKeepLoadingState() {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             courseSyncInteractor: courseSyncInteractor,
@@ -103,10 +115,11 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     }
 
     func test_init_withWidgets_shouldSetDataState() {
-        let widget = MockWidgetViewModel(id: .helloWidget)
+        let widget = MockWidgetViewModel(id: EditableWidgetIdentifier.helloWidget.rawValue)
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             courseSyncInteractor: courseSyncInteractor,
@@ -121,12 +134,13 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     // MARK: - Refresh
 
     func test_refresh_shouldCallRefreshOnAllWidgets() {
-        let widget1 = MockWidgetViewModel(id: .helloWidget)
-        let widget2 = MockWidgetViewModel(id: .coursesAndGroups)
-        let widget3 = MockWidgetViewModel(id: .courseInvitations)
+        let widget1 = MockWidgetViewModel(id: EditableWidgetIdentifier.helloWidget.rawValue)
+        let widget2 = MockWidgetViewModel(id: EditableWidgetIdentifier.coursesAndGroups.rawValue)
+        let widget3 = MockWidgetViewModel(id: SystemWidgetIdentifier.courseInvitations.rawValue)
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             courseSyncInteractor: courseSyncInteractor,
@@ -147,10 +161,11 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     }
 
     func test_refresh_shouldCallCompletionWhenAllWidgetsFinish() {
-        let widget = MockWidgetViewModel(id: .helloWidget)
+        let widget = MockWidgetViewModel(id: EditableWidgetIdentifier.helloWidget.rawValue)
 
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             courseSyncInteractor: courseSyncInteractor,
@@ -175,6 +190,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     func test_offlineSyncTriggered_shouldStartDownload() {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             courseSyncInteractor: courseSyncInteractor,
@@ -194,6 +210,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     func test_offlineSyncCleanTriggered_shouldCleanContent() {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
+            colorInteractor: colorInteractor,
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             courseSyncInteractor: courseSyncInteractor,
@@ -212,21 +229,19 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
 }
 
 private final class MockWidgetViewModel: DashboardWidgetViewModel {
-    typealias ViewType = Never
-
-    let config: DashboardWidgetConfig
+    let id: String
     let isHiddenInEmptyState = false
     let state: InstUI.ScreenState = .data
 
     var refreshCalled = false
     var refreshIgnoreCache: Bool?
 
-    init(id: DashboardWidgetIdentifier) {
-        self.config = .make(id: id, order: 7)
+    init(id: String) {
+        self.id = id
     }
 
-    func makeView() -> Never {
-        fatalError("Not implemented")
+    func makeView() -> AnyView {
+        AnyView(EmptyView())
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {

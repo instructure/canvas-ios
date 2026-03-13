@@ -25,10 +25,16 @@ extension InstUI {
 
         private let label: Label
         @Binding private var value: Bool
+        private let dividerStyle: InstUI.Divider.Style
 
-        public init(label: Label, value: Binding<Bool>) {
+        public init(
+            label: Label,
+            value: Binding<Bool>,
+            dividerStyle: InstUI.Divider.Style = .full
+        ) {
             self.label = label
             self._value = value
+            self.dividerStyle = dividerStyle
         }
 
         public var body: some View {
@@ -40,7 +46,7 @@ extension InstUI {
                     // best effort estimations to match the height of other cells, correcting for Toggle
                     .padding(.top, 10)
                     .padding(.bottom, 8)
-                InstUI.Divider()
+                InstUI.Divider(dividerStyle)
             }
         }
     }
