@@ -38,6 +38,7 @@ struct LearnerDashboardSettingsScreen: View {
                 feedbackSection
             }
             .paddingStyle(.horizontal, .standard)
+            .paddingStyle(.bottom, .standard)
         }
         .background(Color.backgroundLight.ignoresSafeArea())
         .navigationTitle(String(localized: "Customize Dashboard", bundle: .student), style: .modal)
