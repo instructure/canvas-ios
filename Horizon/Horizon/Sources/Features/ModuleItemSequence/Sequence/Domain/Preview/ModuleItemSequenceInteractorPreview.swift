@@ -64,5 +64,10 @@ final class ModuleItemSequenceInteractorPreview: ModuleItemSequenceInteractor {
         Just(HCourse(id: "", name: "", enrollmentID: "232", modules: [], overviewDescription: ""))
             .eraseToAnyPublisher()
     }
+
+    func syncCourseProgress() -> AnyPublisher<Void, Never> {
+        Just(())
+            .eraseToAnyPublisher()
+    }
 }
 #endif
