@@ -26,6 +26,7 @@ import UIKit
 @Observable
 final class LearnerDashboardSettingsViewModel {
     var useNewLearnerDashboard: Bool
+    var mainColor: Color = .course1
 
     private var defaults: SessionDefaults
     private let environment: AppEnvironment
@@ -37,6 +38,25 @@ final class LearnerDashboardSettingsViewModel {
         self.defaults = defaults
         self.environment = environment
         self.useNewLearnerDashboard = defaults.preferNewLearnerDashboard
+    }
+
+    func letUsKnow(from viewController: UIViewController) {
+        guard let topViewController = viewController.topMostViewController() else { return }
+
+        guard let feedbackString = Secret.learnerDashboardFeedbackURL.string,
+              let feedbackURL = URL(string: feedbackString)
+        else {
+            return
+        }
+
+        let webViewController = CoreWebViewController()
+        webViewController.webView.load(URLRequest(url: feedbackURL))
+
+        environment.router.show(
+            webViewController,
+            from: topViewController,
+            options: .modal(.formSheet, embedInNav: true, addDoneButton: true)
+        )
     }
 
     /// Switches from the new learner dashboard back to the classic dashboard.

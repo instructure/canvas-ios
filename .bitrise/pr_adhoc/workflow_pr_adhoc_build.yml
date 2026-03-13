@@ -13,6 +13,10 @@ workflows:
         - stamp_version: PR
         - stamp_build_number: $PR_NUMBER
         - stamp_path_to_icons: ${INST_XCODE_SCHEME}/${INST_XCODE_SCHEME}/Assets.xcassets/AppIcon.appiconset
+    - script-runner@0:
+        title: Inject PR number into Info.plist
+        inputs:
+        - file_path: ./.bitrise/pr_adhoc/inject_pr_number.sh
     - xcode-archive@5.8:
         inputs:
         - distribution_method: ad-hoc

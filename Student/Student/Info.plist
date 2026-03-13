@@ -164,6 +164,8 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>PRNumber</key>
+	<string></string>
 	<key>VersionName</key>
 	<string>Innovative Panda</string>
 </dict>

@@ -74,29 +74,25 @@ extension View {
 
     @ViewBuilder
     public func navigationTitle(_ title: String, style: NavigationBarStyle) -> some View {
-        // TODO: Replace with commented version after a11y issues are fixed (see comments for `NavigationBarTitleView`)
-        self
-            .navigationBarTitleView(title: title, subtitle: nil)
-            .navigationBarStyle(style)
-
-//        if #available(iOS 26, *) {
+        if #available(iOS 26, *) {
+            // TODO: Replace with commented version after a11y issues are fixed (see comments for `NavigationBarTitleView`)
+            self
+                .navigationBarTitleView(title: title, subtitle: nil)
 //            self
 //                .navigationTitle(title)
-//        } else {
-//            self
-//                .navigationBarTitleView(title: title, subtitle: nil)
-//                .navigationBarStyle(style)
-//        }
+        } else {
+            self
+                .navigationBarTitleView(title: title, subtitle: nil)
+                .navigationBarStyle(style)
+        }
     }
 
     @ViewBuilder
     public func navigationTitles(title: String, subtitle: String?, style: NavigationBarStyle) -> some View {
-        // TODO: Replace with commented version after a11y issues are fixed (see comments for `NavigationBarTitleView`)
-        self
-            .navigationBarTitleView(title: title, subtitle: subtitle)
-            .navigationBarStyle(style)
-
-//        if #available(iOS 26, *) {
+        if #available(iOS 26, *) {
+            // TODO: Replace with commented version after a11y issues are fixed (see comments for `NavigationBarTitleView`)
+            self
+                .navigationBarTitleView(title: title, subtitle: subtitle)
 //            if let subtitle {
 //                self
 //                    .navigationSubtitle(subtitle)
@@ -105,11 +101,11 @@ extension View {
 //                self
 //                    .navigationTitle(title)
 //            }
-//        } else {
-//            self
-//                .navigationBarTitleView(title: title, subtitle: subtitle)
-//                .navigationBarStyle(style)
-//        }
+        } else {
+            self
+                .navigationBarTitleView(title: title, subtitle: subtitle)
+                .navigationBarStyle(style)
+        }
     }
 
     /// Sets the navigation bar's background color, title color & font, button color & font.
