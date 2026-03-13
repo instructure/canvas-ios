@@ -63,6 +63,12 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
             .eraseToAnyPublisher()
     }
 
+    func searchWithFilters(searchText: String?, objectType: LearningLibraryObjectType?, libraryFilter: LearningLibraryFilter) -> AnyPublisher<[LearningLibraryCardModel], any Error> {
+        Just(mockItems)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+
     private var mockItems: [LearningLibraryCardModel] {
         [
             LearningLibraryCardModel(

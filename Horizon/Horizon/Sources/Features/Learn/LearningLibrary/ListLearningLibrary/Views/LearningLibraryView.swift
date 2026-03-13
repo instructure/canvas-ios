@@ -112,10 +112,7 @@ struct LearningLibraryView: View {
                     .fill(Color.huiColors.lineAndBorders.lineStroke)
                     .frame(height: 1)
                     .listRowBackground(Color.huiColors.surface.pagePrimary)
-                    .listRowInsets(EdgeInsets())
-                    .listRowSeparator(.hidden)
-                    .listRowSeparatorTint(Color.huiColors.surface.pagePrimary)
-                    .listSectionSeparatorTint(Color.huiColors.surface.pagePrimary)
+                    .plainListRowStyle()
             }
             .padding(.horizontal, .huiSpaces.space24)
             .listRowSpacing(.huiSpaces.space24)
@@ -123,23 +120,15 @@ struct LearningLibraryView: View {
             if viewModel.isSeeMoreVisible {
                 seeMoreButton
                     .padding(.top, .huiSpaces.space16)
-                    .listRowBackground(Color.huiColors.surface.pagePrimary)
-                    .listRowInsets(EdgeInsets())
-                    .listRowSeparator(.hidden)
-                    .listSectionSeparatorTint(Color.huiColors.surface.pagePrimary)
+                    .plainListRowStyle()
             }
             extraPadding
-                .listRowBackground(Color.huiColors.surface.pagePrimary)
-                .listRowInsets(EdgeInsets())
-                .listRowSeparator(.hidden)
-                .listRowSeparatorTint(Color.huiColors.surface.pagePrimary)
-                .listSectionSeparatorTint(Color.huiColors.surface.pagePrimary)
+                .plainListRowStyle()
         }
         .listSectionSpacing(.zero)
         .scrollContentBackground(.hidden)
         .environment(\.defaultMinListHeaderHeight, 0)
         .listStyle(.grouped)
-//        .listRowSpacing(.huiSpaces.space24)
         .listRowSpacing(0)
         .listSectionSpacing(.compact)
         .listSectionSeparator(.hidden)
@@ -205,9 +194,7 @@ struct LearningLibraryView: View {
                     .foregroundStyle(Color.huiColors.text.body)
                     .background(Color.huiColors.surface.pagePrimary)
                     .padding(.horizontal, .huiSpaces.space24)
-                    .listRowInsets(EdgeInsets())
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(Color.huiColors.surface.pagePrimary)
+                    .plainListRowStyle()
             }
 
             extraPadding
@@ -223,11 +210,7 @@ struct LearningLibraryView: View {
         Rectangle()
             .fill(Color.clear)
             .frame(height: 10)
-            .listRowInsets(EdgeInsets())
-            .listRowSeparator(.hidden)
-            .listRowSeparatorTint(Color.huiColors.surface.pagePrimary)
-            .listRowBackground(Color.huiColors.surface.pagePrimary)
-            .listSectionSeparatorTint(Color.huiColors.surface.pagePrimary)
+            .plainListRowStyle()
     }
 
     @ViewBuilder
@@ -303,9 +286,7 @@ struct LearningLibraryView: View {
         }
         .padding(.bottom, .huiSpaces.space16)
         .padding(.horizontal, .huiSpaces.space24)
-        .listRowInsets(EdgeInsets())
-        .listRowSeparator(.hidden)
-        .listRowBackground(Color.huiColors.surface.pagePrimary)
+        .plainListRowStyle()
     }
 
     private var filterView: some View {

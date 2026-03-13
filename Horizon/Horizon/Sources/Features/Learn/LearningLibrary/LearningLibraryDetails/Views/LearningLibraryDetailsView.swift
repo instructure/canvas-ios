@@ -168,27 +168,21 @@ struct LearningLibraryDetailsView: View {
                     .huiTypography(.p1)
                     .foregroundStyle(Color.huiColors.text.body)
                     .padding(.horizontal, .huiSpaces.space24)
-                    .listRowInsets(EdgeInsets())
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(Color.huiColors.surface.pagePrimary)
+                    .plainListRowStyle()
             }
 
             if viewModel.isSeeMoreVisible {
                 seeMoreButton
                     .padding(.horizontal, .huiSpaces.space24)
                     .padding(.bottom, .huiSpaces.space16)
-                    .listRowInsets(EdgeInsets())
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(Color.huiColors.surface.pagePrimary)
+                    .plainListRowStyle()
             }
 
             // Add extra padding at the botttom
             Rectangle()
                 .fill(Color.clear)
                 .frame(height: 10)
-                .listRowInsets(EdgeInsets())
-                .listRowSeparator(.hidden)
-                .listRowBackground(Color.huiColors.surface.pagePrimary)
+                .plainListRowStyle()
         }
         .scrollContentBackground(.hidden)
         .listStyle(.plain)

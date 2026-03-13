@@ -52,16 +52,11 @@ struct ListLearningLibraryView: View {
                         .foregroundStyle(Color.huiColors.text.title)
                         .huiTypography(.buttonTextLarge)
                         .frame(maxWidth: .infinity, alignment: .leading)
-                        .listRowInsets(EdgeInsets())
-                        .listRowSeparator(.hidden)
-                        .listRowSeparatorTint(Color.huiColors.surface.pagePrimary)
-                        .listRowBackground(Color.huiColors.surface.pagePrimary)
+                        .plainListRowStyle()
                 }
             }
         }
-        .listRowInsets(EdgeInsets())
-        .listRowSeparator(.hidden)
-        .listSectionSeparatorTint(Color.huiColors.surface.pagePrimary)
+        .plainListRowStyle()
     }
 
     private var headerView: some View {
@@ -111,9 +106,7 @@ struct ListLearningLibraryView: View {
                     viewModel.navigateToLearningLibraryItemDetails(item, from: viewController)
                 }
             )
-            .listRowInsets(EdgeInsets())
-            .listRowSeparator(.hidden)
-            .listRowSeparatorTint(Color.huiColors.surface.pagePrimary)
+            .plainListRowStyle()
             .id(item.id)
             .accessibilityFocused($focusedItemID, equals: item.id)
         }

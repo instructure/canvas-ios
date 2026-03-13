@@ -234,6 +234,104 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
         }
     }
 
+    // MARK: - Search With Filters Tests
+
+    func testSearchWithFiltersWithAllFilters() {
+        let testee = LearningLibraryInteractorLive(domainService: DomainServiceMock(result: .success(api)))
+        mockJWTToken()
+        mockSearchItemsResponse()
+
+        XCTAssertSingleOutputAndFinish(
+            testee.searchWithFilters(
+                searchText: "Swift",
+                objectType: .course,
+                libraryFilter: .all
+            )
+        ) { items in
+            XCTAssertGreaterThan(items.count, 0)
+        }
+    }
+
+    func testSearchWithFiltersWithBookmarkedFilter() {
+        let testee = LearningLibraryInteractorLive(domainService: DomainServiceMock(result: .success(api)))
+        mockJWTToken()
+        mockSearchBookmarkedItemsResponse()
+
+        XCTAssertSingleOutputAndFinish(
+            testee.searchWithFilters(
+                searchText: nil,
+                objectType: nil,
+                libraryFilter: .bookmarked
+            )
+        ) { items in
+            XCTAssertTrue(items.allSatisfy { $0.isBookmarked })
+        }
+    }
+
+    func testSearchWithFiltersWithCompletedFilter() {
+        let testee = LearningLibraryInteractorLive(domainService: DomainServiceMock(result: .success(api)))
+        mockJWTToken()
+        mockSearchCompletedItemsResponse()
+
+        XCTAssertSingleOutputAndFinish(
+            testee.searchWithFilters(
+                searchText: nil,
+                objectType: nil,
+                libraryFilter: .completed
+            )
+        ) { items in
+            XCTAssertTrue(items.allSatisfy { $0.isCompleted })
+        }
+    }
+
+    func testSearchWithFiltersWithObjectTypeFilter() {
+        let testee = LearningLibraryInteractorLive(domainService: DomainServiceMock(result: .success(api)))
+        mockJWTToken()
+        mockSearchItemsWithTypes()
+
+        XCTAssertSingleOutputAndFinish(
+            testee.searchWithFilters(
+                searchText: nil,
+                objectType: .course,
+                libraryFilter: .all
+            )
+        ) { items in
+            XCTAssertGreaterThan(items.count, 0)
+        }
+    }
+
+    func testSearchWithFiltersTrimsWhitespace() {
+        let testee = LearningLibraryInteractorLive(domainService: DomainServiceMock(result: .success(api)))
+        mockJWTToken()
+        mockSearchItemsResponse()
+
+        XCTAssertSingleOutputAndFinish(
+            testee.searchWithFilters(
+                searchText: "  Swift  ",
+                objectType: nil,
+                libraryFilter: .all
+            )
+        ) { items in
+            XCTAssertGreaterThan(items.count, 0)
+        }
+    }
+
+    func testSearchWithFiltersTreatsEmptyStringAsNil() {
+        let testee = LearningLibraryInteractorLive(domainService: DomainServiceMock(result: .success(api)))
+        mockJWTToken()
+        mockSearchItemsWithNoSearchTerm()
+
+        XCTAssertSingleOutputAndFinish(
+            testee.searchWithFilters(
+                searchText: "   ",
+                objectType: nil,
+                libraryFilter: .all
+            )
+        ) { items in
+            XCTAssertGreaterThan(items.count, 0)
+        }
+    }
+
     // MARK: - Enroll Tests
 
     func testEnrollEnrollsUserInItem() {
@@ -467,6 +565,34 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
                 data: .init(
                     learningLibraryCollectionItems: .init(
                         items: duplicateItems,
+                        pageInfo: nil
+                    )
+                )
+            )
+        )
+    }
+
+    private func mockSearchCompletedItemsResponse() {
+        api.mock(
+            GetHLearningLibraryItemRequest(completedOnly: true),
+            value: GetHLearningLibraryItemResponse(
+                data: .init(
+                    learningLibraryCollectionItems: .init(
+                        items: LearningLibraryItemStubs.response.filter { $0.completionPercentage == 100 },
+                        pageInfo: nil
+                    )
+                )
+            )
+        )
+    }
+
+    private func mockSearchItemsWithNoSearchTerm() {
+        api.mock(
+            GetHLearningLibraryItemRequest(),
+            value: GetHLearningLibraryItemResponse(
+                data: .init(
+                    learningLibraryCollectionItems: .init(
+                        items: LearningLibraryItemStubs.response,
                         pageInfo: nil
                     )
                 )

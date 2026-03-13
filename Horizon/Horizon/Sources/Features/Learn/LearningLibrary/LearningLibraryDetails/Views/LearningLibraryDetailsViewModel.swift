@@ -51,7 +51,6 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     private(set) var hasItems = false
     private(set) var isLoaderVisible: Bool = true
     private(set) var errorMessage = ""
-    private(set) var accessibilityMessagePublisher = PassthroughSubject<String, Never>()
     var isErrorVisible: Bool = false
     var filteredItems: [LearningLibraryCardModel] { paginator.visibleItems }
     var isSeeMoreVisible: Bool { paginator.isSeeMoreVisible }
@@ -61,9 +60,17 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
         selectedLearningLibrary.id != LearningLibraryFilter.firstOption.id
     }
 
+    var accessibilityMessagePublisher: AnyPublisher<String, Never> {
+        Publishers.Merge(
+            bookmarkManager.accessibilityPublisher,
+            internalAccessibilityPublisher
+        )
+        .eraseToAnyPublisher()
+    }
+
     // MARK: - Private variables
 
-    private var bookmarkLoadingStates: [String: Bool] = [:]
+    private var internalAccessibilityPublisher = PassthroughSubject<String, Never>()
     private var allItems: [LearningLibraryCardModel] = []
     private let paginator = PaginatedDataSource<LearningLibraryCardModel>(items: [], pageSize: 6)
     private var subscriptions = Set<AnyCancellable>()
@@ -74,6 +81,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     let router: Router
     private let didSendEvent: PassthroughSubject<Void, Never>
     private let interactor: LearningLibraryInteractor
+    private let bookmarkManager: BookmarkManager
     private let scheduler: AnySchedulerOf<DispatchQueue>
     let pageType: PageType
 
@@ -84,12 +92,14 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
         router: Router,
         didSendEvent: PassthroughSubject<Void, Never>,
         pageType: PageType,
+        bookmarkManager: BookmarkManager = BookmarkManager(),
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.pageType = pageType
         self.router = router
         self.didSendEvent = didSendEvent
         self.interactor = interactor
+        self.bookmarkManager = bookmarkManager
         self.scheduler = scheduler
         observeFilters()
     }
@@ -216,28 +226,19 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     }
 
     func addBookmark(model: LearningLibraryCardModel) {
-        bookmarkLoadingStates[model.id] = true
-        interactor.bookmark(id: model.id, courseID: model.courseID)
-            .receive(on: scheduler)
+        bookmarkManager.toggleBookmark(model, using: interactor, scheduler: scheduler)
             .sinkFailureOrValue { [weak self] error in
+                self?.showError(message: error.localizedDescription)
+            } receiveValue: { [weak self] updatedItem in
                 guard let self else { return }
-                bookmarkLoadingStates[model.id] = false
-                showError(message: error.localizedDescription)
-            } receiveValue: { [weak self] item in
-                guard let self, let item else { return }
-                configItem(item: item)
-                bookmarkLoadingStates[model.id] = false
-                didSendEvent.send(())
-                let message = item.isBookmarked
-                ? String(localized: "Added to bookmarks")
-                : String(localized: "Removed from bookmarks")
-                self.accessibilityMessagePublisher.send(message)
+                self.configItem(item: updatedItem)
+                self.didSendEvent.send(())
             }
             .store(in: &subscriptions)
     }
 
     func isBookmarkLoading(forItemWithId id: String) -> Bool {
-        bookmarkLoadingStates[id] ?? false
+        bookmarkManager.isLoading(itemId: id)
     }
 
     func showEnrollConfirmation(
@@ -248,7 +249,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
             self?.configItem(item: item)
             self?.didSendEvent.send(())
             self?.navigateToLearningLibraryItem(item, from: viewController)
-            self?.accessibilityMessagePublisher.send(String(localized: "Enrolled successfully"))
+            self?.internalAccessibilityPublisher.send(String(localized: "Enrolled successfully"))
         }
         router.show(enrollViewController, from: viewController, options: .modal(.fullScreen))
     }
@@ -315,7 +316,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
         } else {
             message = String(format: String(localized: "Found %d results"), count)
         }
-        accessibilityMessagePublisher.send(message)
+        internalAccessibilityPublisher.send(message)
     }
 }
 

@@ -32,6 +32,11 @@ protocol LearningLibraryInteractor {
         types: [String]?,
         searchTerm: String?
     ) -> AnyPublisher<[LearningLibraryCardModel], Error>
+    func searchWithFilters(
+        searchText: String?,
+        objectType: LearningLibraryObjectType?,
+        libraryFilter: LearningLibraryFilter
+    ) -> AnyPublisher<[LearningLibraryCardModel], Error>
 }
 
 final class LearningLibraryInteractorLive: LearningLibraryInteractor {
@@ -124,6 +129,32 @@ final class LearningLibraryInteractorLive: LearningLibraryInteractor {
             .compactMap { $0.first }
             .map { LearningLibraryCardModel(for: $0) }
             .eraseToAnyPublisher()
+    }
+
+    func searchWithFilters(
+        searchText: String?,
+        objectType: LearningLibraryObjectType?,
+        libraryFilter: LearningLibraryFilter
+    ) -> AnyPublisher<[LearningLibraryCardModel], Error> {
+        let bookmarkedOnly = libraryFilter == .bookmarked
+        let completedOnly = libraryFilter == .completed
+
+        let types: [String]?
+        if let objectType = objectType {
+            types = [objectType.rawValue]
+        } else {
+            types = nil
+        }
+
+        let trimmedSearchText = searchText?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let searchTerm = trimmedSearchText?.isEmpty == false ? trimmedSearchText : nil
+
+        return searchCollectionItem(
+            bookmarkedOnly: bookmarkedOnly,
+            completedOnly: completedOnly,
+            types: types,
+            searchTerm: searchTerm
+        )
     }
 }
 
