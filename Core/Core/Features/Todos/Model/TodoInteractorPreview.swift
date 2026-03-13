@@ -21,10 +21,10 @@ import Foundation
 
 #if DEBUG
 
-final class TodoInteractorPreview: TodoInteractor {
-    let todoGroups: CurrentValueSubject<[TodoGroupViewModel], Never>
+public final class TodoInteractorPreview: TodoInteractor {
+    public let todoGroups: CurrentValueSubject<[TodoGroupViewModel], Never>
 
-    init(todoGroups: [TodoGroupViewModel]? = nil) {
+    public init(todoGroups: [TodoGroupViewModel]? = nil) {
         if let todoGroups {
             self.todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>(todoGroups)
             return
@@ -49,16 +49,27 @@ final class TodoInteractorPreview: TodoInteractor {
         self.todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([todayGroup, tomorrowGroup])
     }
 
-    func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Error> {
+    public func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Error> {
         todoGroups.send(todoGroups.value)
         return Publishers.typedJust()
     }
 
-    func isCacheExpired() -> AnyPublisher<Bool, Never> {
+    public func refresh(
+        startDate: Date,
+        endDate: Date,
+        ignorePlannablesCache: Bool,
+        ignoreCoursesCache: Bool,
+        filterOptions: TodoFilterOptions?
+    ) -> AnyPublisher<Void, Error> {
+        todoGroups.send(todoGroups.value)
+        return Publishers.typedJust()
+    }
+
+    public func isCacheExpired() -> AnyPublisher<Bool, Never> {
         Just(false).eraseToAnyPublisher()
     }
 
-    func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<String, Error> {
+    public func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<String, Error> {
         Publishers.typedJust("preview-override-id")
     }
 }

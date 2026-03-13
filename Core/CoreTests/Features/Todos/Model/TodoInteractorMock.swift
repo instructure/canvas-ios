@@ -18,6 +18,7 @@
 
 @testable import Core
 import Combine
+import Foundation
 
 final class TodoInteractorMock: TodoInteractor {
     var todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([])
@@ -37,6 +38,13 @@ final class TodoInteractorMock: TodoInteractor {
     var lastMarkAsDoneDone: Bool?
     var markItemAsDoneResult: Result<String, Error> = .success("mock-override-id")
 
+    var rangedRefreshCalled = false
+    var rangedRefreshCallCount = 0
+    var lastRangedRefreshStartDate: Date?
+    var lastRangedRefreshEndDate: Date?
+    var lastRangedRefreshFilterOptions: TodoFilterOptions?
+    var rangedRefreshResult: Result<Void, Error> = .success(())
+
     func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Error> {
         refreshCalled = true
         refreshCallCount += 1
@@ -51,6 +59,27 @@ final class TodoInteractorMock: TodoInteractor {
         case .failure(let error):
             return Fail(error: error)
                 .eraseToAnyPublisher()
+        }
+    }
+
+    func refresh(
+        startDate: Date,
+        endDate: Date,
+        ignorePlannablesCache: Bool,
+        ignoreCoursesCache: Bool,
+        filterOptions: TodoFilterOptions?
+    ) -> AnyPublisher<Void, Error> {
+        rangedRefreshCalled = true
+        rangedRefreshCallCount += 1
+        lastRangedRefreshStartDate = startDate
+        lastRangedRefreshEndDate = endDate
+        lastRangedRefreshFilterOptions = filterOptions
+
+        switch rangedRefreshResult {
+        case .success:
+            return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+        case .failure(let error):
+            return Fail(error: error).eraseToAnyPublisher()
         }
     }
 

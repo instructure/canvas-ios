@@ -28,8 +28,9 @@ enum LearnerDashboardWidgetAssembly {
             .courseInvitations,
             .globalAnnouncements,
             .helloWidget,
+            .coursesAndGroups,
             .weeklySummary,
-            .coursesAndGroups
+            .toDo
         ]
 
         return identifiers.enumerated().map { (index, id) in
@@ -84,6 +85,17 @@ enum LearnerDashboardWidgetAssembly {
             )
         case .weeklySummary:
             WeeklySummaryWidgetViewModel(config: config)
+        case .toDo:
+            ToDoWidgetViewModel(
+                config: config,
+                interactor: TodoInteractorLive(
+                    alwaysExcludeCompleted: false,
+                    sessionDefaults: AppEnvironment.shared.userDefaults ?? .fallback,
+                    env: .shared
+                ),
+                router: AppEnvironment.shared.router,
+                snackBarViewModel: snackBarViewModel
+            )
         }
     }
 
@@ -105,6 +117,8 @@ enum LearnerDashboardWidgetAssembly {
         case let vm as CoursesAndGroupsWidgetViewModel:
             vm.makeView()
         case let vm as WeeklySummaryWidgetViewModel:
+            vm.makeView()
+        case let vm as ToDoWidgetViewModel:
             vm.makeView()
         default:
             SwiftUI.EmptyView()
