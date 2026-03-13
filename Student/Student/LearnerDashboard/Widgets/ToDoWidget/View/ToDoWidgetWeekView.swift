@@ -96,7 +96,7 @@ private struct ToDoWidgetDayCell: View {
         if itemCount == 0 {
             return dateLabel
         }
-        return "\(dateLabel), \(itemCount) \(String(localized: "items", bundle: .core))"
+        return "\(dateLabel), \(itemCount) \(String(localized: "items", bundle: .student))"
     }
 }
 

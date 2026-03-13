@@ -19,11 +19,20 @@
 import Combine
 
 struct WeekPagerProxy {
+
     let scrollToPreviousWeekSubject = PassthroughSubject<Void, Never>()
     let scrollToNextWeekSubject = PassthroughSubject<Void, Never>()
     let scrollToTodaySubject = PassthroughSubject<Void, Never>()
 
-    func scrollToPreviousWeek() { scrollToPreviousWeekSubject.send() }
-    func scrollToNextWeek() { scrollToNextWeekSubject.send() }
-    func scrollToToday() { scrollToTodaySubject.send() }
+    func scrollToPreviousWeek() {
+        scrollToPreviousWeekSubject.send()
+    }
+
+    func scrollToNextWeek() {
+        scrollToNextWeekSubject.send()
+    }
+
+    func scrollToToday() {
+        scrollToTodaySubject.send()
+    }
 }

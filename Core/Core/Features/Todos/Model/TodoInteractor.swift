@@ -198,7 +198,7 @@ public final class TodoInteractorLive: TodoInteractor {
                 guard let self,
                       let courses = self.cachedCourses,
                       let filterOptions = self.lastUsedFilterOptions else { return }
-                try? self.filterAndGroupTodos(
+                try? filterAndGroupTodos(
                     plannables: plannables,
                     courses: courses,
                     skipBadgeUpdate: self.alwaysExcludeCompleted,
@@ -223,8 +223,13 @@ public final class TodoInteractorLive: TodoInteractor {
         )
         .tryMap { [weak self] plannables, courses, _ in
             guard let self else { return }
-            try self.filterAndGroupTodos(plannables: plannables, courses: courses, skipBadgeUpdate: skipBadgeUpdate, filterOptions: filterOptions)
-            self.logFilterAnalytics()
+            try filterAndGroupTodos(
+                plannables: plannables,
+                courses: courses,
+                skipBadgeUpdate: skipBadgeUpdate,
+                filterOptions: filterOptions
+            )
+            logFilterAnalytics()
         }
         .catch { [weak self] error -> AnyPublisher<Void, Error> in
             let shouldRetry = error as? TodoInteractorError == .deletedCoursesDetected ||
@@ -257,7 +262,12 @@ public final class TodoInteractorLive: TodoInteractor {
         ReactiveStore(useCase: GetPlannables.makeTodoFetchUseCase(), environment: env)
     }
 
-    private func filterAndGroupTodos(plannables: [Plannable], courses: [Course], skipBadgeUpdate: Bool, filterOptions passedFilterOptions: TodoFilterOptions? = nil) throws {
+    private func filterAndGroupTodos(
+        plannables: [Plannable],
+        courses: [Course],
+        skipBadgeUpdate: Bool,
+        filterOptions passedFilterOptions: TodoFilterOptions? = nil
+    ) throws {
         let filterOptions = passedFilterOptions ?? sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
         cachedCourses = courses
         lastUsedFilterOptions = filterOptions

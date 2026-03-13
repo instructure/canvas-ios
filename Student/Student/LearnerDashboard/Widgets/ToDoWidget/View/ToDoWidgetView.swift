@@ -20,9 +20,10 @@ import Core
 import SwiftUI
 
 struct ToDoWidgetView: View {
-    @State private var viewModel: ToDoWidgetViewModel
     @Environment(\.viewController) private var viewController
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    @State private var viewModel: ToDoWidgetViewModel
 
     @State private var weekPagerProxy = WeekPagerProxy()
     @State private var cardHeaderHeight: CGFloat = 42
@@ -31,7 +32,7 @@ struct ToDoWidgetView: View {
     @AccessibilityFocusState private var isTitleFocused: Bool
 
     init(viewModel: ToDoWidgetViewModel) {
-        _viewModel = State(wrappedValue: viewModel)
+        self.viewModel = viewModel
     }
 
     var body: some View {
@@ -88,7 +89,7 @@ struct ToDoWidgetView: View {
                     weekPagerProxy.scrollToToday()
                 } label: {
                     InstUI.PillContent(
-                        title: String(localized: "Today", bundle: .core),
+                        title: String(localized: "Today", bundle: .student),
                         trailingIcon: Image.calendarTodayLine,
                         size: .height24
                     )
@@ -116,7 +117,7 @@ struct ToDoWidgetView: View {
             }
             Spacer()
             InstUI.Toggle(isOn: showCompletedBinding) {
-                Text("Show Completed", bundle: .core)
+                Text("Show Completed", bundle: .student)
                     .font(.regular14)
                     .foregroundStyle(Color.accentColor)
             }
@@ -129,8 +130,7 @@ struct ToDoWidgetView: View {
             GeometryReader { geometry in
                 Color.clear
                     .onAppear { cardHeaderHeight = geometry.size.height }
-                    .onChange(of: geometry.size.height) { _, value in cardHeaderHeight = value
-                    }
+                    .onChange(of: geometry.size.height) { _, value in cardHeaderHeight = value }
             }
         }
     }
@@ -202,7 +202,7 @@ struct ToDoWidgetView: View {
 
     private var emptyDayView: some View {
         HStack(alignment: .top, spacing: 8) {
-            Image("PandaNoEvents", bundle: .core)
+            Image("PandaNoEvents", bundle: .student)
                 .scaledIcon(size: 40)
                 .accessibilityHidden(true)
                 .padding(.trailing, 8)
@@ -229,7 +229,7 @@ struct ToDoWidgetView: View {
 
     private var errorDayView: some View {
         HStack(alignment: .top, spacing: 8) {
-            Image("PandaUnsupported", bundle: .core)
+            Image("PandaUnsupported", bundle: .student)
                 .scaledIcon(size: 40)
                 .accessibilityHidden(true)
                 .padding(.trailing, 8)
