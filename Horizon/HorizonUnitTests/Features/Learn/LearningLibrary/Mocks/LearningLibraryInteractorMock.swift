@@ -67,7 +67,7 @@ final class LearningLibraryInteractorMock: LearningLibraryInteractor {
         }
     }
 
-    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
+    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel?, Error> {
         if hasError {
             return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
         } else if let response = bookmarkResponse {
@@ -114,5 +114,21 @@ final class LearningLibraryInteractorMock: LearningLibraryInteractor {
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }
+    }
+
+    func searchWithFilters(
+        searchText: String?,
+        objectType: LearningLibraryObjectType?,
+        libraryFilter: LearningLibraryFilter
+    ) -> AnyPublisher<[LearningLibraryCardModel], Error> {
+        let bookmarkedOnly = libraryFilter == .bookmarked
+        let completedOnly = libraryFilter == .completed
+        let types = objectType.map { [$0.rawValue] }
+        return searchCollectionItem(
+            bookmarkedOnly: bookmarkedOnly,
+            completedOnly: completedOnly,
+            types: types,
+            searchTerm: searchText
+        )
     }
 }

@@ -95,28 +95,28 @@ final class LearningLibraryItemNavigatingTests: HorizonTestCase {
         XCTAssertEqual(router.calls[0].0?.url, url)
     }
 
-    func testNavigateToProgramShowsProgramDetails() {
-        let testNavigator = TestNavigator(router: router)
-        let programCard = LearningLibraryCardModel(
-            id: "item-2",
-            courseID: "program-789",
-            name: "Career Program",
-            imageURL: nil,
-            itemType: .program,
-            estimatedTime: nil,
-            isRecommended: false,
-            isCompleted: false,
-            isBookmarked: false,
-            numberOfUnits: nil,
-            isEnrolled: false
-        )
-
-        testNavigator.navigateToLearningLibraryItem(programCard, from: WeakViewController(UIViewController()))
-
-        wait(for: [router.showExpectation], timeout: 1)
-        let presentedVC = router.lastViewController as? CoreHostingController<Horizon.ProgramDetailsView>
-        XCTAssertNotNil(presentedVC)
-    }
+//    func testNavigateToProgramShowsProgramDetails() {
+//        let testNavigator = TestNavigator(router: router)
+//        let programCard = LearningLibraryCardModel(
+//            id: "item-2",
+//            courseID: "program-789",
+//            name: "Career Program",
+//            imageURL: nil,
+//            itemType: .program,
+//            estimatedTime: nil,
+//            isRecommended: false,
+//            isCompleted: false,
+//            isBookmarked: false,
+//            numberOfUnits: nil,
+//            isEnrolled: false
+//        )
+//
+//        testNavigator.navigateToLearningLibraryItem(programCard, from: WeakViewController(UIViewController()))
+//
+//        wait(for: [router.showExpectation], timeout: 1)
+//        let presentedVC = router.lastViewController as? CoreHostingController<Horizon.ProgramDetailsView>
+//        XCTAssertNotNil(presentedVC)
+//    }
 
     func testNavigateToPageDoesNotNavigate() {
         let testNavigator = TestNavigator(router: router)

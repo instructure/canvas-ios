@@ -36,6 +36,7 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
     var courseEnrollmentId: String?
     let moduleItemID: String?
     let canvasUrl: URL?
+    let completionPercentage: Double
 
     init(
         id: String,
@@ -53,7 +54,8 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         courseEnrollmentId: String? = nil,
         libraryId: String = "",
         moduleItemID: String? = nil,
-        canvasUrl: URL? = nil
+        canvasUrl: URL? = nil,
+        completionPercentage: Double = 0
     ) {
         self.id = id
         self.courseID = courseID
@@ -71,6 +73,7 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         self.libraryId = libraryId
         self.moduleItemID = moduleItemID
         self.canvasUrl = canvasUrl
+        self.completionPercentage = completionPercentage
     }
 
     init(for entity: CDHLearningLibraryCollectionItem) {
@@ -90,6 +93,7 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         self.libraryId = entity.libraryId
         self.moduleItemID = entity.canvasModuleItemId
         self.canvasUrl = entity.canvasUrl
+        self.completionPercentage = entity.completionPercentage
     }
 
     init(for response: LearningLibraryItemsResponse) {
@@ -111,6 +115,7 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         self.courseEnrollmentId = response.canvasEnrollmentId
         self.moduleItemID = response.canvasModuleItemId
         self.canvasUrl = response.canvasCourse?.canvasUrl
+        self.completionPercentage = completionPercentage
     }
 
     mutating func update(with: LearningLibraryCardModel) {
@@ -118,14 +123,14 @@ struct LearningLibraryCardModel: Identifiable, Equatable {
         self.isEnrolled = with.isEnrolled
         self.courseEnrollmentId = with.courseEnrollmentId
         /// When the user enrolls in the course, update the state to "in progress".
-        self.isInProgress = with.isEnrolled
+        self.isInProgress = (completionPercentage >= 0 && !self.isCompleted && isEnrolled)
     }
 
     var shouldShowEnrollButton: Bool {
-        !isEnrolled && (itemType == .course || itemType == .program)
+        !isEnrolled && itemType == .course
     }
 
     var shouldShowProgressStatus: Bool {
-        itemType == .course || itemType == .program
+        itemType == .course
     }
 }

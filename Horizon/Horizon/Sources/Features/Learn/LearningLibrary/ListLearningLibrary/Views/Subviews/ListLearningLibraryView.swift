@@ -39,28 +39,24 @@ struct ListLearningLibraryView: View {
     @Binding var lastFocusedItemID: String?
 
     var body: some View {
-        Section(header: sectionHeaderContainer) {
+        Section(header: headerView) {
             if isExpanded {
-                items
-                viewAllCollectionsButton
+                if section.items.isNotEmpty {
+                    items
+
+                    if section.hasMoreItems {
+                        viewAllCollectionsButton
+                    }
+                } else {
+                    Text("No items in this collection")
+                        .foregroundStyle(Color.huiColors.text.title)
+                        .huiTypography(.buttonTextLarge)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .plainListRowStyle()
+                }
             }
         }
-        .listRowInsets(EdgeInsets())
-        .listRowSeparator(.hidden)
-        .listSectionSeparatorTint(Color.huiColors.surface.pagePrimary)
-    }
-
-    private var sectionHeaderContainer: some View {
-        VStack(spacing: .zero) {
-            headerView
-            Rectangle()
-                .fill(
-                    isExpanded
-                    ? Color.clear
-                    : Color.huiColors.lineAndBorders.lineStroke
-                )
-                .frame(height: 1)
-        }
+        .plainListRowStyle()
     }
 
     private var headerView: some View {
@@ -76,21 +72,22 @@ struct ListLearningLibraryView: View {
 
             if isExpendable {
                 HorizonUI.IconButton(
-                    isExpanded ? Image.huiIcons.keyboardArrowUp : Image.huiIcons.keyboardArrowDown,
+                    Image.huiIcons.keyboardArrowDown,
                     type: .darkOutline,
                     isSmall: true
                 ) {
-                    withAnimation(.spring()) {
+                    withAnimation(.smooth(duration: 0.3)) {
                         isExpanded.toggle()
                     }
                 }
+                .rotationEffect(.degrees(isExpanded ? 180 : 0))
                 .accessibilityAddTraits(.isHeader)
                 .accessibilityLabel(Text(section.name))
                 .accessibilityValue(Text(isExpanded ? String(localized: "Expanded") : String(localized: "Collapsed")))
                 .accessibilityHint(Text(isExpanded ? String(localized: "Double tap to collapse section") : String(localized: "Double tap to expand section")))
             }
         }
-        .padding(.vertical, .huiSpaces.space24)
+        .padding(.vertical, .huiSpaces.space16)
     }
 
     private var items: some View {
@@ -106,38 +103,34 @@ struct ListLearningLibraryView: View {
                     viewModel.showEnrollConfirmation(model: item, viewController: viewController)
                 }, onTapItem: {
                     lastFocusedItemID = item.id
-                    viewModel.navigateToLearningLibraryItem(item, from: viewController)
+                    viewModel.navigateToLearningLibraryItemDetails(item, from: viewController)
                 }
             )
-            .listRowInsets(EdgeInsets())
-            .listRowSeparator(.hidden)
-            .listRowSeparatorTint(Color.huiColors.surface.pagePrimary)
+            .plainListRowStyle()
             .id(item.id)
             .accessibilityFocused($focusedItemID, equals: item.id)
         }
     }
 
-    @ViewBuilder
     private var viewAllCollectionsButton: some View {
-        if section.hasMoreItems {
-            HStack {
-                Text(String(format: String(localized: "%@ items"), section.totalItemCount))
-                    .foregroundStyle(Color.huiColors.text.dataPoint)
-                    .huiTypography(.p2)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+        HStack {
+            Text(String(format: String(localized: "%@ items"), section.totalItemCount))
+                .foregroundStyle(Color.huiColors.text.dataPoint)
+                .huiTypography(.p2)
+                .frame(maxWidth: .infinity, alignment: .leading)
 
-                Spacer()
-                HorizonUI.PrimaryButton(String(localized: "View full collection"),
-                    type: .white,
-                    fillsWidth: false,
-                    trailing: Image.huiIcons.arrowForward
-                ) {
-                    viewModel.navigateToDetails(section: section, viewController: viewController)
-                }
-                .huiElevation(level: .level2)
-                .fixedSize(horizontal: true, vertical: false)
+            Spacer()
+            HorizonUI.PrimaryButton(String(localized: "View full collection"),
+                                    type: .white,
+                                    fillsWidth: false,
+                                    trailing: Image.huiIcons.arrowForward
+            ) {
+                viewModel.navigateToDetails(section: section, viewController: viewController)
             }
+            .huiElevation(level: .level2)
+            .fixedSize(horizontal: true, vertical: false)
         }
+        .listRowBackground(Color.huiColors.surface.pagePrimary)
     }
 
     private func restoreFocusIfNeeded() {

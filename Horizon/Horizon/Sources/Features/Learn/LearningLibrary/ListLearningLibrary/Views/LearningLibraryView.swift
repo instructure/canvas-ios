@@ -40,16 +40,7 @@ struct LearningLibraryView: View {
     @State var viewModel: LearningLibraryViewModel
 
     var body: some View {
-        VStack(alignment: .leading, spacing: .zero) {
-            if viewModel.hasLibrary {
-                learningLibraryView
-            } else {
-                ScrollView {
-                    emptyView
-                }
-                .refreshable { await viewModel.refresh() }
-            }
-        }
+        learningLibraryView
         .background(Color.huiColors.surface.pagePrimary)
         .overlay { loaderView }
         .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
@@ -62,6 +53,11 @@ struct LearningLibraryView: View {
         }
         .onAppear {
             restoreFocusIfNeeded(after: 0.5)
+        }
+        .onReceive(viewModel.accessibilityMessagePublisher) { message in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIAccessibility.post(notification: .announcement, argument: message)
+            }
         }
     }
 
@@ -111,20 +107,29 @@ struct LearningLibraryView: View {
                     lastFocusedItemID: $lastFocusedItemID
                 )
                 .id(item.id)
-                .listRowBackground(Color.huiColors.surface.pagePrimary)
+                // Add line
+                Rectangle()
+                    .fill(Color.huiColors.lineAndBorders.lineStroke)
+                    .frame(height: 1)
+                    .listRowBackground(Color.huiColors.surface.pagePrimary)
+                    .plainListRowStyle()
             }
             .padding(.horizontal, .huiSpaces.space24)
+            .listRowSpacing(.huiSpaces.space24)
 
             if viewModel.isSeeMoreVisible {
                 seeMoreButton
                     .padding(.top, .huiSpaces.space16)
+                    .plainListRowStyle()
             }
+            extraPadding
+                .plainListRowStyle()
         }
         .listSectionSpacing(.zero)
         .scrollContentBackground(.hidden)
         .environment(\.defaultMinListHeaderHeight, 0)
         .listStyle(.grouped)
-        .listRowSpacing(.huiSpaces.space24)
+        .listRowSpacing(0)
         .listSectionSpacing(.compact)
         .listSectionSeparator(.hidden)
         .scrollIndicators(.hidden)
@@ -172,7 +177,7 @@ struct LearningLibraryView: View {
                         viewModel.showEnrollConfirmation(model: item, viewController: viewController)
                     }, onTapItem: {
                         lastFocusedItemID = item.id
-                        viewModel.navigateToLearningLibraryItem(item, from: viewController)
+                        viewModel.navigateToLearningLibraryItemDetails(item, from: viewController)
                     }
                 )
                 .id(item.id)
@@ -189,16 +194,23 @@ struct LearningLibraryView: View {
                     .foregroundStyle(Color.huiColors.text.body)
                     .background(Color.huiColors.surface.pagePrimary)
                     .padding(.horizontal, .huiSpaces.space24)
-                    .listRowInsets(EdgeInsets())
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(Color.huiColors.surface.pagePrimary)
+                    .plainListRowStyle()
             }
+
+            extraPadding
         }
         .overlay { globalSearchLoaderView }
         .scrollContentBackground(.hidden)
         .listStyle(.plain)
-        .listRowSpacing(.huiSpaces.space24)
         .scrollIndicators(.hidden)
+    }
+
+    private var extraPadding: some View {
+        // Add extra padding at the bottom
+        Rectangle()
+            .fill(Color.clear)
+            .frame(height: 10)
+            .plainListRowStyle()
     }
 
     @ViewBuilder
@@ -253,6 +265,10 @@ struct LearningLibraryView: View {
             placeholder: String(localized: "Search"),
             size: .medium
         )
+        .submitLabel(.return)
+        .onSubmit {
+            setFocusToFirstResult()
+        }
     }
 
     private var bookmarkedButton: some View {
@@ -270,17 +286,7 @@ struct LearningLibraryView: View {
         }
         .padding(.bottom, .huiSpaces.space16)
         .padding(.horizontal, .huiSpaces.space24)
-        .listRowInsets(EdgeInsets())
-        .listRowSeparator(.hidden)
-        .listRowBackground(Color.huiColors.surface.pagePrimary)
-    }
-
-    private var emptyView: some View {
-        Text("There is no any learning library yet.", bundle: .horizon)
-            .padding(.horizontal, .huiSpaces.space24)
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            .foregroundStyle(Color.huiColors.text.body)
-            .huiTypography(.h3)
+        .plainListRowStyle()
     }
 
     private var filterView: some View {
@@ -346,6 +352,14 @@ struct LearningLibraryView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + after) {
             focusedItemID = lastFocusedItemID
         }
+    }
+
+    private func setFocusToFirstResult() {
+        guard let firstItem = viewModel.globalSearchItems.first else {
+            return
+        }
+        lastFocusedItemID = firstItem.id
+        restoreFocusIfNeeded(after: 1.8)
     }
 }
 

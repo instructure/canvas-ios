@@ -23,7 +23,6 @@ import HorizonUI
 struct LearnView: View {
     @State private var isShowTabs: Bool = true
     @State private var selectedTabIndex: Int? = 0
-
     private let listCourseView: LearnCourseListView
     private let listProgramView: LearnProgramListView
     private let learningLibraryView: LearningLibraryView
@@ -39,27 +38,28 @@ struct LearnView: View {
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            tabDetailsView()
-                .onPreferenceChange(HeaderVisibilityKey.self) { isShow in
-                    isShowTabs = isShow
-                }
-        }
-        .safeAreaInset(edge: .top, spacing: .zero) {
-            if isShowTabs { tabsView }
-        }
-        .toolbar(.hidden)
-        .animation(.linear, value: isShowTabs)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.huiColors.surface.pagePrimary)
-        .dismissKeyboardOnTap()
-        .scrollDismissesKeyboard(.immediately)
-        .onAppear {
-            ImageCacheConfiguration.configure()
-        }
-        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didReceiveMemoryWarningNotification)) { _ in
-            ImageCacheConfiguration.clearMemoryCache()
-        }
+        tabDetailsView()
+            .onPreferenceChange(HeaderVisibilityKey.self) { isShow in
+                isShowTabs = isShow
+            }
+            .overlay(alignment: .top) {
+                tabsView
+                    .opacity(isShowTabs ? 1.0 : 0.0)
+                    .offset(y: isShowTabs ? 0 : -60)
+                    .allowsHitTesting(isShowTabs)
+                    .animation(.easeInOut(duration: 0.3), value: isShowTabs)
+            }
+            .toolbar(.hidden)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.huiColors.surface.pagePrimary)
+            .dismissKeyboardOnTap()
+            .scrollDismissesKeyboard(.immediately)
+            .onAppear {
+                ImageCacheConfiguration.configure()
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didReceiveMemoryWarningNotification)) { _ in
+                ImageCacheConfiguration.clearMemoryCache()
+            }
     }
 
     private func tabDetailsView() -> some View {
@@ -72,6 +72,7 @@ struct LearnView: View {
                     case .learningLibrary: learningLibraryView
                     }
                 }
+                .padding(.top, isShowTabs ? 65 : 0)
                 .tag(index)
             }
         }
@@ -86,9 +87,12 @@ struct LearnView: View {
                 set: { selectedTabIndex = $0 ?? 0 }
             )
         )
-        .padding(.top, .huiSpaces.space8)
+        .padding(.top, .huiSpaces.space16)
         .padding(.bottom, .huiSpaces.space24)
-        .background(Color.huiColors.surface.pagePrimary)
+        .background(
+            Color.huiColors.surface.pagePrimary
+                .ignoresSafeArea(edges: .top)
+        )
     }
 }
 

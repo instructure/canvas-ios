@@ -92,6 +92,11 @@ struct LearningLibraryDetailsView: View {
             ),
             isPresented: $viewModel.isErrorVisible
         )
+        .onReceive(viewModel.accessibilityMessagePublisher) { message in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                UIAccessibility.post(notification: .announcement, argument: message)
+            }
+        }
     }
 
     private var navBarView: some View {
@@ -149,7 +154,7 @@ struct LearningLibraryDetailsView: View {
                     viewModel.showEnrollConfirmation(model: item, viewController: viewController)
                 } onTapItem: {
                     lastFocusedItemID = item.id
-                    viewModel.navigateToLearningLibraryItem(item, from: viewController)
+                    viewModel.navigateToLearningLibraryItemDetails(item, from: viewController)
                 }
                 .id(item.id)
                 .accessibilityFocused($focusedItemID, equals: item.id)
@@ -163,23 +168,25 @@ struct LearningLibraryDetailsView: View {
                     .huiTypography(.p1)
                     .foregroundStyle(Color.huiColors.text.body)
                     .padding(.horizontal, .huiSpaces.space24)
-                    .listRowInsets(EdgeInsets())
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(Color.huiColors.surface.pagePrimary)
+                    .plainListRowStyle()
             }
 
             if viewModel.isSeeMoreVisible {
                 seeMoreButton
                     .padding(.horizontal, .huiSpaces.space24)
                     .padding(.bottom, .huiSpaces.space16)
-                    .listRowInsets(EdgeInsets())
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(Color.huiColors.surface.pagePrimary)
+                    .plainListRowStyle()
             }
+
+            // Add extra padding at the botttom
+            Rectangle()
+                .fill(Color.clear)
+                .frame(height: 10)
+                .plainListRowStyle()
         }
         .scrollContentBackground(.hidden)
         .listStyle(.plain)
-        .listRowSpacing(.huiSpaces.space24)
+        .listRowSpacing(0)
         .scrollIndicators(.hidden)
     }
 
@@ -215,6 +222,10 @@ struct LearningLibraryDetailsView: View {
             size: .medium
         )
         .padding(.horizontal, .huiSpaces.space24)
+        .submitLabel(.return)
+        .onSubmit {
+            setFocusToFirstResult()
+        }
     }
 
     private var filterView: some View {
@@ -229,6 +240,7 @@ struct LearningLibraryDetailsView: View {
             Spacer()
             countOfVisibleItemsView
                 .hidden(viewModel.filteredItems.isEmpty)
+                .fixedSize(horizontal: true, vertical: false)
         }
         .padding(.horizontal, .huiSpaces.space24)
     }
@@ -256,7 +268,7 @@ struct LearningLibraryDetailsView: View {
                 viewModel.selectedLearningObject = option
                 restoreFocusIfNeeded(after: 1.55)
             }
-            .frame(width: 120)
+            .frame(width: 110)
             .id(selectLOFilterFocusedID)
             .accessibilityFocused($focusedItemID, equals: selectLOFilterFocusedID)
     }
@@ -290,6 +302,14 @@ struct LearningLibraryDetailsView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + after) {
             focusedItemID = lastFocusedItemID
         }
+    }
+
+    private func setFocusToFirstResult() {
+        guard let firstItem = viewModel.filteredItems.first else {
+            return
+        }
+        lastFocusedItemID = firstItem.id
+        restoreFocusIfNeeded(after: 1)
     }
 }
 

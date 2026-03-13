@@ -23,7 +23,7 @@ import Foundation
 protocol LearningLibraryInteractor {
     func getLearnLibraryCollections(ignoreCache: Bool) -> AnyPublisher<[LearningLibrarySectionModel], Error>
     func getBookmarkedItems(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error>
-    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel, Error>
+    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel?, Error>
     func enroll(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel, Error>
     func getCollectionItems(id: String, ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error>
     func searchCollectionItem(
@@ -31,6 +31,11 @@ protocol LearningLibraryInteractor {
         completedOnly: Bool,
         types: [String]?,
         searchTerm: String?
+    ) -> AnyPublisher<[LearningLibraryCardModel], Error>
+    func searchWithFilters(
+        searchText: String?,
+        objectType: LearningLibraryObjectType?,
+        libraryFilter: LearningLibraryFilter
     ) -> AnyPublisher<[LearningLibraryCardModel], Error>
 }
 
@@ -109,20 +114,47 @@ final class LearningLibraryInteractorLive: LearningLibraryInteractor {
             .eraseToAnyPublisher()
     }
 
-    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
+    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel?, Error> {
         ReactiveStore(useCase: LearningLibraryBookMarkUseCase(journey: domainService, id: id, courseID: courseID))
             .getEntities()
-            .compactMap { $0.first }
-            .map { LearningLibraryCardModel(for: $0) }
+            .map { entities in
+                entities.first.map { LearningLibraryCardModel(for: $0) }
+            }
             .eraseToAnyPublisher()
     }
 
     func enroll(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
         ReactiveStore(useCase: LearningLibraryEnrollUseCase(journey: domainService, id: id, courseID: courseID))
-            .getEntities()
+            .getEntities(ignoreCache: true)
             .compactMap { $0.first }
             .map { LearningLibraryCardModel(for: $0) }
             .eraseToAnyPublisher()
+    }
+
+    func searchWithFilters(
+        searchText: String?,
+        objectType: LearningLibraryObjectType?,
+        libraryFilter: LearningLibraryFilter
+    ) -> AnyPublisher<[LearningLibraryCardModel], Error> {
+        let bookmarkedOnly = libraryFilter == .bookmarked
+        let completedOnly = libraryFilter == .completed
+
+        let types: [String]?
+        if let objectType = objectType {
+            types = [objectType.rawValue]
+        } else {
+            types = nil
+        }
+
+        let trimmedSearchText = searchText?.trimmingCharacters(in: .whitespacesAndNewlines)
+        let searchTerm = trimmedSearchText?.isEmpty == false ? trimmedSearchText : nil
+
+        return searchCollectionItem(
+            bookmarkedOnly: bookmarkedOnly,
+            completedOnly: completedOnly,
+            types: types,
+            searchTerm: searchTerm
+        )
     }
 }
 
