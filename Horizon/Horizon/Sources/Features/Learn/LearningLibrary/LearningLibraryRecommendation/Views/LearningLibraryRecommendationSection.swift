@@ -28,7 +28,7 @@ struct LearningLibraryRecommendationSection: View {
     var body: some View {
         VStack(spacing: .zero) {
             ScrollView(.horizontal) {
-                HStack(alignment: .top, spacing: .huiSpaces.space24) {
+                HStack(alignment: .center, spacing: .huiSpaces.space24) {
                     ForEach(items) { item in
                         LearningLibraryCardView(
                             model: item,

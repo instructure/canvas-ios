@@ -69,6 +69,8 @@ final class LearningLibraryRecommendationListViewModel: LearningLibraryItemNavig
 
     private var internalAccessibilityPublisher = PassthroughSubject<String, Never>()
     private var subscriptions = Set<AnyCancellable>()
+    private var loadCancellable: AnyCancellable?
+    private var refreshTask: Task<Void, Never>?
 
     // MARK: - Dependencies
 
@@ -151,13 +153,7 @@ final class LearningLibraryRecommendationListViewModel: LearningLibraryItemNavig
         }
     }
 
-    func refresh() async {
-        await withCheckedContinuation { [weak self]  continuation in
-            guard let self else {
-                continuation.resume()
-                return
-            }
-            loadItems(ignoreCache: true) { continuation.resume() }
-        }
+    func refresh() {
+        loadItems(ignoreCache: true)
     }
 }

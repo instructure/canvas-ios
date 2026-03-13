@@ -22,6 +22,7 @@ import SwiftUI
 
 struct LearningLibraryRecommendationListView: View {
     @State var viewModel: LearningLibraryRecommendationListViewModel
+    @State private var isInfoPresented: Bool = false
 
     var body: some View {
         if viewModel.recommendedItems.isNotEmpty {
@@ -61,12 +62,23 @@ struct LearningLibraryRecommendationListView: View {
                 .foregroundStyle(Color.huiColors.text.dataPoint)
                 .huiTypography(.labelMediumBold)
                 .accessibilityAddTraits(.isHeader)
+
+            Spacer()
+            HorizonUI.IconButton(Image.huiIcons.info, type: .gray) {
+                isInfoPresented.toggle()
+            }
+            .huiTooltip(isPresented: $isInfoPresented, arrowEdge: .bottom, style: .primary) {
+                Text("Generated based on your activity and skills.")
+                    .foregroundStyle(Color.huiColors.text.surfaceColored)
+                    .huiTypography(.p1)
+            }
+
         }
         .padding(.horizontal, .huiSpaces.space24)
         .padding(.bottom, .huiSpaces.space16)
     }
 
-    func reloadData() async {
-       await viewModel.refresh()
+    func reloadData() {
+       viewModel.refresh()
     }
 }

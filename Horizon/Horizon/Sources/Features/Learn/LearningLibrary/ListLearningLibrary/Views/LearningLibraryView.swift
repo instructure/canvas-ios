@@ -151,7 +151,8 @@ struct LearningLibraryView: View {
         .dismissKeyboardOnTap()
         .scrollDismissesKeyboard(.immediately)
         .refreshable {
-            _ = await (viewModel.refresh(), recommendationListView.reloadData())
+            await viewModel.refresh()
+            recommendationListView.reloadData()
         }
         .transition(.opacity.combined(with: .move(edge: .leading)))
     }
@@ -383,7 +384,7 @@ struct LearningLibraryView: View {
         HStack(spacing: .huiSpaces.space8) {
             Image.huiIcons.stacksFilled
                 .foregroundStyle(Color.huiColors.primitives.grey45)
-                .padding(.huiSpaces.space8)
+                .padding(.huiSpaces.space12)
                 .background(Color.huiColors.primitives.grey12)
                 .clipShape(.circle)
             Text("Collections")
