@@ -18,6 +18,23 @@
 
 import UIKit
 
+public extension CourseColorData {
+    static let all: [CourseColorData] = [
+        .init(persistentId: "plum", color: .course1, name: String(localized: "Plum", bundle: .core, comment: "This is a name of a color.")),
+        .init(persistentId: "fuchsia", color: .course2, name: String(localized: "Fuchsia", bundle: .core, comment: "This is a name of a color.")),
+        .init(persistentId: "violet", color: .course3, name: String(localized: "Violet", bundle: .core, comment: "This is a name of a color.")),
+        .init(persistentId: "ocean", color: .course4, name: String(localized: "Ocean", bundle: .core, comment: "This is a name of a color.")),
+        .init(persistentId: "sky", color: .course5, name: String(localized: "Sky", bundle: .core, comment: "This is a name of a color.")),
+        .init(persistentId: "sea", color: .course6, name: String(localized: "Sea", bundle: .core, comment: "This is a name of a color.")),
+        .init(persistentId: "aurora", color: .course7, name: String(localized: "Aurora", bundle: .core, comment: "This is a name of a color.")),
+        .init(persistentId: "forest", color: .course8, name: String(localized: "Forest", bundle: .core, comment: "This is a name of a color.")),
+        .init(persistentId: "honey", color: .course9, name: String(localized: "Honey", bundle: .core, comment: "This is a name of a color.")),
+        .init(persistentId: "copper", color: .course10, name: String(localized: "Copper", bundle: .core, comment: "This is a name of a color.")),
+        .init(persistentId: "rose", color: .course11, name: String(localized: "Rose", bundle: .core, comment: "This is a name of a color.")),
+        .init(persistentId: "stone", color: .course12, name: String(localized: "Stone", bundle: .core, comment: "This is a name of a color."))
+    ]
+}
+
 public struct CourseColorData: Identifiable {
     public let persistentId: String
     public let color: UIColor

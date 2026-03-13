@@ -51,9 +51,9 @@ final class LearnerDashboardColorInteractorLive: LearnerDashboardColorInteractor
 
 extension LearnerDashboardColorInteractorLive {
 
-    private static let defaultColor: Color = CourseColorsInteractorLive.colors[0].color.asColor
+    private static let defaultColor: Color = CourseColorData.all[0].color.asColor
     private static let allColors: [CourseColorData] = {
-        let courseColors = CourseColorsInteractorLive.colors
+        let courseColors = CourseColorData.all
         let additionalColors = [
             CourseColorData(
                 persistentId: "black",

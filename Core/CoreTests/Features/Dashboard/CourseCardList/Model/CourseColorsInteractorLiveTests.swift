@@ -32,6 +32,10 @@ class CourseColorsInteractorLiveTests: XCTestCase {
         super.tearDown()
     }
 
+    func testDefaultColorsAreCourseColorDataAll() {
+        XCTAssertEqual(testee.colors.map(\.persistentId), CourseColorData.all.map(\.persistentId))
+    }
+
     func testColorsSupportDarkMode() {
         for colorData in testee.colors {
             XCTAssertNotEqual(colorData.color.variantForLightMode, colorData.color.variantForDarkMode)
