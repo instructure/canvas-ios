@@ -106,11 +106,29 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
 
             }
         .store(in: &subscriptions)
+
+        NotificationCenter.default.addObserver(
+            forName: .forceRefreshJourneyCourses,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            guard let self else { return }
+            fetchCollections(ignoreCache: true)
+
+            if isGlobalSearchActive {
+                performGlobalSearch(
+                    searchText: searchText,
+                    learningObject: selectedLearningObjectSubject.value,
+                    learningLibrary: selectedLearningLibrarySubject.value
+                )
+            }
+        }
     }
 
     deinit {
         globalSearchCancellable?.cancel()
         globalSearchCancellable = nil
+        NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: - Input Actions
