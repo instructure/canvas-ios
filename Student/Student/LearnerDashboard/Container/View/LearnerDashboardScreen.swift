@@ -55,6 +55,8 @@ struct LearnerDashboardScreen: View {
                         widgetViewModel.makeView()
                     }
                 }
+
+                customizeDashboardButton
             }
             .paddingStyle(.all, screenPadding)
             .animation(isAnimationEnabled ? .dashboardWidget : nil, value: viewModel.widgets.map(\.layoutIdentifier))
@@ -84,6 +86,19 @@ struct LearnerDashboardScreen: View {
                 ToolbarItem(placement: .topBarTrailing) { legacyRightNavBarButtons }
             }
         }
+    }
+
+    private var customizeDashboardButton: some View {
+        Button {
+            isSettingsPresented = true
+        } label: {
+            InstUI.PillContent(
+                title: String(localized: "Customize Dashboard", bundle: .student),
+                leadingIcon: .editLine,
+                size: .height30
+            )
+        }
+        .buttonStyle(.pillTintOutlined)
     }
 
     @available(iOS, introduced: 26, message: "Legacy version exists")
