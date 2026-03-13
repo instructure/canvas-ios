@@ -85,18 +85,17 @@ struct CoursesAndGroupsWidgetView: View {
     }
 
     private func coursesSection(itemWidth: CGFloat, columnCount: Int) -> some View {
-        let courseCards = viewModel.courseCards
         return collapsibleSection(
             title: String(localized: "Courses", bundle: .student),
-            itemCount: courseCards.count,
+            itemCount: viewModel.courseCards.count,
             isExpanded: $isCoursesExpanded
         ) {
             DashboardGrid(
-                itemIDs: courseCards.map(\.id),
+                itemIDs: viewModel.courseCards.map(\.id),
                 itemWidth: itemWidth,
                 spacing: cardSpacing(columnCount),
                 columnCount: columnCount
-            ) { index in
+            ) { [courseCards = viewModel.courseCards] index in
                 let cardViewModel = courseCards[index]
                 CourseCardView(
                     viewModel: cardViewModel,
@@ -118,23 +117,22 @@ struct CoursesAndGroupsWidgetView: View {
                     )
                 )
             }
-            .animation(.dashboardWidget, value: courseCards)
+            .animation(.dashboardWidget, value: viewModel.courseCards)
         }
     }
 
     private func groupsSection(itemWidth: CGFloat, columnCount: Int) -> some View {
-        let groupCards = viewModel.groupCards
         return collapsibleSection(
             title: String(localized: "Groups", bundle: .student),
-            itemCount: groupCards.count,
+            itemCount: viewModel.groupCards.count,
             isExpanded: $isGroupsExpanded
         ) {
             DashboardGrid(
-                itemIDs: groupCards.map(\.id),
+                itemIDs: viewModel.groupCards.map(\.id),
                 itemWidth: itemWidth,
                 spacing: cardSpacing(columnCount),
                 columnCount: columnCount
-            ) { index in
+            ) { [groupCards = viewModel.groupCards] index in
                 GroupCardView(viewModel: groupCards[index])
             }
         }
