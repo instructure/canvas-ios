@@ -48,7 +48,7 @@ struct LearnerDashboardSettingsWidgetCardView: View {
             .padding(.bottom, 14)
             .accessibilityElement(children: .combine)
 
-            if let subSettings = subSettingsView {
+            if let subSettings = subSettingsView, isVisible {
                 InstUI.Divider()
                     .padding(.horizontal, -16)
                 subSettings
