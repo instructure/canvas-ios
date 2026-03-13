@@ -43,7 +43,7 @@ struct ToDoWidgetView: View {
                     VStack(spacing: 0) {
                         cardHeader
                         calendarRow
-                        InstUI.Divider(.full)
+                        InstUI.Divider()
                         contentView
                             .animation(.dashboardWidget, value: viewModel.layoutIdentifier)
                     }
@@ -373,6 +373,8 @@ private struct ToDoSkeletonCell: View {
 
 #if DEBUG
 
+import Combine
+
 #Preview {
     @Previewable @State var viewModel = makePreviewViewModel()
     @Previewable @State var subscriptions = Set<AnyCancellable>()
@@ -387,14 +389,10 @@ private struct ToDoSkeletonCell: View {
         }
 }
 
-import Combine
-
 private func makePreviewViewModel() -> ToDoWidgetViewModel {
-    let config = DashboardWidgetConfig(id: .toDo, order: 0, isVisible: true, settings: nil)
-    let interactor = TodoInteractorPreview()
     return ToDoWidgetViewModel(
-        config: config,
-        interactor: interactor,
+        config: .make(id: .toDo),
+        interactor: TodoInteractorPreview(),
         router: AppEnvironment.shared.router,
         snackBarViewModel: SnackBarViewModel()
     )

@@ -53,6 +53,7 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
         interactor = nil
         snackBarViewModel = nil
         scheduler = nil
+        Clock.reset()
         super.tearDown()
     }
 
