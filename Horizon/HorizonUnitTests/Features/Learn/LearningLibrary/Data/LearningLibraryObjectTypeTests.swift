@@ -35,7 +35,6 @@ final class LearningLibraryObjectTypeTests: XCTestCase {
 
     func testRawValues() {
         XCTAssertEqual(LearningLibraryObjectType.course.rawValue, "COURSE")
-        // XCTAssertEqual(LearningLibraryObjectType.program.rawValue, "PROGRAM")
         XCTAssertEqual(LearningLibraryObjectType.page.rawValue, "PAGE")
         XCTAssertEqual(LearningLibraryObjectType.assignment.rawValue, "ASSIGNMENT")
         XCTAssertEqual(LearningLibraryObjectType.assessment.rawValue, "QUIZ")
@@ -46,7 +45,6 @@ final class LearningLibraryObjectTypeTests: XCTestCase {
 
     func testNames() {
         XCTAssertEqual(LearningLibraryObjectType.course.name, "Course")
-        // XCTAssertEqual(LearningLibraryObjectType.program.name, "Program")
         XCTAssertEqual(LearningLibraryObjectType.page.name, "Page")
         XCTAssertEqual(LearningLibraryObjectType.assignment.name, "Assignment")
         XCTAssertEqual(LearningLibraryObjectType.assessment.name, "Assessment")
@@ -81,7 +79,6 @@ final class LearningLibraryObjectTypeTests: XCTestCase {
 
         let typeIds = options.dropFirst().map { $0.id }
         XCTAssertTrue(typeIds.contains("COURSE"))
-        // XCTAssertTrue(typeIds.contains("PROGRAM"))
         XCTAssertTrue(typeIds.contains("PAGE"))
         XCTAssertTrue(typeIds.contains("ASSIGNMENT"))
         XCTAssertTrue(typeIds.contains("QUIZ"))
@@ -98,7 +95,6 @@ final class LearningLibraryObjectTypeTests: XCTestCase {
 
     func testInitFromRawValue() {
         XCTAssertEqual(LearningLibraryObjectType(rawValue: "COURSE"), .course)
-        // XCTAssertEqual(LearningLibraryObjectType(rawValue: "PROGRAM"), .program)
         XCTAssertEqual(LearningLibraryObjectType(rawValue: "PAGE"), .page)
         XCTAssertEqual(LearningLibraryObjectType(rawValue: "ASSIGNMENT"), .assignment)
         XCTAssertEqual(LearningLibraryObjectType(rawValue: "QUIZ"), .assessment)

@@ -102,6 +102,19 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
         self.bookmarkManager = bookmarkManager
         self.scheduler = scheduler
         observeFilters()
+
+        NotificationCenter.default.addObserver(
+            forName: .forceRefreshJourneyCourses,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            guard let self else { return }
+            fetchData(ignoreCache: true)
+        }
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
 
     // MARK: - Input Actions

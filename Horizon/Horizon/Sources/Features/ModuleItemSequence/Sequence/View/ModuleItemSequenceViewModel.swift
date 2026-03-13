@@ -145,7 +145,15 @@ final class ModuleItemSequenceViewModel {
             object: nil,
             queue: .main
         ) { [weak self] _ in
-            self?.refershModuleItem()
+            guard let self else {
+                return
+            }
+            refershModuleItem()
+            moduleItemInteractor.syncCourseProgress()
+                .sink {
+                    NotificationCenter.default.post(name: .forceRefreshJourneyCourses, object: nil)
+                }
+                .store(in: &subscriptions)
         }
     }
 
