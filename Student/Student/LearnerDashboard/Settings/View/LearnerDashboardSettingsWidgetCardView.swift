@@ -55,7 +55,7 @@ struct LearnerDashboardSettingsWidgetCardView: View {
                     .padding(.horizontal, -16)
             }
         }
-        .padding(.horizontal, 16)
+        .paddingStyle(.horizontal, .standard)
         .elevation(
             .cardLarge,
             background: .backgroundLightest,

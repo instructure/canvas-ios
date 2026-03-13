@@ -131,6 +131,8 @@ struct LearnerDashboardScreen: View {
             NavigationStack {
                 LearnerDashboardSettingsScreen(viewModel: viewModel.makeSettingsViewModel())
             }
+            .accentColor(.brandPrimary)
+            .tint(.brandPrimary)
         }
     }
 
@@ -156,6 +158,8 @@ struct LearnerDashboardScreen: View {
             NavigationStack {
                 LearnerDashboardSettingsScreen(viewModel: viewModel.makeSettingsViewModel())
             }
+            .accentColor(.brandPrimary)
+            .tint(.brandPrimary)
         }
     }
 }

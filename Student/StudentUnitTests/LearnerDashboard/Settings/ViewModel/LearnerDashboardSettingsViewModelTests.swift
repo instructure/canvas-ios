@@ -92,7 +92,7 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
     }
 
     func test_switchToClassicDashboard_shouldPostNotificationAfterDismiss() {
-        testee = makeTestee(environment: env)
+        testee = makeTestee()
 
         let expectation = expectation(forNotification: .dashboardPreferenceChanged, object: nil)
         let mockViewController = MockViewController()
@@ -116,20 +116,13 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
 
     // MARK: - Private helpers
 
-    private func makeTestee(environment: AppEnvironment? = nil) -> LearnerDashboardSettingsViewModel {
+    private func makeTestee() -> LearnerDashboardSettingsViewModel {
         let colorInteractor = LearnerDashboardColorInteractorLive(defaults: testDefaults)
-        if let environment {
-            return LearnerDashboardSettingsViewModel(
-                defaults: testDefaults,
-                colorInteractor: colorInteractor,
-                courseSettingsViewModel: makeCourseSettingsViewModel(),
-                environment: environment
-            )
-        }
         return LearnerDashboardSettingsViewModel(
             defaults: testDefaults,
             colorInteractor: colorInteractor,
-            courseSettingsViewModel: makeCourseSettingsViewModel()
+            courseSettingsViewModel: makeCourseSettingsViewModel(),
+            environment: env
         )
     }
 

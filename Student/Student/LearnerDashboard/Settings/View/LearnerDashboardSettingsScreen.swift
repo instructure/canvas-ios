@@ -39,8 +39,6 @@ struct LearnerDashboardSettingsScreen: View {
             }
             .paddingStyle(.horizontal, .standard)
         }
-        .accentColor(.brandPrimary) // required for toggle items
-        .tint(.brandPrimary)
         .background(Color.backgroundLight.ignoresSafeArea())
         .navigationTitle(String(localized: "Customize Dashboard", bundle: .student), style: .modal)
         .navigationBarTitleDisplayMode(.inline)
@@ -51,7 +49,7 @@ struct LearnerDashboardSettingsScreen: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button(action: { dismiss() }) {
                     Text("Done", bundle: .student)
-                        .font(.semibold16)
+                        .font(.scaledRestrictly(.semibold16))
                         .foregroundStyle(.brandPrimary)
                 }
                 .identifier("DashboardSettings.doneButton")
@@ -101,6 +99,7 @@ struct LearnerDashboardSettingsScreen: View {
                 )
             }
             .buttonStyle(.pillTintOutlined)
+            .tint(viewModel.mainColor)
         }
         .frame(maxWidth: .infinity)
     }

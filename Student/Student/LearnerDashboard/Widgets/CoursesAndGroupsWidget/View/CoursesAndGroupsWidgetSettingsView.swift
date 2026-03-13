@@ -25,11 +25,13 @@ struct CoursesAndGroupsWidgetSettingsView: View {
     var body: some View {
         InstUI.ToggleCell(
             label: Text("Show Grades", bundle: .student),
-            value: $viewModel.showGrades
+            value: $viewModel.showGrades,
+            dividerStyle: .padded
         )
         InstUI.ToggleCell(
             label: Text("Show Color Overlay", bundle: .student),
-            value: $viewModel.showColorOverlay
+            value: $viewModel.showColorOverlay,
+            dividerStyle: .hidden
         )
     }
 }
