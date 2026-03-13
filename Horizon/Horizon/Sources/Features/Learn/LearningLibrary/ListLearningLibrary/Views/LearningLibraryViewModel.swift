@@ -116,11 +116,7 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
             fetchCollections(ignoreCache: true)
 
             if isGlobalSearchActive {
-                performGlobalSearch(
-                    searchText: searchText,
-                    learningObject: selectedLearningObjectSubject.value,
-                    learningLibrary: selectedLearningLibrarySubject.value
-                )
+                performGlobalSearch()
             }
         }
     }
