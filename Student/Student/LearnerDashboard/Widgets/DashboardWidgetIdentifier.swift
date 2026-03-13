@@ -28,13 +28,16 @@ enum DashboardWidgetIdentifier: String, Codable, CaseIterable {
 
     case weeklySummary
     case coursesAndGroups
+    case toDo
 
     func title(username: String) -> String {
         switch self {
         case .conferences: return String(localized: "Conferences", bundle: .student)
         case .helloWidget: return String(localized: "Hello \(username)", bundle: .student)
+        case .weeklySummary: return String(localized: "Weekly Summary", bundle: .student)
         case .coursesAndGroups: return String(localized: "Courses & Groups", bundle: .student)
-        case .offlineSyncProgress, .fileUploadProgress, .globalAnnouncements, .courseInvitations, .weeklySummary:
+        case .toDo: return String(localized: "Daily To-do", bundle: .student)
+        case .offlineSyncProgress, .fileUploadProgress, .globalAnnouncements, .courseInvitations:
             assertionFailure("\(self) widget should not appear among Dashboard settings")
             return rawValue
         }
@@ -44,7 +47,7 @@ enum DashboardWidgetIdentifier: String, Codable, CaseIterable {
         switch self {
         case .offlineSyncProgress, .fileUploadProgress, .globalAnnouncements, .courseInvitations:
             false
-        case .conferences, .helloWidget, .coursesAndGroups, .weeklySummary:
+        case .conferences, .helloWidget, .weeklySummary, .coursesAndGroups, .toDo:
             true
         }
     }

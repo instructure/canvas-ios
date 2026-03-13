@@ -27,7 +27,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = ToDoWidgetView
 
     let config: DashboardWidgetConfig
-    let isEditable = false
+    let isEditable = true
     let isHiddenInEmptyState = false
     let snackBarViewModel: SnackBarViewModel
 
