@@ -60,15 +60,16 @@ struct LearnerDashboardSettingsScreen: View {
     }
 
     private var newDashboardToggle: some View {
-        toggle(
-            text: Text("New Mobile Dashboard", bundle: .student),
-            isOn: Binding(
-                get: { viewModel.useNewLearnerDashboard },
-                set: { _ in
-                    showSwitchAlert = true
-                }
-            )
+        let isOnBinding = Binding(
+            get: { viewModel.useNewLearnerDashboard },
+            set: { _ in showSwitchAlert = true }
         )
+        return InstUI.Toggle(isOn: isOnBinding) {
+            Text("New Mobile Dashboard", bundle: .student)
+                .font(.semibold16)
+                .foregroundStyle(Color.textDarkest)
+        }
+        .padding(.vertical, 8)
         .accessibilityIdentifier("DashboardSettings.newDashboardToggle")
     }
 
@@ -102,16 +103,6 @@ struct LearnerDashboardSettingsScreen: View {
             .buttonStyle(.pillTintOutlined)
         }
         .frame(maxWidth: .infinity)
-    }
-
-    private func toggle(text: Text, isOn: Binding<Bool>) -> some View {
-        InstUI.Toggle(isOn: isOn) {
-            text
-                .font(.semibold16)
-                .foregroundStyle(Color.textDarkest)
-        }
-        .padding(.vertical, 8)
-        .testID("DashboardSettings.Switch.NewDashboard", info: ["selected": isOn.wrappedValue])
     }
 
     private var switchDashboardAlert: Alert {
