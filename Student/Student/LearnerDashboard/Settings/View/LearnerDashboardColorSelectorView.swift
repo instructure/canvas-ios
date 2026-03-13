@@ -34,8 +34,7 @@ struct LearnerDashboardColorSelectorView: View {
 
     var body: some View {
         DisclosureGroup {
-            // Need to implement our own HFlow, this uses fixed spacing, we need flexible
-            HorizonUI.HFlow {
+            FlexibleGrid(minimumSpacing: 16, lineSpacing: 16) {
                 ForEach(colors) { colorData in
                     Button {
                         selectedColor = colorData.color.asColor
