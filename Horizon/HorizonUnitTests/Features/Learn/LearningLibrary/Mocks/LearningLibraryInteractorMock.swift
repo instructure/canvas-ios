@@ -25,6 +25,7 @@ final class LearningLibraryInteractorMock: LearningLibraryInteractor {
     private let bookmarkedItemsResponse: [LearningLibraryCardModel]
     private let searchResponse: [LearningLibraryCardModel]
     private let collectionItemsResponse: [LearningLibraryCardModel]
+    private let recommendationsResponse: [LearningLibraryCardModel]
     private let bookmarkResponse: LearningLibraryCardModel?
     private let enrollResponse: LearningLibraryCardModel?
     private let hasError: Bool
@@ -34,6 +35,7 @@ final class LearningLibraryInteractorMock: LearningLibraryInteractor {
         bookmarkedItems: [LearningLibraryCardModel] = [],
         searchResponse: [LearningLibraryCardModel] = [],
         collectionItems: [LearningLibraryCardModel] = [],
+        recommendations: [LearningLibraryCardModel] = [],
         bookmarkResponse: LearningLibraryCardModel? = nil,
         enrollResponse: LearningLibraryCardModel? = nil,
         hasError: Bool = false
@@ -42,6 +44,7 @@ final class LearningLibraryInteractorMock: LearningLibraryInteractor {
         self.bookmarkedItemsResponse = bookmarkedItems
         self.searchResponse = searchResponse
         self.collectionItemsResponse = collectionItems
+        self.recommendationsResponse = recommendations
         self.bookmarkResponse = bookmarkResponse
         self.enrollResponse = enrollResponse
         self.hasError = hasError
@@ -130,5 +133,15 @@ final class LearningLibraryInteractorMock: LearningLibraryInteractor {
             types: types,
             searchTerm: searchText
         )
+    }
+
+    func getRecommendations(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error> {
+        if hasError {
+            return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
+        } else {
+            return Just(recommendationsResponse)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
     }
 }

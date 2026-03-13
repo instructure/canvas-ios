@@ -357,6 +357,54 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
         }
     }
 
+    // MARK: - Get Recommendations Tests
+
+    func testGetRecommendationsReturnsRecommendedItems() {
+        let testee = LearningLibraryInteractorLive(domainService: DomainServiceMock(result: .success(api)))
+        mockJWTToken()
+        mockRecommendationsResponse()
+
+        XCTAssertFirstValue(testee.getRecommendations(ignoreCache: false)) { items in
+            XCTAssertEqual(items.count, 2)
+            XCTAssertTrue(items.allSatisfy { $0.isRecommended })
+        }
+    }
+
+    func testGetRecommendationsReturnsEmptyWhenNoRecommendations() {
+        let testee = LearningLibraryInteractorLive(domainService: DomainServiceMock(result: .success(api)))
+        mockJWTToken()
+        mockEmptyRecommendationsResponse()
+
+        XCTAssertFirstValue(testee.getRecommendations(ignoreCache: false)) { items in
+            XCTAssertEqual(items.count, 0)
+        }
+    }
+
+    func testGetRecommendationsIgnoresCacheWhenRequested() {
+        let testee = LearningLibraryInteractorLive(domainService: DomainServiceMock(result: .success(api)))
+        mockJWTToken()
+        mockRecommendationsResponse()
+
+        XCTAssertFirstValue(testee.getRecommendations(ignoreCache: true)) { items in
+            XCTAssertGreaterThan(items.count, 0)
+        }
+    }
+
+    func testGetRecommendationsOrdersByDisplayOrder() {
+        let testee = LearningLibraryInteractorLive(domainService: DomainServiceMock(result: .success(api)))
+        mockJWTToken()
+        mockRecommendationsWithDifferentDisplayOrders()
+
+        XCTAssertFirstValue(testee.getRecommendations(ignoreCache: false)) { items in
+            XCTAssertGreaterThan(items.count, 1)
+            for i in 0..<items.count - 1 {
+                let currentOrder = items[i].id
+                let nextOrder = items[i + 1].id
+                XCTAssertTrue(currentOrder <= nextOrder)
+            }
+        }
+    }
+
     // MARK: - Helper Methods
 
     private func mockJWTToken() {
@@ -707,6 +755,193 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
                     )
                 )
             )
+        )
+    }
+
+    private func mockRecommendationsResponse() {
+        let recommendationJSON = """
+        {
+            "data": {
+                "learningRecommendations": {
+                    "recommendations": [
+                        {
+                            "courseId": "course-123",
+                            "primaryReason": "Based on your skills",
+                            "popularityCount": 150,
+                            "sourceContext": {
+                                "sourceCourseId": "source-course-1",
+                                "sourceCourseName": "Introduction to Programming",
+                                "sourceSkillName": "Swift"
+                            },
+                            "membership": {
+                                "id": "rec-item-1",
+                                "libraryId": "library-1",
+                                "itemType": "COURSE",
+                                "displayOrder": 1,
+                                "isBookmarked": false,
+                                "completionPercentage": 0,
+                                "isEnrolledInCanvas": false,
+                                "createdAt": "2026-01-01T00:00:00Z",
+                                "updatedAt": "2026-02-01T00:00:00Z",
+                                "canvasCourse": {
+                                    "courseId": "course-123",
+                                    "courseName": "Recommended Swift Course",
+                                    "canvasUrl": "https://canvas.example.com/courses/123",
+                                    "courseImageUrl": "https://canvas.example.com/images/course1.jpg",
+                                    "moduleCount": 5,
+                                    "moduleItemCount": 20,
+                                    "estimatedDurationMinutes": 180
+                                }
+                            }
+                        },
+                        {
+                            "courseId": "course-456",
+                            "primaryReason": "Popular among learners",
+                            "popularityCount": 200,
+                            "sourceContext": null,
+                            "membership": {
+                                "id": "rec-item-2",
+                                "libraryId": "library-2",
+                                "itemType": "COURSE",
+                                "displayOrder": 2,
+                                "isBookmarked": false,
+                                "completionPercentage": 0,
+                                "isEnrolledInCanvas": false,
+                                "createdAt": "2026-01-15T00:00:00Z",
+                                "updatedAt": "2026-02-15T00:00:00Z",
+                                "canvasCourse": {
+                                    "courseId": "course-456",
+                                    "courseName": "Popular Python Course",
+                                    "canvasUrl": "https://canvas.example.com/courses/456",
+                                    "courseImageUrl": "https://canvas.example.com/images/course2.jpg",
+                                    "moduleCount": 3,
+                                    "moduleItemCount": 15,
+                                    "estimatedDurationMinutes": 120
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+        """
+        let response = try! JSONDecoder().decode(LearningLibraryRecommendationResponse.self, from: recommendationJSON.data(using: .utf8)!)
+        api.mock(
+            LearningLibraryRecommendationRequest(),
+            value: response
+        )
+    }
+
+    private func mockEmptyRecommendationsResponse() {
+        let recommendationJSON = """
+        {
+            "data": {
+                "learningRecommendations": {
+                    "recommendations": []
+                }
+            }
+        }
+        """
+        let response = try! JSONDecoder().decode(LearningLibraryRecommendationResponse.self, from: recommendationJSON.data(using: .utf8)!)
+        api.mock(
+            LearningLibraryRecommendationRequest(),
+            value: response
+        )
+    }
+
+    private func mockRecommendationsWithDifferentDisplayOrders() {
+        let recommendationJSON = """
+        {
+            "data": {
+                "learningRecommendations": {
+                    "recommendations": [
+                        {
+                            "courseId": "course-123",
+                            "primaryReason": "Based on your skills",
+                            "popularityCount": 150,
+                            "sourceContext": null,
+                            "membership": {
+                                "id": "rec-item-3",
+                                "libraryId": "library-1",
+                                "itemType": "COURSE",
+                                "displayOrder": 3,
+                                "isBookmarked": false,
+                                "completionPercentage": 0,
+                                "isEnrolledInCanvas": false,
+                                "createdAt": "2026-01-01T00:00:00Z",
+                                "updatedAt": "2026-02-01T00:00:00Z",
+                                "canvasCourse": {
+                                    "courseId": "course-123",
+                                    "courseName": "Third Course",
+                                    "canvasUrl": "https://canvas.example.com/courses/123",
+                                    "courseImageUrl": "https://canvas.example.com/images/course1.jpg",
+                                    "moduleCount": 5,
+                                    "moduleItemCount": 20,
+                                    "estimatedDurationMinutes": 180
+                                }
+                            }
+                        },
+                        {
+                            "courseId": "course-456",
+                            "primaryReason": "Popular among learners",
+                            "popularityCount": 200,
+                            "sourceContext": null,
+                            "membership": {
+                                "id": "rec-item-1",
+                                "libraryId": "library-2",
+                                "itemType": "COURSE",
+                                "displayOrder": 1,
+                                "isBookmarked": false,
+                                "completionPercentage": 0,
+                                "isEnrolledInCanvas": false,
+                                "createdAt": "2026-01-15T00:00:00Z",
+                                "updatedAt": "2026-02-15T00:00:00Z",
+                                "canvasCourse": {
+                                    "courseId": "course-456",
+                                    "courseName": "First Course",
+                                    "canvasUrl": "https://canvas.example.com/courses/456",
+                                    "courseImageUrl": "https://canvas.example.com/images/course2.jpg",
+                                    "moduleCount": 3,
+                                    "moduleItemCount": 15,
+                                    "estimatedDurationMinutes": 120
+                                }
+                            }
+                        },
+                        {
+                            "courseId": "course-789",
+                            "primaryReason": "Trending now",
+                            "popularityCount": 180,
+                            "sourceContext": null,
+                            "membership": {
+                                "id": "rec-item-2",
+                                "libraryId": "library-3",
+                                "itemType": "COURSE",
+                                "displayOrder": 2,
+                                "isBookmarked": false,
+                                "completionPercentage": 0,
+                                "isEnrolledInCanvas": false,
+                                "createdAt": "2026-01-20T00:00:00Z",
+                                "updatedAt": "2026-02-20T00:00:00Z",
+                                "canvasCourse": {
+                                    "courseId": "course-789",
+                                    "courseName": "Second Course",
+                                    "canvasUrl": "https://canvas.example.com/courses/789",
+                                    "courseImageUrl": "https://canvas.example.com/images/course3.jpg",
+                                    "moduleCount": 4,
+                                    "moduleItemCount": 18,
+                                    "estimatedDurationMinutes": 150
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+        """
+        let response = try! JSONDecoder().decode(LearningLibraryRecommendationResponse.self, from: recommendationJSON.data(using: .utf8)!)
+        api.mock(
+            LearningLibraryRecommendationRequest(),
+            value: response
         )
     }
 }

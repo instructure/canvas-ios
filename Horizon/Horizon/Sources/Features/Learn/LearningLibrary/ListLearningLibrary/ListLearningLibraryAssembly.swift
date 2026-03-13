@@ -27,16 +27,25 @@ enum ListLearningLibraryAssembly {
     }
 
     static func makeView() -> LearningLibraryView {
-        .init(viewModel: makeViewModel())
+        let viewModel = makeViewModel()
+        let recommendationView = LearningLibraryRecommendationAssembly.makeView(
+            didSendEvent: viewModel.reloadCollections
+        )
+        return .init(viewModel: viewModel, recommendationListView: recommendationView)
     }
 
     #if DEBUG
     static func preview() -> LearningLibraryView {
-        LearningLibraryView(
-            viewModel: .init(
-                router: AppEnvironment.shared.router,
-                interactor: LearningLibraryInteractorPreview()
-            )
+        let viewModel = LearningLibraryViewModel(
+            router: AppEnvironment.shared.router,
+            interactor: LearningLibraryInteractorPreview()
+        )
+        let recommendationView = LearningLibraryRecommendationAssembly.makeView(
+            didSendEvent: viewModel.reloadCollections
+        )
+        return LearningLibraryView(
+            viewModel: viewModel,
+            recommendationListView: recommendationView
         )
     }
     #endif
