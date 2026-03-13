@@ -26,7 +26,6 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = HelloWidgetView
 
     let config: DashboardWidgetConfig
-    let isEditable = true
     let isHiddenInEmptyState = true
 
     var layoutIdentifier: [AnyHashable] {

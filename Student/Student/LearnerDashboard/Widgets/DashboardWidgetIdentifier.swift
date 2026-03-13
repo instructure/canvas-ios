@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Foundation
+
 enum DashboardWidgetIdentifier: String, Codable, CaseIterable {
     case offlineSyncProgress
     case fileUploadProgress
@@ -24,5 +26,26 @@ enum DashboardWidgetIdentifier: String, Codable, CaseIterable {
     case globalAnnouncements
     case helloWidget
 
+    case weeklySummary
     case coursesAndGroups
+
+    func title(username: String) -> String {
+        switch self {
+        case .conferences: return String(localized: "Conferences", bundle: .student)
+        case .helloWidget: return String(localized: "Hello \(username)", bundle: .student)
+        case .coursesAndGroups: return String(localized: "Courses & Groups", bundle: .student)
+        case .offlineSyncProgress, .fileUploadProgress, .globalAnnouncements, .courseInvitations, .weeklySummary:
+            assertionFailure("\(self) widget should not appear among Dashboard settings")
+            return rawValue
+        }
+    }
+
+    var isEditable: Bool {
+        switch self {
+        case .offlineSyncProgress, .fileUploadProgress, .globalAnnouncements, .courseInvitations:
+            false
+        case .conferences, .helloWidget, .coursesAndGroups, .weeklySummary:
+            true
+        }
+    }
 }

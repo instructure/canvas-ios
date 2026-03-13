@@ -131,15 +131,6 @@ final class OfflineSyncProgressWidgetViewModelTests: StudentTestCase {
 
     // MARK: - Protocol Conformance
 
-    func testIsEditable_returnsFalse() {
-        testee = OfflineSyncProgressWidgetViewModel(
-            config: .init(id: .offlineSyncProgress, order: 1, isVisible: true),
-            dashboardViewModel: dashboardViewModel
-        )
-
-        XCTAssertEqual(testee.isEditable, false)
-    }
-
     func testRefresh_returnsImmediately() {
         testee = OfflineSyncProgressWidgetViewModel(
             config: .init(id: .offlineSyncProgress, order: 1, isVisible: true),

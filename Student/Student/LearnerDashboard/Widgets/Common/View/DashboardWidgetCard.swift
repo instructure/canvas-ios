@@ -21,13 +21,13 @@ import Core
 
 struct DashboardWidgetCard<Content: View>: View {
     let content: Content
-    let backgroundColor: Color
+    let background: AnyShapeStyle
 
     init(
-        backgroundColor: Color = .backgroundLightest,
+        background: some ShapeStyle = Color.backgroundLightest,
         @ViewBuilder content: () -> Content
     ) {
-        self.backgroundColor = backgroundColor
+        self.background = AnyShapeStyle(background)
         self.content = content()
     }
 
@@ -39,7 +39,7 @@ struct DashboardWidgetCard<Content: View>: View {
         ZStack {
             content
         }
-        .elevation(.cardLarge, background: backgroundColor)
+        .elevation(.cardLarge, background: background)
     }
 }
 

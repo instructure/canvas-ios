@@ -47,7 +47,7 @@ final class LearnerDashboardViewModel {
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
     private let courseSyncInteractor: CourseSyncInteractor
-    private let environment: AppEnvironment
+    let environment: AppEnvironment
 
     init(
         interactor: LearnerDashboardInteractor,
@@ -77,33 +77,6 @@ final class LearnerDashboardViewModel {
                 completion?()
             }
             .store(in: &subscriptions)
-    }
-
-    func settingsButtonTapped(from presentingViewController: WeakViewController) {
-        let settingsViewController = LearnerDashboardSettingsAssembly.makeViewController()
-        let viewSize = CGSize(width: 350, height: 250)
-
-        settingsViewController.preferredContentSize = viewSize
-        settingsViewController.modalPresentationStyle = .popover
-
-        if let popoverController = settingsViewController.popoverPresentationController {
-            var navButtonView = presentingViewController.value.navigationItem.rightBarButtonItem?.customView
-
-            if navButtonView == nil,
-               let trailingView = presentingViewController.value.navigationItem.trailingItemGroups.first?.barButtonItems.first?.customView {
-                navButtonView = trailingView
-            }
-
-            popoverController.sourceView = navButtonView
-            popoverController.sourceRect = CGRect(x: 26, y: 35, width: 0, height: 0)
-        }
-
-        environment.router.show(
-            settingsViewController,
-            from: presentingViewController,
-            options: .modal(.popover),
-            analyticsRoute: "/learner_dashboard/settings"
-        )
     }
 
     // MARK: - Private Methods
