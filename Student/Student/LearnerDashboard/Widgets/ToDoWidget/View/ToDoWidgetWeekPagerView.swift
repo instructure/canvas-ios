@@ -21,24 +21,23 @@ import Core
 import SwiftUI
 import UIKit
 
-struct ToDoWeekPager: UIViewRepresentable {
+struct ToDoWidgetWeekPagerView: UIViewRepresentable {
     typealias UIViewType = UICollectionView
-    typealias Coordinator = ToDoWeekPagerCoordinator
 
     let viewModel: ToDoWidgetViewModel
     let proxy: WeekPagerProxy
     let onWeekOffsetChanged: (Int) -> Void
     let weekDays: (Int) -> [Date]
 
-    func makeCoordinator() -> ToDoWeekPagerCoordinator {
-        ToDoWeekPagerCoordinator(
+    func makeCoordinator() -> ToDoWidgetWeekPagerCoordinator {
+        ToDoWidgetWeekPagerCoordinator(
             viewModel: viewModel,
             weekDays: weekDays,
             onWeekOffsetChanged: onWeekOffsetChanged
         )
     }
 
-    func makeUIView(context: UIViewRepresentableContext<ToDoWeekPager>) -> UICollectionView {
+    func makeUIView(context: UIViewRepresentableContext<ToDoWidgetWeekPagerView>) -> UICollectionView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = 0
@@ -59,11 +58,10 @@ struct ToDoWeekPager: UIViewRepresentable {
         return collectionView
     }
 
-    func updateUIView(_ collectionView: UICollectionView, context: UIViewRepresentableContext<ToDoWeekPager>) {
-    }
+    func updateUIView(_ collectionView: UICollectionView, context: UIViewRepresentableContext<ToDoWidgetWeekPagerView>) { }
 }
 
-final class ToDoWeekPagerCoordinator: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+final class ToDoWidgetWeekPagerCoordinator: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     private static let hostedViewTag = 493820
 
     private let viewModel: ToDoWidgetViewModel
@@ -72,7 +70,7 @@ final class ToDoWeekPagerCoordinator: NSObject, UICollectionViewDataSource, UICo
 
     private(set) var currentWeekOffset: Int = 0
     private var pendingWeekOffset: Int?
-    private var hostingControllers: [UIHostingController<ToDoWeekPageView>]
+    private var hostingControllers: [UIHostingController<ToDoWidgetWeekView>]
     private var didScrollToInitialPage = false
     private var observation: NSKeyValueObservation?
     private var subscriptions = Set<AnyCancellable>()
@@ -88,7 +86,7 @@ final class ToDoWeekPagerCoordinator: NSObject, UICollectionViewDataSource, UICo
         self.weekDays = weekDays
         self.onWeekOffsetChanged = onWeekOffsetChanged
         self.hostingControllers = (0..<3).map { i in
-            UIHostingController(rootView: ToDoWeekPageView(weekDays: weekDays(i - 1), viewModel: viewModel))
+            UIHostingController(rootView: ToDoWidgetWeekView(weekDays: weekDays(i - 1), viewModel: viewModel))
         }
         for hc in self.hostingControllers {
             hc.view.backgroundColor = .clear
@@ -136,10 +134,10 @@ final class ToDoWeekPagerCoordinator: NSObject, UICollectionViewDataSource, UICo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         cell.backgroundColor = .clear
-        cell.viewWithTag(Self.hostedViewTag)?.removeFromSuperview()
+        cell.viewWithTag(ToDoWidgetWeekPagerCoordinator.hostedViewTag)?.removeFromSuperview()
 
         guard let hcView = hostingControllers[indexPath.row].view else { return cell }
-        hcView.tag = Self.hostedViewTag
+        hcView.tag = ToDoWidgetWeekPagerCoordinator.hostedViewTag
         hcView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         hcView.frame = CGRect(origin: .zero, size: cell.frame.size)
         cell.addSubview(hcView)
@@ -226,7 +224,7 @@ final class ToDoWeekPagerCoordinator: NSObject, UICollectionViewDataSource, UICo
         }
     }
 
-    private func makePageView(weekOffset: Int) -> ToDoWeekPageView {
-        ToDoWeekPageView(weekDays: weekDays(weekOffset), viewModel: viewModel)
+    private func makePageView(weekOffset: Int) -> ToDoWidgetWeekView {
+        ToDoWidgetWeekView(weekDays: weekDays(weekOffset), viewModel: viewModel)
     }
 }

@@ -97,7 +97,7 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.isShowingToday, true)
 
         // WHEN selected day is another day
-        testee.selectDay(testData.otherDay)
+        testee.didTapDay(testData.otherDay)
         // THEN
         XCTAssertEqual(testee.isShowingToday, false)
     }
@@ -106,14 +106,14 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
 
     func test_selectDay_shouldUpdateSelectedDay() {
         makeTestee()
-        testee.selectDay(testData.otherDay)
+        testee.didTapDay(testData.otherDay)
         XCTAssertEqual(testee.selectedDay, Calendar.current.startOfDay(for: testData.otherDay))
     }
 
     func test_navigateToToday_shouldResetSelectedDayAndWeekStart() {
         makeTestee()
-        testee.selectDay(testData.otherDay)
-        testee.navigateToToday()
+        testee.didTapDay(testData.otherDay)
+        testee.didTapTodayButton()
         XCTAssertEqual(testee.selectedDay, Calendar.current.startOfDay(for: testData.today))
         XCTAssertEqual(testee.weekStart, ToDoWidgetViewModel.startOfWeek(for: testData.today))
     }

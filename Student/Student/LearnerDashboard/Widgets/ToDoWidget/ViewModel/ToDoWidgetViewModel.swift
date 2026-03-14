@@ -27,14 +27,20 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     typealias ViewType = ToDoWidgetView
 
     let config: DashboardWidgetConfig
-    let isEditable = true
     let isHiddenInEmptyState = false
     let snackBarViewModel: SnackBarViewModel
 
     private(set) var state: InstUI.ScreenState = .loading
-    private(set) var selectedDay: Date
-    private(set) var weekStart: Date
-    private(set) var showCompleted: Bool
+
+    private(set) var selectedDay: Date = .distantPast
+    private var startOfWeek: Date = .distantPast
+    private(set) var currentWeekDays: [Date] = []
+    private(set) var yearTitle: String?
+    private(set) var monthTitle: String = ""
+
+    var showCompleted: Bool = false {
+        didSet { showCompletedDidChange() }
+    }
     private(set) var isDayLoading: Bool = false
 
     private var allGroups: [TodoGroupViewModel] = [] {
@@ -54,8 +60,8 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
 
     private(set) var itemCounts: [Date: Int] = [:]
 
-    var isShowingToday: Bool {
-        Calendar.current.isDate(selectedDay, inSameDayAs: Clock.now)
+    var shouldShowTodayButton: Bool {
+        !Calendar.current.isDate(selectedDay, inSameDayAs: Clock.now)
     }
 
     var layoutIdentifier: [AnyHashable] {
@@ -87,12 +93,11 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         self.router = router
         self.snackBarViewModel = snackBarViewModel
         self.scheduler = scheduler
-        self.showCompleted = false
-        let today = Calendar.current.startOfDay(for: Clock.now)
-        self.selectedDay = today
-        self.weekStart = Self.startOfWeek(for: today)
+
+        selectDay(Clock.now)
+
         setupSubscriptions()
-        loadItems(for: self.weekStart, ignorePlannablesCache: false)
+        loadItemsForWeek(ignorePlannablesCache: false)
     }
 
     func makeView() -> ToDoWidgetView {
@@ -100,35 +105,60 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        let (start, end) = widgetDateRange(for: weekStart)
-        return interactor
-            .refresh(
-                startDate: start,
-                endDate: end,
-                ignorePlannablesCache: ignoreCache,
-                ignoreCoursesCache: ignoreCache,
-                filterOptions: Self.widgetFilterOptions
-            )
-            .receive(on: DispatchQueue.main)
-            .handleEvents(receiveCompletion: { [weak self] completion in
-                if case .failure = completion {
-                    self?.state = .error
-                }
-            })
-            .catch { _ in Just(()) }
-            .eraseToAnyPublisher()
+        let (start, end) = widgetDateRange(for: startOfWeek)
+        return interactor.refresh(
+            startDate: start,
+            endDate: end,
+            ignorePlannablesCache: ignoreCache,
+            ignoreCoursesCache: ignoreCache,
+            filterOptions: Self.widgetFilterOptions
+        )
+        .receive(on: DispatchQueue.main)
+        .catch { [weak self] _ in
+            self?.state = .error
+            return Just(())
+        }
+        .eraseToAnyPublisher()
     }
 
     // MARK: - Week Navigation
 
-    func navigateToToday() {
-        let today = Calendar.current.startOfDay(for: Clock.now)
-        selectedDay = today
-        weekStart = Self.startOfWeek(for: today)
+    func didTapDay(_ date: Date) {
+        selectDay(date)
     }
 
-    func selectDay(_ date: Date) {
-        selectedDay = Calendar.current.startOfDay(for: date)
+    func didTapTodayButton() {
+        selectDay(Clock.now)
+    }
+
+    func setWeek(absoluteOffset offset: Int) {
+        let selectedDayIndexInWeek = selectedDay.dayDifference(from: selectedDay.startOfWeek())
+        let startOfNewWeek = Clock.now.startOfWeek().addWeeks(offset)
+        let newDay = startOfNewWeek.addDays(selectedDayIndexInWeek)
+        selectDay(newDay)
+
+        isDayLoading = dayItems.isEmpty
+        loadItemsForWeek(ignorePlannablesCache: false)
+    }
+
+    func weekDays(forOffset offset: Int) -> [Date] {
+        let startOfWeek = Clock.now.startOfWeek().addWeeks(offset)
+        return weekDays(of: startOfWeek)
+    }
+
+    private func selectDay(_ date: Date) {
+        let day = date.startOfDay()
+        guard selectedDay != day else { return }
+
+        selectedDay = day
+        startOfWeek = day.startOfWeek()
+        currentWeekDays = weekDays(of: startOfWeek)
+        yearTitle = day.isCurrentYear ? nil : day.formatted(.dateTime.year())
+        monthTitle = day.formatted(.dateTime.month(.wide))
+    }
+
+    private func weekDays(of startOfWeek: Date) -> [Date] {
+        (0..<7).compactMap { startOfWeek.addDays($0) }
     }
 
     // MARK: - Item Actions
@@ -163,11 +193,10 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
 
     func retryLoad() {
         state = .loading
-        loadItems(for: weekStart, ignorePlannablesCache: true)
+        loadItemsForWeek(ignorePlannablesCache: true)
     }
 
-    func toggleShowCompleted() {
-        showCompleted.toggle()
+    private func showCompletedDidChange() {
         if showCompleted {
             markDoneTimers.values.forEach { $0.cancel() }
             markDoneTimers.removeAll()
@@ -215,8 +244,8 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     }
 
     private func widgetDateRange(for weekStart: Date) -> (start: Date, end: Date) {
-        let start = Calendar.current.date(byAdding: .weekOfYear, value: -1, to: weekStart) ?? weekStart
-        let end = Calendar.current.date(byAdding: .weekOfYear, value: 2, to: weekStart) ?? weekStart
+        let start = weekStart.addWeeks(-1)
+        let end = weekStart.addWeeks(2)
         return (start, end)
     }
 
@@ -242,13 +271,13 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
                 guard let self else { return }
-                loadItems(for: weekStart, ignorePlannablesCache: true)
+                loadItemsForWeek(ignorePlannablesCache: true)
             }
             .store(in: &subscriptions)
     }
 
-    private func loadItems(for weekStart: Date, ignorePlannablesCache: Bool) {
-        let (start, end) = widgetDateRange(for: weekStart)
+    private func loadItemsForWeek(ignorePlannablesCache: Bool) {
+        let (start, end) = widgetDateRange(for: startOfWeek)
         loadCancellable = interactor
             .refresh(
                 startDate: start,
@@ -391,19 +420,5 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     private func cancelDelayedRemove(for item: TodoItemViewModel) {
         markDoneTimers[item.plannableId]?.cancel()
         markDoneTimers.removeValue(forKey: item.plannableId)
-    }
-
-    func setWeek(absoluteOffset offset: Int) {
-        let base = Self.startOfWeek(for: Clock.now)
-        guard let newWeekStart = Calendar.current.date(byAdding: .weekOfYear, value: offset, to: base) else { return }
-        weekStart = newWeekStart
-        let today = Calendar.current.startOfDay(for: Clock.now)
-        selectedDay = Calendar.current.date(byAdding: .weekOfYear, value: offset, to: today) ?? today
-        isDayLoading = dayItems.isEmpty
-        loadItems(for: newWeekStart, ignorePlannablesCache: false)
-    }
-
-    internal static func startOfWeek(for date: Date) -> Date {
-        Calendar.current.dateInterval(of: .weekOfYear, for: date)?.start ?? Calendar.current.startOfDay(for: date)
     }
 }

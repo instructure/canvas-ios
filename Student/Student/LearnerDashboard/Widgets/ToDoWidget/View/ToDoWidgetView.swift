@@ -22,13 +22,13 @@ import SwiftUI
 struct ToDoWidgetView: View {
     @Environment(\.viewController) private var viewController
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @ScaledMetric private var uiScale: CGFloat = 1
 
     @State private var viewModel: ToDoWidgetViewModel
 
     @State private var weekPagerProxy = WeekPagerProxy()
-    @State private var cardHeaderHeight: CGFloat = 42
-    @ScaledMetric private var calendarRowHeight: CGFloat = 80
     @State private var swipingItemId: String?
+
     @AccessibilityFocusState private var isTitleFocused: Bool
 
     init(viewModel: ToDoWidgetViewModel) {
@@ -37,136 +37,165 @@ struct ToDoWidgetView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            titleRow
-            ZStack(alignment: .top) {
+            widgetHeader
+
+            ZStack(alignment: Alignment(horizontal: .center, vertical: .weekCenter)) {
                 DashboardWidgetCard {
-                    VStack(spacing: 0) {
+                    VStack(alignment: .leading, spacing: 0) {
                         cardHeader
-                        calendarRow
+                        weekPager
+                            .alignmentGuide(.weekCenter) { $0[VerticalAlignment.center] }
                         InstUI.Divider()
                         contentView
                             .animation(.dashboardWidget, value: viewModel.layoutIdentifier)
                     }
                 }
-                HStack {
-                    circleNavButton(
-                        systemImage: "chevron.left",
-                        a11yLabel: String(localized: "Previous week", bundle: .student)
-                    ) {
-                        weekPagerProxy.scrollToPreviousWeek()
-                    }
-                    .offset(x: -8)
-                    Spacer()
-                    circleNavButton(
-                        systemImage: "chevron.right",
-                        a11yLabel: String(localized: "Next week", bundle: .student)
-                    ) {
-                        weekPagerProxy.scrollToNextWeek()
-                    }
-                    .offset(x: 8)
-                }
-                .frame(height: calendarRowHeight)
-                .padding(.top, cardHeaderHeight)
-                .accessibilityHidden(true)
+
+                // These need to be in a ZStack next to DashboardWidgetCard,
+                // because otherwise the card would clip the offset navigation buttons.
+                weekNavigationButtons
+                    .alignmentGuide(.weekCenter) { d in d[VerticalAlignment.center] }
             }
         }
     }
 
-    // MARK: - Title Row
+    // MARK: - Widget header
 
-    private var titleRow: some View {
-        HStack(alignment: .center) {
-            Text("Daily To-do", bundle: .student)
-                .font(.regular14, lineHeight: .fit)
-                .foregroundStyle(.textDarkest)
-                .accessibilityAddTraits(.isHeader)
-                .accessibilityFocused($isTitleFocused)
-            Spacer()
-            if !viewModel.isShowingToday {
-                Button {
-                    isTitleFocused = true
-                    viewModel.navigateToToday()
-                    weekPagerProxy.scrollToToday()
-                } label: {
-                    InstUI.PillContent(
-                        title: String(localized: "Today", bundle: .student),
-                        trailingIcon: Image.calendarTodayLine,
-                        size: .height24
-                    )
-                }
-                .buttonStyle(.pillTintFilled)
-                .tint(.accentColor)
-            }
+    private var widgetHeader: some View {
+        HStack(alignment: .center, spacing: 0) {
+            widgetTitle
+                .frame(maxWidth: .infinity, alignment: .leading)
+            todayButton
+                .opacity(viewModel.shouldShowTodayButton ? 1 : 0)
         }
         .padding(.bottom, 8)
+    }
+
+    private var widgetTitle: some View {
+        Text("Daily To-do", bundle: .student)
+            .font(.regular14, lineHeight: .fit)
+            .foregroundStyle(.textDarkest)
+            .accessibilityAddTraits(.isHeader)
+            .accessibilityFocused($isTitleFocused)
+    }
+
+    private var todayButton: some View {
+        Button {
+            isTitleFocused = true // TODO: focus on the day button
+            viewModel.didTapTodayButton()
+            weekPagerProxy.scrollToToday()
+        } label: {
+            InstUI.PillContent(
+                title: String(localized: "Today", bundle: .student),
+                trailingIcon: .calendarTodayLine,
+                size: .height24
+            )
+        }
+        .buttonStyle(.pillTintFilled)
     }
 
     // MARK: - Card Header
 
     private var cardHeader: some View {
-        HStack(alignment: .center) {
-            VStack(alignment: .leading, spacing: 0) {
-                if !isCurrentYear {
-                    Text(viewModel.selectedDay.formatted(.dateTime.year()))
-                        .font(.regular12, lineHeight: .fit)
-                        .foregroundStyle(Color.textDark)
+        CardHeaderView(
+            yearTitle: viewModel.yearTitle,
+            monthTitle: viewModel.monthTitle,
+            showCompleted: $viewModel.showCompleted,
+        )
+    }
+
+    private struct CardHeaderView: View {
+        let yearTitle: String?
+        let monthTitle: String
+        @Binding var showCompleted: Bool
+
+        var body: some View {
+            HStack(alignment: .center, spacing: 8) {
+                VStack(alignment: .leading, spacing: 0) {
+                    if let yearTitle {
+                        yearLabel(yearTitle)
+                    }
+                    monthLabel
                 }
-                Text(viewModel.selectedDay.formatted(.dateTime.month(.wide)))
-                    .font(.semibold22)
-                    .foregroundStyle(Color.textDarkest)
+
+                showCompletedToggle
+                    .padding(.vertical, 8)
             }
-            Spacer()
-            InstUI.Toggle(isOn: showCompletedBinding) {
+            .paddingStyle(.horizontal, .standard)
+            .padding(.top, 8)
+            .padding(.bottom, 16)
+        }
+
+        private func yearLabel(_ yearTitle: String) -> some View {
+            Text(yearTitle)
+                .font(.regular12, lineHeight: .fit)
+                .foregroundStyle(.textDark)
+        }
+
+        private var monthLabel: some View {
+            Text(monthTitle)
+                .font(.semibold22)
+                .foregroundStyle(.textDarkest)
+        }
+
+        private var showCompletedToggle: some View {
+            InstUI.Toggle(isOn: $showCompleted, labelAlignment: .trailing) {
                 Text("Show Completed", bundle: .student)
                     .font(.regular14)
-                    .foregroundStyle(Color.accentColor)
-            }
-            .fixedSize()
-        }
-        .paddingStyle(.horizontal, .standard)
-        .padding(.top, 12)
-        .padding(.bottom, 4)
-        .background {
-            GeometryReader { geometry in
-                Color.clear
-                    .onAppear { cardHeaderHeight = geometry.size.height }
-                    .onChange(of: geometry.size.height) { _, value in cardHeaderHeight = value }
+                    .applyTint()
             }
         }
     }
 
-    // MARK: - Calendar Row
+    // MARK: - Week pager
 
-    private var calendarRow: some View {
-        ToDoWeekPager(
+    private var weekPager: some View {
+        ToDoWidgetWeekPagerView(
             viewModel: viewModel,
             proxy: weekPagerProxy,
             onWeekOffsetChanged: { viewModel.setWeek(absoluteOffset: $0) },
-            weekDays: weekDays(forOffset:)
+            weekDays: viewModel.weekDays(forOffset:)
         )
-        .frame(height: calendarRowHeight)
+        .frame(height: 80 * uiScale)
         .padding(.horizontal, 32)
         .accessibilityRepresentation {
             HStack(spacing: 0) {
-                circleNavButton(
-                    systemImage: "chevron.left",
-                    a11yLabel: String(localized: "Previous week", bundle: .student)
-                ) {
-                    weekPagerProxy.scrollToPreviousWeek()
-                }
-                ToDoWeekPageView(weekDays: currentWeekDays, viewModel: viewModel)
-                circleNavButton(
-                    systemImage: "chevron.right",
-                    a11yLabel: String(localized: "Next week", bundle: .student)
-                ) {
-                    weekPagerProxy.scrollToNextWeek()
-                }
+                weekNavigationButton(toPrevious: true)
+                ToDoWidgetWeekView(weekDays: viewModel.currentWeekDays, viewModel: viewModel)
+                weekNavigationButton(toPrevious: false)
             }
         }
     }
 
-    private var currentWeekDays: [Date] {
-        (0..<7).compactMap { Calendar.current.date(byAdding: .day, value: $0, to: viewModel.weekStart) }
+    private var weekNavigationButtons: some View {
+        HStack {
+            weekNavigationButton(toPrevious: true)
+            .offset(x: -8)
+            Spacer()
+            weekNavigationButton(toPrevious: false)
+            .offset(x: 8)
+        }
+        .accessibilityHidden(true)
+    }
+
+    private func weekNavigationButton(toPrevious: Bool) -> some View {
+        Button(
+            action: {
+                toPrevious ? weekPagerProxy.scrollToPreviousWeek() : weekPagerProxy.scrollToNextWeek()
+            },
+            label: {
+                Image.chevronRight
+                    .scaledIcon(size: 16, paddedTo: 24)
+                    .foregroundStyle(.textLightest)
+                    .rotationEffect(.degrees(toPrevious ? 180 : 0))
+                    .background(Circle().fill(.tint))
+            }
+        )
+        .accessibilityLabel(
+            toPrevious
+                ? String(localized: "Previous week", bundle: .student)
+                : String(localized: "Next week", bundle: .student)
+        )
     }
 
     // MARK: - Content
@@ -201,67 +230,34 @@ struct ToDoWidgetView: View {
     }
 
     private var emptyDayView: some View {
-        HStack(alignment: .top, spacing: 8) {
-            Image("PandaNoEvents", bundle: .student)
-                .scaledIcon(size: 40)
-                .accessibilityHidden(true)
-                .padding(.trailing, 8)
-
-            VStack(alignment: .leading, spacing: 0) {
-                Text("You're all done for now!", bundle: .student)
-                    .font(.semibold16)
-                    .foregroundStyle(Color.textDarkest)
-                    .padding(.bottom, 2)
-
-                Text("Looks like you're free for this day.\nDo you want to add some To-dos?", bundle: .student)
-                    .font(.regular14)
-                    .foregroundStyle(Color.textDark)
-                    .padding(.bottom, 12)
-
+        ToDoWidgetPandaView(
+            pandaName: "PandaNoEvents",
+            title: String(localized: "You're all done for now!", bundle: .student),
+            subtitle: String(localized: "Looks like you're free for this day.\nDo you want to add some To-dos?", bundle: .student),
+            button: {
                 addToDoButton
             }
-
-            Spacer(minLength: 0)
-        }
-        .paddingStyle(.horizontal, .standard)
-        .padding(.vertical, 16)
+        )
     }
 
     private var errorDayView: some View {
-        HStack(alignment: .top, spacing: 8) {
-            Image("PandaUnsupported", bundle: .student)
-                .scaledIcon(size: 40)
-                .accessibilityHidden(true)
-                .padding(.trailing, 8)
-
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Oops, something went wrong", bundle: .student)
-                    .font(.semibold16)
-                    .foregroundStyle(Color.textDarkest)
-                    .padding(.bottom, 2)
-
-                Text("We weren’t able to load your To-dos.\nTry again, or come back later.", bundle: .student)
-                    .font(.regular14)
-                    .foregroundStyle(Color.textDark)
-                    .padding(.bottom, 12)
-
+        ToDoWidgetPandaView(
+            pandaName: "PandaUnsupported",
+            title: String(localized: "Oops, something went wrong", bundle: .student),
+            subtitle: String(localized: "We weren’t able to load your To-dos.\nTry again, or come back later.", bundle: .student),
+            button: {
                 Button {
                     viewModel.retryLoad()
                 } label: {
                     InstUI.PillContent(
                         title: String(localized: "Refresh", bundle: .student),
-                        leadingIcon: Image.refreshLine,
+                        leadingIcon: .refreshLine,
                         size: .height30
                     )
                 }
                 .buttonStyle(.pillTintFilled)
-                .tint(.accentColor)
             }
-
-            Spacer(minLength: 0)
-        }
-        .paddingStyle(.horizontal, .standard)
-        .padding(.vertical, 16)
+        )
     }
 
     private var itemListView: some View {
@@ -297,43 +293,11 @@ struct ToDoWidgetView: View {
         } label: {
             InstUI.PillContent(
                 title: String(localized: "Add To-do", bundle: .student),
-                leadingIcon: Image.addLine,
+                leadingIcon: .addLine,
                 size: .height30
             )
         }
         .buttonStyle(.pillTintFilled)
-        .tint(.accentColor)
-    }
-
-    // MARK: - Helpers
-
-    private var isCurrentYear: Bool {
-        Calendar.current.isDate(viewModel.selectedDay, equalTo: Clock.now, toGranularity: .year)
-    }
-
-    private var showCompletedBinding: Binding<Bool> {
-        Binding(
-            get: { viewModel.showCompleted },
-            set: { _ in viewModel.toggleShowCompleted() }
-        )
-    }
-
-    private func weekDays(forOffset offset: Int) -> [Date] {
-        let base = Calendar.current.dateInterval(of: .weekOfYear, for: Clock.now)?.start
-            ?? Calendar.current.startOfDay(for: Clock.now)
-        guard let start = Calendar.current.date(byAdding: .weekOfYear, value: offset, to: base) else { return [] }
-        return (0..<7).compactMap { Calendar.current.date(byAdding: .day, value: $0, to: start) }
-    }
-
-    private func circleNavButton(systemImage: String, a11yLabel: String, action: @escaping () -> Void) -> some View {
-        Button(action: action) {
-            Image(systemName: systemImage)
-                .font(.system(size: 12, weight: .semibold))
-                .foregroundStyle(Color.textLightest)
-                .frame(width: 24, height: 24)
-                .background(Circle().fill(Color.accentColor))
-        }
-        .accessibilityLabel(a11yLabel)
     }
 }
 
@@ -346,16 +310,16 @@ private struct ToDoSkeletonCell: View {
     var body: some View {
         HStack(spacing: 12) {
             Circle()
-                .fill(Color.backgroundMedium)
+                .fill(.backgroundMedium)
                 .frame(width: 24 * uiScale, height: 24 * uiScale)
 
             VStack(alignment: .leading, spacing: 6) {
                 RoundedRectangle(cornerRadius: 4)
-                    .fill(Color.backgroundMedium)
+                    .fill(.backgroundMedium)
                     .frame(height: 14 * uiScale)
 
                 RoundedRectangle(cornerRadius: 4)
-                    .fill(Color.backgroundMedium)
+                    .fill(.backgroundMedium)
                     .frame(height: 12 * uiScale)
                     .padding(.trailing, 60)
             }
@@ -371,6 +335,61 @@ private struct ToDoSkeletonCell: View {
     }
 }
 
+private struct ToDoWidgetPandaView: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+    let pandaName: String
+    let title: String
+    let subtitle: String
+    let button: AnyView
+
+    init(pandaName: String, title: String, subtitle: String, @ViewBuilder button: () -> some View) {
+        self.pandaName = pandaName
+        self.title = title
+        self.subtitle = subtitle
+        self.button = AnyView(button())
+    }
+
+    var body: some View {
+        HStack(alignment: .top, spacing: 8) {
+            Image(pandaName, bundle: .core)
+                .resizable()
+                .scaledToFit()
+                .scaledFrame(width: 64, height: 40, useIconScale: true)
+                .accessibilityHidden(true)
+
+            VStack(alignment: .leading, spacing: 0) {
+                Text(title)
+                    .font(.semibold16, lineHeight: .fit)
+                    .foregroundStyle(.textDarkest)
+                    .padding(.bottom, 2)
+
+                Text(subtitle)
+                    .font(.regular14, lineHeight: .fit)
+                    .foregroundStyle(.textDark)
+                    .padding(.bottom, 12)
+
+                button
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(.leading, 8)
+        .paddingStyle(.trailing, .standard)
+        .paddingStyle(.top, .cellTop)
+        .paddingStyle(.bottom, .cellBottom)
+    }
+}
+
+extension VerticalAlignment {
+    private struct WeekCenter: AlignmentID {
+        static func defaultValue(in context: ViewDimensions) -> CGFloat {
+            context[VerticalAlignment.center]
+        }
+    }
+
+    fileprivate static let weekCenter = VerticalAlignment(WeekCenter.self)
+}
+
 #if DEBUG
 
 import Combine
@@ -379,14 +398,15 @@ import Combine
     @Previewable @State var viewModel = makePreviewViewModel()
     @Previewable @State var subscriptions = Set<AnyCancellable>()
 
-    ToDoWidgetView(viewModel: viewModel)
-        .padding()
-        .frame(maxHeight: .infinity, alignment: .top)
-        .onAppear {
-            viewModel.refresh(ignoreCache: false)
-                .sink { _ in }
-                .store(in: &subscriptions)
-        }
+    PreviewContainer {
+        ToDoWidgetView(viewModel: viewModel)
+            .paddingStyle(.horizontal, .standard)
+            .onAppear {
+                viewModel.refresh(ignoreCache: false)
+                    .sink { _ in }
+                    .store(in: &subscriptions)
+            }
+    }
 }
 
 private func makePreviewViewModel() -> ToDoWidgetViewModel {

@@ -22,21 +22,25 @@ extension InstUI {
 
     public struct Toggle<Label>: View where Label: View {
         @Environment(\.isEnabled) private var isEnabled: Bool
+
         @Binding private var isOn: Bool
+        private let labelAlignment: Alignment
         private var label: () -> Label
 
         public init(
             isOn: Binding<Bool>,
+            labelAlignment: Alignment = .leading,
             @ViewBuilder label: @escaping () -> Label
         ) {
             self._isOn = isOn
+            self.labelAlignment = labelAlignment
             self.label = label
         }
 
         public var body: some View {
             HStack(spacing: 0) {
                 label()
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .frame(maxWidth: .infinity, alignment: labelAlignment)
                 toggle
             }
             .accessibilityElement(children: .combine)

@@ -20,7 +20,7 @@ import Combine
 import Core
 import SwiftUI
 
-struct ToDoWeekPageView: View {
+struct ToDoWidgetWeekView: View {
     let weekDays: [Date]
     let viewModel: ToDoWidgetViewModel
 
@@ -33,7 +33,7 @@ struct ToDoWeekPageView: View {
                     isToday: Calendar.current.isDateInToday(day),
                     itemCount: viewModel.itemCounts[day, default: 0]
                 )
-                .onTapGesture { viewModel.selectDay(day) }
+                .onTapGesture { viewModel.didTapDay(day) }
                 .frame(maxWidth: .infinity)
             }
         }
@@ -103,10 +103,10 @@ private struct ToDoWidgetDayCell: View {
 #if DEBUG
 
 #Preview("Current week") {
-    ToDoWeekPageView(
-        weekDays: (0..<7).compactMap {
-            Calendar.current.date(byAdding: .day, value: $0, to: ToDoWidgetViewModel.startOfWeek(for: Clock.now))
-        },
+    let date = Clock.now
+
+    ToDoWidgetWeekView(
+        weekDays: (0..<7).compactMap { date.addDays($0) },
         viewModel: ToDoWidgetViewModel(
             config: DashboardWidgetConfig(id: .toDo, order: 0, isVisible: true, settings: nil),
             interactor: TodoInteractorPreview(),
