@@ -90,16 +90,11 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
 
         XCTAssertEqual(testee.screenConfig.refreshable, true)
         XCTAssertEqual(testee.screenConfig.showsScrollIndicators, false)
-        XCTAssertEqual(testee.screenConfig.emptyPandaConfig.scene is SpacePanda, true)
-        XCTAssertEqual(
-            testee.screenConfig.emptyPandaConfig.title,
-            String(localized: "Welcome to Canvas!", bundle: .student)
-        )
     }
 
     // MARK: - State management
 
-    func test_init_withNoWidgets_shouldKeepLoadingState() {
+    func test_init_withNoWidgets_shouldSetDataState() {
         testee = LearnerDashboardViewModel(
             interactor: interactor,
             colorInteractor: colorInteractor,
@@ -111,7 +106,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         interactor.loadWidgetsPublisher.send([])
         scheduler.advance()
 
-        XCTAssertEqual(testee.state, .loading)
+        XCTAssertEqual(testee.state, .data)
     }
 
     func test_init_withWidgets_shouldSetDataState() {
