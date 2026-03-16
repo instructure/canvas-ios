@@ -80,6 +80,7 @@ struct LearnerDashboardSettingsWidgetCardView: View {
                 localized: "Move \(config.id.settingsTitle(username: username)) widget up",
                 bundle: .student
             ))
+            .accessibilityHidden(isMoveUpDisabled)
 
             InstUI.Divider()
                 .padding(.vertical, 4)
@@ -95,6 +96,7 @@ struct LearnerDashboardSettingsWidgetCardView: View {
                 localized: "Move \(config.id.settingsTitle(username: username)) widget down",
                 bundle: .student
             ))
+            .accessibilityHidden(isMoveDownDisabled)
         }
         .padding(.horizontal, 8)
         .fixedSize(horizontal: false, vertical: true)
