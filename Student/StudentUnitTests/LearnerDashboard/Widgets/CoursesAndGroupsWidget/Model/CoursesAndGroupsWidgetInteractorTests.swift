@@ -248,6 +248,18 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
 
     // MARK: - Announcement mapping
 
+    func test_getCoursesAndGroups_whenNoCourses_shouldNotCallGetAnnouncementsAPI() {
+        coursesInteractor.mockCoursesResult = .make(allCourses: [], courseCards: [])
+        let noRequestExpectation = expectation(description: "Announcements API should not be called")
+        noRequestExpectation.isInverted = true
+        api.mock(GetAnnouncementsForCourses(courseContextIds: []), expectation: noRequestExpectation)
+        testee = makeInteractor()
+
+        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5)
+
+        waitForExpectations(timeout: 0.5)
+    }
+
     func test_getCoursesAndGroups_shouldMapUnreadAnnouncementsCountPerCourse() {
         Clock.mockNow(Date.make(year: 2026, month: 1, day: 1))
         coursesInteractor.mockCoursesResult = .make(

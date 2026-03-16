@@ -137,7 +137,13 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
     }
 
     private func getAnnouncements(courseContextIds: [String], ignoreCache: Bool) -> AnyPublisher<[String: [DiscussionTopic]], Error> {
-        ReactiveStore(
+        // When there are no courses we can't request course announcements,
+        // because the request will fail without a `context_codes` query.
+        guard courseContextIds.isNotEmpty else {
+            return Publishers.typedJust([:])
+        }
+
+        return ReactiveStore(
             context: moContext,
             useCase: GetAnnouncementsForCourses(courseContextIds: courseContextIds),
             environment: env

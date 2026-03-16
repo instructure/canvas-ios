@@ -85,7 +85,7 @@ struct CoursesAndGroupsWidgetView: View {
     }
 
     private func coursesSection(itemWidth: CGFloat, columnCount: Int) -> some View {
-        return collapsibleSection(
+        collapsibleSection(
             title: String(localized: "Courses", bundle: .student),
             itemCount: viewModel.courseCards.count,
             isExpanded: $isCoursesExpanded
@@ -122,7 +122,7 @@ struct CoursesAndGroupsWidgetView: View {
     }
 
     private func groupsSection(itemWidth: CGFloat, columnCount: Int) -> some View {
-        return collapsibleSection(
+        collapsibleSection(
             title: String(localized: "Groups", bundle: .student),
             itemCount: viewModel.groupCards.count,
             isExpanded: $isGroupsExpanded
@@ -187,7 +187,7 @@ struct CoursesAndGroupsWidgetView: View {
 }
 
 private func makePreviewViewModel() -> CoursesAndGroupsWidgetViewModel {
-    return CoursesAndGroupsWidgetViewModel(
+    CoursesAndGroupsWidgetViewModel(
         config: .make(id: .coursesAndGroups),
         interactor: .preview(),
         environment: PreviewEnvironment()

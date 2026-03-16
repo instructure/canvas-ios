@@ -27,6 +27,7 @@ public struct GetAllAnnouncementsRequest: APIRequestable {
     private let startDate: Date?
     private let endDate: Date?
 
+    /// - Warning: The `contextCodes` must not be empty or the request will fail.
     public init(
         contextCodes: [String],
         activeOnly: Bool? = nil,
