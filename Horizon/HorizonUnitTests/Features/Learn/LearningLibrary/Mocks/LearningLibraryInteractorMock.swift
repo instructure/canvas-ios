@@ -108,7 +108,8 @@ final class LearningLibraryInteractorMock: LearningLibraryInteractor {
         bookmarkedOnly: Bool,
         completedOnly: Bool,
         types: [String]?,
-        searchTerm: String?
+        searchTerm: String?,
+        sortBy: String?
     ) -> AnyPublisher<[LearningLibraryCardModel], Error> {
         if hasError {
             return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
@@ -121,17 +122,19 @@ final class LearningLibraryInteractorMock: LearningLibraryInteractor {
 
     func searchWithFilters(
         searchText: String?,
-        objectType: LearningLibraryObjectType?,
-        libraryFilter: LearningLibraryFilter
+        objectsType: [LearningLibraryObjectType]?,
+        libraryFilter: LearningLibraryFilter,
+        sortBy: String?
     ) -> AnyPublisher<[LearningLibraryCardModel], Error> {
         let bookmarkedOnly = libraryFilter == .bookmarked
         let completedOnly = libraryFilter == .completed
-        let types = objectType.map { [$0.rawValue] }
+        let types = objectsType?.map { $0.rawValue }
         return searchCollectionItem(
             bookmarkedOnly: bookmarkedOnly,
             completedOnly: completedOnly,
             types: types,
-            searchTerm: searchText
+            searchTerm: searchText,
+            sortBy: sortBy
         )
     }
 

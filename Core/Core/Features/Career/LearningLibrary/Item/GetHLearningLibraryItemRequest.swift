@@ -32,6 +32,7 @@ public struct GetHLearningLibraryItemRequest: APIGraphQLPagedRequestable, Learni
         let completedOnly: Bool
         let types: [String]
         let searchTerm: String?
+        let sortBy: String?
     }
 
     // MARK: - Properties
@@ -63,7 +64,8 @@ public struct GetHLearningLibraryItemRequest: APIGraphQLPagedRequestable, Learni
         bookmarkedOnly: Bool = false,
         completedOnly: Bool = false,
         searchTerm: String? = nil,
-        types: [String]? = []
+        types: [String]? = [],
+        sortBy: String? = nil
     ) {
         self.variables = Input(
             limit: 100,
@@ -72,37 +74,48 @@ public struct GetHLearningLibraryItemRequest: APIGraphQLPagedRequestable, Learni
             bookmarkedOnly: bookmarkedOnly,
             completedOnly: completedOnly,
             types: types ?? self.types,
-            searchTerm: searchTerm
+            searchTerm: searchTerm,
+            sortBy: sortBy
         )
     }
 
     // MARK: - Query
 
     public static var query: String {
-            """
-            query \(operationName)($limit: Int!, $cursor: String, $forward: Boolean!, $bookmarkedOnly: Boolean!, $completedOnly: Boolean!, $types: [CollectionItemType!], $searchTerm: String) {
-              learningLibraryCollectionItems(
-                input: {
-                  limit: $limit
-                  cursor: $cursor
-                  forward: $forward
-                  types: $types
-                  searchTerm: $searchTerm
-                  bookmarkedOnly: $bookmarkedOnly
-                  completedOnly: $completedOnly
-                }
-              ) {
-                \(itemsQuery)
-                pageInfo {
-                  nextCursor
-                  previousCursor
-                  hasNextPage
-                  hasPreviousPage
-                }
-              }
+        """
+        query \(operationName)(
+          $limit: Int!,
+          $cursor: String,
+          $forward: Boolean!,
+          $bookmarkedOnly: Boolean!,
+          $completedOnly: Boolean!,
+          $types: [CollectionItemType!],
+          $searchTerm: String,
+          $sortBy: CollectionItemSortOption
+        ) {
+          learningLibraryCollectionItems(
+            input: {
+              limit: $limit
+              cursor: $cursor
+              forward: $forward
+              types: $types
+              searchTerm: $searchTerm
+              bookmarkedOnly: $bookmarkedOnly
+              completedOnly: $completedOnly
+              sortBy: $sortBy
             }
-            """
+          ) {
+            \(itemsQuery)
+            pageInfo {
+              nextCursor
+              previousCursor
+              hasNextPage
+              hasPreviousPage
+            }
+          }
         }
+        """
+    }
 
     public func nextPageRequest(from response: GetHLearningLibraryItemResponse) -> GetHLearningLibraryItemRequest? {
         guard response.data?.learningLibraryCollectionItems?.pageInfo?.hasNextPage == true else {

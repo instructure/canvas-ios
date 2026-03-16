@@ -27,30 +27,21 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
     // MARK: - Init / Outputs
 
     private let searchTextSubject = CurrentValueSubject<String, Never>("")
-    private let selectedLearningObjectSubject = CurrentValueSubject<OptionModel, Never>(LearningLibraryObjectType.firstOption)
-    private let selectedLearningLibrarySubject = CurrentValueSubject<OptionModel, Never>(LearningLibraryFilter.firstOption)
 
     var searchText: String = "" {
         didSet {
             searchTextSubject.send(searchText)
         }
     }
-    var selectedLearningObject = LearningLibraryObjectType.firstOption {
-        didSet {
-            selectedLearningObjectSubject.send(selectedLearningObject)
-        }
-    }
-    var selectedLearningLibrary = LearningLibraryFilter.firstOption {
-        didSet {
-            selectedLearningLibrarySubject.send(selectedLearningLibrary)
-        }
-    }
-
-    // MARK: - Inputs / Outputs
-
     var isErrorVisible: Bool = false
+    var selectedSortOption: CollectionItemSortOption?
+    var selectedFilterTypes: [CollectionItemFilterType]?
 
     // MARK: - Outputs
+    var appliedFiltersCount: Int {
+        (selectedSortOption != nil ? 1 : 0) +
+        (selectedFilterTypes?.filter { $0 != .all }.count ?? 0)
+    }
     private(set) var errorMessage = ""
     private(set) var isLoaderVisible: Bool = true
     private(set) var globalSearchItems: [LearningLibraryCardModel] = []
@@ -200,12 +191,6 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
         paginator.seeMore()
     }
 
-    func clearAll() {
-        searchText = ""
-        selectedLearningObject = LearningLibraryObjectType.firstOption
-        selectedLearningLibrary = LearningLibraryFilter.firstOption
-    }
-
     // MARK: - Navigations
 
     func navigateToDetails(
@@ -224,14 +209,17 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
         )
     }
 
-    func navigateToBookmarks(viewController: WeakViewController) {
-        router.show(
-            LearningLibraryAssembly.makeViewController(
-                pageType: .bookmarks,
-                didSendEvent: reloadCollections
-            ),
-            from: viewController
-        )
+    func navigateToFilter(viewController: WeakViewController) {
+        let filterView = CollectionItemFilterAssembly.makeView(
+            selectedSortOption: selectedSortOption,
+            selectedFilterTypes: selectedFilterTypes
+        ) { [weak self] sort, filters in
+            self?.selectedSortOption = sort
+            self?.selectedFilterTypes = filters
+            self?.updateGlobalSearchState()
+            self?.performGlobalSearch()
+        }
+        router.show(filterView, from: viewController, options: .modal(.fullScreen))
     }
 
     // MARK: - Private Functions
@@ -249,23 +237,20 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
         isErrorVisible = true
     }
 
-    private func observeSearchAndFilters() {
-        Publishers.CombineLatest3(
-            searchTextSubject
-                .debounce(for: .milliseconds(500), scheduler: scheduler)
-                .removeDuplicates(),
-            selectedLearningObjectSubject
-                .removeDuplicates(),
-            selectedLearningLibrarySubject
-                .removeDuplicates()
-        )
-        .sink { [weak self] searchText, learningObject, learningLibrary in
-            guard let self else { return }
-            let hasSearchText = searchText.trimmedEmptyLines.isNotEmpty
-            let hasObjectFilter = learningObject.id != LearningLibraryObjectType.firstOption.id
-            let hasLibraryFilter = learningLibrary.id != LearningLibraryFilter.firstOption.id
+    func updateGlobalSearchState() {
+        let hasSearchText = searchText.trimmedEmptyLines.isNotEmpty
+        let hasFilterTypes = selectedFilterTypes != nil
+        let hasSortOption = selectedSortOption != nil
+        isGlobalSearchActive = hasSearchText || hasFilterTypes || hasSortOption
+    }
 
-            self.isGlobalSearchActive = hasSearchText || hasObjectFilter || hasLibraryFilter
+    private func observeSearchAndFilters() {
+        searchTextSubject
+            .debounce(for: .milliseconds(500), scheduler: scheduler)
+            .removeDuplicates()
+        .sink { [weak self] _ in
+            guard let self else { return }
+            self.updateGlobalSearchState()
 
             if self.isGlobalSearchActive {
                 self.globalSearchCancellable?.cancel()
@@ -278,19 +263,23 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
         .store(in: &subscriptions)
     }
 
-    private func performGlobalSearch() {
+    func performGlobalSearch() {
         isGlobalSearchLoading = true
+        let objectTypes: [LearningLibraryObjectType]? = {
+            guard let filterTypes = selectedFilterTypes else { return nil }
+            let converted = filterTypes
+                .filter { $0 != .all }
+                .compactMap { LearningLibraryObjectType(rawValue: $0.rawValue) }
+            return converted.isEmpty ? nil : converted
+        }()
 
-        let objectType = selectedLearningObjectSubject.value.id == LearningLibraryObjectType.firstOption.id
-            ? nil
-            : LearningLibraryObjectType(rawValue: selectedLearningObjectSubject.value.id)
-
-        let libraryFilter = LearningLibraryFilter(rawValue: selectedLearningLibrarySubject.value.id) ?? .all
+        let sortByKey = selectedSortOption?.key
 
         globalSearchCancellable = interactor.searchWithFilters(
             searchText: searchTextSubject.value,
-            objectType: objectType,
-            libraryFilter: libraryFilter
+            objectsType: objectTypes,
+            libraryFilter: .all,
+            sortBy: sortByKey
         )
         .receive(on: scheduler)
         .sinkFailureOrValue { [weak self] error in

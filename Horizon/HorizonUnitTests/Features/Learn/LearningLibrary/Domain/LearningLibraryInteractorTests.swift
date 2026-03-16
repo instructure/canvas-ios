@@ -140,7 +140,8 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
                 bookmarkedOnly: false,
                 completedOnly: false,
                 types: nil,
-                searchTerm: "Swift"
+                searchTerm: "Swift",
+                sortBy: nil
             )
         ) { items in
             XCTAssertGreaterThan(items.count, 0)
@@ -157,7 +158,8 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
                 bookmarkedOnly: true,
                 completedOnly: false,
                 types: nil,
-                searchTerm: nil
+                searchTerm: nil,
+                sortBy: nil
             )
         ) { items in
             XCTAssertTrue(items.allSatisfy { $0.isBookmarked })
@@ -174,7 +176,8 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
                 bookmarkedOnly: false,
                 completedOnly: false,
                 types: ["COURSE"],
-                searchTerm: nil
+                searchTerm: nil,
+                sortBy: nil
             )
         ) { items in
             XCTAssertGreaterThan(items.count, 0)
@@ -191,7 +194,8 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
                 bookmarkedOnly: false,
                 completedOnly: false,
                 types: nil,
-                searchTerm: nil
+                searchTerm: nil,
+                sortBy: nil
             )
         ) { items in
             let uniqueItemIds = Set(items.map { $0.courseID })
@@ -244,8 +248,9 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
         XCTAssertSingleOutputAndFinish(
             testee.searchWithFilters(
                 searchText: "Swift",
-                objectType: .course,
-                libraryFilter: .all
+                objectsType: [.course],
+                libraryFilter: .all,
+                sortBy: nil
             )
         ) { items in
             XCTAssertGreaterThan(items.count, 0)
@@ -260,8 +265,9 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
         XCTAssertSingleOutputAndFinish(
             testee.searchWithFilters(
                 searchText: nil,
-                objectType: nil,
-                libraryFilter: .bookmarked
+                objectsType: nil,
+                libraryFilter: .bookmarked,
+                sortBy: nil
             )
         ) { items in
             XCTAssertTrue(items.allSatisfy { $0.isBookmarked })
@@ -276,8 +282,9 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
         XCTAssertSingleOutputAndFinish(
             testee.searchWithFilters(
                 searchText: nil,
-                objectType: nil,
-                libraryFilter: .completed
+                objectsType: nil,
+                libraryFilter: .completed,
+                sortBy: nil
             )
         ) { items in
             XCTAssertTrue(items.allSatisfy { $0.isCompleted })
@@ -292,8 +299,9 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
         XCTAssertSingleOutputAndFinish(
             testee.searchWithFilters(
                 searchText: nil,
-                objectType: .course,
-                libraryFilter: .all
+                objectsType: [.course],
+                libraryFilter: .all,
+                sortBy: nil
             )
         ) { items in
             XCTAssertGreaterThan(items.count, 0)
@@ -308,8 +316,9 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
         XCTAssertSingleOutputAndFinish(
             testee.searchWithFilters(
                 searchText: "  Swift  ",
-                objectType: nil,
-                libraryFilter: .all
+                objectsType: nil,
+                libraryFilter: .all,
+                sortBy: nil
             )
         ) { items in
             XCTAssertGreaterThan(items.count, 0)
@@ -324,8 +333,9 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
         XCTAssertSingleOutputAndFinish(
             testee.searchWithFilters(
                 searchText: "   ",
-                objectType: nil,
-                libraryFilter: .all
+                objectsType: nil,
+                libraryFilter: .all,
+                sortBy: nil
             )
         ) { items in
             XCTAssertGreaterThan(items.count, 0)

@@ -314,42 +314,10 @@ final class LearningLibraryViewModelTests: HorizonTestCase {
             scheduler: scheduler.eraseToAnyScheduler()
         )
 
-        testee.selectedLearningObject = OptionModel(id: "COURSE", name: "Courses")
-        scheduler.advance(by: .milliseconds(500))
+        testee.selectedFilterTypes = [.course]
+        testee.updateGlobalSearchState()
 
         XCTAssertTrue(testee.isGlobalSearchActive)
-        XCTAssertEqual(testee.globalSearchItems.count, 1)
-    }
-
-    func testSearchWithLibraryFilter() {
-        let mockSearchResults = [
-            LearningLibraryCardModel(
-                id: "item-1",
-                courseID: "course-123",
-                name: "Test Course",
-                imageURL: nil,
-                itemType: .course,
-                estimatedTime: "120",
-                isRecommended: false,
-                isCompleted: false,
-                isBookmarked: true,
-                numberOfUnits: 5,
-                isEnrolled: false
-            )
-        ]
-        let scheduler = DispatchQueue.test
-        let interactor = LearningLibraryInteractorMock(searchResponse: mockSearchResults)
-        let testee = LearningLibraryViewModel(
-            router: router,
-            interactor: interactor,
-            scheduler: scheduler.eraseToAnyScheduler()
-        )
-
-        testee.selectedLearningLibrary = OptionModel(id: LearningLibraryFilter.bookmarked.rawValue, name: "Bookmarked")
-        scheduler.advance(by: .milliseconds(500))
-
-        XCTAssertTrue(testee.isGlobalSearchActive)
-        XCTAssertEqual(testee.globalSearchItems.count, 1)
     }
 
     func testSearchErrorShowsError() {
@@ -367,26 +335,6 @@ final class LearningLibraryViewModelTests: HorizonTestCase {
         XCTAssertTrue(testee.isErrorVisible)
         XCTAssertFalse(testee.errorMessage.isEmpty)
         XCTAssertFalse(testee.isGlobalSearchLoading)
-    }
-
-    // MARK: - Clear All Tests
-
-    func testClearAllResetsFilters() {
-        let interactor = LearningLibraryInteractorMock()
-        let testee = LearningLibraryViewModel(
-            router: router,
-            interactor: interactor,
-            scheduler: .immediate
-        )
-        testee.searchText = "Swift"
-        testee.selectedLearningObject = OptionModel(id: "COURSE", name: "Courses")
-        testee.selectedLearningLibrary = OptionModel(id: LearningLibraryFilter.bookmarked.rawValue, name: "Bookmarked")
-
-        testee.clearAll()
-
-        XCTAssertEqual(testee.searchText, "")
-        XCTAssertEqual(testee.selectedLearningObject, LearningLibraryObjectType.firstOption)
-        XCTAssertEqual(testee.selectedLearningLibrary, LearningLibraryFilter.firstOption)
     }
 
     // MARK: - Pagination Tests
@@ -486,10 +434,10 @@ final class LearningLibraryViewModelTests: HorizonTestCase {
             scheduler: .immediate
         )
 
-        testee.navigateToBookmarks(viewController: WeakViewController(UIViewController()))
+        testee.navigateToFilter(viewController: WeakViewController(UIViewController()))
 
         wait(for: [router.showExpectation], timeout: 0.1)
-        let presentedVC = router.lastViewController as? CoreHostingController<Horizon.LearningLibraryDetailsView>
+        let presentedVC = router.lastViewController as? CoreHostingController<Horizon.CollectionItemFilterView>
         XCTAssertNotNil(presentedVC)
     }
 
@@ -556,8 +504,8 @@ final class LearningLibraryViewModelTests: HorizonTestCase {
             scheduler: .immediate
         )
 
-        XCTAssertEqual(testee.selectedLearningObject, LearningLibraryObjectType.firstOption)
-        XCTAssertEqual(testee.selectedLearningLibrary, LearningLibraryFilter.firstOption)
+        XCTAssertNil(testee.selectedSortOption)
+        XCTAssertNil(testee.selectedFilterTypes)
     }
 
     // MARK: - Update Item Tests
@@ -833,19 +781,6 @@ final class LearningLibraryViewModelTests: HorizonTestCase {
             numberOfUnits: 5,
             isEnrolled: false
         )
-        let enrolledCard = LearningLibraryCardModel(
-            id: "item-1",
-            courseID: "course-123",
-            name: "Test Course",
-            imageURL: nil,
-            itemType: .course,
-            estimatedTime: "60",
-            isRecommended: false,
-            isCompleted: false,
-            isBookmarked: false,
-            numberOfUnits: 5,
-            isEnrolled: true
-        )
         let interactor = LearningLibraryInteractorMock()
         let testee = LearningLibraryViewModel(
             router: router,
@@ -861,5 +796,126 @@ final class LearningLibraryViewModelTests: HorizonTestCase {
         testee.showEnrollConfirmation(model: mockCard, viewController: WeakViewController(UIViewController()))
 
         wait(for: [router.showExpectation], timeout: 0.1)
+    }
+
+    // MARK: - Filter Tests
+
+    func testUpdateGlobalSearchStateWithSortOptionActivatesSearch() {
+        let interactor = LearningLibraryInteractorMock()
+        let testee = LearningLibraryViewModel(
+            router: router,
+            interactor: interactor,
+            scheduler: .immediate
+        )
+
+        testee.selectedSortOption = .mostRecent
+        testee.updateGlobalSearchState()
+
+        XCTAssertTrue(testee.isGlobalSearchActive)
+    }
+
+    func testUpdateGlobalSearchStateWithFilterTypesActivatesSearch() {
+        let interactor = LearningLibraryInteractorMock()
+        let testee = LearningLibraryViewModel(
+            router: router,
+            interactor: interactor,
+            scheduler: .immediate
+        )
+
+        testee.selectedFilterTypes = [.course, .assignment]
+        testee.updateGlobalSearchState()
+
+        XCTAssertTrue(testee.isGlobalSearchActive)
+    }
+
+    func testUpdateGlobalSearchStateWithSearchTextActivatesSearch() {
+        let scheduler = DispatchQueue.test
+        let interactor = LearningLibraryInteractorMock()
+        let testee = LearningLibraryViewModel(
+            router: router,
+            interactor: interactor,
+            scheduler: scheduler.eraseToAnyScheduler()
+        )
+
+        testee.searchText = "Swift"
+        scheduler.advance(by: .milliseconds(500))
+
+        XCTAssertTrue(testee.isGlobalSearchActive)
+    }
+
+    func testUpdateGlobalSearchStateWithNoFiltersDeactivatesSearch() {
+        let interactor = LearningLibraryInteractorMock()
+        let testee = LearningLibraryViewModel(
+            router: router,
+            interactor: interactor,
+            scheduler: .immediate
+        )
+
+        testee.selectedSortOption = nil
+        testee.selectedFilterTypes = nil
+        testee.searchText = ""
+        testee.updateGlobalSearchState()
+
+        XCTAssertFalse(testee.isGlobalSearchActive)
+    }
+
+    func testPerformGlobalSearchWithFilterTypesConvertsToObjectTypes() {
+        let mockSearchResults = [
+            LearningLibraryCardModel(
+                id: "item-1",
+                courseID: "course-123",
+                name: "Test Course",
+                imageURL: nil,
+                itemType: .course,
+                estimatedTime: "60",
+                isRecommended: false,
+                isCompleted: false,
+                isBookmarked: false,
+                numberOfUnits: 5,
+                isEnrolled: false
+            )
+        ]
+        let interactor = LearningLibraryInteractorMock(searchResponse: mockSearchResults)
+        let testee = LearningLibraryViewModel(
+            router: router,
+            interactor: interactor,
+            scheduler: .immediate
+        )
+
+        testee.selectedFilterTypes = [.course, .assignment]
+        testee.updateGlobalSearchState()
+        testee.performGlobalSearch()
+
+        XCTAssertEqual(testee.globalSearchItems.count, 1)
+    }
+
+    func testPerformGlobalSearchWithSortOptionUsesSortKey() {
+        let mockSearchResults = [
+            LearningLibraryCardModel(
+                id: "item-1",
+                courseID: "course-123",
+                name: "Test Course",
+                imageURL: nil,
+                itemType: .course,
+                estimatedTime: "60",
+                isRecommended: false,
+                isCompleted: false,
+                isBookmarked: false,
+                numberOfUnits: 5,
+                isEnrolled: false
+            )
+        ]
+        let interactor = LearningLibraryInteractorMock(searchResponse: mockSearchResults)
+        let testee = LearningLibraryViewModel(
+            router: router,
+            interactor: interactor,
+            scheduler: .immediate
+        )
+
+        testee.selectedSortOption = .nameAZ
+        testee.updateGlobalSearchState()
+        testee.performGlobalSearch()
+
+        XCTAssertEqual(testee.globalSearchItems.count, 1)
     }
 }

@@ -31,12 +31,14 @@ protocol LearningLibraryInteractor {
         bookmarkedOnly: Bool,
         completedOnly: Bool,
         types: [String]?,
-        searchTerm: String?
+        searchTerm: String?,
+        sortBy: String?
     ) -> AnyPublisher<[LearningLibraryCardModel], Error>
     func searchWithFilters(
         searchText: String?,
-        objectType: LearningLibraryObjectType?,
-        libraryFilter: LearningLibraryFilter
+        objectsType: [LearningLibraryObjectType]?,
+        libraryFilter: LearningLibraryFilter,
+        sortBy: String?
     ) -> AnyPublisher<[LearningLibraryCardModel], Error>
 }
 
@@ -86,13 +88,15 @@ final class LearningLibraryInteractorLive: LearningLibraryInteractor {
         bookmarkedOnly: Bool,
         completedOnly: Bool,
         types: [String]?,
-        searchTerm: String?
+        searchTerm: String?,
+        sortBy: String?
     ) -> AnyPublisher<[LearningLibraryCardModel], Error> {
         let request = GetHLearningLibraryItemRequest(
             bookmarkedOnly: bookmarkedOnly,
             completedOnly: completedOnly,
             searchTerm: searchTerm,
-            types: types
+            types: types,
+            sortBy: sortBy
         )
         return domainService.api()
             .flatMap { api in
@@ -134,15 +138,16 @@ final class LearningLibraryInteractorLive: LearningLibraryInteractor {
 
     func searchWithFilters(
         searchText: String?,
-        objectType: LearningLibraryObjectType?,
-        libraryFilter: LearningLibraryFilter
+        objectsType: [LearningLibraryObjectType]?,
+        libraryFilter: LearningLibraryFilter,
+        sortBy: String?
     ) -> AnyPublisher<[LearningLibraryCardModel], Error> {
         let bookmarkedOnly = libraryFilter == .bookmarked
         let completedOnly = libraryFilter == .completed
 
         let types: [String]?
-        if let objectType = objectType {
-            types = [objectType.rawValue]
+        if let objectsType {
+            types = objectsType.map(\.rawValue)
         } else {
             types = nil
         }
@@ -154,7 +159,8 @@ final class LearningLibraryInteractorLive: LearningLibraryInteractor {
             bookmarkedOnly: bookmarkedOnly,
             completedOnly: completedOnly,
             types: types,
-            searchTerm: searchTerm
+            searchTerm: searchTerm,
+            sortBy: sortBy
         )
     }
 
