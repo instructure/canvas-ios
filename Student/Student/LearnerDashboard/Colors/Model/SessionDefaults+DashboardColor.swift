@@ -20,19 +20,11 @@ import Core
 import Foundation
 
 extension SessionDefaults {
-    private static let widgetConfigsKey = "learnerDashboardWidgetConfigs"
+    private static let learnerDashboardColorIdKey = "learnerDashboardColorId"
 
-    var learnerDashboardWidgetConfigs: [DashboardWidgetConfig]? {
-        get {
-            guard let data = self[Self.widgetConfigsKey] as? Data else { return nil }
-            return try? JSONDecoder().decode([DashboardWidgetConfig].self, from: data)
-        }
-        set {
-            if let newValue, let data = try? JSONEncoder().encode(newValue) {
-                self[Self.widgetConfigsKey] = data
-            } else {
-                self[Self.widgetConfigsKey] = nil
-            }
-        }
+    /// The `persistentId` of the selected `CourseColorData`.
+    var learnerDashboardColorId: String? {
+        get { self[Self.learnerDashboardColorIdKey] as? String }
+        set { self[Self.learnerDashboardColorIdKey] = newValue }
     }
 }

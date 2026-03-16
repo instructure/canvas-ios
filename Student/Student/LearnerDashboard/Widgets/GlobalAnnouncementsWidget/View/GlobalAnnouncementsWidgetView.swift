@@ -74,7 +74,6 @@ private func makePreviewViewModel() -> GlobalAnnouncementsWidgetViewModel {
     ]
 
     return GlobalAnnouncementsWidgetViewModel(
-        config: .make(id: .globalAnnouncements),
         interactor: interactor,
         environment: PreviewEnvironment()
     )

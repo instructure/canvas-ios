@@ -18,14 +18,13 @@
 
 import Combine
 import Core
-import Foundation
 import Observation
+import SwiftUI
 
 @Observable
 final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
-    typealias ViewType = CourseInvitationsWidgetView
 
-    let config: DashboardWidgetConfig
+    let id: String = SystemWidgetIdentifier.courseInvitations.rawValue
     let isHiddenInEmptyState = true
 
     private(set) var invitations: [CourseInvitationCardViewModel] = [] {
@@ -44,18 +43,16 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
     private var subscriptions = Set<AnyCancellable>()
 
     init(
-        config: DashboardWidgetConfig,
         interactor: CoursesInteractor,
         snackBarViewModel: SnackBarViewModel
     ) {
-        self.config = config
         self.interactor = interactor
         self.snackBarViewModel = snackBarViewModel
         updateTitles()
     }
 
-    func makeView() -> CourseInvitationsWidgetView {
-        CourseInvitationsWidgetView(viewModel: self)
+    func makeView() -> AnyView {
+        AnyView(CourseInvitationsWidgetView(viewModel: self))
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {

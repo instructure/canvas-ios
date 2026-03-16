@@ -16,16 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Core
 import Combine
+import Core
+import SwiftUI
 import UIKit
 
 @Observable
 final class HelloWidgetViewModel: DashboardWidgetViewModel {
-    typealias ViewType = HelloWidgetView
-
     let config: DashboardWidgetConfig
+    var id: String { config.id.rawValue }
     let isHiddenInEmptyState = true
 
     var layoutIdentifier: [AnyHashable] {
@@ -54,8 +53,8 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
         subscribeToNotification()
     }
 
-    func makeView() -> HelloWidgetView {
-        HelloWidgetView(viewModel: self)
+    func makeView() -> AnyView {
+        AnyView(HelloWidgetView(viewModel: self))
     }
 
     public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {

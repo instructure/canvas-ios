@@ -43,24 +43,24 @@ extension View {
     public func elevation(
         _ shape: InstUI.Styles.Elevation.Shape,
         background: some ShapeStyle,
-        shadowColor: Color = .black
+        isShadowVisible: Bool = true
     ) -> some View {
         self.elevation(
             cornerRadius: shape.cornerRadius,
             background: background,
-            shadowColor: shadowColor
+            isShadowVisible: isShadowVisible
         )
     }
 
     public func elevation(
         cornerRadius: CGFloat,
         background: some ShapeStyle,
-        shadowColor: Color = .black
+        isShadowVisible: Bool = true
     ) -> some View {
         self
             .background(background)
             .cornerRadius(cornerRadius)
-            .shadow(color: shadowColor.opacity(0.08), radius: 2, y: 2)
-            .shadow(color: shadowColor.opacity(0.16), radius: 2, y: 1)
+            .shadow(color: .black.opacity(isShadowVisible ? 0.08 : 0), radius: 2, y: 2)
+            .shadow(color: .black.opacity(isShadowVisible ? 0.16 : 0), radius: 2, y: 1)
     }
 }

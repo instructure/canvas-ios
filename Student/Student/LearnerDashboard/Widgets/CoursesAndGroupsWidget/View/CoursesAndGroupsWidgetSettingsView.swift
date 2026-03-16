@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2024-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,22 +17,21 @@
 //
 
 import Core
-import Foundation
+import SwiftUI
 
-extension SessionDefaults {
-    private static let widgetConfigsKey = "learnerDashboardWidgetConfigs"
+struct CoursesAndGroupsWidgetSettingsView: View {
+    @Bindable var viewModel: CoursesAndGroupsWidgetSettingsViewModel
 
-    var learnerDashboardWidgetConfigs: [DashboardWidgetConfig]? {
-        get {
-            guard let data = self[Self.widgetConfigsKey] as? Data else { return nil }
-            return try? JSONDecoder().decode([DashboardWidgetConfig].self, from: data)
-        }
-        set {
-            if let newValue, let data = try? JSONEncoder().encode(newValue) {
-                self[Self.widgetConfigsKey] = data
-            } else {
-                self[Self.widgetConfigsKey] = nil
-            }
-        }
+    var body: some View {
+        InstUI.ToggleCell(
+            label: Text("Show Grades", bundle: .student),
+            value: $viewModel.showGrades,
+            dividerStyle: .padded
+        )
+        InstUI.ToggleCell(
+            label: Text("Show Color Overlay", bundle: .student),
+            value: $viewModel.showColorOverlay,
+            dividerStyle: .hidden
+        )
     }
 }

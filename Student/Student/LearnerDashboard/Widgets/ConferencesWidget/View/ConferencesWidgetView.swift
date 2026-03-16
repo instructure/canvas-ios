@@ -67,7 +67,6 @@ struct ConferencesWidgetView: View {
 }
 
 private func makePreviewViewModel() -> ConferencesWidgetViewModel {
-    let config = DashboardWidgetConfig(id: .conferences, order: 0, isVisible: true, settings: nil)
     let interactor = ConferencesWidgetInteractorMock()
 
     interactor.getConferencesOutputValue = [
@@ -84,7 +83,6 @@ private func makePreviewViewModel() -> ConferencesWidgetViewModel {
     ]
 
     return ConferencesWidgetViewModel(
-        config: config,
         interactor: interactor,
         snackBarViewModel: SnackBarViewModel(),
         environment: PreviewEnvironment()

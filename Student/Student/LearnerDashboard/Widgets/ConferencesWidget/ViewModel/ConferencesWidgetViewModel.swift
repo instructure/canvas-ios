@@ -18,13 +18,12 @@
 
 import Combine
 import Core
-import Foundation
+import SwiftUI
 
 @Observable
 final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
-    typealias ViewType = ConferencesWidgetView
 
-    let config: DashboardWidgetConfig
+    let id: String = SystemWidgetIdentifier.conferences.rawValue
     let isHiddenInEmptyState = true
 
     private(set) var state: InstUI.ScreenState = .loading
@@ -43,20 +42,18 @@ final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
     private var subscriptions = Set<AnyCancellable>()
 
     init(
-        config: DashboardWidgetConfig,
         interactor: ConferencesWidgetInteractor,
         snackBarViewModel: SnackBarViewModel,
         environment: AppEnvironment = .shared
     ) {
-        self.config = config
         self.interactor = interactor
         self.environment = environment
         self.snackBarViewModel = snackBarViewModel
         updateWidgetTitle()
     }
 
-    func makeView() -> ConferencesWidgetView {
-        ConferencesWidgetView(viewModel: self)
+    func makeView() -> AnyView {
+        AnyView(ConferencesWidgetView(viewModel: self))
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {

@@ -44,7 +44,7 @@ class CustomizeCourseViewModelTests: CoreTestCase {
     func testInitialPropertiesMapped() {
         XCTAssertEqual(testee.isLoading, false)
         XCTAssertTrue(testee.colors.elementsEqual(colorsInteractor.colors) { color1, color2 in
-            color1.key == color2.key && color1.value == color2.value
+            color1.persistentId == color2.persistentId
         })
         XCTAssertEqual(testee.courseImage, .make())
         XCTAssertEqual(testee.hideColorOverlay, true)

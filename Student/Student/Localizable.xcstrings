@@ -62070,9 +62070,6 @@
         }
       }
     },
-    "Example setting %lld" : {
-
-    },
     "Existing Attachments..." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -132774,6 +132771,9 @@
         }
       }
     },
+    "Show Color Overlay" : {
+
+    },
     "Show file" : {
       "comment" : "Title for button confirming showing a file",
       "extractionState" : "manual",
@@ -175168,9 +175168,6 @@
           }
         }
       }
-    },
-    "White" : {
-      "comment" : "This is a name of a color."
     },
     "Whoops!" : {
       "comment" : "Error Title",
