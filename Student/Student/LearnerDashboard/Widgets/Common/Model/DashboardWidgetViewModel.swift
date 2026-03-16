@@ -20,13 +20,8 @@ import Combine
 import Core
 import SwiftUI
 
-protocol DashboardWidgetViewModel: AnyObject, Identifiable where ID == DashboardWidgetIdentifier {
-    associatedtype ViewType: View
-
-    var id: DashboardWidgetIdentifier { get }
-
-    /// User configurable widget settings.
-    var config: DashboardWidgetConfig { get }
+protocol DashboardWidgetViewModel: AnyObject {
+    var id: String { get }
 
     /// The state helps the dashboard screen to decide if the empty state should be shown or not.
     var state: InstUI.ScreenState { get }
@@ -44,17 +39,13 @@ protocol DashboardWidgetViewModel: AnyObject, Identifiable where ID == Dashboard
     /// Default implementation returns state.
     var layoutIdentifier: [AnyHashable] { get }
 
-    func makeView() -> ViewType
+    func makeView() -> AnyView
 
     /// When pull to refresh is performed on the dashboard each widget is asked to refresh their content.
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never>
 }
 
 extension DashboardWidgetViewModel {
-    var id: DashboardWidgetIdentifier {
-        config.id
-    }
-
     var layoutIdentifier: [AnyHashable] {
         [state]
     }

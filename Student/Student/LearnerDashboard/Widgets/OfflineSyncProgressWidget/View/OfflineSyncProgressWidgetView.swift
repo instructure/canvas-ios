@@ -103,7 +103,6 @@ struct OfflineSyncProgressWidgetView: View {
 #Preview("Syncing") {
     OfflineSyncProgressWidgetView(
         model: OfflineSyncProgressWidgetViewModel(
-            config: .init(id: .offlineSyncProgress, order: 1, isVisible: true),
             dashboardViewModel: DashboardOfflineSyncProgressCardViewModel(
                 progressObserverInteractor: DashboardOfflineSyncInteractorPreview(),
                 progressWriterInteractor: DashboardOfflineSyncProgressWriterInteractorPreview(),

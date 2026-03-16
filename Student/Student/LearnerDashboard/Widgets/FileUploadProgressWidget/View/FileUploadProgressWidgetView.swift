@@ -87,7 +87,6 @@ struct FileUploadProgressWidgetView: View {
     try? context.save()
 
     let viewModel = FileUploadProgressWidgetViewModel(
-        config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
         router: env.router,
         listViewModel: FileUploadNotificationCardListViewModel(environment: env)
     )

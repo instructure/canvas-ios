@@ -307,7 +307,6 @@ final class CourseInvitationsWidgetViewModelTests: StudentTestCase {
 
     private func makeViewModel() -> CourseInvitationsWidgetViewModel {
         .init(
-            config: .make(id: .courseInvitations),
             interactor: mockInteractor,
             snackBarViewModel: snackBarViewModel
         )

@@ -109,7 +109,6 @@ private func makePreviewViewModel(snackbarViewModel: SnackBarViewModel) -> Cours
     )
 
     return CourseInvitationsWidgetViewModel(
-        config: .make(id: .courseInvitations),
         interactor: coursesInteractor,
         snackBarViewModel: snackbarViewModel
     )

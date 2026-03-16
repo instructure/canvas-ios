@@ -18,13 +18,13 @@
 
 import Combine
 import Core
-import Foundation
+import SwiftUI
 
 @Observable
 final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel, DashboardMutatorWidget {
-    typealias ViewType = CoursesAndGroupsWidgetView
 
     let config: DashboardWidgetConfig
+    var id: String { config.id.rawValue }
     let isHiddenInEmptyState = true
 
     private(set) var state: InstUI.ScreenState = .loading
@@ -58,8 +58,8 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel, Dashboard
         updateShowColorOverlay(on: interactor.showColorOverlay)
     }
 
-    func makeView() -> CoursesAndGroupsWidgetView {
-        CoursesAndGroupsWidgetView(viewModel: self)
+    func makeView() -> AnyView {
+        AnyView(CoursesAndGroupsWidgetView(viewModel: self))
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
