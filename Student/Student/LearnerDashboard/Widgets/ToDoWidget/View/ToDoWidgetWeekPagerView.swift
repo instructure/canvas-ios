@@ -26,14 +26,14 @@ struct ToDoWidgetWeekPagerView: UIViewRepresentable {
 
     let viewModel: ToDoWidgetViewModel
     let proxy: WeekPagerProxy
-    let onWeekOffsetChanged: (Int) -> Void
-    let weekDays: (Int) -> [Date]
+    let onWeekOffsetChange: (Int) -> Void
+    let weekDaysForOffset: (Int) -> [Date]
 
     func makeCoordinator() -> ToDoWidgetWeekPagerCoordinator {
         ToDoWidgetWeekPagerCoordinator(
             viewModel: viewModel,
-            weekDays: weekDays,
-            onWeekOffsetChanged: onWeekOffsetChanged
+            weekDaysForOffset: weekDaysForOffset,
+            onWeekOffsetChange: onWeekOffsetChange
         )
     }
 
@@ -59,14 +59,25 @@ struct ToDoWidgetWeekPagerView: UIViewRepresentable {
     }
 
     func updateUIView(_ collectionView: UICollectionView, context: UIViewRepresentableContext<ToDoWidgetWeekPagerView>) { }
+
+    func sizeThatFits(
+        _ proposal: ProposedViewSize,
+        uiView: UICollectionView,
+        context: UIViewRepresentableContext<ToDoWidgetWeekPagerView>
+    ) -> CGSize? {
+        guard let width = proposal.width else { return nil }
+
+        let height = context.coordinator.preferredHeight(for: width)
+        return CGSize(width: width, height: height)
+    }
 }
 
 final class ToDoWidgetWeekPagerCoordinator: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     private static let hostedViewTag = 493820
 
     private let viewModel: ToDoWidgetViewModel
-    private let weekDays: (Int) -> [Date]
-    private let onWeekOffsetChanged: (Int) -> Void
+    private let weekDaysForOffset: (Int) -> [Date]
+    private let onWeekOffsetChange: (Int) -> Void
 
     private(set) var currentWeekOffset: Int = 0
     private var pendingWeekOffset: Int?
@@ -79,14 +90,14 @@ final class ToDoWidgetWeekPagerCoordinator: NSObject, UICollectionViewDataSource
 
     init(
         viewModel: ToDoWidgetViewModel,
-        weekDays: @escaping (Int) -> [Date],
-        onWeekOffsetChanged: @escaping (Int) -> Void
+        weekDaysForOffset: @escaping (Int) -> [Date],
+        onWeekOffsetChange: @escaping (Int) -> Void
     ) {
         self.viewModel = viewModel
-        self.weekDays = weekDays
-        self.onWeekOffsetChanged = onWeekOffsetChanged
+        self.weekDaysForOffset = weekDaysForOffset
+        self.onWeekOffsetChange = onWeekOffsetChange
         self.hostingControllers = (0..<3).map { i in
-            UIHostingController(rootView: ToDoWidgetWeekView(weekDays: weekDays(i - 1), viewModel: viewModel))
+            UIHostingController(rootView: ToDoWidgetWeekView(weekDays: weekDaysForOffset(i - 1), viewModel: viewModel))
         }
         for hc in self.hostingControllers {
             hc.view.backgroundColor = .clear
@@ -125,10 +136,16 @@ final class ToDoWidgetWeekPagerCoordinator: NSObject, UICollectionViewDataSource
             .store(in: &subscriptions)
     }
 
+    func preferredHeight(for width: CGFloat) -> CGFloat {
+        guard hostingControllers.count > 1 else { return 0 }
+
+        return hostingControllers[1].sizeThatFits(in: CGSize(width: width, height: .greatestFiniteMagnitude)).height
+    }
+
     // MARK: - UICollectionViewDataSource
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
+        3 // 3 weeks: previous/current/next
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -187,6 +204,7 @@ final class ToDoWidgetWeekPagerCoordinator: NSObject, UICollectionViewDataSource
 
     func scrollToToday(_ collectionView: UICollectionView) {
         guard currentWeekOffset != 0 else { return }
+
         let targetPage = currentWeekOffset > 0 ? 0 : 2
         hostingControllers[targetPage].rootView = makePageView(weekOffset: 0)
         pendingWeekOffset = 0
@@ -210,7 +228,7 @@ final class ToDoWidgetWeekPagerCoordinator: NSObject, UICollectionViewDataSource
             currentWeekOffset += page == 0 ? -1 : 1
         }
 
-        onWeekOffsetChanged(currentWeekOffset)
+        onWeekOffsetChange(currentWeekOffset)
         updateAllCells()
         collectionView.setContentOffset(
             CGPoint(x: collectionView.frame.width, y: 0),
@@ -225,6 +243,6 @@ final class ToDoWidgetWeekPagerCoordinator: NSObject, UICollectionViewDataSource
     }
 
     private func makePageView(weekOffset: Int) -> ToDoWidgetWeekView {
-        ToDoWidgetWeekView(weekDays: weekDays(weekOffset), viewModel: viewModel)
+        ToDoWidgetWeekView(weekDays: weekDaysForOffset(weekOffset), viewModel: viewModel)
     }
 }

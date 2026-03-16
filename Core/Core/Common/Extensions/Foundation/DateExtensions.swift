@@ -128,6 +128,10 @@ public extension Date {
         Cal.currentCalendar.isDateInToday(self)
     }
 
+    func isInSameDay(as date: Date) -> Bool {
+        Cal.currentCalendar.isDate(date, inSameDayAs: self)
+    }
+
     var isCurrentYear: Bool {
         Cal.currentCalendar.isDate(self, equalTo: Clock.now, toGranularity: .year)
     }

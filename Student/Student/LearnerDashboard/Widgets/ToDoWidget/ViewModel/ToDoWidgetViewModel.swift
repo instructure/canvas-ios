@@ -49,7 +49,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
 
     var dayItems: [TodoItemViewModel] {
         let items = allGroups
-            .first { Calendar.current.isDate($0.date, inSameDayAs: selectedDay) }?
+            .first { $0.date.isInSameDay(as: selectedDay) }?
             .items ?? []
         return visibleItems(from: items)
     }
@@ -61,7 +61,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     private(set) var itemCounts: [Date: Int] = [:]
 
     var shouldShowTodayButton: Bool {
-        !Calendar.current.isDate(selectedDay, inSameDayAs: Clock.now)
+        !selectedDay.isToday
     }
 
     var layoutIdentifier: [AnyHashable] {

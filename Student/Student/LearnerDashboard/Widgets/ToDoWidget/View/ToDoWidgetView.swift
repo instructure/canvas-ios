@@ -22,8 +22,6 @@ import SwiftUI
 struct ToDoWidgetView: View {
     @Environment(\.viewController) private var viewController
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    @ScaledMetric private var uiScale: CGFloat = 1
-
     @State private var viewModel: ToDoWidgetViewModel
 
     @State private var weekPagerProxy = WeekPagerProxy()
@@ -43,9 +41,14 @@ struct ToDoWidgetView: View {
                 DashboardWidgetCard {
                     VStack(alignment: .leading, spacing: 0) {
                         cardHeader
+                            .padding(.bottom, 8)
+
                         weekPager
                             .alignmentGuide(.weekCenter) { $0[VerticalAlignment.center] }
+                            .padding(.bottom, 8)
+
                         InstUI.Divider()
+
                         contentView
                             .animation(.dashboardWidget, value: viewModel.layoutIdentifier)
                     }
@@ -105,6 +108,8 @@ struct ToDoWidgetView: View {
     }
 
     private struct CardHeaderView: View {
+        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
         let yearTitle: String?
         let monthTitle: String
         @Binding var showCompleted: Bool
@@ -122,8 +127,7 @@ struct ToDoWidgetView: View {
                     .padding(.vertical, 8)
             }
             .paddingStyle(.horizontal, .standard)
-            .padding(.top, 8)
-            .padding(.bottom, 16)
+            .padding(.vertical, 8)
         }
 
         private func yearLabel(_ yearTitle: String) -> some View {
@@ -153,10 +157,9 @@ struct ToDoWidgetView: View {
         ToDoWidgetWeekPagerView(
             viewModel: viewModel,
             proxy: weekPagerProxy,
-            onWeekOffsetChanged: { viewModel.setWeek(absoluteOffset: $0) },
-            weekDays: viewModel.weekDays(forOffset:)
+            onWeekOffsetChange: { viewModel.setWeek(absoluteOffset: $0) },
+            weekDaysForOffset: { viewModel.weekDays(forOffset: $0) }
         )
-        .frame(height: 80 * uiScale)
         .padding(.horizontal, 32)
         .accessibilityRepresentation {
             HStack(spacing: 0) {

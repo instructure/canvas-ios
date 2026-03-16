@@ -21,6 +21,7 @@ import SwiftUI
 extension InstUI {
 
     public struct Toggle<Label>: View where Label: View {
+        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
         @Environment(\.isEnabled) private var isEnabled: Bool
 
         @Binding private var isOn: Bool
