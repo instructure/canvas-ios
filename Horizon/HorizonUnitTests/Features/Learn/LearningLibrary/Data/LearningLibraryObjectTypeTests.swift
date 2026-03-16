@@ -55,7 +55,6 @@ final class LearningLibraryObjectTypeTests: XCTestCase {
 
     func testStylesAreNotNil() {
         XCTAssertNotNil(LearningLibraryObjectType.course.style)
-        // XCTAssertNotNil(LearningLibraryObjectType.program.style)
         XCTAssertNotNil(LearningLibraryObjectType.page.style)
         XCTAssertNotNil(LearningLibraryObjectType.assignment.style)
         XCTAssertNotNil(LearningLibraryObjectType.assessment.style)
