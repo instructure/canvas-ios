@@ -34,13 +34,10 @@ struct RouteActionView: BottomActionView {
     let accessibilityLabel: String?
 
     var body: some View {
-        HStack {
-            Spacer()
-            Link(destination: url) {
-                ActionLabel(icon: icon)
-            }
-            .accessibilityLabel(accessibilityLabel)
+        Link(destination: url) {
+            ActionLabel(icon: icon)
         }
+        .accessibilityLabel(accessibilityLabel)
     }
 }
 
@@ -51,14 +48,11 @@ struct IntentActionView<Intent: AppIntent>: BottomActionView {
     let accessibilityLabel: String?
 
     var body: some View {
-        HStack {
-            Spacer()
-            Button(intent: intent) {
-                ActionLabel(icon: icon)
-            }
-            .buttonStyle(.plain)
-            .accessibilityLabel(accessibilityLabel)
+        Button(intent: intent) {
+            ActionLabel(icon: icon)
         }
+        .buttonStyle(.plain)
+        .accessibilityLabel(accessibilityLabel)
     }
 }
 
