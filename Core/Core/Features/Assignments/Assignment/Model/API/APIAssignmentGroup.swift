@@ -19,11 +19,18 @@
 import Foundation
 
 public struct APIAssignmentGroup: Codable, Equatable {
-    let id: ID
-    let name: String
-    let position: Int
-    let group_weight: Double?
-    var assignments: [APIAssignment]?
+    public let id: ID
+    public let name: String
+    public let position: Int
+    public let group_weight: Double?
+    public var assignments: [APIAssignment]?
+    public let rules: APIAssignmentGroupRules?
+}
+
+public struct APIAssignmentGroupRules: Codable, Equatable {
+    public let drop_lowest: Int?
+    public let drop_highest: Int?
+    public let never_drop: [ID]?
 }
 
 #if DEBUG
@@ -33,14 +40,16 @@ extension APIAssignmentGroup {
         name: String = "Assignment Group A",
         position: Int = 1,
         group_weight: Double? = nil,
-        assignments: [APIAssignment]? = nil
-        ) -> APIAssignmentGroup {
+        assignments: [APIAssignment]? = nil,
+        rules: APIAssignmentGroupRules? = nil
+    ) -> APIAssignmentGroup {
         return APIAssignmentGroup(
             id: id,
             name: name,
             position: position,
             group_weight: group_weight,
-            assignments: assignments
+            assignments: assignments,
+            rules: rules
         )
     }
 }

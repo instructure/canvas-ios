@@ -47,7 +47,7 @@ public struct APISubmission: Codable, Equatable {
     let preview_url: URL?
     var rubric_assessment: APIRubricAssessmentMap?  // include[]=rubric_assessment
     let seconds_late: Int?
-    var score: Double?
+    public var score: Double?
     var submission_comments: [APISubmissionComment]? // include[]=submission_comments
     let submission_history: [APISubmission]? // include[]=submission_history
     let submission_type: SubmissionType?
@@ -56,7 +56,7 @@ public struct APISubmission: Codable, Equatable {
     @SafeURL private(set) var url: URL?
     var user: APIUser? // include[]=user
     let user_id: ID
-    let workflow_state: SubmissionWorkflowState
+    public let workflow_state: SubmissionWorkflowState
 
     // Sub-assignment (aka: Checkpoint) submissions
     let has_sub_assignment_submissions: Bool? // include[]=sub_assignment_submissions

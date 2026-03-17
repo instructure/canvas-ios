@@ -20,16 +20,16 @@ import Foundation
 
 public struct APIPlannable: Codable, Equatable {
     let account_id: ID?
-    let course_id: ID?
+    public let course_id: ID?
     let group_id: ID?
     let user_id: ID?
     let context_type: String?
     let planner_override: APIPlannerOverride?
-    let plannable_id: ID
+    public let plannable_id: ID
     let plannable_type: String
     let html_url: APIURL?
     let context_name: String?
-    let plannable: APIPlannable.Plannable?
+    public let plannable: APIPlannable.Plannable?
     public let plannable_date: Date
     let submissions: TypeSafeCodable<APIPlannable.Submissions, Bool>?
     public let details: APIPlannable.Details?
@@ -71,14 +71,14 @@ public struct APIPlannable: Codable, Equatable {
 
 extension APIPlannable {
     public struct Plannable: Codable, Equatable {
-        let title: String?
+        public let title: String?
         let details: String?
         let all_day: Bool?
         let start_at: Date?
         let end_at: Date?
         let course_id: String?
         let user_id: String?
-        let points_possible: Double?
+        public let points_possible: Double?
         let sub_assignment_tag: String?
     }
 
@@ -101,7 +101,7 @@ extension APIPlannable {
 public struct APIPlannerOverride: Codable, Equatable {
     let id: ID
     let plannable_type: String
-    let plannable_id: ID
+    public let plannable_id: ID
     let user_id: ID
     let assignment_id: String?
     let workflow_state: String
@@ -249,6 +249,14 @@ public struct GetPlannablesRequest: APIRequestable {
     var endDate: Date?
     var contextCodes: [String] = []
     var filter: String = ""
+
+    public init(userID: String? = nil, startDate: Date? = nil, endDate: Date? = nil, contextCodes: [String] = [], filter: String = "") {
+        self.userID = userID
+        self.startDate = startDate
+        self.endDate = endDate
+        self.contextCodes = contextCodes
+        self.filter = filter
+    }
 
     public var path: String {
         if let userID = userID {
