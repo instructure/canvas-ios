@@ -26,6 +26,7 @@ struct LearnerDashboardScreen: View {
     @State private var isSettingsPresented = false
     @Environment(\.viewController) private var viewController
     @Environment(\.appEnvironment) private var env
+    @Environment(\.colorScheme) private var colorScheme
 
     private let screenPadding = InstUI.Styles.Padding.standard
     @State private var isAnimationEnabled = false
@@ -55,6 +56,11 @@ struct LearnerDashboardScreen: View {
                         widgetViewModel.makeView()
                     }
                 }
+                if viewModel.showWidgetsTurnedOffPanda {
+                    LearnerDashboardAllWidgetsTurnedOffView()
+                }
+
+                customizeDashboardButton
             }
             .paddingStyle(.all, screenPadding)
             .animation(isAnimationEnabled ? .dashboardWidget : nil, value: viewModel.widgets.map(\.layoutIdentifier))
@@ -84,6 +90,19 @@ struct LearnerDashboardScreen: View {
                 ToolbarItem(placement: .topBarTrailing) { legacyRightNavBarButtons }
             }
         }
+    }
+
+    private var customizeDashboardButton: some View {
+        Button {
+            isSettingsPresented = true
+        } label: {
+            InstUI.PillContent(
+                title: String(localized: "Customize Dashboard", bundle: .student),
+                leadingIcon: .editLine,
+                size: .height30
+            )
+        }
+        .buttonStyle(.pillTintOutlined)
     }
 
     @available(iOS, introduced: 26, message: "Legacy version exists")
@@ -131,6 +150,7 @@ struct LearnerDashboardScreen: View {
             NavigationStack {
                 LearnerDashboardSettingsScreen(viewModel: viewModel.makeSettingsViewModel())
             }
+            .environment(\.colorScheme, colorScheme)
             .accentColor(.brandPrimary)
             .tint(.brandPrimary)
         }
@@ -158,6 +178,7 @@ struct LearnerDashboardScreen: View {
             NavigationStack {
                 LearnerDashboardSettingsScreen(viewModel: viewModel.makeSettingsViewModel())
             }
+            .environment(\.colorScheme, colorScheme)
             .accentColor(.brandPrimary)
             .tint(.brandPrimary)
         }
