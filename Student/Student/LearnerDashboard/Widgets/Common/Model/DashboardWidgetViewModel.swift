@@ -55,6 +55,12 @@ extension DashboardWidgetViewModel {
     }
 }
 
+extension [any DashboardWidgetViewModel] {
+    var allEditableWidgetsTurnedOff: Bool {
+        allSatisfy { EditableWidgetIdentifier(rawValue: $0.id) == nil }
+    }
+}
+
 protocol DashboardMutatorWidget: AnyObject {
     var requestDashboardRefresh: PassthroughSubject<Void, Never> { get set }
 }

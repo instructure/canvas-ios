@@ -48,7 +48,7 @@ struct LearnerDashboardSettingsWidgetCardView: View {
             .padding(.bottom, 14)
             .accessibilityElement(children: .combine)
 
-            if let subSettings = subSettingsView {
+            if let subSettings = subSettingsView, isVisible {
                 InstUI.Divider()
                     .padding(.horizontal, -16)
                 subSettings
@@ -80,6 +80,7 @@ struct LearnerDashboardSettingsWidgetCardView: View {
                 localized: "Move \(config.id.settingsTitle(username: username)) widget up",
                 bundle: .student
             ))
+            .accessibilityHidden(isMoveUpDisabled)
 
             InstUI.Divider()
                 .padding(.vertical, 4)
@@ -95,6 +96,7 @@ struct LearnerDashboardSettingsWidgetCardView: View {
                 localized: "Move \(config.id.settingsTitle(username: username)) widget down",
                 bundle: .student
             ))
+            .accessibilityHidden(isMoveDownDisabled)
         }
         .padding(.horizontal, 8)
         .fixedSize(horizontal: false, vertical: true)

@@ -49,11 +49,7 @@ struct LearnerDashboardColorSelectorView: View {
                                     Image.checkLine
                                         .resizable()
                                         .scaledFrame(size: 24)
-                                        .foregroundStyle(
-                                            selectedColor == whiteColor
-                                            ? .textLightest.variantForDarkMode
-                                            : .textLightest.variantForLightMode
-                                        )
+                                        .foregroundStyle(.textLightest)
                                 }
                             }
                             .scaledFrame(size: 40)
