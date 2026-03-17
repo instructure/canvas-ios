@@ -161,9 +161,7 @@ final class LearningLibraryRecommendationListViewModelTests: HorizonTestCase {
             didSendEvent: didSendEvent,
             scheduler: .immediate
         )
-        
         testee.refresh()
-        
         XCTAssertEqual(testee.recommendedItems.count, 1)
     }
 
