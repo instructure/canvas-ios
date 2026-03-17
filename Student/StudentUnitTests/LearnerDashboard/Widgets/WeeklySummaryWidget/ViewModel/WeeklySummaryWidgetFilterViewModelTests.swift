@@ -142,7 +142,8 @@ final class WeeklySummaryWidgetFilterViewModelTests: StudentTestCase {
                 icon: .assignmentLine,
                 title: "title \(index)",
                 dueDateText: nil,
-                pointsText: nil,
+                pointsPossible: nil,
+                grade: nil,
                 gradeWeightText: nil
             )
         }

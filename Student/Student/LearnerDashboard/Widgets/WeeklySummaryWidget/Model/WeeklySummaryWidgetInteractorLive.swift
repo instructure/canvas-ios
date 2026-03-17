@@ -63,15 +63,8 @@ final class WeeklySummaryWidgetInteractorLive: WeeklySummaryWidgetInteractor {
             icon = .assignmentLine
         }
 
-        let pointsText: String?
-        let dueDateText: String?
-        if entry.category == .newGrades {
-            pointsText = Self.formatGradeFromEntry(entry)
-            dueDateText = nil
-        } else {
-            pointsText = Self.formatPoints(entry.pointsPossible)
-            dueDateText = entry.dueAt?.dateTimeString
-        }
+        let grade: String? = entry.category == .newGrades ? Self.formatGradeFromEntry(entry) : nil
+        let dueDateText: String? = entry.category == .newGrades ? nil : entry.dueAt?.dateTimeString
 
         return WeeklySummaryWidgetAssignment(
             id: entry.assignmentId,
@@ -81,7 +74,8 @@ final class WeeklySummaryWidgetInteractorLive: WeeklySummaryWidgetInteractor {
             icon: icon,
             title: entry.title,
             dueDateText: dueDateText,
-            pointsText: pointsText,
+            pointsPossible: Self.formatPoints(entry.pointsPossible),
+            grade: grade,
             gradeWeightText: entry.gradeWeight.map { Self.formatWeightPercent($0) }
         )
     }
@@ -97,12 +91,8 @@ final class WeeklySummaryWidgetInteractorLive: WeeklySummaryWidgetInteractor {
             return grade
         }
         if entry.gradingType == "points" {
-            guard let score = entry.score, let possible = entry.pointsPossible else {
-                return grade
-            }
-            let scoreStr = numberFormatter.string(from: GradeFormatter.truncate(score)) ?? "\(score)"
-            let possibleStr = numberFormatter.string(from: GradeFormatter.truncate(possible)) ?? "\(possible)"
-            return "\(scoreStr) / \(possibleStr)"
+            guard let score = entry.score else { return grade }
+            return numberFormatter.string(from: GradeFormatter.truncate(score)) ?? "\(score)"
         }
         if let numericGrade = Double(grade) {
             return numberFormatter.string(from: GradeFormatter.truncate(numericGrade))

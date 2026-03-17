@@ -33,7 +33,8 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 icon: .quizLine,
                 title: "Chapter 5 Quiz",
                 dueDateText: "Tomorrow at 11:59 PM",
-                pointsText: "20 pts",
+                pointsPossible: "20 pts",
+                grade: nil,
                 gradeWeightText: nil
             ),
             WeeklySummaryWidgetAssignment(
@@ -44,7 +45,8 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 icon: .assignmentLine,
                 title: "Policy Analysis Essay",
                 dueDateText: "Thu at 11:59 PM",
-                pointsText: "100 pts",
+                pointsPossible: "100 pts",
+                grade: nil,
                 gradeWeightText: "20% of final grade"
             ),
             WeeklySummaryWidgetAssignment(
@@ -55,7 +57,8 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 icon: .assignmentLine,
                 title: "Lab Report: Water Quality",
                 dueDateText: "Sat at 11:59 PM",
-                pointsText: "50 pts",
+                pointsPossible: "50 pts",
+                grade: nil,
                 gradeWeightText: nil
             )
         ],
@@ -68,7 +71,8 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 icon: .assignmentLine,
                 title: "Midterm Reflection",
                 dueDateText: nil,
-                pointsText: "85 pts",
+                pointsPossible: nil,
+                grade: "85 pts",
                 gradeWeightText: "30% of final grade"
             ),
             WeeklySummaryWidgetAssignment(
@@ -79,7 +83,8 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 icon: .assignmentLine,
                 title: "Discussion Board Week 4",
                 dueDateText: nil,
-                pointsText: "15 pts",
+                pointsPossible: nil,
+                grade: "15 pts",
                 gradeWeightText: nil
             )
         ]

@@ -26,6 +26,7 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
     let icon: Image
     let title: String
     let dueDateText: String?
-    let pointsText: String?
+    let pointsPossible: String?
+    let grade: String?
     let gradeWeightText: String?
 }

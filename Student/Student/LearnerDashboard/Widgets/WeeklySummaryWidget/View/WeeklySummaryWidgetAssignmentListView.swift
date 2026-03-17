@@ -49,23 +49,31 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
     let assignment: WeeklySummaryWidgetAssignment
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            InstUI.JoinedSubtitleLabels(
-                label1: {
-                    assignment.icon
-                        .scaledIcon(size: 16)
-                },
-                label2: {
-                    Text(assignment.courseCode)
-                        .font(.regular12)
-                }
-            )
-            .applyTint()
-            Text(assignment.title)
-                .font(.semibold14, lineHeight: .fit)
-                .foregroundStyle(Color.textDarkest)
-                .multilineTextAlignment(.leading)
-            bottomLabels
+        HStack(alignment: .top, spacing: InstUI.Styles.Padding.standard.rawValue) {
+            VStack(alignment: .leading, spacing: 2) {
+                InstUI.JoinedSubtitleLabels(
+                    label1: {
+                        assignment.icon
+                            .scaledIcon(size: 16)
+                    },
+                    label2: {
+                        Text(assignment.courseCode)
+                            .font(.regular12)
+                    }
+                )
+                .applyTint()
+                Text(assignment.title)
+                    .font(.semibold14, lineHeight: .fit)
+                    .foregroundStyle(Color.textDarkest)
+                    .multilineTextAlignment(.leading)
+                bottomLabels
+            }
+
+            if let grade = assignment.grade {
+                Spacer()
+                Text(grade)
+                    .font(.semibold14, lineHeight: .fit)
+            }
         }
         .paddingStyle(.horizontal, .standard)
         .padding(.vertical, 8)
@@ -83,12 +91,12 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
                     .foregroundStyle(Color.textDark)
             }
 
-            if let pointsText = assignment.pointsText, let gradeWeightText = assignment.gradeWeightText {
+            if let pointsText = assignment.pointsPossible, let gradeWeightText = assignment.gradeWeightText {
                 InstUI.JoinedSubtitleLabels(
                     label1: { pointsLabel(pointsText) },
                     label2: { gradeWeightPill(gradeWeightText) }
                 )
-            } else if let pointsText = assignment.pointsText {
+            } else if let pointsText = assignment.pointsPossible {
                 pointsLabel(pointsText)
             }
         }
@@ -112,13 +120,50 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
 #if DEBUG
 
 #Preview {
-    let viewModel = WeeklySummaryWidgetViewModel(
-        config: .make(id: .weeklySummary),
-        router: PreviewEnvironment().router
-    )
+    let assignments: [WeeklySummaryWidgetAssignment] = [
+        WeeklySummaryWidgetAssignment(
+            id: "1",
+            courseId: "101",
+            courseCode: "BIO 101",
+            courseColor: .course1,
+            icon: .assignmentLine,
+            title: "Lab Report: Cell Division",
+            dueDateText: "Mar 20, 2026 at 11:59 PM",
+            pointsPossible: "50 pts",
+            grade: nil,
+            gradeWeightText: "12.5% of final grade"
+        ),
+        WeeklySummaryWidgetAssignment(
+            id: "2",
+            courseId: "102",
+            courseCode: "HIST 202",
+            courseColor: .course3,
+            icon: .discussionLine,
+            title: "Week 5 Discussion: Industrial Revolution",
+            dueDateText: "Mar 21, 2026 at 9:00 AM",
+            pointsPossible: "25 pts",
+            grade: nil,
+            gradeWeightText: nil
+        ),
+        WeeklySummaryWidgetAssignment(
+            id: "3",
+            courseId: "103",
+            courseCode: "MATH 301",
+            courseColor: .course5,
+            icon: .quizLine,
+            title: "Midterm Quiz",
+            dueDateText: nil,
+            pointsPossible: "100 pts",
+            grade: "88",
+            gradeWeightText: "20% of final grade"
+        )
+    ]
     WeeklySummaryWidgetAssignmentListView(
-        viewModel: viewModel,
-        assignments: viewModel.dueFilter.assignments,
+        viewModel: WeeklySummaryWidgetViewModel(
+            config: .make(id: .weeklySummary),
+            router: PreviewEnvironment().router
+        ),
+        assignments: assignments,
         controller: WeakViewController()
     )
     .padding(16)
