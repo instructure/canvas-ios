@@ -67,12 +67,15 @@ struct TodoContentView<Content: View, ActionView: BottomActionView>: View {
 }
 
 private struct LogoView: View {
+    @Environment(\.widgetRenderingMode) private var renderingMode
 
     var body: some View {
         ZStack {
             Circle()
                 .fill(Color.backgroundDanger)
                 .scaledFrame(width: 32, useIconScale: true)
+                .opacity(renderingMode == .accented ? 0.2 : 1)
+
             Image("student-logomark")
                 .renderingMode(.template)
                 .scaledIcon(size: 18)

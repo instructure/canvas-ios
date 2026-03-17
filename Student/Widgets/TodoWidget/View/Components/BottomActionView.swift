@@ -70,14 +70,17 @@ struct NoActionView: BottomActionView {
 // MARK: Label View
 
 private struct ActionLabel: View {
+    @Environment(\.widgetRenderingMode) private var renderingMode
 
     let icon: Image
 
     var body: some View {
         ZStack {
             Circle()
-                .fill(Color.brandPrimary)
+                .fill(.brandPrimary)
                 .scaledFrame(width: 32, useIconScale: true)
+                .opacity(renderingMode == .accented ? 0.2 : 1)
+
             icon
                 .renderingMode(.template)
                 .scaledIcon(size: 18)
