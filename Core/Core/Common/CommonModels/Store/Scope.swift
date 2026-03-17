@@ -46,6 +46,22 @@ public struct Scope: Equatable {
         self.init(predicate: predicate, order: [sort], sectionNameKeyPath: sectionNameKeyPath)
     }
 
+    public init<Root, OrderValue>(
+        predicate: NSPredicate,
+        orderBy orderKeyPath: ReferenceWritableKeyPath<Root, OrderValue>,
+        ascending: Bool = true,
+        naturally: Bool = false,
+        sectionNameKeyPath: String? = nil
+    ) {
+        self.init(
+            predicate: predicate,
+            order: [
+                NSSortDescriptor(keyPath: orderKeyPath, ascending: ascending, naturally: naturally)
+            ],
+            sectionNameKeyPath: sectionNameKeyPath
+        )
+    }
+
     public init<Root, OrderValue, SectionNameValue>(
         predicate: NSPredicate,
         orderBy orderKeyPath: ReferenceWritableKeyPath<Root, OrderValue>,

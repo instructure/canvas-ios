@@ -60,7 +60,21 @@ class CustomizeCourseViewModelTests: CoreTestCase {
 
     func testSuccessfulSave() {
         // GIVEN
+        let didSaveChanges = PassthroughSubject<Void, Never>()
+        testee = CustomizeCourseViewModel(
+            courseId: "1",
+            courseImage: .make(),
+            courseColor: .course1,
+            courseName: "Test Course",
+            hideColorOverlay: true,
+            didSaveChanges: didSaveChanges,
+            courseColorsInteractor: colorsInteractor
+        )
         setupSuccessfulSaveTest()
+        let didSaveChangesReceived = expectation(description: "didSaveChangesReceived")
+        didSaveChanges
+            .sink { didSaveChangesReceived.fulfill() }
+            .store(in: &subscriptions)
 
         // WHEN
         testee.color = .course2

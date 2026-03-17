@@ -60,3 +60,7 @@ extension [any DashboardWidgetViewModel] {
         allSatisfy { EditableWidgetIdentifier(rawValue: $0.id) == nil }
     }
 }
+
+protocol DashboardMutatorWidget: AnyObject {
+    var requestDashboardRefresh: PassthroughSubject<Void, Never> { get set }
+}

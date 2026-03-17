@@ -98339,6 +98339,9 @@
         }
       }
     },
+    "New Announcements" : {
+
+    },
     "New Folder" : {
       "comment" : "Title for an alert popup, where the user will be asked to provide a name for the new folder",
       "extractionState" : "manual",
@@ -111157,6 +111160,9 @@
         }
       }
     },
+    "Open Announcements" : {
+
+    },
     "Open in Safari" : {
       "comment" : "Open a document in the application Safari",
       "extractionState" : "manual",
@@ -111966,6 +111972,9 @@
           }
         }
       }
+    },
+    "Open New Announcement" : {
+
     },
     "Open the Quiz" : {
       "localizations" : {
@@ -132244,6 +132253,9 @@
           }
         }
       }
+    },
+    "Send message to members" : {
+
     },
     "Sent" : {
       "extractionState" : "manual",
