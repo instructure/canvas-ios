@@ -26,6 +26,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     let id: String = EditableWidgetIdentifier.weeklySummary.rawValue
 
     private(set) var state: InstUI.ScreenState = .loading
+    private(set) var isWeekLoading: Bool = false
     let config: DashboardWidgetConfig
     let isEditable = false
     let isHiddenInEmptyState = false
@@ -56,10 +57,11 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     private let interactor: WeeklySummaryWidgetInteractor
     private let router: Router
     private var retrySubscription: AnyCancellable?
+    private var weekNavigationSubscription: AnyCancellable?
 
     init(
         config: DashboardWidgetConfig,
-        interactor: WeeklySummaryWidgetInteractor = WeeklySummaryWidgetInteractorMock(),
+        interactor: WeeklySummaryWidgetInteractor = WeeklySummaryWidgetInteractorLive(),
         router: Router = AppEnvironment.shared.router
     ) {
         self.config = config
@@ -78,14 +80,17 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        interactor.getSummary(ignoreCache: ignoreCache)
-            .delay(for: .seconds(2), scheduler: DispatchQueue.main)
+        interactor.getSummary(weekStart: weekStartDate, ignoreCache: ignoreCache)
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveOutput: { [weak self] filters in
-                self?.missingFilter = .missing(assignments: filters.missing)
-                self?.dueFilter = .due(assignments: filters.due)
-                self?.newGradesFilter = .newGrades(assignments: filters.newGrades)
-                self?.state = .data
+                guard let self else { return }
+                missingFilter = .missing(assignments: filters.missing)
+                dueFilter = .due(assignments: filters.due)
+                newGradesFilter = .newGrades(assignments: filters.newGrades)
+                state = .data
+                if expandedFilter == nil, !filters.missing.isEmpty {
+                    toggleFilter(missingFilter)
+                }
             })
             .map { _ in }
             .catch { [weak self] _ in
@@ -105,11 +110,40 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     func navigateToPreviousWeek() {
         weekStartDate = weekStartDate.addDays(-7)
         weekRangeText = Self.makeWeekRangeText(from: weekStartDate)
+        beginWeekTransition()
     }
 
     func navigateToNextWeek() {
         weekStartDate = weekStartDate.addDays(7)
         weekRangeText = Self.makeWeekRangeText(from: weekStartDate)
+        beginWeekTransition()
+    }
+
+    private func beginWeekTransition() {
+        expandedFilter = nil
+        missingFilter = missingFilter.withExpandedState(false)
+        dueFilter = dueFilter.withExpandedState(false)
+        newGradesFilter = newGradesFilter.withExpandedState(false)
+
+        weekNavigationSubscription?.cancel()
+        weekNavigationSubscription = Just(())
+            .delay(for: .milliseconds(300), scheduler: DispatchQueue.main)
+            .setFailureType(to: Error.self)
+            .flatMap { [weak self] _ -> AnyPublisher<WeeklySummaryWidgetFilters, Error> in
+                guard let self else { return Fail(error: NSError.internalError()).eraseToAnyPublisher() }
+                isWeekLoading = true
+                return interactor.getSummary(weekStart: weekStartDate, ignoreCache: false)
+                    .receive(on: DispatchQueue.main)
+                    .eraseToAnyPublisher()
+            }
+            .sink(
+                receiveCompletion: { [weak self] _ in self?.isWeekLoading = false },
+                receiveValue: { [weak self] filters in
+                    guard let self else { return }
+                    dueFilter = .due(assignments: filters.due)
+                    newGradesFilter = .newGrades(assignments: filters.newGrades)
+                }
+            )
     }
 
     func toggleFilter(_ filter: WeeklySummaryWidgetFilterViewModel) {
@@ -131,7 +165,13 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
 
     private static func makeWeekRangeText(from weekStartDate: Date) -> String {
         let endDate = weekStartDate.addDays(6)
-        let year = Calendar.current.component(.year, from: endDate)
-        return "\(weekStartDate.shortDayMonth) - \(endDate.shortDayMonth) \(year)"
+        let currentYear = Calendar.current.component(.year, from: Clock.now)
+        let endYear = Calendar.current.component(.year, from: endDate)
+        if endYear == currentYear {
+            return "\(weekStartDate.shortDayMonth) - \(endDate.shortDayMonth)"
+        } else {
+            let startYear = Calendar.current.component(.year, from: weekStartDate)
+            return "\(weekStartDate.shortDayMonth), \(startYear) - \(endDate.shortDayMonth), \(endYear)"
+        }
     }
 }

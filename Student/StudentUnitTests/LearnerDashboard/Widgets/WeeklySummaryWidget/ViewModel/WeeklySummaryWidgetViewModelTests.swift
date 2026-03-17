@@ -60,8 +60,7 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
     func test_weekRangeText_shouldFormatCorrectly() {
         let testee = makeViewModel()
         let endDate = testee.weekStartDate.addDays(6)
-        let year = Calendar.current.component(.year, from: endDate)
-        let expected = "\(testee.weekStartDate.shortDayMonth) - \(endDate.shortDayMonth) \(year)"
+        let expected = "\(testee.weekStartDate.shortDayMonth) - \(endDate.shortDayMonth)"
 
         XCTAssertEqual(testee.weekRangeText, expected)
     }
@@ -91,8 +90,7 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
 
         XCTAssertNotEqual(testee.weekRangeText, initialText)
         let endDate = testee.weekStartDate.addDays(6)
-        let year = Calendar.current.component(.year, from: endDate)
-        XCTAssertEqual(testee.weekRangeText, "\(testee.weekStartDate.shortDayMonth) - \(endDate.shortDayMonth) \(year)")
+        XCTAssertEqual(testee.weekRangeText, "\(testee.weekStartDate.shortDayMonth) - \(endDate.shortDayMonth)")
     }
 
     // MARK: - toggleFilter
@@ -160,6 +158,6 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
     // MARK: - Private helpers
 
     private func makeViewModel() -> WeeklySummaryWidgetViewModel {
-        WeeklySummaryWidgetViewModel(config: .make(id: .weeklySummary))
+        WeeklySummaryWidgetViewModel(config: .make(id: .weeklySummary), interactor: WeeklySummaryWidgetInteractorMock())
     }
 }

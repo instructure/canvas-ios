@@ -17,9 +17,10 @@
 //
 
 import Combine
+import Foundation
 
 protocol WeeklySummaryWidgetInteractor {
-    func getSummary(ignoreCache: Bool) -> AnyPublisher<WeeklySummaryWidgetFilters, Error>
+    func getSummary(weekStart: Date, ignoreCache: Bool) -> AnyPublisher<WeeklySummaryWidgetFilters, Error>
 }
 
 struct WeeklySummaryWidgetFilters {
