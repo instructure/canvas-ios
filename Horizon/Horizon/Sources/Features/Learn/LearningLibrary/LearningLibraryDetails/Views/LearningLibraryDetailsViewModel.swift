@@ -60,9 +60,17 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
         selectedLearningLibrary.id != LearningLibraryFilter.firstOption.id
     }
 
+    var accessibilityMessagePublisher: AnyPublisher<String, Never> {
+        Publishers.Merge(
+            bookmarkManager.accessibilityPublisher,
+            internalAccessibilityPublisher
+        )
+        .eraseToAnyPublisher()
+    }
+
     // MARK: - Private variables
 
-    private var bookmarkLoadingStates: [String: Bool] = [:]
+    private var internalAccessibilityPublisher = PassthroughSubject<String, Never>()
     private var allItems: [LearningLibraryCardModel] = []
     private let paginator = PaginatedDataSource<LearningLibraryCardModel>(items: [], pageSize: 6)
     private var subscriptions = Set<AnyCancellable>()
@@ -73,6 +81,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     let router: Router
     private let didSendEvent: PassthroughSubject<Void, Never>
     private let interactor: LearningLibraryInteractor
+    private let bookmarkManager: BookmarkManager
     private let scheduler: AnySchedulerOf<DispatchQueue>
     let pageType: PageType
 
@@ -83,12 +92,14 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
         router: Router,
         didSendEvent: PassthroughSubject<Void, Never>,
         pageType: PageType,
+        bookmarkManager: BookmarkManager = BookmarkManager(),
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.pageType = pageType
         self.router = router
         self.didSendEvent = didSendEvent
         self.interactor = interactor
+        self.bookmarkManager = bookmarkManager
         self.scheduler = scheduler
         observeFilters()
 
@@ -191,6 +202,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
         }
 
         paginator.setItems(items)
+        announceSearchResults()
     }
 
     private func observeFilters() {
@@ -227,24 +239,19 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     }
 
     func addBookmark(model: LearningLibraryCardModel) {
-        bookmarkLoadingStates[model.id] = true
-        interactor.bookmark(id: model.id, courseID: model.courseID)
-            .receive(on: scheduler)
+        bookmarkManager.toggleBookmark(model, using: interactor, scheduler: scheduler)
             .sinkFailureOrValue { [weak self] error in
+                self?.showError(message: error.localizedDescription)
+            } receiveValue: { [weak self] updatedItem in
                 guard let self else { return }
-                bookmarkLoadingStates[model.id] = false
-                showError(message: error.localizedDescription)
-            } receiveValue: { [weak self] item in
-                guard let self else { return }
-                configItem(item: item)
-                bookmarkLoadingStates[model.id] = false
-                didSendEvent.send(())
+                self.configItem(item: updatedItem)
+                self.didSendEvent.send(())
             }
             .store(in: &subscriptions)
     }
 
     func isBookmarkLoading(forItemWithId id: String) -> Bool {
-        bookmarkLoadingStates[id] ?? false
+        bookmarkManager.isLoading(itemId: id)
     }
 
     func showEnrollConfirmation(
@@ -255,8 +262,20 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
             self?.configItem(item: item)
             self?.didSendEvent.send(())
             self?.navigateToLearningLibraryItem(item, from: viewController)
+            self?.internalAccessibilityPublisher.send(String(localized: "Enrolled successfully"))
         }
         router.show(enrollViewController, from: viewController, options: .modal(.fullScreen))
+    }
+
+    func navigateToLearningLibraryItemDetails(
+        _ model: LearningLibraryCardModel,
+        from viewController: WeakViewController
+    ) {
+        if model.itemType == .course && !model.isEnrolled {
+            showEnrollConfirmation(model: model, viewController: viewController)
+        } else {
+            navigateToLearningLibraryItem(model, from: viewController)
+        }
     }
 
     // MARK: - Private Functions
@@ -298,6 +317,19 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     private func showError(message: String) {
         errorMessage = message
         isErrorVisible = true
+    }
+
+    private func announceSearchResults() {
+        let count = paginator.visibleItems.count
+        var message = ""
+        if count == 0 {
+            message = String(localized: "No results found")
+        } else if count == 1 {
+            message = String(localized: "Found 1 result")
+        } else {
+            message = String(format: String(localized: "Found %d results"), count)
+        }
+        internalAccessibilityPublisher.send(message)
     }
 }
 

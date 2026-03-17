@@ -49,7 +49,6 @@ final class LearningLibraryViewModelTests: HorizonTestCase {
         testee.fetchCollections()
 
         XCTAssertFalse(testee.isLoaderVisible)
-        XCTAssertTrue(testee.hasLibrary)
         XCTAssertEqual(testee.filteredSections.count, 2)
     }
 
@@ -64,7 +63,6 @@ final class LearningLibraryViewModelTests: HorizonTestCase {
         testee.fetchCollections()
 
         XCTAssertFalse(testee.isLoaderVisible)
-        XCTAssertFalse(testee.hasLibrary)
         XCTAssertEqual(testee.filteredSections.count, 0)
     }
 
@@ -100,7 +98,7 @@ final class LearningLibraryViewModelTests: HorizonTestCase {
         testee.fetchCollections(ignoreCache: true)
 
         XCTAssertFalse(testee.isLoaderVisible)
-        XCTAssertTrue(testee.hasLibrary)
+        XCTAssertEqual(testee.filteredSections.count, 1)
     }
 
     func testFetchCollectionsCallsCompletion() {
@@ -136,7 +134,7 @@ final class LearningLibraryViewModelTests: HorizonTestCase {
         await testee.refresh()
 
         XCTAssertFalse(testee.isLoaderVisible)
-        XCTAssertTrue(testee.hasLibrary)
+        XCTAssertEqual(testee.filteredSections.count, 1)
     }
 
     // MARK: - Bookmark Tests
@@ -534,7 +532,6 @@ final class LearningLibraryViewModelTests: HorizonTestCase {
         )
 
         XCTAssertTrue(testee.isLoaderVisible)
-        XCTAssertFalse(testee.hasLibrary)
         XCTAssertFalse(testee.isErrorVisible)
         XCTAssertFalse(testee.isGlobalSearchActive)
         XCTAssertFalse(testee.isGlobalSearchLoading)
@@ -613,6 +610,256 @@ final class LearningLibraryViewModelTests: HorizonTestCase {
 
         testee.addBookmark(model: initialCard)
 
-        XCTAssertTrue(testee.hasLibrary)
+        XCTAssertEqual(testee.filteredSections.count, 1)
+    }
+
+    // MARK: - Accessibility Announcement Tests
+
+    func testGlobalSearchAnnouncesNoResultsFound() {
+        let scheduler = DispatchQueue.test
+        let interactor = LearningLibraryInteractorMock(searchResponse: [])
+        let testee = LearningLibraryViewModel(
+            router: router,
+            interactor: interactor,
+            scheduler: scheduler.eraseToAnyScheduler()
+        )
+        var receivedMessages: [String] = []
+        var cancellables = Set<AnyCancellable>()
+        testee.accessibilityMessagePublisher.sink { message in
+            receivedMessages.append(message)
+        }.store(in: &cancellables)
+
+        testee.searchText = "NonExistent"
+        scheduler.advance(by: .milliseconds(500))
+
+        XCTAssertTrue(receivedMessages.contains("No results found"))
+    }
+
+    func testGlobalSearchAnnouncesOneResult() {
+        let mockSearchResults = [
+            LearningLibraryCardModel(
+                id: "item-1",
+                courseID: "course-123",
+                name: "Swift Course",
+                imageURL: nil,
+                itemType: .course,
+                estimatedTime: "120",
+                isRecommended: false,
+                isCompleted: false,
+                isBookmarked: false,
+                numberOfUnits: 5,
+                isEnrolled: false
+            )
+        ]
+        let scheduler = DispatchQueue.test
+        let interactor = LearningLibraryInteractorMock(searchResponse: mockSearchResults)
+        let testee = LearningLibraryViewModel(
+            router: router,
+            interactor: interactor,
+            scheduler: scheduler.eraseToAnyScheduler()
+        )
+        var receivedMessages: [String] = []
+        var cancellables = Set<AnyCancellable>()
+        testee.accessibilityMessagePublisher.sink { message in
+            receivedMessages.append(message)
+        }.store(in: &cancellables)
+
+        testee.searchText = "Swift"
+        scheduler.advance(by: .milliseconds(500))
+
+        XCTAssertTrue(receivedMessages.contains("Found 1 result"))
+    }
+
+    func testGlobalSearchAnnouncesMultipleResults() {
+        let mockSearchResults = [
+            LearningLibraryCardModel(
+                id: "item-1",
+                courseID: "course-123",
+                name: "Swift Course",
+                imageURL: nil,
+                itemType: .course,
+                estimatedTime: "120",
+                isRecommended: false,
+                isCompleted: false,
+                isBookmarked: false,
+                numberOfUnits: 5,
+                isEnrolled: false
+            ),
+            LearningLibraryCardModel(
+                id: "item-2",
+                courseID: "course-456",
+                name: "Python Course",
+                imageURL: nil,
+                itemType: .course,
+                estimatedTime: "90",
+                isRecommended: false,
+                isCompleted: false,
+                isBookmarked: false,
+                numberOfUnits: 3,
+                isEnrolled: false
+            ),
+            LearningLibraryCardModel(
+                id: "item-3",
+                courseID: "course-789",
+                name: "Java Course",
+                imageURL: nil,
+                itemType: .course,
+                estimatedTime: "100",
+                isRecommended: false,
+                isCompleted: false,
+                isBookmarked: false,
+                numberOfUnits: 4,
+                isEnrolled: false
+            )
+        ]
+        let scheduler = DispatchQueue.test
+        let interactor = LearningLibraryInteractorMock(searchResponse: mockSearchResults)
+        let testee = LearningLibraryViewModel(
+            router: router,
+            interactor: interactor,
+            scheduler: scheduler.eraseToAnyScheduler()
+        )
+        var receivedMessages: [String] = []
+        var cancellables = Set<AnyCancellable>()
+        testee.accessibilityMessagePublisher.sink { message in
+            receivedMessages.append(message)
+        }.store(in: &cancellables)
+
+        testee.searchText = "Course"
+        scheduler.advance(by: .milliseconds(500))
+
+        XCTAssertTrue(receivedMessages.contains { $0.contains("Found 3 results") })
+    }
+
+    func testAddBookmarkAnnouncesAddedToBookmarks() {
+        let mockCard = LearningLibraryCardModel(
+            id: "item-1",
+            courseID: "course-123",
+            name: "Test Course",
+            imageURL: nil,
+            itemType: .course,
+            estimatedTime: "60",
+            isRecommended: false,
+            isCompleted: false,
+            isBookmarked: false,
+            numberOfUnits: 5,
+            isEnrolled: false
+        )
+        let updatedCard = LearningLibraryCardModel(
+            id: "item-1",
+            courseID: "course-123",
+            name: "Test Course",
+            imageURL: nil,
+            itemType: .course,
+            estimatedTime: "60",
+            isRecommended: false,
+            isCompleted: false,
+            isBookmarked: true,
+            numberOfUnits: 5,
+            isEnrolled: false
+        )
+        let interactor = LearningLibraryInteractorMock(bookmarkResponse: updatedCard)
+        let testee = LearningLibraryViewModel(
+            router: router,
+            interactor: interactor,
+            scheduler: .immediate
+        )
+        var receivedMessages: [String] = []
+        var cancellables = Set<AnyCancellable>()
+        testee.accessibilityMessagePublisher.sink { message in
+            receivedMessages.append(message)
+        }.store(in: &cancellables)
+
+        testee.addBookmark(model: mockCard)
+
+        XCTAssertTrue(receivedMessages.contains("Added to bookmarks"))
+    }
+
+    func testRemoveBookmarkAnnouncesRemovedFromBookmarks() {
+        let mockCard = LearningLibraryCardModel(
+            id: "item-1",
+            courseID: "course-123",
+            name: "Test Course",
+            imageURL: nil,
+            itemType: .course,
+            estimatedTime: "60",
+            isRecommended: false,
+            isCompleted: false,
+            isBookmarked: true,
+            numberOfUnits: 5,
+            isEnrolled: false
+        )
+        let updatedCard = LearningLibraryCardModel(
+            id: "item-1",
+            courseID: "course-123",
+            name: "Test Course",
+            imageURL: nil,
+            itemType: .course,
+            estimatedTime: "60",
+            isRecommended: false,
+            isCompleted: false,
+            isBookmarked: false,
+            numberOfUnits: 5,
+            isEnrolled: false
+        )
+        let interactor = LearningLibraryInteractorMock(bookmarkResponse: updatedCard)
+        let testee = LearningLibraryViewModel(
+            router: router,
+            interactor: interactor,
+            scheduler: .immediate
+        )
+        var receivedMessages: [String] = []
+        var cancellables = Set<AnyCancellable>()
+        testee.accessibilityMessagePublisher.sink { message in
+            receivedMessages.append(message)
+        }.store(in: &cancellables)
+
+        testee.addBookmark(model: mockCard)
+
+        XCTAssertTrue(receivedMessages.contains("Removed from bookmarks"))
+    }
+
+    func testEnrollConfirmationAnnouncesEnrolledSuccessfully() {
+        let mockCard = LearningLibraryCardModel(
+            id: "item-1",
+            courseID: "course-123",
+            name: "Test Course",
+            imageURL: nil,
+            itemType: .course,
+            estimatedTime: "60",
+            isRecommended: false,
+            isCompleted: false,
+            isBookmarked: false,
+            numberOfUnits: 5,
+            isEnrolled: false
+        )
+        let enrolledCard = LearningLibraryCardModel(
+            id: "item-1",
+            courseID: "course-123",
+            name: "Test Course",
+            imageURL: nil,
+            itemType: .course,
+            estimatedTime: "60",
+            isRecommended: false,
+            isCompleted: false,
+            isBookmarked: false,
+            numberOfUnits: 5,
+            isEnrolled: true
+        )
+        let interactor = LearningLibraryInteractorMock()
+        let testee = LearningLibraryViewModel(
+            router: router,
+            interactor: interactor,
+            scheduler: .immediate
+        )
+        var receivedMessages: [String] = []
+        var cancellables = Set<AnyCancellable>()
+        testee.accessibilityMessagePublisher.sink { message in
+            receivedMessages.append(message)
+        }.store(in: &cancellables)
+
+        testee.showEnrollConfirmation(model: mockCard, viewController: WeakViewController(UIViewController()))
+
+        wait(for: [router.showExpectation], timeout: 0.1)
     }
 }

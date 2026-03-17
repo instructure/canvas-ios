@@ -30,7 +30,8 @@ enum LearningLibraryAssembly {
             interactor: LearningLibraryInteractorLive(),
             router: router,
             didSendEvent: didSendEvent,
-            pageType: pageType
+            pageType: pageType,
+            bookmarkManager: BookmarkManager()
         )
     }
 
@@ -55,7 +56,8 @@ enum LearningLibraryAssembly {
                 interactor: LearningLibraryInteractorPreview(),
                 router: AppEnvironment.shared.router,
                 didSendEvent: PassthroughSubject<Void, Never>(),
-                pageType: .bookmarks
+                pageType: .bookmarks,
+                bookmarkManager: BookmarkManager()
             )
         )
     }

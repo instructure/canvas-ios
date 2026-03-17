@@ -37,6 +37,10 @@ final class ModuleItemSequenceViewModel {
     private(set) var moduleItem: HModuleItem?
     private(set) var assignmentAttemptCount: String?
     private var isAssignmentOptionsButtonVisible: Bool = false
+    var isMenuButtonVisible: Bool {
+        (isNextButtonEnabled || isPreviousButtonEnabled)
+        && (course?.modules.first(where: { $0.id == moduleItem?.moduleID })?.contentItems ?? []).count > 1
+    }
     var estimatedTime: String? {
         guard let moduleItem else {
             return nil

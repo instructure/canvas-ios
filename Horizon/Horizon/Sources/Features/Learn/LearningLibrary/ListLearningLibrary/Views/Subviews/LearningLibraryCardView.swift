@@ -78,9 +78,8 @@ struct LearningLibraryCardView: View {
         .background(Color.huiColors.surface.pageSecondary)
         .huiCornerRadius(level: .level5)
         .huiElevation(level: .level4)
-        .listRowInsets(EdgeInsets())
-        .listRowSeparator(.hidden)
-        .listRowBackground(Color.huiColors.surface.pagePrimary)
+        .plainListRowStyle()
+        .padding(.bottom, .huiSpaces.space24)
     }
 
     private var cardAccessibilityLabel: String {
@@ -96,7 +95,7 @@ struct LearningLibraryCardView: View {
             components.append(String(format: String(localized: "Estimated time %@ minutes"), estimatedTime))
         }
 
-        if let units = model.numberOfUnits {
+        if let units = model.numberOfUnits, model.itemType == .course {
             components.append(String(format: String(localized: "number of units %d"), units))
         }
 

@@ -52,7 +52,6 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
 
     // MARK: - Outputs
     private(set) var errorMessage = ""
-    private(set) var hasLibrary: Bool = false
     private(set) var isLoaderVisible: Bool = true
     private(set) var globalSearchItems: [LearningLibraryCardModel] = []
 
@@ -61,9 +60,17 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
     var filteredSections: [LearningLibrarySectionModel] { paginator.visibleItems }
     var isSeeMoreVisible: Bool { paginator.isSeeMoreVisible }
 
+    var accessibilityMessagePublisher: AnyPublisher<String, Never> {
+        Publishers.Merge(
+            bookmarkManager.accessibilityPublisher,
+            internalAccessibilityPublisher
+        )
+        .eraseToAnyPublisher()
+    }
+
     // MARK: - Private variables
 
-    private var bookmarkLoadingStates: [String: Bool] = [:]
+    private var internalAccessibilityPublisher = PassthroughSubject<String, Never>()
     private var reloadCollections = PassthroughSubject<Void, Never>()
     private var subscriptions = Set<AnyCancellable>()
     private var globalSearchCancellable: AnyCancellable?
@@ -73,6 +80,7 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
 
     let router: Router
     private let interactor: LearningLibraryInteractor
+    private let bookmarkManager: BookmarkManager
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
@@ -80,16 +88,23 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
     init(
         router: Router,
         interactor: LearningLibraryInteractor = LearningLibraryInteractorLive(),
+        bookmarkManager: BookmarkManager = BookmarkManager(),
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.router = router
         self.interactor = interactor
+        self.bookmarkManager = bookmarkManager
         self.scheduler = scheduler
         observeSearchAndFilters()
         reloadCollections
             .sink { [weak self] in
-            self?.fetchCollections()
-        }
+                guard let self else { return }
+                fetchCollections()
+                if isGlobalSearchActive {
+                    performGlobalSearch()
+                }
+
+            }
         .store(in: &subscriptions)
 
         NotificationCenter.default.addObserver(
@@ -101,11 +116,7 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
             fetchCollections(ignoreCache: true)
 
             if isGlobalSearchActive {
-                performGlobalSearch(
-                    searchText: searchText,
-                    learningObject: selectedLearningObjectSubject.value,
-                    learningLibrary: selectedLearningLibrarySubject.value
-                )
+                performGlobalSearch()
             }
         }
     }
@@ -128,7 +139,6 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
             } receiveValue: { [weak self] collections in
                 guard let self else { return }
                 isLoaderVisible = false
-                hasLibrary = collections.isNotEmpty
                 if paginator.currentPage == 0 {
                     paginator.setItems(collections)
                 } else {
@@ -150,23 +160,17 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
     }
 
     func addBookmark(model: LearningLibraryCardModel) {
-        bookmarkLoadingStates[model.id] = true
-        interactor.bookmark(id: model.id, courseID: model.courseID)
-            .receive(on: scheduler)
+        bookmarkManager.toggleBookmark(model, using: interactor, scheduler: scheduler)
             .sinkFailureOrValue { [weak self] error in
-                guard let self else { return }
-                self.bookmarkLoadingStates[model.id] = false
-                showError(with: error.localizedDescription)
-            } receiveValue: { [weak self] collection in
-                guard let self else { return }
-                self.update(with: collection)
-                self.bookmarkLoadingStates[collection.id] = false
+                self?.showError(with: error.localizedDescription)
+            } receiveValue: { [weak self] updatedItem in
+                self?.update(with: updatedItem)
             }
             .store(in: &subscriptions)
     }
 
     func isBookmarkLoading(forItemWithId id: String) -> Bool {
-        bookmarkLoadingStates[id] ?? false
+        bookmarkManager.isLoading(itemId: id)
     }
 
     func showEnrollConfirmation(
@@ -176,8 +180,20 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
         let enrollViewController = EnrollConfirmationAssembly.makeView(model: model) { [weak self] item in
             self?.update(with: item)
             self?.navigateToLearningLibraryItem(item, from: viewController)
+            self?.internalAccessibilityPublisher.send(String(localized: "Enrolled successfully"))
         }
         router.show(enrollViewController, from: viewController, options: .modal(.fullScreen))
+    }
+
+    func navigateToLearningLibraryItemDetails(
+        _ model: LearningLibraryCardModel,
+        from viewController: WeakViewController
+    ) {
+        if model.itemType == .course && !model.isEnrolled {
+            showEnrollConfirmation(model: model, viewController: viewController)
+        } else {
+            navigateToLearningLibraryItem(model, from: viewController)
+        }
     }
 
     func seeMore() {
@@ -253,11 +269,7 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
 
             if self.isGlobalSearchActive {
                 self.globalSearchCancellable?.cancel()
-                self.performGlobalSearch(
-                    searchText: searchText,
-                    learningObject: learningObject,
-                    learningLibrary: learningLibrary
-                )
+                self.performGlobalSearch()
             } else {
                 self.globalSearchCancellable?.cancel()
                 self.isGlobalSearchLoading = false
@@ -266,36 +278,42 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
         .store(in: &subscriptions)
     }
 
-    private func performGlobalSearch(
-        searchText: String,
-        learningObject: OptionModel,
-        learningLibrary: OptionModel
-    ) {
+    private func performGlobalSearch() {
         isGlobalSearchLoading = true
 
-        let bookmarkedOnly = learningLibrary.id == LearningLibraryFilter.bookmarked.rawValue
-        let completedOnly = learningLibrary.id == LearningLibraryFilter.completed.rawValue
+        let objectType = selectedLearningObjectSubject.value.id == LearningLibraryObjectType.firstOption.id
+            ? nil
+            : LearningLibraryObjectType(rawValue: selectedLearningObjectSubject.value.id)
 
-        let types: [String]?
-        if learningObject.id == LearningLibraryObjectType.firstOption.id {
-            types = nil
-        } else {
-            types = [learningObject.id]
-        }
+        let libraryFilter = LearningLibraryFilter(rawValue: selectedLearningLibrarySubject.value.id) ?? .all
 
-        globalSearchCancellable = interactor.searchCollectionItem(
-            bookmarkedOnly: bookmarkedOnly,
-            completedOnly: completedOnly,
-            types: types,
-            searchTerm: searchText.trimmedEmptyLines.isEmpty ? nil : searchText
+        globalSearchCancellable = interactor.searchWithFilters(
+            searchText: searchTextSubject.value,
+            objectType: objectType,
+            libraryFilter: libraryFilter
         )
         .receive(on: scheduler)
         .sinkFailureOrValue { [weak self] error in
             self?.isGlobalSearchLoading = false
             self?.showError(with: error.localizedDescription)
         } receiveValue: { [weak self] collections in
-            self?.isGlobalSearchLoading = false
-            self?.globalSearchItems = collections
+            guard let self else { return }
+            self.isGlobalSearchLoading = false
+            self.globalSearchItems = collections
+            self.announceSearchResults()
         }
+    }
+
+    private func announceSearchResults() {
+        let count = globalSearchItems.count
+        var message = ""
+        if count == 0 {
+            message = String(localized: "No results found")
+        } else if count == 1 {
+            message = String(localized: "Found 1 result")
+        } else {
+            message = String(format: String(localized: "Found %d results"), count)
+        }
+        internalAccessibilityPublisher.send(message)
     }
 }

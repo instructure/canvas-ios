@@ -39,7 +39,7 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
             .eraseToAnyPublisher()
     }
 
-    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
+    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel?, Error> {
         let item = mockItems.first { $0.id == id } ?? mockItems[0]
         var updatedItem = item
         updatedItem.isBookmarked.toggle()
@@ -58,6 +58,12 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
     }
 
     func getCollectionItems(id: String, ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error> {
+        Just(mockItems)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+
+    func searchWithFilters(searchText: String?, objectType: LearningLibraryObjectType?, libraryFilter: LearningLibraryFilter) -> AnyPublisher<[LearningLibraryCardModel], any Error> {
         Just(mockItems)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
@@ -101,7 +107,7 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
                 courseID: "item-3",
                 name: "SwiftUI Fundamentals",
                 imageURL: URL(string: "https://example.com/swiftui.jpg"),
-                itemType: .program,
+                itemType: .assignment,
                 estimatedTime: "180",
                 isRecommended: true,
                 isCompleted: true,

@@ -16,28 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+import HorizonUI
+import SwiftUI
 
-enum ListLearningLibraryAssembly {
-    static private func makeViewModel() -> LearningLibraryViewModel {
-        .init(
-            router: AppEnvironment.shared.router,
-            bookmarkManager: BookmarkManager()
-        )
+private struct PlainListRowStyle: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .listRowInsets(EdgeInsets())
+            .listRowSeparator(.hidden)
+            .listRowSeparatorTint(Color.huiColors.surface.pagePrimary)
+            .listRowBackground(Color.huiColors.surface.pagePrimary)
+            .listSectionSeparatorTint(Color.huiColors.surface.pagePrimary)
     }
+}
 
-    static func makeView() -> LearningLibraryView {
-        .init(viewModel: makeViewModel())
+extension View {
+    func plainListRowStyle() -> some View {
+        self.modifier(PlainListRowStyle())
     }
-
-    #if DEBUG
-    static func preview() -> LearningLibraryView {
-        LearningLibraryView(
-            viewModel: .init(
-                router: AppEnvironment.shared.router,
-                interactor: LearningLibraryInteractorPreview()
-            )
-        )
-    }
-    #endif
 }
