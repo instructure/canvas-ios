@@ -40,7 +40,7 @@ struct ToDoWidgetWeekView: View {
                         date: day,
                         isSelected: day.isInSameDay(as: viewModel.selectedDay),
                         isToday: day.isToday,
-                        itemCount: viewModel.itemCounts[day] ?? 0,
+                        itemCount: viewModel.itemCountPerDay[day] ?? 0,
                         isCompact: isCompact
                     )
                 }

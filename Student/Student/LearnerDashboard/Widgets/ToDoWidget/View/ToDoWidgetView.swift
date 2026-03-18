@@ -25,7 +25,6 @@ struct ToDoWidgetView: View {
     @State private var viewModel: ToDoWidgetViewModel
 
     @State private var weekPagerProxy = WeekPagerProxy()
-    @State private var swipingItemId: String?
 
     @AccessibilityFocusState private var isTitleFocused: Bool
 
@@ -39,7 +38,7 @@ struct ToDoWidgetView: View {
 
             ZStack(alignment: Alignment(horizontal: .center, vertical: .weekCenter)) {
                 DashboardWidgetCard {
-                    VStack(alignment: .leading, spacing: 0) {
+                    VStack(alignment: .center, spacing: 0) {
                         cardHeader
                             .padding(.bottom, 8)
 
@@ -49,7 +48,7 @@ struct ToDoWidgetView: View {
 
                         InstUI.Divider()
 
-                        contentView
+                        dayContentView
                             .animation(.dashboardWidget, value: viewModel.layoutIdentifier)
                     }
                 }
@@ -201,31 +200,28 @@ struct ToDoWidgetView: View {
         )
     }
 
-    // MARK: - Content
+    // MARK: - Day Content
 
     @ViewBuilder
-    private var contentView: some View {
+    private var dayContentView: some View {
         switch viewModel.state {
         case .loading:
-            skeletonView
-
+            skeletonDayView
         case .error:
             errorDayView
-
-        case .data, .empty:
-            if viewModel.isDayLoading {
-                skeletonView
-            } else if viewModel.dayItems.isEmpty {
-                emptyDayView
-            } else {
-                itemListView
-            }
+        case .empty:
+            emptyDayView
+        case .data:
+            listDayView
+                .paddingStyle(.bottom, .standard)
+            addToDoButton
+                .paddingStyle(.bottom, .standard)
         }
     }
 
-    private var skeletonView: some View {
+    private var skeletonDayView: some View {
         VStack(spacing: 0) {
-            ForEach(0..<3, id: \.self) { _ in
+            ForEach(0..<2, id: \.self) { _ in
                 ToDoSkeletonCell()
                 InstUI.Divider(.padded)
             }
@@ -250,7 +246,7 @@ struct ToDoWidgetView: View {
             subtitle: String(localized: "We weren’t able to load your To-dos.\nTry again, or come back later.", bundle: .student),
             button: {
                 Button {
-                    viewModel.retryLoad()
+                    viewModel.didTapRetryButton()
                 } label: {
                     InstUI.PillContent(
                         title: String(localized: "Refresh", bundle: .student),
@@ -263,36 +259,13 @@ struct ToDoWidgetView: View {
         )
     }
 
-    private var itemListView: some View {
-        VStack(spacing: 0) {
-            ForEach(viewModel.dayItems, id: \.id) { item in
-                TodoListItemCell(
-                    item: item,
-                    onTap: { item, vc in viewModel.didTapItem(item, vc) },
-                    onMarkAsDone: { viewModel.markItemAsDone($0) },
-                    onSwipe: { viewModel.handleSwipeAction($0) },
-                    onSwipeCommitted: { viewModel.handleSwipeCommitted($0) },
-                    isSwiping: isSwipingBinding(for: item)
-                )
-                .paddingStyle(.leading, .standard)
-                InstUI.Divider(.padded)
-            }
-            addToDoButton
-                .padding(.horizontal, 80)
-                .padding(.vertical, 16)
-        }
-    }
-
-    private func isSwipingBinding(for item: TodoItemViewModel) -> Binding<Bool> {
-        Binding(
-            get: { swipingItemId == item.id },
-            set: { isSwiping in swipingItemId = isSwiping ? item.id : nil }
-        )
+    private var listDayView: some View {
+        ToDoWidgetListView(viewModel: viewModel.listViewModel)
     }
 
     private var addToDoButton: some View {
         Button {
-            viewModel.createToDo(from: viewController)
+            viewModel.didTapAddButton(from: viewController)
         } label: {
             InstUI.PillContent(
                 title: String(localized: "Add To-do", bundle: .student),
@@ -307,28 +280,27 @@ struct ToDoWidgetView: View {
 // MARK: - Skeleton Cell
 
 private struct ToDoSkeletonCell: View {
-    @ScaledMetric private var uiScale: CGFloat = 1
     @State private var isAnimating = false
 
     var body: some View {
         HStack(spacing: 12) {
             Circle()
                 .fill(.backgroundMedium)
-                .frame(width: 24 * uiScale, height: 24 * uiScale)
+                .scaledFrame(size: 24)
 
             VStack(alignment: .leading, spacing: 6) {
                 RoundedRectangle(cornerRadius: 4)
                     .fill(.backgroundMedium)
-                    .frame(height: 14 * uiScale)
+                    .scaledFrame(height: 14)
 
                 RoundedRectangle(cornerRadius: 4)
                     .fill(.backgroundMedium)
-                    .frame(height: 12 * uiScale)
+                    .scaledFrame(height: 12)
                     .padding(.trailing, 60)
             }
         }
-        .padding(.vertical, 12)
         .paddingStyle(.horizontal, .standard)
+        .padding(.vertical, 12)
         .opacity(isAnimating ? 0.4 : 1.0)
         .onAppear {
             withAnimation(.easeInOut(duration: 0.8).repeatForever(autoreverses: true)) {

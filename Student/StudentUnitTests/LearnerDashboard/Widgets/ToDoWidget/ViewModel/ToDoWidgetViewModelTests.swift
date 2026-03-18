@@ -28,8 +28,6 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
     private static let testData = (
         today: Date.make(year: 2025, month: 9, day: 10),
         otherDay: Date.make(year: 2025, month: 9, day: 15),
-        title1: "title 1",
-        title2: "title 2",
         itemId1: "item-id-1",
         itemId2: "item-id-2"
     )
@@ -43,9 +41,10 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
     override func setUp() {
         super.setUp()
         Clock.mockNow(testData.today)
-        interactor = TodoInteractorMock()
-        snackBarViewModel = SnackBarViewModel()
+        interactor = .init()
+        snackBarViewModel = .init()
         scheduler = DispatchQueue.test
+        testee = makeViewModel()
     }
 
     override func tearDown() {
@@ -60,106 +59,103 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
     // MARK: - Initial state
 
     func test_init_shouldSetLoadingState() {
-        makeTestee()
         XCTAssertEqual(testee.state, .loading)
     }
 
     func test_init_shouldSelectToday() {
-        makeTestee()
-        XCTAssertEqual(testee.selectedDay, Calendar.current.startOfDay(for: testData.today))
+        XCTAssertEqual(testee.selectedDay, testData.today.startOfDay())
     }
 
-    func test_init_shouldSetCurrentWeekStart() {
-        makeTestee()
-        XCTAssertEqual(testee.weekStart, ToDoWidgetViewModel.startOfWeek(for: testData.today))
+    func test_init_shouldSetCurrentWeekDays() {
+        XCTAssertEqual(testee.currentWeekDays.first, testData.today.startOfWeek())
+        XCTAssertEqual(testee.currentWeekDays.count, 7)
     }
 
     func test_init_shouldTriggerRangedRefresh() {
-        makeTestee()
         XCTAssertEqual(interactor.rangedRefreshCalled, true)
     }
 
-    // MARK: - startOfWeek
+    // MARK: - shouldShowTodayButton
 
-    func test_startOfWeek_shouldReturnFirstDayOfWeek() {
-        let result = ToDoWidgetViewModel.startOfWeek(for: testData.today)
-        let expected = Calendar.current.dateInterval(of: .weekOfYear, for: testData.today)?.start
-        XCTAssertEqual(result, expected)
-    }
+    func test_shouldShowTodayButton() {
+        Clock.reset()
 
-    // MARK: - isShowingToday
-
-    func test_isShowingToday() {
-        makeTestee()
-
-        // WHEN selected day is today
+        // WHEN selected day is the real system today
+        testee.didTapTodayButton()
         // THEN
-        XCTAssertEqual(testee.isShowingToday, true)
+        XCTAssertEqual(testee.shouldShowTodayButton, false)
 
         // WHEN selected day is another day
         testee.didTapDay(testData.otherDay)
         // THEN
-        XCTAssertEqual(testee.isShowingToday, false)
+        XCTAssertEqual(testee.shouldShowTodayButton, true)
     }
 
     // MARK: - Day selection
 
-    func test_selectDay_shouldUpdateSelectedDay() {
-        makeTestee()
+    func test_didTapDay_shouldUpdateSelectedDay() {
         testee.didTapDay(testData.otherDay)
-        XCTAssertEqual(testee.selectedDay, Calendar.current.startOfDay(for: testData.otherDay))
+        XCTAssertEqual(testee.selectedDay, testData.otherDay.startOfDay())
     }
 
-    func test_navigateToToday_shouldResetSelectedDayAndWeekStart() {
-        makeTestee()
+    func test_didTapDay_shouldUpdateCurrentWeekDays() {
+        testee.didTapDay(testData.otherDay)
+        XCTAssertEqual(testee.currentWeekDays.first, testData.otherDay.startOfWeek())
+    }
+
+    func test_didTapTodayButton_shouldResetSelectedDayToToday() {
         testee.didTapDay(testData.otherDay)
         testee.didTapTodayButton()
-        XCTAssertEqual(testee.selectedDay, Calendar.current.startOfDay(for: testData.today))
-        XCTAssertEqual(testee.weekStart, ToDoWidgetViewModel.startOfWeek(for: testData.today))
+        XCTAssertEqual(testee.selectedDay, testData.today.startOfDay())
+        XCTAssertEqual(testee.currentWeekDays.first, testData.today.startOfWeek())
     }
 
     // MARK: - Week navigation
 
     func test_setWeek_withZeroOffset_shouldSetCurrentWeek() {
-        makeTestee()
         testee.setWeek(absoluteOffset: 0)
-        XCTAssertEqual(testee.weekStart, ToDoWidgetViewModel.startOfWeek(for: testData.today))
+        XCTAssertEqual(testee.currentWeekDays.first, testData.today.startOfWeek())
     }
 
     func test_setWeek_withPositiveOffset_shouldAdvanceWeek() {
-        makeTestee()
         testee.setWeek(absoluteOffset: 2)
-        let expected = Calendar.current.date(
-            byAdding: .weekOfYear, value: 2,
-            to: ToDoWidgetViewModel.startOfWeek(for: testData.today)
-        )
-        XCTAssertEqual(testee.weekStart, expected)
+        let expected = testData.today.startOfWeek().addWeeks(2)
+        XCTAssertEqual(testee.currentWeekDays.first, expected)
     }
 
     func test_setWeek_shouldTriggerRangedRefresh() {
-        makeTestee()
         let countBefore = interactor.rangedRefreshCallCount
         testee.setWeek(absoluteOffset: 1)
         XCTAssertEqual(interactor.rangedRefreshCallCount, countBefore + 1)
     }
 
+    func test_weekDays_forOffset_shouldReturnSevenDaysStartingFromWeekStart() {
+        let days = testee.weekDays(forOffset: 0)
+        XCTAssertEqual(days.count, 7)
+        XCTAssertEqual(days.first, testData.today.startOfWeek())
+    }
+
+    func test_weekDays_withPositiveOffset_shouldReturnCorrectWeek() {
+        let days = testee.weekDays(forOffset: 1)
+        let expectedStart = testData.today.startOfWeek().addWeeks(1)
+        XCTAssertEqual(days.first, expectedStart)
+    }
+
     // MARK: - State transitions from todoGroups subscription
 
     func test_todoGroupsReceived_withItems_shouldSetDataState() {
-        makeTestee()
         interactor.todoGroups.send([makeGroup(date: testData.today, items: [makeItem()])])
         waitUntil(shouldFail: true) { self.testee.state == .data }
     }
 
     func test_todoGroupsReceived_whenEmpty_shouldSetEmptyState() {
-        makeTestee()
         interactor.todoGroups.send([])
         waitUntil(shouldFail: true) { self.testee.state == .empty }
     }
 
     func test_todoGroupsReceived_afterError_shouldClearError() {
         interactor.rangedRefreshResult = .failure(NSError(domain: "TestError", code: 1))
-        makeTestee()
+        testee = makeViewModel()
         waitUntil(shouldFail: true) { self.testee.state == .error }
 
         interactor.rangedRefreshResult = .success(())
@@ -167,10 +163,9 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
         waitUntil(shouldFail: true) { self.testee.state == .data }
     }
 
-    // MARK: - dayItems
+    // MARK: - listViewModel.items (dayItems)
 
-    func test_dayItems_shouldReturnItemsForSelectedDay() {
-        makeTestee()
+    func test_listViewModelItems_shouldReturnItemsForSelectedDay() {
         let item1 = makeItem(plannableId: testData.itemId1, date: testData.today)
         let item2 = makeItem(plannableId: testData.itemId2, date: testData.otherDay)
         interactor.todoGroups.send([
@@ -179,36 +174,33 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
         ])
         waitUntil(shouldFail: true) { self.testee.state == .data }
 
-        XCTAssertEqual(testee.dayItems.count, 1)
-        XCTAssertEqual(testee.dayItems.first?.plannableId, testData.itemId1)
+        XCTAssertEqual(testee.listViewModel.items.count, 1)
+        XCTAssertEqual(testee.listViewModel.items.first?.plannableId, testData.itemId1)
     }
 
-    func test_dayItems_whenShowCompletedFalse_shouldExcludeDoneItems() {
-        makeTestee()
+    func test_listViewModelItems_whenShowCompletedFalse_shouldExcludeDoneItems() {
         let item = makeItem(plannableId: testData.itemId1, date: testData.today)
         item.markAsDoneState = .done
         interactor.todoGroups.send([makeGroup(date: testData.today, items: [item])])
         waitUntil(shouldFail: true) { self.testee.state == .empty }
 
-        XCTAssertEqual(testee.dayItems.isEmpty, true)
+        XCTAssertEqual(testee.listViewModel.items.isEmpty, true)
     }
 
-    func test_dayItems_whenShowCompletedTrue_shouldIncludeDoneItems() {
-        makeTestee()
+    func test_listViewModelItems_whenShowCompletedTrue_shouldIncludeDoneItems() {
         let item = makeItem(plannableId: testData.itemId1, date: testData.today)
         item.markAsDoneState = .done
         interactor.todoGroups.send([makeGroup(date: testData.today, items: [item])])
         waitUntil(shouldFail: true) { self.testee.state == .empty }
 
-        testee.toggleShowCompleted()
+        testee.showCompleted = true
 
-        XCTAssertEqual(testee.dayItems.count, 1)
+        XCTAssertEqual(testee.listViewModel.items.count, 1)
     }
 
-    // MARK: - itemCounts
+    // MARK: - itemCountPerDay
 
-    func test_itemCounts_shouldReflectVisibleItemCountsPerDate() {
-        makeTestee()
+    func test_itemCountPerDay_shouldReflectVisibleItemCountsPerDate() {
         let item1 = makeItem(plannableId: testData.itemId1, date: testData.today)
         let item2 = makeItem(plannableId: testData.itemId2, date: testData.today)
         let doneItem = makeItem(plannableId: "done-item", date: testData.today)
@@ -216,178 +208,55 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
         interactor.todoGroups.send([makeGroup(date: testData.today, items: [item1, item2, doneItem])])
         waitUntil(shouldFail: true) { self.testee.state == .data }
 
-        let key = Calendar.current.startOfDay(for: testData.today)
-        XCTAssertEqual(testee.itemCounts[key], 2)
+        let key = testData.today.startOfDay()
+        XCTAssertEqual(testee.itemCountPerDay[key], 2)
     }
 
-    func test_itemCounts_whenShowCompletedChanges_shouldUpdate() {
-        makeTestee()
+    func test_itemCountPerDay_whenShowCompletedChanges_shouldUpdate() {
         let item = makeItem(plannableId: testData.itemId1, date: testData.today)
         let doneItem = makeItem(plannableId: "done-item", date: testData.today)
         doneItem.markAsDoneState = .done
         interactor.todoGroups.send([makeGroup(date: testData.today, items: [item, doneItem])])
         waitUntil(shouldFail: true) { self.testee.state == .data }
 
-        let key = Calendar.current.startOfDay(for: testData.today)
-        XCTAssertEqual(testee.itemCounts[key], 1)
+        let key = testData.today.startOfDay()
+        XCTAssertEqual(testee.itemCountPerDay[key], 1)
 
-        testee.toggleShowCompleted()
-        XCTAssertEqual(testee.itemCounts[key], 2)
+        testee.showCompleted = true
+        XCTAssertEqual(testee.itemCountPerDay[key], 2)
     }
 
-    // MARK: - toggleShowCompleted
+    // MARK: - showCompleted
 
-    func test_toggleShowCompleted_shouldToggleFlag() {
-        makeTestee()
-
-        // WHEN false → toggle
+    func test_showCompleted_shouldToggle() {
+        // WHEN false → set true
         XCTAssertEqual(testee.showCompleted, false)
-        testee.toggleShowCompleted()
+        testee.showCompleted = true
         // THEN
         XCTAssertEqual(testee.showCompleted, true)
 
-        // WHEN true → toggle
-        testee.toggleShowCompleted()
+        // WHEN true → set false
+        testee.showCompleted = false
         // THEN
         XCTAssertEqual(testee.showCompleted, false)
     }
 
-    func test_toggleShowCompleted_whenTurningOn_shouldRestoreDoneItemsFromInteractor() {
-        makeTestee()
+    func test_showCompleted_whenTurningOn_shouldRestoreDoneItemsFromInteractor() {
         let item = makeItem(plannableId: testData.itemId1, date: testData.today)
         let doneItem = makeItem(plannableId: "done-item", date: testData.today)
         doneItem.markAsDoneState = .done
         interactor.todoGroups.send([makeGroup(date: testData.today, items: [item, doneItem])])
         waitUntil(shouldFail: true) { self.testee.state == .data }
-        XCTAssertEqual(testee.dayItems.count, 1)
+        XCTAssertEqual(testee.listViewModel.items.count, 1)
 
-        testee.toggleShowCompleted()
+        testee.showCompleted = true
 
-        XCTAssertEqual(testee.dayItems.count, 2)
-    }
-
-    // MARK: - markItemAsDone
-
-    func test_markItemAsDone_whenNotDone_shouldCallInteractorWithDoneTrue() {
-        makeTestee()
-        let item = makeItem(plannableId: testData.itemId1, date: testData.today)
-
-        testee.markItemAsDone(item)
-
-        XCTAssertEqual(interactor.markItemAsDoneCalled, true)
-        XCTAssertEqual(interactor.lastMarkAsDoneDone, true)
-    }
-
-    func test_markItemAsDone_whenAlreadyDone_shouldCallInteractorWithDoneFalse() {
-        makeTestee()
-        let item = makeItem(plannableId: testData.itemId1, date: testData.today)
-        item.markAsDoneState = .done
-
-        testee.markItemAsDone(item)
-
-        XCTAssertEqual(interactor.markItemAsDoneCalled, true)
-        XCTAssertEqual(interactor.lastMarkAsDoneDone, false)
-    }
-
-    func test_markItemAsDone_whenLoading_shouldNotCallInteractor() {
-        makeTestee()
-        let item = makeItem(plannableId: testData.itemId1, date: testData.today)
-        item.markAsDoneState = .loading
-
-        testee.markItemAsDone(item)
-
-        XCTAssertEqual(interactor.markItemAsDoneCalled, false)
-    }
-
-    func test_markItemAsDone_onSuccess_shouldSetItemStateToDone() {
-        makeTestee()
-        let item = makeItem(plannableId: testData.itemId1, date: testData.today)
-        item.shouldKeepCompletedItemsVisible = true
-
-        testee.markItemAsDone(item)
-
-        waitUntil(shouldFail: true) { item.markAsDoneState == .done }
-        XCTAssertEqual(item.markAsDoneState, .done)
-    }
-
-    func test_markItemAsDone_onSuccess_shouldShowDoneSnack() {
-        makeTestee()
-        let item = makeItem(plannableId: testData.itemId1, title: testData.title1, date: testData.today)
-        item.shouldKeepCompletedItemsVisible = true
-
-        testee.markItemAsDone(item)
-
-        waitUntil(shouldFail: true) { self.snackBarViewModel.visibleSnack != nil }
-        XCTAssertEqual(snackBarViewModel.visibleSnack?.contains(testData.title1), true)
-    }
-
-    func test_markItemAsDone_onFailure_shouldRestoreItemStateAndShowSnack() {
-        makeTestee()
-        let item = makeItem(plannableId: testData.itemId1, date: testData.today)
-        interactor.markItemAsDoneResult = .failure(NSError(domain: "TestError", code: 1))
-
-        testee.markItemAsDone(item)
-
-        waitUntil(shouldFail: true) { item.markAsDoneState == .notDone && self.snackBarViewModel.visibleSnack != nil }
-        XCTAssertEqual(item.markAsDoneState, .notDone)
-        XCTAssertNotNil(snackBarViewModel.visibleSnack)
-    }
-
-    func test_markItemAsDone_afterDelay_whenShowCompletedFalse_shouldRemoveItem() {
-        makeTestee()
-        let item = makeItem(plannableId: testData.itemId1, date: testData.today)
-        interactor.todoGroups.send([makeGroup(date: testData.today, items: [item])])
-        waitUntil(shouldFail: true) { self.testee.dayItems.count == 1 }
-
-        testee.markItemAsDone(item)
-        waitUntil(shouldFail: true) { item.markAsDoneState == .done }
-
-        scheduler.advance(by: .seconds(3))
-
-        XCTAssertEqual(testee.dayItems.isEmpty, true)
-    }
-
-    // MARK: - handleSwipeAction
-
-    func test_handleSwipeAction_whenShouldRemoveOptimistically_shouldRemoveItemImmediately() {
-        makeTestee()
-        let item = makeItem(plannableId: testData.itemId1, date: testData.today)
-        interactor.todoGroups.send([makeGroup(date: testData.today, items: [item])])
-        waitUntil(shouldFail: true) { self.testee.dayItems.count == 1 }
-
-        testee.handleSwipeAction(item)
-
-        XCTAssertEqual(testee.dayItems.isEmpty, true)
-    }
-
-    func test_handleSwipeAction_onApiFailure_shouldRestoreItem() {
-        makeTestee()
-        let item = makeItem(plannableId: testData.itemId1, date: testData.today)
-        interactor.todoGroups.send([makeGroup(date: testData.today, items: [item])])
-        waitUntil(shouldFail: true) { self.testee.dayItems.count == 1 }
-        interactor.markItemAsDoneResult = .failure(NSError(domain: "TestError", code: 1))
-
-        testee.handleSwipeAction(item)
-
-        waitUntil(shouldFail: true) { self.testee.dayItems.isEmpty == false }
-        XCTAssertEqual(testee.dayItems.count, 1)
-    }
-
-    func test_handleSwipeAction_whenShouldToggleInPlace_shouldCallInteractor() {
-        makeTestee()
-        let item = makeItem(plannableId: testData.itemId1, date: testData.today)
-        item.markAsDoneState = .done
-        item.shouldKeepCompletedItemsVisible = true
-
-        testee.handleSwipeAction(item)
-
-        XCTAssertEqual(interactor.markItemAsDoneCalled, true)
+        XCTAssertEqual(testee.listViewModel.items.count, 2)
     }
 
     // MARK: - plannerItemDidChange notification
 
     func test_plannerItemDidChange_shouldTriggerRangedRefresh() {
-        makeTestee()
         let countBefore = interactor.rangedRefreshCallCount
 
         NotificationCenter.default.post(name: .plannerItemDidChange, object: nil)
@@ -396,31 +265,62 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
         XCTAssertEqual(interactor.rangedRefreshCallCount, countBefore + 1)
     }
 
-    // MARK: - retryLoad
+    // MARK: - didTapRetryButton
 
-    func test_retryLoad_shouldSetLoadingState() {
-        makeTestee()
+    func test_didTapRetryButton_shouldSetLoadingState() {
         interactor.todoGroups.send([])
         waitUntil(shouldFail: true) { self.testee.state == .empty }
 
-        testee.retryLoad()
+        testee.didTapRetryButton()
 
         XCTAssertEqual(testee.state, .loading)
     }
 
-    func test_retryLoad_shouldTriggerRangedRefresh() {
-        makeTestee()
+    func test_didTapRetryButton_shouldTriggerRangedRefresh() {
         let countBefore = interactor.rangedRefreshCallCount
 
-        testee.retryLoad()
+        testee.didTapRetryButton()
 
         XCTAssertEqual(interactor.rangedRefreshCallCount, countBefore + 1)
     }
 
+    // MARK: - refresh
+
+    func test_refresh_shouldCallRangedRefresh() {
+        let countBefore = interactor.rangedRefreshCallCount
+
+        _ = testee.refresh(ignoreCache: false)
+
+        XCTAssertEqual(interactor.rangedRefreshCallCount, countBefore + 1)
+    }
+
+    func test_refresh_onFailure_shouldSetErrorState() {
+        interactor.rangedRefreshResult = .failure(NSError(domain: "TestError", code: 1))
+
+        let publisher = testee.refresh(ignoreCache: false)
+        var completed = false
+        let cancellable = publisher.sink { completed = true }
+        waitUntil(shouldFail: true) { completed }
+
+        XCTAssertEqual(testee.state, .error)
+        _ = cancellable
+    }
+
+    // MARK: - yearTitle / monthTitle
+
+    func test_monthTitle_shouldReflectSelectedDayMonth() {
+        let expected = testData.today.formatted(.dateTime.month(.wide))
+        XCTAssertEqual(testee.monthTitle, expected)
+    }
+
+    func test_yearTitle_whenCurrentYear_shouldBeNil() {
+        XCTAssertEqual(testee.yearTitle, nil)
+    }
+
     // MARK: - Private helpers
 
-    private func makeTestee() {
-        testee = ToDoWidgetViewModel(
+    private func makeViewModel() -> ToDoWidgetViewModel {
+        ToDoWidgetViewModel(
             config: .make(id: .toDo),
             interactor: interactor,
             router: router,

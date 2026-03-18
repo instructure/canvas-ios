@@ -28,58 +28,34 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
 
     let config: DashboardWidgetConfig
     let isHiddenInEmptyState = false
-    let snackBarViewModel: SnackBarViewModel
 
     private(set) var state: InstUI.ScreenState = .loading
-
     private(set) var selectedDay: Date = .distantPast
-    private var startOfWeek: Date = .distantPast
     private(set) var currentWeekDays: [Date] = []
     private(set) var yearTitle: String?
     private(set) var monthTitle: String = ""
 
+    private(set) var allItemsPerDay: [Date: [TodoItemViewModel]] = [:]
+    private(set) var itemCountPerDay: [Date: Int] = [:]
+    let listViewModel: ToDoWidgetListViewModel
+
     var showCompleted: Bool = false {
         didSet { showCompletedDidChange() }
     }
-    private(set) var isDayLoading: Bool = false
-
-    private var allGroups: [TodoGroupViewModel] = [] {
-        didSet { updateItemCounts() }
-    }
-
-    var dayItems: [TodoItemViewModel] {
-        let items = allGroups
-            .first { $0.date.isInSameDay(as: selectedDay) }?
-            .items ?? []
-        return visibleItems(from: items)
-    }
-
-    var datesWithItems: Set<Date> {
-        Set(allGroups.map { Calendar.current.startOfDay(for: $0.date) })
-    }
-
-    private(set) var itemCounts: [Date: Int] = [:]
 
     var shouldShowTodayButton: Bool {
         !selectedDay.isToday
     }
 
     var layoutIdentifier: [AnyHashable] {
-        [state, dayItems.count, selectedDay, showCompleted, isDayLoading]
+        [state, listViewModel.items.count]
     }
-
-    private static let widgetFilterOptions = TodoFilterOptions(
-        visibilityOptions: [.showCalendarEvents, .showCompleted, .showPersonalTodos],
-        dateRangeStart: .lastWeek,
-        dateRangeEnd: .nextWeek
-    )
 
     private let interactor: TodoInteractor
     private let router: Router
-    private let scheduler: AnySchedulerOf<DispatchQueue>
     private var subscriptions = Set<AnyCancellable>()
-    private var loadCancellable: AnyCancellable?
-    private var markDoneTimers: [String: AnyCancellable] = [:]
+
+    private var startOfWeek: Date = .distantPast
 
     init(
         config: DashboardWidgetConfig,
@@ -91,12 +67,18 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         self.config = config
         self.interactor = interactor
         self.router = router
-        self.snackBarViewModel = snackBarViewModel
-        self.scheduler = scheduler
+
+        self.listViewModel = ToDoWidgetListViewModel(
+            interactor: interactor,
+            router: router,
+            snackBarViewModel: snackBarViewModel,
+            scheduler: scheduler
+        )
 
         selectDay(Clock.now)
 
-        setupSubscriptions()
+        observeTodoGroups()
+        observePlannerItems()
         loadItemsForWeek(ignorePlannablesCache: false)
     }
 
@@ -111,7 +93,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
             endDate: end,
             ignorePlannablesCache: ignoreCache,
             ignoreCoursesCache: ignoreCache,
-            filterOptions: Self.widgetFilterOptions
+            filterOptions: .dashboardWidget
         )
         .receive(on: DispatchQueue.main)
         .catch { [weak self] _ in
@@ -121,7 +103,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         .eraseToAnyPublisher()
     }
 
-    // MARK: - Week Navigation
+    // MARK: - Day Selection / Week Navigation
 
     func didTapDay(_ date: Date) {
         selectDay(date)
@@ -137,7 +119,6 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         let newDay = startOfNewWeek.addDays(selectedDayIndexInWeek)
         selectDay(newDay)
 
-        isDayLoading = dayItems.isEmpty
         loadItemsForWeek(ignorePlannablesCache: false)
     }
 
@@ -155,92 +136,58 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         currentWeekDays = weekDays(of: startOfWeek)
         yearTitle = day.isCurrentYear ? nil : day.formatted(.dateTime.year())
         monthTitle = day.formatted(.dateTime.month(.wide))
+
+        updateCurrentListItems()
     }
 
     private func weekDays(of startOfWeek: Date) -> [Date] {
         (0..<7).compactMap { startOfWeek.addDays($0) }
     }
 
-    // MARK: - Item Actions
+    // MARK: - Actions
 
-    func didTapItem(_ item: TodoItemViewModel, _ viewController: WeakViewController) {
-        guard item.isTappable else {
-            snackBarViewModel.showSnack(String(localized: "No additional details available.", bundle: .core))
-            return
-        }
-        switch item.type {
-        case .planner_note:
-            let vc = PlannerAssembly.makeToDoDetailsViewController(plannableId: item.plannableId)
-            router.show(vc, from: viewController, options: .modal(embedInNav: true, addDoneButton: true))
-        case .calendar_event:
-            let vc = PlannerAssembly.makeEventDetailsViewController(eventId: item.plannableId)
-            router.show(vc, from: viewController, options: .modal(embedInNav: true, addDoneButton: true))
-        default:
-            guard let url = item.htmlURL else { return }
-            router.route(to: url.appendingOrigin("todo"), from: viewController, options: .modal(embedInNav: true, addDoneButton: true))
-        }
-    }
-
-    func createToDo(from viewController: WeakViewController) {
-        let weakVC = WeakViewController()
-        let vc = PlannerAssembly.makeCreateToDoViewController(selectedDate: selectedDay) { [weak self] _ in
-            guard let self else { return }
-            self.router.dismiss(weakVC)
-        }
-        weakVC.setValue(vc)
-        router.show(vc, from: viewController, options: .modal(embedInNav: true, addDoneButton: true))
-    }
-
-    func retryLoad() {
-        state = .loading
+    func didTapRetryButton() {
         loadItemsForWeek(ignorePlannablesCache: true)
     }
 
-    private func showCompletedDidChange() {
-        if showCompleted {
-            markDoneTimers.values.forEach { $0.cancel() }
-            markDoneTimers.removeAll()
-            allGroups = interactor.todoGroups.value
+    func didTapAddButton(from viewController: WeakViewController) {
+        let weakVC = WeakViewController()
+        let vc = PlannerAssembly.makeCreateToDoViewController(selectedDate: selectedDay) { [router] _ in
+            router.dismiss(weakVC)
         }
-        for group in allGroups {
-            for item in group.items {
-                item.shouldKeepCompletedItemsVisible = showCompleted
-            }
-        }
-        updateItemCounts()
-    }
-
-    func markItemAsDone(_ item: TodoItemViewModel) {
-        guard item.markAsDoneState != .loading else { return }
-        if item.markAsDoneState == .notDone {
-            performMarkAsDone(item)
-        } else {
-            performMarkAsUndone(item)
-        }
-    }
-
-    func handleSwipeCommitted(_ item: TodoItemViewModel) {
-        cancelDelayedRemove(for: item)
-    }
-
-    func handleSwipeAction(_ item: TodoItemViewModel) {
-        if item.shouldToggleInPlaceAfterSwipe {
-            toggleItemStateInPlace(item)
-        } else {
-            removeItemWithOptimisticUI(item)
-        }
+        weakVC.setValue(vc)
+        router.show(vc, from: viewController, options: .modal(embedInNav: true))
     }
 
     // MARK: - Private
 
-    private func visibleItems(from items: [TodoItemViewModel]) -> [TodoItemViewModel] {
-        showCompleted ? items : items.filter { $0.markAsDoneState != .done }
+    private func showCompletedDidChange() {
+        updateKeepCompletedItemsVisibleForAllItems()
+        updateItemCounts()
+        updateCurrentListItems()
+    }
+
+    /// This update of `TodoItemViewModel`s is needed for the correct `isVisible` result,
+    /// and for the list items to choose the proper Mark-as-Done behaviour.
+    private func updateKeepCompletedItemsVisibleForAllItems() {
+        allItemsPerDay.values
+            .flatMap { $0}
+            .forEach {
+                $0.shouldKeepCompletedItemsVisible = showCompleted
+            }
     }
 
     private func updateItemCounts() {
-        itemCounts = allGroups.reduce(into: [:]) { result, group in
-            result[Calendar.current.startOfDay(for: group.date)] = visibleItems(from: group.items).count
+        itemCountPerDay = allItemsPerDay.mapValues { items in
+            showCompleted ? items.count : items.filter(\.isVisible).count
         }
+    }
+
+    private func updateCurrentListItems() {
+        let allItems = allItemsPerDay[selectedDay] ?? []
+        listViewModel.items = showCompleted ? allItems : allItems.filter(\.isVisible)
+
+        state = listViewModel.items.isEmpty ? .empty : .data
     }
 
     private func widgetDateRange(for weekStart: Date) -> (start: Date, end: Date) {
@@ -249,176 +196,58 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         return (start, end)
     }
 
-    private func setupSubscriptions() {
+    private func observeTodoGroups() {
         interactor.todoGroups
             .dropFirst()
             .receive(on: DispatchQueue.main)
             .sink { [weak self] groups in
                 guard let self else { return }
-                for group in groups {
-                    for item in group.items {
-                        item.shouldKeepCompletedItemsVisible = showCompleted
-                    }
-                }
-                allGroups = groups
-                isDayLoading = false
-                let hasVisibleItems = !groups.flatMap { self.visibleItems(from: $0.items) }.isEmpty
-                state = hasVisibleItems ? .data : .empty
+
+                allItemsPerDay = Dictionary(
+                    groups.map { ($0.date.startOfDay(), $0.items) },
+                    uniquingKeysWith: { $1 }
+                )
+                updateKeepCompletedItemsVisibleForAllItems()
+                updateItemCounts()
+                updateCurrentListItems()
             }
             .store(in: &subscriptions)
+    }
 
+    private func observePlannerItems() {
         NotificationCenter.default.publisher(for: .plannerItemDidChange)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in
-                guard let self else { return }
-                loadItemsForWeek(ignorePlannablesCache: true)
+                self?.loadItemsForWeek(ignorePlannablesCache: true)
             }
             .store(in: &subscriptions)
     }
 
     private func loadItemsForWeek(ignorePlannablesCache: Bool) {
+        state = .loading
+
         let (start, end) = widgetDateRange(for: startOfWeek)
-        loadCancellable = interactor
-            .refresh(
-                startDate: start,
-                endDate: end,
-                ignorePlannablesCache: ignorePlannablesCache,
-                ignoreCoursesCache: false,
-                filterOptions: Self.widgetFilterOptions
-            )
-            .receive(on: DispatchQueue.main)
-            .sink(
-                receiveCompletion: { [weak self] completion in
-                    if case .failure = completion {
-                        self?.state = .error
-                        self?.isDayLoading = false
-                    }
-                },
-                receiveValue: { }
-            )
-    }
-
-    private func performMarkAsDone(_ item: TodoItemViewModel) {
-        cancelDelayedRemove(for: item)
-        item.markAsDoneState = .loading
-        interactor.markItemAsDone(item, done: true)
-            .receive(on: DispatchQueue.main)
-            .sinkFailureOrValue { [weak self, weak item] _ in
-                guard let item else { return }
-                item.markAsDoneState = .notDone
-                self?.snackBarViewModel.showSnack(String(localized: "Failed to mark item as done", bundle: .core))
-            } receiveValue: { [weak self, weak item] overrideId in
-                guard let self, let item else { return }
-                item.overrideId = overrideId
-                item.markAsDoneState = .done
-
-                self.snackBarViewModel.showSnack(String(localized: "\(item.title) marked as done", bundle: .core))
-
-                guard !item.shouldKeepCompletedItemsVisible else { return }
-                let plannableId = item.plannableId
-                let timer = Just(())
-                    .delay(for: .seconds(3), scheduler: scheduler)
-                    .sink { [weak self] in
-                        withAnimation { self?.removeItem(withId: plannableId) }
-                        self?.markDoneTimers.removeValue(forKey: plannableId)
-                    }
-                markDoneTimers[plannableId] = timer
-            }
-            .store(in: &subscriptions)
-    }
-
-    private func performMarkAsUndone(_ item: TodoItemViewModel) {
-        cancelDelayedRemove(for: item)
-        let itemTitle = item.title
-        item.markAsDoneState = .loading
-        interactor.markItemAsDone(item, done: false)
-            .receive(on: DispatchQueue.main)
-            .sinkFailureOrValue { [weak self, weak item] _ in
-                item?.markAsDoneState = .done
-                self?.snackBarViewModel.showSnack(String(localized: "Failed to mark item as not done", bundle: .core))
-            } receiveValue: { [weak self, weak item] overrideId in
-                item?.overrideId = overrideId
-                item?.markAsDoneState = .notDone
-                self?.snackBarViewModel.showSnack(String(localized: "\(itemTitle) marked as not done", bundle: .core))
-            }
-            .store(in: &subscriptions)
-    }
-
-    private func toggleItemStateInPlace(_ item: TodoItemViewModel) {
-        let isCurrentlyDone = item.markAsDoneState == .done
-        let itemTitle = item.title
-        item.markAsDoneState = .loading
-        interactor.markItemAsDone(item, done: !isCurrentlyDone)
-            .receive(on: DispatchQueue.main)
-            .sinkFailureOrValue { [weak self, weak item] _ in
-                item?.markAsDoneState = isCurrentlyDone ? .done : .notDone
-                self?.snackBarViewModel.showSnack(String(localized: "Failed to update item", bundle: .core))
-            } receiveValue: { [weak self, weak item] overrideId in
-                item?.overrideId = overrideId
-                item?.markAsDoneState = isCurrentlyDone ? .notDone : .done
-                if isCurrentlyDone {
-                    self?.snackBarViewModel.showSnack(String(localized: "\(itemTitle) marked as not done", bundle: .core))
-                } else {
-                    self?.snackBarViewModel.showSnack(String(localized: "\(itemTitle) marked as done", bundle: .core))
-                }
-            }
-            .store(in: &subscriptions)
-    }
-
-    private func removeItemWithOptimisticUI(_ item: TodoItemViewModel) {
-        let itemId = item.plannableId
-        let itemTitle = item.title
-        withAnimation { removeItem(item) }
-        interactor.markItemAsDone(item, done: true)
-            .receive(on: DispatchQueue.main)
-            .sinkFailureOrValue { [weak self] _ in
-                self?.restoreItem(withId: itemId)
-                self?.snackBarViewModel.showSnack(String(localized: "Failed to mark item as done", bundle: .core))
-            } receiveValue: { [weak self, weak item] overrideId in
-                item?.overrideId = overrideId
-                item?.markAsDoneState = .done
-                self?.snackBarViewModel.showSnack(String(localized: "\(itemTitle) marked as done", bundle: .core))
-            }
-            .store(in: &subscriptions)
-    }
-
-    private func removeItem(_ item: TodoItemViewModel) {
-        removeItem(withId: item.plannableId)
-    }
-
-    private func removeItem(withId plannableId: String) {
-        allGroups = allGroups.compactMap { group in
-            let filtered = group.items.filter { $0.plannableId != plannableId }
-            return filtered.isEmpty ? nil : TodoGroupViewModel(date: group.date, items: filtered)
+        interactor.refresh(
+            startDate: start,
+            endDate: end,
+            ignorePlannablesCache: ignorePlannablesCache,
+            ignoreCoursesCache: false,
+            filterOptions: .dashboardWidget
+        )
+        .receive(on: DispatchQueue.main)
+        .catch { [weak self] _ in
+            self?.state = .error
+            return Just(())
         }
-        if allGroups.isEmpty { state = .empty }
+        .sink() // data/empty state will be set in `observeTodoGroups()`
+        .store(in: &subscriptions)
     }
+}
 
-    private func restoreItem(withId itemId: String) {
-        guard let item = interactor.todoGroups.value
-            .flatMap({ $0.items })
-            .first(where: { $0.plannableId == itemId }) else { return }
-        item.resetViewIdentity()
-        item.markAsDoneState = .notDone
-        withAnimation {
-            let groupDate = item.date.startOfDay()
-            var updated = allGroups
-            if let idx = updated.firstIndex(where: { $0.date == groupDate }) {
-                var groupItems = updated[idx].items
-                groupItems.append(item)
-                groupItems.sort()
-                updated[idx] = TodoGroupViewModel(date: groupDate, items: groupItems)
-            } else {
-                updated.append(TodoGroupViewModel(date: groupDate, items: [item]))
-                updated.sort()
-            }
-            allGroups = updated
-            if state == .empty { state = .data }
-        }
-    }
-
-    private func cancelDelayedRemove(for item: TodoItemViewModel) {
-        markDoneTimers[item.plannableId]?.cancel()
-        markDoneTimers.removeValue(forKey: item.plannableId)
-    }
+private extension TodoFilterOptions {
+    static let dashboardWidget = TodoFilterOptions(
+        visibilityOptions: [.showCalendarEvents, .showCompleted, .showPersonalTodos],
+        dateRangeStart: .lastWeek,
+        dateRangeEnd: .nextWeek
+    )
 }

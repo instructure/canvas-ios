@@ -596,6 +596,38 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertEqual(todoItem?.swipeActionIcon, .discussionReply2Line)
     }
 
+    // MARK: - isVisible
+
+    func test_isVisible_whenNotDone_shouldBeTrue() {
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .notDone
+
+        XCTAssertEqual(todoItem.isVisible, true)
+    }
+
+    func test_isVisible_whenDone_andKeepVisibleFalse_shouldBeFalse() {
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .done
+        todoItem.shouldKeepCompletedItemsVisible = false
+
+        XCTAssertEqual(todoItem.isVisible, false)
+    }
+
+    func test_isVisible_whenDone_andKeepVisibleTrue_shouldBeTrue() {
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .done
+        todoItem.shouldKeepCompletedItemsVisible = true
+
+        XCTAssertEqual(todoItem.isVisible, true)
+    }
+
+    func test_isVisible_whenLoading_shouldBeTrue() {
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .loading
+
+        XCTAssertEqual(todoItem.isVisible, true)
+    }
+
     // MARK: - Swipe Completion Behavior
 
     func test_swipeCompletionBehavior_returnsStayOpen_whenNotDone_andCompletedItemsHidden() {
