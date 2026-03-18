@@ -24,9 +24,13 @@ struct MyContentView: View {
     @State private var isShowTabs: Bool = true
     @State private var selectedTab: Tabs = .inProgress
     private let inProgressView: LearnItemView
+    private let completedView: LearnItemView
+    private let savedView: LearningLibraryDetailsView
 
     init() {
         inProgressView = LearnItemAssembly.makeView()
+        completedView =  LearnItemAssembly.makeView(status: [.completed])
+        savedView = LearningLibraryAssembly.makeView(pageType: .bookmarks)
     }
     var body: some View {
         VStack {
@@ -61,13 +65,9 @@ struct MyContentView: View {
         case .inProgress:
             inProgressView
         case .saved:
-            Rectangle()
-                .fill(Color.blue)
-                .frame(height: 200)
+            savedView
         case .completed:
-            Rectangle()
-                .fill(Color.green)
-                .frame(height: 200)
+            completedView
         }
     }
 }

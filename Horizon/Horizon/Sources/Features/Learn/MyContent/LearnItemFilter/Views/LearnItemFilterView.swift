@@ -16,15 +16,72 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import HorizonUI
 import SwiftUI
 
 struct LearnItemFilterView: View {
     @Environment(\.viewController) private var viewController
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+    @State var viewModel: LearnItemFilterViewModel
 
-#Preview {
-    LearnItemFilterView()
+    var body: some View {
+        VStack(spacing: .huiSpaces.space16) {
+            headerView
+                .padding([.horizontal, .top], .huiSpaces.space16)
+            Divider()
+            sortByView
+                .padding(.horizontal, .huiSpaces.space16)
+                .padding(.bottom, .huiSpaces.space8)
+            itemTypeView
+                .padding(.horizontal, .huiSpaces.space16)
+
+            Spacer()
+
+            footerView
+        }
+        .background(Color.huiColors.surface.overlayWhite)
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(String(localized: "Filter and sort"))
+    }
+
+    private var headerView: some View {
+        FilterSortHeaderView {
+            viewModel.dismiss(viewController: viewController)
+        }
+    }
+
+    private var sortByView: some View {
+        SortView(selectedOption: viewModel.selectedSortOption) { item in
+            viewModel.toggleSortOption(item)
+        }
+    }
+
+    private var itemTypeView: some View {
+        VStack(spacing: .huiSpaces.space8) {
+            Text("Item type")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .foregroundStyle(Color.huiColors.text.body)
+                .huiTypography(.labelMediumBold)
+                .accessibilityAddTraits(.isHeader)
+
+            HorizonUI.HFlow {
+                ForEach(LearnItemModel.UIItemType.allCases, id: \.self) { item in
+                    FilterButton(title: item.name, isSelected: viewModel.selectedFilterTypes.contains(item)) {
+                        viewModel.toggleFilterType(item)
+                    }
+                    .fixedSize(horizontal: true, vertical: false)
+                }
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .accessibilityElement(children: .contain)
+        }
+        .accessibilityElement(children: .contain)
+    }
+
+    private var footerView: some View {
+        FilterSortFooterView {
+            viewModel.apply(viewController: viewController)
+        } onTapClear: {
+            viewModel.clearFilter(viewController: viewController)
+        }
+    }
 }

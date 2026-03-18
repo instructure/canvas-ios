@@ -17,14 +17,22 @@
 //
 
 import Core
+import UIKit
+import Foundation
 
-struct LearnItemAssembly {
-    static func makeView(status: [LearnItemModel.Status] = [.inProgress, .notStarted]) -> LearnItemView {
-        let viewModel = LearnItemViewModel(
+struct LearnItemFilterAssembly {
+    static func makeView(
+        selectedSortOption: CollectionItemSortOption?,
+        selectedFilterTypes: [LearnItemModel.UIItemType]?,
+        onSetSortOption: @escaping (CollectionItemSortOption?, [LearnItemModel.UIItemType]?) -> Void
+    ) -> UIViewController {
+        let viewModel = LearnItemFilterViewModel(
             router: AppEnvironment.shared.router,
-            interactor: LearnItemInteractorLive(),
-            status: status
+            selectedSortOption: selectedSortOption,
+            selectedFilterTypes: selectedFilterTypes,
+            onSetSortOption: onSetSortOption
         )
-        return LearnItemView(viewModel: viewModel)
+        let view = LearnItemFilterView(viewModel: viewModel)
+        return CoreHostingController(view)
     }
 }

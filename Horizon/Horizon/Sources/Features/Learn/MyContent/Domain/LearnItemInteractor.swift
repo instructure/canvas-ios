@@ -23,8 +23,9 @@ import Foundation
 protocol LearnItemInteractor {
     func getItems(
         searchTerm: String?,
-        status: [String]?,
-        sortBy: String?
+        itemTypes: [String]?,
+        sortBy: String?,
+        status: [LearnItemModel.Status]
     ) -> AnyPublisher<[LearnItemModel], Error>
 }
 
@@ -39,10 +40,23 @@ final class LearnItemInteractorLive: LearnItemInteractor {
         self.domainService = domainService
     }
 
-    func getItems(searchTerm: String?, status: [String]?, sortBy: String?) -> AnyPublisher<[LearnItemModel], Error> {
+    func getItems(
+        searchTerm: String?,
+        itemTypes: [String]?,
+        sortBy: String?,
+        status: [LearnItemModel.Status]
+    ) -> AnyPublisher<[LearnItemModel],Error> {
         domainService.api()
             .flatMap { api in
-                api.exhaust(GetLearnItemsRequest(searchTerm: searchTerm, status: status, sortBy: sortBy))
+                api
+                    .exhaust(
+                        GetLearnItemsRequest(
+                            searchTerm: searchTerm,
+                            itemTypes: itemTypes,
+                            sortBy: sortBy,
+                            status: status.map { $0.rawValue }
+                        )
+                    )
             }
             .map(\.body)
             .map { items in

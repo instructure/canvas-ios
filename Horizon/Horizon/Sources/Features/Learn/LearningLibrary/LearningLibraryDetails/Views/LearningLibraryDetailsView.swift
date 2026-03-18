@@ -78,7 +78,7 @@ struct LearningLibraryDetailsView: View {
             ImageCacheConfiguration.configure()
         }
         .safeAreaInset(edge: .top, spacing: .zero) {
-            if isShowHeader { navBarView }
+            if isShowHeader, !viewModel.pageType.isBookmarked { navBarView }
         }
         .huiLoader(
             isVisible: viewModel.isLoaderVisible,
@@ -206,13 +206,16 @@ struct LearningLibraryDetailsView: View {
         .background(Color.huiColors.surface.pagePrimary)
     }
 
+    @ViewBuilder
     private var titleView: some View {
-        Text(viewModel.pageType.title)
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .huiTypography(.h3)
-            .foregroundStyle(Color.huiColors.text.title)
-            .padding(.horizontal, .huiSpaces.space24)
-            .accessibilityAddTraits(.isHeader)
+        if !viewModel.pageType.isBookmarked {
+            Text(viewModel.pageType.title)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .huiTypography(.h3)
+                .foregroundStyle(Color.huiColors.text.title)
+                .padding(.horizontal, .huiSpaces.space24)
+                .accessibilityAddTraits(.isHeader)
+        }
     }
 
     private var searchView: some View {

@@ -79,7 +79,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
 
     var model: LearningLibrarySectionModel = .init(id: "", name: "", items: [])
     let router: Router
-    private let didSendEvent: PassthroughSubject<Void, Never>
+    private let didSendEvent: PassthroughSubject<Void, Never>?
     private let interactor: LearningLibraryInteractor
     private let bookmarkManager: BookmarkManager
     private let scheduler: AnySchedulerOf<DispatchQueue>
@@ -90,7 +90,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     init(
         interactor: LearningLibraryInteractor,
         router: Router,
-        didSendEvent: PassthroughSubject<Void, Never>,
+        didSendEvent: PassthroughSubject<Void, Never>?,
         pageType: PageType,
         bookmarkManager: BookmarkManager = BookmarkManager(),
         scheduler: AnySchedulerOf<DispatchQueue> = .main
@@ -245,7 +245,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
             } receiveValue: { [weak self] updatedItem in
                 guard let self else { return }
                 self.configItem(item: updatedItem)
-                self.didSendEvent.send(())
+                self.didSendEvent?.send(())
             }
             .store(in: &subscriptions)
     }
@@ -260,7 +260,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     ) {
         let enrollViewController = EnrollConfirmationAssembly.makeView(model: model) { [weak self] item in
             self?.configItem(item: item)
-            self?.didSendEvent.send(())
+            self?.didSendEvent?.send(())
             self?.navigateToLearningLibraryItem(item, from: viewController)
             self?.internalAccessibilityPublisher.send(String(localized: "Enrolled successfully"))
         }

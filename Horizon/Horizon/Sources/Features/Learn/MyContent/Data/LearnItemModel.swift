@@ -55,4 +55,33 @@ struct LearnItemModel: Identifiable, PaginatedDataSourceSearchable {
         case course = "COURSE"
         case program = "PROGRAM"
     }
+
+    enum Status: String, CaseIterable {
+        case notStarted = "NOT_STARTED"
+        case inProgress = "IN_PROGRESS"
+        case completed = "COMPLETED"
+    }
+
+    enum UIItemType: CaseIterable {
+        case all
+        case course
+        case program
+
+        var name: String {
+            switch self {
+            case .all: String(localized: "All")
+            case .course: String(localized: "Courses")
+            case .program: String(localized: "Programs")
+            }
+        }
+
+        var key: String {
+            switch self {
+            case .course: ItemType.course.rawValue
+            case .program: ItemType.program.rawValue
+            case .all: ""
+            }
+        }
+
+    }
 }

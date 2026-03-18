@@ -31,7 +31,8 @@ public struct GetLearnItemsRequest: APIGraphQLPagedRequestable {
         let searchTerm: String?
         let cursor: String?
         let forward: Bool
-        let status: [String]?
+        let itemTypes: [String]?
+        let status: [String]
         let sortBy: String?
         let limit: Int
     }
@@ -48,14 +49,16 @@ public struct GetLearnItemsRequest: APIGraphQLPagedRequestable {
         searchTerm: String? = nil,
         cursor: String? = nil,
         forward: Bool = true,
-        status: [String]? = nil,
+        itemTypes: [String]? = nil,
         sortBy: String? = nil,
-        limit: Int = 100
+        limit: Int = 100,
+        status: [String]
     ) {
         let inputParams = InputParams(
             searchTerm: searchTerm,
             cursor: cursor,
             forward: forward,
+            itemTypes: itemTypes,
             status: status,
             sortBy: sortBy,
             limit: limit
@@ -127,9 +130,10 @@ public struct GetLearnItemsRequest: APIGraphQLPagedRequestable {
             searchTerm: variables.input.searchTerm,
             cursor: nextCursor,
             forward: variables.input.forward,
-            status: variables.input.status,
+            itemTypes: variables.input.itemTypes,
             sortBy: variables.input.sortBy,
-            limit: variables.input.limit
+            limit: variables.input.limit,
+            status:  variables.input.status
         )
     }
 }

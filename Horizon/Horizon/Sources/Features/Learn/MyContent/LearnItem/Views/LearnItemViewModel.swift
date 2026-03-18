@@ -25,6 +25,8 @@ import Observation
 @Observable
 final class LearnItemViewModel {
     // MARK: - Inputs / Outputs
+
+    var isErrorVisible: Bool = false
     var searchText: String = "" {
         didSet {
             guard searchText != oldValue else { return }
@@ -35,7 +37,9 @@ final class LearnItemViewModel {
     // MARK: - Outputs
 
     private(set) var loaderIsVisible: Bool = true
-
+    private(set) var hasItems: Bool = false
+    private(set) var errorMessage = ""
+    private(set) var isLoaderVisible: Bool = true
     var filteredItems: [LearnItemModel] { paginator.visibleItems }
     var isSeeMoreVisible: Bool { paginator.isSeeMoreVisible }
 
@@ -44,58 +48,89 @@ final class LearnItemViewModel {
     private let searchTextSubject = CurrentValueSubject<String, Never>("")
     private var subscriptions = Set<AnyCancellable>()
     private var currentRequestCancellable: AnyCancellable?
-    private var isLoadingInProgress = false
     private let paginator = PaginatedDataSource<LearnItemModel>(items: [], pageSize: 4)
+    private var selectedSortOption: CollectionItemSortOption?
+    private var selectedFilterTypes: [LearnItemModel.UIItemType]?
 
     // MARK: - Dependencies
 
+    private let router: Router
     private let interactor: LearnItemInteractor
+    private let status: [LearnItemModel.Status]
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Init
 
     init(
+        router: Router,
         interactor: LearnItemInteractor,
+        status: [LearnItemModel.Status],
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
+        self.router = router
         self.interactor = interactor
+        self.status = status
         self.scheduler = scheduler
         observeSearchAndFilters()
     }
 
     private func observeSearchAndFilters() {
         searchTextSubject
-//            .dropFirst()
             .debounce(for: .milliseconds(500), scheduler: scheduler)
             .removeDuplicates()
             .sink { [weak self] _ in
                 guard let self else { return }
+                loaderIsVisible = true
                 getLearnItem()
             }
             .store(in: &subscriptions)
     }
 
-    func getLearnItem() {
-//        guard !isLoadingInProgress else { return }
-
+    func getLearnItem(completion: (() -> Void)? = nil) {
         currentRequestCancellable?.cancel()
-        isLoadingInProgress = true
-        loaderIsVisible = true
-
-        currentRequestCancellable = interactor.getItems(searchTerm: searchTextSubject.value, status: ["IN_PROGRESS", "NOT_STARTED"], sortBy: "MOST_RECENT")
+        currentRequestCancellable = interactor.getItems(
+            searchTerm: searchTextSubject.value,
+            itemTypes: selectedFilterTypes?.map {$0.key},
+            sortBy: selectedSortOption?.key,
+            status: status)
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] error in
-//                self?.isLoadingInProgress = false
                 self?.loaderIsVisible = false
-                print(error)
+                self?.errorMessage = error.localizedDescription
+                self?.isErrorVisible = true
+                completion?()
             } receiveValue: { [weak self] items in
-//                self?.isLoadingInProgress = false
-                self?.loaderIsVisible = false
-                self?.paginator.setItems(items)
+                guard let self else { return }
+               loaderIsVisible = false
+               hasItems = hasItems ? hasItems : items.isNotEmpty
+               paginator.setItems(items)
+                completion?()
             }
     }
 
     func seeMore() {
         paginator.seeMore()
+    }
+
+    func refresh() async {
+        await withCheckedContinuation { [weak self]  continuation in
+            guard let self else {
+                continuation.resume()
+                return
+            }
+            getLearnItem { continuation.resume() }
+        }
+    }
+
+    func showFilter(viewController: WeakViewController) {
+      let filterView = LearnItemFilterAssembly.makeView(
+            selectedSortOption: selectedSortOption,
+            selectedFilterTypes: selectedFilterTypes) { [weak self] sort, status in
+                self?.selectedSortOption = sort
+                self?.selectedFilterTypes = status
+                self?.loaderIsVisible = true
+                self?.getLearnItem()
+            }
+        router.show(filterView, from: viewController, options: .modal(.fullScreen))
     }
 }

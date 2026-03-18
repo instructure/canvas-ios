@@ -27,23 +27,47 @@ struct LearnItemView: View {
 
     var body: some View {
         VStack(spacing: .zero) {
+            if viewModel.hasItems {
+                contentView
+            } else {
+                emptyView
+            }
+        }
+        .overlay { if viewModel.loaderIsVisible { loaderView } }
+        .alert(isPresented: $viewModel.isErrorVisible) {
+            Alert(title: Text(viewModel.errorMessage))
+        }
+        .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
+    }
+
+    private var emptyView: some View {
+        ScrollView {
+            Text("You don't have any items to show here.")
+                .foregroundStyle(Color.huiColors.text.body)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .huiTypography(.p1)
+                .padding(.huiSpaces.space24)
+        }
+        .refreshable { await viewModel.refresh() }
+    }
+
+    private var contentView: some View {
+        VStack(spacing: .zero) {
             headerView
             if #available(iOS 18.0, *) {
-                contentView
+                listItemsView
                     .onScrollGeometryChange(for: CGFloat.self) { geometry in geometry.contentOffset.y
                     } action: { _, newOffset in
                         isShowHeader = newOffset <= 200
                         isShowDivider = newOffset >= 10
                     }
             } else {
-                contentView
+                listItemsView
             }
         }
-        .overlay { if viewModel.loaderIsVisible { loaderView } }
-        .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
     }
 
-    private var contentView: some View {
+    private var listItemsView: some View {
         List {
             ForEach(viewModel.filteredItems) { item in
 
@@ -69,6 +93,9 @@ struct LearnItemView: View {
             }
         }
         .listStyle(.plain)
+        .dismissKeyboardOnTap()
+        .scrollDismissesKeyboard(.immediately)
+        .refreshable { await viewModel.refresh() }
     }
     private var headerView: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
@@ -99,7 +126,7 @@ struct LearnItemView: View {
     private var filterButton: some View {
 //        let countBadge = viewModel.appliedFiltersCount
         HorizonUI.IconButton(Image.huiIcons.tune, type: .whiteGrayOutline) {
-
+            viewModel.showFilter(viewController: viewController)
         }
 //        .accessibilityFocused($focusedItemID, equals: filterButtonFocusedID)
         .accessibilityLabel(String(localized: "Filter and sort"))
@@ -126,7 +153,7 @@ struct LearnItemView: View {
     private var loaderView: some View {
         ZStack {
             Color.huiColors.surface.pagePrimary
-                .ignoresSafeArea()
+                .padding(.top, .huiSpaces.space48)
             HorizonUI.Spinner(size: .small, showBackground: true)
         }
     }
