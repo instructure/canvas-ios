@@ -35,22 +35,25 @@ final class WeeklySummaryWidgetInteractorLive: WeeklySummaryWidgetInteractor {
     }
 
     func getSummary(weekStart: Date, ignoreCache: Bool) -> AnyPublisher<WeeklySummaryWidgetFilters, Error> {
-        let useCase = GetWeeklySummaryEntries(
-            weekStart: weekStart,
-            studentId: env.currentSession?.userID ?? ""
+        let missingStore = ReactiveStore(useCase: GetMissingWeeklySummaryEntries(), environment: env)
+        let weeklyStore = ReactiveStore(
+            useCase: GetWeeklyDueAndGradesEntries(weekStart: weekStart, studentId: env.currentSession?.userID ?? ""),
+            environment: env
         )
-        return ReactiveStore(useCase: useCase, environment: env)
-            .getEntities(ignoreCache: ignoreCache)
-            .receive(on: DispatchQueue.main)
-            .map { [weak self] entries -> WeeklySummaryWidgetFilters in
-                guard let self else { return WeeklySummaryWidgetFilters(missing: [], due: [], newGrades: []) }
-                return WeeklySummaryWidgetFilters(
-                    missing: entries.filter { $0.category == .missing }.map(mapEntryToAssignment),
-                    due: entries.filter { $0.category == .due }.map(mapEntryToAssignment),
-                    newGrades: entries.filter { $0.category == .newGrades }.map(mapEntryToAssignment)
-                )
-            }
-            .eraseToAnyPublisher()
+        return Publishers.CombineLatest(
+            missingStore.getEntities(ignoreCache: ignoreCache),
+            weeklyStore.getEntities(ignoreCache: ignoreCache)
+        )
+        .receive(on: DispatchQueue.main)
+        .map { [weak self] missingEntries, weekEntries -> WeeklySummaryWidgetFilters in
+            guard let self else { return WeeklySummaryWidgetFilters(missing: [], due: [], newGrades: []) }
+            return WeeklySummaryWidgetFilters(
+                missing: missingEntries.map(mapEntryToAssignment),
+                due: weekEntries.filter { $0.category == .due }.map(mapEntryToAssignment),
+                newGrades: weekEntries.filter { $0.category == .newGrades }.map(mapEntryToAssignment)
+            )
+        }
+        .eraseToAnyPublisher()
     }
 
     // MARK: - Mapping

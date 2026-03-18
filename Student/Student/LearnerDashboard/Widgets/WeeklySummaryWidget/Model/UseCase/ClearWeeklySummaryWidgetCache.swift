@@ -36,7 +36,10 @@ struct ClearWeeklySummaryWidgetCache: UseCase {
         context.delete(entries)
 
         let ttlScope = Scope(
-            predicate: NSPredicate(format: "%K BEGINSWITH %@", #keyPath(TTL.key), GetWeeklySummaryEntries.cacheKeyPrefix),
+            predicate: NSCompoundPredicate.or(
+                NSPredicate(format: "%K BEGINSWITH %@", #keyPath(TTL.key), GetWeeklyDueAndGradesEntries.cacheKeyPrefix),
+                NSPredicate(format: "%K == %@", #keyPath(TTL.key), GetMissingWeeklySummaryEntries.cacheKey)
+            ),
             order: []
         )
         let cacheKeys: [TTL] = context.fetch(scope: ttlScope)

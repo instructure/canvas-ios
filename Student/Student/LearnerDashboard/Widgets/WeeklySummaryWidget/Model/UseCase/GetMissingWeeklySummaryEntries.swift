@@ -22,141 +22,81 @@ import Core
 import CoreData
 import Foundation
 
-final class GetWeeklySummaryEntries: UseCase {
+final class GetMissingWeeklySummaryEntries: UseCase {
     typealias Model = CDDashboardWeeklySummaryEntry
 
     struct Response: Codable {
         let missing: [APIAssignment]
-        let due: [APIPlannable]
-        let grades: [GetRecentGradedSubmissionsRequest.Response.CourseNode]
         let assignmentGroupsByCourse: [String: [APIAssignmentGroup]]
         let applyGroupWeightsByCourse: [String: Bool]
     }
 
-    static let cacheKeyPrefix = "weekly-summary-entries/"
+    static let cacheKey = "weekly-summary-missing-entries"
 
-    let weekStart: Date
-    let weekEnd: Date
-    let studentId: String
-    let cacheKey: String?
-    let scope: Scope
+    var cacheKey: String? { Self.cacheKey }
+    let scope = Scope(
+        predicate: NSPredicate(format: "categoryRaw == %@", CDDashboardWeeklySummaryEntry.Category.missing.rawValue),
+        order: [NSSortDescriptor(key: "position", ascending: true)]
+    )
 
     private let assignmentWeight: BusinessLogic.AssignmentWeight.Logic
     private var cancellables = Set<AnyCancellable>()
 
-    init(
-        weekStart: Date,
-        studentId: String,
-        assignmentWeight: BusinessLogic.AssignmentWeight.Logic = BusinessLogic.AssignmentWeight.LogicLive()
-    ) {
-        self.weekStart = weekStart
-        self.weekEnd = weekStart.endOfWeek()
-        self.studentId = studentId
+    init(assignmentWeight: BusinessLogic.AssignmentWeight.Logic = BusinessLogic.AssignmentWeight.LogicLive()) {
         self.assignmentWeight = assignmentWeight
-        self.cacheKey = "\(Self.cacheKeyPrefix)\(weekStart.isoString())"
-        self.scope = Scope(
-            predicate: NSPredicate(
-                format: "%K == %@",
-                #keyPath(CDDashboardWeeklySummaryEntry.weekStart),
-                weekStart as NSDate
-            ),
-            order: [NSSortDescriptor(key: #keyPath(CDDashboardWeeklySummaryEntry.position), ascending: true)]
-        )
     }
 
     func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
         let api = environment.api
-        Publishers.Zip3(
-            fetchMissingRaw(api: api),
-            fetchDueRaw(api: api),
-            fetchRecentGradesRaw(api: api)
-        )
-        .flatMap { [weak self] missing, due, grades -> AnyPublisher<Response, Error> in
-            guard let self else {
-                return Fail(error: NSError.instructureError("GetWeeklySummaryEntries deallocated"))
+        fetchMissingRaw(api: api)
+            .flatMap { [weak self] missing -> AnyPublisher<Response, Error> in
+                guard let self else {
+                    return Fail(error: NSError.instructureError("GetMissingWeeklySummaryEntries deallocated"))
+                        .eraseToAnyPublisher()
+                }
+                let applyGroupWeights = Self.extractApplyGroupWeights(from: missing)
+                let courseIds = Set(missing.map { $0.course_id.rawValue }).filter { !$0.isEmpty }
+                return fetchAssignmentGroupsForCourses(courseIds, api: api)
+                    .map { groupsDict in
+                        Response(
+                            missing: missing,
+                            assignmentGroupsByCourse: groupsDict,
+                            applyGroupWeightsByCourse: applyGroupWeights
+                        )
+                    }
                     .eraseToAnyPublisher()
             }
-            let applyGroupWeights = Self.extractApplyGroupWeights(from: missing)
-            let courseIds = Set(missing.map { $0.course_id.rawValue })
-                .union(due.map { $0.context?.id ?? "" })
-                .filter { !$0.isEmpty }
-            return self.fetchAssignmentGroupsForCourses(courseIds, api: api)
-                .map { groupsDict in
-                    Response(
-                        missing: missing,
-                        due: due,
-                        grades: grades,
-                        assignmentGroupsByCourse: groupsDict,
-                        applyGroupWeightsByCourse: applyGroupWeights
-                    )
+            .sink(
+                receiveCompletion: { completion in
+                    if case .failure(let error) = completion {
+                        completionHandler(nil, nil, error)
+                    }
+                },
+                receiveValue: { response in
+                    completionHandler(response, nil, nil)
                 }
-                .eraseToAnyPublisher()
-        }
-        .sink(
-            receiveCompletion: { completion in
-                if case .failure(let error) = completion {
-                    completionHandler(nil, nil, error)
-                }
-            },
-            receiveValue: { response in
-                completionHandler(response, nil, nil)
-            }
-        )
-        .store(in: &cancellables)
+            )
+            .store(in: &cancellables)
     }
 
     func reset(context: NSManagedObjectContext) {
         context.delete(context.fetch(scope: scope) as [CDDashboardWeeklySummaryEntry])
     }
 
-    func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    func write(response: Response?, urlResponse: URLResponse?, to context: NSManagedObjectContext) {
         guard let response else { return }
-
         for assignment in response.missing {
             CDDashboardWeeklySummaryEntry.saveMissing(
                 assignment,
-                weekStart: weekStart,
+                weekStart: .distantPast,
                 gradeWeight: computeWeight(
                     assignmentId: assignment.id.rawValue,
                     courseId: assignment.course_id.rawValue,
                     applyGroupWeights: response.applyGroupWeightsByCourse,
                     groupsDict: response.assignmentGroupsByCourse
                 ),
-                in: client
+                in: context
             )
-        }
-
-        for plannable in response.due {
-            let courseId = plannable.context?.id ?? ""
-            CDDashboardWeeklySummaryEntry.saveDue(
-                plannable,
-                assignment: findAssignment(id: plannable.plannable_id.value, courseId: courseId, in: response.assignmentGroupsByCourse),
-                weekStart: weekStart,
-                gradeWeight: computeWeight(
-                    assignmentId: plannable.plannable_id.value,
-                    courseId: courseId,
-                    applyGroupWeights: response.applyGroupWeightsByCourse,
-                    groupsDict: response.assignmentGroupsByCourse
-                ),
-                in: client
-            )
-        }
-
-        for courseNode in response.grades {
-            for edge in courseNode.submissions.edges {
-                let submission = edge.node
-                if submission.gradeHidden == true { continue }
-                guard let gradedAt = submission.gradedAt, gradedAt < weekEnd else { continue }
-                let course: Course? = client.first(where: #keyPath(Course.id), equals: courseNode._id)
-                CDDashboardWeeklySummaryEntry.saveGrade(
-                    submission,
-                    courseId: courseNode._id,
-                    gradedAt: gradedAt,
-                    weekStart: weekStart,
-                    restrictQuantitativeData: course?.settings?.restrictQuantitativeData ?? false,
-                    in: client
-                )
-            }
         }
     }
 
@@ -167,31 +107,6 @@ final class GetWeeklySummaryEntries: UseCase {
             .map { (assignments, _) in
                 assignments.sorted { ($0.due_at ?? .distantFuture) < ($1.due_at ?? .distantFuture) }
             }
-            .eraseToAnyPublisher()
-    }
-
-    private func fetchDueRaw(api: API) -> AnyPublisher<[APIPlannable], Error> {
-        let request = GetPlannablesRequest(
-            userID: "self",
-            startDate: weekStart.startOfDay(),
-            endDate: weekEnd
-        )
-        return api.exhaust(request)
-            .map { (plannables, _) in
-                plannables
-                    .filter { $0.plannableType == .assignment || $0.plannableType == .sub_assignment }
-                    .sorted { $0.plannable_date < $1.plannable_date }
-            }
-            .eraseToAnyPublisher()
-    }
-
-    private func fetchRecentGradesRaw(api: API) -> AnyPublisher<[GetRecentGradedSubmissionsRequest.Response.CourseNode], Error> {
-        let request = GetRecentGradedSubmissionsRequest(variables: .init(
-            studentId: studentId,
-            gradedSince: weekStart.startOfDay().isoString()
-        ))
-        return api.makeRequest(request)
-            .map { (response, _) in response.data.allCourses }
             .eraseToAnyPublisher()
     }
 
@@ -214,14 +129,6 @@ final class GetWeeklySummaryEntries: UseCase {
             .collect()
             .map { Dictionary(uniqueKeysWithValues: $0) }
             .eraseToAnyPublisher()
-    }
-
-    // MARK: - Assignment Lookup
-
-    private func findAssignment(id: String, courseId: String, in groupsDict: [String: [APIAssignmentGroup]]) -> APIAssignment? {
-        groupsDict[courseId]?
-            .flatMap { $0.assignments ?? [] }
-            .first { $0.id.rawValue == id }
     }
 
     // MARK: - Weight Computation
