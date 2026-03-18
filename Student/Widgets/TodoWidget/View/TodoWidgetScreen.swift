@@ -34,6 +34,7 @@ struct TodoWidgetScreen: View {
     @ViewBuilder
     private var content: some View {
         if model.isLoggedIn {
+
             if model.error != nil {
                 TodoFailureView()
             } else if model.groups.isEmpty {
@@ -41,7 +42,9 @@ struct TodoWidgetScreen: View {
             } else {
                 TodoListView(todoList: model.todoDays(for: family))
             }
+
         } else {
+
             TodoLoggedoutView()
         }
     }
