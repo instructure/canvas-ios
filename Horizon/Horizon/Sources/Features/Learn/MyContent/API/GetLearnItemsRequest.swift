@@ -133,7 +133,7 @@ public struct GetLearnItemsRequest: APIGraphQLPagedRequestable {
             itemTypes: variables.input.itemTypes,
             sortBy: variables.input.sortBy,
             limit: variables.input.limit,
-            status:  variables.input.status
+            status: variables.input.status
         )
     }
 }

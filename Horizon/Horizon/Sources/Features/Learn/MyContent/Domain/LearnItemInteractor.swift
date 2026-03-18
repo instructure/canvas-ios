@@ -45,7 +45,7 @@ final class LearnItemInteractorLive: LearnItemInteractor {
         itemTypes: [String]?,
         sortBy: String?,
         status: [LearnItemModel.Status]
-    ) -> AnyPublisher<[LearnItemModel],Error> {
+    ) -> AnyPublisher<[LearnItemModel], Error> {
         domainService.api()
             .flatMap { api in
                 api
