@@ -45,47 +45,15 @@ struct CollectionItemFilterView: View {
     }
 
     private var headerView: some View {
-        HStack(spacing: .huiSpaces.space4) {
-            Image.huiIcons.tune
-                .foregroundStyle(Color.huiColors.icon.default)
-                .accessibilityHidden(true)
-
-            Text("Filter and sort")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundStyle(Color.huiColors.text.title)
-                .huiTypography(.h4)
-                .accessibilityAddTraits(.isHeader)
-
-            Spacer()
-
-            HorizonUI.IconButton(Image.huiIcons.close, type: .darkOutline, isSmall: true) {
-                viewModel.dismiss(viewController: viewController)
-            }
-            .accessibilityLabel(String(localized: "Close"))
-            .accessibilityHint(String(localized: "Double tap to close filter"))
+        FilterSortHeaderView {
+            viewModel.dismiss(viewController: viewController)
         }
     }
 
     private var sortByView: some View {
-        VStack(spacing: .huiSpaces.space8) {
-            Text("Sort by")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundStyle(Color.huiColors.text.body)
-                .huiTypography(.labelMediumBold)
-                .accessibilityAddTraits(.isHeader)
-
-            HorizonUI.HFlow {
-                ForEach(CollectionItemSortOption.allCases, id: \.self) { item in
-                    FilterButton(title: item.name, isSelected: viewModel.selectedSortOption == item) {
-                        viewModel.toggleSortOption(item)
-                    }
-                    .fixedSize(horizontal: true, vertical: false)
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .accessibilityElement(children: .contain)
+        SortView(selectedOption: viewModel.selectedSortOption) { item in
+            viewModel.toggleSortOption(item)
         }
-        .accessibilityElement(children: .contain)
     }
 
     private var itemTypeView: some View {
@@ -111,27 +79,10 @@ struct CollectionItemFilterView: View {
     }
 
     private var footerView: some View {
-        VStack(spacing: .huiSpaces.space4) {
-            Divider()
-            HorizonUI.PrimaryButton(
-                String(localized: "Apply filters"),
-                type: .black,
-                fillsWidth: true
-            ) {
-                viewModel.apply(viewController: viewController)
-            }
-            .padding([.horizontal, .top], .huiSpaces.space16)
-            .accessibilityHint(String(localized: "Double tap to apply filters and close"))
-
-            HorizonUI.PrimaryButton(
-                String(localized: "Clear filters"),
-                type: .darkOutline,
-                fillsWidth: true
-            ) {
-                viewModel.clearFilter(viewController: viewController)
-            }
-            .padding(.horizontal, .huiSpaces.space16)
-            .accessibilityHint(String(localized: "Double tap to clear all filters"))
+        FilterSortFooterView {
+            viewModel.apply(viewController: viewController)
+        } onTapClear: {
+            viewModel.clearFilter(viewController: viewController)
         }
     }
 }

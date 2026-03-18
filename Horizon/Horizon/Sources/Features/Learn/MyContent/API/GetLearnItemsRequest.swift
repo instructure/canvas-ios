@@ -28,6 +28,7 @@ public struct GetLearnItemsRequest: APIGraphQLPagedRequestable {
     }
 
     public struct InputParams: Codable, Equatable {
+        let searchTerm: String?
         let cursor: String?
         let forward: Bool
         let status: [String]?
@@ -44,6 +45,7 @@ public struct GetLearnItemsRequest: APIGraphQLPagedRequestable {
     public static let operationName: String = "LearnItems"
 
     public init(
+        searchTerm: String? = nil,
         cursor: String? = nil,
         forward: Bool = true,
         status: [String]? = nil,
@@ -51,6 +53,7 @@ public struct GetLearnItemsRequest: APIGraphQLPagedRequestable {
         limit: Int = 100
     ) {
         let inputParams = InputParams(
+            searchTerm: searchTerm,
             cursor: cursor,
             forward: forward,
             status: status,
@@ -121,6 +124,7 @@ public struct GetLearnItemsRequest: APIGraphQLPagedRequestable {
         }
         let nextCursor = response.data?.learnItems?.pageInfo?.nextCursor
         return GetLearnItemsRequest(
+            searchTerm: variables.input.searchTerm,
             cursor: nextCursor,
             forward: variables.input.forward,
             status: variables.input.status,

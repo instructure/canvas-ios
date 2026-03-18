@@ -23,7 +23,11 @@ import SwiftUI
 struct MyContentView: View {
     @State private var isShowTabs: Bool = true
     @State private var selectedTab: Tabs = .inProgress
+    private let inProgressView: LearnItemView
 
+    init() {
+        inProgressView = LearnItemAssembly.makeView()
+    }
     var body: some View {
         VStack {
             if isShowTabs {
@@ -55,7 +59,7 @@ struct MyContentView: View {
     private var contentView: some View {
         switch selectedTab {
         case .inProgress:
-            LearnItemAssembly.makeView()
+            inProgressView
         case .saved:
             Rectangle()
                 .fill(Color.blue)

@@ -25,17 +25,26 @@ import Observation
 @Observable
 final class LearnItemViewModel {
     // MARK: - Inputs / Outputs
-    var searchText: String = ""
+    var searchText: String = "" {
+        didSet {
+            guard searchText != oldValue else { return }
+            searchTextSubject.send(searchText)
+        }
+    }
 
     // MARK: - Outputs
 
     private(set) var loaderIsVisible: Bool = true
+
     var filteredItems: [LearnItemModel] { paginator.visibleItems }
     var isSeeMoreVisible: Bool { paginator.isSeeMoreVisible }
 
     // MARK: - Private variables
 
+    private let searchTextSubject = CurrentValueSubject<String, Never>("")
     private var subscriptions = Set<AnyCancellable>()
+    private var currentRequestCancellable: AnyCancellable?
+    private var isLoadingInProgress = false
     private let paginator = PaginatedDataSource<LearnItemModel>(items: [], pageSize: 4)
 
     // MARK: - Dependencies
@@ -51,20 +60,39 @@ final class LearnItemViewModel {
     ) {
         self.interactor = interactor
         self.scheduler = scheduler
-        getLearnItem()
+        observeSearchAndFilters()
+    }
+
+    private func observeSearchAndFilters() {
+        searchTextSubject
+//            .dropFirst()
+            .debounce(for: .milliseconds(500), scheduler: scheduler)
+            .removeDuplicates()
+            .sink { [weak self] _ in
+                guard let self else { return }
+                getLearnItem()
+            }
+            .store(in: &subscriptions)
     }
 
     func getLearnItem() {
-        interactor.getItems()
+//        guard !isLoadingInProgress else { return }
+
+        currentRequestCancellable?.cancel()
+        isLoadingInProgress = true
+        loaderIsVisible = true
+
+        currentRequestCancellable = interactor.getItems(searchTerm: searchTextSubject.value, status: ["IN_PROGRESS", "NOT_STARTED"], sortBy: "MOST_RECENT")
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] error in
+//                self?.isLoadingInProgress = false
                 self?.loaderIsVisible = false
                 print(error)
             } receiveValue: { [weak self] items in
+//                self?.isLoadingInProgress = false
                 self?.loaderIsVisible = false
                 self?.paginator.setItems(items)
             }
-            .store(in: &subscriptions)
     }
 
     func seeMore() {

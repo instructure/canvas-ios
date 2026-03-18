@@ -21,7 +21,11 @@ import Combine
 import Foundation
 
 protocol LearnItemInteractor {
-    func getItems() -> AnyPublisher<[LearnItemModel], Error>
+    func getItems(
+        searchTerm: String?,
+        status: [String]?,
+        sortBy: String?
+    ) -> AnyPublisher<[LearnItemModel], Error>
 }
 
 final class LearnItemInteractorLive: LearnItemInteractor {
@@ -35,10 +39,10 @@ final class LearnItemInteractorLive: LearnItemInteractor {
         self.domainService = domainService
     }
 
-    func getItems() -> AnyPublisher<[LearnItemModel], Error> {
+    func getItems(searchTerm: String?, status: [String]?, sortBy: String?) -> AnyPublisher<[LearnItemModel], Error> {
         domainService.api()
             .flatMap { api in
-                api.exhaust(GetLearnItemsRequest())
+                api.exhaust(GetLearnItemsRequest(searchTerm: searchTerm, status: status, sortBy: sortBy))
             }
             .map(\.body)
             .map { items in
