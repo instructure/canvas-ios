@@ -27,7 +27,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
 
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var isWeekLoading: Bool = false
-    let config: DashboardWidgetConfig
+    private(set) var config: DashboardWidgetConfig
     let isEditable = false
     let isHiddenInEmptyState = false
 
@@ -60,6 +60,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
 
     private let interactor: WeeklySummaryWidgetInteractor
     private let router: Router
+    private var defaults: SessionDefaults
     private var retrySubscription: AnyCancellable?
     private var weekNavigationSubscription: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
@@ -67,11 +68,13 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     init(
         config: DashboardWidgetConfig,
         interactor: WeeklySummaryWidgetInteractor = WeeklySummaryWidgetInteractorLive(),
-        router: Router = AppEnvironment.shared.router
+        router: Router = AppEnvironment.shared.router,
+        defaults: SessionDefaults = AppEnvironment.shared.userDefaults ?? .fallback
     ) {
         self.config = config
         self.interactor = interactor
         self.router = router
+        self.defaults = defaults
         let weekStartDate = Clock.now.startOfWeek()
         self.weekStartDate = weekStartDate
         self.weekRangeText = Self.makeWeekRangeText(from: weekStartDate)
@@ -114,9 +117,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
                 dueFilter = .due(assignments: filters.due)
                 newGradesFilter = .newGrades(assignments: filters.newGrades)
                 state = .data
-                if expandedFilter == nil, !filters.missing.isEmpty {
-                    toggleFilter(missingFilter)
-                }
+                selectDefaultFilter()
             })
             .map { _ in }
             .catch { [weak self] _ in
@@ -147,6 +148,8 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
 
     func toggleFilter(_ filter: WeeklySummaryWidgetFilterViewModel) {
         expandedFilter = (expandedFilter?.id == filter.id) ? nil : filter
+        config.weeklySummarySettings = WeeklySummaryWidgetSettings(expandedFilterId: expandedFilter?.id)
+        persistConfig()
         missingFilter = missingFilter.withExpandedState(isMissingFilterSelected)
         dueFilter = dueFilter.withExpandedState(isDueFilterSelected)
         newGradesFilter = newGradesFilter.withExpandedState(isNewGradesFilterSelected)
@@ -242,6 +245,27 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     }
 
     // MARK: - Private Helpers
+
+    private func selectDefaultFilter() {
+        guard expandedFilter == nil else { return }
+
+        let filterToRestore = [missingFilter, dueFilter, newGradesFilter]
+            .first { $0.id == self.config.weeklySummarySettings.expandedFilterId }
+
+        if let filterToRestore {
+            toggleFilter(filterToRestore)
+        } else if missingFilter.count != 0 {
+            toggleFilter(missingFilter)
+        }
+    }
+
+    private func persistConfig() {
+        var configs = defaults.learnerDashboardWidgetConfigs ?? EditableWidgetIdentifier.makeDefaultConfigs()
+        if let index = configs.firstIndex(where: { $0.id == config.id }) {
+            configs[index] = config
+            defaults.learnerDashboardWidgetConfigs = configs
+        }
+    }
 
     private func updateFilters(_ filters: WeeklySummaryWidgetFilters) {
         // Each reload creates new filter value types, so we must carry over the expanded
