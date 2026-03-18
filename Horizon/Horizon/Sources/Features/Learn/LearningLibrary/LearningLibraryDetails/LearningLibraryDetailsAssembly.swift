@@ -20,43 +20,57 @@ import Core
 import Combine
 import UIKit
 
-enum LearningLibraryAssembly {
+enum LearningLibraryDetailsAssembly {
+
     static private func makeViewModel(
-        pageType: LearningLibraryDetailsViewModel.PageType,
+        collectionId: String,
+        collectionName: String,
         didSendEvent: PassthroughSubject<Void, Never>?
     ) -> LearningLibraryDetailsViewModel {
         let router = AppEnvironment.shared.router
         return LearningLibraryDetailsViewModel(
+            collectionId: collectionId,
+            collectionName: collectionName,
             interactor: LearningLibraryInteractorLive(),
             router: router,
             didSendEvent: didSendEvent,
-            pageType: pageType,
             bookmarkManager: BookmarkManager()
         )
     }
 
     static func makeView(
-        pageType: LearningLibraryDetailsViewModel.PageType,
+        collectionId: String,
+        collectionName: String,
         didSendEvent: PassthroughSubject<Void, Never>? = nil
     ) -> LearningLibraryDetailsView {
-        .init(viewModel: makeViewModel(pageType: pageType, didSendEvent: didSendEvent))
+        .init(viewModel: makeViewModel(
+            collectionId: collectionId,
+            collectionName: collectionName,
+            didSendEvent: didSendEvent
+        ))
     }
 
     static func makeViewController(
-        pageType: LearningLibraryDetailsViewModel.PageType,
+        collectionId: String,
+        collectionName: String,
         didSendEvent: PassthroughSubject<Void, Never>
     ) -> UIViewController {
-        CoreHostingController(makeView(pageType: pageType, didSendEvent: didSendEvent))
+        CoreHostingController(makeView(
+            collectionId: collectionId,
+            collectionName: collectionName,
+            didSendEvent: didSendEvent
+        ))
     }
 
     #if DEBUG
     static func preview() -> LearningLibraryDetailsView {
         LearningLibraryDetailsView(
             viewModel: .init(
+                collectionId: "123",
+                collectionName: "Collection Name",
                 interactor: LearningLibraryInteractorPreview(),
                 router: AppEnvironment.shared.router,
                 didSendEvent: PassthroughSubject<Void, Never>(),
-                pageType: .bookmarks,
                 bookmarkManager: BookmarkManager()
             )
         )

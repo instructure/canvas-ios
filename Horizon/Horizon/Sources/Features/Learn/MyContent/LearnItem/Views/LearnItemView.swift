@@ -100,7 +100,7 @@ struct LearnItemView: View {
     private var headerView: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
             HStack(spacing: .huiSpaces.space8) {
-                searchView
+               searchView
                filterButton
             }
            .padding(.horizontal, .huiSpaces.space24)

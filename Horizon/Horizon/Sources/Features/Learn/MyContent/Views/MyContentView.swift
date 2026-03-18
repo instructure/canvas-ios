@@ -25,12 +25,12 @@ struct MyContentView: View {
     @State private var selectedTab: Tabs = .inProgress
     private let inProgressView: LearnItemView
     private let completedView: LearnItemView
-    private let savedView: LearningLibraryDetailsView
+    private let savedView: LearningLibraryBookmarksView
 
     init() {
         inProgressView = LearnItemAssembly.makeView()
         completedView =  LearnItemAssembly.makeView(status: [.completed])
-        savedView = LearningLibraryAssembly.makeView(pageType: .bookmarks)
+        savedView = LearningLibraryBookmarkAssembly.makeView()
     }
     var body: some View {
         VStack {

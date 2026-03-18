@@ -57,7 +57,7 @@ struct LearningLibraryDetailsView: View {
             } else {
                 ScrollView {
                     titleView
-                    Text(viewModel.pageType.emptyStateTitle)
+                    Text("Save courses and resources here to revisit them later.")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .huiTypography(.p1)
                         .foregroundStyle(Color.huiColors.text.body)
@@ -73,12 +73,12 @@ struct LearningLibraryDetailsView: View {
         .dismissKeyboardOnTap()
         .scrollDismissesKeyboard(.immediately)
         .animation(.easeInOut, value: viewModel.filteredItems.count)
-        .onFirstAppear { viewModel.fetchData() }
+        .onFirstAppear { viewModel.fetchCollectionItems() }
         .onAppear {
             ImageCacheConfiguration.configure()
         }
         .safeAreaInset(edge: .top, spacing: .zero) {
-            if isShowHeader, !viewModel.pageType.isBookmarked { navBarView }
+            if isShowHeader { navBarView }
         }
         .huiLoader(
             isVisible: viewModel.isLoaderVisible,
@@ -206,16 +206,13 @@ struct LearningLibraryDetailsView: View {
         .background(Color.huiColors.surface.pagePrimary)
     }
 
-    @ViewBuilder
     private var titleView: some View {
-        if !viewModel.pageType.isBookmarked {
-            Text(viewModel.pageType.title)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .huiTypography(.h3)
-                .foregroundStyle(Color.huiColors.text.title)
-                .padding(.horizontal, .huiSpaces.space24)
-                .accessibilityAddTraits(.isHeader)
-        }
+        Text(viewModel.collectionName)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .huiTypography(.h3)
+            .foregroundStyle(Color.huiColors.text.title)
+            .padding(.horizontal, .huiSpaces.space24)
+            .accessibilityAddTraits(.isHeader)
     }
 
     private var searchView: some View {
@@ -278,9 +275,7 @@ struct LearningLibraryDetailsView: View {
 
     @ViewBuilder
     private var learningLibraryTypeFilterView: some View {
-        let options: [OptionModel] = viewModel.pageType.isBookmarked
-        ? LearningLibraryFilter.options(excluding: [.all, .completed])
-        : LearningLibraryFilter.options(excluding: LearningLibraryFilter.allCases)
+        let options: [OptionModel] = LearningLibraryFilter.options(excluding: LearningLibraryFilter.allCases)
         FilterView(
             items: options,
             selectedOption: viewModel.selectedLearningLibrary) { option in
@@ -318,6 +313,6 @@ struct LearningLibraryDetailsView: View {
 
 #if DEBUG
 #Preview {
-    LearningLibraryAssembly.preview()
+    LearningLibraryDetailsAssembly.preview()
 }
 #endif
