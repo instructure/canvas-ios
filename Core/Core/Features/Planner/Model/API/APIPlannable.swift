@@ -31,7 +31,7 @@ public struct APIPlannable: Codable, Equatable {
     let context_name: String?
     public let plannable: APIPlannable.Plannable?
     public let plannable_date: Date
-    let submissions: TypeSafeCodable<APIPlannable.Submissions, Bool>?
+    public let submissions: TypeSafeCodable<APIPlannable.Submissions, Bool>?
     public let details: APIPlannable.Details?
 
     public var plannableType: PlannableType {
@@ -83,9 +83,9 @@ extension APIPlannable {
     }
 
     public struct Submissions: Codable, Equatable {
-        let submitted: Bool?
+        public let submitted: Bool?
         let excused: Bool?
-        let graded: Bool?
+        public let graded: Bool?
         let late: Bool?
         let missing: Bool?
         let needs_grading: Bool?

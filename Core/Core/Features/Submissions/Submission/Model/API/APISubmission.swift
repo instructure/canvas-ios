@@ -30,11 +30,11 @@ public struct APISubmission: Codable, Equatable {
     let discussion_entries: [APIDiscussionEntry]?
     let entered_grade: String?
     let entered_score: Double?
-    let excused: Bool?
+    public let excused: Bool?
     let external_tool_url: APIURL?
-    var grade: String?
+    public var grade: String?
     var graded_at: Date?
-    let grade_matches_current_submission: Bool
+    public let grade_matches_current_submission: Bool
     let grading_period_id: ID?
     let group: APISubmission.Group?
     let id: ID

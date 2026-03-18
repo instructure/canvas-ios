@@ -26,6 +26,11 @@ public final class CDDashboardWeeklySummaryEntry: NSManagedObject {
         case newGrades
     }
 
+    public enum SubmissionStatus: String {
+        case graded
+        case submitted
+    }
+
     @NSManaged public var assignmentId: String
     @NSManaged public var weekStart: Date
     @NSManaged public var position: Double
@@ -61,6 +66,12 @@ public final class CDDashboardWeeklySummaryEntry: NSManagedObject {
     public var score: Double? {
         get { scoreRaw?.doubleValue }
         set { scoreRaw = newValue.map { NSNumber(value: $0) } }
+    }
+
+    @NSManaged public var submissionStatusRaw: String?
+    public var submissionStatus: SubmissionStatus? {
+        get { submissionStatusRaw.flatMap { SubmissionStatus(rawValue: $0) } }
+        set { submissionStatusRaw = newValue?.rawValue }
     }
 
     @NSManaged private var submissionTypesRaw: String

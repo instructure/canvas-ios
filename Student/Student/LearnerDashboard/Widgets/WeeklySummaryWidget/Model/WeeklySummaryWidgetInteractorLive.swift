@@ -29,6 +29,11 @@ final class WeeklySummaryWidgetInteractorLive: WeeklySummaryWidgetInteractor {
         self.env = env
     }
 
+    func clearCache() -> AnyPublisher<Void, Never> {
+        ReactiveStore(useCase: ClearWeeklySummaryWidgetCache(), environment: env)
+            .forceRefresh()
+    }
+
     func getSummary(weekStart: Date, ignoreCache: Bool) -> AnyPublisher<WeeklySummaryWidgetFilters, Error> {
         let useCase = GetWeeklySummaryEntries(
             weekStart: weekStart,
@@ -63,8 +68,18 @@ final class WeeklySummaryWidgetInteractorLive: WeeklySummaryWidgetInteractor {
             icon = .assignmentLine
         }
 
-        let grade: String? = entry.category == .newGrades ? Self.formatGradeFromEntry(entry) : nil
+        let grade: String? = entry.category != .missing ? Self.formatGradeFromEntry(entry) : nil
         let dueDateText: String? = entry.category == .newGrades ? nil : entry.dueAt?.dateTimeString
+
+        let submissionStatus: SubmissionStatusLabel.Model?
+        switch (entry.category, entry.submissionStatus) {
+        case (.due, .graded):
+            submissionStatus = .graded
+        case (.due, .submitted):
+            submissionStatus = .submitted
+        default:
+            submissionStatus = nil
+        }
 
         return WeeklySummaryWidgetAssignment(
             id: entry.assignmentId,
@@ -74,6 +89,7 @@ final class WeeklySummaryWidgetInteractorLive: WeeklySummaryWidgetInteractor {
             icon: icon,
             title: entry.title,
             dueDateText: dueDateText,
+            submissionStatus: submissionStatus,
             pointsPossible: Self.formatPoints(entry.pointsPossible),
             grade: grade,
             gradeWeightText: entry.gradeWeight.map { Self.formatWeightPercent($0) }

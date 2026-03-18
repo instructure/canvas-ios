@@ -20,6 +20,7 @@ import Combine
 import Foundation
 
 protocol WeeklySummaryWidgetInteractor {
+    func clearCache() -> AnyPublisher<Void, Never>
     func getSummary(weekStart: Date, ignoreCache: Bool) -> AnyPublisher<WeeklySummaryWidgetFilters, Error>
 }
 

@@ -1532,6 +1532,7 @@
         <attribute name="position" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="scoreRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="submissionStatusRaw" optional="YES" attributeType="String"/>
         <attribute name="submissionTypesRaw" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
         <attribute name="weekStart" attributeType="Date" usesScalarValueType="NO"/>

@@ -80,7 +80,27 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        interactor.getSummary(weekStart: weekStartDate, ignoreCache: ignoreCache)
+        let clearPublisher: AnyPublisher<Void, Never>
+        if ignoreCache {
+            weekNavigationSubscription?.cancel()
+            state = .loading
+            missingFilter = .missing(assignments: [])
+            dueFilter = .due(assignments: [])
+            newGradesFilter = .newGrades(assignments: [])
+            expandedFilter = nil
+            weekStartDate = Clock.now.startOfWeek()
+            weekRangeText = Self.makeWeekRangeText(from: weekStartDate)
+            clearPublisher = interactor.clearCache()
+        } else {
+            clearPublisher = Just(()).eraseToAnyPublisher()
+        }
+
+        return clearPublisher
+            .setFailureType(to: Error.self)
+            .flatMap { [weak self] _ -> AnyPublisher<WeeklySummaryWidgetFilters, Error> in
+                guard let self else { return Fail(error: NSError.internalError()).eraseToAnyPublisher() }
+                return interactor.getSummary(weekStart: weekStartDate, ignoreCache: ignoreCache)
+            }
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveOutput: { [weak self] filters in
                 guard let self else { return }

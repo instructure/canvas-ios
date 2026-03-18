@@ -45,12 +45,14 @@ extension CDDashboardWeeklySummaryEntry {
         model.excused = false
         model.gradingType = nil
         model.restrictQuantitativeData = false
+        model.submissionStatus = nil
         return model
     }
 
     @discardableResult
     static func saveDue(
         _ plannable: APIPlannable,
+        assignment: APIAssignment?,
         weekStart: Date,
         gradeWeight: Double?,
         in context: NSManagedObjectContext
@@ -67,11 +69,31 @@ extension CDDashboardWeeklySummaryEntry {
         model.isQuizLti = false
         model.submissionTypes = []
         model.gradeWeight = gradeWeight
-        model.grade = nil
-        model.score = nil
-        model.excused = false
-        model.gradingType = nil
-        model.restrictQuantitativeData = false
+        let submission = assignment?.submission?.values.first
+        model.grade = submission?.grade
+        model.score = submission?.score
+        model.excused = submission?.excused == true
+        model.gradingType = assignment?.grading_type.rawValue
+        model.restrictQuantitativeData = (context.first(where: #keyPath(Course.id), equals: plannable.context?.id) as Course?)?.settings?.restrictQuantitativeData ?? false
+        let plannableSubmissions = plannable.submissions?.value1
+        let status = Core.SubmissionStatus(
+            isSubmitted: submission.map { $0.workflow_state != .unsubmitted } ?? (plannableSubmissions?.submitted == true),
+            isGraded: submission?.grade != nil,
+            isGradeBelongsToCurrentSubmission: submission?.grade_matches_current_submission ?? true,
+            isLate: false,
+            isMissing: false,
+            isExcused: model.excused,
+            customStatusId: nil,
+            customStatusName: nil,
+            submissionType: nil
+        )
+        if status.isGraded {
+            model.submissionStatus = .graded
+        } else if status.isSubmitted {
+            model.submissionStatus = .submitted
+        } else {
+            model.submissionStatus = nil
+        }
         return model
     }
 
@@ -101,6 +123,7 @@ extension CDDashboardWeeklySummaryEntry {
         model.excused = submission.excused == true
         model.gradingType = submission.assignment.gradingType
         model.restrictQuantitativeData = restrictQuantitativeData
+        model.submissionStatus = nil
         return model
     }
 }

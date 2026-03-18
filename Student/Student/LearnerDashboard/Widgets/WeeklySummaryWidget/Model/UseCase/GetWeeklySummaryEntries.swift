@@ -33,6 +33,8 @@ final class GetWeeklySummaryEntries: UseCase {
         let applyGroupWeightsByCourse: [String: Bool]
     }
 
+    static let cacheKeyPrefix = "weekly-summary-entries/"
+
     let weekStart: Date
     let weekEnd: Date
     let studentId: String
@@ -51,7 +53,7 @@ final class GetWeeklySummaryEntries: UseCase {
         self.weekEnd = weekStart.endOfWeek()
         self.studentId = studentId
         self.assignmentWeight = assignmentWeight
-        self.cacheKey = "weekly-summary-entries/\(weekStart.isoString())"
+        self.cacheKey = "\(Self.cacheKeyPrefix)\(weekStart.isoString())"
         self.scope = Scope(
             predicate: NSPredicate(
                 format: "%K == %@",
@@ -125,12 +127,14 @@ final class GetWeeklySummaryEntries: UseCase {
         }
 
         for plannable in response.due {
+            let courseId = plannable.context?.id ?? ""
             CDDashboardWeeklySummaryEntry.saveDue(
                 plannable,
+                assignment: findAssignment(id: plannable.plannable_id.value, courseId: courseId, in: response.assignmentGroupsByCourse),
                 weekStart: weekStart,
                 gradeWeight: computeWeight(
                     assignmentId: plannable.plannable_id.value,
-                    courseId: plannable.context?.id ?? "",
+                    courseId: courseId,
                     applyGroupWeights: response.applyGroupWeightsByCourse,
                     groupsDict: response.assignmentGroupsByCourse
                 ),
@@ -210,6 +214,14 @@ final class GetWeeklySummaryEntries: UseCase {
             .collect()
             .map { Dictionary(uniqueKeysWithValues: $0) }
             .eraseToAnyPublisher()
+    }
+
+    // MARK: - Assignment Lookup
+
+    private func findAssignment(id: String, courseId: String, in groupsDict: [String: [APIAssignmentGroup]]) -> APIAssignment? {
+        groupsDict[courseId]?
+            .flatMap { $0.assignments ?? [] }
+            .first { $0.id.rawValue == id }
     }
 
     // MARK: - Weight Computation

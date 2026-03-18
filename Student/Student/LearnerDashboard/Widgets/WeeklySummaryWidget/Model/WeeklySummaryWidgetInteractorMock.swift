@@ -33,6 +33,7 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 icon: .quizLine,
                 title: "Chapter 5 Quiz",
                 dueDateText: "Tomorrow at 11:59 PM",
+                submissionStatus: nil,
                 pointsPossible: "20 pts",
                 grade: nil,
                 gradeWeightText: nil
@@ -45,6 +46,7 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 icon: .assignmentLine,
                 title: "Policy Analysis Essay",
                 dueDateText: "Thu at 11:59 PM",
+                submissionStatus: nil,
                 pointsPossible: "100 pts",
                 grade: nil,
                 gradeWeightText: "20% of final grade"
@@ -57,6 +59,7 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 icon: .assignmentLine,
                 title: "Lab Report: Water Quality",
                 dueDateText: "Sat at 11:59 PM",
+                submissionStatus: nil,
                 pointsPossible: "50 pts",
                 grade: nil,
                 gradeWeightText: nil
@@ -71,6 +74,7 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 icon: .assignmentLine,
                 title: "Midterm Reflection",
                 dueDateText: nil,
+                submissionStatus: nil,
                 pointsPossible: nil,
                 grade: "85 pts",
                 gradeWeightText: "30% of final grade"
@@ -83,6 +87,7 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 icon: .assignmentLine,
                 title: "Discussion Board Week 4",
                 dueDateText: nil,
+                submissionStatus: nil,
                 pointsPossible: nil,
                 grade: "15 pts",
                 gradeWeightText: nil
@@ -91,6 +96,10 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
     )
 
     var outputError: Error?
+
+    func clearCache() -> AnyPublisher<Void, Never> {
+        Just(()).eraseToAnyPublisher()
+    }
 
     func getSummary(weekStart: Date, ignoreCache: Bool) -> AnyPublisher<WeeklySummaryWidgetFilters, Error> {
         if let error = outputError {

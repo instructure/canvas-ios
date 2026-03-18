@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 
 struct WeeklySummaryWidgetAssignment: Identifiable {
@@ -26,6 +27,7 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
     let icon: Image
     let title: String
     let dueDateText: String?
+    let submissionStatus: SubmissionStatusLabel.Model?
     let pointsPossible: String?
     let grade: String?
     let gradeWeightText: String?

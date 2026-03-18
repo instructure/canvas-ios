@@ -85,10 +85,13 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
     @ViewBuilder
     private var bottomLabels: some View {
         VStack(alignment: .leading, spacing: 2) {
-            if let dueDateText = assignment.dueDateText {
-                Text(dueDateText)
-                    .font(.regular12)
-                    .foregroundStyle(Color.textDark)
+            if let dueDateText = assignment.dueDateText, let statusModel = assignment.submissionStatus {
+                InstUI.JoinedSubtitleLabels(
+                    label1: { dueDateLabel(dueDateText) },
+                    label2: { SubmissionStatusLabel(model: statusModel, iconSize: 12, font: .regular12) }
+                )
+            } else if let dueDateText = assignment.dueDateText {
+                dueDateLabel(dueDateText)
             }
 
             if let pointsText = assignment.pointsPossible, let gradeWeightText = assignment.gradeWeightText {
@@ -115,6 +118,12 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
                     .stroke(assignment.courseColor, lineWidth: 1 / displayScale)
             )
     }
+
+    private func dueDateLabel(_ text: String) -> some View {
+        Text(text)
+            .font(.regular12)
+            .foregroundStyle(Color.textDark)
+    }
 }
 
 #if DEBUG
@@ -129,6 +138,7 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
             icon: .assignmentLine,
             title: "Lab Report: Cell Division",
             dueDateText: "Mar 20, 2026 at 11:59 PM",
+            submissionStatus: .submitted,
             pointsPossible: "50 pts",
             grade: nil,
             gradeWeightText: "12.5% of final grade"
@@ -141,6 +151,7 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
             icon: .discussionLine,
             title: "Week 5 Discussion: Industrial Revolution",
             dueDateText: "Mar 21, 2026 at 9:00 AM",
+            submissionStatus: .graded,
             pointsPossible: "25 pts",
             grade: nil,
             gradeWeightText: nil
@@ -153,6 +164,7 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
             icon: .quizLine,
             title: "Midterm Quiz",
             dueDateText: nil,
+            submissionStatus: nil,
             pointsPossible: "100 pts",
             grade: "88",
             gradeWeightText: "20% of final grade"
