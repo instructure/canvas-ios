@@ -21,6 +21,7 @@ import Foundation
 
 protocol WeeklySummaryWidgetInteractor {
     func clearCache() -> AnyPublisher<Void, Never>
+    func hasCachedSummary(weekStart: Date) -> AnyPublisher<Bool, Never>
     func getSummary(weekStart: Date, ignoreCache: Bool) -> AnyPublisher<WeeklySummaryWidgetFilters, Error>
 }
 

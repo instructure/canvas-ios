@@ -101,6 +101,10 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
         Just(()).eraseToAnyPublisher()
     }
 
+    func hasCachedSummary(weekStart: Date) -> AnyPublisher<Bool, Never> {
+        Just(false).eraseToAnyPublisher()
+    }
+
     func getSummary(weekStart: Date, ignoreCache: Bool) -> AnyPublisher<WeeklySummaryWidgetFilters, Error> {
         if let error = outputError {
             return Fail(error: error).eraseToAnyPublisher()

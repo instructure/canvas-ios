@@ -34,6 +34,18 @@ final class WeeklySummaryWidgetInteractorLive: WeeklySummaryWidgetInteractor {
             .forceRefresh()
     }
 
+    func hasCachedSummary(weekStart: Date) -> AnyPublisher<Bool, Never> {
+        let missingUseCase = GetMissingWeeklySummaryEntries()
+        let weeklyUseCase = GetWeeklyDueAndGradesEntries(weekStart: weekStart, studentId: env.currentSession?.userID ?? "")
+
+        return Publishers.CombineLatest(
+            missingUseCase.hasCacheExpired(environment: env),
+            weeklyUseCase.hasCacheExpired(environment: env),
+        )
+        .map { !($0 || $1) }
+        .eraseToAnyPublisher()
+    }
+
     func getSummary(weekStart: Date, ignoreCache: Bool) -> AnyPublisher<WeeklySummaryWidgetFilters, Error> {
         let missingStore = ReactiveStore(useCase: GetMissingWeeklySummaryEntries(), environment: env)
         let weeklyStore = ReactiveStore(
