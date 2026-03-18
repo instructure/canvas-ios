@@ -60,29 +60,47 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
 
     init(entry: CDDashboardWeeklySummaryEntry) {
         let course = entry.course
-        let icon: Image
-        if entry.isQuizLti {
-            icon = .quizLine
-        } else if entry.submissionTypes.contains(.discussion_topic) {
-            icon = .discussionLine
-        } else if entry.submissionTypes.contains(.external_tool) || entry.submissionTypes.contains(.basic_lti_launch) {
-            icon = .ltiLine
-        } else {
-            icon = .assignmentLine
-        }
+        let icon: Image = {
+            if entry.isQuizLti {
+                .quizLine
+            } else if entry.submissionTypes.contains(.discussion_topic) {
+                .discussionLine
+            } else if entry.submissionTypes.contains(.external_tool) || entry.submissionTypes.contains(.basic_lti_launch) {
+                .ltiLine
+            } else {
+                .assignmentLine
+            }
+        }()
 
-        let grade: String? = entry.category != .missing ? Self.formatGradeFromEntry(entry) : nil
+        let grade: String? = {
+            if entry.category == .missing {
+                return nil
+            }
+            let normalizedScore: Double? = entry.score.flatMap { score in
+                guard let pp = entry.pointsPossible, pp > 0 else { return nil }
+                return score / pp
+            }
+            return GradeFormatter.string(
+                pointsPossible: entry.pointsPossible,
+                gradingType: GradingType(rawValue: entry.gradingType ?? "") ?? .points,
+                gradingScheme: entry.course?.gradingScheme,
+                hideScores: entry.restrictQuantitativeData,
+                style: .medium,
+                isExcused: entry.excused,
+                score: entry.score,
+                normalizedScore: normalizedScore,
+                grade: entry.grade
+            )
+        }()
         let dueDateText: String? = entry.category == .newGrades ? nil : entry.dueAt?.dateTimeString
 
-        let submissionStatus: SubmissionStatusLabel.Model?
-        switch (entry.category, entry.submissionStatus) {
-        case (.due, .graded):
-            submissionStatus = .graded
-        case (.due, .submitted):
-            submissionStatus = .submitted
-        default:
-            submissionStatus = nil
-        }
+        let submissionStatus: SubmissionStatusLabel.Model? = {
+            switch (entry.category, entry.submissionStatus) {
+            case (.due, .graded): .graded
+            case (.due, .submitted): .submitted
+            default: nil
+            }
+        }()
 
         self.init(
             id: entry.assignmentId,
@@ -93,40 +111,14 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
             title: entry.title,
             dueDateText: dueDateText,
             submissionStatus: submissionStatus,
-            pointsPossible: Self.formatPoints(entry.pointsPossible),
+            pointsPossible: String.format(ptsOrNil: entry.pointsPossible),
             grade: grade,
             gradeWeightText: entry.gradeWeight.map { Self.formatWeightPercent($0) }
         )
     }
 
-    private static func formatGradeFromEntry(_ entry: CDDashboardWeeklySummaryEntry) -> String? {
-        if entry.excused {
-            return String(localized: "Excused", bundle: .student)
-        }
-        guard let grade = entry.grade, !grade.isEmpty else { return nil }
-        if entry.restrictQuantitativeData {
-            return grade
-        }
-        if entry.gradingType == "points" {
-            guard let score = entry.score else { return grade }
-            return numberFormatter.string(from: GradeFormatter.truncate(score)) ?? "\(score)"
-        }
-        if let numericGrade = Double(grade) {
-            return numberFormatter.string(from: GradeFormatter.truncate(numericGrade))
-        }
-        return grade
-    }
-
-    private static func formatPoints(_ points: Double?) -> String? {
-        guard let points else { return nil }
-        return "\(numberFormatter.string(from: GradeFormatter.truncate(points)) ?? "\(points)") pts"
-    }
-
     private static func formatWeightPercent(_ weight: Double) -> String {
-        let percent = percentFormatter.string(from: NSNumber(value: weight)) ?? "\(weight * 100)%"
+        let percent = GradeFormatter.percentFormatter.string(from: NSNumber(value: weight)) ?? "\(weight * 100)%"
         return "\(percent) of final grade"
     }
 }
-
-private let numberFormatter = GradeFormatter.numberFormatter
-private let percentFormatter = GradeFormatter.percentFormatter
