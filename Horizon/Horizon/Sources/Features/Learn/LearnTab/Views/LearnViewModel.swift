@@ -22,7 +22,7 @@ import Observation
 @Observable
 final class LearnViewModel {
 
-    private(set) var tabs: [LearnTabs] = [.courses, .programs]
+    private(set) var tabs: [LearnTabs] = [.content]
     private var subscriptions = Set<AnyCancellable>()
 
     init(interactor: LearningLibraryInteractor) {
