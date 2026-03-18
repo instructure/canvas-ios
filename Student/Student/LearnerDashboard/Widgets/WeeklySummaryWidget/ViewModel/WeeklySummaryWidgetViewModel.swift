@@ -42,8 +42,12 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     private(set) var dueFilter: WeeklySummaryWidgetFilterViewModel
     private(set) var newGradesFilter: WeeklySummaryWidgetFilterViewModel
 
-    var showMissingDueDivider: Bool { expandedFilter == nil || expandedFilter == newGradesFilter }
-    var showDueNewGradesDivider: Bool { expandedFilter == nil || expandedFilter == missingFilter }
+    private var isMissingFilterSelected: Bool { expandedFilter?.id == missingFilter.id }
+    private var isDueFilterSelected: Bool { expandedFilter?.id == dueFilter.id }
+    private var isNewGradesFilterSelected: Bool { expandedFilter?.id == newGradesFilter.id }
+
+    var showMissingDueDivider: Bool { expandedFilter == nil || isNewGradesFilterSelected }
+    var showDueNewGradesDivider: Bool { expandedFilter == nil || isMissingFilterSelected }
 
     // MARK: - Week Selection
 
@@ -140,18 +144,24 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     }
 
     private func beginWeekTransition() {
-        expandedFilter = nil
-        missingFilter = missingFilter.withExpandedState(false)
-        dueFilter = dueFilter.withExpandedState(false)
-        newGradesFilter = newGradesFilter.withExpandedState(false)
-
         weekNavigationSubscription?.cancel()
         weekNavigationSubscription = Just(())
             .delay(for: .milliseconds(300), scheduler: DispatchQueue.main)
+            .flatMap { [weak self] _ -> AnyPublisher<Bool, Never> in
+                guard let self else { return Just(false).eraseToAnyPublisher() }
+                return interactor.hasCachedSummary(weekStart: weekStartDate)
+            }
+            .receive(on: DispatchQueue.main)
             .setFailureType(to: Error.self)
-            .flatMap { [weak self] _ -> AnyPublisher<WeeklySummaryWidgetFilters, Error> in
+            .flatMap { [weak self] hasCachedData -> AnyPublisher<WeeklySummaryWidgetFilters, Error> in
                 guard let self else { return Fail(error: NSError.internalError()).eraseToAnyPublisher() }
-                isWeekLoading = true
+                if !hasCachedData {
+                    expandedFilter = nil
+                    missingFilter = missingFilter.withExpandedState(false)
+                    dueFilter = dueFilter.withExpandedState(false)
+                    newGradesFilter = newGradesFilter.withExpandedState(false)
+                    isWeekLoading = true
+                }
                 return interactor.getSummary(weekStart: weekStartDate, ignoreCache: false)
                     .receive(on: DispatchQueue.main)
                     .eraseToAnyPublisher()
@@ -160,17 +170,25 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
                 receiveCompletion: { [weak self] _ in self?.isWeekLoading = false },
                 receiveValue: { [weak self] filters in
                     guard let self else { return }
-                    dueFilter = .due(assignments: filters.due)
-                    newGradesFilter = .newGrades(assignments: filters.newGrades)
+                    missingFilter = .missing(assignments: filters.missing).withExpandedState(isMissingFilterSelected)
+                    dueFilter = .due(assignments: filters.due).withExpandedState(isDueFilterSelected)
+                    newGradesFilter = .newGrades(assignments: filters.newGrades).withExpandedState(isNewGradesFilterSelected)
+                    if isMissingFilterSelected {
+                        expandedFilter = missingFilter
+                    } else if isDueFilterSelected {
+                        expandedFilter = dueFilter
+                    } else if isNewGradesFilterSelected {
+                        expandedFilter = newGradesFilter
+                    }
                 }
             )
     }
 
     func toggleFilter(_ filter: WeeklySummaryWidgetFilterViewModel) {
-        expandedFilter = (expandedFilter == filter) ? nil : filter
-        missingFilter = missingFilter.withExpandedState(missingFilter == expandedFilter)
-        dueFilter = dueFilter.withExpandedState(dueFilter == expandedFilter)
-        newGradesFilter = newGradesFilter.withExpandedState(newGradesFilter == expandedFilter)
+        expandedFilter = (expandedFilter?.id == filter.id) ? nil : filter
+        missingFilter = missingFilter.withExpandedState(isMissingFilterSelected)
+        dueFilter = dueFilter.withExpandedState(isDueFilterSelected)
+        newGradesFilter = newGradesFilter.withExpandedState(isNewGradesFilterSelected)
     }
 
     func didTapAssignment(_ assignment: WeeklySummaryWidgetAssignment, from controller: WeakViewController) {

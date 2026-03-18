@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import SwiftUI
 import XCTest
 @testable import Core
 @testable import Student
@@ -52,7 +53,7 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.missingFilter.id, "missing")
         XCTAssertEqual(testee.dueFilter.id, "due")
         XCTAssertEqual(testee.newGradesFilter.id, "newGrades")
-        XCTAssertEqual(testee.expandedFilter, nil)
+        XCTAssertNil(testee.expandedFilter)
     }
 
     // MARK: - weekRangeText
@@ -110,7 +111,7 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
 
         testee.toggleFilter(testee.dueFilter)
 
-        XCTAssertEqual(testee.expandedFilter, nil)
+        XCTAssertNil(testee.expandedFilter)
     }
 
     func test_toggleFilter_whenDifferentFilter_shouldSwitchExpanded() {
@@ -155,9 +156,67 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
         XCTAssertNotEqual(testee.layoutIdentifier, initial)
     }
 
+    // MARK: - Week navigation — filter state on cache hit/miss
+
+    func test_weekNavigation_whenCacheAvailable_shouldNotCollapseFilter() {
+        let mock = WeeklySummaryWidgetInteractorMock()
+        mock.hasCachedSummaryOutput = true
+        let testee = makeViewModel(interactor: mock)
+        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
+        testee.toggleFilter(testee.missingFilter)
+        XCTAssertNotNil(testee.expandedFilter)
+
+        mock.outputValue = WeeklySummaryWidgetFilters(
+            missing: [
+                WeeklySummaryWidgetAssignment(
+                    id: "999",
+                    courseId: "1",
+                    courseCode: "TEST",
+                    courseColor: .course1,
+                    icon: Image(systemName: "star"),
+                    title: "New Week Assignment",
+                    dueDateText: nil,
+                    submissionStatus: nil,
+                    pointsPossible: nil,
+                    grade: nil,
+                    gradeWeightText: nil
+                )
+            ],
+            due: [],
+            newGrades: []
+        )
+        testee.navigateToPreviousWeek()
+        RunLoop.main.run(until: Date(timeIntervalSinceNow: 0.5))
+
+        XCTAssertNotNil(testee.expandedFilter)
+        XCTAssertEqual(testee.expandedFilter?.assignments.map(\.id), ["999"])
+    }
+
+    func test_weekNavigation_whenCacheNotAvailable_shouldCollapseFilter() {
+        let mock = WeeklySummaryWidgetInteractorMock()
+        let testee = makeViewModel(interactor: mock)
+        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
+        testee.toggleFilter(testee.missingFilter)
+        XCTAssertNotNil(testee.expandedFilter)
+
+        testee.navigateToPreviousWeek()
+        RunLoop.main.run(until: Date(timeIntervalSinceNow: 0.5))
+
+        XCTAssertNil(testee.expandedFilter)
+    }
+
+    func test_weekNavigation_whenCacheNotAvailable_shouldShowWeekLoading() {
+        let testee = makeViewModel()
+
+        testee.navigateToPreviousWeek()
+        RunLoop.main.run(until: Date(timeIntervalSinceNow: 0.5))
+
+        XCTAssertFalse(testee.isWeekLoading)
+    }
+
     // MARK: - Private helpers
 
-    private func makeViewModel() -> WeeklySummaryWidgetViewModel {
-        WeeklySummaryWidgetViewModel(config: .make(id: .weeklySummary), interactor: WeeklySummaryWidgetInteractorMock())
+    private func makeViewModel(interactor: WeeklySummaryWidgetInteractor = WeeklySummaryWidgetInteractorMock()) -> WeeklySummaryWidgetViewModel {
+        WeeklySummaryWidgetViewModel(config: .make(id: .weeklySummary), interactor: interactor)
     }
 }
