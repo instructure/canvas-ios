@@ -62,6 +62,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     private let router: Router
     private var retrySubscription: AnyCancellable?
     private var weekNavigationSubscription: AnyCancellable?
+    private var subscriptions = Set<AnyCancellable>()
 
     init(
         config: DashboardWidgetConfig,
@@ -77,6 +78,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
         self.missingFilter = .missing(assignments: [])
         self.dueFilter = .due(assignments: [])
         self.newGradesFilter = .newGrades(assignments: [])
+        subscribeToSubmissionNotifications()
     }
 
     func makeView() -> AnyView {
@@ -143,6 +145,23 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
         beginWeekTransition()
     }
 
+    func toggleFilter(_ filter: WeeklySummaryWidgetFilterViewModel) {
+        expandedFilter = (expandedFilter?.id == filter.id) ? nil : filter
+        missingFilter = missingFilter.withExpandedState(isMissingFilterSelected)
+        dueFilter = dueFilter.withExpandedState(isDueFilterSelected)
+        newGradesFilter = newGradesFilter.withExpandedState(isNewGradesFilterSelected)
+    }
+
+    func didTapAssignment(_ assignment: WeeklySummaryWidgetAssignment, from controller: WeakViewController) {
+        router.route(
+            to: "/courses/\(assignment.courseId)/assignments/\(assignment.id)",
+            from: controller,
+            options: .modal(.fullScreen, isDismissable: false, embedInNav: true, addDoneButton: true, animated: true)
+        )
+    }
+
+    // MARK: Private
+
     private func beginWeekTransition() {
         weekNavigationSubscription?.cancel()
         weekNavigationSubscription = Just(())
@@ -169,37 +188,77 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
             .sink(
                 receiveCompletion: { [weak self] _ in self?.isWeekLoading = false },
                 receiveValue: { [weak self] filters in
-                    guard let self else { return }
-                    missingFilter = .missing(assignments: filters.missing).withExpandedState(isMissingFilterSelected)
-                    dueFilter = .due(assignments: filters.due).withExpandedState(isDueFilterSelected)
-                    newGradesFilter = .newGrades(assignments: filters.newGrades).withExpandedState(isNewGradesFilterSelected)
-                    if isMissingFilterSelected {
-                        expandedFilter = missingFilter
-                    } else if isDueFilterSelected {
-                        expandedFilter = dueFilter
-                    } else if isNewGradesFilterSelected {
-                        expandedFilter = newGradesFilter
-                    }
+                    self?.updateFilters(filters)
                 }
             )
     }
 
-    func toggleFilter(_ filter: WeeklySummaryWidgetFilterViewModel) {
-        expandedFilter = (expandedFilter?.id == filter.id) ? nil : filter
-        missingFilter = missingFilter.withExpandedState(isMissingFilterSelected)
-        dueFilter = dueFilter.withExpandedState(isDueFilterSelected)
-        newGradesFilter = newGradesFilter.withExpandedState(isNewGradesFilterSelected)
+    // MARK: - Refresh On Submission
+
+    private func subscribeToSubmissionNotifications() {
+        NotificationCenter.default
+            .publisher(for: .CompletedModuleItemRequirement)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] notification in
+                guard
+                    let self,
+                    let payload = notification.moduleItemCompletionPayload,
+                    payload.requirement == .submit
+                else { return }
+
+                let submittedId: String
+                switch payload.moduleItem {
+                case .assignment(let id), .quiz(let id), .discussion(let id):
+                    submittedId = id
+                default:
+                    return
+                }
+
+                let knownIds = Set(
+                    (missingFilter.assignments + dueFilter.assignments + newGradesFilter.assignments)
+                        .map(\.id)
+                )
+                guard knownIds.contains(submittedId) else { return }
+                reloadCurrentWeek()
+            }
+            .store(in: &subscriptions)
     }
 
-    func didTapAssignment(_ assignment: WeeklySummaryWidgetAssignment, from controller: WeakViewController) {
-        router.route(
-            to: "/courses/\(assignment.courseId)/assignments/\(assignment.id)",
-            from: controller,
-            options: .modal(.fullScreen, isDismissable: false, embedInNav: true, addDoneButton: true, animated: true)
-        )
+    private func reloadCurrentWeek() {
+        weekNavigationSubscription?.cancel()
+        weekNavigationSubscription = interactor.clearCache()
+            .setFailureType(to: Error.self)
+            .flatMap { [weak self] _ -> AnyPublisher<WeeklySummaryWidgetFilters, Error> in
+                guard let self else { return Fail(error: NSError.internalError()).eraseToAnyPublisher() }
+                return interactor.getSummary(weekStart: weekStartDate, ignoreCache: true)
+            }
+            .receive(on: DispatchQueue.main)
+            .sink(
+                receiveCompletion: { _ in },
+                receiveValue: { [weak self] filters in
+                    self?.updateFilters(filters)
+                }
+            )
     }
 
-    // MARK: - Private
+    // MARK: - Private Helpers
+
+    private func updateFilters(_ filters: WeeklySummaryWidgetFilters) {
+        // Each reload creates new filter value types, so we must carry over the expanded
+        // state explicitly. expandedFilter also holds a copy of the old instance, so it
+        // must be reassigned to the freshly created one — otherwise it stays out of sync
+        // with the named filter properties and the UI stops reflecting the correct state.
+        missingFilter = .missing(assignments: filters.missing).withExpandedState(isMissingFilterSelected)
+        dueFilter = .due(assignments: filters.due).withExpandedState(isDueFilterSelected)
+        newGradesFilter = .newGrades(assignments: filters.newGrades).withExpandedState(isNewGradesFilterSelected)
+        if isMissingFilterSelected {
+            expandedFilter = missingFilter
+        } else if isDueFilterSelected {
+            expandedFilter = dueFilter
+        } else if isNewGradesFilterSelected {
+            expandedFilter = newGradesFilter
+        }
+    }
 
     private static func makeWeekRangeText(from weekStartDate: Date) -> String {
         let endDate = weekStartDate.addDays(6)
@@ -211,5 +270,17 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
             let startYear = Calendar.current.component(.year, from: weekStartDate)
             return "\(weekStartDate.shortDayMonth), \(startYear) - \(endDate.shortDayMonth), \(endYear)"
         }
+    }
+}
+
+private extension Notification {
+    typealias ModuleItemCompletionPayload = (requirement: ModuleItemCompletionRequirement, moduleItem: ModuleItemType)
+
+    var moduleItemCompletionPayload: ModuleItemCompletionPayload? {
+        guard
+            let requirement = userInfo?["requirement"] as? ModuleItemCompletionRequirement,
+            let moduleItem = userInfo?["moduleItem"] as? ModuleItemType
+        else { return nil }
+        return (requirement, moduleItem)
     }
 }
