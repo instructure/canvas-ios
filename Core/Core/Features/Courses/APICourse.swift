@@ -374,7 +374,7 @@ public struct GetCourseRequest: APIRequestable {
 }
 
 struct APICourseParameters: Codable, Equatable {
-    public let name: String?
+    let name: String?
     let default_view: CourseDefaultView?
     let syllabus_body: String?
     let syllabus_course_summary: Bool?

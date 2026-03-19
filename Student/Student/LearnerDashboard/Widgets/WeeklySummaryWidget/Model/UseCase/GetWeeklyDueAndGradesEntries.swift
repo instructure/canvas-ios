@@ -39,18 +39,18 @@ final class GetWeeklyDueAndGradesEntries: UseCase {
     let cacheKey: String?
     let scope: Scope
 
-    private let assignmentWeight: BusinessLogic.AssignmentWeight.Logic
+    private let weightLogic: BusinessLogic.AssignmentWeight.Logic
     private var cancellables = Set<AnyCancellable>()
 
     init(
         weekStart: Date,
         studentId: String,
-        assignmentWeight: BusinessLogic.AssignmentWeight.Logic = BusinessLogic.AssignmentWeight.LogicLive()
+        weightLogic: BusinessLogic.AssignmentWeight.Logic = BusinessLogic.AssignmentWeight.LogicLive()
     ) {
         self.weekStart = weekStart
         self.weekEnd = weekStart.endOfWeek()
         self.studentId = studentId
-        self.assignmentWeight = assignmentWeight
+        self.weightLogic = weightLogic
         self.cacheKey = "\(Self.cacheKeyPrefix)\(weekStart.isoString())"
         self.scope = Scope(
             predicate: NSPredicate(
@@ -75,8 +75,8 @@ final class GetWeeklyDueAndGradesEntries: UseCase {
             }
             let courseIds = Set(due.map { $0.context?.id ?? "" }).filter { !$0.isEmpty }
             return self.fetchAssignmentGroupsForCourses(courseIds, api: api)
-                .map { groupsDict in
-                    Response(due: due, grades: grades, assignmentGroupsByCourse: groupsDict)
+                .map { groupsByCourseID in
+                    Response(due: due, grades: grades, assignmentGroupsByCourse: groupsByCourseID)
                 }
                 .eraseToAnyPublisher()
         }
@@ -99,20 +99,21 @@ final class GetWeeklyDueAndGradesEntries: UseCase {
 
     func write(response: Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         guard let response else { return }
-        let applyGroupWeights = Self.extractApplyGroupWeights(from: response.assignmentGroupsByCourse)
-
         for plannable in response.due {
             let courseId = plannable.context?.id ?? ""
+            let assignmentId = plannable.plannable_id.value
+            let groups = response.assignmentGroupsByCourse[courseId] ?? []
+            let group = groups.group(containingAssignmentWithId: assignmentId)
+            guard let assignment = findAssignment(id: assignmentId, courseId: courseId, in: response.assignmentGroupsByCourse) else { continue }
             CDDashboardWeeklySummaryEntry.saveDue(
                 plannable,
-                assignment: findAssignment(id: plannable.plannable_id.value, courseId: courseId, in: response.assignmentGroupsByCourse),
+                assignment: assignment,
                 weekStart: weekStart,
-                gradeWeight: computeWeight(
-                    assignmentId: plannable.plannable_id.value,
-                    courseId: courseId,
-                    applyGroupWeights: applyGroupWeights,
-                    groupsDict: response.assignmentGroupsByCourse
-                ),
+                gradeWeight: group.flatMap { weightLogic.assignmentWeightInCourse(
+                    assignment: .init(isOmittedFromFinalGrade: assignment.omit_from_final_grade, pointsPossible: assignment.points_possible),
+                    groupWeight: $0.group_weight,
+                    assignmentsInGroup: ($0.assignments ?? []).compactMap { .init(isOmittedFromFinalGrade: $0.omit_from_final_grade, pointsPossible: $0.points_possible) }
+                ) },
                 in: client
             )
         }
@@ -185,66 +186,9 @@ final class GetWeeklyDueAndGradesEntries: UseCase {
 
     // MARK: - Assignment Lookup
 
-    private func findAssignment(id: String, courseId: String, in groupsDict: [String: [APIAssignmentGroup]]) -> APIAssignment? {
-        groupsDict[courseId]?
+    private func findAssignment(id: String, courseId: String, in groupsByCourseID: [String: [APIAssignmentGroup]]) -> APIAssignment? {
+        groupsByCourseID[courseId]?
             .flatMap { $0.assignments ?? [] }
             .first { $0.id.rawValue == id }
-    }
-
-    // MARK: - Weight Computation
-
-    private static func extractApplyGroupWeights(from groupsDict: [String: [APIAssignmentGroup]]) -> [String: Bool] {
-        groupsDict.mapValues { groups in groups.contains { ($0.group_weight ?? 0) > 0 } }
-    }
-
-    private func computeWeight(
-        assignmentId: String,
-        courseId: String,
-        applyGroupWeights: [String: Bool],
-        groupsDict: [String: [APIAssignmentGroup]]
-    ) -> Double? {
-        guard applyGroupWeights[courseId] == true, !courseId.isEmpty else { return nil }
-        guard let groups = groupsDict[courseId] else { return nil }
-        for group in groups {
-            guard let assignment = group.assignments?.first(where: { $0.id.rawValue == assignmentId }) else { continue }
-            guard assignment.omit_from_final_grade != true else { return nil }
-            guard let groupWeight = group.group_weight, groupWeight > 0 else { return nil }
-            guard let points = assignment.points_possible, points > 0 else { return nil }
-            return computeCourseGradeWeight(assignmentPoints: points, group: group, groupWeight: groupWeight)
-        }
-        return nil
-    }
-
-    private func computeCourseGradeWeight(
-        assignmentPoints: Double,
-        group: APIAssignmentGroup,
-        groupWeight: Double
-    ) -> Double? {
-        let groupAssignments: [BusinessLogic.AssignmentWeight.GroupAssignment] = (group.assignments ?? []).compactMap {
-            guard $0.omit_from_final_grade != true,
-                  let pointsPossible = $0.points_possible,
-                  pointsPossible > 0
-            else {
-                return nil
-            }
-
-            return BusinessLogic.AssignmentWeight.GroupAssignment(
-                id: $0.id.rawValue,
-                pointsPossible: pointsPossible,
-                scorePercentage: ($0.submission?.values.first?.score ?? 0) / pointsPossible,
-                isGraded: $0.submission?.values.first?.workflow_state == .graded
-            )
-        }
-
-        return assignmentWeight.computeCourseGradeWeight(
-            assignmentPoints: assignmentPoints,
-            groupWeight: groupWeight,
-            assignments: groupAssignments,
-            rules: .init(
-                dropLowest: group.rules?.drop_lowest ?? 0,
-                dropHighest: group.rules?.drop_highest ?? 0,
-                neverDropIds: group.rules?.never_drop?.map { $0.rawValue } ?? []
-            )
-        )
     }
 }

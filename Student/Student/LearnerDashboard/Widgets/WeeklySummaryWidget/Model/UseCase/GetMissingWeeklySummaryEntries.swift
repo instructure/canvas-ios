@@ -28,7 +28,6 @@ final class GetMissingWeeklySummaryEntries: UseCase {
     struct Response: Codable {
         let missing: [APIAssignment]
         let assignmentGroupsByCourse: [String: [APIAssignmentGroup]]
-        let applyGroupWeightsByCourse: [String: Bool]
     }
 
     static let cacheKey = "weekly-summary-missing-entries"
@@ -39,11 +38,11 @@ final class GetMissingWeeklySummaryEntries: UseCase {
         order: [NSSortDescriptor(key: "position", ascending: true)]
     )
 
-    private let assignmentWeight: BusinessLogic.AssignmentWeight.Logic
+    private let weightLogic: BusinessLogic.AssignmentWeight.Logic
     private var cancellables = Set<AnyCancellable>()
 
-    init(assignmentWeight: BusinessLogic.AssignmentWeight.Logic = BusinessLogic.AssignmentWeight.LogicLive()) {
-        self.assignmentWeight = assignmentWeight
+    init(weightLogic: BusinessLogic.AssignmentWeight.Logic = BusinessLogic.AssignmentWeight.LogicLive()) {
+        self.weightLogic = weightLogic
     }
 
     func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
@@ -54,14 +53,12 @@ final class GetMissingWeeklySummaryEntries: UseCase {
                     return Fail(error: NSError.instructureError("GetMissingWeeklySummaryEntries deallocated"))
                         .eraseToAnyPublisher()
                 }
-                let applyGroupWeights = Self.extractApplyGroupWeights(from: missing)
                 let courseIds = Set(missing.map { $0.course_id.rawValue }).filter { !$0.isEmpty }
                 return fetchAssignmentGroupsForCourses(courseIds, api: api)
-                    .map { groupsDict in
+                    .map { groupsByCourseID in
                         Response(
                             missing: missing,
-                            assignmentGroupsByCourse: groupsDict,
-                            applyGroupWeightsByCourse: applyGroupWeights
+                            assignmentGroupsByCourse: groupsByCourseID
                         )
                     }
                     .eraseToAnyPublisher()
@@ -86,15 +83,17 @@ final class GetMissingWeeklySummaryEntries: UseCase {
     func write(response: Response?, urlResponse: URLResponse?, to context: NSManagedObjectContext) {
         guard let response else { return }
         for assignment in response.missing {
+            let courseId = assignment.course_id.rawValue
+            let groups = response.assignmentGroupsByCourse[courseId] ?? []
+            let group = groups.group(containingAssignmentWithId: assignment.id.rawValue)
             CDDashboardWeeklySummaryEntry.saveMissing(
                 assignment,
                 weekStart: .distantPast,
-                gradeWeight: computeWeight(
-                    assignmentId: assignment.id.rawValue,
-                    courseId: assignment.course_id.rawValue,
-                    applyGroupWeights: response.applyGroupWeightsByCourse,
-                    groupsDict: response.assignmentGroupsByCourse
-                ),
+                gradeWeight: group.flatMap { weightLogic.assignmentWeightInCourse(
+                    assignment: .init(isOmittedFromFinalGrade: assignment.omit_from_final_grade, pointsPossible: assignment.points_possible),
+                    groupWeight: $0.group_weight,
+                    assignmentsInGroup: ($0.assignments ?? []).compactMap { .init(isOmittedFromFinalGrade: $0.omit_from_final_grade, pointsPossible: $0.points_possible) }
+                ) },
                 in: context
             )
         }
@@ -131,66 +130,4 @@ final class GetMissingWeeklySummaryEntries: UseCase {
             .eraseToAnyPublisher()
     }
 
-    // MARK: - Weight Computation
-
-    private static func extractApplyGroupWeights(from assignments: [APIAssignment]) -> [String: Bool] {
-        var result: [String: Bool] = [:]
-        for assignment in assignments {
-            if let course = assignment.course {
-                result[course.id.rawValue] = course.apply_assignment_group_weights ?? false
-            }
-        }
-        return result
-    }
-
-    private func computeWeight(
-        assignmentId: String,
-        courseId: String,
-        applyGroupWeights: [String: Bool],
-        groupsDict: [String: [APIAssignmentGroup]]
-    ) -> Double? {
-        guard applyGroupWeights[courseId] == true, !courseId.isEmpty else { return nil }
-        guard let groups = groupsDict[courseId] else { return nil }
-        for group in groups {
-            guard let assignment = group.assignments?.first(where: { $0.id.rawValue == assignmentId }) else { continue }
-            guard assignment.omit_from_final_grade != true else { return nil }
-            guard let groupWeight = group.group_weight, groupWeight > 0 else { return nil }
-            guard let points = assignment.points_possible, points > 0 else { return nil }
-            return computeCourseGradeWeight(assignmentPoints: points, group: group, groupWeight: groupWeight)
-        }
-        return nil
-    }
-
-    private func computeCourseGradeWeight(
-        assignmentPoints: Double,
-        group: APIAssignmentGroup,
-        groupWeight: Double
-    ) -> Double? {
-        let groupAssignments: [BusinessLogic.AssignmentWeight.GroupAssignment] = (group.assignments ?? []).compactMap {
-            guard $0.omit_from_final_grade != true,
-                  let pointsPossible = $0.points_possible,
-                  pointsPossible > 0
-            else {
-                return nil
-            }
-
-            return BusinessLogic.AssignmentWeight.GroupAssignment(
-                id: $0.id.rawValue,
-                pointsPossible: pointsPossible,
-                scorePercentage: ($0.submission?.values.first?.score ?? 0) / pointsPossible,
-                isGraded: $0.submission?.values.first?.workflow_state == .graded
-            )
-        }
-
-        return assignmentWeight.computeCourseGradeWeight(
-            assignmentPoints: assignmentPoints,
-            groupWeight: groupWeight,
-            assignments: groupAssignments,
-            rules: .init(
-                dropLowest: group.rules?.drop_lowest ?? 0,
-                dropHighest: group.rules?.drop_highest ?? 0,
-                neverDropIds: group.rules?.never_drop?.map { $0.rawValue } ?? []
-            )
-        )
-    }
 }

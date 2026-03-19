@@ -233,7 +233,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
             .setFailureType(to: Error.self)
             .flatMap { [weak self] _ -> AnyPublisher<WeeklySummaryWidgetFilters, Error> in
                 guard let self else { return Fail(error: NSError.internalError()).eraseToAnyPublisher() }
-                return interactor.getSummary(weekStart: weekStartDate, ignoreCache: true)
+                return interactor.getSummary(weekStart: weekStartDate, ignoreCache: false)
             }
             .receive(on: DispatchQueue.main)
             .sink(
@@ -246,6 +246,13 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
 
     // MARK: - Private Helpers
 
+    private func expandFilter(_ filter: WeeklySummaryWidgetFilterViewModel) {
+        expandedFilter = filter
+        missingFilter = missingFilter.withExpandedState(isMissingFilterSelected)
+        dueFilter = dueFilter.withExpandedState(isDueFilterSelected)
+        newGradesFilter = newGradesFilter.withExpandedState(isNewGradesFilterSelected)
+    }
+
     private func selectDefaultFilter() {
         guard expandedFilter == nil else { return }
 
@@ -253,9 +260,9 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
             .first { $0.id == self.config.weeklySummarySettings.expandedFilterId }
 
         if let filterToRestore {
-            toggleFilter(filterToRestore)
+            expandFilter(filterToRestore)
         } else if missingFilter.count != 0 {
-            toggleFilter(missingFilter)
+            expandFilter(missingFilter)
         }
     }
 

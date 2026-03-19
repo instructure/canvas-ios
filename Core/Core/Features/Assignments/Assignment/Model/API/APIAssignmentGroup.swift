@@ -33,6 +33,12 @@ public struct APIAssignmentGroupRules: Codable, Equatable {
     public let never_drop: [ID]?
 }
 
+public extension Array where Element == APIAssignmentGroup {
+    func group(containingAssignmentWithId assignmentId: String) -> APIAssignmentGroup? {
+        first { $0.assignments?.contains(where: { $0.id.rawValue == assignmentId }) == true }
+    }
+}
+
 #if DEBUG
 extension APIAssignmentGroup {
     public static func make(

@@ -52,7 +52,7 @@ extension CDDashboardWeeklySummaryEntry {
     @discardableResult
     static func saveDue(
         _ plannable: APIPlannable,
-        assignment: APIAssignment?,
+        assignment: APIAssignment,
         weekStart: Date,
         gradeWeight: Double?,
         in context: NSManagedObjectContext
@@ -66,14 +66,14 @@ extension CDDashboardWeeklySummaryEntry {
         model.title = plannable.plannable?.title ?? ""
         model.dueAt = plannable.plannable_date
         model.pointsPossible = plannable.plannable?.points_possible
-        model.isQuizLti = false
+        model.isQuizLti = assignment.quiz_id != nil || assignment.is_quiz_lti_assignment == true
         model.submissionTypes = []
         model.gradeWeight = gradeWeight
-        let submission = assignment?.submission?.values.first
+        let submission = assignment.submission?.values.first
         model.grade = submission?.grade
         model.score = submission?.score
         model.excused = submission?.excused == true
-        model.gradingType = assignment?.grading_type.rawValue
+        model.gradingType = assignment.grading_type.rawValue
         model.restrictQuantitativeData = (context.first(where: #keyPath(Course.id), equals: plannable.context?.id) as Course?)?.settings?.restrictQuantitativeData ?? false
         let plannableSubmissions = plannable.submissions?.value1
         let status = Core.SubmissionStatus(

@@ -205,12 +205,25 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
         XCTAssertNil(testee.expandedFilter)
     }
 
-    func test_weekNavigation_whenCacheNotAvailable_shouldShowWeekLoading() {
+    func test_weekNavigation_whenCacheNotAvailable_shouldShowAndClearWeekLoading() {
         let testee = makeViewModel()
+        var capturedLoadingTrue = false
+
+        func trackLoading() {
+            withObservationTracking {
+                if testee.isWeekLoading { capturedLoadingTrue = true }
+            } onChange: {
+                DispatchQueue.main.async { trackLoading() }
+            }
+        }
+        trackLoading()
 
         testee.navigateToPreviousWeek()
-        RunLoop.main.run(until: Date(timeIntervalSinceNow: 0.5))
+        waitUntil(shouldFail: true, failureMessage: "Loading never started and cleared") {
+            capturedLoadingTrue && !testee.isWeekLoading
+        }
 
+        XCTAssertTrue(capturedLoadingTrue)
         XCTAssertFalse(testee.isWeekLoading)
     }
 

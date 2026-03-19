@@ -84,7 +84,7 @@ public final class CDDashboardWeeklySummaryEntry: NSManagedObject {
         set { submissionTypesRaw = newValue.map { $0.rawValue }.joined(separator: ",") }
     }
 
-    // MARK: - Private
+    // MARK: - Helpers
 
     public static func findOrCreate(
         weekStart: Date,
