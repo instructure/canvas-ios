@@ -56,7 +56,7 @@ struct WeeklySummaryWidgetView: View {
                     .paddingStyle(.horizontal, .standard)
                     .paddingStyle(.bottom, .standard)
                 }
-                .animation(Self.animation, value: viewModel.expandedFilter?.id)
+                .animation(Self.animation, value: viewModel.expandedFilter?.assignments.map(\.id))
                 .animation(Self.animation, value: viewModel.weekStartDate)
             }
         }
