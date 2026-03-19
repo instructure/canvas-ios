@@ -42,6 +42,9 @@ final class LearnItemViewModel {
 
     var filteredItems: [LearnItemModel] { paginator.visibleItems }
     var isSeeMoreVisible: Bool { paginator.isSeeMoreVisible }
+    var hasActiveFilters: Bool {
+        !searchText.isEmpty || selectedFilterTypes?.isNotEmpty == true
+    }
 
     // MARK: - Private variables
 

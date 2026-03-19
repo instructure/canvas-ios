@@ -27,13 +27,17 @@ struct LearnItemView: View {
 
     var body: some View {
         VStack(spacing: .zero) {
+            if viewModel.hasItems {
+                headerView
+            }
             if !viewModel.isLoaderVisible {
-                if viewModel.hasItems {
+                if viewModel.filteredItems.isNotEmpty {
                     contentView
                 } else {
                     emptyView
                 }
             }
+            Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .overlay { if viewModel.isLoaderVisible { loaderView } }
@@ -45,18 +49,20 @@ struct LearnItemView: View {
 
     private var emptyView: some View {
         ScrollView {
-            Text("You don't have any items to show here.")
-                .foregroundStyle(Color.huiColors.text.body)
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .huiTypography(.p1)
-                .padding(.huiSpaces.space24)
+            Text(viewModel.hasActiveFilters
+                 ? String(localized: "No results found. Try adjusting your search terms.")
+                 : String(localized:"You aren’t currently enrolled in a course")
+            )
+            .foregroundStyle(Color.huiColors.text.body)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .huiTypography(.p1)
+            .padding(.horizontal, .huiSpaces.space24)
         }
         .refreshable { await viewModel.refresh() }
     }
 
     private var contentView: some View {
         VStack(spacing: .zero) {
-            headerView
             if #available(iOS 18.0, *) {
                 listItemsView
                     .onScrollGeometryChange(for: CGFloat.self) { geometry in geometry.contentOffset.y
