@@ -18,16 +18,14 @@
 
 import Combine
 import Core
-import Foundation
 import SwiftUI
 
 @Observable
 final class FileUploadProgressWidgetViewModel: DashboardWidgetViewModel {
-    typealias ViewType = FileUploadProgressWidgetView
 
     // MARK: - Protocol Properties
 
-    let config: DashboardWidgetConfig
+    let id: String = SystemWidgetIdentifier.fileUploadProgress.rawValue
     private(set) var state: InstUI.ScreenState = .empty
     let isHiddenInEmptyState = true
 
@@ -45,8 +43,10 @@ final class FileUploadProgressWidgetViewModel: DashboardWidgetViewModel {
     private let listViewModel: FileUploadNotificationCardListViewModel
     private var subscriptions = Set<AnyCancellable>()
 
-    init(config: DashboardWidgetConfig, router: Router, listViewModel: FileUploadNotificationCardListViewModel) {
-        self.config = config
+    init(
+        router: Router,
+        listViewModel: FileUploadNotificationCardListViewModel
+    ) {
         self.router = router
         self.listViewModel = listViewModel
         setupObserver()
@@ -99,8 +99,8 @@ final class FileUploadProgressWidgetViewModel: DashboardWidgetViewModel {
         item.hideDidTap()
     }
 
-    func makeView() -> FileUploadProgressWidgetView {
-        FileUploadProgressWidgetView(model: self)
+    func makeView() -> AnyView {
+        AnyView(FileUploadProgressWidgetView(model: self))
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {

@@ -27,12 +27,13 @@ public struct GetAllAnnouncementsRequest: APIRequestable {
     private let startDate: Date?
     private let endDate: Date?
 
+    /// - Warning: The `contextCodes` must not be empty or the request will fail.
     public init(
         contextCodes: [String],
         activeOnly: Bool? = nil,
         latestOnly: Bool? = nil,
-        startDate: Date? = nil,
-        endDate: Date? = nil
+        startDate: Date? = nil, // This defaults to "14 days ago" on backend
+        endDate: Date? = nil // This defaults to "28 days from start_date" on backend
     ) {
         self.contextCodes = contextCodes
         self.activeOnly = activeOnly

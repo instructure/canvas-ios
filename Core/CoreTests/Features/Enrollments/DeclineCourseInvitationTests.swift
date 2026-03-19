@@ -154,4 +154,65 @@ class DeclineCourseInvitationTests: CoreTestCase {
         XCTAssertNil(enrollment1)
         XCTAssertNotNil(enrollment2)
     }
+
+    func testWrite_deletesCourseToo_whenNoRemainingEnrollments() {
+        let testee = DeclineCourseInvitation(courseID: "course1", enrollmentID: "enrollment1")
+
+        let course = Course.make(from: .make(id: "course1"), in: databaseClient)
+        Enrollment.make(
+            from: .make(id: "enrollment1", course_id: "course1", enrollment_state: .invited),
+            course: course,
+            in: databaseClient
+        )
+
+        let response = HandleCourseInvitationRequest.Response(success: true)
+        testee.write(response: response, urlResponse: nil, to: databaseClient)
+
+        let savedCourse: Course? = databaseClient.first(where: #keyPath(Course.id), equals: "course1")
+        XCTAssertNil(savedCourse)
+    }
+
+    func testWrite_deletesCourseToo_whenOnlyGradeEnrollmentsRemain() {
+        let testee = DeclineCourseInvitation(courseID: "course1", enrollmentID: "enrollment1")
+
+        let course = Course.make(from: .make(id: "course1"), in: databaseClient)
+        Enrollment.make(
+            from: .make(id: "enrollment1", course_id: "course1", enrollment_state: .invited),
+            course: course,
+            in: databaseClient
+        )
+        Enrollment.make(
+            from: .make(id: nil, course_id: "course1", enrollment_state: .active),
+            course: course,
+            in: databaseClient
+        )
+
+        let response = HandleCourseInvitationRequest.Response(success: true)
+        testee.write(response: response, urlResponse: nil, to: databaseClient)
+
+        let savedCourse: Course? = databaseClient.first(where: #keyPath(Course.id), equals: "course1")
+        XCTAssertNil(savedCourse)
+    }
+
+    func testWrite_keepsCourse_whenOtherEnrollmentsRemain() {
+        let testee = DeclineCourseInvitation(courseID: "course1", enrollmentID: "enrollment1")
+
+        let course = Course.make(from: .make(id: "course1"), in: databaseClient)
+        Enrollment.make(
+            from: .make(id: "enrollment1", course_id: "course1", enrollment_state: .invited),
+            course: course,
+            in: databaseClient
+        )
+        Enrollment.make(
+            from: .make(id: "enrollment2", course_id: "course1", enrollment_state: .active),
+            course: course,
+            in: databaseClient
+        )
+
+        let response = HandleCourseInvitationRequest.Response(success: true)
+        testee.write(response: response, urlResponse: nil, to: databaseClient)
+
+        let savedCourse: Course? = databaseClient.first(where: #keyPath(Course.id), equals: "course1")
+        XCTAssertNotNil(savedCourse)
+    }
 }

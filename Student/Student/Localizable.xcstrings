@@ -2423,12 +2423,6 @@
         }
       }
     },
-    "%@ marked as done" : {
-
-    },
-    "%@ marked as not done" : {
-
-    },
     "%@ need grading" : {
       "comment" : "Label indicating multiple submissions need grading",
       "extractionState" : "manual",
@@ -19931,7 +19925,7 @@
         }
       }
     },
-    "Add To-do" : {
+    "Add widgets using Customize Dashboard or Dashboard Settings." : {
 
     },
     "All Courses" : {
@@ -20206,6 +20200,9 @@
           }
         }
       }
+    },
+    "All widgets are turned off" : {
+
     },
     "Allowed Attempts:" : {
       "localizations" : {
@@ -44213,9 +44210,6 @@
         }
       }
     },
-    "Daily To-do" : {
-
-    },
     "Dashboard" : {
       "comment" : "Tab title, max character count is 14",
       "localizations" : {
@@ -62082,9 +62076,6 @@
         }
       }
     },
-    "Example setting %lld" : {
-
-    },
     "Existing Attachments..." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -63680,15 +63671,6 @@
           }
         }
       }
-    },
-    "Failed to mark item as done" : {
-
-    },
-    "Failed to mark item as not done" : {
-
-    },
-    "Failed to update item" : {
-
     },
     "Feeling stuck? Everyone hits walls, just don't stop climbing." : {
       "localizations" : {
@@ -89225,9 +89207,6 @@
         }
       }
     },
-    "Looks like you're free for this day.\nDo you want to add some To-dos?" : {
-
-    },
     "Love it!" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -98360,6 +98339,9 @@
         }
       }
     },
+    "New Announcements" : {
+
+    },
     "New Folder" : {
       "comment" : "Title for an alert popup, where the user will be asked to provide a name for the new folder",
       "extractionState" : "manual",
@@ -100237,9 +100219,6 @@
           }
         }
       }
-    },
-    "No additional details available." : {
-
     },
     "No audio was recorded." : {
       "comment" : "Message for attempting submission without a comment",
@@ -111181,6 +111160,9 @@
         }
       }
     },
+    "Open Announcements" : {
+
+    },
     "Open in Safari" : {
       "comment" : "Open a document in the application Safari",
       "extractionState" : "manual",
@@ -111990,6 +111972,9 @@
           }
         }
       }
+    },
+    "Open New Announcement" : {
+
     },
     "Open the Quiz" : {
       "localizations" : {
@@ -132269,6 +132254,9 @@
         }
       }
     },
+    "Send message to members" : {
+
+    },
     "Sent" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -132801,7 +132789,7 @@
         }
       }
     },
-    "Show Completed" : {
+    "Show Color Overlay" : {
 
     },
     "Show file" : {
@@ -173883,9 +173871,6 @@
         }
       }
     },
-    "We weren’t able to load your To-dos.\nTry again, or come back later." : {
-
-    },
     "Website Address" : {
       "localizations" : {
         "ar" : {
@@ -175201,9 +175186,6 @@
           }
         }
       }
-    },
-    "White" : {
-      "comment" : "This is a name of a color."
     },
     "Whoops!" : {
       "comment" : "Error Title",
@@ -181097,9 +181079,6 @@
           }
         }
       }
-    },
-    "You're all done for now!" : {
-
     },
     "You're building skills, even on slow days." : {
       "localizations" : {

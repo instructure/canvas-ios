@@ -26,18 +26,43 @@ import UIKit
 @Observable
 final class LearnerDashboardSettingsViewModel {
     var useNewLearnerDashboard: Bool
-    var mainColor: Color = .course1
+    var mainColor: Color {
+        didSet { colorInteractor.selectColor(mainColor) }
+    }
+    var colors: [CourseColorData] { colorInteractor.availableColors }
+    let courseSettingsViewModel: LearnerDashboardSettingsWidgetsSectionViewModel
 
     private var defaults: SessionDefaults
     private let environment: AppEnvironment
+    private let colorInteractor: LearnerDashboardColorInteractor
 
     init(
         defaults: SessionDefaults,
+        colorInteractor: LearnerDashboardColorInteractor,
+        courseSettingsViewModel: LearnerDashboardSettingsWidgetsSectionViewModel,
         environment: AppEnvironment = .shared
     ) {
         self.defaults = defaults
         self.environment = environment
+        self.colorInteractor = colorInteractor
+        self.courseSettingsViewModel = courseSettingsViewModel
         self.useNewLearnerDashboard = defaults.preferNewLearnerDashboard
+        self.mainColor = colorInteractor.dashboardColor.value
+    }
+
+    /// Switches from the new learner dashboard back to the classic dashboard.
+    /// Sets both the preference flag and triggers the feedback flow.
+    /// Note: While `preferNewLearnerDashboard` is also managed by DashboardSettingsInteractorLive,
+    /// the feedback flag (`shouldShowDashboardFeedback`) is only set here to ensure it's
+    /// triggered specifically when users actively switch away from the new dashboard.
+    func switchToClassicDashboard(viewController: UIViewController) {
+        defaults.preferNewLearnerDashboard = false
+        defaults.shouldShowDashboardFeedback = true
+        useNewLearnerDashboard = false
+
+        viewController.dismiss(animated: true) {
+            NotificationCenter.default.post(name: .dashboardPreferenceChanged, object: nil)
+        }
     }
 
     func letUsKnow(from viewController: UIViewController) {
@@ -57,20 +82,5 @@ final class LearnerDashboardSettingsViewModel {
             from: topViewController,
             options: .modal(.formSheet, embedInNav: true, addDoneButton: true)
         )
-    }
-
-    /// Switches from the new learner dashboard back to the classic dashboard.
-    /// Sets both the preference flag and triggers the feedback flow.
-    /// Note: While `preferNewLearnerDashboard` is also managed by DashboardSettingsInteractorLive,
-    /// the feedback flag (`shouldShowDashboardFeedback`) is only set here to ensure it's
-    /// triggered specifically when users actively switch away from the new dashboard.
-    func switchToClassicDashboard(viewController: UIViewController) {
-        defaults.preferNewLearnerDashboard = false
-        defaults.shouldShowDashboardFeedback = true
-        useNewLearnerDashboard = false
-
-        viewController.dismiss(animated: true) {
-            NotificationCenter.default.post(name: .dashboardPreferenceChanged, object: nil)
-        }
     }
 }

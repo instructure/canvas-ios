@@ -18,14 +18,13 @@
 
 import Combine
 import Core
-import Foundation
 import Observation
+import SwiftUI
 
 @Observable
-final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
-    typealias ViewType = CourseInvitationsWidgetView
+final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel, DashboardMutatorWidget {
 
-    let config: DashboardWidgetConfig
+    let id: String = SystemWidgetIdentifier.courseInvitations.rawValue
     let isHiddenInEmptyState = true
 
     private(set) var invitations: [CourseInvitationCardViewModel] = [] {
@@ -39,30 +38,29 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
         [state, invitations.count]
     }
 
+    var requestDashboardRefresh = PassthroughSubject<Void, Never>()
+
     private let interactor: CoursesInteractor
     private let snackBarViewModel: SnackBarViewModel
     private var subscriptions = Set<AnyCancellable>()
 
     init(
-        config: DashboardWidgetConfig,
         interactor: CoursesInteractor,
         snackBarViewModel: SnackBarViewModel
     ) {
-        self.config = config
         self.interactor = interactor
         self.snackBarViewModel = snackBarViewModel
         updateTitles()
     }
 
-    func makeView() -> CourseInvitationsWidgetView {
-        CourseInvitationsWidgetView(viewModel: self)
+    func makeView() -> AnyView {
+        AnyView(CourseInvitationsWidgetView(viewModel: self))
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
         interactor.getCourses(ignoreCache: ignoreCache)
             .map { [weak self, interactor, snackBarViewModel] result in
-                guard let self else { return [] }
-                return result.invitedCourses.compactMap { course in
+                result.invitedCourses.compactMap { course in
                     guard let invitedEnrollment = course.firstInvitedEnrollment,
                           let enrollmentID = invitedEnrollment.id else {
                         return nil
@@ -77,10 +75,8 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
                         sectionName: section?.name,
                         interactor: interactor,
                         snackBarViewModel: snackBarViewModel,
-                        onDismiss: { [weak self] enrollmentId in
-                            DispatchQueue.main.async {
-                                self?.removeInvitation(id: enrollmentId)
-                            }
+                        onDismiss: { _ in
+                            self?.requestDashboardRefresh.send()
                         }
                     )
                 }
@@ -96,14 +92,6 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel {
                 return Just(())
             }
             .eraseToAnyPublisher()
-    }
-
-    @MainActor
-    private func removeInvitation(id: String) {
-        invitations.removeAll { $0.id == id }
-        if invitations.isEmpty {
-            state = .empty
-        }
     }
 
     private func updateTitles() {
