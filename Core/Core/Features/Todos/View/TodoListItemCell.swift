@@ -108,7 +108,6 @@ public struct TodoListItemCell: View {
             }
         }
         .frame(width: 44, height: 44)
-        .tint(Color(Brand.shared.primary))
         .contentShape(Rectangle())
         .onTapGesture {
             if isSwiping { return }
