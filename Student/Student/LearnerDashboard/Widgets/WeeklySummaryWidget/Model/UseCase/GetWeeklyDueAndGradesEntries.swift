@@ -122,7 +122,7 @@ final class GetWeeklyDueAndGradesEntries: UseCase {
             for edge in courseNode.submissions.edges {
                 let submission = edge.node
                 if submission.gradeHidden == true { continue }
-                guard let gradedAt = submission.gradedAt, gradedAt < weekEnd else { continue }
+                guard let gradedAt = submission.gradedAt, gradedAt >= weekStart, gradedAt < weekEnd else { continue }
                 let course: Course? = client.first(where: #keyPath(Course.id), equals: courseNode._id)
                 CDDashboardWeeklySummaryEntry.saveGrade(
                     submission,

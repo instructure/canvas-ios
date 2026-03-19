@@ -166,6 +166,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     private func beginWeekTransition() {
         weekNavigationSubscription?.cancel()
         weekNavigationSubscription = Just(())
+            // Debounce rapid week-navigation taps so we only fetch once the user settles on a week.
             .delay(for: .milliseconds(300), scheduler: DispatchQueue.main)
             .flatMap { [weak self] _ -> AnyPublisher<Bool, Never> in
                 guard let self else { return Just(false).eraseToAnyPublisher() }

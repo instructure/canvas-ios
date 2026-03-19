@@ -31,12 +31,16 @@ public final class CDDashboardWeeklySummaryEntry: NSManagedObject {
         case submitted
     }
 
+    /// Sentinel `weekStart` value for `.missing` entries, which are not tied to any specific week.
+    public static let missingWeekStart: Date = .distantPast
+
     @NSManaged public var assignmentId: String
     @NSManaged public var weekStart: Date
     @NSManaged public var position: Double
     @NSManaged public var courseId: String
     @NSManaged public var title: String
-    @NSManaged public var dueAt: Date?
+    /// The due date for `.missing` and `.due` entries, or the graded-at date for `.newGrades` entries.
+    @NSManaged public var date: Date?
     @NSManaged public var isQuizLti: Bool
     @NSManaged public var grade: String?
     @NSManaged public var excused: Bool

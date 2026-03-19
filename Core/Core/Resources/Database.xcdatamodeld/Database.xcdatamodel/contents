@@ -1521,7 +1521,7 @@
     <entity name="CDDashboardWeeklySummaryEntry" representedClassName="Core.CDDashboardWeeklySummaryEntry" syncable="YES">
         <attribute name="categoryRaw" attributeType="String"/>
         <attribute name="courseId" attributeType="String"/>
-        <attribute name="dueAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="excused" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="grade" optional="YES" attributeType="String"/>
         <attribute name="gradingType" optional="YES" attributeType="String"/>

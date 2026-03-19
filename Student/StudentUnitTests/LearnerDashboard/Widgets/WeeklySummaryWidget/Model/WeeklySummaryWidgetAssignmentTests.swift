@@ -55,7 +55,7 @@ final class WeeklySummaryWidgetAssignmentTests: StudentTestCase {
 
     func test_dueDateText_isFormattedForMissingCategory() {
         let date = Date(timeIntervalSince1970: 1_700_000_000)
-        let entry = makeEntry(category: .missing, dueAt: date)
+        let entry = makeEntry(category: .missing, date: date)
 
         let testee = WeeklySummaryWidgetAssignment(entry: entry)
 
@@ -64,7 +64,7 @@ final class WeeklySummaryWidgetAssignmentTests: StudentTestCase {
 
     func test_dueDateText_isFormattedForDueCategory() {
         let date = Date(timeIntervalSince1970: 1_700_000_000)
-        let entry = makeEntry(category: .due, dueAt: date)
+        let entry = makeEntry(category: .due, date: date)
 
         let testee = WeeklySummaryWidgetAssignment(entry: entry)
 
@@ -223,7 +223,7 @@ final class WeeklySummaryWidgetAssignmentTests: StudentTestCase {
         courseId: String = "1",
         title: String = "Assignment",
         category: CDDashboardWeeklySummaryEntry.Category = .due,
-        dueAt: Date? = nil,
+        date: Date? = nil,
         course: Course? = nil
     ) -> CDDashboardWeeklySummaryEntry {
         let entry = CDDashboardWeeklySummaryEntry.findOrCreate(
@@ -236,7 +236,7 @@ final class WeeklySummaryWidgetAssignmentTests: StudentTestCase {
         entry.category = category
         entry.courseId = courseId
         entry.title = title
-        entry.dueAt = dueAt
+        entry.date = date
         entry.submissionTypes = []
         if let course {
             entry.course = course

@@ -48,7 +48,7 @@ final class GetMissingWeeklySummaryEntriesTests: StudentTestCase {
         XCTAssertTrue(entries.contains(where: { $0.title == "Quiz" }))
     }
 
-    func test_write_setsWeekStartToDistantPast() {
+    func test_write_setsWeekStartToMissingWeekStart() {
         let response = GetMissingWeeklySummaryEntries.Response(
             missing: [.make(id: "a1")],
             assignmentGroupsByCourse: [:]
@@ -57,7 +57,7 @@ final class GetMissingWeeklySummaryEntriesTests: StudentTestCase {
         testee.write(response: response, urlResponse: nil, to: databaseClient)
 
         let entries: [CDDashboardWeeklySummaryEntry] = databaseClient.fetch(scope: testee.scope)
-        XCTAssertEqual(entries.first?.weekStart, .distantPast)
+        XCTAssertEqual(entries.first?.weekStart, CDDashboardWeeklySummaryEntry.missingWeekStart)
     }
 
     func test_write_setsCategoryToMissing() {
@@ -118,8 +118,8 @@ final class GetMissingWeeklySummaryEntriesTests: StudentTestCase {
     // MARK: - reset
 
     func test_reset_deletesOnlyMissingEntries() {
-        let missingEntry = CDDashboardWeeklySummaryEntry.findOrCreate(weekStart: .distantPast, category: .missing, id: "m1", in: databaseClient)
-        missingEntry.weekStart = .distantPast
+        let missingEntry = CDDashboardWeeklySummaryEntry.findOrCreate(weekStart: CDDashboardWeeklySummaryEntry.missingWeekStart, category: .missing, id: "m1", in: databaseClient)
+        missingEntry.weekStart = CDDashboardWeeklySummaryEntry.missingWeekStart
         missingEntry.category = .missing
         let dueEntry = CDDashboardWeeklySummaryEntry.findOrCreate(weekStart: .distantPast, category: .due, id: "d1", in: databaseClient)
         dueEntry.weekStart = .distantPast

@@ -88,7 +88,7 @@ final class GetMissingWeeklySummaryEntries: UseCase {
             let group = groups.group(containingAssignmentWithId: assignment.id.rawValue)
             CDDashboardWeeklySummaryEntry.saveMissing(
                 assignment,
-                weekStart: .distantPast,
+                weekStart: CDDashboardWeeklySummaryEntry.missingWeekStart,
                 gradeWeight: group.flatMap { weightLogic.assignmentWeightInCourse(
                     assignment: .init(isOmittedFromFinalGrade: assignment.omit_from_final_grade, pointsPossible: assignment.points_possible),
                     groupWeight: $0.group_weight,

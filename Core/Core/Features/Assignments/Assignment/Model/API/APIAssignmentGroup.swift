@@ -24,13 +24,6 @@ public struct APIAssignmentGroup: Codable, Equatable {
     public let position: Int
     public let group_weight: Double?
     public var assignments: [APIAssignment]?
-    public let rules: APIAssignmentGroupRules?
-}
-
-public struct APIAssignmentGroupRules: Codable, Equatable {
-    public let drop_lowest: Int?
-    public let drop_highest: Int?
-    public let never_drop: [ID]?
 }
 
 public extension Array where Element == APIAssignmentGroup {
@@ -46,16 +39,14 @@ extension APIAssignmentGroup {
         name: String = "Assignment Group A",
         position: Int = 1,
         group_weight: Double? = nil,
-        assignments: [APIAssignment]? = nil,
-        rules: APIAssignmentGroupRules? = nil
+        assignments: [APIAssignment]? = nil
     ) -> APIAssignmentGroup {
         return APIAssignmentGroup(
             id: id,
             name: name,
             position: position,
             group_weight: group_weight,
-            assignments: assignments,
-            rules: rules
+            assignments: assignments
         )
     }
 }

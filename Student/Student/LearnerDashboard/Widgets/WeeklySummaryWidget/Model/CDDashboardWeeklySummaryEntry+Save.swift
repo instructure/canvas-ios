@@ -35,7 +35,7 @@ extension CDDashboardWeeklySummaryEntry {
         model.courseId = assignment.course_id.rawValue
         model.course = context.first(where: #keyPath(Course.id), equals: assignment.course_id.rawValue)
         model.title = assignment.name
-        model.dueAt = assignment.due_at
+        model.date = assignment.due_at
         model.pointsPossible = assignment.points_possible
         model.isQuizLti = assignment.quiz_id != nil || assignment.is_quiz_lti_assignment == true
         model.submissionTypes = assignment.submission_types
@@ -64,10 +64,10 @@ extension CDDashboardWeeklySummaryEntry {
         model.courseId = plannable.context?.id ?? ""
         model.course = context.first(where: #keyPath(Course.id), equals: plannable.context?.id)
         model.title = plannable.plannable?.title ?? ""
-        model.dueAt = plannable.plannable_date
+        model.date = plannable.plannable_date
         model.pointsPossible = plannable.plannable?.points_possible
         model.isQuizLti = assignment.quiz_id != nil || assignment.is_quiz_lti_assignment == true
-        model.submissionTypes = []
+        model.submissionTypes = assignment.submission_types
         model.gradeWeight = gradeWeight
         let submission = assignment.submission?.values.first
         model.grade = submission?.grade
@@ -113,7 +113,7 @@ extension CDDashboardWeeklySummaryEntry {
         model.courseId = courseId
         model.course = context.first(where: #keyPath(Course.id), equals: courseId)
         model.title = submission.assignment.name
-        model.dueAt = gradedAt
+        model.date = gradedAt
         model.pointsPossible = submission.assignment.pointsPossible
         model.isQuizLti = false
         model.submissionTypes = []

@@ -48,7 +48,7 @@ final class CDDashboardWeeklySummaryEntrySaveTests: StudentTestCase {
         XCTAssertEqual(entry.category, .missing)
         XCTAssertEqual(entry.courseId, "42")
         XCTAssertEqual(entry.title, "Math HW")
-        XCTAssertEqual(entry.dueAt, due)
+        XCTAssertEqual(entry.date, due)
         XCTAssertEqual(entry.pointsPossible, 50)
         XCTAssertNil(entry.grade)
         XCTAssertNil(entry.score)
@@ -159,7 +159,7 @@ final class CDDashboardWeeklySummaryEntrySaveTests: StudentTestCase {
         XCTAssertEqual(entry.category, .due)
         XCTAssertEqual(entry.courseId, "99")
         XCTAssertEqual(entry.title, "Essay")
-        XCTAssertEqual(entry.dueAt, due)
+        XCTAssertEqual(entry.date, due)
         XCTAssertEqual(entry.pointsPossible, 100)
         XCTAssertEqual(entry.position, due.timeIntervalSince1970)
     }
