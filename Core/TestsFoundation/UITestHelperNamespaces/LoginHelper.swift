@@ -32,7 +32,7 @@ public class LoginHelper: BaseHelper {
             app.find(id: "LoginStartSession.\(user.host).\(dsUser.id)")
         }
         public static var invalidUsernameOrPasswordLabel: XCUIElement {
-            app.find(labelContaining: "Please verify your username or password", type: .staticText)
+            app.find(labelContaining: "Please verify your email or password and try again.", type: .staticText)
         }
     }
 
@@ -50,14 +50,10 @@ public class LoginHelper: BaseHelper {
 
         public static var navBar: XCUIElement { app.find(id: user.host) }
         public static var hostLabel: XCUIElement { navBar.find(type: .staticText) }
-        public static var emailField: XCUIElement { app.find(placeholderValue: "Email", type: .textField) }
-        public static var passwordField: XCUIElement { app.find(placeholderValue: "Password", type: .secureTextField) }
+        public static var emailField: XCUIElement { app.find(labelContaining: "Email", type: .textField) }
+        public static var passwordField: XCUIElement { app.find(label: "Password", type: .secureTextField) }
         public static var loginButton: XCUIElement { app.find(label: "Log In", type: .button) }
-        public static var forgotPasswordButton: XCUIElement { app.find(label: "Forgot Password?", type: .link) }
-        public static var requestPasswordButton: XCUIElement { app.find(label: "Request Password", type: .button) }
-        public static var backToLoginButton: XCUIElement { app.find(label: "Back to Login", type: .link) }
-        public static var needAccountButton: XCUIElement { linksOfWebView[0] }
-        public static var noPasswordLabel: XCUIElement { app.find(labelContaining: "No password was given") }
+        public static var forgotPasswordButton: XCUIElement { app.find(label: "Forgot password?", type: .link) }
 
         public static var studentPairingCodeLabel: XCUIElement { webView.find(label: "Student Pairing Code") }
         public static var parentCreateAccountButton: XCUIElement { webView.find(label: "Start Participating") }
