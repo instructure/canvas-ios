@@ -106,7 +106,7 @@ enum EditableWidgetIdentifier: String, Codable, CaseIterable {
                     env: .shared
                 ),
                 router: AppEnvironment.shared.router,
-                snackBarViewModel: .init()
+                snackBarViewModel: snackBarViewModel
             )
         }
     }
