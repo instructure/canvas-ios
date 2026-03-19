@@ -96,6 +96,7 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
     )
 
     var outputError: Error?
+    var getSummarySubject: PassthroughSubject<WeeklySummaryWidgetFilters, Error>?
 
     func clearCache() -> AnyPublisher<Void, Never> {
         Just(()).eraseToAnyPublisher()
@@ -110,6 +111,9 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
     func getSummary(weekStart: Date, ignoreCache: Bool) -> AnyPublisher<WeeklySummaryWidgetFilters, Error> {
         if let error = outputError {
             return Fail(error: error).eraseToAnyPublisher()
+        }
+        if let subject = getSummarySubject {
+            return subject.eraseToAnyPublisher()
         }
         return Publishers.typedJust(outputValue)
     }

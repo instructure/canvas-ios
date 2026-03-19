@@ -16,6 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
+import CombineSchedulers
 import SwiftUI
 import TestsFoundation
 import XCTest
@@ -160,9 +162,10 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
     // MARK: - Week navigation — filter state on cache hit/miss
 
     func test_weekNavigation_whenCacheAvailable_shouldNotCollapseFilter() {
+        let testScheduler: TestSchedulerOf<DispatchQueue> = DispatchQueue.test
         let mock = WeeklySummaryWidgetInteractorMock()
         mock.hasCachedSummaryOutput = true
-        let testee = makeViewModel(interactor: mock)
+        let testee = makeViewModel(interactor: mock, scheduler: testScheduler.eraseToAnyScheduler())
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
         testee.toggleFilter(testee.missingFilter)
         XCTAssertNotNil(testee.expandedFilter)
@@ -187,50 +190,55 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
             newGrades: []
         )
         testee.navigateToPreviousWeek()
-        RunLoop.main.run(until: Date(timeIntervalSinceNow: 0.5))
+        testScheduler.advance(by: .milliseconds(300))
 
         XCTAssertNotNil(testee.expandedFilter)
         XCTAssertEqual(testee.expandedFilter?.assignments.map(\.id), ["999"])
     }
 
-    func test_weekNavigation_whenCacheNotAvailable_shouldCollapseFilter() {
+    func test_weekNavigation_whenCacheNotAvailable_shouldCollapseFilterThenRestoreAfterLoad() {
+        let testScheduler: TestSchedulerOf<DispatchQueue> = DispatchQueue.test
         let mock = WeeklySummaryWidgetInteractorMock()
-        let testee = makeViewModel(interactor: mock)
+        let subject = PassthroughSubject<WeeklySummaryWidgetFilters, Error>()
+        mock.getSummarySubject = subject
+        let testee = makeViewModel(interactor: mock, scheduler: testScheduler.eraseToAnyScheduler())
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
         testee.toggleFilter(testee.missingFilter)
         XCTAssertNotNil(testee.expandedFilter)
 
         testee.navigateToPreviousWeek()
-        RunLoop.main.run(until: Date(timeIntervalSinceNow: 0.5))
-
+        testScheduler.advance(by: .milliseconds(300))
         XCTAssertNil(testee.expandedFilter)
+
+        subject.send(mock.outputValue)
+        subject.send(completion: .finished)
+        testScheduler.advance()
+        XCTAssertEqual(testee.expandedFilter?.id, testee.missingFilter.id)
     }
 
     func test_weekNavigation_whenCacheNotAvailable_shouldShowAndClearWeekLoading() {
-        let testee = makeViewModel()
-        var capturedLoadingTrue = false
-
-        func trackLoading() {
-            withObservationTracking {
-                if testee.isWeekLoading { capturedLoadingTrue = true }
-            } onChange: {
-                DispatchQueue.main.async { trackLoading() }
-            }
-        }
-        trackLoading()
+        let testScheduler: TestSchedulerOf<DispatchQueue> = DispatchQueue.test
+        let mock = WeeklySummaryWidgetInteractorMock()
+        let subject = PassthroughSubject<WeeklySummaryWidgetFilters, Error>()
+        mock.getSummarySubject = subject
+        let testee = makeViewModel(interactor: mock, scheduler: testScheduler.eraseToAnyScheduler())
 
         testee.navigateToPreviousWeek()
-        waitUntil(shouldFail: true, failureMessage: "Loading never started and cleared") {
-            capturedLoadingTrue && !testee.isWeekLoading
-        }
+        testScheduler.advance(by: .milliseconds(300))
+        XCTAssertTrue(testee.isWeekLoading)
 
-        XCTAssertTrue(capturedLoadingTrue)
+        subject.send(mock.outputValue)
+        subject.send(completion: .finished)
+        testScheduler.advance()
         XCTAssertFalse(testee.isWeekLoading)
     }
 
     // MARK: - Private helpers
 
-    private func makeViewModel(interactor: WeeklySummaryWidgetInteractor = WeeklySummaryWidgetInteractorMock()) -> WeeklySummaryWidgetViewModel {
-        WeeklySummaryWidgetViewModel(config: .make(id: .weeklySummary), interactor: interactor)
+    private func makeViewModel(
+        interactor: WeeklySummaryWidgetInteractor = WeeklySummaryWidgetInteractorMock(),
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) -> WeeklySummaryWidgetViewModel {
+        WeeklySummaryWidgetViewModel(config: .make(id: .weeklySummary), interactor: interactor, scheduler: scheduler)
     }
 }

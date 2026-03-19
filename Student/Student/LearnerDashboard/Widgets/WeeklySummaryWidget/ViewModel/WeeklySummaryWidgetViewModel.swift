@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import Core
 import Foundation
 import SwiftUI
@@ -59,6 +60,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     // MARK: - Init
 
     private let interactor: WeeklySummaryWidgetInteractor
+    private let scheduler: AnySchedulerOf<DispatchQueue>
     private let router: Router
     private var defaults: SessionDefaults
     private var retrySubscription: AnyCancellable?
@@ -69,10 +71,12 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
         config: DashboardWidgetConfig,
         interactor: WeeklySummaryWidgetInteractor = WeeklySummaryWidgetInteractorLive(),
         router: Router = AppEnvironment.shared.router,
-        defaults: SessionDefaults = AppEnvironment.shared.userDefaults ?? .fallback
+        defaults: SessionDefaults = AppEnvironment.shared.userDefaults ?? .fallback,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.config = config
         self.interactor = interactor
+        self.scheduler = scheduler
         self.router = router
         self.defaults = defaults
         let weekStartDate = Clock.now.startOfWeek()
@@ -167,12 +171,12 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
         weekNavigationSubscription?.cancel()
         weekNavigationSubscription = Just(())
             // Debounce rapid week-navigation taps so we only fetch once the user settles on a week.
-            .delay(for: .milliseconds(300), scheduler: DispatchQueue.main)
+            .delay(for: .milliseconds(300), scheduler: scheduler)
             .flatMap { [weak self] _ -> AnyPublisher<Bool, Never> in
                 guard let self else { return Just(false).eraseToAnyPublisher() }
                 return interactor.hasCachedSummary(weekStart: weekStartDate)
             }
-            .receive(on: DispatchQueue.main)
+            .receive(on: scheduler)
             .setFailureType(to: Error.self)
             .flatMap { [weak self] hasCachedData -> AnyPublisher<WeeklySummaryWidgetFilters, Error> in
                 guard let self else { return Fail(error: NSError.internalError()).eraseToAnyPublisher() }
@@ -184,7 +188,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
                     isWeekLoading = true
                 }
                 return interactor.getSummary(weekStart: weekStartDate, ignoreCache: false)
-                    .receive(on: DispatchQueue.main)
+                    .receive(on: scheduler)
                     .eraseToAnyPublisher()
             }
             .sink(
