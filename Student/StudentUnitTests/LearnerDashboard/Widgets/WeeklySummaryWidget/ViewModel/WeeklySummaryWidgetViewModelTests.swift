@@ -17,6 +17,7 @@
 //
 
 import SwiftUI
+import TestsFoundation
 import XCTest
 @testable import Core
 @testable import Student

@@ -113,9 +113,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
             .receive(on: DispatchQueue.main)
             .handleEvents(receiveOutput: { [weak self] filters in
                 guard let self else { return }
-                missingFilter = .missing(assignments: filters.missing)
-                dueFilter = .due(assignments: filters.due)
-                newGradesFilter = .newGrades(assignments: filters.newGrades)
+                updateFilters(filters)
                 state = .data
                 selectDefaultFilter()
             })
