@@ -36,7 +36,6 @@ public final class CDDashboardWeeklySummaryEntry: NSManagedObject {
 
     @NSManaged public var assignmentId: String
     @NSManaged public var weekStart: Date
-    @NSManaged public var position: Double
     @NSManaged public var courseId: String
     @NSManaged public var title: String
     /// The due date for `.missing` and `.due` entries, or the graded-at date for `.newGrades` entries.
@@ -115,7 +114,10 @@ extension Scope {
         ])
         return Scope(
             predicate: predicate,
-            order: [NSSortDescriptor(key: #keyPath(CDDashboardWeeklySummaryEntry.position), ascending: true)]
+            order: [
+                NSSortDescriptor(key: #keyPath(CDDashboardWeeklySummaryEntry.date), ascending: true),
+                NSSortDescriptor(key: #keyPath(CDDashboardWeeklySummaryEntry.assignmentId), ascending: true)
+            ]
         )
     }
 }

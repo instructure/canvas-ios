@@ -1529,7 +1529,6 @@
         <attribute name="assignmentId" attributeType="String"/>
         <attribute name="isQuizLti" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
-        <attribute name="position" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="scoreRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="submissionStatusRaw" optional="YES" attributeType="String"/>

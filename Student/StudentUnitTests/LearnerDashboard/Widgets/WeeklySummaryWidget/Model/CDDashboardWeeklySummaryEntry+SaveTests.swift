@@ -56,33 +56,6 @@ final class CDDashboardWeeklySummaryEntrySaveTests: StudentTestCase {
         XCTAssertNil(entry.submissionStatus)
     }
 
-    func test_saveMissing_setsPositionToMaxWhenNoDueDate() {
-        let assignment = APIAssignment.make(due_at: nil)
-
-        let entry = CDDashboardWeeklySummaryEntry.saveMissing(
-            assignment,
-            weekStart: weekStart,
-            gradeWeight: nil,
-            in: databaseClient
-        )
-
-        XCTAssertEqual(entry.position, Double.greatestFiniteMagnitude)
-    }
-
-    func test_saveMissing_setsPositionToDueDateTimestamp() {
-        let due = Date(timeIntervalSince1970: 5000)
-        let assignment = APIAssignment.make(due_at: due)
-
-        let entry = CDDashboardWeeklySummaryEntry.saveMissing(
-            assignment,
-            weekStart: weekStart,
-            gradeWeight: nil,
-            in: databaseClient
-        )
-
-        XCTAssertEqual(entry.position, due.timeIntervalSince1970)
-    }
-
     func test_saveMissing_setsIsQuizLtiTrueWhenQuizId() {
         let assignment = APIAssignment.make(quiz_id: "q1")
 
@@ -161,7 +134,6 @@ final class CDDashboardWeeklySummaryEntrySaveTests: StudentTestCase {
         XCTAssertEqual(entry.title, "Essay")
         XCTAssertEqual(entry.date, due)
         XCTAssertEqual(entry.pointsPossible, 100)
-        XCTAssertEqual(entry.position, due.timeIntervalSince1970)
     }
 
     func test_saveDue_isQuizLtiFalseWhenAssignmentHasNoQuizId() {
@@ -280,22 +252,6 @@ final class CDDashboardWeeklySummaryEntrySaveTests: StudentTestCase {
         XCTAssertFalse(entry.excused)
         XCTAssertNil(entry.gradeWeight)
         XCTAssertNil(entry.submissionStatus)
-    }
-
-    func test_saveGrade_positionIsNegativeGradedAt() {
-        let gradedAt = Date(timeIntervalSince1970: 5000)
-        let submission = makeSubmissionNode(gradedAt: gradedAt)
-
-        let entry = CDDashboardWeeklySummaryEntry.saveGrade(
-            submission,
-            courseId: "c1",
-            gradedAt: gradedAt,
-            weekStart: weekStart,
-            restrictQuantitativeData: false,
-            in: databaseClient
-        )
-
-        XCTAssertEqual(entry.position, -gradedAt.timeIntervalSince1970)
     }
 
     func test_saveGrade_storesRestrictQuantitativeData() {

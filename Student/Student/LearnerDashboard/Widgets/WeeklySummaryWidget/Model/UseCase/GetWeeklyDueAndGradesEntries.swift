@@ -58,7 +58,10 @@ final class GetWeeklyDueAndGradesEntries: UseCase {
                 #keyPath(CDDashboardWeeklySummaryEntry.weekStart),
                 weekStart as NSDate
             ),
-            order: [NSSortDescriptor(key: #keyPath(CDDashboardWeeklySummaryEntry.position), ascending: true)]
+            order: [
+                NSSortDescriptor(key: #keyPath(CDDashboardWeeklySummaryEntry.date), ascending: true),
+                NSSortDescriptor(key: #keyPath(CDDashboardWeeklySummaryEntry.assignmentId), ascending: true)
+            ]
         )
     }
 

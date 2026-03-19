@@ -72,7 +72,7 @@ final class WeeklySummaryWidgetAssignmentTests: StudentTestCase {
     }
 
     func test_dueDateText_isNilForNewGradesCategory() {
-        let entry = makeEntry(category: .newGrades, dueAt: Clock.now)
+        let entry = makeEntry(category: .newGrades, date: Clock.now)
 
         let testee = WeeklySummaryWidgetAssignment(entry: entry)
 

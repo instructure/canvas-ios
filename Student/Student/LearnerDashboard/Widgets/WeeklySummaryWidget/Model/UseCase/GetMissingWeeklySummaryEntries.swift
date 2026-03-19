@@ -35,7 +35,10 @@ final class GetMissingWeeklySummaryEntries: UseCase {
     var cacheKey: String? { Self.cacheKey }
     let scope = Scope(
         predicate: NSPredicate(format: "categoryRaw == %@", CDDashboardWeeklySummaryEntry.Category.missing.rawValue),
-        order: [NSSortDescriptor(key: "position", ascending: true)]
+        order: [
+            NSSortDescriptor(key: #keyPath(CDDashboardWeeklySummaryEntry.date), ascending: true),
+            NSSortDescriptor(key: #keyPath(CDDashboardWeeklySummaryEntry.assignmentId), ascending: true)
+        ]
     )
 
     private let weightLogic: BusinessLogic.AssignmentWeight.Logic

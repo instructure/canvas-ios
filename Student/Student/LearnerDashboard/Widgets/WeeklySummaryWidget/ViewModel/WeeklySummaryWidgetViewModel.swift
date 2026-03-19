@@ -190,7 +190,9 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
             .sink(
                 receiveCompletion: { [weak self] _ in self?.isWeekLoading = false },
                 receiveValue: { [weak self] filters in
-                    self?.updateFilters(filters)
+                    guard let self else { return }
+                    updateFilters(filters)
+                    selectDefaultFilter()
                 }
             )
     }
