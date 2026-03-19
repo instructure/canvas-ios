@@ -39,11 +39,13 @@ struct MyContentView: View {
             }
 
             contentView
+                .animation(.easeInOut, value: selectedTab)
                 .onPreferenceChange(HeaderVisibilityKey.self) { isShow in
                     isShowTabs = isShow
                 }
             Spacer()
         }
+        .animation(.easeInOut, value: selectedTab)
     }
 
     private var tabsView: some View {

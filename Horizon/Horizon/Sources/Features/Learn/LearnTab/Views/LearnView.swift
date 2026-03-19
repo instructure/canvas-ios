@@ -65,10 +65,15 @@ struct LearnView: View {
             ForEach(Array(viewModel.tabs.enumerated()), id: \.offset) { index, tab in
                 Group {
                     switch tab {
-                    case .content: myContentView
-                    case .learningLibrary: learningLibraryView
+                    case .content:
+                        myContentView
+                            .transition(.opacity)
+                    case .learningLibrary:
+                        learningLibraryView
+                            .transition(.opacity)
                     }
                 }
+                .animation(.easeInOut(duration: 0.2), value: selectedTabIndex)
                 .padding(.top, isShowTabs ? 65 : 0)
                 .tag(index)
             }
