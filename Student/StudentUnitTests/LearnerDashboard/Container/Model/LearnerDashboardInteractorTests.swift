@@ -61,17 +61,8 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
         wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(received?.count, 10)
-        XCTAssertEqual(received?[0].id, .offlineSyncProgress)
-        XCTAssertEqual(received?[1].id, .fileUploadProgress)
-        XCTAssertEqual(received?[2].id, .conferences)
-        XCTAssertEqual(received?[3].id, .courseInvitations)
-        XCTAssertEqual(received?[4].id, .globalAnnouncements)
-        XCTAssertEqual(received?[5].id, .helloWidget)
-        XCTAssertEqual(received?[6].id, .coursesAndGroups)
-        XCTAssertEqual(received?[7].id, .weeklySummary)
-        XCTAssertEqual(received?[8].id, .coursesAndGroups)
-        XCTAssertEqual(received?[9].id, .toDo)
+        let defaultConfigs = LearnerDashboardWidgetAssembly.makeDefaultWidgetConfigs()
+        XCTAssertEqual(received?.map(\.id), defaultConfigs.map(\.id))
     }
 
     // MARK: - Load widgets with saved configs
