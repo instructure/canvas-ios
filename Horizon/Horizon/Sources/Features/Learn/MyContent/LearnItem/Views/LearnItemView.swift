@@ -51,7 +51,7 @@ struct LearnItemView: View {
         ScrollView {
             Text(viewModel.hasActiveFilters
                  ? String(localized: "No results found. Try adjusting your search terms.")
-                 : String(localized:"You aren’t currently enrolled in a course")
+                 : String(localized: "You aren’t currently enrolled in a course")
             )
             .foregroundStyle(Color.huiColors.text.body)
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -139,14 +139,23 @@ struct LearnItemView: View {
 
     @ViewBuilder
     private var filterButton: some View {
-//        let countBadge = viewModel.appliedFiltersCount
-        HorizonUI.IconButton(Image.huiIcons.tune, type: .whiteGrayOutline) {
+        let countBadge = viewModel.appliedFiltersCount
+        HorizonUI.IconButton(Image.huiIcons.tune, type: .whiteGrayOutline, badgeType: countBadge > 0 ? .number(countBadge.description) : nil) {
             viewModel.showFilter(viewController: viewController)
         }
-//        .accessibilityFocused($focusedItemID, equals: filterButtonFocusedID)
         .accessibilityLabel(String(localized: "Filter and sort"))
-//        .accessibilityValue(filterAccessibilityValue)
+        .accessibilityValue(filterAccessibilityValue)
         .accessibilityHint(String(localized: "Double tap to open filter options"))
+    }
+
+    private var filterAccessibilityValue: String {
+        if viewModel.appliedFiltersCount == 0 {
+            return String(localized: "No filters applied")
+        } else if viewModel.appliedFiltersCount == 1 {
+            return String(localized: "1 filter applied")
+        } else {
+            return String(format: String(localized: "%d filters applied"), viewModel.appliedFiltersCount)
+        }
     }
 
     private var countOfVisibleItemsView: some View {

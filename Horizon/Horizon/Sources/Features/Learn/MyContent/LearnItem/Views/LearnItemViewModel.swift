@@ -45,6 +45,10 @@ final class LearnItemViewModel {
     var hasActiveFilters: Bool {
         !searchText.isEmpty || selectedFilterTypes?.isNotEmpty == true
     }
+    var appliedFiltersCount: Int {
+        (selectedSortOption != nil ? 1 : 0) +
+        (selectedFilterTypes?.count ?? 0)
+    }
 
     // MARK: - Private variables
 
