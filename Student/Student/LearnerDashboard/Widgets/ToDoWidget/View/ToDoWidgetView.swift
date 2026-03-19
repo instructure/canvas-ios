@@ -220,8 +220,10 @@ struct ToDoWidgetView: View {
     }
 
     private var skeletonDayView: some View {
-        VStack(spacing: 0) {
-            ForEach(0..<2, id: \.self) { _ in
+        let count = viewModel.itemCountPerDay[viewModel.selectedDay] ?? 2
+
+        return VStack(spacing: 0) {
+            ForEach(0..<count, id: \.self) { _ in
                 ToDoSkeletonCell()
                 InstUI.Divider(.padded)
             }

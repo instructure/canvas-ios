@@ -35,7 +35,6 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     private(set) var yearTitle: String?
     private(set) var monthTitle: String = ""
 
-    private(set) var allItemsPerDay: [Date: [TodoItemViewModel]] = [:]
     private(set) var itemCountPerDay: [Date: Int] = [:]
     let listViewModel: ToDoWidgetListViewModel
 
@@ -55,6 +54,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     private let router: Router
     private var subscriptions = Set<AnyCancellable>()
 
+    private var allItemsPerDay: [Date: [TodoItemViewModel]] = [:]
     private var startOfWeek: Date = .distantPast
 
     init(
@@ -74,25 +74,52 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
             snackBarViewModel: snackBarViewModel,
             scheduler: scheduler
         )
+        listViewModel.itemDidUpdate = { [weak self] in
+            // Force refresh because CalendarEvent changes are not propagated to Plannable objects
+            self?.loadItemsForWeek(ignorePlannablesCache: true)
+        }
 
         selectDay(Clock.now)
 
         observeTodoGroups()
         observePlannerItems()
-        loadItemsForWeek(ignorePlannablesCache: false)
     }
 
     func makeView() -> AnyView {
         AnyView(ToDoWidgetView(viewModel: self))
     }
 
+    // MARK: - Refresh / Load / Observe
+
+    /// Refresh triggered from Dashboard via PTR or from code.
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        let (start, end) = widgetDateRange(for: startOfWeek)
-        return interactor.refresh(
-            startDate: start,
-            endDate: end,
+        loadItemsForWeek(
             ignorePlannablesCache: ignoreCache,
-            ignoreCoursesCache: ignoreCache,
+            ignoreCoursesCache: ignoreCache
+        )
+    }
+
+    /// Local reload after internal changes.
+    private func loadItemsForWeek(ignorePlannablesCache: Bool) {
+        if ignorePlannablesCache {
+            state = .loading
+        }
+
+        loadItemsForWeek(
+            ignorePlannablesCache: ignorePlannablesCache,
+            ignoreCoursesCache: false
+        )
+        .sink() // data/empty state will be set in `observeTodoGroups()`
+        .store(in: &subscriptions)
+    }
+
+    /// The actual load method. Loads only weeks surrounding the current one.
+    private func loadItemsForWeek(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Never> {
+        interactor.refresh(
+            startDate: startOfWeek.addWeeks(-1),
+            endDate: startOfWeek.addWeeks(2),
+            ignorePlannablesCache: ignorePlannablesCache,
+            ignoreCoursesCache: ignoreCoursesCache,
             filterOptions: .dashboardWidget
         )
         .receive(on: DispatchQueue.main)
@@ -101,6 +128,33 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
             return Just(())
         }
         .eraseToAnyPublisher()
+    }
+
+    private func observeTodoGroups() {
+        interactor.todoGroups
+            .dropFirst()
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] groups in
+                guard let self else { return }
+
+                allItemsPerDay = Dictionary(
+                    groups.map { ($0.date.startOfDay(), $0.items) },
+                    uniquingKeysWith: { $1 }
+                )
+                updateKeepCompletedItemsVisibleForAllItems()
+                updateItemCounts()
+                updateCurrentListItems()
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func observePlannerItems() {
+        NotificationCenter.default.publisher(for: .plannerItemDidChange)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.loadItemsForWeek(ignorePlannablesCache: true)
+            }
+            .store(in: &subscriptions)
     }
 
     // MARK: - Day Selection / Week Navigation
@@ -188,59 +242,6 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         listViewModel.items = showCompleted ? allItems : allItems.filter(\.isVisible)
 
         state = listViewModel.items.isEmpty ? .empty : .data
-    }
-
-    private func widgetDateRange(for weekStart: Date) -> (start: Date, end: Date) {
-        let start = weekStart.addWeeks(-1)
-        let end = weekStart.addWeeks(2)
-        return (start, end)
-    }
-
-    private func observeTodoGroups() {
-        interactor.todoGroups
-            .dropFirst()
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] groups in
-                guard let self else { return }
-
-                allItemsPerDay = Dictionary(
-                    groups.map { ($0.date.startOfDay(), $0.items) },
-                    uniquingKeysWith: { $1 }
-                )
-                updateKeepCompletedItemsVisibleForAllItems()
-                updateItemCounts()
-                updateCurrentListItems()
-            }
-            .store(in: &subscriptions)
-    }
-
-    private func observePlannerItems() {
-        NotificationCenter.default.publisher(for: .plannerItemDidChange)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                self?.loadItemsForWeek(ignorePlannablesCache: true)
-            }
-            .store(in: &subscriptions)
-    }
-
-    private func loadItemsForWeek(ignorePlannablesCache: Bool) {
-        state = .loading
-
-        let (start, end) = widgetDateRange(for: startOfWeek)
-        interactor.refresh(
-            startDate: start,
-            endDate: end,
-            ignorePlannablesCache: ignorePlannablesCache,
-            ignoreCoursesCache: false,
-            filterOptions: .dashboardWidget
-        )
-        .receive(on: DispatchQueue.main)
-        .catch { [weak self] _ in
-            self?.state = .error
-            return Just(())
-        }
-        .sink() // data/empty state will be set in `observeTodoGroups()`
-        .store(in: &subscriptions)
     }
 }
 

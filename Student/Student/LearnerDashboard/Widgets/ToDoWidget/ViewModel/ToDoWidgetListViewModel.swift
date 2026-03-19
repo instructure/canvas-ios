@@ -26,11 +26,13 @@ import SwiftUI
 final class ToDoWidgetListViewModel {
 
     var items: [TodoItemViewModel] = []
+    var itemDidUpdate: (() -> Void)?
 
     private let interactor: TodoInteractor
     private let router: Router
     private let snackBarViewModel: SnackBarViewModel
     private let scheduler: AnySchedulerOf<DispatchQueue>
+
     private var subscriptions = Set<AnyCancellable>()
     private var markDoneTimers: [String: AnyCancellable] = [:]
 
@@ -58,7 +60,11 @@ final class ToDoWidgetListViewModel {
             let vc = PlannerAssembly.makeToDoDetailsViewController(plannableId: item.plannableId)
             router.show(vc, from: viewController, options: .modal(embedInNav: true, addDoneButton: true))
         case .calendar_event:
-            let vc = PlannerAssembly.makeEventDetailsViewController(eventId: item.plannableId)
+            let vc = PlannerAssembly.makeEventDetailsViewController(eventId: item.plannableId) { [weak self] in
+                if $0 == .didUpdate {
+                    self?.itemDidUpdate?()
+                }
+            }
             router.show(vc, from: viewController, options: .modal(embedInNav: true, addDoneButton: true))
         default:
             guard let url = item.htmlURL else { return }

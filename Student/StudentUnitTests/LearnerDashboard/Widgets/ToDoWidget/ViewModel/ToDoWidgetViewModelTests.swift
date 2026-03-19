@@ -58,10 +58,6 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
 
     // MARK: - Initial state
 
-    func test_init_shouldSetLoadingState() {
-        XCTAssertEqual(testee.state, .loading)
-    }
-
     func test_init_shouldSelectToday() {
         XCTAssertEqual(testee.selectedDay, testData.today.startOfDay())
     }
@@ -69,10 +65,6 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
     func test_init_shouldSetCurrentWeekDays() {
         XCTAssertEqual(testee.currentWeekDays.first, testData.today.startOfWeek())
         XCTAssertEqual(testee.currentWeekDays.count, 7)
-    }
-
-    func test_init_shouldTriggerRangedRefresh() {
-        XCTAssertEqual(interactor.rangedRefreshCalled, true)
     }
 
     // MARK: - shouldShowTodayButton
@@ -156,6 +148,7 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
     func test_todoGroupsReceived_afterError_shouldClearError() {
         interactor.rangedRefreshResult = .failure(NSError(domain: "TestError", code: 1))
         testee = makeViewModel()
+        testee.didTapRetryButton()
         waitUntil(shouldFail: true) { self.testee.state == .error }
 
         interactor.rangedRefreshResult = .success(())
@@ -195,7 +188,7 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
 
         testee.showCompleted = true
 
-        XCTAssertEqual(testee.listViewModel.items.count, 1)
+        waitUntil(shouldFail: true) { self.testee.listViewModel.items.count == 1 }
     }
 
     // MARK: - itemCountPerDay
