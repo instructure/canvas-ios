@@ -321,7 +321,7 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
 
     private func makeViewModel() -> ToDoWidgetViewModel {
         ToDoWidgetViewModel(
-            config: .make(id: .toDo),
+            config: .make(id: .todo),
             interactor: interactor,
             router: router,
             snackBarViewModel: snackBarViewModel,

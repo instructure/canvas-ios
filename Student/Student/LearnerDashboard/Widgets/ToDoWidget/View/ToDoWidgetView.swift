@@ -386,7 +386,7 @@ import Combine
 
 private func makePreviewViewModel() -> ToDoWidgetViewModel {
     return ToDoWidgetViewModel(
-        config: .make(id: .toDo),
+        config: .make(id: .todo),
         interactor: TodoInteractorPreview(),
         router: AppEnvironment.shared.router,
         snackBarViewModel: SnackBarViewModel()

@@ -132,7 +132,7 @@ private struct ToDoWidgetDayCell: View {
         ToDoWidgetWeekView(
             weekDays: (0..<7).compactMap { date.addDays($0) },
             viewModel: ToDoWidgetViewModel(
-                config: DashboardWidgetConfig(id: .toDo, order: 0, isVisible: true, settings: nil),
+                config: .make(id: .todo),
                 interactor: TodoInteractorPreview(),
                 router: AppEnvironment.shared.router,
                 snackBarViewModel: SnackBarViewModel()

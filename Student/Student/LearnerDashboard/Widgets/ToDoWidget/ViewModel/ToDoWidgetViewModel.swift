@@ -24,7 +24,7 @@ import SwiftUI
 
 @Observable
 final class ToDoWidgetViewModel: DashboardWidgetViewModel {
-    typealias ViewType = ToDoWidgetView
+    let id: String = EditableWidgetIdentifier.todo.rawValue
 
     let config: DashboardWidgetConfig
     let isHiddenInEmptyState = false
@@ -82,8 +82,8 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
         loadItemsForWeek(ignorePlannablesCache: false)
     }
 
-    func makeView() -> ToDoWidgetView {
-        ToDoWidgetView(viewModel: self)
+    func makeView() -> AnyView {
+        AnyView(ToDoWidgetView(viewModel: self))
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
