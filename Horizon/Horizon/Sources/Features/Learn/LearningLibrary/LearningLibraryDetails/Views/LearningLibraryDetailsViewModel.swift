@@ -293,29 +293,3 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
         internalAccessibilityPublisher.send(message)
     }
 }
-
-//extension LearningLibraryDetailsViewModel {
-////    enum PageType {
-////        case details(id: String, name: String)
-////        case bookmarks
-////        var title: String {
-////            switch self {
-////            case .details(_, let name): name
-////            case .bookmarks: String(localized: "Bookmarks")
-////            }
-////        }
-////
-////        var emptyStateTitle: String {
-////            switch self {
-////            case .details: ""
-////            case .bookmarks: String(localized: "Save courses and resources here to revisit them later.")
-////            }
-////        }
-////        var isBookmarked: Bool {
-////            switch self {
-////            case .details: false
-////            case .bookmarks: true
-////            }
-////        }
-////    }
-//}

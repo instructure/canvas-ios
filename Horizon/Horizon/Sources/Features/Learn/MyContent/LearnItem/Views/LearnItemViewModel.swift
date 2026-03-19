@@ -36,10 +36,10 @@ final class LearnItemViewModel {
 
     // MARK: - Outputs
 
-    private(set) var loaderIsVisible: Bool = true
+    private(set) var isLoaderVisible: Bool = true
     private(set) var hasItems: Bool = false
     private(set) var errorMessage = ""
-    private(set) var isLoaderVisible: Bool = true
+
     var filteredItems: [LearnItemModel] { paginator.visibleItems }
     var isSeeMoreVisible: Bool { paginator.isSeeMoreVisible }
 
@@ -80,7 +80,7 @@ final class LearnItemViewModel {
             .removeDuplicates()
             .sink { [weak self] _ in
                 guard let self else { return }
-                loaderIsVisible = true
+                isLoaderVisible = true
                 getLearnItem()
             }
             .store(in: &subscriptions)
@@ -95,13 +95,13 @@ final class LearnItemViewModel {
             status: status)
             .receive(on: scheduler)
             .sinkFailureOrValue { [weak self] error in
-                self?.loaderIsVisible = false
+                self?.isLoaderVisible = false
                 self?.errorMessage = error.localizedDescription
                 self?.isErrorVisible = true
                 completion?()
             } receiveValue: { [weak self] items in
                 guard let self else { return }
-               loaderIsVisible = false
+                isLoaderVisible = false
                hasItems = hasItems ? hasItems : items.isNotEmpty
                paginator.setItems(items)
                 completion?()
@@ -128,9 +128,45 @@ final class LearnItemViewModel {
             selectedFilterTypes: selectedFilterTypes) { [weak self] sort, status in
                 self?.selectedSortOption = sort
                 self?.selectedFilterTypes = status
-                self?.loaderIsVisible = true
+                self?.isLoaderVisible = true
                 self?.getLearnItem()
             }
         router.show(filterView, from: viewController, options: .modal(.fullScreen))
+    }
+
+    func navigateToProgramDetails(id: String, viewController: WeakViewController) {
+        router.show(ProgramDetailsAssembly.makeViewController(programID: id), from: viewController)
+    }
+
+    func navigateToCourseDetails(
+        id: String,
+        enrollmentID: String,
+        programName: String?,
+        viewController: WeakViewController
+    ) {
+        router.show(
+            CourseDetailsAssembly.makeCourseDetailsViewController(
+                courseID: id,
+                enrollmentID: enrollmentID,
+                programName: programName
+            ),
+            from: viewController
+        )
+    }
+
+    func navigateToItemSequence(
+        url: URL,
+        learningObject: CourseListWidgetModel.LearningObjectInfo,
+        viewController: WeakViewController
+    ) {
+        let moduleItem = HModuleItem(
+            id: learningObject.id,
+            title: learningObject.name,
+            htmlURL: learningObject.url,
+            /// `isCompleted` is set to `false` because this is the next module item
+            /// the learner must complete. If it were `true`, it would no longer appear here.
+            isCompleted: false
+        )
+        router.route(to: url, userInfo: ["moduleItem": moduleItem], from: viewController)
     }
 }

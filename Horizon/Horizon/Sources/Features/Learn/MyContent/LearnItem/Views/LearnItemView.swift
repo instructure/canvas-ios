@@ -27,13 +27,16 @@ struct LearnItemView: View {
 
     var body: some View {
         VStack(spacing: .zero) {
-            if viewModel.hasItems {
-                contentView
-            } else {
-                emptyView
+            if !viewModel.isLoaderVisible {
+                if viewModel.hasItems {
+                    contentView
+                } else {
+                    emptyView
+                }
             }
         }
-        .overlay { if viewModel.loaderIsVisible { loaderView } }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .overlay { if viewModel.isLoaderVisible { loaderView } }
         .alert(isPresented: $viewModel.isErrorVisible) {
             Alert(title: Text(viewModel.errorMessage))
         }
@@ -74,16 +77,22 @@ struct LearnItemView: View {
                 switch item.itemType {
                 case .course:
                     LearnCourseCardView(model: item) {
-
+                        viewModel.navigateToCourseDetails(id: item.id, enrollmentID: "", programName: nil, viewController: viewController)
                     } onTapLearningObject: { _, _ in
 
                     }
                     .plainListRowStyle()
                     .padding([.bottom, .horizontal], .huiSpaces.space24)
                 case .program:
-                    LearnProgramCardView(program: item)
-                        .plainListRowStyle()
-                        .padding([.bottom, .horizontal], .huiSpaces.space24)
+                    Button {
+                        viewModel.navigateToProgramDetails(id: item.id, viewController: viewController)
+                    } label: {
+                        LearnProgramCardView(program: item)
+                            .plainListRowStyle()
+                            .padding([.bottom, .horizontal], .huiSpaces.space24)
+                    }
+                    .plainListRowStyle()
+                    .buttonStyle(.plain)
                 }
             }
             if viewModel.isSeeMoreVisible {

@@ -43,7 +43,7 @@ public struct GetLearnItemsResponse: Codable, PagedResponse {
         let imageURL: URL?
         let workflowState: String?
         let lastActivityAt: String?
-        let estimatedDurationMinutes: String?
+        let estimatedDurationMinutes: Int?
         let courseCount: Int?
         enum CodingKeys: String, CodingKey {
             case typename = "__typename"

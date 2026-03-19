@@ -27,7 +27,7 @@ struct LearnItemModel: Identifiable, PaginatedDataSourceSearchable {
     let startAt: String?
     let endAt: String?
     let imageUrl: URL?
-    let estimatedDurationMinutes: String?
+    let estimatedDurationMinutes: Int?
     let courseCount: Int?
     let itemType: ItemType
 
@@ -35,9 +35,43 @@ struct LearnItemModel: Identifiable, PaginatedDataSourceSearchable {
         guard let estimatedDurationMinutes else {
             return nil
         }
-        let formatter = ISO8601DurationFormatter()
-        return formatter.duration(from: estimatedDurationMinutes)
+
+        let hours = estimatedDurationMinutes / 60
+        let minutes = estimatedDurationMinutes % 60
+
+        if hours > 0, minutes > 0 {
+            return String(format: String(localized: "%d hrs %d mins"), hours, minutes)
+        } else if hours > 0 {
+            return String(format: String(localized: "%d hrs"), hours)
+        } else {
+            return String(format: String(localized: "%d mins"), minutes)
+        }
     }
+
+    init(
+        id: String,
+        name: String,
+        completionPercentage: Double,
+        position: Int,
+        startAt: String?,
+        endAt: String?,
+        imageUrl: URL?,
+        estimatedDurationMinutes: Int?,
+        courseCount: Int?,
+        itemType: ItemType
+    ) {
+        self.id = id
+        self.name = name
+        self.completionPercentage = completionPercentage
+        self.position = position
+        self.startAt = startAt
+        self.endAt = endAt
+        self.imageUrl = imageUrl
+        self.estimatedDurationMinutes = estimatedDurationMinutes
+        self.courseCount = courseCount
+        self.itemType = itemType
+    }
+
     init(item: GetLearnItemsResponse.Item) {
         self.id = item.id.defaultToEmpty
         self.name = item.name.defaultToEmpty

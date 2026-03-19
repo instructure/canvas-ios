@@ -16,11 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import HorizonUI
 import SwiftUI
 
 struct LearnProgramCardView: View {
-    let program: Program
+    let program: LearnItemModel
 
     var body: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
@@ -32,10 +33,6 @@ struct LearnProgramCardView: View {
         .background(Color.huiColors.surface.pageSecondary)
         .huiCornerRadius(level: .level5)
         .huiElevation(level: .level4)
-        .scrollTransition(.animated) { content, phase in
-            content
-                .scaleEffect(phase.isIdentity ? 1 : 0.9)
-        }
     }
 
     private var programNameView: some View {
@@ -47,7 +44,7 @@ struct LearnProgramCardView: View {
     }
     private var programPercentageView: some View {
         HorizonUI.ProgressBar(
-            progress: program.completionPercent,
+            progress: program.completionPercentage,
             progressColor: .huiColors.surface.institution,
             size: .small,
             numberPosition: .outside,
@@ -58,9 +55,14 @@ struct LearnProgramCardView: View {
     private var descriptionView: some View {
         HorizonUI.HFlow(spacing: .huiSpaces.space8, lineSpacing: .huiSpaces.space10) {
             HorizonUI.StatusChip(
+                title: String(localized: "Program"),
+                style: .violet,
+                icon: Image.huiIcons.book5
+            )
+            HorizonUI.StatusChip(
                 title: String(
                     format: String(localized: "%d courses"),
-                    arguments: [program.courses.count]
+                    arguments: [program.courseCount.defaultToZero]
                 ),
                 style: .gray
             )
@@ -72,9 +74,9 @@ struct LearnProgramCardView: View {
                 )
             }
 
-            if let date = program.date {
+            if let startAt = program.startAt, let endAt = program.endAt {
                 HorizonUI.StatusChip(
-                    title: date,
+                    title: String(format: "%@ - %@", [startAt, endAt]),
                     style: .gray,
                     icon: .huiIcons.calendarToday
                 )
@@ -85,14 +87,17 @@ struct LearnProgramCardView: View {
 
 #Preview {
     LearnProgramCardView(
-        program: Program(
-            id: "11",
-            name: "Program Name Here",
-            variant: "",
-            description: "",
-            date: "XX/XX/XX – XX/XX/XX",
-            courseCompletionCount: 0,
-            courses: []
+        program: LearnItemModel(
+            id: "1",
+            name: "Lo2rem Ipsum Course Name Here Dolor",
+            completionPercentage: 0.4,
+            position: 12,
+            startAt: nil,
+            endAt: nil,
+            imageUrl: nil,
+            estimatedDurationMinutes: 12,
+            courseCount: 12,
+            itemType: .course
         )
     )
 }

@@ -20,7 +20,7 @@ import HorizonUI
 import SwiftUI
 
 struct LearnCourseCardView: View {
-    let model: CourseListWidgetModel
+    let model: LearnItemModel
     let onTapCourseDetails: () -> Void
     let onTapLearningObject: ((String, URL?) -> Void)?
 
@@ -31,20 +31,20 @@ struct LearnCourseCardView: View {
     private var contentView: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space16) {
             courseDetailsButton
-                .accessibilityLabel(model.accessibilityLearnDescription)
-            HorizonUI.PrimaryButton(
-                model.buttonCourseTitle,
-                type: .grayOutline,
-                isSmall: false,
-                fillsWidth: true
-            ) {
-                if model.isCourseCompleted {
-                    onTapCourseDetails()
-                } else {
-                    onTapLearningObject?(model.id, model.currentLearningObject?.url)
-                }
-            }
-            .padding([.horizontal, .bottom], .huiSpaces.space24)
+//                .accessibilityLabel(model.accessibilityLearnDescription)
+//            HorizonUI.PrimaryButton(
+//                model.buttonCourseTitle,
+//                type: .grayOutline,
+//                isSmall: false,
+//                fillsWidth: true
+//            ) {
+//                if model.isCourseCompleted {
+//                    onTapCourseDetails()
+//                } else {
+//                    onTapLearningObject?(model.id, model.currentLearningObject?.url)
+//                }
+//            }
+//            .padding([.horizontal, .bottom], .huiSpaces.space24)
         }
         .background(Color.huiColors.surface.pageSecondary)
         .huiCornerRadius(level: .level5)
@@ -59,13 +59,14 @@ struct LearnCourseCardView: View {
                 courseImage
                 courseNameView
                 coursePercentageView
+                descriptionView
             }
         }
         .buttonStyle(.plain)
     }
 
     private var courseImage: some View {
-        CourseImageView(url: model.imageURL)
+        CourseImageView(url: model.imageUrl)
     }
 
     private var courseNameView: some View {
@@ -80,7 +81,7 @@ struct LearnCourseCardView: View {
 
     private var coursePercentageView: some View {
         HorizonUI.ProgressBar(
-            progress: model.progress / 100.0,
+            progress: model.completionPercentage / 100.0,
             progressColor: .huiColors.surface.institution,
             size: .small,
             numberPosition: .outside,
@@ -88,26 +89,46 @@ struct LearnCourseCardView: View {
         )
         .padding(.horizontal, .huiSpaces.space24)
     }
+
+    private var descriptionView: some View {
+        HorizonUI.HFlow(spacing: .huiSpaces.space8, lineSpacing: .huiSpaces.space10) {
+            HorizonUI.StatusChip(
+                title: String(localized: "Course"),
+                style: .institution,
+                icon: Image.huiIcons.book2
+            )
+
+            if let estimatedTime = model.estimatedTime {
+                HorizonUI.StatusChip(
+                    title: estimatedTime,
+                    style: .gray
+                )
+            }
+
+            if let startAt = model.startAt, let endAt = model.endAt {
+                HorizonUI.StatusChip(
+                    title: String(format: "%@ - %@", startAt, endAt),
+                    style: .gray,
+                    icon: .huiIcons.calendarToday
+                )
+            }
+        }
+        .padding([.horizontal, .bottom], .huiSpaces.space24)
+    }
 }
 
 #Preview {
-    let model = CourseListWidgetModel(
+    let model = LearnItemModel(
         id: "1",
-        enrollmentID: "12",
         name: "Lo2rem Ipsum Course Name Here Dolor",
-        imageURL: nil,
-        progress: 25.0,
-        lastActivityAt: nil,
-        programs: [],
-        currentLearningObject: CourseListWidgetModel.LearningObjectInfo(
-            name: "Adipiscing Elit Learning Object Name Here",
-            id: "122",
-            moduleTitle: "Module Title",
-            type: .assignment,
-            dueDate: "Due XX/XX",
-            estimatedDuration: "XX mins",
-            url: nil
-        )
+        completionPercentage: 0.4,
+        position: 12,
+        startAt: nil,
+        endAt: nil,
+        imageUrl: nil,
+        estimatedDurationMinutes: 12,
+        courseCount: 12,
+        itemType: .course
     )
     LearnCourseCardView(model: model, onTapCourseDetails: { }, onTapLearningObject: { _, _ in })
         .padding()
