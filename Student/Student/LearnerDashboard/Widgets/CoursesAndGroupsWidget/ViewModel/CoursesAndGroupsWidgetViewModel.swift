@@ -28,8 +28,8 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel, Dashboard
     let isHiddenInEmptyState = true
 
     private(set) var state: InstUI.ScreenState = .loading
-    private(set) var courseCards: [CourseCardViewModel] = []
-    private(set) var groupCards: [GroupCardViewModel] = []
+    private(set) var courseCards: [CourseCardViewModel] = [.placeholder(id: "1", color: .course1), .placeholder(id: "2", color: .course2)]
+    private(set) var groupCards: [GroupCardViewModel] = [.placeholder(id: "1", color: .course3), .placeholder(id: "2", color: .course4)]
 
     private(set) var showGrades: Bool = false
     private(set) var showColorOverlay: Bool = false

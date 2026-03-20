@@ -22,7 +22,10 @@ import SwiftUI
 struct CourseCardView: View {
     @Environment(\.viewController) private var controller
     @Environment(\.offlineMode) private var offlineMode
+    @Environment(\.redactionReasons) private var redactionReasons
     @ScaledMetric private var uiScale: CGFloat = 1
+
+    private var isRedacted: Bool { redactionReasons == .placeholder }
 
     private let viewModel: CourseCardViewModel
     private let showGrades: Bool
@@ -60,10 +63,12 @@ struct CourseCardView: View {
     var body: some View {
         cardButton
             .overlay(alignment: .topLeading) {
-                kebabButton
-                    .padding(8)
-                    .contentShape(Rectangle())
-                    .offset(x: 2, y: 2)
+                if !isRedacted {
+                    kebabButton
+                        .padding(8)
+                        .contentShape(Rectangle())
+                        .offset(x: 2, y: 2)
+                }
             }
             .animation(.dashboardWidget, value: viewModel)
             .accessibilityElement(children: .combine)
@@ -106,7 +111,7 @@ struct CourseCardView: View {
                 .clipped()
         }
         .overlay(alignment: .bottomLeading) {
-            if showGrades {
+            if showGrades, !isRedacted {
                 gradePill
                     .offset(x: 8, y: -8)
             }
@@ -230,7 +235,10 @@ struct CourseCardView: View {
             Image.announcementSolid
                 .scaledIcon()
                 .foregroundStyle(.textDark)
-                .instBadge(viewModel.unreadAnnouncementCount, style: .accessory)
+                .instBadge(
+                    isRedacted ? nil : viewModel.unreadAnnouncementCount,
+                    style: .accessory
+                )
                 .scaledFrame(height: 72, useIconScale: true) // increases tap area
         }
         .accessibilityLabel(viewModel.openAnnouncementsA11yLabel)

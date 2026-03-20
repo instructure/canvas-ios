@@ -46,9 +46,9 @@ struct CoursesAndGroupsWidgetView: View {
                         Once you enroll in a class, your dashboard will start filling up with new activity.
                         """, bundle: .student)
                 ))
-            case .data:
+            case .loading, .data:
                 content
-            case .loading, .error:
+            case .error:
                 SwiftUI.EmptyView()
             }
         }
@@ -117,6 +117,7 @@ struct CoursesAndGroupsWidgetView: View {
                     )
                 )
             }
+            .redacted(reason: viewModel.state == .loading ? .placeholder : [])
             .animation(.dashboardWidget, value: viewModel.courseCards)
         }
     }
@@ -135,6 +136,7 @@ struct CoursesAndGroupsWidgetView: View {
             ) { [groupCards = viewModel.groupCards] index in
                 GroupCardView(viewModel: groupCards[index])
             }
+            .redacted(reason: viewModel.state == .loading ? .placeholder : [])
         }
     }
 

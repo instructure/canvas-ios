@@ -22,8 +22,11 @@ import SwiftUI
 struct GroupCardView: View {
     @Environment(\.viewController) private var controller
     @Environment(\.dynamicTypeSize) var dynamicTypeSize
+    @Environment(\.redactionReasons) var redactionReasons
 
     private let viewModel: GroupCardViewModel
+
+    private var isRedacted: Bool { redactionReasons == .placeholder }
 
     init(viewModel: GroupCardViewModel) {
         self.viewModel = viewModel
@@ -55,8 +58,10 @@ struct GroupCardView: View {
         Color(viewModel.groupColor)
             .scaledFrame(size: 72, useIconScale: true)
             .overlay(alignment: .bottomLeading) {
-                memberCountPill
-                    .offset(x: 8, y: -8)
+                if !isRedacted {
+                    memberCountPill
+                        .offset(x: 8, y: -8)
+                }
             }
     }
 
