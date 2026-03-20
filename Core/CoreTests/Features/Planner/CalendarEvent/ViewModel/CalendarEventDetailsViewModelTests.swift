@@ -314,7 +314,7 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
         testee.didTapDelete.send(WeakViewController(sourceVC))
         testee.deleteConfirmation.notifyCompletion(option: .one)
 
-        XCTAssertEqual(router.popped, sourceVC)
+        XCTAssertEqual(router.dismissed, sourceVC)
     }
 
     func testDeleteEventOnFailure() {
@@ -327,7 +327,7 @@ class CalendarEventDetailsViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .data)
         XCTAssertEqual(testee.isMoreButtonEnabled, true)
         XCTAssertEqual(testee.shouldShowDeleteError, true)
-        XCTAssertEqual(router.popped, nil)
+        XCTAssertEqual(router.dismissed, nil)
     }
 
     // MARK: - Helpers
