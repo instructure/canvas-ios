@@ -199,13 +199,13 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
     func test_weekNavigation_whenCacheNotAvailable_shouldCollapseFilterThenRestoreAfterLoad() {
         let testScheduler: TestSchedulerOf<DispatchQueue> = DispatchQueue.test
         let mock = WeeklySummaryWidgetInteractorMock()
-        let subject = PassthroughSubject<WeeklySummaryWidgetFilters, Error>()
-        mock.getSummarySubject = subject
         let testee = makeViewModel(interactor: mock, scheduler: testScheduler.eraseToAnyScheduler())
         XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
         testee.toggleFilter(testee.missingFilter)
         XCTAssertNotNil(testee.expandedFilter)
 
+        let subject = PassthroughSubject<WeeklySummaryWidgetFilters, Error>()
+        mock.getSummarySubject = subject
         testee.navigateToPreviousWeek()
         testScheduler.advance(by: .milliseconds(300))
         XCTAssertNil(testee.expandedFilter)
