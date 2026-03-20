@@ -25,6 +25,7 @@ import SwiftUI
 final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel, DashboardMutatorWidget {
 
     let id: String = SystemWidgetIdentifier.courseInvitations.rawValue
+    let order = SystemWidgetIdentifier.courseInvitations.order
     let isHiddenInEmptyState = true
 
     private(set) var invitations: [CourseInvitationCardViewModel] = [] {

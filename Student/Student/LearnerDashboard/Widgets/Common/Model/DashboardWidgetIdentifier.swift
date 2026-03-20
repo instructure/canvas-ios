@@ -29,6 +29,17 @@ enum SystemWidgetIdentifier: String, CaseIterable {
     case globalAnnouncements
     case conferences
 
+    // Editable widget order starts from 0, so system widgets have negative order values
+    var order: Int {
+        switch self {
+        case .offlineSyncProgress: -5
+        case .fileUploadProgress: -4
+        case .courseInvitations: -3
+        case .globalAnnouncements: -2
+        case .conferences: -1
+        }
+    }
+
     func makeViewModel(
         snackBarViewModel: SnackBarViewModel,
         coursesInteractor: CoursesInteractor
