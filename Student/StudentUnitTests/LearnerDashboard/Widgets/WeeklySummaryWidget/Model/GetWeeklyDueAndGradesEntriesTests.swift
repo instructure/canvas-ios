@@ -211,6 +211,102 @@ final class GetWeeklyDueAndGradesEntriesTests: StudentTestCase {
         XCTAssertTrue(entries.isEmpty)
     }
 
+    func test_write_createsMultipleGradeEntriesFromEdgesInOneCourseNode() {
+        let gradedAt = weekStart.addDays(1)
+        let assignmentNode1 = GetRecentGradedSubmissionsRequest.Response.AssignmentNode(
+            _id: "a1", name: "Exam 1", htmlUrl: nil, pointsPossible: 100, gradingType: "points"
+        )
+        let assignmentNode2 = GetRecentGradedSubmissionsRequest.Response.AssignmentNode(
+            _id: "a2", name: "Exam 2", htmlUrl: nil, pointsPossible: 100, gradingType: "points"
+        )
+        let edge1 = GetRecentGradedSubmissionsRequest.Response.Edge(node: .init(
+            _id: "s1", score: 80, grade: "B", excused: false, gradeHidden: false, gradedAt: gradedAt, assignment: assignmentNode1
+        ))
+        let edge2 = GetRecentGradedSubmissionsRequest.Response.Edge(node: .init(
+            _id: "s2", score: 90, grade: "A", excused: false, gradeHidden: false, gradedAt: gradedAt, assignment: assignmentNode2
+        ))
+        let courseNode = GetRecentGradedSubmissionsRequest.Response.CourseNode(
+            _id: "c1", name: "Course c1", submissions: .init(edges: [edge1, edge2])
+        )
+        let response = GetWeeklyDueAndGradesEntries.Response(due: [], grades: [courseNode], assignmentGroupsByCourse: [:])
+
+        testee.write(response: response, urlResponse: nil, to: databaseClient)
+
+        let gradeEntries = (databaseClient.fetch(scope: testee.scope) as [CDDashboardWeeklySummaryEntry]).filter { $0.category == .newGrades }
+        XCTAssertEqual(gradeEntries.count, 2)
+    }
+
+    func test_write_createsGradeEntriesFromMultipleCourseNodes() {
+        let gradedAt = weekStart.addDays(2)
+        let response = GetWeeklyDueAndGradesEntries.Response(
+            due: [],
+            grades: [
+                makeCourseNode(courseId: "c1", submissionId: "s1", assignmentId: "a1", gradedAt: gradedAt),
+                makeCourseNode(courseId: "c2", submissionId: "s2", assignmentId: "a2", gradedAt: gradedAt)
+            ],
+            assignmentGroupsByCourse: [:]
+        )
+
+        testee.write(response: response, urlResponse: nil, to: databaseClient)
+
+        let gradeEntries = (databaseClient.fetch(scope: testee.scope) as [CDDashboardWeeklySummaryEntry]).filter { $0.category == .newGrades }
+        XCTAssertEqual(gradeEntries.count, 2)
+        XCTAssertTrue(gradeEntries.contains(where: { $0.courseId == "c1" }))
+        XCTAssertTrue(gradeEntries.contains(where: { $0.courseId == "c2" }))
+    }
+
+    func test_write_lookupsCourseRestrictQuantitativeDataForGradeEntry() {
+        Course.make(from: .make(id: "c1", settings: .make(restrict_quantitative_data: true)), in: databaseClient)
+        let gradedAt = weekStart.addDays(1)
+        let response = GetWeeklyDueAndGradesEntries.Response(
+            due: [],
+            grades: [makeCourseNode(courseId: "c1", submissionId: "s1", gradedAt: gradedAt)],
+            assignmentGroupsByCourse: [:]
+        )
+
+        testee.write(response: response, urlResponse: nil, to: databaseClient)
+
+        let entries: [CDDashboardWeeklySummaryEntry] = databaseClient.fetch(scope: testee.scope)
+        XCTAssertTrue(entries.first { $0.category == .newGrades }?.restrictQuantitativeData == true)
+    }
+
+    func test_write_setsNilAssignmentWeightForDueEntryWhenGroupWeightIsZero() {
+        let date = weekStart.addDays(1)
+        let group = APIAssignmentGroup.make(group_weight: 0, assignments: [.make(id: "p1", points_possible: 100)])
+        let response = GetWeeklyDueAndGradesEntries.Response(
+            due: [.make(course_id: "c1", plannable_id: "p1", plannable_date: date)],
+            grades: [],
+            assignmentGroupsByCourse: ["c1": [group]]
+        )
+
+        testee.write(response: response, urlResponse: nil, to: databaseClient)
+
+        let entries: [CDDashboardWeeklySummaryEntry] = databaseClient.fetch(scope: testee.scope)
+        XCTAssertNil(entries.first { $0.category == .due }?.gradeWeight)
+    }
+
+    // MARK: - scope ordering
+
+    func test_scope_ordersDueEntriesByDateThenAssignmentId() {
+        let date1 = weekStart.addDays(1)
+        let date2 = weekStart.addDays(2)
+        let group = APIAssignmentGroup.make(assignments: [.make(id: "p1"), .make(id: "p2"), .make(id: "p3")])
+        let response = GetWeeklyDueAndGradesEntries.Response(
+            due: [
+                .make(course_id: "c1", plannable_id: "p3", plannable_date: date2),
+                .make(course_id: "c1", plannable_id: "p1", plannable_date: date1),
+                .make(course_id: "c1", plannable_id: "p2", plannable_date: date1)
+            ],
+            grades: [],
+            assignmentGroupsByCourse: ["c1": [group]]
+        )
+
+        testee.write(response: response, urlResponse: nil, to: databaseClient)
+
+        let entries: [CDDashboardWeeklySummaryEntry] = databaseClient.fetch(scope: testee.scope)
+        XCTAssertEqual(entries.map { $0.assignmentId }, ["p1", "p2", "p3"])
+    }
+
     // MARK: - cacheKey
 
     func test_cacheKey_containsWeekStartIsoString() {
@@ -222,11 +318,12 @@ final class GetWeeklyDueAndGradesEntriesTests: StudentTestCase {
     private func makeCourseNode(
         courseId: String,
         submissionId: String,
+        assignmentId: String = "assignment1",
         gradedAt: Date?,
         gradeHidden: Bool = false
     ) -> GetRecentGradedSubmissionsRequest.Response.CourseNode {
         let assignment = GetRecentGradedSubmissionsRequest.Response.AssignmentNode(
-            _id: "assignment1",
+            _id: assignmentId,
             name: "Final Exam",
             htmlUrl: nil,
             pointsPossible: 100,

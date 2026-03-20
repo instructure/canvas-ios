@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+@testable import Core
 import XCTest
 @testable import Student
 
@@ -140,6 +140,46 @@ final class GetMissingWeeklySummaryEntriesTests: StudentTestCase {
 
         let entries: [CDDashboardWeeklySummaryEntry] = databaseClient.fetch(scope: testee.scope)
         XCTAssertTrue(entries.isEmpty)
+    }
+
+    // MARK: - makeRequest
+
+    func test_makeRequest_callsCompletionWithMissingAssignments() {
+        let assignment = APIAssignment.make(course_id: "c1", id: "a1", name: "Late Essay")
+        api.mock(GetMissingSubmissionsRequest(includes: [.planner_overrides, .course])) { _ in
+            ([assignment], nil, nil)
+        }
+        api.mock(GetAssignmentGroupsRequest(courseID: "c1", include: [.assignments, .submission], perPage: 100)) { _ in
+            ([] as [APIAssignmentGroup], nil, nil)
+        }
+
+        let completionExpectation = expectation(description: "completion")
+        var capturedResponse: GetMissingWeeklySummaryEntries.Response?
+        testee.makeRequest(environment: env) { response, _, _ in
+            capturedResponse = response
+            completionExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+
+        XCTAssertEqual(capturedResponse?.missing.count, 1)
+        XCTAssertEqual(capturedResponse?.missing.first?.id.rawValue, "a1")
+    }
+
+    func test_makeRequest_callsCompletionWithEmptyResponseWhenNoMissingAssignments() {
+        api.mock(GetMissingSubmissionsRequest(includes: [.planner_overrides, .course])) { _ in
+            ([] as [APIAssignment], nil, nil)
+        }
+
+        let completionExpectation = expectation(description: "completion")
+        var capturedResponse: GetMissingWeeklySummaryEntries.Response?
+        testee.makeRequest(environment: env) { response, _, _ in
+            capturedResponse = response
+            completionExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+
+        XCTAssertTrue(capturedResponse?.missing.isEmpty == true)
+        XCTAssertTrue(capturedResponse?.assignmentGroupsByCourse.isEmpty == true)
     }
 
     // MARK: - cacheKey
