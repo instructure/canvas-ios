@@ -25,6 +25,7 @@ import UIKit
 final class HelloWidgetViewModel: DashboardWidgetViewModel {
     let config: DashboardWidgetConfig
     var id: String { config.id.rawValue }
+    let instanceID = UUID()
     let isHiddenInEmptyState = true
 
     var layoutIdentifier: [AnyHashable] {

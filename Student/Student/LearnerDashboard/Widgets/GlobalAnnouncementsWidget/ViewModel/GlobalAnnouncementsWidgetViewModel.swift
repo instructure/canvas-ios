@@ -23,6 +23,7 @@ import SwiftUI
 @Observable
 final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
     let id: String = SystemWidgetIdentifier.globalAnnouncements.rawValue
+    let instanceID = UUID()
     let isHiddenInEmptyState = true
 
     private(set) var state: InstUI.ScreenState = .loading
