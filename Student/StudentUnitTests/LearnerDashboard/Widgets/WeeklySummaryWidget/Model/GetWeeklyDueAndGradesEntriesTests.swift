@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+@testable import Core
 import XCTest
 @testable import Student
 
@@ -307,6 +307,118 @@ final class GetWeeklyDueAndGradesEntriesTests: StudentTestCase {
         XCTAssertEqual(entries.map { $0.assignmentId }, ["p1", "p2", "p3"])
     }
 
+    // MARK: - makeRequest
+
+    func test_makeRequest_callsCompletionWithDueAndGradeEntries() {
+        mockPlannables([.make(course_id: "c1", plannable_id: "p1", plannable_type: "assignment")])
+        mockGrades(courseNodes: [])
+        mockAssignmentGroups(courseId: "c1", groups: [.make(assignments: [.make(id: "p1")])])
+
+        let completionExpectation = expectation(description: "completion")
+        var capturedResponse: GetWeeklyDueAndGradesEntries.Response?
+        testee.makeRequest(environment: env) { response, _, _ in
+            capturedResponse = response
+            completionExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+
+        XCTAssertEqual(capturedResponse?.due.count, 1)
+        XCTAssertNotNil(capturedResponse?.assignmentGroupsByCourse["c1"])
+    }
+
+    func test_makeRequest_filtersDuePlannablesToAssignmentsOnly() {
+        mockPlannables([
+            .make(course_id: "c1", plannable_id: "p1", plannable_type: "assignment"),
+            .make(course_id: "c1", plannable_id: "p2", plannable_type: "wiki_page")
+        ])
+        mockGrades(courseNodes: [])
+        mockAssignmentGroups(courseId: "c1", groups: [.make(assignments: [.make(id: "p1")])])
+
+        let completionExpectation = expectation(description: "completion")
+        var capturedResponse: GetWeeklyDueAndGradesEntries.Response?
+        testee.makeRequest(environment: env) { response, _, _ in
+            capturedResponse = response
+            completionExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+
+        XCTAssertEqual(capturedResponse?.due.count, 1)
+        XCTAssertEqual(capturedResponse?.due.first?.plannable_id.value, "p1")
+    }
+
+    func test_makeRequest_skipsAssignmentGroupFetchWhenNoDuePlannables() {
+        mockPlannables([])
+        mockGrades(courseNodes: [])
+
+        let completionExpectation = expectation(description: "completion")
+        var capturedResponse: GetWeeklyDueAndGradesEntries.Response?
+        testee.makeRequest(environment: env) { response, _, _ in
+            capturedResponse = response
+            completionExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+
+        XCTAssertTrue(capturedResponse?.due.isEmpty == true)
+        XCTAssertTrue(capturedResponse?.assignmentGroupsByCourse.isEmpty == true)
+    }
+
+    func test_makeRequest_callsCompletionWithErrorOnFailure() {
+        api.mock(GetPlannablesRequest(userID: "self", startDate: weekStart.startOfDay(), endDate: weekStart.endOfWeek())) { _ in
+            (nil, nil, NSError.instructureError("Network error"))
+        }
+        mockGrades(courseNodes: [])
+
+        let completionExpectation = expectation(description: "completion")
+        var capturedError: Error?
+        testee.makeRequest(environment: env) { _, _, error in
+            capturedError = error
+            completionExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+
+        XCTAssertNotNil(capturedError)
+    }
+
+    func test_makeRequest_includesGradesFromRecentGradedSubmissions() {
+        mockPlannables([])
+        let gradedAt = weekStart.addDays(1)
+        let gradesCourseNode = makeGradesCourseNode(courseId: "c1", submissionId: "s1", assignmentId: "a1", gradedAt: gradedAt)
+        mockGrades(courseNodes: [gradesCourseNode])
+
+        let completionExpectation = expectation(description: "completion")
+        var capturedResponse: GetWeeklyDueAndGradesEntries.Response?
+        testee.makeRequest(environment: env) { response, _, _ in
+            capturedResponse = response
+            completionExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+
+        XCTAssertEqual(capturedResponse?.grades.count, 1)
+        XCTAssertEqual(capturedResponse?.grades.first?._id, "c1")
+    }
+
+    func test_makeRequest_fetchesAssignmentGroupsForMultipleCourses() {
+        mockPlannables([
+            .make(course_id: "c1", plannable_id: "p1", plannable_type: "assignment"),
+            .make(course_id: "c2", plannable_id: "p2", plannable_type: "assignment")
+        ])
+        mockGrades(courseNodes: [])
+        mockAssignmentGroups(courseId: "c1", groups: [.make(assignments: [.make(id: "p1")])])
+        mockAssignmentGroups(courseId: "c2", groups: [.make(assignments: [.make(id: "p2")])])
+
+        let completionExpectation = expectation(description: "completion")
+        var capturedResponse: GetWeeklyDueAndGradesEntries.Response?
+        testee.makeRequest(environment: env) { response, _, _ in
+            capturedResponse = response
+            completionExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+
+        XCTAssertEqual(capturedResponse?.due.count, 2)
+        XCTAssertNotNil(capturedResponse?.assignmentGroupsByCourse["c1"])
+        XCTAssertNotNil(capturedResponse?.assignmentGroupsByCourse["c2"])
+    }
+
     // MARK: - cacheKey
 
     func test_cacheKey_containsWeekStartIsoString() {
@@ -314,6 +426,42 @@ final class GetWeeklyDueAndGradesEntriesTests: StudentTestCase {
     }
 
     // MARK: - Private helpers
+
+    private func mockPlannables(_ plannables: [APIPlannable]) {
+        api.mock(GetPlannablesRequest(
+            userID: "self",
+            startDate: weekStart.startOfDay(),
+            endDate: weekStart.endOfWeek()
+        )) { _ in (plannables, nil, nil) }
+    }
+
+    private func mockGrades(courseNodes: [GetRecentGradedSubmissionsRequest.Response.CourseNode]) {
+        let gradesRequest = GetRecentGradedSubmissionsRequest(variables: .init(
+            studentId: "student1",
+            gradedSince: weekStart.startOfDay().isoString()
+        ))
+        api.mock(gradesRequest) { _ in
+            let response = GetRecentGradedSubmissionsRequest.Response(
+                data: .init(allCourses: courseNodes)
+            )
+            return (response, nil, nil)
+        }
+    }
+
+    private func mockAssignmentGroups(courseId: String, groups: [APIAssignmentGroup]) {
+        api.mock(GetAssignmentGroupsRequest(courseID: courseId, include: [.assignments, .submission], perPage: 100)) { _ in
+            (groups, nil, nil)
+        }
+    }
+
+    private func makeGradesCourseNode(
+        courseId: String,
+        submissionId: String,
+        assignmentId: String,
+        gradedAt: Date?
+    ) -> GetRecentGradedSubmissionsRequest.Response.CourseNode {
+        makeCourseNode(courseId: courseId, submissionId: submissionId, assignmentId: assignmentId, gradedAt: gradedAt)
+    }
 
     private func makeCourseNode(
         courseId: String,
