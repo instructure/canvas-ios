@@ -126,7 +126,15 @@ struct CourseCardViewModel: Identifiable, Equatable {
 extension CourseCardViewModel {
     static func placeholder(id: String, color: Color) -> Self {
         .init(
-            model: .make(id: id, title: "Redacted title", color: color, unreadAnnouncementCount: 1),
+            model: .init(
+                id: id,
+                title: "Redacted title",
+                color: color,
+                imageUrl: nil,
+                grade: nil,
+                unreadAnnouncementCount: 1,
+                singleUnreadAnnouncementId: nil
+            ),
             didSaveChanges: .init(),
             router: .init(routes: [])
         )

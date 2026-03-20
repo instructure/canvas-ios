@@ -78,7 +78,13 @@ struct GroupCardViewModel: Identifiable, Equatable {
 extension GroupCardViewModel {
     static func placeholder(id: String, color: Color) -> Self {
         .init(
-            model: .make(id: id, title: "Redacted title", contextName: "Redacted course", groupColor: color),
+            model: .init(
+                id: id,
+                title: "Redacted title",
+                contextName: "Redacted course",
+                groupColor: color,
+                memberCount: 0
+            ),
             router: .init(routes: []),
             environment: .shared
         )
