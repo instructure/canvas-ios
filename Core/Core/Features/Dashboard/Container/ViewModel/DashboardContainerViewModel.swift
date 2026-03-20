@@ -39,13 +39,18 @@ public class DashboardContainerViewModel: ObservableObject {
     public init(
         environment: AppEnvironment,
         defaults: SessionDefaults,
+        isLearnerDashboardEnabledOnInstance: Bool,
         courseSyncInteractor: CourseSyncInteractor = CourseSyncDownloaderAssembly.makeInteractor()
     ) {
         self.defaults = defaults
         self.environment = environment
         settingsButtonTapped
             .map {
-                let interactor = DashboardSettingsInteractorLive(environment: environment, defaults: environment.userDefaults)
+                let interactor = DashboardSettingsInteractorLive(
+                    environment: environment,
+                    defaults: environment.userDefaults,
+                    isLearnerDashboardEnabledOnInstance: isLearnerDashboardEnabledOnInstance
+                )
                 let viewModel = DashboardSettingsViewModel(interactor: interactor)
                 let dashboard = CoreHostingController(DashboardSettingsView(viewModel: viewModel))
                 dashboard.addDoneButton(side: .right)

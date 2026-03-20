@@ -22,6 +22,16 @@ import Core
 class StudentTabBarController: UITabBarController, SnackBarProvider {
     let snackBarViewModel = SnackBarViewModel()
     private var previousSelectedIndex = 0
+    private var isLearnerDashboardEnabledOnInstance: Bool
+
+    init(isLearnerDashboardEnabledOnInstance: Bool) {
+        self.isLearnerDashboardEnabledOnInstance = isLearnerDashboardEnabledOnInstance
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,18 +108,21 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         } else {
             let defaults = AppEnvironment.shared.userDefaults ?? .fallback
 
-            let isNewDashboardEnabledByRemoteConfig = ExperimentalFeature.studentLearnerDashboard.isEnabled
-            let isNewDashboardEnabledOnInstance = defaults.learnerDashboardEnabledOnInstance
+            let isNewDashboardDisabledByRemoteConfig = !ExperimentalFeature.revertToOldStudentDashboard.isEnabled
             let preferNewDashboard = defaults.preferNewLearnerDashboard
 
-            let shouldShowNewDashboard = isNewDashboardEnabledByRemoteConfig && isNewDashboardEnabledOnInstance && preferNewDashboard
+            let shouldShowNewDashboard = isNewDashboardDisabledByRemoteConfig && isLearnerDashboardEnabledOnInstance && preferNewDashboard
 
             if shouldShowNewDashboard {
                 let dashboard = CoreHostingController(LearnerDashboardAssembly.makeScreen())
                 result = DashboardContainerViewController(rootViewController: dashboard) { CoreSplitViewController() }
             } else {
                 let dashboard = CoreHostingController(
-                    DashboardContainerView(shouldShowGroupList: true, showOnlyTeacherEnrollment: false)
+                    DashboardContainerView(
+                        shouldShowGroupList: true,
+                        showOnlyTeacherEnrollment: false,
+                        isLearnerDashboardEnabledOnInstance: isLearnerDashboardEnabledOnInstance
+                    )
                 )
                 result = DashboardContainerViewController(rootViewController: dashboard) {
                     if #available(iOS 26, *) {

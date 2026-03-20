@@ -49,6 +49,9 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private var shouldSetK5StudentView = false
     private var backgroundFileSubmissionAssembly: FileSubmissionAssembly?
 
+    // we need to store it to have the value when user switches back from horizon
+    private var isLearnerDashboardEnabledOnInstance: Bool = false
+
     private lazy var todoWidgetRouter = WidgetRouter.createTodoRouter()
     private lazy var gradeListWidgetRouter = WidgetRouter.createGradeListRouter()
     private lazy var courseGradeWidgetRouter = WidgetRouter.createCourseGradeRouter()
@@ -125,16 +128,31 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                 return unownedSelf.setupUserEnvironment()
                     .flatMap { _ in unownedSelf.getFeatureFlags() }
                     .map { featureFlags in
-                        unownedSelf.environment.userDefaults?.learnerDashboardEnabledOnInstance = featureFlags.isFeatureEnabled(.widget_dashboard)
                         unownedSelf.initializeTracking(environmentFeatureFlags: featureFlags)
+                        return featureFlags
                     }
-                    .map { _ in unownedSelf.requestNotificationAuthorizationForUITests() }
-                    .map { _ in unownedSelf.setK5StudentViewIfNeeded(userProfile: userProfile) }
-                    .flatMap { _ in unownedSelf.showLanguageAlertIfNeeded(locale: userProfile?.locale ?? session.locale) }
-                    .flatMap { _ in unownedSelf.getAndSetBrandTheme() }
+                    .map {
+                        unownedSelf.requestNotificationAuthorizationForUITests()
+                        return $0
+                    }
+                    .map {
+                        unownedSelf.setK5StudentViewIfNeeded(userProfile: userProfile)
+                        return $0
+                    }
+                    .flatMap { featureFlags in
+                        unownedSelf.showLanguageAlertIfNeeded(locale: userProfile?.locale ?? session.locale)
+                            .map { featureFlags }
+                    }
+                    .flatMap { featureFlags in
+                        unownedSelf.getAndSetBrandTheme()
+                            .map { featureFlags }
+                    }
                     .eraseToAnyPublisher()
             }
-            .flatMap { _ in unownedSelf.getAppExperienceSummary() }
+            .flatMap { featureFlags in
+                unownedSelf.getAppExperienceSummary()
+                    .map { ($0, featureFlags) }
+            }
             .mapError { unownedSelf.mapSetupError(error: $0, session: session) }
             .sink(
                 receiveCompletion: { completion in
@@ -145,10 +163,18 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                         unownedSelf.showErrorAlert(error: error, session: session)
                     }
                 },
-                receiveValue: { experience in
+                receiveValue: { experience, featureFlags in
                     unownedSelf.refreshNotificationTab()
                     Analytics.shared.logSession(session)
-                    unownedSelf.setTabBarControllerFor(experience: experience, isStartup: true, session: session)
+
+                    let isLearnerDashboardEnabledOnInstance = featureFlags.isFeatureEnabled(.widget_dashboard)
+                    unownedSelf.isLearnerDashboardEnabledOnInstance = isLearnerDashboardEnabledOnInstance
+                    unownedSelf.setTabBarControllerFor(
+                        experience: experience,
+                        isLearnerDashboardEnabledOnInstance: isLearnerDashboardEnabledOnInstance,
+                        isStartup: true,
+                        session: session
+                    )
                 }
             )
             .store(in: &subscriptions)
@@ -414,12 +440,17 @@ extension StudentAppDelegate {
         AppEnvironment.shared.experience
             .dropFirst()
             .sink { [weak self] in
-                self?.setTabBarControllerFor(experience: $0, isStartup: false, session: nil)
+                self?.setTabBarControllerFor(
+                    experience: $0,
+                    isLearnerDashboardEnabledOnInstance: self?.isLearnerDashboardEnabledOnInstance ?? false,
+                    isStartup: false,
+                    session: nil
+                )
             }
             .store(in: &subscriptions)
     }
 
-    private func setTabBarControllerFor(experience: Experience, isStartup: Bool, session: LoginSession?) {
+    private func setTabBarControllerFor(experience: Experience, isLearnerDashboardEnabledOnInstance: Bool, isStartup: Bool, session: LoginSession?) {
         switch experience {
         case .academic:
             AppEnvironment.shared.app = .student
@@ -432,7 +463,7 @@ extension StudentAppDelegate {
             appearance.tintColor = nil
             appearance.titleTextAttributes = nil
 
-            let controller = StudentTabBarController()
+            let controller = StudentTabBarController(isLearnerDashboardEnabledOnInstance: isLearnerDashboardEnabledOnInstance)
             controller.view.layoutIfNeeded()
             UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
                 window.rootViewController = controller

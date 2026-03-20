@@ -321,15 +321,6 @@ public struct SessionDefaults: Equatable {
 
     // MARK: - Learner Dashboard
 
-    public var learnerDashboardEnabledOnInstance: Bool {
-        get {
-            (self["learnerDashboardEnabledOnInstance"] as? Bool) ?? false
-        }
-        set {
-            self["learnerDashboardEnabledOnInstance"] = newValue
-        }
-    }
-
     public var preferNewLearnerDashboard: Bool {
         get {
             (self["preferNewLearnerDashboard"] as? Bool) ?? true
