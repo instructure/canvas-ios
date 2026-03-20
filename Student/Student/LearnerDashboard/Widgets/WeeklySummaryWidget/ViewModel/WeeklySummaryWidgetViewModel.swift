@@ -24,7 +24,6 @@ import SwiftUI
 @Observable
 final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     let id: String = EditableWidgetIdentifier.weeklySummary.rawValue
-    let instanceID = UUID()
 
     private(set) var state: InstUI.ScreenState = .loading
     let config: DashboardWidgetConfig
