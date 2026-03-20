@@ -86,6 +86,10 @@ extension Enrollment {
         return type.lowercased().contains("student")
     }
 
+    public var isInvitedOrPending: Bool {
+        state == .invited || state == .creation_pending
+    }
+
     /// - returns: True if the enrollment is for a test user that is created when the teacher starts the "Student View" mode.
     public var isStudentView: Bool {
         // "StudentView" is the enrollment name

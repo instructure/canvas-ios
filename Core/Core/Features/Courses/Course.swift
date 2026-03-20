@@ -318,15 +318,15 @@ extension Course {
     }
 
     public var hasInvitedEnrollment: Bool {
-        enrollments?.contains { $0.state == .invited && $0.id != nil } ?? false
+        enrollments?.contains { $0.isInvitedOrPending && $0.id != nil } ?? false
     }
 
     public var invitedEnrollments: [Enrollment] {
-        enrollments?.filter { $0.state == .invited && $0.id != nil } ?? []
+        enrollments?.filter { $0.isInvitedOrPending && $0.id != nil } ?? []
     }
 
     public var firstInvitedEnrollment: Enrollment? {
-        enrollments?.first { $0.state == .invited && $0.id != nil }
+        enrollments?.first { $0.isInvitedOrPending && $0.id != nil }
     }
 
     public func enrollmentForGrades(userId: String?, includingCompleted: Bool = false) -> Enrollment? {

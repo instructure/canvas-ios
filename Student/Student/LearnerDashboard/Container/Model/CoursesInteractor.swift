@@ -101,7 +101,7 @@ final class CoursesInteractorLive: CoursesInteractor {
             context: context,
             useCase: GetEnrollments(
                 context: .currentUser,
-                states: [.active, .completed, .invited]
+                states: [.active, .completed, .invited, .creation_pending]
             ),
             environment: env
         )
