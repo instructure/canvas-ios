@@ -105,7 +105,7 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
         self.init(
             id: entry.assignmentId,
             courseId: entry.courseId,
-            courseCode: course?.courseCode ?? "",
+            courseCode: course?.name ?? course?.courseCode ?? "",
             courseColor: course.map { Color($0.color) } ?? .course1,
             icon: icon,
             title: entry.title,

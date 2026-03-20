@@ -33,17 +33,34 @@ final class WeeklySummaryWidgetAssignmentTests: StudentTestCase {
         XCTAssertEqual(testee.title, "Chemistry Lab")
     }
 
-    func test_init_mapsCourseIdAndCodeFromCourse() {
-        let course = makeCourse(id: "99", courseCode: "CHEM101")
+    func test_init_mapsCourseIdFromCourse() {
+        let course = makeCourse(id: "99")
         let entry = makeEntry(assignmentId: "a1", courseId: "99", course: course)
 
         let testee = WeeklySummaryWidgetAssignment(entry: entry)
 
         XCTAssertEqual(testee.courseId, "99")
+    }
+
+    func test_init_usesCourseNameAsDisplayCode() {
+        let course = makeCourse(name: "Chemistry 101")
+        let entry = makeEntry(course: course)
+
+        let testee = WeeklySummaryWidgetAssignment(entry: entry)
+
+        XCTAssertEqual(testee.courseCode, "Chemistry 101")
+    }
+
+    func test_init_fallsBackToCourseCodeWhenNameIsNil() {
+        let course = makeCourse(name: nil, courseCode: "CHEM101")
+        let entry = makeEntry(course: course)
+
+        let testee = WeeklySummaryWidgetAssignment(entry: entry)
+
         XCTAssertEqual(testee.courseCode, "CHEM101")
     }
 
-    func test_init_fallsBackToEmptyCourseCodeWhenNoCourse() {
+    func test_init_fallsBackToEmptyStringWhenNoCourse() {
         let entry = makeEntry(courseId: "99", course: nil)
 
         let testee = WeeklySummaryWidgetAssignment(entry: entry)
@@ -215,8 +232,8 @@ final class WeeklySummaryWidgetAssignmentTests: StudentTestCase {
     // MARK: - Private helpers
 
     @discardableResult
-    private func makeCourse(id: String = "1", courseCode: String = "TEST") -> Course {
-        Course.make(from: .make(id: ID(id), course_code: courseCode), in: databaseClient)
+    private func makeCourse(id: String = "1", name: String? = "Course Name", courseCode: String = "TEST") -> Course {
+        Course.make(from: .make(id: ID(id), name: name, course_code: courseCode), in: databaseClient)
     }
 
     private func makeEntry(

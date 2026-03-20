@@ -108,11 +108,44 @@ final class GetMissingWeeklySummaryEntriesTests: StudentTestCase {
         XCTAssertNil(entries.first?.gradeWeight)
     }
 
+    func test_write_setsNilAssignmentWeightWhenNoMatchingGroup() {
+        let assignment = APIAssignment.make(course_id: "c1", id: "a1", points_possible: 100)
+        let response = GetMissingWeeklySummaryEntries.Response(
+            missing: [assignment],
+            assignmentGroupsByCourse: [:]
+        )
+
+        testee.write(response: response, urlResponse: nil, to: databaseClient)
+
+        let entries: [CDDashboardWeeklySummaryEntry] = databaseClient.fetch(scope: testee.scope)
+        XCTAssertNil(entries.first?.gradeWeight)
+    }
+
+    func test_write_setsNilAssignmentWeightWhenOmitFromFinalGrade() {
+        let assignment = APIAssignment.make(course_id: "c1", id: "a1", points_possible: 100, omit_from_final_grade: true)
+        let group = APIAssignmentGroup.make(group_weight: 40, assignments: [assignment])
+        let response = GetMissingWeeklySummaryEntries.Response(
+            missing: [assignment],
+            assignmentGroupsByCourse: ["c1": [group]]
+        )
+
+        testee.write(response: response, urlResponse: nil, to: databaseClient)
+
+        let entries: [CDDashboardWeeklySummaryEntry] = databaseClient.fetch(scope: testee.scope)
+        XCTAssertNil(entries.first?.gradeWeight)
+    }
+
     func test_write_doesNothingWhenResponseIsNil() {
         testee.write(response: nil, urlResponse: nil, to: databaseClient)
 
         let entries: [CDDashboardWeeklySummaryEntry] = databaseClient.fetch(scope: testee.scope)
         XCTAssertTrue(entries.isEmpty)
+    }
+
+    // MARK: - cacheKey
+
+    func test_cacheKey_hasExpectedValue() {
+        XCTAssertEqual(testee.cacheKey, GetMissingWeeklySummaryEntries.cacheKey)
     }
 
     // MARK: - reset

@@ -161,11 +161,60 @@ final class GetWeeklyDueAndGradesEntriesTests: StudentTestCase {
         XCTAssertEqual(all.first?.weekStart, otherWeekStart)
     }
 
+    func test_write_skipsGradeEntryWhenGradedAtIsBeforeWeekStart() {
+        let gradedAt = weekStart.addDays(-1)
+        let response = GetWeeklyDueAndGradesEntries.Response(
+            due: [],
+            grades: [makeCourseNode(courseId: "c1", submissionId: "s1", gradedAt: gradedAt)],
+            assignmentGroupsByCourse: [:]
+        )
+
+        testee.write(response: response, urlResponse: nil, to: databaseClient)
+
+        let entries: [CDDashboardWeeklySummaryEntry] = databaseClient.fetch(scope: testee.scope)
+        XCTAssertTrue(entries.filter { $0.category == .newGrades }.isEmpty)
+    }
+
+    func test_write_skipsDueEntryWhenNotFoundInAssignmentGroups() {
+        let date = weekStart.addDays(1)
+        let response = GetWeeklyDueAndGradesEntries.Response(
+            due: [.make(course_id: "c1", plannable_id: "p1", plannable_date: date)],
+            grades: [],
+            assignmentGroupsByCourse: ["c2": [.make(assignments: [.make(id: "other")])]]
+        )
+
+        testee.write(response: response, urlResponse: nil, to: databaseClient)
+
+        let entries: [CDDashboardWeeklySummaryEntry] = databaseClient.fetch(scope: testee.scope)
+        XCTAssertTrue(entries.filter { $0.category == .due }.isEmpty)
+    }
+
+    func test_write_setsAssignmentWeightForDueEntry() {
+        let date = weekStart.addDays(2)
+        let group = APIAssignmentGroup.make(group_weight: 40, assignments: [.make(id: "p1", points_possible: 100)])
+        let response = GetWeeklyDueAndGradesEntries.Response(
+            due: [.make(course_id: "c1", plannable_id: "p1", plannable_date: date)],
+            grades: [],
+            assignmentGroupsByCourse: ["c1": [group]]
+        )
+
+        testee.write(response: response, urlResponse: nil, to: databaseClient)
+
+        let entries: [CDDashboardWeeklySummaryEntry] = databaseClient.fetch(scope: testee.scope)
+        XCTAssertNotNil(entries.first { $0.category == .due }?.gradeWeight)
+    }
+
     func test_write_doesNothingWhenResponseIsNil() {
         testee.write(response: nil, urlResponse: nil, to: databaseClient)
 
         let entries: [CDDashboardWeeklySummaryEntry] = databaseClient.fetch(scope: testee.scope)
         XCTAssertTrue(entries.isEmpty)
+    }
+
+    // MARK: - cacheKey
+
+    func test_cacheKey_containsWeekStartIsoString() {
+        XCTAssertEqual(testee.cacheKey, "\(GetWeeklyDueAndGradesEntries.cacheKeyPrefix)\(weekStart.isoString())")
     }
 
     // MARK: - Private helpers
