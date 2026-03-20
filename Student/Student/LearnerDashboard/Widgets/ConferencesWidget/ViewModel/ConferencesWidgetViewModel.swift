@@ -24,7 +24,6 @@ import SwiftUI
 final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
 
     let id: String = SystemWidgetIdentifier.conferences.rawValue
-    let order = SystemWidgetIdentifier.conferences.order
     let isHiddenInEmptyState = true
 
     private(set) var state: InstUI.ScreenState = .loading

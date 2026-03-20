@@ -25,7 +25,6 @@ import UIKit
 final class HelloWidgetViewModel: DashboardWidgetViewModel {
     let config: DashboardWidgetConfig
     var id: String { config.id.rawValue }
-    var order: Int { config.order }
     let isHiddenInEmptyState = true
 
     var layoutIdentifier: [AnyHashable] {
