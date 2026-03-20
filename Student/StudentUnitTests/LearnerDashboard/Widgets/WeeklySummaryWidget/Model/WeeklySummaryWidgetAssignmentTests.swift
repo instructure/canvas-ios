@@ -59,7 +59,7 @@ final class WeeklySummaryWidgetAssignmentTests: StudentTestCase {
 
         let testee = WeeklySummaryWidgetAssignment(entry: entry)
 
-        XCTAssertEqual(testee.dueDateText, date.dateTimeString)
+        XCTAssertEqual(testee.dueDateText, date.relativeDateTimeString)
     }
 
     func test_dueDateText_isFormattedForDueCategory() {
@@ -68,15 +68,16 @@ final class WeeklySummaryWidgetAssignmentTests: StudentTestCase {
 
         let testee = WeeklySummaryWidgetAssignment(entry: entry)
 
-        XCTAssertEqual(testee.dueDateText, date.dateTimeString)
+        XCTAssertEqual(testee.dueDateText, date.relativeDateTimeString)
     }
 
-    func test_dueDateText_isNilForNewGradesCategory() {
-        let entry = makeEntry(category: .newGrades, date: Clock.now)
+    func test_dueDateText_isFormattedForNewGradesCategory() {
+        let date = Date(timeIntervalSince1970: 1_700_000_000)
+        let entry = makeEntry(category: .newGrades, date: date)
 
         let testee = WeeklySummaryWidgetAssignment(entry: entry)
 
-        XCTAssertNil(testee.dueDateText)
+        XCTAssertEqual(testee.dueDateText, date.relativeDateTimeString)
     }
 
     // MARK: - grade

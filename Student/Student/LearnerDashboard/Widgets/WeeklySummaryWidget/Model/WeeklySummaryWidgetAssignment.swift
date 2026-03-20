@@ -92,7 +92,7 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
                 grade: entry.grade
             )
         }()
-        let dueDateText: String? = entry.category == .newGrades ? nil : entry.date?.dateTimeString
+        let dueDateText: String? = entry.date?.relativeDateTimeString
 
         let submissionStatus: SubmissionStatusLabel.Model? = {
             switch (entry.category, entry.submissionStatus) {
