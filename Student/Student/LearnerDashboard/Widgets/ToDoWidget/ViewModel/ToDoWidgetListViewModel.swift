@@ -29,6 +29,7 @@ final class ToDoWidgetListViewModel {
 
     var items: [TodoItemViewModel] = []
     var itemDidUpdate: (() -> Void)?
+    var itemDidRemoveAfterDelay: (() -> Void)?
     var showCompleted: Bool = false
 
     private let interactor: TodoInteractor
@@ -40,8 +41,6 @@ final class ToDoWidgetListViewModel {
 
     /// Tracks cancellable timers for items in the done state waiting to be removed
     private(set) var markDoneTimers: [String: AnyCancellable] = [:]
-    /// Tracks item IDs that have been optimistically removed via swipe and are awaiting API response
-    private var optimisticallyRemovedIds: Set<String> = []
 
     init(
         interactor: TodoInteractor,
@@ -141,6 +140,9 @@ final class ToDoWidgetListViewModel {
                     self?.removeItem(item)
                 }
                 self?.markDoneTimers.removeValue(forKey: item.plannableId)
+                // Trigger a state change, because this removal is UI only,
+                // it won't trigger an interactor.todoGroup publish.
+                self?.itemDidRemoveAfterDelay?()
             }
         markDoneTimers[item.plannableId] = timer
     }
@@ -192,8 +194,6 @@ final class ToDoWidgetListViewModel {
     }
 
     private func removeItemWithOptimisticUI(_ item: TodoItemViewModel) {
-        optimisticallyRemovedIds.insert(item.plannableId)
-
         withAnimation {
             removeItem(item)
         }
@@ -205,11 +205,9 @@ final class ToDoWidgetListViewModel {
             .sinkFailureOrValue { [weak self] _ in
                 self?.restoreItem(with: itemId)
                 self?.showSnackForFailedDone()
-                self?.optimisticallyRemovedIds.remove(itemId)
-            } receiveValue: { [weak self, weak item] overrideId in
+            } receiveValue: { [weak item] overrideId in
                 item?.overrideId = overrideId
                 item?.markAsDoneState = .done
-                self?.optimisticallyRemovedIds.remove(itemId)
             }
             .store(in: &subscriptions)
     }

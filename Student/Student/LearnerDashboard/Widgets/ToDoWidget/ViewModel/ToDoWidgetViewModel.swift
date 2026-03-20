@@ -78,6 +78,10 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
             // Force refresh because CalendarEvent changes are not propagated to Plannable objects
             self?.loadItemsForWeek(ignorePlannablesCache: true)
         }
+        listViewModel.itemDidRemoveAfterDelay = { [weak self] in
+            guard let self else { return }
+            state = listViewModel.items.isEmpty ? .empty : .data
+        }
 
         selectDay(Clock.now)
 

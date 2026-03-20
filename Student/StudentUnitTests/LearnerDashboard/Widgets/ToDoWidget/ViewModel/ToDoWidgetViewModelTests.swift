@@ -334,6 +334,21 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.yearTitle, nil)
     }
 
+    // MARK: - State after timer removal
+
+    func test_markItemAsDone_whenLastItemRemoved_afterDelay_shouldSetEmptyState() {
+        let item = makeItem(plannableId: testData.itemId1, date: testData.today)
+        interactor.todoGroups.send([makeGroup(date: testData.today, items: [item])])
+        waitUntil(shouldFail: true) { self.testee.state == .data }
+
+        testee.listViewModel.markItemAsDone(item)
+        waitUntil(shouldFail: true) { item.markAsDoneState == .done }
+
+        scheduler.advance(by: .seconds(3))
+
+        XCTAssertEqual(testee.state, .empty)
+    }
+
     // MARK: - Private helpers
 
     private func makeViewModel() -> ToDoWidgetViewModel {
