@@ -26,7 +26,6 @@ final class FileUploadProgressWidgetViewModel: DashboardWidgetViewModel {
     // MARK: - Protocol Properties
 
     let id: String = SystemWidgetIdentifier.fileUploadProgress.rawValue
-    let instanceID = UUID()
     private(set) var state: InstUI.ScreenState = .empty
     let isHiddenInEmptyState = true
 

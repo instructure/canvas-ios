@@ -25,7 +25,6 @@ import SwiftUI
 final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel, DashboardMutatorWidget {
 
     let id: String = SystemWidgetIdentifier.courseInvitations.rawValue
-    let instanceID = UUID()
     let isHiddenInEmptyState = true
 
     private(set) var invitations: [CourseInvitationCardViewModel] = [] {

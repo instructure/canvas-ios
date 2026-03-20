@@ -25,7 +25,6 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel, Dashboard
 
     let config: DashboardWidgetConfig
     var id: String { config.id.rawValue }
-    let instanceID = UUID()
     let isHiddenInEmptyState = true
 
     private(set) var state: InstUI.ScreenState = .loading

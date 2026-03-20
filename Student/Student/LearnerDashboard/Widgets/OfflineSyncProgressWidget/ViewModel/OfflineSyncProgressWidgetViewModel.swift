@@ -26,7 +26,6 @@ final class OfflineSyncProgressWidgetViewModel: DashboardWidgetViewModel {
     // MARK: - Protocol Properties
 
     let id: String = SystemWidgetIdentifier.offlineSyncProgress.rawValue
-    let instanceID = UUID()
     private(set) var state: InstUI.ScreenState = .empty
     let isHiddenInEmptyState = true
 

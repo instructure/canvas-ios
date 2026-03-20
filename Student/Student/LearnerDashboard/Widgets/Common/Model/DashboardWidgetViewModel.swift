@@ -22,7 +22,6 @@ import SwiftUI
 
 protocol DashboardWidgetViewModel: AnyObject {
     var id: String { get }
-    var instanceID: Foundation.UUID { get }
 
     /// The state helps the dashboard screen to decide if the empty state should be shown or not.
     var state: InstUI.ScreenState { get }
