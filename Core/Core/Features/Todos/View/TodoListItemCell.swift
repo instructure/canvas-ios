@@ -28,6 +28,7 @@ public struct TodoListItemCell: View {
     private let onMarkAsDone: (_ item: TodoItemViewModel) -> Void
     private let onSwipe: (_ item: TodoItemViewModel) -> Void
     private let onSwipeCommitted: ((_ item: TodoItemViewModel) -> Void)?
+    private let showCompletedOverride: Bool?
 
     private static let hapticGenerator = UIImpactFeedbackGenerator(style: .light)
 
@@ -37,7 +38,8 @@ public struct TodoListItemCell: View {
         onMarkAsDone: @escaping (TodoItemViewModel) -> Void,
         onSwipe: @escaping (TodoItemViewModel) -> Void,
         onSwipeCommitted: ((TodoItemViewModel) -> Void)? = nil,
-        isSwiping: Binding<Bool> = .constant(false)
+        isSwiping: Binding<Bool> = .constant(false),
+        showCompletedOverride: Bool? = nil
     ) {
         self.item = item
         self.onTap = onTap
@@ -45,6 +47,7 @@ public struct TodoListItemCell: View {
         self.onSwipe = onSwipe
         self.onSwipeCommitted = onSwipeCommitted
         self._isSwiping = isSwiping
+        self.showCompletedOverride = showCompletedOverride
     }
 
     public var body: some View {
@@ -74,7 +77,7 @@ public struct TodoListItemCell: View {
         }
         .swipeAction(
             backgroundColor: item.swipeBackgroundColor,
-            completionBehavior: item.swipeCompletionBehavior,
+            completionBehavior: item.swipeCompletionBehavior(showCompleted: showCompletedOverride),
             isSwiping: $isSwiping,
             isEnabled: item.isSwipeEnabled,
             onSwipeCommitted: { onSwipeCommitted?(item) },

@@ -596,36 +596,25 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertEqual(todoItem?.swipeActionIcon, .discussionReply2Line)
     }
 
-    // MARK: - isVisible
+    // MARK: - isNotDone
 
-    func test_isVisible_whenNotDone_shouldBeTrue() {
-        let todoItem = TodoItemViewModel.make(plannableId: "1")
-        todoItem.markAsDoneState = .notDone
+    func test_isNotDone() {
+        let testee = TodoItemViewModel.make()
 
-        XCTAssertEqual(todoItem.isVisible, true)
-    }
+        // WHEN notDone
+        testee.markAsDoneState = .notDone
+        // THEN
+        XCTAssertEqual(testee.isNotDone, true)
 
-    func test_isVisible_whenDone_andKeepVisibleFalse_shouldBeFalse() {
-        let todoItem = TodoItemViewModel.make(plannableId: "1")
-        todoItem.markAsDoneState = .done
-        todoItem.shouldKeepCompletedItemsVisible = false
+        // WHEN done
+        testee.markAsDoneState = .done
+        // THEN
+        XCTAssertEqual(testee.isNotDone, false)
 
-        XCTAssertEqual(todoItem.isVisible, false)
-    }
-
-    func test_isVisible_whenDone_andKeepVisibleTrue_shouldBeTrue() {
-        let todoItem = TodoItemViewModel.make(plannableId: "1")
-        todoItem.markAsDoneState = .done
-        todoItem.shouldKeepCompletedItemsVisible = true
-
-        XCTAssertEqual(todoItem.isVisible, true)
-    }
-
-    func test_isVisible_whenLoading_shouldBeTrue() {
-        let todoItem = TodoItemViewModel.make(plannableId: "1")
-        todoItem.markAsDoneState = .loading
-
-        XCTAssertEqual(todoItem.isVisible, true)
+        // WHEN loading
+        testee.markAsDoneState = .loading
+        // THEN
+        XCTAssertEqual(testee.isNotDone, true)
     }
 
     // MARK: - Swipe Completion Behavior
@@ -637,7 +626,7 @@ class TodoItemViewModelTests: CoreTestCase {
         todoItem.shouldKeepCompletedItemsVisible = false
 
         // THEN
-        XCTAssertEqual(todoItem.swipeCompletionBehavior, .stayOpen)
+        XCTAssertEqual(todoItem.swipeCompletionBehavior(), .stayOpen)
     }
 
     func test_swipeCompletionBehavior_returnsReset_whenNotDone_andCompletedItemsVisible() {
@@ -647,7 +636,7 @@ class TodoItemViewModelTests: CoreTestCase {
         todoItem.shouldKeepCompletedItemsVisible = true
 
         // THEN
-        XCTAssertEqual(todoItem.swipeCompletionBehavior, .reset)
+        XCTAssertEqual(todoItem.swipeCompletionBehavior(), .reset)
     }
 
     func test_swipeCompletionBehavior_returnsReset_whenDone_regardlessOfFilter() {
@@ -661,8 +650,8 @@ class TodoItemViewModelTests: CoreTestCase {
         todoItem2.shouldKeepCompletedItemsVisible = true
 
         // THEN
-        XCTAssertEqual(todoItem1.swipeCompletionBehavior, .reset)
-        XCTAssertEqual(todoItem2.swipeCompletionBehavior, .reset)
+        XCTAssertEqual(todoItem1.swipeCompletionBehavior(), .reset)
+        XCTAssertEqual(todoItem2.swipeCompletionBehavior(), .reset)
     }
 
     func test_swipeCompletionBehavior_returnsStayOpen_whenLoading_andCompletedItemsHidden() {
@@ -672,7 +661,37 @@ class TodoItemViewModelTests: CoreTestCase {
         todoItem.shouldKeepCompletedItemsVisible = false
 
         // THEN
-        XCTAssertEqual(todoItem.swipeCompletionBehavior, .stayOpen)
+        XCTAssertEqual(todoItem.swipeCompletionBehavior(), .stayOpen)
+    }
+
+    func test_swipeCompletionBehavior_showCompletedOverride_takesRrecedenceOverStoredProperty() {
+        // GIVEN: item has shouldKeepCompletedItemsVisible = false, but override says true
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .notDone
+        todoItem.shouldKeepCompletedItemsVisible = false
+
+        // THEN: override wins
+        XCTAssertEqual(todoItem.swipeCompletionBehavior(showCompleted: true), .reset)
+    }
+
+    func test_swipeCompletionBehavior_showCompletedOverrideFalse_returnsStayOpen_whenNotDone() {
+        // GIVEN: item has shouldKeepCompletedItemsVisible = true, but override says false
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .notDone
+        todoItem.shouldKeepCompletedItemsVisible = true
+
+        // THEN: override wins
+        XCTAssertEqual(todoItem.swipeCompletionBehavior(showCompleted: false), .stayOpen)
+    }
+
+    func test_swipeCompletionBehavior_showCompletedOverride_returnsReset_whenDone() {
+        // GIVEN: done item always resets regardless of override
+        let todoItem = TodoItemViewModel.make(plannableId: "1")
+        todoItem.markAsDoneState = .done
+
+        // THEN
+        XCTAssertEqual(todoItem.swipeCompletionBehavior(showCompleted: false), .reset)
+        XCTAssertEqual(todoItem.swipeCompletionBehavior(showCompleted: true), .reset)
     }
 
     // MARK: - Swipe Enabled

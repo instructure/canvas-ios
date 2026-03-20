@@ -86,7 +86,7 @@ final class ToDoWidgetListViewModelTests: StudentTestCase {
 
     func test_markItemAsDone_onSuccess_shouldSetItemStateToDone() {
         let item = makeItem()
-        item.shouldKeepCompletedItemsVisible = true
+        testee.showCompleted = true
 
         testee.markItemAsDone(item)
 
@@ -94,14 +94,14 @@ final class ToDoWidgetListViewModelTests: StudentTestCase {
         XCTAssertEqual(item.markAsDoneState, .done)
     }
 
-    func test_markItemAsDone_onSuccess_shouldShowDoneSnack() {
-        let item = makeItem(title: testData.title)
-        item.shouldKeepCompletedItemsVisible = true
+    func test_markItemAsDone_onSuccess_whenShowCompleted_shouldNotStartRemovalTimer() {
+        let item = makeItem()
+        testee.showCompleted = true
 
         testee.markItemAsDone(item)
 
-        waitUntil(shouldFail: true) { self.snackBarViewModel.visibleSnack != nil }
-        XCTAssertEqual(snackBarViewModel.visibleSnack?.contains(testData.title), true)
+        waitUntil(shouldFail: true) { item.markAsDoneState == .done }
+        XCTAssertEqual(testee.markDoneTimers.isEmpty, true)
     }
 
     func test_markItemAsDone_onFailure_shouldRestoreItemStateAndShowSnack() {
@@ -127,15 +127,14 @@ final class ToDoWidgetListViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.items.isEmpty, true)
     }
 
-    func test_markItemAsDone_onDoneAlready_onSuccess_shouldShowNotDoneSnack() {
-        let item = makeItem(title: testData.title)
+    func test_markItemAsDone_onDoneAlready_onSuccess_shouldSetStateToNotDone() {
+        let item = makeItem()
         item.markAsDoneState = .done
 
         testee.markItemAsDone(item)
 
-        waitUntil(shouldFail: true) { self.snackBarViewModel.visibleSnack != nil }
-        XCTAssertEqual(snackBarViewModel.visibleSnack?.contains(testData.title), true)
-        XCTAssertEqual(snackBarViewModel.visibleSnack?.contains("not done"), true)
+        waitUntil(shouldFail: true) { item.markAsDoneState == .notDone }
+        XCTAssertEqual(item.markAsDoneState, .notDone)
     }
 
     func test_markItemAsDone_onDoneAlready_onFailure_shouldRestoreStateToDone() {
@@ -172,30 +171,37 @@ final class ToDoWidgetListViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.items.count, 1)
     }
 
-    func test_handleSwipeAction_whenShouldToggleInPlace_shouldCallInteractor() {
+    func test_handleSwipeAction_whenItemIsDone_shouldToggleInPlace() {
         let item = makeItem()
         item.markAsDoneState = .done
-        item.shouldKeepCompletedItemsVisible = true
 
         testee.handleSwipeAction(item)
 
         XCTAssertEqual(interactor.markItemAsDoneCalled, true)
     }
 
-    func test_handleSwipeAction_onSuccess_shouldShowDoneSnack() {
-        let item = makeItem(title: testData.title)
+    func test_handleSwipeAction_whenShowCompletedTrue_shouldToggleInPlace() {
+        let item = makeItem()
+        testee.showCompleted = true
 
         testee.handleSwipeAction(item)
 
-        waitUntil(shouldFail: true) { self.snackBarViewModel.visibleSnack != nil }
-        XCTAssertEqual(snackBarViewModel.visibleSnack?.contains(testData.title), true)
+        XCTAssertEqual(interactor.markItemAsDoneCalled, true)
+    }
+
+    func test_handleSwipeAction_onSuccess_shouldMarkItemAsDone() {
+        let item = makeItem()
+
+        testee.handleSwipeAction(item)
+
+        waitUntil(shouldFail: true) { item.markAsDoneState == .done }
+        XCTAssertEqual(item.markAsDoneState, .done)
     }
 
     // MARK: - handleSwipeCommitted
 
     func test_handleSwipeCommitted_shouldCancelDelayedRemove() {
         let item = makeItem()
-        item.shouldKeepCompletedItemsVisible = false
         testee.items = [item]
 
         testee.markItemAsDone(item)

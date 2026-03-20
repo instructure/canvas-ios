@@ -191,6 +191,20 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
         waitUntil(shouldFail: true) { self.testee.listViewModel.items.count == 1 }
     }
 
+    func test_listViewModelItems_shouldKeepDoneItemVisibleWhilePendingRemoval() {
+        let item = makeItem(plannableId: testData.itemId1, date: testData.today)
+        interactor.todoGroups.send([makeGroup(date: testData.today, items: [item])])
+        waitUntil(shouldFail: true) { self.testee.state == .data }
+
+        testee.listViewModel.markItemAsDone(item)
+        waitUntil(shouldFail: true) { item.markAsDoneState == .done }
+
+        interactor.todoGroups.send([makeGroup(date: testData.today, items: [item])])
+
+        XCTAssertEqual(testee.listViewModel.items.count, 1)
+        XCTAssertEqual(testee.listViewModel.items.first?.plannableId, testData.itemId1)
+    }
+
     // MARK: - itemCountPerDay
 
     func test_itemCountPerDay_shouldReflectVisibleItemCountsPerDate() {
@@ -220,6 +234,16 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
     }
 
     // MARK: - showCompleted
+
+    func test_showCompleted_shouldPropagateToListViewModel() {
+        XCTAssertEqual(testee.listViewModel.showCompleted, false)
+
+        testee.showCompleted = true
+        XCTAssertEqual(testee.listViewModel.showCompleted, true)
+
+        testee.showCompleted = false
+        XCTAssertEqual(testee.listViewModel.showCompleted, false)
+    }
 
     func test_showCompleted_shouldToggle() {
         // WHEN false → set true

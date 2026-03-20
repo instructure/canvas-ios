@@ -141,7 +141,6 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
                     groups.map { ($0.date.startOfDay(), $0.items) },
                     uniquingKeysWith: { $1 }
                 )
-                updateKeepCompletedItemsVisibleForAllItems()
                 updateItemCounts()
                 updateCurrentListItems()
             }
@@ -216,30 +215,34 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     // MARK: - Private
 
     private func showCompletedDidChange() {
-        updateKeepCompletedItemsVisibleForAllItems()
+        if showCompleted {
+            listViewModel.invalidateMarkDoneTimers()
+        }
+
+        listViewModel.showCompleted = showCompleted
         updateItemCounts()
         updateCurrentListItems()
     }
 
-    /// This update of `TodoItemViewModel`s is needed for the correct `isVisible` result,
-    /// and for the list items to choose the proper Mark-as-Done behaviour.
-    private func updateKeepCompletedItemsVisibleForAllItems() {
-        allItemsPerDay.values
-            .flatMap { $0}
-            .forEach {
-                $0.shouldKeepCompletedItemsVisible = showCompleted
-            }
-    }
-
     private func updateItemCounts() {
         itemCountPerDay = allItemsPerDay.mapValues { items in
-            showCompleted ? items.count : items.filter(\.isVisible).count
+            let filteredItems = showCompleted ? items : items.filter(\.isNotDone)
+            return filteredItems.count
         }
     }
 
     private func updateCurrentListItems() {
         let allItems = allItemsPerDay[selectedDay] ?? []
-        listViewModel.items = showCompleted ? allItems : allItems.filter(\.isVisible)
+
+        if showCompleted {
+            listViewModel.items = allItems
+        } else {
+            let pendingRemovalIds = Set(listViewModel.markDoneTimers.keys)
+            listViewModel.items = allItems.filter {
+                $0.isNotDone
+                || pendingRemovalIds.contains($0.plannableId)
+            }
+        }
 
         state = listViewModel.items.isEmpty ? .empty : .data
     }

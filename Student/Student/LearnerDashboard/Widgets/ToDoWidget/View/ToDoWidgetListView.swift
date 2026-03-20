@@ -35,7 +35,8 @@ struct ToDoWidgetListView: View {
                     onMarkAsDone: { viewModel.markItemAsDone($0) },
                     onSwipe: { viewModel.handleSwipeAction($0) },
                     onSwipeCommitted: { viewModel.handleSwipeCommitted($0) },
-                    isSwiping: isSwipingBinding(for: item)
+                    isSwiping: isSwipingBinding(for: item),
+                    showCompletedOverride: viewModel.showCompleted
                 )
                 .paddingStyle(.leading, .standard)
                 InstUI.Divider(.padded)

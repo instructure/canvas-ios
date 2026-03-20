@@ -41,15 +41,18 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
 
     public var shouldKeepCompletedItemsVisible: Bool = false
 
-    public var isVisible: Bool {
-        shouldKeepCompletedItemsVisible ? true : markAsDoneState != .done
+    /// The item is either in `.undone` or in `.loading` state.
+    public var isNotDone: Bool {
+        markAsDoneState != .done
     }
 
-    public var swipeCompletionBehavior: InstUI.SwipeCompletionBehavior {
+    public func swipeCompletionBehavior(showCompleted: Bool? = nil) -> InstUI.SwipeCompletionBehavior {
+        let showCompleted = showCompleted ?? shouldKeepCompletedItemsVisible
+
         if markAsDoneState == .done {
             return .reset
         } else {
-            return shouldKeepCompletedItemsVisible ? .reset : .stayOpen
+            return showCompleted ? .reset : .stayOpen
         }
     }
 

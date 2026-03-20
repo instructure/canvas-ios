@@ -25,16 +25,23 @@ import SwiftUI
 @Observable
 final class ToDoWidgetListViewModel {
 
+    private static let autoRemovalDelay: TimeInterval = 3
+
     var items: [TodoItemViewModel] = []
     var itemDidUpdate: (() -> Void)?
+    var showCompleted: Bool = false
 
     private let interactor: TodoInteractor
     private let router: Router
-    private let snackBarViewModel: SnackBarViewModel
+    private let snackBar: SnackBarViewModel
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     private var subscriptions = Set<AnyCancellable>()
-    private var markDoneTimers: [String: AnyCancellable] = [:]
+
+    /// Tracks cancellable timers for items in the done state waiting to be removed
+    private(set) var markDoneTimers: [String: AnyCancellable] = [:]
+    /// Tracks item IDs that have been optimistically removed via swipe and are awaiting API response
+    private var optimisticallyRemovedIds: Set<String> = []
 
     init(
         interactor: TodoInteractor,
@@ -44,17 +51,18 @@ final class ToDoWidgetListViewModel {
     ) {
         self.interactor = interactor
         self.router = router
-        self.snackBarViewModel = snackBarViewModel
+        self.snackBar = snackBarViewModel
         self.scheduler = scheduler
     }
 
-    // MARK: - Item Actions
+    // MARK: - Item Action
 
     func didTapItem(_ item: TodoItemViewModel, _ viewController: WeakViewController) {
         guard item.isTappable else {
-            snackBarViewModel.showSnack(String(localized: "No additional details available.", bundle: .core))
+            showSnackForNoDetailsTap()
             return
         }
+
         switch item.type {
         case .planner_note:
             let vc = PlannerAssembly.makeToDoDetailsViewController(plannableId: item.plannableId)
@@ -72,8 +80,11 @@ final class ToDoWidgetListViewModel {
         }
     }
 
+    // MARK: - Checkbox Actions
+
     func markItemAsDone(_ item: TodoItemViewModel) {
         guard item.markAsDoneState != .loading else { return }
+
         if item.markAsDoneState == .notDone {
             performMarkAsDone(item)
         } else {
@@ -81,112 +92,132 @@ final class ToDoWidgetListViewModel {
         }
     }
 
-    func handleSwipeCommitted(_ item: TodoItemViewModel) {
-        cancelDelayedRemove(for: item)
-    }
-
-    func handleSwipeAction(_ item: TodoItemViewModel) {
-        if item.shouldToggleInPlaceAfterSwipe {
-            toggleItemStateInPlace(item)
-        } else {
-            removeItemWithOptimisticUI(item)
-        }
-    }
-
-    // MARK: - Private
-
     private func performMarkAsDone(_ item: TodoItemViewModel) {
         cancelDelayedRemove(for: item)
         item.markAsDoneState = .loading
+
         interactor.markItemAsDone(item, done: true)
             .receive(on: DispatchQueue.main)
             .sinkFailureOrValue { [weak self, weak item] _ in
-                guard let item else { return }
-                item.markAsDoneState = .notDone
-                self?.snackBarViewModel.showSnack(String(localized: "Failed to mark item as done", bundle: .core))
+                item?.markAsDoneState = .notDone
+                self?.showSnackForFailedDone()
             } receiveValue: { [weak self, weak item] overrideId in
-                guard let self, let item else { return }
-                item.overrideId = overrideId
-                item.markAsDoneState = .done
-
-                self.snackBarViewModel.showSnack(String(localized: "\(item.title) marked as done", bundle: .core))
-
-                guard !item.shouldKeepCompletedItemsVisible else { return }
-                let plannableId = item.plannableId
-                let timer = Just(())
-                    .delay(for: .seconds(3), scheduler: scheduler)
-                    .sink { [weak self] in
-                        withAnimation { self?.removeItem(with: plannableId) }
-                        self?.markDoneTimers.removeValue(forKey: plannableId)
-                    }
-                markDoneTimers[plannableId] = timer
+                item?.overrideId = overrideId
+                self?.handleMarkAsDoneSuccess(item)
             }
             .store(in: &subscriptions)
     }
 
     private func performMarkAsUndone(_ item: TodoItemViewModel) {
         cancelDelayedRemove(for: item)
-        let itemTitle = item.title
         item.markAsDoneState = .loading
+
         interactor.markItemAsDone(item, done: false)
             .receive(on: DispatchQueue.main)
             .sinkFailureOrValue { [weak self, weak item] _ in
                 item?.markAsDoneState = .done
-                self?.snackBarViewModel.showSnack(String(localized: "Failed to mark item as not done", bundle: .core))
+                self?.showSnackForFailedUndone()
             } receiveValue: { [weak self, weak item] overrideId in
                 item?.overrideId = overrideId
-                item?.markAsDoneState = .notDone
-                self?.snackBarViewModel.showSnack(String(localized: "\(itemTitle) marked as not done", bundle: .core))
+                self?.handleMarkAsUndoneSuccess(item)
             }
             .store(in: &subscriptions)
     }
 
+    private func handleMarkAsDoneSuccess(_ item: TodoItemViewModel?) {
+        guard let item else { return }
+
+        item.markAsDoneState = .done
+        a11yAnnounceDone(item)
+
+        if showCompleted {
+            return
+        }
+
+        let timer = Just(())
+            .delay(for: .seconds(Self.autoRemovalDelay), scheduler: scheduler)
+            .sink { [weak self] in
+                withAnimation {
+                    self?.removeItem(item)
+                }
+                self?.markDoneTimers.removeValue(forKey: item.plannableId)
+            }
+        markDoneTimers[item.plannableId] = timer
+    }
+
+    private func handleMarkAsUndoneSuccess(_ item: TodoItemViewModel?) {
+        guard let item else { return }
+
+        item.markAsDoneState = .notDone
+        a11yAnnounceUndone(item)
+    }
+
+    func invalidateMarkDoneTimers() {
+        markDoneTimers.values.forEach { $0.cancel() }
+        markDoneTimers.removeAll()
+    }
+
+    // MARK: - Swipe Actions
+
+    func handleSwipeCommitted(_ item: TodoItemViewModel) {
+        cancelDelayedRemove(for: item)
+    }
+
+    func handleSwipeAction(_ item: TodoItemViewModel) {
+        if item.markAsDoneState == .done || showCompleted {
+            toggleItemStateInPlace(item)
+        } else {
+            removeItemWithOptimisticUI(item)
+        }
+    }
+
     private func toggleItemStateInPlace(_ item: TodoItemViewModel) {
         let isCurrentlyDone = item.markAsDoneState == .done
-        let itemTitle = item.title
         item.markAsDoneState = .loading
+
         interactor.markItemAsDone(item, done: !isCurrentlyDone)
             .receive(on: DispatchQueue.main)
             .sinkFailureOrValue { [weak self, weak item] _ in
                 item?.markAsDoneState = isCurrentlyDone ? .done : .notDone
-                self?.snackBarViewModel.showSnack(String(localized: "Failed to update item", bundle: .core))
-            } receiveValue: { [weak self, weak item] overrideId in
+                if isCurrentlyDone {
+                    self?.showSnackForFailedUndone()
+                } else {
+                    self?.showSnackForFailedDone()
+                }
+            } receiveValue: { [weak item] overrideId in
                 item?.overrideId = overrideId
                 item?.markAsDoneState = isCurrentlyDone ? .notDone : .done
-                if isCurrentlyDone {
-                    self?.snackBarViewModel.showSnack(String(localized: "\(itemTitle) marked as not done", bundle: .core))
-                } else {
-                    self?.snackBarViewModel.showSnack(String(localized: "\(itemTitle) marked as done", bundle: .core))
-                }
             }
             .store(in: &subscriptions)
     }
 
     private func removeItemWithOptimisticUI(_ item: TodoItemViewModel) {
+        optimisticallyRemovedIds.insert(item.plannableId)
+
+        withAnimation {
+            removeItem(item)
+        }
+
         let itemId = item.plannableId
-        let itemTitle = item.title
-        withAnimation { removeItem(item) }
+
         interactor.markItemAsDone(item, done: true)
             .receive(on: DispatchQueue.main)
             .sinkFailureOrValue { [weak self] _ in
                 self?.restoreItem(with: itemId)
-                self?.snackBarViewModel.showSnack(String(localized: "Failed to mark item as done", bundle: .core))
+                self?.showSnackForFailedDone()
+                self?.optimisticallyRemovedIds.remove(itemId)
             } receiveValue: { [weak self, weak item] overrideId in
                 item?.overrideId = overrideId
                 item?.markAsDoneState = .done
-                self?.snackBarViewModel.showSnack(String(localized: "\(itemTitle) marked as done", bundle: .core))
+                self?.optimisticallyRemovedIds.remove(itemId)
             }
             .store(in: &subscriptions)
     }
 
+    // MARK: - Private Remove/Restore item
+
     private func removeItem(_ item: TodoItemViewModel) {
         guard let itemIndex = items.firstIndex(of: item) else { return }
-
-        items.remove(at: itemIndex)
-    }
-
-    private func removeItem(with plannableId: String) {
-        guard let itemIndex = items.firstIndex(where: { $0.plannableId == plannableId }) else { return }
 
         items.remove(at: itemIndex)
     }
@@ -211,5 +242,40 @@ final class ToDoWidgetListViewModel {
     private func cancelDelayedRemove(for item: TodoItemViewModel) {
         markDoneTimers[item.plannableId]?.cancel()
         markDoneTimers.removeValue(forKey: item.plannableId)
+    }
+}
+
+// MARK: - Notify User
+
+private extension ToDoWidgetListViewModel {
+
+    func a11yAnnounceDone(_ item: TodoItemViewModel) {
+        let announcement = String(
+            localized: "\(item.title), marked as done",
+            bundle: .core,
+            comment: "VoiceOver announcement when a to-do item is marked as complete. The item title is inserted before the status message."
+        )
+        UIAccessibility.announce(announcement)
+    }
+
+    func a11yAnnounceUndone(_ item: TodoItemViewModel) {
+        let announcement = String(
+            localized: "\(item.title), marked as not done",
+            bundle: .core,
+            comment: "VoiceOver announcement when a to-do item is unmarked as complete. The item title is inserted before the status message."
+        )
+        UIAccessibility.announce(announcement)
+    }
+
+    func showSnackForFailedDone() {
+        snackBar.showSnack(String(localized: "Failed to mark item as done", bundle: .core))
+    }
+
+    func showSnackForFailedUndone() {
+        snackBar.showSnack(String(localized: "Failed to mark item as not done", bundle: .core))
+    }
+
+    func showSnackForNoDetailsTap() {
+        snackBar.showSnack(String(localized: "No additional details available.", bundle: .core))
     }
 }
