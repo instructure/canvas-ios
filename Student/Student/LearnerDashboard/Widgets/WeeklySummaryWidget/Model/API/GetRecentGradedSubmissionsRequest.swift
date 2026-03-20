@@ -56,7 +56,7 @@ struct GetRecentGradedSubmissionsRequest: APIGraphQLRequestable {
             let assignment: AssignmentNode
 
             func isValidNewGrade(weekStart: Date, weekEnd: Date) -> Bool {
-                gradeHidden == false
+                gradeHidden != true
                     && (grade != nil || score != nil)
                     && gradedAt.map { $0 >= weekStart && $0 < weekEnd } == true
             }
