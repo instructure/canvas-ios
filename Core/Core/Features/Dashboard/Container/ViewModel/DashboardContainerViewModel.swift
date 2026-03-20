@@ -39,7 +39,7 @@ public class DashboardContainerViewModel: ObservableObject {
     public init(
         environment: AppEnvironment,
         defaults: SessionDefaults,
-        isLearnerDashboardEnabledOnInstance: Bool,
+        isLearnerDashboardEnabledOnInstance: Bool = false,
         courseSyncInteractor: CourseSyncInteractor = CourseSyncDownloaderAssembly.makeInteractor()
     ) {
         self.defaults = defaults

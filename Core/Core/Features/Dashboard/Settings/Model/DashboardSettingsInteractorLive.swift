@@ -37,7 +37,7 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
     private var subscriptions = Set<AnyCancellable>()
     private var userSettings: Store<GetUserSettings>!
 
-    public init(environment: AppEnvironment, defaults: SessionDefaults?, isLearnerDashboardEnabledOnInstance: Bool) {
+    public init(environment: AppEnvironment, defaults: SessionDefaults?, isLearnerDashboardEnabledOnInstance: Bool = false) {
         let defaults = defaults ?? .fallback
         let storedLayout: DashboardLayout = defaults.isDashboardLayoutGrid ? .grid : .list
         self.defaults = defaults
