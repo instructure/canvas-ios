@@ -159,7 +159,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
 
     func didTapAssignment(_ assignment: WeeklySummaryWidgetAssignment, from controller: WeakViewController) {
         router.route(
-            to: "/courses/\(assignment.courseId)/assignments/\(assignment.id)",
+            to: "/courses/\(assignment.courseId)/assignments/\(assignment.routeAssignmentId)",
             from: controller,
             options: .modal(.fullScreen, isDismissable: false, embedInNav: true, addDoneButton: true, animated: true)
         )

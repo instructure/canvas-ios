@@ -104,7 +104,7 @@ final class GetWeeklyDueAndGradesEntries: UseCase {
         guard let response else { return }
         for plannable in response.due {
             let courseId = plannable.context?.id ?? ""
-            let assignmentId = plannable.plannable_id.value
+            let assignmentId = plannable.parentAssignmentId
             let groups = response.assignmentGroupsByCourse[courseId] ?? []
             let group = groups.group(containingAssignmentWithId: assignmentId)
             guard let assignment = findAssignment(id: assignmentId, courseId: courseId, in: response.assignmentGroupsByCourse) else { continue }
@@ -196,5 +196,27 @@ final class GetWeeklyDueAndGradesEntries: UseCase {
         groupsByCourseID[courseId]?
             .flatMap { $0.assignments ?? [] }
             .first { $0.id.rawValue == id }
+    }
+}
+
+extension APIPlannable {
+    var parentAssignmentId: String {
+        APIPlannable.parentAssignmentId(plannableType: plannableType, htmlUrl: html_url, plannableId: plannable_id.value)
+    }
+
+    /// Returns the assignment ID to use for looking up the entry in assignment groups.
+    /// For sub-assignments the parent assignment ID is extracted from `htmlUrl`, since
+    /// assignment groups only contain parent assignments, not sub-assignments.
+    /// The URL may be `/courses/:id/assignments/:assignmentId` or
+    /// `/courses/:id/assignments/:assignmentId/submissions/:submissionId`, so we look
+    /// for the path component immediately after "assignments".
+    static func parentAssignmentId(plannableType: PlannableType, htmlUrl: APIURL?, plannableId: String) -> String {
+        if plannableType == .sub_assignment,
+           let components = htmlUrl.map({ $0.rawValue.pathComponents }),
+           let assignmentsIndex = components.firstIndex(of: "assignments"),
+           assignmentsIndex + 1 < components.count {
+            return components[assignmentsIndex + 1]
+        }
+        return plannableId
     }
 }

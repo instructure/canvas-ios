@@ -1527,6 +1527,7 @@
         <attribute name="gradingType" optional="YES" attributeType="String"/>
         <attribute name="gradeWeightRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="assignmentId" attributeType="String"/>
+        <attribute name="routeAssignmentId" attributeType="String" defaultValueString=""/>
         <attribute name="isQuizLti" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
         <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>

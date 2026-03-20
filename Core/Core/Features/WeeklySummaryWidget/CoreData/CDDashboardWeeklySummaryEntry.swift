@@ -34,7 +34,17 @@ public final class CDDashboardWeeklySummaryEntry: NSManagedObject {
     /// Sentinel `weekStart` value for `.missing` entries, which are not tied to any specific week.
     public static let missingWeekStart: Date = .distantPast
 
+    /// The unique identifier for this entry. For sub-assignments this is the sub-assignment's own ID,
+    /// which differs from the parent assignment ID stored in ``routeAssignmentId``.
     @NSManaged public var assignmentId: String
+
+    public var isSubAssignment: Bool { routeAssignmentId != assignmentId }
+
+    /// The assignment ID to use when building a navigation route. For regular assignments this equals
+    /// ``assignmentId``. For sub-assignments the Canvas API only exposes routes for the parent
+    /// assignment, so this holds the parent ID while ``assignmentId`` retains the sub-assignment's
+    /// own ID as the CoreData identity key.
+    @NSManaged public var routeAssignmentId: String
     @NSManaged public var weekStart: Date
     @NSManaged public var courseId: String
     @NSManaged public var title: String

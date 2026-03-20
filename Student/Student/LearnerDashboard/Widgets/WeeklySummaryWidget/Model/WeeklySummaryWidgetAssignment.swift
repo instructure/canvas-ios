@@ -21,6 +21,7 @@ import SwiftUI
 
 struct WeeklySummaryWidgetAssignment: Identifiable {
     let id: String
+    let routeAssignmentId: String
     let courseId: String
     let courseCode: String
     let courseColor: Color
@@ -34,6 +35,7 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
 
     init(
         id: String,
+        routeAssignmentId: String? = nil,
         courseId: String,
         courseCode: String,
         courseColor: Color,
@@ -46,6 +48,7 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
         gradeWeightText: String?
     ) {
         self.id = id
+        self.routeAssignmentId = routeAssignmentId ?? id
         self.courseId = courseId
         self.courseCode = courseCode
         self.courseColor = courseColor
@@ -73,7 +76,8 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
         }()
 
         let grade: String? = {
-            if entry.category == .missing {
+            // We receive no grade information from the planner API for sub-assignments so we just hide the grade for such cells
+            if entry.category == .missing || entry.isSubAssignment {
                 return nil
             }
             let normalizedScore: Double? = entry.score.flatMap { score in
@@ -104,6 +108,7 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
 
         self.init(
             id: entry.assignmentId,
+            routeAssignmentId: entry.routeAssignmentId,
             courseId: entry.courseId,
             courseCode: course?.name ?? course?.courseCode ?? "",
             courseColor: course.map { Color($0.color) } ?? .course1,

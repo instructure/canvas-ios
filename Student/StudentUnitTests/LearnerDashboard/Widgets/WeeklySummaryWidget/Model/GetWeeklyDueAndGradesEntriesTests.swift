@@ -175,6 +175,35 @@ final class GetWeeklyDueAndGradesEntriesTests: StudentTestCase {
         XCTAssertTrue(entries.filter { $0.category == .newGrades }.isEmpty)
     }
 
+    func test_write_createsDueEntryForSubAssignment() {
+        let date = weekStart.addDays(2)
+        let parentAssignmentId = "50882"
+        let subAssignmentId = "50883"
+        let parentUrl = URL(string: "https://canvas.example.com/courses/c1/assignments/\(parentAssignmentId)")!
+        let response = GetWeeklyDueAndGradesEntries.Response(
+            due: [
+                .make(
+                    course_id: "c1",
+                    plannable_id: ID(rawValue: subAssignmentId),
+                    plannable_type: "sub_assignment",
+                    html_url: parentUrl,
+                    plannable: .make(title: "Discussion Reply"),
+                    plannable_date: date
+                )
+            ],
+            grades: [],
+            assignmentGroupsByCourse: ["c1": [.make(assignments: [.make(id: ID(rawValue: parentAssignmentId))])]]
+        )
+
+        testee.write(response: response, urlResponse: nil, to: databaseClient)
+
+        let entries: [CDDashboardWeeklySummaryEntry] = databaseClient.fetch(scope: testee.scope)
+        let dueEntries = entries.filter { $0.category == .due }
+        XCTAssertEqual(dueEntries.count, 1)
+        XCTAssertEqual(dueEntries.first?.title, "Discussion Reply")
+        XCTAssertEqual(dueEntries.first?.assignmentId, subAssignmentId)
+    }
+
     func test_write_skipsDueEntryWhenNotFoundInAssignmentGroups() {
         let date = weekStart.addDays(1)
         let response = GetWeeklyDueAndGradesEntries.Response(

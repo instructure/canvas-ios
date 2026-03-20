@@ -136,6 +136,21 @@ final class CDDashboardWeeklySummaryEntrySaveTests: StudentTestCase {
         XCTAssertEqual(entry.pointsPossible, 100)
     }
 
+    func test_saveDue_storesParentAssignmentIdAsRouteAssignmentId() {
+        let plannable = APIPlannable.make(plannable_id: "50883")
+
+        let entry = CDDashboardWeeklySummaryEntry.saveDue(
+            plannable,
+            assignment: APIAssignment.make(id: "50882"),
+            weekStart: weekStart,
+            gradeWeight: nil,
+            in: databaseClient
+        )
+
+        XCTAssertEqual(entry.assignmentId, "50883")
+        XCTAssertEqual(entry.routeAssignmentId, "50882")
+    }
+
     func test_saveDue_isQuizLtiFalseWhenAssignmentHasNoQuizId() {
         let plannable = APIPlannable.make(plannable_id: "a1")
 

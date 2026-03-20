@@ -31,6 +31,7 @@ extension CDDashboardWeeklySummaryEntry {
         let model = findOrCreate(weekStart: weekStart, category: .missing, id: assignment.id.rawValue, in: context)
         model.weekStart = weekStart
         model.category = .missing
+        model.routeAssignmentId = assignment.id.rawValue
         model.courseId = assignment.course_id.rawValue
         model.course = context.first(where: #keyPath(Course.id), equals: assignment.course_id.rawValue)
         model.title = assignment.name
@@ -59,6 +60,7 @@ extension CDDashboardWeeklySummaryEntry {
         let model = findOrCreate(weekStart: weekStart, category: .due, id: plannable.plannable_id.value, in: context)
         model.weekStart = weekStart
         model.category = .due
+        model.routeAssignmentId = assignment.id.rawValue
         model.courseId = plannable.context?.id ?? ""
         model.course = context.first(where: #keyPath(Course.id), equals: plannable.context?.id)
         model.title = plannable.plannable?.title ?? ""
@@ -107,6 +109,7 @@ extension CDDashboardWeeklySummaryEntry {
         let model = findOrCreate(weekStart: weekStart, category: .newGrades, id: submission.assignment._id, in: context)
         model.weekStart = weekStart
         model.category = .newGrades
+        model.routeAssignmentId = submission.assignment._id
         model.courseId = courseId
         model.course = context.first(where: #keyPath(Course.id), equals: courseId)
         model.title = submission.assignment.name

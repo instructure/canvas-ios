@@ -229,6 +229,26 @@ final class WeeklySummaryWidgetAssignmentTests: StudentTestCase {
         XCTAssertNotNil(testee.pointsPossible)
     }
 
+    // MARK: - routeAssignmentId
+
+    func test_routeAssignmentId_matchesAssignmentIdForRegularAssignment() {
+        let entry = makeEntry(assignmentId: "a1")
+
+        let testee = WeeklySummaryWidgetAssignment(entry: entry)
+
+        XCTAssertEqual(testee.routeAssignmentId, "a1")
+    }
+
+    func test_routeAssignmentId_usesRouteAssignmentIdWhenSetOnEntry() {
+        let entry = makeEntry(assignmentId: "50883")
+        entry.routeAssignmentId = "50882"
+
+        let testee = WeeklySummaryWidgetAssignment(entry: entry)
+
+        XCTAssertEqual(testee.id, "50883")
+        XCTAssertEqual(testee.routeAssignmentId, "50882")
+    }
+
     // MARK: - Private helpers
 
     @discardableResult
@@ -256,6 +276,7 @@ final class WeeklySummaryWidgetAssignmentTests: StudentTestCase {
         entry.title = title
         entry.date = date
         entry.submissionTypes = []
+        entry.routeAssignmentId = assignmentId
         if let course {
             entry.course = course
         }
