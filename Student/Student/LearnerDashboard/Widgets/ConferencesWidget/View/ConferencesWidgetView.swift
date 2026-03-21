@@ -21,7 +21,7 @@ import Core
 import SwiftUI
 
 struct ConferencesWidgetView: View {
-    @State var viewModel: ConferencesWidgetViewModel
+    var viewModel: ConferencesWidgetViewModel
     @State private var currentPage: Int = 0
     @State private var totalPages: Int = 1
 

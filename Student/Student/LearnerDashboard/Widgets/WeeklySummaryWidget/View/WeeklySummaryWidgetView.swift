@@ -25,7 +25,7 @@ struct WeeklySummaryWidgetView: View {
     @Environment(\.viewController) var controller
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-    @State var viewModel: WeeklySummaryWidgetViewModel
+    var viewModel: WeeklySummaryWidgetViewModel
 
     init(viewModel: WeeklySummaryWidgetViewModel) {
         self.viewModel = viewModel

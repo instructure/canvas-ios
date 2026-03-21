@@ -22,8 +22,8 @@ import SwiftUI
 struct ToDoWidgetView: View {
     @Environment(\.viewController) private var viewController
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
-    @State private var viewModel: ToDoWidgetViewModel
 
+    private let viewModel: ToDoWidgetViewModel
     @State private var weekPagerProxy = WeekPagerProxy()
 
     @AccessibilityFocusState private var isTitleFocused: Bool
@@ -102,7 +102,7 @@ struct ToDoWidgetView: View {
         CardHeaderView(
             yearTitle: viewModel.yearTitle,
             monthTitle: viewModel.monthTitle,
-            showCompleted: $viewModel.showCompleted,
+            showCompleted: Bindable(viewModel).showCompleted
         )
     }
 

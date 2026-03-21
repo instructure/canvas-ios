@@ -20,7 +20,7 @@ import Core
 import SwiftUI
 
 struct OfflineSyncProgressWidgetView: View {
-    @State var model: OfflineSyncProgressWidgetViewModel
+    var model: OfflineSyncProgressWidgetViewModel
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.viewController) private var viewController
 

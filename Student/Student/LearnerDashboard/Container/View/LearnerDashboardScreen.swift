@@ -59,6 +59,7 @@ struct LearnerDashboardScreen: View {
                     if widgetViewModel.shouldRenderWidget {
                         widgetViewModel.makeView()
                             .accentColor(needsAccentColorOverride ? viewModel.mainColor : .brandPrimary)
+                            .transition(.fade)
                     }
                 }
                 if viewModel.showWidgetsTurnedOffPanda {
