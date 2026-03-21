@@ -54,6 +54,7 @@ struct LearnerDashboardScreen: View {
                 ForEach(viewModel.widgets, id: \.id) { widgetViewModel in
                     if widgetViewModel.shouldRenderWidget {
                         widgetViewModel.makeView()
+                            .transition(.fade)
                     }
                 }
                 if viewModel.showWidgetsTurnedOffPanda {

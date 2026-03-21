@@ -25,7 +25,7 @@ struct CoursesAndGroupsWidgetView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.containerSize) private var containerSize
 
-    @State private var viewModel: CoursesAndGroupsWidgetViewModel
+    private var viewModel: CoursesAndGroupsWidgetViewModel
 
     @State private var draggedCourseCardId: String?
     @State private var isCoursesExpanded: Bool = true

@@ -21,7 +21,7 @@ import SwiftUI
 import CoreData
 
 struct FileUploadProgressWidgetView: View {
-    @State var model: FileUploadProgressWidgetViewModel
+    var model: FileUploadProgressWidgetViewModel
     @Environment(\.viewController) private var controller
 
     var body: some View {
