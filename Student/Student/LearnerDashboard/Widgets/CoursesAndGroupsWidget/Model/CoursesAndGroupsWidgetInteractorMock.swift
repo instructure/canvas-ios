@@ -46,6 +46,7 @@ final class CoursesAndGroupsWidgetInteractorMock: CoursesAndGroupsWidgetInteract
     // MARK: - getCoursesAndGroups
 
     var getCoursesAndGroupsCallCount: Int = 0
+    var getCoursesAndGroupsCourseForceRefreshFlag = false
     var getCoursesAndGroupsInput: Bool?
     var getCoursesAndGroupsOutput: Model = ([], [])
     var getCoursesAndGroupsOutputError: Error?
@@ -53,6 +54,7 @@ final class CoursesAndGroupsWidgetInteractorMock: CoursesAndGroupsWidgetInteract
     func getCoursesAndGroups(ignoreCache: Bool, shouldForceCoursesRefresh: Bool) -> AnyPublisher<Model, Error> {
         getCoursesAndGroupsInput = ignoreCache
         getCoursesAndGroupsCallCount += 1
+        getCoursesAndGroupsCourseForceRefreshFlag = shouldForceCoursesRefresh
 
         if let error = getCoursesAndGroupsOutputError {
             return Publishers.typedFailure(error: error)
