@@ -112,11 +112,21 @@ final class GetWeeklyDueAndGradesEntries: UseCase {
                 plannable,
                 assignment: assignment,
                 weekStart: weekStart,
-                gradeWeight: group.flatMap { weightLogic.assignmentWeightInCourse(
-                    assignment: .init(isOmittedFromFinalGrade: assignment.omit_from_final_grade, pointsPossible: assignment.points_possible),
-                    groupWeight: $0.group_weight,
-                    assignmentsInGroup: ($0.assignments ?? []).compactMap { .init(isOmittedFromFinalGrade: $0.omit_from_final_grade, pointsPossible: $0.points_possible) }
-                ) },
+                gradeWeight: group.flatMap {
+                    weightLogic.assignmentWeightInCourse(
+                        assignment: .init(
+                            isOmittedFromFinalGrade: assignment.omit_from_final_grade,
+                            pointsPossible: assignment.points_possible
+                        ),
+                        groupWeight: $0.group_weight,
+                        assignmentsInGroup: ($0.assignments ?? []).compactMap {
+                            .init(
+                                isOmittedFromFinalGrade: $0.omit_from_final_grade,
+                                pointsPossible: $0.points_possible
+                            )
+                        }
+                    )
+                },
                 in: client
             )
         }
