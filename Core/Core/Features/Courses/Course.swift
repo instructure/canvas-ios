@@ -51,6 +51,7 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var syllabusBody: String?
     @NSManaged public var termName: String?
     @NSManaged public var settings: CourseSettings?
+    @NSManaged public var weeklySummaryEntries: Set<CDDashboardWeeklySummaryEntry>
     @NSManaged public var gradingSchemeRaw: Data?
     @NSManaged public var roles: String?
 
@@ -170,6 +171,10 @@ final public class Course: NSManagedObject, WriteableModel {
             model.gradingSchemeRaw = gradingSchemeEntries.jsonData
         }
 
+        for entry: CDDashboardWeeklySummaryEntry in context.fetch(scope: .where(#keyPath(CDDashboardWeeklySummaryEntry.courseId), equals: model.id)) {
+            entry.course = model
+        }
+
         model.roles = item.enrollments.roles
 
         if let apiTabs = item.tabs {
@@ -222,53 +227,41 @@ final public class Course: NSManagedObject, WriteableModel {
 
 extension Course {
 
-    public var displayGrade: String {
-        /// We want to use the special enrollment that was downloaded along the course because that contains the
-        /// computedCurrentGrade, currentPeriodComputedCurrentGrade etc. values. It has no enrollment id so it's easy to identify it.
-        guard let enrollment = enrollments?.filter({ $0.isStudent && $0.id == nil }).first else {
-            return ""
-        }
+    public var displayGradeForLearnerDashboard: String {
+        let noGradesString = String(localized: "N/A", bundle: .core)
 
-        var grade = enrollment.computedCurrentGrade
-        var score = enrollment.computedCurrentScore
-
-        if enrollment.multipleGradingPeriodsEnabled && enrollment.currentGradingPeriodID != nil {
-            grade = enrollment.currentPeriodComputedCurrentGrade
-            score = enrollment.currentPeriodComputedCurrentScore
-        } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption {
-            grade = enrollment.computedCurrentGrade
-            score = enrollment.computedCurrentScore
-        } else if enrollment.multipleGradingPeriodsEnabled && enrollment.totalsForAllGradingPeriodsOption == false {
-            return String(localized: "N/A", bundle: .core)
-        }
-
-        if hideQuantitativeData == true {
-            return grade ?? enrollment.computedCurrentLetterGrade ?? String(localized: "N/A", bundle: .core)
-        }
-
-        guard let scoreNotNil = score,
-              let scoreString = gradingScheme.formattedScore(from: scoreNotNil) else {
-            return grade ?? String(localized: "N/A", bundle: .core)
-        }
-
-        if let grade = grade {
-            return "\(scoreString) - \(grade)"
-        }
-
-        return scoreString
-    }
-
-    public var gradeForWidget: String {
-        /// We want to use the special enrollment that was downloaded along the course because that contains the
-        /// computedCurrentGrade, currentPeriodComputedCurrentGrade etc. values. It has no enrollment id so it's easy to identify it.
-        let noGradesString = String(localized: "No Grades", bundle: .core)
-
-        guard let enrollment = enrollments?.first(where: { $0.isStudent && $0.id == nil }) else {
+        guard let (grade, score) = displayGradeAndScore else {
             return noGradesString
         }
 
-        var grade = enrollment.computedCurrentGrade
-        var score = enrollment.computedCurrentScore
+        return grade ?? score ?? noGradesString
+    }
+
+    public var displayGrade: String {
+        let noGradesString = String(localized: "N/A", bundle: .core)
+
+        guard let (grade, score) = displayGradeAndScore else {
+            return noGradesString
+        }
+
+        return [score, grade].joined(separator: " - ").nilIfEmpty ?? noGradesString
+    }
+
+    public var gradeForWidget: String {
+        let noGradesString = String(localized: "No Grades", bundle: .core)
+
+        guard let (grade, score) = displayGradeAndScore else {
+            return noGradesString
+        }
+
+        return [score, grade].joined(separator: " - ").nilIfEmpty ?? noGradesString
+    }
+
+    private var displayGradeAndScore: (grade: String?, score: String?)? {
+        guard let enrollment = enrollmentForGradeDisplay else { return nil }
+
+        let grade: String?
+        let score: Double?
 
         if enrollment.multipleGradingPeriodsEnabled {
             if enrollment.currentGradingPeriodID != nil {
@@ -277,25 +270,29 @@ extension Course {
             } else if enrollment.totalsForAllGradingPeriodsOption {
                 grade = enrollment.computedCurrentGrade
                 score = enrollment.computedCurrentScore
-            } else if enrollment.totalsForAllGradingPeriodsOption == false {
-                return noGradesString
+            } else {
+                return nil
             }
+        } else {
+            grade = enrollment.computedCurrentGrade
+            score = enrollment.computedCurrentScore
         }
 
         if hideQuantitativeData == true {
-            return grade ?? enrollment.computedCurrentLetterGrade ?? noGradesString
+            return (grade: grade ?? enrollment.computedCurrentLetterGrade, score: nil)
         }
 
-        guard let scoreString = score.flatMap(gradingScheme.formattedScore) else {
-            return grade ?? noGradesString
-        }
-
-        if let grade {
-            return "\(scoreString) - \(grade)"
-        }
-
-        return scoreString
+        return (grade: grade, score: score.flatMap(gradingScheme.formattedScore))
     }
+
+    /// We want to use the special enrollment that was downloaded along the course because that contains the
+    /// computedCurrentGrade, currentPeriodComputedCurrentGrade etc. values. It has no enrollment id so it's easy to identify it.
+    private var enrollmentForGradeDisplay: Enrollment? {
+        enrollments?.filter({ $0.isStudent && $0.id == nil }).first
+    }
+}
+
+extension Course {
 
     public var hideQuantitativeData: Bool {
         return settings?.restrictQuantitativeData ?? false
@@ -326,15 +323,15 @@ extension Course {
     }
 
     public var hasInvitedEnrollment: Bool {
-        enrollments?.contains { $0.state == .invited && $0.id != nil } ?? false
+        enrollments?.contains { $0.isInvitedOrPending && $0.id != nil } ?? false
     }
 
     public var invitedEnrollments: [Enrollment] {
-        enrollments?.filter { $0.state == .invited && $0.id != nil } ?? []
+        enrollments?.filter { $0.isInvitedOrPending && $0.id != nil } ?? []
     }
 
     public var firstInvitedEnrollment: Enrollment? {
-        enrollments?.first { $0.state == .invited && $0.id != nil }
+        enrollments?.first { $0.isInvitedOrPending && $0.id != nil }
     }
 
     public func enrollmentForGrades(userId: String?, includingCompleted: Bool = false) -> Enrollment? {

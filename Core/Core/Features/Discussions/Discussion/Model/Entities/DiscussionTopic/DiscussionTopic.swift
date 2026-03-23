@@ -209,4 +209,15 @@ public final class DiscussionTopic: NSManagedObject, WriteableModel {
                 .sorted(by: <)
         }
     }
+
+    public static func markAsRead(id: String, database: NSPersistentContainer) {
+        let predicate = NSPredicate(\DiscussionTopic.id, equals: id)
+
+        database.performWriteTask { context in
+            guard let model: DiscussionTopic = context.fetch(predicate).first else { return }
+
+            model.readState = "read"
+            try? context.save()
+        }
+    }
 }

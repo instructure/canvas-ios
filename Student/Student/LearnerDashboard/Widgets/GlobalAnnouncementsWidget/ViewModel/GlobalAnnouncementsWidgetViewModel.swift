@@ -18,14 +18,11 @@
 
 import Combine
 import Core
-import Foundation
+import SwiftUI
 
 @Observable
 final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
-    typealias ViewType = GlobalAnnouncementsWidgetView
-
-    let config: DashboardWidgetConfig
-    let isEditable = false
+    let id: String = SystemWidgetIdentifier.globalAnnouncements.rawValue
     let isHiddenInEmptyState = true
 
     private(set) var state: InstUI.ScreenState = .loading
@@ -43,11 +40,9 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
     private var subscriptions = Set<AnyCancellable>()
 
     init(
-        config: DashboardWidgetConfig,
         interactor: GlobalAnnouncementsWidgetInteractor,
         environment: AppEnvironment = .shared
     ) {
-        self.config = config
         self.interactor = interactor
         self.environment = environment
 
@@ -55,8 +50,8 @@ final class GlobalAnnouncementsWidgetViewModel: DashboardWidgetViewModel {
         updateWidgetTitle()
     }
 
-    func makeView() -> GlobalAnnouncementsWidgetView {
-        GlobalAnnouncementsWidgetView(viewModel: self)
+    func makeView() -> AnyView {
+        AnyView(GlobalAnnouncementsWidgetView(viewModel: self))
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {

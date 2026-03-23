@@ -23,8 +23,10 @@ struct LearnerDashboardScreen: View {
     @State private var viewModel: LearnerDashboardViewModel
     @StateObject private var offlineModeViewModel: OfflineModeViewModel
     @State private var isShowingKebabDialog = false
+    @State private var isSettingsPresented = false
     @Environment(\.viewController) private var viewController
     @Environment(\.appEnvironment) private var env
+    @Environment(\.colorScheme) private var colorScheme
 
     private let screenPadding = InstUI.Styles.Padding.standard
     @State private var isAnimationEnabled = false
@@ -51,9 +53,15 @@ struct LearnerDashboardScreen: View {
             VStack(spacing: screenPadding.rawValue) {
                 ForEach(viewModel.widgets, id: \.id) { widgetViewModel in
                     if widgetViewModel.shouldRenderWidget {
-                        LearnerDashboardWidgetAssembly.makeView(for: widgetViewModel)
+                        widgetViewModel.makeView()
+                            .transition(.fade)
                     }
                 }
+                if viewModel.showWidgetsTurnedOffPanda {
+                    LearnerDashboardAllWidgetsTurnedOffView()
+                }
+
+                customizeDashboardButton
             }
             .paddingStyle(.all, screenPadding)
             .animation(isAnimationEnabled ? .dashboardWidget : nil, value: viewModel.widgets.map(\.layoutIdentifier))
@@ -61,6 +69,10 @@ struct LearnerDashboardScreen: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     isAnimationEnabled = true
                 }
+            }
+            .onAppear {
+                // trigger a soft-refresh to apply any changes made on pushed screens
+                viewModel.refresh(ignoreCache: false)
             }
             .environment(
                 \.containerSize,
@@ -70,6 +82,8 @@ struct LearnerDashboardScreen: View {
                 )
             )
         }
+        .tint(viewModel.mainColor)
+        .animation(.dashboardWidget, value: viewModel.mainColor)
         .snackBar(viewModel: viewModel.snackBarViewModel)
         .navigationBarDashboard()
         .toolbar {
@@ -81,6 +95,19 @@ struct LearnerDashboardScreen: View {
                 ToolbarItem(placement: .topBarTrailing) { legacyRightNavBarButtons }
             }
         }
+    }
+
+    private var customizeDashboardButton: some View {
+        Button {
+            isSettingsPresented = true
+        } label: {
+            InstUI.PillContent(
+                title: String(localized: "Customize Dashboard", bundle: .student),
+                leadingIcon: .editLine,
+                size: .height30
+            )
+        }
+        .buttonStyle(.pillTintOutlined)
     }
 
     @available(iOS, introduced: 26, message: "Legacy version exists")
@@ -110,33 +137,55 @@ struct LearnerDashboardScreen: View {
     @ViewBuilder
     @available(iOS, introduced: 26, message: "Legacy version exists")
     private var rightNavBarButtons: some View {
-        if offlineModeViewModel.isOfflineFeatureEnabled {
-            DashboardOptionsMenu(
-                offlineModeViewModel: offlineModeViewModel,
-                onSettingsTapped: { viewModel.settingsButtonTapped(from: viewController) },
-                environment: env
-            )
-        } else {
-            DashboardSettingsButton(
-                onTapped: { viewModel.settingsButtonTapped(from: viewController) }
-            )
+        Group {
+            if offlineModeViewModel.isOfflineFeatureEnabled {
+                DashboardOptionsMenu(
+                    offlineModeViewModel: offlineModeViewModel,
+                    onSettingsTapped: { isSettingsPresented.toggle() },
+                    environment: env
+                )
+            } else {
+                DashboardSettingsButton(
+                    onTapped: { isSettingsPresented.toggle() }
+                )
+            }
+        }
+        .popover(isPresented: $isSettingsPresented) {
+            // NavigationStack is needed to add content to the toolbar
+            NavigationStack {
+                LearnerDashboardSettingsScreen(viewModel: viewModel.makeSettingsViewModel())
+            }
+            .environment(\.colorScheme, colorScheme)
+            .accentColor(.brandPrimary)
+            .tint(.brandPrimary)
         }
     }
 
     @ViewBuilder
     @available(iOS, deprecated: 26, message: "Non-legacy version exists")
     private var legacyRightNavBarButtons: some View {
-        if offlineModeViewModel.isOfflineFeatureEnabled {
-            DashboardOptionsButton(
-                isShowingDialog: $isShowingKebabDialog,
-                offlineModeViewModel: offlineModeViewModel,
-                onSettingsTapped: { viewModel.settingsButtonTapped(from: viewController) },
-                environment: env
-            )
-        } else {
-            LegacyDashboardSettingsButton(
-                onTapped: { viewModel.settingsButtonTapped(from: viewController) }
-            )
+        Group {
+            if offlineModeViewModel.isOfflineFeatureEnabled {
+                DashboardOptionsButton(
+                    isShowingDialog: $isShowingKebabDialog,
+                    offlineModeViewModel: offlineModeViewModel,
+                    onSettingsTapped: { isSettingsPresented.toggle() },
+                    environment: env
+                )
+            } else {
+                LegacyDashboardSettingsButton(
+                    onTapped: { isSettingsPresented.toggle() }
+                )
+            }
+        }
+        .popover(isPresented: $isSettingsPresented) {
+            // NavigationStack is needed to add content to the toolbar
+            NavigationStack {
+                LearnerDashboardSettingsScreen(viewModel: viewModel.makeSettingsViewModel())
+            }
+            .environment(\.colorScheme, colorScheme)
+            .accentColor(.brandPrimary)
+            .tint(.brandPrimary)
         }
     }
 }

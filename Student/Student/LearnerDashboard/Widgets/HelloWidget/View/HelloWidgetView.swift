@@ -21,7 +21,7 @@ import Core
 import Combine
 
 struct HelloWidgetView: View {
-    @State private var viewModel: HelloWidgetViewModel
+    private var viewModel: HelloWidgetViewModel
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     init(viewModel: HelloWidgetViewModel) {

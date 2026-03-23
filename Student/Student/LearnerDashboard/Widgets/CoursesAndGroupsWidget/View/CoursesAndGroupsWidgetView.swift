@@ -25,7 +25,7 @@ struct CoursesAndGroupsWidgetView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.containerSize) private var containerSize
 
-    @State private var viewModel: CoursesAndGroupsWidgetViewModel
+    private var viewModel: CoursesAndGroupsWidgetViewModel
 
     @State private var draggedCourseCardId: String?
     @State private var isCoursesExpanded: Bool = true
@@ -95,8 +95,8 @@ struct CoursesAndGroupsWidgetView: View {
                 itemWidth: itemWidth,
                 spacing: cardSpacing(columnCount),
                 columnCount: columnCount
-            ) { index in
-                let cardViewModel = viewModel.courseCards[index]
+            ) { [courseCards = viewModel.courseCards] index in
+                let cardViewModel = courseCards[index]
                 CourseCardView(
                     viewModel: cardViewModel,
                     showGrades: viewModel.showGrades,
@@ -112,7 +112,7 @@ struct CoursesAndGroupsWidgetView: View {
                     delegate: CourseCardDropToReorderDelegate(
                         receiverCardId: cardViewModel.id,
                         draggedCourseCardId: $draggedCourseCardId,
-                        order: viewModel.courseCards.map { $0.id },
+                        order: courseCards.map { $0.id },
                         delegate: viewModel
                     )
                 )
@@ -132,8 +132,8 @@ struct CoursesAndGroupsWidgetView: View {
                 itemWidth: itemWidth,
                 spacing: cardSpacing(columnCount),
                 columnCount: columnCount
-            ) { index in
-                GroupCardView(viewModel: viewModel.groupCards[index])
+            ) { [groupCards = viewModel.groupCards] index in
+                GroupCardView(viewModel: groupCards[index])
             }
         }
     }
@@ -187,7 +187,7 @@ struct CoursesAndGroupsWidgetView: View {
 }
 
 private func makePreviewViewModel() -> CoursesAndGroupsWidgetViewModel {
-    return CoursesAndGroupsWidgetViewModel(
+    CoursesAndGroupsWidgetViewModel(
         config: .make(id: .coursesAndGroups),
         interactor: .preview(),
         environment: PreviewEnvironment()

@@ -697,6 +697,7 @@
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection"/>
         <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSettings" inverseName="course" inverseEntity="CourseSettings"/>
         <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="course" inverseEntity="Todo"/>
+        <relationship name="weeklySummaryEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDDashboardWeeklySummaryEntry" inverseName="course" inverseEntity="CDDashboardWeeklySummaryEntry"/>
     </entity>
     <entity name="CourseSection" representedClassName="Core.CourseSection" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
@@ -1517,5 +1518,25 @@
         <attribute name="commentLibrarySuggestionsEnabled" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="hideDashcardColorOverlays" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="manualMarkAsRead" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CDDashboardWeeklySummaryEntry" representedClassName="Core.CDDashboardWeeklySummaryEntry" syncable="YES">
+        <attribute name="categoryRaw" attributeType="String"/>
+        <attribute name="courseId" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="excused" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="grade" optional="YES" attributeType="String"/>
+        <attribute name="gradingType" optional="YES" attributeType="String"/>
+        <attribute name="gradeWeightRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="assignmentId" attributeType="String"/>
+        <attribute name="routeAssignmentId" attributeType="String" defaultValueString=""/>
+        <attribute name="isQuizLti" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="scoreRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="submissionStatusRaw" optional="YES" attributeType="String"/>
+        <attribute name="submissionTypesRaw" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="weekStart" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="weeklySummaryEntries" inverseEntity="Course"/>
     </entity>
 </model>

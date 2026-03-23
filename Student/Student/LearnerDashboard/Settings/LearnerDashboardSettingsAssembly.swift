@@ -17,15 +17,39 @@
 //
 
 import Core
-import UIKit
+import SwiftUI
 
 enum LearnerDashboardSettingsAssembly {
-    static func makeViewController(env: AppEnvironment = .shared) -> UIViewController {
+
+    static func makeViewModel(
+        env: AppEnvironment = .shared,
+        colorInteractor: LearnerDashboardColorInteractor,
+        onConfigsChanged: @escaping () -> Void
+    ) -> LearnerDashboardSettingsViewModel {
         let defaults = env.userDefaults ?? .fallback
-        let viewModel = LearnerDashboardSettingsViewModel(defaults: defaults)
-        let view = LearnerDashboardSettingsView(viewModel: viewModel)
-        let hostingController = CoreHostingController(view)
-        hostingController.addDoneButton(side: .right)
-        return CoreNavigationController(rootViewController: hostingController)
+        let username = env.currentSession?.userName ?? ""
+        let defaultConfigs = EditableWidgetIdentifier.makeDefaultConfigs()
+        let savedConfigs = defaults.learnerDashboardWidgetConfigs ?? []
+        let configs = defaultConfigs.map { defaultConfig in
+            savedConfigs.first { $0.id == defaultConfig.id } ?? defaultConfig
+        }
+        let subSettingsViews = EditableWidgetIdentifier.allCases.reduce(into: [EditableWidgetIdentifier: AnyView]()) { result, id in
+            result[id] = id.makeSubSettingsView(env: env)
+        }
+
+        let courseSettingsViewModel = LearnerDashboardSettingsWidgetsSectionViewModel(
+            userDefaults: defaults,
+            configs: configs,
+            username: username,
+            subSettingsViews: subSettingsViews,
+            onConfigsChanged: onConfigsChanged
+        )
+
+        let viewModel = LearnerDashboardSettingsViewModel(
+            defaults: defaults,
+            colorInteractor: colorInteractor,
+            courseSettingsViewModel: courseSettingsViewModel
+        )
+        return viewModel
     }
 }

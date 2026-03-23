@@ -1,5 +1,5 @@
 {
-  "originHash" : "b295e620316f3747a855066886d407f98391e5a4986638dc1bbdc292b17adddd",
+  "originHash" : "03c9ad725c3a44785760c25be448740b186dd74717b9a1f6e6e16d00a62cc818",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -132,8 +132,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pendo-io/pendo-mobile-sdk",
       "state" : {
-        "revision" : "745fb268bb3a8fa3016ee7565092a5c2ca3be922",
-        "version" : "3.11.3"
+        "revision" : "497a9b0325d958ed1cc0b39901e1a5f4335032fe",
+        "version" : "3.12.0"
       }
     },
     {

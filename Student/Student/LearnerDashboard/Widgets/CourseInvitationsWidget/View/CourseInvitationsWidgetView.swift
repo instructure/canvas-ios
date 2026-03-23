@@ -21,7 +21,7 @@ import Core
 import SwiftUI
 
 struct CourseInvitationsWidgetView: View {
-    @State var viewModel: CourseInvitationsWidgetViewModel
+    var viewModel: CourseInvitationsWidgetViewModel
     @State private var currentPage: Int = 0
     @State private var totalPages: Int = 1
 
@@ -74,6 +74,7 @@ private func makePreviewViewModel(snackbarViewModel: SnackBarViewModel) -> Cours
     let context = env.database.viewContext
 
     let coursesInteractor = CoursesInteractorMock()
+    coursesInteractor.acceptDeclineDelay = 2
 
     let mockCourses = [
         Course.save(
@@ -108,7 +109,6 @@ private func makePreviewViewModel(snackbarViewModel: SnackBarViewModel) -> Cours
     )
 
     return CourseInvitationsWidgetViewModel(
-        config: .make(id: .courseInvitations),
         interactor: coursesInteractor,
         snackBarViewModel: snackbarViewModel
     )

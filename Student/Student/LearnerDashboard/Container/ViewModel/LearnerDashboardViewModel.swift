@@ -21,49 +21,57 @@ import CombineSchedulers
 import Core
 import Foundation
 import Observation
+import SwiftUI
 import UIKit
 
 @Observable
 final class LearnerDashboardViewModel {
     private(set) var state: InstUI.ScreenState = .loading
     private(set) var widgets: [any DashboardWidgetViewModel] = []
+    private(set) var mainColor: Color
+    private(set) var showWidgetsTurnedOffPanda: Bool = false
     let snackBarViewModel: SnackBarViewModel
 
     let screenConfig = InstUI.BaseScreenConfig(
         refreshable: true,
         showsScrollIndicators: false,
-        emptyPandaConfig: .init(
-            scene: SpacePanda(),
-            title: String(localized: "Welcome to Canvas!", bundle: .student),
-            subtitle: String(
-                localized: "You don't have any courses yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity.",
-                bundle: .student
-            )
-        ),
         backgroundColor: .backgroundLight
     )
 
     private let interactor: LearnerDashboardInteractor
+    private let colorInteractor: LearnerDashboardColorInteractor
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
-    private var subscriptions = Set<AnyCancellable>()
     private let courseSyncInteractor: CourseSyncInteractor
     private let environment: AppEnvironment
+    private let widgetDidRequestRefresh = PassthroughSubject<Void, Never>()
+
+    private var subscriptions = Set<AnyCancellable>()
 
     init(
         interactor: LearnerDashboardInteractor,
+        colorInteractor: LearnerDashboardColorInteractor,
         snackBarViewModel: SnackBarViewModel,
         mainScheduler: AnySchedulerOf<DispatchQueue> = DispatchQueue.main.eraseToAnyScheduler(),
         courseSyncInteractor: CourseSyncInteractor = CourseSyncDownloaderAssembly.makeInteractor(),
         environment: AppEnvironment
     ) {
         self.interactor = interactor
+        self.colorInteractor = colorInteractor
         self.snackBarViewModel = snackBarViewModel
         self.mainScheduler = mainScheduler
         self.courseSyncInteractor = courseSyncInteractor
         self.environment = environment
+        self.mainColor = colorInteractor.dashboardColor.value
+
+        widgetDidRequestRefresh
+            .sink { [weak self] in
+                self?.refresh(ignoreCache: false)
+            }
+            .store(in: &subscriptions)
 
         loadWidgets()
         setupOfflineSyncHandlers()
+        observeColorChanges()
     }
 
     func refresh(ignoreCache: Bool, completion: (() -> Void)? = nil) {
@@ -79,34 +87,22 @@ final class LearnerDashboardViewModel {
             .store(in: &subscriptions)
     }
 
-    func settingsButtonTapped(from presentingViewController: WeakViewController) {
-        let settingsViewController = LearnerDashboardSettingsAssembly.makeViewController()
-        let viewSize = CGSize(width: 350, height: 250)
-
-        settingsViewController.preferredContentSize = viewSize
-        settingsViewController.modalPresentationStyle = .popover
-
-        if let popoverController = settingsViewController.popoverPresentationController {
-            var navButtonView = presentingViewController.value.navigationItem.rightBarButtonItem?.customView
-
-            if navButtonView == nil,
-               let trailingView = presentingViewController.value.navigationItem.trailingItemGroups.first?.barButtonItems.first?.customView {
-                navButtonView = trailingView
-            }
-
-            popoverController.sourceView = navButtonView
-            popoverController.sourceRect = CGRect(x: 26, y: 35, width: 0, height: 0)
-        }
-
-        environment.router.show(
-            settingsViewController,
-            from: presentingViewController,
-            options: .modal(.popover),
-            analyticsRoute: "/learner_dashboard/settings"
+    func makeSettingsViewModel() -> LearnerDashboardSettingsViewModel {
+        LearnerDashboardSettingsAssembly.makeViewModel(
+            env: environment,
+            colorInteractor: colorInteractor,
+            onConfigsChanged: { [weak self] in self?.loadWidgets() }
         )
     }
 
     // MARK: - Private Methods
+
+    private func observeColorChanges() {
+        colorInteractor.dashboardColor
+            .receive(on: mainScheduler)
+            .sink { [weak self] color in self?.mainColor = color }
+            .store(in: &subscriptions)
+    }
 
     private func loadWidgets() {
         interactor.loadWidgets()
@@ -114,9 +110,12 @@ final class LearnerDashboardViewModel {
             .sink { [weak self] result in
                 guard let self else { return }
                 widgets = result
-                if result.isNotEmpty {
-                    state = .data
+                widgets.forEach {
+                    guard let mutatorWidget = $0 as? DashboardMutatorWidget else { return }
+                    mutatorWidget.requestDashboardRefresh = self.widgetDidRequestRefresh
                 }
+                showWidgetsTurnedOffPanda = result.allEditableWidgetsTurnedOff
+                state = .data
                 refresh(ignoreCache: false)
             }
             .store(in: &subscriptions)

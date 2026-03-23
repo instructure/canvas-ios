@@ -283,6 +283,29 @@ final class CoursesInteractorLiveTests: StudentTestCase {
         }
     }
 
+    func testGetCoursesReturnsInvitedCoursesWhenEnrollmentsAreCreationPending() {
+        _ = mockCourseRequests(
+            invited: [
+                APICourse.make(id: "3309", name: "Future Published Course",
+                               enrollments: [APIEnrollment.make(id: nil, enrollment_state: .invited)]),
+                APICourse.make(id: "3408", name: "Future Unpublished Course",
+                               enrollments: [APIEnrollment.make(id: nil, enrollment_state: .invited)])
+            ]
+        )
+        api.mock(
+            GetEnrollmentsRequest(context: .currentUser, states: [.active, .completed, .invited, .creation_pending, .current_and_future]),
+            value: [
+                APIEnrollment.make(id: "e3309", course_id: "3309", enrollment_state: .creation_pending),
+                APIEnrollment.make(id: "e3408", course_id: "3408", enrollment_state: .creation_pending)
+            ]
+        )
+
+        XCTAssertSingleOutputAndFinish(testee.getCourses(ignoreCache: false), timeout: 5) { result in
+            XCTAssertEqual(result.allCourses.count, 2)
+            XCTAssertEqual(result.invitedCourses.count, 2)
+        }
+    }
+
     func testGetCourses_forwardsCorrectArgumentsToBusinessLogic() {
         let courseLogicMock = BusinessLogic.CourseMock()
         testee = CoursesInteractorLive(env: env, courseLogic: courseLogicMock)

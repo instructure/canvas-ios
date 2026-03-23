@@ -21,7 +21,7 @@ import Core
 import SwiftUI
 
 struct ConferencesWidgetView: View {
-    @State var viewModel: ConferencesWidgetViewModel
+    var viewModel: ConferencesWidgetViewModel
     @State private var currentPage: Int = 0
     @State private var totalPages: Int = 1
 
@@ -67,7 +67,6 @@ struct ConferencesWidgetView: View {
 }
 
 private func makePreviewViewModel() -> ConferencesWidgetViewModel {
-    let config = DashboardWidgetConfig(id: .conferences, order: 0, isVisible: true, settings: nil)
     let interactor = ConferencesWidgetInteractorMock()
 
     interactor.getConferencesOutputValue = [
@@ -84,7 +83,6 @@ private func makePreviewViewModel() -> ConferencesWidgetViewModel {
     ]
 
     return ConferencesWidgetViewModel(
-        config: config,
         interactor: interactor,
         snackBarViewModel: SnackBarViewModel(),
         environment: PreviewEnvironment()
