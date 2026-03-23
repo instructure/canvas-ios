@@ -56,6 +56,8 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     private(set) var weekRangeText: String
     let previousWeekA11yLabel = String(localized: "Previous week", bundle: .student)
     let nextWeekA11yLabel = String(localized: "Next week", bundle: .student)
+    var isCurrentWeek: Bool { weekStartDate == Clock.now.startOfWeek() }
+    var isFutureWeek: Bool { weekStartDate > Clock.now.startOfWeek() }
 
     // MARK: - Init
 
@@ -135,6 +137,12 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     }
 
     // MARK: - User Actions
+
+    func navigateToCurrentWeek() {
+        weekStartDate = Clock.now.startOfWeek()
+        weekRangeText = Self.makeWeekRangeText(from: weekStartDate)
+        beginWeekTransition()
+    }
 
     func navigateToPreviousWeek() {
         weekStartDate = weekStartDate.addDays(-7)
