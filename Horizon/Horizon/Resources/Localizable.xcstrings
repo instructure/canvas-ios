@@ -90722,7 +90722,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "مفقود"
+            "value" : "ناقص"
           }
         },
         "ca" : {
@@ -90830,7 +90830,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "लापता"
+            "value" : "गायब"
           }
         },
         "ht" : {
