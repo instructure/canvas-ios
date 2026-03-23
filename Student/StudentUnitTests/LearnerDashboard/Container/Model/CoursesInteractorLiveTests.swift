@@ -293,7 +293,7 @@ final class CoursesInteractorLiveTests: StudentTestCase {
             ]
         )
         api.mock(
-            GetEnrollmentsRequest(context: .currentUser, states: [.active, .completed, .invited, .creation_pending]),
+            GetEnrollmentsRequest(context: .currentUser, states: [.active, .completed, .invited, .creation_pending, .current_and_future]),
             value: [
                 APIEnrollment.make(id: "e3309", course_id: "3309", enrollment_state: .creation_pending),
                 APIEnrollment.make(id: "e3408", course_id: "3408", enrollment_state: .creation_pending)
