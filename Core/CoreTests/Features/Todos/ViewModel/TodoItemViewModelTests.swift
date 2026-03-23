@@ -258,6 +258,21 @@ class TodoItemViewModelTests: CoreTestCase {
         XCTAssertFalse(itemZ < itemB)
     }
 
+    func test_comparable_sortsByPlannableIdWhenDatesAndTitlesAreEqual() {
+        let sameDate = Date.make(year: 2025, month: 1, day: 1, hour: 10)
+        let sameTitle = "same title"
+
+        let itemA = TodoItemViewModel.make(plannableId: "id-a", date: sameDate, title: sameTitle)
+        let itemB = TodoItemViewModel.make(plannableId: "id-b", date: sameDate, title: sameTitle)
+        let itemC = TodoItemViewModel.make(plannableId: "id-c", date: sameDate, title: sameTitle)
+
+        XCTAssertEqual(itemA < itemB, true)
+        XCTAssertEqual(itemB < itemC, true)
+        XCTAssertEqual(itemA < itemC, true)
+        XCTAssertEqual(itemB < itemA, false)
+        XCTAssertEqual(itemC < itemB, false)
+    }
+
     func test_init_handlesAllPlannableTypes() {
         // Given
         let allTypes: [PlannableType] = [

@@ -239,7 +239,12 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         if lhs.date != rhs.date {
             return lhs.date < rhs.date
         }
-        return lhs.title < rhs.title
+
+        if lhs.title != rhs.title {
+            return lhs.title < rhs.title
+        }
+
+        return lhs.plannableId < rhs.plannableId
     }
 }
 
