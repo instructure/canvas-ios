@@ -26,15 +26,18 @@ protocol LearnerDashboardInteractor {
 
 final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
     private let userDefaults: SessionDefaults
+    private let analytics: Analytics
     private let systemWidgetFactory: (SystemWidgetIdentifier) -> any DashboardWidgetViewModel
     private let editableWidgetFactory: (DashboardWidgetConfig) -> any DashboardWidgetViewModel
 
     init(
         userDefaults: SessionDefaults = AppEnvironment.shared.userDefaults ?? .fallback,
+        analytics: Analytics = .shared,
         systemWidgetFactory: @escaping (SystemWidgetIdentifier) -> any DashboardWidgetViewModel,
         editableWidgetFactory: @escaping (DashboardWidgetConfig) -> any DashboardWidgetViewModel
     ) {
         self.userDefaults = userDefaults
+        self.analytics = analytics
         self.systemWidgetFactory = systemWidgetFactory
         self.editableWidgetFactory = editableWidgetFactory
     }
@@ -42,7 +45,7 @@ final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
     func loadWidgets() -> AnyPublisher<[any DashboardWidgetViewModel], Never> {
         Just(())
             .subscribe(on: DispatchQueue.global(qos: .userInitiated))
-            .map { [userDefaults, systemWidgetFactory, editableWidgetFactory] _ in
+            .map { [userDefaults, analytics, systemWidgetFactory, editableWidgetFactory] _ in
                 let systemVMs = SystemWidgetIdentifier.allCases.map { systemWidgetFactory($0) }
 
                 let defaultConfigs = EditableWidgetIdentifier.makeDefaultConfigs()
@@ -52,6 +55,8 @@ final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
                 let mergedConfigs = defaultConfigs.map { defaultConfig in
                     savedConfigs.first { $0.id == defaultConfig.id } ?? defaultConfig
                 }
+                analytics.logDashboardWidgetVisibility(DashboardWidgetVisibilityEvent(configs: mergedConfigs))
+
                 let editableConfigs = mergedConfigs
                     .filter { $0.isVisible }
                     .sorted()
