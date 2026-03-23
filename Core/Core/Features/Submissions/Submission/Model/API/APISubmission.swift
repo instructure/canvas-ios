@@ -26,7 +26,7 @@ public struct APISubmission: Codable, Equatable {
     let attempt: Int?
     let body: String?
     let cached_due_date: Date?
-    let custom_grade_status_id: String?
+    public let custom_grade_status_id: String?
     let discussion_entries: [APIDiscussionEntry]?
     let entered_grade: String?
     let entered_score: Double?
@@ -38,10 +38,10 @@ public struct APISubmission: Codable, Equatable {
     let grading_period_id: ID?
     let group: APISubmission.Group?
     let id: ID
-    let late: Bool?
+    public let late: Bool?
     let late_policy_status: LatePolicyStatus?
     let media_comment: APIMediaComment?
-    let missing: Bool?
+    public let missing: Bool?
     let points_deducted: Double?
     let posted_at: Date?
     let preview_url: URL?
@@ -50,7 +50,7 @@ public struct APISubmission: Codable, Equatable {
     public var score: Double?
     var submission_comments: [APISubmissionComment]? // include[]=submission_comments
     let submission_history: [APISubmission]? // include[]=submission_history
-    let submission_type: SubmissionType?
+    public let submission_type: SubmissionType?
     let submitted_at: Date?
     let turnitin_data: APITurnItInData?
     @SafeURL private(set) var url: URL?
