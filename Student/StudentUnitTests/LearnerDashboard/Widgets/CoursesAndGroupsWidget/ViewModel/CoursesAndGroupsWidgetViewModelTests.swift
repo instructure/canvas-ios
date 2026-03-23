@@ -144,7 +144,7 @@ final class CoursesAndGroupsWidgetViewModelTests: StudentTestCase {
 
         XCTAssertEqual(interactor.getCoursesAndGroupsCallCount, 1)
         XCTAssertEqual(interactor.getCoursesAndGroupsInput, true)
-        XCTAssertFalse(interactor.getCoursesAndGroupsCourseForceRefreshFlag)
+        XCTAssertEqual(interactor.getCoursesAndGroupsCourseForceRefreshFlag, false)
     }
 
     func test_refresh_shouldCallInteractor_shouldForceRefreshCourses() {
@@ -157,7 +157,7 @@ final class CoursesAndGroupsWidgetViewModelTests: StudentTestCase {
 
         XCTAssertEqual(interactor.getCoursesAndGroupsCallCount, 1)
         XCTAssertEqual(interactor.getCoursesAndGroupsInput, true)
-        XCTAssertTrue(interactor.getCoursesAndGroupsCourseForceRefreshFlag)
+        XCTAssertEqual(interactor.getCoursesAndGroupsCourseForceRefreshFlag, true)
     }
 
     // MARK: - Refresh - State
