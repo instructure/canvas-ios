@@ -28,11 +28,17 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel, Dashboard
     let isHiddenInEmptyState = true
 
     private(set) var state: InstUI.ScreenState = .loading
-    private(set) var courseCards: [CourseCardViewModel] = [.placeholder(id: "1", color: .course1), .placeholder(id: "2", color: .course2)]
+    private(set) var courseCards: [CourseCardViewModel] = [
+        .placeholder(id: "1", color: .course1),
+        .placeholder(id: "2", color: .course2),
+        .placeholder(id: "3", color: .course3)
+    ]
     private(set) var groupCards: [GroupCardViewModel] = [.placeholder(id: "1", color: .course3), .placeholder(id: "2", color: .course4)]
 
     private(set) var showGrades: Bool = false
     private(set) var showColorOverlay: Bool = false
+
+    private var favoritesDidChange: Bool = false
 
     var layoutIdentifier: [AnyHashable] {
         [state, courseCards.count, groupCards.count]
@@ -56,6 +62,7 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel, Dashboard
 
         updateShowGrades(on: interactor.showGrades)
         updateShowColorOverlay(on: interactor.showColorOverlay)
+        observeFavoritesDidChange()
     }
 
     func makeView() -> AnyView {
@@ -63,7 +70,15 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel, Dashboard
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        interactor.getCoursesAndGroups(ignoreCache: ignoreCache)
+        // Favorite changes require refresh from API, because those can't be applied properly on client side.
+        let shouldForceCoursesRefresh = favoritesDidChange
+        favoritesDidChange = false
+
+        if shouldForceCoursesRefresh {
+            state = .loading
+        }
+
+        return interactor.getCoursesAndGroups(ignoreCache: ignoreCache, shouldForceCoursesRefresh: shouldForceCoursesRefresh)
             .receive(on: DispatchQueue.main)
             .map { [weak self, environment] (courseItems, groupItems) in
                 guard let self else { return }
@@ -110,6 +125,15 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel, Dashboard
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.showColorOverlay = $0
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func observeFavoritesDidChange() {
+        NotificationCenter.default
+            .publisher(for: .favoritesDidChange)
+            .sink { [weak self] _ in
+                self?.favoritesDidChange = true
             }
             .store(in: &subscriptions)
     }

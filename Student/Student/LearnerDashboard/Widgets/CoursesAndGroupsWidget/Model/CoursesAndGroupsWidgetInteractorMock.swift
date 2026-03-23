@@ -50,7 +50,7 @@ final class CoursesAndGroupsWidgetInteractorMock: CoursesAndGroupsWidgetInteract
     var getCoursesAndGroupsOutput: Model = ([], [])
     var getCoursesAndGroupsOutputError: Error?
 
-    func getCoursesAndGroups(ignoreCache: Bool) -> AnyPublisher<Model, Error> {
+    func getCoursesAndGroups(ignoreCache: Bool, shouldForceCoursesRefresh: Bool) -> AnyPublisher<Model, Error> {
         getCoursesAndGroupsInput = ignoreCache
         getCoursesAndGroupsCallCount += 1
 

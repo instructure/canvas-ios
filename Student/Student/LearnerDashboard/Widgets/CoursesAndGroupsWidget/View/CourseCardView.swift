@@ -22,10 +22,7 @@ import SwiftUI
 struct CourseCardView: View {
     @Environment(\.viewController) private var controller
     @Environment(\.offlineMode) private var offlineMode
-    @Environment(\.redactionReasons) private var redactionReasons
     @ScaledMetric private var uiScale: CGFloat = 1
-
-    private var isRedacted: Bool { redactionReasons == .placeholder }
 
     private let viewModel: CourseCardViewModel
     private let showGrades: Bool
@@ -63,12 +60,10 @@ struct CourseCardView: View {
     var body: some View {
         cardButton
             .overlay(alignment: .topLeading) {
-                if !isRedacted {
-                    kebabButton
-                        .padding(8)
-                        .contentShape(Rectangle())
-                        .offset(x: 2, y: 2)
-                }
+                kebabButton
+                    .padding(8)
+                    .contentShape(Rectangle())
+                    .offset(x: 2, y: 2)
             }
             .animation(.dashboardWidget, value: viewModel)
             .accessibilityElement(children: .combine)
@@ -111,7 +106,7 @@ struct CourseCardView: View {
                 .clipped()
         }
         .overlay(alignment: .bottomLeading) {
-            if showGrades, !isRedacted {
+            if showGrades {
                 gradePill
                     .offset(x: 8, y: -8)
             }
@@ -125,6 +120,7 @@ struct CourseCardView: View {
             .font(.semibold16, lineHeight: .fit)
             .foregroundStyle(.textDarkest)
             .multilineTextAlignment(.leading)
+            .lineLimit(2)
     }
 
     // MARK: - Kebab button
@@ -236,7 +232,7 @@ struct CourseCardView: View {
                 .scaledIcon()
                 .foregroundStyle(.textDark)
                 .instBadge(
-                    isRedacted ? nil : viewModel.unreadAnnouncementCount,
+                    viewModel.unreadAnnouncementCount,
                     style: .accessory
                 )
                 .scaledFrame(height: 72, useIconScale: true) // increases tap area
