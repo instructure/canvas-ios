@@ -37,7 +37,7 @@ struct WeeklySummaryWidgetEmptyView: View {
                 .multilineTextAlignment(.center)
         }
         .padding(.horizontal, 8)
-        .padding(.vertical, 2)
+        .padding(.vertical, 4)
         .elevation(
             cornerRadius: 16,
             background: Color.backgroundLightest
