@@ -43,15 +43,15 @@ final class HSyncCourseProgressRequestTests: XCTestCase {
     func testQuery() {
         let query = """
         mutation SyncCourseProgress($courseId: String!) {
-            syncCourseProgress(canvasCourseId: $courseId) {
-                isEnrolledInCanvas
-                completionPercentage
-                isEnrolledInCanvas
-                canvasEnrollmentId
-                lastSyncedAt
-                updatedProgramIds
-                failedProgramIds
-            }
+          syncCourseProgress(canvasCourseId: $courseId) {
+            isEnrolledInCanvas
+            completionPercentage
+            isEnrolledInCanvas
+            canvasEnrollmentId
+            lastSyncedAt
+            updatedProgramIds
+            failedProgramIds
+          }
         }
         """
         XCTAssertEqual(HSyncCourseProgressRequest.query, query)
