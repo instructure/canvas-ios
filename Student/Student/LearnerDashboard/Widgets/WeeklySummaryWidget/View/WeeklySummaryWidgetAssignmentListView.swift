@@ -35,9 +35,12 @@ struct WeeklySummaryWidgetAssignmentListView: View {
                     WeeklySummaryWidgetAssignmentCell(assignment: item)
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel(item.accessibilityLabel)
                 InstUI.Divider(item.id != assignments.last?.id ? .padded : .hidden)
             }
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(String.format(accessibilityListCount: assignments.count))
         .elevation(.cardLarge, background: .backgroundLightest)
     }
 }
