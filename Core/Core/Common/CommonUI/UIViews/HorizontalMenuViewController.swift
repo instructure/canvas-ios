@@ -244,7 +244,7 @@ extension HorizontalMenuViewController: UICollectionViewDataSource, UICollection
     }
 
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if scrollView == pages {
+        if scrollView == pages, itemCount > 0 {
             underlineLeftConstraint?.constant = scrollView.contentOffset.x / CGFloat(itemCount)
             fixVoiceOverScrollResetOnFocus()
         }

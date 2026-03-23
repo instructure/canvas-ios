@@ -26,17 +26,28 @@ import UIKit
 @Observable
 final class LearnerDashboardSettingsViewModel {
     var useNewLearnerDashboard: Bool
+    var mainColor: Color {
+        didSet { colorInteractor.selectColor(mainColor) }
+    }
+    var colors: [CourseColorData] { colorInteractor.availableColors }
+    let courseSettingsViewModel: LearnerDashboardSettingsWidgetsSectionViewModel
 
     private var defaults: SessionDefaults
     private let environment: AppEnvironment
+    private let colorInteractor: LearnerDashboardColorInteractor
 
     init(
         defaults: SessionDefaults,
+        colorInteractor: LearnerDashboardColorInteractor,
+        courseSettingsViewModel: LearnerDashboardSettingsWidgetsSectionViewModel,
         environment: AppEnvironment = .shared
     ) {
         self.defaults = defaults
         self.environment = environment
+        self.colorInteractor = colorInteractor
+        self.courseSettingsViewModel = courseSettingsViewModel
         self.useNewLearnerDashboard = defaults.preferNewLearnerDashboard
+        self.mainColor = colorInteractor.dashboardColor.value
     }
 
     /// Switches from the new learner dashboard back to the classic dashboard.
@@ -52,5 +63,24 @@ final class LearnerDashboardSettingsViewModel {
         viewController.dismiss(animated: true) {
             NotificationCenter.default.post(name: .dashboardPreferenceChanged, object: nil)
         }
+    }
+
+    func letUsKnow(from viewController: UIViewController) {
+        guard let topViewController = viewController.topMostViewController() else { return }
+
+        guard let feedbackString = Secret.learnerDashboardFeedbackURL.string,
+              let feedbackURL = URL(string: feedbackString)
+        else {
+            return
+        }
+
+        let webViewController = CoreWebViewController()
+        webViewController.webView.load(URLRequest(url: feedbackURL))
+
+        environment.router.show(
+            webViewController,
+            from: topViewController,
+            options: .modal(.formSheet, embedInNav: true, addDoneButton: true)
+        )
     }
 }

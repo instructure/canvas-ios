@@ -48,8 +48,7 @@ public final class ContextBaseUrlInteractor {
 
     private func updateBaseUrlHosts(with tabs: [Tab]) {
         let contextTabs = tabs.filter {
-            $0.context.contextType == .course ||
-            $0.context.contextType == .group
+            $0.context.contextType.isBaseUrlOverridable
         }
 
         let tabsPerContext = Dictionary(grouping: contextTabs, by: { $0.context })
@@ -85,7 +84,7 @@ public final class ContextBaseUrlInteractor {
         let pathContext = Context(path: url.path)
 
         if let pathContext,
-           pathContext.contextType == .course || pathContext.contextType == .group,
+           pathContext.contextType.isBaseUrlOverridable,
            let shardID = pathContext.id.shardID {
             return shardID
         }

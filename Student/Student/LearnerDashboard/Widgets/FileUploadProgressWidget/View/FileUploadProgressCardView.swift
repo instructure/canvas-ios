@@ -28,7 +28,7 @@ struct FileUploadProgressCardView: View {
 
     var body: some View {
         Button(action: onTap) {
-            DashboardWidgetCard(backgroundColor: card.state.backgroundColor) {
+            DashboardWidgetCard(background: card.state.backgroundColor) {
                 HStack(alignment: .top, spacing: 8) {
                     VStack(alignment: .leading, spacing: 2) {
                         HStack(alignment: .center, spacing: 8) {

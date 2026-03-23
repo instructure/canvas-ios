@@ -39,6 +39,21 @@ class ContextTypeTests: XCTestCase {
         XCTAssertNil(ContextType(pathComponent: "chums"))
         XCTAssertNil(ContextType(pathComponent: "course"))
     }
+
+    func testIsBaseURLOverriden() {
+        // All Overridable
+        XCTAssertEqual(ContextType.baseUrlOverridableTypes, [.course, .group])
+
+        // Overridable
+        XCTAssertTrue(ContextType.course.isBaseUrlOverridable)
+        XCTAssertTrue(ContextType.group.isBaseUrlOverridable)
+
+        // Not Overridable
+        XCTAssertFalse(ContextType.account.isBaseUrlOverridable)
+        XCTAssertFalse(ContextType.folder.isBaseUrlOverridable)
+        XCTAssertFalse(ContextType.section.isBaseUrlOverridable)
+        XCTAssertFalse(ContextType.user.isBaseUrlOverridable)
+    }
 }
 
 class ContextTests: XCTestCase {

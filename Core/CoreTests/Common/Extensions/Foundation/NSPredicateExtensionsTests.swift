@@ -21,6 +21,44 @@ import XCTest
 
 class NSPredicateExtensionsTests: XCTestCase {
 
+// MARK: - isContainedIn
+
+    func test_isContainedInPredicate_withMatchingValue_shouldReturnTrue() {
+        let testee = NSPredicate(\PredicateTestObject.name, isContainedIn: ["a", "b", "c"])
+        XCTAssertEqual(testee.evaluate(with: PredicateTestObject(name: "b")), true)
+    }
+
+    func test_isContainedInPredicate_withNonMatchingValue_shouldReturnFalse() {
+        let testee = NSPredicate(\PredicateTestObject.name, isContainedIn: ["a", "b", "c"])
+        XCTAssertEqual(testee.evaluate(with: PredicateTestObject(name: "d")), false)
+    }
+
+    func test_isContainedInPredicate_withEmptyCollection_shouldReturnFalse() {
+        let testee = NSPredicate(\PredicateTestObject.name, isContainedIn: [])
+        XCTAssertEqual(testee.evaluate(with: PredicateTestObject(name: "a")), false)
+    }
+
+    // MARK: - AND / OR
+
+    func test_staticAndPredicate() {
+        let testee = NSPredicate.and(
+            NSPredicate(\PredicateTestObject.name, equals: "b"),
+            NSPredicate(\PredicateTestObject.name, isContainedIn: ["a", "b", "c"])
+        )
+        XCTAssertEqual(testee.evaluate(with: PredicateTestObject(name: "b")), true)
+        XCTAssertEqual(testee.evaluate(with: PredicateTestObject(name: "a")), false)
+    }
+
+    func test_staticOrPredicate() {
+        let testee = NSPredicate.or(
+            NSPredicate(\PredicateTestObject.name, equals: "a"),
+            NSPredicate(\PredicateTestObject.name, equals: "b")
+        )
+        XCTAssertEqual(testee.evaluate(with: PredicateTestObject(name: "a")), true)
+        XCTAssertEqual(testee.evaluate(with: PredicateTestObject(name: "b")), true)
+        XCTAssertEqual(testee.evaluate(with: PredicateTestObject(name: "c")), false)
+    }
+
     func testAndPredicate() {
         let variable = 1
         let firstPredicate = NSPredicate(format: "%@ == %@", argumentArray: [variable, 1])
@@ -41,5 +79,13 @@ class NSPredicateExtensionsTests: XCTestCase {
         let testee = firstPredicate.or(secondPredicate).or(thirdPredicate)
 
         XCTAssertEqual(testee.description, "(1 == 1 OR 1 != 0) OR 1 != 2")
+    }
+}
+
+private final class PredicateTestObject: NSObject {
+    @objc var name: String
+
+    init(name: String) {
+        self.name = name
     }
 }

@@ -27,7 +27,7 @@ public class CustomizeCourseViewModel: ObservableObject {
 
     // MARK: - Outputs
     @Published public private(set) var isLoading: Bool = false
-    public let colors: KeyValuePairs<UIColor, String>
+    public let colors: [CourseColorData]
     public let courseImage: URL?
     public let hideColorOverlay: Bool
     public let dismissView = PassthroughSubject<Void, Never>()
@@ -44,6 +44,7 @@ public class CustomizeCourseViewModel: ObservableObject {
     private let courseId: String
     private var originalCourseName: String
     private var originalCourseColor: UIColor
+    private let didSaveChanges: PassthroughSubject<Void, Never>?
     private var subscriptions = Set<AnyCancellable>()
 
     public init(
@@ -52,6 +53,7 @@ public class CustomizeCourseViewModel: ObservableObject {
         courseColor: UIColor,
         courseName: String,
         hideColorOverlay: Bool,
+        didSaveChanges: PassthroughSubject<Void, Never>? = nil,
         courseColorsInteractor: CourseColorsInteractor = CourseColorsInteractorLive()
     ) {
         self.courseId = courseId
@@ -61,6 +63,7 @@ public class CustomizeCourseViewModel: ObservableObject {
         self.courseName = courseName
         self.originalCourseName = courseName
         self.hideColorOverlay = hideColorOverlay
+        self.didSaveChanges = didSaveChanges
         self.colors = courseColorsInteractor.colors
         saveCourseData(on: didTapDone)
     }
@@ -91,7 +94,8 @@ public class CustomizeCourseViewModel: ObservableObject {
             .sink { [weak self] result in
                 switch result {
                 case .success:
-                    self?.dismissView.send(())
+                    self?.dismissView.send()
+                    self?.didSaveChanges?.send()
                 case .failure(let error):
                     self?.isLoading = false
                     self?.errorMessage = AlertMessage(message: error.localizedDescription)

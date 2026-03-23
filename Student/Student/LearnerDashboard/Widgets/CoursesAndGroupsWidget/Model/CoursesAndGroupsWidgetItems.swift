@@ -26,6 +26,8 @@ struct CoursesAndGroupsWidgetCourseItem: Equatable {
     let color: Color
     let imageUrl: URL?
     let grade: String?
+    let unreadAnnouncementCount: Int
+    let singleUnreadAnnouncementId: String?
 }
 
 struct CoursesAndGroupsWidgetGroupItem: Equatable {
@@ -44,14 +46,18 @@ extension CoursesAndGroupsWidgetCourseItem {
         title: String = "",
         color: Color = .clear,
         imageUrl: URL? = nil,
-        grade: String? = nil
+        grade: String? = nil,
+        unreadAnnouncementCount: Int = 0,
+        singleUnreadAnnouncementId: String? = nil
     ) -> CoursesAndGroupsWidgetCourseItem {
         .init(
             id: id,
             title: title,
             color: color,
             imageUrl: imageUrl,
-            grade: grade
+            grade: grade,
+            unreadAnnouncementCount: unreadAnnouncementCount,
+            singleUnreadAnnouncementId: singleUnreadAnnouncementId
         )
     }
 }

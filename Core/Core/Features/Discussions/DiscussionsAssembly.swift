@@ -21,6 +21,51 @@ import UIKit
 public enum DiscussionsAssembly {
     public static let SourceViewKey = "SourceViewKey"
 
+    public static func makeDiscussionDetailsViewController(
+        context: Context,
+        discussionId: String,
+        isAnnouncement: Bool,
+        url: URLComponents,
+        environment: AppEnvironment
+    ) -> UIViewController? {
+        let isAppOffline = OfflineModeAssembly.make().isOfflineModeEnabled()
+
+        // Mark announcement as read locally to allow Dashboard (or other screens) to update without API-refresh.
+        // The actual mark-as-read request is sent by the Discussion Details webview.
+        if isAnnouncement && !isAppOffline {
+            DiscussionTopic.markAsRead(id: discussionId, database: environment.database)
+        }
+
+        if context.contextType == .course, !url.originIsModuleItemDetails {
+            return ModuleItemSequenceViewController.create(
+                env: environment,
+                courseID: context.id,
+                assetType: .discussion,
+                assetID: discussionId,
+                url: url
+            )
+        }
+
+        if isAppOffline {
+            return DiscussionDetailsViewController
+                .create(
+                    context: context,
+                    topicID: discussionId,
+                    env: environment
+                )
+        } else {
+            let webPageModel = DiscussionDetailsWebViewModel(
+                discussionId: discussionId,
+                isAnnouncement: isAnnouncement
+            )
+            return makeEmbeddedWebPage(
+                context: context,
+                webPageModel: webPageModel,
+                environment: environment
+            )
+        }
+    }
+
     /// - parameters:
     ///   - routeUserInfo: If the discussion list is passed in this dictionary with the key `SourceViewKey`,
     ///    then the newly created discussion will be pushed after it has been created.

@@ -21,6 +21,7 @@ import Core
 
 class CourseDetailsViewController: HorizontalMenuViewController {
     private var gradesViewController: UIViewController!
+    private var frontPageViewController: CoreWebViewController?
     private var syllabusViewController: Core.SyllabusViewController!
     private var summaryViewController: Core.SyllabusSummaryViewController!
     var courseID: String = ""
@@ -34,7 +35,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
     var replyStarted: Bool = false
 
     enum MenuItem: Int {
-        case grades, syllabus, summary
+        case grades, frontPage, syllabus, summary
     }
 
     lazy var customStatuses = env.subscribe(GetCustomGradeStatuses(courseID: courseID))
@@ -139,6 +140,7 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         vc.webView.resetEnvironment(env)
         vc.webView.setupStudioFeatures(context: .course(courseID), env: env)
         vc.webView.loadHTMLString(frontPages.first?.body ?? "", baseURL: frontPages.first?.htmlURL)
+        frontPageViewController = vc
         viewControllers.append(vc)
     }
 
@@ -170,21 +172,25 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         if !pending, readyToLayoutTabs, !didLayoutTabs, let course = courses.first {
             didLayoutTabs = true
             configureGrades()
+
+            if let page = frontPages.first, !page.body.isEmpty {
+                configureFrontPage()
+            }
+
             let showSummary = settings.first?.syllabusCourseSummary == true
+            let showSyllabus: Bool
+
             switch course.defaultView {
-            case .wiki:
-                if let page = frontPages.first, !page.body.isEmpty {
-                    configureFrontPage()
-                }
-            case .syllabus where course.syllabusBody?.isEmpty == false:
-                configureSyllabus()
-                if showSummary { configureSummary() }
+            case .syllabus:
+                showSyllabus = course.syllabusBody?.isEmpty == false
             default:
                 let syllabusTab = tabs.first { $0.id == "syllabus" }
-                if syllabusTab != nil, course.syllabusBody?.isEmpty == false {
-                    configureSyllabus()
-                    if showSummary { configureSummary() }
-                }
+                showSyllabus = syllabusTab != nil && course.syllabusBody?.isEmpty == false
+            }
+
+            if showSyllabus {
+                configureSyllabus()
+                if showSummary { configureSummary() }
             }
 
             if #available(iOS 26, *), itemCount <= 1 {
@@ -235,6 +241,13 @@ class CourseDetailsViewController: HorizontalMenuViewController {
         case .grades:
             components.path = "/courses/\(courseID)/grades/\(studentID)"
             return components.url?.absoluteString ?? na
+        case .frontPage:
+            if let page = frontPages.first, !page.body.isEmpty,
+                let htmlURL = page.htmlURL {
+                components.path = htmlURL.path
+                return components.url?.absoluteString ?? na
+            }
+            return na
         case .syllabus, .summary:
             if let syllabusTab = tabs.first(where: { $0.id == "syllabus" }),
                 courses.first?.syllabusBody?.isEmpty == false,
@@ -265,6 +278,7 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
         var identifier: String
         switch menuItem {
         case .grades: identifier = "grades"
+        case .frontPage: identifier = "frontPage"
         case .syllabus: identifier = "syllabus"
         case .summary: identifier = "summary"
         }
@@ -280,15 +294,10 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
         switch menuItem {
         case .grades:
             return String(localized: "Grades", bundle: .parent)
+        case .frontPage:
+            return String(localized: "Front Page", bundle: .parent)
         case .syllabus:
-            switch courses.first?.defaultView {
-            case .wiki:
-                return String(localized: "Front Page", bundle: .parent)
-            case .syllabus:
-                return String(localized: "Syllabus", bundle: .parent)
-            default:
-                return String(localized: "Syllabus", bundle: .parent)
-            }
+            return String(localized: "Syllabus", bundle: .parent)
         case .summary:
             return String(localized: "Summary", bundle: .parent)
         }
@@ -300,6 +309,8 @@ extension CourseDetailsViewController: HorizontalPagedMenuDelegate {
         let targetVC: UIViewController? = switch menuItem {
         case .grades:
             gradesViewController
+        case .frontPage:
+            frontPageViewController
         case .syllabus:
             syllabusViewController
         case .summary:

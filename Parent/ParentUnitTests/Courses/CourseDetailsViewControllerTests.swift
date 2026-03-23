@@ -27,6 +27,9 @@ class CourseDetailsViewControllerTests: ParentTestCase {
     let courseID = "1"
     let studentID = "1"
 
+    var isFrontPageShown: Bool {
+        vc.viewControllers.contains { $0 is CoreWebViewController }
+    }
     var isSyllabusShown: Bool {
         vc.viewControllers.contains { $0 is SyllabusViewController }
     }
@@ -37,7 +40,7 @@ class CourseDetailsViewControllerTests: ParentTestCase {
     override func setUp() {
         super.setUp()
         vc = CourseDetailsViewController.create(courseID: courseID, studentID: studentID, env: env)
-        api.mock(GetFrontPageRequest(context: .course(courseID)), value: APIPage.make())
+        api.mock(GetFrontPageRequest(context: .course(courseID)), value: APIPage.make(body: "Front page content", front_page: true))
         api.mock(
             GetTabsRequest(context: .course(courseID)),
             value: [.make(id: "syllabus", html_url: URL(string: "/tabs")!)]
@@ -64,7 +67,37 @@ class CourseDetailsViewControllerTests: ParentTestCase {
     func testHomeIsFrontPage() {
         api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .wiki))
         render()
+        XCTAssertTrue(isFrontPageShown)
         XCTAssertFalse(isSyllabusShown)
+    }
+
+    func testFrontPageShownWhenDefaultViewIsSyllabus() {
+        api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .syllabus, syllabus_body: "body"))
+        api.mock(vc.settings, value: .make())
+        render()
+        XCTAssertTrue(isFrontPageShown)
+        XCTAssertTrue(isSyllabusShown)
+    }
+
+    func testFrontPageShownWhenDefaultViewIsModules() {
+        api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .modules, syllabus_body: "body"))
+        render()
+        XCTAssertTrue(isFrontPageShown)
+        XCTAssertTrue(isSyllabusShown)
+    }
+
+    func testFrontPageNotShownWhenBodyIsEmpty() {
+        api.mock(GetFrontPageRequest(context: .course(courseID)), value: APIPage.make(body: ""))
+        api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .wiki))
+        render()
+        XCTAssertFalse(isFrontPageShown)
+    }
+
+    func testFrontPageNotShownWhenNoFrontPage() {
+        api.mock(GetFrontPageRequest(context: .course(courseID)), error: NSError.instructureError("not found"))
+        api.mock(GetCourseRequest(courseID: courseID), value: .make(id: ID(courseID), default_view: .wiki))
+        render()
+        XCTAssertFalse(isFrontPageShown)
     }
 
     func testHomeIsSyllabus() {

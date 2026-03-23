@@ -20,7 +20,7 @@ import Core
 import SwiftUI
 
 struct OfflineSyncProgressWidgetView: View {
-    @State var model: OfflineSyncProgressWidgetViewModel
+    var model: OfflineSyncProgressWidgetViewModel
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.viewController) private var viewController
 
@@ -43,7 +43,7 @@ struct OfflineSyncProgressWidgetView: View {
 
     @ViewBuilder
     private var cardContent: some View {
-        DashboardWidgetCard(backgroundColor: model.backgroundColor) {
+        DashboardWidgetCard(background: model.backgroundColor) {
             HStack(alignment: .top, spacing: 8) {
                 if model.state == .error {
                     Image.warningLine
@@ -103,7 +103,6 @@ struct OfflineSyncProgressWidgetView: View {
 #Preview("Syncing") {
     OfflineSyncProgressWidgetView(
         model: OfflineSyncProgressWidgetViewModel(
-            config: .init(id: .offlineSyncProgress, order: 1, isVisible: true),
             dashboardViewModel: DashboardOfflineSyncProgressCardViewModel(
                 progressObserverInteractor: DashboardOfflineSyncInteractorPreview(),
                 progressWriterInteractor: DashboardOfflineSyncProgressWriterInteractorPreview(),

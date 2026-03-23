@@ -16,17 +16,15 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Core
 import Combine
+import Core
+import SwiftUI
 import UIKit
 
 @Observable
 final class HelloWidgetViewModel: DashboardWidgetViewModel {
-    typealias ViewType = HelloWidgetView
-
     let config: DashboardWidgetConfig
-    let isEditable = true
+    var id: String { config.id.rawValue }
     let isHiddenInEmptyState = true
 
     var layoutIdentifier: [AnyHashable] {
@@ -39,9 +37,13 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
     private(set) var message: String = ""
 
     // MARK: Private properties
+
     private var shortName: String?
+    private var dayPeriod: DayPeriodProvider.DayPeriod
+
     private let interactor: HelloWidgetInteractor
-    private var dayPeriodProvider: DayPeriodProvider
+    private let dayPeriodProvider: DayPeriodProvider
+
     private var subscriptions = Set<AnyCancellable>()
 
     init(
@@ -52,11 +54,13 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
         self.config = config
         self.dayPeriodProvider = dayPeriodProvider
         self.interactor = interactor
+        self.dayPeriod = dayPeriodProvider.currentPeriod
+
         subscribeToNotification()
     }
 
-    func makeView() -> HelloWidgetView {
-        HelloWidgetView(viewModel: self)
+    func makeView() -> AnyView {
+        AnyView(HelloWidgetView(viewModel: self))
     }
 
     public func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
@@ -65,11 +69,12 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
                 receiveOutput: { [weak self] shortName in
                     guard let self else { return }
 
-                    self.dayPeriodProvider = .init(date: Clock.now)
+                    let shouldForceUpdate = ignoreCache || self.shortName != shortName || state != .data
                     self.shortName = shortName
-                    self.updateGreetingAndMessage()
-                }, receiveCompletion: { [weak self] completion in
-                    if case .failure = completion {
+                    updateGreetingAndMessage(isForced: shouldForceUpdate)
+                },
+                receiveCompletion: { [weak self] completion in
+                    if completion.isFailure {
                         self?.state = .error
                     }
                 }
@@ -85,32 +90,33 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
     private func subscribeToNotification() {
         NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
             .sink { [weak self] _ in
-                guard let self else { return }
-
-                if self.dayPeriodProvider.current != DayPeriodProvider.period(of: Core.Clock.now) {
-                    self.dayPeriodProvider = .init(date: Core.Clock.now)
-                    self.updateGreetingAndMessage()
-                }
+                self?.updateGreetingAndMessage(isForced: false)
             }
             .store(in: &subscriptions)
     }
 
-    private func updateGreetingAndMessage() {
-        greeting = dayPeriodGreeting()
-        message = dayPeriodMessage()
-        state = .data
+    private func updateGreetingAndMessage(isForced: Bool) {
+        let currentPeriod = dayPeriodProvider.currentPeriod
+
+        if isForced || dayPeriod != currentPeriod {
+            dayPeriod = currentPeriod
+
+            greeting = dayPeriodGreeting()
+            message = dayPeriodMessage()
+            state = .data
+        }
     }
 
     private func dayPeriodGreeting() -> String {
         if let shortName, shortName.isNotEmptyOrBlank() {
-            switch dayPeriodProvider.current {
+            switch dayPeriod {
             case .morning: .init(localized: "Good morning \(shortName)!", bundle: .student)
             case .afternoon: .init(localized: "Good afternoon \(shortName)!", bundle: .student)
             case .evening: .init(localized: "Good evening \(shortName)!", bundle: .student)
             case .night: .init(localized: "Good night \(shortName)!", bundle: .student)
             }
         } else {
-            switch dayPeriodProvider.current {
+            switch dayPeriod {
             case .morning: .init(localized: "Good morning!", bundle: .student)
             case .afternoon: .init(localized: "Good afternoon!", bundle: .student)
             case .evening: .init(localized: "Good evening!", bundle: .student)
@@ -120,7 +126,7 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
     }
 
     private func dayPeriodMessage() -> String {
-        let periodMessages = switch dayPeriodProvider.current {
+        let periodMessages = switch dayPeriod {
         case .morning: Self.morning
         case .afternoon: Self.afternoon
         case .evening: Self.evening

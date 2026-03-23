@@ -50,11 +50,19 @@ public class DeclineCourseInvitation: UseCase {
     public func write(response: Response?, urlResponse: URLResponse?, to context: NSManagedObjectContext) {
         guard response?.success == true else { return }
 
-        if let enrollment: Enrollment = context.first(
-            where: #keyPath(Enrollment.id),
-            equals: enrollmentID
-        ) {
+        if let enrollment: Enrollment = context.first(where: \Enrollment.id, equals: enrollmentID) {
+            let course = enrollment.course
             context.delete([enrollment])
+
+            if let course {
+                let remainingEnrollments = course.enrollments?.filter {
+                    // filter out grade-enrollments, and the just deleted enrollment
+                    $0.id != nil && $0.id != enrollmentID
+                } ?? []
+                if remainingEnrollments.isEmpty {
+                    context.delete([course])
+                }
+            }
         }
     }
 }

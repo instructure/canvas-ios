@@ -31,10 +31,6 @@ struct CourseCardView: View {
 
     @State private var isShowingOptionsDialog = false
 
-    private var isAvailable: Bool {
-        offlineMode.isAppOnline || viewModel.isAvailableOffline
-    }
-
     init(
         viewModel: CourseCardViewModel,
         showGrades: Bool,
@@ -44,12 +40,20 @@ struct CourseCardView: View {
         self.showGrades = showGrades
         self.showColorOverlay = showColorOverlay
         self.a11yLabel = {
-            if showGrades, let grade = viewModel.grade {
-                [viewModel.title, String(localized: "Grade", bundle: .core), grade]
+            var gradeLabel: String?
+            if showGrades, let grade = String.format(accessibilityLetterGrade: viewModel.grade) {
+                gradeLabel = [String(localized: "Grade", bundle: .core), grade]
                     .accessibilityJoined()
-            } else {
-                viewModel.title
             }
+
+            var announcementsLabel: String?
+            if viewModel.shouldShowAnnouncementsButton {
+                let count = String(viewModel.unreadAnnouncementCount)
+                announcementsLabel = [String(localized: "New Announcements", bundle: .core), count]
+                    .accessibilityJoined()
+            }
+
+            return [viewModel.title, gradeLabel, announcementsLabel].accessibilityJoined()
         }()
     }
 
@@ -77,7 +81,12 @@ struct CourseCardView: View {
             labels: {
                 titleLabel
             },
-            isAvailable: isAvailable,
+            accessory: {
+                if viewModel.shouldShowAnnouncementsButton {
+                    announcementsButton
+                }
+            },
+            isAvailableOffline: viewModel.isAvailableOffline,
             action: {
                 viewModel.didTapCard(from: controller)
             }
@@ -118,19 +127,14 @@ struct CourseCardView: View {
     @ViewBuilder
     private var kebabButton: some View {
         if offlineMode.isOfflineFeatureEnabled {
-            optionsButton
+            optionsMenu
         } else {
             customizeButton
         }
     }
 
-    private var optionsButton: some View {
-        PrimaryButton(isAvailable: offlineMode.isAppOnline) {
-            isShowingOptionsDialog.toggle()
-        } label: {
-            kebabIcon
-        }
-        .confirmationDialog(Text(verbatim: ""), isPresented: $isShowingOptionsDialog) {
+    private var optionsMenu: some View {
+        OfflineObservingMenu {
             Button(String(localized: "Manage Offline Content", bundle: .student)) {
                 didTapManageOfflineContent()
             }
@@ -140,6 +144,8 @@ struct CourseCardView: View {
                 didTapCustomize()
             }
             .identifier("Dashboard.CourseCard.customizeButton")
+        } label: {
+            kebabIcon
         }
         .accessibilityElement(children: .ignore)
         .accessibilityAction(named: String(localized: "Customize Course", bundle: .student)) {
@@ -168,7 +174,7 @@ struct CourseCardView: View {
     }
 
     private var customizeButton: some View {
-        PrimaryButton(isAvailable: offlineMode.isAppOnline) {
+        OfflineObservingButton {
             didTapCustomize()
         } label: {
             kebabIcon
@@ -214,6 +220,22 @@ struct CourseCardView: View {
         .fixedSize(horizontal: true, vertical: false)
         .identifier("Dashboard.CourseCard.gradePill")
     }
+
+    // MARK: - Announcements button
+
+    private var announcementsButton: some View {
+        OfflineObservingButton(isAvailableOffline: viewModel.isAvailableOffline) {
+            viewModel.didTapAnnouncements(from: controller)
+        } label: {
+            Image.announcementSolid
+                .scaledIcon()
+                .foregroundStyle(.textDark)
+                .instBadge(viewModel.unreadAnnouncementCount, style: .accessory)
+                .scaledFrame(height: 72, useIconScale: true) // increases tap area
+        }
+        .accessibilityLabel(viewModel.openAnnouncementsA11yLabel)
+        .identifier("Dashboard.CourseCard.announcementsButton")
+    }
 }
 
 // MARK: - Preview
@@ -223,8 +245,8 @@ struct CourseCardView: View {
 extension CourseCardView {
     static let previewData: [CoursesAndGroupsWidgetCourseItem] = [
         .make(id: "1", title: "Introduction to Computer Science", color: .course1, grade: "A+"),
-        .make(id: "2", title: .loremIpsumLong, color: .course4),
-        .make(id: "3", title: "Advanced Mathematics", color: .course11)
+        .make(id: "2", title: .loremIpsumLong, color: .course4, unreadAnnouncementCount: 1),
+        .make(id: "3", title: "Advanced Mathematics", color: .course11, unreadAnnouncementCount: 42)
     ]
 }
 
@@ -233,6 +255,7 @@ extension CourseCardView {
         CourseCardView(
             viewModel: CourseCardViewModel(
                 model: CourseCardView.previewData[0],
+                didSaveChanges: .init(),
                 router: PreviewEnvironment().router
             ),
             showGrades: true,
@@ -242,6 +265,7 @@ extension CourseCardView {
         CourseCardView(
             viewModel: CourseCardViewModel(
                 model: CourseCardView.previewData[1],
+                didSaveChanges: .init(),
                 router: PreviewEnvironment().router
             ),
             showGrades: false,
@@ -251,6 +275,7 @@ extension CourseCardView {
         CourseCardView(
             viewModel: CourseCardViewModel(
                 model: CourseCardView.previewData[2],
+                didSaveChanges: .init(),
                 router: PreviewEnvironment().router
             ),
             showGrades: true,

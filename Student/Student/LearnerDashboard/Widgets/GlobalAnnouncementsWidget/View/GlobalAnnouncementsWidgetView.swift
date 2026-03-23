@@ -21,7 +21,7 @@ import Core
 import SwiftUI
 
 struct GlobalAnnouncementsWidgetView: View {
-    @State var viewModel: GlobalAnnouncementsWidgetViewModel
+    var viewModel: GlobalAnnouncementsWidgetViewModel
     @State private var currentPage: Int = 0
     @State private var totalPages: Int = 1
 
@@ -74,7 +74,6 @@ private func makePreviewViewModel() -> GlobalAnnouncementsWidgetViewModel {
     ]
 
     return GlobalAnnouncementsWidgetViewModel(
-        config: .make(id: .globalAnnouncements),
         interactor: interactor,
         environment: PreviewEnvironment()
     )
