@@ -112,7 +112,12 @@ extension CoreWebView: WKDownloadDelegate {
 
 extension CoreWebView {
 
-    func handleBlobDownload(base64: String, mimeType: String, fileName: String) {
+    func handleBlobDownload(
+        base64: String,
+        mimeType: String,
+        fileName: String,
+        fileWriter: (Data, URL) throws -> Void = { (data, url) in try data.write(to: url) }
+    ) {
         guard let data = Data(base64Encoded: base64) else { return }
 
         let safeFileName = {
@@ -135,7 +140,7 @@ extension CoreWebView {
             if FileManager.default.fileExists(atPath: url.path()) {
                 try FileManager.default.removeItem(at: url)
             }
-            try data.write(to: url)
+            try fileWriter(data, url)
         } catch {
             linkDelegate?.coreWebView(self, didFailAttachmentDownload: attachment, with: error)
             return
