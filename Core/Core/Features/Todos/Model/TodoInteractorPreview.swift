@@ -58,8 +58,7 @@ public final class TodoInteractorPreview: TodoInteractor {
         startDate: Date,
         endDate: Date,
         ignorePlannablesCache: Bool,
-        ignoreCoursesCache: Bool,
-        filterOptions: TodoFilterOptions?
+        ignoreCoursesCache: Bool
     ) -> AnyPublisher<Void, Error> {
         todoGroups.send(todoGroups.value)
         return Publishers.typedJust()

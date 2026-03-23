@@ -58,12 +58,18 @@ public protocol TodoInteractor {
     ///   - ignorePlannablesCache: If `true`, forces a fetch of plannables from the API.
     ///   - ignoreCoursesCache: If `true`, forces a fetch of courses from the API.
     /// - Returns: A publisher that completes when the refresh operation finishes.
+    ///
+    /// - Warning: This does NOT support `filterOptions`, because that also has a date range,
+    /// which filters around the current date, not the arbitrary `startDate` & `endDate`.
+    ///
+    /// TODO: Rethink this common TodoInteractor for the two distinct usecases:
+    ///  1. ToDo Tab, which is always centered around the current date (and supports filters)
+    ///  2. Dashboard ToDo Widget, which fetches arbitrary date ranges (and does not support filters at the moment)
     func refresh(
         startDate: Date,
         endDate: Date,
         ignorePlannablesCache: Bool,
-        ignoreCoursesCache: Bool,
-        filterOptions: TodoFilterOptions?
+        ignoreCoursesCache: Bool
     ) -> AnyPublisher<Void, Error>
 
     /// Checks if the cache has expired for todo data.
@@ -108,47 +114,53 @@ public final class TodoInteractorLive: TodoInteractor {
         self.scheduler = scheduler
         self.coursesStore = ReactiveStore(useCase: GetCourses(), environment: env)
         self.contextColorsStore = ReactiveStore(useCase: GetCustomColors(), environment: env)
+
         setupLocalObservation()
     }
 
     // MARK: - Public Methods
 
+    // Refresh for TodoList Tab & Todo iOS Widget
     public func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Error> {
-        refresh(
-            plannablesStore: makePlannablesStore(),
+        let store = ReactiveStore(useCase: GetPlannables.makeTodoFetchUseCase(), environment: env)
+        let filterOptions = sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
+
+        return refresh(
+            plannablesStore: store,
             ignorePlannablesCache: ignorePlannablesCache,
             ignoreCoursesCache: ignoreCoursesCache,
-            skipBadgeUpdate: false,
+            shouldUpdateBadge: true,
+            filterOptions: filterOptions,
             retryCount: 0
         )
     }
 
+    // Refresh for Dashboard Todo Widget
     public func refresh(
         startDate: Date,
         endDate: Date,
         ignorePlannablesCache: Bool,
-        ignoreCoursesCache: Bool,
-        filterOptions: TodoFilterOptions? = nil
+        ignoreCoursesCache: Bool
     ) -> AnyPublisher<Void, Error> {
         let useCase = GetPlannables(
             startDate: startDate,
             endDate: endDate,
             contextCodes: nil,
             allowEmptyContextCodesFetch: true,
-            useCaseID: nil
+            useCaseID: .todo
         )
         let store = ReactiveStore(useCase: useCase, environment: env)
-        let widgetFilterOptions = filterOptions ?? sessionDefaults.todoFilterOptions ?? .default
         return refresh(
             plannablesStore: store,
             ignorePlannablesCache: ignorePlannablesCache,
             ignoreCoursesCache: ignoreCoursesCache,
-            skipBadgeUpdate: true,
-            filterOptions: widgetFilterOptions,
+            shouldUpdateBadge: false,
+            filterOptions: nil,
             retryCount: 0
         )
     }
 
+    // Used only for TodoList Tab & Todo iOS Widget
     public func isCacheExpired() -> AnyPublisher<Bool, Never> {
         let plannablesUseCase = GetPlannables.makeTodoFetchUseCase()
 
@@ -195,24 +207,23 @@ public final class TodoInteractorLive: TodoInteractor {
             .debounce(for: .milliseconds(100), scheduler: scheduler)
             .sink { _ in
             } receiveValue: { [weak self] plannables in
-                guard let self,
-                      let courses = self.cachedCourses,
-                      let filterOptions = self.lastUsedFilterOptions else { return }
+                guard let self, let courses = cachedCourses else { return }
                 try? filterAndGroupTodos(
                     plannables: plannables,
                     courses: courses,
-                    skipBadgeUpdate: self.alwaysExcludeCompleted,
-                    filterOptions: filterOptions
+                    shouldUpdateBadge: !alwaysExcludeCompleted,
+                    filterOptions: lastUsedFilterOptions
                 )
             }
             .store(in: &subscriptions)
     }
 
+    // The actual refresh mechanism
     private func refresh(
         plannablesStore: ReactiveStore<GetPlannables>,
         ignorePlannablesCache: Bool,
         ignoreCoursesCache: Bool,
-        skipBadgeUpdate: Bool,
+        shouldUpdateBadge: Bool,
         filterOptions: TodoFilterOptions? = nil,
         retryCount: Int
     ) -> AnyPublisher<Void, Error> {
@@ -226,10 +237,12 @@ public final class TodoInteractorLive: TodoInteractor {
             try filterAndGroupTodos(
                 plannables: plannables,
                 courses: courses,
-                skipBadgeUpdate: skipBadgeUpdate,
+                shouldUpdateBadge: shouldUpdateBadge,
                 filterOptions: filterOptions
             )
-            logFilterAnalytics()
+            if let filterOptions {
+                logFilterAnalytics(filterOptions)
+            }
         }
         .catch { [weak self] error -> AnyPublisher<Void, Error> in
             let shouldRetry = error as? TodoInteractorError == .deletedCoursesDetected ||
@@ -248,7 +261,7 @@ public final class TodoInteractorLive: TodoInteractor {
                         plannablesStore: plannablesStore,
                         ignorePlannablesCache: ignorePlannablesCache,
                         ignoreCoursesCache: true,
-                        skipBadgeUpdate: skipBadgeUpdate,
+                        shouldUpdateBadge: shouldUpdateBadge,
                         filterOptions: filterOptions,
                         retryCount: retryCount + 1
                     ) ?? Publishers.noInstanceFailure()
@@ -258,17 +271,12 @@ public final class TodoInteractorLive: TodoInteractor {
         .eraseToAnyPublisher()
     }
 
-    private func makePlannablesStore() -> ReactiveStore<GetPlannables> {
-        ReactiveStore(useCase: GetPlannables.makeTodoFetchUseCase(), environment: env)
-    }
-
     private func filterAndGroupTodos(
         plannables: [Plannable],
         courses: [Course],
-        skipBadgeUpdate: Bool,
-        filterOptions passedFilterOptions: TodoFilterOptions? = nil
+        shouldUpdateBadge: Bool,
+        filterOptions: TodoFilterOptions?
     ) throws {
-        let filterOptions = passedFilterOptions ?? sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
         cachedCourses = courses
         lastUsedFilterOptions = filterOptions
 
@@ -283,13 +291,18 @@ public final class TodoInteractorLive: TodoInteractor {
             throw TodoInteractorError.duplicateCourseIdsDetected
         }
 
-        let shouldKeepCompletedItemsVisible = filterOptions.visibilityOptions.contains(.showCompleted)
+        let shouldKeepCompletedItemsVisible = filterOptions?.visibilityOptions.contains(.showCompleted) ?? true
 
-        let todos = plannables
-            .filter { plannable in
-                let course = coursesByCanvasContextIds[plannable.canvasContextIDRaw ?? ""]
-                return filterOptions.shouldInclude(plannable: plannable, course: course)
-            }
+        var filteredPlannables = plannables
+        if let filterOptions {
+            filteredPlannables = plannables
+                .filter { plannable in
+                    let course = coursesByCanvasContextIds[plannable.canvasContextIDRaw ?? ""]
+                    return filterOptions.shouldInclude(plannable: plannable, course: course)
+                }
+        }
+
+        let todos = filteredPlannables
             .compactMap { plannable -> TodoItemViewModel? in
                 let course = coursesByCanvasContextIds[plannable.canvasContextIDRaw ?? ""]
                 guard let item = TodoItemViewModel(plannable, course: course) else { return nil }
@@ -298,7 +311,7 @@ public final class TodoInteractorLive: TodoInteractor {
             }
 
         let notDoneTodos = todos.filter { $0.markAsDoneState == .notDone }
-        if !skipBadgeUpdate {
+        if shouldUpdateBadge {
             TabBarBadgeCounts.todoListCount = UInt(notDoneTodos.count)
         }
 
@@ -306,8 +319,7 @@ public final class TodoInteractorLive: TodoInteractor {
         todoGroups.value = groupedTodos
     }
 
-    private func logFilterAnalytics() {
-        let filterOptions = sessionDefaults.todoFilterOptions ?? TodoFilterOptions.default
+    private func logFilterAnalytics(_ filterOptions: TodoFilterOptions) {
         Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
     }
 }

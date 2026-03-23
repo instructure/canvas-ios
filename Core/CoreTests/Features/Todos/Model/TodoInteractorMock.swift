@@ -42,7 +42,6 @@ final class TodoInteractorMock: TodoInteractor {
     var rangedRefreshCallCount = 0
     var lastRangedRefreshStartDate: Date?
     var lastRangedRefreshEndDate: Date?
-    var lastRangedRefreshFilterOptions: TodoFilterOptions?
     var rangedRefreshResult: Result<Void, Error> = .success(())
 
     func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Error> {
@@ -66,14 +65,12 @@ final class TodoInteractorMock: TodoInteractor {
         startDate: Date,
         endDate: Date,
         ignorePlannablesCache: Bool,
-        ignoreCoursesCache: Bool,
-        filterOptions: TodoFilterOptions?
+        ignoreCoursesCache: Bool
     ) -> AnyPublisher<Void, Error> {
         rangedRefreshCalled = true
         rangedRefreshCallCount += 1
         lastRangedRefreshStartDate = startDate
         lastRangedRefreshEndDate = endDate
-        lastRangedRefreshFilterOptions = filterOptions
 
         switch rangedRefreshResult {
         case .success:

@@ -123,8 +123,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
             startDate: startOfWeek.addWeeks(-1),
             endDate: startOfWeek.addWeeks(2),
             ignorePlannablesCache: ignorePlannablesCache,
-            ignoreCoursesCache: ignoreCoursesCache,
-            filterOptions: .dashboardWidget
+            ignoreCoursesCache: ignoreCoursesCache
         )
         .receive(on: DispatchQueue.main)
         .catch { [weak self] _ in
@@ -250,12 +249,4 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
 
         state = listViewModel.items.isEmpty ? .empty : .data
     }
-}
-
-private extension TodoFilterOptions {
-    static let dashboardWidget = TodoFilterOptions(
-        visibilityOptions: [.showCalendarEvents, .showCompleted, .showPersonalTodos],
-        dateRangeStart: .lastWeek,
-        dateRangeEnd: .nextWeek
-    )
 }
