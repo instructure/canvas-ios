@@ -29,21 +29,19 @@ struct MyContentView: View {
 
     init() {
         inProgressView = LearnItemAssembly.makeView()
-        completedView =  LearnItemAssembly.makeView(status: [.completed])
+        completedView = LearnItemAssembly.makeView(status: [.completed])
         savedView = LearningLibraryBookmarkAssembly.makeView()
     }
     var body: some View {
-        VStack {
+        VStack(spacing: .huiSpaces.space24) {
             if isShowTabs {
                 tabsView
             }
-
             contentView
                 .animation(.easeInOut, value: selectedTab)
                 .onPreferenceChange(HeaderVisibilityKey.self) { isShow in
                     isShowTabs = isShow
                 }
-            Spacer()
         }
         .animation(.easeInOut, value: selectedTab)
     }

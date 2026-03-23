@@ -139,19 +139,6 @@ struct CourseListWidgetModel: Identifiable, Equatable, ProgressStatusProvidable 
         }
     }
 
-    var accessibilityLearnDescription: String {
-        var description = String.localizedStringWithFormat(
-            String(localized: "Course: %@. ", bundle: .horizon),
-            name
-        )
-
-        description += String.localizedStringWithFormat(
-            String(localized: "Progress: %d percent complete. ", bundle: .horizon),
-            Int(progress.rounded())
-        )
-        return description
-    }
-
     func viewProgramAccessibilityString(_ programName: String) -> String {
         String.localizedStringWithFormat(
             String(localized: "Open %@", bundle: .horizon),

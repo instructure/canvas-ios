@@ -20,6 +20,14 @@ import HorizonUI
 import SwiftUI
 
 struct LearnItemView: View {
+    // MARK: - VO Properties
+
+    @State private var lastFocusedItemID: String?
+    @AccessibilityFocusState private var focusedItemID: String?
+    private let filterButtonFocusedID = "filterButtonFocusedID"
+
+    // MARK: - Properties
+
     @Environment(\.viewController) private var viewController
     @State private var isShowHeader: Bool = true
     @State private var isShowDivider: Bool = false
@@ -45,6 +53,16 @@ struct LearnItemView: View {
             Alert(title: Text(viewModel.errorMessage))
         }
         .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
+        .onAppear {
+            restoreFocusIfNeeded(after: 0.5)
+        }
+        .onReceive(viewModel.accessibilityMessagePublisher) { message in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                isShowHeader = true
+                isShowDivider = false
+                UIAccessibility.post(notification: .announcement, argument: message)
+            }
+        }
     }
 
     private var emptyView: some View {
@@ -65,10 +83,21 @@ struct LearnItemView: View {
         VStack(spacing: .zero) {
             if #available(iOS 18.0, *) {
                 listItemsView
-                    .onScrollGeometryChange(for: CGFloat.self) { geometry in geometry.contentOffset.y
-                    } action: { _, newOffset in
-                        isShowHeader = newOffset <= 200
-                        isShowDivider = newOffset >= 10
+                    .onScrollGeometryChange(for: ScrollData.self) { geometry in
+                        ScrollData(
+                            offset: geometry.contentOffset.y,
+                            contentHeight: geometry.contentSize.height
+                        )
+                    } action: { _, newValue in
+                        let viewportHeight = UIScreen.main.bounds.height
+
+                        if newValue.contentHeight > viewportHeight + 200 {
+                            isShowHeader = newValue.offset <= 200
+                            isShowDivider = newValue.offset >= 10
+                        } else {
+                            isShowHeader = true
+                            isShowDivider = newValue.offset >= 10
+                        }
                     }
             } else {
                 listItemsView
@@ -83,20 +112,28 @@ struct LearnItemView: View {
                 switch item.itemType {
                 case .course:
                     LearnCourseCardView(model: item) {
-                        viewModel.navigateToCourseDetails(id: item.id, enrollmentID: "", programName: nil, viewController: viewController)
-                    } onTapLearningObject: { _, _ in
-
+                        lastFocusedItemID = item.id
+                        viewModel.navigateToCourseDetails(id: item.id, enrollmentID: item.enrollmentId, programName: nil, viewController: viewController)
+                    } onTapLearningObject: {
+                        lastFocusedItemID = item.id
+                        viewModel.navigateToItemSequence(courseID: item.id, moduleItemID: item.nextModuleItemID, viewController: viewController)
                     }
+                    .id(item.id)
+                    .accessibilityFocused($focusedItemID, equals: item.id)
                     .plainListRowStyle()
                     .padding([.bottom, .horizontal], .huiSpaces.space24)
                 case .program:
                     Button {
+                        lastFocusedItemID = item.id
                         viewModel.navigateToProgramDetails(id: item.id, viewController: viewController)
                     } label: {
                         LearnProgramCardView(program: item)
                             .plainListRowStyle()
                             .padding([.bottom, .horizontal], .huiSpaces.space24)
                     }
+                    .id(item.id)
+                    .accessibilityFocused($focusedItemID, equals: item.id)
+                    .accessibilityLabel(item.accessibilityLearnDescription)
                     .plainListRowStyle()
                     .buttonStyle(.plain)
                 }
@@ -135,6 +172,10 @@ struct LearnItemView: View {
             placeholder: String(localized: "Search"),
             size: .medium
         )
+        .submitLabel(.return)
+        .onSubmit {
+            setFocusToFirstResult()
+        }
     }
 
     @ViewBuilder
@@ -142,7 +183,9 @@ struct LearnItemView: View {
         let countBadge = viewModel.appliedFiltersCount
         HorizonUI.IconButton(Image.huiIcons.tune, type: .whiteGrayOutline, badgeType: countBadge > 0 ? .number(countBadge.description) : nil) {
             viewModel.showFilter(viewController: viewController)
+            lastFocusedItemID = filterButtonFocusedID
         }
+        .accessibilityFocused($focusedItemID, equals: filterButtonFocusedID)
         .accessibilityLabel(String(localized: "Filter and sort"))
         .accessibilityValue(filterAccessibilityValue)
         .accessibilityHint(String(localized: "Double tap to open filter options"))
@@ -189,5 +232,20 @@ struct LearnItemView: View {
         .padding(.bottom, .huiSpaces.space16)
         .padding(.horizontal, .huiSpaces.space24)
         .plainListRowStyle()
+    }
+
+    private func restoreFocusIfNeeded(after: Double) {
+        guard let lastFocusedItemID else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + after) {
+            focusedItemID = lastFocusedItemID
+        }
+    }
+
+    private func setFocusToFirstResult() {
+        guard let firstItem = viewModel.filteredItems.first else {
+            return
+        }
+        lastFocusedItemID = firstItem.id
+        restoreFocusIfNeeded(after: 1.8)
     }
 }

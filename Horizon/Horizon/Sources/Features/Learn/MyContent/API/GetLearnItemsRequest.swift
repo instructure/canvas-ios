@@ -89,6 +89,7 @@ public struct GetLearnItemsRequest: APIGraphQLPagedRequestable {
                 }
                 ... on CourseEnrollmentItemGQL {
                   id
+                  enrollmentId
                   name
                   itemType
                   position
@@ -98,11 +99,19 @@ public struct GetLearnItemsRequest: APIGraphQLPagedRequestable {
                   completionPercentage
                   requirementCount
                   requirementCompletedCount
+                  estimatedDurationMinutes
                   completedAt
                   grade
                   imageUrl
                   workflowState
                   lastActivityAt
+                  incompleteModules {
+                    id
+                    name
+                    incompleteItems {
+                      id
+                    }
+                  }
                 }
               }
               pageInfo {

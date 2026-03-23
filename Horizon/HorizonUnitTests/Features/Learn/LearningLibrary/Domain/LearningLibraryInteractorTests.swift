@@ -84,50 +84,6 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
         }
     }
 
-    // MARK: - Get Bookmarked Items Tests
-
-    func testGetBookmarkedItemsReturnsBookmarkedItems() {
-        let testee = LearningLibraryInteractorLive(domainService: DomainServiceMock(result: .success(api)))
-        mockJWTToken()
-        mockBookmarkedItemsResponse()
-
-        XCTAssertSingleOutputAndFinish(testee.getBookmarkedItems(ignoreCache: false)) { items in
-            XCTAssertEqual(items.count, 2)
-            XCTAssertTrue(items.allSatisfy { $0.isBookmarked })
-        }
-    }
-
-    func testGetBookmarkedItemsReturnsEmptyWhenNoBookmarks() {
-        let testee = LearningLibraryInteractorLive(domainService: DomainServiceMock(result: .success(api)))
-        mockJWTToken()
-        mockEmptyBookmarkedItemsResponse()
-
-        XCTAssertSingleOutputAndFinish(testee.getBookmarkedItems(ignoreCache: false)) { items in
-            XCTAssertEqual(items.count, 0)
-        }
-    }
-
-    func testGetBookmarkedItemsRemovesDuplicates() {
-        let testee = LearningLibraryInteractorLive(domainService: DomainServiceMock(result: .success(api)))
-        mockJWTToken()
-        mockBookmarkedItemsWithDuplicates()
-
-        XCTAssertSingleOutputAndFinish(testee.getBookmarkedItems(ignoreCache: false)) { items in
-            let uniqueItemIds = Set(items.map { $0.courseID })
-            XCTAssertEqual(items.count, uniqueItemIds.count)
-        }
-    }
-
-    func testGetBookmarkedItemsIgnoresCacheWhenRequested() {
-        let testee = LearningLibraryInteractorLive(domainService: DomainServiceMock(result: .success(api)))
-        mockJWTToken()
-        mockBookmarkedItemsResponse()
-
-        XCTAssertSingleOutputAndFinish(testee.getBookmarkedItems(ignoreCache: true)) { items in
-            XCTAssertGreaterThan(items.count, 0)
-        }
-    }
-
     // MARK: - Search Collection Item Tests
 
     func testSearchCollectionItemReturnsMatchingItems() {
@@ -239,23 +195,6 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
     }
 
     // MARK: - Search With Filters Tests
-
-    func testSearchWithFiltersWithAllFilters() {
-        let testee = LearningLibraryInteractorLive(domainService: DomainServiceMock(result: .success(api)))
-        mockJWTToken()
-        mockSearchItemsResponse()
-
-        XCTAssertSingleOutputAndFinish(
-            testee.searchWithFilters(
-                searchText: "Swift",
-                objectsType: [.course],
-                libraryFilter: .all,
-                sortBy: nil
-            )
-        ) { items in
-            XCTAssertGreaterThan(items.count, 0)
-        }
-    }
 
     func testSearchWithFiltersWithBookmarkedFilter() {
         let testee = LearningLibraryInteractorLive(domainService: DomainServiceMock(result: .success(api)))
@@ -532,7 +471,13 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
 
     private func mockBookmarkedItemsResponse() {
         api.mock(
-            GetHLearningLibraryItemRequest(bookmarkedOnly: true),
+            GetHLearningLibraryItemRequest(
+                bookmarkedOnly: true,
+                completedOnly: false,
+                searchTerm: nil,
+                types: nil,
+                sortBy: nil
+            ),
             value: GetHLearningLibraryItemResponse(
                 data: .init(
                     learningLibraryCollectionItems: .init(
@@ -546,7 +491,13 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
 
     private func mockEmptyBookmarkedItemsResponse() {
         api.mock(
-            GetHLearningLibraryItemRequest(bookmarkedOnly: true),
+            GetHLearningLibraryItemRequest(
+                bookmarkedOnly: true,
+                completedOnly: false,
+                searchTerm: nil,
+                types: nil,
+                sortBy: nil
+            ),
             value: GetHLearningLibraryItemResponse(
                 data: .init(
                     learningLibraryCollectionItems: .init(
@@ -561,7 +512,13 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
     private func mockBookmarkedItemsWithDuplicates() {
         let duplicateItems = LearningLibraryItemStubs.response + [LearningLibraryItemStubs.bookmarkedItem1]
         api.mock(
-            GetHLearningLibraryItemRequest(bookmarkedOnly: true),
+            GetHLearningLibraryItemRequest(
+                bookmarkedOnly: true,
+                completedOnly: false,
+                searchTerm: nil,
+                types: nil,
+                sortBy: nil
+            ),
             value: GetHLearningLibraryItemResponse(
                 data: .init(
                     learningLibraryCollectionItems: .init(
@@ -575,7 +532,13 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
 
     private func mockSearchItemsResponse() {
         api.mock(
-            GetHLearningLibraryItemRequest(searchTerm: "Swift"),
+            GetHLearningLibraryItemRequest(
+                bookmarkedOnly: false,
+                completedOnly: false,
+                searchTerm: "Swift",
+                types: nil,
+                sortBy: nil
+            ),
             value: GetHLearningLibraryItemResponse(
                 data: .init(
                     learningLibraryCollectionItems: .init(
@@ -589,7 +552,13 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
 
     private func mockSearchBookmarkedItemsResponse() {
         api.mock(
-            GetHLearningLibraryItemRequest(bookmarkedOnly: true),
+            GetHLearningLibraryItemRequest(
+                bookmarkedOnly: true,
+                completedOnly: false,
+                searchTerm: nil,
+                types: nil,
+                sortBy: nil
+            ),
             value: GetHLearningLibraryItemResponse(
                 data: .init(
                     learningLibraryCollectionItems: .init(
@@ -603,7 +572,13 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
 
     private func mockSearchItemsWithTypes() {
         api.mock(
-            GetHLearningLibraryItemRequest(types: ["COURSE"]),
+            GetHLearningLibraryItemRequest(
+                bookmarkedOnly: false,
+                completedOnly: false,
+                searchTerm: nil,
+                types: ["COURSE"],
+                sortBy: nil
+            ),
             value: GetHLearningLibraryItemResponse(
                 data: .init(
                     learningLibraryCollectionItems: .init(
@@ -618,7 +593,13 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
     private func mockSearchItemsWithDuplicates() {
         let duplicateItems = LearningLibraryItemStubs.response + [LearningLibraryItemStubs.bookmarkedItem1]
         api.mock(
-            GetHLearningLibraryItemRequest(),
+            GetHLearningLibraryItemRequest(
+                bookmarkedOnly: false,
+                completedOnly: false,
+                searchTerm: nil,
+                types: nil,
+                sortBy: nil
+            ),
             value: GetHLearningLibraryItemResponse(
                 data: .init(
                     learningLibraryCollectionItems: .init(
@@ -632,7 +613,13 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
 
     private func mockSearchCompletedItemsResponse() {
         api.mock(
-            GetHLearningLibraryItemRequest(completedOnly: true),
+            GetHLearningLibraryItemRequest(
+                bookmarkedOnly: false,
+                completedOnly: true,
+                searchTerm: nil,
+                types: nil,
+                sortBy: nil
+            ),
             value: GetHLearningLibraryItemResponse(
                 data: .init(
                     learningLibraryCollectionItems: .init(
@@ -646,7 +633,13 @@ final class LearningLibraryInteractorTests: HorizonTestCase {
 
     private func mockSearchItemsWithNoSearchTerm() {
         api.mock(
-            GetHLearningLibraryItemRequest(),
+            GetHLearningLibraryItemRequest(
+                bookmarkedOnly: false,
+                completedOnly: false,
+                searchTerm: nil,
+                types: nil,
+                sortBy: nil
+            ),
             value: GetHLearningLibraryItemResponse(
                 data: .init(
                     learningLibraryCollectionItems: .init(

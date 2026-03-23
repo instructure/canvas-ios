@@ -35,6 +35,7 @@ public struct GetLearnItemsResponse: Codable, PagedResponse {
     public struct Item: Codable {
         let typename, id, name, itemType: String?
         let position: Int?
+        let enrollmentId: String?
         let startAt, endAt: Date?
         let enrolledAt: String?
         let completionPercentage: Double?
@@ -45,12 +46,23 @@ public struct GetLearnItemsResponse: Codable, PagedResponse {
         let lastActivityAt: String?
         let estimatedDurationMinutes: Int?
         let courseCount: Int?
+        let incompleteModules: [IncompleteModule]?
         enum CodingKeys: String, CodingKey {
             case typename = "__typename"
             case id, name, itemType, position, startAt, endAt, enrolledAt, completionPercentage, requirementCount, requirementCompletedCount, completedAt, grade
             case imageURL = "imageUrl"
-            case workflowState, lastActivityAt, estimatedDurationMinutes, courseCount
+            case workflowState, lastActivityAt, estimatedDurationMinutes, courseCount, enrollmentId
+            case incompleteModules
         }
+    }
+
+    struct IncompleteModule: Codable {
+        let id, name: String?
+        let incompleteItems: [IncompleteItem]?
+    }
+
+    struct IncompleteItem: Codable {
+        let id: String?
     }
 
     struct PageInfo: Codable {

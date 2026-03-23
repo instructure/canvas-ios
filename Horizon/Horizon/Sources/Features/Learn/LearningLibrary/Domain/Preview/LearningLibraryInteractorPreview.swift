@@ -39,12 +39,6 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
             .eraseToAnyPublisher()
     }
 
-    func getBookmarkedItems(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error> {
-        Just(mockItems)
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-
     func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel?, Error> {
         let item = mockItems.first { $0.id == id } ?? mockItems[0]
         var updatedItem = item

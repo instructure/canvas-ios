@@ -42,6 +42,9 @@ final class LearningLibraryBookmarksViewModel: LearningLibraryItemNavigating {
     var isErrorVisible: Bool = false
     var filteredItems: [LearningLibraryCardModel] { paginator.visibleItems }
     var isSeeMoreVisible: Bool { paginator.isSeeMoreVisible }
+    var hasActiveFilters: Bool {
+        !searchText.isEmpty || selectedFilterTypes?.isNotEmpty == true
+    }
     var appliedFiltersCount: Int {
         (selectedSortOption != nil ? 1 : 0) +
         (selectedFilterTypes?.filter { $0 != .all }.count ?? 0)
@@ -90,6 +93,7 @@ final class LearningLibraryBookmarksViewModel: LearningLibraryItemNavigating {
             queue: .main
         ) { [weak self] _ in
             guard let self else { return }
+            isLoaderVisible = true
             fetchData(ignoreCache: true)
         }
     }
@@ -104,43 +108,18 @@ final class LearningLibraryBookmarksViewModel: LearningLibraryItemNavigating {
         ignoreCache: Bool = false,
         completion: (() -> Void)? = nil
     ) {
-        let hasFiltersApplied = selectedSortOption != nil || selectedFilterTypes != nil
-
-        if hasFiltersApplied {
-            fetchFilteredBookmarkedItems(completion: completion)
-        } else {
-            interactor.getBookmarkedItems(ignoreCache: ignoreCache)
-                .receive(on: scheduler)
-                .sinkFailureOrValue { [weak self] error in
-                    self?.isLoaderVisible = false
-                    self?.showError(message: error.localizedDescription)
-                    completion?()
-                } receiveValue: { [weak self] items in
-                    self?.isLoaderVisible = false
-                    self?.configResponse(items: items)
-                    completion?()
-                }
-                .store(in: &subscriptions)
-        }
-    }
-
-    private func fetchFilteredBookmarkedItems(completion: (() -> Void)? = nil) {
-        isLoaderVisible = true
-
-        let objectTypes: [LearningLibraryObjectType]? = {
-            guard let filterTypes = selectedFilterTypes else { return nil }
-            let converted = filterTypes
+        let types: [LearningLibraryObjectType]? = {
+            let filtered = selectedFilterTypes?
                 .filter { $0 != .all }
                 .compactMap { LearningLibraryObjectType(rawValue: $0.rawValue) }
-            return converted.isEmpty ? nil : converted
+            return filtered?.isEmpty == false ? filtered : nil
         }()
 
         let sortByKey = selectedSortOption?.key
         let searchTerm = searchText.trimmedEmptyLines.isEmpty ? nil : searchText
-
         interactor.searchWithFilters(
             searchText: searchTerm,
-            objectsType: objectTypes,
+            objectsType: types,
             libraryFilter: .bookmarked,
             sortBy: sortByKey
         )
@@ -150,11 +129,12 @@ final class LearningLibraryBookmarksViewModel: LearningLibraryItemNavigating {
             self?.showError(message: error.localizedDescription)
             completion?()
         } receiveValue: { [weak self] items in
-            self?.isLoaderVisible = false
-            self?.allItems = items
-            self?.hasItems = items.isNotEmpty
-            self?.paginator.setItems(items)
-            self?.announceSearchResults()
+            guard let self else { return }
+            self.isLoaderVisible = false
+            self.allItems = items
+            self.hasItems = hasItems ? hasItems : items.isNotEmpty
+            self.paginator.setItems(items)
+            self.announceSearchResults()
             completion?()
         }
         .store(in: &subscriptions)
@@ -172,14 +152,12 @@ final class LearningLibraryBookmarksViewModel: LearningLibraryItemNavigating {
 
     private func observeSearch() {
         searchTextSubject
-            .debounce(for: .milliseconds(200), scheduler: scheduler)
+            .debounce(for: .milliseconds(500), scheduler: scheduler)
             .removeDuplicates()
             .sink { [weak self] _ in
                 guard let self else { return }
-                let hasFiltersOrSearch = selectedSortOption != nil || selectedFilterTypes != nil || searchText.trimmedEmptyLines.isNotEmpty
-                if hasFiltersOrSearch {
-                    fetchData(ignoreCache: true)
-                }
+                isLoaderVisible = true
+                fetchData()
             }
             .store(in: &subscriptions)
     }
@@ -196,6 +174,7 @@ final class LearningLibraryBookmarksViewModel: LearningLibraryItemNavigating {
             guard let self else { return }
             self.selectedSortOption = sort
             self.selectedFilterTypes = filters
+            self.isLoaderVisible = true
             self.fetchData(ignoreCache: true)
         }
         router.show(filterView, from: viewController, options: .modal(.fullScreen))

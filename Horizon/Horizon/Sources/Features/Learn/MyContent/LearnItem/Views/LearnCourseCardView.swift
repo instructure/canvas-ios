@@ -22,29 +22,29 @@ import SwiftUI
 struct LearnCourseCardView: View {
     let model: LearnItemModel
     let onTapCourseDetails: () -> Void
-    let onTapLearningObject: ((String, URL?) -> Void)?
+    let onTapLearningObject: () -> Void
 
     var body: some View {
         contentView
     }
 
     private var contentView: some View {
-        VStack(alignment: .leading, spacing: .huiSpaces.space16) {
+        VStack(alignment: .leading, spacing: .zero) {
             courseDetailsButton
-//                .accessibilityLabel(model.accessibilityLearnDescription)
-//            HorizonUI.PrimaryButton(
-//                model.buttonCourseTitle,
-//                type: .grayOutline,
-//                isSmall: false,
-//                fillsWidth: true
-//            ) {
-//                if model.isCourseCompleted {
-//                    onTapCourseDetails()
-//                } else {
-//                    onTapLearningObject?(model.id, model.currentLearningObject?.url)
-//                }
-//            }
-//            .padding([.horizontal, .bottom], .huiSpaces.space24)
+                .accessibilityLabel(model.accessibilityLearnDescription)
+            HorizonUI.PrimaryButton(
+                model.buttonCourseTitle,
+                type: .grayOutline,
+                isSmall: false,
+                fillsWidth: true
+            ) {
+                if model.isCourseCompleted {
+                    onTapCourseDetails()
+                } else {
+                    onTapLearningObject()
+                }
+            }
+            .padding([.horizontal, .bottom], .huiSpaces.space24)
         }
         .background(Color.huiColors.surface.pageSecondary)
         .huiCornerRadius(level: .level5)
@@ -130,6 +130,6 @@ struct LearnCourseCardView: View {
         courseCount: 12,
         itemType: .course
     )
-    LearnCourseCardView(model: model, onTapCourseDetails: { }, onTapLearningObject: { _, _ in })
+    LearnCourseCardView(model: model, onTapCourseDetails: { }, onTapLearningObject: {  })
         .padding()
 }

@@ -30,6 +30,8 @@ struct LearnItemModel: Identifiable, PaginatedDataSourceSearchable {
     let estimatedDurationMinutes: Int?
     let courseCount: Int?
     let itemType: ItemType
+    let enrollmentId: String
+    let nextModuleItemID: String?
 
     var estimatedTime: String? {
         guard let estimatedDurationMinutes else {
@@ -48,6 +50,21 @@ struct LearnItemModel: Identifiable, PaginatedDataSourceSearchable {
         }
     }
 
+    var buttonCourseTitle: String {
+        switch completionPercentage {
+        case 100.0:
+            String(localized: "View course")
+        case 0.0:
+            String(localized: "Start learning")
+        default:
+            String(localized: "Resume learning")
+        }
+    }
+
+    var isCourseCompleted: Bool {
+        completionPercentage.rounded() == 100
+    }
+
     init(
         id: String,
         name: String,
@@ -58,7 +75,9 @@ struct LearnItemModel: Identifiable, PaginatedDataSourceSearchable {
         imageUrl: URL?,
         estimatedDurationMinutes: Int?,
         courseCount: Int?,
-        itemType: ItemType
+        itemType: ItemType,
+        enrollmentId: String = "",
+        nextModuleItemID: String? = nil
     ) {
         self.id = id
         self.name = name
@@ -70,6 +89,8 @@ struct LearnItemModel: Identifiable, PaginatedDataSourceSearchable {
         self.estimatedDurationMinutes = estimatedDurationMinutes
         self.courseCount = courseCount
         self.itemType = itemType
+        self.enrollmentId = enrollmentId
+        self.nextModuleItemID = nextModuleItemID
     }
 
     init(item: GetLearnItemsResponse.Item) {
@@ -83,6 +104,50 @@ struct LearnItemModel: Identifiable, PaginatedDataSourceSearchable {
         self.estimatedDurationMinutes = item.estimatedDurationMinutes
         self.courseCount = item.courseCount
         self.itemType = ItemType(rawValue: item.itemType.defaultToEmpty) ?? .course
+        self.enrollmentId = item.enrollmentId.defaultToEmpty
+        let incompleteModule = item.incompleteModules?.first(where: { ($0.incompleteItems ?? []).isNotEmpty })
+        self.nextModuleItemID = incompleteModule?.incompleteItems?.first?.id
+    }
+
+    var accessibilityLearnDescription: String {
+        var description = ""
+
+        if itemType == .course {
+            description = String.localizedStringWithFormat(
+                String(localized: "Course: %@. ", bundle: .horizon),
+                name
+            )
+        } else {
+            description = String.localizedStringWithFormat(
+                String(localized: "Program: %@. ", bundle: .horizon),
+                name
+            )
+        }
+
+        description += String.localizedStringWithFormat(
+            String(localized: "Progress: %d percent complete. ", bundle: .horizon),
+            Int(completionPercentage.rounded())
+        )
+
+        if let courseCount {
+            description += String.localizedStringWithFormat(
+                String(localized: "Number of courses: %d . ", bundle: .horizon),
+                Int(courseCount)
+            )
+        }
+        if let estimatedTime {
+            description += String.localizedStringWithFormat(
+                String(localized: "Estimated duration: %@. ", bundle: .horizon),
+                estimatedTime
+            )
+        }
+        if let startAt, let endAt {
+            description += String.localizedStringWithFormat(
+                String(localized: "Date from: %@, to: %@. ", bundle: .horizon),
+                startAt, endAt
+            )
+        }
+        return description
     }
 
     enum ItemType: String {

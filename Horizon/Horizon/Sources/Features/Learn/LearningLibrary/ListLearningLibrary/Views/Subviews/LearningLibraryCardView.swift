@@ -162,10 +162,12 @@ struct LearningLibraryCardView: View {
     private func recommendationView(text: String) -> some View {
         HStack(spacing: .huiSpaces.space4) {
             Image.huiIcons.aiFilled
+                .resizable()
+                .frame(width: 15, height: 15)
             Text(text)
                 .huiTypography(.p3)
                 .foregroundStyle(Color.huiColors.text.body)
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(alignment: .leading)
                 .multilineTextAlignment(.leading)
         }
         .padding(.horizontal, .huiSpaces.space8)
@@ -186,9 +188,6 @@ struct LearningLibraryCardView: View {
                     title: String(format: String(localized: "%d units"), units),
                     icon: Image.huiIcons.coursesFormatListBulleted
                 )
-            }
-            if model.isRecommended, shouldShowRecommended {
-                recommendedView
             }
             if model.isInProgress, model.shouldShowProgressStatus {
                 HorizonUI.StatusChip(

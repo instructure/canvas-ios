@@ -46,18 +46,24 @@ struct LearningLibraryBookmarksView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: .zero) {
             if viewModel.hasItems {
-                contentView
-            } else {
-                emptyStateView
+                headerView
             }
+            if !viewModel.isLoaderVisible {
+                if viewModel.filteredItems.isNotEmpty {
+                    contentView
+                } else {
+                    emptyStateView
+                }
+            }
+            Spacer()
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toolbar(.hidden)
         .background(Color.huiColors.surface.pagePrimary)
         .refreshable { await viewModel.refresh() }
         .dismissKeyboardOnTap()
         .scrollDismissesKeyboard(.immediately)
         .animation(.easeInOut, value: viewModel.filteredItems.count)
-        .onFirstAppear { viewModel.fetchData() }
         .onAppear {
             ImageCacheConfiguration.configure()
             restoreFocusIfNeeded(after: 0.5)
@@ -69,6 +75,8 @@ struct LearningLibraryBookmarksView: View {
         .preference(key: HeaderVisibilityKey.self, value: isShowHeader)
         .onReceive(viewModel.accessibilityMessagePublisher) { message in
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                isShowHeader = true
+                isShowDivider = false
                 UIAccessibility.post(notification: .announcement, argument: message)
             }
         }
@@ -76,13 +84,22 @@ struct LearningLibraryBookmarksView: View {
 
     private var contentView: some View {
         VStack(spacing: .zero) {
-            headerView
             if #available(iOS 18.0, *) {
                 listItemView
-                    .onScrollGeometryChange(for: CGFloat.self) { geometry in geometry.contentOffset.y
-                    } action: { _, newOffset in
-                        isShowHeader = newOffset <= 200
-                        isShowDivider = newOffset >= 10
+                    .onScrollGeometryChange(for: ScrollData.self) { geometry in
+                        ScrollData(
+                            offset: geometry.contentOffset.y,
+                            contentHeight: geometry.contentSize.height
+                        )
+                    } action: { _, newValue in
+                        let viewportHeight = UIScreen.main.bounds.height
+                        if newValue.contentHeight > viewportHeight + 200 {
+                            isShowHeader = newValue.offset <= 200
+                            isShowDivider = newValue.offset >= 10
+                        } else {
+                            isShowHeader = true
+                            isShowDivider = newValue.offset >= 10
+                        }
                     }
             } else {
                 listItemView
@@ -200,12 +217,17 @@ struct LearningLibraryBookmarksView: View {
     private var emptyStateView: some View {
         ScrollView {
             VStack(spacing: .huiSpaces.space16) {
-                Text(String(localized: "Save courses and resources here to revisit them later."))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .huiTypography(.p1)
-                    .foregroundStyle(Color.huiColors.text.body)
+                Text(
+                    viewModel.hasActiveFilters ?
+                    String(localized: "No results found. Try adjusting your search terms.") :
+                    String(localized: "Save courses and resources here to revisit them later.")
+                )
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .huiTypography(.p1)
+                .foregroundStyle(Color.huiColors.text.body)
             }
-            .padding(.huiSpaces.space24)
+            .padding(.horizontal, .huiSpaces.space24)
+            .padding(.top, .huiSpaces.space10)
         }
         .refreshable { await viewModel.refresh() }
     }

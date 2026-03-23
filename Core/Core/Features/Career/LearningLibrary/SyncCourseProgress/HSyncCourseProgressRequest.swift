@@ -44,6 +44,12 @@ public struct HSyncCourseProgressRequest: APIGraphQLRequestable {
         mutation \(operationName)($courseId: String!) {
           syncCourseProgress(canvasCourseId: $courseId) {
             isEnrolledInCanvas
+            completionPercentage
+            isEnrolledInCanvas
+            canvasEnrollmentId
+            lastSyncedAt
+            updatedProgramIds
+            failedProgramIds
           }
         }
         """

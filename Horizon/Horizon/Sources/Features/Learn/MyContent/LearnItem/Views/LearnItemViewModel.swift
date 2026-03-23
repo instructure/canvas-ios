@@ -50,14 +50,19 @@ final class LearnItemViewModel {
         (selectedFilterTypes?.count ?? 0)
     }
 
+    var accessibilityMessagePublisher: AnyPublisher<String, Never> {
+        internalAccessibilityPublisher.eraseToAnyPublisher()
+    }
+
     // MARK: - Private variables
 
+    private var internalAccessibilityPublisher = PassthroughSubject<String, Never>()
     private let searchTextSubject = CurrentValueSubject<String, Never>("")
     private var subscriptions = Set<AnyCancellable>()
     private var currentRequestCancellable: AnyCancellable?
     private let paginator = PaginatedDataSource<LearnItemModel>(items: [], pageSize: 4)
-    private var selectedSortOption: CollectionItemSortOption?
-    private var selectedFilterTypes: [LearnItemModel.UIItemType]?
+    var selectedSortOption: CollectionItemSortOption?
+    var selectedFilterTypes: [LearnItemModel.UIItemType]?
 
     // MARK: - Dependencies
 
@@ -100,19 +105,20 @@ final class LearnItemViewModel {
             itemTypes: selectedFilterTypes?.map {$0.key},
             sortBy: selectedSortOption?.key,
             status: status)
-            .receive(on: scheduler)
-            .sinkFailureOrValue { [weak self] error in
-                self?.isLoaderVisible = false
-                self?.errorMessage = error.localizedDescription
-                self?.isErrorVisible = true
-                completion?()
-            } receiveValue: { [weak self] items in
-                guard let self else { return }
-                isLoaderVisible = false
-               hasItems = hasItems ? hasItems : items.isNotEmpty
-               paginator.setItems(items)
-                completion?()
-            }
+        .receive(on: scheduler)
+        .sinkFailureOrValue { [weak self] error in
+            self?.isLoaderVisible = false
+            self?.errorMessage = error.localizedDescription
+            self?.isErrorVisible = true
+            completion?()
+        } receiveValue: { [weak self] items in
+            guard let self else { return }
+            isLoaderVisible = false
+            hasItems = hasItems ? hasItems : items.isNotEmpty
+            paginator.setItems(items)
+            announceSearchResults(count: items.count)
+            completion?()
+        }
     }
 
     func seeMore() {
@@ -130,7 +136,7 @@ final class LearnItemViewModel {
     }
 
     func showFilter(viewController: WeakViewController) {
-      let filterView = LearnItemFilterAssembly.makeView(
+        let filterView = LearnItemFilterAssembly.makeView(
             selectedSortOption: selectedSortOption,
             selectedFilterTypes: selectedFilterTypes) { [weak self] sort, status in
                 self?.selectedSortOption = sort
@@ -162,18 +168,38 @@ final class LearnItemViewModel {
     }
 
     func navigateToItemSequence(
-        url: URL,
-        learningObject: CourseListWidgetModel.LearningObjectInfo,
+        courseID: String?,
+        moduleItemID: String?,
         viewController: WeakViewController
     ) {
+        guard let courseID,
+              let moduleItemID,
+              let baseURL = AppEnvironment.shared.currentSession?.baseURL else { return }
+
+        let url = baseURL.appendingPathComponent("courses")
+            .appendingPathComponent(courseID)
+            .appendingPathComponent("modules")
+            .appendingPathComponent("items")
+            .appendingPathComponent(moduleItemID)
         let moduleItem = HModuleItem(
-            id: learningObject.id,
-            title: learningObject.name,
-            htmlURL: learningObject.url,
-            /// `isCompleted` is set to `false` because this is the next module item
-            /// the learner must complete. If it were `true`, it would no longer appear here.
+            id: moduleItemID,
+            title: "",
+            htmlURL: url,
             isCompleted: false
         )
+
         router.route(to: url, userInfo: ["moduleItem": moduleItem], from: viewController)
+    }
+
+    private func announceSearchResults(count: Int) {
+        let message: String
+        if count == 0 {
+            message = String(localized: "No results found")
+        } else if count == 1 {
+            message = String(localized: "Found 1 result")
+        } else {
+            message = String(format: String(localized: "Found %d results"), count)
+        }
+        internalAccessibilityPublisher.send(message)
     }
 }
