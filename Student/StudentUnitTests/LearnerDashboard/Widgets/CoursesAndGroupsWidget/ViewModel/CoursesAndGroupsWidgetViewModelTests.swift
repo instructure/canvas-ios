@@ -55,9 +55,8 @@ final class CoursesAndGroupsWidgetViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.config.order, 42)
 
         XCTAssertEqual(testee.state, .loading)
-        // two initial placeholder values
         XCTAssertEqual(testee.courseCards.count, 3)
-        XCTAssertEqual(testee.groupCards.count, 2)
+        XCTAssertEqual(testee.groupCards.count, 0)
     }
 
     // MARK: - Layout identifier
