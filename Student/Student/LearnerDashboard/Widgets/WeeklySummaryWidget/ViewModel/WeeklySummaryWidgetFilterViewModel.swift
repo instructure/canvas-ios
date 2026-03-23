@@ -32,6 +32,7 @@ struct WeeklySummaryWidgetFilterViewModel: Identifiable {
     var accessibilityHint: String
 
     var count: Int { assignments.count }
+    var hasAssignments: Bool { assignments.isNotEmpty }
 
     func withExpandedState(_ isExpanded: Bool) -> WeeklySummaryWidgetFilterViewModel {
         var copy = self

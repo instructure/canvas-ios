@@ -274,7 +274,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
 
         if let filterToRestore {
             expandFilter(filterToRestore)
-        } else if missingFilter.count != 0 {
+        } else if missingFilter.hasAssignments {
             expandFilter(missingFilter)
         }
     }
