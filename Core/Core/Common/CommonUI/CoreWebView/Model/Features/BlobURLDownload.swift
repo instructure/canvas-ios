@@ -35,11 +35,11 @@ class BlobURLDownload: CoreWebViewFeature {
             fetch(el.href)
                 .then(function(r) { return r.blob(); })
                 .then(function(blob) {
-                    
+
                     if (blob.size > 100 * 1024 * 1024) {
                         console.warn('BlobURLDownload: File is too large. This is not expected for the like of transcripts download.');
                     }
-                    
+
                     var reader = new FileReader();
                     reader.onload = function() {
                         var base64 = reader.result.split(',')[1];
