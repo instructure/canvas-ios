@@ -97,14 +97,6 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
         let clearPublisher: AnyPublisher<Void, Never>
         if ignoreCache {
-            weekNavigationSubscription?.cancel()
-            state = .loading
-            missingFilter = .missing(assignments: [])
-            dueFilter = .due(assignments: [])
-            newGradesFilter = .newGrades(assignments: [])
-            expandedFilter = nil
-            weekStartDate = Clock.now.startOfWeek()
-            weekRangeText = Self.makeWeekRangeText(from: weekStartDate)
             clearPublisher = interactor.clearCache()
         } else {
             clearPublisher = Just(()).eraseToAnyPublisher()
@@ -132,7 +124,14 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     }
 
     func retryRefresh() {
+        weekNavigationSubscription?.cancel()
         state = .loading
+        missingFilter = .missing(assignments: [])
+        dueFilter = .due(assignments: [])
+        newGradesFilter = .newGrades(assignments: [])
+        expandedFilter = nil
+        weekStartDate = Clock.now.startOfWeek()
+        weekRangeText = Self.makeWeekRangeText(from: weekStartDate)
         retrySubscription = refresh(ignoreCache: true).sink { _ in }
     }
 
