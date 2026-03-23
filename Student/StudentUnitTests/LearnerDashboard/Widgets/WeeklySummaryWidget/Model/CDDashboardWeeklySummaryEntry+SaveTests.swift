@@ -243,6 +243,55 @@ final class CDDashboardWeeklySummaryEntrySaveTests: StudentTestCase {
         XCTAssertNil(entry.submissionStatus)
     }
 
+    func test_saveDue_storesReplyToTopicCheckpointStep() {
+        let plannable = APIPlannable.make(
+            plannable_id: "a1",
+            plannable: .make(sub_assignment_tag: "reply_to_topic")
+        )
+
+        let entry = CDDashboardWeeklySummaryEntry.saveDue(
+            plannable,
+            assignment: APIAssignment.make(id: "a1"),
+            weekStart: weekStart,
+            gradeWeight: nil,
+            in: databaseClient
+        )
+
+        XCTAssertEqual(entry.discussionCheckpointStep, .replyToTopic)
+    }
+
+    func test_saveDue_storesRequiredRepliesCheckpointStep() {
+        let plannable = APIPlannable.make(
+            plannable_id: "a1",
+            plannable: .make(sub_assignment_tag: "reply_to_entry"),
+            details: .make(reply_to_entry_required_count: 3)
+        )
+
+        let entry = CDDashboardWeeklySummaryEntry.saveDue(
+            plannable,
+            assignment: APIAssignment.make(id: "a1"),
+            weekStart: weekStart,
+            gradeWeight: nil,
+            in: databaseClient
+        )
+
+        XCTAssertEqual(entry.discussionCheckpointStep, .requiredReplies(3))
+    }
+
+    func test_saveDue_checkpointStepIsNilForRegularAssignment() {
+        let plannable = APIPlannable.make(plannable_id: "a1")
+
+        let entry = CDDashboardWeeklySummaryEntry.saveDue(
+            plannable,
+            assignment: APIAssignment.make(id: "a1"),
+            weekStart: weekStart,
+            gradeWeight: nil,
+            in: databaseClient
+        )
+
+        XCTAssertNil(entry.discussionCheckpointStep)
+    }
+
     // MARK: - saveGrade
 
     func test_saveGrade_mapsBasicFields() {

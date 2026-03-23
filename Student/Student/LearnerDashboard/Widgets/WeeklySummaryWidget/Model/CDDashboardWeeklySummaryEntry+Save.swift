@@ -94,6 +94,10 @@ extension CDDashboardWeeklySummaryEntry {
         } else {
             model.submissionStatus = nil
         }
+        model.discussionCheckpointStep = DiscussionCheckpointStep(
+            tag: plannable.plannable?.sub_assignment_tag,
+            requiredReplyCount: plannable.details?.reply_to_entry_required_count
+        )
         return model
     }
 

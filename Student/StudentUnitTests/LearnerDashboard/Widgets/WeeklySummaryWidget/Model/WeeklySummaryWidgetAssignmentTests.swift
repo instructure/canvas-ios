@@ -229,6 +229,35 @@ final class WeeklySummaryWidgetAssignmentTests: StudentTestCase {
         XCTAssertNotNil(testee.pointsPossible)
     }
 
+    // MARK: - discussionCheckpointText
+
+    func test_discussionCheckpointText_isNilWhenNoCheckpointStep() {
+        let entry = makeEntry(category: .due)
+        entry.discussionCheckpointStep = nil
+
+        let testee = WeeklySummaryWidgetAssignment(entry: entry)
+
+        XCTAssertNil(testee.discussionCheckpointText)
+    }
+
+    func test_discussionCheckpointText_isReplyToTopicLabel() {
+        let entry = makeEntry(category: .due)
+        entry.discussionCheckpointStep = .replyToTopic
+
+        let testee = WeeklySummaryWidgetAssignment(entry: entry)
+
+        XCTAssertEqual(testee.discussionCheckpointText, "Reply to topic")
+    }
+
+    func test_discussionCheckpointText_isAdditionalRepliesLabelWithCount() {
+        let entry = makeEntry(category: .due)
+        entry.discussionCheckpointStep = .requiredReplies(2)
+
+        let testee = WeeklySummaryWidgetAssignment(entry: entry)
+
+        XCTAssertEqual(testee.discussionCheckpointText, "Additional replies (2)")
+    }
+
     // MARK: - routeAssignmentId
 
     func test_routeAssignmentId_matchesAssignmentIdForRegularAssignment() {

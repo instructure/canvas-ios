@@ -1536,6 +1536,7 @@
         <attribute name="submissionTypesRaw" attributeType="String"/>
         <attribute name="title" attributeType="String"/>
         <attribute name="weekStart" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="discussionCheckpointStepRaw" optional="YES" attributeType="Transformable" valueTransformerName="DiscussionCheckpointStepTransformer" customClassName="Core.DiscussionCheckpointStepWrapper"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="weeklySummaryEntries" inverseEntity="Course"/>
     </entity>
 </model>

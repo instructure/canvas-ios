@@ -32,6 +32,7 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
     let pointsPossible: String?
     let grade: String?
     let gradeWeightText: String?
+    let discussionCheckpointText: String?
 
     init(
         id: String,
@@ -45,7 +46,8 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
         submissionStatus: SubmissionStatusLabel.Model?,
         pointsPossible: String?,
         grade: String?,
-        gradeWeightText: String?
+        gradeWeightText: String?,
+        discussionCheckpointText: String?
     ) {
         self.id = id
         self.routeAssignmentId = routeAssignmentId ?? id
@@ -59,6 +61,7 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
         self.pointsPossible = pointsPossible
         self.grade = grade
         self.gradeWeightText = gradeWeightText
+        self.discussionCheckpointText = discussionCheckpointText
     }
 
     init(entry: CDDashboardWeeklySummaryEntry) {
@@ -118,7 +121,8 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
             submissionStatus: submissionStatus,
             pointsPossible: String.format(ptsOrNil: entry.pointsPossible),
             grade: grade,
-            gradeWeightText: entry.gradeWeight.map { Self.formatWeightPercent($0) }
+            gradeWeightText: entry.gradeWeight.map { Self.formatWeightPercent($0) },
+            discussionCheckpointText: entry.discussionCheckpointStep?.text
         )
     }
 

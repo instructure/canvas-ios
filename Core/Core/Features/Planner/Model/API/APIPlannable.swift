@@ -79,7 +79,7 @@ extension APIPlannable {
         let course_id: String?
         let user_id: String?
         public let points_possible: Double?
-        let sub_assignment_tag: String?
+        public let sub_assignment_tag: String?
     }
 
     public struct Submissions: Codable, Equatable {

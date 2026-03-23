@@ -81,6 +81,12 @@ public final class CDDashboardWeeklySummaryEntry: NSManagedObject {
         set { scoreRaw = newValue.map { NSNumber(value: $0) } }
     }
 
+    @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?
+    public var discussionCheckpointStep: DiscussionCheckpointStep? {
+        get { discussionCheckpointStepRaw?.value }
+        set { discussionCheckpointStepRaw = .init(newValue) }
+    }
+
     @NSManaged public var submissionStatusRaw: String?
     public var submissionStatus: SubmissionStatus? {
         get { submissionStatusRaw.flatMap { SubmissionStatus(rawValue: $0) } }

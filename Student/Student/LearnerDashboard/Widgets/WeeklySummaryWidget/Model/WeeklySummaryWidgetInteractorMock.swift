@@ -36,7 +36,8 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 submissionStatus: nil,
                 pointsPossible: "20 pts",
                 grade: nil,
-                gradeWeightText: nil
+                gradeWeightText: nil,
+                discussionCheckpointText: nil
             ),
             WeeklySummaryWidgetAssignment(
                 id: "2",
@@ -49,7 +50,8 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 submissionStatus: nil,
                 pointsPossible: "100 pts",
                 grade: nil,
-                gradeWeightText: "20% of final grade"
+                gradeWeightText: "20% of final grade",
+                discussionCheckpointText: nil
             ),
             WeeklySummaryWidgetAssignment(
                 id: "3",
@@ -62,7 +64,8 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 submissionStatus: nil,
                 pointsPossible: "50 pts",
                 grade: nil,
-                gradeWeightText: nil
+                gradeWeightText: nil,
+                discussionCheckpointText: nil
             )
         ],
         newGrades: [
@@ -77,7 +80,8 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 submissionStatus: nil,
                 pointsPossible: nil,
                 grade: "85 pts",
-                gradeWeightText: "30% of final grade"
+                gradeWeightText: "30% of final grade",
+                discussionCheckpointText: nil
             ),
             WeeklySummaryWidgetAssignment(
                 id: "5",
@@ -90,7 +94,8 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 submissionStatus: nil,
                 pointsPossible: nil,
                 grade: "15 pts",
-                gradeWeightText: nil
+                gradeWeightText: nil,
+                discussionCheckpointText: nil
             )
         ]
     )

@@ -183,7 +183,8 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
                     submissionStatus: nil,
                     pointsPossible: nil,
                     grade: nil,
-                    gradeWeightText: nil
+                    gradeWeightText: nil,
+                    discussionCheckpointText: nil
                 )
             ],
             due: [],

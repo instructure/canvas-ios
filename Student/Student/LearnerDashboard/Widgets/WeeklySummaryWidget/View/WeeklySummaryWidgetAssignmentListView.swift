@@ -66,6 +66,11 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
                     .font(.semibold14, lineHeight: .fit)
                     .foregroundStyle(Color.textDarkest)
                     .multilineTextAlignment(.leading)
+                if let stepText = assignment.discussionCheckpointText {
+                    Text(stepText)
+                        .font(.regular12)
+                        .foregroundStyle(Color.textDark)
+                }
                 bottomLabels
             }
 
@@ -141,7 +146,8 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
             submissionStatus: .submitted,
             pointsPossible: "50 pts",
             grade: nil,
-            gradeWeightText: "12.5% of final grade"
+            gradeWeightText: "12.5% of final grade",
+            discussionCheckpointText: "Reply to topic"
         ),
         WeeklySummaryWidgetAssignment(
             id: "2",
@@ -154,7 +160,8 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
             submissionStatus: .graded,
             pointsPossible: "25 pts",
             grade: nil,
-            gradeWeightText: nil
+            gradeWeightText: nil,
+            discussionCheckpointText: nil
         ),
         WeeklySummaryWidgetAssignment(
             id: "3",
@@ -167,7 +174,8 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
             submissionStatus: nil,
             pointsPossible: "100 pts",
             grade: "88",
-            gradeWeightText: "20% of final grade"
+            gradeWeightText: "20% of final grade",
+            discussionCheckpointText: nil
         )
     ]
     WeeklySummaryWidgetAssignmentListView(
