@@ -115,12 +115,17 @@ extension CoreWebView {
     func handleBlobDownload(base64: String, mimeType: String, fileName: String) {
         guard let data = Data(base64Encoded: base64) else { return }
 
-        let ext = UTType(mimeType: mimeType)?.preferredFilenameExtension
+        let safeFileName = {
+            let name = URL(fileURLWithPath: fileName).lastPathComponent
+            return name.isEmpty ? "download" : name
+        }()
+
         let fullName: String
-        if let ext, URL(fileURLWithPath: fileName).pathExtension.isEmpty {
-            fullName = "\(fileName.isEmpty ? "download" : fileName).\(ext)"
+        if let ext = UTType(mimeType: mimeType)?.preferredFilenameExtension,
+           URL(fileURLWithPath: safeFileName).pathExtension.isEmpty {
+            fullName = safeFileName + "." + ext
         } else {
-            fullName = fileName.isEmpty ? "download" : fileName
+            fullName = safeFileName
         }
 
         let url = URL.Directories.temporary.appending(component: fullName)
