@@ -40,7 +40,7 @@ public struct GetAssignmentGroupsRequest: APIRequestable {
     let include: [Include]
     let perPage: Int?
 
-    init(
+    public init(
         courseID: String,
         gradingPeriodID: String? = nil,
         include: [Include] = Include.allCases,

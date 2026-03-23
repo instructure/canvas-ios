@@ -16,17 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-import Foundation
+extension BusinessLogic {
 
-protocol WeeklySummaryWidgetInteractor {
-    func clearCache() -> AnyPublisher<Void, Never>
-    func hasCachedSummary(weekStart: Date) -> AnyPublisher<Bool, Never>
-    func getSummary(weekStart: Date, ignoreCache: Bool) -> AnyPublisher<WeeklySummaryWidgetFilters, Error>
-}
-
-struct WeeklySummaryWidgetFilters {
-    let missing: [WeeklySummaryWidgetAssignment]
-    let due: [WeeklySummaryWidgetAssignment]
-    let newGrades: [WeeklySummaryWidgetAssignment]
+    public enum AssignmentWeight {}
 }

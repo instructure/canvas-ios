@@ -65,20 +65,6 @@ final class WeeklySummaryWidgetFilterViewModelTests: StudentTestCase {
         XCTAssertEqual(modified.count, original.count)
     }
 
-    // MARK: - Equatable
-
-    func test_equality_withSameId_shouldBeEqual() {
-        let first = WeeklySummaryWidgetFilterViewModel.missing(assignments: [])
-        let second = WeeklySummaryWidgetFilterViewModel.missing(assignments: makeAssignments(count: 3))
-        XCTAssertEqual(first, second)
-    }
-
-    func test_equality_withDifferentId_shouldNotBeEqual() {
-        let missing = WeeklySummaryWidgetFilterViewModel.missing(assignments: [])
-        let due = WeeklySummaryWidgetFilterViewModel.due(assignments: [])
-        XCTAssertNotEqual(missing, due)
-    }
-
     // MARK: - Static factories
 
     func test_missingFactory() {
@@ -142,7 +128,9 @@ final class WeeklySummaryWidgetFilterViewModelTests: StudentTestCase {
                 icon: .assignmentLine,
                 title: "title \(index)",
                 dueDateText: nil,
-                pointsText: nil,
+                submissionStatus: nil,
+                pointsPossible: nil,
+                grade: nil,
                 gradeWeightText: nil
             )
         }

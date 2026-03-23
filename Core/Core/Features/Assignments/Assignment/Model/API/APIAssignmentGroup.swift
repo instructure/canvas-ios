@@ -19,11 +19,17 @@
 import Foundation
 
 public struct APIAssignmentGroup: Codable, Equatable {
-    let id: ID
-    let name: String
-    let position: Int
-    let group_weight: Double?
-    var assignments: [APIAssignment]?
+    public let id: ID
+    public let name: String
+    public let position: Int
+    public let group_weight: Double?
+    public var assignments: [APIAssignment]?
+}
+
+public extension Array where Element == APIAssignmentGroup {
+    func group(containingAssignmentWithId assignmentId: String) -> APIAssignmentGroup? {
+        first { $0.assignments?.contains(where: { $0.id.rawValue == assignmentId }) == true }
+    }
 }
 
 #if DEBUG
@@ -34,7 +40,7 @@ extension APIAssignmentGroup {
         position: Int = 1,
         group_weight: Double? = nil,
         assignments: [APIAssignment]? = nil
-        ) -> APIAssignmentGroup {
+    ) -> APIAssignmentGroup {
         return APIAssignmentGroup(
             id: id,
             name: name,

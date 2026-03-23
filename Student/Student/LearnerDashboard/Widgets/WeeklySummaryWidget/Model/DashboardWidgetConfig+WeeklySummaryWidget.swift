@@ -16,17 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
 import Foundation
 
-protocol WeeklySummaryWidgetInteractor {
-    func clearCache() -> AnyPublisher<Void, Never>
-    func hasCachedSummary(weekStart: Date) -> AnyPublisher<Bool, Never>
-    func getSummary(weekStart: Date, ignoreCache: Bool) -> AnyPublisher<WeeklySummaryWidgetFilters, Error>
+struct WeeklySummaryWidgetSettings: Codable {
+    var expandedFilterId: String?
 }
 
-struct WeeklySummaryWidgetFilters {
-    let missing: [WeeklySummaryWidgetAssignment]
-    let due: [WeeklySummaryWidgetAssignment]
-    let newGrades: [WeeklySummaryWidgetAssignment]
+extension DashboardWidgetConfig {
+    var weeklySummarySettings: WeeklySummaryWidgetSettings {
+        get {
+            guard let json = settings, let data = json.data(using: .utf8) else { return WeeklySummaryWidgetSettings() }
+            return (try? JSONDecoder().decode(WeeklySummaryWidgetSettings.self, from: data)) ?? WeeklySummaryWidgetSettings()
+        }
+        set {
+            settings = (try? JSONEncoder().encode(newValue)).flatMap { String(data: $0, encoding: .utf8) }
+        }
+    }
 }
