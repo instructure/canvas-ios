@@ -41,7 +41,7 @@ struct WeeklySummaryWidgetAssignmentListView: View {
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(String.format(accessibilityListCount: assignments.count))
-        .elevation(.cardLarge, background: .backgroundLightest)
+        .elevation(cornerRadius: 16, background: .backgroundLightest)
     }
 }
 

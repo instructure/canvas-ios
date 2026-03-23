@@ -133,6 +133,72 @@ final class WeeklySummaryWidgetAssignmentTests: StudentTestCase {
         XCTAssertNotNil(testee.grade)
     }
 
+    func test_grade_isNilWhenNoScoreAndNotExcused() {
+        let entry = makeEntry(category: .due)
+        entry.score = nil
+        entry.excused = false
+        entry.pointsPossible = 100
+        entry.gradingType = GradingType.points.rawValue
+
+        let testee = WeeklySummaryWidgetAssignment(entry: entry)
+
+        XCTAssertNil(testee.grade)
+    }
+
+    func test_grade_isNotNilWhenExcusedWithNoScore() {
+        let entry = makeEntry(category: .due)
+        entry.score = nil
+        entry.excused = true
+
+        let testee = WeeklySummaryWidgetAssignment(entry: entry)
+
+        XCTAssertNotNil(testee.grade)
+    }
+
+    // MARK: - accessibilityLabel
+
+    func test_accessibilityLabel_containsCourseCodeAndTitle() {
+        let course = makeCourse(name: "BIO 101")
+        let entry = makeEntry(title: "Lab Report", course: course)
+
+        let testee = WeeklySummaryWidgetAssignment(entry: entry)
+
+        XCTAssertTrue(testee.accessibilityLabel.contains("BIO 101"))
+        XCTAssertTrue(testee.accessibilityLabel.contains("Lab Report"))
+    }
+
+    func test_accessibilityLabel_containsPointsPossibleWhenPresent() {
+        let entry = makeEntry(category: .due)
+        entry.pointsPossible = 50
+
+        let testee = WeeklySummaryWidgetAssignment(entry: entry)
+
+        XCTAssertTrue(testee.accessibilityLabel.contains("50"))
+        XCTAssertTrue(testee.accessibilityLabel.contains("possible"))
+    }
+
+    func test_accessibilityLabel_doesNotContainGradeWhenNoScore() {
+        let entry = makeEntry(category: .due)
+        entry.score = nil
+        entry.pointsPossible = 100
+        entry.gradingType = GradingType.points.rawValue
+
+        let testee = WeeklySummaryWidgetAssignment(entry: entry)
+
+        XCTAssertFalse(testee.accessibilityLabel.contains("Grade"))
+    }
+
+    func test_accessibilityLabel_containsGradeWhenScorePresent() {
+        let entry = makeEntry(category: .due)
+        entry.score = 88
+        entry.pointsPossible = 100
+        entry.gradingType = GradingType.points.rawValue
+
+        let testee = WeeklySummaryWidgetAssignment(entry: entry)
+
+        XCTAssertTrue(testee.accessibilityLabel.contains("Grade"))
+    }
+
     // MARK: - submissionStatus
 
     func test_submissionStatus_isGradedWhenDueAndGraded() {
