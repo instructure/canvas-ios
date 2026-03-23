@@ -33,7 +33,7 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel, Dashboard
         .placeholder(id: "2", color: .course2),
         .placeholder(id: "3", color: .course3)
     ]
-    private(set) var groupCards: [GroupCardViewModel] = [.placeholder(id: "1", color: .course3), .placeholder(id: "2", color: .course4)]
+    private(set) var groupCards: [GroupCardViewModel] = []
 
     private(set) var showGrades: Bool = false
     private(set) var showColorOverlay: Bool = false

@@ -21,12 +21,12 @@ import SwiftUI
 struct SkeletonCardView: View {
     private let color: Color
     private let title: String
-    private let subtitle: String?
+    private let contextLabel: String?
 
-    init(color: Color, title: String = "Placeholder title", subtitle: String? = nil) {
+    init(color: Color, title: String, contextLabel: String? = nil) {
         self.color = color
         self.title = title
-        self.subtitle = subtitle
+        self.contextLabel = contextLabel
     }
 
     var body: some View {
@@ -36,24 +36,34 @@ struct SkeletonCardView: View {
                     .scaledFrame(size: 72, useIconScale: true)
             },
             labels: {
-                Text(title)
-                if let subtitle {
-                    Text(subtitle)
+                if let contextLabel {
+                    Text(contextLabel)
+                        .font(.regular14, lineHeight: .fit)
+                        .foregroundStyle(color)
+                        .multilineTextAlignment(.leading)
+                        .lineLimit(2)
                 }
+
+                Text(title)
+                    .font(.semibold16, lineHeight: .fit)
+                    .foregroundStyle(.textDarkest)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(2)
             },
             isAvailableOffline: false,
             action: { }
         )
         .redacted(reason: .placeholder)
+        .allowsHitTesting(false)
     }
 }
 
 #Preview {
     VStack {
-        SkeletonCardView(color: .course1)
+        SkeletonCardView(color: .course1, title: "Custom title")
         SkeletonCardView(color: .course2, title: "Custom title")
-        SkeletonCardView(color: .course3, subtitle: "Subtitle")
-        SkeletonCardView(color: .course4, title: "Custom title", subtitle: "Subtitle")
+        SkeletonCardView(color: .course3, title: "Custom title", contextLabel: "Subtitle")
+        SkeletonCardView(color: .course4, title: "Custom title", contextLabel: "Subtitle")
     }
     .padding()
 }

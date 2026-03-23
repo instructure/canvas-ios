@@ -128,7 +128,7 @@ extension CourseCardViewModel {
         .init(
             model: .init(
                 id: id,
-                title: "Redacted title",
+                title: "Redacted placeholder course name",
                 color: color,
                 imageUrl: nil,
                 grade: nil,

@@ -146,7 +146,7 @@ struct CoursesAndGroupsWidgetView: View {
                     SkeletonCardView(
                         color: cardViewModel.groupColor,
                         title: cardViewModel.title,
-                        subtitle: cardViewModel.contextName
+                        contextLabel: cardViewModel.contextName
                     )
                 }
             }
