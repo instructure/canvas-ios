@@ -22,16 +22,12 @@ import Testing
 struct BusinessLogicAssignmentWeightTests {
     private let testee = BusinessLogic.AssignmentWeight.LogicLive()
 
-    private func assignment(points: Double) -> BusinessLogic.AssignmentWeight.GroupAssignment {
-        .init(isOmittedFromFinalGrade: false, pointsPossible: points)!
-    }
-
     @Test
     func assignmentWeightInCourse_returnsNilWhenAssignmentIsNil() {
         let result = testee.assignmentWeightInCourse(
             assignment: nil,
             groupWeight: 50,
-            assignmentsInGroup: [assignment(points: 100)]
+            assignmentsInGroup: [.make(pointsPossible: 100)]
         )
         #expect(result == nil)
     }
@@ -39,9 +35,9 @@ struct BusinessLogicAssignmentWeightTests {
     @Test
     func assignmentWeightInCourse_returnsNilWhenGroupWeightIsNil() {
         let result = testee.assignmentWeightInCourse(
-            assignment: assignment(points: 100),
+            assignment: .make(pointsPossible: 100),
             groupWeight: nil,
-            assignmentsInGroup: [assignment(points: 100)]
+            assignmentsInGroup: [.make(pointsPossible: 100)]
         )
         #expect(result == nil)
     }
@@ -49,9 +45,9 @@ struct BusinessLogicAssignmentWeightTests {
     @Test
     func assignmentWeightInCourse_returnsNilWhenGroupWeightIsZero() {
         let result = testee.assignmentWeightInCourse(
-            assignment: assignment(points: 100),
+            assignment: .make(pointsPossible: 100),
             groupWeight: 0,
-            assignmentsInGroup: [assignment(points: 100)]
+            assignmentsInGroup: [.make(pointsPossible: 100)]
         )
         #expect(result == nil)
     }
@@ -59,7 +55,7 @@ struct BusinessLogicAssignmentWeightTests {
     @Test
     func assignmentWeightInCourse_returnsNilWhenGroupEmpty() {
         let result = testee.assignmentWeightInCourse(
-            assignment: assignment(points: 100),
+            assignment: .make(pointsPossible: 100),
             groupWeight: 50,
             assignmentsInGroup: []
         )
@@ -69,9 +65,9 @@ struct BusinessLogicAssignmentWeightTests {
     @Test
     func assignmentWeightInCourse_singleAssignment() {
         let result = testee.assignmentWeightInCourse(
-            assignment: assignment(points: 100),
+            assignment: .make(pointsPossible: 100),
             groupWeight: 40,
-            assignmentsInGroup: [assignment(points: 100)]
+            assignmentsInGroup: [.make(pointsPossible: 100)]
         )
         #expect(result == 0.4)
     }
@@ -79,9 +75,9 @@ struct BusinessLogicAssignmentWeightTests {
     @Test
     func assignmentWeightInCourse_splitEquallyAcrossGroup() {
         let result = testee.assignmentWeightInCourse(
-            assignment: assignment(points: 100),
+            assignment: .make(pointsPossible: 100),
             groupWeight: 40,
-            assignmentsInGroup: [assignment(points: 100), assignment(points: 100)]
+            assignmentsInGroup: [.make(pointsPossible: 100), .make(pointsPossible: 100)]
         )
         #expect(result == 0.2)
     }
@@ -90,9 +86,9 @@ struct BusinessLogicAssignmentWeightTests {
     func assignmentWeightInCourse_unequalPointsWeighsProportion() {
         // Assignment is 100 pts in a group of 300 pts total, group weight 60% → 60% * (100/300) = 20%
         let result = testee.assignmentWeightInCourse(
-            assignment: assignment(points: 100),
+            assignment: .make(pointsPossible: 100),
             groupWeight: 60,
-            assignmentsInGroup: [assignment(points: 100), assignment(points: 200)]
+            assignmentsInGroup: [.make(pointsPossible: 100), .make(pointsPossible: 200)]
         )
         #expect(abs((result ?? 0) - 0.2) < 1e-10)
     }
