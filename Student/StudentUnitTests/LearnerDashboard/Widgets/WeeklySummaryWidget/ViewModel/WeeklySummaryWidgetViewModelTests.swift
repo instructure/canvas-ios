@@ -16,6 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
+import CombineSchedulers
+import SwiftUI
+import TestsFoundation
 import XCTest
 @testable import Core
 @testable import Student
@@ -52,7 +56,7 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.missingFilter.id, "missing")
         XCTAssertEqual(testee.dueFilter.id, "due")
         XCTAssertEqual(testee.newGradesFilter.id, "newGrades")
-        XCTAssertEqual(testee.expandedFilter, nil)
+        XCTAssertNil(testee.expandedFilter)
     }
 
     // MARK: - weekRangeText
@@ -60,8 +64,7 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
     func test_weekRangeText_shouldFormatCorrectly() {
         let testee = makeViewModel()
         let endDate = testee.weekStartDate.addDays(6)
-        let year = Calendar.current.component(.year, from: endDate)
-        let expected = "\(testee.weekStartDate.shortDayMonth) - \(endDate.shortDayMonth) \(year)"
+        let expected = "\(testee.weekStartDate.shortDayMonth) - \(endDate.shortDayMonth)"
 
         XCTAssertEqual(testee.weekRangeText, expected)
     }
@@ -91,8 +94,7 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
 
         XCTAssertNotEqual(testee.weekRangeText, initialText)
         let endDate = testee.weekStartDate.addDays(6)
-        let year = Calendar.current.component(.year, from: endDate)
-        XCTAssertEqual(testee.weekRangeText, "\(testee.weekStartDate.shortDayMonth) - \(endDate.shortDayMonth) \(year)")
+        XCTAssertEqual(testee.weekRangeText, "\(testee.weekStartDate.shortDayMonth) - \(endDate.shortDayMonth)")
     }
 
     // MARK: - toggleFilter
@@ -112,7 +114,7 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
 
         testee.toggleFilter(testee.dueFilter)
 
-        XCTAssertEqual(testee.expandedFilter, nil)
+        XCTAssertNil(testee.expandedFilter)
     }
 
     func test_toggleFilter_whenDifferentFilter_shouldSwitchExpanded() {
@@ -157,9 +159,86 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
         XCTAssertNotEqual(testee.layoutIdentifier, initial)
     }
 
+    // MARK: - Week navigation — filter state on cache hit/miss
+
+    func test_weekNavigation_whenCacheAvailable_shouldNotCollapseFilter() {
+        let testScheduler: TestSchedulerOf<DispatchQueue> = DispatchQueue.test
+        let mock = WeeklySummaryWidgetInteractorMock()
+        mock.hasCachedSummaryOutput = true
+        let testee = makeViewModel(interactor: mock, scheduler: testScheduler.eraseToAnyScheduler())
+        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
+        testee.toggleFilter(testee.missingFilter)
+        XCTAssertNotNil(testee.expandedFilter)
+
+        mock.outputValue = WeeklySummaryWidgetFilters(
+            missing: [
+                WeeklySummaryWidgetAssignment(
+                    id: "999",
+                    courseId: "1",
+                    courseCode: "TEST",
+                    courseColor: .course1,
+                    icon: Image(systemName: "star"),
+                    title: "New Week Assignment",
+                    dueDateText: nil,
+                    submissionStatus: nil,
+                    pointsPossible: nil,
+                    grade: nil,
+                    gradeWeightText: nil
+                )
+            ],
+            due: [],
+            newGrades: []
+        )
+        testee.navigateToPreviousWeek()
+        testScheduler.advance(by: .milliseconds(300))
+
+        XCTAssertNotNil(testee.expandedFilter)
+        XCTAssertEqual(testee.expandedFilter?.assignments.map(\.id), ["999"])
+    }
+
+    func test_weekNavigation_whenCacheNotAvailable_shouldCollapseFilterThenRestoreAfterLoad() {
+        let testScheduler: TestSchedulerOf<DispatchQueue> = DispatchQueue.test
+        let mock = WeeklySummaryWidgetInteractorMock()
+        let testee = makeViewModel(interactor: mock, scheduler: testScheduler.eraseToAnyScheduler())
+        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
+        testee.toggleFilter(testee.missingFilter)
+        XCTAssertNotNil(testee.expandedFilter)
+
+        let subject = PassthroughSubject<WeeklySummaryWidgetFilters, Error>()
+        mock.getSummarySubject = subject
+        testee.navigateToPreviousWeek()
+        testScheduler.advance(by: .milliseconds(300))
+        XCTAssertNil(testee.expandedFilter)
+
+        subject.send(mock.outputValue)
+        subject.send(completion: .finished)
+        testScheduler.advance()
+        XCTAssertEqual(testee.expandedFilter?.id, testee.missingFilter.id)
+    }
+
+    func test_weekNavigation_whenCacheNotAvailable_shouldShowAndClearWeekLoading() {
+        let testScheduler: TestSchedulerOf<DispatchQueue> = DispatchQueue.test
+        let mock = WeeklySummaryWidgetInteractorMock()
+        let subject = PassthroughSubject<WeeklySummaryWidgetFilters, Error>()
+        mock.getSummarySubject = subject
+        let testee = makeViewModel(interactor: mock, scheduler: testScheduler.eraseToAnyScheduler())
+
+        testee.navigateToPreviousWeek()
+        testScheduler.advance(by: .milliseconds(300))
+        XCTAssertTrue(testee.isWeekLoading)
+
+        subject.send(mock.outputValue)
+        subject.send(completion: .finished)
+        testScheduler.advance()
+        XCTAssertFalse(testee.isWeekLoading)
+    }
+
     // MARK: - Private helpers
 
-    private func makeViewModel() -> WeeklySummaryWidgetViewModel {
-        WeeklySummaryWidgetViewModel(config: .make(id: .weeklySummary))
+    private func makeViewModel(
+        interactor: WeeklySummaryWidgetInteractor = WeeklySummaryWidgetInteractorMock(),
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) -> WeeklySummaryWidgetViewModel {
+        WeeklySummaryWidgetViewModel(config: .make(id: .weeklySummary), interactor: interactor, scheduler: scheduler)
     }
 }

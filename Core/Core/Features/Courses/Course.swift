@@ -51,6 +51,7 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var syllabusBody: String?
     @NSManaged public var termName: String?
     @NSManaged public var settings: CourseSettings?
+    @NSManaged public var weeklySummaryEntries: Set<CDDashboardWeeklySummaryEntry>
     @NSManaged public var gradingSchemeRaw: Data?
     @NSManaged public var roles: String?
 
@@ -168,6 +169,10 @@ final public class Course: NSManagedObject, WriteableModel {
         if let gradingScheme = item.grading_scheme {
             let gradingSchemeEntries: [GradingSchemeEntry] = gradingScheme.compactMap(GradingSchemeEntry.init)
             model.gradingSchemeRaw = gradingSchemeEntries.jsonData
+        }
+
+        for entry: CDDashboardWeeklySummaryEntry in context.fetch(scope: .where(#keyPath(CDDashboardWeeklySummaryEntry.courseId), equals: model.id)) {
+            entry.course = model
         }
 
         model.roles = item.enrollments.roles

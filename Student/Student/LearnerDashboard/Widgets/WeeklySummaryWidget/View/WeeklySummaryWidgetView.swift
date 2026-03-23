@@ -43,18 +43,20 @@ struct WeeklySummaryWidgetView: View {
                 DashboardWidgetCard(background: .tint) {
                     VStack(spacing: 8) {
                         WeeklySummaryWidgetWeekSelectorView(viewModel: viewModel)
-                        WeeklySummaryWidgetSegmentedControl(viewModel: viewModel)
-                        if let expanded = viewModel.expandedFilter {
-                            assignmentList(filter: expanded)
+                        VStack(spacing: 8) {
+                            WeeklySummaryWidgetSegmentedControl(viewModel: viewModel)
+                            if let expanded = viewModel.expandedFilter {
+                                assignmentList(filter: expanded)
+                            }
                         }
+                        .redacted(reason: viewModel.state == .loading || viewModel.isWeekLoading ? .placeholder : [])
+                        .allowsHitTesting(viewModel.state != .loading && !viewModel.isWeekLoading)
                     }
-                    .redacted(reason: viewModel.state == .loading ? .placeholder : [])
-                    .allowsHitTesting(viewModel.state != .loading)
                     .paddingStyle(.top, .sectionHeaderVertical)
                     .paddingStyle(.horizontal, .standard)
                     .paddingStyle(.bottom, .standard)
                 }
-                .animation(Self.animation, value: viewModel.expandedFilter)
+                .animation(Self.animation, value: viewModel.expandedFilter?.assignments.map(\.id))
                 .animation(Self.animation, value: viewModel.weekStartDate)
             }
         }

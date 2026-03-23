@@ -16,17 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-import Foundation
+extension BusinessLogic.AssignmentWeight {
 
-protocol WeeklySummaryWidgetInteractor {
-    func clearCache() -> AnyPublisher<Void, Never>
-    func hasCachedSummary(weekStart: Date) -> AnyPublisher<Bool, Never>
-    func getSummary(weekStart: Date, ignoreCache: Bool) -> AnyPublisher<WeeklySummaryWidgetFilters, Error>
-}
+    public struct GroupAssignment {
+        public let pointsPossible: Double
 
-struct WeeklySummaryWidgetFilters {
-    let missing: [WeeklySummaryWidgetAssignment]
-    let due: [WeeklySummaryWidgetAssignment]
-    let newGrades: [WeeklySummaryWidgetAssignment]
+        /// Failable initializer that enforces assignment eligibility for grade weight calculations.
+        /// Returns `nil` if the assignment is omitted from the final grade or has no positive points possible.
+        public init?(
+            isOmittedFromFinalGrade: Bool?,
+            pointsPossible: Double?
+        ) {
+            guard isOmittedFromFinalGrade != true,
+                  let pointsPossible, pointsPossible > 0
+            else { return nil }
+
+            self.pointsPossible = pointsPossible
+        }
+    }
 }
