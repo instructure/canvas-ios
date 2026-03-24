@@ -38,9 +38,17 @@ final public class CDHLearningLibraryCollectionItem: NSManagedObject {
     @NSManaged public var canvasModuleId: String?
     @NSManaged public var canvasModuleItemId: String?
     @NSManaged public var canvasUrl: URL?
+
+    @NSManaged public var primaryReason: String?
+    @NSManaged public var sourceCourseId: String?
+    @NSManaged public var sourceCourseName: String?
+    @NSManaged public var sourceSkillName: String?
+
     @discardableResult
      public static func save(
           _ apiEntity: LearningLibraryItemsResponse,
+          primaryReason: String? = nil,
+          sourceContext: LearningLibraryRecommendationResponse.SourceContext? = nil,
           in context: NSManagedObjectContext
      ) -> CDHLearningLibraryCollectionItem {
          let dbEntity: CDHLearningLibraryCollectionItem = context.first(
@@ -75,6 +83,12 @@ final public class CDHLearningLibraryCollectionItem: NSManagedObject {
          dbEntity.programCourseId = apiEntity.programCourseId.defaultToEmpty
          dbEntity.programId = apiEntity.programId.defaultToEmpty
          dbEntity.canvasEnrollmentId = apiEntity.canvasEnrollmentId
+         if let primaryReason {
+             dbEntity.primaryReason = primaryReason
+             dbEntity.sourceCourseId = sourceContext?.sourceCourseID
+             dbEntity.sourceCourseName = sourceContext?.sourceCourseName
+             dbEntity.sourceSkillName = sourceContext?.sourceSkillName
+         }
          return dbEntity
      }
 }

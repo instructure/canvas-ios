@@ -333,8 +333,12 @@
         <attribute name="moduleCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="moduleItemCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
+        <attribute name="primaryReason" optional="YES" attributeType="String"/>
         <attribute name="programCourseId" optional="YES" attributeType="String"/>
         <attribute name="programId" optional="YES" attributeType="String"/>
+        <attribute name="sourceCourseId" optional="YES" attributeType="String"/>
+        <attribute name="sourceCourseName" optional="YES" attributeType="String"/>
+        <attribute name="sourceSkillName" optional="YES" attributeType="String"/>
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHLearningLibraryCollection" inverseName="items" inverseEntity="CDHLearningLibraryCollection"/>
     </entity>
     <entity name="CDHNotebookNote" representedClassName=".CDHNotebookNote" syncable="YES">

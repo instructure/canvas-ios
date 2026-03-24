@@ -427,6 +427,7 @@ public extension HorizonUI {
         public let camera = Image(.camera)
         public let notifications = Image(.notifications)
         public let trendingUp = Image(.activities)
+        public let stacksFilled = Image(.stacksFilled)
 
         func allImages() -> [Image] {
             let mirror = Mirror(reflecting: self)

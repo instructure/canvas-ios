@@ -71,7 +71,7 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
     // MARK: - Private variables
 
     private var internalAccessibilityPublisher = PassthroughSubject<String, Never>()
-    private var reloadCollections = PassthroughSubject<Void, Never>()
+    var reloadCollections = PassthroughSubject<Void, Never>()
     private var subscriptions = Set<AnyCancellable>()
     private var globalSearchCancellable: AnyCancellable?
     private let paginator = PaginatedDataSource<LearningLibrarySectionModel>(items: [], pageSize: 3)

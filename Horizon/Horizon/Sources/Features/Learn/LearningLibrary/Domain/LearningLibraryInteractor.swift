@@ -26,6 +26,7 @@ protocol LearningLibraryInteractor {
     func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel?, Error>
     func enroll(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel, Error>
     func getCollectionItems(id: String, ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error>
+    func getRecommendations(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error>
     func searchCollectionItem(
         bookmarkedOnly: Bool,
         completedOnly: Bool,
@@ -155,6 +156,15 @@ final class LearningLibraryInteractorLive: LearningLibraryInteractor {
             types: types,
             searchTerm: searchTerm
         )
+    }
+
+    func getRecommendations(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error> {
+        ReactiveStore(useCase: LearningLibraryRecommendationUseCase(journey: domainService))
+            .getEntities(ignoreCache: ignoreCache, keepObservingDatabaseChanges: true)
+            .map { items in
+                items.map { LearningLibraryCardModel(for: $0) }
+            }
+            .eraseToAnyPublisher()
     }
 }
 

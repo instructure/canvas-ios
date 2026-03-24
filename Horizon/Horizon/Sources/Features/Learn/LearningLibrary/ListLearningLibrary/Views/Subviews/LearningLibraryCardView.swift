@@ -25,6 +25,7 @@ struct LearningLibraryCardView: View {
 
     private let model: LearningLibraryCardModel
     private let isBookmarkLoading: Bool
+    private let shouldShowRecommended: Bool
     private let onBookmarkTap: (() -> Void)
     private let enrollTap: (() -> Void)
     private let onTapItem: (() -> Void)
@@ -34,12 +35,14 @@ struct LearningLibraryCardView: View {
     init(
         model: LearningLibraryCardModel,
         isBookmarkLoading: Bool = false,
+        shouldShowRecommended: Bool = false,
         onBookmarkTap: @escaping (() -> Void),
         enrollTap: @escaping (() -> Void),
         onTapItem: @escaping (() -> Void)
     ) {
         self.model = model
         self.isBookmarkLoading = isBookmarkLoading
+        self.shouldShowRecommended = shouldShowRecommended
         self.onBookmarkTap = onBookmarkTap
         self.enrollTap = enrollTap
         self.onTapItem = onTapItem
@@ -55,6 +58,11 @@ struct LearningLibraryCardView: View {
                     titleView
                         .padding(.top, .huiSpaces.space16)
                         .padding(.bottom, .huiSpaces.space12)
+
+                    if let recommendationText = model.recommendationText, shouldShowRecommended {
+                        recommendationView(text: recommendationText)
+                            .padding(.bottom, .huiSpaces.space16)
+                    }
                 }
             }
             .buttonStyle(.plain)
@@ -99,7 +107,7 @@ struct LearningLibraryCardView: View {
             components.append(String(format: String(localized: "number of units %d"), units))
         }
 
-        if model.isRecommended {
+        if model.isRecommended, shouldShowRecommended {
             components.append(String(localized: "Recommended"))
         }
 
@@ -151,6 +159,14 @@ struct LearningLibraryCardView: View {
             .multilineTextAlignment(.leading)
     }
 
+    private func recommendationView(text: String) -> some View {
+        Text(text)
+            .huiTypography(.p2)
+            .foregroundStyle(Color.huiColors.text.dataPoint)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .multilineTextAlignment(.leading)
+    }
+
     private var descriptionView: some View {
         HorizonUI.HFlow(spacing: .huiSpaces.space8, lineSpacing: .huiSpaces.space8) {
             itemTypeView
@@ -163,7 +179,7 @@ struct LearningLibraryCardView: View {
                     icon: Image.huiIcons.coursesFormatListBulleted
                 )
             }
-            if model.isRecommended {
+            if model.isRecommended, shouldShowRecommended {
                 recommendedView
             }
             if model.isInProgress, model.shouldShowProgressStatus {

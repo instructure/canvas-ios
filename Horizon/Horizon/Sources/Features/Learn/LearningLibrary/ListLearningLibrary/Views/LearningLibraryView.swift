@@ -34,10 +34,18 @@ struct LearningLibraryView: View {
     @Environment(\.viewController) private var viewController
     @State private var isShowHeader: Bool = true
     @State private var isShowDivider: Bool = false
+    private let recommendationListView: LearningLibraryRecommendationListView
 
     // MARK: - Dependencies
 
     @State var viewModel: LearningLibraryViewModel
+
+    // MARK: - Init
+
+    init(viewModel: LearningLibraryViewModel, recommendationListView: LearningLibraryRecommendationListView) {
+        _viewModel = State(initialValue: viewModel)
+        self.recommendationListView = recommendationListView
+    }
 
     var body: some View {
         learningLibraryView
@@ -99,6 +107,13 @@ struct LearningLibraryView: View {
 
     private var listLibraryView: some View {
         List {
+            recommendationListView
+                .plainListRowStyle()
+            Section(header: Rectangle().fill(Color.clear).frame(height: 0)) {
+                collectionView
+            }
+            .plainListRowStyle()
+
             ForEach(viewModel.filteredSections) { item in
                 ListLearningLibraryView(
                     viewModel: viewModel,
@@ -135,7 +150,10 @@ struct LearningLibraryView: View {
         .scrollIndicators(.hidden)
         .dismissKeyboardOnTap()
         .scrollDismissesKeyboard(.immediately)
-        .refreshable { await viewModel.refresh() }
+        .refreshable {
+            await viewModel.refresh()
+            recommendationListView.reloadData()
+        }
         .transition(.opacity.combined(with: .move(edge: .leading)))
     }
 
@@ -289,6 +307,14 @@ struct LearningLibraryView: View {
         .plainListRowStyle()
     }
 
+    private var emptyView: some View {
+        Text("There is no any learning library yet.", bundle: .horizon)
+            .padding(.horizontal, .huiSpaces.space24)
+            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+            .foregroundStyle(Color.huiColors.text.body)
+            .huiTypography(.h3)
+    }
+
     private var filterView: some View {
         HStack(spacing: .huiSpaces.space8) {
             learningLibraryTypeFilterView
@@ -352,6 +378,21 @@ struct LearningLibraryView: View {
         DispatchQueue.main.asyncAfter(deadline: .now() + after) {
             focusedItemID = lastFocusedItemID
         }
+    }
+
+    private var collectionView: some View {
+        HStack(spacing: .huiSpaces.space8) {
+            Image.huiIcons.stacksFilled
+                .foregroundStyle(Color.huiColors.primitives.grey45)
+                .padding(.huiSpaces.space12)
+                .background(Color.huiColors.primitives.grey12)
+                .clipShape(.circle)
+            Text("Collections")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .foregroundStyle(Color.huiColors.text.dataPoint)
+                .huiTypography(.labelMediumBold)
+        }
+        .padding(.horizontal, .huiSpaces.space24)
     }
 
     private func setFocusToFirstResult() {
