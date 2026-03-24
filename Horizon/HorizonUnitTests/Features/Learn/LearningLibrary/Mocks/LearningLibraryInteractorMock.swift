@@ -60,16 +60,6 @@ final class LearningLibraryInteractorMock: LearningLibraryInteractor {
         }
     }
 
-    func getBookmarkedItems(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error> {
-        if hasError {
-            return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
-        } else {
-            return Just(bookmarkedItemsResponse)
-                .setFailureType(to: Error.self)
-                .eraseToAnyPublisher()
-        }
-    }
-
     func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel?, Error> {
         if hasError {
             return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
@@ -114,7 +104,8 @@ final class LearningLibraryInteractorMock: LearningLibraryInteractor {
         if hasError {
             return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
         } else {
-            return Just(searchResponse)
+            let response = bookmarkedOnly ? bookmarkedItemsResponse : searchResponse
+            return Just(response)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         }

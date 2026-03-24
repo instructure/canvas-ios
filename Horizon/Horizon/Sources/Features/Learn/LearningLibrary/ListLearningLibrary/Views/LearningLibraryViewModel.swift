@@ -198,11 +198,9 @@ final class LearningLibraryViewModel: LearningLibraryItemNavigating {
         viewController: WeakViewController
     ) {
         router.show(
-            LearningLibraryAssembly.makeViewController(
-                pageType: .details(
-                    id: section.id,
-                    name: section.name
-                ),
+            LearningLibraryDetailsAssembly.makeViewController(
+                collectionId: section.id,
+                collectionName: section.name,
                 didSendEvent: reloadCollections
             ),
             from: viewController

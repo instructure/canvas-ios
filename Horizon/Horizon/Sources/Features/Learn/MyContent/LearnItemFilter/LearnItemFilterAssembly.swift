@@ -17,14 +17,22 @@
 //
 
 import Core
+import UIKit
+import Foundation
 
-enum LearnProgramListAssembly {
-    static func makeView() -> LearnProgramListView {
-        let interactor = ProgramInteractorLive(programCourseInteractor: ProgramCourseInteractorLive())
-        let viewModel = LearnProgramListViewModel(
-            interactor: interactor,
-            router: AppEnvironment.shared.router
+struct LearnItemFilterAssembly {
+    static func makeView(
+        selectedSortOption: CollectionItemSortOption?,
+        selectedFilterTypes: [LearnItemModel.UIItemType]?,
+        onSetSortOption: @escaping (CollectionItemSortOption?, [LearnItemModel.UIItemType]?) -> Void
+    ) -> UIViewController {
+        let viewModel = LearnItemFilterViewModel(
+            router: AppEnvironment.shared.router,
+            selectedSortOption: selectedSortOption,
+            selectedFilterTypes: selectedFilterTypes,
+            onSetSortOption: onSetSortOption
         )
-        return LearnProgramListView(viewModel: viewModel)
+        let view = LearnItemFilterView(viewModel: viewModel)
+        return CoreHostingController(view)
     }
 }

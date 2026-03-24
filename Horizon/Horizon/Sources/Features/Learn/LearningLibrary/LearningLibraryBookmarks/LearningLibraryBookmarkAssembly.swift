@@ -16,23 +16,19 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
-import Observation
+import Core
+import Foundation
 
-@Observable
-final class LearnViewModel {
-
-    private(set) var tabs: [LearnTabs] = [.content]
-    private var subscriptions = Set<AnyCancellable>()
-
-    init(interactor: LearningLibraryInteractor) {
-        interactor.getLearnLibraryCollections(ignoreCache: true)
-            .replaceError(with: [])
-            .sink { [weak self] collections in
-                if collections.isNotEmpty {
-                    self?.tabs.append(.learningLibrary)
-                }
-            }
-            .store(in: &subscriptions)
+enum LearningLibraryBookmarkAssembly {
+    static func makeView() -> LearningLibraryBookmarksView {
+        .init(viewModel: makeBookmarksViewModel())
+    }
+    static private func makeBookmarksViewModel() -> LearningLibraryBookmarksViewModel {
+        let router = AppEnvironment.shared.router
+        return LearningLibraryBookmarksViewModel(
+            interactor: LearningLibraryInteractorLive(),
+            router: router,
+            bookmarkManager: BookmarkManager()
+        )
     }
 }

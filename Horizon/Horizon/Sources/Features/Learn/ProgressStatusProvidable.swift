@@ -27,7 +27,7 @@ protocol ProgressStatusProvidable {
 final class PaginatedDataSource<Item> {
     // MARK: - Outputs
 
-   var visibleItems: [Item] = []
+    var visibleItems: [Item] = []
     private(set) var isSeeMoreVisible: Bool = false
 
     // MARK: - Private

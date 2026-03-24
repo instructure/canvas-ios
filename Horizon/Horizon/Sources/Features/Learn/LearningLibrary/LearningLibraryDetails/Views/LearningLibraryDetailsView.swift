@@ -57,7 +57,7 @@ struct LearningLibraryDetailsView: View {
             } else {
                 ScrollView {
                     titleView
-                    Text(viewModel.pageType.emptyStateTitle)
+                    Text("Save courses and resources here to revisit them later.")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .huiTypography(.p1)
                         .foregroundStyle(Color.huiColors.text.body)
@@ -73,7 +73,7 @@ struct LearningLibraryDetailsView: View {
         .dismissKeyboardOnTap()
         .scrollDismissesKeyboard(.immediately)
         .animation(.easeInOut, value: viewModel.filteredItems.count)
-        .onFirstAppear { viewModel.fetchData() }
+        .onFirstAppear { viewModel.fetchCollectionItems() }
         .onAppear {
             ImageCacheConfiguration.configure()
         }
@@ -207,7 +207,7 @@ struct LearningLibraryDetailsView: View {
     }
 
     private var titleView: some View {
-        Text(viewModel.pageType.title)
+        Text(viewModel.collectionName)
             .frame(maxWidth: .infinity, alignment: .leading)
             .huiTypography(.h3)
             .foregroundStyle(Color.huiColors.text.title)
@@ -275,9 +275,7 @@ struct LearningLibraryDetailsView: View {
 
     @ViewBuilder
     private var learningLibraryTypeFilterView: some View {
-        let options: [OptionModel] = viewModel.pageType.isBookmarked
-        ? LearningLibraryFilter.options(excluding: [.all, .completed])
-        : LearningLibraryFilter.options(excluding: LearningLibraryFilter.allCases)
+        let options: [OptionModel] = LearningLibraryFilter.options(excluding: LearningLibraryFilter.allCases)
         FilterView(
             items: options,
             selectedOption: viewModel.selectedLearningLibrary) { option in
@@ -315,6 +313,6 @@ struct LearningLibraryDetailsView: View {
 
 #if DEBUG
 #Preview {
-    LearningLibraryAssembly.preview()
+    LearningLibraryDetailsAssembly.preview()
 }
 #endif

@@ -332,14 +332,6 @@ final class CourseListWidgetModelTests: HorizonTestCase {
 
         XCTAssertEqual(testee.accessibilityHintString, "Double tap to open course")
     }
-    func test_accessiblityLearnDescription() {
-        let testee = CourseListWidgetModel(from: makeHCourse(
-            name: testData.courseName,
-            progress: 42
-        ))
-        let expected = "Course: \(testData.courseName). Progress: 42 percent complete. "
-        XCTAssertEqual(testee.accessibilityLearnDescription, expected)
-    }
 
     // MARK: - viewProgramAccessibilityString
 
