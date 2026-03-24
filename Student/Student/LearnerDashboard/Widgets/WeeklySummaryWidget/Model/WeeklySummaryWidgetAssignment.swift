@@ -32,6 +32,8 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
     let pointsPossible: String?
     let grade: String?
     let gradeWeightText: String?
+    let discussionCheckpointText: String?
+    let accessibilityLabel: String
 
     init(
         id: String,
@@ -44,8 +46,10 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
         dueDateText: String?,
         submissionStatus: SubmissionStatusLabel.Model?,
         pointsPossible: String?,
+        a11yPointsPossible: String? = nil,
         grade: String?,
-        gradeWeightText: String?
+        gradeWeightText: String?,
+        discussionCheckpointText: String?
     ) {
         self.id = id
         self.routeAssignmentId = routeAssignmentId ?? id
@@ -59,6 +63,13 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
         self.pointsPossible = pointsPossible
         self.grade = grade
         self.gradeWeightText = gradeWeightText
+        self.discussionCheckpointText = discussionCheckpointText
+        let gradeA11y: String? = grade.map {
+            [String(localized: "Grade", bundle: .student), GradeFormatter.a11yString(from: $0)]
+                .accessibilityJoined()
+        }
+        self.accessibilityLabel = [courseCode, title, discussionCheckpointText, dueDateText, submissionStatus?.text, a11yPointsPossible, gradeWeightText, gradeA11y]
+            .accessibilityJoined()
     }
 
     init(entry: CDDashboardWeeklySummaryEntry) {
@@ -76,10 +87,12 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
         }()
 
         let grade: String? = {
-            // We receive no grade information from the planner API for sub-assignments so we just hide the grade for such cells
-            if entry.category == .missing || entry.isSubAssignment {
+            if entry.category == .missing {
                 return nil
             }
+            // Also hide the grade if there's none
+            guard entry.score != nil || entry.excused else { return nil }
+
             let normalizedScore: Double? = entry.score.flatMap { score in
                 guard let pp = entry.pointsPossible, pp > 0 else { return nil }
                 return score / pp
@@ -117,8 +130,10 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
             dueDateText: dueDateText,
             submissionStatus: submissionStatus,
             pointsPossible: String.format(ptsOrNil: entry.pointsPossible),
+            a11yPointsPossible: entry.pointsPossible.map { String(localized: "\(String.format(points: $0)) possible", bundle: .student) },
             grade: grade,
-            gradeWeightText: entry.gradeWeight.map { Self.formatWeightPercent($0) }
+            gradeWeightText: entry.gradeWeight.map { Self.formatWeightPercent($0) },
+            discussionCheckpointText: entry.discussionCheckpointStep?.text
         )
     }
 

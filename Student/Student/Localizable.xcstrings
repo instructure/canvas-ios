@@ -2693,6 +2693,9 @@
         }
       }
     },
+    "%@ possible" : {
+
+    },
     "%@ widget visibility" : {
 
     },
@@ -43891,6 +43894,9 @@
           }
         }
       }
+    },
+    "Current Week" : {
+
     },
     "Currently there is limited quiz support on mobile" : {
       "comment" : "Message telling users that quiz support on mobile is limited",

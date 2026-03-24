@@ -56,6 +56,8 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     private(set) var weekRangeText: String
     let previousWeekA11yLabel = String(localized: "Previous week", bundle: .student)
     let nextWeekA11yLabel = String(localized: "Next week", bundle: .student)
+    var isCurrentWeek: Bool { weekStartDate == Clock.now.startOfWeek() }
+    var isFutureWeek: Bool { weekStartDate > Clock.now.startOfWeek() }
 
     // MARK: - Init
 
@@ -95,14 +97,6 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
         let clearPublisher: AnyPublisher<Void, Never>
         if ignoreCache {
-            weekNavigationSubscription?.cancel()
-            state = .loading
-            missingFilter = .missing(assignments: [])
-            dueFilter = .due(assignments: [])
-            newGradesFilter = .newGrades(assignments: [])
-            expandedFilter = nil
-            weekStartDate = Clock.now.startOfWeek()
-            weekRangeText = Self.makeWeekRangeText(from: weekStartDate)
             clearPublisher = interactor.clearCache()
         } else {
             clearPublisher = Just(()).eraseToAnyPublisher()
@@ -130,11 +124,24 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     }
 
     func retryRefresh() {
+        weekNavigationSubscription?.cancel()
         state = .loading
+        missingFilter = .missing(assignments: [])
+        dueFilter = .due(assignments: [])
+        newGradesFilter = .newGrades(assignments: [])
+        expandedFilter = nil
+        weekStartDate = Clock.now.startOfWeek()
+        weekRangeText = Self.makeWeekRangeText(from: weekStartDate)
         retrySubscription = refresh(ignoreCache: true).sink { _ in }
     }
 
     // MARK: - User Actions
+
+    func navigateToCurrentWeek() {
+        weekStartDate = Clock.now.startOfWeek()
+        weekRangeText = Self.makeWeekRangeText(from: weekStartDate)
+        beginWeekTransition()
+    }
 
     func navigateToPreviousWeek() {
         weekStartDate = weekStartDate.addDays(-7)
@@ -266,7 +273,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
 
         if let filterToRestore {
             expandFilter(filterToRestore)
-        } else if missingFilter.count != 0 {
+        } else if missingFilter.hasAssignments {
             expandFilter(missingFilter)
         }
     }

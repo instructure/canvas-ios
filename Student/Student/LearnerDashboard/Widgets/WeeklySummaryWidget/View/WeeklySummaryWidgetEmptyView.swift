@@ -24,22 +24,24 @@ struct WeeklySummaryWidgetEmptyView: View {
     let filter: WeeklySummaryWidgetFilterViewModel
 
     var body: some View {
-        DashboardWidgetCard {
-            HStack(spacing: 8) {
-                Image(filter.emptyStateIconName, bundle: .core)
-                    .resizable()
-                    .scaledToFit()
-                    .scaledFrame(width: 72, height: 40)
-                    .accessibilityHidden(true)
-                Text(filter.emptyStateText)
-                    .font(.regular14)
-                    .foregroundStyle(Color.textDark)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .multilineTextAlignment(.center)
-            }
-            .padding(.horizontal, 8)
-            .padding(.vertical, 2)
+        HStack(spacing: 8) {
+            Image(filter.emptyStateIconName, bundle: .core)
+                .resizable()
+                .scaledToFit()
+                .scaledFrame(width: 72, height: 40)
+                .accessibilityHidden(true)
+            Text(filter.emptyStateText)
+                .font(.regular14)
+                .foregroundStyle(Color.textDark)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .multilineTextAlignment(.center)
         }
+        .padding(.horizontal, 8)
+        .padding(.vertical, 4)
+        .elevation(
+            cornerRadius: 16,
+            background: Color.backgroundLightest
+        )
     }
 }
 
