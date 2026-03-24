@@ -19,7 +19,7 @@
 import HorizonUI
 import SwiftUI
 
-struct FilterSortFooterView: View {
+struct LearningLibraryFilterSortFooterView: View {
     let onTapApply: () -> Void
     let onTapClear: () -> Void
     var body: some View {

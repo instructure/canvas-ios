@@ -19,27 +19,28 @@
 import HorizonUI
 import SwiftUI
 
-struct FilterSortHeaderView: View {
-    let onTapDismiss: () -> Void
+struct LearningLibrarySortView: View {
+    let selectedOption: CollectionItemSortOption?
+    let onSelect: (CollectionItemSortOption) -> Void
     var body: some View {
-        HStack(spacing: .huiSpaces.space4) {
-            Image.huiIcons.tune
-                .foregroundStyle(Color.huiColors.icon.default)
-                .accessibilityHidden(true)
-
-            Text("Filter and sort")
+        VStack(spacing: .huiSpaces.space8) {
+            Text("Sort by")
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .foregroundStyle(Color.huiColors.text.title)
-                .huiTypography(.h4)
+                .foregroundStyle(Color.huiColors.text.body)
+                .huiTypography(.labelMediumBold)
                 .accessibilityAddTraits(.isHeader)
 
-            Spacer()
-
-            HorizonUI.IconButton(Image.huiIcons.close, type: .darkOutline, isSmall: true) {
-                onTapDismiss()
+            HorizonUI.HFlow {
+                ForEach(CollectionItemSortOption.allCases, id: \.self) { item in
+                    FilterButton(title: item.name, isSelected: selectedOption == item) {
+                        onSelect(item)
+                    }
+                    .fixedSize(horizontal: true, vertical: false)
+                }
             }
-            .accessibilityLabel(String(localized: "Close"))
-            .accessibilityHint(String(localized: "Double tap to close filter"))
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .accessibilityElement(children: .contain)
         }
+        .accessibilityElement(children: .contain)
     }
 }

@@ -45,13 +45,13 @@ struct CollectionItemFilterView: View {
     }
 
     private var headerView: some View {
-        FilterSortHeaderView {
+        LearningLibraryFilterSortHeaderView {
             viewModel.dismiss(viewController: viewController)
         }
     }
 
     private var sortByView: some View {
-        SortView(selectedOption: viewModel.selectedSortOption) { item in
+        LearningLibrarySortView(selectedOption: viewModel.selectedSortOption) { item in
             viewModel.toggleSortOption(item)
         }
     }
@@ -79,7 +79,7 @@ struct CollectionItemFilterView: View {
     }
 
     private var footerView: some View {
-        FilterSortFooterView {
+        LearningLibraryFilterSortFooterView {
             viewModel.apply(viewController: viewController)
         } onTapClear: {
             viewModel.clearFilter(viewController: viewController)
