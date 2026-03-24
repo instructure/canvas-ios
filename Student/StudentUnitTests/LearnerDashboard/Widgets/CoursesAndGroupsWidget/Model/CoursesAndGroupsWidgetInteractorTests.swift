@@ -122,7 +122,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         )
         testee = makeInteractor()
 
-        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, groups) in
+        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (courses, groups) in
             XCTAssertEqual(courses.count, 2)
             XCTAssertEqual(courses.first?.id, self.testData.courseId1)
             XCTAssertEqual(courses.first?.title, self.testData.courseName1)
@@ -138,7 +138,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         )
         testee = makeInteractor()
 
-        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (_, groups) in
+        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (_, groups) in
             XCTAssertEqual(groups.count, 1)
             XCTAssertEqual(groups.first?.id, self.testData.groupId1)
             XCTAssertEqual(groups.first?.title, self.testData.groupName1)
@@ -161,7 +161,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         )
         testee = makeInteractor()
 
-        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, _) in
+        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (courses, _) in
             XCTAssertEqual(courses.first?.id, self.testData.courseId2)
             XCTAssertEqual(courses.last?.id, self.testData.courseId1)
         }
@@ -181,7 +181,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
 
         testee = makeInteractor()
 
-        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, _) in
+        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (courses, _) in
             XCTAssertEqual(courses.first?.id, self.testData.courseId1)
             XCTAssertEqual(courses.last?.id, self.testData.courseId2)
         }
@@ -201,7 +201,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
 
         testee = makeInteractor()
 
-        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, _) in
+        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (courses, _) in
             XCTAssertEqual(courses.first?.id, self.testData.courseId1)
             XCTAssertEqual(courses.last?.id, self.testData.courseId2)
         }
@@ -222,7 +222,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
 
         testee = makeInteractor()
 
-        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, _) in
+        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (courses, _) in
             XCTAssertEqual(courses.count, 1)
             XCTAssertEqual(courses.first?.id, self.testData.courseId1)
         }
@@ -240,7 +240,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
 
         testee = makeInteractor()
 
-        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (_, groups) in
+        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (_, groups) in
             XCTAssertEqual(groups.count, 1)
             XCTAssertEqual(groups.first?.id, self.testData.groupId1)
         }
@@ -255,7 +255,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         api.mock(GetAnnouncementsForCourses(courseContextIds: []), expectation: noRequestExpectation)
         testee = makeInteractor()
 
-        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5)
+        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5)
 
         waitForExpectations(timeout: 0.5)
     }
@@ -281,7 +281,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         )
         testee = makeInteractor()
 
-        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, _) in
+        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (courses, _) in
             XCTAssertEqual(courses.first?.unreadAnnouncementCount, 2)
             XCTAssertEqual(courses.first?.singleUnreadAnnouncementId, nil)
             XCTAssertEqual(courses.last?.unreadAnnouncementCount, 0)
@@ -302,7 +302,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         )
         testee = makeInteractor()
 
-        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, _) in
+        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (courses, _) in
             XCTAssertEqual(courses.first?.unreadAnnouncementCount, 1)
             XCTAssertEqual(courses.first?.singleUnreadAnnouncementId, "a1")
         }
@@ -324,27 +324,11 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         )
         testee = makeInteractor()
 
-        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5) { (courses, _) in
+        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (courses, _) in
             XCTAssertEqual(courses.first?.unreadAnnouncementCount, 1)
             XCTAssertEqual(courses.first?.singleUnreadAnnouncementId, "a2")
         }
         Clock.reset()
-    }
-
-    // MARK: - favoritesDidChange
-
-    func test_getCoursesAndGroups_whenFavoritesDidChange_shouldForceIgnoreCacheTrue() {
-        coursesInteractor.mockCoursesResult = .make(
-            allCourses: [saveCourse(id: testData.courseId1, name: testData.courseName1)],
-            courseCards: [saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0)]
-        )
-        testee = makeInteractor()
-
-        NotificationCenter.default.post(name: .favoritesDidChange, object: nil)
-
-        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5)
-
-        XCTAssertEqual(coursesInteractor.getCoursesInput, true)
     }
 
     func test_getCoursesAndGroups_whenFavoritesDidChange_flagIsResetAfterNextCall() {
@@ -355,9 +339,9 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         testee = makeInteractor()
 
         NotificationCenter.default.post(name: .favoritesDidChange, object: nil)
-        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5)
+        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5)
 
-        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5)
+        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5)
 
         XCTAssertEqual(coursesInteractor.getCoursesInput, false)
     }
@@ -369,7 +353,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         )
         testee = makeInteractor()
 
-        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5)
+        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5)
 
         XCTAssertEqual(coursesInteractor.getCoursesInput, false)
     }
@@ -386,7 +370,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         )
 
         testee = makeInteractor()
-        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5)
+        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5)
         api.mock(PutDashboardCardPositions(cards: []))
 
         testee.reorderCourses(newOrder: [testData.courseId2, testData.courseId1])
@@ -404,7 +388,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
             ]
         )
         testee = makeInteractor()
-        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5)
+        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5)
         let putExpectation = expectation(description: "PUT request sent")
         api.mock(PutDashboardCardPositions(cards: []), expectation: putExpectation)
 
@@ -423,7 +407,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         )
 
         testee = makeInteractor()
-        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false), timeout: 5)
+        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5)
         let noRequestExpectation = expectation(description: "PUT request should not be sent")
         noRequestExpectation.isInverted = true
         api.mock(PutDashboardCardPositions(cards: []), expectation: noRequestExpectation)

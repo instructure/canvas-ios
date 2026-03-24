@@ -55,8 +55,8 @@ final class CoursesAndGroupsWidgetViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.config.order, 42)
 
         XCTAssertEqual(testee.state, .loading)
-        XCTAssertEqual(testee.courseCards.isEmpty, true)
-        XCTAssertEqual(testee.groupCards.isEmpty, true)
+        XCTAssertEqual(testee.courseCards.count, 3)
+        XCTAssertEqual(testee.groupCards.count, 0)
     }
 
     // MARK: - Layout identifier
@@ -131,6 +131,32 @@ final class CoursesAndGroupsWidgetViewModelTests: StudentTestCase {
 
         XCTAssertEqual(interactor.getCoursesAndGroupsCallCount, 1)
         XCTAssertEqual(interactor.getCoursesAndGroupsInput, true)
+    }
+
+    // MARK: - favoritesDidChange
+
+    func test_refresh_shouldCallInteractor_shouldNotForceRefreshCourses() {
+        testee = makeViewModel()
+        XCTAssertEqual(interactor.getCoursesAndGroupsCallCount, 0)
+
+        XCTAssertFinish(testee.refresh(ignoreCache: true))
+
+        XCTAssertEqual(interactor.getCoursesAndGroupsCallCount, 1)
+        XCTAssertEqual(interactor.getCoursesAndGroupsInput, true)
+        XCTAssertEqual(interactor.getCoursesAndGroupsCourseForceRefreshFlag, false)
+    }
+
+    func test_refresh_shouldCallInteractor_shouldForceRefreshCourses() {
+        testee = makeViewModel()
+        XCTAssertEqual(interactor.getCoursesAndGroupsCallCount, 0)
+
+        NotificationCenter.default.post(name: .favoritesDidChange, object: nil)
+
+        XCTAssertFinish(testee.refresh(ignoreCache: true))
+
+        XCTAssertEqual(interactor.getCoursesAndGroupsCallCount, 1)
+        XCTAssertEqual(interactor.getCoursesAndGroupsInput, true)
+        XCTAssertEqual(interactor.getCoursesAndGroupsCourseForceRefreshFlag, true)
     }
 
     // MARK: - Refresh - State

@@ -120,6 +120,7 @@ struct CourseCardView: View {
             .font(.semibold16, lineHeight: .fit)
             .foregroundStyle(.textDarkest)
             .multilineTextAlignment(.leading)
+            .lineLimit(2)
     }
 
     // MARK: - Kebab button
@@ -230,7 +231,10 @@ struct CourseCardView: View {
             Image.announcementSolid
                 .scaledIcon()
                 .foregroundStyle(.textDark)
-                .instBadge(viewModel.unreadAnnouncementCount, style: .accessory)
+                .instBadge(
+                    viewModel.unreadAnnouncementCount,
+                    style: .accessory
+                )
                 .scaledFrame(height: 72, useIconScale: true) // increases tap area
         }
         .accessibilityLabel(viewModel.openAnnouncementsA11yLabel)
