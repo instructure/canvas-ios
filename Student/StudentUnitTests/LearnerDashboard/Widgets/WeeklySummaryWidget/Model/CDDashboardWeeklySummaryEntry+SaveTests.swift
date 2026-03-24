@@ -195,8 +195,8 @@ final class CDDashboardWeeklySummaryEntrySaveTests: StudentTestCase {
         XCTAssertTrue(entry.isQuizLti)
     }
 
-    func test_saveDue_submissionStatusIsGradedWhenGradePresent() {
-        let submission = APISubmission.make(grade: "A", workflow_state: .graded)
+    func test_saveDue_submissionStatusIsGradedWhenScoredAndWorkflowStateIsGraded() {
+        let submission = APISubmission.make(score: 90, workflow_state: .graded)
         let plannable = APIPlannable.make(plannable_id: "a1")
         let assignment = APIAssignment.make(id: "a1", submission: submission)
 
@@ -211,8 +211,8 @@ final class CDDashboardWeeklySummaryEntrySaveTests: StudentTestCase {
         XCTAssertEqual(entry.submissionStatus, .graded)
     }
 
-    func test_saveDue_submissionStatusIsSubmittedWhenSubmittedNotGraded() {
-        let submission = APISubmission.make(grade: nil, submitted_at: Clock.now, workflow_state: .submitted)
+    func test_saveDue_submissionStatusIsNotGradedWhenScoreIsPresentButWorkflowStateIsNotGraded() {
+        let submission = APISubmission.make(score: 90, submitted_at: Clock.now, workflow_state: .submitted)
         let plannable = APIPlannable.make(plannable_id: "a1")
         let assignment = APIAssignment.make(id: "a1", submission: submission)
 
@@ -225,6 +225,70 @@ final class CDDashboardWeeklySummaryEntrySaveTests: StudentTestCase {
         )
 
         XCTAssertEqual(entry.submissionStatus, .submitted)
+    }
+
+    func test_saveDue_submissionStatusIsNotGradedWhenWorkflowStateIsGradedButScoreIsNil() {
+        let submission = APISubmission.make(score: nil, submitted_at: Clock.now, workflow_state: .graded)
+        let plannable = APIPlannable.make(plannable_id: "a1")
+        let assignment = APIAssignment.make(id: "a1", submission: submission)
+
+        let entry = CDDashboardWeeklySummaryEntry.saveDue(
+            plannable,
+            assignment: assignment,
+            weekStart: weekStart,
+            gradeWeight: nil,
+            in: databaseClient
+        )
+
+        XCTAssertEqual(entry.submissionStatus, .submitted)
+    }
+
+    func test_saveDue_submissionStatusIsSubmittedWhenSubmittedAtIsSet() {
+        let submission = APISubmission.make(score: nil, submitted_at: Clock.now, workflow_state: .submitted)
+        let plannable = APIPlannable.make(plannable_id: "a1")
+        let assignment = APIAssignment.make(id: "a1", submission: submission)
+
+        let entry = CDDashboardWeeklySummaryEntry.saveDue(
+            plannable,
+            assignment: assignment,
+            weekStart: weekStart,
+            gradeWeight: nil,
+            in: databaseClient
+        )
+
+        XCTAssertEqual(entry.submissionStatus, .submitted)
+    }
+
+    func test_saveDue_submissionStatusIsSubmittedWhenWorkflowStateIsPendingReview() {
+        let submission = APISubmission.make(score: nil, submitted_at: nil, workflow_state: .pending_review)
+        let plannable = APIPlannable.make(plannable_id: "a1")
+        let assignment = APIAssignment.make(id: "a1", submission: submission)
+
+        let entry = CDDashboardWeeklySummaryEntry.saveDue(
+            plannable,
+            assignment: assignment,
+            weekStart: weekStart,
+            gradeWeight: nil,
+            in: databaseClient
+        )
+
+        XCTAssertEqual(entry.submissionStatus, .submitted)
+    }
+
+    func test_saveDue_submissionStatusIsNilWhenSubmittedAtIsNilAndWorkflowStateIsSubmitted() {
+        let submission = APISubmission.make(submitted_at: nil, workflow_state: .submitted)
+        let plannable = APIPlannable.make(plannable_id: "a1")
+        let assignment = APIAssignment.make(id: "a1", submission: submission)
+
+        let entry = CDDashboardWeeklySummaryEntry.saveDue(
+            plannable,
+            assignment: assignment,
+            weekStart: weekStart,
+            gradeWeight: nil,
+            in: databaseClient
+        )
+
+        XCTAssertNil(entry.submissionStatus)
     }
 
     func test_saveDue_submissionStatusIsNilWhenUnsubmitted() {

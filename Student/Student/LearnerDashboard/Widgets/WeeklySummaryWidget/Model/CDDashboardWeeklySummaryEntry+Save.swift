@@ -72,16 +72,16 @@ extension CDDashboardWeeklySummaryEntry {
         let submission = assignment.submission?.values.first
         model.grade = submission?.grade
         model.score = submission?.score
-        model.excused = submission?.excused == true
+        model.excused = submission?.excused ?? false
         model.gradingType = assignment.grading_type.rawValue
         model.restrictQuantitativeData = (context.first(where: #keyPath(Course.id), equals: plannable.context?.id) as Course?)?.settings?.restrictQuantitativeData ?? false
         let status = Core.SubmissionStatus(
-            isSubmitted: submission.map { $0.workflow_state != .unsubmitted } ?? false,
-            isGraded: submission?.grade != nil,
+            isSubmitted: submission.map { $0.submitted_at != nil || $0.workflow_state == .pending_review } ?? false,
+            isGraded: submission.map { $0.score != nil && $0.workflow_state == .graded } ?? false,
             isGradeBelongsToCurrentSubmission: submission?.grade_matches_current_submission ?? true,
-            isLate: submission?.late == true,
-            isMissing: submission?.missing == true,
-            isExcused: model.excused,
+            isLate: submission?.late ?? false,
+            isMissing: submission?.missing ?? false,
+            isExcused: submission?.excused ?? false,
             customStatusId: submission?.custom_grade_status_id,
             // We don't have the name here but we also don't want to display it,
             // we just need the placeholder to have the custom status properly recognized.

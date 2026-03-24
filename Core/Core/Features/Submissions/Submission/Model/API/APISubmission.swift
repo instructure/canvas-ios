@@ -51,7 +51,7 @@ public struct APISubmission: Codable, Equatable {
     var submission_comments: [APISubmissionComment]? // include[]=submission_comments
     let submission_history: [APISubmission]? // include[]=submission_history
     public let submission_type: SubmissionType?
-    let submitted_at: Date?
+    public let submitted_at: Date?
     let turnitin_data: APITurnItInData?
     @SafeURL private(set) var url: URL?
     var user: APIUser? // include[]=user
