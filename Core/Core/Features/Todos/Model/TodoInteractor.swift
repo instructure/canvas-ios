@@ -80,6 +80,8 @@ public protocol TodoInteractor {
     /// - Returns: A publisher that emits whether the cache has expired.
     func isCacheExpired() -> AnyPublisher<Bool, Never>
 
+    func isCacheExpiredForStartDate(_ startDate: Date) -> AnyPublisher<Bool, Never>
+
     /// Marks a todo item as done or not done.
     ///
     /// - Parameters:
@@ -101,6 +103,7 @@ public final class TodoInteractorLive: TodoInteractor {
     private var subscriptions = Set<AnyCancellable>()
     private var cachedCourses: [Course]?
     private var lastUsedFilterOptions: TodoFilterOptions?
+    private var rangedUseCases: [Date: GetPlannables] = [:]
 
     public init(
         alwaysExcludeCompleted: Bool,
@@ -149,7 +152,11 @@ public final class TodoInteractorLive: TodoInteractor {
             allowEmptyContextCodesFetch: true,
             useCaseID: .todo
         )
+
+        rangedUseCases[startDate] = useCase
+
         let store = ReactiveStore(useCase: useCase, environment: env)
+
         return refresh(
             plannablesStore: store,
             ignorePlannablesCache: ignorePlannablesCache,
@@ -173,6 +180,15 @@ public final class TodoInteractorLive: TodoInteractor {
             plannablesExpired || coursesExpired || colorsExpired
         }
         .eraseToAnyPublisher()
+    }
+
+    public func isCacheExpiredForStartDate(_ startDate: Date) -> AnyPublisher<Bool, Never> {
+        guard let useCase = rangedUseCases[startDate] else {
+            return Just(true).eraseToAnyPublisher()
+        }
+
+        return useCase.hasCacheExpired(environment: env)
+            .eraseToAnyPublisher()
     }
 
     public func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<String, Error> {

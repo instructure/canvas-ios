@@ -870,6 +870,47 @@ class TodoInteractorLiveTests: CoreTestCase {
         wait(for: [updateExpectation], timeout: 2)
     }
 
+    // MARK: - isCacheExpiredForStartDate Tests
+
+    func test_isCacheExpiredForStartDate_whenNoRefreshCalledForDate_shouldReturnTrue() {
+        let startDate = Date.make(year: 2025, month: 3, day: 10)
+
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(startDate), true)
+    }
+
+    func test_isCacheExpiredForStartDate_whenRefreshCalledForDate_shouldReturnFalse() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let startDate = Date.make(year: 2025, month: 3, day: 10)
+        let endDate = Date.make(year: 2025, month: 3, day: 17)
+
+        mockCourses(courses)
+        mockPlannables([], startDate: startDate, endDate: endDate)
+
+        // WHEN
+        XCTAssertFinish(testee.refresh(startDate: startDate, endDate: endDate, ignorePlannablesCache: false, ignoreCoursesCache: false))
+
+        // THEN - cache was just populated, so it should not be expired
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(startDate), false)
+    }
+
+    func test_isCacheExpiredForStartDate_whenCalledWithDifferentDateThanRefreshed_shouldReturnTrue() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let refreshedStartDate = Date.make(year: 2025, month: 3, day: 10)
+        let otherStartDate = Date.make(year: 2025, month: 3, day: 17)
+        let endDate = Date.make(year: 2025, month: 3, day: 24)
+
+        mockCourses(courses)
+        mockPlannables([], startDate: refreshedStartDate, endDate: endDate)
+
+        // WHEN - only refresh for refreshedStartDate
+        XCTAssertFinish(testee.refresh(startDate: refreshedStartDate, endDate: endDate, ignorePlannablesCache: false, ignoreCoursesCache: false))
+
+        // THEN - otherStartDate has no associated use case, so it should be treated as expired
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(otherStartDate), true)
+    }
+
     // MARK: - Local Observation Tests
 
     func test_localObservation_updatesWhenNewPlannableWithTodoUseCaseIsInserted() {

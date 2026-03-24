@@ -32,6 +32,10 @@ final class TodoInteractorMock: TodoInteractor {
     var isCacheExpiredCallCount = 0
     var isCacheExpiredResult = false
 
+    var isCacheExpiredForStartDateCallCount = 0
+    var isCacheExpiredForStartDateInput: Date?
+    var isCacheExpiredForStartDateResult = false
+
     var markItemAsDoneCalled = false
     var markItemAsDoneCallCount = 0
     var lastMarkAsDoneItem: TodoItemViewModel?
@@ -84,6 +88,12 @@ final class TodoInteractorMock: TodoInteractor {
         isCacheExpiredCalled = true
         isCacheExpiredCallCount += 1
         return Just(isCacheExpiredResult).eraseToAnyPublisher()
+    }
+
+    func isCacheExpiredForStartDate(_ startDate: Date) -> AnyPublisher<Bool, Never> {
+        isCacheExpiredForStartDateInput = startDate
+        isCacheExpiredForStartDateCallCount += 1
+        return Just(isCacheExpiredForStartDateResult).eraseToAnyPublisher()
     }
 
     func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<String, Error> {

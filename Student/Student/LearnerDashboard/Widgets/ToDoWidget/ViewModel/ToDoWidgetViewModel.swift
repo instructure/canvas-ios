@@ -119,9 +119,21 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
 
     /// The actual load method. Loads only weeks surrounding the current one.
     private func loadItemsForWeek(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Never> {
-        interactor.refresh(
-            startDate: startOfWeek.addWeeks(-1),
-            endDate: startOfWeek.addWeeks(2),
+        let startDate = startOfWeek.addWeeks(-1)
+        let endDate = startOfWeek.addWeeks(2)
+
+        interactor.isCacheExpiredForStartDate(startDate)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isExpired in
+                if isExpired {
+                    self?.state = .loading
+                }
+            }
+            .store(in: &subscriptions)
+
+        return interactor.refresh(
+            startDate: startDate,
+            endDate: endDate,
             ignorePlannablesCache: ignorePlannablesCache,
             ignoreCoursesCache: ignoreCoursesCache
         )

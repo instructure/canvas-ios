@@ -68,6 +68,10 @@ public final class TodoInteractorPreview: TodoInteractor {
         Just(false).eraseToAnyPublisher()
     }
 
+    public func isCacheExpiredForStartDate(_ startDate: Date) -> AnyPublisher<Bool, Never> {
+        Just(false).eraseToAnyPublisher()
+    }
+
     public func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<String, Error> {
         Publishers.typedJust("preview-override-id")
     }
