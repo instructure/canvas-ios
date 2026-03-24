@@ -139,7 +139,7 @@ final class LearningLibraryRecommendationListViewModelTests: HorizonTestCase {
 
     // MARK: - Refresh Tests
 
-    func testRefreshReloadsRecommendations() async {
+    func testRefreshReloadsRecommendations() {
         let mockCard = LearningLibraryCardModel(
             id: "item-1",
             courseID: "course-123",
@@ -161,9 +161,7 @@ final class LearningLibraryRecommendationListViewModelTests: HorizonTestCase {
             didSendEvent: didSendEvent,
             scheduler: .immediate
         )
-
-        await testee.refresh()
-
+        testee.refresh()
         XCTAssertEqual(testee.recommendedItems.count, 1)
     }
 

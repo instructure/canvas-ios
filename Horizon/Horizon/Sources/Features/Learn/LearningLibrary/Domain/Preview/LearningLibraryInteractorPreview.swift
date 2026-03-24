@@ -21,7 +21,13 @@ import Combine
 import Foundation
 
 final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
-    func searchCollectionItem(bookmarkedOnly: Bool, completedOnly: Bool, types: [String]?, searchTerm: String?) -> AnyPublisher<[LearningLibraryCardModel], any Error> {
+    func searchCollectionItem(
+        bookmarkedOnly: Bool,
+        completedOnly: Bool,
+        types: [String]?,
+        searchTerm: String?,
+        sortBy: String?
+    ) -> AnyPublisher<[LearningLibraryCardModel], any Error> {
         Just(mockItems)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
@@ -63,7 +69,12 @@ final class LearningLibraryInteractorPreview: LearningLibraryInteractor {
             .eraseToAnyPublisher()
     }
 
-    func searchWithFilters(searchText: String?, objectType: LearningLibraryObjectType?, libraryFilter: LearningLibraryFilter) -> AnyPublisher<[LearningLibraryCardModel], any Error> {
+    func searchWithFilters(
+        searchText: String?,
+        objectsType: [LearningLibraryObjectType]?,
+        libraryFilter: LearningLibraryFilter,
+        sortBy: String?
+    ) -> AnyPublisher<[LearningLibraryCardModel], any Error> {
         Just(mockItems)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()

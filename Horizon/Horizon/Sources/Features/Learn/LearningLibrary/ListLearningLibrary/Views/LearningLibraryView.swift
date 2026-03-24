@@ -25,9 +25,7 @@ struct LearningLibraryView: View {
 
     @State private var lastFocusedItemID: String?
     @AccessibilityFocusState private var focusedItemID: String?
-    private let selectLOFilterFocusedID = "selectLOFilterFocusedID"
-    private let selectTypeFilterFocusedID = "selectTypeFilterFocusedID"
-    private let bookMarkButtonFocusedID = "bookMarkButtonFocusedID"
+    private let filterButtonFocusedID = "filterButtonFocusedID"
 
     // MARK: - Properties
 
@@ -183,6 +181,10 @@ struct LearningLibraryView: View {
 
     private var globalSearchListView: some View {
         List {
+            if viewModel.globalSearchItems.isNotEmpty {
+                countOfVisibleItemsView
+                    .plainListRowStyle()
+            }
             ForEach(viewModel.globalSearchItems) { item in
                 LearningLibraryCardView(
                     model: item,
@@ -257,10 +259,6 @@ struct LearningLibraryView: View {
             headerView
                 .padding(.horizontal, .huiSpaces.space24)
                 .padding(.top, .huiSpaces.space2)
-            if !isShowDivider {
-                filterView
-                    .transition(.move(edge: .top).combined(with: .opacity))
-            }
             Rectangle()
                 .fill(Color.huiColors.primitives.grey14)
                 .frame(height: 1.5)
@@ -273,7 +271,7 @@ struct LearningLibraryView: View {
     private var headerView: some View {
         HStack(spacing: .huiSpaces.space16) {
             searchView
-            bookmarkedButton
+            filterButton
         }
     }
 
@@ -289,13 +287,27 @@ struct LearningLibraryView: View {
         }
     }
 
-    private var bookmarkedButton: some View {
-        HorizonUI.IconButton(Image.huiIcons.bookmarks, type: .white) {
-            viewModel.navigateToBookmarks(viewController: viewController)
-            lastFocusedItemID = bookMarkButtonFocusedID
+    @ViewBuilder
+    private var filterButton: some View {
+        let countBadge = viewModel.appliedFiltersCount
+        HorizonUI.IconButton(Image.huiIcons.tune, type: .whiteGrayOutline, badgeType: countBadge > 0 ? .number(countBadge.description) : nil) {
+            viewModel.navigateToFilter(viewController: viewController)
+            lastFocusedItemID = filterButtonFocusedID
         }
-        .huiElevation(level: .level2)
-        .accessibilityFocused($focusedItemID, equals: bookMarkButtonFocusedID)
+        .accessibilityFocused($focusedItemID, equals: filterButtonFocusedID)
+        .accessibilityLabel(String(localized: "Filter and sort"))
+        .accessibilityValue(filterAccessibilityValue)
+        .accessibilityHint(String(localized: "Double tap to open filter options"))
+    }
+
+    private var filterAccessibilityValue: String {
+        if viewModel.appliedFiltersCount == 0 {
+            return String(localized: "No filters applied")
+        } else if viewModel.appliedFiltersCount == 1 {
+            return String(localized: "1 filter applied")
+        } else {
+            return String(format: String(localized: "%d filters applied"), viewModel.appliedFiltersCount)
+        }
     }
 
     private var seeMoreButton: some View {
@@ -315,53 +327,12 @@ struct LearningLibraryView: View {
             .huiTypography(.h3)
     }
 
-    private var filterView: some View {
-        HStack(spacing: .huiSpaces.space8) {
-            learningLibraryTypeFilterView
-            learningObjectFilterView
-            HorizonUI.IconButton(Image.huiIcons.close, type: .gray) {
-                viewModel.clearAll()
-            }
-            .hidden(!viewModel.isGlobalSearchActive)
-            .accessibilityLabel(String(localized: "Clear filters"))
-            Spacer()
-            countOfVisibleItemsView
-        }
-        .padding(.horizontal, .huiSpaces.space24)
-    }
-
-    private var learningObjectFilterView: some View {
-        FilterView(
-            items: LearningLibraryObjectType.options,
-            selectedOption: viewModel.selectedLearningObject
-        ) { option in
-            guard let option else { return }
-            lastFocusedItemID = selectLOFilterFocusedID
-            viewModel.selectedLearningObject = option
-            restoreFocusIfNeeded(after: 1.6)
-        }
-        .id(selectLOFilterFocusedID)
-        .accessibilityFocused($focusedItemID, equals: selectLOFilterFocusedID)
-    }
-
-    private var learningLibraryTypeFilterView: some View {
-        FilterView(
-            items: LearningLibraryFilter.options(excluding: LearningLibraryFilter.allCases),
-            selectedOption: viewModel.selectedLearningLibrary
-        ) { option in
-            guard let option else { return }
-            lastFocusedItemID = selectTypeFilterFocusedID
-            viewModel.selectedLearningLibrary = option
-            restoreFocusIfNeeded(after: 1.6)
-        }
-        .id(selectTypeFilterFocusedID)
-        .accessibilityFocused($focusedItemID, equals: selectTypeFilterFocusedID)
-    }
-
     private var countOfVisibleItemsView: some View {
-        Text("\(viewModel.globalSearchItems.count)")
+        Text(String(format: "%d items", viewModel.globalSearchItems.count))
             .foregroundStyle(Color.huiColors.text.dataPoint)
             .huiTypography(.p1)
+            .padding(.horizontal, .huiSpaces.space24)
+            .frame(maxWidth: .infinity, alignment: .trailing)
             .hidden(viewModel.globalSearchItems.isEmpty || !viewModel.isGlobalSearchActive)
             .accessibilityLabel(
                 Text(

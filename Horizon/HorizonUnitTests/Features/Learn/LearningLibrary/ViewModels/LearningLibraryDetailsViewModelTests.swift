@@ -1135,19 +1135,6 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
             numberOfUnits: 5,
             isEnrolled: false
         )
-        let enrolledCard = LearningLibraryCardModel(
-            id: "item-1",
-            courseID: "course-123",
-            name: "Test Course",
-            imageURL: nil,
-            itemType: .course,
-            estimatedTime: "60",
-            isRecommended: false,
-            isCompleted: false,
-            isBookmarked: false,
-            numberOfUnits: 5,
-            isEnrolled: true
-        )
         let interactor = LearningLibraryInteractorMock(collectionItems: [mockCard])
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(

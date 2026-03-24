@@ -63,7 +63,16 @@ final class GetHLearningLibraryItemRequestTests: CoreTestCase {
     func testQuery() {
         let name = "learningLibraryCollectionItems"
         let query = """
-        query \(name)($limit: Int!, $cursor: String, $forward: Boolean!, $bookmarkedOnly: Boolean!, $completedOnly: Boolean!, $types: [CollectionItemType!], $searchTerm: String) {
+        query \(name)(
+          $limit: Int!,
+          $cursor: String,
+          $forward: Boolean!,
+          $bookmarkedOnly: Boolean!,
+          $completedOnly: Boolean!,
+          $types: [CollectionItemType!],
+          $searchTerm: String,
+          $sortBy: CollectionItemSortOption
+        ) {
           learningLibraryCollectionItems(
             input: {
               limit: $limit
@@ -73,6 +82,7 @@ final class GetHLearningLibraryItemRequestTests: CoreTestCase {
               searchTerm: $searchTerm
               bookmarkedOnly: $bookmarkedOnly
               completedOnly: $completedOnly
+              sortBy: $sortBy
             }
           ) {
             items {
