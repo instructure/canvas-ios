@@ -45,6 +45,12 @@ final class HSyncCourseProgressRequestTests: XCTestCase {
         mutation SyncCourseProgress($courseId: String!) {
           syncCourseProgress(canvasCourseId: $courseId) {
             isEnrolledInCanvas
+            completionPercentage
+            isEnrolledInCanvas
+            canvasEnrollmentId
+            lastSyncedAt
+            updatedProgramIds
+            failedProgramIds
           }
         }
         """

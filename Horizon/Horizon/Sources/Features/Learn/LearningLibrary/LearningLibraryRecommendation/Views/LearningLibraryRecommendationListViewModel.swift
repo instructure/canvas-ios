@@ -79,7 +79,9 @@ final class LearningLibraryRecommendationListViewModel: LearningLibraryItemNavig
     private let interactor: LearningLibraryInteractor
     private let bookmarkManager: BookmarkManager
     private let scheduler: AnySchedulerOf<DispatchQueue>
-
+    /// We are set `keepObservingDatabaseChanges` at `toggleBookmark`
+    /// and no need for reload the items in case tapped on the bookmarked buttons at this view 
+    private var shouldReloadItems = true
     // MARK: - Init
 
     init(
@@ -102,19 +104,24 @@ final class LearningLibraryRecommendationListViewModel: LearningLibraryItemNavig
             .receive(on: scheduler)
             .replaceError(with: [])
             .sink { [weak self] items in
-                self?.recommendedItems = items
+                guard let self else { return }
+                if shouldReloadItems {
+                    recommendedItems = items
+                }
                 completion?()
             }
             .store(in: &subscriptions)
     }
 
     func addBookmark(model: LearningLibraryCardModel) {
+        shouldReloadItems = false
         bookmarkManager.toggleBookmark(model, using: interactor, scheduler: scheduler)
             .sinkFailureOrValue { _ in
             } receiveValue: { [weak self] updatedItem in
                 guard let self else { return }
                 self.updateItem(item: updatedItem)
                 self.didSendEvent.send(())
+                shouldReloadItems = true
             }
             .store(in: &subscriptions)
     }

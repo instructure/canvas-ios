@@ -30,7 +30,7 @@ public struct GetHLearningLibraryItemRequest: APIGraphQLPagedRequestable, Learni
         let forward: Bool
         let bookmarkedOnly: Bool
         let completedOnly: Bool
-        let types: [String]
+        let types: [String]?
         let searchTerm: String?
         let sortBy: String?
     }
@@ -43,16 +43,6 @@ public struct GetHLearningLibraryItemRequest: APIGraphQLPagedRequestable, Learni
 
     public var headers: [String: String?] = [
         HttpHeader.accept: "application/json"
-    ]
-    private let types = [
-        "COURSE",
-        "PROGRAM",
-        "PAGE",
-        "ASSIGNMENT",
-        "QUIZ",
-        "EXTERNAL_URL",
-        "EXTERNAL_TOOL",
-        "FILE"
     ]
 
     public static let operationName: String = "learningLibraryCollectionItems"
@@ -73,7 +63,7 @@ public struct GetHLearningLibraryItemRequest: APIGraphQLPagedRequestable, Learni
             forward: true,
             bookmarkedOnly: bookmarkedOnly,
             completedOnly: completedOnly,
-            types: types ?? self.types,
+            types: types,
             searchTerm: searchTerm,
             sortBy: sortBy
         )

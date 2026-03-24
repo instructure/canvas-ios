@@ -70,7 +70,6 @@ struct EnrollConfirmationView: View {
                     viewModel.dismiss(viewController: viewController)
                 }
                 .padding(.trailing, .huiSpaces.space8)
-                .disabled(viewModel.isEnrollLoaderVisible)
             }
             .padding(.leading, .huiSpaces.space16)
             .padding(.top, .huiSpaces.space24)
@@ -91,7 +90,6 @@ struct EnrollConfirmationView: View {
                 }
                 .padding(.horizontal, .huiSpaces.space16)
                 .padding(.top, .huiSpaces.space12)
-                .disabled(viewModel.isEnrollLoaderVisible)
 
                 Spacer()
                 HorizonUI.LoadingButton(

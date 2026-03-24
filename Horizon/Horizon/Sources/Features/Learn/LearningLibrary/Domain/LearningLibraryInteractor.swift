@@ -22,7 +22,6 @@ import Foundation
 
 protocol LearningLibraryInteractor {
     func getLearnLibraryCollections(ignoreCache: Bool) -> AnyPublisher<[LearningLibrarySectionModel], Error>
-    func getBookmarkedItems(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error>
     func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel?, Error>
     func enroll(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel, Error>
     func getCollectionItems(id: String, ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error>
@@ -34,6 +33,7 @@ protocol LearningLibraryInteractor {
         searchTerm: String?,
         sortBy: String?
     ) -> AnyPublisher<[LearningLibraryCardModel], Error>
+
     func searchWithFilters(
         searchText: String?,
         objectsType: [LearningLibraryObjectType]?,
@@ -70,16 +70,6 @@ final class LearningLibraryInteractorLive: LearningLibraryInteractor {
                         items: limitedItems
                     )
                 }
-            }
-            .eraseToAnyPublisher()
-    }
-
-    func getBookmarkedItems(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error> {
-        ReactiveStore(useCase: GetCollectionItemBookmarkedUseCase(journey: domainService))
-            .getEntities(ignoreCache: ignoreCache)
-            .map { items in
-                items.map { LearningLibraryCardModel(for: $0) }
-                    .removingDuplicates(by: \.courseID)
             }
             .eraseToAnyPublisher()
     }

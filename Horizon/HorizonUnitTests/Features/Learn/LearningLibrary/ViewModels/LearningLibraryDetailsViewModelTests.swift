@@ -24,9 +24,9 @@ import CombineSchedulers
 
 final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
 
-    // MARK: - Fetch Data Tests (Details Page)
+    // MARK: - Fetch Data Tests
 
-    func testFetchDataForDetailsPageLoadsCollectionItems() {
+    func testFetchCollectionItemsLoadsData() {
         let mockItems = [
             LearningLibraryCardModel(
                 id: "item-1",
@@ -58,121 +58,73 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock(collectionItems: mockItems)
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: .immediate
         )
 
-        testee.fetchData()
+        testee.fetchCollectionItems()
 
         XCTAssertFalse(testee.isLoaderVisible)
         XCTAssertTrue(testee.hasItems)
         XCTAssertEqual(testee.filteredItems.count, 2)
     }
 
-    func testFetchDataForDetailsPageWithEmptyResponse() {
+    func testFetchCollectionItemsWithEmptyResponse() {
         let interactor = LearningLibraryInteractorMock(collectionItems: [])
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: .immediate
         )
 
-        testee.fetchData()
+        testee.fetchCollectionItems()
 
         XCTAssertFalse(testee.isLoaderVisible)
         XCTAssertFalse(testee.hasItems)
         XCTAssertEqual(testee.filteredItems.count, 0)
     }
 
-    func testFetchDataForDetailsPageWithError() {
+    func testFetchCollectionItemsWithError() {
         let interactor = LearningLibraryInteractorMock(hasError: true)
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: .immediate
         )
 
-        testee.fetchData()
+        testee.fetchCollectionItems()
 
         XCTAssertFalse(testee.isLoaderVisible)
         XCTAssertTrue(testee.isErrorVisible)
         XCTAssertFalse(testee.errorMessage.isEmpty)
     }
 
-    // MARK: - Fetch Data Tests (Bookmarks Page)
-
-    func testFetchDataForBookmarksPageLoadsBookmarkedItems() {
-        let mockItems = [
-            LearningLibraryCardModel(
-                id: "item-1",
-                courseID: "course-123",
-                name: "Bookmarked Course",
-                imageURL: nil,
-                itemType: .course,
-                estimatedTime: "120",
-                isRecommended: false,
-                isCompleted: false,
-                isBookmarked: true,
-                numberOfUnits: 5,
-                isEnrolled: false
-            )
-        ]
-        let interactor = LearningLibraryInteractorMock(bookmarkedItems: mockItems)
+    func testFetchCollectionItemsCallsCompletion() {
+        let interactor = LearningLibraryInteractorMock(collectionItems: [])
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .bookmarks,
-            scheduler: .immediate
-        )
-
-        testee.fetchData()
-
-        XCTAssertFalse(testee.isLoaderVisible)
-        XCTAssertTrue(testee.hasItems)
-        XCTAssertEqual(testee.filteredItems.count, 1)
-    }
-
-    func testFetchDataForBookmarksPageWithEmptyResponse() {
-        let interactor = LearningLibraryInteractorMock(bookmarkedItems: [])
-        let didSendEvent = PassthroughSubject<Void, Never>()
-        let testee = LearningLibraryDetailsViewModel(
-            interactor: interactor,
-            router: router,
-            didSendEvent: didSendEvent,
-            pageType: .bookmarks,
-            scheduler: .immediate
-        )
-
-        testee.fetchData()
-
-        XCTAssertFalse(testee.isLoaderVisible)
-        XCTAssertFalse(testee.hasItems)
-    }
-
-    func testFetchDataCallsCompletion() {
-        let interactor = LearningLibraryInteractorMock(bookmarkedItems: [])
-        let didSendEvent = PassthroughSubject<Void, Never>()
-        let testee = LearningLibraryDetailsViewModel(
-            interactor: interactor,
-            router: router,
-            didSendEvent: didSendEvent,
-            pageType: .bookmarks,
             scheduler: .immediate
         )
         let expectation = expectation(description: "Completion called")
 
-        testee.fetchData { expectation.fulfill() }
+        testee.fetchCollectionItems { expectation.fulfill() }
 
         wait(for: [expectation], timeout: 0.1)
     }
@@ -190,18 +142,19 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
                 estimatedTime: "60",
                 isRecommended: false,
                 isCompleted: false,
-                isBookmarked: true,
+                isBookmarked: false,
                 numberOfUnits: 5,
                 isEnrolled: false
             )
         ]
-        let interactor = LearningLibraryInteractorMock(bookmarkedItems: mockItems)
+        let interactor = LearningLibraryInteractorMock(collectionItems: mockItems)
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .bookmarks,
             scheduler: .immediate
         )
 
@@ -246,13 +199,14 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock(collectionItems: mockItems)
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: scheduler.eraseToAnyScheduler()
         )
-        testee.fetchData()
+        testee.fetchCollectionItems()
 
         testee.searchText = "Swift"
         scheduler.advance(by: .milliseconds(200))
@@ -294,13 +248,14 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock(collectionItems: mockItems)
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: scheduler.eraseToAnyScheduler()
         )
-        testee.fetchData()
+        testee.fetchCollectionItems()
 
         testee.selectedLearningObject = OptionModel(id: "COURSE", name: "Courses")
         scheduler.advance(by: .milliseconds(200))
@@ -342,13 +297,14 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock(collectionItems: mockItems)
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: scheduler.eraseToAnyScheduler()
         )
-        testee.fetchData()
+        testee.fetchCollectionItems()
 
         testee.selectedLearningLibrary = OptionModel(id: LearningLibraryFilter.bookmarked.rawValue, name: "Bookmarked")
         scheduler.advance(by: .milliseconds(200))
@@ -390,13 +346,14 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock(collectionItems: mockItems)
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: scheduler.eraseToAnyScheduler()
         )
-        testee.fetchData()
+        testee.fetchCollectionItems()
 
         testee.selectedLearningLibrary = OptionModel(id: LearningLibraryFilter.completed.rawValue, name: "Completed")
         scheduler.advance(by: .milliseconds(200))
@@ -438,13 +395,14 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock(collectionItems: mockItems)
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: scheduler.eraseToAnyScheduler()
         )
-        testee.fetchData()
+        testee.fetchCollectionItems()
 
         testee.searchText = "Swift"
         testee.selectedLearningLibrary = OptionModel(id: LearningLibraryFilter.bookmarked.rawValue, name: "Bookmarked")
@@ -460,10 +418,11 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock()
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .bookmarks,
             scheduler: .immediate
         )
         testee.searchText = "Swift"
@@ -481,10 +440,11 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock()
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .bookmarks,
             scheduler: .immediate
         )
 
@@ -497,10 +457,11 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock()
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .bookmarks,
             scheduler: .immediate
         )
 
@@ -513,10 +474,11 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock()
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .bookmarks,
             scheduler: .immediate
         )
 
@@ -525,7 +487,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
 
     // MARK: - Bookmark Tests
 
-    func testAddBookmarkInDetailsPageUpdatesItem() {
+    func testAddBookmarkUpdatesItem() {
         let mockCard = LearningLibraryCardModel(
             id: "item-1",
             courseID: "course-123",
@@ -558,65 +520,18 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         )
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: .immediate
         )
-        testee.fetchData()
+        testee.fetchCollectionItems()
 
         testee.addBookmark(model: mockCard)
 
         XCTAssertFalse(testee.isBookmarkLoading(forItemWithId: "item-1"))
-    }
-
-    func testAddBookmarkInBookmarksPageRemovesItem() {
-        let mockCard = LearningLibraryCardModel(
-            id: "item-1",
-            courseID: "course-123",
-            name: "Test Course",
-            imageURL: nil,
-            itemType: .course,
-            estimatedTime: "60",
-            isRecommended: false,
-            isCompleted: false,
-            isBookmarked: true,
-            numberOfUnits: 5,
-            isEnrolled: false
-        )
-        let updatedCard = LearningLibraryCardModel(
-            id: "item-1",
-            courseID: "course-123",
-            name: "Test Course",
-            imageURL: nil,
-            itemType: .course,
-            estimatedTime: "60",
-            isRecommended: false,
-            isCompleted: false,
-            isBookmarked: false,
-            numberOfUnits: 5,
-            isEnrolled: false
-        )
-        let interactor = LearningLibraryInteractorMock(
-            bookmarkedItems: [mockCard],
-            bookmarkResponse: updatedCard
-        )
-        let didSendEvent = PassthroughSubject<Void, Never>()
-        let testee = LearningLibraryDetailsViewModel(
-            interactor: interactor,
-            router: router,
-            didSendEvent: didSendEvent,
-            pageType: .bookmarks,
-            scheduler: .immediate
-        )
-        testee.fetchData()
-        XCTAssertEqual(testee.filteredItems.count, 1)
-
-        testee.addBookmark(model: mockCard)
-
-        XCTAssertEqual(testee.filteredItems.count, 0)
-        XCTAssertFalse(testee.hasItems)
     }
 
     func testAddBookmarkSendsDidSendEvent() {
@@ -640,10 +555,11 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         didSendEvent.sink { _ in expectation.fulfill() }.store(in: &cancellables)
 
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: .immediate
         )
 
@@ -669,10 +585,11 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock(hasError: true)
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: .immediate
         )
 
@@ -702,10 +619,11 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock()
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: .immediate
         )
 
@@ -737,13 +655,14 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock(collectionItems: items)
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: .immediate
         )
-        testee.fetchData()
+        testee.fetchCollectionItems()
         let initialCount = testee.filteredItems.count
 
         testee.seeMore()
@@ -770,14 +689,15 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock(collectionItems: items)
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: .immediate
         )
 
-        testee.fetchData()
+        testee.fetchCollectionItems()
 
         XCTAssertTrue(testee.isSeeMoreVisible)
     }
@@ -801,14 +721,15 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock(collectionItems: items)
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: .immediate
         )
 
-        testee.fetchData()
+        testee.fetchCollectionItems()
 
         XCTAssertFalse(testee.isSeeMoreVisible)
     }
@@ -819,10 +740,11 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock()
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .bookmarks,
             scheduler: .immediate
         )
 
@@ -831,23 +753,21 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         wait(for: [router.dismissExpectation], timeout: 0.1)
     }
 
-    // MARK: - Page Type Tests
+    // MARK: - Collection Name Tests
 
-    func testPageTypeDetailsTitleMatchesName() {
-        let pageType = LearningLibraryDetailsViewModel.PageType.details(id: "123", name: "My Collection")
-        XCTAssertEqual(pageType.title, "My Collection")
-        XCTAssertFalse(pageType.isBookmarked)
-    }
+    func testCollectionNameIsSet() {
+        let interactor = LearningLibraryInteractorMock()
+        let didSendEvent = PassthroughSubject<Void, Never>()
+        let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "My Collection",
+            interactor: interactor,
+            router: router,
+            didSendEvent: didSendEvent,
+            scheduler: .immediate
+        )
 
-    func testPageTypeBookmarksTitle() {
-        let pageType = LearningLibraryDetailsViewModel.PageType.bookmarks
-        XCTAssertEqual(pageType.title, "Bookmarks")
-        XCTAssertTrue(pageType.isBookmarked)
-    }
-
-    func testPageTypeBookmarksEmptyStateTitle() {
-        let pageType = LearningLibraryDetailsViewModel.PageType.bookmarks
-        XCTAssertFalse(pageType.emptyStateTitle.isEmpty)
+        XCTAssertEqual(testee.collectionName, "My Collection")
     }
 
     // MARK: - Initial State Tests
@@ -856,10 +776,11 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock()
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .bookmarks,
             scheduler: .immediate
         )
 
@@ -872,10 +793,11 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock()
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .bookmarks,
             scheduler: .immediate
         )
 
@@ -886,10 +808,11 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock()
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .bookmarks,
             scheduler: .immediate
         )
 
@@ -904,10 +827,11 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock(collectionItems: [])
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: scheduler.eraseToAnyScheduler()
         )
         var receivedMessages: [String] = []
@@ -916,7 +840,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
             receivedMessages.append(message)
         }.store(in: &cancellables)
 
-        testee.fetchData()
+        testee.fetchCollectionItems()
         testee.searchText = "NonExistent"
         scheduler.advance(by: .milliseconds(200))
 
@@ -943,10 +867,11 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock(collectionItems: mockItems)
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: scheduler.eraseToAnyScheduler()
         )
         var receivedMessages: [String] = []
@@ -955,7 +880,7 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
             receivedMessages.append(message)
         }.store(in: &cancellables)
 
-        testee.fetchData()
+        testee.fetchCollectionItems()
         testee.searchText = "Swift"
         scheduler.advance(by: .milliseconds(200))
 
@@ -1008,10 +933,11 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
         let interactor = LearningLibraryInteractorMock(collectionItems: mockItems)
         let didSendEvent = PassthroughSubject<Void, Never>()
         let testee = LearningLibraryDetailsViewModel(
+            collectionId: "collection-123",
+            collectionName: "Featured",
             interactor: interactor,
             router: router,
             didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
             scheduler: scheduler.eraseToAnyScheduler()
         )
         var receivedMessages: [String] = []
@@ -1020,138 +946,10 @@ final class LearningLibraryDetailsViewModelTests: HorizonTestCase {
             receivedMessages.append(message)
         }.store(in: &cancellables)
 
-        testee.fetchData()
+        testee.fetchCollectionItems()
         testee.searchText = "Swift"
         scheduler.advance(by: .milliseconds(200))
 
         XCTAssertTrue(receivedMessages.contains { $0.contains("Found 3 results") })
-    }
-
-    func testAddBookmarkAnnouncesAddedToBookmarks() {
-        let mockCard = LearningLibraryCardModel(
-            id: "item-1",
-            courseID: "course-123",
-            name: "Test Course",
-            imageURL: nil,
-            itemType: .course,
-            estimatedTime: "60",
-            isRecommended: false,
-            isCompleted: false,
-            isBookmarked: false,
-            numberOfUnits: 5,
-            isEnrolled: false
-        )
-        let updatedCard = LearningLibraryCardModel(
-            id: "item-1",
-            courseID: "course-123",
-            name: "Test Course",
-            imageURL: nil,
-            itemType: .course,
-            estimatedTime: "60",
-            isRecommended: false,
-            isCompleted: false,
-            isBookmarked: true,
-            numberOfUnits: 5,
-            isEnrolled: false
-        )
-        let interactor = LearningLibraryInteractorMock(bookmarkResponse: updatedCard)
-        let didSendEvent = PassthroughSubject<Void, Never>()
-        let testee = LearningLibraryDetailsViewModel(
-            interactor: interactor,
-            router: router,
-            didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
-            scheduler: .immediate
-        )
-        var receivedMessages: [String] = []
-        var cancellables = Set<AnyCancellable>()
-        testee.accessibilityMessagePublisher.sink { message in
-            receivedMessages.append(message)
-        }.store(in: &cancellables)
-
-        testee.addBookmark(model: mockCard)
-
-        XCTAssertTrue(receivedMessages.contains("Added to bookmarks"))
-    }
-
-    func testRemoveBookmarkAnnouncesRemovedFromBookmarks() {
-        let mockCard = LearningLibraryCardModel(
-            id: "item-1",
-            courseID: "course-123",
-            name: "Test Course",
-            imageURL: nil,
-            itemType: .course,
-            estimatedTime: "60",
-            isRecommended: false,
-            isCompleted: false,
-            isBookmarked: true,
-            numberOfUnits: 5,
-            isEnrolled: false
-        )
-        let updatedCard = LearningLibraryCardModel(
-            id: "item-1",
-            courseID: "course-123",
-            name: "Test Course",
-            imageURL: nil,
-            itemType: .course,
-            estimatedTime: "60",
-            isRecommended: false,
-            isCompleted: false,
-            isBookmarked: false,
-            numberOfUnits: 5,
-            isEnrolled: false
-        )
-        let interactor = LearningLibraryInteractorMock(bookmarkResponse: updatedCard)
-        let didSendEvent = PassthroughSubject<Void, Never>()
-        let testee = LearningLibraryDetailsViewModel(
-            interactor: interactor,
-            router: router,
-            didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
-            scheduler: .immediate
-        )
-        var receivedMessages: [String] = []
-        var cancellables = Set<AnyCancellable>()
-        testee.accessibilityMessagePublisher.sink { message in
-            receivedMessages.append(message)
-        }.store(in: &cancellables)
-
-        testee.addBookmark(model: mockCard)
-
-        XCTAssertTrue(receivedMessages.contains("Removed from bookmarks"))
-    }
-
-    func testEnrollConfirmationAnnouncesEnrolledSuccessfully() {
-        let mockCard = LearningLibraryCardModel(
-            id: "item-1",
-            courseID: "course-123",
-            name: "Test Course",
-            imageURL: nil,
-            itemType: .course,
-            estimatedTime: "60",
-            isRecommended: false,
-            isCompleted: false,
-            isBookmarked: false,
-            numberOfUnits: 5,
-            isEnrolled: false
-        )
-        let interactor = LearningLibraryInteractorMock(collectionItems: [mockCard])
-        let didSendEvent = PassthroughSubject<Void, Never>()
-        let testee = LearningLibraryDetailsViewModel(
-            interactor: interactor,
-            router: router,
-            didSendEvent: didSendEvent,
-            pageType: .details(id: "collection-123", name: "Featured"),
-            scheduler: .immediate
-        )
-        var receivedMessages: [String] = []
-        var cancellables = Set<AnyCancellable>()
-        testee.accessibilityMessagePublisher.sink { message in
-            receivedMessages.append(message)
-        }.store(in: &cancellables)
-
-        testee.showEnrollConfirmation(model: mockCard, viewController: WeakViewController(UIViewController()))
-
-        wait(for: [router.showExpectation], timeout: 0.1)
     }
 }

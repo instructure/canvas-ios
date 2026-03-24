@@ -16,13 +16,12 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
 import HorizonUI
 import SwiftUI
 
-struct CollectionItemFilterView: View {
+struct LearnItemFilterView: View {
     @Environment(\.viewController) private var viewController
-    @State var viewModel: CollectionItemFilterViewModel
+    @State var viewModel: LearnItemFilterViewModel
 
     var body: some View {
         VStack(spacing: .huiSpaces.space16) {
@@ -65,7 +64,7 @@ struct CollectionItemFilterView: View {
                 .accessibilityAddTraits(.isHeader)
 
             HorizonUI.HFlow {
-                ForEach(CollectionItemFilterType.allCases, id: \.self) { item in
+                ForEach(LearnItemModel.UIItemType.allCases, id: \.self) { item in
                     FilterButton(title: item.name, isSelected: viewModel.selectedFilterTypes.contains(item)) {
                         viewModel.toggleFilterType(item)
                     }
@@ -85,13 +84,4 @@ struct CollectionItemFilterView: View {
             viewModel.clearFilter(viewController: viewController)
         }
     }
-}
-
-#Preview {
-    CollectionItemFilterView(
-        viewModel: .init(
-            router: AppEnvironment.shared.router,
-            onSetSortOption: { _, _ in }
-        )
-    )
 }

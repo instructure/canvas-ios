@@ -16,22 +16,27 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import UIKit
+import Combine
+@testable import Horizon
+import Foundation
 
-enum LearnCourseListAssembly {
-    static private func makeViewModel() -> LearnCourseListViewModel {
-        .init(
-            interactor: GetCoursesInteractorLive(),
-            router: AppEnvironment.shared.router
-        )
-    }
+final class LearnItemInteractorMock: LearnItemInteractor {
+    var shouldFail = false
+    var error: Error = URLError(.badServerResponse)
+    var itemsToReturn: [LearnItemModel] = []
 
-    static func makeView() -> LearnCourseListView {
-        LearnCourseListView(viewModel: makeViewModel())
-    }
+    func getItems(
+        searchTerm: String?,
+        itemTypes: [String]?,
+        sortBy: String?,
+        status: [LearnItemModel.Status]
+    ) -> AnyPublisher<[LearnItemModel], Error> {
+        if shouldFail {
+            return Fail(error: error).eraseToAnyPublisher()
+        }
 
-    static func makeVewController() -> UIViewController {
-        CoreHostingController(makeView())
+        return Just(itemsToReturn)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }

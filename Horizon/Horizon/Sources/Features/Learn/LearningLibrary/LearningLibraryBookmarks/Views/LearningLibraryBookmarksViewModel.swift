@@ -23,28 +23,16 @@ import Foundation
 import Observation
 
 @Observable
-final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
-    // MARK: - Init / Outputs
+final class LearningLibraryBookmarksViewModel: LearningLibraryItemNavigating {
+    // MARK: - Properties
 
-    private let searchTextSubject = CurrentValueSubject<String, Never>("")
-    private let selectedLearningObjectSubject = CurrentValueSubject<OptionModel, Never>(LearningLibraryObjectType.firstOption)
-    private let selectedLearningLibrarySubject = CurrentValueSubject<OptionModel, Never>(LearningLibraryFilter.firstOption)
-
-    var selectedLearningObject = LearningLibraryObjectType.firstOption {
-        didSet {
-            selectedLearningObjectSubject.send(selectedLearningObject)
-        }
-    }
-    var selectedLearningLibrary = LearningLibraryFilter.firstOption {
-        didSet {
-            selectedLearningLibrarySubject.send(selectedLearningLibrary)
-        }
-    }
     var searchText: String = "" {
         didSet {
             searchTextSubject.send(searchText)
         }
     }
+    var selectedSortOption: CollectionItemSortOption?
+    var selectedFilterTypes: [CollectionItemFilterType]?
 
     // MARK: - Outputs
 
@@ -54,10 +42,12 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     var isErrorVisible: Bool = false
     var filteredItems: [LearningLibraryCardModel] { paginator.visibleItems }
     var isSeeMoreVisible: Bool { paginator.isSeeMoreVisible }
-    var isClearButtonVisible: Bool {
-        searchText.trimmedEmptyLines.isNotEmpty ||
-        selectedLearningObject.id != LearningLibraryObjectType.firstOption.id ||
-        selectedLearningLibrary.id != LearningLibraryFilter.firstOption.id
+    var hasActiveFilters: Bool {
+        !searchText.isEmpty || selectedFilterTypes?.isNotEmpty == true
+    }
+    var appliedFiltersCount: Int {
+        (selectedSortOption != nil ? 1 : 0) +
+        (selectedFilterTypes?.filter { $0 != .all }.count ?? 0)
     }
 
     var accessibilityMessagePublisher: AnyPublisher<String, Never> {
@@ -70,6 +60,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
 
     // MARK: - Private variables
 
+    private let searchTextSubject = CurrentValueSubject<String, Never>("")
     private var internalAccessibilityPublisher = PassthroughSubject<String, Never>()
     private var allItems: [LearningLibraryCardModel] = []
     private let paginator = PaginatedDataSource<LearningLibraryCardModel>(items: [], pageSize: 6)
@@ -77,11 +68,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
 
     // MARK: - Dependencies
 
-    var model: LearningLibrarySectionModel = .init(id: "", name: "", items: [])
     let router: Router
-    let collectionName: String
-    private let collectionId: String
-    private let didSendEvent: PassthroughSubject<Void, Never>?
     private let interactor: LearningLibraryInteractor
     private let bookmarkManager: BookmarkManager
     private let scheduler: AnySchedulerOf<DispatchQueue>
@@ -89,22 +76,16 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     // MARK: - Init
 
     init(
-        collectionId: String,
-        collectionName: String,
         interactor: LearningLibraryInteractor,
         router: Router,
-        didSendEvent: PassthroughSubject<Void, Never>?,
         bookmarkManager: BookmarkManager = BookmarkManager(),
         scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
-        self.collectionId = collectionId
-        self.collectionName = collectionName
         self.router = router
-        self.didSendEvent = didSendEvent
         self.interactor = interactor
         self.bookmarkManager = bookmarkManager
         self.scheduler = scheduler
-        observeFilters()
+        observeSearch()
 
         NotificationCenter.default.addObserver(
             forName: .forceRefreshJourneyCourses,
@@ -112,7 +93,8 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
             queue: .main
         ) { [weak self] _ in
             guard let self else { return }
-            fetchCollectionItems()
+            isLoaderVisible = true
+            fetchData(ignoreCache: true)
         }
     }
 
@@ -122,22 +104,40 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
 
     // MARK: - Input Actions
 
-  func fetchCollectionItems(
+    func fetchData(
         ignoreCache: Bool = false,
         completion: (() -> Void)? = nil
     ) {
-        interactor.getCollectionItems(id: collectionId, ignoreCache: ignoreCache)
-            .receive(on: scheduler)
-            .sinkFailureOrValue { [weak self] error in
-                self?.isLoaderVisible = false
-                self?.showError(message: error.localizedDescription)
-                completion?()
-            } receiveValue: { [weak self] items in
-                self?.isLoaderVisible = false
-                self?.configResponse(items: items)
-                completion?()
-            }
-            .store(in: &subscriptions)
+        let types: [LearningLibraryObjectType]? = {
+            let filtered = selectedFilterTypes?
+                .filter { $0 != .all }
+                .compactMap { LearningLibraryObjectType(rawValue: $0.rawValue) }
+            return filtered?.isEmpty == false ? filtered : nil
+        }()
+
+        let sortByKey = selectedSortOption?.key
+        let searchTerm = searchText.trimmedEmptyLines.isEmpty ? nil : searchText
+        interactor.searchWithFilters(
+            searchText: searchTerm,
+            objectsType: types,
+            libraryFilter: .bookmarked,
+            sortBy: sortByKey
+        )
+        .receive(on: scheduler)
+        .sinkFailureOrValue { [weak self] error in
+            self?.isLoaderVisible = false
+            self?.showError(message: error.localizedDescription)
+            completion?()
+        } receiveValue: { [weak self] items in
+            guard let self else { return }
+            self.isLoaderVisible = false
+            self.allItems = items
+            self.hasItems = hasItems ? hasItems : items.isNotEmpty
+            self.paginator.setItems(items)
+            self.announceSearchResults()
+            completion?()
+        }
+        .store(in: &subscriptions)
     }
 
     func refresh() async {
@@ -146,68 +146,38 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
                 continuation.resume()
                 return
             }
-            fetchCollectionItems(ignoreCache: true) { continuation.resume() }
+            fetchData(ignoreCache: true) { continuation.resume() }
         }
     }
 
-    private func filter(searchText: String, learningObject: OptionModel, learningLibrary: OptionModel) {
-        var items = allItems
-        /// -1 refers to `All Items` have been selected for `LearningLibraryObjectType`
-        if learningObject.id != "-1",
-           let objectType = LearningLibraryObjectType(rawValue: learningObject.id) {
-            items = items.filter { $0.itemType == objectType }
-        }
-
-        if let filterType = LearningLibraryFilter(rawValue: learningLibrary.id) {
-            switch filterType {
-            case .all:
-                break
-            case .completed:
-                items = items.filter { $0.isCompleted }
-            case .bookmarked:
-                items = items.filter { $0.isBookmarked }
+    private func observeSearch() {
+        searchTextSubject
+            .debounce(for: .milliseconds(500), scheduler: scheduler)
+            .removeDuplicates()
+            .sink { [weak self] _ in
+                guard let self else { return }
+                isLoaderVisible = true
+                fetchData()
             }
-        }
-
-        if searchText.trimmedEmptyLines.isNotEmpty {
-            items = items.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
-        }
-
-        paginator.setItems(items)
-        announceSearchResults()
-    }
-
-    private func observeFilters() {
-        Publishers.CombineLatest3(
-            searchTextSubject
-                .debounce(for: .milliseconds(200), scheduler: scheduler)
-                .removeDuplicates(),
-            selectedLearningObjectSubject,
-            selectedLearningLibrarySubject
-        )
-        .sink { [weak self] searchText, learningObject, learningLibrary in
-            guard let self else { return }
-            self.filter(
-                searchText: searchText,
-                learningObject: learningObject,
-                learningLibrary: learningLibrary
-            )
-        }
-        .store(in: &subscriptions)
+            .store(in: &subscriptions)
     }
 
     func seeMore() {
         paginator.seeMore()
     }
 
-    func clearAll() {
-        searchText = ""
-        selectedLearningObject = LearningLibraryObjectType.firstOption
-        selectedLearningLibrary = LearningLibraryFilter.firstOption
-    }
-
-    func pop(viewController: WeakViewController) {
-        router.dismiss(viewController)
+    func navigateToFilter(viewController: WeakViewController) {
+        let filterView = CollectionItemFilterAssembly.makeView(
+            selectedSortOption: selectedSortOption,
+            selectedFilterTypes: selectedFilterTypes
+        ) { [weak self] sort, filters in
+            guard let self else { return }
+            self.selectedSortOption = sort
+            self.selectedFilterTypes = filters
+            self.isLoaderVisible = true
+            self.fetchData(ignoreCache: true)
+        }
+        router.show(filterView, from: viewController, options: .modal(.fullScreen))
     }
 
     func addBookmark(model: LearningLibraryCardModel) {
@@ -216,8 +186,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
                 self?.showError(message: error.localizedDescription)
             } receiveValue: { [weak self] updatedItem in
                 guard let self else { return }
-                self.configItem(item: updatedItem)
-                self.didSendEvent?.send(())
+                self.delete(with: updatedItem)
             }
             .store(in: &subscriptions)
     }
@@ -231,8 +200,7 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
         viewController: WeakViewController
     ) {
         let enrollViewController = EnrollConfirmationAssembly.makeView(model: model) { [weak self] item in
-            self?.configItem(item: item)
-            self?.didSendEvent?.send(())
+            self?.update(with: item)
             self?.navigateToLearningLibraryItem(item, from: viewController)
             self?.internalAccessibilityPublisher.send(String(localized: "Enrolled successfully"))
         }
@@ -255,15 +223,8 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
     private func configResponse(items: [LearningLibraryCardModel]) {
         allItems = items
         hasItems = allItems.isNotEmpty
-        filter(
-            searchText: searchTextSubject.value,
-            learningObject: selectedLearningObjectSubject.value,
-            learningLibrary: selectedLearningLibrarySubject.value
-        )
-    }
-
-    private func configItem(item: LearningLibraryCardModel) {
-        update(with: item)
+        paginator.setItems(items)
+        announceSearchResults()
     }
 
     private func update(with item: LearningLibraryCardModel) {
@@ -273,6 +234,12 @@ final class LearningLibraryDetailsViewModel: LearningLibraryItemNavigating {
         if let visibleIndex = self.paginator.visibleItems.firstIndex(where: { $0.id == item.id }) {
             paginator.visibleItems[visibleIndex] = item
         }
+    }
+
+    private func delete(with item: LearningLibraryCardModel) {
+        allItems.removeAll(where: { item.id == $0.id })
+        paginator.visibleItems.removeAll(where: { item.id == $0.id })
+        hasItems = allItems.isNotEmpty
     }
 
     private func showError(message: String) {

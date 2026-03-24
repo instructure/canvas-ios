@@ -23,8 +23,7 @@ import HorizonUI
 struct LearnView: View {
     @State private var isShowTabs: Bool = true
     @State private var selectedTabIndex: Int? = 0
-    private let listCourseView: LearnCourseListView
-    private let listProgramView: LearnProgramListView
+    private let myContentView: MyContentView
     private let learningLibraryView: LearningLibraryView
 
     // MARK: - Dependencies
@@ -32,8 +31,7 @@ struct LearnView: View {
 
     init(viewModel: LearnViewModel) {
         self._viewModel = State(initialValue: viewModel)
-        self.listCourseView = LearnCourseListAssembly.makeView()
-        self.listProgramView = LearnProgramListAssembly.makeView()
+        self.myContentView = MyContentView()
         self.learningLibraryView = ListLearningLibraryAssembly.makeView()
     }
 
@@ -67,11 +65,15 @@ struct LearnView: View {
             ForEach(Array(viewModel.tabs.enumerated()), id: \.offset) { index, tab in
                 Group {
                     switch tab {
-                    case .courses: listCourseView
-                    case .programs: listProgramView
-                    case .learningLibrary: learningLibraryView
+                    case .content:
+                        myContentView
+                            .transition(.opacity)
+                    case .learningLibrary:
+                        learningLibraryView
+                            .transition(.opacity)
                     }
                 }
+                .animation(.easeInOut(duration: 0.2), value: selectedTabIndex)
                 .padding(.top, isShowTabs ? 65 : 0)
                 .tag(index)
             }
