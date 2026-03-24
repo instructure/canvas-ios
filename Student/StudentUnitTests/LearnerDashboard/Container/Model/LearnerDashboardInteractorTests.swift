@@ -136,6 +136,78 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         XCTAssertEqual(received?[8].id, EditableWidgetIdentifier.helloWidget.rawValue)
     }
 
+    // MARK: - Analytics tracking
+
+    func test_loadWidgets_tracksWidgetVisibility() {
+        let mockHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = mockHandler
+        testee = LearnerDashboardInteractorLive(
+            userDefaults: userDefaults,
+            systemWidgetFactory: makeSystemFactory(),
+            editableWidgetFactory: makeEditableFactory()
+        )
+
+        let expectation = expectation(description: "loadWidgets")
+        testee.loadWidgets()
+            .sink { _ in expectation.fulfill() }
+            .store(in: &subscriptions)
+        wait(for: [expectation], timeout: 5)
+
+        XCTAssertEqual(mockHandler.lastEvent, "dashboard_widget_visibility")
+        XCTAssertEqual(mockHandler.lastEventParameter("welcome", ofType: String.self), "0")
+        XCTAssertEqual(mockHandler.lastEventParameter("courses", ofType: String.self), "1")
+        XCTAssertEqual(mockHandler.lastEventParameter("forecast", ofType: String.self), "2")
+    }
+
+    func test_loadWidgets_tracksEachLoad() {
+        let mockHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = mockHandler
+        testee = LearnerDashboardInteractorLive(
+            userDefaults: userDefaults,
+            systemWidgetFactory: makeSystemFactory(),
+            editableWidgetFactory: makeEditableFactory()
+        )
+
+        let expectation1 = expectation(description: "loadWidgets1")
+        testee.loadWidgets()
+            .sink { _ in expectation1.fulfill() }
+            .store(in: &subscriptions)
+        wait(for: [expectation1], timeout: 5)
+
+        let expectation2 = expectation(description: "loadWidgets2")
+        testee.loadWidgets()
+            .sink { _ in expectation2.fulfill() }
+            .store(in: &subscriptions)
+        wait(for: [expectation2], timeout: 5)
+
+        XCTAssertEqual(mockHandler.totalEventCount, 2)
+    }
+
+    func test_loadWidgets_hiddenWidgetsTrackedAsMinusOne() {
+        userDefaults.learnerDashboardWidgetConfigs = [
+            DashboardWidgetConfig(id: .helloWidget, order: 0, isVisible: false),
+            DashboardWidgetConfig(id: .coursesAndGroups, order: 1, isVisible: true),
+            DashboardWidgetConfig(id: .weeklySummary, order: 2, isVisible: true)
+        ]
+        let mockHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = mockHandler
+        testee = LearnerDashboardInteractorLive(
+            userDefaults: userDefaults,
+            systemWidgetFactory: makeSystemFactory(),
+            editableWidgetFactory: makeEditableFactory()
+        )
+
+        let expectation = expectation(description: "loadWidgets")
+        testee.loadWidgets()
+            .sink { _ in expectation.fulfill() }
+            .store(in: &subscriptions)
+        wait(for: [expectation], timeout: 5)
+
+        XCTAssertEqual(mockHandler.lastEventParameter("welcome", ofType: String.self), "-1")
+        XCTAssertEqual(mockHandler.lastEventParameter("courses", ofType: String.self), "0")
+        XCTAssertEqual(mockHandler.lastEventParameter("forecast", ofType: String.self), "1")
+    }
+
     // MARK: - Private helpers
 
     private func makeSystemFactory() -> (SystemWidgetIdentifier) -> any DashboardWidgetViewModel {
@@ -144,6 +216,22 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
     private func makeEditableFactory() -> (DashboardWidgetConfig) -> any DashboardWidgetViewModel {
         return { config in DashboardWidgetViewModelMock(id: config.id.rawValue) }
+    }
+}
+
+private final class MockAnalyticsHandler: AnalyticsHandler {
+    var lastEvent: String?
+    var lastEventParameters: [String: Any]?
+    var totalEventCount = 0
+
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
+        lastEvent = name
+        lastEventParameters = parameters
+        totalEventCount += 1
+    }
+
+    func lastEventParameter<T: Equatable>(_ key: String, ofType type: T.Type = T.self) -> T? {
+        lastEventParameters?[key] as? T
     }
 }
 
