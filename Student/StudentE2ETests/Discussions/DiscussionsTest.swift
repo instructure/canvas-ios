@@ -44,8 +44,8 @@ class DiscussionsTests: E2ETestCase {
 
         let discussionLastPostLabel = discussionButton
             .find(labelContaining: "Last post", type: .staticText)
-            .waitUntil(.visible)
-        XCTAssert(discussionLastPostLabel.isVisible)
+            .waitUntil(.vanish)
+        XCTAssert(discussionLastPostLabel.isVanished)
 
         let discussionRepliesLabel = discussionButton
             .find(label: "\(discussion.discussion_subentry_count) Replies", type: .staticText)
