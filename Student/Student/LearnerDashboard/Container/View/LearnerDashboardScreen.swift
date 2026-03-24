@@ -123,6 +123,7 @@ struct LearnerDashboardScreen: View {
             )
         }
         .buttonStyle(.pillTintOutlined)
+        .identifier("Dashboard.bottomSettingsButton")
     }
 
     @available(iOS, introduced: 26, message: "Legacy version exists")

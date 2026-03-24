@@ -39,6 +39,8 @@ struct ConferencesWidgetView: View {
                             totalPages: $totalPages
                         ) { cardViewModel in
                             ConferenceCardView(viewModel: cardViewModel)
+                                .accessibilityElement(children: .contain)
+                                .identifier("Dashboard.Conferences.Invitation.Id.\(cardViewModel.id)")
                         }
 
                         InstUI.PageIndicator(currentIndex: currentPage, count: totalPages)

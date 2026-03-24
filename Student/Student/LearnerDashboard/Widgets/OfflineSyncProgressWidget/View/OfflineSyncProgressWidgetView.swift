@@ -38,6 +38,7 @@ struct OfflineSyncProgressWidgetView: View {
             .accessibilityAction(named: Text("Dismiss", bundle: .student)) {
                 model.dismiss()
             }
+            .identifier("Dashboard.ProgressViews.OfflineSync.syncDetailsButton")
         }
     }
 
@@ -67,6 +68,7 @@ struct OfflineSyncProgressWidgetView: View {
                         .scaledIcon(size: 24)
                 }
                 .accessibilityLabel(.init(localized: "Dismiss", bundle: .student))
+                .identifier("Dashboard.ProgressViews.OfflineSync.dismissButton")
             }
             .paddingStyle(set: .standardCell)
             .foregroundStyle(.textLightest)

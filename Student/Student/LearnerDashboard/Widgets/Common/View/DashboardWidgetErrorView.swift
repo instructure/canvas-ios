@@ -53,6 +53,7 @@ struct DashboardWidgetErrorView: View {
                     .background(Color(Brand.shared.primary))
                     .clipShape(.rect(cornerRadius: 100))
                 }
+                .identifier("Dashboard.Error.refreshButton")
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

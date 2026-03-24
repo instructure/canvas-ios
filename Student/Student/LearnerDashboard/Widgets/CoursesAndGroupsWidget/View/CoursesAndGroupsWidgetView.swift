@@ -78,7 +78,7 @@ struct CoursesAndGroupsWidgetView: View {
                 )
             }
             .buttonStyle(.pillTintFilled)
-            .identifier("Dashboard.allCoursesButton")
+            .identifier("Dashboard.Courses.allCoursesButton")
         }
         .animation(.dashboardWidget, value: columnCount)
         .animation(.dashboardWidget, value: viewModel.layoutIdentifier)
@@ -88,6 +88,7 @@ struct CoursesAndGroupsWidgetView: View {
         collapsibleSection(
             title: String(localized: "Courses", bundle: .student),
             itemCount: viewModel.courseCards.count,
+            headerIdentifier: "Dashboard.Courses.coursesHeader",
             isExpanded: $isCoursesExpanded
         ) {
             DashboardGrid(
@@ -130,6 +131,7 @@ struct CoursesAndGroupsWidgetView: View {
         collapsibleSection(
             title: String(localized: "Groups", bundle: .student),
             itemCount: viewModel.groupCards.count,
+            headerIdentifier: "Dashboard.Courses.groupsHeader",
             isExpanded: $isGroupsExpanded
         ) {
             DashboardGrid(
@@ -162,7 +164,13 @@ struct CoursesAndGroupsWidgetView: View {
         (columnCount == 1) ? 4 : 8
 	}
 
-    private func collapsibleSection(title: String, itemCount: Int, isExpanded: Binding<Bool>, @ViewBuilder content: () -> some View) -> some View {
+    private func collapsibleSection(
+        title: String,
+        itemCount: Int,
+        headerIdentifier: String,
+        isExpanded: Binding<Bool>,
+        @ViewBuilder content: () -> some View
+    ) -> some View {
         VStack(alignment: .leading, spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue) {
             InstUI.CollapsibleListSection(
                 title: title,
@@ -172,6 +180,7 @@ struct CoursesAndGroupsWidgetView: View {
                         .foregroundStyle(.textDarkest)
                 },
                 itemCount: itemCount,
+                headerIdentifier: headerIdentifier,
                 config: .init(
                     showItemCount: true,
                     headerPaddingSet: .zero,

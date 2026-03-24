@@ -94,6 +94,7 @@ struct ToDoWidgetView: View {
             )
         }
         .buttonStyle(.pillTintFilled)
+        .identifier("Dashboard.Todo.todayButton")
     }
 
     // MARK: - Card Header
@@ -147,6 +148,7 @@ struct ToDoWidgetView: View {
                     .font(.regular14)
                     .applyTint()
             }
+            .identifier("Dashboard.Todo.showCompletedToggle")
         }
     }
 
@@ -198,6 +200,11 @@ struct ToDoWidgetView: View {
                 ? String(localized: "Previous week", bundle: .student)
                 : String(localized: "Next week", bundle: .student)
         )
+        .identifier(
+            toPrevious
+                ? "Dashboard.Todo.prevWeekButton"
+                : "Dashboard.Todo.nextWeekButton"
+        )
     }
 
     // MARK: - Day Content
@@ -216,6 +223,7 @@ struct ToDoWidgetView: View {
                 .paddingStyle(.bottom, .standard)
             addToDoButton
                 .paddingStyle(.bottom, .standard)
+                .identifier("Dashboard.Todo.TodoList.addTodoButton")
         }
     }
 
@@ -237,6 +245,7 @@ struct ToDoWidgetView: View {
             subtitle: String(localized: "Looks like you're free for this day.\nDo you want to add some To-dos?", bundle: .student),
             button: {
                 addToDoButton
+                    .identifier("Dashboard.Todo.Empty.addTodoButton")
             }
         )
     }
@@ -257,6 +266,7 @@ struct ToDoWidgetView: View {
                     )
                 }
                 .buttonStyle(.pillTintFilled)
+                .identifier("Dashboard.Todo.Error.retryButton")
             }
         )
     }

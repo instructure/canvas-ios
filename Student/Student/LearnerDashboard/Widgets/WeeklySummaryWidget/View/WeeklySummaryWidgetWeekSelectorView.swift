@@ -37,6 +37,7 @@ struct WeeklySummaryWidgetWeekSelectorView: View {
                     .rotationEffect(.degrees(180))
             }
             .accessibilityLabel(viewModel.previousWeekA11yLabel)
+            .identifier("Dashboard.Forecast.prevWeekButton")
             .unredacted()
 
             Text(viewModel.weekRangeText)
@@ -58,6 +59,7 @@ struct WeeklySummaryWidgetWeekSelectorView: View {
                     .scaledIcon(size: 18)
             }
             .accessibilityLabel(viewModel.nextWeekA11yLabel)
+            .identifier("Dashboard.Forecast.nextWeekButton")
             .unredacted()
         }
         .padding(.vertical, 8)

@@ -52,7 +52,8 @@ struct FileUploadProgressCardView: View {
                         Image.xLine
                             .scaledIcon(size: 24)
                     }
-                    .accessibilityLabel(.init(localized: "Dismiss", bundle: .student))
+                    .accessibilityLabel(String(localized: "Dismiss", bundle: .student))
+                    .identifier("Dashboard.ProgressViews.FileUpload.dismissButton")
                 }
                 .paddingStyle(set: .standardCell)
                 .foregroundStyle(.textLightest)

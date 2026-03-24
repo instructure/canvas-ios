@@ -36,6 +36,7 @@ struct WeeklySummaryWidgetAssignmentListView: View {
                 }
                 .buttonStyle(.plain)
                 .accessibilityLabel(item.accessibilityLabel)
+                .identifier("Dashboard.Forecast.Item.cellButton")
                 InstUI.Divider(item.id != assignments.last?.id ? .padded : .hidden)
             }
         }

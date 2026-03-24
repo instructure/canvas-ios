@@ -33,6 +33,8 @@ struct FileUploadProgressWidgetView: View {
                         onDismiss: { model.dismiss(uploadId: card.id) },
                         onTap: { model.navigateToAssignment(route: card.assignmentRoute, from: controller) }
                     )
+                    .accessibilityElement(children: .contain)
+                    .identifier("Dashboard.ProgressViews.FileUpload.Id.\(card.id)")
                 }
             }
         }

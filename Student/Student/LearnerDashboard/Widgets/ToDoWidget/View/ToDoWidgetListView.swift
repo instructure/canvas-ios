@@ -38,6 +38,7 @@ struct ToDoWidgetListView: View {
                     isSwiping: isSwipingBinding(for: item),
                     showCompletedOverride: viewModel.showCompleted
                 )
+                .identifier("Dashboard.Todo.TodoList.Item")
                 .paddingStyle(.leading, .standard)
                 InstUI.Divider(.padded)
             }

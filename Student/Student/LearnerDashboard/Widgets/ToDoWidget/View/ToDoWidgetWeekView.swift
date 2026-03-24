@@ -45,6 +45,7 @@ struct ToDoWidgetWeekView: View {
                     )
                 }
                 .frame(maxWidth: .infinity)
+                .identifier("Dashboard.Todo.dayButton")
             }
         }
     }

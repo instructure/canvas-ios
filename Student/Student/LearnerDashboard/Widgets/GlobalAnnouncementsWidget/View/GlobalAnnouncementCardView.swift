@@ -50,7 +50,7 @@ struct GlobalAnnouncementCardView: View {
         .elevation(.cardLarge, background: .backgroundLightest)
         .accessibilityElement(children: .combine)
         .accessibilityLabel(viewModel.a11yLabel)
-        .identifier("Dashboard.GlobalAnnouncementCard.cardButton")
+        .identifier("Dashboard.Announcements.GlobalAnnouncement.cardButton")
     }
 
     private var icon: some View {
