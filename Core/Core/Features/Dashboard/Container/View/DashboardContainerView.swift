@@ -49,17 +49,28 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     private let shouldShowGroupList: Bool
     private let verticalSpacing: CGFloat = 16
 
-    public init(shouldShowGroupList: Bool,
-                showOnlyTeacherEnrollment: Bool,
-                offlineViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())) {
+    public init(
+        shouldShowGroupList: Bool,
+        showOnlyTeacherEnrollment: Bool,
+        isLearnerDashboardEnabledOnInstance: Bool,
+        offlineViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
+    ) {
         courseCardListViewModel = DashboardCourseCardListAssembly.makeDashboardCourseCardListViewModel(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment)
         self.shouldShowGroupList = shouldShowGroupList
         let env = AppEnvironment.shared
-        layoutViewModel = DashboardLayoutViewModel(interactor: DashboardSettingsInteractorLive(environment: env, defaults: env.userDefaults))
+        layoutViewModel = DashboardLayoutViewModel(interactor: DashboardSettingsInteractorLive(
+            environment: env,
+            defaults: env.userDefaults,
+            isLearnerDashboardEnabledOnInstance: isLearnerDashboardEnabledOnInstance
+        ))
         colors = env.subscribe(GetCustomColors())
         notifications = env.subscribe(GetAccountNotifications())
         settings = env.subscribe(GetUserSettings(userID: "self"))
-        _viewModel = StateObject(wrappedValue: DashboardContainerViewModel(environment: env, defaults: env.userDefaults ?? .fallback))
+        _viewModel = StateObject(wrappedValue: DashboardContainerViewModel(
+            environment: env,
+            defaults: env.userDefaults ?? .fallback,
+            isLearnerDashboardEnabledOnInstance: isLearnerDashboardEnabledOnInstance
+        ))
         self.offlineModeViewModel = offlineViewModel
     }
 

@@ -37,7 +37,7 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
     private var subscriptions = Set<AnyCancellable>()
     private var userSettings: Store<GetUserSettings>!
 
-    public init(environment: AppEnvironment, defaults: SessionDefaults?) {
+    public init(environment: AppEnvironment, defaults: SessionDefaults?, isLearnerDashboardEnabledOnInstance: Bool = false) {
         let defaults = defaults ?? .fallback
         let storedLayout: DashboardLayout = defaults.isDashboardLayoutGrid ? .grid : .list
         self.defaults = defaults
@@ -47,7 +47,7 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
         self.useNewDashboard = CurrentValueSubject<Bool, Never>(defaults.preferNewLearnerDashboard)
         self.isGradesSwitchVisible = (environment.app == .student)
         self.isColorOverlaySwitchVisible = (environment.app == .student || environment.app == .teacher)
-        self.isNewDashboardSwitchVisible = ExperimentalFeature.studentLearnerDashboard.isEnabled
+        self.isNewDashboardSwitchVisible = !ExperimentalFeature.revertToOldStudentDashboard.isEnabled && isLearnerDashboardEnabledOnInstance
         self.userSettings = environment.subscribe(GetUserSettings(userID: "self")) { [weak self] in
             self?.updateColorOverlay()
         }

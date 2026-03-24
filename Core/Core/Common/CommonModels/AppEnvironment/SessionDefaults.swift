@@ -319,6 +319,8 @@ public struct SessionDefaults: Equatable {
         set { self["isSpeedGraderAnnotationToolbarVisible"] = newValue }
     }
 
+    // MARK: - Learner Dashboard
+
     public var preferNewLearnerDashboard: Bool {
         get {
             (self["preferNewLearnerDashboard"] as? Bool) ?? true
