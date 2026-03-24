@@ -42,7 +42,7 @@ struct GlobalAnnouncementDetailsScreen: View {
                         .font(.regular16)
                         .foregroundStyle(.brandPrimary)
                 }
-                .identifier("GlobalAnnouncement.closeButton")
+                .identifier("Dashboard.Announcements.GlobalAnnouncementDetails.closeButton")
             }
 
             ToolbarItem(placement: .topBarTrailing) {
@@ -53,7 +53,7 @@ struct GlobalAnnouncementDetailsScreen: View {
                         .font(.semibold16)
                         .foregroundStyle(.brandPrimary)
                 }
-                .identifier("GlobalAnnouncement.dismissButton")
+                .identifier("Dashboard.Announcements.GlobalAnnouncementDetails.dismissButton")
             }
         }
     }

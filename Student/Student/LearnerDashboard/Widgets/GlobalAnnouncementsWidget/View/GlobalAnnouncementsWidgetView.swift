@@ -40,7 +40,7 @@ struct GlobalAnnouncementsWidgetView: View {
                         ) { cardViewModel in
                             GlobalAnnouncementCardView(viewModel: cardViewModel)
                                 .accessibilityElement(children: .contain)
-                                .identifier("Dashboard.GlobalAnnouncementCard.Id.\(cardViewModel.id)")
+                                .identifier("Dashboard.Announcements.GlobalAnnouncement.Id.\(cardViewModel.id)")
                         }
 
                         InstUI.PageIndicator(currentIndex: currentPage, count: totalPages)

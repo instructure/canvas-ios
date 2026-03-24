@@ -40,10 +40,13 @@ struct WeeklySummaryWidgetSegmentedControl: View {
     private var buttonsRow: some View {
         HStack(spacing: 0) {
             categoryButton(viewModel.missingFilter)
+                .identifier("Dashboard.Forecast.CategorySelector.missingButton")
             divider(isVisible: viewModel.showMissingDueDivider)
             categoryButton(viewModel.dueFilter)
+                .identifier("Dashboard.Forecast.CategorySelector.dueButton")
             divider(isVisible: viewModel.showDueNewGradesDivider)
             categoryButton(viewModel.newGradesFilter)
+                .identifier("Dashboard.Forecast.CategorySelector.newGradesButton")
         }
     }
 

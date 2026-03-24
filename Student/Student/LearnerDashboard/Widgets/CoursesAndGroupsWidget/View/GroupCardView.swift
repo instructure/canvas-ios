@@ -47,7 +47,7 @@ struct GroupCardView: View {
             }
         )
         .accessibilityElement(children: .combine)
-        .identifier("Dashboard.GroupCard.cardButton")
+        .identifier("Dashboard.Courses.GroupCard.cardButton")
     }
 
     @ViewBuilder
@@ -94,7 +94,7 @@ struct GroupCardView: View {
         }
         .foregroundStyle(viewModel.groupColor)
         .fixedSize(horizontal: true, vertical: false)
-        .identifier("Dashboard.GroupCard.memberCountPill")
+        .identifier("Dashboard.Courses.GroupCard.memberCountPill")
     }
 
     private var messageButton: some View {
@@ -107,7 +107,7 @@ struct GroupCardView: View {
                 .scaledFrame(height: 72, useIconScale: true) // increases tap area
         }
         .accessibilityLabel(String(localized: "Send message to members", bundle: .student))
-        .identifier("Dashboard.GroupCard.messageButton")
+        .identifier("Dashboard.Courses.GroupCard.messageButton")
     }
 }
 

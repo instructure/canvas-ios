@@ -74,7 +74,7 @@ struct CourseInvitationCardView: View {
             .frame(maxWidth: .infinity)
         }
         .buttonStyle(.pillTintFilled)
-        .identifier("CourseInvitation.\(viewModel.id).acceptButton")
+        .identifier("Dashboard.Invitations.CourseInvitation.acceptButton")
     }
 
     private var declineButton: some View {
@@ -92,7 +92,7 @@ struct CourseInvitationCardView: View {
             .frame(maxWidth: .infinity)
         }
         .buttonStyle(.pillDefaultOutlined)
-        .identifier("CourseInvitation.\(viewModel.id).rejectButton")
+        .identifier("Dashboard.Invitations.CourseInvitation.declineButton")
     }
 }
 
