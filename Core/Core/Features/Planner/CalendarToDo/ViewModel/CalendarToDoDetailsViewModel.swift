@@ -155,7 +155,7 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
                     }
                 },
                 receiveValue: { [router] in
-                    router.pop(from: source)
+                    router.dismiss(source)
                 }
             )
             .store(in: &subscriptions)

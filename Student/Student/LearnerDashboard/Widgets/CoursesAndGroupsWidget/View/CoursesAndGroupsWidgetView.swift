@@ -46,9 +46,9 @@ struct CoursesAndGroupsWidgetView: View {
                         Once you enroll in a class, your dashboard will start filling up with new activity.
                         """, bundle: .student)
                 ))
-            case .data:
+            case .loading, .data:
                 content
-            case .loading, .error:
+            case .error:
                 SwiftUI.EmptyView()
             }
         }
@@ -97,25 +97,30 @@ struct CoursesAndGroupsWidgetView: View {
                 columnCount: columnCount
             ) { [courseCards = viewModel.courseCards] index in
                 let cardViewModel = courseCards[index]
-                CourseCardView(
-                    viewModel: cardViewModel,
-                    showGrades: viewModel.showGrades,
-                    showColorOverlay: viewModel.showColorOverlay
-                )
-                .contentShape(.dragPreview, RoundedRectangle(cornerRadius: InstUI.Styles.Elevation.Shape.cardLarge.cornerRadius))
-                .onDrag {
-                    draggedCourseCardId = cardViewModel.id
-                    return NSItemProvider(item: nil, typeIdentifier: CourseCardDropToReorderDelegate.DropID)
-                }
-                .onDrop(
-                    of: [CourseCardDropToReorderDelegate.DropID],
-                    delegate: CourseCardDropToReorderDelegate(
-                        receiverCardId: cardViewModel.id,
-                        draggedCourseCardId: $draggedCourseCardId,
-                        order: courseCards.map { $0.id },
-                        delegate: viewModel
+
+                if viewModel.state == .data {
+                    CourseCardView(
+                        viewModel: cardViewModel,
+                        showGrades: viewModel.showGrades,
+                        showColorOverlay: viewModel.showColorOverlay
                     )
-                )
+                    .contentShape(.dragPreview, RoundedRectangle(cornerRadius: InstUI.Styles.Elevation.Shape.cardLarge.cornerRadius))
+                    .onDrag {
+                        draggedCourseCardId = cardViewModel.id
+                        return NSItemProvider(item: nil, typeIdentifier: CourseCardDropToReorderDelegate.DropID)
+                    }
+                    .onDrop(
+                        of: [CourseCardDropToReorderDelegate.DropID],
+                        delegate: CourseCardDropToReorderDelegate(
+                            receiverCardId: cardViewModel.id,
+                            draggedCourseCardId: $draggedCourseCardId,
+                            order: courseCards.map { $0.id },
+                            delegate: viewModel
+                        )
+                    )
+                } else {
+                    SkeletonCardView(color: cardViewModel.courseColor, title: cardViewModel.title)
+                }
             }
             .animation(.dashboardWidget, value: viewModel.courseCards)
         }
@@ -133,7 +138,17 @@ struct CoursesAndGroupsWidgetView: View {
                 spacing: cardSpacing(columnCount),
                 columnCount: columnCount
             ) { [groupCards = viewModel.groupCards] index in
-                GroupCardView(viewModel: groupCards[index])
+                let cardViewModel = groupCards[index]
+
+                if viewModel.state == .data {
+                    GroupCardView(viewModel: cardViewModel)
+                } else {
+                    SkeletonCardView(
+                        color: cardViewModel.groupColor,
+                        title: cardViewModel.title,
+                        contextLabel: cardViewModel.contextName
+                    )
+                }
             }
         }
     }

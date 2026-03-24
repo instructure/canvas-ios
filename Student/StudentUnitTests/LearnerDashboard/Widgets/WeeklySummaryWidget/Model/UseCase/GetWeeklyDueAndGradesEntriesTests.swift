@@ -478,7 +478,7 @@ final class GetWeeklyDueAndGradesEntriesTests: StudentTestCase {
     }
 
     private func mockAssignmentGroups(courseId: String, groups: [APIAssignmentGroup]) {
-        api.mock(GetAssignmentGroupsRequest(courseID: courseId, include: [.assignments, .submission], perPage: 100)) { _ in
+        api.mock(GetAssignmentGroupsRequest(courseID: courseId, include: [.assignments, .submission, .sub_assignment_submissions], perPage: 100)) { _ in
             (groups, nil, nil)
         }
     }

@@ -58,8 +58,7 @@ struct CourseTotalGradeStatusView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Image(status.iconName, bundle: .core)
-                .resizable()
+            Image.resizableDesaturated(status.iconName, bundle: .core)
                 .aspectRatio(contentMode: .fit)
                 .frame(height: 40)
                 .accessibilityLabel(Text("Canvas single grade widget"))

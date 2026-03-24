@@ -22,13 +22,12 @@ import SwiftUI
 struct WeeklySummaryWidgetWeekSelectorView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     var viewModel: WeeklySummaryWidgetViewModel
-
-    @State private var insertionOffset: CGFloat = 0
+    @Binding var transitionOffset: CGFloat
 
     var body: some View {
         HStack(spacing: 8) {
             Button {
-                insertionOffset = -80
+                transitionOffset = -WeeklySummaryWidgetView.weekTransitionOffsetMagnitude
                 withAnimation(WeeklySummaryWidgetView.animation) {
                     viewModel.navigateToPreviousWeek()
                 }
@@ -45,12 +44,12 @@ struct WeeklySummaryWidgetWeekSelectorView: View {
                 .frame(maxWidth: .infinity)
                 .id(viewModel.weekStartDate)
                 .transition(.asymmetric(
-                    insertion: .opacity.combined(with: .offset(x: insertionOffset)),
-                    removal: .opacity.combined(with: .offset(x: -insertionOffset))
+                    insertion: .opacity.combined(with: .offset(x: transitionOffset)),
+                    removal: .opacity.combined(with: .offset(x: -transitionOffset))
                 ))
 
             Button {
-                insertionOffset = 80
+                transitionOffset = WeeklySummaryWidgetView.weekTransitionOffsetMagnitude
                 withAnimation(WeeklySummaryWidgetView.animation) {
                     viewModel.navigateToNextWeek()
                 }
@@ -74,7 +73,8 @@ struct WeeklySummaryWidgetWeekSelectorView: View {
         viewModel: WeeklySummaryWidgetViewModel(
             config: .make(id: .weeklySummary),
             router: PreviewEnvironment().router
-        )
+        ),
+        transitionOffset: .constant(80)
     )
     .padding(.horizontal, 16)
     .background(Color.course4)

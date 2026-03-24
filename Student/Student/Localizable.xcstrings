@@ -2693,8 +2693,17 @@
         }
       }
     },
+    "%@ possible" : {
+
+    },
     "%@ widget visibility" : {
 
+    },
+    "%@, marked as done" : {
+      "comment" : "VoiceOver announcement when a to-do item is marked as complete. The item title is inserted before the status message."
+    },
+    "%@, marked as not done" : {
+      "comment" : "VoiceOver announcement when a to-do item is unmarked as complete. The item title is inserted before the status message."
     },
     "%@..." : {
       "comment" : "Word and ellipses",
@@ -20683,6 +20692,9 @@
           }
         }
       }
+    },
+    "Add To-do" : {
+
     },
     "Add widgets using Customize Dashboard or Dashboard Settings." : {
 
@@ -43892,6 +43904,9 @@
         }
       }
     },
+    "Current Week" : {
+
+    },
     "Currently there is limited quiz support on mobile" : {
       "comment" : "Message telling users that quiz support on mobile is limited",
       "extractionState" : "manual",
@@ -45474,6 +45489,9 @@
           }
         }
       }
+    },
+    "Daily To-do" : {
+
     },
     "Dashboard" : {
       "comment" : "Tab title, max character count is 14",
@@ -64936,6 +64954,12 @@
           }
         }
       }
+    },
+    "Failed to mark item as done" : {
+
+    },
+    "Failed to mark item as not done" : {
+
     },
     "Feeling stuck? Everyone hits walls, just don't stop climbing." : {
       "localizations" : {
@@ -90472,6 +90496,9 @@
         }
       }
     },
+    "Looks like you're free for this day.\nDo you want to add some To-dos?" : {
+
+    },
     "Love it!" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -102496,6 +102523,9 @@
           }
         }
       }
+    },
+    "No additional details available." : {
+
     },
     "No audio was recorded." : {
       "comment" : "Message for attempting submission without a comment",
@@ -136838,6 +136868,9 @@
       }
     },
     "Show Color Overlay" : {
+
+    },
+    "Show Completed" : {
 
     },
     "Show file" : {
@@ -177919,6 +177952,9 @@
         }
       }
     },
+    "We weren’t able to load your To-dos.\nTry again, or come back later." : {
+
+    },
     "Website Address" : {
       "localizations" : {
         "ar" : {
@@ -185380,6 +185416,9 @@
           }
         }
       }
+    },
+    "You're all done for now!" : {
+
     },
     "You're building skills, even on slow days." : {
       "localizations" : {

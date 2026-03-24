@@ -131,7 +131,8 @@ final class WeeklySummaryWidgetFilterViewModelTests: StudentTestCase {
                 submissionStatus: nil,
                 pointsPossible: nil,
                 grade: nil,
-                gradeWeightText: nil
+                gradeWeightText: nil,
+                discussionCheckpointText: nil
             )
         }
     }

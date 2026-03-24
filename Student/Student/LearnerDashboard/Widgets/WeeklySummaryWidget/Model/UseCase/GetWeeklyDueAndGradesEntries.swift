@@ -112,11 +112,21 @@ final class GetWeeklyDueAndGradesEntries: UseCase {
                 plannable,
                 assignment: assignment,
                 weekStart: weekStart,
-                gradeWeight: group.flatMap { weightLogic.assignmentWeightInCourse(
-                    assignment: .init(isOmittedFromFinalGrade: assignment.omit_from_final_grade, pointsPossible: assignment.points_possible),
-                    groupWeight: $0.group_weight,
-                    assignmentsInGroup: ($0.assignments ?? []).compactMap { .init(isOmittedFromFinalGrade: $0.omit_from_final_grade, pointsPossible: $0.points_possible) }
-                ) },
+                gradeWeight: group.flatMap {
+                    weightLogic.assignmentWeightInCourse(
+                        assignment: .init(
+                            isOmittedFromFinalGrade: assignment.omit_from_final_grade,
+                            pointsPossible: plannable.plannable?.points_possible ?? assignment.points_possible
+                        ),
+                        groupWeight: $0.group_weight,
+                        assignmentsInGroup: ($0.assignments ?? []).compactMap {
+                            .init(
+                                isOmittedFromFinalGrade: $0.omit_from_final_grade,
+                                pointsPossible: $0.points_possible
+                            )
+                        }
+                    )
+                },
                 in: client
             )
         }
@@ -170,7 +180,7 @@ final class GetWeeklyDueAndGradesEntries: UseCase {
     }
 
     private func fetchAssignmentGroups(for courseId: String, api: API) -> AnyPublisher<[APIAssignmentGroup], Error> {
-        api.exhaust(GetAssignmentGroupsRequest(courseID: courseId, include: [.assignments, .submission], perPage: 100))
+        api.exhaust(GetAssignmentGroupsRequest(courseID: courseId, include: [.assignments, .submission, .sub_assignment_submissions], perPage: 100))
             .map { (groups, _) in groups }
             .eraseToAnyPublisher()
     }

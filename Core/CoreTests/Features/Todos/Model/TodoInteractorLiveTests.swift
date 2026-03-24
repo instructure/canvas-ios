@@ -682,6 +682,351 @@ class TodoInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(TabBarBadgeCounts.todoListCount, 3)
     }
 
+    // MARK: - Widget Refresh (startDate/endDate) Tests
+
+    func test_widgetRefresh_returnsItemsForGivenDateRange() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let startDate = Date.make(year: 2025, month: 2, day: 1)
+        let endDate = Date.make(year: 2025, month: 2, day: 7)
+        let plannables = [makePlannable(courseId: "1", plannableId: "p1", type: "assignment", title: "Widget Item", date: startDate)]
+
+        mockCourses(courses)
+        mockPlannables(plannables, startDate: startDate, endDate: endDate)
+
+        // WHEN
+        XCTAssertFinish(testee.refresh(startDate: startDate, endDate: endDate, ignorePlannablesCache: false, ignoreCoursesCache: false))
+
+        // THEN
+        XCTAssertFirstValue(testee.todoGroups) { todoGroups in
+            XCTAssertEqual(todoGroups.flatMap { $0.items }.count, 1)
+            XCTAssertEqual(todoGroups.flatMap { $0.items }.first?.title, "Widget Item")
+        }
+    }
+
+    func test_widgetRefresh_doesNotUpdateTabBarBadgeCount() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let startDate = Date.make(year: 2025, month: 2, day: 1)
+        let endDate = Date.make(year: 2025, month: 2, day: 7)
+        let plannables = [
+            makePlannable(courseId: "1", plannableId: "p1", type: "assignment", title: "Item 1", date: startDate),
+            makePlannable(courseId: "1", plannableId: "p2", type: "quiz", title: "Item 2", date: startDate)
+        ]
+        TabBarBadgeCounts.todoListCount = 0
+
+        mockCourses(courses)
+        mockPlannables(plannables, startDate: startDate, endDate: endDate)
+
+        // WHEN
+        XCTAssertFinish(testee.refresh(startDate: startDate, endDate: endDate, ignorePlannablesCache: false, ignoreCoursesCache: false))
+
+        // THEN - badge count must remain unchanged
+        XCTAssertEqual(TabBarBadgeCounts.todoListCount, 0)
+    }
+
+    func test_widgetRefresh_doesNotLogFilterAnalytics() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let startDate = Date.make(year: 2025, month: 2, day: 1)
+        let endDate = Date.make(year: 2025, month: 2, day: 7)
+        let plannables = [makePlannable(courseId: "1", plannableId: "p1", type: "assignment", title: "Item 1", date: startDate)]
+
+        mockCourses(courses)
+        mockPlannables(plannables, startDate: startDate, endDate: endDate)
+
+        // WHEN
+        XCTAssertFinish(testee.refresh(startDate: startDate, endDate: endDate, ignorePlannablesCache: false, ignoreCoursesCache: false))
+
+        // THEN - filter analytics must NOT be logged for widget refresh
+        XCTAssertEqual(mockAnalyticsHandler.lastEvent, nil)
+    }
+
+    func test_widgetRefresh_includesCompletedItemsRegardlessOfFilterSettings() {
+        // GIVEN
+        let sessionDefaults = SessionDefaults(sessionID: "test-widget-filter")
+        let filterOptions = TodoFilterOptions(
+            visibilityOptions: [],
+            dateRangeStart: TodoFilterOptions.default.dateRangeStart,
+            dateRangeEnd: TodoFilterOptions.default.dateRangeEnd
+        )
+        environment.userDefaults = sessionDefaults
+        environment.userDefaults?.todoFilterOptions = filterOptions
+        let interactor = TodoInteractorLive(alwaysExcludeCompleted: false, sessionDefaults: sessionDefaults, env: environment)
+
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let startDate = Date.make(year: 2025, month: 2, day: 1)
+        let endDate = Date.make(year: 2025, month: 2, day: 7)
+        let completedPlannable = makePlannableWithCompletion(courseId: "1", plannableId: "p1", type: "assignment", title: "Completed Item", isCompleted: true, date: startDate)
+        let pendingPlannable = makePlannableWithCompletion(courseId: "1", plannableId: "p2", type: "quiz", title: "Pending Item", isCompleted: false, date: startDate)
+
+        mockCourses(courses)
+        mockPlannables([completedPlannable, pendingPlannable], startDate: startDate, endDate: endDate)
+
+        // WHEN
+        XCTAssertFinish(interactor.refresh(startDate: startDate, endDate: endDate, ignorePlannablesCache: false, ignoreCoursesCache: false))
+
+        // THEN - both items shown; filterOptions are ignored for widget refresh
+        XCTAssertFirstValue(interactor.todoGroups) { todoGroups in
+            let allItems = todoGroups.flatMap { $0.items }
+            XCTAssertEqual(allItems.count, 2)
+            XCTAssertContains(allItems, { $0.title == "Completed Item" })
+            XCTAssertContains(allItems, { $0.title == "Pending Item" })
+        }
+    }
+
+    func test_widgetRefresh_withAlwaysExcludeCompleted_stillFiltersCompletedItems() {
+        // GIVEN - even without filterOptions, alwaysExcludeCompleted removes completed from display
+        let sessionDefaults = SessionDefaults(sessionID: "test-widget-exclude")
+        let interactor = TodoInteractorLive(alwaysExcludeCompleted: true, sessionDefaults: sessionDefaults, env: environment)
+
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let startDate = Date.make(year: 2025, month: 2, day: 1)
+        let endDate = Date.make(year: 2025, month: 2, day: 7)
+        let completedPlannable = makePlannableWithCompletion(courseId: "1", plannableId: "p1", type: "assignment", title: "Completed Item", isCompleted: true, date: startDate)
+        let pendingPlannable = makePlannableWithCompletion(courseId: "1", plannableId: "p2", type: "quiz", title: "Pending Item", isCompleted: false, date: startDate)
+
+        mockCourses(courses)
+        mockPlannables([completedPlannable, pendingPlannable], startDate: startDate, endDate: endDate)
+
+        // WHEN
+        XCTAssertFinish(interactor.refresh(startDate: startDate, endDate: endDate, ignorePlannablesCache: false, ignoreCoursesCache: false))
+
+        // THEN
+        XCTAssertFirstValue(interactor.todoGroups) { todoGroups in
+            let allItems = todoGroups.flatMap { $0.items }
+            XCTAssertEqual(allItems.count, 1)
+            XCTAssertEqual(allItems.first?.title, "Pending Item")
+        }
+    }
+
+    func test_tabRefresh_readsFilterOptionsFromSessionDefaults() {
+        // GIVEN
+        let sessionDefaults = SessionDefaults(sessionID: "test-tab-filter")
+        let filterOptions = TodoFilterOptions(
+            visibilityOptions: [],
+            dateRangeStart: TodoFilterOptions.default.dateRangeStart,
+            dateRangeEnd: TodoFilterOptions.default.dateRangeEnd
+        )
+        environment.userDefaults = sessionDefaults
+        environment.userDefaults?.todoFilterOptions = filterOptions
+        let interactor = TodoInteractorLive(alwaysExcludeCompleted: false, sessionDefaults: sessionDefaults, env: environment)
+
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let completedPlannable = makePlannableWithCompletion(courseId: "1", plannableId: "p1", type: "assignment", title: "Completed Item", isCompleted: true)
+        let pendingPlannable = makePlannableWithCompletion(courseId: "1", plannableId: "p2", type: "quiz", title: "Pending Item", isCompleted: false)
+
+        mockCourses(courses)
+        mockPlannables([completedPlannable, pendingPlannable])
+
+        // WHEN
+        XCTAssertFinish(interactor.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false))
+
+        // THEN - filterOptions with empty visibilityOptions hides completed items
+        XCTAssertFirstValue(interactor.todoGroups) { todoGroups in
+            let allItems = todoGroups.flatMap { $0.items }
+            XCTAssertEqual(allItems.count, 1)
+            XCTAssertEqual(allItems.first?.title, "Pending Item")
+        }
+    }
+
+    func test_localObservation_updatesWhenCachedCoursesExistButFilterOptionsIsNil() {
+        // GIVEN - widget refresh sets cachedCourses but leaves lastUsedFilterOptions nil
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let startDate = Date.make(year: 2025, month: 2, day: 1)
+        let endDate = Date.make(year: 2025, month: 2, day: 7)
+
+        mockCourses(courses)
+        mockPlannables([], startDate: startDate, endDate: endDate)
+        XCTAssertFinish(testee.refresh(startDate: startDate, endDate: endDate, ignorePlannablesCache: false, ignoreCoursesCache: false), timeout: 5)
+
+        // WHEN - a plannable is inserted (simulating a DB update)
+        let updateExpectation = expectation(description: "todoGroups updated after item inserted with nil filterOptions")
+        var subscription: AnyCancellable?
+        subscription = testee.todoGroups
+            .dropFirst()
+            .first()
+            .sink { groups in
+                let allItems = groups.flatMap { $0.items }
+                XCTAssertEqual(allItems.count, 1)
+                XCTAssertContains(allItems, { $0.plannableId == "obs-1" })
+                updateExpectation.fulfill()
+                subscription?.cancel()
+            }
+
+        Plannable.save(
+            APIPlannable.make(
+                course_id: ID("1"),
+                plannable_id: ID("obs-1"),
+                plannable_type: "assignment",
+                plannable: .make(title: "Observed Item"),
+                plannable_date: Self.mockDate.addDays(1)
+            ),
+            userId: nil,
+            useCase: .todo,
+            in: databaseClient
+        )
+
+        wait(for: [updateExpectation], timeout: 2)
+    }
+
+    // MARK: - isCacheExpiredForStartDate Tests
+
+    func test_isCacheExpiredForStartDate_whenNoRefreshCalledForDate_shouldReturnTrue() {
+        let startDate = Date.make(year: 2025, month: 3, day: 10)
+
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(startDate), true)
+    }
+
+    func test_isCacheExpiredForStartDate_whenRefreshCalledForDate_shouldReturnFalse() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let startDate = Date.make(year: 2025, month: 3, day: 10)
+        let endDate = Date.make(year: 2025, month: 3, day: 17)
+
+        mockCourses(courses)
+        mockPlannables([], startDate: startDate, endDate: endDate)
+
+        // WHEN
+        XCTAssertFinish(testee.refresh(startDate: startDate, endDate: endDate, ignorePlannablesCache: false, ignoreCoursesCache: false))
+
+        // THEN - cache was just populated, so it should not be expired
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(startDate), false)
+    }
+
+    func test_isCacheExpiredForStartDate_whenCalledWithDifferentDateThanRefreshed_shouldReturnTrue() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let refreshedStartDate = Date.make(year: 2025, month: 3, day: 10)
+        let otherStartDate = Date.make(year: 2025, month: 3, day: 17)
+        let endDate = Date.make(year: 2025, month: 3, day: 24)
+
+        mockCourses(courses)
+        mockPlannables([], startDate: refreshedStartDate, endDate: endDate)
+
+        // WHEN - only refresh for refreshedStartDate
+        XCTAssertFinish(testee.refresh(startDate: refreshedStartDate, endDate: endDate, ignorePlannablesCache: false, ignoreCoursesCache: false))
+
+        // THEN - otherStartDate has no associated use case, so it should be treated as expired
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(otherStartDate), true)
+    }
+
+    // MARK: - clearRangedCaches Tests
+
+    func test_clearRangedCaches_whenNoRangedRefreshCalled_shouldComplete() {
+        XCTAssertFinish(testee.clearRangedCaches().setFailureType(to: Error.self).eraseToAnyPublisher())
+    }
+
+    func test_clearRangedCaches_whenRangedRefreshCalled_shouldMakeCacheExpiredForStartDate() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let startDate = Date.make(year: 2025, month: 3, day: 10)
+        let endDate = Date.make(year: 2025, month: 3, day: 17)
+
+        mockCourses(courses)
+        mockPlannables([], startDate: startDate, endDate: endDate)
+        XCTAssertFinish(testee.refresh(startDate: startDate, endDate: endDate, ignorePlannablesCache: false, ignoreCoursesCache: false))
+
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(startDate), false)
+
+        // WHEN
+        XCTAssertFinish(testee.clearRangedCaches().setFailureType(to: Error.self).eraseToAnyPublisher())
+
+        // THEN - rangedUseCases was cleared so startDate has no associated use case → expired
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(startDate), true)
+    }
+
+    func test_clearRangedCaches_whenMultipleRangedRefreshCalled_shouldClearAllDates() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let startDate1 = Date.make(year: 2025, month: 3, day: 3)
+        let endDate1 = Date.make(year: 2025, month: 3, day: 10)
+        let startDate2 = Date.make(year: 2025, month: 3, day: 10)
+        let endDate2 = Date.make(year: 2025, month: 3, day: 17)
+
+        mockCourses(courses)
+        mockPlannables([], startDate: startDate1, endDate: endDate1)
+        mockPlannables([], startDate: startDate2, endDate: endDate2)
+        XCTAssertFinish(testee.refresh(startDate: startDate1, endDate: endDate1, ignorePlannablesCache: false, ignoreCoursesCache: false))
+        XCTAssertFinish(testee.refresh(startDate: startDate2, endDate: endDate2, ignorePlannablesCache: false, ignoreCoursesCache: false))
+
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(startDate1), false)
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(startDate2), false)
+
+        // WHEN
+        XCTAssertFinish(testee.clearRangedCaches().setFailureType(to: Error.self).eraseToAnyPublisher())
+
+        // THEN - both start dates treated as expired
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(startDate1), true)
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(startDate2), true)
+    }
+
+    // MARK: - Local Observation Tests
+
+    func test_localObservation_updatesWhenNewPlannableWithTodoUseCaseIsInserted() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+
+        mockCourses(courses)
+        mockPlannables([makePlannable(courseId: "1", plannableId: "first-1", type: "assignment", title: "First Item")])
+        XCTAssertFinish(testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false), timeout: 5)
+
+        XCTAssertFirstValue(testee.todoGroups, timeout: 2) { groups in
+            XCTAssertEqual(groups.flatMap { $0.items }.count, 1)
+        }
+
+        // WHEN - simulate a new todo being inserted with .todo use case ID (as GetPlannables.write() does after API refresh)
+        let updateExpectation = expectation(description: "todoGroups updated after new item inserted")
+        var subscription: AnyCancellable?
+        subscription = testee.todoGroups
+            .dropFirst()
+            .first()
+            .sink { groups in
+                let allItems = groups.flatMap { $0.items }
+                XCTAssertEqual(allItems.count, 2)
+                XCTAssertTrue(allItems.contains(where: { $0.plannableId == "new-1" }))
+                updateExpectation.fulfill()
+                subscription?.cancel()
+            }
+
+        Plannable.save(
+            APIPlannable.make(
+                course_id: ID("1"),
+                plannable_id: ID("new-1"),
+                plannable_type: "assignment",
+                plannable: .make(title: "New Item"),
+                plannable_date: Self.mockDate.addDays(1)
+            ),
+            userId: nil,
+            useCase: .todo,
+            in: databaseClient
+        )
+
+        wait(for: [updateExpectation], timeout: 2)
+    }
+
+    func test_localObservation_doesNotUpdateTodosBeforeInitialRefresh() {
+        // GIVEN - interactor created, refresh() not yet called (cachedCourses is nil)
+        // WHEN - a plannable is inserted directly into CoreData
+        Plannable.save(
+            APIPlannable.make(
+                course_id: ID("1"),
+                plannable_id: ID("early-1"),
+                plannable_type: "assignment",
+                plannable: .make(title: "Early Item"),
+                plannable_date: Self.mockDate.addDays(1)
+            ),
+            userId: nil,
+            useCase: .todo,
+            in: databaseClient
+        )
+
+        // THEN - todoGroups stays empty because cachedCourses is nil and the observation is skipped
+        XCTAssertFirstValue(testee.todoGroups, timeout: 1) { groups in
+            XCTAssertTrue(groups.isEmpty)
+        }
+    }
+
     // MARK: - Helpers
 
     private func mockCourses(_ courses: [APICourse]) {

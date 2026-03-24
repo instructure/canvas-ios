@@ -70,22 +70,25 @@ extension CDDashboardWeeklySummaryEntry {
         model.submissionTypes = assignment.submission_types
         model.gradeWeight = gradeWeight
         let submission = assignment.submission?.values.first
-        model.grade = submission?.grade
-        model.score = submission?.score
-        model.excused = submission?.excused == true
+        let subSubmission = plannable.plannable?.sub_assignment_tag.flatMap { assignment.subAssignmentSubmission(tag: $0) }
+        let info = Self.gradeInfo(submission: submission, subSubmission: subSubmission)
+        model.grade = info.grade
+        model.score = info.score
+        model.excused = info.excused
         model.gradingType = assignment.grading_type.rawValue
         model.restrictQuantitativeData = (context.first(where: #keyPath(Course.id), equals: plannable.context?.id) as Course?)?.settings?.restrictQuantitativeData ?? false
-        let plannableSubmissions = plannable.submissions?.value1
         let status = Core.SubmissionStatus(
-            isSubmitted: submission.map { $0.workflow_state != .unsubmitted } ?? (plannableSubmissions?.submitted == true),
-            isGraded: submission?.grade != nil,
-            isGradeBelongsToCurrentSubmission: submission?.grade_matches_current_submission ?? true,
-            isLate: false,
-            isMissing: false,
-            isExcused: model.excused,
-            customStatusId: nil,
-            customStatusName: nil,
-            submissionType: nil
+            isSubmitted: info.isSubmitted,
+            isGraded: info.isGraded,
+            isGradeBelongsToCurrentSubmission: info.isGradeBelongsToCurrentSubmission,
+            isLate: info.isLate,
+            isMissing: info.isMissing,
+            isExcused: info.excused,
+            customStatusId: info.customStatusId,
+            // We don't have the name here but we also don't want to display it,
+            // we just need the placeholder to have the custom status properly recognized.
+            customStatusName: "",
+            submissionType: info.submissionType
         )
         if status.isGraded {
             model.submissionStatus = .graded
@@ -94,7 +97,53 @@ extension CDDashboardWeeklySummaryEntry {
         } else {
             model.submissionStatus = nil
         }
+        model.discussionCheckpointStep = DiscussionCheckpointStep(
+            tag: plannable.plannable?.sub_assignment_tag,
+            requiredReplyCount: plannable.details?.reply_to_entry_required_count
+        )
         return model
+    }
+
+    private struct SubmissionGradeInfo {
+        let grade: String?
+        let score: Double?
+        let excused: Bool
+        let isSubmitted: Bool
+        let isGraded: Bool
+        let isGradeBelongsToCurrentSubmission: Bool
+        let isLate: Bool
+        let isMissing: Bool
+        let customStatusId: String?
+        let submissionType: SubmissionType?
+    }
+
+    private static func gradeInfo(submission: APISubmission?, subSubmission: APISubAssignmentSubmission?) -> SubmissionGradeInfo {
+        if let sub = subSubmission {
+            return SubmissionGradeInfo(
+                grade: sub.published_grade,
+                score: sub.published_score,
+                excused: sub.excused ?? false,
+                isSubmitted: sub.submitted_at != nil,
+                isGraded: sub.published_score != nil,
+                isGradeBelongsToCurrentSubmission: sub.grade_matches_current_submission ?? true,
+                isLate: sub.late ?? false,
+                isMissing: sub.missing ?? false,
+                customStatusId: sub.custom_grade_status_id,
+                submissionType: submission?.submission_type
+            )
+        }
+        return SubmissionGradeInfo(
+            grade: submission?.grade,
+            score: submission?.score,
+            excused: submission?.excused ?? false,
+            isSubmitted: submission.map { $0.submitted_at != nil || $0.workflow_state == .pending_review } ?? false,
+            isGraded: submission.map { $0.score != nil && $0.workflow_state == .graded } ?? false,
+            isGradeBelongsToCurrentSubmission: submission?.grade_matches_current_submission ?? true,
+            isLate: submission?.late ?? false,
+            isMissing: submission?.missing ?? false,
+            customStatusId: submission?.custom_grade_status_id,
+            submissionType: submission?.submission_type
+        )
     }
 
     @discardableResult

@@ -33,18 +33,20 @@ class GetAllAnnouncementsRequestTests: XCTestCase {
             .optionalBool("active_only", nil),
             .optionalBool("latest_only", nil),
             .optionalValue("start_date", nil),
-            .optionalValue("end_date", nil)
+            .optionalValue("end_date", nil),
+            .perPage(10)
         ])
     }
 
     func testExhaustiveQuery() {
-        let request = GetAllAnnouncementsRequest(contextCodes: ["1", "2"], activeOnly: true, latestOnly: false)
+        let request = GetAllAnnouncementsRequest(contextCodes: ["1", "2"], activeOnly: true, latestOnly: false, perPage: 42)
         XCTAssertEqual(request.query, [
             .array("context_codes", ["1", "2"]),
             .optionalBool("active_only", true),
             .optionalBool("latest_only", false),
             .optionalValue("start_date", nil),
-            .optionalValue("end_date", nil)
+            .optionalValue("end_date", nil),
+            .perPage(42)
         ])
     }
 }

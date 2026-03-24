@@ -48,6 +48,38 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.state, .data)
     }
 
+    func test_refresh_ignoreCache_shouldNotChangeStateOrWeekOrFilters() {
+        let mock = WeeklySummaryWidgetInteractorMock()
+        let testee = makeViewModel(interactor: mock)
+        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
+        testee.navigateToPreviousWeek()
+        let weekBefore = testee.weekStartDate
+        testee.toggleFilter(testee.dueFilter)
+
+        XCTAssertFinish(testee.refresh(ignoreCache: true), timeout: 5)
+
+        XCTAssertEqual(testee.state, .data)
+        XCTAssertFalse(testee.isWeekLoading)
+        XCTAssertEqual(testee.weekStartDate, weekBefore)
+        XCTAssertEqual(testee.expandedFilter?.id, testee.dueFilter.id)
+    }
+
+    // MARK: - retryRefresh
+
+    func test_retryRefresh_shouldResetToLoadingAndCurrentWeek() {
+        let mock = WeeklySummaryWidgetInteractorMock()
+        let testee = makeViewModel(interactor: mock)
+        XCTAssertFinish(testee.refresh(ignoreCache: false), timeout: 5)
+        testee.navigateToPreviousWeek()
+        testee.toggleFilter(testee.dueFilter)
+        XCTAssertNotEqual(testee.weekStartDate, Clock.now.startOfWeek())
+
+        testee.retryRefresh()
+
+        XCTAssertEqual(testee.weekStartDate, Clock.now.startOfWeek())
+        XCTAssertNil(testee.expandedFilter)
+    }
+
     // MARK: - Initial filter state
 
     func test_initialFilters() {
@@ -183,7 +215,8 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
                     submissionStatus: nil,
                     pointsPossible: nil,
                     grade: nil,
-                    gradeWeightText: nil
+                    gradeWeightText: nil,
+                    discussionCheckpointText: nil
                 )
             ],
             due: [],

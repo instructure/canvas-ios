@@ -65,6 +65,7 @@ struct GroupCardView: View {
             .font(.regular14, lineHeight: .fit)
             .foregroundStyle(viewModel.groupColor)
             .multilineTextAlignment(.leading)
+            .lineLimit(2)
     }
 
     private var titleLabel: some View {
@@ -72,6 +73,7 @@ struct GroupCardView: View {
             .font(.semibold16, lineHeight: .fit)
             .foregroundStyle(.textDarkest)
             .multilineTextAlignment(.leading)
+            .lineLimit(2)
     }
 
     @ViewBuilder
