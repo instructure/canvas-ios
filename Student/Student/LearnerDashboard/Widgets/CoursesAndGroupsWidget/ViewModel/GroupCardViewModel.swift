@@ -74,19 +74,3 @@ struct GroupCardViewModel: Identifiable, Equatable {
         lhs.model == rhs.model
     }
 }
-
-extension GroupCardViewModel {
-    static func placeholder(id: String, color: Color) -> Self {
-        .init(
-            model: .init(
-                id: id,
-                title: "Redacted title",
-                contextName: "Redacted course",
-                groupColor: color,
-                memberCount: 0
-            ),
-            router: .init(routes: []),
-            environment: .shared
-        )
-    }
-}
