@@ -97,10 +97,20 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
 
     /// Refresh triggered from Dashboard via PTR or from code.
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        loadItemsForWeek(
-            ignorePlannablesCache: ignoreCache,
-            ignoreCoursesCache: ignoreCache
-        )
+        let clearCachePublisher = ignoreCache
+            ? interactor.clearRangedCaches()
+            : Publishers.typedJust()
+
+        return clearCachePublisher
+            .flatMap { [weak self] _ -> AnyPublisher<Void, Never> in
+                guard let self else { return Publishers.typedEmpty() }
+                return loadItemsForWeek(
+                    ignorePlannablesCache: ignoreCache,
+                    ignoreCoursesCache: ignoreCache
+                )
+            }
+            .receive(on: DispatchQueue.main)
+            .eraseToAnyPublisher()
     }
 
     /// Local reload after internal changes.

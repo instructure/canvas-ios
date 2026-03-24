@@ -911,6 +911,56 @@ class TodoInteractorLiveTests: CoreTestCase {
         XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(otherStartDate), true)
     }
 
+    // MARK: - clearRangedCaches Tests
+
+    func test_clearRangedCaches_whenNoRangedRefreshCalled_shouldComplete() {
+        XCTAssertFinish(testee.clearRangedCaches().setFailureType(to: Error.self).eraseToAnyPublisher())
+    }
+
+    func test_clearRangedCaches_whenRangedRefreshCalled_shouldMakeCacheExpiredForStartDate() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let startDate = Date.make(year: 2025, month: 3, day: 10)
+        let endDate = Date.make(year: 2025, month: 3, day: 17)
+
+        mockCourses(courses)
+        mockPlannables([], startDate: startDate, endDate: endDate)
+        XCTAssertFinish(testee.refresh(startDate: startDate, endDate: endDate, ignorePlannablesCache: false, ignoreCoursesCache: false))
+
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(startDate), false)
+
+        // WHEN
+        XCTAssertFinish(testee.clearRangedCaches().setFailureType(to: Error.self).eraseToAnyPublisher())
+
+        // THEN - rangedUseCases was cleared so startDate has no associated use case → expired
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(startDate), true)
+    }
+
+    func test_clearRangedCaches_whenMultipleRangedRefreshCalled_shouldClearAllDates() {
+        // GIVEN
+        let courses = [makeCourse(id: "1", name: "Course 1")]
+        let startDate1 = Date.make(year: 2025, month: 3, day: 3)
+        let endDate1 = Date.make(year: 2025, month: 3, day: 10)
+        let startDate2 = Date.make(year: 2025, month: 3, day: 10)
+        let endDate2 = Date.make(year: 2025, month: 3, day: 17)
+
+        mockCourses(courses)
+        mockPlannables([], startDate: startDate1, endDate: endDate1)
+        mockPlannables([], startDate: startDate2, endDate: endDate2)
+        XCTAssertFinish(testee.refresh(startDate: startDate1, endDate: endDate1, ignorePlannablesCache: false, ignoreCoursesCache: false))
+        XCTAssertFinish(testee.refresh(startDate: startDate2, endDate: endDate2, ignorePlannablesCache: false, ignoreCoursesCache: false))
+
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(startDate1), false)
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(startDate2), false)
+
+        // WHEN
+        XCTAssertFinish(testee.clearRangedCaches().setFailureType(to: Error.self).eraseToAnyPublisher())
+
+        // THEN - both start dates treated as expired
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(startDate1), true)
+        XCTAssertSingleOutputEquals(testee.isCacheExpiredForStartDate(startDate2), true)
+    }
+
     // MARK: - Local Observation Tests
 
     func test_localObservation_updatesWhenNewPlannableWithTodoUseCaseIsInserted() {

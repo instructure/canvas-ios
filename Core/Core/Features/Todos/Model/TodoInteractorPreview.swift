@@ -65,11 +65,15 @@ public final class TodoInteractorPreview: TodoInteractor {
     }
 
     public func isCacheExpired() -> AnyPublisher<Bool, Never> {
-        Just(false).eraseToAnyPublisher()
+        Publishers.typedJust(false)
     }
 
     public func isCacheExpiredForStartDate(_ startDate: Date) -> AnyPublisher<Bool, Never> {
-        Just(false).eraseToAnyPublisher()
+        Publishers.typedJust(false)
+    }
+
+    public func clearRangedCaches() -> AnyPublisher<Void, Never> {
+        Publishers.typedJust()
     }
 
     public func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<String, Error> {

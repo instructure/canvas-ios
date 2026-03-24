@@ -82,6 +82,8 @@ public protocol TodoInteractor {
 
     func isCacheExpiredForStartDate(_ startDate: Date) -> AnyPublisher<Bool, Never>
 
+    func clearRangedCaches() -> AnyPublisher<Void, Never>
+
     /// Marks a todo item as done or not done.
     ///
     /// - Parameters:
@@ -188,6 +190,23 @@ public final class TodoInteractorLive: TodoInteractor {
         }
 
         return useCase.hasCacheExpired(environment: env)
+            .eraseToAnyPublisher()
+    }
+
+    public func clearRangedCaches() -> AnyPublisher<Void, Never> {
+        let cacheKeys = rangedUseCases.values.compactMap(\.cacheKey)
+
+        guard cacheKeys.isNotEmpty else { return Publishers.typedJust() }
+
+        let predicate = NSPredicate(\TTL.key, isContainedIn: cacheKeys)
+        let scope = Scope(predicate: predicate, order: [])
+        let clearCache = DeleteLocalUseCase<TTL>(scope: scope)
+
+        return ReactiveStore(useCase: clearCache, environment: env)
+            .forceRefresh()
+            .map { [weak self] in
+                self?.rangedUseCases.removeAll()
+            }
             .eraseToAnyPublisher()
     }
 

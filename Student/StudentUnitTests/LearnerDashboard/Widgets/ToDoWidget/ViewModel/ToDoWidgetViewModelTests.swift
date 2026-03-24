@@ -303,12 +303,47 @@ final class ToDoWidgetViewModelTests: StudentTestCase {
 
     // MARK: - refresh
 
-    func test_refresh_shouldCallRangedRefresh() {
+    func test_refresh_whenIgnoreCacheFalse_shouldCallRangedRefresh() {
         let countBefore = interactor.rangedRefreshCallCount
+
+        let publisher = testee.refresh(ignoreCache: false)
+        var completed = false
+        let cancellable = publisher.sink { completed = true }
+        waitUntil(shouldFail: true) { completed }
+
+        XCTAssertEqual(interactor.rangedRefreshCallCount, countBefore + 1)
+        _ = cancellable
+    }
+
+    func test_refresh_whenIgnoreCacheFalse_shouldNotCallClearRangedCaches() {
+        let countBefore = interactor.clearRangedCachesCallCount
 
         _ = testee.refresh(ignoreCache: false)
 
+        XCTAssertEqual(interactor.clearRangedCachesCallCount, countBefore)
+    }
+
+    func test_refresh_whenIgnoreCacheTrue_shouldCallClearRangedCachesBeforeRefresh() {
+        let publisher = testee.refresh(ignoreCache: true)
+        var completed = false
+        let cancellable = publisher.sink { completed = true }
+        waitUntil(shouldFail: true) { completed }
+
+        XCTAssertEqual(interactor.clearRangedCachesCallCount, 1)
+        XCTAssertEqual(interactor.rangedRefreshCallCount >= 1, true)
+        _ = cancellable
+    }
+
+    func test_refresh_whenIgnoreCacheTrue_shouldCallRangedRefresh() {
+        let countBefore = interactor.rangedRefreshCallCount
+
+        let publisher = testee.refresh(ignoreCache: true)
+        var completed = false
+        let cancellable = publisher.sink { completed = true }
+        waitUntil(shouldFail: true) { completed }
+
         XCTAssertEqual(interactor.rangedRefreshCallCount, countBefore + 1)
+        _ = cancellable
     }
 
     func test_refresh_onFailure_shouldSetErrorState() {
