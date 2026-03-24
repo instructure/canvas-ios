@@ -1030,4 +1030,158 @@ class TodoListViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .data)
         XCTAssertEqual(testee.items.count, 1)
     }
+
+    // MARK: - addPendingGroups
+
+    func test_addPendingGroups_whenShowCompletedFilterIsEnabled_returnsNewGroupsUnchanged() {
+        sessionDefaults.todoFilterOptions = TodoFilterOptions(
+            visibilityOptions: [.showCompleted],
+            dateRangeStart: .lastWeek,
+            dateRangeEnd: .nextWeek
+        )
+        let item = TodoItemViewModel.make(plannableId: "1")
+        interactor.todoGroups.send([TodoGroupViewModel(date: Date(), items: [item])])
+        testScheduler.advance()
+
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+        XCTAssertEqual(item.markAsDoneState, .done)
+        XCTAssertEqual(testee.items.count, 1)
+
+        interactor.todoGroups.send([])
+        testScheduler.advance()
+
+        XCTAssertEqual(testee.items.count, 0)
+    }
+
+    func test_addPendingGroups_whenNoActiveTimers_returnsNewGroupsUnchanged() {
+        let item = TodoItemViewModel.make(plannableId: "1")
+        interactor.todoGroups.send([TodoGroupViewModel(date: Date(), items: [item])])
+        testScheduler.advance()
+
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+        XCTAssertEqual(item.markAsDoneState, .done)
+
+        testScheduler.advance(by: .seconds(3))
+        XCTAssertEqual(testee.items.count, 0)
+
+        let newItem = TodoItemViewModel.make(plannableId: "2")
+        interactor.todoGroups.send([TodoGroupViewModel(date: Date(), items: [newItem])])
+        testScheduler.advance()
+
+        XCTAssertEqual(testee.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.first?.plannableId, "2")
+    }
+
+    func test_addPendingGroups_preservesPendingItemWhenInteractorSendsNewGroups() {
+        let item = TodoItemViewModel.make(plannableId: "1")
+        interactor.todoGroups.send([TodoGroupViewModel(date: Date().startOfDay(), items: [item])])
+        testScheduler.advance()
+
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+        XCTAssertEqual(item.markAsDoneState, .done)
+        XCTAssertEqual(testee.items.count, 1)
+
+        interactor.todoGroups.send([])
+        testScheduler.advance()
+
+        XCTAssertEqual(testee.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.first?.plannableId, "1")
+
+        testScheduler.advance(by: .seconds(3))
+        XCTAssertEqual(testee.items.count, 0)
+    }
+
+    func test_addPendingGroups_doesNotDuplicateItemAlreadyInNewGroups() {
+        let item = TodoItemViewModel.make(plannableId: "1")
+        interactor.todoGroups.send([TodoGroupViewModel(date: Date().startOfDay(), items: [item])])
+        testScheduler.advance()
+
+        testee.markItemAsDone(item)
+        testScheduler.advance()
+        XCTAssertEqual(item.markAsDoneState, .done)
+
+        interactor.todoGroups.send([TodoGroupViewModel(date: Date().startOfDay(), items: [item])])
+        testScheduler.advance()
+
+        XCTAssertEqual(testee.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.first?.plannableId, "1")
+    }
+
+    func test_addPendingGroups_mergesPendingItemIntoExistingGroupForSameDate() {
+        let today = Date().startOfDay()
+        let item1 = TodoItemViewModel.make(plannableId: "1", date: today)
+        let item2 = TodoItemViewModel.make(plannableId: "2", date: today)
+        interactor.todoGroups.send([TodoGroupViewModel(date: today, items: [item1, item2])])
+        testScheduler.advance()
+
+        testee.markItemAsDone(item1)
+        testScheduler.advance()
+        XCTAssertEqual(item1.markAsDoneState, .done)
+        XCTAssertEqual(testee.items.first?.items.count, 2)
+
+        interactor.todoGroups.send([TodoGroupViewModel(date: today, items: [item2])])
+        testScheduler.advance()
+
+        XCTAssertEqual(testee.items.count, 1)
+        XCTAssertEqual(testee.items.first?.items.count, 2)
+        let ids = testee.items.first?.items.map(\.plannableId)
+        XCTAssertEqual(ids?.contains("1"), true)
+        XCTAssertEqual(ids?.contains("2"), true)
+    }
+
+    func test_addPendingGroups_createsNewGroupForPendingItemOnDifferentDate() {
+        let today = Date().startOfDay()
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+
+        let itemToday = TodoItemViewModel.make(plannableId: "1", date: today)
+        let itemTomorrow = TodoItemViewModel.make(plannableId: "2", date: tomorrow)
+        let groupTomorrow = TodoGroupViewModel(date: tomorrow, items: [itemTomorrow])
+        interactor.todoGroups.send([
+            TodoGroupViewModel(date: today, items: [itemToday]),
+            groupTomorrow
+        ])
+        testScheduler.advance()
+
+        testee.markItemAsDone(itemToday)
+        testScheduler.advance()
+        XCTAssertEqual(itemToday.markAsDoneState, .done)
+
+        interactor.todoGroups.send([groupTomorrow])
+        testScheduler.advance()
+
+        XCTAssertEqual(testee.items.count, 2)
+        let todayGroup = testee.items.first(where: { $0.date == today })
+        XCTAssertNotNil(todayGroup)
+        XCTAssertEqual(todayGroup?.items.first?.plannableId, "1")
+    }
+
+    func test_addPendingGroups_resultIsSortedByDate() {
+        let today = Date().startOfDay()
+        let tomorrow = Calendar.current.date(byAdding: .day, value: 1, to: today)!
+        let dayAfter = Calendar.current.date(byAdding: .day, value: 2, to: today)!
+
+        let itemToday = TodoItemViewModel.make(plannableId: "1", date: today)
+        interactor.todoGroups.send([TodoGroupViewModel(date: today, items: [itemToday])])
+        testScheduler.advance()
+
+        testee.markItemAsDone(itemToday)
+        testScheduler.advance()
+
+        let itemTomorrow = TodoItemViewModel.make(plannableId: "2", date: tomorrow)
+        let itemDayAfter = TodoItemViewModel.make(plannableId: "3", date: dayAfter)
+        interactor.todoGroups.send([
+            TodoGroupViewModel(date: dayAfter, items: [itemDayAfter]),
+            TodoGroupViewModel(date: tomorrow, items: [itemTomorrow])
+        ])
+        testScheduler.advance()
+
+        XCTAssertEqual(testee.items.count, 3)
+        XCTAssertEqual(testee.items[0].date, today)
+        XCTAssertEqual(testee.items[1].date, tomorrow)
+        XCTAssertEqual(testee.items[2].date, dayAfter)
+    }
 }

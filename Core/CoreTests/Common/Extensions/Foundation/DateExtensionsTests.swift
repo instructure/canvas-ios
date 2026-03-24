@@ -169,4 +169,33 @@ class DateExtensionsTests: XCTestCase {
         XCTAssertEqual(a.addWeeks(1), b)
         XCTAssertEqual(a.addWeeks(-1), c)
     }
+
+    func testIsToday() {
+        XCTAssertEqual(Date.now.isToday, true)
+        XCTAssertEqual(Date(fromISOString: "2000-01-01T00:00:00Z")!.isToday, false)
+    }
+
+    func testIsInSameDay() {
+        let morning = Date(fromISOString: "2021-08-07T09:00:00Z")!
+        let evening = Date(fromISOString: "2021-08-07T21:00:00Z")!
+        let nextDay = Date(fromISOString: "2021-08-08T09:00:00Z")!
+
+        XCTAssertEqual(morning.isInSameDay(as: evening), true)
+        XCTAssertEqual(morning.isInSameDay(as: nextDay), false)
+    }
+
+    func testIsCurrentYear() {
+        XCTAssertEqual(Date.now.isCurrentYear, true)
+        XCTAssertEqual(Date(fromISOString: "2000-06-15T12:00:00Z")!.isCurrentYear, false)
+    }
+
+    func testDayDifference() {
+        let base = Date(fromISOString: "2021-08-07T12:00:00Z")!
+        let threeDaysLater = Date(fromISOString: "2021-08-10T12:00:00Z")!
+        let twoDaysBefore = Date(fromISOString: "2021-08-05T12:00:00Z")!
+
+        XCTAssertEqual(threeDaysLater.dayDifference(from: base), 3)
+        XCTAssertEqual(twoDaysBefore.dayDifference(from: base), -2)
+        XCTAssertEqual(base.dayDifference(from: base), 0)
+    }
 }

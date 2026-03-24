@@ -52,8 +52,13 @@ struct LearnerDashboardScreen: View {
         ) { geometry in
             VStack(spacing: screenPadding.rawValue) {
                 ForEach(viewModel.widgets, id: \.id) { widgetViewModel in
+                    // This is a workaround for Todo widget's toggle to have the proper color
+                    // TODO: Update InstUI.Toggle to use tint color instead of accent color
+                    let needsAccentColorOverride = widgetViewModel.id == EditableWidgetIdentifier.todo.rawValue
+
                     if widgetViewModel.shouldRenderWidget {
                         widgetViewModel.makeView()
+                            .accentColor(needsAccentColorOverride ? viewModel.mainColor : .brandPrimary)
                             .transition(.fade)
                     }
                 }

@@ -67,12 +67,14 @@ enum EditableWidgetIdentifier: String, Codable, CaseIterable {
     case helloWidget
     case coursesAndGroups
     case weeklySummary
+    case todo
 
     func settingsTitle(username: String) -> String {
         switch self {
         case .helloWidget: String(localized: "Hello \(username)", bundle: .student)
         case .coursesAndGroups: String(localized: "Courses & Groups", bundle: .student)
         case .weeklySummary: String(localized: "Weekly Summary", bundle: .student)
+        case .todo: String(localized: "Daily To-do", bundle: .student)
         }
     }
 
@@ -95,12 +97,23 @@ enum EditableWidgetIdentifier: String, Codable, CaseIterable {
             )
         case .weeklySummary:
             WeeklySummaryWidgetViewModel(config: config)
+        case .todo:
+            ToDoWidgetViewModel(
+                config: config,
+                interactor: TodoInteractorLive(
+                    alwaysExcludeCompleted: false,
+                    sessionDefaults: AppEnvironment.shared.userDefaults ?? .fallback,
+                    env: .shared
+                ),
+                router: AppEnvironment.shared.router,
+                snackBarViewModel: snackBarViewModel
+            )
         }
     }
 
     func makeSubSettingsView(env: AppEnvironment) -> AnyView? {
         switch self {
-        case .helloWidget, .weeklySummary:
+        case .helloWidget, .weeklySummary, .todo:
             nil
         case .coursesAndGroups:
             AnyView(CoursesAndGroupsWidgetSettingsView(viewModel: CoursesAndGroupsWidgetSettingsViewModel(env: env)))
