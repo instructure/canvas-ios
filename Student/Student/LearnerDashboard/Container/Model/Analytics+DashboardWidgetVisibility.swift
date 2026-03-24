@@ -25,6 +25,7 @@ extension EditableWidgetIdentifier {
         case .helloWidget: "welcome"
         case .coursesAndGroups: "courses"
         case .weeklySummary: "forecast"
+        case .todo: "todo"
         }
     }
 }
