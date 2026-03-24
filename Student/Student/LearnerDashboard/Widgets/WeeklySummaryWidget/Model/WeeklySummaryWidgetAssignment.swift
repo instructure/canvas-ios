@@ -87,8 +87,7 @@ struct WeeklySummaryWidgetAssignment: Identifiable {
         }()
 
         let grade: String? = {
-            // We receive no grade information from the planner API for sub-assignments so we just hide the grade for such cells
-            if entry.category == .missing || entry.isSubAssignment {
+            if entry.category == .missing {
                 return nil
             }
             // Also hide the grade if there's none

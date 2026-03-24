@@ -85,6 +85,10 @@ extension APIAssignment {
         let min: Double
         let max: Double
     }
+
+    public func subAssignmentSubmission(tag: String) -> APISubAssignmentSubmission? {
+        submission?.values.first?.sub_assignment_submissions?.first { $0.sub_assignment_tag == tag }
+    }
 }
 
 #if DEBUG

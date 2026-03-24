@@ -116,7 +116,7 @@ final class GetWeeklyDueAndGradesEntries: UseCase {
                     weightLogic.assignmentWeightInCourse(
                         assignment: .init(
                             isOmittedFromFinalGrade: assignment.omit_from_final_grade,
-                            pointsPossible: assignment.points_possible
+                            pointsPossible: plannable.plannable?.points_possible ?? assignment.points_possible
                         ),
                         groupWeight: $0.group_weight,
                         assignmentsInGroup: ($0.assignments ?? []).compactMap {
@@ -180,7 +180,7 @@ final class GetWeeklyDueAndGradesEntries: UseCase {
     }
 
     private func fetchAssignmentGroups(for courseId: String, api: API) -> AnyPublisher<[APIAssignmentGroup], Error> {
-        api.exhaust(GetAssignmentGroupsRequest(courseID: courseId, include: [.assignments, .submission], perPage: 100))
+        api.exhaust(GetAssignmentGroupsRequest(courseID: courseId, include: [.assignments, .submission, .sub_assignment_submissions], perPage: 100))
             .map { (groups, _) in groups }
             .eraseToAnyPublisher()
     }
