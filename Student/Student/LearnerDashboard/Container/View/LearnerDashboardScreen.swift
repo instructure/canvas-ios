@@ -94,7 +94,7 @@ struct LearnerDashboardScreen: View {
                     legacyProfileMenuButton
                 }
             }
-            
+
             ToolbarItem(placement: .topBarTrailing) {
                 if #available(iOS 26, *) {
                     iOS26RightNavBarButtons
