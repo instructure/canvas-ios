@@ -57,12 +57,9 @@ final class GlobalAnnouncementsWidgetViewModelTests: StudentTestCase {
     // MARK: - Initialization
 
     func test_init_shouldSetupCorrectly() {
-        testee = makeViewModel(
-            config: .make(id: .globalAnnouncements, order: 42)
-        )
+        testee = makeViewModel()
 
-        XCTAssertEqual(testee.config.id, .globalAnnouncements)
-        XCTAssertEqual(testee.config.order, 42)
+        XCTAssertEqual(testee.id, SystemWidgetIdentifier.globalAnnouncements.rawValue)
 
         XCTAssertEqual(testee.state, .loading)
         XCTAssertEqual(testee.announcements, [])
@@ -217,11 +214,8 @@ final class GlobalAnnouncementsWidgetViewModelTests: StudentTestCase {
 
     // MARK: - Private helpers
 
-    private func makeViewModel(
-        config: DashboardWidgetConfig = .make(id: .globalAnnouncements)
-    ) -> GlobalAnnouncementsWidgetViewModel {
+    private func makeViewModel() -> GlobalAnnouncementsWidgetViewModel {
         GlobalAnnouncementsWidgetViewModel(
-            config: config,
             interactor: interactor,
             environment: env
         )

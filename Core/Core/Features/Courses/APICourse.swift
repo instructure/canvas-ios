@@ -25,11 +25,11 @@ public struct APICourse: Codable, Equatable {
     // let uuid: String?
     // let integration_id: String?
     // let sis_import_id: String?
-    let name: String?
+    public let name: String?
     let original_name: String?
-    let course_code: String?
+    public let course_code: String?
     /** Teacher assigned course color for K5 in hex format. */
-    let course_color: String?
+    public let course_color: String?
     let workflow_state: CourseWorkflowState?
     let account_id: String?
     // let root_account_id: String?
@@ -47,7 +47,7 @@ public struct APICourse: Codable, Equatable {
     // let needs_grading_count: Int? // include[]=needs_grading_count
     let term: Term? // include[]=term
     // let course_progress: ?
-    // let apply_assignment_group_weights: Bool?
+    public let apply_assignment_group_weights: Bool?
     let permissions: Permissions?
     // let is_public: Bool?
     // let is_public_to_auth_users: Bool?
@@ -76,7 +76,7 @@ public struct APICourse: Codable, Equatable {
     var is_favorite: Bool? // include[]=favorites
     let sections: [SectionRef]? // include[]=sections
     let tabs: [APITab]? // include[]=tabs
-    let settings: APICourseSettings? // include[]=settings
+    public let settings: APICourseSettings? // include[]=settings
 
     /// Example format: [["A",0.94],["A-",0.9],["B+",0.87] ... ["D",0.64],["D-",0.61],["F",0.0]]
     let grading_scheme: [[TypeSafeCodable<String, Double>]]? // include[]=grading_scheme
@@ -107,10 +107,10 @@ public struct APICourse: Codable, Equatable {
 }
 
 public struct APICourseSettings: Codable, Equatable {
-    let usage_rights_required: Bool?
-    let syllabus_course_summary: Bool?
-    let restrict_quantitative_data: Bool?
-    let hide_final_grade: Bool?
+    public let usage_rights_required: Bool?
+    public let syllabus_course_summary: Bool?
+    public let restrict_quantitative_data: Bool?
+    public let hide_final_grade: Bool?
 }
 
 public enum CourseDefaultView: String, Codable, CaseIterable {
@@ -173,7 +173,8 @@ extension APICourse {
         settings: APICourseSettings? = nil,
         grading_scheme: [[TypeSafeCodable<String, Double>]]? = nil,
         scaling_factor: Double? = nil,
-        points_based_grading_scheme: Bool? = nil
+        points_based_grading_scheme: Bool? = nil,
+        apply_assignment_group_weights: Bool? = nil
     ) -> APICourse {
         return APICourse(
             id: id,
@@ -192,6 +193,7 @@ extension APICourse {
             default_view: default_view,
             syllabus_body: syllabus_body,
             term: term,
+            apply_assignment_group_weights: apply_assignment_group_weights,
             permissions: permissions,
             hide_final_grades: hide_final_grades,
             homeroom_course: homeroom_course,

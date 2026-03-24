@@ -284,7 +284,7 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
                 },
                 receiveValue: { [weak self] in
                     self?.completion?(.didDelete)
-                    self?.router.pop(from: source)
+                    self?.router.dismiss(source)
                 }
             )
             .store(in: &subscriptions)

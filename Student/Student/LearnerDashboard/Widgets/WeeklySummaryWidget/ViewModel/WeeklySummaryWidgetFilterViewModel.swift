@@ -21,7 +21,7 @@ import Foundation
 
 // MARK: - Filter Entity
 
-struct WeeklySummaryWidgetFilterViewModel: Identifiable, Equatable {
+struct WeeklySummaryWidgetFilterViewModel: Identifiable {
     let id: String
     let label: String
     let assignments: [WeeklySummaryWidgetAssignment]
@@ -32,6 +32,7 @@ struct WeeklySummaryWidgetFilterViewModel: Identifiable, Equatable {
     var accessibilityHint: String
 
     var count: Int { assignments.count }
+    var hasAssignments: Bool { assignments.isNotEmpty }
 
     func withExpandedState(_ isExpanded: Bool) -> WeeklySummaryWidgetFilterViewModel {
         var copy = self
@@ -39,10 +40,6 @@ struct WeeklySummaryWidgetFilterViewModel: Identifiable, Equatable {
         copy.accessibilityValue = state.a11yValue
         copy.accessibilityHint = state.a11yHint
         return copy
-    }
-
-    static func == (lhs: WeeklySummaryWidgetFilterViewModel, rhs: WeeklySummaryWidgetFilterViewModel) -> Bool {
-        lhs.id == rhs.id
     }
 }
 

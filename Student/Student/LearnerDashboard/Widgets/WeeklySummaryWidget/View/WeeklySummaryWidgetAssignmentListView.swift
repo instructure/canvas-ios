@@ -35,10 +35,13 @@ struct WeeklySummaryWidgetAssignmentListView: View {
                     WeeklySummaryWidgetAssignmentCell(assignment: item)
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel(item.accessibilityLabel)
                 InstUI.Divider(item.id != assignments.last?.id ? .padded : .hidden)
             }
         }
-        .elevation(.cardLarge, background: .backgroundLightest)
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(String.format(accessibilityListCount: assignments.count))
+        .elevation(cornerRadius: 16, background: .backgroundLightest)
     }
 }
 
@@ -50,21 +53,15 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            InstUI.JoinedSubtitleLabels(
-                label1: {
-                    assignment.icon
-                        .scaledIcon(size: 16)
-                },
-                label2: {
-                    Text(assignment.courseCode)
-                        .font(.regular12)
+            HStack(alignment: .top, spacing: InstUI.Styles.Padding.standard.rawValue) {
+                VStack(alignment: .leading, spacing: 2) {
+                    courseLabel
+                    assignmentTitle
                 }
-            )
-            .applyTint()
-            Text(assignment.title)
-                .font(.semibold14, lineHeight: .fit)
-                .foregroundStyle(Color.textDarkest)
-                .multilineTextAlignment(.leading)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                grade
+            }
+            discussionCheckPointInfo
             bottomLabels
         }
         .paddingStyle(.horizontal, .standard)
@@ -74,23 +71,64 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
         .tint(assignment.courseColor)
     }
 
+    private var courseLabel: some View {
+        InstUI.JoinedSubtitleLabels(
+            label1: {
+                assignment.icon
+                    .scaledIcon(size: 16)
+            },
+            label2: {
+                Text(assignment.courseCode)
+                    .font(.regular12)
+            }
+        )
+        .applyTint()
+    }
+
+    private var assignmentTitle: some View {
+        Text(assignment.title)
+            .font(.semibold14, lineHeight: .fit)
+            .foregroundStyle(Color.textDarkest)
+            .multilineTextAlignment(.leading)
+    }
+
+    @ViewBuilder
+    private var discussionCheckPointInfo: some View {
+        if let stepText = assignment.discussionCheckpointText {
+            Text(stepText)
+                .font(.regular12)
+                .foregroundStyle(Color.textDark)
+        }
+    }
+
     @ViewBuilder
     private var bottomLabels: some View {
         VStack(alignment: .leading, spacing: 2) {
-            if let dueDateText = assignment.dueDateText {
-                Text(dueDateText)
-                    .font(.regular12)
-                    .foregroundStyle(Color.textDark)
+            if let dueDateText = assignment.dueDateText, let statusModel = assignment.submissionStatus {
+                InstUI.JoinedSubtitleLabels(
+                    label1: { dueDateLabel(dueDateText) },
+                    label2: { SubmissionStatusLabel(model: statusModel, iconSize: 12, font: .regular12) }
+                )
+            } else if let dueDateText = assignment.dueDateText {
+                dueDateLabel(dueDateText)
             }
 
-            if let pointsText = assignment.pointsText, let gradeWeightText = assignment.gradeWeightText {
+            if let pointsText = assignment.pointsPossible, let gradeWeightText = assignment.gradeWeightText {
                 InstUI.JoinedSubtitleLabels(
                     label1: { pointsLabel(pointsText) },
                     label2: { gradeWeightPill(gradeWeightText) }
                 )
-            } else if let pointsText = assignment.pointsText {
+            } else if let pointsText = assignment.pointsPossible {
                 pointsLabel(pointsText)
             }
+        }
+    }
+
+    @ViewBuilder
+    private var grade: some View {
+        if let grade = assignment.grade {
+            Text(grade)
+                .font(.semibold14, lineHeight: .fit)
         }
     }
 
@@ -107,18 +145,67 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
                     .stroke(assignment.courseColor, lineWidth: 1 / displayScale)
             )
     }
+
+    private func dueDateLabel(_ text: String) -> some View {
+        Text(text)
+            .font(.regular12)
+            .foregroundStyle(Color.textDark)
+    }
 }
 
 #if DEBUG
 
 #Preview {
-    let viewModel = WeeklySummaryWidgetViewModel(
-        config: .make(id: .weeklySummary),
-        router: PreviewEnvironment().router
-    )
+    let assignments: [WeeklySummaryWidgetAssignment] = [
+        WeeklySummaryWidgetAssignment(
+            id: "1",
+            courseId: "101",
+            courseCode: "BIO 101",
+            courseColor: .course1,
+            icon: .assignmentLine,
+            title: "Lab Report: Cell Division",
+            dueDateText: "Mar 20, 2026 at 11:59 PM",
+            submissionStatus: .submitted,
+            pointsPossible: "50 pts",
+            grade: nil,
+            gradeWeightText: "12.5% of final grade",
+            discussionCheckpointText: "Reply to topic"
+        ),
+        WeeklySummaryWidgetAssignment(
+            id: "2",
+            courseId: "102",
+            courseCode: "HIST 202",
+            courseColor: .course3,
+            icon: .discussionLine,
+            title: "Week 5 Discussion: Industrial Revolution",
+            dueDateText: "Mar 21, 2026 at 9:00 AM",
+            submissionStatus: .graded,
+            pointsPossible: "25 pts",
+            grade: nil,
+            gradeWeightText: nil,
+            discussionCheckpointText: nil
+        ),
+        WeeklySummaryWidgetAssignment(
+            id: "3",
+            courseId: "103",
+            courseCode: "MATH 301",
+            courseColor: .course5,
+            icon: .quizLine,
+            title: "Midterm Quiz",
+            dueDateText: nil,
+            submissionStatus: nil,
+            pointsPossible: "100 pts",
+            grade: "88",
+            gradeWeightText: "20% of final grade",
+            discussionCheckpointText: nil
+        )
+    ]
     WeeklySummaryWidgetAssignmentListView(
-        viewModel: viewModel,
-        assignments: viewModel.dueFilter.assignments,
+        viewModel: WeeklySummaryWidgetViewModel(
+            config: .make(id: .weeklySummary),
+            router: PreviewEnvironment().router
+        ),
+        assignments: assignments,
         controller: WeakViewController()
     )
     .padding(16)

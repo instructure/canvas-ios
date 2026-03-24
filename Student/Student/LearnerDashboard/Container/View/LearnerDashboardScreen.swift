@@ -20,13 +20,13 @@ import Core
 import SwiftUI
 
 struct LearnerDashboardScreen: View {
-    let settingsViewModel: LearnerDashboardSettingsViewModel
     @State private var viewModel: LearnerDashboardViewModel
     @StateObject private var offlineModeViewModel: OfflineModeViewModel
     @State private var isShowingKebabDialog = false
     @State private var isSettingsPresented = false
     @Environment(\.viewController) private var viewController
     @Environment(\.appEnvironment) private var env
+    @Environment(\.colorScheme) private var colorScheme
 
     private let screenPadding = InstUI.Styles.Padding.standard
     @State private var isAnimationEnabled = false
@@ -37,7 +37,6 @@ struct LearnerDashboardScreen: View {
     ) {
         _viewModel = State(initialValue: viewModel)
         _offlineModeViewModel = StateObject(wrappedValue: offlineModeViewModel)
-        settingsViewModel = .init(defaults: viewModel.environment.userDefaults ?? .fallback)
     }
 
     var body: some View {
@@ -53,10 +52,21 @@ struct LearnerDashboardScreen: View {
         ) { geometry in
             VStack(spacing: screenPadding.rawValue) {
                 ForEach(viewModel.widgets, id: \.id) { widgetViewModel in
+                    // This is a workaround for Todo widget's toggle to have the proper color
+                    // TODO: Update InstUI.Toggle to use tint color instead of accent color
+                    let needsAccentColorOverride = widgetViewModel.id == EditableWidgetIdentifier.todo.rawValue
+
                     if widgetViewModel.shouldRenderWidget {
-                        LearnerDashboardWidgetAssembly.makeView(for: widgetViewModel)
+                        widgetViewModel.makeView()
+                            .accentColor(needsAccentColorOverride ? viewModel.mainColor : .brandPrimary)
+                            .transition(.fade)
                     }
                 }
+                if viewModel.showWidgetsTurnedOffPanda {
+                    LearnerDashboardAllWidgetsTurnedOffView()
+                }
+
+                customizeDashboardButton
             }
             .paddingStyle(.all, screenPadding)
             .animation(isAnimationEnabled ? .dashboardWidget : nil, value: viewModel.widgets.map(\.layoutIdentifier))
@@ -64,6 +74,10 @@ struct LearnerDashboardScreen: View {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                     isAnimationEnabled = true
                 }
+            }
+            .onAppear {
+                // trigger a soft-refresh to apply any changes made on pushed screens
+                viewModel.refresh(ignoreCache: false)
             }
             .environment(
                 \.containerSize,
@@ -73,17 +87,42 @@ struct LearnerDashboardScreen: View {
                 )
             )
         }
+        .tint(viewModel.mainColor)
+        .animation(.dashboardWidget, value: viewModel.mainColor)
         .snackBar(viewModel: viewModel.snackBarViewModel)
         .navigationBarDashboard()
         .toolbar {
-            if #available(iOS 26, *) {
-                ToolbarItem(placement: .topBarLeading) { profileMenuButton }
-                ToolbarItem(placement: .topBarTrailing) { rightNavBarButtons }
-            } else {
-                ToolbarItem(placement: .topBarLeading) { legacyProfileMenuButton }
-                ToolbarItem(placement: .topBarTrailing) { legacyRightNavBarButtons }
+            ToolbarItem(placement: .topBarLeading) {
+                if #available(iOS 26, *) {
+                    profileMenuButton
+                } else {
+                    legacyProfileMenuButton
+                }
+            }
+
+            ToolbarItem(placement: .topBarTrailing) {
+                if #available(iOS 26, *) {
+                    iOS26RightNavBarButtons
+                } else if #available(iOS 18, *) {
+                    iOS18RightNavBarButtons
+                } else {
+                    iOS17RightNavBarButtons
+                }
             }
         }
+    }
+
+    private var customizeDashboardButton: some View {
+        Button {
+            isSettingsPresented = true
+        } label: {
+            InstUI.PillContent(
+                title: String(localized: "Customize Dashboard", bundle: .student),
+                leadingIcon: .editLine,
+                size: .height30
+            )
+        }
+        .buttonStyle(.pillTintOutlined)
     }
 
     @available(iOS, introduced: 26, message: "Legacy version exists")
@@ -111,8 +150,8 @@ struct LearnerDashboardScreen: View {
     }
 
     @ViewBuilder
-    @available(iOS, introduced: 26, message: "Legacy version exists")
-    private var rightNavBarButtons: some View {
+    @available(iOS, introduced: 26, message: "Multiple versions exists")
+    private var iOS26RightNavBarButtons: some View {
         Group {
             if offlineModeViewModel.isOfflineFeatureEnabled {
                 DashboardOptionsMenu(
@@ -126,17 +165,12 @@ struct LearnerDashboardScreen: View {
                 )
             }
         }
-        .popover(isPresented: $isSettingsPresented) {
-            // NavigationStack is needed to add content to the toolbar
-            NavigationStack {
-                LearnerDashboardSettingsView(viewModel: settingsViewModel)
-            }
-        }
+        .popover(isPresented: $isSettingsPresented, content: popverContent)
     }
 
     @ViewBuilder
-    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
-    private var legacyRightNavBarButtons: some View {
+    @available(iOS, deprecated: 26, message: "Multiple versions exists")
+    private var iOS18RightNavBarButtons: some View {
         Group {
             if offlineModeViewModel.isOfflineFeatureEnabled {
                 DashboardOptionsButton(
@@ -151,12 +185,38 @@ struct LearnerDashboardScreen: View {
                 )
             }
         }
-        .popover(isPresented: $isSettingsPresented) {
-            // NavigationStack is needed to add content to the toolbar
-            NavigationStack {
-                LearnerDashboardSettingsView(viewModel: settingsViewModel)
+        .popover(isPresented: $isSettingsPresented, content: popverContent)
+    }
+
+    @ViewBuilder
+    @available(iOS, deprecated: 18, message: "Multiple versions exist")
+    private var iOS17RightNavBarButtons: some View {
+        Group {
+            if offlineModeViewModel.isOfflineFeatureEnabled {
+                DashboardOptionsButton(
+                    isShowingDialog: $isShowingKebabDialog,
+                    offlineModeViewModel: offlineModeViewModel,
+                    onSettingsTapped: { isSettingsPresented.toggle() },
+                    environment: env
+                )
+            } else {
+                LegacyDashboardSettingsButton(
+                    onTapped: { isSettingsPresented.toggle() }
+                )
             }
         }
+        .sheet(isPresented: $isSettingsPresented, content: popverContent)
+    }
+
+    @ViewBuilder
+    private func popverContent() -> some View {
+        // NavigationStack is needed to add content to the toolbar
+        NavigationStack {
+            LearnerDashboardSettingsScreen(viewModel: viewModel.makeSettingsViewModel())
+        }
+        .environment(\.colorScheme, colorScheme)
+        .accentColor(.brandPrimary)
+        .tint(.brandPrimary)
     }
 }
 

@@ -34,7 +34,7 @@ struct WeeklySummaryWidgetSegmentedControl: View {
         .padding(2)
         .frame(minHeight: 64)
         .elevation(cornerRadius: 8, background: Color.backgroundLight)
-        .animation(WeeklySummaryWidgetView.animation, value: viewModel.expandedFilter)
+        .animation(WeeklySummaryWidgetView.animation, value: viewModel.expandedFilter?.id)
     }
 
     private var buttonsRow: some View {
@@ -48,7 +48,7 @@ struct WeeklySummaryWidgetSegmentedControl: View {
     }
 
     private func categoryButton(_ filter: WeeklySummaryWidgetFilterViewModel) -> some View {
-        let isExpanded = viewModel.expandedFilter == filter
+        let isExpanded = viewModel.expandedFilter?.id == filter.id
         return Button {
             viewModel.toggleFilter(filter)
         } label: {

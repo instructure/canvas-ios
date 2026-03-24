@@ -25,7 +25,7 @@ struct CoursesAndGroupsWidgetView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.containerSize) private var containerSize
 
-    @State private var viewModel: CoursesAndGroupsWidgetViewModel
+    private var viewModel: CoursesAndGroupsWidgetViewModel
 
     @State private var draggedCourseCardId: String?
     @State private var isCoursesExpanded: Bool = true
@@ -46,9 +46,9 @@ struct CoursesAndGroupsWidgetView: View {
                         Once you enroll in a class, your dashboard will start filling up with new activity.
                         """, bundle: .student)
                 ))
-            case .data:
+            case .loading, .data:
                 content
-            case .loading, .error:
+            case .error:
                 SwiftUI.EmptyView()
             }
         }
@@ -95,27 +95,32 @@ struct CoursesAndGroupsWidgetView: View {
                 itemWidth: itemWidth,
                 spacing: cardSpacing(columnCount),
                 columnCount: columnCount
-            ) { index in
-                let cardViewModel = viewModel.courseCards[index]
-                CourseCardView(
-                    viewModel: cardViewModel,
-                    showGrades: viewModel.showGrades,
-                    showColorOverlay: viewModel.showColorOverlay
-                )
-                .contentShape(.dragPreview, RoundedRectangle(cornerRadius: InstUI.Styles.Elevation.Shape.cardLarge.cornerRadius))
-                .onDrag {
-                    draggedCourseCardId = cardViewModel.id
-                    return NSItemProvider(item: nil, typeIdentifier: CourseCardDropToReorderDelegate.DropID)
-                }
-                .onDrop(
-                    of: [CourseCardDropToReorderDelegate.DropID],
-                    delegate: CourseCardDropToReorderDelegate(
-                        receiverCardId: cardViewModel.id,
-                        draggedCourseCardId: $draggedCourseCardId,
-                        order: viewModel.courseCards.map { $0.id },
-                        delegate: viewModel
+            ) { [courseCards = viewModel.courseCards] index in
+                let cardViewModel = courseCards[index]
+
+                if viewModel.state == .data {
+                    CourseCardView(
+                        viewModel: cardViewModel,
+                        showGrades: viewModel.showGrades,
+                        showColorOverlay: viewModel.showColorOverlay
                     )
-                )
+                    .contentShape(.dragPreview, RoundedRectangle(cornerRadius: InstUI.Styles.Elevation.Shape.cardLarge.cornerRadius))
+                    .onDrag {
+                        draggedCourseCardId = cardViewModel.id
+                        return NSItemProvider(item: nil, typeIdentifier: CourseCardDropToReorderDelegate.DropID)
+                    }
+                    .onDrop(
+                        of: [CourseCardDropToReorderDelegate.DropID],
+                        delegate: CourseCardDropToReorderDelegate(
+                            receiverCardId: cardViewModel.id,
+                            draggedCourseCardId: $draggedCourseCardId,
+                            order: courseCards.map { $0.id },
+                            delegate: viewModel
+                        )
+                    )
+                } else {
+                    SkeletonCardView(color: cardViewModel.courseColor, title: cardViewModel.title)
+                }
             }
             .animation(.dashboardWidget, value: viewModel.courseCards)
         }
@@ -132,8 +137,18 @@ struct CoursesAndGroupsWidgetView: View {
                 itemWidth: itemWidth,
                 spacing: cardSpacing(columnCount),
                 columnCount: columnCount
-            ) { index in
-                GroupCardView(viewModel: viewModel.groupCards[index])
+            ) { [groupCards = viewModel.groupCards] index in
+                let cardViewModel = groupCards[index]
+
+                if viewModel.state == .data {
+                    GroupCardView(viewModel: cardViewModel)
+                } else {
+                    SkeletonCardView(
+                        color: cardViewModel.groupColor,
+                        title: cardViewModel.title,
+                        contextLabel: cardViewModel.contextName
+                    )
+                }
             }
         }
     }
@@ -187,7 +202,7 @@ struct CoursesAndGroupsWidgetView: View {
 }
 
 private func makePreviewViewModel() -> CoursesAndGroupsWidgetViewModel {
-    return CoursesAndGroupsWidgetViewModel(
+    CoursesAndGroupsWidgetViewModel(
         config: .make(id: .coursesAndGroups),
         interactor: .preview(),
         environment: PreviewEnvironment()

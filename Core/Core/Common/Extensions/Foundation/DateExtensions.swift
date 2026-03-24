@@ -122,6 +122,25 @@ public extension Date {
         startOfDay().addHours(hours)
     }
 
+    // MARK: - Misc
+
+    var isToday: Bool {
+        Cal.currentCalendar.isDateInToday(self)
+    }
+
+    func isInSameDay(as date: Date) -> Bool {
+        Cal.currentCalendar.isDate(date, inSameDayAs: self)
+    }
+
+    var isCurrentYear: Bool {
+        Cal.currentCalendar.isDate(self, equalTo: Clock.now, toGranularity: .year)
+    }
+
+    func dayDifference(from date: Date) -> Int {
+        Cal.currentCalendar.dateComponents([.day], from: date, to: self).day
+            ?? 0
+    }
+
     // MARK: - Formatters
 
     private static var relativeDateOnlyFormatter: DateFormatter = {

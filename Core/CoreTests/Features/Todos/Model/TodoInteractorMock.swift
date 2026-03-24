@@ -18,6 +18,7 @@
 
 @testable import Core
 import Combine
+import Foundation
 
 final class TodoInteractorMock: TodoInteractor {
     var todoGroups = CurrentValueSubject<[TodoGroupViewModel], Never>([])
@@ -31,11 +32,23 @@ final class TodoInteractorMock: TodoInteractor {
     var isCacheExpiredCallCount = 0
     var isCacheExpiredResult = false
 
+    var isCacheExpiredForStartDateCallCount = 0
+    var isCacheExpiredForStartDateInput: Date?
+    var isCacheExpiredForStartDateResult = false
+
+    var clearRangedCachesCallCount = 0
+
     var markItemAsDoneCalled = false
     var markItemAsDoneCallCount = 0
     var lastMarkAsDoneItem: TodoItemViewModel?
     var lastMarkAsDoneDone: Bool?
     var markItemAsDoneResult: Result<String, Error> = .success("mock-override-id")
+
+    var rangedRefreshCalled = false
+    var rangedRefreshCallCount = 0
+    var lastRangedRefreshStartDate: Date?
+    var lastRangedRefreshEndDate: Date?
+    var rangedRefreshResult: Result<Void, Error> = .success(())
 
     func refresh(ignorePlannablesCache: Bool, ignoreCoursesCache: Bool) -> AnyPublisher<Void, Error> {
         refreshCalled = true
@@ -54,10 +67,40 @@ final class TodoInteractorMock: TodoInteractor {
         }
     }
 
+    func refresh(
+        startDate: Date,
+        endDate: Date,
+        ignorePlannablesCache: Bool,
+        ignoreCoursesCache: Bool
+    ) -> AnyPublisher<Void, Error> {
+        rangedRefreshCalled = true
+        rangedRefreshCallCount += 1
+        lastRangedRefreshStartDate = startDate
+        lastRangedRefreshEndDate = endDate
+
+        switch rangedRefreshResult {
+        case .success:
+            return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+        case .failure(let error):
+            return Fail(error: error).eraseToAnyPublisher()
+        }
+    }
+
     func isCacheExpired() -> AnyPublisher<Bool, Never> {
         isCacheExpiredCalled = true
         isCacheExpiredCallCount += 1
         return Just(isCacheExpiredResult).eraseToAnyPublisher()
+    }
+
+    func isCacheExpiredForStartDate(_ startDate: Date) -> AnyPublisher<Bool, Never> {
+        isCacheExpiredForStartDateInput = startDate
+        isCacheExpiredForStartDateCallCount += 1
+        return Just(isCacheExpiredForStartDateResult).eraseToAnyPublisher()
+    }
+
+    func clearRangedCaches() -> AnyPublisher<Void, Never> {
+        clearRangedCachesCallCount += 1
+        return Publishers.typedJust()
     }
 
     func markItemAsDone(_ item: TodoItemViewModel, done: Bool) -> AnyPublisher<String, Error> {

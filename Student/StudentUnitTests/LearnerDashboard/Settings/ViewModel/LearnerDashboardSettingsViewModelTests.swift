@@ -43,7 +43,7 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
     func test_init_shouldSetUseNewLearnerDashboardFromDefaults() {
         testDefaults.preferNewLearnerDashboard = true
 
-        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults)
+        testee = makeTestee()
 
         XCTAssertEqual(testee.useNewLearnerDashboard, true)
     }
@@ -51,7 +51,7 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
     func test_init_withFalseDefault_shouldSetUseNewLearnerDashboardToFalse() {
         testDefaults.preferNewLearnerDashboard = false
 
-        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults)
+        testee = makeTestee()
 
         XCTAssertEqual(testee.useNewLearnerDashboard, false)
     }
@@ -60,7 +60,7 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
 
     func test_switchToClassicDashboard_shouldUpdateDefaults() {
         testDefaults.preferNewLearnerDashboard = true
-        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults)
+        testee = makeTestee()
 
         let viewController = UIViewController()
         testee.switchToClassicDashboard(viewController: viewController)
@@ -70,7 +70,7 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
 
     func test_switchToClassicDashboard_shouldUpdateLocalState() {
         testDefaults.preferNewLearnerDashboard = true
-        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults)
+        testee = makeTestee()
 
         let viewController = UIViewController()
         testee.switchToClassicDashboard(viewController: viewController)
@@ -79,7 +79,7 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
     }
 
     func test_switchToClassicDashboard_shouldDismissViewController() {
-        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults)
+        testee = makeTestee()
 
         let expectation = expectation(description: "dismiss called")
         let mockViewController = MockViewController()
@@ -92,7 +92,7 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
     }
 
     func test_switchToClassicDashboard_shouldPostNotificationAfterDismiss() {
-        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults, environment: env)
+        testee = makeTestee()
 
         let expectation = expectation(forNotification: .dashboardPreferenceChanged, object: nil)
         let mockViewController = MockViewController()
@@ -106,12 +106,33 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
     func test_switchToClassicDashboard_shouldSetFeedbackFlag() {
         testDefaults.preferNewLearnerDashboard = true
         testDefaults.shouldShowDashboardFeedback = false
-        testee = LearnerDashboardSettingsViewModel(defaults: testDefaults)
+        testee = makeTestee()
 
         let viewController = UIViewController()
         testee.switchToClassicDashboard(viewController: viewController)
 
         XCTAssertEqual(testDefaults.shouldShowDashboardFeedback, true)
+    }
+
+    // MARK: - Private helpers
+
+    private func makeTestee() -> LearnerDashboardSettingsViewModel {
+        let colorInteractor = LearnerDashboardColorInteractorLive(defaults: testDefaults)
+        return LearnerDashboardSettingsViewModel(
+            defaults: testDefaults,
+            colorInteractor: colorInteractor,
+            courseSettingsViewModel: makeCourseSettingsViewModel(),
+            environment: env
+        )
+    }
+
+    private func makeCourseSettingsViewModel() -> LearnerDashboardSettingsWidgetsSectionViewModel {
+        LearnerDashboardSettingsWidgetsSectionViewModel(
+            userDefaults: testDefaults,
+            configs: EditableWidgetIdentifier.makeDefaultConfigs(),
+            username: "",
+            onConfigsChanged: {}
+        )
     }
 }
 

@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 import Foundation
 import SwiftUI
@@ -28,16 +29,22 @@ struct CourseCardViewModel: Identifiable, Equatable {
     let imageUrl: URL?
     let grade: String?
 
+    let unreadAnnouncementCount: Int
+    let shouldShowAnnouncementsButton: Bool
+    let openAnnouncementsA11yLabel: String
+
     var isAvailableOffline: Bool {
         guard let selections = AppEnvironment.shared.userDefaults?.offlineSyncSelections else { return false }
         return selections.contains { $0.contains("courses/\(id)") }
     }
 
     private let model: CoursesAndGroupsWidgetCourseItem
+    private let didSaveChanges: PassthroughSubject<Void, Never>
     private let router: Router
 
     init(
         model: CoursesAndGroupsWidgetCourseItem,
+        didSaveChanges: PassthroughSubject<Void, Never>,
         router: Router
     ) {
         self.model = model
@@ -48,6 +55,13 @@ struct CourseCardViewModel: Identifiable, Equatable {
         self.imageUrl = model.imageUrl
         self.grade = model.grade
 
+        self.unreadAnnouncementCount = model.unreadAnnouncementCount
+        self.shouldShowAnnouncementsButton = model.unreadAnnouncementCount > 0
+        self.openAnnouncementsA11yLabel = model.unreadAnnouncementCount == 1
+            ? String(localized: "Open New Announcement", bundle: .student)
+            : String(localized: "Open Announcements", bundle: .student)
+
+        self.didSaveChanges = didSaveChanges
         self.router = router
     }
 
@@ -70,7 +84,8 @@ struct CourseCardViewModel: Identifiable, Equatable {
             courseImage: imageUrl,
             courseColor: courseColor.uiColor,
             courseName: title,
-            hideColorOverlay: !showColorOverlay
+            hideColorOverlay: !showColorOverlay,
+            didSaveChanges: didSaveChanges
         )
 
         router.show(
@@ -81,7 +96,47 @@ struct CourseCardViewModel: Identifiable, Equatable {
         )
     }
 
+    func didTapAnnouncements(from controller: WeakViewController) {
+        if let announcementId = model.singleUnreadAnnouncementId {
+            router.route(
+                to: "/courses/\(id)/announcements/\(announcementId)",
+                from: controller,
+                options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
+            )
+
+            // Wait a little to allow the details screen to open,
+            // and mark announcement as read before triggering a soft-refresh.
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                didSaveChanges.send()
+            }
+        } else {
+            router.route(
+                to: "/courses/\(id)/announcements",
+                from: controller,
+                options: .push
+            )
+        }
+    }
+
     static func == (lhs: CourseCardViewModel, rhs: CourseCardViewModel) -> Bool {
         lhs.model == rhs.model
+    }
+}
+
+extension CourseCardViewModel {
+    static func placeholder(id: String, color: Color) -> Self {
+        .init(
+            model: .init(
+                id: id,
+                title: "Redacted placeholder course name",
+                color: color,
+                imageUrl: nil,
+                grade: nil,
+                unreadAnnouncementCount: 1,
+                singleUnreadAnnouncementId: nil
+            ),
+            didSaveChanges: .init(),
+            router: .init(routes: [])
+        )
     }
 }

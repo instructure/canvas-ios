@@ -33,8 +33,11 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 icon: .quizLine,
                 title: "Chapter 5 Quiz",
                 dueDateText: "Tomorrow at 11:59 PM",
-                pointsText: "20 pts",
-                gradeWeightText: nil
+                submissionStatus: nil,
+                pointsPossible: "20 pts",
+                grade: nil,
+                gradeWeightText: nil,
+                discussionCheckpointText: nil
             ),
             WeeklySummaryWidgetAssignment(
                 id: "2",
@@ -44,8 +47,11 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 icon: .assignmentLine,
                 title: "Policy Analysis Essay",
                 dueDateText: "Thu at 11:59 PM",
-                pointsText: "100 pts",
-                gradeWeightText: "20% of final grade"
+                submissionStatus: nil,
+                pointsPossible: "100 pts",
+                grade: nil,
+                gradeWeightText: "20% of final grade",
+                discussionCheckpointText: nil
             ),
             WeeklySummaryWidgetAssignment(
                 id: "3",
@@ -55,8 +61,11 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 icon: .assignmentLine,
                 title: "Lab Report: Water Quality",
                 dueDateText: "Sat at 11:59 PM",
-                pointsText: "50 pts",
-                gradeWeightText: nil
+                submissionStatus: nil,
+                pointsPossible: "50 pts",
+                grade: nil,
+                gradeWeightText: nil,
+                discussionCheckpointText: nil
             )
         ],
         newGrades: [
@@ -68,8 +77,11 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 icon: .assignmentLine,
                 title: "Midterm Reflection",
                 dueDateText: nil,
-                pointsText: "85 pts",
-                gradeWeightText: "30% of final grade"
+                submissionStatus: nil,
+                pointsPossible: nil,
+                grade: "85 pts",
+                gradeWeightText: "30% of final grade",
+                discussionCheckpointText: nil
             ),
             WeeklySummaryWidgetAssignment(
                 id: "5",
@@ -79,17 +91,34 @@ final class WeeklySummaryWidgetInteractorMock: WeeklySummaryWidgetInteractor {
                 icon: .assignmentLine,
                 title: "Discussion Board Week 4",
                 dueDateText: nil,
-                pointsText: "15 pts",
-                gradeWeightText: nil
+                submissionStatus: nil,
+                pointsPossible: nil,
+                grade: "15 pts",
+                gradeWeightText: nil,
+                discussionCheckpointText: nil
             )
         ]
     )
 
     var outputError: Error?
+    var getSummarySubject: PassthroughSubject<WeeklySummaryWidgetFilters, Error>?
 
-    func getSummary(ignoreCache: Bool) -> AnyPublisher<WeeklySummaryWidgetFilters, Error> {
+    func clearCache() -> AnyPublisher<Void, Never> {
+        Just(()).eraseToAnyPublisher()
+    }
+
+    var hasCachedSummaryOutput: Bool = false
+
+    func hasCachedSummary(weekStart: Date) -> AnyPublisher<Bool, Never> {
+        Just(hasCachedSummaryOutput).eraseToAnyPublisher()
+    }
+
+    func getSummary(weekStart: Date, ignoreCache: Bool) -> AnyPublisher<WeeklySummaryWidgetFilters, Error> {
         if let error = outputError {
             return Fail(error: error).eraseToAnyPublisher()
+        }
+        if let subject = getSummarySubject {
+            return subject.eraseToAnyPublisher()
         }
         return Publishers.typedJust(outputValue)
     }

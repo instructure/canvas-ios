@@ -26,47 +26,48 @@ public struct APIAssignment: Codable, Equatable {
     let annotatable_attachment_id: String?
     let anonymize_students: Bool?
     let anonymous_submissions: Bool?
-    let assignment_group_id: ID?
+    public let assignment_group_id: ID?
     let can_submit: Bool?
-    let course_id: ID
-    let course: APICourse?
+    public let course_id: ID
+    public let course: APICourse?
     let description: String?
     let discussion_topic: APIDiscussionTopic?
-    let due_at: Date?
+    public let due_at: Date?
     let external_tool_tag_attributes: APIExternalToolTagAttributes?
     let grade_group_students_individually: Bool?
     let grading_standard_id: ID?
-    let grading_type: GradingType
+    public let grading_type: GradingType
     let group_category_id: ID?
     let has_submitted_submissions: Bool?
     let has_overrides: Bool?
     var html_url: URL
-    let id: ID
+    public let id: ID
     let in_closed_grading_period: Bool?
-    let is_quiz_lti_assignment: Bool?
+    public let is_quiz_lti_assignment: Bool?
     let locked_for_user: Bool? // This also returns true if the assignment is locked by date, so there's no need to manually check the `lock_at` and `unlock_at` parameters.
     let lock_at: Date?
     let lock_explanation: String?
     let moderated_grading: Bool?
-    let name: String
+    public let name: String
     let needs_grading_count: Int?
     let only_visible_to_overrides: Bool?
     let overrides: [APIAssignmentOverride]?
     let planner_override: APIPlannerOverride?
-    let points_possible: Double?
+    public let points_possible: Double?
     let position: Int?
     let published: Bool?
-    let quiz_id: ID?
+    public let quiz_id: ID?
     var rubric: [APIRubricCriterion]?
     var rubric_settings: APIRubricSettings?
     let score_statistics: APIScoreStatistics?
-    var submission: APIList<APISubmission>?
-    let submission_types: [SubmissionType]
+    public var submission: APIList<APISubmission>?
+    public let submission_types: [SubmissionType]
     let unlock_at: Date?
     let unpublishable: Bool?
     let url: URL?
     let use_rubric_for_grading: Bool?
     let hide_in_gradebook: Bool?
+    public let omit_from_final_grade: Bool?
 
     // Checkpoints
     let has_sub_assignments: Bool? // include[]=checkpoints
@@ -83,6 +84,10 @@ extension APIAssignment {
         let mean: Double
         let min: Double
         let max: Double
+    }
+
+    public func subAssignmentSubmission(tag: String) -> APISubAssignmentSubmission? {
+        submission?.values.first?.sub_assignment_submissions?.first { $0.sub_assignment_tag == tag }
     }
 }
 
@@ -137,6 +142,7 @@ extension APIAssignment {
         url: URL? = nil,
         use_rubric_for_grading: Bool? = nil,
         hide_in_gradebook: Bool? = false,
+        omit_from_final_grade: Bool? = nil,
         has_sub_assignments: Bool? = nil,
         checkpoints: [APIAssignmentCheckpoint]? = nil
     ) -> APIAssignment {
@@ -196,6 +202,7 @@ extension APIAssignment {
             url: url,
             use_rubric_for_grading: use_rubric_for_grading,
             hide_in_gradebook: hide_in_gradebook,
+            omit_from_final_grade: omit_from_final_grade,
             has_sub_assignments: has_sub_assignments,
             checkpoints: checkpoints
         )

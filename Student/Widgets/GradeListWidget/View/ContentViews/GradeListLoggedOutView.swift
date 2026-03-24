@@ -27,8 +27,7 @@ struct GradeListLoggedOutView: View {
 
     var body: some View {
         VStack(spacing: family == .systemMedium ? 10 : 15) {
-            Image(iconName, bundle: .core)
-                .resizable()
+            Image.resizableDesaturated(iconName, bundle: .core)
                 .aspectRatio(contentMode: .fit)
                 .frame(height: family == .systemMedium ? 70 : 160)
                 .accessibilityHidden(true)

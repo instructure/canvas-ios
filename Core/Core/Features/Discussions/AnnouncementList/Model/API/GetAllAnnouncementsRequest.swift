@@ -26,19 +26,23 @@ public struct GetAllAnnouncementsRequest: APIRequestable {
     private let latestOnly: Bool?
     private let startDate: Date?
     private let endDate: Date?
+    private let perPage: Int
 
+    /// - Warning: The `contextCodes` must not be empty or the request will fail.
     public init(
         contextCodes: [String],
         activeOnly: Bool? = nil,
         latestOnly: Bool? = nil,
-        startDate: Date? = nil,
-        endDate: Date? = nil
+        startDate: Date? = nil, // This defaults to "14 days ago" on backend
+        endDate: Date? = nil, // This defaults to "28 days from start_date" on backend
+        perPage: Int = 10
     ) {
         self.contextCodes = contextCodes
         self.activeOnly = activeOnly
         self.latestOnly = latestOnly
         self.startDate = startDate
         self.endDate = endDate
+        self.perPage = perPage
     }
 
     public var path = "announcements"
@@ -47,6 +51,7 @@ public struct GetAllAnnouncementsRequest: APIRequestable {
         .optionalBool("active_only", activeOnly),
         .optionalBool("latest_only", latestOnly),
         .optionalValue("start_date", startDate?.isoString()),
-        .optionalValue("end_date", endDate?.isoString())
+        .optionalValue("end_date", endDate?.isoString()),
+        .perPage(perPage)
     ]}
 }

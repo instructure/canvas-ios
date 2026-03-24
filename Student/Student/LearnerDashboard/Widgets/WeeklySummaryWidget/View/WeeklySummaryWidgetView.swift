@@ -22,10 +22,13 @@ import SwiftUI
 
 struct WeeklySummaryWidgetView: View {
     static let animation: Animation = .snappy
+    static let weekTransitionOffsetMagnitude: CGFloat = 80
+
     @Environment(\.viewController) var controller
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @State private var weekTransitionOffset: CGFloat = 80
 
-    @State var viewModel: WeeklySummaryWidgetViewModel
+    var viewModel: WeeklySummaryWidgetViewModel
 
     init(viewModel: WeeklySummaryWidgetViewModel) {
         self.viewModel = viewModel
@@ -42,23 +45,47 @@ struct WeeklySummaryWidgetView: View {
             } else {
                 DashboardWidgetCard(background: .tint) {
                     VStack(spacing: 8) {
-                        WeeklySummaryWidgetWeekSelectorView(viewModel: viewModel)
-                        WeeklySummaryWidgetSegmentedControl(viewModel: viewModel)
-                        if let expanded = viewModel.expandedFilter {
-                            assignmentList(filter: expanded)
+                        WeeklySummaryWidgetWeekSelectorView(viewModel: viewModel, transitionOffset: $weekTransitionOffset)
+                        VStack(spacing: 8) {
+                            WeeklySummaryWidgetSegmentedControl(viewModel: viewModel)
+                            if let expanded = viewModel.expandedFilter {
+                                assignmentList(filter: expanded)
+                            }
                         }
+                        .redacted(reason: viewModel.state == .loading || viewModel.isWeekLoading ? .placeholder : [])
+                        .allowsHitTesting(viewModel.state != .loading && !viewModel.isWeekLoading)
                     }
-                    .redacted(reason: viewModel.state == .loading ? .placeholder : [])
-                    .allowsHitTesting(viewModel.state != .loading)
                     .paddingStyle(.top, .sectionHeaderVertical)
                     .paddingStyle(.horizontal, .standard)
                     .paddingStyle(.bottom, .standard)
                 }
-                .animation(Self.animation, value: viewModel.expandedFilter)
+                .animation(Self.animation, value: viewModel.expandedFilter?.assignments.map(\.id))
                 .animation(Self.animation, value: viewModel.weekStartDate)
             }
+        } trailingContent: {
+            currentWeekButton
         }
         .animation(Self.animation, value: viewModel.state)
+        .animation(Self.animation, value: viewModel.isCurrentWeek)
+    }
+
+    private var currentWeekButton: some View {
+        Button {
+            weekTransitionOffset = viewModel.isFutureWeek
+                ? -Self.weekTransitionOffsetMagnitude
+                : Self.weekTransitionOffsetMagnitude
+            withAnimation(Self.animation) {
+                viewModel.navigateToCurrentWeek()
+            }
+        } label: {
+            InstUI.PillContent(
+                title: String(localized: "Current Week", bundle: .student),
+                trailingIcon: .calendarTab,
+                size: .height24
+            )
+        }
+        .buttonStyle(.pillTintFilled)
+        .hidden(viewModel.isCurrentWeek)
     }
 
     @ViewBuilder

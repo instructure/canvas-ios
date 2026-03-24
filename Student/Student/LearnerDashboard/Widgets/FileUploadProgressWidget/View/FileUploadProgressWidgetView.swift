@@ -21,7 +21,7 @@ import SwiftUI
 import CoreData
 
 struct FileUploadProgressWidgetView: View {
-    @State var model: FileUploadProgressWidgetViewModel
+    var model: FileUploadProgressWidgetViewModel
     @Environment(\.viewController) private var controller
 
     var body: some View {
@@ -87,7 +87,6 @@ struct FileUploadProgressWidgetView: View {
     try? context.save()
 
     let viewModel = FileUploadProgressWidgetViewModel(
-        config: .init(id: .fileUploadProgress, order: 1, isVisible: true),
         router: env.router,
         listViewModel: FileUploadNotificationCardListViewModel(environment: env)
     )

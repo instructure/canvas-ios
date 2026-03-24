@@ -25,6 +25,11 @@ public struct DashboardGrid<Content: View, ID: Hashable>: View {
     private let columnCount: Int
     private let content: (Int) -> Content
 
+    /// - Parameters:
+    ///   - content: The content closure typically uses an array of items
+    ///              to build it's content based on the index provided by the closure.
+    /// - Warning: Make sure to capture the ACTUAL array in the `content` closure
+    ///            to avoid potential 'index out of bounds' crashes during animation.
     public init(itemIDs: [ID], itemWidth: CGFloat, spacing: CGFloat, columnCount: Int, @ViewBuilder content: @escaping (Int) -> Content) {
         self.itemIDs = itemIDs
         self.itemWidth = itemWidth

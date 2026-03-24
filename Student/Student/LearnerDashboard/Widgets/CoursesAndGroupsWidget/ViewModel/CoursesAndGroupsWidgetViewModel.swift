@@ -18,25 +18,33 @@
 
 import Combine
 import Core
-import Foundation
+import SwiftUI
 
 @Observable
-final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
-    typealias ViewType = CoursesAndGroupsWidgetView
+final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel, DashboardMutatorWidget {
 
     let config: DashboardWidgetConfig
+    var id: String { config.id.rawValue }
     let isHiddenInEmptyState = true
 
     private(set) var state: InstUI.ScreenState = .loading
-    private(set) var courseCards: [CourseCardViewModel] = []
+    private(set) var courseCards: [CourseCardViewModel] = [
+        .placeholder(id: "1", color: .course1),
+        .placeholder(id: "2", color: .course2),
+        .placeholder(id: "3", color: .course3)
+    ]
     private(set) var groupCards: [GroupCardViewModel] = []
 
     private(set) var showGrades: Bool = false
     private(set) var showColorOverlay: Bool = false
 
+    private var favoritesDidChange: Bool = false
+
     var layoutIdentifier: [AnyHashable] {
         [state, courseCards.count, groupCards.count]
     }
+
+    var requestDashboardRefresh = PassthroughSubject<Void, Never>()
 
     private let interactor: CoursesAndGroupsWidgetInteractor
     private let environment: AppEnvironment
@@ -54,20 +62,30 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
 
         updateShowGrades(on: interactor.showGrades)
         updateShowColorOverlay(on: interactor.showColorOverlay)
+        observeFavoritesDidChange()
     }
 
-    func makeView() -> CoursesAndGroupsWidgetView {
-        CoursesAndGroupsWidgetView(viewModel: self)
+    func makeView() -> AnyView {
+        AnyView(CoursesAndGroupsWidgetView(viewModel: self))
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        interactor.getCoursesAndGroups(ignoreCache: ignoreCache)
+        // Favorite changes require refresh from API, because those can't be applied properly on client side.
+        let shouldForceCoursesRefresh = favoritesDidChange
+        favoritesDidChange = false
+
+        if shouldForceCoursesRefresh {
+            state = .loading
+        }
+
+        return interactor.getCoursesAndGroups(ignoreCache: ignoreCache, shouldForceCoursesRefresh: shouldForceCoursesRefresh)
             .receive(on: DispatchQueue.main)
             .map { [weak self, environment] (courseItems, groupItems) in
                 guard let self else { return }
                 courseCards = courseItems.map { item in
                     CourseCardViewModel(
                         model: item,
+                        didSaveChanges: self.requestDashboardRefresh,
                         router: environment.router
                     )
                 }
@@ -75,7 +93,8 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
                 groupCards = groupItems.compactMap { item in
                     GroupCardViewModel(
                         model: item,
-                        router: environment.router
+                        router: environment.router,
+                        environment: environment
                     )
                 }
 
@@ -106,6 +125,15 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel {
             .receive(on: DispatchQueue.main)
             .sink { [weak self] in
                 self?.showColorOverlay = $0
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func observeFavoritesDidChange() {
+        NotificationCenter.default
+            .publisher(for: .favoritesDidChange)
+            .sink { [weak self] _ in
+                self?.favoritesDidChange = true
             }
             .store(in: &subscriptions)
     }

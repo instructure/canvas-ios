@@ -44,7 +44,7 @@ class CustomizeCourseViewModelTests: CoreTestCase {
     func testInitialPropertiesMapped() {
         XCTAssertEqual(testee.isLoading, false)
         XCTAssertTrue(testee.colors.elementsEqual(colorsInteractor.colors) { color1, color2 in
-            color1.key == color2.key && color1.value == color2.value
+            color1.persistentId == color2.persistentId
         })
         XCTAssertEqual(testee.courseImage, .make())
         XCTAssertEqual(testee.hideColorOverlay, true)
@@ -60,7 +60,21 @@ class CustomizeCourseViewModelTests: CoreTestCase {
 
     func testSuccessfulSave() {
         // GIVEN
+        let didSaveChanges = PassthroughSubject<Void, Never>()
+        testee = CustomizeCourseViewModel(
+            courseId: "1",
+            courseImage: .make(),
+            courseColor: .course1,
+            courseName: "Test Course",
+            hideColorOverlay: true,
+            didSaveChanges: didSaveChanges,
+            courseColorsInteractor: colorsInteractor
+        )
         setupSuccessfulSaveTest()
+        let didSaveChangesReceived = expectation(description: "didSaveChangesReceived")
+        didSaveChanges
+            .sink { didSaveChangesReceived.fulfill() }
+            .store(in: &subscriptions)
 
         // WHEN
         testee.color = .course2

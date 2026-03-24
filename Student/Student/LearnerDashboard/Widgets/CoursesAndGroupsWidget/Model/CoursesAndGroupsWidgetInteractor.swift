@@ -18,6 +18,7 @@
 
 import Combine
 import Core
+import CoreData
 import Foundation
 
 protocol CoursesAndGroupsWidgetInteractor {
@@ -26,7 +27,7 @@ protocol CoursesAndGroupsWidgetInteractor {
     var showGrades: CurrentValueSubject<Bool, Never> { get }
     var showColorOverlay: CurrentValueSubject<Bool, Never> { get }
 
-    func getCoursesAndGroups(ignoreCache: Bool) -> AnyPublisher<Model, Error>
+    func getCoursesAndGroups(ignoreCache: Bool, shouldForceCoursesRefresh: Bool) -> AnyPublisher<Model, Error>
     func reorderCourses(newOrder: [String])
 }
 
@@ -45,20 +46,21 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
     private let userSettingsStore: ReactiveStore<GetUserSettings>
 
     private let env: AppEnvironment
+    private let moContext: NSManagedObjectContext
     private var subscriptions = Set<AnyCancellable>()
 
     private var currentDashboardCards: [DashboardCard] = []
 
     init(coursesInteractor: CoursesInteractor, env: AppEnvironment) {
         self.coursesInteractor = coursesInteractor
+        self.env = env
+        self.moContext = env.database.backgroundReadContext
 
         self.userSettingsStore = ReactiveStore(
-            context: env.database.backgroundReadContext,
+            context: moContext,
             useCase: GetUserSettings(),
             environment: env
         )
-
-        self.env = env
 
         self.showGrades = .init(env.userDefaults?.showGradesOnDashboard ?? false)
         self.showColorOverlay = .init(true)
@@ -78,24 +80,37 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
     /// If there are no favorite groups: no groups are returned.
     /// (This uses the 'favorites/groups' endpoint which provides an already filtered list of groups to display,
     /// but it needs to be further filtered for active courses)
-    func getCoursesAndGroups(ignoreCache: Bool) -> AnyPublisher<Model, Error> {
+    func getCoursesAndGroups(ignoreCache: Bool, shouldForceCoursesRefresh: Bool) -> AnyPublisher<Model, Error> {
         Publishers.CombineLatest(
-            coursesInteractor.getCourses(ignoreCache: ignoreCache),
+            coursesInteractor.getCourses(ignoreCache: ignoreCache || shouldForceCoursesRefresh),
             userSettingsStore.getEntities(ignoreCache: ignoreCache)
         )
-        .map { [weak self] (coursesResult: CoursesResult, _) -> Model in
+        .flatMap { [weak self] (coursesResult: CoursesResult, _) -> AnyPublisher<(CoursesResult, [String: [DiscussionTopic]]), Error> in
+            guard let self else { return Publishers.typedEmpty() }
+
+            return getAnnouncements(
+                courseContextIds: coursesResult.allCourses.map(\.canvasContextID),
+                ignoreCache: ignoreCache
+            )
+            .map { (coursesResult, $0) }
+            .eraseToAnyPublisher()
+        }
+        .map { [weak self] (coursesResult: CoursesResult, announcementsByContextId: [String: [DiscussionTopic]]) -> Model in
             let sortedCourseCards = coursesResult.courseCards.sortedForWidget()
             self?.currentDashboardCards = sortedCourseCards
 
             let courses = coursesResult.allCourses
                 .filterUsingDashboardCards(sortedCourseCards)
             let courseItems = courses.map {
-                CoursesAndGroupsWidgetCourseItem(
+                let announcements = announcementsByContextId[$0.canvasContextID] ?? []
+                return CoursesAndGroupsWidgetCourseItem(
                     id: $0.id,
                     title: $0.name ?? "",
                     color: $0.color.asColor,
                     imageUrl: $0.imageDownloadURL,
-                    grade: $0.hideTotalGrade ? nil : $0.displayGrade // TODO: use grade without percentage
+                    grade: $0.hideTotalGrade ? nil : $0.displayGradeForLearnerDashboard,
+                    unreadAnnouncementCount: announcements.count,
+                    singleUnreadAnnouncementId: announcements.count == 1 ? announcements.first?.id : nil
                 )
             }
 
@@ -111,6 +126,30 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
             }
 
             return (courseItems, groupItems)
+        }
+        .eraseToAnyPublisher()
+    }
+
+    private func getAnnouncements(courseContextIds: [String], ignoreCache: Bool) -> AnyPublisher<[String: [DiscussionTopic]], Error> {
+        // When there are no courses we can't request course announcements,
+        // because the request will fail without a `context_codes` query.
+        guard courseContextIds.isNotEmpty else {
+            return Publishers.typedJust([:])
+        }
+
+        return ReactiveStore(
+            context: moContext,
+            useCase: GetAnnouncementsForCourses(courseContextIds: courseContextIds),
+            environment: env
+        )
+        .getEntities(ignoreCache: ignoreCache)
+        .map { announcements in
+            let unreadAnnouncements = announcements.filter { !$0.isRead }
+            return Dictionary(grouping: unreadAnnouncements) {
+                // The UseCase ensures that these announcements have non-nil `canvasContextID`s,
+                // so the fallback value is never used.
+                $0.canvasContextID ?? ""
+            }
         }
         .eraseToAnyPublisher()
     }

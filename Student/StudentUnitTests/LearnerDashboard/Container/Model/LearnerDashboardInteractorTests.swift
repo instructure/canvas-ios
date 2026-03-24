@@ -19,6 +19,7 @@
 import Combine
 @testable import Core
 @testable import Student
+import SwiftUI
 import XCTest
 
 final class LearnerDashboardInteractorLiveTests: StudentTestCase {
@@ -46,7 +47,8 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
     func test_loadWidgets_withNoSavedConfigs_shouldUseDefaultConfigs() {
         testee = LearnerDashboardInteractorLive(
             userDefaults: userDefaults,
-            widgetViewModelFactory: makeViewModelFactory()
+            systemWidgetFactory: makeSystemFactory(),
+            editableWidgetFactory: makeEditableFactory()
         )
 
         let expectation = expectation(description: "loadWidgets")
@@ -61,28 +63,22 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
         wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(received?.count, 8)
-        XCTAssertEqual(received?[0].id, .offlineSyncProgress)
-        XCTAssertEqual(received?[1].id, .fileUploadProgress)
-        XCTAssertEqual(received?[2].id, .conferences)
-        XCTAssertEqual(received?[3].id, .courseInvitations)
-        XCTAssertEqual(received?[4].id, .globalAnnouncements)
-        XCTAssertEqual(received?[5].id, .helloWidget)
-        XCTAssertEqual(received?[6].id, .weeklySummary)
-        XCTAssertEqual(received?[7].id, .coursesAndGroups)
+        let systemWidgetIds = SystemWidgetIdentifier.allCases.map(\.rawValue)
+        let editableWidgetIds = EditableWidgetIdentifier.allCases.map(\.rawValue)
+        XCTAssertEqual(received?.map(\.id), systemWidgetIds + editableWidgetIds)
     }
 
     // MARK: - Load widgets with saved configs
 
-    func test_loadWidgets_withSavedConfigs_shouldFilterVisibleAndSort() {
+    func test_loadWidgets_withSavedConfigs_shouldIncludeAllSystemAndFilterVisibleEditable() {
         userDefaults.learnerDashboardWidgetConfigs = [
             DashboardWidgetConfig(id: .helloWidget, order: 10, isVisible: true),
-            DashboardWidgetConfig(id: .conferences, order: 20, isVisible: false),
             DashboardWidgetConfig(id: .coursesAndGroups, order: 5, isVisible: true)
         ]
         testee = LearnerDashboardInteractorLive(
             userDefaults: userDefaults,
-            widgetViewModelFactory: makeViewModelFactory()
+            systemWidgetFactory: makeSystemFactory(),
+            editableWidgetFactory: makeEditableFactory()
         )
 
         let expectation = expectation(description: "loadWidgets")
@@ -97,20 +93,27 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
         wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(received?.count, 2)
-        XCTAssertEqual(received?[0].id, .coursesAndGroups)
-        XCTAssertEqual(received?[1].id, .helloWidget)
+        XCTAssertEqual(received?.count, 9)
+        XCTAssertEqual(received?[0].id, SystemWidgetIdentifier.offlineSyncProgress.rawValue)
+        XCTAssertEqual(received?[1].id, SystemWidgetIdentifier.fileUploadProgress.rawValue)
+        XCTAssertEqual(received?[2].id, SystemWidgetIdentifier.courseInvitations.rawValue)
+        XCTAssertEqual(received?[3].id, SystemWidgetIdentifier.globalAnnouncements.rawValue)
+        XCTAssertEqual(received?[4].id, SystemWidgetIdentifier.conferences.rawValue)
+        XCTAssertEqual(received?[5].id, EditableWidgetIdentifier.weeklySummary.rawValue)
+        XCTAssertEqual(received?[6].id, EditableWidgetIdentifier.todo.rawValue)
+        XCTAssertEqual(received?[7].id, EditableWidgetIdentifier.coursesAndGroups.rawValue)
+        XCTAssertEqual(received?[8].id, EditableWidgetIdentifier.helloWidget.rawValue)
     }
 
-    func test_loadWidgets_shouldReturnWidgetsInOrder() {
+    func test_loadWidgets_shouldReturnEditableWidgetsInOrder() {
         userDefaults.learnerDashboardWidgetConfigs = [
             DashboardWidgetConfig(id: .helloWidget, order: 20, isVisible: true),
-            DashboardWidgetConfig(id: .courseInvitations, order: 5, isVisible: true),
             DashboardWidgetConfig(id: .coursesAndGroups, order: 10, isVisible: true)
         ]
         testee = LearnerDashboardInteractorLive(
             userDefaults: userDefaults,
-            widgetViewModelFactory: makeViewModelFactory()
+            systemWidgetFactory: makeSystemFactory(),
+            editableWidgetFactory: makeEditableFactory()
         )
 
         let expectation = expectation(description: "loadWidgets")
@@ -125,34 +128,124 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
         wait(for: [expectation], timeout: 5)
 
-        XCTAssertEqual(received?.count, 3)
-        XCTAssertEqual(received?[0].id, .courseInvitations)
-        XCTAssertEqual(received?[1].id, .coursesAndGroups)
-        XCTAssertEqual(received?[2].id, .helloWidget)
+        XCTAssertEqual(received?.count, 9)
+        XCTAssertEqual(received?[4].id, SystemWidgetIdentifier.conferences.rawValue)
+        XCTAssertEqual(received?[5].id, EditableWidgetIdentifier.weeklySummary.rawValue)
+        XCTAssertEqual(received?[6].id, EditableWidgetIdentifier.todo.rawValue)
+        XCTAssertEqual(received?[7].id, EditableWidgetIdentifier.coursesAndGroups.rawValue)
+        XCTAssertEqual(received?[8].id, EditableWidgetIdentifier.helloWidget.rawValue)
+    }
+
+    // MARK: - Analytics tracking
+
+    func test_loadWidgets_tracksWidgetVisibility() {
+        let mockHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = mockHandler
+        testee = LearnerDashboardInteractorLive(
+            userDefaults: userDefaults,
+            systemWidgetFactory: makeSystemFactory(),
+            editableWidgetFactory: makeEditableFactory()
+        )
+
+        let expectation = expectation(description: "loadWidgets")
+        testee.loadWidgets()
+            .sink { _ in expectation.fulfill() }
+            .store(in: &subscriptions)
+        wait(for: [expectation], timeout: 5)
+
+        XCTAssertEqual(mockHandler.lastEvent, "dashboard_widget_visibility")
+        XCTAssertEqual(mockHandler.lastEventParameter("welcome", ofType: String.self), "0")
+        XCTAssertEqual(mockHandler.lastEventParameter("courses", ofType: String.self), "1")
+        XCTAssertEqual(mockHandler.lastEventParameter("forecast", ofType: String.self), "2")
+    }
+
+    func test_loadWidgets_tracksEachLoad() {
+        let mockHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = mockHandler
+        testee = LearnerDashboardInteractorLive(
+            userDefaults: userDefaults,
+            systemWidgetFactory: makeSystemFactory(),
+            editableWidgetFactory: makeEditableFactory()
+        )
+
+        let expectation1 = expectation(description: "loadWidgets1")
+        testee.loadWidgets()
+            .sink { _ in expectation1.fulfill() }
+            .store(in: &subscriptions)
+        wait(for: [expectation1], timeout: 5)
+
+        let expectation2 = expectation(description: "loadWidgets2")
+        testee.loadWidgets()
+            .sink { _ in expectation2.fulfill() }
+            .store(in: &subscriptions)
+        wait(for: [expectation2], timeout: 5)
+
+        XCTAssertEqual(mockHandler.totalEventCount, 2)
+    }
+
+    func test_loadWidgets_hiddenWidgetsTrackedAsMinusOne() {
+        userDefaults.learnerDashboardWidgetConfigs = [
+            DashboardWidgetConfig(id: .helloWidget, order: 0, isVisible: false),
+            DashboardWidgetConfig(id: .coursesAndGroups, order: 1, isVisible: true),
+            DashboardWidgetConfig(id: .weeklySummary, order: 2, isVisible: true)
+        ]
+        let mockHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = mockHandler
+        testee = LearnerDashboardInteractorLive(
+            userDefaults: userDefaults,
+            systemWidgetFactory: makeSystemFactory(),
+            editableWidgetFactory: makeEditableFactory()
+        )
+
+        let expectation = expectation(description: "loadWidgets")
+        testee.loadWidgets()
+            .sink { _ in expectation.fulfill() }
+            .store(in: &subscriptions)
+        wait(for: [expectation], timeout: 5)
+
+        XCTAssertEqual(mockHandler.lastEventParameter("welcome", ofType: String.self), "-1")
+        XCTAssertEqual(mockHandler.lastEventParameter("courses", ofType: String.self), "0")
+        XCTAssertEqual(mockHandler.lastEventParameter("forecast", ofType: String.self), "1")
     }
 
     // MARK: - Private helpers
 
-    private func makeViewModelFactory() -> (DashboardWidgetConfig) -> any DashboardWidgetViewModel {
-        return { config in
-            DashboardWidgetViewModelMock(config: config)
-        }
+    private func makeSystemFactory() -> (SystemWidgetIdentifier) -> any DashboardWidgetViewModel {
+        return { id in DashboardWidgetViewModelMock(id: id.rawValue) }
+    }
+
+    private func makeEditableFactory() -> (DashboardWidgetConfig) -> any DashboardWidgetViewModel {
+        return { config in DashboardWidgetViewModelMock(id: config.id.rawValue) }
+    }
+}
+
+private final class MockAnalyticsHandler: AnalyticsHandler {
+    var lastEvent: String?
+    var lastEventParameters: [String: Any]?
+    var totalEventCount = 0
+
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
+        lastEvent = name
+        lastEventParameters = parameters
+        totalEventCount += 1
+    }
+
+    func lastEventParameter<T: Equatable>(_ key: String, ofType type: T.Type = T.self) -> T? {
+        lastEventParameters?[key] as? T
     }
 }
 
 private final class DashboardWidgetViewModelMock: DashboardWidgetViewModel {
-    typealias ViewType = Never
-
-    let config: DashboardWidgetConfig
+    let id: String
     let isHiddenInEmptyState = false
     let state: InstUI.ScreenState = .data
 
-    init(config: DashboardWidgetConfig) {
-        self.config = config
+    init(id: String) {
+        self.id = id
     }
 
-    func makeView() -> Never {
-        fatalError("Not implemented")
+    func makeView() -> AnyView {
+        AnyView(EmptyView())
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
