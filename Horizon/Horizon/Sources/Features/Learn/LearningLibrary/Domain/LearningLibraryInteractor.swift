@@ -33,6 +33,7 @@ protocol LearningLibraryInteractor {
         searchTerm: String?,
         sortBy: String?
     ) -> AnyPublisher<[LearningLibraryCardModel], Error>
+
     func searchWithFilters(
         searchText: String?,
         objectsType: [LearningLibraryObjectType]?,
