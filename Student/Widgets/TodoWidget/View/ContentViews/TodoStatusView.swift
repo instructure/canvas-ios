@@ -27,8 +27,7 @@ struct TodoStatusView: View {
 
     var body: some View {
         VStack(spacing: family == .systemMedium ? 10 : 15) {
-            Image(status.iconName, bundle: .core)
-                .resizable()
+            Image.resizableDesaturated(status.iconName, bundle: .core)
                 .aspectRatio(contentMode: .fit)
                 .frame(height: status.imageHeight(for: family))
                 .accessibilityHidden(true)
