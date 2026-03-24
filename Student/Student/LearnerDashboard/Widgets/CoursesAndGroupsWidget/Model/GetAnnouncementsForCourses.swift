@@ -36,7 +36,8 @@ struct GetAnnouncementsForCourses: CollectionUseCase {
         GetAllAnnouncementsRequest(
             contextCodes: courseContextIds,
             startDate: Self.distantPastDate,
-            endDate: Clock.now
+            endDate: Clock.now,
+            perPage: 100
         )
     }
 
