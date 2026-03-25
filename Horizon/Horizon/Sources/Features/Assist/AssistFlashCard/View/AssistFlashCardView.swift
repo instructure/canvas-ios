@@ -24,7 +24,8 @@ struct AssistFlashCardView: View {
     @Bindable var viewModel: AssistFlashCardViewModel
     @Environment(\.viewController) private var viewController
     @AccessibilityFocusState private var focusedCardIndex: Int?
-
+    @State private var showInfoView = false
+    
     var body: some View {
         ZStack {
             loaderView
@@ -32,6 +33,14 @@ struct AssistFlashCardView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .applyHorizonGradient()
+        .bottomSheet(
+            isPresented: $showInfoView,
+            backgroundDismissible: true
+        ) {
+            AssistInfoView {
+                showInfoView = false
+            }
+        }
     }
 }
 
@@ -94,6 +103,8 @@ extension AssistFlashCardView {
     private var headerView: some View {
         AssistTitle(onBack: { viewModel.pop(controller: viewController) }) {
             viewModel.dismiss(controller: viewController)
+        } onTapInfo: {
+            showInfoView.toggle()
         }
     }
 
