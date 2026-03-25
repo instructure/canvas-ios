@@ -101,6 +101,7 @@ struct LearnerDashboardSettingsScreen: View {
             }
             .buttonStyle(.pillTintOutlined)
             .tint(viewModel.mainColor)
+            .identifier("Dashboard.Settings.feedbackButton")
         }
         .frame(maxWidth: .infinity)
     }
