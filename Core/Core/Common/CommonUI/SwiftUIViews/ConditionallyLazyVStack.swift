@@ -43,10 +43,6 @@ public struct ConditionallyLazyVStack<Content: View>: View {
     }
 
     public var body: some View {
-        if #available(iOS 26, *) {
-            VStack(alignment: alignment, spacing: spacing, content: content)
-        } else {
-            LazyVStack(alignment: alignment, spacing: spacing, pinnedViews: pinnedViews, content: content)
-        }
+        LazyVStack(alignment: alignment, spacing: spacing, pinnedViews: pinnedViews, content: content)
     }
 }
