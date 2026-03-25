@@ -80,7 +80,7 @@ struct LearnerDashboardSettingsScreen: View {
     }
 
     private var widgetsSection: some View {
-        LearnerDashboardSettingsWidgetsSectionView(viewModel: viewModel.courseSettingsViewModel)
+        LearnerDashboardSettingsWidgetsSectionView(viewModel: viewModel.widgetsSectionViewModel)
     }
 
     @ViewBuilder
@@ -120,13 +120,13 @@ struct LearnerDashboardSettingsScreen: View {
             var defaults = SessionDefaults.fallback
             defaults.preferNewLearnerDashboard = true
             let configs = EditableWidgetIdentifier.makeDefaultConfigs()
-            let courseSettingsVM = LearnerDashboardSettingsWidgetsSectionViewModel(
+            let widgetsSectionViewModel = LearnerDashboardSettingsWidgetsSectionViewModel(
                 userDefaults: defaults,
                 configs: configs,
                 username: "Riley",
                 onConfigsChanged: {}
             )
-            return LearnerDashboardSettingsViewModel(defaults: defaults, colorInteractor: LearnerDashboardColorInteractorLive(defaults: defaults), courseSettingsViewModel: courseSettingsVM)
+            return LearnerDashboardSettingsViewModel(defaults: defaults, colorInteractor: LearnerDashboardColorInteractorLive(defaults: defaults), widgetsSectionViewModel: widgetsSectionViewModel)
         }()
     )
 }
@@ -137,13 +137,13 @@ struct LearnerDashboardSettingsScreen: View {
             var defaults = SessionDefaults.fallback
             defaults.preferNewLearnerDashboard = false
             let configs = EditableWidgetIdentifier.makeDefaultConfigs()
-            let courseSettingsVM = LearnerDashboardSettingsWidgetsSectionViewModel(
+            let widgetsSectionViewModel = LearnerDashboardSettingsWidgetsSectionViewModel(
                 userDefaults: defaults,
                 configs: configs,
                 username: "Riley",
                 onConfigsChanged: {}
             )
-            return LearnerDashboardSettingsViewModel(defaults: defaults, colorInteractor: LearnerDashboardColorInteractorLive(defaults: defaults), courseSettingsViewModel: courseSettingsVM)
+            return LearnerDashboardSettingsViewModel(defaults: defaults, colorInteractor: LearnerDashboardColorInteractorLive(defaults: defaults), widgetsSectionViewModel: widgetsSectionViewModel)
         }()
     )
 }

@@ -27,10 +27,10 @@ import UIKit
 final class LearnerDashboardSettingsViewModel {
     var useNewLearnerDashboard: Bool
     var mainColor: Color {
-        didSet { colorInteractor.selectColor(mainColor) }
+        didSet { didChangeColor(to: mainColor) }
     }
     var colors: [CourseColorData] { colorInteractor.availableColors }
-    let courseSettingsViewModel: LearnerDashboardSettingsWidgetsSectionViewModel
+    let widgetsSectionViewModel: LearnerDashboardSettingsWidgetsSectionViewModel
 
     private var defaults: SessionDefaults
     private let environment: AppEnvironment
@@ -39,13 +39,13 @@ final class LearnerDashboardSettingsViewModel {
     init(
         defaults: SessionDefaults,
         colorInteractor: LearnerDashboardColorInteractor,
-        courseSettingsViewModel: LearnerDashboardSettingsWidgetsSectionViewModel,
+        widgetsSectionViewModel: LearnerDashboardSettingsWidgetsSectionViewModel,
         environment: AppEnvironment = .shared
     ) {
         self.defaults = defaults
         self.environment = environment
         self.colorInteractor = colorInteractor
-        self.courseSettingsViewModel = courseSettingsViewModel
+        self.widgetsSectionViewModel = widgetsSectionViewModel
         self.useNewLearnerDashboard = defaults.preferNewLearnerDashboard
         self.mainColor = colorInteractor.dashboardColor.value
     }

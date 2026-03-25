@@ -121,12 +121,12 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
         return LearnerDashboardSettingsViewModel(
             defaults: testDefaults,
             colorInteractor: colorInteractor,
-            courseSettingsViewModel: makeCourseSettingsViewModel(),
+            widgetsSectionViewModel: makeWidgetsSectionViewModel(),
             environment: env
         )
     }
 
-    private func makeCourseSettingsViewModel() -> LearnerDashboardSettingsWidgetsSectionViewModel {
+    private func makeWidgetsSectionViewModel() -> LearnerDashboardSettingsWidgetsSectionViewModel {
         LearnerDashboardSettingsWidgetsSectionViewModel(
             userDefaults: testDefaults,
             configs: EditableWidgetIdentifier.makeDefaultConfigs(),
