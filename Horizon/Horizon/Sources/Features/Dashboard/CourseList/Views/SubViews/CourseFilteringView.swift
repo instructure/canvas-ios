@@ -20,77 +20,61 @@ import HorizonUI
 import SwiftUI
 
 struct OptionModel: Identifiable, Equatable {
-    let id: Int
+    let id: String
     let name: String
 }
 
 struct FilterView: View {
-    @State private var isListVisiable = false
 
-    // MARK: - Dependencies
+     // MARK: - Dependencies
 
-    private let items: [OptionModel]
-    private let selectedOption: OptionModel?
-    private let onSelect: (OptionModel?) -> Void
+     private let items: [OptionModel]
+     private let selectedOption: OptionModel?
+     private let onSelect: (OptionModel?) -> Void
 
-    // MARK: - Init
+     // MARK: - Init
 
-    init(
-        items: [OptionModel],
-        selectedOption: OptionModel?,
-        onSelect: @escaping (OptionModel?) -> Void
-    ) {
-        self.items = items
-        self.selectedOption = selectedOption
-        self.onSelect = onSelect
+     init(
+         items: [OptionModel],
+         selectedOption: OptionModel?,
+         onSelect: @escaping (OptionModel?) -> Void
+     ) {
+         self.items = items
+         self.selectedOption = selectedOption
+         self.onSelect = onSelect
+     }
 
-    }
-
-    var body: some View {
-        courseSelectionView
-            .frame(maxWidth: 200)
-            .fixedSize(horizontal: true, vertical: false)
-    }
-
-    private var courseSelectionView: some View {
-        CourseSelectionButton(status: selectedOption?.name ?? "") {
-            isListVisiable.toggle()
-        }
-        .accessibilityHint(
+     var body: some View {
+         Menu {
+             ForEach(items) { item in
+                 Button {
+                     onSelect(item)
+                 } label: {
+                     HStack {
+                         if item == selectedOption {
+                             Image.huiIcons.check
+                                 .frame(width: 24, height: 24)
+                         }
+                         Text(item.name)
+                     }
+                 }
+                 .accessibilityAddTraits(item == selectedOption ? .isSelected : [])
+                 .accessibilityRemoveTraits(.isButton)
+             }
+         } label: {
+             CourseSelectionButton(
+                status: selectedOption?.name ?? ""
+             ) { }
+                 .accessibilityRemoveTraits(.isButton)
+         }
+         .accessibilityRemoveTraits(.isButton)
+         .accessibilityHint(
             Text(
                 String.localizedStringWithFormat(
-                    String(localized: "Selected filter is %@. Double tap to select another filter. %@", bundle: .horizon),
+                    String(localized: "Selected filter is %@. Double tap to select another filter.", bundle: .horizon),
                     selectedOption?.name ?? "",
-                    isListVisiable ? String(localized: "Expanded") : String(localized: "Collapsed")
                 )
             )
-        )
-        .popover(isPresented: $isListVisiable, attachmentAnchor: .point(.center), arrowEdge: .top) {
-            courseListView
-                .presentationCompactAdaptation(.none)
-                .presentationBackground(Color.huiColors.surface.cardPrimary)
-        }
-        .accessibilityRemoveTraits(.isButton)
-    }
-
-    private var courseListView: some View {
-        ScrollView {
-            VStack(spacing: .zero) {
-                ForEach(items) { status in
-                    Button {
-                        onSelect(status)
-                        isListVisiable.toggle()
-                    } label: {
-                        TimeSpentCourseView(
-                            name: status.name,
-                            isSelected: status == selectedOption
-                        )
-                        .frame(minWidth: 200)
-                    }
-                    .accessibilityAddTraits(status == selectedOption ? .isSelected : [])
-                }
-            }
-            .padding(.vertical, .huiSpaces.space10)
-        }
-    }
+         )
+     }
 }

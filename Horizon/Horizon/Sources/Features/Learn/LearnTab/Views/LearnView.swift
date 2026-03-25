@@ -23,49 +23,58 @@ import HorizonUI
 struct LearnView: View {
     @State private var isShowTabs: Bool = true
     @State private var selectedTabIndex: Int? = 0
+    private let myContentView: MyContentView
+    private let learningLibraryView: LearningLibraryView
 
-    private let listCourseView: LearnCourseListView
-    private let listProgramView: LearnProgramListView
+    // MARK: - Dependencies
+    @State private var viewModel: LearnViewModel
 
-    init() {
-        self.listCourseView = LearnCourseListAssembly.makeView()
-        self.listProgramView = LearnProgramListAssembly.makeView()
+    init(viewModel: LearnViewModel) {
+        self._viewModel = State(initialValue: viewModel)
+        self.myContentView = MyContentView()
+        self.learningLibraryView = ListLearningLibraryAssembly.makeView()
     }
 
     var body: some View {
-        VStack(spacing: 0) {
-            tabDetailsView()
-                .onPreferenceChange(HeaderVisibilityKey.self) { isShow in
-                    isShowTabs = isShow
-                }
-        }
-        .safeAreaInset(edge: .top, spacing: .zero) {
-            if isShowTabs { tabsView }
-        }
-        .toolbar(.hidden)
-        .animation(.linear, value: isShowTabs)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.huiColors.surface.pagePrimary)
-        .dismissKeyboardOnTap()
-        .scrollDismissesKeyboard(.immediately)
-        .onAppear {
-            ImageCacheConfiguration.configure()
-        }
-        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didReceiveMemoryWarningNotification)) { _ in
-            ImageCacheConfiguration.clearMemoryCache()
-        }
+        tabDetailsView()
+            .onPreferenceChange(HeaderVisibilityKey.self) { isShow in
+                isShowTabs = isShow
+            }
+            .overlay(alignment: .top) {
+                tabsView
+                    .opacity(isShowTabs ? 1.0 : 0.0)
+                    .offset(y: isShowTabs ? 0 : -60)
+                    .allowsHitTesting(isShowTabs)
+                    .animation(.easeInOut(duration: 0.3), value: isShowTabs)
+            }
+            .toolbar(.hidden)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.huiColors.surface.pagePrimary)
+            .dismissKeyboardOnTap()
+            .scrollDismissesKeyboard(.immediately)
+            .onAppear {
+                ImageCacheConfiguration.configure()
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didReceiveMemoryWarningNotification)) { _ in
+                ImageCacheConfiguration.clearMemoryCache()
+            }
     }
 
     private func tabDetailsView() -> some View {
         TabView(selection: $selectedTabIndex) {
-            ForEach(Array(LearnTabs.allCases.enumerated()), id: \.offset) { index, tab in
+            ForEach(Array(viewModel.tabs.enumerated()), id: \.offset) { index, tab in
                 Group {
                     switch tab {
-                    case .courses: listCourseView
-                    case .programs: listProgramView
-//                    case .learningLibrary: Text("learningLibrary")
+                    case .content:
+                        myContentView
+                            .transition(.opacity)
+                    case .learningLibrary:
+                        learningLibraryView
+                            .transition(.opacity)
                     }
                 }
+                .animation(.easeInOut(duration: 0.2), value: selectedTabIndex)
+                .padding(.top, isShowTabs ? 65 : 0)
                 .tag(index)
             }
         }
@@ -74,18 +83,21 @@ struct LearnView: View {
 
     private var tabsView: some View {
         HorizonUI.Tabs(
-            tabs: LearnTabs.allCases.map(\.localizedString),
+            tabs: viewModel.tabs.map(\.localizedString),
             selectTabIndex: Binding(
                 get: { selectedTabIndex },
                 set: { selectedTabIndex = $0 ?? 0 }
             )
         )
-        .padding(.top, .huiSpaces.space8)
+        .padding(.top, .huiSpaces.space16)
         .padding(.bottom, .huiSpaces.space24)
-        .background(Color.huiColors.surface.pagePrimary)
+        .background(
+            Color.huiColors.surface.pagePrimary
+                .ignoresSafeArea(edges: .top)
+        )
     }
 }
 
 #Preview {
-    LearnView()
+    LearnView(viewModel: .init(interactor: LearningLibraryInteractorLive()))
 }

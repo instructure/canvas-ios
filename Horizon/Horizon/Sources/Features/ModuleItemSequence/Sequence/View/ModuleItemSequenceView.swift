@@ -149,7 +149,7 @@ public struct ModuleItemSequenceView: View {
                 dueDate: viewModel.moduleItem?.dueAt?.formatted(format: "MM/dd, h:mm a"),
                 isOverdue: viewModel.moduleItem?.isOverDue ?? false,
                 attemptCount: viewModel.assignmentAttemptCount,
-                isMenuButtonVisible: viewModel.isNextButtonEnabled || viewModel.isPreviousButtonEnabled,
+                isMenuButtonVisible: viewModel.isMenuButtonVisible,
                 onBack: {
                     viewModel.pop(from: viewController)
                 },

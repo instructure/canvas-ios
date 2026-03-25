@@ -77,6 +77,7 @@ public extension HorizonUI {
         public let bookmarkAdd = Image(.bookmarkAdd)
         public let book5 = Image(.book5)
         public let bookmark = Image(.bookmark)
+        public let bookmarkFill = Image(.bookmarkFill)
         public let bookmarks = Image(.bookmarks)
         public let borderColor = Image(.iconBorder)
         public let browse = Image(.browse)
@@ -426,6 +427,8 @@ public extension HorizonUI {
         public let camera = Image(.camera)
         public let notifications = Image(.notifications)
         public let trendingUp = Image(.activities)
+        public let stacksFilled = Image(.stacksFilled)
+        public let tune = Image(.tune)
 
         func allImages() -> [Image] {
             let mirror = Mirror(reflecting: self)

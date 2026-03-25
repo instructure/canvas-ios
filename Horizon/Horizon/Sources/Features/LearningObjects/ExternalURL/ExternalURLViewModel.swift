@@ -46,8 +46,6 @@ final class ExternalURLViewModel {
         self.title = title
         self.viewController = viewController
         self.router = router
-
-        openURLAfterDelay()
     }
 
     // MARK: - Actions
@@ -59,12 +57,5 @@ final class ExternalURLViewModel {
             from: viewController,
             options: .modal(.overFullScreen)
         )
-    }
-
-    private func openURLAfterDelay() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
-            guard let self = self else { return }
-            self.openURL()
-        }
     }
 }
