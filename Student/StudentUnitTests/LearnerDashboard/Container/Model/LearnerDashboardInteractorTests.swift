@@ -54,7 +54,7 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         let expectation = expectation(description: "loadWidgets")
         var received: [any DashboardWidgetViewModel]?
 
-        testee.loadWidgets()
+        testee.loadWidgets(loadReason: .onStartup)
             .sink { result in
                 received = result
                 expectation.fulfill()
@@ -84,7 +84,7 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         let expectation = expectation(description: "loadWidgets")
         var received: [any DashboardWidgetViewModel]?
 
-        testee.loadWidgets()
+        testee.loadWidgets(loadReason: .onStartup)
             .sink { result in
                 received = result
                 expectation.fulfill()
@@ -119,7 +119,7 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         let expectation = expectation(description: "loadWidgets")
         var received: [any DashboardWidgetViewModel]?
 
-        testee.loadWidgets()
+        testee.loadWidgets(loadReason: .onStartup)
             .sink { result in
                 received = result
                 expectation.fulfill()
@@ -138,7 +138,7 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
     // MARK: - Analytics tracking
 
-    func test_loadWidgets_tracksWidgetVisibility() {
+    func test_loadWidgets_whenLoadReasonIsOnStartup_shouldLogWidgetVisibilityEvent() {
         let mockHandler = MockAnalyticsHandler()
         Analytics.shared.handler = mockHandler
         testee = LearnerDashboardInteractorLive(
@@ -148,7 +148,7 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         )
 
         let expectation = expectation(description: "loadWidgets")
-        testee.loadWidgets()
+        testee.loadWidgets(loadReason: .onStartup)
             .sink { _ in expectation.fulfill() }
             .store(in: &subscriptions)
         wait(for: [expectation], timeout: 5)
@@ -159,7 +159,26 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         XCTAssertEqual(mockHandler.lastEventParameter("forecast", ofType: String.self), "2")
     }
 
-    func test_loadWidgets_tracksEachLoad() {
+    func test_loadWidgets_whenLoadReasonIsOnConfigChange_shouldLogWidgetCustomizationEvent() {
+        let mockHandler = MockAnalyticsHandler()
+        Analytics.shared.handler = mockHandler
+        testee = LearnerDashboardInteractorLive(
+            userDefaults: userDefaults,
+            systemWidgetFactory: makeSystemFactory(),
+            editableWidgetFactory: makeEditableFactory()
+        )
+
+        let expectation = expectation(description: "loadWidgets")
+        testee.loadWidgets(loadReason: .onConfigChange)
+            .sink { _ in expectation.fulfill() }
+            .store(in: &subscriptions)
+        wait(for: [expectation], timeout: 5)
+
+        XCTAssertEqual(mockHandler.lastEvent, "dashboard_widget_customization")
+        XCTAssertNil(mockHandler.lastEventParameters)
+    }
+
+    func test_loadWidgets_shouldLogOneEventPerCall() {
         let mockHandler = MockAnalyticsHandler()
         Analytics.shared.handler = mockHandler
         testee = LearnerDashboardInteractorLive(
@@ -169,13 +188,13 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         )
 
         let expectation1 = expectation(description: "loadWidgets1")
-        testee.loadWidgets()
+        testee.loadWidgets(loadReason: .onStartup)
             .sink { _ in expectation1.fulfill() }
             .store(in: &subscriptions)
         wait(for: [expectation1], timeout: 5)
 
         let expectation2 = expectation(description: "loadWidgets2")
-        testee.loadWidgets()
+        testee.loadWidgets(loadReason: .onConfigChange)
             .sink { _ in expectation2.fulfill() }
             .store(in: &subscriptions)
         wait(for: [expectation2], timeout: 5)
@@ -198,7 +217,7 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
         )
 
         let expectation = expectation(description: "loadWidgets")
-        testee.loadWidgets()
+        testee.loadWidgets(loadReason: .onStartup)
             .sink { _ in expectation.fulfill() }
             .store(in: &subscriptions)
         wait(for: [expectation], timeout: 5)

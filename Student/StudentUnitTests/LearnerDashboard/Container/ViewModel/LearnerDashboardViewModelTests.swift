@@ -54,6 +54,25 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         super.tearDown()
     }
 
+    // MARK: - Load reason
+
+    func test_init_withOnStartupLoadReason_shouldLoadWidgets() {
+        testee = makeViewModel()
+
+        XCTAssertEqual(interactor.loadWidgetsInput, .onStartup)
+    }
+
+    func test_makeSettingsViewModel_whenConfigsChanged_shouldLoadWidgets() {
+        testee = makeViewModel()
+        let settingsVM = testee.makeSettingsViewModel()
+
+        let config = settingsVM.widgetsSectionViewModel.visibleConfigs[0]
+        settingsVM.widgetsSectionViewModel.toggleVisibility(of: config, to: false)
+        scheduler.advance()
+
+        XCTAssertEqual(interactor.loadWidgetsInput, .onConfigChange)
+    }
+
     // MARK: - Initialization
 
     func test_init_shouldLoadWidgets() {
