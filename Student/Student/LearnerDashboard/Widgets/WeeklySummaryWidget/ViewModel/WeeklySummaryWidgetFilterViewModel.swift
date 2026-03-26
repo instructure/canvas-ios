@@ -43,6 +43,14 @@ struct WeeklySummaryWidgetFilterViewModel: Identifiable {
     }
 }
 
+// MARK: - Filter IDs
+
+extension WeeklySummaryWidgetFilterViewModel {
+    static let missingId: String = "missing"
+    static let dueId: String = "due"
+    static let newGradesId: String = "newGrades"
+}
+
 // MARK: - Filter Factories
 
 extension WeeklySummaryWidgetFilterViewModel {
@@ -50,7 +58,7 @@ extension WeeklySummaryWidgetFilterViewModel {
         let count = assignments.count
         let expandedState = InstUI.CollapseButtonExpandedState(isExpanded: false)
         return WeeklySummaryWidgetFilterViewModel(
-            id: "missing",
+            id: missingId,
             label: String(localized: "Missing", bundle: .student),
             assignments: assignments,
             emptyStateText: String(localized: "Nothing overdue — you're on top of it!", bundle: .student),
@@ -67,7 +75,7 @@ extension WeeklySummaryWidgetFilterViewModel {
         let count = assignments.count
         let expandedState = InstUI.CollapseButtonExpandedState(isExpanded: false)
         return WeeklySummaryWidgetFilterViewModel(
-            id: "due",
+            id: dueId,
             label: String(localized: "Due", bundle: .student),
             assignments: assignments,
             emptyStateText: String(localized: "No deadlines this week — enjoy the calm!", bundle: .student),
@@ -84,7 +92,7 @@ extension WeeklySummaryWidgetFilterViewModel {
         let count = assignments.count
         let expandedState = InstUI.CollapseButtonExpandedState(isExpanded: false)
         return WeeklySummaryWidgetFilterViewModel(
-            id: "newGrades",
+            id: newGradesId,
             label: String(localized: "New Grades", bundle: .student),
             assignments: assignments,
             emptyStateText: String(localized: "No new grades — you're all caught up!", bundle: .student),

@@ -50,6 +50,9 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     var showMissingDueDivider: Bool { expandedFilter == nil || isNewGradesFilterSelected }
     var showDueNewGradesDivider: Bool { expandedFilter == nil || isMissingFilterSelected }
 
+    private var isInitialLoad: Bool = true
+    private var lastExpandedFilterIdBeforeLoad: String?
+
     // MARK: - Week Selection
 
     private(set) var weekStartDate: Date
@@ -113,7 +116,6 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
                 guard let self else { return }
                 updateFilters(filters)
                 state = .data
-                selectDefaultFilter()
             })
             .map { _ in }
             .catch { [weak self] _ in
@@ -129,7 +131,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
         missingFilter = .missing(assignments: [])
         dueFilter = .due(assignments: [])
         newGradesFilter = .newGrades(assignments: [])
-        expandedFilter = nil
+        collapseFiltersBeforeLoad()
         weekStartDate = Clock.now.startOfWeek()
         weekRangeText = Self.makeWeekRangeText(from: weekStartDate)
         retrySubscription = refresh(ignoreCache: true).sink { _ in }
@@ -188,10 +190,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
             .flatMap { [weak self] hasCachedData -> AnyPublisher<WeeklySummaryWidgetFilters, Error> in
                 guard let self else { return Fail(error: NSError.internalError()).eraseToAnyPublisher() }
                 if !hasCachedData {
-                    expandedFilter = nil
-                    missingFilter = missingFilter.withExpandedState(false)
-                    dueFilter = dueFilter.withExpandedState(false)
-                    newGradesFilter = newGradesFilter.withExpandedState(false)
+                    collapseFiltersBeforeLoad()
                     isWeekLoading = true
                 }
                 return interactor.getSummary(weekStart: weekStartDate, ignoreCache: false)
@@ -203,7 +202,6 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
                 receiveValue: { [weak self] filters in
                     guard let self else { return }
                     updateFilters(filters)
-                    selectDefaultFilter()
                 }
             )
     }
@@ -258,24 +256,12 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
 
     // MARK: - Private Helpers
 
-    private func expandFilter(_ filter: WeeklySummaryWidgetFilterViewModel) {
-        expandedFilter = filter
-        missingFilter = missingFilter.withExpandedState(isMissingFilterSelected)
-        dueFilter = dueFilter.withExpandedState(isDueFilterSelected)
-        newGradesFilter = newGradesFilter.withExpandedState(isNewGradesFilterSelected)
-    }
-
-    private func selectDefaultFilter() {
-        guard expandedFilter == nil else { return }
-
-        let filterToRestore = [missingFilter, dueFilter, newGradesFilter]
-            .first { $0.id == self.config.weeklySummarySettings.expandedFilterId }
-
-        if let filterToRestore {
-            expandFilter(filterToRestore)
-        } else if missingFilter.hasAssignments {
-            expandFilter(missingFilter)
-        }
+    private func collapseFiltersBeforeLoad() {
+        lastExpandedFilterIdBeforeLoad = expandedFilter?.id
+        expandedFilter = nil
+        missingFilter = missingFilter.withExpandedState(false)
+        dueFilter = dueFilter.withExpandedState(false)
+        newGradesFilter = newGradesFilter.withExpandedState(false)
     }
 
     private func persistConfig() {
@@ -286,20 +272,45 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
         }
     }
 
-    private func updateFilters(_ filters: WeeklySummaryWidgetFilters) {
+    private func updateFilters(_ filters: WeeklySummaryWidgetFilters, isInitialUpdate: Bool = false) {
+        let isMissingSelected: Bool
+        let isDueSelected: Bool
+        let isNewGradesSelected: Bool
+
+        if isInitialLoad {
+            isInitialLoad = false
+
+            isMissingSelected = filters.missing.isNotEmpty
+            isDueSelected = false
+            isNewGradesSelected = false
+        } else if let lastSelectedId = lastExpandedFilterIdBeforeLoad {
+            lastExpandedFilterIdBeforeLoad = nil
+            isMissingSelected = lastSelectedId == WeeklySummaryWidgetFilterViewModel.missingId
+            isDueSelected = lastSelectedId == WeeklySummaryWidgetFilterViewModel.dueId
+            isNewGradesSelected = lastSelectedId == WeeklySummaryWidgetFilterViewModel.newGradesId
+        } else {
+            isMissingSelected = isMissingFilterSelected
+            isDueSelected = isDueFilterSelected
+            isNewGradesSelected = isNewGradesFilterSelected
+        }
+
         // Each reload creates new filter value types, so we must carry over the expanded
         // state explicitly. expandedFilter also holds a copy of the old instance, so it
         // must be reassigned to the freshly created one — otherwise it stays out of sync
         // with the named filter properties and the UI stops reflecting the correct state.
-        missingFilter = .missing(assignments: filters.missing).withExpandedState(isMissingFilterSelected)
-        dueFilter = .due(assignments: filters.due).withExpandedState(isDueFilterSelected)
-        newGradesFilter = .newGrades(assignments: filters.newGrades).withExpandedState(isNewGradesFilterSelected)
-        if isMissingFilterSelected {
+        missingFilter = .missing(assignments: filters.missing).withExpandedState(isMissingSelected)
+        dueFilter = .due(assignments: filters.due).withExpandedState(isDueSelected)
+        newGradesFilter = .newGrades(assignments: filters.newGrades).withExpandedState(isNewGradesSelected)
+
+        // If one of the filters is already expanded -> reassign the new filter
+        if isMissingSelected {
             expandedFilter = missingFilter
-        } else if isDueFilterSelected {
+        } else if isDueSelected {
             expandedFilter = dueFilter
-        } else if isNewGradesFilterSelected {
+        } else if isNewGradesSelected {
             expandedFilter = newGradesFilter
+        } else {
+            expandedFilter = nil
         }
     }
 
