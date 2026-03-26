@@ -25,7 +25,6 @@ struct AssistFlashCardView: View {
     @Environment(\.viewController) private var viewController
     @AccessibilityFocusState private var focusedCardIndex: Int?
     @State private var showInfoView = false
-    
     var body: some View {
         ZStack {
             loaderView

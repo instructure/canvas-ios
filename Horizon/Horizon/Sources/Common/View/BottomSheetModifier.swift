@@ -72,7 +72,7 @@ private struct BottomSheetModifier<SheetContent: View>: ViewModifier {
                 maxHeight: .infinity,
                 alignment: .bottom
             )
-            .animation(.spring(response: 0.35, dampingFraction: 0.85), value: isPresented)
+            .animation(.easeInOut, value: isPresented)
         }
     }
 }

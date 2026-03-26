@@ -41,7 +41,6 @@ struct AssistChatView: View {
                     contentView
                 }
                 .scrollDismissesKeyboard(.immediately)
-                sendMessageView
             }
             .scrollIndicators(.hidden)
             .onReceive(viewModel.shouldOpenKeyboardPublisher) { value in
