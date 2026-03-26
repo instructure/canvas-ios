@@ -55,27 +55,33 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
     // MARK: - showGrades
 
     func test_showGrades_initialValue_whenUserDefaultsIsFalse_shouldBeFalse() {
-        env.userDefaults?.showGradesOnDashboard = false
+        userDefaults.showGradesOnDashboard = false
         testee = makeInteractor()
 
         XCTAssertEqual(testee.showGrades.value, false)
     }
 
     func test_showGrades_initialValue_whenUserDefaultsIsTrue_shouldBeTrue() {
-        env.userDefaults?.showGradesOnDashboard = true
+        userDefaults.showGradesOnDashboard = true
         testee = makeInteractor()
 
         XCTAssertEqual(testee.showGrades.value, true)
     }
 
+    func test_showGrades_initialValue_whenUserDefaultsIsEmpty_shouldBeFalse() {
+        testee = makeInteractor()
+
+        XCTAssertEqual(testee.showGrades.value, false)
+    }
+
     func test_showGrades_whenNotificationIsPosted_shouldUpdateValue() {
         testee = makeInteractor()
-        XCTAssertEqual(testee.showGrades.value, true)
+        XCTAssertEqual(testee.showGrades.value, false)
 
-        env.userDefaults?.showGradesOnDashboard = false
+        userDefaults.showGradesOnDashboard = true
 
         waitUntil(shouldFail: true) {
-            testee.showGrades.value == false
+            testee.showGrades.value == true
         }
     }
 

@@ -23,8 +23,7 @@ import SwiftUI
 
 @Observable
 final class LearnerDashboardSettingsWidgetsSectionViewModel {
-    var visibleConfigs: [DashboardWidgetConfig]
-    var hiddenConfigs: [DashboardWidgetConfig]
+
     let username: String
     let subSettingsViews: [EditableWidgetIdentifier: AnyView]
 
@@ -32,6 +31,9 @@ final class LearnerDashboardSettingsWidgetsSectionViewModel {
 
     private var userDefaults: SessionDefaults
     private let onConfigsChanged: () -> Void
+
+    internal var visibleConfigs: [DashboardWidgetConfig]
+    internal var hiddenConfigs: [DashboardWidgetConfig]
 
     init(
         userDefaults: SessionDefaults,
