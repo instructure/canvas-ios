@@ -20,21 +20,12 @@
 @testable import Student
 import XCTest
 
-final class LearnerDashboardColorInteractorTests: XCTestCase {
+final class LearnerDashboardColorInteractorTests: StudentTestCase {
 
     private var testee: LearnerDashboardColorInteractorLive!
-    private var userDefaults: SessionDefaults!
-
-    override func setUp() {
-        super.setUp()
-        userDefaults = SessionDefaults(sessionID: "test-session")
-        userDefaults.reset()
-    }
 
     override func tearDown() {
         testee = nil
-        userDefaults.reset()
-        userDefaults = nil
         super.tearDown()
     }
 

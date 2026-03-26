@@ -31,16 +31,13 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     private var colorInteractor: LearnerDashboardColorInteractorLive!
     private var courseSyncInteractor: CourseSyncInteractorMock!
     private var scheduler: TestSchedulerOf<DispatchQueue>!
-    private var testDefaults: SessionDefaults!
 
     override func setUp() {
         super.setUp()
         scheduler = DispatchQueue.test
         interactor = LearnerDashboardInteractorMock()
         courseSyncInteractor = CourseSyncInteractorMock()
-        testDefaults = SessionDefaults(sessionID: "test-session")
-        testDefaults.reset()
-        colorInteractor = LearnerDashboardColorInteractorLive(defaults: testDefaults)
+        colorInteractor = LearnerDashboardColorInteractorLive(defaults: userDefaults)
     }
 
     override func tearDown() {
@@ -49,8 +46,6 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         colorInteractor = nil
         courseSyncInteractor = nil
         scheduler = nil
-        testDefaults.reset()
-        testDefaults = nil
         super.tearDown()
     }
 

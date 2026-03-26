@@ -25,21 +25,17 @@ import XCTest
 final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
     private var testee: LearnerDashboardInteractorLive!
-    private var userDefaults: SessionDefaults!
     private var analytics: AnalyticsHandlerMock!
     private var subscriptions: Set<AnyCancellable>!
 
     override func setUp() {
         super.setUp()
-        userDefaults = SessionDefaults(sessionID: "test-session")
         analytics = .init()
         Analytics.shared.handler = analytics
         subscriptions = []
     }
 
     override func tearDown() {
-        userDefaults.reset()
-        userDefaults = nil
         analytics = nil
         testee = nil
         subscriptions = nil
