@@ -85,7 +85,7 @@ class ProfileAdvancedViewModel {
         }
         isLoading = true
 
-        weak let weakSelf = self
+        weak var weakSelf = self
         updateUserProfileInteractor.set(timeZone: timeZoneValue)
             .sink(
                 receiveCompletion: { _ in
