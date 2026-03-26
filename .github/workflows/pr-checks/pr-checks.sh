@@ -8,8 +8,9 @@ RESULT_BUNDLE="$REPO_ROOT/scripts/coverage/citests.xcresult"
 
 WORKSPACE="Canvas.xcworkspace"
 SCHEME="CITests"
-SIM_ID=$(xcrun simctl list devices available | grep -E "^\s+iPhone" | grep -oE '[A-F0-9-]{36}' | tail -1)
-echo "Using simulator: $(xcrun simctl list devices available | grep "$SIM_ID" | xargs)"
+SIM_ID=$(xcrun simctl list devices available -j | jq -r '[.devices | to_entries[] | select(.key | startswith("com.apple.CoreSimulator.SimRuntime.iOS")) | .value[] | select(.name | startswith("iPhone")) | .udid] | last')
+SIM_NAME=$(xcrun simctl list devices available -j | jq -r '[.devices | to_entries[] | select(.key | startswith("com.apple.CoreSimulator.SimRuntime.iOS")) | .value[] | select(.name | startswith("iPhone")) | .name] | last')
+echo "Using simulator: $SIM_NAME ($SIM_ID)"
 DESTINATION="platform=iOS Simulator,id=$SIM_ID"
 
 WORK_DIR=$(mktemp -d)
@@ -58,7 +59,7 @@ if (cd "$REPO_ROOT" && xcodebuild \
 else
     BUILD_STATUS="❌ Failed"
     OVERALL_PASS=false
-    BUILD_DETAILS=$(grep " error:" "$build_out" | head -50 || true)
+    BUILD_DETAILS=$(cat "$build_out")
     TEST_STATUS="⏭️ Skipped"
     COV_STATUS="⏭️ Skipped"
 fi
