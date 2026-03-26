@@ -8,7 +8,8 @@ RESULT_BUNDLE="$REPO_ROOT/scripts/coverage/citests.xcresult"
 
 WORKSPACE="Canvas.xcworkspace"
 SCHEME="CITests"
-SIM_ID=$(xcrun simctl list devices available -j | jq -r '[.devices | to_entries[] | select(.key | startswith("com.apple.CoreSimulator.SimRuntime.iOS")) | .value[] | select(.name | startswith("iPhone"))] | sort_by(.name) | last | .udid')
+SIM_ID=$(xcrun simctl list devices available | grep -E "^\s+iPhone" | grep -oE '[A-F0-9-]{36}' | tail -1)
+echo "Using simulator: $(xcrun simctl list devices available | grep "$SIM_ID" | xargs)"
 DESTINATION="platform=iOS Simulator,id=$SIM_ID"
 
 WORK_DIR=$(mktemp -d)
