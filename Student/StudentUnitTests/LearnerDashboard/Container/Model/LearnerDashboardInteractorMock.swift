@@ -21,8 +21,10 @@ import Combine
 
 final class LearnerDashboardInteractorMock: LearnerDashboardInteractor {
     var loadWidgetsPublisher = PassthroughSubject<[any DashboardWidgetViewModel], Never>()
+    var loadWidgetsInput: LearnerDashboardLoadReason?
 
-    func loadWidgets() -> AnyPublisher<[any DashboardWidgetViewModel], Never> {
-        loadWidgetsPublisher.eraseToAnyPublisher()
+    func loadWidgets(loadReason: LearnerDashboardLoadReason) -> AnyPublisher<[any DashboardWidgetViewModel], Never> {
+        loadWidgetsInput = loadReason
+        return loadWidgetsPublisher.eraseToAnyPublisher()
     }
 }

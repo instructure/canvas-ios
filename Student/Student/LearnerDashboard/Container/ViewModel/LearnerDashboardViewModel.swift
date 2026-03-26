@@ -69,7 +69,7 @@ final class LearnerDashboardViewModel {
             }
             .store(in: &subscriptions)
 
-        loadWidgets()
+        loadWidgets(loadReason: .onStartup)
         setupOfflineSyncHandlers()
         observeColorChanges()
     }
@@ -91,7 +91,7 @@ final class LearnerDashboardViewModel {
         LearnerDashboardSettingsAssembly.makeViewModel(
             env: environment,
             colorInteractor: colorInteractor,
-            onConfigsChanged: { [weak self] in self?.loadWidgets() }
+            onConfigsChanged: { [weak self] in self?.loadWidgets(loadReason: .onConfigChange) }
         )
     }
 
@@ -104,8 +104,8 @@ final class LearnerDashboardViewModel {
             .store(in: &subscriptions)
     }
 
-    private func loadWidgets() {
-        interactor.loadWidgets()
+    private func loadWidgets(loadReason: LearnerDashboardLoadReason) {
+        interactor.loadWidgets(loadReason: loadReason)
             .receive(on: mainScheduler)
             .sink { [weak self] result in
                 guard let self else { return }

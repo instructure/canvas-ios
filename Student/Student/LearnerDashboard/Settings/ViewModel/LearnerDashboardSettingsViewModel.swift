@@ -27,25 +27,28 @@ import UIKit
 final class LearnerDashboardSettingsViewModel {
     var useNewLearnerDashboard: Bool
     var mainColor: Color {
-        didSet { colorInteractor.selectColor(mainColor) }
+        didSet { didChangeColor(to: mainColor) }
     }
     var colors: [CourseColorData] { colorInteractor.availableColors }
-    let courseSettingsViewModel: LearnerDashboardSettingsWidgetsSectionViewModel
+    let widgetsSectionViewModel: LearnerDashboardSettingsWidgetsSectionViewModel
 
     private var defaults: SessionDefaults
-    private let environment: AppEnvironment
     private let colorInteractor: LearnerDashboardColorInteractor
+    private let analytics: Analytics
+    private let environment: AppEnvironment
 
     init(
         defaults: SessionDefaults,
         colorInteractor: LearnerDashboardColorInteractor,
-        courseSettingsViewModel: LearnerDashboardSettingsWidgetsSectionViewModel,
+        widgetsSectionViewModel: LearnerDashboardSettingsWidgetsSectionViewModel,
+        analytics: Analytics = .shared,
         environment: AppEnvironment = .shared
     ) {
         self.defaults = defaults
+        self.analytics = analytics
         self.environment = environment
         self.colorInteractor = colorInteractor
-        self.courseSettingsViewModel = courseSettingsViewModel
+        self.widgetsSectionViewModel = widgetsSectionViewModel
         self.useNewLearnerDashboard = defaults.preferNewLearnerDashboard
         self.mainColor = colorInteractor.dashboardColor.value
     }
@@ -82,5 +85,11 @@ final class LearnerDashboardSettingsViewModel {
             from: topViewController,
             options: .modal(.formSheet, embedInNav: true, addDoneButton: true)
         )
+    }
+
+    private func didChangeColor(to color: Color) {
+        colorInteractor.selectColor(color)
+
+        analytics.logDashboardWidgetCustomization()
     }
 }

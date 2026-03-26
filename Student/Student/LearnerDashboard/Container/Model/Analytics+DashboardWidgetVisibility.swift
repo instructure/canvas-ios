@@ -34,6 +34,10 @@ extension Analytics {
     func logDashboardWidgetVisibility(_ event: DashboardWidgetVisibilityEvent) {
         logEvent(event.analyticsEventName, parameters: event.params)
     }
+
+    func logDashboardWidgetCustomization() {
+        logEvent("dashboard_widget_customization")
+    }
 }
 
 struct DashboardWidgetVisibilityEvent {

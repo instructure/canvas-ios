@@ -20,8 +20,13 @@ import Combine
 import Core
 import Foundation
 
+enum LearnerDashboardLoadReason {
+    case onStartup
+    case onConfigChange
+}
+
 protocol LearnerDashboardInteractor {
-    func loadWidgets() -> AnyPublisher<[any DashboardWidgetViewModel], Never>
+    func loadWidgets(loadReason: LearnerDashboardLoadReason) -> AnyPublisher<[any DashboardWidgetViewModel], Never>
 }
 
 final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
@@ -42,7 +47,7 @@ final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
         self.editableWidgetFactory = editableWidgetFactory
     }
 
-    func loadWidgets() -> AnyPublisher<[any DashboardWidgetViewModel], Never> {
+    func loadWidgets(loadReason: LearnerDashboardLoadReason) -> AnyPublisher<[any DashboardWidgetViewModel], Never> {
         Just(())
             .subscribe(on: DispatchQueue.global(qos: .userInitiated))
             .map { [userDefaults, analytics, systemWidgetFactory, editableWidgetFactory] _ in
@@ -55,7 +60,13 @@ final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
                 let mergedConfigs = defaultConfigs.map { defaultConfig in
                     savedConfigs.first { $0.id == defaultConfig.id } ?? defaultConfig
                 }
-                analytics.logDashboardWidgetVisibility(DashboardWidgetVisibilityEvent(configs: mergedConfigs))
+
+                switch loadReason {
+                case .onStartup:
+                    analytics.logDashboardWidgetVisibility(DashboardWidgetVisibilityEvent(configs: mergedConfigs))
+                case .onConfigChange:
+                    analytics.logDashboardWidgetCustomization()
+                }
 
                 let editableConfigs = mergedConfigs
                     .filter { $0.isVisible }
