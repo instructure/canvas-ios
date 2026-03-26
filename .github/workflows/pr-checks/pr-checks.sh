@@ -50,7 +50,6 @@ echo "Building CITests... ($build_out)"
 if (cd "$REPO_ROOT" && xcodebuild \
         -workspace "$WORKSPACE" \
         -scheme "$SCHEME" \
-        -sdk iphonesimulator \
         -configuration Debug \
         -destination "$DESTINATION" \
         COMPILER_INDEX_STORE_ENABLE=NO \
