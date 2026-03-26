@@ -22,7 +22,7 @@ import SwiftUI
 enum LearnerDashboardSettingsAssembly {
 
     static func makeViewModel(
-        env: AppEnvironment = .shared,
+        env: AppEnvironment,
         colorInteractor: LearnerDashboardColorInteractor,
         onConfigsChanged: @escaping () -> Void
     ) -> LearnerDashboardSettingsViewModel {

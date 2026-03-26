@@ -26,32 +26,25 @@ enum LearnerDashboardLoadReason {
 }
 
 protocol LearnerDashboardInteractor {
-    func loadWidgets(loadReason: LearnerDashboardLoadReason) -> AnyPublisher<[any DashboardWidgetViewModel], Never>
+    func loadEditableWidgetConfigs(loadReason: LearnerDashboardLoadReason) -> AnyPublisher<[DashboardWidgetConfig], Never>
 }
 
 final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
     private let userDefaults: SessionDefaults
     private let analytics: Analytics
-    private let systemWidgetFactory: (SystemWidgetIdentifier) -> any DashboardWidgetViewModel
-    private let editableWidgetFactory: (DashboardWidgetConfig) -> any DashboardWidgetViewModel
 
     init(
         userDefaults: SessionDefaults = AppEnvironment.shared.userDefaults ?? .fallback,
-        analytics: Analytics = .shared,
-        systemWidgetFactory: @escaping (SystemWidgetIdentifier) -> any DashboardWidgetViewModel,
-        editableWidgetFactory: @escaping (DashboardWidgetConfig) -> any DashboardWidgetViewModel
+        analytics: Analytics = .shared
     ) {
         self.userDefaults = userDefaults
         self.analytics = analytics
-        self.systemWidgetFactory = systemWidgetFactory
-        self.editableWidgetFactory = editableWidgetFactory
     }
 
-    func loadWidgets(loadReason: LearnerDashboardLoadReason) -> AnyPublisher<[any DashboardWidgetViewModel], Never> {
+    func loadEditableWidgetConfigs(loadReason: LearnerDashboardLoadReason) -> AnyPublisher<[DashboardWidgetConfig], Never> {
         Just(())
             .subscribe(on: DispatchQueue.global(qos: .userInitiated))
-            .map { [userDefaults, analytics, systemWidgetFactory, editableWidgetFactory] _ in
-                let systemVMs = SystemWidgetIdentifier.allCases.map { systemWidgetFactory($0) }
+            .map { [userDefaults, analytics] _ in
 
                 let defaultConfigs = EditableWidgetIdentifier.makeDefaultConfigs()
                 let savedConfigs = userDefaults.learnerDashboardWidgetConfigs ?? []
@@ -71,9 +64,8 @@ final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
                 let editableConfigs = mergedConfigs
                     .filter { $0.isVisible }
                     .sorted()
-                let editableVMs = editableConfigs.map { editableWidgetFactory($0) }
 
-                return systemVMs + editableVMs
+                return editableConfigs
             }
             .eraseToAnyPublisher()
     }

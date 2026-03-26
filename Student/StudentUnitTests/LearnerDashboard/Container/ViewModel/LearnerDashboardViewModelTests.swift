@@ -59,7 +59,8 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
     func test_init_withOnStartupLoadReason_shouldLoadWidgets() {
         testee = makeViewModel()
 
-        XCTAssertEqual(interactor.loadWidgetsInput, .onStartup)
+        XCTAssertEqual(interactor.loadEditableWidgetConfigsCallCount, 1)
+        XCTAssertEqual(interactor.loadEditableWidgetConfigsInput, .onStartup)
     }
 
     func test_makeSettingsViewModel_whenConfigsChanged_shouldLoadWidgets() {
@@ -70,22 +71,44 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         settingsVM.widgetsSectionViewModel.toggleVisibility(of: config, to: false)
         scheduler.advance()
 
-        XCTAssertEqual(interactor.loadWidgetsInput, .onConfigChange)
+        XCTAssertEqual(interactor.loadEditableWidgetConfigsCallCount, 2)
+        XCTAssertEqual(interactor.loadEditableWidgetConfigsInput, .onConfigChange)
     }
 
     // MARK: - Initialization
 
-    func test_init_shouldLoadWidgets() {
-        let widget1 = WidgetViewModelMock(id: SystemWidgetIdentifier.courseInvitations.rawValue)
-        let widget2 = WidgetViewModelMock(id: EditableWidgetIdentifier.helloWidget.rawValue)
+    func test_init_shouldLoadAllSystemWidgetsAndReturnedEditableWidgets() throws {
+        let config1 = DashboardWidgetConfig.make(id: .coursesAndGroups)
+        let config2 = DashboardWidgetConfig.make(id: .helloWidget)
 
         testee = makeViewModel()
-        interactor.loadWidgetsPublisher.send([widget1, widget2])
+        interactor.loadEditableWidgetConfigsPublisher.send([config1, config2])
         scheduler.advance()
 
-        XCTAssertEqual(testee.widgets.count, 2)
-        XCTAssertEqual(testee.widgets[0].id, SystemWidgetIdentifier.courseInvitations.rawValue)
-        XCTAssertEqual(testee.widgets[1].id, EditableWidgetIdentifier.helloWidget.rawValue)
+        guard testee.widgets.count == 7 else { throw InvalidCountError() }
+
+        XCTAssertEqual(testee.widgets[0].id, SystemWidgetIdentifier.offlineSyncProgress.rawValue)
+        XCTAssertEqual(testee.widgets[1].id, SystemWidgetIdentifier.fileUploadProgress.rawValue)
+        XCTAssertEqual(testee.widgets[2].id, SystemWidgetIdentifier.courseInvitations.rawValue)
+        XCTAssertEqual(testee.widgets[3].id, SystemWidgetIdentifier.globalAnnouncements.rawValue)
+        XCTAssertEqual(testee.widgets[4].id, SystemWidgetIdentifier.conferences.rawValue)
+        XCTAssertEqual(testee.widgets[5].id, EditableWidgetIdentifier.coursesAndGroups.rawValue)
+        XCTAssertEqual(testee.widgets[6].id, EditableWidgetIdentifier.helloWidget.rawValue)
+    }
+
+    func test_init_shouldRefreshLoadedWidgets() throws {
+        let config1 = DashboardWidgetConfig.make(id: .coursesAndGroups)
+        let config2 = DashboardWidgetConfig.make(id: .helloWidget)
+
+        testee = makeViewModel()
+        interactor.loadEditableWidgetConfigsPublisher.send([config1, config2])
+        scheduler.advance()
+
+        let mockWidgets = testee.widgets.compactMap { $0 as? WidgetViewModelMock }
+        mockWidgets.forEach {
+            XCTAssertEqual($0.refreshCallCount, 1)
+            XCTAssertEqual($0.refreshInput, false)
+        }
     }
 
     // MARK: - Screen config
@@ -101,81 +124,134 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
 
     func test_init_withNoWidgets_shouldSetDataState() {
         testee = makeViewModel()
-        interactor.loadWidgetsPublisher.send([])
+        interactor.loadEditableWidgetConfigsPublisher.send([])
         scheduler.advance()
 
         XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.showWidgetsTurnedOffPanda, true)
     }
 
     func test_init_withWidgets_shouldSetDataState() {
-        let widget = WidgetViewModelMock(id: EditableWidgetIdentifier.helloWidget.rawValue)
-
         testee = makeViewModel()
-        interactor.loadWidgetsPublisher.send([widget])
+        interactor.loadEditableWidgetConfigsPublisher.send([.make(id: .helloWidget)])
         scheduler.advance()
 
         XCTAssertEqual(testee.state, .data)
+        XCTAssertEqual(testee.showWidgetsTurnedOffPanda, false)
     }
 
     // MARK: - Refresh
 
     func test_refresh_shouldCallRefreshOnAllWidgets() {
-        let widget1 = WidgetViewModelMock(id: EditableWidgetIdentifier.helloWidget.rawValue)
-        let widget2 = WidgetViewModelMock(id: EditableWidgetIdentifier.coursesAndGroups.rawValue)
-        let widget3 = WidgetViewModelMock(id: SystemWidgetIdentifier.courseInvitations.rawValue)
+        let config1 = DashboardWidgetConfig.make(id: .helloWidget)
+        let config2 = DashboardWidgetConfig.make(id: .coursesAndGroups)
 
         testee = makeViewModel()
-        interactor.loadWidgetsPublisher.send([widget3, widget1, widget2])
+        interactor.loadEditableWidgetConfigsPublisher.send([config1, config2])
         scheduler.advance()
 
         testee.refresh(ignoreCache: true)
         scheduler.advance()
 
-        XCTAssertEqual(widget1.refreshCalled, true)
-        XCTAssertEqual(widget1.refreshIgnoreCache, true)
-        XCTAssertEqual(widget2.refreshCalled, true)
-        XCTAssertEqual(widget2.refreshIgnoreCache, true)
-        XCTAssertEqual(widget3.refreshCalled, true)
-        XCTAssertEqual(widget3.refreshIgnoreCache, true)
+        let mockWidgets = testee.widgets.compactMap { $0 as? WidgetViewModelMock }
+        mockWidgets.forEach {
+            XCTAssertEqual($0.refreshCallCount, 2) // first was the initial refresh during init()
+            XCTAssertEqual($0.refreshInput, true)
+        }
     }
 
     func test_refresh_shouldCallCompletionWhenAllWidgetsFinish() {
-        let widget = WidgetViewModelMock(id: EditableWidgetIdentifier.helloWidget.rawValue)
-
         testee = makeViewModel()
-        interactor.loadWidgetsPublisher.send([widget])
+        interactor.loadEditableWidgetConfigsPublisher.send([.make(id: .helloWidget)])
         scheduler.advance()
 
-        let expectation = expectation(description: "refresh completion")
+        var completionCallCount = 0
         testee.refresh(ignoreCache: false) {
-            expectation.fulfill()
+            completionCallCount += 1
         }
         scheduler.advance()
 
-        wait(for: [expectation], timeout: 5)
-        XCTAssertEqual(widget.refreshCalled, true)
-        XCTAssertEqual(widget.refreshIgnoreCache, false)
+        waitUntil {
+            completionCallCount == 1
+        }
+        let mockWidgets = testee.widgets.compactMap { $0 as? WidgetViewModelMock }
+        mockWidgets.forEach {
+            XCTAssertEqual($0.refreshCallCount, 2) // first was the initial refresh during init()
+        }
+    }
+
+    func test_refresh_shouldReuseExistingWidgets() throws {
+        let systemWidgetCount = SystemWidgetIdentifier.allCases.count
+        let helloId = EditableWidgetIdentifier.helloWidget.rawValue
+        let courseId = EditableWidgetIdentifier.coursesAndGroups.rawValue
+        let weeklyId = EditableWidgetIdentifier.weeklySummary.rawValue
+        let todoId = EditableWidgetIdentifier.todo.rawValue
+
+        // GIVEN - initial list of editable widget configs
+        testee = makeViewModel()
+        interactor.loadEditableWidgetConfigsPublisher.send([
+            .make(id: .todo),
+            .make(id: .helloWidget),
+            .make(id: .coursesAndGroups)
+        ])
+        scheduler.advance()
+
+        var mockWidgets = testee.widgets.compactMap { $0 as? WidgetViewModelMock }
+        guard mockWidgets.count == systemWidgetCount + 3 else { throw InvalidCountError() }
+        weak let todoWidget1 = mockWidgets[systemWidgetCount + 0]
+        weak let helloWidget1 = mockWidgets[systemWidgetCount + 1]
+        weak let courseWidget1 = mockWidgets[systemWidgetCount + 2]
+        XCTAssertEqual(todoWidget1?.id, todoId)
+        XCTAssertEqual(helloWidget1?.id, helloId)
+        XCTAssertEqual(courseWidget1?.id, courseId)
+        mockWidgets = [] // remove widget references from array
+
+        // WHEN - refresh is called with new list of editable widgate configs
+        testee.refresh(ignoreCache: false)
+        interactor.loadEditableWidgetConfigsPublisher.send([
+            .make(id: .coursesAndGroups),
+            .make(id: .weeklySummary),
+            .make(id: .helloWidget)
+        ])
+        scheduler.advance()
+
+        // THEN - returned widgets match the new list of configs
+        mockWidgets = testee.widgets.compactMap { $0 as? WidgetViewModelMock }
+        guard mockWidgets.count == systemWidgetCount + 3 else { throw InvalidCountError() }
+        weak let courseWidget2 = mockWidgets[systemWidgetCount + 0]
+        weak let weeklyWidget2 = mockWidgets[systemWidgetCount + 1]
+        weak let helloWidget2 = mockWidgets[systemWidgetCount + 2]
+        XCTAssertEqual(courseWidget2?.id, courseId)
+        XCTAssertEqual(weeklyWidget2?.id, weeklyId)
+        XCTAssertEqual(helloWidget2?.id, helloId)
+
+        // THEN - existing widgets are reused
+        XCTAssertEqual(courseWidget2 === courseWidget1, true)
+        XCTAssertEqual(helloWidget2 === helloWidget1, true)
+
+        // THEN - not returned widgets are released
+        XCTAssertNil(todoWidget1)
     }
 
     // MARK: - Refresh DashboardMutatorWidget
 
-    func test_refresh_whenRequestDashboardRefreshFires_shouldTriggerRefresh() {
-        let mutatorWidget = MutatorWidgetViewModelMock(id: SystemWidgetIdentifier.courseInvitations.rawValue)
-        let regularWidget = WidgetViewModelMock(id: EditableWidgetIdentifier.helloWidget.rawValue)
+    func test_refresh_whenRequestDashboardRefreshFires_shouldTriggerRefreshUsingCache() {
+        let mutatorConfig = DashboardWidgetConfig.make(id: .coursesAndGroups)
+        let regularConfig = DashboardWidgetConfig.make(id: .helloWidget)
 
         testee = makeViewModel()
-        interactor.loadWidgetsPublisher.send([mutatorWidget, regularWidget])
-        scheduler.advance()
-        regularWidget.refreshCalled = false
-        mutatorWidget.refreshCalled = false
-
-        mutatorWidget.requestDashboardRefresh.send()
+        interactor.loadEditableWidgetConfigsPublisher.send([mutatorConfig, regularConfig])
         scheduler.advance()
 
-        XCTAssertEqual(regularWidget.refreshCalled, true)
-        XCTAssertEqual(regularWidget.refreshIgnoreCache, false)
-        XCTAssertEqual(mutatorWidget.refreshCalled, true)
-        XCTAssertEqual(mutatorWidget.refreshIgnoreCache, false)
+        let mutatorWidget = testee.widgets.compactMap { $0 as? MutatorWidgetViewModelMock }.first
+        mutatorWidget?.requestDashboardRefresh.send()
+        scheduler.advance()
+
+        let mockWidgets = testee.widgets.compactMap { $0 as? WidgetViewModelMock }
+        mockWidgets.forEach {
+            XCTAssertEqual($0.refreshCallCount, 2) // first was the initial refresh during init()
+            XCTAssertEqual($0.refreshInput, false)
+        }
     }
 
     // MARK: - Offline Sync Handlers
@@ -215,8 +291,24 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
             snackBarViewModel: SnackBarViewModel(scheduler: scheduler.eraseToAnyScheduler()),
             mainScheduler: scheduler.eraseToAnyScheduler(),
             courseSyncInteractor: courseSyncInteractor,
+            systemWidgetFactory: makeSystemFactory(),
+            editableWidgetFactory: makeEditableFactory(),
             environment: env
         )
+    }
+
+    private func makeSystemFactory() -> (SystemWidgetIdentifier) -> any DashboardWidgetViewModel {
+        return { id in WidgetViewModelMock(id: id.rawValue) }
+    }
+
+    private func makeEditableFactory() -> (DashboardWidgetConfig) -> any DashboardWidgetViewModel {
+        return { config in
+            if config.id == .coursesAndGroups {
+                MutatorWidgetViewModelMock(id: config.id.rawValue)
+            } else {
+                WidgetViewModelMock(id: config.id.rawValue)
+            }
+        }
     }
 }
 
@@ -225,8 +317,8 @@ private class WidgetViewModelMock: DashboardWidgetViewModel {
     let isHiddenInEmptyState = false
     let state: InstUI.ScreenState = .data
 
-    var refreshCalled = false
-    var refreshIgnoreCache: Bool?
+    var refreshCallCount = 0
+    var refreshInput: Bool?
 
     init(id: String) {
         self.id = id
@@ -237,8 +329,8 @@ private class WidgetViewModelMock: DashboardWidgetViewModel {
     }
 
     func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        refreshCalled = true
-        refreshIgnoreCache = ignoreCache
+        refreshInput = ignoreCache
+        refreshCallCount += 1
         return Just(()).eraseToAnyPublisher()
     }
 }

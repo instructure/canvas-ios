@@ -26,248 +26,114 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
     private var testee: LearnerDashboardInteractorLive!
     private var userDefaults: SessionDefaults!
+    private var analytics: AnalyticsHandlerMock!
     private var subscriptions: Set<AnyCancellable>!
 
     override func setUp() {
         super.setUp()
         userDefaults = SessionDefaults(sessionID: "test-session")
+        analytics = .init()
+        Analytics.shared.handler = analytics
         subscriptions = []
     }
 
     override func tearDown() {
         userDefaults.reset()
         userDefaults = nil
+        analytics = nil
         testee = nil
         subscriptions = nil
         super.tearDown()
     }
 
-    // MARK: - Load widgets with no saved configs
+    // MARK: - loadEditableWidgetConfigs with no saved configs
 
-    func test_loadWidgets_withNoSavedConfigs_shouldUseDefaultConfigs() {
-        testee = LearnerDashboardInteractorLive(
-            userDefaults: userDefaults,
-            systemWidgetFactory: makeSystemFactory(),
-            editableWidgetFactory: makeEditableFactory()
+    func test_loadEditableWidgetConfigs_withNoSavedConfigs_shouldUseDefaultConfigs() {
+        testee = makeInteractor()
+
+        XCTAssertSingleOutputEquals(
+            testee.loadEditableWidgetConfigs(loadReason: .onStartup),
+            EditableWidgetIdentifier.makeDefaultConfigs()
         )
-
-        let expectation = expectation(description: "loadWidgets")
-        var received: [any DashboardWidgetViewModel]?
-
-        testee.loadWidgets(loadReason: .onStartup)
-            .sink { result in
-                received = result
-                expectation.fulfill()
-            }
-            .store(in: &subscriptions)
-
-        wait(for: [expectation], timeout: 5)
-
-        let systemWidgetIds = SystemWidgetIdentifier.allCases.map(\.rawValue)
-        let editableWidgetIds = EditableWidgetIdentifier.allCases.map(\.rawValue)
-        XCTAssertEqual(received?.map(\.id), systemWidgetIds + editableWidgetIds)
     }
 
-    // MARK: - Load widgets with saved configs
+    // MARK: - loadEditableWidgetConfigs with saved configs
 
-    func test_loadWidgets_withSavedConfigs_shouldIncludeAllSystemAndFilterVisibleEditable() {
+    func test_loadEditableWidgetConfigs_withSavedConfigs() {
         userDefaults.learnerDashboardWidgetConfigs = [
             DashboardWidgetConfig(id: .helloWidget, order: 10, isVisible: true),
-            DashboardWidgetConfig(id: .coursesAndGroups, order: 5, isVisible: true)
+            DashboardWidgetConfig(id: .coursesAndGroups, order: 5, isVisible: false)
         ]
-        testee = LearnerDashboardInteractorLive(
-            userDefaults: userDefaults,
-            systemWidgetFactory: makeSystemFactory(),
-            editableWidgetFactory: makeEditableFactory()
-        )
+        testee = makeInteractor()
 
-        let expectation = expectation(description: "loadWidgets")
-        var received: [any DashboardWidgetViewModel]?
-
-        testee.loadWidgets(loadReason: .onStartup)
-            .sink { result in
-                received = result
-                expectation.fulfill()
-            }
-            .store(in: &subscriptions)
-
-        wait(for: [expectation], timeout: 5)
-
-        XCTAssertEqual(received?.count, 9)
-        XCTAssertEqual(received?[0].id, SystemWidgetIdentifier.offlineSyncProgress.rawValue)
-        XCTAssertEqual(received?[1].id, SystemWidgetIdentifier.fileUploadProgress.rawValue)
-        XCTAssertEqual(received?[2].id, SystemWidgetIdentifier.courseInvitations.rawValue)
-        XCTAssertEqual(received?[3].id, SystemWidgetIdentifier.globalAnnouncements.rawValue)
-        XCTAssertEqual(received?[4].id, SystemWidgetIdentifier.conferences.rawValue)
-        XCTAssertEqual(received?[5].id, EditableWidgetIdentifier.weeklySummary.rawValue)
-        XCTAssertEqual(received?[6].id, EditableWidgetIdentifier.todo.rawValue)
-        XCTAssertEqual(received?[7].id, EditableWidgetIdentifier.coursesAndGroups.rawValue)
-        XCTAssertEqual(received?[8].id, EditableWidgetIdentifier.helloWidget.rawValue)
-    }
-
-    func test_loadWidgets_shouldReturnEditableWidgetsInOrder() {
-        userDefaults.learnerDashboardWidgetConfigs = [
-            DashboardWidgetConfig(id: .helloWidget, order: 20, isVisible: true),
-            DashboardWidgetConfig(id: .coursesAndGroups, order: 10, isVisible: true)
-        ]
-        testee = LearnerDashboardInteractorLive(
-            userDefaults: userDefaults,
-            systemWidgetFactory: makeSystemFactory(),
-            editableWidgetFactory: makeEditableFactory()
-        )
-
-        let expectation = expectation(description: "loadWidgets")
-        var received: [any DashboardWidgetViewModel]?
-
-        testee.loadWidgets(loadReason: .onStartup)
-            .sink { result in
-                received = result
-                expectation.fulfill()
-            }
-            .store(in: &subscriptions)
-
-        wait(for: [expectation], timeout: 5)
-
-        XCTAssertEqual(received?.count, 9)
-        XCTAssertEqual(received?[4].id, SystemWidgetIdentifier.conferences.rawValue)
-        XCTAssertEqual(received?[5].id, EditableWidgetIdentifier.weeklySummary.rawValue)
-        XCTAssertEqual(received?[6].id, EditableWidgetIdentifier.todo.rawValue)
-        XCTAssertEqual(received?[7].id, EditableWidgetIdentifier.coursesAndGroups.rawValue)
-        XCTAssertEqual(received?[8].id, EditableWidgetIdentifier.helloWidget.rawValue)
+        XCTAssertSingleOutput(testee.loadEditableWidgetConfigs(loadReason: .onStartup)) {
+            let identifiers = $0.map(\.id)
+            // - includes not-saved default widgets
+            // - includes saved widgets which are visible
+            // - sorts them combining orders of saved and default widgets
+            XCTAssertEqual(identifiers, [.weeklySummary, .todo, .helloWidget])
+        }
     }
 
     // MARK: - Analytics tracking
 
-    func test_loadWidgets_whenLoadReasonIsOnStartup_shouldLogWidgetVisibilityEvent() {
-        let mockHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = mockHandler
-        testee = LearnerDashboardInteractorLive(
-            userDefaults: userDefaults,
-            systemWidgetFactory: makeSystemFactory(),
-            editableWidgetFactory: makeEditableFactory()
-        )
+    func test_loadEditableWidgetConfigs_whenLoadReasonIsOnStartup_shouldLogWidgetVisibilityEvent() {
+        testee = makeInteractor()
 
-        let expectation = expectation(description: "loadWidgets")
-        testee.loadWidgets(loadReason: .onStartup)
-            .sink { _ in expectation.fulfill() }
-            .store(in: &subscriptions)
-        wait(for: [expectation], timeout: 5)
+        XCTAssertFinish(testee.loadEditableWidgetConfigs(loadReason: .onStartup))
 
-        XCTAssertEqual(mockHandler.lastEvent, "dashboard_widget_visibility")
-        XCTAssertEqual(mockHandler.lastEventParameter("welcome", ofType: String.self), "0")
-        XCTAssertEqual(mockHandler.lastEventParameter("courses", ofType: String.self), "1")
-        XCTAssertEqual(mockHandler.lastEventParameter("forecast", ofType: String.self), "2")
+        XCTAssertEqual(analytics.handleEventInput?.name, "dashboard_widget_visibility")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["welcome"] as? String, "0")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["courses"] as? String, "1")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["forecast"] as? String, "2")
     }
 
-    func test_loadWidgets_whenLoadReasonIsOnConfigChange_shouldLogWidgetCustomizationEvent() {
-        let mockHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = mockHandler
-        testee = LearnerDashboardInteractorLive(
-            userDefaults: userDefaults,
-            systemWidgetFactory: makeSystemFactory(),
-            editableWidgetFactory: makeEditableFactory()
-        )
+    func test_loadEditableWidgetConfigs_whenLoadReasonIsOnConfigChange_shouldLogWidgetCustomizationEvent() {
+        testee = makeInteractor()
 
-        let expectation = expectation(description: "loadWidgets")
-        testee.loadWidgets(loadReason: .onConfigChange)
-            .sink { _ in expectation.fulfill() }
-            .store(in: &subscriptions)
-        wait(for: [expectation], timeout: 5)
+        XCTAssertFinish(testee.loadEditableWidgetConfigs(loadReason: .onConfigChange))
 
-        XCTAssertEqual(mockHandler.lastEvent, "dashboard_widget_customization")
-        XCTAssertNil(mockHandler.lastEventParameters)
+        XCTAssertEqual(analytics.handleEventInput?.name, "dashboard_widget_customization")
+        XCTAssertNil(analytics.handleEventInput?.parameters)
     }
 
-    func test_loadWidgets_shouldLogOneEventPerCall() {
-        let mockHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = mockHandler
-        testee = LearnerDashboardInteractorLive(
-            userDefaults: userDefaults,
-            systemWidgetFactory: makeSystemFactory(),
-            editableWidgetFactory: makeEditableFactory()
-        )
+    func test_loadEditableWidgetConfigs_whenMultipleChangesHappen_shouldLogOneEventPerChange() {
+        testee = makeInteractor()
 
-        let expectation1 = expectation(description: "loadWidgets1")
-        testee.loadWidgets(loadReason: .onStartup)
-            .sink { _ in expectation1.fulfill() }
-            .store(in: &subscriptions)
-        wait(for: [expectation1], timeout: 5)
+        XCTAssertFinish(testee.loadEditableWidgetConfigs(loadReason: .onConfigChange))
+        XCTAssertFinish(testee.loadEditableWidgetConfigs(loadReason: .onConfigChange))
 
-        let expectation2 = expectation(description: "loadWidgets2")
-        testee.loadWidgets(loadReason: .onConfigChange)
-            .sink { _ in expectation2.fulfill() }
-            .store(in: &subscriptions)
-        wait(for: [expectation2], timeout: 5)
-
-        XCTAssertEqual(mockHandler.totalEventCount, 2)
+        XCTAssertEqual(analytics.handleEventCallCount, 2)
     }
 
-    func test_loadWidgets_hiddenWidgetsTrackedAsMinusOne() {
+    func test_loadEditableWidgetConfigs_hiddenWidgetsTrackedAsMinusOne() {
         userDefaults.learnerDashboardWidgetConfigs = [
             DashboardWidgetConfig(id: .helloWidget, order: 0, isVisible: false),
             DashboardWidgetConfig(id: .coursesAndGroups, order: 1, isVisible: true),
             DashboardWidgetConfig(id: .weeklySummary, order: 2, isVisible: true)
         ]
-        let mockHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = mockHandler
-        testee = LearnerDashboardInteractorLive(
-            userDefaults: userDefaults,
-            systemWidgetFactory: makeSystemFactory(),
-            editableWidgetFactory: makeEditableFactory()
-        )
+        testee = makeInteractor()
 
-        let expectation = expectation(description: "loadWidgets")
-        testee.loadWidgets(loadReason: .onStartup)
-            .sink { _ in expectation.fulfill() }
-            .store(in: &subscriptions)
-        wait(for: [expectation], timeout: 5)
+        XCTAssertFinish(testee.loadEditableWidgetConfigs(loadReason: .onStartup))
 
-        XCTAssertEqual(mockHandler.lastEventParameter("welcome", ofType: String.self), "-1")
-        XCTAssertEqual(mockHandler.lastEventParameter("courses", ofType: String.self), "0")
-        XCTAssertEqual(mockHandler.lastEventParameter("forecast", ofType: String.self), "1")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["welcome"] as? String, "-1")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["courses"] as? String, "0")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["forecast"] as? String, "1")
     }
 
     // MARK: - Private helpers
 
-    private func makeSystemFactory() -> (SystemWidgetIdentifier) -> any DashboardWidgetViewModel {
-        return { id in DashboardWidgetViewModelMock(id: id.rawValue) }
-    }
-
-    private func makeEditableFactory() -> (DashboardWidgetConfig) -> any DashboardWidgetViewModel {
-        return { config in DashboardWidgetViewModelMock(id: config.id.rawValue) }
+    private func makeInteractor() -> LearnerDashboardInteractorLive {
+        LearnerDashboardInteractorLive(userDefaults: userDefaults)
     }
 }
 
-private final class MockAnalyticsHandler: AnalyticsHandler {
-    var lastEvent: String?
-    var lastEventParameters: [String: Any]?
-    var totalEventCount = 0
+private final class AnalyticsHandlerMock: AnalyticsHandler {
+    var handleEventInput: (name: String, parameters: [String: Any]?)?
+    var handleEventCallCount = 0
 
     func handleEvent(_ name: String, parameters: [String: Any]?) {
-        lastEvent = name
-        lastEventParameters = parameters
-        totalEventCount += 1
-    }
-
-    func lastEventParameter<T: Equatable>(_ key: String, ofType type: T.Type = T.self) -> T? {
-        lastEventParameters?[key] as? T
-    }
-}
-
-private final class DashboardWidgetViewModelMock: DashboardWidgetViewModel {
-    let id: String
-    let isHiddenInEmptyState = false
-    let state: InstUI.ScreenState = .data
-
-    init(id: String) {
-        self.id = id
-    }
-
-    func makeView() -> AnyView {
-        AnyView(EmptyView())
-    }
-
-    func refresh(ignoreCache: Bool) -> AnyPublisher<Void, Never> {
-        Just(()).eraseToAnyPublisher()
+        handleEventInput = (name, parameters)
+        handleEventCallCount += 1
     }
 }
