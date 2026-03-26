@@ -159,8 +159,6 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
 
     func toggleFilter(_ filter: WeeklySummaryWidgetFilterViewModel) {
         expandedFilter = (expandedFilter?.id == filter.id) ? nil : filter
-        config.weeklySummarySettings = WeeklySummaryWidgetSettings(expandedFilterId: expandedFilter?.id)
-        persistConfig()
         missingFilter = missingFilter.withExpandedState(isMissingFilterSelected)
         dueFilter = dueFilter.withExpandedState(isDueFilterSelected)
         newGradesFilter = newGradesFilter.withExpandedState(isNewGradesFilterSelected)
@@ -262,14 +260,6 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
         missingFilter = missingFilter.withExpandedState(false)
         dueFilter = dueFilter.withExpandedState(false)
         newGradesFilter = newGradesFilter.withExpandedState(false)
-    }
-
-    private func persistConfig() {
-        var configs = defaults.learnerDashboardWidgetConfigs ?? EditableWidgetIdentifier.makeDefaultConfigs()
-        if let index = configs.firstIndex(where: { $0.id == config.id }) {
-            configs[index] = config
-            defaults.learnerDashboardWidgetConfigs = configs
-        }
     }
 
     private func updateFilters(_ filters: WeeklySummaryWidgetFilters, isInitialUpdate: Bool = false) {
