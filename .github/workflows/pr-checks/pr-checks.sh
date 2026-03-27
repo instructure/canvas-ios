@@ -29,13 +29,26 @@ if [[ ${#missing_deps[@]} -gt 0 ]]; then
 fi
 
 # ── Step state ────────────────────────────────────────────────────────────────
+COPYRIGHT_STATUS="" COPYRIGHT_DETAILS=""
 LINT_STATUS="" LINT_DETAILS=""
 BUILD_STATUS="" BUILD_DETAILS=""
 TEST_STATUS="" TEST_DETAILS=""
 COV_STATUS="" COV_DETAILS=""
 OVERALL_PASS=true
 
-# ── Step 1: SwiftLint ─────────────────────────────────────────────────────────
+# ── Step 1: Copyright headers ─────────────────────────────────────────────────
+echo "Checking copyright headers..."
+copyright_output=$(bash "$SCRIPT_DIR/check-copyright.sh")
+copyright_result=$(echo "$copyright_output" | head -1)
+if [[ "$copyright_result" == "pass" ]]; then
+    COPYRIGHT_STATUS="✅ Passed"
+else
+    COPYRIGHT_STATUS="❌ Failed"
+    OVERALL_PASS=false
+    COPYRIGHT_DETAILS=$(echo "$copyright_output" | tail -n +2)
+fi
+
+# ── Step 3: SwiftLint ─────────────────────────────────────────────────────────
 lint_out="$WORK_DIR/lint.txt"
 echo "Running SwiftLint... ($lint_out)"
 if (cd "$REPO_ROOT" && bash scripts/runSwiftLint.sh >"$lint_out" 2>&1); then
@@ -46,7 +59,7 @@ else
     LINT_DETAILS=$(grep -v "^LINTING\|^Linting" "$lint_out" | sed '/^[[:space:]]*$/d' | sed "s|${REPO_ROOT}/||g")
 fi
 
-# ── Step 2: Build CITests ─────────────────────────────────────────────────────
+# ── Step 4: Build CITests ─────────────────────────────────────────────────────
 build_out="$WORK_DIR/build.txt"
 build_raw="$WORK_DIR/build_raw.txt"
 echo "Building CITests... ($build_out)"
@@ -66,7 +79,7 @@ else
     COV_STATUS="⏭️ Skipped"
 fi
 
-# ── Step 3: Unit Tests ────────────────────────────────────────────────────────
+# ── Step 5: Unit Tests ────────────────────────────────────────────────────────
 if [[ -z "$TEST_STATUS" ]]; then
     test_out="$WORK_DIR/tests.txt"
     echo "Running unit tests... ($test_out)"
@@ -89,7 +102,7 @@ if [[ -z "$TEST_STATUS" ]]; then
     fi
 fi
 
-# ── Step 4: Code Coverage ─────────────────────────────────────────────────────
+# ── Step 6: Code Coverage ─────────────────────────────────────────────────────
 if [[ -z "$COV_STATUS" ]]; then
     echo "Checking code coverage..."
     cov_output=$(bash "$SCRIPT_DIR/check-coverage.sh" "$RESULT_BUNDLE")
@@ -129,6 +142,7 @@ REPORT="<!-- ci-check-results -->
 
 <table>
 <tr><th></th><th>Step</th></tr>
+<tr><td>$(make_icon "$COPYRIGHT_STATUS")</td><td>$(make_name "Copyright Headers" "$COPYRIGHT_DETAILS")</td></tr>
 <tr><td>$(make_icon "$LINT_STATUS")</td><td>$(make_name "SwiftLint" "$LINT_DETAILS")</td></tr>
 <tr><td>$(make_icon "$BUILD_STATUS")</td><td>$(make_name "Build CITests" "$BUILD_DETAILS")</td></tr>
 <tr><td>$(make_icon "$TEST_STATUS")</td><td>$(make_name "Unit Tests" "$TEST_DETAILS")</td></tr>
