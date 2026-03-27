@@ -11,7 +11,8 @@ SCHEME="CITests"
 SIM_ID=$(xcrun simctl list devices available -j | jq -r '[.devices | to_entries[] | select(.key | startswith("com.apple.CoreSimulator.SimRuntime.iOS")) | .value[] | select(.name | startswith("iPhone")) | .udid] | last')
 SIM_NAME=$(xcrun simctl list devices available -j | jq -r '[.devices | to_entries[] | select(.key | startswith("com.apple.CoreSimulator.SimRuntime.iOS")) | .value[] | select(.name | startswith("iPhone")) | .name] | last')
 echo "Using simulator: $SIM_NAME ($SIM_ID)"
-DESTINATION="platform=iOS Simulator,id=$SIM_ID"
+BUILD_DESTINATION="generic/platform=iOS Simulator"
+TEST_DESTINATION="platform=iOS Simulator,id=$SIM_ID"
 
 WORK_DIR=$(mktemp -d)
 
@@ -52,7 +53,7 @@ if (cd "$REPO_ROOT" && xcodebuild \
         -workspace "$WORKSPACE" \
         -scheme "$SCHEME" \
         -configuration Debug \
-        -destination "$DESTINATION" \
+        -destination "$BUILD_DESTINATION" \
         COMPILER_INDEX_STORE_ENABLE=NO \
         build-for-testing 2>&1 | xcbeautify --quiet >"$build_out" 2>&1); then
     BUILD_STATUS="✅ Passed"
@@ -73,7 +74,7 @@ if [[ -z "$TEST_STATUS" ]]; then
     if (cd "$REPO_ROOT" && xcodebuild \
             -workspace "$WORKSPACE" \
             -scheme "$SCHEME" \
-            -destination "$DESTINATION" \
+            -destination "$TEST_DESTINATION" \
             -resultBundlePath "$RESULT_BUNDLE" \
             test-without-building 2>&1 | xcbeautify >"$test_out" 2>&1); then
         TEST_STATUS="✅ Passed"
