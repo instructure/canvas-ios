@@ -8,11 +8,11 @@ workflows:
     - set-xcode-build-number@2:
         inputs:
         - scheme: $INST_XCODE_SCHEME
-    - bitrise-step-stamp-appicon-with-version-number@1:
-        inputs:
-        - stamp_version: PR
-        - stamp_build_number: $PR_NUMBER
-        - stamp_path_to_icons: ${INST_XCODE_SCHEME}/${INST_XCODE_SCHEME}/Assets.xcassets/AppIcon.appiconset
+    #- bitrise-step-stamp-appicon-with-version-number@1:
+        #inputs:
+        #- stamp_version: PR
+        #- stamp_build_number: $PR_NUMBER
+        #- stamp_path_to_icons: ${INST_XCODE_SCHEME}/${INST_XCODE_SCHEME}/Assets.xcassets/AppIcon.appiconset
     - script-runner@0:
         title: Inject PR number into Info.plist
         inputs:
