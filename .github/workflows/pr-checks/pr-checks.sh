@@ -115,10 +115,10 @@ if [[ -z "$TEST_STATUS" ]]; then
         OVERALL_PASS=false
         TEST_DETAILS=$(awk '
             /Test Suite .* started/ { s = $0; gsub(/.*Test Suite ./, "", s); gsub(/. started.*/, "", s); suite = s }
-            /✖|Test Case .* failed/ { if (suite != "") print suite; print; suite = "" }
-        ' "$test_out" | head -200 || true)
+            /Test Case .* failed/ { if (suite != "") print suite; print; suite = "" }
+        ' "$test_raw" | head -200)
         if [[ -z "$TEST_DETAILS" ]]; then
-            TEST_DETAILS=$(grep -E "error:|failed|✖" "$test_raw" | grep -v "^$" | head -50 || tail -50 "$test_raw")
+            TEST_DETAILS=$(tail -50 "$test_raw")
         fi
     fi
 fi
