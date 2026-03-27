@@ -22,7 +22,7 @@ settings:
   platform: iOS
   CODE_SIGN_ENTITLEMENTS: Horizon/Resources/Horizon.entitlements
   ENABLE_MODULE_VERIFIER: true
-  MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS: 'gnu11,gnu++14'
+  MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS: 'gnu11 gnu++14'
 sources:
   - path: ./
     excludes:

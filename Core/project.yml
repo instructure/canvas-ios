@@ -63,9 +63,8 @@ targets:
     settings:
       SWIFT_EMIT_LOC_STRINGS: true
       ENABLE_MODULE_VERIFIER: true
-      MODULE_VERIFIER_SUPPORTED_LANGUAGES: 'gnu11,gnu++14'
-      MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS: 'gnu11,gnu++14'
-  CoreTests:    
+      MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS: 'gnu11 gnu++14'
+  CoreTests:
     type: bundle.unit-test
     platform: iOS
     settings:
@@ -96,7 +95,7 @@ targets:
     platform: iOS
     settings:
       ENABLE_MODULE_VERIFIER: true
-      MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS: 'gnu11,gnu++14'
+      MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS: 'gnu11 gnu++14'
     dependencies:
       - sdk: XCTest.framework
       - target: Core
