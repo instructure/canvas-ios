@@ -15,12 +15,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: brew install swiftlint xcbeautify jq
+        run: brew install swiftlint
 
       - name: Install iOS simulator runtime
-        run: |
-          RUNTIME_PATH="$(xcode-select -p)/Platforms/iPhoneSimulator.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime"
-          xcrun simctl runtime add "$RUNTIME_PATH"
+        run: xcodebuild -downloadPlatform iOS
 
       - name: Set up Xcode projects
         run: |
