@@ -65,7 +65,26 @@ extension InstUI {
 
         }
 
-        // MARK: - Body
+        public init(
+            title: String,
+            itemCount: Int?,
+            headerIdentifier: String? = nil,
+            config: Config = .init(),
+            isExpanded: Binding<Bool>,
+            @ViewBuilder content: () -> Content
+        ) where Label == Text {
+            self.init(
+                title: title,
+                label: { Text($0) },
+                itemCount: itemCount,
+                headerIdentifier: headerIdentifier,
+                config: config,
+                isExpanded: isExpanded,
+                content: content
+            )
+        }
+
+            // MARK: - Body
 
         public var body: some View {
             // Using `Section` instead of `DisclosureGroup` to support pinning the header.
@@ -119,27 +138,6 @@ extension InstUI {
             .accessibilityAddTraits([.isHeader])
             .identifier(headerIdentifier)
         }
-    }
-}
-
-extension InstUI.CollapsibleListSection where Label == Text {
-    public init(
-        title: String,
-        itemCount: Int?,
-        headerIdentifier: String? = nil,
-        config: Config = .init(),
-        isExpanded: Binding<Bool>,
-        @ViewBuilder content: () -> Content
-    ) {
-        self.init(
-            title: title,
-            label: { Text($0) },
-            itemCount: itemCount,
-            headerIdentifier: headerIdentifier,
-            config: config,
-            isExpanded: isExpanded,
-            content: content
-        )
     }
 }
 
