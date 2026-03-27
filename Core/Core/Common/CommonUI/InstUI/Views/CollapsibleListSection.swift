@@ -37,7 +37,7 @@ extension InstUI {
 
         public init(
             title: String,
-            @ViewBuilder label: (String) -> Label = { Text($0) },
+            @ViewBuilder label: (String) -> Label,
             itemCount: Int?,
             headerIdentifier: String? = nil,
             config: Config = .init(),
@@ -119,6 +119,27 @@ extension InstUI {
             .accessibilityAddTraits([.isHeader])
             .identifier(headerIdentifier)
         }
+    }
+}
+
+extension InstUI.CollapsibleListSection where Label == Text {
+    public init(
+        title: String,
+        itemCount: Int?,
+        headerIdentifier: String? = nil,
+        config: Config = .init(),
+        isExpanded: Binding<Bool>,
+        @ViewBuilder content: () -> Content
+    ) {
+        self.init(
+            title: title,
+            label: { Text($0) },
+            itemCount: itemCount,
+            headerIdentifier: headerIdentifier,
+            config: config,
+            isExpanded: isExpanded,
+            content: content
+        )
     }
 }
 
