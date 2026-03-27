@@ -2,39 +2,34 @@
 # Usage: check-copyright.sh
 # Outputs two lines to stdout:
 #   Line 1: pass | fail
-#   Line 2+: human-readable details
+#   Line 2+: files missing Instructure copyright header
 set -o pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
 
-missing_files=()
+missing_files=$(
+    cd "$REPO_ROOT" && \
+    git ls-files -z '*.swift' '*.h' '*.m' '*.js' '*.sh' | \
+    grep -z -v -E '^\.github/|\.framework/(Headers|Versions)/|/node_modules/|/jquery/|/preact[./]|/templates/' | \
+    xargs -0 awk '
+        FNR == 1 {
+            if (NR > 1 && (!c || !i)) print prev
+            c = 0; i = 0; prev = FILENAME
+        }
+        FNR <= 20 {
+            t = tolower($0)
+            if (!c && t ~ /copyright/) c = 1
+            if (!i && t ~ /instructure/) i = 1
+        }
+        FNR == 20 { nextfile }
+        END { if (prev != "" && (!c || !i)) print prev }
+    '
+)
 
-while IFS= read -r file; do
-    abs="$REPO_ROOT/$file"
-    [[ -f "$abs" ]] || continue
-
-    case "$file" in
-        .github/*) continue ;;
-        *.framework/Headers/*) continue ;;
-        *.framework/Versions/*) continue ;;
-        */node_modules/*) continue ;;
-        */jquery/*) continue ;;
-        */preact/*) continue ;;
-        */preact.*) continue ;;
-        */templates/*) continue ;;
-    esac
-
-    header=$(head -20 "$abs" | tr '[:upper:]' '[:lower:]')
-    if ! printf '%s' "$header" | grep -q "copyright" || \
-       ! printf '%s' "$header" | grep -q "instructure"; then
-        missing_files+=("$file")
-    fi
-done < <(cd "$REPO_ROOT" && git ls-files '*.swift' '*.h' '*.m' '*.js' '*.sh')
-
-if [[ ${#missing_files[@]} -eq 0 ]]; then
+if [[ -z "$missing_files" ]]; then
     echo "pass"
 else
     echo "fail"
-    printf '%s\n' "${missing_files[@]}"
+    echo "$missing_files"
 fi
