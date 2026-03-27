@@ -121,7 +121,6 @@ final class SubmissionCommentViewModel {
             return
         }
         weak let weakSelf = self
-        
         fileState = .loading
         fileSubscription = fileInteractor.download(
             remoteURL: url,
