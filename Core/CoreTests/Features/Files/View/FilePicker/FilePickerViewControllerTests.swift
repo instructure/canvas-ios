@@ -44,7 +44,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
     let batchID = "1"
 
     lazy var controller = FilePickerViewController
-        .create(env: environment, batchID: batchID)
+        .create(env: environment, batchID: batchID, avPermissionInteractor: AVPermissionInteractorAlwaysGranted())
 
     func testLayout() {
         let navigation = UINavigationController(rootViewController: controller)
@@ -114,8 +114,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         controller.view.layoutIfNeeded()
         let tabBar = controller.sourcesTabBar!
         tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items![FilePickerSource.camera.rawValue])
-        // FIXME: always fails locally, always works on CI
-        XCTAssertNil(router.presented) // camera is unsupported in simulator
+        XCTAssertEqual((router.presented as? UIImagePickerController)?.sourceType, .camera)
         tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items![FilePickerSource.library.rawValue])
         let picker = router.presented as! UIImagePickerController
         picker.delegate?.imagePickerController?(MockImagePicker(), didFinishPickingMediaWithInfo: [
@@ -149,7 +148,6 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         controller.view.layoutIfNeeded()
         let tabBar = controller.sourcesTabBar!
         tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items!.first!)
-        // FIXME: always fails locally, always works on CI
         XCTAssertNil(router.presented)
     }
 
@@ -170,6 +168,13 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
 
         XCTAssertEqual((UploadManager.shared as? MockUploadManager)?.cancelWasCalled, true)
     }
+}
+
+struct AVPermissionInteractorAlwaysGranted: AVPermissionInteractor {
+    var isCameraPermitted: Bool? { true }
+    var isMicrophonePermitted: Bool? { true }
+    func requestCameraPermission(_ response: @escaping (Bool) -> Void) { response(true) }
+    func requestMicrophonePermission(_ response: @escaping (Bool) -> Void) { response(true) }
 }
 
 class MockImagePicker: UIImagePickerController {
