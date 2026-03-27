@@ -48,6 +48,7 @@ fi
 
 # ── Step 2: Build CITests ─────────────────────────────────────────────────────
 build_out="$WORK_DIR/build.txt"
+build_raw="$WORK_DIR/build_raw.txt"
 echo "Building CITests... ($build_out)"
 if (cd "$REPO_ROOT" && xcodebuild \
         -workspace "$WORKSPACE" \
@@ -55,12 +56,12 @@ if (cd "$REPO_ROOT" && xcodebuild \
         -configuration Debug \
         -destination "$BUILD_DESTINATION" \
         COMPILER_INDEX_STORE_ENABLE=NO \
-        build-for-testing 2>&1 | xcbeautify --quiet >"$build_out" 2>&1); then
+        build-for-testing 2>&1 | tee "$build_raw" | xcbeautify --quiet >"$build_out" 2>&1); then
     BUILD_STATUS="✅ Passed"
 else
     BUILD_STATUS="❌ Failed"
     OVERALL_PASS=false
-    BUILD_DETAILS=$(cat "$build_out")
+    BUILD_DETAILS=$(grep -A 20 "error:" "$build_raw" | head -40 || cat "$build_raw" | tail -50)
     TEST_STATUS="⏭️ Skipped"
     COV_STATUS="⏭️ Skipped"
 fi
