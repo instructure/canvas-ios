@@ -115,6 +115,9 @@ if [[ -z "$TEST_STATUS" ]]; then
         OVERALL_PASS=false
         TEST_DETAILS=$(grep '✖' "$test_out" | head -200)
         if [[ -z "$TEST_DETAILS" ]]; then
+            TEST_DETAILS=$(grep -E "Test Suite .* failed|Executed .* failure|TEST EXECUTE FAILED" "$test_raw" | head -50)
+        fi
+        if [[ -z "$TEST_DETAILS" ]]; then
             TEST_DETAILS=$(tail -50 "$test_raw")
         fi
     fi
