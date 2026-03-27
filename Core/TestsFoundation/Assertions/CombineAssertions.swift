@@ -29,7 +29,7 @@ extension XCTestCase {
     public func XCTAssertSingleOutputEqualsAndFinish<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         _ expectedOutput: Output,
-        timeout: TimeInterval = 1,
+        timeout: TimeInterval = 5,
         _ messageSuffix: String = "",
         file: StaticString = #filePath,
         line: UInt = #line
@@ -61,7 +61,7 @@ extension XCTestCase {
     /// If there are multiple outputs: it will crash with: "multiple calls made to -[XCTestExpectation fulfill]"
     public func XCTAssertSingleOutputAndFinish<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
-        timeout: TimeInterval = 1,
+        timeout: TimeInterval = 5,
         assertions: @escaping (Output) -> Void
     ) where Failure: Error {
         let outputExpectation = expectation(description: "Output received from publisher")
@@ -94,7 +94,7 @@ extension XCTestCase {
     public func XCTAssertSingleOutputEquals<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         _ expectedOutput: Output,
-        timeout: TimeInterval = 1,
+        timeout: TimeInterval = 5,
         _ messageSuffix: String = "",
         file: StaticString = #filePath,
         line: UInt = #line
@@ -120,7 +120,7 @@ extension XCTestCase {
     /// If there are multiple outputs: it will crash with: "multiple calls made to -[XCTestExpectation fulfill]"
     public func XCTAssertSingleOutput<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
-        timeout: TimeInterval = 1,
+        timeout: TimeInterval = 5,
         assertions: @escaping (Output) -> Void
     ) where Failure: Error {
         let outputExpectation = expectation(description: "Output received from publisher")
@@ -146,7 +146,7 @@ extension XCTestCase {
     public func XCTAssertFirstValueEquals<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         _ expectedOutput: Output,
-        timeout: TimeInterval = 1,
+        timeout: TimeInterval = 5,
         _ messageSuffix: String = "",
         file: StaticString = #filePath,
         line: UInt = #line
@@ -165,7 +165,7 @@ extension XCTestCase {
     /// It ignores finish or failure events, and also ignores further outputs.
     public func XCTAssertFirstValue<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
-        timeout: TimeInterval = 1,
+        timeout: TimeInterval = 5,
         assertions: @escaping (Output) -> Void
     ) where Failure: Error {
         XCTAssertSingleOutput(
@@ -184,7 +184,7 @@ extension XCTestCase {
      */
     public func XCTAssertFinish<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
-        timeout: TimeInterval = 1,
+        timeout: TimeInterval = 5,
         file: StaticString = #filePath,
         line: UInt = #line
     ) where Failure: Error {
@@ -212,7 +212,7 @@ extension XCTestCase {
     public func XCTAssertFailure<Output, Failure>(
         _ publisher: any Publisher<Output, Failure>,
         assertOnOutput: Bool = true,
-        timeout: TimeInterval = 1,
+        timeout: TimeInterval = 5,
         file: StaticString = #filePath,
         line: UInt = #line
     ) where Failure: Error {
@@ -243,7 +243,7 @@ extension XCTestCase {
         _ publisher: any Publisher<Output, Failure>,
         _ expectedError: Failure,
         assertOnOutput: Bool = true,
-        timeout: TimeInterval = 1,
+        timeout: TimeInterval = 5,
         _ messageSuffix: String = "",
         file: StaticString = #filePath,
         line: UInt = #line

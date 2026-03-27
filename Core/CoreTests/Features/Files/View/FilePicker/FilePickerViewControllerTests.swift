@@ -114,7 +114,11 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         controller.view.layoutIfNeeded()
         let tabBar = controller.sourcesTabBar!
         tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items![FilePickerSource.camera.rawValue])
-        XCTAssertEqual((router.presented as? UIImagePickerController)?.sourceType, .camera)
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            XCTAssertEqual((router.presented as? UIImagePickerController)?.sourceType, .camera)
+        } else {
+            XCTAssertNil(router.presented)
+        }
         tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items![FilePickerSource.library.rawValue])
         let picker = router.presented as! UIImagePickerController
         picker.delegate?.imagePickerController?(MockImagePicker(), didFinishPickingMediaWithInfo: [
