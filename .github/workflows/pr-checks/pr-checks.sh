@@ -98,12 +98,17 @@ if [[ -z "$TEST_STATUS" ]]; then
     echo "Running unit tests... ($test_out)"
     rm -rf "$RESULT_BUNDLE"
     mkdir -p "$(dirname "$RESULT_BUNDLE")"
-    if (cd "$REPO_ROOT" && xcodebuild \
+    (
+        cd "$REPO_ROOT" || exit 1
+        xcodebuild \
             -workspace "$WORKSPACE" \
             -scheme "$SCHEME" \
             -destination "$TEST_DESTINATION" \
             -resultBundlePath "$RESULT_BUNDLE" \
-            test-without-building 2>&1 | tee "$test_raw" | xcbeautify >"$test_out" 2>&1); then
+            test-without-building 2>&1 | tee "$test_raw" | xcbeautify >"$test_out" 2>&1
+        exit "${PIPESTATUS[0]}"
+    )
+    if [[ $? -eq 0 ]]; then
         TEST_STATUS="✅ Passed"
     else
         TEST_STATUS="❌ Failed"

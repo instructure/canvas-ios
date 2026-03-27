@@ -62,6 +62,7 @@
     "Horizon\/Horizon\/Sources\/Features\/Session\/SessionInteractor.swift",
     "Horizon\/Horizon\/Sources\/Features\/Account\/Notifications\/Domain\/NotificationSettingsInteractor.swift",
     "Horizon\/Horizon\/Sources\/Features\/LearningObjects\/Assignment\/AssignmentDetails\/View\/AssignmentSubmissionType.swift",
+    "Horizon\/Horizon\/Sources\/Features\/LearningObjects\/Assignment\/AssignmentDetails\/View\/AssignmentDetailsViewModel.swift",
     "Horizon\/Horizon\/Sources\/Features\/Assist\/AssistFlashCard\/View\/AssistFlashCardViewModel.swift",
     "Horizon\/Horizon\/Sources\/Features\/LearningObjects\/Assignment\/AssignmentDetails\/Data\/HAssignment.swift",
     "Horizon\/Horizon\/Sources\/Features\/Skillspace\/View\/SkillSpaceViewModel.swift",
