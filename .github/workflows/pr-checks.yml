@@ -17,6 +17,11 @@ jobs:
       - name: Install dependencies
         run: brew install swiftlint xcbeautify jq
 
+      - name: Install iOS simulator runtime
+        run: |
+          RUNTIME_PATH="$(xcode-select -p)/Platforms/iPhoneSimulator.platform/Developer/Library/CoreSimulator/Profiles/Runtimes/iOS.simruntime"
+          xcrun simctl runtime add "$RUNTIME_PATH"
+
       - name: Set up Xcode projects
         run: |
           make provision-ci
