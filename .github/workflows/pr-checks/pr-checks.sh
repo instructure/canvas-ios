@@ -82,6 +82,7 @@ fi
 # ── Step 5: Unit Tests ────────────────────────────────────────────────────────
 if [[ -z "$TEST_STATUS" ]]; then
     test_out="$WORK_DIR/tests.txt"
+    test_raw="$WORK_DIR/tests_raw.txt"
     echo "Running unit tests... ($test_out)"
     rm -rf "$RESULT_BUNDLE"
     mkdir -p "$(dirname "$RESULT_BUNDLE")"
@@ -90,7 +91,7 @@ if [[ -z "$TEST_STATUS" ]]; then
             -scheme "$SCHEME" \
             -destination "$TEST_DESTINATION" \
             -resultBundlePath "$RESULT_BUNDLE" \
-            test-without-building 2>&1 | xcbeautify >"$test_out" 2>&1); then
+            test-without-building 2>&1 | tee "$test_raw" | xcbeautify >"$test_out" 2>&1); then
         TEST_STATUS="✅ Passed"
     else
         TEST_STATUS="❌ Failed"
@@ -99,6 +100,9 @@ if [[ -z "$TEST_STATUS" ]]; then
             /Test Suite .* started/ { s = $0; gsub(/.*Test Suite ./, "", s); gsub(/. started.*/, "", s); suite = s }
             /✖|Test Case .* failed/ { if (suite != "") print suite; print; suite = "" }
         ' "$test_out" | head -200 || true)
+        if [[ -z "$TEST_DETAILS" ]]; then
+            TEST_DETAILS=$(grep -E "error:|failed|✖" "$test_raw" | grep -v "^$" | head -50 || tail -50 "$test_raw")
+        fi
     fi
 fi
 
