@@ -8,7 +8,7 @@ jobs:
   pr-checks:
     runs-on: macos-15
     env:
-      DEVELOPER_DIR: /Applications/Xcode_16.3.app/Contents/Developer
+      DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
 
     steps:
       - name: Checkout
@@ -16,9 +16,6 @@ jobs:
 
       - name: Install dependencies
         run: brew install swiftlint
-
-      - name: Install iOS simulator runtime
-        run: xcodebuild -downloadPlatform iOS
 
       - name: Set up Xcode projects
         run: |
