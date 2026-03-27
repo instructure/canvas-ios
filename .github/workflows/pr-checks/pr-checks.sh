@@ -113,9 +113,9 @@ if [[ -z "$TEST_STATUS" ]]; then
     else
         TEST_STATUS="❌ Failed"
         OVERALL_PASS=false
-        TEST_DETAILS=$(grep '✖' "$test_out" | head -200)
+        TEST_DETAILS=$(grep '✖' "$test_out" 2>/dev/null | head -200)
         if [[ -z "$TEST_DETAILS" ]]; then
-            TEST_DETAILS=$(grep -E "Test Suite .* failed|Executed .* failure|TEST EXECUTE FAILED" "$test_raw" | head -50)
+            TEST_DETAILS=$(grep -E "Test Case.*failed\.|\.swift:[0-9]+: error:|Test Suite .* failed|TEST EXECUTE FAILED" "$test_raw" 2>/dev/null | head -100)
         fi
         if [[ -z "$TEST_DETAILS" ]]; then
             TEST_DETAILS=$(tail -50 "$test_raw")

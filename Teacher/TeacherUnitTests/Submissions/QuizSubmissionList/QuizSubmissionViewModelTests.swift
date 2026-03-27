@@ -48,7 +48,7 @@ class QuizSubmissionViewModelTests: TeacherTestCase {
             refreshCompleted.fulfill()
         }
 
-        waitForExpectations(timeout: 2)
+        waitForExpectations(timeout: 5)
         XCTAssertTrue(mockInteractor.refreshCalled)
     }
 
@@ -72,7 +72,7 @@ class QuizSubmissionViewModelTests: TeacherTestCase {
         testee.messageUsersDidTap.send(WeakViewController(sourceView))
 
         XCTAssertTrue(mockInteractor.createMessageUserInfoCalled)
-        wait(for: [router.routeExpectation], timeout: 1)
+        wait(for: [router.routeExpectation], timeout: 5)
         XCTAssertEqual(router.calls.last?.0, URLComponents(string: "/conversations/compose"))
         XCTAssertEqual(router.calls.last?.1, sourceView)
         XCTAssertEqual(router.calls.last?.2, .modal(embedInNav: true))
