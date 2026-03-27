@@ -29,6 +29,7 @@ if [[ ${#missing_deps[@]} -gt 0 ]]; then
 fi
 
 # ── Step state ────────────────────────────────────────────────────────────────
+PR_DESC_STATUS="" PR_DESC_DETAILS=""
 COPYRIGHT_STATUS="" COPYRIGHT_DETAILS=""
 LINT_STATUS="" LINT_DETAILS=""
 BUILD_STATUS="" BUILD_DETAILS=""
@@ -36,7 +37,18 @@ TEST_STATUS="" TEST_DETAILS=""
 COV_STATUS="" COV_DETAILS=""
 OVERALL_PASS=true
 
-# ── Step 1: Copyright headers ─────────────────────────────────────────────────
+# ── Step 1: PR description ────────────────────────────────────────────────────
+echo "Checking PR description..."
+pr_desc_output=$(bash "$SCRIPT_DIR/check-pr-description.sh" "${PR_BODY:-}")
+if [[ "$(echo "$pr_desc_output" | head -1)" == "pass" ]]; then
+    PR_DESC_STATUS="✅ Passed"
+else
+    PR_DESC_STATUS="❌ Failed"
+    OVERALL_PASS=false
+    PR_DESC_DETAILS=$(echo "$pr_desc_output" | tail -n +2)
+fi
+
+# ── Step 3: Copyright headers ─────────────────────────────────────────────────
 echo "Checking copyright headers..."
 copyright_output=$(bash "$SCRIPT_DIR/check-copyright.sh")
 copyright_result=$(echo "$copyright_output" | head -1)
@@ -148,6 +160,7 @@ REPORT="<!-- ci-check-results -->
 ## PR Checks
 
 <table>
+$(make_row "$PR_DESC_STATUS" "PR Description" "$PR_DESC_DETAILS")
 $(make_row "$COPYRIGHT_STATUS" "Copyright Headers" "$COPYRIGHT_DETAILS")
 $(make_row "$LINT_STATUS" "SwiftLint" "$LINT_DETAILS")
 $(make_row "$BUILD_STATUS" "Build CITests" "$BUILD_DETAILS")

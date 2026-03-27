@@ -25,6 +25,8 @@ jobs:
       - name: Run checks
         id: checks
         continue-on-error: true
+        env:
+          PR_BODY: ${{ github.event.pull_request.body }}
         run: bash .github/workflows/pr-checks/pr-checks.sh
 
       - name: Post PR comment
