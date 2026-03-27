@@ -19,7 +19,7 @@ fi
 WORK_DIR=$(mktemp -d)
 
 cov_json="$SCRIPT_DIR/coverage.json"
-echo "Parsing coverage report... ($cov_json)"
+echo "Parsing coverage report... ($cov_json)" >&2
 if ! xcrun xccov view --report --json "$RESULT_BUNDLE" >"$cov_json" 2>/dev/null; then
     echo "error"
     echo "Could not parse coverage report from $RESULT_BUNDLE"
@@ -72,7 +72,7 @@ else
     echo "fail"
     detail="Overall coverage: $overall_pct (minimum: $total_min_pct)"
     if [[ ${#under_files[@]} -gt 0 ]]; then
-        detail+=$'\n\nFiles below '"$file_min_pct"$' threshold:\n'
+        detail+=$'\nFiles below '"$file_min_pct"$' threshold:\n'
         for entry in "${under_files[@]}"; do
             detail+="- $entry"$'\n'
         done
