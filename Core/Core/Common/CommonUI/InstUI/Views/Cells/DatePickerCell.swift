@@ -53,7 +53,7 @@ extension InstUI {
 
         public init(
             label: Text,
-            labelModifiers: @escaping (Text) -> Label = { $0 },
+            labelModifiers: @escaping (Text) -> Label,
             customAccessibilityLabel: Text? = nil,
             identifierGroup: String? = nil,
             date: Binding<Date?>,
