@@ -1,7 +1,7 @@
 ---
 name: Core
 attributes: {
-  LastUpgradeCheck: "2610"
+  LastUpgradeCheck: "2640"
 }
 options:
   groupSortPosition: top
@@ -93,9 +93,6 @@ targets:
         createIntermediateGroups: true
     type: framework
     platform: iOS
-    settings:
-      ENABLE_MODULE_VERIFIER: true
-      MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS: 'gnu11 gnu++14'
     dependencies:
       - sdk: XCTest.framework
       - target: Core

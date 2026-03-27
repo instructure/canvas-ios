@@ -1,7 +1,7 @@
 ---
 name: Horizon
 attributes: {
-  LastUpgradeCheck: "2610"
+  LastUpgradeCheck: "2640"
 }
 options:
   groupSortPosition: top
