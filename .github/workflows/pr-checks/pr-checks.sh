@@ -130,27 +130,29 @@ make_icon() {
     esac
 }
 
-make_name() {
-    local name="$1" details="$2"
+make_row() {
+    local status="$1" name="$2" details="$3"
+    local icon label
+    icon=$(make_icon "$status")
     if [[ -n "$details" ]]; then
         local escaped
         escaped=$(printf '%s' "$details" | sed 's/&/\&amp;/g; s/</\&lt;/g; s/>/\&gt;/g')
-        printf '<details><summary>%s</summary><pre>%s</pre></details>' "$name" "$escaped"
+        label=$(printf '<details><summary>%s %s</summary><pre>%s</pre></details>' "$icon" "$name" "$escaped")
     else
-        printf '%s' "$name"
+        label="$icon $name"
     fi
+    printf '<tr><td>%s</td></tr>' "$label"
 }
 
 REPORT="<!-- ci-check-results -->
 ## PR Checks
 
 <table>
-<tr><th></th><th>Step</th></tr>
-<tr><td>$(make_icon "$COPYRIGHT_STATUS")</td><td>$(make_name "Copyright Headers" "$COPYRIGHT_DETAILS")</td></tr>
-<tr><td>$(make_icon "$LINT_STATUS")</td><td>$(make_name "SwiftLint" "$LINT_DETAILS")</td></tr>
-<tr><td>$(make_icon "$BUILD_STATUS")</td><td>$(make_name "Build CITests" "$BUILD_DETAILS")</td></tr>
-<tr><td>$(make_icon "$TEST_STATUS")</td><td>$(make_name "Unit Tests" "$TEST_DETAILS")</td></tr>
-<tr><td>$(make_icon "$COV_STATUS")</td><td>$(make_name "Code Coverage" "$COV_DETAILS")</td></tr>
+$(make_row "$COPYRIGHT_STATUS" "Copyright Headers" "$COPYRIGHT_DETAILS")
+$(make_row "$LINT_STATUS" "SwiftLint" "$LINT_DETAILS")
+$(make_row "$BUILD_STATUS" "Build CITests" "$BUILD_DETAILS")
+$(make_row "$TEST_STATUS" "Unit Tests" "$TEST_DETAILS")
+$(make_row "$COV_STATUS" "Code Coverage" "$COV_DETAILS")
 </table>"
 
 # ── Output ────────────────────────────────────────────────────────────────────
