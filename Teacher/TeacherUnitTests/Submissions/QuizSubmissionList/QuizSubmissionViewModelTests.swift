@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import CoreData
 import XCTest
 @testable import Core
@@ -29,7 +30,7 @@ class QuizSubmissionViewModelTests: TeacherTestCase {
     override func setUp() {
         super.setUp()
         mockInteractor = QuizSubmissionListInteractorMock(context: databaseClient)
-        testee = QuizSubmissionListViewModel(router: router, filterValue: .all, interactor: mockInteractor)
+        testee = QuizSubmissionListViewModel(router: router, filterValue: .all, interactor: mockInteractor, scheduler: .immediate)
     }
 
     func testInteractorStateMappedToViewModel() {
@@ -41,15 +42,14 @@ class QuizSubmissionViewModelTests: TeacherTestCase {
 
     // MARK: - Inputs
 
-    func testRefreshForwardedToInteractor() throws {
-        throw XCTSkip("Flaky on CI: ViewModel delay(for: 1s, scheduler: RunLoop.main) does not complete reliably in test environment")
+    func testRefreshForwardedToInteractor() {
         let refreshCompleted = expectation(description: "refresh callback received")
 
         testee.refreshDidTrigger.send {
             refreshCompleted.fulfill()
         }
 
-        waitForExpectations(timeout: 5)
+        waitForExpectations(timeout: 1)
         XCTAssertTrue(mockInteractor.refreshCalled)
     }
 
