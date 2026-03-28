@@ -131,7 +131,7 @@ if [[ -z "$COV_STATUS" ]]; then
     COV_DETAILS=$(echo "$cov_output" | tail -n +2)
 
     case "$cov_result" in
-        pass)  COV_STATUS="✅ Passed" ;;
+        pass)  COV_STATUS="✅ Passed"; COV_DETAILS="" ;;
         fail)  COV_STATUS="❌ Failed"; OVERALL_PASS=false ;;
         *)     COV_STATUS="❌ Failed"; OVERALL_PASS=false ;;
     esac
