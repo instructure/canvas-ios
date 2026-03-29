@@ -388,7 +388,8 @@ extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
 extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
 
     private var shouldMergeScannedImagesIntoPDF: Bool {
-        utis.contains(where: { $0.isPDF }) && utis.contains(where: { $0.isImage }) == false
+        // Only merge into PDF if the allowed UTIs is limited to PDF, otherwise just add as images
+        utis.first?.isPDF ?? false
     }
 
     private func proposeFilenameForNewPDFScan() -> String {
@@ -409,7 +410,16 @@ extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
         if shouldMergeScannedImagesIntoPDF {
             let pdfDocument = PDFDocument()
             let pages = (0 ..< scan.pageCount).compactMap {
-                PDFPage(image: scan.imageOfPage(at: $0))
+                let image = scan.imageOfPage(at: $0)
+                let mediaBoxSize = image.size.contained(in: .letterSize)
+
+                return PDFPage(
+                    image: image,
+                    options: [
+                        .compressionQuality: 0.8,
+                        .mediaBox: CGRect(origin: .zero, size: mediaBoxSize)
+                    ]
+                )
             }
 
             pages.forEach {
@@ -445,5 +455,30 @@ extension FilePickerViewController: FilePickerCellDelegate {
             self?.env.uploadManager.cancel(file: file)
         }))
         env.router.show(alert, from: self, options: .modal())
+    }
+}
+
+// MARK: - Page Size Utils
+
+private extension CGSize {
+
+    static let fittingDPI: CGFloat = 1.5 * 72
+
+    /// Letter size for (1.5 * 72) dpi resolution. 72 DPI is the standard for digital screen
+    /// and web images. While (1.5 * 72) dpi is definitely suitable for screens, it can
+    /// also provide good print quality for submissions as well, and it also produces a fairly
+    /// zoomable document when viewed on Canvas Web DocViewer.
+    static var letterSize: CGSize {
+        CGSize(width: 8.5 * fittingDPI, height: 11 * fittingDPI)
+    }
+
+    func contained(in maxSize: CGSize) -> CGSize {
+        guard width > 0, height > 0 else { return .zero }
+        guard width > maxSize.width || height > maxSize.height else { return self }
+
+        let widthRatio = maxSize.width / width
+        let heightRatio = maxSize.height / height
+        let scale = min(widthRatio, heightRatio)
+        return CGSize(width: width * scale, height: height * scale)
     }
 }
