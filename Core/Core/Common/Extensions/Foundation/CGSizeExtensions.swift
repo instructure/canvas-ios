@@ -22,4 +22,14 @@ extension CGSize {
     public var isZero: Bool { self == .zero }
     public var isSwipingLeft: Bool { width < 0 }
     public var isHorizontalSwipe: Bool { abs(width) > abs(height) }
+
+    public func contained(in maxSize: CGSize) -> CGSize {
+        guard width > 0, height > 0 else { return .zero }
+        guard width > maxSize.width || height > maxSize.height else { return self }
+
+        let widthRatio = maxSize.width / width
+        let heightRatio = maxSize.height / height
+        let scale = min(widthRatio, heightRatio)
+        return CGSize(width: width * scale, height: height * scale)
+    }
 }

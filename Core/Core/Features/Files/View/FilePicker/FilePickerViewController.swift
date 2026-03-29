@@ -388,7 +388,6 @@ extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
 extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
 
     private var shouldMergeScannedImagesIntoPDF: Bool {
-        // Only merge into PDF if the allowed UTIs is limited to PDF, otherwise just add as images
         utis.first?.isPDF ?? false
     }
 
@@ -409,9 +408,11 @@ extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
 
         if shouldMergeScannedImagesIntoPDF {
             let pdfDocument = PDFDocument()
-            let pages = (0 ..< scan.pageCount).compactMap {
-                let image = scan.imageOfPage(at: $0)
+            let pages = (0 ..< scan.pageCount).compactMap { index -> PDFPage? in
+                let image = scan.imageOfPage(at: index)
+
                 let mediaBoxSize = image.size.contained(in: .letterSize)
+                if mediaBoxSize.isZero { return nil }
 
                 return PDFPage(
                     image: image,
@@ -470,15 +471,5 @@ private extension CGSize {
     /// zoomable document when viewed on Canvas Web DocViewer.
     static var letterSize: CGSize {
         CGSize(width: 8.5 * fittingDPI, height: 11 * fittingDPI)
-    }
-
-    func contained(in maxSize: CGSize) -> CGSize {
-        guard width > 0, height > 0 else { return .zero }
-        guard width > maxSize.width || height > maxSize.height else { return self }
-
-        let widthRatio = maxSize.width / width
-        let heightRatio = maxSize.height / height
-        let scale = min(widthRatio, heightRatio)
-        return CGSize(width: width * scale, height: height * scale)
     }
 }
