@@ -166,7 +166,6 @@ make_row() {
 
 REPORT="<!-- ci-check-results -->
 ## PR Checks
-
 <table>
 $(make_row "$PR_DESC_STATUS" "PR Description" "$PR_DESC_DETAILS")
 $(make_row "$COPYRIGHT_STATUS" "Copyright Headers" "$COPYRIGHT_DETAILS")
