@@ -115,7 +115,7 @@ if [[ -z "$TEST_STATUS" ]]; then
         OVERALL_PASS=false
         TEST_DETAILS=$(grep '✖' "$test_out" 2>/dev/null | head -200)
         if [[ -z "$TEST_DETAILS" ]]; then
-            TEST_DETAILS=$(grep -E "\.swift:[0-9]+: error:" "$test_raw" 2>/dev/null | head -100)
+            TEST_DETAILS=$(grep -E "\.swift:[0-9]+: error:" "$test_raw" 2>/dev/null | sed 's/.*: error: //' | head -100)
         fi
         if [[ -z "$TEST_DETAILS" ]]; then
             TEST_DETAILS=$(grep -E "Test Case.*failed\." "$test_raw" 2>/dev/null | head -50)
