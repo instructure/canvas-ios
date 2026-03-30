@@ -21,6 +21,7 @@ import Foundation
 
 public enum EnvironmentFeatureFlags: String {
     case send_usage_metrics
+    case cookie_consent_necessary
     case mobile_offline_mode
     case account_survey_notifications
     case restrict_student_access

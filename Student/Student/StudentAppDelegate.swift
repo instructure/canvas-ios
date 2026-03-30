@@ -125,18 +125,18 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             .flatMap { list in
                 let userProfile = list.first
                 return unownedSelf.setupUserEnvironment()
-                    .flatMap { _ in unownedSelf.getFeatureFlags() }
+                    .flatMap { unownedSelf.getFeatureFlags() }
                     .map { featureFlags in
                         unownedSelf.isLearnerDashboardEnabledOnInstance = featureFlags.isFeatureEnabled(.widget_dashboard)
                         unownedSelf.initializeTracking(environmentFeatureFlags: featureFlags)
                     }
-                    .map { _ in unownedSelf.requestNotificationAuthorizationForUITests() }
-                    .map { _ in unownedSelf.setK5StudentViewIfNeeded(userProfile: userProfile) }
-                    .flatMap { _ in unownedSelf.showLanguageAlertIfNeeded(locale: userProfile?.locale ?? session.locale) }
-                    .flatMap { _ in unownedSelf.getAndSetBrandTheme() }
+                    .map { unownedSelf.requestNotificationAuthorizationForUITests() }
+                    .map { unownedSelf.setK5StudentViewIfNeeded(userProfile: userProfile) }
+                    .flatMap { unownedSelf.showLanguageAlertIfNeeded(locale: userProfile?.locale ?? session.locale) }
+                    .flatMap { unownedSelf.getAndSetBrandTheme() }
                     .eraseToAnyPublisher()
             }
-            .flatMap { _ in unownedSelf.getAppExperienceSummary() }
+            .flatMap { unownedSelf.getAppExperienceSummary() }
             .mapError { unownedSelf.mapSetupError(error: $0, session: session) }
             .sink(
                 receiveCompletion: { completion in
