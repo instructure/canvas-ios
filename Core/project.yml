@@ -22,25 +22,22 @@ settings:
 packages:
   CombineSchedulers:
     url: https://github.com/pointfreeco/combine-schedulers
-    exactVersion: 0.10.0
+    exactVersion: 1.1.0
   CombineExt:
     url: https://github.com/CombineCommunity/CombineExt.git
-    exactVersion: 1.8.1
+    exactVersion: 1.9.0
   Lottie:
     url: https://github.com/airbnb/lottie-ios.git
-    exactVersion: 3.5.0
+    exactVersion: 4.6.0
   Pendo:
     url: https://github.com/pendo-io/pendo-mobile-sdk
     exactVersion: 3.12.0
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
-    exactVersion: 14.2.0
-  Swifter:
-    url: https://github.com/httpswift/swifter
-    version: 1.5.0
+    exactVersion: 26.6.0
   SDWebImageSwiftUI:
     url: https://github.com/SDWebImage/SDWebImageSwiftUI.git
-    version: 3.0.0
+    version: 3.1.4
 targets:
   Core:    
     type: framework
@@ -94,7 +91,6 @@ targets:
     dependencies:
       - sdk: XCTest.framework
       - target: Core
-      - package: Swifter
     preBuildScripts:
       - path: ../scripts/xcode-build-phases/swiftLint.sh
         name: SwiftLint

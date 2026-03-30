@@ -30,7 +30,7 @@ Run this script from root with yarn
 Run with --test option to run tests first
  $ yarn coverage --test
 */
-const program = require('commander')
+const { program } = require('commander')
 const { execSync } = require('child_process')
 const { existsSync, readFileSync, writeFileSync } = require('fs')
 const hljs = require('highlight.js')
@@ -52,7 +52,8 @@ program
   .option('--skip-sync', "Don't upload/download to S3")
   .parse(process.argv)
 
-const { device, os, scheme, test, skipSync } = program
+const { device, os, scheme, test, skipSync } = program.opts();
+
 if (!scheme) {
   program.outputHelp()
   process.exit(-1)

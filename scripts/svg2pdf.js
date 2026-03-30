@@ -41,7 +41,6 @@ function convert(svgPath, pdfPath, size, pad = 0) {
   const pdf = new PDFDocument({ autoFirstPage: false })
   pdf._id = Buffer.from([ 0 ]) // consistent, small id
   pdf.pipe(fs.createWriteStream(pdfPath))
-  pdf.info = {} // remove metadata
   const viewBox = (
     svg.getAttribute('viewBox')
     || `0 0 ${+svg.getAttribute('width')} ${+svg.getAttribute('height')}`

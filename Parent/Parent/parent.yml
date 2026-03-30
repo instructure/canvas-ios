@@ -19,9 +19,11 @@ targets:
     dependencies:
       - package: PSPDFKit
       - package: Pendo
-      - package: FirebaseCrashlytics
-      - package: FirebaseRemoteConfig
-      - package: FirebaseRemoteConfigSwift
+      - package: Firebase
+        products: 
+        - FirebaseCore
+        - FirebaseCrashlytics
+        - FirebaseRemoteConfig
       - target: Core/Core
     preBuildScripts:
       - path: ../../scripts/xcode-build-phases/swiftLint.sh

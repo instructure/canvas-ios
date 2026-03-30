@@ -17,9 +17,11 @@ targets:
           - ".swiftlint.yml"
     dependencies:
       - target: Core/Core
-      - package: FirebaseCrashlytics
-      - package: FirebaseRemoteConfig
-      - package: FirebaseRemoteConfigSwift
+      - package: Firebase
+        products: 
+        - FirebaseCore
+        - FirebaseCrashlytics
+        - FirebaseRemoteConfig
     postBuildScripts:
       - path: ../../scripts/xcode-build-phases/uploadDSYMs.sh
         name: Upload dSYMs to Firebase
