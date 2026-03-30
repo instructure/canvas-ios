@@ -274,27 +274,28 @@ public extension URL {
     }
 
     /// Returns an image of the first frame of the video located at this url.
-    func videoPreview() throws -> UIImage {
+    func videoPreview() async throws -> UIImage {
         let asset = AVURLAsset(url: self)
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         imageGenerator.appliesPreferredTrackTransform = true
 
-        let cgImage = try imageGenerator.copyCGImage(at: .zero, actualTime: nil)
-
+        let (cgImage, _) = try await imageGenerator.image(at: .zero)
         return UIImage(cgImage: cgImage)
     }
 
     /// Writes the result of the `videoPreview()` method to the given url in png format.
     func writeVideoPreview(to url: URL) throws {
-        let previewImage = try videoPreview()
-        guard let imageData = previewImage.pngData() else {
-            throw NSError.instructureError("Failed to convert preview data to png.")
+        Task {
+            let previewImage = try await videoPreview()
+            guard let imageData = previewImage.pngData() else {
+                throw NSError.instructureError("Failed to convert preview data to png.")
+            }
+            try FileManager.default.createDirectory(
+                at: url.deletingLastPathComponent(),
+                withIntermediateDirectories: true
+            )
+            try imageData.write(to: url)
         }
-        try FileManager.default.createDirectory(
-            at: url.deletingLastPathComponent(),
-            withIntermediateDirectories: true
-        )
-        try imageData.write(to: url)
     }
 
     /// Returns a copy of URL without any query parameter or fragment
