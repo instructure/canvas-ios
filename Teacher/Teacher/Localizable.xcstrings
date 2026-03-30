@@ -22099,6 +22099,12 @@
             "value" : "Échec"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échec"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22353,6 +22359,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Échec de l’enregistrement de la note"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible d’enregistrer la note"
           }
         },
         "ga" : {
@@ -27866,6 +27878,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Note enregistrée"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note enregistrée avec succès"
           }
         },
         "ga" : {
@@ -40785,6 +40803,12 @@
             "value" : "Un problème est survenu."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oups, quelque chose n’a pas fonctionné"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -48910,6 +48934,12 @@
             "value" : "Sauvegardé(e)"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistré"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -49687,6 +49717,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrement de la note"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enregistrement de la note"
@@ -57028,6 +57064,12 @@
             "value" : "Appuyer pour connaître les raisons de l’échec de l’enregistrement"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touchez pour voir pourquoi l’enregistrement a échoué"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -58333,6 +58375,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Une erreur est survenue lors de l’enregistrement de la modification de la note. Vous pouvez réessayer maintenant ou plus tard."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une erreur s’est produite lors de l’enregistrement de votre modification de notation. Vous pouvez réessayer, ou réessayer plus tard."
           }
         },
         "ga" : {
