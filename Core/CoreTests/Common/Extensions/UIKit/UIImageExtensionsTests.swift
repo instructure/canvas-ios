@@ -68,6 +68,6 @@ class UIImageExtensionsTests: XCTestCase {
         try! "hey".write(to: file, atomically: true, encoding: .utf8)
         try! image.write(to: tmp, nameIt: "hey")
         XCTAssertNotNil(UIImage(contentsOfFile: file.path))
-        XCTAssertThrowsError(try String(contentsOf: file))
+        XCTAssertThrowsError(try String(contentsOf: file, encoding: .utf16))
     }
 }
