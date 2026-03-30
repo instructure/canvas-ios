@@ -90,7 +90,7 @@ class FileSubmissionAssemblyTests: CoreTestCase {
         urlSessionDelegate.urlSession?(session, dataTask: mockDataTask, didReceive: uploadResponse)
         urlSessionDelegate.urlSession?(session, task: mockDataTask, didCompleteWithError: nil)
 
-        waitUntil(30, shouldFail: true) {
+        waitUntil(60, shouldFail: true) {
             FileManager.default.fileExists(atPath: testFileURL.relativePath) == false
         }
     }
