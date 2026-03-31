@@ -18,7 +18,9 @@
 
 import CoreData
 import UIKit
+import Snapshots
 
+@Detachable
 final public class Course: NSManagedObject, WriteableModel {
     public typealias JSON = APICourse
 
