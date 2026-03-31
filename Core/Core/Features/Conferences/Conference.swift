@@ -26,19 +26,19 @@ public final class Conference: NSManagedObject {
     @NSManaged var details: String
     @NSManaged var durationRaw: NSNumber? // minutes
     @NSManaged var endedAt: Date?
-    @NSManaged var id: String
+    @NSManaged public var id: String
     @NSManaged var isConcluded: Bool
-    @NSManaged var isIgnored: Bool
+    @NSManaged public var isIgnored: Bool
     @NSManaged var isLive: Bool
     @NSManaged var isLongRunning: Bool
-    @NSManaged var joinURL: URL?
+    @NSManaged public var joinURL: URL?
     @NSManaged var order: String
     @NSManaged var recordingsRaw: NSOrderedSet?
     @NSManaged var startedAt: Date?
-    @NSManaged var title: String
+    @NSManaged public var title: String
     @NSManaged var url: URL?
 
-    var context: Context {
+    public var context: Context {
         get { Context(canvasContextID: canvasContextID) ?? .currentUser }
         set { canvasContextID = newValue.canvasContextID }
     }
@@ -185,16 +185,16 @@ class GetConferences: APIUseCase {
     }
 }
 
-class GetLiveConferences: CollectionUseCase {
-    typealias Model = Conference
+public class GetLiveConferences: CollectionUseCase {
+    public typealias Model = Conference
 
-    var ignored: Set<String> = []
+    public var ignored: Set<String> = []
 
-    var cacheKey: String? { nil } // always refresh
+    public var cacheKey: String? { nil }
 
-    var request: GetLiveConferencesRequest { GetLiveConferencesRequest() }
+    public var request: GetLiveConferencesRequest { GetLiveConferencesRequest() }
 
-    var scope: Scope { Scope(
+    public var scope: Scope { Scope(
         predicate: NSCompoundPredicate(andPredicateWithSubpredicates: [
             NSPredicate(key: #keyPath(Conference.isLive), equals: true),
             NSPredicate(key: #keyPath(Conference.isIgnored), equals: false)
@@ -202,12 +202,14 @@ class GetLiveConferences: CollectionUseCase {
         orderBy: #keyPath(Conference.order), ascending: false, naturally: true
     ) }
 
-    func reset(context: NSManagedObjectContext) {
+    public init() {}
+
+    public func reset(context: NSManagedObjectContext) {
         ignored = Set((context.fetch(NSPredicate(key: #keyPath(Conference.isIgnored), equals: true)) as [Conference]).map { $0.id })
         context.delete(context.fetch(scope: scope) as [Model])
     }
 
-    func write(response: GetConferencesRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+    public func write(response: GetConferencesRequest.Response?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
         response?.conferences.forEach { item in
             if let type = item.context_type.flatMap({ ContextType(rawValue: $0.lowercased()) }), let id = item.context_id?.value {
                 let model = Conference.save(item, in: client, context: Context(type, id: id))

@@ -25,16 +25,6 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
 
     private let horizonTabBar = HorizonTabBar()
     private let router = AppEnvironment.shared.router
-    private var learnTabCourseID: String? {
-        var courseID: String?
-        if let selectedViewController = viewControllers?[selectedIndex],
-           let selectedNavigationController = selectedViewController as? UINavigationController,
-           let learnHostingController = selectedNavigationController.viewControllers.last as? CoreHostingController<LearnView>,
-           let course = learnHostingController.rootView.content.viewModel.currentProgram?.courses.first {
-           courseID = course.id
-        }
-        return courseID
-    }
 
     // MARK: - Life Cycle
 
@@ -42,7 +32,13 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
         super.viewDidLoad()
         delegate = self
         setValue(horizonTabBar, forKey: "tabBar")
-        horizonTabBar.backgroundColor = .backgroundLightest
+
+        if #available(iOS 26.0, *) {
+            horizonTabBar.backgroundColor = .clear
+        } else {
+            horizonTabBar.backgroundColor = .backgroundLightest
+        }
+        horizonTabBar.isTranslucent = true
 
         viewControllers = [
             dashboardTab(),
@@ -75,7 +71,7 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
     // MARK: - Functions
 
     private func presentChatBot() {
-        let vc = AssistAssembly.makeAssistChatView(courseID: learnTabCourseID)
+        let vc = AssistAssembly.makeAssistChatView()
         vc.modalPresentationStyle = .pageSheet
         router.show(vc, from: self, options: .modal(isDismissable: false))
     }

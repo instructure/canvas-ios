@@ -1,0 +1,292 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2026-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import Core
+import SwiftUI
+
+struct CourseCardView: View {
+    @Environment(\.viewController) private var controller
+    @Environment(\.offlineMode) private var offlineMode
+    @ScaledMetric private var uiScale: CGFloat = 1
+
+    private let viewModel: CourseCardViewModel
+    private let showGrades: Bool
+    private let showColorOverlay: Bool
+    private let a11yLabel: String
+
+    @State private var isShowingOptionsDialog = false
+
+    init(
+        viewModel: CourseCardViewModel,
+        showGrades: Bool,
+        showColorOverlay: Bool
+    ) {
+        self.viewModel = viewModel
+        self.showGrades = showGrades
+        self.showColorOverlay = showColorOverlay
+        self.a11yLabel = {
+            var gradeLabel: String?
+            if showGrades, let grade = String.format(accessibilityLetterGrade: viewModel.grade) {
+                gradeLabel = [String(localized: "Grade", bundle: .core), grade]
+                    .accessibilityJoined()
+            }
+
+            var announcementsLabel: String?
+            if viewModel.shouldShowAnnouncementsButton {
+                let count = String(viewModel.unreadAnnouncementCount)
+                announcementsLabel = [String(localized: "New Announcements", bundle: .core), count]
+                    .accessibilityJoined()
+            }
+
+            return [viewModel.title, gradeLabel, announcementsLabel].accessibilityJoined()
+        }()
+    }
+
+    var body: some View {
+        cardButton
+            .overlay(alignment: .topLeading) {
+                kebabButton
+                    .padding(8)
+                    .contentShape(Rectangle())
+                    .offset(x: 2, y: 2)
+            }
+            .animation(.dashboardWidget, value: viewModel)
+            .accessibilityElement(children: .combine)
+            .accessibilityLabel(a11yLabel)
+            .identifier("Dashboard.Courses.CourseCard.cardButton")
+    }
+
+    // MARK: - Card
+
+    private var cardButton: some View {
+        DashboardThumbnailCard(
+            thumbnail: {
+                thumbnail
+            },
+            labels: {
+                titleLabel
+            },
+            accessory: {
+                if viewModel.shouldShowAnnouncementsButton {
+                    announcementsButton
+                }
+            },
+            isAvailableOffline: viewModel.isAvailableOffline,
+            action: {
+                viewModel.didTapCard(from: controller)
+            }
+        )
+    }
+
+    @ViewBuilder
+    private var thumbnail: some View {
+        let scaledSize = 72 * uiScale.iconScale
+
+        ZStack(alignment: .topLeading) {
+            Color(viewModel.courseColor)
+                .frame(width: scaledSize, height: scaledSize)
+            // disable animated GIFs to avoid creating multiple WebViews
+            RemoteImage(viewModel.imageUrl, size: scaledSize, shouldHandleAnimatedGif: false)
+                .opacity(showColorOverlay ? 0.16 : 1)
+                .clipped()
+        }
+        .overlay(alignment: .bottomLeading) {
+            if showGrades {
+                gradePill
+                    .offset(x: 8, y: -8)
+            }
+        }
+        .animation(.dashboardWidget, value: showGrades)
+        .animation(.dashboardWidget, value: showColorOverlay)
+    }
+
+    private var titleLabel: some View {
+        Text(viewModel.title)
+            .font(.semibold16, lineHeight: .fit)
+            .foregroundStyle(.textDarkest)
+            .multilineTextAlignment(.leading)
+            .lineLimit(2)
+    }
+
+    // MARK: - Kebab button
+
+    @ViewBuilder
+    private var kebabButton: some View {
+        if offlineMode.isOfflineFeatureEnabled {
+            optionsMenu
+        } else {
+            customizeButton
+        }
+    }
+
+    private var optionsMenu: some View {
+        OfflineObservingMenu {
+            Button(String(localized: "Manage Offline Content", bundle: .student)) {
+                didTapManageOfflineContent()
+            }
+            .identifier("Dashboard.Courses.CourseCard.manageOfflineButton")
+
+            Button(String(localized: "Customize Course", bundle: .student)) {
+                didTapCustomize()
+            }
+            .identifier("Dashboard.Courses.CourseCard.customizeButton")
+        } label: {
+            kebabIcon
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityAction(named: String(localized: "Customize Course", bundle: .student)) {
+            didTapCustomize()
+        }
+        .accessibilityAction(named: String(localized: "Manage Offline Content", bundle: .student)) {
+            didTapManageOfflineContent()
+        }
+        .identifier("Dashboard.Courses.CourseCard.optionsButton")
+    }
+
+    private func didTapManageOfflineContent() {
+        guard offlineMode.isAppOnline else {
+            return UIAlertController.showItemNotAvailableInOfflineAlert()
+        }
+
+        viewModel.didTapManageOfflineContent(from: controller)
+    }
+
+    private func didTapCustomize() {
+        guard offlineMode.isAppOnline else {
+            return UIAlertController.showItemNotAvailableInOfflineAlert()
+        }
+
+        viewModel.didTapCustomize(showColorOverlay: showColorOverlay, from: controller)
+    }
+
+    private var customizeButton: some View {
+        OfflineObservingButton {
+            didTapCustomize()
+        } label: {
+            kebabIcon
+        }
+        .accessibilityLabel(String(localized: "Customize Course", bundle: .student))
+        .identifier("Dashboard.Courses.CourseCard.customizeButton")
+    }
+
+    private var kebabIcon: some View {
+        ZStack {
+            Circle()
+                .fill(.backgroundLightest)
+                .scaledFrame(size: 24)
+
+            Image.moreSolid
+                .scaledIcon(size: 16)
+                .foregroundStyle(viewModel.courseColor)
+        }
+    }
+
+    // MARK: - Grade pill
+
+    @ViewBuilder
+    private var gradePill: some View {
+        ZStack {
+            if let grade = viewModel.grade {
+                RoundedRectangle(cornerRadius: 24)
+                    .fill(.backgroundLightest)
+                    .scaledFrame(height: 24, useIconScale: true)
+                Text(grade)
+                    .font(.semibold14, lineHeight: .fit)
+                    .padding(.horizontal, 4)
+            } else {
+                Circle()
+                    .fill(.backgroundLightest)
+                    .scaledFrame(size: 24)
+
+                Image.lockSolid
+                    .scaledIcon(size: 16)
+            }
+        }
+        .foregroundStyle(viewModel.courseColor)
+        .fixedSize(horizontal: true, vertical: false)
+        .identifier("Dashboard.Courses.CourseCard.gradePill")
+    }
+
+    // MARK: - Announcements button
+
+    private var announcementsButton: some View {
+        OfflineObservingButton(isAvailableOffline: viewModel.isAvailableOffline) {
+            viewModel.didTapAnnouncements(from: controller)
+        } label: {
+            Image.announcementSolid
+                .scaledIcon()
+                .foregroundStyle(.textDark)
+                .instBadge(
+                    viewModel.unreadAnnouncementCount,
+                    style: .accessory
+                )
+                .scaledFrame(height: 72, useIconScale: true) // increases tap area
+        }
+        .accessibilityLabel(viewModel.openAnnouncementsA11yLabel)
+        .identifier("Dashboard.Courses.CourseCard.announcementsButton")
+    }
+}
+
+// MARK: - Preview
+
+#if DEBUG
+
+extension CourseCardView {
+    static let previewData: [CoursesAndGroupsWidgetCourseItem] = [
+        .make(id: "1", title: "Introduction to Computer Science", color: .course1, grade: "A+"),
+        .make(id: "2", title: .loremIpsumLong, color: .course4, unreadAnnouncementCount: 1),
+        .make(id: "3", title: "Advanced Mathematics", color: .course11, unreadAnnouncementCount: 42)
+    ]
+}
+
+#Preview {
+    PreviewContainer(spacing: 4, horizontalPadding: 16) {
+        CourseCardView(
+            viewModel: CourseCardViewModel(
+                model: CourseCardView.previewData[0],
+                didSaveChanges: .init(),
+                router: PreviewEnvironment().router
+            ),
+            showGrades: true,
+            showColorOverlay: true
+        )
+
+        CourseCardView(
+            viewModel: CourseCardViewModel(
+                model: CourseCardView.previewData[1],
+                didSaveChanges: .init(),
+                router: PreviewEnvironment().router
+            ),
+            showGrades: false,
+            showColorOverlay: false
+        )
+
+        CourseCardView(
+            viewModel: CourseCardViewModel(
+                model: CourseCardView.previewData[2],
+                didSaveChanges: .init(),
+                router: PreviewEnvironment().router
+            ),
+            showGrades: true,
+            showColorOverlay: true
+        )
+    }
+    .background(.backgroundLight)
+}
+
+#endif

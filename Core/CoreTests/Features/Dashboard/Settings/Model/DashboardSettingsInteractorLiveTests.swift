@@ -66,6 +66,18 @@ class DashboardSettingsInteractorLiveTests: CoreTestCase {
         XCTAssertFalse(testee.colorOverlay.value)
     }
 
+    func testNewDashboardSwitchNotVisible() {
+        defaults.showGradesOnDashboard = false
+        let testee = DashboardSettingsInteractorLive(environment: environment, defaults: defaults)
+        XCTAssertFalse(testee.isNewDashboardSwitchVisible)
+    }
+
+    func testNewDashboardSwitchVisible() {
+        defaults.showGradesOnDashboard = false
+        let testee = DashboardSettingsInteractorLive(environment: environment, defaults: defaults, isLearnerDashboardEnabledOnInstance: true)
+        XCTAssertTrue(testee.isNewDashboardSwitchVisible)
+    }
+
     func testTeacherSwitchVisibility() {
         environment.app = .teacher
         let testee = DashboardSettingsInteractorLive(environment: environment, defaults: defaults)

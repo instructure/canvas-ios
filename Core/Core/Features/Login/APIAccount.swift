@@ -91,7 +91,7 @@ public struct GetAccountsSearchRequest: APIRequestable {
 
     public let searchTerm: String
 
-    public let path = "https://canvas.instructure.com/api/v1/accounts/search"
+    public let path = API.loginURLString(path: "/api/v1/accounts/search")
     public var query: [APIQueryItem] {
         return [
             .perPage(100),

@@ -19,59 +19,35 @@
 import XCTest
 
 public class HelpHelper: BaseHelper {
+
     public static var closeButton: XCUIElement { app.find(label: "Close", type: .button) }
 
-    public static var searchTheCanvasGuides: XCUIElement {
-        return app.find(id: "helpItems").find(labelContaining: "Search the Canvas Guides", type: .button)
+    public static func getAllHelpItems() -> [XCUIElement] {
+        let helpItemsContainer = app.find(id: "helpItems")
+        return helpItemsContainer.buttons.allElementsBoundByIndex
     }
 
-    public static var customLink: XCUIElement {
-        return app.find(id: "helpItems").find(labelContaining: "CUSTOM LINK", type: .button)
-    }
+    // MARK: - Navigation
 
-    public static var askYourInstructor: XCUIElement {
-        return app.find(id: "helpItems").find(labelContaining: "Ask Your Instructor", type: .button)
-    }
-
-    public static var reportAProblem: XCUIElement {
-        return app.find(id: "helpItems").find(labelContaining: "Report a Problem", type: .button)
-    }
-
-    public static var submitAFeatureIdea: XCUIElement {
-        return app.find(id: "helpItems").find(labelContaining: "Submit a Feature Idea", type: .button)
-    }
-
-    public static var covid19: XCUIElement {
-        return app.find(id: "helpItems").find(labelContaining: "COVID-19 Canvas Resources", type: .button)
-    }
-
-    // Teacher only
-    public static var conferenceGuides: XCUIElement {
-        return app.find(id: "helpItems").find(labelContaining: "Conference Guides", type: .button)
-    }
-
-    public static var askTheCommunity: XCUIElement {
-        return app.find(id: "helpItems").find(labelContaining: "Ask the Community", type: .button)
-    }
-
-    public static var trainingServices: XCUIElement {
-        return app.find(id: "helpItems").find(labelContaining: "Training Services Portal", type: .button)
-    }
-
-    // Functions
     public static func navigateToHelpPage() {
-        DashboardHelper.profileButton.hit()
-        ProfileHelper.helpButton.hit()
+        XCTContext.runActivity(named: "Navigate to Help screen") { _ in
+            DashboardHelper.profileButton.hit()
+            ProfileHelper.helpButton.hit()
+            let navTitle = app.find(label: "Help", type: .staticText)
+            navTitle.waitUntil(.visible)
+        }
     }
 
-    public static func closeSafariAndActivateApp() {
+    public static func returnToHelpPage(isStudentApp: Bool = true) {
+        closeSafariAndActivateApp()
+        if !isStudentApp {
+            closeButton.hit()
+        }
+        navigateToHelpPage()
+    }
+
+    private static func closeSafariAndActivateApp() {
         SafariAppHelper.safariApp.terminate()
         app.activate()
-    }
-
-    public static func returnToHelpPage(teacher: Bool = false) {
-        closeSafariAndActivateApp()
-        if teacher { closeButton.hit() }
-        navigateToHelpPage()
     }
 }

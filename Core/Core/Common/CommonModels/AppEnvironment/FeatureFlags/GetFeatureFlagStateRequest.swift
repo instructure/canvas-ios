@@ -39,5 +39,4 @@ public struct GetFeatureFlagStateRequest: APIRequestable {
 
 public enum FeatureFlagName: String {
     case assignmentEnhancements = "assignments_2_student"
-    case studioEmbedImprovements = "rce_studio_embed_improvements"
 }

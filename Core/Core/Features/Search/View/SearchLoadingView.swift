@@ -29,6 +29,7 @@ struct SearchLoadingView: View {
             Text("Hang Tight, We're Fetching Your Results!", bundle: .core)
                 .textStyle(.heading)
                 .multilineTextAlignment(.center)
+                .accessibilityAddTraits(.isHeader)
             Text("We’re working hard to find the best matches for your search. This won't take long! Thank you for your patience.", bundle: .core)
                 .font(.regular16, lineHeight: .normal)
                 .multilineTextAlignment(.center)

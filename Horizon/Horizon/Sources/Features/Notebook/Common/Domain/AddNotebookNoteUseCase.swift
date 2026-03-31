@@ -35,7 +35,7 @@ final class AddNotebookNoteUseCase: UseCase {
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: Init
-    init(request: RedwoodCreateNoteMutation, redwood: DomainServiceProtocol = DomainService(.redwood)) {
+    init(request: RedwoodCreateNoteMutation, redwood: DomainServiceProtocol = DomainService()) {
         self.request = request
         self.redwood = redwood
     }
@@ -55,7 +55,7 @@ final class AddNotebookNoteUseCase: UseCase {
     }
 
     func write(response: RedwoodCreateNoteMutationResponse?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
-        if let redwoodNote = response?.data.createNote {
+        if let redwoodNote = response?.data.executeRedwoodQuery.data.createNote {
             CDHNotebookNote.save(
                 redwoodNote,
                 userID: Context.currentUser.id,

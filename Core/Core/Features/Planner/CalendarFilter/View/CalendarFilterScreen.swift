@@ -33,7 +33,7 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
             state: viewModel.state,
             refreshAction: viewModel.refresh
         ) { _ in
-            LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
+            ConditionallyLazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
                 filterCountInfo
                 userFilter
                 courseFilters

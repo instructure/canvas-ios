@@ -23,11 +23,21 @@ import CoreData
 @testable import Student
 
 class StudentTestCase: XCTestCase {
+    enum DatabaseContextType {
+        case view
+        case backgroundRead
+    }
+
     var database: NSPersistentContainer {
         return singleSharedTestDatabase
     }
+
+    var databaseContextToUse: DatabaseContextType = .view
     var databaseClient: NSManagedObjectContext {
-        return database.viewContext
+        switch databaseContextToUse {
+        case .view: database.viewContext
+        case .backgroundRead: database.backgroundReadContext
+        }
     }
 
     var api: API { env.api }
@@ -35,6 +45,7 @@ class StudentTestCase: XCTestCase {
     var env: TestEnvironment!
     var logger: TestLogger!
     var router: TestRouter { env.router as! TestRouter }
+    var userDefaults: SessionDefaults!
     lazy var uploadManager = MockUploadManager(env: env)
     var currentSession: LoginSession!
 
@@ -49,6 +60,8 @@ class StudentTestCase: XCTestCase {
         env = TestEnvironment()
         logger = env.logger as? TestLogger
         currentSession = env.currentSession
+        userDefaults = env.userDefaults!
+        userDefaults.reset()
         AppEnvironment.shared = env
         AppEnvironment.shared.uploadManager = uploadManager
         MockUploadManager.reset()

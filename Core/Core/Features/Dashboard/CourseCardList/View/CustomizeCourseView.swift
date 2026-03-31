@@ -18,18 +18,18 @@
 
 import SwiftUI
 
-struct CustomizeCourseView: View {
+public struct CustomizeCourseView: View {
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
     @ObservedObject private var viewModel: CustomizeCourseViewModel
 
-    init(
+    public init(
         viewModel: CustomizeCourseViewModel
     ) {
         self.viewModel = viewModel
     }
 
-    var body: some View { GeometryReader { geometry in
+    public var body: some View { GeometryReader { geometry in
         let width = geometry.size.width
 
         EditorForm(isSpinning: viewModel.isLoading) {
@@ -70,16 +70,15 @@ struct CustomizeCourseView: View {
                         width: width - 32 // account for padding coming from EditorRow
                     ) { itemIndex in
                         let item = viewModel.colors[itemIndex]
-                        let uiColor = item.key
-                        let isSelected = viewModel.shouldShowCheckmark(for: uiColor)
-                        Button(action: { viewModel.color = uiColor }, label: {
+                        let isSelected = viewModel.shouldShowCheckmark(for: item.color)
+                        Button(action: { viewModel.color = item.color }, label: {
                             Circle()
-                                .fill(Color(uiColor))
+                                .fill(Color(item.color))
                                 .overlay(isSelected ? Image.checkSolid.foregroundColor(.textLightest) : nil)
                                 .animation(.default, value: viewModel.color)
                         })
                         .accessibility(addTraits: isSelected ? .isSelected : [])
-                        .accessibility(label: Text(item.value))
+                        .accessibility(label: Text(item.name))
                     }
                     .padding(.vertical, 12)
                 }

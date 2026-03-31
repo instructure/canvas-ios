@@ -1,0 +1,144 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2026-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+@testable import Core
+@testable import Student
+import TestsFoundation
+import XCTest
+
+final class CoursesAndGroupsWidgetSettingsViewModelTests: StudentTestCase {
+
+    private var testee: CoursesAndGroupsWidgetSettingsViewModel!
+    private var analytics: AnalyticsHandlerMock!
+
+    override func setUp() {
+        super.setUp()
+        analytics = .init()
+        Analytics.shared.handler = analytics
+    }
+
+    override func tearDown() {
+        testee = nil
+        analytics = nil
+        super.tearDown()
+    }
+
+    // MARK: - Initialization - showGrades
+
+    func test_init_showGrades_readsFromUserDefaults_true() {
+        env.userDefaults?.showGradesOnDashboard = true
+
+        testee = makeViewModel()
+
+        XCTAssertEqual(testee.showGrades, true)
+    }
+
+    func test_init_showGrades_readsFromUserDefaults_false() {
+        env.userDefaults?.showGradesOnDashboard = false
+
+        testee = makeViewModel()
+
+        XCTAssertEqual(testee.showGrades, false)
+    }
+
+    // MARK: - Initialization - showColorOverlay
+
+    func test_init_showColorOverlay_readsFromCoreData() {
+        _ = UserSettings.save(.make(hide_dashcard_color_overlays: true), in: databaseClient)
+
+        testee = makeViewModel()
+
+        XCTAssertEqual(testee.showColorOverlay, false)
+    }
+
+    // MARK: - setShowGrades
+
+    func test_setShowGrades_persistsToUserDefaults() {
+        env.userDefaults?.showGradesOnDashboard = false
+        testee = makeViewModel()
+
+        testee.showGrades = true
+
+        XCTAssertEqual(env.userDefaults?.showGradesOnDashboard, true)
+    }
+
+    // MARK: - setShowColorOverlay
+
+    func test_setShowColorOverlay_makesApiCall() {
+        testee = makeViewModel()
+
+        let apiExpectation = expectation(description: "PUT users/self/settings called")
+        let request = PutUserSettingsRequest(
+            manual_mark_as_read: nil,
+            collapse_global_nav: nil,
+            hide_dashcard_color_overlays: true,
+            comment_library_suggestions_enabled: nil
+        )
+        api.mock(request) { _ in
+            apiExpectation.fulfill()
+            return (nil, nil, nil)
+        }
+
+        testee.showColorOverlay = false
+
+        waitForExpectations(timeout: 1)
+    }
+
+    // MARK: - Analytics
+
+    func test_showGrades_whenChanged_shouldLogCustomizationEvent() {
+        testee = makeViewModel()
+
+        testee.showGrades = true
+
+        XCTAssertEqual(analytics.handleEventInput, "dashboard_widget_customization")
+    }
+
+    func test_showColorOverlay_whenChanged_shouldLogCustomizationEvent() {
+        testee = makeViewModel()
+
+        testee.showColorOverlay = false
+
+        XCTAssertEqual(analytics.handleEventInput, "dashboard_widget_customization")
+    }
+
+    func test_showGrades_whenChangedMultipleTimes_shouldLogOneEventPerChange() {
+        testee = makeViewModel()
+
+        testee.showGrades = true
+        testee.showGrades = false
+
+        XCTAssertEqual(analytics.handleEventCallCount, 2)
+    }
+
+    // MARK: - Private helpers
+
+    private func makeViewModel() -> CoursesAndGroupsWidgetSettingsViewModel {
+        CoursesAndGroupsWidgetSettingsViewModel(env: env)
+    }
+}
+
+private final class AnalyticsHandlerMock: AnalyticsHandler {
+    var handleEventInput: String?
+    var handleEventCallCount = 0
+
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
+        handleEventInput = name
+        handleEventCallCount += 1
+    }
+}

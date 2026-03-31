@@ -64,6 +64,7 @@ public extension InstUI.Styles.Padding {
 
     static let selectionLabelVertical = value(6)
     static let selectionLabelHorizontal = value(12)
+    static let zero = value(0)
 }
 
 // MARK: - PaddingSet
@@ -83,6 +84,8 @@ extension InstUI.Styles {
         case dropDownOption
 
         case selectionValueLabel
+
+        case zero
 
         var config: Config {
             switch self {
@@ -129,6 +132,9 @@ extension InstUI.Styles {
                     leading: .selectionLabelHorizontal,
                     trailing: .selectionLabelHorizontal
                 )
+
+            case .zero:
+                Config(top: .zero, bottom: .zero, leading: .zero, trailing: .zero)
             }
         }
 
@@ -157,9 +163,13 @@ extension View {
 
     public func paddingStyle(set: InstUI.Styles.PaddingSet) -> some View {
         self
-            .padding(.top, set.config.top?.rawValue ?? 0)
-            .padding(.bottom, set.config.bottom?.rawValue ?? 0)
-            .padding(.leading, set.config.leading?.rawValue ?? 0)
-            .padding(.trailing, set.config.trailing?.rawValue ?? 0)
+            .padding(
+                EdgeInsets(
+                    top: set.config.top?.rawValue ?? 0,
+                    leading: set.config.leading?.rawValue ?? 0,
+                    bottom: set.config.bottom?.rawValue ?? 0,
+                    trailing: set.config.trailing?.rawValue ?? 0
+                )
+            )
     }
 }

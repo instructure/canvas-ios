@@ -49,17 +49,28 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     private let shouldShowGroupList: Bool
     private let verticalSpacing: CGFloat = 16
 
-    public init(shouldShowGroupList: Bool,
-                showOnlyTeacherEnrollment: Bool,
-                offlineViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())) {
+    public init(
+        shouldShowGroupList: Bool,
+        showOnlyTeacherEnrollment: Bool,
+        isLearnerDashboardEnabledOnInstance: Bool,
+        offlineViewModel: OfflineModeViewModel = OfflineModeViewModel(interactor: OfflineModeAssembly.make())
+    ) {
         courseCardListViewModel = DashboardCourseCardListAssembly.makeDashboardCourseCardListViewModel(showOnlyTeacherEnrollment: showOnlyTeacherEnrollment)
         self.shouldShowGroupList = shouldShowGroupList
         let env = AppEnvironment.shared
-        layoutViewModel = DashboardLayoutViewModel(interactor: DashboardSettingsInteractorLive(environment: env, defaults: env.userDefaults))
+        layoutViewModel = DashboardLayoutViewModel(interactor: DashboardSettingsInteractorLive(
+            environment: env,
+            defaults: env.userDefaults,
+            isLearnerDashboardEnabledOnInstance: isLearnerDashboardEnabledOnInstance
+        ))
         colors = env.subscribe(GetCustomColors())
         notifications = env.subscribe(GetAccountNotifications())
         settings = env.subscribe(GetUserSettings(userID: "self"))
-        _viewModel = StateObject(wrappedValue: DashboardContainerViewModel(environment: env))
+        _viewModel = StateObject(wrappedValue: DashboardContainerViewModel(
+            environment: env,
+            defaults: env.userDefaults ?? .fallback,
+            isLearnerDashboardEnabledOnInstance: isLearnerDashboardEnabledOnInstance
+        ))
         self.offlineModeViewModel = offlineViewModel
     }
 
@@ -109,6 +120,9 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         .onReceive(viewModel.showSettings) { event in
             showSettings(event.view, viewSize: event.viewSize)
         }
+        .onAppear {
+            viewModel.checkAndShowFeedbackAlert(from: controller.value)
+        }
     }
 
     private func showSettings(_ settingsViewController: UIViewController, viewSize: CGSize) {
@@ -125,7 +139,6 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
             }
 
             popoverController.sourceView = navButtonView
-            popoverController.sourceRect = CGRect(x: 26, y: 35, width: 0, height: 0)
         }
 
         env.router.show(
@@ -167,9 +180,15 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     private var rightNavBarButtons: some View {
         if courseCardListViewModel.shouldShowSettingsButton {
             if offlineModeViewModel.isOfflineFeatureEnabled, env.app == .student {
-                optionsKebabMenu
+                DashboardOptionsMenu(
+                    offlineModeViewModel: offlineModeViewModel,
+                    onSettingsTapped: { viewModel.settingsButtonTapped.send() },
+                    environment: env
+                )
             } else {
-                dashboardSettingsButton
+                DashboardSettingsButton(
+                    onTapped: { viewModel.settingsButtonTapped.send() }
+                )
             }
         }
     }
@@ -179,118 +198,18 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
     private var legacyRightNavBarButtons: some View {
         if courseCardListViewModel.shouldShowSettingsButton {
             if offlineModeViewModel.isOfflineFeatureEnabled, env.app == .student {
-                legacyOptionsKebabButton
+                DashboardOptionsButton(
+                    isShowingDialog: $isShowingKebabDialog,
+                    offlineModeViewModel: offlineModeViewModel,
+                    onSettingsTapped: { viewModel.settingsButtonTapped.send() },
+                    environment: env
+                )
             } else {
-                legacyDashboardSettingsButton
+                LegacyDashboardSettingsButton(
+                    onTapped: { viewModel.settingsButtonTapped.send() }
+                )
             }
         }
-    }
-
-    @ViewBuilder
-    @available(iOS, introduced: 26, message: "Legacy version exists")
-    private var optionsKebabMenu: some View {
-        Menu {
-            Button(.init("Manage Offline Content", bundle: .core)) {
-                if offlineModeViewModel.isOffline {
-                    UIAlertController.showItemNotAvailableInOfflineAlert()
-                } else {
-                    env.router.route(to: "/offline/sync_picker", from: controller, options: .modal(isDismissable: false, embedInNav: true))
-                }
-            }
-            .identifier("Dashboard.manageOfflineButton")
-
-            Button(.init("Dashboard Settings", bundle: .core)) {
-                guard controller.value.presentedViewController == nil else {
-                    controller.value.presentedViewController?.dismiss(animated: true)
-                    return
-                }
-                viewModel.settingsButtonTapped.send()
-            }
-            .identifier("Dashboard.settingsButton")
-        } label: {
-            Image.moreSolid
-        }
-        .accessibilityLabel(Text("Dashboard Options", bundle: .core))
-        .identifier("Dashboard.optionsButton")
-    }
-
-    @ViewBuilder
-    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
-    private var legacyOptionsKebabButton: some View {
-        Button {
-            // Dismiss dashboard settings popover
-            guard controller.value.presentedViewController == nil else {
-                controller.value.presentedViewController?.dismiss(animated: true)
-                return
-            }
-
-            isShowingKebabDialog.toggle()
-        } label: {
-            Image.moreSolid
-                .foregroundColor(Color(Brand.shared.navTextColor))
-        }
-        .frame(width: 44, height: 44).padding(.trailing, -6)
-        .accessibilityLabel(Text("Dashboard Options", bundle: .core))
-        .identifier("Dashboard.optionsButton")
-        .confirmationDialog("", isPresented: $isShowingKebabDialog) {
-            Button {
-                if offlineModeViewModel.isOffline {
-                    UIAlertController.showItemNotAvailableInOfflineAlert()
-                } else {
-                    env.router.route(to: "/offline/sync_picker", from: controller, options: .modal(isDismissable: false, embedInNav: true))
-                }
-            } label: {
-                Text("Manage Offline Content", bundle: .core)
-            }
-            .identifier("Dashboard.manageOfflineButton")
-
-            Button {
-                guard controller.value.presentedViewController == nil else {
-                    controller.value.presentedViewController?.dismiss(animated: true)
-                    return
-                }
-                viewModel.settingsButtonTapped.send()
-            } label: {
-                Text("Dashboard Settings", bundle: .core)
-            }
-            .identifier("Dashboard.settingsButton")
-        }
-    }
-
-    @ViewBuilder
-    @available(iOS, introduced: 26, message: "Legacy version exists")
-    private var dashboardSettingsButton: some View {
-        Button {
-            guard controller.value.presentedViewController == nil else {
-                controller.value.presentedViewController?.dismiss(animated: true)
-                return
-            }
-
-            viewModel.settingsButtonTapped.send()
-        } label: {
-            Image.settingsSolid
-        }
-        .accessibilityLabel(Text("Dashboard settings", bundle: .core))
-        .accessibilityIdentifier("Dashboard.settingsButton")
-    }
-
-    @ViewBuilder
-    @available(iOS, deprecated: 26, message: "Non-legacy version exists")
-    private var legacyDashboardSettingsButton: some View {
-        Button {
-            guard controller.value.presentedViewController == nil else {
-                controller.value.presentedViewController?.dismiss(animated: true)
-                return
-            }
-
-            viewModel.settingsButtonTapped.send()
-        } label: {
-            Image.settingsLine
-                .foregroundColor(Color(Brand.shared.navTextColor))
-        }
-        .frame(width: 44, height: 44).padding(.trailing, -6)
-        .accessibilityLabel(Text("Dashboard settings", bundle: .core))
-        .identifier("Dashboard.settingsButton")
     }
 
     // MARK: Nav Bar Buttons -
@@ -376,6 +295,8 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                                                                   draggedCourseCardId: $draggedCourseCardId,
                                                                   order: courseCardList.map { $0.id },
                                                                   delegate: courseCardListViewModel))
+                .accessibilityElement(children: .contain)
+                .identifier("Dashboard.CourseCard.Id.\(card.id)")
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.bottom, 2)
@@ -399,13 +320,14 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
         HStack(alignment: .lastTextBaseline) {
             Text("Courses", bundle: .core)
                 .font(.heavy24).foregroundColor(.textDarkest)
-                .accessibility(identifier: "dashboard.courses.heading-lbl")
+                .identifier("Dashboard.coursesLabel")
                 .accessibility(addTraits: .isHeader)
             Spacer()
             Button(action: showAllCourses) {
                 Text("All Courses", bundle: .core)
                     .font(.semibold16).foregroundColor(Color(Brand.shared.linkColor))
-            }.identifier("Dashboard.editButton")
+            }
+            .identifier("Dashboard.allCoursesButton")
         }
         .frame(width: width) // If we rotate from single view to split view then this HStack won't fill its parent, this fixes it.
         .padding(.top, verticalSpacing).padding(.bottom, verticalSpacing / 2)
@@ -418,6 +340,7 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                     Text("Groups", bundle: .core)
                         .font(.heavy24).foregroundColor(.textDarkest)
                         .accessibility(addTraits: .isHeader)
+                        .identifier("Dashboard.groupsLabel")
                     Spacer()
                 }
                 .padding(.top, verticalSpacing).padding(.bottom, verticalSpacing / 2)) {
@@ -425,6 +348,8 @@ public struct DashboardContainerView: View, ScreenViewTrackable {
                 ForEach(filteredGroups, id: \.id) { group in
                     GroupCard(group: group, course: group.course, isAvailable: !$offlineModeViewModel.isOffline)
                         .padding(.bottom, filteredGroups.last != group ? verticalSpacing : 0)
+                        .accessibilityElement(children: .contain)
+                        .identifier("Dashboard.GroupCard.Id.\(group.id)")
                 }
             }
         }

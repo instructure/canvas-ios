@@ -401,4 +401,14 @@ class APITests: XCTestCase {
         wait(for: [responseExpectation], timeout: 5)
         XCTAssertEqual((receivedResponse as? HTTPURLResponse)?.statusCode, 200)
     }
+
+    // MARK: - loginURLString
+
+    func test_loginURLString_whenPathHasLeadingSlash_shouldNotAddDelimiter() {
+        XCTAssertEqual(API.loginURLString(path: "/some/path"), "https://\(API.loginEndpointsDomain)/some/path")
+    }
+
+    func test_loginURLString_whenPathHasNoLeadingSlash_shouldAddDelimiter() {
+        XCTAssertEqual(API.loginURLString(path: "some/path"), "https://\(API.loginEndpointsDomain)/some/path")
+    }
 }

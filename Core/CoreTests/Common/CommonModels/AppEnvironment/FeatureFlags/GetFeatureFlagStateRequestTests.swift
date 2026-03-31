@@ -29,8 +29,8 @@ class GetFeatureFlagStateRequestTests: CoreTestCase {
 
         // Then
         XCTAssertEqual(
-            GetFeatureFlagStateRequest(featureName: .studioEmbedImprovements, context: context).path,
-            "courses/22343/features/flags/rce_studio_embed_improvements"
+            GetFeatureFlagStateRequest(featureName: .assignmentEnhancements, context: context).path,
+            "courses/22343/features/flags/assignments_2_student"
         )
     }
 }

@@ -19,48 +19,62 @@
 import HorizonUI
 import SwiftUI
 
-struct CourseFilteringView: View {
-    let selectedStatus: CourseCardModel.CourseStatus?
-    @State private var isListCoursesVisiable = false
-    let onSelect: (CourseCardModel.CourseStatus?) -> Void
+struct OptionModel: Identifiable, Equatable {
+    let id: String
+    let name: String
+}
 
-    var body: some View {
-        CourseSelectionButton(status: selectedStatus?.name ?? "") {
-            isListCoursesVisiable.toggle()
-        }
-        .frame(minWidth: 130)
-        .accessibilityHint(
+struct FilterView: View {
+
+     // MARK: - Dependencies
+
+     private let items: [OptionModel]
+     private let selectedOption: OptionModel?
+     private let onSelect: (OptionModel?) -> Void
+
+     // MARK: - Init
+
+     init(
+         items: [OptionModel],
+         selectedOption: OptionModel?,
+         onSelect: @escaping (OptionModel?) -> Void
+     ) {
+         self.items = items
+         self.selectedOption = selectedOption
+         self.onSelect = onSelect
+     }
+
+     var body: some View {
+         Menu {
+             ForEach(items) { item in
+                 Button {
+                     onSelect(item)
+                 } label: {
+                     HStack {
+                         if item == selectedOption {
+                             Image.huiIcons.check
+                                 .frame(width: 24, height: 24)
+                         }
+                         Text(item.name)
+                     }
+                 }
+                 .accessibilityAddTraits(item == selectedOption ? .isSelected : [])
+                 .accessibilityRemoveTraits(.isButton)
+             }
+         } label: {
+             CourseSelectionButton(
+                status: selectedOption?.name ?? ""
+             ) { }
+                 .accessibilityRemoveTraits(.isButton)
+         }
+         .accessibilityRemoveTraits(.isButton)
+         .accessibilityHint(
             Text(
                 String.localizedStringWithFormat(
-                    String(localized: "Selected filter is %@. Double tap to select another filter", bundle: .horizon),
-                    selectedStatus?.name ?? ""
+                    String(localized: "Selected filter is %@. Double tap to select another filter.", bundle: .horizon),
+                    selectedOption?.name ?? "",
                 )
             )
-        )
-        .popover(isPresented: $isListCoursesVisiable, attachmentAnchor: .point(.center), arrowEdge: .top) {
-            courseListView
-                .presentationCompactAdaptation(.none)
-                .presentationBackground(Color.huiColors.surface.cardPrimary)
-        }
-        .accessibilityRemoveTraits(.isButton)
-    }
-
-    private var courseListView: some View {
-        ScrollView {
-            VStack(spacing: .zero) {
-                ForEach(CourseCardModel.CourseStatus.allCases, id: \.self) { status in
-                    Button {
-                        onSelect(status)
-                        isListCoursesVisiable.toggle()
-                    } label: {
-                        TimeSpentCourseView(
-                            name: status.name,
-                            isSelected: status == selectedStatus
-                        )
-                    }
-                }
-            }
-            .padding(.vertical, .huiSpaces.space10)
-        }
-    }
+         )
+     }
 }

@@ -27,16 +27,20 @@ struct AllCoursesCellView: View {
     // MARK: - Private properties
 
     @ObservedObject private var viewModel: AllCoursesCellViewModel
+    private let identifierGroup: String?
 
     // MARK: - Init
 
-    init(viewModel: AllCoursesCellViewModel) {
+    init(viewModel: AllCoursesCellViewModel, identifierGroup: String? = nil) {
         _viewModel = ObservedObject(wrappedValue: viewModel)
+        self.identifierGroup = identifierGroup
     }
 
     var body: some View {
         HStack(alignment: .center, spacing: 0) {
             favoriteButton
+                .identifier(identifierGroup, "favoriteButton")
+
             Button {
                 viewModel.cellDidTap.accept(controller)
             } label: {
@@ -49,7 +53,7 @@ struct AllCoursesCellView: View {
             }
             .accessibilityElement(children: .ignore)
             .accessibility(label: Text(viewModel.cellAccessibilityLabelText))
-            .accessibilityIdentifier("DashboardCourseCell.\(viewModel.item.id)")
+            .identifier(identifierGroup, "cellButton")
             .disabled(viewModel.isCellDisabled)
         }
         .padding(.leading, 22)
@@ -72,7 +76,6 @@ struct AllCoursesCellView: View {
         }
         .buttonStyle(PlainButtonStyle())
         .accessibility(label: Text(viewModel.favoriteButtonAccessibilityText))
-        .accessibilityIdentifier("DashboardCourseCell.\(viewModel.item.id).favoriteButton")
         .accessibility(addTraits: viewModel.favoriteButtonTraits)
         .hidden(!viewModel.item.isFavoriteButtonVisible)
         .disabled(viewModel.isFavoriteStarDisabled)

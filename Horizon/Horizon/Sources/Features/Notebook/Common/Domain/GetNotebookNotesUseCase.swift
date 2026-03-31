@@ -62,7 +62,7 @@ final class GetNotebookNotesUseCase: CollectionUseCase {
 
     init(
         filter: NotebookQueryFilter,
-        redwood: DomainServiceProtocol = DomainService(.redwood),
+        redwood: DomainServiceProtocol = DomainService(),
     ) {
         self.filter = filter
         self.redwood = redwood

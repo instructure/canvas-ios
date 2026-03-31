@@ -38,7 +38,7 @@ public struct APIEnrollment: Codable, Equatable {
     let associated_user_id: ID?
     let role: String
     let role_id: String
-    // let created_at: Date
+    let created_at: Date?
     // let updated_at: Date
     let start_at: Date?
     let end_at: Date?
@@ -105,6 +105,7 @@ extension APIEnrollment {
         associated_user_id: String? = nil,
         role: String = "StudentEnrollment",
         role_id: String = "3",
+        created_at: Date? = nil,
         start_at: Date? = nil,
         end_at: Date? = nil,
         last_activity_at: Date? = nil,
@@ -134,6 +135,7 @@ extension APIEnrollment {
             associated_user_id: ID(associated_user_id),
             role: role,
             role_id: role_id,
+            created_at: created_at,
             start_at: start_at,
             end_at: end_at,
             last_activity_at: last_activity_at,
@@ -274,6 +276,12 @@ public struct HandleCourseInvitationRequest: APIRequestable {
     let courseID: String
     let enrollmentID: String
     let isAccepted: Bool
+
+    public init(courseID: String, enrollmentID: String, isAccepted: Bool) {
+        self.courseID = courseID
+        self.enrollmentID = enrollmentID
+        self.isAccepted = isAccepted
+    }
 
     public var method: APIMethod { .post }
     public var path: String { "courses/\(courseID)/enrollments/\(enrollmentID)/\(isAccepted ? "accept" : "reject")" }

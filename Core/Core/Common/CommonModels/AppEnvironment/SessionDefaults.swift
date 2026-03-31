@@ -19,12 +19,49 @@
 import UIKit
 
 public struct SessionDefaults: Equatable {
+
+    // MARK: - Public Interface
+
     /**
      This is a shared session storage with an empty string as `sessionID`.
      Can be used for testing/preview/fallback purposes.
      */
     public static let fallback = SessionDefaults(sessionID: "")
     public let sessionID: String
+
+    /// The underlying UserDefaults instance used for storage.
+    /// Automatically configured to use the app group suite for sharing data between app and extensions.
+    public var userDefaults: UserDefaults {
+        UserDefaults(suiteName: Bundle.main.appGroupID()) ?? .standard
+    }
+
+    /// The session-specific storage dictionary, keyed by the current session ID.
+    /// All session data is stored under this dictionary to ensure proper user isolation.
+    public var sessionDefaults: [String: Any]? {
+        get { userDefaults.dictionary(forKey: sessionID) }
+        set { userDefaults.set(newValue, forKey: sessionID) }
+    }
+
+    public mutating func reset() {
+        sessionDefaults = nil
+    }
+
+    /// Provides direct access to session-specific storage using a key-value pattern.
+    /// Values are automatically scoped to the current user session.
+    public subscript(key: String) -> Any? {
+        get { return sessionDefaults?[key] }
+        set {
+            var defaults = sessionDefaults ?? [:]
+            if let value = newValue {
+                defaults[key] = value
+            } else {
+                defaults.removeValue(forKey: key)
+            }
+            sessionDefaults = defaults
+        }
+    }
+
+    // MARK: - Mixed Feature Settings
 
     /** This property is used by the file share extension to automatically select the course of the last viewed file in the app. The use-case is that the user views the assignment's file in the app, saves it to iOS Photos app, annotates it there and shares it back to the assignment. */
     public var submitAssignmentCourseID: String? {
@@ -241,32 +278,6 @@ public struct SessionDefaults: Equatable {
         }
     }
 
-    public mutating func reset() {
-        sessionDefaults = nil
-    }
-
-    private subscript(key: String) -> Any? {
-        get { return sessionDefaults?[key] }
-        set {
-            var defaults = sessionDefaults ?? [:]
-            if let value = newValue {
-                defaults[key] = value
-            } else {
-                defaults.removeValue(forKey: key)
-            }
-            sessionDefaults = defaults
-        }
-    }
-
-    private var userDefaults: UserDefaults {
-        return UserDefaults(suiteName: Bundle.main.appGroupID()) ?? .standard
-    }
-
-    private var sessionDefaults: [String: Any]? {
-        get { return userDefaults.dictionary(forKey: sessionID) }
-        set { userDefaults.set(newValue, forKey: sessionID) }
-    }
-
     // MARK: - Grades
     public var selectedSortByOptionIDs: [String: String]? {
         get { self["selectedSortByOptionIDs"] as? [String: String] }
@@ -306,5 +317,29 @@ public struct SessionDefaults: Equatable {
     public var isSpeedGraderAnnotationToolbarVisible: Bool? {
         get { self["isSpeedGraderAnnotationToolbarVisible"] as? Bool }
         set { self["isSpeedGraderAnnotationToolbarVisible"] = newValue }
+    }
+
+    // MARK: - Learner Dashboard
+
+    public var preferNewLearnerDashboard: Bool {
+        get {
+            (self["preferNewLearnerDashboard"] as? Bool) ?? true
+        }
+        set {
+            self["preferNewLearnerDashboard"] = newValue
+        }
+    }
+
+    /// Indicates whether the dashboard feedback alert should be shown when the classic dashboard appears.
+    /// This flag is set to `true` when the user switches away from the new learner dashboard.
+    /// The classic dashboard checks this flag and presents a feedback survey if `true`.
+    /// After presenting the survey, the flag is automatically reset to `false`.
+    public var shouldShowDashboardFeedback: Bool {
+        get {
+            (self["shouldShowDashboardFeedback"] as? Bool) ?? false
+        }
+        set {
+            self["shouldShowDashboardFeedback"] = newValue
+        }
     }
 }

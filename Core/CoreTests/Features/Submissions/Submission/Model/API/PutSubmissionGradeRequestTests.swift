@@ -32,6 +32,18 @@ class PutSubmissionGradeRequestTests: CoreTestCase {
         XCTAssertEqual(request.body, body)
     }
 
+    func testPutSubmissionGradeRequestLatePolicy() {
+        var submission = PutSubmissionGradeRequest.Body.Submission(excuse: nil, posted_grade: "10", seconds_late_override: nil)
+        XCTAssertNil(submission.late_policy_status)
+
+        submission = PutSubmissionGradeRequest.Body.Submission(excuse: nil, posted_grade: "10", seconds_late_override: -1)
+        XCTAssertNil(submission.late_policy_status)
+
+        let days = 3 * 24 * 3600
+        submission = PutSubmissionGradeRequest.Body.Submission(excuse: nil, posted_grade: "10", seconds_late_override: days)
+        XCTAssertEqual(submission.late_policy_status, "late")
+    }
+
     func testPutSubmissionGradeRequestComment() {
         XCTAssertEqual(PutSubmissionGradeRequest.Body.Comment(text: "comment", attempt: nil).text_comment, "comment")
         XCTAssertEqual(PutSubmissionGradeRequest.Body.Comment(mediaID: "1", type: .audio, forGroup: true, attempt: nil).text_comment, "This is a media comment")

@@ -37,21 +37,19 @@ public extension InstUI.Styles {
 
 public extension View {
 
-    @ViewBuilder
     func textStyle(_ textStyle: InstUI.Styles.Text) -> some View {
         switch textStyle {
         case .heading:
             self
                 .font(.semibold22, lineHeight: .fit)
                 .foregroundStyle(Color.textDarkest)
-                .accessibilityAddTraits(.isHeader)
         case .headingInfo:
             self
                 .font(.regular16, lineHeight: .fit)
                 .foregroundStyle(Color.textDark)
         case .infoTitle:
             self
-                .font(.regular14)
+                .font(.regular14, lineHeight: .fontDefault)
                 .foregroundStyle(Color.textDark)
         case .infoDescription:
             self

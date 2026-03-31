@@ -21,7 +21,7 @@ import SwiftUI
 /**
  Each course card's onDrop action uses this delegate to calculate the new order of cards.
  */
-class CourseCardDropToReorderDelegate {
+public class CourseCardDropToReorderDelegate {
     public typealias CardID = String
     public static let DropID = "DashboardCardID"
 
@@ -65,15 +65,15 @@ class CourseCardDropToReorderDelegate {
 
 extension CourseCardDropToReorderDelegate: DropDelegate {
 
-    func dropUpdated(info: DropInfo) -> DropProposal? {
+    public func dropUpdated(info: DropInfo) -> DropProposal? {
         dropUpdated()
     }
 
-    func performDrop(info: DropInfo) -> Bool {
+    public func performDrop(info: DropInfo) -> Bool {
         performDrop()
     }
 
-    func dropEntered(info: DropInfo) {
+    public func dropEntered(info: DropInfo) {
         dropEntered()
     }
 }

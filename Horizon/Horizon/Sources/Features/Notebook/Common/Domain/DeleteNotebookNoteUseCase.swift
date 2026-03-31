@@ -32,14 +32,14 @@ class DeleteNotebookNoteUseCase: DeleteUseCase {
     let request: RedwoodDeleteNoteMutation
 
     public var scope: Scope {
-        Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(CDHNotebookNote.id), request.variables.id), order: [])
+        Scope(predicate: NSPredicate(format: "%K == %@", #keyPath(CDHNotebookNote.id), request.variables.input.variables.id), order: [])
     }
 
     // MARK: Private Properties
     private var subscriptions = Set<AnyCancellable>()
 
     // MARK: Init
-    init(request: RedwoodDeleteNoteMutation, redwood: DomainServiceProtocol = DomainService(.redwood)) {
+    init(request: RedwoodDeleteNoteMutation, redwood: DomainServiceProtocol = DomainService()) {
         self.request = request
         self.redwood = redwood
     }

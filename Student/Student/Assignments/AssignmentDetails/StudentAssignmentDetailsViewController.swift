@@ -94,7 +94,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
     @IBOutlet weak var submissionRubricButton: UIButton? {
         didSet {
             var buttonConfig = UIButton.Configuration.plain()
-            buttonConfig.title = String(localized: "Submission & Rubric", bundle: .student)
+            buttonConfig.title = String(localized: "Submission & Feedback", bundle: .student)
             buttonConfig.baseForegroundColor = Brand.shared.linkColor
             buttonConfig.imagePlacement = .trailing
             buttonConfig.imagePadding = 4
@@ -153,7 +153,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
     }
 
     private var env: AppEnvironment = .defaultValue
-    private let webView = CoreWebView()
+    private let webView = CoreWebView(features: [])
     private let isLeftToRightLayout: Bool = UIApplication.shared.userInterfaceLayoutDirection == .leftToRight
     private weak var gradeBorderLayer: CAShapeLayer?
     private var offlineModeInteractor: OfflineModeInteractor?
@@ -227,7 +227,7 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         quizTimeLimitLabel?.text = String(localized: "Time Limit:", bundle: .student)
         submittedLabel?.text = String(localized: "Successfully submitted!", bundle: .student)
         submittedDetailsLabel?.text = String(localized: "Your submission is now waiting to be graded.", bundle: .student)
-        submissionButton?.setTitle(String(localized: "Submission & Rubric", bundle: .student), for: .normal)
+        submissionButton?.setTitle(String(localized: "Submission & Feedback", bundle: .student), for: .normal)
         attemptsHeadingLabel.text = String(localized: "Attempts", bundle: .student)
         attemptsAllowedLabel.text = String(localized: "Attempts Allowed:", bundle: .student)
         attemptsUsedLabel.text = String(localized: "Attempts Used:", bundle: .student)
@@ -303,13 +303,13 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
             NSLayoutConstraint.activate([
                 submitAssignmentButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
                 submitAssignmentButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-                submitAssignmentButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -8)
+                submitAssignmentButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
             ])
         } else {
             NSLayoutConstraint.activate([
                 submitAssignmentButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
                 submitAssignmentButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-                submitAssignmentButton.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                submitAssignmentButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             ])
         }
     }
@@ -591,9 +591,11 @@ class StudentAssignmentDetailsViewController: ScreenViewTrackableViewController,
         }
     }
 
-    func showSubmitAssignmentButton(title: String?) {
+    func showSubmitAssignmentButton(title: String?, identifier: String?) {
         view.bringSubviewToFront(submitAssignmentButton)
         submitAssignmentButton.setTitle(title, for: .normal)
+        submitAssignmentButton.accessibilityIdentifier = ["AssignmentDetails.submitAssignmentButton", identifier]
+            .joined(separator: ".")
 
         if title == nil {
             scrollViewBottom.constant = 0

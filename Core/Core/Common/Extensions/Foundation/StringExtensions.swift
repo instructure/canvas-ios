@@ -82,6 +82,11 @@ extension String {
     public var isNotEmpty: Bool {
         !isEmpty
     }
+
+    public func isNotEmptyOrBlank() -> Bool {
+        trimmed().isNotEmpty
+    }
+
     /**
      Converts a `String` to a `Bool` value.
      Returns `false` if the `String` value does not contain any valid `Bool` representation. It uses `NSString`'s `boolValue` property which can convert nums, characters, strings to bool values.

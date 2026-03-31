@@ -29,12 +29,12 @@ public protocol GradeViewable {
 
 extension GradeViewable {
     public var pointsPossibleText: String {
-        String.format(pts: pointsPossible)
+        String.format(ptsOrNil: pointsPossible)
             ?? String(localized: "Not Graded", bundle: .core)
     }
 
     public var pointsPossibleCompleteText: String {
-        String.format(points: pointsPossible)
+        String.format(pointsOrNil: pointsPossible)
             ?? String(localized: "Not Graded", bundle: .core)
     }
 

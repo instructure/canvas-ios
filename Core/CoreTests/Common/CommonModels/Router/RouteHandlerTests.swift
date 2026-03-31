@@ -71,4 +71,11 @@ class RouteHandlerTests: XCTestCase {
         XCTAssertEqual(parts?["courseID"], "12340000000005678")
         XCTAssertEqual(parts?["quizID"], "12340000000000567")
     }
+
+    func test_match_withExpandTildeIDDisabled_shouldKeepRawTildeIDs() {
+        let route = Route("/courses/:contextID/files/:itemID", expandTildeID: false)
+        let params = route.match(URLComponents(string: "/courses/12345~324/files/12345~567")!)
+        XCTAssertEqual(params?["contextID"], "12345~324")
+        XCTAssertEqual(params?["itemID"], "12345~567")
+    }
 }

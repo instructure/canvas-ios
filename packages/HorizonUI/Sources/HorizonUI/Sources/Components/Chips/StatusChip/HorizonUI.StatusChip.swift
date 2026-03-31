@@ -28,6 +28,8 @@ public extension HorizonUI {
 
         private let style: StatusChip.Style
         private let icon: Image?
+        private let iconWidth: CGFloat
+        private let iconHeight: CGFloat
         private let label: String?
         private let title: String
         private let isFilled: Bool
@@ -40,6 +42,8 @@ public extension HorizonUI {
             title: String,
             style: StatusChip.Style,
             icon: Image? = nil,
+            iconWidth: CGFloat = 16,
+            iconHeight: CGFloat = 16,
             label: String? = nil,
             isFilled: Bool = true,
             hasBorder: Bool = false,
@@ -52,15 +56,17 @@ public extension HorizonUI {
             self.isFilled = isFilled
             self.hasBorder = hasBorder
             self.lineLimit = lineLimit
+            self.iconWidth = iconWidth
+            self.iconHeight = iconHeight
         }
 
         public var body: some View {
-            HStack(alignment: .top, spacing: .huiSpaces.space2) {
+            HStack(alignment: .center, spacing: .huiSpaces.space4) {
                 if let icon = icon {
                     icon
                         .resizable()
                         .foregroundColor(style.iconColor(isFilled: isFilled))
-                        .frame(width: 16, height: 16)
+                        .frame(width: iconWidth, height: iconHeight)
                 }
 
                 if let label = label {
@@ -76,7 +82,7 @@ public extension HorizonUI {
                     .lineLimit(lineLimit)
             }
             .padding(.horizontal, isFilled ? .huiSpaces.space8 : .zero)
-            .padding(.vertical, .huiSpaces.space2)
+            .padding(.vertical, .huiSpaces.space4)
             .background(isFilled ? style.backgroundColor : Color.clear)
             .clipShape(.rect(cornerRadius: cornerRadius.attributes.radius))
             .overlay(

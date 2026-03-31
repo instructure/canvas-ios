@@ -23,6 +23,8 @@ import SwiftUI
 
 struct GradeInputTextFieldCell: View {
 
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
     private let title: String
     private let subtitle: String?
     private let customAccessibilityLabel: String?
@@ -58,7 +60,7 @@ struct GradeInputTextFieldCell: View {
     }
 
     var body: some View {
-        HStack(alignment: .center, spacing: 8) {
+        let labels = Group {
             Text(title)
                 .textStyle(.cellLabel)
                 .accessibility(hidden: true)
@@ -69,10 +71,17 @@ struct GradeInputTextFieldCell: View {
                     .foregroundStyle(.textDark)
                     .accessibility(hidden: true)
             }
+        }
 
-            textFieldViews
-                .swapWithSpinner(onSaving: isSaving, alignment: .trailing)
-                .accessibilityLabel(isSaving.value ? accessibilityLabel : nil)
+        ViewThatFits {
+            HStack(alignment: .center, spacing: 8) {
+                labels
+                textFieldViews
+            }
+            VStack(alignment: .leading) {
+                HStack(alignment: .center, spacing: 8) { labels }
+                textFieldViews
+            }
         }
         .paddingStyle(set: .standardCell)
         .contentShape(Rectangle())
@@ -107,6 +116,8 @@ struct GradeInputTextFieldCell: View {
                     .accessibility(hidden: true)
             }
         }
+        .swapWithSpinner(onSaving: isSaving, alignment: .trailing)
+        .accessibilityLabel(isSaving.value ? accessibilityLabel : nil)
     }
 
     private var numericTextField: some View {

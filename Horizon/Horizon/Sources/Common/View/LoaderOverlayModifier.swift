@@ -21,6 +21,8 @@ import SwiftUI
 
 private struct LoaderOverlayModifier: ViewModifier {
     let isVisible: Bool
+    let topPadding: CGFloat
+    let backgroundColor: Color
     let accessibilityLabel: String
 
     func body(content: Content) -> some View {
@@ -29,8 +31,8 @@ private struct LoaderOverlayModifier: ViewModifier {
                 if isVisible {
                     ZStack {
                         // Need padding to make the back button visiable
-                        Color.huiColors.surface.pageSecondary
-                            .padding(.top, 100)
+                        backgroundColor
+                            .padding(.top, topPadding)
 
                         HorizonUI.Spinner(
                             size: .small,
@@ -46,11 +48,15 @@ private struct LoaderOverlayModifier: ViewModifier {
 extension View {
     func huiLoader(
         isVisible: Bool,
+        topPadding: CGFloat = 55,
+        backgroundColor: Color = Color.huiColors.surface.pageSecondary,
         accessibilityLabel: String = String(localized: "Loading")
     ) -> some View {
         modifier(
             LoaderOverlayModifier(
                 isVisible: isVisible,
+                topPadding: topPadding,
+                backgroundColor: backgroundColor,
                 accessibilityLabel: accessibilityLabel
             )
         )

@@ -208,6 +208,8 @@ public class CoreSearchHostingController<
             filterBarItem
         ].compactMap({ $0 })
 
+        splitViewController?.safelySetDisplayModeButtonVisibility(.never)
+
         searchFieldState = .visible
         applyNavBarTransition(.fadeIn)
         searchFieldView.field.becomeFirstResponder()
@@ -218,6 +220,8 @@ public class CoreSearchHostingController<
         navigationItem.leftBarButtonItems = leftBarButtonItemsToRestore
         navigationItem.titleView = titleViewToRestore
         navigationItem.rightBarButtonItems = [searchBarItem]
+
+        splitViewController?.safelySetDisplayModeButtonVisibility(.automatic)
 
         searchFieldState = .hidden
         applyNavBarTransition(.fadeOut)

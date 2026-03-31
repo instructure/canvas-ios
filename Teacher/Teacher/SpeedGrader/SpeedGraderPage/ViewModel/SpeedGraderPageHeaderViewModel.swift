@@ -26,15 +26,19 @@ class SpeedGraderPageHeaderViewModel: ObservableObject {
     let routeToSubmitter: String?
 
     private var subscriptions = Set<AnyCancellable>()
+    private var announcement: AnyCancellable?
+    private let accessibilityHandler: AccessibilityNotificationHandler
 
     init(
         assignment: Assignment,
-        submission: Submission
+        submission: Submission,
+        handler: AccessibilityNotificationHandler = DefaultAccessibilityNotificationHandler()
     ) {
         userNameModel = .init(submission: submission, assignment: assignment)
         let isGroupSubmission = !assignment.gradedIndividually && (submission.groupID != nil || submission.fetchedGroup != nil)
         routeToSubmitter = isGroupSubmission ? nil : "/courses/\(assignment.courseID)/users/\(submission.userID)"
         submissionStatus = submission.status.labelModel
+        accessibilityHandler = handler
         observeSubmissionStatusInDatabase(submission)
     }
 
@@ -51,5 +55,32 @@ class SpeedGraderPageHeaderViewModel: ObservableObject {
                 self?.submissionStatus = updatedSubmission.status.labelModel
             }
             .store(in: &subscriptions)
+    }
+
+    func announceState(_ state: GradeSavingState, completion: @escaping () -> Void) {
+        if let message = state.accessibilityAnnouncementMessage {
+            announcement?.cancel()
+            announcement = UIAccessibility
+                .announcePersistently(message, handler: accessibilityHandler)
+                .sink(receiveValue: completion)
+        }
+    }
+}
+
+// MARK: - Accessibility Message
+
+extension GradeSavingState {
+
+    var accessibilityAnnouncementMessage: String? {
+        switch self {
+        case .saving:
+            String(localized: "Saving grade", bundle: .teacher)
+        case .saved:
+            String(localized: "Grade successfully saved", bundle: .teacher)
+        case .failure:
+            String(localized: "Failed saving grade", bundle: .teacher)
+        case .idle:
+            nil
+        }
     }
 }

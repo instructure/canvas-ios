@@ -155,6 +155,12 @@
             "value" : "ウィジェット"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위젯"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",

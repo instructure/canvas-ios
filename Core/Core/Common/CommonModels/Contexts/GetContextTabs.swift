@@ -40,6 +40,13 @@ public class GetContextTabs: CollectionUseCase {
         return GetTabsRequest(context: context)
     }
 
+    public func makeRequest(
+        environment: AppEnvironment,
+        completionHandler: @escaping ([APITab]?, URLResponse?, Error?) -> Void
+    ) {
+        environment.api.exhaust(request, callback: completionHandler)
+    }
+
     public var scope: Scope {
         let sort = NSSortDescriptor(key: #keyPath(Tab.position), ascending: true)
         let pred = NSPredicate(format: "%K == %@", #keyPath(Tab.contextRaw), context.canvasContextID)

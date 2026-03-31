@@ -12,6 +12,8 @@ project_type: other
 workflows:
 
   danger:
+    envs:
+    - DANGER_GITHUB_API_TOKEN: $GIT_HTTP_PASSWORD
     steps:
     - &set-time-zone
       script:

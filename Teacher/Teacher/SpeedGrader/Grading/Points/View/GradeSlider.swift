@@ -16,31 +16,34 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
 import SwiftUI
 
 struct GradeSlider: View {
     var value: Binding<Double>
-    var maxValue: Double
-    var showTooltip: Bool
     var tooltipText: Text
     var a11yValue: Text
-    var score: Double
-    var possible: Double
-    var onEditingChanged: (Bool) -> Void = { _ in }
+    var maxValue: Double
+    var showTooltip: Bool
     let viewModel: GradeSliderViewModel
+    var onEditingChanged: (Bool) -> Void = { _ in }
 
     var body: some View {
         GeometryReader { geometry in
             Slider(value: value, in: 0...maxValue, onEditingChanged: onEditingChanged)
-                .gesture(
-                    DragGesture(minimumDistance: 0)
-                        .onChanged { changeValue in
-                            value.wrappedValue = viewModel.gradeValue(for: changeValue.location.x, in: geometry.size.width, maxValue: maxValue)
-                            onEditingChanged(true)
-                        }.onEnded { _ in
-                            onEditingChanged(false)
-                        }
-                )
+                .overlay {
+                    InstUI.TapArea()
+                        .gesture(
+                            DragGesture(minimumDistance: 0)
+                                .onChanged { changeValue in
+                                    value.wrappedValue = viewModel.gradeValue(for: changeValue.location.x, in: geometry.size.width, maxValue: maxValue)
+                                    onEditingChanged(true)
+                                }.onEnded { _ in
+                                    onEditingChanged(false)
+                                }
+                        )
+                        .accessibilityHidden(true)
+                }
                 .overlay(tooltip, alignment: .bottom)
                 .accessibilityLabel(Text("Grade Slider", bundle: .teacher))
                 .accessibilityValue(a11yValue)
@@ -51,7 +54,7 @@ struct GradeSlider: View {
     private var tooltip: some View {
         if showTooltip {
             GeometryReader { geometry in
-                let x = CGFloat(score / max(possible, 0.01))
+                let x = CGFloat(value.wrappedValue / max(maxValue, 0.01))
                     * (geometry.size.width - 26) + 13 // center on slider thumb 26 wide
                 tooltipText
                     .foregroundColor(.textLightest)

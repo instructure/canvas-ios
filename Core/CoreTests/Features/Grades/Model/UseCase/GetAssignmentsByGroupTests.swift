@@ -56,7 +56,7 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         guard let assignment = store[IndexPath(row: 0, section: 0)] else { return XCTFail() }
         XCTAssertEqual(assignment.name, "Points")
         XCTAssertEqual(assignment.assignmentGroup?.name, "TestGroup")
-        XCTAssertEqual(assignment.gradingPeriod, nil)
+        XCTAssertTrue(assignment.gradingPeriods.isEmpty)
     }
 
     private func mockMultipleGradingPeriods(hideInGradeBook: Bool = false) {
@@ -135,13 +135,13 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         guard let assignment1 = store[IndexPath(row: 0, section: 0)] else { return XCTFail() }
         XCTAssertEqual(assignment1.name, "Points1")
         XCTAssertEqual(assignment1.assignmentGroup?.name, "TestGroup1")
-        XCTAssertEqual(assignment1.gradingPeriod?.title, "GP1")
+        XCTAssertTrue(assignment1.gradingPeriods.contains { $0.title == "GP1" })
 
         XCTAssertEqual(store.numberOfObjects(inSection: 1), 1)
         guard let assignment2 = store[IndexPath(row: 0, section: 1)] else { return XCTFail() }
         XCTAssertEqual(assignment2.name, "Points2")
         XCTAssertEqual(assignment2.assignmentGroup?.name, "TestGroup2")
-        XCTAssertEqual(assignment2.gradingPeriod?.title, "GP2")
+        XCTAssertTrue(assignment2.gradingPeriods.contains { $0.title == "GP2" })
     }
 
     func testFetchesAssignmentsForEachGradingPeriodWhenHideGradeIsFalse() {
@@ -174,7 +174,7 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         guard let assignment1 = store[IndexPath(row: 0, section: 0)] else { return XCTFail() }
         XCTAssertEqual(assignment1.name, "Points1")
         XCTAssertEqual(assignment1.assignmentGroup?.name, "TestGroup1")
-        XCTAssertEqual(assignment1.gradingPeriod?.title, "GP1")
+        XCTAssertTrue(assignment1.gradingPeriods.contains { $0.title == "GP1" })
     }
 
     func testInvalidSectionOrderException() {
@@ -210,6 +210,67 @@ class GetAssignmentsByGroupTests: CoreTestCase {
         useCaseGradedOnly.write(response: result, urlResponse: nil, to: databaseClient)
         results = environment.subscribe(useCaseGradedOnly)
         XCTAssertEqual(results.all.count, 1)
+    }
+
+    func testSameAssignmentInMultipleGradingPeriodsHasBothLinked() {
+        // GIVEN - same assignment (id: "1") appears in both GP1 and GP2 API responses
+        let sharedAssignment = APIAssignment.make(assignment_group_id: "1", grading_type: .points, id: "1", name: "Shared Assignment", position: 1)
+        let groups: [APIAssignmentGroup] = [
+            .make(id: "1", name: "TestGroup", position: 1, assignments: [sharedAssignment])
+        ]
+        let response = [
+            GetAssignmentsByGroup.AssignmentGroupsByGradingPeriod(
+                gradingPeriod: .make(id: "g1", title: "GP1"),
+                assignmentGroups: groups
+            ),
+            GetAssignmentsByGroup.AssignmentGroupsByGradingPeriod(
+                gradingPeriod: .make(id: "g2", title: "GP2"),
+                assignmentGroups: groups
+            )
+        ]
+
+        // WHEN
+        let useCase = GetAssignmentsByGroup(courseID: "tc")
+        useCase.write(response: response, urlResponse: nil, to: databaseClient)
+
+        // THEN
+        let assignments: [Assignment] = databaseClient.fetch(scope: useCase.scope)
+        XCTAssertEqual(assignments.count, 1)
+        XCTAssertEqual(assignments.first?.name, "Shared Assignment")
+        XCTAssertTrue(assignments.first?.gradingPeriods.contains { $0.title == "GP1" } ?? false)
+        XCTAssertTrue(assignments.first?.gradingPeriods.contains { $0.title == "GP2" } ?? false)
+    }
+
+    func testSameAssignmentInMultipleGradingPeriodsIsVisibleInBothFilters() {
+        // GIVEN - same assignment (id: "1") appears in both GP1 and GP2 API responses
+        let sharedAssignment = APIAssignment.make(assignment_group_id: "1", grading_type: .points, id: "1", name: "Shared Assignment", position: 1)
+        let groups: [APIAssignmentGroup] = [
+            .make(id: "1", name: "TestGroup", position: 1, assignments: [sharedAssignment])
+        ]
+        let response = [
+            GetAssignmentsByGroup.AssignmentGroupsByGradingPeriod(
+                gradingPeriod: .make(id: "g1", title: "GP1"),
+                assignmentGroups: groups
+            ),
+            GetAssignmentsByGroup.AssignmentGroupsByGradingPeriod(
+                gradingPeriod: .make(id: "g2", title: "GP2"),
+                assignmentGroups: groups
+            )
+        ]
+        let useCase = GetAssignmentsByGroup(courseID: "tc")
+        useCase.write(response: response, urlResponse: nil, to: databaseClient)
+
+        // WHEN / THEN - filtering by GP1 returns the assignment
+        let filteredByGP1 = GetAssignmentsByGroup(courseID: "tc", gradingPeriodID: "g1")
+        let assignmentsGP1: [Assignment] = databaseClient.fetch(scope: filteredByGP1.scope)
+        XCTAssertEqual(assignmentsGP1.count, 1)
+        XCTAssertEqual(assignmentsGP1.first?.name, "Shared Assignment")
+
+        // WHEN / THEN - filtering by GP2 also returns the same assignment
+        let filteredByGP2 = GetAssignmentsByGroup(courseID: "tc", gradingPeriodID: "g2")
+        let assignmentsGP2: [Assignment] = databaseClient.fetch(scope: filteredByGP2.scope)
+        XCTAssertEqual(assignmentsGP2.count, 1)
+        XCTAssertEqual(assignmentsGP2.first?.name, "Shared Assignment")
     }
 
     func testFetchFiltersAssignmentsByUserID() {

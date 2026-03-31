@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="24411" systemVersion="24G325" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="24512" systemVersion="25D125" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="closed" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -90,7 +90,7 @@
         <relationship name="assignmentGroup" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="AssignmentGroup" inverseName="assignments" inverseEntity="AssignmentGroup"/>
         <relationship name="checkpointsRaw" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CDAssignmentCheckpoint" inverseName="assignment" inverseEntity="CDAssignmentCheckpoint"/>
         <relationship name="discussionTopic" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DiscussionTopic" inverseName="assignment" inverseEntity="DiscussionTopic"/>
-        <relationship name="gradingPeriod" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="assignments" inverseEntity="GradingPeriod"/>
+        <relationship name="gradingPeriods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GradingPeriod" inverseName="assignments" inverseEntity="GradingPeriod"/>
         <relationship name="masteryPathAssignment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="MasteryPathAssignment" inverseName="model" inverseEntity="MasteryPathAssignment"/>
         <relationship name="overrides" toMany="YES" deletionRule="Cascade" destinationEntity="AssignmentOverride" inverseName="assignment" inverseEntity="AssignmentOverride"/>
         <relationship name="rubricRaw" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CDRubricCriterion" inverseName="assignment" inverseEntity="CDRubricCriterion"/>
@@ -205,6 +205,13 @@
         <attribute name="rawContextID" attributeType="String"/>
         <attribute name="rawPurpose" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
+    <entity name="CDCareerHelp" representedClassName="Core.CDCareerHelp" syncable="YES">
+        <attribute name="id" attributeType="String"/>
+        <attribute name="isBugReport" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="type" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
+    </entity>
     <entity name="CDCourseSyncDownloadProgress" representedClassName="Core.CDCourseSyncDownloadProgress" syncable="YES">
         <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="bytesToDownload" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
@@ -301,6 +308,38 @@
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="state" attributeType="String"/>
+    </entity>
+    <entity name="CDHLearningLibraryCollection" representedClassName=".CDHLearningLibraryCollection" syncable="YES">
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="totalItemCount" attributeType="String"/>
+        <relationship name="items" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHLearningLibraryCollectionItem" inverseName="relationship" inverseEntity="CDHLearningLibraryCollectionItem"/>
+    </entity>
+    <entity name="CDHLearningLibraryCollectionItem" representedClassName=".CDHLearningLibraryCollectionItem" syncable="YES">
+        <attribute name="canvasEnrollmentId" optional="YES" attributeType="String"/>
+        <attribute name="canvasModuleId" optional="YES" attributeType="String"/>
+        <attribute name="canvasModuleItemId" optional="YES" attributeType="String"/>
+        <attribute name="canvasUrl" optional="YES" attributeType="URI"/>
+        <attribute name="completionPercentage" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="displayOrder" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="estimatedDurationMinutes" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="imageUrl" optional="YES" attributeType="String"/>
+        <attribute name="isBookmarked" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="isEnrolledInCanvas" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="itemType" attributeType="String"/>
+        <attribute name="libraryId" attributeType="String"/>
+        <attribute name="moduleCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="moduleItemCount" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="primaryReason" optional="YES" attributeType="String"/>
+        <attribute name="programCourseId" optional="YES" attributeType="String"/>
+        <attribute name="programId" optional="YES" attributeType="String"/>
+        <attribute name="sourceCourseId" optional="YES" attributeType="String"/>
+        <attribute name="sourceCourseName" optional="YES" attributeType="String"/>
+        <attribute name="sourceSkillName" optional="YES" attributeType="String"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHLearningLibraryCollection" inverseName="items" inverseEntity="CDHLearningLibraryCollection"/>
     </entity>
     <entity name="CDHNotebookNote" representedClassName=".CDHNotebookNote" syncable="YES">
         <attribute name="after" optional="YES" attributeType="String"/>
@@ -689,6 +728,7 @@
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection"/>
         <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSettings" inverseName="course" inverseEntity="CourseSettings"/>
         <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="course" inverseEntity="Todo"/>
+        <relationship name="weeklySummaryEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDDashboardWeeklySummaryEntry" inverseName="course" inverseEntity="CDDashboardWeeklySummaryEntry"/>
     </entity>
     <entity name="CourseSection" representedClassName="Core.CourseSection" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
@@ -816,6 +856,7 @@
         <attribute name="computedFinalGrade" optional="YES" attributeType="String"/>
         <attribute name="computedFinalScoreRaw" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="courseSectionID" optional="YES" attributeType="String"/>
+        <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="currentGradingPeriodID" optional="YES" attributeType="String"/>
         <attribute name="currentPeriodComputedCurrentGrade" optional="YES" attributeType="String"/>
         <attribute name="currentPeriodComputedCurrentScoreRaw" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -969,7 +1010,7 @@
         <attribute name="id" optional="YES" attributeType="String"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
-        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="gradingPeriod" inverseEntity="Assignment"/>
+        <relationship name="assignments" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Assignment" inverseName="gradingPeriods" inverseEntity="Assignment"/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="gradingPeriods" inverseEntity="Course"/>
     </entity>
     <entity name="Group" representedClassName="Core.Group" syncable="YES">
@@ -977,11 +1018,13 @@
         <attribute name="canCreateAnnouncement" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="canCreateDiscussionTopic" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="concluded" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="contextName" attributeType="String"/>
         <attribute name="contextRaw" optional="YES" attributeType="String"/>
         <attribute name="courseID" optional="YES" attributeType="String"/>
         <attribute name="groupCategoryID" attributeType="String" defaultValueString=""/>
         <attribute name="id" attributeType="String"/>
         <attribute name="isFavorite" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
+        <attribute name="memberCount" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="showOnDashboard" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <relationship name="contextColor" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ContextColor" inverseName="groups" inverseEntity="ContextColor"/>
@@ -1506,5 +1549,26 @@
         <attribute name="commentLibrarySuggestionsEnabled" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="hideDashcardColorOverlays" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="manualMarkAsRead" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CDDashboardWeeklySummaryEntry" representedClassName="Core.CDDashboardWeeklySummaryEntry" syncable="YES">
+        <attribute name="categoryRaw" attributeType="String"/>
+        <attribute name="courseId" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="excused" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="grade" optional="YES" attributeType="String"/>
+        <attribute name="gradingType" optional="YES" attributeType="String"/>
+        <attribute name="gradeWeightRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="assignmentId" attributeType="String"/>
+        <attribute name="routeAssignmentId" attributeType="String" defaultValueString=""/>
+        <attribute name="isQuizLti" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="pointsPossibleRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="restrictQuantitativeData" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="scoreRaw" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="submissionStatusRaw" optional="YES" attributeType="String"/>
+        <attribute name="submissionTypesRaw" attributeType="String"/>
+        <attribute name="title" attributeType="String"/>
+        <attribute name="weekStart" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="discussionCheckpointStepRaw" optional="YES" attributeType="Transformable" valueTransformerName="DiscussionCheckpointStepTransformer" customClassName="Core.DiscussionCheckpointStepWrapper"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="weeklySummaryEntries" inverseEntity="Course"/>
     </entity>
 </model>

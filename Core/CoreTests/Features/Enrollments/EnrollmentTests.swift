@@ -206,4 +206,99 @@ class EnrollmentTests: CoreTestCase {
         let enrollment = Enrollment.make(from: .make(observed_user: observedUser))
         XCTAssertEqual(enrollment.observedUser?.id, observedUser.id.value)
     }
+
+    func testBidirectionalCourseRelationship() {
+        let course = Course.make(from: .make(id: "1", enrollments: []))
+        let apiEnrollment = APIEnrollment.make(
+            id: "1",
+            course_id: "1",
+            enrollment_state: .active,
+            type: "StudentEnrollment",
+            user_id: "3"
+        )
+        let enrollment: Enrollment = databaseClient.insert()
+        enrollment.update(fromApiModel: apiEnrollment, course: course, in: databaseClient)
+
+        XCTAssertEqual(enrollment.course?.id, "1")
+        XCTAssertTrue(course.enrollments?.contains(enrollment) == true)
+    }
+
+    func testMultipleEnrollmentsAddedToSameCourse() {
+        let course = Course.make(from: .make(id: "1", enrollments: []))
+
+        let apiEnrollment1 = APIEnrollment.make(
+            id: "1",
+            course_id: "1",
+            enrollment_state: .active,
+            type: "StudentEnrollment",
+            user_id: "1"
+        )
+        let enrollment1: Enrollment = databaseClient.insert()
+        enrollment1.update(fromApiModel: apiEnrollment1, course: course, in: databaseClient)
+
+        let apiEnrollment2 = APIEnrollment.make(
+            id: "2",
+            course_id: "1",
+            enrollment_state: .active,
+            type: "TeacherEnrollment",
+            user_id: "2"
+        )
+        let enrollment2: Enrollment = databaseClient.insert()
+        enrollment2.update(fromApiModel: apiEnrollment2, course: course, in: databaseClient)
+
+        XCTAssertEqual(course.enrollments?.count, 2)
+        XCTAssertTrue(course.enrollments?.contains(enrollment1) == true)
+        XCTAssertTrue(course.enrollments?.contains(enrollment2) == true)
+    }
+
+    func testBidirectionalRelationshipPersistsAfterSave() {
+        let course = Course.make(from: .make(id: "1", enrollments: []))
+        let apiEnrollment = APIEnrollment.make(
+            id: "1",
+            course_id: "1",
+            enrollment_state: .active,
+            type: "StudentEnrollment",
+            user_id: "3"
+        )
+        let enrollment: Enrollment = databaseClient.insert()
+        enrollment.update(fromApiModel: apiEnrollment, course: course, in: databaseClient)
+
+        try? databaseClient.save()
+
+        XCTAssertEqual(enrollment.course?.id, "1")
+        XCTAssertTrue(course.enrollments?.contains(enrollment) == true)
+        XCTAssertEqual(course.enrollments?.count, 1)
+    }
+
+    func testUpdateLinksToExistingCourseWhenCourseParameterIsNil() {
+        let course = Course.make(from: .make(id: "1", enrollments: []))
+
+        let apiEnrollment = APIEnrollment.make(
+            id: "1",
+            course_id: "1",
+            enrollment_state: .active,
+            type: "StudentEnrollment",
+            user_id: "3"
+        )
+        let enrollment: Enrollment = databaseClient.insert()
+        enrollment.update(fromApiModel: apiEnrollment, course: nil, in: databaseClient)
+
+        XCTAssertEqual(enrollment.course?.id, "1")
+        XCTAssertTrue(course.enrollments?.contains(enrollment) == true)
+    }
+
+    func testUpdateWithNilCourseAndNoCourseInDB() {
+        let apiEnrollment = APIEnrollment.make(
+            id: "1",
+            course_id: "999",
+            enrollment_state: .active,
+            type: "StudentEnrollment",
+            user_id: "3"
+        )
+        let enrollment: Enrollment = databaseClient.insert()
+        enrollment.update(fromApiModel: apiEnrollment, course: nil, in: databaseClient)
+
+        XCTAssertNil(enrollment.course)
+        XCTAssertEqual(enrollment.canvasContextID, "course_999")
+    }
 }

@@ -21,6 +21,18 @@ import XCTest
 @testable import Core
 
 class GroupTests: CoreTestCase {
+
+    func testCustomizedContextName() {
+        let group = Group.make(from: .make(context_name: "Context", course_id: "course_1"))
+        XCTAssertEqual(group.customizedContextName, "Context")
+
+        let course = Course.save(.make(id: "course_1", name: nil), in: databaseClient)
+        XCTAssertEqual(group.customizedContextName, "Context")
+
+        course.name = "Course"
+        XCTAssertEqual(group.customizedContextName, "Course")
+    }
+
     func testColorWithNoLinkOrCourse() {
         XCTAssertEqual(Group.make().color, .textDark)
     }

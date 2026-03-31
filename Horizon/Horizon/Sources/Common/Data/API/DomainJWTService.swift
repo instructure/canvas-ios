@@ -39,8 +39,8 @@ final public class DomainJWTService {
         }
     }
 
-    private var tokenCache: [DomainServiceOption: CachedToken] = [:]
-    private var refreshSubjects: [DomainServiceOption: AnyPublisher<String, Error>] = [:]
+    private var tokenCache: CachedToken?
+    private var refreshSubject: AnyPublisher<String, Error>?
 
     // Constants
     private static let tokenLifetime: TimeInterval = 3600 // 1 hour
@@ -51,25 +51,25 @@ final public class DomainJWTService {
 
     // MARK: - Public API
 
-    func getToken(option: DomainServiceOption) -> AnyPublisher<String, Error> {
+    func getToken() -> AnyPublisher<String, Error> {
         return queue.sync(flags: .barrier) { [weak self] () -> AnyPublisher<String, Error> in
             guard let self else {
                 return Fail(error: Issue.unableToGetToken)
                     .eraseToAnyPublisher()
             }
 
-            if let cached = self.tokenCache[option], cached.isValid {
+            if let cached = self.tokenCache, cached.isValid {
                 return Just(cached.token)
                     .setFailureType(to: Error.self)
                     .eraseToAnyPublisher()
             }
 
-            if let existing = self.refreshSubjects[option] {
+            if let existing = self.refreshSubject {
                 return existing
             }
 
             let api = self.horizonApi
-            let publisher = api.makeRequest(JWTTokenRequest(domainServiceOption: option))
+            let publisher = api.makeRequest(JWTTokenRequest())
                 .tryMap { [weak self] response, urlResponse -> String in
                     guard let self else {
                         throw Issue.unableToGetToken
@@ -86,35 +86,32 @@ final public class DomainJWTService {
                     return token
                 }
                 .handleEvents(receiveOutput: { [weak self] newToken in
-                    self?.setToken(newToken, for: option)
+                    self?.setToken(newToken)
                 }, receiveCompletion: { [weak self] completion in
-                    self?.clearRefreshSubject(for: option, after: completion)
+                    self?.clearRefreshSubject(after: completion)
                 })
                 .share()
                 .eraseToAnyPublisher()
 
-            self.refreshSubjects[option] = publisher
+            self.refreshSubject = publisher
             return publisher
         }
     }
 
-    private func setToken(_ token: String, for option: DomainServiceOption) {
+    private func setToken(_ token: String) {
         queue.async(flags: .barrier) { [weak self] in
-            self?.tokenCache[option] = CachedToken(
+            self?.tokenCache = CachedToken(
                 token: token,
                 expirationDate: Date().addingTimeInterval(Self.tokenLifetime)
             )
         }
     }
 
-    private func clearRefreshSubject(
-        for option: DomainServiceOption,
-        after completion: Subscribers.Completion<Error>
-    ) {
+    private func clearRefreshSubject(after completion: Subscribers.Completion<Error>) {
         queue.async(flags: .barrier) { [weak self] in
-            self?.refreshSubjects[option] = nil
+            self?.refreshSubject = nil
             if case .failure = completion {
-                self?.tokenCache[option] = nil
+                self?.tokenCache = nil
             }
         }
     }
@@ -133,8 +130,8 @@ final public class DomainJWTService {
 
     func clear() {
         queue.sync(flags: .barrier) { [weak self] in
-            self?.tokenCache = [:]
-            self?.refreshSubjects = [:]
+            self?.tokenCache = nil
+            self?.refreshSubject = nil
         }
     }
 
@@ -155,14 +152,10 @@ extension DomainJWTService {
 extension DomainJWTService {
     struct JWTTokenRequest: APIRequestable {
         typealias Response = Result
-
-        let domainServiceOption: DomainServiceOption
-
+        var shouldAddNoVerifierQuery: Bool = false
+        var body: Body? { Body()}
         var path: String {
-            let workflowQueryParams = domainServiceOption.workflows.map {
-                "workflows[]=\($0.rawValue)"
-            }.joined(separator: "&")
-            return "/api/v1/jwts?canvas_audience=false&\(workflowQueryParams)"
+            return "/api/v1/jwts?canvas_audience=false"
         }
 
         var method: APIMethod { .post }
@@ -170,5 +163,9 @@ extension DomainJWTService {
         struct Result: Codable {
             let token: String
         }
+    }
+
+    struct Body: Codable {
+        var workflows: [String] = DomainServiceWorkflow.allCases.map { $0.rawValue }
     }
 }

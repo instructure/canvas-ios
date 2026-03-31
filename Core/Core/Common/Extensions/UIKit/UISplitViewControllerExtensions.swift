@@ -44,4 +44,15 @@ public extension UISplitViewController {
             preferredDisplayMode = .oneBesideSecondary
         }
     }
+
+    /// Safely sets the `displayModeButtonVisibility` property if the split view controller's style is specified.
+    ///
+    /// This method ensures that the split view controller was initialized with a specific style (not `.unspecified`)
+    /// before attempting to set the `displayModeButtonVisibility` property. This prevents a crash that can occur
+    /// if the property is set when the style is `.unspecified`.
+    /// - Parameter visibility: The desired `DisplayModeButtonVisibility` value to set.
+    func safelySetDisplayModeButtonVisibility(_ visibility: DisplayModeButtonVisibility) {
+        guard style != .unspecified else { return }
+        displayModeButtonVisibility = visibility
+    }
 }

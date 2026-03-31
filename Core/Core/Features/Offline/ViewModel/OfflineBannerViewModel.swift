@@ -24,17 +24,13 @@ public class OfflineBannerViewModel: ObservableObject {
     @Published public var isVisible: Bool
     @Published public var isOffline: Bool
 
-    private weak var offlineBannerContainer: UIViewController?
     private let interactor: OfflineModeInteractor
     private var subscriptions = Set<AnyCancellable>()
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
-    public init(interactor: OfflineModeInteractor,
-                parent: UIViewController,
-                scheduler: AnySchedulerOf<DispatchQueue> = .main) {
+    public init(interactor: OfflineModeInteractor, scheduler: AnySchedulerOf<DispatchQueue> = .main) {
         let isOffline = interactor.isOfflineModeEnabled()
         self.interactor = interactor
-        self.offlineBannerContainer = parent
         self.isVisible = isOffline
         self.isOffline = isOffline
         self.scheduler = scheduler
@@ -51,8 +47,6 @@ public class OfflineBannerViewModel: ObservableObject {
         isOfflinePublisher
             .connect()
             .store(in: &subscriptions)
-
-        updateParentViewSafeAreaForBanner()
     }
 
     private func showBannerWhenAppGoesOffline(_ isOfflinePublisher: some Publisher<Bool, Never>) {
@@ -71,16 +65,5 @@ public class OfflineBannerViewModel: ObservableObject {
     private func updateDisplayedStateWhenOfflineStateChanges(_ isOfflinePublisher: some Publisher<Bool, Never>) {
         isOfflinePublisher
             .assign(to: &$isOffline)
-    }
-
-    private func updateParentViewSafeAreaForBanner() {
-        $isVisible
-            .map { UIEdgeInsets(top: 0, left: 0, bottom: $0 ? 32 : 0, right: 0) }
-            .sink { [weak self] edges in
-                UIView.animate(withDuration: 0.3) {
-                    self?.offlineBannerContainer?.additionalSafeAreaInsets = edges
-                    self?.offlineBannerContainer?.view.layoutIfNeeded()
-                }
-            }.store(in: &subscriptions)
     }
 }

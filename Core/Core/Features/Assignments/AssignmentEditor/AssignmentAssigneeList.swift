@@ -60,7 +60,7 @@ struct AssigmentAssigneeList: View {
                     EmptyPanda(.NoResults, message: Text("We couldn’t find somebody like that.", bundle: .core))
                         .frame(minWidth: geometry.size.width, minHeight: geometry.size.height)
                 } else {
-                    LazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) { list }
+                    ConditionallyLazyVStack(alignment: .leading, spacing: 0, pinnedViews: .sectionHeaders) { list }
                 }
             }
                 .background((isEmpty ? Color.backgroundLightest : Color.backgroundGrouped).edgesIgnoringSafeArea(.all))

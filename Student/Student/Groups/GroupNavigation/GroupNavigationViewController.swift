@@ -59,7 +59,7 @@ class GroupNavigationViewController: ScreenViewTrackableTableViewController, Col
 
         colors.refresh()
         groups.refresh()
-        tabs.exhaust()
+        tabs.refresh()
         update()
     }
 

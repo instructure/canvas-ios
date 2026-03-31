@@ -38,7 +38,7 @@ class SubmissionDetailsPresenter {
     let submissionButtonPresenter: SubmissionButtonPresenter
     var submissionButtonText: String? {
         guard let course = course.first, let assignment = assignment.first else { return nil }
-        return submissionButtonPresenter.buttonText(course: course, assignment: assignment, quiz: quizzes?.first, onlineUpload: nil)
+        return submissionButtonPresenter.buttonKind(course: course, assignment: assignment, quiz: quizzes?.first, onlineUpload: nil)?.title
     }
     var pageViewEventName: String {
         return "/\(context.pathComponent)/assignments/\(assignmentID)/submissions/\(userID)"

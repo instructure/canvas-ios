@@ -19,15 +19,15 @@
 import CoreData
 import Foundation
 
-class GetAllCoursesGroupListUseCase: CollectionUseCase {
-    typealias Model = CDAllCoursesGroupItem
+public class GetAllCoursesGroupListUseCase: CollectionUseCase {
+    public typealias Model = CDAllCoursesGroupItem
 
-    let context: Context
-    let cacheKey: String?
-    let request: GetGroupsRequest
-    let scope: Scope
+    public let context: Context
+    public let cacheKey: String?
+    public let request: GetGroupsRequest
+    public let scope: Scope
 
-    init(context: Context = Context.currentUser) {
+    public init(context: Context = Context.currentUser) {
         self.context = context
         cacheKey = "allCoursesCourses-\(context.pathComponent)/groups"
         request = GetGroupsRequest(context: context)
@@ -39,7 +39,7 @@ class GetAllCoursesGroupListUseCase: CollectionUseCase {
         )
     }
 
-    func write(response: [APIGroup]?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
+    public func write(response: [APIGroup]?, urlResponse _: URLResponse?, to client: NSManagedObjectContext) {
         response?.forEach { item in
             let group = CDAllCoursesGroupItem.save(item, in: client)
             group.context = context

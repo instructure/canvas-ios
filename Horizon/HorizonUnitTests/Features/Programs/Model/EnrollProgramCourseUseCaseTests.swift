@@ -35,7 +35,7 @@ final class EnrollProgramCourseUseCaseTests: HorizonTestCase {
 
         // When
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            DomainJWTService.JWTTokenRequest(),
             value: DomainJWTService.JWTTokenRequest.Result(token: HProgramStubs.token)
         )
 
@@ -59,7 +59,7 @@ final class EnrollProgramCourseUseCaseTests: HorizonTestCase {
 
         // When
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            DomainJWTService.JWTTokenRequest(),
             value: DomainJWTService.JWTTokenRequest.Result(token: HProgramStubs.token)
         )
 

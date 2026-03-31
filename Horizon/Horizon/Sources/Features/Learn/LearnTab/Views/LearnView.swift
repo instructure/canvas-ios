@@ -1,0 +1,103 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2025-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import Core
+import SwiftUI
+import HorizonUI
+
+struct LearnView: View {
+    @State private var isShowTabs: Bool = true
+    @State private var selectedTabIndex: Int? = 0
+    private let myContentView: MyContentView
+    private let learningLibraryView: LearningLibraryView
+
+    // MARK: - Dependencies
+    @State private var viewModel: LearnViewModel
+
+    init(viewModel: LearnViewModel) {
+        self._viewModel = State(initialValue: viewModel)
+        self.myContentView = MyContentView()
+        self.learningLibraryView = ListLearningLibraryAssembly.makeView()
+    }
+
+    var body: some View {
+        tabDetailsView()
+            .onPreferenceChange(HeaderVisibilityKey.self) { isShow in
+                isShowTabs = isShow
+            }
+            .overlay(alignment: .top) {
+                tabsView
+                    .opacity(isShowTabs ? 1.0 : 0.0)
+                    .offset(y: isShowTabs ? 0 : -60)
+                    .allowsHitTesting(isShowTabs)
+                    .animation(.easeInOut(duration: 0.3), value: isShowTabs)
+            }
+            .toolbar(.hidden)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.huiColors.surface.pagePrimary)
+            .dismissKeyboardOnTap()
+            .scrollDismissesKeyboard(.immediately)
+            .onAppear {
+                ImageCacheConfiguration.configure()
+            }
+            .onReceive(NotificationCenter.default.publisher(for: UIApplication.didReceiveMemoryWarningNotification)) { _ in
+                ImageCacheConfiguration.clearMemoryCache()
+            }
+    }
+
+    private func tabDetailsView() -> some View {
+        TabView(selection: $selectedTabIndex) {
+            ForEach(Array(viewModel.tabs.enumerated()), id: \.offset) { index, tab in
+                Group {
+                    switch tab {
+                    case .content:
+                        myContentView
+                            .transition(.opacity)
+                    case .learningLibrary:
+                        learningLibraryView
+                            .transition(.opacity)
+                    }
+                }
+                .animation(.easeInOut(duration: 0.2), value: selectedTabIndex)
+                .padding(.top, isShowTabs ? 65 : 0)
+                .tag(index)
+            }
+        }
+        .tabViewStyle(.page(indexDisplayMode: .never))
+    }
+
+    private var tabsView: some View {
+        HorizonUI.Tabs(
+            tabs: viewModel.tabs.map(\.localizedString),
+            selectTabIndex: Binding(
+                get: { selectedTabIndex },
+                set: { selectedTabIndex = $0 ?? 0 }
+            )
+        )
+        .padding(.top, .huiSpaces.space16)
+        .padding(.bottom, .huiSpaces.space24)
+        .background(
+            Color.huiColors.surface.pagePrimary
+                .ignoresSafeArea(edges: .top)
+        )
+    }
+}
+
+#Preview {
+    LearnView(viewModel: .init(interactor: LearningLibraryInteractorLive()))
+}

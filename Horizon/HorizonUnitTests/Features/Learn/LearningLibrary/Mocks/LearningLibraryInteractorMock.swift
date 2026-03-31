@@ -1,0 +1,141 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2026-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import Combine
+import Foundation
+@testable import Horizon
+
+final class LearningLibraryInteractorMock: LearningLibraryInteractor {
+    private let collectionsResponse: [LearningLibrarySectionModel]
+    private let bookmarkedItemsResponse: [LearningLibraryCardModel]
+    private let searchResponse: [LearningLibraryCardModel]
+    private let collectionItemsResponse: [LearningLibraryCardModel]
+    private let recommendationsResponse: [LearningLibraryCardModel]
+    private let bookmarkResponse: LearningLibraryCardModel?
+    private let enrollResponse: LearningLibraryCardModel?
+    private let hasError: Bool
+
+    init(
+        collections: [LearningLibrarySectionModel] = [],
+        bookmarkedItems: [LearningLibraryCardModel] = [],
+        searchResponse: [LearningLibraryCardModel] = [],
+        collectionItems: [LearningLibraryCardModel] = [],
+        recommendations: [LearningLibraryCardModel] = [],
+        bookmarkResponse: LearningLibraryCardModel? = nil,
+        enrollResponse: LearningLibraryCardModel? = nil,
+        hasError: Bool = false
+    ) {
+        self.collectionsResponse = collections
+        self.bookmarkedItemsResponse = bookmarkedItems
+        self.searchResponse = searchResponse
+        self.collectionItemsResponse = collectionItems
+        self.recommendationsResponse = recommendations
+        self.bookmarkResponse = bookmarkResponse
+        self.enrollResponse = enrollResponse
+        self.hasError = hasError
+    }
+
+    func getLearnLibraryCollections(ignoreCache: Bool) -> AnyPublisher<[LearningLibrarySectionModel], Error> {
+        if hasError {
+            return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
+        } else {
+            return Just(collectionsResponse)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+    }
+
+    func bookmark(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel?, Error> {
+        if hasError {
+            return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
+        } else if let response = bookmarkResponse {
+            return Just(response)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        } else {
+            return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
+        }
+    }
+
+    func enroll(id: String, courseID: String) -> AnyPublisher<LearningLibraryCardModel, Error> {
+        if hasError {
+            return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
+        } else if let response = enrollResponse {
+            return Just(response)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        } else {
+            return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
+        }
+    }
+
+    func getCollectionItems(id: String, ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error> {
+        if hasError {
+            return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
+        } else {
+            return Just(collectionItemsResponse)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+    }
+
+    func searchCollectionItem(
+        bookmarkedOnly: Bool,
+        completedOnly: Bool,
+        types: [String]?,
+        searchTerm: String?,
+        sortBy: String?
+    ) -> AnyPublisher<[LearningLibraryCardModel], Error> {
+        if hasError {
+            return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
+        } else {
+            let response = bookmarkedOnly ? bookmarkedItemsResponse : searchResponse
+            return Just(response)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+    }
+
+    func searchWithFilters(
+        searchText: String?,
+        objectsType: [LearningLibraryObjectType]?,
+        libraryFilter: LearningLibraryFilter,
+        sortBy: String?
+    ) -> AnyPublisher<[LearningLibraryCardModel], Error> {
+        let bookmarkedOnly = libraryFilter == .bookmarked
+        let completedOnly = libraryFilter == .completed
+        let types = objectsType?.map { $0.rawValue }
+        return searchCollectionItem(
+            bookmarkedOnly: bookmarkedOnly,
+            completedOnly: completedOnly,
+            types: types,
+            searchTerm: searchText,
+            sortBy: sortBy
+        )
+    }
+
+    func getRecommendations(ignoreCache: Bool) -> AnyPublisher<[LearningLibraryCardModel], Error> {
+        if hasError {
+            return Fail(error: URLError(.badServerResponse)).eraseToAnyPublisher()
+        } else {
+            return Just(recommendationsResponse)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+    }
+}

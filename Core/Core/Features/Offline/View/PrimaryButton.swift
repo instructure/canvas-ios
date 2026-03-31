@@ -23,6 +23,16 @@ public struct PrimaryButton<Label>: View where Label: View {
     private let label: Label
     @Binding private var isAvailable: Bool
 
+    public init(
+        isAvailable: Bool,
+        action: @escaping () -> Void,
+        @ViewBuilder label: @escaping () -> Label
+    ) {
+        _isAvailable = .constant(isAvailable)
+        self.action = action
+        self.label = label()
+    }
+
     public init(isAvailable: Binding<Bool>,
                 action: @escaping () -> Void,
                 @ViewBuilder label: @escaping () -> Label) {

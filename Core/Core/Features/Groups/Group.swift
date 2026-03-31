@@ -28,6 +28,7 @@ public final class Group: NSManagedObject, WriteableModel {
     @NSManaged public var canCreateDiscussionTopic: Bool
     @NSManaged public var concluded: Bool
     @NSManaged public var contextColor: ContextColor?
+    @NSManaged public var contextName: String
     @NSManaged public var contextRaw: String?
     @NSManaged public var course: Course?
     @NSManaged public var courseID: String?
@@ -36,6 +37,7 @@ public final class Group: NSManagedObject, WriteableModel {
     @NSManaged public var name: String
     @NSManaged public var showOnDashboard: Bool
     @NSManaged public var isFavorite: Bool
+    @NSManaged public var memberCount: Int
 
     public var context: Context? {
         get { contextRaw.flatMap { Context(canvasContextID: $0) } }
@@ -44,6 +46,12 @@ public final class Group: NSManagedObject, WriteableModel {
 
     public var canvasContextID: String {
         Context(.group, id: id).canvasContextID
+    }
+
+    /// The course's customized name if it exists or the original context name.
+    /// Sadly `contextName` is not the customized name.
+    public var customizedContextName: String {
+        course?.name ?? contextName
     }
 
     public var color: UIColor { contextColor?.color ?? .textDark }
@@ -68,6 +76,8 @@ public final class Group: NSManagedObject, WriteableModel {
         model.id = item.id.value
         model.name = item.name
         model.showOnDashboard = !item.concluded
+        model.memberCount = item.members_count
+        model.contextName = item.context_name
 
         // `is_favorite` always has value when retrieved via `/api/v1/{context}/groups` api,
         // while for api `/api/v1/users/self/favorites/groups`, it always received with no value.

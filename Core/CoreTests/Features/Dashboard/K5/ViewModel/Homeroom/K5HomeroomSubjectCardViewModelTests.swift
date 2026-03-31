@@ -36,7 +36,7 @@ class K5HomeroomSubjectCardViewModelTests: CoreTestCase {
 
     func testProperties() {
         let testee = K5HomeroomSubjectCardViewModel(courseId: "test", imageURL: nil, name: "math", color: nil, infoLines: [])
-        XCTAssertEqual(testee.a11yId, "DashboardCourseCell.test")
+        XCTAssertEqual(testee.a11yId, "K5Homeroom.SubjectCard.Id.test")
         XCTAssertEqual(testee.courseRoute, "/courses/test")
     }
 

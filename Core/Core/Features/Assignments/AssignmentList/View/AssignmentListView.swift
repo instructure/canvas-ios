@@ -42,7 +42,7 @@ struct AssignmentListView: View {
     }
 
     var body: some View {
-        LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
+        ConditionallyLazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
             ForEach(sections) { section in
                 let isExpanded = Binding(
                     get: { sectionExpandedStates[section.id] ?? true },
@@ -92,8 +92,8 @@ struct AssignmentListSectionView: View {
     var body: some View {
         InstUI.CollapsibleListSection(
             title: section.title,
-            headerIdentifier: sectionIdentifier,
             itemCount: section.rows.count,
+            headerIdentifier: sectionIdentifier,
             isExpanded: $isExpanded
         ) {
             ForEach(section.rows) { row in

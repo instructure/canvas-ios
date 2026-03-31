@@ -33,7 +33,7 @@ final class GetHSkillsUseCase: APIUseCase {
         return Scope(predicate: .all, order: [titleSortDescriptor], sectionNameKeyPath: nil)
     }
 
-    init(journey: DomainServiceProtocol = DomainService(.journey)) {
+    init(journey: DomainServiceProtocol = DomainService()) {
         self.journey = journey
     }
 

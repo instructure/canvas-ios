@@ -95,7 +95,7 @@ class AssignmentsTests: E2ETestCase {
         XCTAssertVisible(submitAssignmentButton)
         XCTAssertEqual(submitAssignmentButton.label, "Submit Assignment")
 
-        let submissionButton = DetailsHelper.submissionAndRubricButton.waitUntil(.visible)
+        let submissionButton = DetailsHelper.submissionAndFeedbackButton.waitUntil(.visible)
         XCTAssertVisible(submissionButton)
 
         GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
@@ -131,15 +131,15 @@ class AssignmentsTests: E2ETestCase {
         // simply `hit()` does not register sometimes, even if the button is there
         submitAssignmentButton.actionUntilElementCondition(
             action: .tap,
-            element: SubmissionHelper.cancelButton,
+            element: SubmissionHelper.doneButton,
             condition: .visible,
             gracePeriod: 2
         )
 
         // MARK: Check visibility of elements on submission edit screen
-        let submissionCancelButton = SubmissionHelper.cancelButton.waitUntil(.visible)
-        XCTAssertVisible(submissionCancelButton)
-        XCTAssertEqual(submissionCancelButton.label, "Cancel")
+        let submissionDoneButton = SubmissionHelper.doneButton.waitUntil(.visible)
+        XCTAssertVisible(submissionDoneButton)
+        XCTAssertEqual(submissionDoneButton.label, "Done")
 
         var submissionSubmitButton = SubmissionHelper.submitButton.waitUntil(.visible)
         XCTAssertVisible(submissionSubmitButton)

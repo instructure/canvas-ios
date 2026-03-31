@@ -21,8 +21,8 @@ import SwiftUI
 
 public enum DashboardOfflineSyncProgressCardAssembly {
 
-    static func makeViewModel(container: NSPersistentContainer = AppEnvironment.shared.database,
-                              router: Router = AppEnvironment.shared.router)
+    public static func makeViewModel(container: NSPersistentContainer = AppEnvironment.shared.database,
+                                     router: Router = AppEnvironment.shared.router)
     -> DashboardOfflineSyncProgressCardViewModel {
         let offlineModeInteractor = OfflineModeAssembly.make()
         let progressObserverInteractor = CourseSyncProgressObserverInteractorLive(container: container)

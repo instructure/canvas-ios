@@ -30,7 +30,7 @@ final class CompletedWidgetUseCase: APIUseCase {
 
     var scope: Scope { .all }
 
-    init(journey: DomainServiceProtocol = DomainService(.journey)) {
+    init(journey: DomainServiceProtocol = DomainService()) {
         self.journey = journey
     }
 

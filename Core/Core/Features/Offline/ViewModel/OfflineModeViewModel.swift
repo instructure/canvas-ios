@@ -17,7 +17,9 @@
 //
 
 import Combine
+import Foundation
 
+/// Please use `EnvironmentValues.offlineMode` instead.
 public class OfflineModeViewModel: ObservableObject {
     @Published public var isOffline: Bool
     @Published public var isOfflineFeatureEnabled: Bool
@@ -31,5 +33,34 @@ public class OfflineModeViewModel: ObservableObject {
         isOfflineFeatureEnabled = interactor.isFeatureFlagEnabled()
         interactor.observeIsOfflineMode().assign(to: &$isOffline)
         interactor.observeIsFeatureFlagEnabled().assign(to: &$isOfflineFeatureEnabled)
+    }
+}
+
+@Observable
+public final class OfflineMode {
+    public var isAppOnline: Bool
+    public var isOfflineFeatureEnabled: Bool
+
+    private let interactor: OfflineModeInteractor
+
+    private var subscriptions = Set<AnyCancellable>()
+
+    public init(interactor: OfflineModeInteractor = OfflineModeAssembly.make()) {
+        self.interactor = interactor
+
+        isAppOnline = !interactor.isOfflineModeEnabled()
+        isOfflineFeatureEnabled = interactor.isFeatureFlagEnabled()
+
+        interactor.observeIsOfflineMode()
+            .sink { [weak self] in
+                self?.isAppOnline = !$0
+            }
+            .store(in: &subscriptions)
+
+        interactor.observeIsFeatureFlagEnabled()
+            .sink { [weak self] in
+                self?.isOfflineFeatureEnabled = $0
+            }
+            .store(in: &subscriptions)
     }
 }

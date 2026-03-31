@@ -131,49 +131,55 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
 
     // MARK: - Saving State Tests
 
-    func test_saveGrade_setsSavingStateCorrectly() {
-        XCTAssertFalse(viewModel.isSavingGrade.value)
+    func test_gradeSavingState_shouldReflectSaveProgress() {
+        XCTAssertEqual(viewModel.gradeSavingState.value, .idle)
 
-        viewModel.setPointsGrade(0)
-        XCTAssertTrue(viewModel.isSavingGrade.value)
-
-        gradeInteractorMock.saveGradeSubject.send(completion: .finished)
-        XCTAssertFalse(viewModel.isSavingGrade.value)
+        viewModel.setPointsGrade(42)
+        XCTAssertEqual(viewModel.gradeSavingState.value, .saving)
     }
 
-    func test_saveGradeSuccess_clearsSavingState() {
-        viewModel.setPointsGrade(0)
-        XCTAssertTrue(viewModel.isSavingGrade.value)
+    func test_gradeSavingState_whenSaveSucceeds_shouldTransitionToSavedThenAutoHide() {
+        let scheduler = DispatchQueue.test
+        let testee = makeViewModel(mainScheduler: scheduler.eraseToAnyScheduler())
 
+        testee.setPointsGrade(42)
         gradeInteractorMock.saveGradeSubject.send(())
         gradeInteractorMock.saveGradeSubject.send(completion: .finished)
 
-        XCTAssertFalse(viewModel.isSavingGrade.value)
+        scheduler.advance()
+        XCTAssertEqual(testee.gradeSavingState.value, .saved)
+
+        scheduler.advance(by: .seconds(3))
+        XCTAssertEqual(testee.gradeSavingState.value, .idle)
     }
 
-    // MARK: - Error Handling Tests
-
-    func test_saveGradeError_showsErrorAlert() {
-        XCTAssertFalse(viewModel.isShowingErrorAlert)
-
-        viewModel.setPointsGrade(0)
+    func test_gradeSavingState_whenSaveFails_shouldBeFailure() {
+        viewModel.setPointsGrade(42)
         gradeInteractorMock.saveGradeSubject.send(completion: .failure(NSError.internalError()))
 
-        XCTAssertEqual(viewModel.isShowingErrorAlert, true)
-        XCTAssertEqual(viewModel.errorAlertViewModel.title, "Error")
-        XCTAssertEqual(viewModel.errorAlertViewModel.message, "Internal Error")
-        XCTAssertEqual(viewModel.errorAlertViewModel.buttonTitle, "OK")
-        XCTAssertFalse(viewModel.isSavingGrade.value)
+        XCTAssertEqual(viewModel.gradeSavingState.value, .failure)
     }
 
-    func test_saveGradeError_clearsIsSavingState() {
-        let error = NSError(domain: "TestError", code: 1)
-
+    func test_gradeSavingState_whenRetryTapped_shouldRetryWithSameParams() {
         viewModel.excuseStudent()
-        XCTAssertTrue(viewModel.isSavingGrade.value)
+        gradeInteractorMock.saveGradeSubject.send(completion: .failure(NSError.internalError()))
+        XCTAssertEqual(viewModel.gradeSavingState.value, .failure)
 
-        gradeInteractorMock.saveGradeSubject.send(completion: .failure(error))
-        XCTAssertFalse(viewModel.isSavingGrade.value)
+        gradeInteractorMock.reset()
+        viewModel.gradeSavingRetryTapped()
+
+        XCTAssertEqual(gradeInteractorMock.saveGradeCalled, true)
+        XCTAssertEqual(gradeInteractorMock.lastExcused, true)
+        XCTAssertEqual(gradeInteractorMock.lastGrade, nil)
+        XCTAssertEqual(viewModel.gradeSavingState.value, .saving)
+    }
+
+    func test_isShowingGradeSavingErrorAlert_whenGradeSavingFailureTapped_shouldBeTrue() {
+        XCTAssertEqual(viewModel.isShowingGradeSavingErrorAlert, false)
+
+        viewModel.gradeSavingFailureTapped()
+
+        XCTAssertEqual(viewModel.isShowingGradeSavingErrorAlert, true)
     }
 
     // MARK: - No Grade Button Tests
@@ -386,5 +392,20 @@ class SpeedGraderSubmissionGradesViewModelTests: TeacherTestCase {
         XCTAssertEqual(result.gradeText, "-")
         XCTAssertEqual(result.a11yGradeText, "None")
         XCTAssertEqual(result.suffixText, "   / 100 pts")
+    }
+
+    // MARK: - Private helpers
+
+    private func makeViewModel(
+        mainScheduler: AnySchedulerOf<DispatchQueue> = .immediate
+    ) -> SpeedGraderSubmissionGradesViewModel {
+        let assignment = Assignment.make(from: .make(), in: databaseClient)
+        let submission = Submission.make(from: .make(), in: databaseClient)
+        return SpeedGraderSubmissionGradesViewModel(
+            assignment: assignment,
+            submission: submission,
+            gradeInteractor: gradeInteractorMock,
+            mainScheduler: mainScheduler
+        )
     }
 }

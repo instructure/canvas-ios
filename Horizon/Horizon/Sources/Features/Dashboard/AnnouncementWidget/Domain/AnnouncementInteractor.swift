@@ -107,8 +107,8 @@ final class AnnouncementInteractorLive: AnnouncementInteractor {
             courseIds: courses.map { $0.id },
             activeOnly: nil,
             latestOnly: nil,
-            startDate: Date.now.addYears(-1),
-            endDate: Date.now
+            startDate: Clock.now.addYears(-1),
+            endDate: Clock.now
         )
         return ReactiveStore(useCase: useCase)
             .getEntities(ignoreCache: ignoreCache)

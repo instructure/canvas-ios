@@ -155,6 +155,12 @@
             "value" : "課題を提出する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과제 제출"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",

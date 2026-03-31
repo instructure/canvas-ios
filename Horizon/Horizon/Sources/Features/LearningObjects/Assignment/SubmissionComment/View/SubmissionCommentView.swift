@@ -265,11 +265,8 @@ struct SubmissionCommentView: View {
         .id("PostButton")
     }
 
-    private var postingCommentBinding: Binding<Bool> {
-        Binding(
-            get: { viewModel.viewState == .postingComment },
-            set: { _ in }
-        )
+    private var postingCommentBinding: Bool {
+        viewModel.viewState == .postingComment
     }
 
     private var loadingView: some View {
@@ -285,64 +282,6 @@ struct SubmissionCommentView: View {
         .containerRelativeFrame(.vertical)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(String(localized: "Loading comments"))
-    }
-}
-
-// TODO: Implement a proper design system component
-struct TextArea: View {
-    @Binding private var text: String
-    private let placeholder: String?
-    private let proxy: GeometryProxy
-
-    init(
-        text: Binding<String>,
-        placeholder: String? = nil,
-        proxy: GeometryProxy
-    ) {
-        _text = text
-        self.placeholder = placeholder
-        self.proxy = proxy
-    }
-
-    var body: some View {
-        textField
-            .background(Color.huiColors.surface.cardPrimary)
-            .huiBorder(
-                level: .level1,
-                color: .huiColors.lineAndBorders.containerStroke,
-                radius: HorizonUI.CornerRadius.level1_5.attributes.radius
-            )
-            .huiCornerRadius(level: .level1_5)
-            .huiTypography(.p1)
-    }
-
-    private var textField: some View {
-        InstUI.UITextViewWrapper(text: $text) { textView in
-            textView.isScrollEnabled = false
-            textView.textContainer.widthTracksTextView = true
-            textView.textContainer.lineBreakMode = .byWordWrapping
-            textView.translatesAutoresizingMaskIntoConstraints = false
-            textView.font = HorizonUI.fonts.uiFont(font: HorizonUI.Typography.Name.p1.font)
-            textView.widthAnchor.constraint(equalToConstant: proxy.frame(in: .global).width - (2 * .huiSpaces.space32 * 2)).isActive = true
-        }
-        .foregroundStyle(text.isEmpty ? Color.huiColors.text.placeholder : Color.huiColors.text.body)
-        .frame(minHeight: 120, alignment: .top)
-        .padding(.vertical, .huiSpaces.space8)
-        .padding(.horizontal, .huiSpaces.space12)
-        .overlay(placeholderView, alignment: .topLeading)
-    }
-
-    @ViewBuilder
-    private var placeholderView: some View {
-        if let placeholder, text.isEmpty {
-            Text(placeholder)
-                .foregroundStyle(Color.huiColors.text.placeholder)
-                .huiTypography(.p1)
-                .allowsHitTesting(false)
-                .accessibility(hidden: true)
-                .padding(.vertical, .huiSpaces.space8)
-                .padding(.horizontal, .huiSpaces.space12)
-        }
     }
 }
 

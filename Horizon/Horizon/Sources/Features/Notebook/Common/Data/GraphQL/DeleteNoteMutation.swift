@@ -18,46 +18,53 @@
 
 import Core
 
-class RedwoodDeleteNoteMutation: APIGraphQLRequestable {
-    let variables: Input
+final class RedwoodDeleteNoteMutation: APIGraphQLRequestable, RedwoodProxyRequestable {
+    typealias Response = RedwoodDeleteNoteMutationResponse
 
-    var path: String {
-        "/graphql"
-    }
+    public let innerVariables: DeleteNoteInput
+    public static let operationName: String = "RedwoodDeleteNote"
+    public static let innerOperationName: String = "DeleteNote"
 
+    var path: String { "/graphql" }
     var headers: [String: String?] {
         [
-            "x-apollo-operation-name": "DeleteNote",
+            "x-apollo-operation-name": RedwoodDeleteNoteMutation.operationName,
             HttpHeader.accept: "application/json"
         ]
     }
 
-    public init(
-        id: String
-    ) {
-        self.variables = Input(id: id)
+    public init(id: String) {
+        self.innerVariables = DeleteNoteInput(id: id)
     }
 
-    public static let operationName: String = "DeleteNote"
-    public static var query: String = """
-    mutation \(operationName)($id: String!) {
-        deleteNote(id: $id)
+    public static var innerQuery: String {
+        """
+        mutation DeleteNote($id: String!) {
+            deleteNote(id: $id)
+        }
+        """
     }
-    """
+}
 
-    typealias Response = RedwoodDeleteNoteMutationResponse
+// MARK: - Request Models
 
-    struct Input: Codable, Equatable {
+extension RedwoodDeleteNoteMutation {
+    struct DeleteNoteInput: CodableEquatable {
         let id: String
     }
 }
 
-// MARK: - Codeables
-
 struct RedwoodDeleteNoteMutationResponse: Codable {
-    let data: DeleteNote
+    let data: Response
+    struct Response: Codable {
+        let executeRedwoodQuery: RedwoodProxyDataWrapper
+    }
 
-    struct DeleteNote: Codable {
+    struct RedwoodProxyDataWrapper: Codable {
+        let data: DeleteNoteContainer
+    }
+
+    struct DeleteNoteContainer: Codable {
         let deleteNote: String
     }
 }

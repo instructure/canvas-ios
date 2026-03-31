@@ -113,6 +113,7 @@ class RubricViewController: UIViewController {
         let title = DynamicLabel(frame: CGRect.zero)
         title.text = model.title
         title.font = UIFont.scaledNamedFont(.semibold16)
+        title.numberOfLines = 0
         contentStackView.addArrangedSubview(title)
 
         if !model.longDescription.isEmpty {
@@ -155,6 +156,7 @@ class RubricViewController: UIViewController {
         let ratingTitle = DynamicLabel(frame: CGRect.zero)
         ratingTitle.tag = ratingTitleTag + index
         ratingTitle.font = .scaledNamedFont(.semibold14)
+        ratingTitle.numberOfLines = 0
         let ratingDesc = DynamicLabel(frame: CGRect.zero)
         ratingDesc.tag = ratingDescTag + index
         ratingDesc.numberOfLines = 0

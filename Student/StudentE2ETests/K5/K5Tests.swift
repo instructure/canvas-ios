@@ -39,8 +39,8 @@ class K5Tests: K5E2ETestCase {
         let mySubjectsLabel = Helper.Homeroom.mySubjects.waitUntil(.visible)
         XCTAssertVisible(mySubjectsLabel)
 
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertVisible(courseCard)
+        let k5SubjectCard = DashboardHelper.k5SubjectCard(course: course).waitUntil(.visible)
+        XCTAssertVisible(k5SubjectCard)
 
         let homeroomButton = Helper.homeroom.waitUntil(.visible)
         let scheduleButton = Helper.schedule.waitUntil(.visible)
@@ -67,8 +67,8 @@ class K5Tests: K5E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Schedule, check elements
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertVisible(courseCard)
+        let k5SubjectCard = DashboardHelper.k5SubjectCard(course: course).waitUntil(.visible)
+        XCTAssertVisible(k5SubjectCard)
 
         let scheduleButton = Helper.schedule.waitUntil(.visible)
         scheduleButton.hit()
@@ -94,8 +94,8 @@ class K5Tests: K5E2ETestCase {
 
         // MARK: Get the user logged in, navigate to Grades, check elements
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertVisible(courseCard)
+        let k5SubjectCard = DashboardHelper.k5SubjectCard(course: course).waitUntil(.visible)
+        XCTAssertVisible(k5SubjectCard)
 
         let gradesButton = Helper.grades.waitUntil(.visible)
         Helper.schedule.actionUntilElementCondition(action: .swipeLeft(.onElement), element: gradesButton, condition: .hittable)
@@ -153,10 +153,10 @@ class K5Tests: K5E2ETestCase {
 
         // MARK: Get the user logged in, navigate to course details
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertVisible(courseCard)
+        let k5SubjectCard = DashboardHelper.k5SubjectCard(course: course).waitUntil(.visible)
+        XCTAssertVisible(k5SubjectCard)
 
-        courseCard.hit()
+        k5SubjectCard.hit()
 
         // MARK: Check buttons of course details
         let homeButton = CourseDetailsHelper.cell(type: .home).waitUntil(.visible)
@@ -212,12 +212,12 @@ class K5Tests: K5E2ETestCase {
 
         // MARK: Get the user logged in, check course card for missing assignments
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertVisible(courseCard)
+        let k5SubjectCard = DashboardHelper.k5SubjectCard(course: course).waitUntil(.visible)
+        XCTAssertVisible(k5SubjectCard)
 
-        let courseCardAssigmentMissingButton = DashboardHelper.courseCardAssignmentMissingButton(course: course).waitUntil(.visible)
-        XCTAssertVisible(courseCardAssigmentMissingButton)
-        XCTAssertEqualIgnoringCase(courseCardAssigmentMissingButton.label, "\(assignmentsCount) missing")
+        let k5SubjectCardAssignmentMissingButton = DashboardHelper.k5SubjectCardAssignmentMissingButton(course: course).waitUntil(.visible)
+        XCTAssertVisible(k5SubjectCardAssignmentMissingButton)
+        XCTAssertEqualIgnoringCase(k5SubjectCardAssignmentMissingButton.label, "\(assignmentsCount) missing")
     }
 
     // Covers MBL-15776 bug
@@ -233,11 +233,11 @@ class K5Tests: K5E2ETestCase {
 
         // MARK: Get the user logged in, check if there is no course card for invited course
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        let invitedCourseCard = DashboardHelper.courseCard(course: invitedCourse).waitUntil(.vanish)
+        let k5SubjectCard = DashboardHelper.k5SubjectCard(course: course).waitUntil(.visible)
+        let invitedSubjectCard = DashboardHelper.k5SubjectCard(course: invitedCourse).waitUntil(.vanish)
         let courseInvitationAcceptButton = DashboardHelper.CourseInvitations.acceptButton(enrollment: enrollment).waitUntil(.visible)
-        XCTAssertVisible(courseCard)
-        XCTAssertTrue(invitedCourseCard.isVanished)
+        XCTAssertVisible(k5SubjectCard)
+        XCTAssertTrue(invitedSubjectCard.isVanished)
         XCTAssertVisible(courseInvitationAcceptButton)
     }
 }

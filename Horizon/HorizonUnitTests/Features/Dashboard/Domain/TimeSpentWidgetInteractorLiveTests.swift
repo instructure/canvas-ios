@@ -18,6 +18,7 @@
 
 @testable import Horizon
 @testable import Core
+import TestsFoundation
 import XCTest
 import Combine
 
@@ -29,7 +30,7 @@ final class TimeSpentWidgetInteractorLiveTests: HorizonTestCase {
         let testee = TimeSpentWidgetInteractorLive(timeSpentUseCase: useCase)
 
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            DomainJWTService.JWTTokenRequest(),
             value: DomainJWTService.JWTTokenRequest.Result(token: HTimeSpentWidgetStubs.token)
         )
         api.mock(GetHTimeSpentWidgetRequest(), value: HTimeSpentWidgetStubs.response)
@@ -58,7 +59,7 @@ final class TimeSpentWidgetInteractorLiveTests: HorizonTestCase {
         let testee = TimeSpentWidgetInteractorLive(timeSpentUseCase: useCase)
 
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            DomainJWTService.JWTTokenRequest(),
             value: DomainJWTService.JWTTokenRequest.Result(token: HTimeSpentWidgetStubs.token)
         )
         api.mock(GetHTimeSpentWidgetRequest(), value: emptyResponse)

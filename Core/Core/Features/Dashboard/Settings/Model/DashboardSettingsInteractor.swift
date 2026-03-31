@@ -23,10 +23,12 @@ public protocol DashboardSettingsInteractor: AnyObject {
     var layout: CurrentValueSubject<DashboardLayout, Never> { get }
     var showGrades: CurrentValueSubject<Bool, Never> { get }
     var colorOverlay: CurrentValueSubject<Bool, Never> { get }
+    var useNewDashboard: CurrentValueSubject<Bool, Never> { get }
 
     // MARK: - Outputs
     var isGradesSwitchVisible: Bool { get }
     var isColorOverlaySwitchVisible: Bool { get }
+    var isNewDashboardSwitchVisible: Bool { get }
 }
 
 public enum DashboardLayout: Equatable {

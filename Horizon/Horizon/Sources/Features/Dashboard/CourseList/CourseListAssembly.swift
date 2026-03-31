@@ -21,13 +21,9 @@ import UIKit
 
 enum CourseListAssembly {
     static func makeViewModel(courses: [CourseCardModel]) -> CourseListViewModel {
-        let onTapProgram: (ProgramSwitcherModel?, WeakViewController) -> Void = { program, viewController in
-            AppEnvironment.shared.switchToLearnTab(with: program, from: viewController)
-        }
         return CourseListViewModel(
             courses: courses,
             router: AppEnvironment.shared.router,
-            onTapProgram: onTapProgram
         )
     }
 

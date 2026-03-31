@@ -28,13 +28,7 @@ struct SpeedGraderSubmissionGradesView: View {
 
     @Environment(\.appEnvironment) var env
     @Environment(\.viewController) var controller
-
-    // slider
-    @State private var gradeSliderViewModel = GradeSliderViewModel()
-    @State var showTooltip = false
-    @State var sliderCleared = false
-    @State var sliderExcused = false
-    @State var sliderTimer: Timer?
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     @ObservedObject var gradeViewModel: SpeedGraderSubmissionGradesViewModel
     @ObservedObject var gradeStatusViewModel: GradeStatusViewModel
@@ -49,6 +43,7 @@ struct SpeedGraderSubmissionGradesView: View {
     }
     @FocusState private var focusedInput: FocusedInput?
     @State private var isCommentsExpanded: Bool = false
+    @State private var isGradeSaving: Bool = false
 
     var body: some View {
         ScrollViewReader { scrollViewProxy in
@@ -71,6 +66,9 @@ struct SpeedGraderSubmissionGradesView: View {
                 }
             }
             .scrollDismissesKeyboard(keyboardDismissalMode)
+        }
+        .onReceive(gradeViewModel.gradeSavingState) { state in
+            isGradeSaving = state == .saving
         }
     }
 
@@ -131,6 +129,22 @@ struct SpeedGraderSubmissionGradesView: View {
             isPresented: $gradeViewModel.isShowingErrorAlert,
             presenting: gradeViewModel.errorAlertViewModel
         )
+        .alert(
+            String(localized: "Oops something went wrong", bundle: .teacher),
+            isPresented: $gradeViewModel.isShowingGradeSavingErrorAlert) {
+                Button(role: .cancel) {} label: {
+                    Text("Cancel", bundle: .teacher)
+                }
+
+                Button {
+                    gradeViewModel.gradeSavingRetryTapped()
+                } label: {
+                    Text("Retry", bundle: .teacher)
+                }
+        } message: {
+            Text("There was an error while saving your grade modification. You can retry, or try again later.", bundle: .teacher)
+        }
+
     }
 
     @ViewBuilder
@@ -167,7 +181,7 @@ struct SpeedGraderSubmissionGradesView: View {
                 allOptions: gradeState.gradeOptions,
                 selectOption: gradeViewModel.selectGradeOption,
                 didSelectOption: gradeViewModel.didSelectGradeOption,
-                isSaving: gradeViewModel.isSavingGrade
+                isSaving: $isGradeSaving
             )
             .accessibilityLabel(
                 [title, String.format(accessibilityLetterGrade: gradeState.originalGrade)]
@@ -206,7 +220,7 @@ struct SpeedGraderSubmissionGradesView: View {
                 get: { textValue },
                 set: { gradeViewModel.setGradeFromTextField($0, inputType: inputType) }
             ),
-            isSaving: gradeViewModel.isSavingGrade
+            isSaving: .init(isGradeSaving)
         )
     }
 
@@ -236,7 +250,7 @@ struct SpeedGraderSubmissionGradesView: View {
                         .accessibilityLabel(a11ySuffix ?? suffix)
                 }
             }
-            .swapWithSpinner(onSaving: gradeViewModel.isSavingGrade, alignment: .trailing)
+            .swapWithSpinner(onSaving: .init(isGradeSaving), alignment: .trailing)
         }
         .paddingStyle(set: .standardCell)
         .accessibilityElement(children: .combine)
@@ -258,7 +272,7 @@ struct SpeedGraderSubmissionGradesView: View {
     }
 
     private var noGradeAndExcuseButtons: some View {
-        HStack(spacing: 16) {
+        let buttons = Group {
             let noGradeTitle = gradeViewModel.gradeState.gradingType == .not_graded
                 ? String(localized: "Reset Status", bundle: .teacher)
                 : String(localized: "No Grade", bundle: .teacher)
@@ -272,132 +286,30 @@ struct SpeedGraderSubmissionGradesView: View {
             }
             .disabled(gradeViewModel.gradeState.isExcused)
         }
+
+        return ViewThatFits {
+            HStack(spacing: 16) { buttons }
+            VStack(spacing: 16) { buttons }
+                .paddingStyle(.top, .standard)
+        }
         .paddingStyle(.horizontal, .standard)
     }
 
-    // MARK: Slider
-
     @ViewBuilder
     var slider: some View {
-        let score = gradeViewModel.sliderValue
-        let possible = assignment.pointsPossible ?? 0
         let isPercent = assignment.gradingType == .percent
-        let tooltipText =
-            sliderCleared ? Text("No Grade", bundle: .teacher) :
-            sliderExcused ? Text("Excused", bundle: .teacher) :
-            isPercent ? Text(round(score / max(possible, 0.01) * 100) / 100, number: .percent) :
-            Text(gradeSliderViewModel.formatScore(score, maxPoints: possible))
-        let a11yValue = (sliderCleared || sliderExcused || isPercent) ? tooltipText : Text(String.format(points: score))
-
-        let maxScore = isPercent ? 100 : possible
-
-        HStack(spacing: 16) {
-            sliderButton(score: 0, isPercent: isPercent)
-            ZStack {
-                // disables page swipe around the slider
-                Rectangle()
-                    .contentShape(Rectangle())
-                    .foregroundColor(.clear)
-                    .gesture(DragGesture(minimumDistance: 0).onChanged { _ in })
-                GradeSlider(value: Binding(get: { score }, set: sliderChangedValue),
-                            maxValue: assignment.pointsPossible ?? 0,
-                            showTooltip: showTooltip,
-                            tooltipText: tooltipText,
-                            a11yValue: a11yValue,
-                            score: score,
-                            possible: possible,
-                            onEditingChanged: sliderChangedState,
-                            viewModel: gradeSliderViewModel)
-            }
-            sliderButton(score: maxScore, isPercent: isPercent)
-        }
-        .paddingStyle(set: .standardCell)
-    }
-
-    private func sliderButton(score: Double, isPercent: Bool) -> some View {
-        Button(
-            action: { updateGrade(score, isPercent: isPercent) },
-            label: {
-                let label = {
-                    if isPercent {
-                        return Text(verbatim: GradeFormatter.percentFormatter.string(from: NSNumber(value: score/100)) ?? "\(score)%")
-                    } else {
-                        return Text(score)
-                    }
-                }()
-
-                label
-                    .foregroundStyle(.tint)
-                    .font(.semibold14)
-                    .frame(height: 30)
-                    .accessibilityLabel(
-                        isPercent
-                            ? GradeFormatter.percentFormatter.string(from: NSNumber(value: score/100)) ?? "\(score)%"
-                            : String.format(points: score)
-                    )
+        GradeSliderView(
+            value: $gradeViewModel.sliderValue,
+            pointsPossible: assignment.pointsPossible ?? 0,
+            isPercent: isPercent,
+            onEndEditing: { value in
+                if isPercent {
+                    gradeViewModel.setPercentGrade(value)
+                } else {
+                    gradeViewModel.setPointsGrade(value)
+                }
             }
         )
-    }
-
-    func updateGrade(
-        excused: Bool? = nil,
-        noMark: Bool? = false,
-        _ grade: Double? = nil,
-        isPercent: Bool = false
-    ) {
-        if excused == true {
-            gradeViewModel.excuseStudent()
-        } else if noMark == true {
-            gradeViewModel.removeGrade()
-        } else if let grade {
-            if isPercent {
-                gradeViewModel.setPercentGrade(grade)
-            } else {
-                gradeViewModel.setPointsGrade(grade)
-            }
-        }
-    }
-
-    func sliderChangedState(_ editing: Bool) {
-        withAnimation(.default) { showTooltip = editing }
-        if editing == false {
-            let value = gradeViewModel.sliderValue
-            sliderTimer?.invalidate()
-            sliderTimer = nil
-            if sliderCleared {
-                gradeViewModel.removeGrade()
-            } else if sliderExcused {
-                updateGrade(excused: true, 0)
-            } else if assignment.gradingType == .percent {
-                let percentValue = round(value / max(assignment.pointsPossible ?? 0, 0.01) * 100)
-                gradeViewModel.setPercentGrade(percentValue)
-            } else { // slider uses points in all other cases where visible (points, gpa, letterGrade)
-                gradeViewModel.setPointsGrade(value)
-            }
-        }
-    }
-
-    func sliderChangedValue(_ value: Double) {
-        let previous = gradeViewModel.sliderValue
-        gradeViewModel.sliderValue = value
-        guard previous != value || sliderTimer == nil else { return }
-        sliderTimer?.invalidate()
-        sliderTimer = nil
-        sliderCleared = false
-        sliderExcused = false
-        if value == 0 {
-            sliderTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                sliderCleared = true
-                sliderExcused = false
-                UISelectionFeedbackGenerator().selectionChanged()
-            }
-        } else if value == assignment.pointsPossible ?? 0 {
-            sliderTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { _ in
-                sliderCleared = false
-                sliderExcused = true
-                UISelectionFeedbackGenerator().selectionChanged()
-            }
-        }
     }
 
     // MARK: - Comments
@@ -419,21 +331,8 @@ struct SpeedGraderSubmissionGradesView: View {
 
     @ViewBuilder
     private var comments: some View {
+        let title = String(localized: "Comments", bundle: .teacher)
         let commentCount = commentListViewModel.commentCount
-        let a11yLabel = [
-            String(localized: "Comments", bundle: .core),
-            String.format(numberOfItems: commentCount)
-        ].joined(separator: ", ")
-        let header = HStack(spacing: InstUI.Styles.Padding.cellIconText.rawValue) {
-            Image.discussionLine
-                .scaledIcon()
-                .foregroundStyle(.tint)
-                .accessibilityHidden(true)
-
-            Text("Comments (\(commentCount))", bundle: .teacher)
-                .foregroundStyle(.textDarkest)
-                .font(.semibold16)
-        }
         let content = SubmissionCommentListView(
             viewModel: commentListViewModel,
             attempt: attempt,
@@ -445,16 +344,22 @@ struct SpeedGraderSubmissionGradesView: View {
 
             if assignment.hasRubrics {
                 InstUI.CollapsibleListSection(
-                    label: header,
-                    accessibilityLabel: a11yLabel,
-                    itemCount: nil,
-                    paddingSet: .iconCell,
-                    accessoryIconSize: 24,
+                    title: title,
+                    label: { commentsHeaderLabel(title: $0) },
+                    itemCount: commentCount,
+                    config: .init(
+                        showItemCount: true,
+                        readListItemCount: false,
+                        headerPaddingSet: .iconCell,
+                        collapseIconSize: 24
+                    ),
                     isExpanded: $isCommentsExpanded,
                     content: { content }
                 )
             } else {
-                header
+                let visibleTitle = String.format(countSuffixed: title, count: commentCount)
+                let a11yLabel = [title, String.format(numberOfItems: commentCount)].accessibilityJoined()
+                commentsHeaderLabel(title: visibleTitle)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .paddingStyle(set: .iconCell)
                     .accessibilityLabel(a11yLabel)
@@ -466,6 +371,19 @@ struct SpeedGraderSubmissionGradesView: View {
             }
         }
         .padding(.top, 16)
+    }
+
+    private func commentsHeaderLabel(title: String) -> some View {
+        HStack(spacing: InstUI.Styles.Padding.cellIconText.rawValue) {
+            Image.discussionLine
+                .scaledIcon()
+                .applyTint()
+                .accessibilityHidden(true)
+
+            Text(title)
+                .foregroundStyle(.textDarkest)
+                .font(.semibold16)
+        }
     }
 
     // MARK: - Rubrics

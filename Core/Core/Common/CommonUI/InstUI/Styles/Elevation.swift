@@ -27,7 +27,7 @@ extension InstUI.Styles {
             case cardLarge
             case pill
 
-            var cornerRadius: CGFloat {
+            public var cornerRadius: CGFloat {
                 switch self {
                 case .cardSmall: 6
                 case .cardLarge: 24
@@ -42,12 +42,25 @@ extension View {
 
     public func elevation(
         _ shape: InstUI.Styles.Elevation.Shape,
-        background: Color
+        background: some ShapeStyle,
+        isShadowVisible: Bool = true
+    ) -> some View {
+        self.elevation(
+            cornerRadius: shape.cornerRadius,
+            background: background,
+            isShadowVisible: isShadowVisible
+        )
+    }
+
+    public func elevation(
+        cornerRadius: CGFloat,
+        background: some ShapeStyle,
+        isShadowVisible: Bool = true
     ) -> some View {
         self
             .background(background)
-            .cornerRadius(shape.cornerRadius)
-            .shadow(color: .black.opacity(0.08), radius: 2, y: 2)
-            .shadow(color: .black.opacity(0.16), radius: 2, y: 1)
+            .cornerRadius(cornerRadius)
+            .shadow(color: .black.opacity(isShadowVisible ? 0.08 : 0), radius: 2, y: 2)
+            .shadow(color: .black.opacity(isShadowVisible ? 0.16 : 0), radius: 2, y: 1)
     }
 }

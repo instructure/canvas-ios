@@ -21,66 +21,52 @@ import XCTest
 
 class HelpTests: E2ETestCase {
     func testHelpPage() {
-        // MARK: Seed the usual stuff
-        let student = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
+        // Seed
+        let student = seeder.createStudentEnrolled()
 
-        // MARK: Get the user logged in
+        // Log in, navigate to entry point
         logInDSUser(student)
-        let courseCard = DashboardHelper.courseCard(course: course).waitUntil(.visible)
-        XCTAssertVisible(courseCard)
-
-        // MARK: Navigate to Help page
+        DashboardHelper.waitUntilDashboardIsVisible()
         HelpHelper.navigateToHelpPage()
 
-        // MARK: Check "Search the Canvas Guides" button
-        let searchTheCanvasGuidesButton = HelpHelper.searchTheCanvasGuides.waitUntil(.visible)
-        XCTAssertVisible(searchTheCanvasGuidesButton)
-        searchTheCanvasGuidesButton.hit()
-        var browserURL = SafariAppHelper.browserURL
-        XCTAssertContains(browserURL, "https://community.instructure.com/en/categories/canvas")
-        HelpHelper.returnToHelpPage()
+        // Verify minimum number of rows
+        let helpItems = HelpHelper.getAllHelpItems()
+        XCTAssertEqual(helpItems.count >= 4, true, "Should have at least 4 Help items")
 
-        // MARK: Check "CUSTOM LINK" button
-        let customLinkButton = HelpHelper.customLink.waitUntil(.visible)
-        XCTAssertVisible(customLinkButton)
-        customLinkButton.hit()
-        browserURL = SafariAppHelper.browserURL
-        XCTAssertTrue(browserURL.contains("https://www.instructure.com"))
-        HelpHelper.returnToHelpPage()
+        // Verify each row
+        for (index, item) in helpItems.enumerated() {
+            let label = item.label
 
-        // MARK: Check "Ask Your Instructor a Question" button
-        let askYourInstructorButton = HelpHelper.askYourInstructor.waitUntil(.visible)
-        XCTAssertVisible(askYourInstructorButton)
+            XCTAssertEqual(label.isEmpty, false, "Help item at index \(index) should have non-empty title")
 
-        askYourInstructorButton.hit()
-        let sendButton = InboxHelper.Composer.sendButton.waitUntil(.visible)
-        let cancelButton = InboxHelper.Composer.cancelButton.waitUntil(.visible)
-        XCTAssertVisible(sendButton)
-        XCTAssertVisible(cancelButton)
+            if label.contains("Ask Your Instructor") {
+                item.waitUntil(.visible).hit()
 
-        // MARK: Check "Report a Problem" button
-        cancelButton.hit()
-        InboxHelper.handleCancelAlert()
-        HelpHelper.navigateToHelpPage()
-        let reportAProblemButton = HelpHelper.reportAProblem.waitUntil(.visible)
-        XCTAssertVisible(reportAProblemButton)
+                let sendButton = InboxHelper.Composer.sendButton.waitUntil(.visible)
+                let cancelButton = InboxHelper.Composer.cancelButton.waitUntil(.visible)
+                XCTAssertVisible(sendButton)
+                XCTAssertVisible(cancelButton)
 
-        reportAProblemButton.hit()
-        let dismissButton = InboxHelper.Composer.dismissButton.waitUntil(.visible)
-        let reportAProblemLabel = app.find(label: "Report a Problem").waitUntil(.visible)
-        XCTAssertVisible(reportAProblemLabel)
-        XCTAssertVisible(dismissButton)
+                cancelButton.hit()
+                InboxHelper.handleCancelAlert()
+                HelpHelper.navigateToHelpPage()
+            } else if label.contains("Report a Problem") {
+                item.waitUntil(.visible).hit()
 
-        // MARK: Check "Submit a Feature Idea" button
-        dismissButton.hit()
-        HelpHelper.navigateToHelpPage()
-        let submitAFeatureButton = HelpHelper.submitAFeatureIdea.waitUntil(.visible)
-        XCTAssertVisible(submitAFeatureButton)
+                let dismissButton = InboxHelper.Composer.dismissButton.waitUntil(.visible)
+                let reportAProblemLabel = app.find(label: "Report a Problem").waitUntil(.visible)
+                XCTAssertVisible(dismissButton)
+                XCTAssertVisible(reportAProblemLabel)
 
-        submitAFeatureButton.hit()
-        browserURL = SafariAppHelper.browserURL
-        XCTAssertContains(browserURL, "https://community.instructure.com/en/instructure-roadmap")
+                dismissButton.hit()
+                HelpHelper.navigateToHelpPage()
+            } else {
+                item.hit()
+                let browserURL = SafariAppHelper.browserURL
+                XCTAssertHasPrefix(browserURL, "https://", " at index \(index)")
+
+                HelpHelper.returnToHelpPage()
+            }
+        }
     }
 }

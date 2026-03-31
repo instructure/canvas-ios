@@ -1,5 +1,5 @@
 {
-  "originHash" : "ab76cf8162509cd26d509845f18cdeae070d50e0be443e0581bdacf7b67a334d",
+  "originHash" : "008116bb10c3fd328e271a7837905bb43a1fa2c14247ee4ea20f08a615ef420d",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -132,8 +132,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/pendo-io/pendo-mobile-sdk",
       "state" : {
-        "revision" : "c111f856d8553084b9452bea5052cc96214de086",
-        "version" : "3.9.2"
+        "revision" : "497a9b0325d958ed1cc0b39901e1a5f4335032fe",
+        "version" : "3.12.0"
       }
     },
     {
@@ -152,6 +152,24 @@
       "state" : {
         "revision" : "3cdcac00ee7bce16b96d7aafcdc56b5837773d55",
         "version" : "14.2.0"
+      }
+    },
+    {
+      "identity" : "sdwebimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImage.git",
+      "state" : {
+        "revision" : "449e8f8f10377f620db8ad22ea81208eecf6325f",
+        "version" : "5.21.6"
+      }
+    },
+    {
+      "identity" : "sdwebimageswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImageSwiftUI.git",
+      "state" : {
+        "revision" : "e057a3cda6aabfa94eda0f604518f76c5efe8ca1",
+        "version" : "3.0.0"
       }
     },
     {

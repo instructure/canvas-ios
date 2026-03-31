@@ -67,7 +67,8 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
             rootView: CoreHostingBaseView(
                 content: rootView,
                 controller: ref,
-                env: env
+                env: env,
+                offlineMode: .init()
             )
         )
         customization?(self)
@@ -121,6 +122,7 @@ public struct CoreHostingBaseView<Content: View>: View {
     public var content: Content
     let controller: WeakViewController
     let env: AppEnvironment
+    let offlineMode: OfflineMode
 
     public var body: some View {
         content
@@ -128,6 +130,7 @@ public struct CoreHostingBaseView<Content: View>: View {
             .accentColor(Color(Brand.shared.primary))
             .environment(\.appEnvironment, env)
             .environment(\.viewController, controller)
+            .environment(\.offlineMode, offlineMode)
             .onPreferenceChange(TestTree.self) { testTrees in
                 guard let controller = controller.value as? TestTreeHolder else { return }
                 controller.testTree = testTrees.first { $0.type == Content.self }

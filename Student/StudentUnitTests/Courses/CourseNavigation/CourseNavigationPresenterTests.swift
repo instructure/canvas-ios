@@ -73,7 +73,7 @@ class CourseNavigationPresenterTests: StudentTestCase {
         let colorStore = presenter.color as! TestStore
         let courseStore = presenter.courses as! TestStore
         let tabStore = presenter.tabs as! TestStore
-        wait(for: [colorStore.refreshExpectation, courseStore.refreshExpectation, tabStore.exhaustExpectation], timeout: 1)
+        wait(for: [colorStore.refreshExpectation, courseStore.refreshExpectation, tabStore.refreshExpectation], timeout: 1)
     }
 
     func testTabsAreOrderedByPosition() {

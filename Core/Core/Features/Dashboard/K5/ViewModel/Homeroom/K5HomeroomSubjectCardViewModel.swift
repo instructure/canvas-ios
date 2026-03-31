@@ -27,7 +27,7 @@ public struct K5HomeroomSubjectCardViewModel {
     public let infoLines: [InfoLine]
 
     public init(courseId: String, imageURL: URL?, name: String, color: UIColor?, infoLines: [InfoLine]) {
-        self.a11yId = "DashboardCourseCell.\(courseId)"
+        self.a11yId = "K5Homeroom.SubjectCard.Id.\(courseId)"
         self.courseRoute = "/courses/\(courseId)"
         self.imageURL = imageURL
         self.name = name.uppercased()

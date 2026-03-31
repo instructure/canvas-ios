@@ -22,7 +22,7 @@ import TestsFoundation
 
 class APIOAuthTests: CoreTestCase {
     func testGetMobileVerifyRequest() {
-        XCTAssertEqual(GetMobileVerifyRequest(domain: "cgnu").path, "https://canvas.instructure.com/api/v1/mobile_verify.json")
+        XCTAssertEqual(GetMobileVerifyRequest(domain: "cgnu").path, "https://sso.canvaslms.com/api/v1/mobile_verify.json")
         XCTAssertEqual(GetMobileVerifyRequest(domain: "cgnu").queryItems, [
             URLQueryItem(name: "domain", value: "cgnu")
         ])

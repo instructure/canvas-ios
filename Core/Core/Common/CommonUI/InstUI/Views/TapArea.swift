@@ -22,6 +22,9 @@ extension InstUI {
 
     /// Invisible view which accepts gestures in it's whole area.
     public struct TapArea: View {
+
+        public init() { }
+
         public var body: some View {
             Color.clear
                 .contentShape(Rectangle())

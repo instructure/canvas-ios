@@ -1,0 +1,119 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2025-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import Combine
+import Core
+import SwiftUI
+
+struct CourseInvitationsWidgetView: View {
+    var viewModel: CourseInvitationsWidgetViewModel
+    @State private var currentPage: Int = 0
+    @State private var totalPages: Int = 1
+
+    var body: some View {
+        ZStack {
+            if viewModel.state == .data {
+                DashboardTitledWidget(
+                    viewModel.widgetTitle,
+                    customAccessibilityTitle: viewModel.widgetAccessibilityTitle
+                ) {
+                    VStack(spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue) {
+                        HorizontalCarouselView(
+                            items: viewModel.invitations,
+                            currentPage: $currentPage,
+                            totalPages: $totalPages
+                        ) { cardViewModel in
+                            CourseInvitationCardView(viewModel: cardViewModel)
+                                .accessibilityElement(children: .contain)
+                                .identifier("Dashboard.Invitations.CourseInvitation.Id.\(cardViewModel.id)")
+                        }
+
+                        InstUI.PageIndicator(currentIndex: currentPage, count: totalPages)
+                    }
+                }
+                .animation(.dashboardWidget, value: viewModel.invitations)
+            }
+        }
+    }
+}
+
+#if DEBUG
+
+private let snackBarViewModel = SnackBarViewModel()
+
+#Preview {
+    @Previewable @State var viewModel = makePreviewViewModel(snackbarViewModel: snackBarViewModel)
+    @Previewable @State var subscriptions = Set<AnyCancellable>()
+
+    CourseInvitationsWidgetView(viewModel: viewModel)
+        .padding()
+        .frame(maxHeight: .infinity, alignment: .top)
+        .snackBar(viewModel: snackBarViewModel)
+        .onAppear {
+            viewModel.refresh(ignoreCache: false)
+                .sink { _ in }
+                .store(in: &subscriptions)
+        }
+}
+
+private func makePreviewViewModel(snackbarViewModel: SnackBarViewModel) -> CourseInvitationsWidgetViewModel {
+    let env = PreviewEnvironment()
+    let context = env.database.viewContext
+
+    let coursesInteractor = CoursesInteractorMock()
+    coursesInteractor.acceptDeclineDelay = 2
+
+    let mockCourses = [
+        Course.save(
+            .make(
+                id: "1",
+                name: "Introduction to Computer Science",
+                enrollments: [.make(id: "enrollment1", enrollment_state: .invited)]
+            ),
+            in: context
+        ),
+        Course.save(
+            .make(
+                id: "2",
+                name: "Advanced Mathematics",
+                enrollments: [.make(id: "enrollment2", enrollment_state: .invited)]
+            ),
+            in: context
+        ),
+        Course.save(
+            .make(
+                id: "3",
+                name: "English Literature",
+                enrollments: [.make(id: "enrollment3", enrollment_state: .invited)]
+            ),
+            in: context
+        )
+    ]
+
+    coursesInteractor.mockCoursesResult = .make(
+        allCourses: mockCourses,
+        invitedCourses: mockCourses
+    )
+
+    return CourseInvitationsWidgetViewModel(
+        interactor: coursesInteractor,
+        snackBarViewModel: snackbarViewModel
+    )
+}
+
+#endif

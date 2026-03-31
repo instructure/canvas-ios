@@ -232,6 +232,7 @@ final class StudentAssignmentListItemTests: CoreTestCase {
 - **Set all properties to nil** in tearDown to prevent memory leaks and state leaks
 - **Reset global state** in tearDown if setUp modified it:
   - Clean up any global state that was set up
+  - Example: use `Clock.mockNow(date)` in setUp and `Clock.reset()` in tearDown to pin the current date (`Core/Core/Common/CommonModels/AppEnvironment/Clock.swift`)
 - **Declaration**: Declare properties as implicitly unwrapped optionals (`!`) so they can be set in setUp
 
 ### Grouping with MARKs

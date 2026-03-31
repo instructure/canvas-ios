@@ -149,12 +149,12 @@ class ModuleItemCell: UITableViewCell {
             miscSubtitleA11yLabel = text
             accessoryView = UIImageView(image: .masteryPathsLine)
         } else {
-            let points = item.hideQuantitativeData ? nil : String.format(pts: item.pointsPossible)
+            let points = item.hideQuantitativeData ? nil : String.format(ptsOrNil: item.pointsPossible)
             let requirement = item.completionRequirement?.description
             let text = [points, requirement].joined(separator: " | ").nilIfEmpty
             updateSubtitleLabel(miscSubtitleLabel, text: text)
             miscSubtitleLabel.textColor = .textDark
-            let a11yPoints = item.hideQuantitativeData ? nil : String.format(points: item.pointsPossible)
+            let a11yPoints = item.hideQuantitativeData ? nil : String.format(pointsOrNil: item.pointsPossible)
             let a11yText = [a11yPoints, requirement].accessibilityJoined()
             miscSubtitleA11yLabel = a11yText
             accessoryView = nil

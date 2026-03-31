@@ -159,6 +159,10 @@ let router = Router(routes: [
         return ExperimentalFeaturesViewController()
     },
 
+    RouteHandler("/dev-menu/instui-storybook") { _, _, _ in
+        CoreHostingController(InstUI.Storybook())
+    },
+
     RouteHandler("/wrong-app") { _, _, _ in
         guard let loginDelegate = AppEnvironment.shared.loginDelegate else { return nil }
         return WrongAppViewController.create(delegate: loginDelegate)

@@ -23,8 +23,8 @@ import AppIntents
 struct TodoContentView<Content: View, ActionView: BottomActionView>: View {
 
     fileprivate let logoRoute: URL?
-    fileprivate let content: () -> Content
-    fileprivate let actionView: () -> ActionView
+    fileprivate let content: Content
+    fileprivate let actionView: ActionView
 
     init(
         logoRoute: URL? = nil,
@@ -32,16 +32,18 @@ struct TodoContentView<Content: View, ActionView: BottomActionView>: View {
         actionView: @escaping () -> ActionView
     ) {
         self.logoRoute = logoRoute
-        self.content = content
-        self.actionView = actionView
+        self.content = content()
+        self.actionView = actionView()
     }
 
     var body: some View {
-        content()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .containerRelativeFrame(.vertical, alignment: .top)
-            .accessibilitySortPriority(1)
-            .overlay(alignment: .topTrailing) {
+        ZStack(alignment: .trailing) {
+            content
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+                .containerRelativeFrame(.vertical, alignment: .top)
+                .accessibilitySortPriority(1)
+
+            VStack {
                 Group {
                     if let logoRoute {
                         Link(destination: logoRoute) {
@@ -56,23 +58,28 @@ struct TodoContentView<Content: View, ActionView: BottomActionView>: View {
                     }
                 }
                 .padding(10)
-            }
-            .overlay(alignment: .bottomTrailing) {
-                let aView = actionView()
-                if aView.isVisible {
-                    aView.padding(10)
+
+                Spacer()
+
+                if actionView.isVisible {
+                    actionView
+                        .padding(10)
                 }
             }
+        }
     }
 }
 
 private struct LogoView: View {
+    @Environment(\.widgetRenderingMode) private var renderingMode
 
     var body: some View {
         ZStack {
             Circle()
                 .fill(Color.backgroundDanger)
                 .scaledFrame(width: 32, useIconScale: true)
+                .opacity(renderingMode == .accented ? 0.2 : 1)
+
             Image("student-logomark")
                 .renderingMode(.template)
                 .scaledIcon(size: 18)
@@ -85,8 +92,8 @@ extension TodoContentView where ActionView == NoActionView {
 
     init(logoRoute: URL? = nil, content: @escaping () -> Content) {
         self.logoRoute = logoRoute
-        self.content = content
-        self.actionView = { NoActionView() }
+        self.content = content()
+        self.actionView = NoActionView()
     }
 }
 

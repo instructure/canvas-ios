@@ -52,6 +52,6 @@ struct GroupCard: View {
             .cornerRadius(4)
         })
         .buttonStyle(ScaleButtonStyle(scale: 1))
-        .identifier("group-row-\(group.id)")
+        .identifier("Dashboard.GroupCard.cardButton")
     }
 }

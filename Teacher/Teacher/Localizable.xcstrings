@@ -147,6 +147,12 @@
             "value" : "\"%@\" は有効な評定ではありません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "'%@'은(는) 유효한 성적이 아닙니다"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -402,6 +408,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@最大"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ 최대 "
           }
         },
         "mi" : {
@@ -667,6 +679,12 @@
             "value" : "%1$@～まで%2$@"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ 대상/까지 %2$@"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -922,6 +940,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$@、提出日：%2$@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@, 제출 %2$@"
           }
         },
         "mi" : {
@@ -1181,6 +1205,12 @@
             "value" : "%g中%g"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%g 총점 %g"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -1436,6 +1466,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%gポイント"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%g 점"
           }
         },
         "mi" : {
@@ -2151,6 +2187,18 @@
             }
           }
         },
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%lld 일 늦었습니다."
+                }
+              }
+            }
+          }
+        },
         "mi" : {
           "variations" : {
             "plural" : {
@@ -2696,6 +2744,12 @@
             "value" : "< %1$@ まで:%2$@"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "< %1$@부터 %2$@"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2952,6 +3006,12 @@
             "value" : "欠席"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "결석"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3206,6 +3266,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "添付を追加"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "첨부 파일 추가"
           }
         },
         "mi" : {
@@ -3465,6 +3531,12 @@
             "value" : "コメントを追加"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의견/댓글 추가"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3720,6 +3792,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "カスタム評定を追加する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용자 지정 성적 추가"
           }
         },
         "mi" : {
@@ -3978,6 +4056,12 @@
             "value" : "すべて"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "전체"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4232,6 +4316,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "すべての評定は今、非表示になっています。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 성적이 현재 숨겨졌습니다."
           }
         },
         "mi" : {
@@ -4490,6 +4580,12 @@
             "value" : "すべての評定は今、掲示されています。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 성적이 현재 게시되었습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4746,6 +4842,12 @@
             "value" : "すべて非表示"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 숨김"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5000,6 +5102,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "すべて掲示済"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모두 게시됨"
           }
         },
         "mi" : {
@@ -5259,6 +5367,12 @@
             "value" : "すべての提出物"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 제출"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5513,6 +5627,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "すべての提出物"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 제출"
           }
         },
         "mi" : {
@@ -5771,6 +5891,12 @@
             "value" : "課題日付"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과제 날짜"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6025,6 +6151,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "課題の詳細"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과제 세부 정보"
           }
         },
         "mi" : {
@@ -6284,6 +6416,12 @@
             "value" : "試行%lld"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "시도 %lld"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6538,6 +6676,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "出席状況"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "출석"
           }
         },
         "mi" : {
@@ -6796,6 +6940,12 @@
             "value" : "出席エラー"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "출석 오류"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7050,6 +7200,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "公開設定："
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용 가능:"
           }
         },
         "mi" : {
@@ -7308,6 +7464,12 @@
             "value" : "公開日時："
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용 가능 시작:"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7564,6 +7726,12 @@
             "value" : "最終利用可能日："
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용 가능 마감:"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7818,6 +7986,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "戻る"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "뒤로"
           }
         },
         "mi" : {
@@ -8077,6 +8251,12 @@
             "value" : "カレンダー"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "캘린더"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8331,6 +8511,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "キャンセル"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "취소"
           }
         },
         "mi" : {
@@ -8589,6 +8775,12 @@
             "value" : "セクションをかえる"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "분반 변경"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8843,6 +9035,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "セクションを選択する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "분반 선택"
           }
         },
         "mi" : {
@@ -9101,6 +9299,12 @@
             "value" : "日付を選択する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "날짜를 선택"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9355,6 +9559,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイルの選択"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 선택"
           }
         },
         "mi" : {
@@ -9614,6 +9824,12 @@
             "value" : "閉じる"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "닫기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9870,6 +10086,12 @@
             "value" : "ライブラリのコメントを閉じる"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의견/댓글 라이브러리 닫기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10124,6 +10346,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "引き出しを閉じる"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서랍 닫기"
           }
         },
         "mi" : {
@@ -10383,6 +10611,12 @@
             "value" : "引き出しを閉じる"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서랍 닫기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10637,6 +10871,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "終了済み"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "종료됨"
           }
         },
         "mi" : {
@@ -10895,6 +11135,12 @@
             "value" : "引き出しを半画面に折りたたむ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서랍 화면 절반 접기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11149,6 +11395,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "折りたたみ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "접힘"
           }
         },
         "mi" : {
@@ -11407,6 +11659,12 @@
             "value" : "コメント"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의견/댓글"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11661,6 +11919,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コメントライブラリ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의견/댓글 라이브러리"
           }
         },
         "mi" : {
@@ -11920,6 +12184,12 @@
             "value" : "コメントライブラリは利用できません"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의견/댓글 라이브러리를 사용할 수 없습니다"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12174,6 +12444,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コメントは正常に送信されました"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "댓글을 보냈습니다"
           }
         },
         "mi" : {
@@ -12432,6 +12708,12 @@
             "value" : "コメント"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의견/댓글"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -12543,6 +12825,7 @@
       }
     },
     "Comments (%lld)" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ar" : {
           "stringUnit" : {
@@ -12686,6 +12969,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コメント(%lld)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의견(%lld)"
           }
         },
         "mi" : {
@@ -12833,7 +13122,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fertigstellen"
+            "value" : "Vollständig"
           }
         },
         "en-AU" : {
@@ -12942,6 +13231,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "完了"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완료"
           }
         },
         "mi" : {
@@ -13198,6 +13493,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "コメントを保存できませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "댓글을 저장할 수 없습니다."
           }
         },
         "mi" : {
@@ -13457,6 +13758,12 @@
             "value" : "コース"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과목"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -13712,6 +14019,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "グレードを最適化"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 사용자 지정"
           }
         },
         "mi" : {
@@ -13970,6 +14283,12 @@
             "value" : "日付ピッカー"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "날짜 선택기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14224,6 +14543,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "遅延日数"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "늦음 날짜"
           }
         },
         "mi" : {
@@ -14482,6 +14807,12 @@
             "value" : "遅延日数が正常に保存されました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "늦음 날짜가 저장되었습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -14736,6 +15067,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "説明"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "설명"
           }
         },
         "mi" : {
@@ -14994,6 +15331,12 @@
             "value" : "詳細"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "세부 정보"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15248,6 +15591,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "差別化タグ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "맞춤형 태그"
           }
         },
         "mi" : {
@@ -15506,6 +15855,12 @@
             "value" : "取り下げる"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "버리기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -15760,6 +16115,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "終了"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완료"
           }
         },
         "mi" : {
@@ -16018,6 +16379,12 @@
             "value" : "ダブルタップして引き出しを閉じます"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "두 번 탭하여 서랍 닫기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16272,6 +16639,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ダブルタップして引き出しを開きます"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "두 번 탭하여 서랍 열기"
           }
         },
         "mi" : {
@@ -16530,6 +16903,12 @@
             "value" : "ダブルタップして解答を表示する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "두 번 탭하여 시도 보기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -16784,6 +17163,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ダブルタップしファイルを表示する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "두 번 탭하여 파일 보기"
           }
         },
         "mi" : {
@@ -17042,6 +17427,12 @@
             "value" : "ダブルタップしてプロフィールを表示する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "두 번 탭하여 프로필 보기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17296,6 +17687,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ダブルタップで遅延日数を変更できます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "두 번 탭하여 늦음 날짜 수를 변경합니다."
           }
         },
         "mi" : {
@@ -17554,6 +17951,12 @@
             "value" : "引き出しメニュー"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서랍 메뉴"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17810,6 +18213,12 @@
             "value" : "期限%@"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기한 %@"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18064,6 +18473,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "期限日は.でした%@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기한 날짜는  %@"
           }
         },
         "mi" : {
@@ -18323,6 +18738,12 @@
             "value" : "期限日は%@でした。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기한 날짜는 %@이었습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18577,6 +18998,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "期限、詳細をダブルタップしてください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기한 날짜, 2번 탭하여 세부 정보를 확인합니다."
           }
         },
         "mi" : {
@@ -18835,6 +19262,12 @@
             "value" : "期限："
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기한:"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19089,6 +19522,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "編集"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "편집"
           }
         },
         "mi" : {
@@ -19347,6 +19786,12 @@
             "value" : "ルーブリックのメモを編集する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "루브릭 메모 편집"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19603,6 +20048,12 @@
             "value" : "遅延日数を入力してください"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "늦음 날짜 입력"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19857,6 +20308,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "エラー"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오류"
           }
         },
         "mi" : {
@@ -20116,6 +20573,12 @@
             "value" : "エラー:ロールコールAPIから返されたデータはありません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오류: Roll Call API에서 반환된 데이터가 없습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20370,6 +20833,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "全員"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모두"
           }
         },
         "mi" : {
@@ -20628,6 +21097,12 @@
             "value" : "学生を免除する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "학생 인정"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -20882,6 +21357,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評価対象外(免除)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "인정됨"
           }
         },
         "mi" : {
@@ -21140,6 +21621,12 @@
             "value" : "展開"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "펼쳐짐"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21396,6 +21883,12 @@
             "value" : "拡大された"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "연장됨"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21502,6 +21995,532 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "延伸"
+          }
+        }
+      }
+    },
+    "Failed" : {
+      "comment" : "A label displayed when saving a grade fails.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فشل"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No s'ha pogut"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wedi Methu"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mislykkedes"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mislykkedes"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fehlgeschlagen"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No aprobado"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ha habido un error"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Epäonnistui"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échec"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échec"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theip air"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "विफल हुआ"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Echèk"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gagal"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tókst ekki"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non riuscito"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "失敗"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "실패"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I rahua"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gagal"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke bestått"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke bestått"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mislukt"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie powiodło się"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falhou"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falhou"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сбой"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Neuspelo"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Misslyckad"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Misslyckad"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ล้มเหลว"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thất bại"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "失败"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "失败"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "失敗"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "失敗"
+          }
+        }
+      }
+    },
+    "Failed saving grade" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فشل حفظ الدرجة"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No s’ha pogut desar la nota"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wedi methu cadw’r radd"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke gemme karakteren"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke gemme vurderingen"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Speichern der Note fehlgeschlagen"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed saving grade"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed saving grade"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed saving grade"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed saving grade"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed saving grade"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Failed saving grade"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se produjo un error al guardar"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se ha podido guardar la nota"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Virhe Arvosanan tallennuksessa"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échec de l’enregistrement de la note"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible d’enregistrer la note"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theip ar mharc a shábháil"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड सहेजना विफल रहा"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Echèk nan anrejistre nòt"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gagal menyimpan nilai"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mistókst að vista einkunn"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile salvare voto"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "評定の保存に失敗しました"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 저장 실패"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I rahua te tiaki i te māka"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gagal menyimpan gred"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke lagre vurdering"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke lagre vurdering"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kan cijfer niet opslaan"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie udało się zapisać oceny"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falha ao guardar a nota"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falha na classificação de salvamento"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось сохранить оценку"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shranjevanje ocene ni uspelo"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gick inte att spara omdömet"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gick inte att spara bedömningen"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "บันทึกเกรดล้มเหลว"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lưu điểm không thành công"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存评分失败"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存评分失败"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存評分失敗"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存評分失敗"
           }
         }
       }
@@ -21650,6 +22669,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "LTI ツールを起動できませんでした。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Roll Call LTI 도구를 시작하지 못했습니다."
           }
         },
         "mi" : {
@@ -21908,6 +22933,12 @@
             "value" : "提出データ読み込みに失敗しました！"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 데이터를 로드하지 못했습니다!"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22162,6 +23193,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定ステータスの保存に失敗しました。\nもう一度やり直してください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 상태를 저장하지 못했습니다.\n다시 시도하세요."
           }
         },
         "mi" : {
@@ -22427,6 +23464,12 @@
             "value" : "ファイル%1$lld /%2$lld"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 %1$lld/ %2$lld"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -22682,6 +23725,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイル"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일"
           }
         },
         "mi" : {
@@ -22941,6 +23990,12 @@
             "value" : "ファイル (%@)"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일(%@)"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23196,6 +24251,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ファイル (%lld)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일(%lld)"
           }
         },
         "mi" : {
@@ -23455,6 +24516,12 @@
             "value" : "フィルタ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "필터링"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -23710,6 +24777,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "フィルター (%d)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "필터링(%d)"
           }
         },
         "mi" : {
@@ -23968,6 +25041,12 @@
             "value" : "フィルタ条件"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "필터링 기준"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24222,6 +25301,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "セクションで分類する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "분반으로 필터링"
           }
         },
         "mi" : {
@@ -24480,6 +25565,12 @@
             "value" : "フィルターを提出"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 필터링"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -24734,6 +25825,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "最終的な評定"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "최종 성적"
           }
         },
         "mi" : {
@@ -24993,6 +26090,12 @@
             "value" : "対象："
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "대상:"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25245,6 +26348,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "GPA"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "GPA"
@@ -25506,6 +26615,12 @@
             "value" : "評定"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -25760,6 +26875,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定とルーブリック"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 및 루브릭"
           }
         },
         "mi" : {
@@ -26019,6 +27140,12 @@
             "value" : "評定掲示規約"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 게시 정책"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26273,6 +27400,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定スライダー"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 슬라이더"
           }
         },
         "mi" : {
@@ -26531,6 +27664,12 @@
             "value" : "評定ステータスが正常に保存されました。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 상태를 저장했습니다"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -26637,6 +27776,270 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "成功儲存評分狀態。"
+          }
+        }
+      }
+    },
+    "Grade successfully saved" : {
+      "comment" : "Accessibility label for a state where a grade has been successfully saved.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تم حفظ الدرجة بنجاح"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S’ha desat correctament la nota"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wedi llwyddo i gadw'r radd"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Karakteren blev gemt"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vurderingen blev gemt"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note erfolgreich gespeichert"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grade successfully saved"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grade successfully saved"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grade successfully saved"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grade successfully saved"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grade successfully saved"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Grade successfully saved"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La calificación se guardó de manera satisfactoria"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se ha guardado la nota"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arvosana on tallennettu onnistuneesti"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note enregistrée"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note enregistrée avec succès"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "D’éirigh leis an marc a shábháil"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड सफलतापूर्वक सहेजा गया"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nòt anrejistre avèk siksè"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nilai berhasil disimpan"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einkunn vistuð"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voto salvato correttamente"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "評定が正常に保存されました"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적이 저장됨"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I tiakina pai te māka"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gred berjaya disimpan"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vurderingen ble lagret."
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vurderingen ble lagret."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cijfer opgeslagen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocena została pomyślnie zapisana"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota guardada com êxito."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nota salva com sucesso"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Оценка успешно сохранена"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocena uspešno shranjena"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omdömet sparades"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omdömet sparades"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "บันทึกเกรดเสร็จสิ้น"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã lưu điểm thành công"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已成功保存评分"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已成功保存评分"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "成功儲存評分"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "成功儲存評分"
           }
         }
       }
@@ -26785,6 +28188,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "採点済み"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "채점됨"
           }
         },
         "mi" : {
@@ -27044,6 +28453,12 @@
             "value" : "評価先%@"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "채점됨 %@"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27299,6 +28714,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적"
           }
         },
         "mi" : {
@@ -27557,6 +28978,12 @@
             "value" : "評定はすべての受講者に表示されます"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적은 모든 학생에게 표시됩니다"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -27811,6 +29238,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定は、提出物が採点された受講者が閲覧できるよう表示されます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적은 채점된 제출과 함께 학생에게 표시됩니다"
           }
         },
         "mi" : {
@@ -28635,6 +30068,24 @@
                 "stringUnit" : {
                   "state" : "translated",
                   "value" : "%d現在非表示の評定"
+                }
+              }
+            }
+          }
+        },
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d 성적 현재 숨김"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d 성적 현재 숨김"
                 }
               }
             }
@@ -29839,6 +31290,24 @@
             }
           }
         },
+        "ko" : {
+          "variations" : {
+            "plural" : {
+              "other" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d 성적 현재 게시됨"
+                }
+              },
+              "zero" : {
+                "stringUnit" : {
+                  "state" : "translated",
+                  "value" : "%d 성적 현재 게시됨"
+                }
+              }
+            }
+          }
+        },
         "mi" : {
           "variations" : {
             "plural" : {
@@ -30468,6 +31937,12 @@
             "value" : "グループ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "그룹"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -30723,6 +32198,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "グループ%lld"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "그룹 %lld"
           }
         },
         "mi" : {
@@ -30981,6 +32462,12 @@
             "value" : "指示を追加して、この課題を受講者に分かりやすくしてください。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "지시 사항을 추가하여 이 과제에 관해 학생을 돕습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31237,6 +32724,12 @@
             "value" : "非表示"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "숨김"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -31491,6 +32984,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定を非表示にする"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 숨기기"
           }
         },
         "mi" : {
@@ -31750,6 +33249,12 @@
             "value" : "メッセージ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "수신함"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32004,6 +33509,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "未完了"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "완료되지 않음"
           }
         },
         "mi" : {
@@ -32262,6 +33773,12 @@
             "value" : "無効な評定"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "잘못된 성적"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -32516,6 +34033,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "採点する有効な提出物がないようです。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "채점할 유효한 제출이 없는 것 같습니다."
           }
         },
         "mi" : {
@@ -32774,6 +34297,12 @@
             "value" : "遅延"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "늦게 제출"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33030,6 +34559,12 @@
             "value" : "遅延ペナルティ："
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "늦게 제출 벌점"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33284,6 +34819,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "外部ツールを起動する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "외부 도구 시작"
           }
         },
         "mi" : {
@@ -33543,6 +35084,12 @@
             "value" : "ABC...評価"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "평점"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -33766,7 +35313,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "लोड किया जा रहा है"
+            "value" : "लोड करना"
           }
         },
         "ht" : {
@@ -33797,6 +35344,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "読み込み中"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "로드"
           }
         },
         "mi" : {
@@ -34055,6 +35608,12 @@
             "value" : "全員を出席としてマークする"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모두 출석으로 표시"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34311,6 +35870,12 @@
             "value" : "出席としてマークする"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "나머지를 출석으로 표시"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -34426,7 +35991,7 @@
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "مفقود"
+            "value" : "ناقص"
           }
         },
         "ca" : {
@@ -34534,7 +36099,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "लापता"
+            "value" : "गायब"
           }
         },
         "ht" : {
@@ -34565,6 +36130,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "欠如"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "누락됨"
           }
         },
         "mi" : {
@@ -34823,6 +36394,12 @@
             "value" : "修正された採点はサポートされていません"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "조정된 성적 평가 지원되지 않음"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35077,6 +36654,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "複数の締切日"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여러 기한 날짜"
           }
         },
         "mi" : {
@@ -35335,6 +36918,12 @@
             "value" : "採点が必要です"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 평가 필요"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -35589,6 +37178,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "日付セットからは利用できません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용 가능 시작 날짜가 설정되지 않았습니다."
           }
         },
         "mi" : {
@@ -35847,6 +37442,12 @@
             "value" : "利用可能最終日がありません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용 가능 종료 날짜가 설정되지 않았습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36101,6 +37702,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "締切日なし"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기한 날짜 없음"
           }
         },
         "mi" : {
@@ -36359,6 +37966,12 @@
             "value" : "期限は設定されていません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기한 날짜가 설정되지 않았습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36613,6 +38226,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "期限が設定されていません"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기한 날짜가 설정되지 않았습니다."
           }
         },
         "mi" : {
@@ -36872,6 +38491,12 @@
             "value" : "期限が設定されていません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기한 날짜가 설정되지 않았습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37126,6 +38751,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定はありません"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 없음"
           }
         },
         "mi" : {
@@ -37384,6 +39015,12 @@
             "value" : "提出物なし"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 없음"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -37638,6 +39275,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "示唆されている利用可能なものなし"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용할 수 있는 제안 없음"
           }
         },
         "mi" : {
@@ -37896,6 +39539,12 @@
             "value" : "なし"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "없음"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -38150,6 +39799,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "採点なし"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "채점되지 않음"
           }
         },
         "mi" : {
@@ -38408,6 +40063,12 @@
             "value" : "未提出"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출되지 않음"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -38662,6 +40323,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "注"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "메모"
           }
         },
         "mi" : {
@@ -38920,6 +40587,12 @@
             "value" : "OK"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "확인"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -39026,6 +40699,270 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "確定"
+          }
+        }
+      }
+    },
+    "Oops something went wrong" : {
+      "comment" : "A title for an alert that appears when there is an unexpected error.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عذرًا حدث خطأ ما"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ui, s’ha produït un error"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wps, aeth rhywbeth o'i le"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ups, noget gik galt"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ups, noget gik galt"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ups, etwas ist schief gelaufen"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops something went wrong"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops something went wrong"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops something went wrong"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops something went wrong"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops something went wrong"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops something went wrong"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lo siento. Algo salió mal."
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lo sentimos, algo ha salido mal"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hups, jotakin meni pieleen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un problème est survenu."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oups, quelque chose n’a pas fonctionné"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ó, chuaigh rud éigin mícheart."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ओह कुछ गड़बड़ी हुई है"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oups, gen yon bagay ki pa mache."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ups, terjadi kesalahan"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Úbbs, eitthvað fór úrskeiðis"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ops, si è verificato un errore"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "おっと、何か問題が発生しました"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "죄송합니다. 문제가 발생했습니다"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Āe, i he tetahi mea"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ops sesuatu tidak kena"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obs, noe gikk galt"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Obs, noe gikk galt"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oeps, er ging iets mis"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ups, coś poszło nie tak."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oops algo correu mal"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ops, algo deu errado."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ой, что-то пошло не так"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ups, nekaj se je zalomilo"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoppsan, något gick fel"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoppsan, något gick fel"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "อุ๊ปส์ มีบางอย่างผิดปกติ"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rất tiếc, đã xảy ra vấn đề"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "糟糕，出错了"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "糟糕，出错了"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "糟糕，出現問題"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "糟糕，出現問題"
           }
         }
       }
@@ -39174,6 +41111,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "열기"
           }
         },
         "mi" : {
@@ -39432,6 +41375,12 @@
             "value" : "コメントライブラリを開く"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "의견/댓글 라이브러리 열기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -39686,6 +41635,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "引き出しを全画面で開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서랍 전체 화면 열기"
           }
         },
         "mi" : {
@@ -39945,6 +41900,12 @@
             "value" : "引き出しを全画面で開く"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서랍 전체 화면 열기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -40199,6 +42160,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "引き出しを半画面で開く"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서랍 절반 화면 열기"
           }
         },
         "mi" : {
@@ -40458,6 +42425,12 @@
             "value" : "引き出しを半画面で開く"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "서랍 절반 화면 열기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -40714,6 +42687,12 @@
             "value" : "小テストを開く"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "퀴즈 열기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -40968,6 +42947,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "その他"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "기타"
           }
         },
         "mi" : {
@@ -41227,6 +43212,12 @@
             "value" : "中%@"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "총점 %@"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -41479,6 +43470,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "out_of_g_pts"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "out_of_g_pts"
@@ -41740,6 +43737,12 @@
             "value" : "保留中"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보류 중"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -41995,6 +43998,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "パーセント (%)"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "백분율(%)"
           }
         },
         "mi" : {
@@ -42253,6 +44262,12 @@
             "value" : "ポイント"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "점수"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -42507,6 +44522,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定表の掲示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 게시"
           }
         },
         "mi" : {
@@ -42765,6 +44786,12 @@
             "value" : "掲載の設定"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "게시 설정"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -43019,6 +45046,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "掲示設定"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "게시 설정"
           }
         },
         "mi" : {
@@ -43277,6 +45310,12 @@
             "value" : "掲示先..."
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "게시 대상..."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -43531,6 +45570,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "演習小テストと調査には詳細ビューはありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "연습 퀴즈 및 설문 조사에는 세부 정보 보기가 없습니다."
           }
         },
         "mi" : {
@@ -43789,6 +45834,12 @@
             "value" : "正確なフィルタリング"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정확한 필터링"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -44045,6 +46096,12 @@
             "value" : "表示する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "현재/출석"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -44299,6 +46356,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "プレビューできません"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "미리 보기 사용할 수 없음"
           }
         },
         "mi" : {
@@ -44558,6 +46621,12 @@
             "value" : "更新された評定のプロンプト"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "업데이트된 성적에 대한 프롬프트"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -44812,6 +46881,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "公開済み"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "게시됨"
           }
         },
         "mi" : {
@@ -45070,6 +47145,12 @@
             "value" : "オーディオを録音する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오디오 녹음"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45324,6 +47405,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "動画を録画する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "동영상 녹화"
           }
         },
         "mi" : {
@@ -45583,6 +47670,12 @@
             "value" : "リセット"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "초기화"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -45837,6 +47930,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "状態をリセットする"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "상태 초기화"
           }
         },
         "mi" : {
@@ -46095,6 +48194,12 @@
             "value" : "再試行"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다시 시도"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -46349,6 +48454,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ルーブリック"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "루브릭"
           }
         },
         "mi" : {
@@ -46607,6 +48718,12 @@
             "value" : "ルーブリックのメモ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "루브릭 메모"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -46713,6 +48830,270 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評分標準說明"
+          }
+        }
+      }
+    },
+    "Saved" : {
+      "comment" : "A text label indicating that a change has been successfully saved.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تم الحفظ"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S’ha desat"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wedi Cadw"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gemt"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gemt"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gespeichert"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saved"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardada"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardado"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tallennettu"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sauvegardé(e)"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistré"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sábháilte"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "सहेजा गया"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anrejistre"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disimpan"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vistað"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvato"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存済み"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장됨"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kua Ora"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disimpan"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lagret"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lagret"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opgeslagen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zapisano"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardou"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранено"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shranjeno"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sparad"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sparad"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "บันทึกแล้ว"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã Lưu"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已保存"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已保存"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已儲存"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已儲存"
           }
         }
       }
@@ -46861,6 +49242,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "保存"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "저장"
           }
         },
         "mi" : {
@@ -47119,6 +49506,12 @@
             "value" : "遅延日数を保存中です。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "늦음 날짜를 저장합니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -47225,6 +49618,270 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "儲存遲到天數。"
+          }
+        }
+      }
+    },
+    "Saving grade" : {
+      "comment" : "Voiceover announcement for the \"Saving grade\" state.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جارٍِ حفظ الدرجة"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S'està desant la nota"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wrthi’n cadw'r radd"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gemmer karakter"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gemmer vurdering"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Note wird gespeichert"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving grade"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving grade"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving grade"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving grade"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving grade"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Saving grade"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardando calificación"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardando la nota"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arvosana tallennettu"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrement de la note"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrement de la note"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ag sábháil an mhairc"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ग्रेड सहेजना"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sovgade nòt"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menyimpan nilai"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vistar einkunn"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvataggio voto in corso"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "評定を保存する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 저장"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kei te tiaki i te māka"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menyimpan gred"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lagrer vurdering"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lagrer vurdering"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bezig met opslaan van cijfer"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zapisywanie oceny"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A gravar nota"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Salvando nota"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сохранение оценки"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Shranjevanje ocene"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sparar omdöme"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sparar bedömning"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "กำลังบันทึกเกรด"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đang lưu điểm"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在保存评分"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "正在保存评分"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存評分"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存評分"
           }
         }
       }
@@ -47373,6 +50030,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "評定ステータスを保存中です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 상태를 저장합니다."
           }
         },
         "mi" : {
@@ -47629,6 +50292,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "スコア"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "점수"
           }
         },
         "mi" : {
@@ -47888,6 +50557,12 @@
             "value" : "...超えのスコア"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "더 높은 점수..."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -48143,6 +50818,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "...未満のスコア"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "더 낮은 점수..."
           }
         },
         "mi" : {
@@ -48401,6 +51082,12 @@
             "value" : "... 未満のスコア"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음 점수 미만 획득"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -48655,6 +51342,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "...を上回るスコア"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "다음 점수 초과 획득"
           }
         },
         "mi" : {
@@ -48913,6 +51606,12 @@
             "value" : "検索"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "검색"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -49167,6 +51866,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "提出物を検索する"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 검색"
           }
         },
         "mi" : {
@@ -49425,6 +52130,12 @@
             "value" : "評定を選択する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 선택"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -49679,6 +52390,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ロールコールの日付を変更するために選択します"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "선택하여 출결 확인 날짜를 변경"
           }
         },
         "mi" : {
@@ -49937,6 +52654,12 @@
             "value" : "送信"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "보내기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -50191,6 +52914,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "メッセージをユーザーに送信"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "사용자에게 메시지 보내기"
           }
         },
         "mi" : {
@@ -50449,6 +53178,12 @@
             "value" : "ルーブリックのメモを送信する"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "루브릭 메모 보내기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -50703,6 +53438,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "類似スコア"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "유사성 점수"
           }
         },
         "mi" : {
@@ -50961,6 +53702,12 @@
             "value" : "並べ替え基準"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "정렬 기준"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -51215,6 +53962,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "特定のセクション"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "특정 분반"
           }
         },
         "mi" : {
@@ -51473,6 +54226,12 @@
             "value" : "ステータス"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "상태"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -51727,6 +54486,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ステータス"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "상태"
           }
         },
         "mi" : {
@@ -51986,6 +54751,12 @@
             "value" : "生徒"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "학생"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -52240,6 +55011,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "生徒%lld"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "학생 %lld"
           }
         },
         "mi" : {
@@ -52498,6 +55275,12 @@
             "value" : "受講者のメモ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "학생 메모"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -52752,6 +55535,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "差別化タグなしの受講者"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "맞춤형 태그가 없는 학생"
           }
         },
         "mi" : {
@@ -53011,6 +55800,12 @@
             "value" : "提出フィルター"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 필터링"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -53265,6 +56060,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "提出リストの優先設定"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 목록 기본 설정"
           }
         },
         "mi" : {
@@ -53523,6 +56324,12 @@
             "value" : "提出タイプ"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 유형"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -53777,6 +56584,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "提出物"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출"
           }
         },
         "mi" : {
@@ -54035,6 +56848,12 @@
             "value" : "提出済み"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출됨"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -54141,6 +56960,270 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已提交"
+          }
+        }
+      }
+    },
+    "Tap to see why saving failed" : {
+      "comment" : "A label describing an action that reveals more information about why saving failed.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "اضغط لمعرفة سبب فشل الحفظ"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toqueu-hi per saber per què no s’ha pogut fer el desament"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapiwch i weld pam nad oedd modd cadw"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tryk for at se, hvorfor lagringen mislykkedes"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tryk for at se, hvorfor lagringen mislykkedes"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tippen Sie hier, um zu sehen, warum das Speichern fehlgeschlagen ist"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to see why saving failed"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to see why saving failed"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to see why saving failed"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to see why saving failed"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to see why saving failed"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tap to see why saving failed"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque aquí para ver por qué no se guardó"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toca para ver por qué se ha producido un error al guardar"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Napauta nähdäksesi, miksi tallennus epäonnistui"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyer pour connaître les raisons de l’échec de l’enregistrement"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Touchez pour voir pourquoi l’enregistrement a échoué"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapáil le fáil amach cén fáth nár éirigh leis an sábháil"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह देखने के लिए टैप करें कि सहेजना विफल क्यों रहा"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tape pou wè poukisa sovgade a echwe"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketuk melihat kenapa penyimpanan gagal"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pikkaðu til að sjá af hverju vistun einkunnar mistókst"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tocca per vedere perché il salvataggio non è riuscito"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存に失敗した理由を見る"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "탭하여 저장하지 못한 이유 확인"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pāwhiritia kia kite he aha i rahua ai te tiaki"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik untuk melihat sebab penyimpanan gagal"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trykk for å se hvorfor lagringen mislyktes"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trykk for å se hvorfor lagringen mislyktes"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tik om te kijken waarom het opslaan is mislukt"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Stuknij, aby sprawdzić przyczynę niezapisania"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque para ver por que a gravação falhou"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Toque para ver por que o salvamento falhou"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нажмите, чтобы просмотреть причину сбоя при сохранении"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapnite, da si ogledate, zakaj shranjevanje ni uspelo"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tryck för att se varför det inte gick att spara"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tryck för att se varför det inte gick att spara"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "กดเลือกเพื่อดูสาเหตุที่บันทึกล้มเหลว"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhấn để xem lý do lưu không thành công"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "点击以查看保存失败的原因"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "点击以查看保存失败的原因"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "點選以查看儲存失敗的原因"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "點選以查看儲存失敗的原因"
           }
         }
       }
@@ -54289,6 +57372,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "タップして提出リストを表示します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "탭하여 제출 목록을 봅니다."
           }
         },
         "mi" : {
@@ -54545,6 +57634,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "テスト用受講生"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "테스트 학생"
           }
         },
         "mi" : {
@@ -54804,6 +57899,12 @@
             "value" : "メッセージはまだありません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아직 메시지가 없습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55060,6 +58161,12 @@
             "value" : "提出物の読み込み中にエラーが発生しました。プルして更新し、再試行してください。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출을 로드하는 데 오류가 있었습니다. 다시 시도하기 위해 당겨서 새로 고칩니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55166,6 +58273,270 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "載入提交項目時發生錯誤。提取以進行重新整理以再試一次。"
+          }
+        }
+      }
+    },
+    "There was an error while saving your grade modification. You can retry, or try again later." : {
+      "comment" : "An error message displayed when there is an issue saving a grade modification.",
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "حدث خطأ أثناء حفظ تعديل درجتك. يمكنك إعادة المحاولة الآن أو لاحقًا."
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S'ha produït un error en desar la modificació de la nota. Podeu tornar a provar-ho ara o més endavant."
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gwall wrth gadw eich addasiad gradd. Gallwch chi roi cynnig arall arni nawr neu wedyn."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der opstod en fejl under lagring af karakterændringen. Du kan prøve igen nu eller senere."
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der opstod en fejl under lagring af vurderingsændringen. Du kan prøve igen nu eller senere."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beim Speichern der Notenänderung ist ein Fehler aufgetreten Sie können es erneut versuchen oder später wiederkommen."
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There was an error while saving your grade modification. You can retry, or try again later."
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There was an error while saving your grade modification. You can retry, or try again later."
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There was an error while saving your grade modification. You can retry, or try again later."
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There was an error while saving your grade modification. You can retry or try again later."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There was an error while saving your grade modification. You can retry or try again later."
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "There was an error while saving your grade modification. You can retry or try again later."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se produjo un error al guardar la modificación de la calificación. Puede volver a intentarlo o intentarlo más tarde."
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se ha producido un error al guardar tu modificación de nota. Puedes volver a intentarlo o probar más tarde."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arvosanojen antoasteikon muokkauksessa ilmeni virhe. Voit yrittää uudelleen tai yrittää uudelleen myöhemmin."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une erreur est survenue lors de l’enregistrement de la modification de la note. Vous pouvez réessayer maintenant ou plus tard."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une erreur s’est produite lors de l’enregistrement de votre modification de notation. Vous pouvez réessayer, ou réessayer plus tard."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tharla earráid agus do mhodhnú mairc á shábháil. Is féidir leat iarracht eile a dhéanamh, nó iarracht eile a dhéanamh níos déanaí."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आपका ग्रेड संशोधन सहेजते समय एक त्रुटि हुई। आप पुन: कोशिश कर सकते हैं, या बाद में कोशिश करें।"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Te gen yon erè pandan w t ap anrejistre modifikasyon nòt ou a. Ou ka eseye ankò, oswa eseye ankò pita."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terjadi kesalahan saat menyimpan perubahan nilai Anda. Anda dapat mencoba lagi, atau coba lagi nanti."
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Villa kom upp við að vista breytinguna á einkunn. Þú getur reynt aftur eða reynt aftur síðar."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si è verificato un errore durante il salvataggio della modifica del voto. Riprova subito o più tardi."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "評定の修正を保存中にエラーが発生しました。再試行するか、後でまた試しください。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "성적 수정을 저장하는 동안 오류가 있었습니다. 다시 시도하거나 나중에 다시 시도할 수 있습니다."
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I puta he hapa i te wā e tiaki ana i tō whakarerekētanga māka. Ka taea e koe te ngana anō, te ngana anō rānei ā muri ake nei."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terdapat ralat semasa menyimpan pengubahsuaian gred anda. Anda boleh cuba semula, atau cuba semula kemudian."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det oppsto en feil ved lagring av vurderingsendringen din Du kan prøve igjen, eller prøve senere."
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det oppsto en feil ved lagring av vurderingsendringen din Du kan prøve igjen, eller prøve senere."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Er is een fout opgetreden bij het opslaan van je cijferaanpassing. Je kunt het nu of later opnieuw proberen."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wystąpił błąd podczas zapisywania zmian ocen. Możesz ponowić próbę lub spróbować później."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocorreu um erro ao guardar a sua modificação de nota. Pode tentar novamente ou tentar mais tarde."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ocorreu um erro ao salvar a alteração da sua nota. Você pode tentar novamente ou tentar mais tarde."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Произошла ошибка при сохранении вашего изменения оценки. Вы можете повторить попытку или попробовать позже."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pri shranjevanju vaše spremembe ocene je prišlo do napake. Lahko poskusite znova ali pa poskusite znova pozneje."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ett fel inträffade när din ändring av omdömet sparades. Du kan försöka igen, eller vänta till senare."
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ett fel uppstod när din bedömningsändring skulle sparas. Du kan försöka igen, eller vänta till senare."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "มีข้อผิดพลาดขณะบันทึกข้อมูลการแก้ไขเกรดของคุณ สามารถลองใหม่อีกครั้งหรือลองทำรายการใหม่อีกครั้งในภายหลัง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã xảy ra lỗi khi lưu điều chỉnh điểm của bạn. Bạn có thể thử lại hoặc quay lại sau."
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存评分修改时出错。您可以重试或稍后再试。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "保存评分修改时出错。您可以重试或稍后再试。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存評分修改時發生錯誤。您可以重試，或稍後再試一次。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "儲存評分修改時發生錯誤。您可以重試，或稍後再試一次。"
           }
         }
       }
@@ -55311,6 +58682,12 @@
           }
         },
         "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "there_are_d_assignees_without_grades"
+          }
+        },
+        "ko" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "there_are_d_assignees_without_grades"
@@ -55572,6 +58949,12 @@
             "value" : "この課題は提出を許可していません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 과제는 제출을 허용하지 않습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55826,6 +59209,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "この課題は、論文の提出のみを許可します。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 과제는 종이 과제 제출만 허용합니다."
           }
         },
         "mi" : {
@@ -56085,6 +59474,12 @@
             "value" : "この基準はスコアに影響を与えません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 조건은 점수에 영향을 주지 않습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -56339,6 +59734,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "このグループには、この課題の提出はありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 그룹에는 이 과제에 대한 제출이 없습니다."
           }
         },
         "mi" : {
@@ -56597,6 +59998,12 @@
             "value" : "この受講者には、この課題の提出はありません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 학생에는 이 과제에 대한 제출이 없습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -56851,6 +60258,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "この課題は匿名なので、この受講者の応答は表示されません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "과제가 익명이므로 이 학생의 응답이 표시되지 않습니다."
           }
         },
         "mi" : {
@@ -57110,6 +60523,12 @@
             "value" : "この提出には、ファイルがありません。"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 제출에는 파일이 없습니다."
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -57364,6 +60783,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "この提出は、外部ページへのURLです。提出された時点のページの内容をスナップショットにして含めてあります。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 제출은 외부 페이지를 가리키는 URL입니다. 제출되었을 때에 페이지의 스냅샵을 포함합니다."
           }
         },
         "mi" : {
@@ -57624,6 +61049,12 @@
             "value" : "するべきこと"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "할 일"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -57879,6 +61310,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "するべきこと"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "할 일"
           }
         },
         "mi" : {
@@ -58137,6 +61574,12 @@
             "value" : "未知のエラー"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "알 수 없는 오류"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -58391,6 +61834,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "マークを外す"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "표시 취소"
           }
         },
         "mi" : {
@@ -58649,6 +62098,12 @@
             "value" : "マークを外しました"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "표시 취소됨"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -58903,6 +62358,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "非公開"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "게시되지 않음"
           }
         },
         "mi" : {
@@ -59161,6 +62622,12 @@
             "value" : "URL プレビュー画像"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "URL 미리 보기 이미지"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -59417,6 +62884,12 @@
             "value" : "すべての提出を表示"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "모든 제출 보기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -59671,6 +63144,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ディスカッションを表示"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "토론 보기"
           }
         },
         "mi" : {
@@ -59930,6 +63409,12 @@
             "value" : "ファイルを表示%@%@"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "파일 보기 %@ %@"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -60187,6 +63672,12 @@
             "value" : "長い説明を表示"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "긴 설명 보기"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -60442,6 +63933,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "提出予定 %@を閲覧します。%@"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 시도 %@을(를) 봅니다. %@"
           }
         },
         "mi" : {
@@ -60707,6 +64204,12 @@
             "value" : "提出予定 %1$lldを閲覧します。%2$@"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "제출 시도 %1$lld을(를) 봅니다. %2$@"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -60961,6 +64464,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "この受講者と課題に関する詳細情報はありません。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 학생 및 과제에 대한 추가 세부 정보가 없습니다"
           }
         },
         "mi" : {
@@ -61219,6 +64728,12 @@
             "value" : "語数"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "단어 수"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -61475,6 +64990,12 @@
             "value" : "ここにパーセンテージを入力してください"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여기에 백분율 기록"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -61729,6 +65250,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "ここにスコアを入力してください"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여기에 점수 기록"
           }
         },
         "mi" : {
@@ -61988,6 +65515,12 @@
             "value" : "ここにコメントを入力してください"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "여기에 댓글을 작성"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -62244,6 +65777,12 @@
             "value" : "あなたにはこのアクションを行う権限がありません"
           }
         },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "작업을 수행할 권한이 부여되지 않았습니다"
+          }
+        },
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
@@ -62355,5 +65894,5 @@
       }
     }
   },
-  "version" : "1.0"
+  "version" : "1.1"
 }

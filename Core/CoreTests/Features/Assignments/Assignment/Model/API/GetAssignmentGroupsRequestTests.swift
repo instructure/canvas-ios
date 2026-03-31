@@ -35,21 +35,26 @@ class GetAssignmentGroupsRequestTests: XCTestCase {
     func testDefaultIncludes() {
         let expected = GetAssignmentGroupsRequest.Include.allCases.map {
             URLQueryItem(name: "include[]", value: $0.rawValue)
-        }
+        } + [URLQueryItem(name: "scope_assignments_to_student", value: "true")]
+
         XCTAssertEqual(req.queryItems, expected)
     }
 
     func testQueryWithInclude() {
-        req = GetAssignmentGroupsRequest(courseID: courseID, include: [.assignments])
-        XCTAssertEqual(req.queryItems, [URLQueryItem(name: "include[]", value: "assignments")])
+        req = GetAssignmentGroupsRequest(courseID: courseID, include: [.assignments], scopeAssignmentsToStudent: false)
+        let expected = [URLQueryItem(name: "include[]", value: "assignments"), URLQueryItem(name: "scope_assignments_to_student", value: "false")]
+
+        XCTAssertEqual(req.queryItems, expected)
     }
 
     func testQueryWithIncludeWithGradingPeriodID() {
         req = GetAssignmentGroupsRequest(courseID: courseID, gradingPeriodID: "1", include: [.assignments])
         let expected = [
             URLQueryItem(name: "include[]", value: "assignments"),
-            URLQueryItem(name: "grading_period_id", value: "1")
+            URLQueryItem(name: "grading_period_id", value: "1"),
+            URLQueryItem(name: "scope_assignments_to_student", value: "true")
         ]
+
         XCTAssertEqual(req.queryItems, expected)
     }
 }

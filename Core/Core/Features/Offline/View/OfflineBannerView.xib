@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24412" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24405"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,14 +20,14 @@
                         <constraint firstAttribute="height" constant="1" id="uUs-E1-c6G"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BNN-0A-qts" userLabel="Offline Container">
+                <view contentMode="scaleToFill" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="BNN-0A-qts" userLabel="Offline Container">
                     <rect key="frame" x="0.0" y="1" width="393" height="30"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="esq-fQ-yUr">
                             <rect key="frame" x="166.66666666666666" y="0.0" width="60" height="30"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="offlineLine" translatesAutoresizingMaskIntoConstraints="NO" id="ohM-Lc-GPb">
-                                    <rect key="frame" x="0.0" y="6.3333333333333321" width="18" height="18"/>
+                                    <rect key="frame" x="0.0" y="6" width="18" height="18"/>
                                     <color key="tintColor" name="textDarkest"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="18" id="4RO-7N-BNJ"/>
@@ -35,7 +35,7 @@
                                     </constraints>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bly-U5-Ddc" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                                    <rect key="frame" x="22" y="8" width="38" height="14.333333333333336"/>
+                                    <rect key="frame" x="22" y="8" width="38" height="14"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" name="textDarkest"/>
                                     <nil key="highlightedColor"/>
@@ -44,28 +44,27 @@
                                     </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="Bly-U5-Ddc" secondAttribute="trailing" id="15T-1g-Ny8"/>
                                 <constraint firstItem="ohM-Lc-GPb" firstAttribute="leading" secondItem="esq-fQ-yUr" secondAttribute="leading" id="Vft-Tx-sNb"/>
                                 <constraint firstItem="Bly-U5-Ddc" firstAttribute="top" secondItem="esq-fQ-yUr" secondAttribute="top" constant="8" id="bKY-k7-IX8"/>
                                 <constraint firstItem="Bly-U5-Ddc" firstAttribute="leading" secondItem="ohM-Lc-GPb" secondAttribute="trailing" constant="4" id="mMc-cR-RDV"/>
                                 <constraint firstItem="ohM-Lc-GPb" firstAttribute="centerY" secondItem="Bly-U5-Ddc" secondAttribute="centerY" id="pzC-a9-96I"/>
+                                <constraint firstAttribute="bottom" secondItem="Bly-U5-Ddc" secondAttribute="bottom" constant="8" id="zc4-mQ-MQK"/>
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" name="backgroundLightest"/>
                     <constraints>
-                        <constraint firstItem="esq-fQ-yUr" firstAttribute="centerY" secondItem="BNN-0A-qts" secondAttribute="centerY" id="NUQ-4p-WDY"/>
+                        <constraint firstAttribute="bottom" secondItem="esq-fQ-yUr" secondAttribute="bottom" id="6R0-jS-yQD"/>
                         <constraint firstItem="esq-fQ-yUr" firstAttribute="centerX" secondItem="BNN-0A-qts" secondAttribute="centerX" id="Tf2-4m-1hx"/>
-                        <constraint firstItem="esq-fQ-yUr" firstAttribute="height" secondItem="BNN-0A-qts" secondAttribute="height" id="jH6-Vb-ACQ"/>
+                        <constraint firstItem="esq-fQ-yUr" firstAttribute="top" secondItem="BNN-0A-qts" secondAttribute="top" id="ZQP-mi-pM0"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jRu-na-zJM" userLabel="Back Online Container">
+                <view contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jRu-na-zJM" userLabel="Back Online Container">
                     <rect key="frame" x="0.0" y="1" width="393" height="30"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Back Online" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhu-dn-Z3K" userLabel="Back Online" customClass="DynamicLabel" customModule="Core" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="7.9999999999999991" width="393" height="13.666666666666664"/>
+                            <rect key="frame" x="161.66666666666666" y="7.9999999999999991" width="70" height="13.666666666666664"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
                             <color key="textColor" name="textLightest"/>
                             <nil key="highlightedColor"/>
@@ -78,10 +77,10 @@
                     <constraints>
                         <constraint firstItem="uhu-dn-Z3K" firstAttribute="centerX" secondItem="jRu-na-zJM" secondAttribute="centerX" id="OUX-3a-CdN"/>
                         <constraint firstItem="uhu-dn-Z3K" firstAttribute="top" secondItem="jRu-na-zJM" secondAttribute="top" constant="8" id="PQn-Ma-EoP"/>
-                        <constraint firstItem="uhu-dn-Z3K" firstAttribute="width" secondItem="jRu-na-zJM" secondAttribute="width" id="oUX-sy-xlc"/>
                     </constraints>
                 </view>
             </subviews>
+            <color key="backgroundColor" name="backgroundLightest"/>
             <accessibility key="accessibilityConfiguration">
                 <accessibilityTraits key="traits" notEnabled="YES"/>
             </accessibility>
@@ -91,7 +90,6 @@
                 <constraint firstItem="RWc-49-a4g" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Ggp-6N-DlP"/>
                 <constraint firstAttribute="bottom" secondItem="jRu-na-zJM" secondAttribute="bottom" id="Std-8c-vd4"/>
                 <constraint firstItem="BNN-0A-qts" firstAttribute="top" secondItem="RWc-49-a4g" secondAttribute="bottom" id="cXo-n5-nw9"/>
-                <constraint firstAttribute="bottom" secondItem="BNN-0A-qts" secondAttribute="bottom" id="dXa-hc-xan"/>
                 <constraint firstItem="jRu-na-zJM" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="gL9-ft-enW"/>
                 <constraint firstAttribute="trailing" secondItem="RWc-49-a4g" secondAttribute="trailing" id="klO-7a-Ied"/>
                 <constraint firstItem="jRu-na-zJM" firstAttribute="top" secondItem="RWc-49-a4g" secondAttribute="bottom" id="mhH-od-mWg"/>
@@ -100,11 +98,11 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
-                <outlet property="offlineContainer" destination="BNN-0A-qts" id="zAB-rJ-xmE"/>
+                <outlet property="offlineContainer" destination="BNN-0A-qts" id="KOk-Ag-uAg"/>
                 <outlet property="offlineIcon" destination="ohM-Lc-GPb" id="cWv-HO-6TD"/>
                 <outlet property="offlineIconCenter" destination="pzC-a9-96I" id="4IA-kW-7wr"/>
                 <outlet property="offlineLabel" destination="Bly-U5-Ddc" id="Gb3-4g-USB"/>
-                <outlet property="onlineContainer" destination="jRu-na-zJM" id="sOc-ze-RXS"/>
+                <outlet property="onlineContainer" destination="jRu-na-zJM" id="eeL-wY-qqn"/>
                 <outlet property="separator" destination="RWc-49-a4g" id="hgB-ZF-RkX"/>
                 <outlet property="separatorHeight" destination="uUs-E1-c6G" id="fvr-8q-Bhm"/>
             </connections>

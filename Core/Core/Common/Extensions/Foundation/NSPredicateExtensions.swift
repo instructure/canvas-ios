@@ -42,6 +42,23 @@ extension NSPredicate {
         self.init(key: keyPath.string, equals: value)
     }
 
+    public convenience init<Root, Value>(_ keyPath: ReferenceWritableKeyPath<Root, Value>, isContainedIn values: [CVarArg]) {
+        self.init(format: "%K IN %@", argumentArray: [keyPath.string, values])
+    }
+}
+
+// MARK: - AND / OR
+
+extension NSPredicate {
+
+    public static func and(_ predicates: NSPredicate...) -> NSPredicate {
+        NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+    }
+
+    public static func or(_ predicates: NSPredicate...) -> NSPredicate {
+        NSCompoundPredicate(orPredicateWithSubpredicates: predicates)
+    }
+
     /**
      - parameters:
         - predicate: The predicate to be combined with `self` using the logical AND operation.

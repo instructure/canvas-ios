@@ -22,31 +22,50 @@ import TestsFoundation
 
 class DashboardInvitationsViewModelTests: CoreTestCase {
 
-    func testFetch() {
+    func testFetching() {
         setupMocks()
+
+        // Initial loading
         let testee = DashboardInvitationsViewModel()
-        let viewModelUpdatedExpectation = expectation(description: "view model updated")
-        let updateSubscription = testee.objectWillChange.sink {
-            viewModelUpdatedExpectation.fulfill()
+        drainMainQueue(thoroughness: 5)
+
+        XCTAssertEqual(testee.items.count, 1)
+
+        if let invitation = testee.items.first {
+            XCTAssertEqual(invitation.id, "enrollmentId")
+            XCTAssertEqual(invitation.name, "test course, Section One")
+        } else {
+            XCTFail("Invitation not found")
         }
 
+        // Given enrollments changed on BE, including more invitations
+        API.resetMocks()
+        setupMocks(invitationsCount: 3)
+
+        // When refresh is requested
         testee.refresh()
+        drainMainQueue(thoroughness: 5)
 
-        wait(for: [viewModelUpdatedExpectation], timeout: 1)
-        XCTAssertEqual(testee.items.count, 1)
-        guard let invitation = testee.items.first else { return }
+        // Then
+        XCTAssertEqual(testee.items.count, 3)
 
-        XCTAssertEqual(invitation.id, "enrollmentId")
-        XCTAssertEqual(invitation.name, "test course, Section One")
-
-        updateSubscription.cancel()
+        testee.items.enumerated().forEach { (offset, invitation) in
+            let expectedID = "enrollmentId" + (offset > 0 ?  "-\(offset)" : "")
+            XCTAssertEqual(invitation.id, expectedID)
+            XCTAssertEqual(invitation.name, "test course, Section One")
+        }
     }
 
     func testItemDismissRemovesItFromItemsArray() {
         setupMocks()
+
         let testee = DashboardInvitationsViewModel()
-        testee.refresh()
-        guard let invitation = testee.items.first else { XCTFail("Invitation not found"); return }
+        drainMainQueue(thoroughness: 5)
+
+        guard let invitation = testee.items.first else {
+            XCTFail("Invitation not found")
+            return
+        }
 
         invitation.accept()
         XCTAssertEqual(testee.items.count, 1)
@@ -55,11 +74,31 @@ class DashboardInvitationsViewModelTests: CoreTestCase {
         }
     }
 
-    private func setupMocks() {
-        let enrollmentsRequest = GetEnrollmentsRequest(context: .currentUser, states: [.invited, .current_and_future])
-        api.mock(enrollmentsRequest, value: [.make(id: "enrollmentId", course_id: "courseId", course_section_id: "sectionId", enrollment_state: .invited)])
+    // MARK: Helpers
+
+    private func setupMocks(invitationsCount: Int = 1) {
+        setupInvitationMocks(count: invitationsCount)
 
         let coursesRequest = GetCoursesRequest(enrollmentState: .invited_or_pending, perPage: 100)
         api.mock(coursesRequest, value: [.make(id: "courseId", name: "test course", sections: [.init(end_at: nil, id: "sectionId", name: "Section One", start_at: nil)])])
+    }
+
+    private func setupInvitationMocks(count: Int) {
+        let enrollmentsRequest = GetEnrollmentsRequest(
+            context: .currentUser,
+            states: [.invited, .current_and_future]
+        )
+
+        let mockEnrollments = (0 ..< count).map { i in
+            APIEnrollment
+                .make(
+                    id: "enrollmentId\(i > 0 ? "-\(i)" : "")",
+                    course_id: "courseId",
+                    course_section_id: "sectionId",
+                    enrollment_state: .invited
+                )
+        }
+
+        api.mock(enrollmentsRequest, value: mockEnrollments)
     }
 }

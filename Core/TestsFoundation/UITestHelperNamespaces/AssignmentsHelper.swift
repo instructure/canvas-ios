@@ -102,7 +102,7 @@ public class AssignmentsHelper: BaseHelper {
         public static var due: XCUIElement { app.find(id: "AssignmentDetails.due") }
         public static var submissionTypes: XCUIElement { app.find(id: "AssignmentDetails.submissionTypes") }
         public static var submissionButton: XCUIElement { app.find(id: "AssignmentDetails.viewSubmissionButton") }
-        public static var submitAssignmentButton: XCUIElement { app.find(id: "AssignmentDetails.submitAssignmentButton") }
+        public static var submitAssignmentButton: XCUIElement { app.find(idStartingWith: "AssignmentDetails.submitAssignmentButton") }
         public static var successfulSubmissionLabel: XCUIElement { app.find(id: "AssignmentDetails.submittedText") }
         public static var allowedExtensions: XCUIElement { app.find(id: "AssignmentDetails.allowedExtensions") }
         public static var attemptsView: XCUIElement { app.find(id: "AssignmentDetails.attemptsView") }
@@ -127,7 +127,7 @@ public class AssignmentsHelper: BaseHelper {
         public static var editButton: XCUIElement { app.find(label: "Edit", type: .button) }
         public static var isLockedLabel: XCUIElement { app.find(label: "This assignment is locked", type: .staticText) }
         public static var pandaLockedImage: XCUIElement { app.find(id: "PandaLocked", type: .image) }
-        public static var submissionAndRubricButton: XCUIElement { app.find(label: "Submission & Rubric", type: .button) }
+        public static var submissionAndFeedbackButton: XCUIElement { app.find(label: "Submission & Feedback", type: .button) }
 
         // Reminder
         public static var reminder: XCUIElement { app.find(id: "AssignmentDetails.reminder") }
@@ -309,7 +309,7 @@ public class AssignmentsHelper: BaseHelper {
 
     public struct Submission {
         public static var navBar: XCUIElement { app.find(id: "Text Entry") }
-        public static var cancelButton: XCUIElement { app.find(id: "screen.dismiss") }
+        public static var doneButton: XCUIElement { app.find(id: "screen.dismiss") }
         public static var submitButton: XCUIElement { app.find(id: "TextSubmission.submitButton") }
         public static var textField: XCUIElement { app.find(id: "RichContentEditor.webView").find(type: .textField) }
         public static var textView: XCUIElement { app.find(label: "Submission text", type: .textView) }

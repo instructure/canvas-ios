@@ -69,9 +69,20 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
     }
 
     func coursesTab() -> UIViewController {
-        let cardView = CoreHostingController(DashboardContainerView(shouldShowGroupList: false,
-                                                               showOnlyTeacherEnrollment: true))
-        let dashboard = DashboardContainerViewController(rootViewController: cardView) { CoreSplitViewController() }
+        let cardView = CoreHostingController(
+            DashboardContainerView(
+                shouldShowGroupList: false,
+                showOnlyTeacherEnrollment: true,
+                isLearnerDashboardEnabledOnInstance: false
+            )
+        )
+        let dashboard = DashboardContainerViewController(rootViewController: cardView) {
+            if #available(iOS 26, *) {
+                return CoreSplitViewController(style: .doubleColumn)
+            } else {
+                return CoreSplitViewController()
+            }
+        }
         dashboard.tabBarItem.title = String(localized: "Courses", bundle: .teacher, comment: "Tab title, max character count is 14")
         dashboard.tabBarItem.image = .coursesTab
         dashboard.tabBarItem.selectedImage = .coursesTabActive

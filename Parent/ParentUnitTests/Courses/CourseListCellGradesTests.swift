@@ -55,6 +55,7 @@ class CourseListCellGradesTests: ParentTestCase {
 
     func testHideGradesWithoutHidingFinalGrades() {
         let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
             multiple_grading_periods_enabled: true,
             totals_for_all_grading_periods_option: false,
             current_grading_period_id: nil)
@@ -64,6 +65,7 @@ class CourseListCellGradesTests: ParentTestCase {
 
     func testHideGradesWithoutHidingFinalGradesWhenQuantitativeDataEnabled() {
         let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
             multiple_grading_periods_enabled: true,
             totals_for_all_grading_periods_option: false,
             current_grading_period_id: nil)
@@ -75,6 +77,7 @@ class CourseListCellGradesTests: ParentTestCase {
 
     func testNoScoreNoGrade() {
         let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
             computed_current_score: nil,
             computed_current_grade: nil,
             multiple_grading_periods_enabled: false)
@@ -84,6 +87,7 @@ class CourseListCellGradesTests: ParentTestCase {
 
     func testNoScoreNoGradeWhenQuantitativeDataEnabled() {
         let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
             computed_current_score: nil,
             computed_current_grade: nil,
             multiple_grading_periods_enabled: false)
@@ -93,6 +97,7 @@ class CourseListCellGradesTests: ParentTestCase {
 
     func testNoScoreWithGrade() {
         let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
             computed_current_score: nil,
             computed_current_grade: "F",
             multiple_grading_periods_enabled: false)
@@ -102,6 +107,7 @@ class CourseListCellGradesTests: ParentTestCase {
 
     func testNoScoreWithGradeWhenQuantitativeDataEnabled() {
         let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
             computed_current_score: nil,
             computed_current_grade: "F",
             multiple_grading_periods_enabled: false)
@@ -111,6 +117,7 @@ class CourseListCellGradesTests: ParentTestCase {
 
     func testScoreWithoutGrade() {
         let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
             computed_current_score: 40,
             computed_current_grade: nil,
             multiple_grading_periods_enabled: false)
@@ -120,6 +127,7 @@ class CourseListCellGradesTests: ParentTestCase {
 
     func testScoreWithoutGradeWhenQuantitativeDataEnabled() {
         let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
             computed_current_score: 40,
             computed_current_grade: nil,
             multiple_grading_periods_enabled: false)
@@ -129,6 +137,7 @@ class CourseListCellGradesTests: ParentTestCase {
 
     func testScoreWithGrade() {
         let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
             computed_current_score: 40,
             computed_current_grade: "C",
             multiple_grading_periods_enabled: false)
@@ -138,6 +147,7 @@ class CourseListCellGradesTests: ParentTestCase {
 
     func testScoreWithGradeWhenQuantitativeDataEnabled() {
         let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
             computed_current_score: 40,
             computed_current_grade: "C",
             multiple_grading_periods_enabled: false)
@@ -149,6 +159,7 @@ class CourseListCellGradesTests: ParentTestCase {
 
     func testActiveGradingPeriodScoreWithGrade() {
         let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
             multiple_grading_periods_enabled: true,
             current_period_computed_current_score: 40,
             current_period_computed_current_grade: "C")
@@ -158,6 +169,7 @@ class CourseListCellGradesTests: ParentTestCase {
 
     func testActiveGradingPeriodScoreWithGradeWhenQuantitativeDataEnabled() {
         let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
             multiple_grading_periods_enabled: true,
             current_period_computed_current_score: 40,
             current_period_computed_current_grade: "C")
@@ -167,6 +179,7 @@ class CourseListCellGradesTests: ParentTestCase {
 
     func testNoActiveGradingPeriodWithTotalsForAllGradingPeriodsOptionScoreWithGrade() {
         let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
             computed_current_score: 40,
             computed_current_grade: "C",
             multiple_grading_periods_enabled: true,
@@ -178,6 +191,7 @@ class CourseListCellGradesTests: ParentTestCase {
 
     func testNoActiveGradingPeriodWithTotalsForAllGradingPeriodsOptionScoreWithGradeWhenQuantitativeDataEnabled() {
         let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
             computed_current_score: 40,
             computed_current_grade: "C",
             multiple_grading_periods_enabled: true,
@@ -189,6 +203,7 @@ class CourseListCellGradesTests: ParentTestCase {
 
     func testNoActiveGradingPeriodWithoutTotalsForAllGradingPeriodsOption() {
         let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
             multiple_grading_periods_enabled: true,
             totals_for_all_grading_periods_option: false,
             current_grading_period_id: nil)
@@ -198,10 +213,63 @@ class CourseListCellGradesTests: ParentTestCase {
 
     func testNoActiveGradingPeriodWithoutTotalsForAllGradingPeriodsOptionWhenQuantitativeDataEnabled() {
         let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
             multiple_grading_periods_enabled: true,
             totals_for_all_grading_periods_option: false,
             current_grading_period_id: nil)
         ], settings: .make(restrict_quantitative_data: true)))
         XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "N/A")
+    }
+
+    // MARK: - Enrollment Lookup
+
+    func testEnrollmentLookupMatchesWhenIdIsNil() {
+        let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
+            computed_current_score: 80,
+            computed_current_grade: "B",
+            multiple_grading_periods_enabled: false)
+        ]))
+        XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "B   80%")
+    }
+
+    func testEnrollmentLookupSkipsEnrollmentWithNonNilId() {
+        let course = Course.make(from: .make(enrollments: [.make(
+            id: "1",
+            computed_current_score: 80,
+            computed_current_grade: "B",
+            multiple_grading_periods_enabled: false)
+        ]))
+        XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "")
+    }
+
+    func testEnrollmentLookupSkipsEnrollmentWithWrongStudentID() {
+        let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
+            user_id: "99",
+            computed_current_score: 80,
+            computed_current_grade: "B",
+            multiple_grading_periods_enabled: false)
+        ]))
+        XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "")
+    }
+
+    func testEnrollmentLookupSkipsNonStudentEnrollment() {
+        let course = Course.make(from: .make(enrollments: [.make(
+            id: nil,
+            type: "TeacherEnrollment",
+            computed_current_score: 80,
+            computed_current_grade: "B",
+            multiple_grading_periods_enabled: false)
+        ]))
+        XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "")
+    }
+
+    func testEnrollmentLookupPicksEnrollmentWithNilIdAmongMultiple() {
+        let course = Course.make(from: .make(enrollments: [
+            .make(id: "1", user_id: "12", computed_current_score: 90, computed_current_grade: "A", multiple_grading_periods_enabled: false),
+            .make(id: nil, user_id: "12", computed_current_score: 80, computed_current_grade: "B", multiple_grading_periods_enabled: false)
+        ]))
+        XCTAssertEqual(testee.displayGrade(course, studentID: "12"), "B   80%")
     }
 }

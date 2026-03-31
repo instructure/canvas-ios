@@ -29,8 +29,8 @@ class GetFeatureFlagStateTests: CoreTestCase {
 
         // Then
         XCTAssertEqual(
-            GetFeatureFlagState(featureName: .studioEmbedImprovements, context: context).request.path,
-            GetFeatureFlagStateRequest(featureName: .studioEmbedImprovements, context: context).path
+            GetFeatureFlagState(featureName: .assignmentEnhancements, context: context).request.path,
+            GetFeatureFlagStateRequest(featureName: .assignmentEnhancements, context: context).path
         )
     }
 
@@ -38,7 +38,7 @@ class GetFeatureFlagStateTests: CoreTestCase {
         // Given
         let context = Context(.course, id: "123")
         let state = APIFeatureFlagState(
-            feature: "rce_studio_embed_improvements",
+            feature: "assignments_2_student",
             state: .on,
             locked: false,
             context_id: "123",
@@ -46,7 +46,7 @@ class GetFeatureFlagStateTests: CoreTestCase {
         )
 
         // When
-        let useCase = GetFeatureFlagState(featureName: .studioEmbedImprovements, context: context)
+        let useCase = GetFeatureFlagState(featureName: .assignmentEnhancements, context: context)
         useCase.write(response: state, urlResponse: nil, to: databaseClient)
 
         // Then 
@@ -55,7 +55,7 @@ class GetFeatureFlagStateTests: CoreTestCase {
 
         let flag = try XCTUnwrap(all.first)
         XCTAssertNotNil(flag)
-        XCTAssertEqual(flag.name, "rce_studio_embed_improvements")
+        XCTAssertEqual(flag.name, "assignments_2_student")
         XCTAssertEqual(flag.enabled, true)
         XCTAssertEqual(flag.context?.canvasContextID, context.canvasContextID)
     }
@@ -64,7 +64,7 @@ class GetFeatureFlagStateTests: CoreTestCase {
         // Given
         let context = Context(.course, id: "123")
         let state = APIFeatureFlagState(
-            feature: "rce_studio_embed_improvements",
+            feature: "assignments_2_student",
             state: .off,
             locked: false,
             context_id: "123",
@@ -72,7 +72,7 @@ class GetFeatureFlagStateTests: CoreTestCase {
         )
 
         // When
-        let useCase = GetFeatureFlagState(featureName: .studioEmbedImprovements, context: context)
+        let useCase = GetFeatureFlagState(featureName: .assignmentEnhancements, context: context)
         useCase.write(response: state, urlResponse: nil, to: databaseClient)
 
         // Then
@@ -81,7 +81,7 @@ class GetFeatureFlagStateTests: CoreTestCase {
 
         let flag = try XCTUnwrap(all.first)
         XCTAssertNotNil(flag)
-        XCTAssertEqual(flag.name, "rce_studio_embed_improvements")
+        XCTAssertEqual(flag.name, "assignments_2_student")
         XCTAssertEqual(flag.enabled, false)
         XCTAssertEqual(flag.context?.canvasContextID, context.canvasContextID)
     }
@@ -90,7 +90,7 @@ class GetFeatureFlagStateTests: CoreTestCase {
         // Given
         let context = Context(.course, id: "123")
         let state = APIFeatureFlagState(
-            feature: "rce_studio_embed_improvements",
+            feature: "assignments_2_student",
             state: .allowed_on,
             locked: false,
             context_id: "234",
@@ -98,7 +98,7 @@ class GetFeatureFlagStateTests: CoreTestCase {
         )
 
         // When
-        let useCase = GetFeatureFlagState(featureName: .studioEmbedImprovements, context: context)
+        let useCase = GetFeatureFlagState(featureName: .assignmentEnhancements, context: context)
         useCase.write(response: state, urlResponse: nil, to: databaseClient)
 
         // Then
@@ -107,7 +107,7 @@ class GetFeatureFlagStateTests: CoreTestCase {
 
         let flag = try XCTUnwrap(all.first)
         XCTAssertNotNil(flag)
-        XCTAssertEqual(flag.name, "rce_studio_embed_improvements")
+        XCTAssertEqual(flag.name, "assignments_2_student")
         XCTAssertEqual(flag.enabled, true)
         XCTAssertEqual(flag.context?.canvasContextID, context.canvasContextID)
     }
@@ -116,7 +116,7 @@ class GetFeatureFlagStateTests: CoreTestCase {
         // Given
         let context = Context(.course, id: "123")
         let state = APIFeatureFlagState(
-            feature: "rce_studio_embed_improvements",
+            feature: "assignments_2_student",
             state: .off,
             locked: false,
             context_id: "234",
@@ -124,7 +124,7 @@ class GetFeatureFlagStateTests: CoreTestCase {
         )
 
         // When
-        let useCase = GetFeatureFlagState(featureName: .studioEmbedImprovements, context: context)
+        let useCase = GetFeatureFlagState(featureName: .assignmentEnhancements, context: context)
         useCase.write(response: state, urlResponse: nil, to: databaseClient)
 
         // Then
@@ -133,7 +133,7 @@ class GetFeatureFlagStateTests: CoreTestCase {
 
         let flag = try XCTUnwrap(all.first)
         XCTAssertNotNil(flag)
-        XCTAssertEqual(flag.name, "rce_studio_embed_improvements")
+        XCTAssertEqual(flag.name, "assignments_2_student")
         XCTAssertEqual(flag.enabled, false)
         XCTAssertEqual(flag.context?.canvasContextID, context.canvasContextID)
     }

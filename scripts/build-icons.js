@@ -187,12 +187,17 @@ for (const icon of whitelist) {
     run(`mkdir -p ${folder}`)
     // Icons in tab & nav bar need intrinsic size of 24x24 with 2px internal padding
     // TODO: Could be run through SVGO after resizing for even smaller files
-    fs.writeFileSync(`${folder}/${name}.svg`, `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-<g transform="matrix(${20/1920} 0 0 ${20/1920} 2 2)">${
-  fs.readFileSync(filepath, 'utf8').replace(/<\/?svg[^>]*>/gi, '').trim()
-}</g>
-</svg>`.trim().replace(/>\s+</, '><'))
+    const svgSrc = fs.readFileSync(filepath, 'utf8')
+    const svgTagAttrs = (svgSrc.match(/<svg([^>]*)>/) || ['', ''])[1]
+    const svgFill = (svgTagAttrs.match(/\bfill="([^"]*)"/) || [])[1] ?? null
+    const svgStroke = (svgTagAttrs.match(/\bstroke="([^"]*)"/) || [])[1] ?? null
+    const iconColor = '#D852BE'
+    const gFill = svgFill === 'none' ? 'none' : iconColor
+    const gStrokeAttr = (svgStroke && svgStroke !== 'none') ? ` stroke="${iconColor}"` : ''
+    let inner = svgSrc.replace(/<\/?svg[^>]*>/gi, '').trim()
+    inner = inner.replace(/\bfill="(?!none")[^"]*"/g, `fill="${iconColor}"`)
+    inner = inner.replace(/\bstroke="(?!none")[^"]*"/g, `stroke="${iconColor}"`)
+    fs.writeFileSync(`${folder}/${name}.svg`, (`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="${gFill}"${gStrokeAttr} transform="matrix(${20/1920} 0 0 ${20/1920} 2 2)">${inner}</g></svg>`).replace(/>\s+</, '><'))
     fs.writeFileSync(`${folder}/Contents.json`, `{
   "images" : [
     {

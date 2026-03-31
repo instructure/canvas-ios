@@ -71,7 +71,7 @@ class StudentAssignmentDetailsViewControllerTests: StudentTestCase {
         XCTAssertEqual(viewController.quizTimeLimitLabel?.text, "Time Limit:")
         XCTAssertEqual(viewController.submittedLabel?.text, "Successfully submitted!")
         XCTAssertEqual(viewController.submittedDetailsLabel?.text, "Your submission is now waiting to be graded.")
-        XCTAssertEqual(viewController.submissionButton?.title(for: .normal), "Submission & Rubric")
+        XCTAssertEqual(viewController.submissionButton?.title(for: .normal), "Submission & Feedback")
         XCTAssertNotNil(viewController.lockedIconImageView.image)
     }
 

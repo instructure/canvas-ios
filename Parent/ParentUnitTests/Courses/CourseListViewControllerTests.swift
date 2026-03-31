@@ -31,7 +31,7 @@ class CourseListViewControllerTests: ParentTestCase {
                 id: "1", name: "Course A", course_code: "CRS-1",
                 enrollments: [
                     .make(
-                        id: "1",
+                        id: nil,
                         course_id: "1"
                     )
                 ]
@@ -40,7 +40,7 @@ class CourseListViewControllerTests: ParentTestCase {
                 id: "2", name: "Course B", course_code: "CRS-2",
                 enrollments: [
                     .make(
-                        id: "2",
+                        id: nil,
                         course_id: "2",
                         multiple_grading_periods_enabled: true,
                         current_grading_period_id: "2",
@@ -53,7 +53,7 @@ class CourseListViewControllerTests: ParentTestCase {
                 id: "3", name: "Course C", course_code: "CRS-3",
                 enrollments: [
                     .make(
-                        id: "3",
+                        id: nil,
                         course_id: "3",
                         computed_current_score: 85,
                         computed_current_grade: nil,
@@ -67,7 +67,7 @@ class CourseListViewControllerTests: ParentTestCase {
                 id: "4", name: "Course D", course_code: "CRS-4",
                 enrollments: [
                     .make(
-                        id: "4",
+                        id: nil,
                         course_id: "4",
                         computed_current_score: nil,
                         computed_current_grade: "C",
@@ -81,7 +81,7 @@ class CourseListViewControllerTests: ParentTestCase {
                 id: "5", name: "Course E", course_code: "CRS-5",
                 enrollments: [
                     .make(
-                        id: "5",
+                        id: nil,
                         course_id: "5",
                         computed_final_score: nil,
                         computed_final_grade: "C",
@@ -95,7 +95,7 @@ class CourseListViewControllerTests: ParentTestCase {
                 id: "6", name: "Course F (graded but hidden)", course_code: "CRS-6",
                 enrollments: [
                     .make(
-                        id: "6",
+                        id: nil,
                         course_id: "6",
                         computed_final_score: 85,
                         computed_final_grade: nil

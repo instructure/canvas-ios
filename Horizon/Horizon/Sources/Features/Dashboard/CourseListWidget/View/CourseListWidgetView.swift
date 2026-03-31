@@ -83,7 +83,6 @@ struct CourseListWidgetView: View {
                         ForEach(Array(viewModel.allowedCourse.enumerated()), id: \.element.id) { index, course in
                             CourseListWidgetItemView(
                                 model: CourseListWidgetModel(from: course),
-                                width: size - 48,
                                 currentIndex: index,
                                 // We should set a static value for the total course count depending on the maximum number of courses that should be visible.
                                 totalCount: min(viewModel.allowedCourse.count, 3),
@@ -92,7 +91,7 @@ struct CourseListWidgetView: View {
                                     viewModel.navigateToCourseDetails(
                                         id: courseId,
                                         enrollmentID: course.enrollmentID,
-                                        programID: course.programs.first?.id,
+                                        programName: course.programs.first?.name,
                                         viewController: viewController
                                     )
                                 },

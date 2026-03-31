@@ -20,6 +20,7 @@
 @testable import Core
 import XCTest
 import Combine
+import TestsFoundation
 
 final class CompletedWidgetUseCaseTests: HorizonTestCase {
 
@@ -29,7 +30,7 @@ final class CompletedWidgetUseCaseTests: HorizonTestCase {
         let testee = CompletedWidgetInteractorLive(completedWidget: useCase)
 
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            DomainJWTService.JWTTokenRequest(),
             value: DomainJWTService.JWTTokenRequest.Result(token: HActivitiesWidgetStubs.token)
         )
         api.mock(GetHActivitiesWidgetRequest(), value: HActivitiesWidgetStubs.response)
@@ -62,7 +63,7 @@ final class CompletedWidgetUseCaseTests: HorizonTestCase {
         let testee = CompletedWidgetInteractorLive(completedWidget: useCase)
 
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            DomainJWTService.JWTTokenRequest(),
             value: DomainJWTService.JWTTokenRequest.Result(token: HActivitiesWidgetStubs.token)
         )
         api.mock(GetHActivitiesWidgetRequest(), value: emptyResponse)

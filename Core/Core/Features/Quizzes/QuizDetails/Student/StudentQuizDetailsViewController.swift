@@ -25,7 +25,7 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
     @IBOutlet weak var dueLabel: UILabel!
     @IBOutlet weak var instructionsHeadingLabel: UILabel!
     @IBOutlet weak var instructionsContainer: UIView!
-    let instructionsWebView = CoreWebView()
+    let instructionsWebView = CoreWebView(features: [])
     @IBOutlet weak var loadingView: CircleProgressView!
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var questionsLabel: UILabel!
@@ -126,6 +126,22 @@ public class StudentQuizDetailsViewController: ScreenViewTrackableViewController
         super.viewWillAppear(animated)
         if #unavailable(iOS 26) {
             navigationController?.navigationBar.useContextColor(color)
+        }
+
+        if #available(iOS 26, *) {
+            takeButton.layer.cornerRadius = 25
+
+            NSLayoutConstraint.activate([
+                takeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
+                takeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+                takeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -8)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                takeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+                takeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+                takeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+            ])
         }
     }
 

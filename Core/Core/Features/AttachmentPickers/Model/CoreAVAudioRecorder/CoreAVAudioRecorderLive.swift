@@ -35,7 +35,7 @@ class CoreAVAudioRecorderLive: CoreAVAudioRecorder {
         }
     }
 
-    required init(url: URL, settings: [String: Int]) throws {
+    required init(url: URL, settings: [String: Any]) throws {
         self.audioRecorder = try AVAudioRecorder(url: url, settings: settings)
     }
 

@@ -20,7 +20,7 @@ import Combine
 import CoreData
 import SwiftUI
 
-final class FileUploadNotificationCardListViewModel: ObservableObject {
+public final class FileUploadNotificationCardListViewModel: ObservableObject {
     // MARK: - Dependencies
 
     private let environment: AppEnvironment
@@ -66,7 +66,7 @@ final class FileUploadNotificationCardListViewModel: ObservableObject {
 
     // MARK: - Init
 
-    init(environment: AppEnvironment = .shared) {
+    public init(environment: AppEnvironment = .shared) {
         self.environment = environment
         self.localViewContext = {
             let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
@@ -109,6 +109,13 @@ final class FileUploadNotificationCardListViewModel: ObservableObject {
         }
     }
 
+    private func calculateProgress(for submission: FileSubmission) -> Float? {
+        guard submission.state == .uploading || submission.state == .waiting else { return nil }
+        let totalSize = submission.totalSize
+        guard totalSize > 0 else { return 0 }
+        return Float(submission.totalUploadedSize) / Float(totalSize)
+    }
+
     private func getNotificationCardItemState(
         from state: FileSubmission.State
     ) -> FileUploadNotificationCardItemViewModel.State {
@@ -125,6 +132,9 @@ final class FileUploadNotificationCardListViewModel: ObservableObject {
         return FileUploadNotificationCardItemViewModel(
             id: submission.objectID,
             assignmentName: submission.assignmentName,
+            courseID: submission.courseID,
+            assignmentID: submission.assignmentID,
+            progress: calculateProgress(for: submission),
             state: getNotificationCardItemState(from: submission.state),
             isHiddenByUser: submission.isHiddenOnDashboard,
             cardDidTap: { [weak self] submissionID, viewController in

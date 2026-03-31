@@ -42,7 +42,7 @@ final class GetHTimeSpentWidgetUseCaseTests: HorizonTestCase {
         testee = GetHTimeSpentWidgetUseCase(journey: DomainServiceMock(result: .success(api)))
         let expectation = expectation(description: "Wait for completion")
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            DomainJWTService.JWTTokenRequest(),
             value: DomainJWTService.JWTTokenRequest.Result(token: HTimeSpentWidgetStubs.token)
         )
         api.mock(GetHTimeSpentWidgetRequest(), value: HTimeSpentWidgetStubs.response)
@@ -62,7 +62,7 @@ final class GetHTimeSpentWidgetUseCaseTests: HorizonTestCase {
         testee = GetHTimeSpentWidgetUseCase(journey: domainService)
         let expectation = expectation(description: "Wait for completion")
         api.mock(
-            DomainJWTService.JWTTokenRequest(domainServiceOption: .journey),
+            DomainJWTService.JWTTokenRequest(),
             value: DomainJWTService.JWTTokenRequest.Result(token: HTimeSpentWidgetStubs.token),
             error: DomainJWTService.Issue.unableToGetToken
         )

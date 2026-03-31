@@ -18,16 +18,18 @@
 
 import Core
 
-class RedwoodUpdateNoteMutation: APIGraphQLRequestable {
-    let variables: Input
+final class RedwoodUpdateNoteMutation: APIGraphQLRequestable, RedwoodProxyRequestable {
+    typealias Response = RedwoodUpdateNoteMutationResponse
 
-    var path: String {
-        "/graphql"
-    }
+    public let innerVariables: UpdateNoteVariables
+    public static let operationName: String = "RedwoodUpdateNote"
+    public static let innerOperationName: String = "UpdateNote"
+
+    var path: String { "/graphql" }
 
     var headers: [String: String?] {
         [
-            "x-apollo-operation-name": "UpdateNote",
+            "x-apollo-operation-name": RedwoodUpdateNoteMutation.operationName,
             HttpHeader.accept: "application/json"
         ]
     }
@@ -38,9 +40,9 @@ class RedwoodUpdateNoteMutation: APIGraphQLRequestable {
         reaction: [String],
         highlightData: NotebookHighlight?
     ) {
-        self.variables = Input(
+        self.innerVariables = UpdateNoteVariables(
             id: id,
-            input: .init(
+            input: UpdateRedwoodNote(
                 userText: userText,
                 reaction: reaction,
                 highlightData: highlightData
@@ -48,36 +50,45 @@ class RedwoodUpdateNoteMutation: APIGraphQLRequestable {
         )
     }
 
-    public static let operationName: String = "UpdateNote"
-    public static var query: String = """
-    mutation \(operationName)($id: String!, $input: UpdateNoteInput!) {
-        updateNote(id: $id, input: $input) {
-            id
-            courseId
-            objectId
-            objectType
-            userText
-            reaction
-            updatedAt
-            highlightData
+    public static var innerQuery: String {
+        """
+        mutation UpdateNote($id: String!, $input: UpdateNoteInput!) {
+            updateNote(id: $id, input: $input) {
+                id
+                courseId
+                objectId
+                objectType
+                userText
+                reaction
+                updatedAt
+                highlightData
+            }
         }
+        """
     }
-    """
+}
 
-    typealias Response = RedwoodUpdateNoteMutationResponse
+// MARK: - Request Models
 
-    struct Input: Codable, Equatable {
+extension RedwoodUpdateNoteMutation {
+    struct UpdateNoteVariables: Codable, Equatable {
         let id: String
         let input: UpdateRedwoodNote
     }
 }
 
-// MARK: - Codeables
-
 struct RedwoodUpdateNoteMutationResponse: Codable {
-    let data: UpdateNote
+    let data: Response
 
-    struct UpdateNote: Codable {
+    struct Response: Codable {
+        let executeRedwoodQuery: RedwoodProxyDataWrapper
+    }
+
+    struct RedwoodProxyDataWrapper: Codable {
+        let data: UpdateNoteContainer
+    }
+
+    struct UpdateNoteContainer: Codable {
         let updateNote: RedwoodNote
     }
 }

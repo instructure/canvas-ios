@@ -61,27 +61,27 @@ public struct MultiSelectionView: View {
 
     @ViewBuilder
     public var body: some View {
-        VStack(spacing: 0) {
-            Section {
+        Section {
+            VStack(spacing: 0) {
                 ForEach(viewModel.allOptions) { item in
                     optionCell(with: item)
                         .identifier(identifierGroup, item.id)
                 }
-            } header: {
-                if hasAllSelectionButton {
-                    InstUI.ListSectionHeader(
-                        title: viewModel.title,
-                        itemCount: viewModel.optionCount,
-                        buttonLabel: Text(viewModel.allSelectionButtonTitle),
-                        buttonAction: { viewModel.didTapAllSelectionButton.send() }
-                    )
-                } else {
-                    InstUI.ListSectionHeader(title: viewModel.title, itemCount: viewModel.optionCount)
-                }
+            }
+            .accessibilityElement(children: .contain)
+            .accessibilityLabel(viewModel.listLevelAccessibilityLabel)
+        } header: {
+            if hasAllSelectionButton {
+                InstUI.ListSectionHeader(
+                    title: viewModel.title,
+                    itemCount: viewModel.optionCount,
+                    buttonLabel: Text(viewModel.allSelectionButtonTitle),
+                    buttonAction: { viewModel.didTapAllSelectionButton.send() }
+                )
+            } else {
+                InstUI.ListSectionHeader(title: viewModel.title, itemCount: viewModel.optionCount)
             }
         }
-        .accessibilityElement(children: .contain)
-        .accessibilityLabel(viewModel.listLevelAccessibilityLabel)
     }
 
     @ViewBuilder
