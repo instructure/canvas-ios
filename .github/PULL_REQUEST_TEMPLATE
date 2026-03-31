@@ -1,9 +1,9 @@
 ## PR Info
 
-refs:
-builds:
-affects:
-release note:
+refs: [MBL-](https://instructure.atlassian.net/browse/MBL-)
+builds: Student, Teacher, Parent
+affects: Student, Teacher, Parent
+release note: 
 
 --- edit or delete this section ---
 ## Screenshots
