@@ -40,10 +40,8 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         return env
     }()
 
-    private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
-
-    private lazy var analyticsTracker: PendoAnalyticsTracker = {
-        .init(environment: environment)
+    private lazy var analyticsHandler: AnalyticsHandler = {
+        .live(environment: environment)
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -77,10 +75,10 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        if url.scheme?.range(of: "pendo") != nil {
-            analyticsTracker.initManager(with: url)
+        if analyticsHandler.handlePendoPairingModeUrl(url: url) {
             return true
         }
+
         if url.scheme == "canvas-parent" {
             environment.router.route(to: url, from: topMostViewController()!, options: .modal(.fullScreen, embedInNav: true, addDoneButton: true))
         }
@@ -97,12 +95,6 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
-        environmentFeatureFlags = environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
-        environmentFeatureFlags?.refresh(force: true) { _ in
-            defer { self.environmentFeatureFlags = nil }
-            guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
-            self.initializeTracking(environmentFeatureFlags: envFlags.all)
-        }
 
         updateInterfaceStyle(for: window)
         CoreWebView.keepCookieAlive(for: environment)
@@ -116,6 +108,8 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
         Self.getPreferences(env: environment)
             .flatMap { user in Self.checkLocalizationChange(locale: user.locale) }
+            .flatMap { Self.loadFeatureFlags() }
+            .flatMap { self.analyticsHandler.initializeTracking() }
             .flatMap { Self.fetchBrandVariables() }
             .sink(
                 receiveCompletion: { [weak self] completion in
@@ -136,6 +130,15 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
                 receiveValue: {}
             )
             .store(in: &subscriptions)
+    }
+
+    static func loadFeatureFlags() -> AnyPublisher<Void, Error> {
+        ReactiveStore(
+            useCase: GetEnvironmentFeatureFlags(context: Context.currentUser)
+        )
+        .getEntities(ignoreCache: true)
+        .mapToVoid()
+        .eraseToAnyPublisher()
     }
 
     static func fetchBrandVariables() -> AnyPublisher<Void, Never> {
@@ -211,7 +214,7 @@ extension ParentAppDelegate: LoginDelegate {
 
     func changeUser() {
         guard let window = window, window.isShowingLoginStartViewController == false else { return }
-        disableTracking()
+        analyticsHandler.endTracking()
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromLeft, animations: {
             window.rootViewController = LoginNavigationController.create(loginDelegate: self, app: .parent)
             RemoteLogger.shared.logBreadcrumb(route: "/login", viewController: window.rootViewController)
@@ -251,7 +254,7 @@ extension ParentAppDelegate: LoginDelegate {
     }
 
     func userDidStopActing(as session: LoginSession) {
-        disableTracking()
+        analyticsHandler.endTracking()
         LoginSession.remove(session)
         // TODO: Deregister push notifications?
         guard environment.currentSession == session else { return }
@@ -260,7 +263,7 @@ extension ParentAppDelegate: LoginDelegate {
     }
 
     func userDidLogout(session: LoginSession) {
-        disableTracking()
+        analyticsHandler.endTracking()
         let wasCurrent = environment.currentSession == session
         API(session).makeRequest(DeleteLoginOAuthRequest(), refreshToken: false) { _, _, _ in }
         userDidStopActing(as: session)
@@ -321,7 +324,7 @@ extension ParentAppDelegate {
         if FirebaseOptions.defaultOptions()?.apiKey != nil {
             FirebaseApp.configure()
             configureRemoteConfig()
-            Analytics.shared.handler = self
+            Analytics.shared.handler = analyticsHandler
             RemoteLogger.shared.handler = self
         }
     }
@@ -336,26 +339,6 @@ extension ParentAppDelegate: RemoteLogHandler {
     func handleError(_ name: String, reason: String) {
         let model = ExceptionModel(name: name, reason: reason)
         Firebase.Crashlytics.crashlytics().record(exceptionModel: model)
-    }
-}
-
-extension ParentAppDelegate: AnalyticsHandler {
-    func handleEvent(_: String, parameters _: [String: Any]?) {}
-
-    private func initializeTracking(environmentFeatureFlags: [FeatureFlag]) {
-        guard !ProcessInfo.isUITest else { return }
-
-        let isTrackingEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
-
-        if isTrackingEnabled {
-            analyticsTracker.startSession()
-        } else {
-            analyticsTracker.endSession()
-        }
-    }
-
-    private func disableTracking() {
-        analyticsTracker.endSession()
     }
 }
 
