@@ -144,8 +144,9 @@ if [[ -z "$COV_STATUS" ]]; then
 fi
 
 # ── Build metadata ────────────────────────────────────────────────────────────
-COMMIT_SHA=$(git rev-parse --short HEAD)
-COMMIT_MSG=$(git log -1 --format="%s")
+PR_HEAD=$(git rev-parse HEAD^2 >/dev/null 2>&1 && echo HEAD^2 || echo HEAD)
+COMMIT_SHA=$(git rev-parse --short "$PR_HEAD")
+COMMIT_MSG=$(git log -1 --format="%s" "$PR_HEAD")
 BUILD_TIME="$(date -u "+%b %d %H:%M UTC") ($(TZ="America/Denver" date "+%m/%d %I:%M %p %Z"))"
 
 # ── Build report ──────────────────────────────────────────────────────────────
