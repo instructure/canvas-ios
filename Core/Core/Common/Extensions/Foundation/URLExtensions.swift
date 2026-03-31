@@ -284,18 +284,16 @@ public extension URL {
     }
 
     /// Writes the result of the `videoPreview()` method to the given url in png format.
-    func writeVideoPreview(to url: URL) throws {
-        Task {
-            let previewImage = try await videoPreview()
-            guard let imageData = previewImage.pngData() else {
-                throw NSError.instructureError("Failed to convert preview data to png.")
-            }
-            try FileManager.default.createDirectory(
-                at: url.deletingLastPathComponent(),
-                withIntermediateDirectories: true
-            )
-            try imageData.write(to: url)
+    func writeVideoPreview(to url: URL) async throws {
+        let previewImage = try await videoPreview()
+        guard let imageData = previewImage.pngData() else {
+            throw NSError.instructureError("Failed to convert preview data to png.")
         }
+        try FileManager.default.createDirectory(
+            at: url.deletingLastPathComponent(),
+            withIntermediateDirectories: true
+        )
+        try imageData.write(to: url)
     }
 
     /// Returns a copy of URL without any query parameter or fragment

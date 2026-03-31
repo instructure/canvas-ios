@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import Combine
 
 public protocol StudioVideoPosterInteractor {
 
@@ -25,11 +26,11 @@ public protocol StudioVideoPosterInteractor {
         isVideoCached: Bool,
         mediaFolder: URL,
         videoFile: URL
-    ) -> URL?
+    ) -> AnyPublisher<URL?, Never>
 }
 
 public class StudioVideoPosterInteractorLive: StudioVideoPosterInteractor {
-    public typealias PosterFactory = (_ videoFile: URL, _ posterLocation: URL) throws -> Void
+    public typealias PosterFactory = (_ videoFile: URL, _ posterLocation: URL) async throws -> Void
 
     private let analytics: RemoteLogger
     private let posterFactory: PosterFactory
@@ -49,37 +50,42 @@ public class StudioVideoPosterInteractorLive: StudioVideoPosterInteractor {
         isVideoCached: Bool,
         mediaFolder: URL,
         videoFile: URL
-    ) -> URL? {
+    ) -> AnyPublisher<URL?, Never> {
         let posterLocation = mediaFolder.appendingPathComponent(
             "poster.png",
             isDirectory: false
         )
 
         if isVideoCached {
-            return posterLocation
+            return Just(posterLocation)
+                .eraseToAnyPublisher()
         }
 
-        do {
-            try posterFactory(videoFile, posterLocation)
-        } catch let error {
-            if error.isSourceTrackMissing == false {
-                // Because we swallow all errors they won't be caught and reported
-                // at a higher level so we have to manually report it here to analytics.
-                analytics.logError(
-                    name: "Studio Offline Sync Failed",
-                    reason: error.localizedDescription
-                )
+        return Future<URL?, Never> { [weak self] promise in
+            Task {
+                do {
+                    try await self?.posterFactory(videoFile, posterLocation)
+                    promise(.success(posterLocation))
+                } catch let error {
+                    if error.isSourceTrackMissing == false {
+                            // Because we swallow all errors they won't be caught and reported
+                            // at a higher level so we have to manually report it here to analytics.
+                        self?.analytics.logError(
+                            name: "Studio Offline Sync Failed",
+                            reason: error.localizedDescription
+                        )
+                    }
+                    promise(.success(nil))
+                }
             }
-            return nil
         }
-
-        return posterLocation
+        .eraseToAnyPublisher()
     }
 
     public static func defaultPosterFactory(
         _ videoFile: URL,
         _ posterLocation: URL
-    ) throws {
-        try videoFile.writeVideoPreview(to: posterLocation)
+    ) async throws {
+        try await videoFile.writeVideoPreview(to: posterLocation)
     }
 }
