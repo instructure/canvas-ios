@@ -8,12 +8,10 @@
     "coverage": "./scripts/coverage/coverage.js",
     "danger": "danger",
     "export-translations": "./scripts/translations/export.js",
-    "graphql-schema": "./scripts/get-graphql-schema.js",
     "import-translations": "./scripts/translations/import.js",
     "label-released": "./scripts/update-jira-issues.js label-released",
     "release": "./scripts/build_automation/release.sh",
     "released": "./scripts/update-jira-issues.js released",
-    "svg2pdf": "./scripts/svg2pdf.js",
     "test": "./scripts/coverage/coverage.js --test",
     "update-headers": "./scripts/update-headers.js",
     "terminal-service": "./scripts/terminal-server/start.sh"
@@ -29,14 +27,12 @@
     "jira-client": "^8.2.2",
     "jsdom": "^29.0.1",
     "mkdirp": "^3.0.1",
-    "pdfkit": "^0.18.0",
     "ts-loader": "^9.5.4",
     "typescript": "^6.0.2",
     "webpack": "^5.105.4",
     "webpack-cli": "^7.0.2"
   },
   "dependencies": {
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react": "^19.2.4"
   }
 }
