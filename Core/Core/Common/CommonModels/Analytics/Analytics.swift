@@ -18,10 +18,6 @@
 
 import Foundation
 
-public protocol AnalyticsHandler: AnyObject {
-    func handleEvent(_ name: String, parameters: [String: Any]?)
-}
-
 public class Analytics: NSObject {
     public static var shared: Analytics = Analytics()
 

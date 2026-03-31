@@ -22663,6 +22663,15 @@
         }
       }
     },
+    "• Full Control: You can adjust these settings at any time." : {
+
+    },
+    "• No Data Selling: Your information is never sold to third parties." : {
+
+    },
+    "• No Personal Profiles: We do not track your identity or show advertisements." : {
+
+    },
     "+%d" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -42590,6 +42599,9 @@
           }
         }
       }
+    },
+    "Allow" : {
+
     },
     "Allow liking" : {
       "extractionState" : "stale",
@@ -190494,6 +190506,9 @@
           }
         }
       }
+    },
+    "Help us build a better app" : {
+
     },
     "Help your students with this assignment by adding instructions." : {
       "localizations" : {
@@ -422727,6 +422742,9 @@
           }
         }
       }
+    },
+    "We collect anonymous application data to help our team identify technical issues and optimize app features." : {
+
     },
     "We couldn't add your Event at this time. You can try it again." : {
       "localizations" : {

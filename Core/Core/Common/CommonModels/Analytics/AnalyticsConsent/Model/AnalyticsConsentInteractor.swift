@@ -20,16 +20,50 @@ import Combine
 import Foundation
 
 public protocol AnalyticsConsentInteractor {
+    func isTrackingEnabled() -> AnyPublisher<Bool?, Error>
     func getConsent() -> AnyPublisher<Bool?, Error>
     func setConsent(_ value: Bool) -> AnyPublisher<Void, Error>
 }
 
 public class AnalyticsConsentInteractorLive: AnalyticsConsentInteractor {
 
+    private let featureFlagStore: ReactiveStore<GetEnvironmentFeatureFlags>
+    private let consentStore: ReactiveStore<GetAnalyticsConsentFlag>
+
     private let environment: AppEnvironment
 
-    public init(environment: AppEnvironment = AppEnvironment.shared) {
+    public init(environment: AppEnvironment) {
         self.environment = environment
+        let readContext = environment.database.backgroundReadContext
+
+        self.featureFlagStore = ReactiveStore(
+            context: readContext,
+            useCase: GetEnvironmentFeatureFlags(context: Context.currentUser),
+            environment: environment
+        )
+
+        self.consentStore = ReactiveStore(
+            context: readContext,
+            useCase: GetAnalyticsConsentFlag(),
+            environment: environment
+        )
+    }
+
+    public func isTrackingEnabled() -> AnyPublisher<Bool?, Error> {
+        featureFlagStore.getEntities()
+            .flatMap { [weak self] featureFlags -> AnyPublisher<Bool?, Error> in
+                guard featureFlags.isFeatureEnabled(.send_usage_metrics) else {
+                    return Publishers.typedJust(false)
+                }
+
+                if featureFlags.isFeatureEnabled(.cookie_consent_necessary) {
+                    return self?.getConsent()
+                        ?? Publishers.typedEmpty()
+                } else {
+                    return Publishers.typedJust(true)
+                }
+            }
+            .eraseToAnyPublisher()
     }
 
     public func getConsent() -> AnyPublisher<Bool?, Error> {
