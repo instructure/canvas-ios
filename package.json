@@ -6,12 +6,10 @@
     "build-icons": "./scripts/build-icons.js",
     "build-secrets": "./scripts/build-secrets.js",
     "export-translations": "./scripts/translations/export.js",
-    "graphql-schema": "./scripts/get-graphql-schema.js",
     "import-translations": "./scripts/translations/import.js",
     "label-released": "./scripts/update-jira-issues.js label-released",
     "release": "./scripts/build_automation/release.sh",
     "released": "./scripts/update-jira-issues.js released",
-    "svg2pdf": "./scripts/svg2pdf.js",
     "update-headers": "./scripts/update-headers.js",
     "terminal-service": "./scripts/terminal-server/start.sh"
   },

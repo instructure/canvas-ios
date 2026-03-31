@@ -6,11 +6,17 @@ on:
 
 jobs:
   pr-checks:
-    runs-on: macos-15
+    runs-on: macos-latest
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
 
     steps:
+      - name: Print Hardware
+        run: |
+          sysctl -n machdep.cpu.brand_string || true
+          sysctl -a | grep -E 'core_count|thread_count' || true
+          system_profiler SPHardwareDataType || true
+
       - name: Checkout
         uses: actions/checkout@v4
 
