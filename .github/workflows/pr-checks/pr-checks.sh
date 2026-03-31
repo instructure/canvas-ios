@@ -143,6 +143,11 @@ if [[ -z "$COV_STATUS" ]]; then
     esac
 fi
 
+# ── Build metadata ────────────────────────────────────────────────────────────
+COMMIT_SHA=$(git rev-parse --short HEAD)
+COMMIT_MSG=$(git log -1 --format="%s")
+BUILD_TIME="$(date -u "+%b %d %H:%M UTC") ($(TZ="America/Denver" date "+%m/%d %I:%M %p %Z"))"
+
 # ── Build report ──────────────────────────────────────────────────────────────
 make_icon() {
     local status="$1"
@@ -169,6 +174,8 @@ make_row() {
 
 REPORT="<!-- ci-check-results -->
 ### PR Checks
+**Commit:** ${COMMIT_MSG} (${COMMIT_SHA})
+**Built At:** ${BUILD_TIME}
 <table>
 $(make_row "$PR_DESC_STATUS" "PR Description" "$PR_DESC_DETAILS")
 $(make_row "$COPYRIGHT_STATUS" "Copyright Headers" "$COPYRIGHT_DETAILS")
