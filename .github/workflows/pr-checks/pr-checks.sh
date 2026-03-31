@@ -4,7 +4,6 @@ set -o pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(cd "$SCRIPT_DIR/../../.." && pwd)"
 COVERAGE_CONFIG="$SCRIPT_DIR/coverage-config.json"
-RESULT_BUNDLE="$REPO_ROOT/scripts/coverage/citests.xcresult"
 
 WORKSPACE="Canvas.xcworkspace"
 SCHEME="CITests"
@@ -14,7 +13,11 @@ echo "Using simulator: $SIM_NAME ($SIM_ID)"
 BUILD_DESTINATION="generic/platform=iOS Simulator"
 TEST_DESTINATION="platform=iOS Simulator,id=$SIM_ID"
 
-WORK_DIR=$(mktemp -d)
+OUTPUT_DIR="$REPO_ROOT/.pr-checks-output"
+rm -rf "$OUTPUT_DIR"
+mkdir -p "$OUTPUT_DIR"
+RESULT_BUNDLE="$OUTPUT_DIR/citests.xcresult"
+WORK_DIR="$OUTPUT_DIR"
 
 # ── Dependency check ──────────────────────────────────────────────────────────
 missing_deps=()
