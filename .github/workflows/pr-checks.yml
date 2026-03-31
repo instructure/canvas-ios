@@ -6,7 +6,7 @@ on:
 
 jobs:
   pr-checks:
-    runs-on: macos-latest
+    runs-on: macos-15-xlarge
     env:
       DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
 
@@ -41,7 +41,7 @@ jobs:
         with:
           name: test-artifacts
           path: |
-            .pr-checks-output/
+            pr-checks-output/
           if-no-files-found: ignore
 
       - name: Post PR comment

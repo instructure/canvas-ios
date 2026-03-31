@@ -13,7 +13,7 @@ echo "Using simulator: $SIM_NAME ($SIM_ID)"
 BUILD_DESTINATION="generic/platform=iOS Simulator"
 TEST_DESTINATION="platform=iOS Simulator,id=$SIM_ID"
 
-OUTPUT_DIR="$REPO_ROOT/.pr-checks-output"
+OUTPUT_DIR="${GITHUB_WORKSPACE:-$REPO_ROOT}/pr-checks-output"
 rm -rf "$OUTPUT_DIR"
 mkdir -p "$OUTPUT_DIR"
 RESULT_BUNDLE="$OUTPUT_DIR/citests.xcresult"
