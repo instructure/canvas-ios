@@ -33,6 +33,7 @@ jobs:
         continue-on-error: true
         env:
           PR_BODY: ${{ github.event.pull_request.body }}
+          GIT_CLONE_COMMIT_HASH: ${{ github.event.pull_request.head.sha }}
         run: bash .github/workflows/pr-checks/pr-checks.sh
 
       - name: Upload test artifacts
