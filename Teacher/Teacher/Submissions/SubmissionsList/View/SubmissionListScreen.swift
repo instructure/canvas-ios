@@ -28,7 +28,9 @@ struct SubmissionListScreen: View, ScreenViewTrackable {
     @StateObject private var viewModel: SubmissionListViewModel
 
     var screenViewTrackingParameters: ScreenViewTrackingParameters {
-        ScreenViewTrackingParameters(eventName: "/\(viewModel.interactor.context.pathComponent)/assignments/\(viewModel.interactor.assignmentID)/submissions")
+        let context = viewModel.interactor.context.pathComponent
+        let assignmentID = viewModel.interactor.assignmentID
+        return ScreenViewTrackingParameters(eventName: "/\(context)/assignments/\(assignmentID)/submissions")
     }
 
     init(viewModel: SubmissionListViewModel) {
