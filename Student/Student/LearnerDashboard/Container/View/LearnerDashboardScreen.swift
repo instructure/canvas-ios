@@ -19,7 +19,7 @@
 import Core
 import SwiftUI
 
-struct LearnerDashboardScreen: View {
+struct LearnerDashboardScreen: View, ScreenViewTrackable {
     @State private var viewModel: LearnerDashboardViewModel
     @StateObject private var offlineModeViewModel: OfflineModeViewModel
     @State private var isShowingKebabDialog = false
@@ -27,6 +27,7 @@ struct LearnerDashboardScreen: View {
     @Environment(\.viewController) private var viewController
     @Environment(\.appEnvironment) private var env
     @Environment(\.colorScheme) private var colorScheme
+    let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/")
 
     private let screenPadding = InstUI.Styles.Padding.standard
     @State private var isAnimationEnabled = false

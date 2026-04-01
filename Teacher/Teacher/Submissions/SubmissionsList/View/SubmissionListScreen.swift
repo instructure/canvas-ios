@@ -19,13 +19,17 @@
 import SwiftUI
 import Core
 
-struct SubmissionListScreen: View {
+struct SubmissionListScreen: View, ScreenViewTrackable {
 
     @Environment(\.viewController) private var controller
     @Environment(\.appEnvironment) private var env
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     @StateObject private var viewModel: SubmissionListViewModel
+
+    var screenViewTrackingParameters: ScreenViewTrackingParameters {
+        ScreenViewTrackingParameters(eventName: "/\(viewModel.interactor.context.pathComponent)/assignments/\(viewModel.interactor.assignmentID)/submissions")
+    }
 
     init(viewModel: SubmissionListViewModel) {
         self._viewModel = StateObject(wrappedValue: viewModel)
