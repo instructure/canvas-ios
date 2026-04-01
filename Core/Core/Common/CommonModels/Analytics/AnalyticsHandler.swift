@@ -20,6 +20,9 @@ import Combine
 import Foundation
 import UIKit
 
+/// Handles starting and ending analyitcs sessions, and handles the actual custom event tracking.
+/// Intended to be created at application start and assigned to the singleton `Analytics.shared`.
+/// Its `handleEvent()` is not intended to be used directly, but via the singleton's matching method.
 public protocol AnalyticsHandler: AnyObject {
 
     func initializeTracking(sessionStartCompletion: @escaping () -> Void) -> AnyPublisher<Void, Error>
