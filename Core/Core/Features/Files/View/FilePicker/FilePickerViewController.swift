@@ -388,7 +388,7 @@ extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
 extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
 
     private var shouldMergeScannedImagesIntoPDF: Bool {
-        return utis.allSatisfy({ $0.isPDF })
+        utis.allSatisfy { $0.isPDF }
     }
 
     private func proposeFilenameForNewPDFScan() -> String {

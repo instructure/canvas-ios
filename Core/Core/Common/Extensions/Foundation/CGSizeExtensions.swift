@@ -23,6 +23,17 @@ extension CGSize {
     public var isSwipingLeft: Bool { width < 0 }
     public var isHorizontalSwipe: Bool { abs(width) > abs(height) }
 
+    /// Returns a new size that fits within the specified maximum size while preserving the original aspect ratio.
+    ///
+    /// - Parameters:
+    ///   - maxSize: The maximum allowed size. The returned size will not exceed this width or height.
+    /// - Returns: A size scaled down proportionally to fit within `maxSize`. If the receiver already fits within
+    ///   `maxSize`, the original size is returned. If the receiver has a non-positive width or height, `.zero` is returned.
+    /// - Discussion:
+    ///   - If both dimensions of the receiver are within the bounds of `maxSize`, no scaling is applied.
+    ///   - If either dimension exceeds `maxSize`, the size is uniformly scaled by the smaller of the width and height ratios
+    ///     (`maxSize.width / width` and `maxSize.height / height`) to ensure the result fits within both constraints.
+    ///   - Maintains the aspect ratio of the original size.
     public func contained(in maxSize: CGSize) -> CGSize {
         guard width > 0, height > 0 else { return .zero }
         guard width > maxSize.width || height > maxSize.height else { return self }
