@@ -145,7 +145,7 @@ fi
 
 # ── Build metadata ────────────────────────────────────────────────────────────
 COMMIT_SHA=$(echo "${GIT_CLONE_COMMIT_HASH:-$(git rev-parse HEAD)}" | cut -c1-7)
-COMMIT_MSG=$(git log -1 --format="%s" "${GIT_CLONE_COMMIT_HASH:-HEAD}")
+COMMIT_MSG=$(git show -s --format="%s" "${GIT_CLONE_COMMIT_HASH:-HEAD}")
 BUILD_TIME="$(date -u "+%b %d %H:%M UTC") ($(TZ="America/Denver" date "+%m/%d %I:%M %p %Z"))"
 
 # ── Build report ──────────────────────────────────────────────────────────────
