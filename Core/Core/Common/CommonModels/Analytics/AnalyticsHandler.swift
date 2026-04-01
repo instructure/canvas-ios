@@ -110,11 +110,6 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
 
     public func handleEvent(_ name: String, parameters: [String: Any]?) {
         analyticsTracker.track(name, properties: parameters)
-
-        PageViewEventController.instance.logPageView(
-            name,
-            attributes: parameters
-        )
     }
 
     public func handlePendoPairingModeUrl(url: URL) -> Bool {
