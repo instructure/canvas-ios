@@ -106,7 +106,16 @@ final public class Course: NSManagedObject, WriteableModel {
         model.syllabusBody = item.syllabus_body
         model.defaultViewRaw = item.default_view?.rawValue
 
-        if let apiGradingPeriods = item.grading_periods {
+        if var apiGradingPeriods = item.grading_periods {
+
+            resetGradingPeriods(model: model, in: context)
+
+            // Remove deleted periods
+            apiGradingPeriods.removeAll { period in
+                period.workflow_state == "deleted"
+            }
+
+            // Saving active periods
             let gradingPeriods: [GradingPeriod] = apiGradingPeriods.map { apiGradingPeriod in
                 let gp: GradingPeriod = GradingPeriod.save(apiGradingPeriod, courseID: model.id, in: context)
                 return gp
@@ -222,6 +231,14 @@ final public class Course: NSManagedObject, WriteableModel {
             scope: .where(#keyPath(Enrollment.canvasContextID), equals: model.canvasContextID)
         ).filter { $0.id != nil } // Filter out enrollments coming with the course without any ids.
         model.enrollments = Set(enrollmentsFromCourseAPI + enrollmentsFromEnrollmentsAPI)
+    }
+
+    private static func resetGradingPeriods(model: Course, in context: NSManagedObjectContext) {
+        context.delete(
+            context.fetch(
+                scope: .where(#keyPath(GradingPeriod.courseID), equals: model.id)
+            ) as [GradingPeriod]
+        )
     }
 }
 
