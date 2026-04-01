@@ -248,7 +248,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         submit()
     }
 
-    private func select(source: FilePickerSource) {
+    func select(source: FilePickerSource) {
         switch source {
         case .camera:
             avPermissionViewModel.performAfterVideoPermissions(from: .init(self)) { [weak self] in
@@ -261,7 +261,6 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
                 self.env.router.show(cameraController, from: self, options: .modal())
             }
         case .library:
-            guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
             let libraryController = PHPickerViewController(configuration: .init(photoLibrary: .shared()))
             libraryController.delegate = self
             env.router.show(libraryController, from: self, options: .modal())
