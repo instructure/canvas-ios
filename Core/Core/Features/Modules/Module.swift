@@ -18,7 +18,6 @@
 
 import CoreData
 import Foundation
-import Snapshots
 
 public enum ModuleState: String, Codable {
     case locked, unlocked, started, completed
@@ -29,8 +28,8 @@ public class Module: NSManagedObject {
     @NSManaged public var name: String
     @NSManaged public var position: Int
     @NSManaged public var courseID: String
-    @Raw @NSManaged public var publishedRaw: NSNumber?
-    @Raw @NSManaged public var stateRaw: String?
+    @NSManaged public var publishedRaw: NSNumber?
+    @NSManaged public var stateRaw: String?
     @NSManaged public var itemsRaw: NSOrderedSet?
     @NSManaged var prerequisiteModuleIDsRaw: String
     @NSManaged public var requireSequentialProgressRaw: NSNumber?
@@ -45,7 +44,6 @@ public class Module: NSManagedObject {
         set { publishedRaw = NSNumber(value: newValue) }
     }
 
-    @Relation
     public var items: [ModuleItem] {
         get { return itemsRaw?.array as? [ModuleItem] ?? [] }
         set { itemsRaw = NSOrderedSet(array: newValue) }
@@ -86,9 +84,7 @@ public class Module: NSManagedObject {
         }
         return nil
     }
-}
 
-extension Module {
     @discardableResult
     public static func save(_ items: [APIModule], forCourse courseID: String, in context: NSManagedObjectContext) -> [Module] {
         return items.map { save($0, forCourse: courseID, in: context) }

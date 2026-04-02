@@ -18,7 +18,6 @@
 
 import Foundation
 import CoreData
-import Snapshots
 
 public class CDAssignmentCheckpoint: NSManagedObject {
 
@@ -26,7 +25,6 @@ public class CDAssignmentCheckpoint: NSManagedObject {
     @NSManaged public var assignmentName: String
 
     @NSManaged public var tag: String
-
     @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?
     public var discussionCheckpointStep: DiscussionCheckpointStep? {
         get { discussionCheckpointStepRaw?.value } set { discussionCheckpointStepRaw = .init(newValue) }
