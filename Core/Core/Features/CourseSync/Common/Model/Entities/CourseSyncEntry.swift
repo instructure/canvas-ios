@@ -284,10 +284,6 @@ public struct CourseSyncEntry: Equatable {
 
 #if DEBUG
 
-extension CourseSyncEntry.State {
-    static var downloaded: Self { .downloaded(isEmbeddedMediaComplete: true) }
-}
-
 extension CourseSyncEntry {
     static func make(
         name: String = "entry",
