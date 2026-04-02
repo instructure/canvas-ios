@@ -20,6 +20,8 @@ settings:
   STRING_CATALOG_GENERATE_SYMBOLS: false
   platform: iOS
 packages:
+  Snapshots:
+    path: ../packages/Snapshots
   CombineSchedulers:
     url: https://github.com/pointfreeco/combine-schedulers
     exactVersion: 0.10.0
@@ -48,6 +50,7 @@ targets:
     sources:
       - path: Core
     dependencies:
+      - package: Snapshots
       - package: CombineSchedulers
       - package: CombineExt
       - package: Lottie

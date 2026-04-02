@@ -20,6 +20,9 @@
       location = "group:packages"
       name = "packages">
       <FileRef
+         location = "group:Snapshots">
+      </FileRef>
+      <FileRef
          location = "group:HorizonUI">
       </FileRef>
       <FileRef
