@@ -20,14 +20,20 @@ import Foundation
 
 public struct CourseSyncEntry: Equatable {
     public enum State: Codable, Equatable, Hashable {
-        static var downloaded: Self { .downloaded(isEmbeddedMediaComplete: true) }
-
         // CourseSyncEntryProgress relies on this order when it saves its' data.
         // Core Data Raw values:
         // loading = 0
         // error = 1
         // downloaded 2
         case loading(Float?), error, downloaded(isEmbeddedMediaComplete: Bool)
+
+        var isDownloaded: Bool {
+            if case .downloaded = self {
+                true
+            } else {
+                false
+            }
+        }
     }
 
     let name: String
@@ -277,6 +283,10 @@ public struct CourseSyncEntry: Equatable {
 }
 
 #if DEBUG
+
+extension CourseSyncEntry.State {
+    static var downloaded: Self { .downloaded(isEmbeddedMediaComplete: true) }
+}
 
 extension CourseSyncEntry {
     static func make(

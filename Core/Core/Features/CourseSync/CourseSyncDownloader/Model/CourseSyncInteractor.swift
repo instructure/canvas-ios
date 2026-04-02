@@ -282,7 +282,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .receive(on: scheduler)
             .updateDownloadedState {
                 let hasError = unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.hasError ?? false
-                let state: CourseSyncEntry.State = hasError ? .error : .downloaded
+                let state: CourseSyncEntry.State = hasError ? .error : .downloaded(isEmbeddedMediaComplete: true)
                 unownedSelf.setState(
                     selection: .course(entry.id),
                     state: state
@@ -352,14 +352,14 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                         .updateDownloadedState {
                             unownedSelf.setState(
                                 selection: .tab(entry.id, tabId),
-                                state: .downloaded
+                                state: .downloaded(isEmbeddedMediaComplete: true)
                             )
                         }
                         .tryCatch {
                             unownedSelf.handleNonFatalErrors(
                                 error: $0,
                                 selection: .tab(entry.id, tabId),
-                                state: .downloaded
+                                state: .downloaded(isEmbeddedMediaComplete: true)
                             )
                         }
                         .catch { _ in
@@ -445,7 +445,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .handleEvents(
                 receiveOutput: { _ in
                     let hasError = unownedSelf.safeCourseSyncEntriesValue[id: entry.id]?.hasFileError ?? false
-                    let state: CourseSyncEntry.State = hasError ? .error : .downloaded
+                    let state: CourseSyncEntry.State = hasError ? .error : .downloaded(isEmbeddedMediaComplete: true)
 
                     unownedSelf.setState(
                         selection: .tab(entry.id, entry.tabs[tabIndex].id), state: state
@@ -499,7 +499,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                 switch completion {
                 case .finished:
                     unownedSelf.setState(
-                        selection: .file(entry.id, files[fileIndex].id), state: .downloaded
+                        selection: .file(entry.id, files[fileIndex].id), state: .downloaded(isEmbeddedMediaComplete: true)
                     )
                 case .failure:
                     unownedSelf.setState(
@@ -558,14 +558,14 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             .updateDownloadedState {
                 unownedSelf.setState(
                     selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                    state: .downloaded
+                    state: .downloaded(isEmbeddedMediaComplete: true)
                 )
             }
             .tryCatch {
                 unownedSelf.handleNonFatalErrors(
                     error: $0,
                     selection: .tab(entry.id, entry.tabs[tabIndex].id),
-                    state: .downloaded
+                    state: .downloaded(isEmbeddedMediaComplete: true)
                 )
             }
             .catch { _ in
@@ -673,8 +673,8 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             /// Since each entry has only 1 "Additional Content" tab but there are multiple downloads going on in the background,
             /// we don't want to do updates like `Loading` -> `Downloaded` then again `Loading`.
             /// Instead, we silently collect the results and only publish it once the entry finished downloading.
-            if selection.isAdditionalContentTab, state == .downloaded || state == .error, !isFinalUpdate {
-                entries[id: entryID]?.updateAdditionalContentResults(isSuccessful: state == .downloaded)
+            if selection.isAdditionalContentTab, state.isDownloaded || state == .error, !isFinalUpdate {
+                entries[id: entryID]?.updateAdditionalContentResults(isSuccessful: state.isDownloaded)
             } else {
                 entries[id: entryID]?.updateTabState(id: tabID, state: state)
                 progressWriterInteractor.saveStateProgress(id: tabID, selection: selection, state: state)
@@ -694,17 +694,17 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
         entries.map { entry in
             var cpy = entry
             cpy.clearAdditionalContentResults()
-            if cpy.state != .downloaded {
+            if cpy.state.isDownloaded == false {
                 cpy.updateCourseState(state: .loading(nil))
             } else {
                 return cpy
             }
 
-            for tab in cpy.tabs where tab.state != .downloaded {
+            for tab in cpy.tabs where tab.state.isDownloaded == false {
                 cpy.updateTabState(id: tab.id, state: .loading(nil))
             }
 
-            for file in cpy.files where file.state != .downloaded {
+            for file in cpy.files where file.state.isDownloaded == false {
                 cpy.updateFileState(id: file.id, state: .loading(nil))
             }
 

@@ -60,7 +60,7 @@ final class CDCourseSyncStateProgress: NSManagedObject, Comparable {
             switch stateRaw {
             case 0: return .loading(progress?.floatValue)
             case 1: return .error
-            case 2: return .downloaded
+            case 2: return .downloaded(isEmbeddedMediaComplete: true)
             case 3: return .downloaded(isEmbeddedMediaComplete: false)
             default:
                 fatalError("CourseSyncEntryProgress.State incorrect data.")

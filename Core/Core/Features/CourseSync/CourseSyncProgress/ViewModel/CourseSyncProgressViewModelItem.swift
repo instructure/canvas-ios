@@ -131,9 +131,13 @@ extension Array where Element == CourseSyncEntry {
 extension CourseSyncEntry {
 
     func makeSyncProgressViewModelItem(hasEmbeddedContentError: Bool = false) -> CourseSyncProgressViewModel.Item {
-        let displayState: CourseSyncEntry.State = hasEmbeddedContentError && state == .downloaded
-            ? .downloaded(isEmbeddedMediaComplete: false)
-            : state
+
+        let displayState: CourseSyncEntry.State
+        if hasEmbeddedContentError, case .downloaded = state {
+            displayState = .downloaded(isEmbeddedMediaComplete: false)
+        } else {
+            displayState = state
+        }
 
         return .init(id: id,
                      title: name,

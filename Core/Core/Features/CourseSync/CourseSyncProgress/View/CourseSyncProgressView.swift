@@ -150,8 +150,8 @@ struct CourseSyncProgressView: View {
                         state: isMediaComplete
                         ? .downloaded
                         : .error(
-                            String(localized: "Embedded Media Incomplete", bundle: .core),
-                            true
+                            message: String(localized: "Embedded Media Incomplete", bundle: .core),
+                            isSecondary: true
                         )
                     )
                 )

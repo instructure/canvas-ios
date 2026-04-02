@@ -93,7 +93,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                         )
                 }
                 .collect()
-                .flatMap({ _ in allCoursesMedia.publisher })
+                .flatMap { _ in allCoursesMedia.publisher }
                 .eraseToAnyPublisher()
         }
 
@@ -116,7 +116,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                 }
 
                 return self.downloadMediaTweakingIFrameReferences(mediaData)
-                    .map({ nil as CourseSyncID? })
+                    .map { nil as CourseSyncID? }
                     .catch { error -> AnyPublisher<CourseSyncID?, Error> in
 
                         Logger.shared.error("Studio Offline Sync Failed for Course:" + error.debugDescription)
@@ -130,7 +130,7 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
                     }
                     .eraseToAnyPublisher()
             }
-            .compactMap({ $0 })
+            .compactMap { $0 }
             .collect()
             .catch { error -> AnyPublisher<[CourseSyncID], Never> in
                 Logger.shared.error("Studio Offline Sync Failed: " + error.debugDescription)

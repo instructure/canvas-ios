@@ -66,7 +66,6 @@ public class HTMLParserLive: HTMLParser {
             .eraseToAnyPublisher()
     }
 
-    // swiftlint:disable:next function_body_length
     public func parse(_ content: String, resourceId: String, courseId: CourseSyncID, baseURL: URL? = nil) -> AnyPublisher<String, Error> {
         let imageURLs = findRegexMatches(content, pattern: imageRegex)
         let fileURLs = Array(Set(findRegexMatches(content, pattern: fileRegex)))
@@ -104,17 +103,7 @@ public class HTMLParserLive: HTMLParser {
                     .map { urlPath -> (URL, String)? in
                         return (originalURL, urlPath)
                     }
-                    .catch { error -> AnyPublisher<(URL, String)?, Error> in
-                        self?.embeddedContentFailureSubject.send(courseId)
-
-                        // Non-blocking, Non-fatal errors, will get reported as warning
-                        if error.isForbidden || error.isNotFound {
-                            return Just(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
-                        }
-
-                        // Blocking failure, will get reported as failure
-                        return Fail(error: error).eraseToAnyPublisher()
-                    }
+                    .catch { Self.handleDownloadError(self, courseId: courseId, error: $0) }
             }
             .compactMap { $0 }
             .collect()
@@ -149,17 +138,7 @@ public class HTMLParserLive: HTMLParser {
                 .map { url -> (URL, String)? in
                     return (originalURL, url)
                 }
-                .catch { error -> AnyPublisher<(URL, String)?, Error> in
-                    self?.embeddedContentFailureSubject.send(courseId)
-
-                    // Non-blocking failure, Non-fatal errors, will get reported as warning
-                    if error.isForbidden || error.isNotFound {
-                        return Just(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
-                    }
-
-                    // Blocking failure, will get reported as failure
-                    return Fail(error: error).eraseToAnyPublisher()
-                }
+                .catch { Self.handleDownloadError(self, courseId: courseId, error: $0) }
             }
             .compactMap { $0 }
             .collect() // Wait for all image download to finish and handle as an array
@@ -222,6 +201,23 @@ public class HTMLParserLive: HTMLParser {
             envResolver.folderDocumentsPath(forSection: sectionName, ofCourse: courseId)
         )
         .appendingPathComponent("\(sectionName)-\(resourceId)")
+    }
+
+    private static func handleDownloadError(
+        _ `self`: HTMLParserLive?,
+        courseId: CourseSyncID,
+        error: Error
+    ) -> AnyPublisher<(URL, String)?, Error> {
+
+        self?.embeddedContentFailureSubject.send(courseId)
+
+        // Non-blocking failure, Non-fatal errors, will get reported as warning
+        if error.isForbidden || error.isNotFound {
+            return Just(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
+        }
+
+        // Blocking failure, will get reported as failure
+        return Fail(error: error).eraseToAnyPublisher()
     }
 }
 
