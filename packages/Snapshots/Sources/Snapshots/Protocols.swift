@@ -16,11 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@attached(extension, names: named(Snapshot), conformances: Detachable)
-public macro Detachable() = #externalMacro(module: "SnapshotsMacros", type: "DetachableMacro")
+import CoreData
 
-@attached(peer)
-public macro Relation() = #externalMacro(module: "SnapshotsMacros", type: "RelationMacro")
+public protocol Snapshot<Model>: Sendable where Model: NSManagedObject {
+    associatedtype Model
 
-@attached(peer)
-public macro Raw() = #externalMacro(module: "SnapshotsMacros", type: "RawMacro")
+    init(model: Model)
+}
+
+public protocol Detachable {
+    associatedtype Snapshot: Snapshots.Snapshot
+}
+
+extension Detachable where Self == Snapshot.Model {
+    public var snapshot: Snapshot { .init(model: self) }
+}
+
+extension Array where Element: Detachable, Element == Element.Snapshot.Model {
+    public func snapshots() -> [Element.Snapshot] { map { $0.snapshot } }
+}
+
+extension Set where Element: Detachable, Element == Element.Snapshot.Model {
+    public func snapshots() -> [Element.Snapshot] { map { $0.snapshot } }
+}

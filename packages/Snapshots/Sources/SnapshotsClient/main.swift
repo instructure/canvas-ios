@@ -11,3 +11,11 @@ final class TestModel: NSManagedObject {
     @NSManaged var value: Int
 
 }
+
+let model = TestModel()
+
+let snapshot = model.snapshot
+
+let models: Set = [TestModel(), TestModel()]
+
+let snapshots = models.snapshots()

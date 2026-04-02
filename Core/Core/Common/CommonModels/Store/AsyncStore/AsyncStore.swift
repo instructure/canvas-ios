@@ -18,13 +18,15 @@
 
 import Foundation
 import CoreData
+import Snapshots
 
 public enum AsyncStoreError: Error, Equatable {
     case noEntityFound
     case moreThanOneEntityFound(Int)
 }
 
-public struct AsyncStore<U: UseCase> {
+/// Async store that returns custom Snapshots of models.
+public struct AsyncStore<U: UseCase, S: Snapshot<U.Model>> {
     private let useCase: U
     private let request: NSFetchRequest<U.Model>
 
@@ -38,6 +40,7 @@ public struct AsyncStore<U: UseCase> {
 
     public init(
         useCase: U,
+        returns: S.Type = S.self,
         context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext,
         offlineModeInteractor: OfflineModeInteractor? = OfflineModeAssembly.make(),
         environment: AppEnvironment = .shared
@@ -72,7 +75,7 @@ public struct AsyncStore<U: UseCase> {
     ///       Defaults to **false**.
     ///     - loadAllPages: Tells the request if it should load all the pages or just the first one. Defaults to **true**.
     /// - Returns: A list of entities.
-    public func getEntities(ignoreCache: Bool = false, loadAllPages: Bool = true) async throws -> [U.Model] {
+    public func getEntities(ignoreCache: Bool = false, loadAllPages: Bool = true) async throws -> [S] {
         if isOfflineModeEnabled {
             return try await getEntitiesFromDatabase()
         }
@@ -110,7 +113,7 @@ public struct AsyncStore<U: UseCase> {
         ignoreCache: Bool = false,
         loadAllPages: Bool = true,
         assertOnlyOneEntityFound: Bool = true
-    ) async throws -> U.Model {
+    ) async throws -> S {
         let entities = try await getEntities(ignoreCache: ignoreCache, loadAllPages: loadAllPages)
 
         if assertOnlyOneEntityFound, entities.count > 1 {
@@ -124,7 +127,7 @@ public struct AsyncStore<U: UseCase> {
         return entity
     }
 
-    public func getEntitiesFromDatabase() async throws -> [U.Model] {
+    public func getEntitiesFromDatabase() async throws -> [S] {
         try await AsyncFetchedResults(request: request, context: context)
             .fetch()
     }
@@ -152,7 +155,7 @@ public struct AsyncStore<U: UseCase> {
     public func streamEntities(
         ignoreCache: Bool = false,
         loadAllPages: Bool = true
-    ) async throws -> AsyncThrowingStream<[U.Model], Error> {
+    ) async throws -> AsyncThrowingStream<[S], Error> {
         if isOfflineModeEnabled {
             return streamEntitiesFromDatabase()
         }
@@ -167,7 +170,7 @@ public struct AsyncStore<U: UseCase> {
     }
 
     /// - Warning: This stream **DOES NOT terminate**. Ensure proper cancellation of its consuming task.
-    public func streamEntitiesFromDatabase() -> AsyncThrowingStream<[U.Model], Error> {
+    private func streamEntitiesFromDatabase() -> AsyncThrowingStream<[S], Error> {
         AsyncFetchedResults(request: request, context: context)
             .stream()
     }
@@ -210,3 +213,6 @@ public struct AsyncStore<U: UseCase> {
         try await fetchEntitiesFromAPI(getNextUseCase: nextPageUseCase, loadAllPages: true)
     }
 }
+
+/// Async store that works with Detachable models, returning their Snapshots.
+public typealias DetachableAsyncStore<U: UseCase> = AsyncStore<U, U.Model.Snapshot> where U.Model: Detachable, U.Model.Snapshot.Model == U.Model

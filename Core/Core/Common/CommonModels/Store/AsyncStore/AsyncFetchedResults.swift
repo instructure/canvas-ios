@@ -17,25 +17,26 @@
 //
 
 import Foundation
+import Snapshots
 @preconcurrency import CoreData
 
-public final class AsyncFetchedResults<ResultType: NSFetchRequestResult> {
-    private let request: NSFetchRequest<ResultType>
+public final class AsyncFetchedResults<S: Snapshot> {
+    private let request: NSFetchRequest<S.Model>
     private let context: NSManagedObjectContext
 
     public init(
-        request: NSFetchRequest<ResultType>,
+        request: NSFetchRequest<S.Model>,
         context: NSManagedObjectContext
     ) {
         self.request = request
         self.context = context
     }
 
-    public func fetch() async throws -> [ResultType] {
+    public func fetch() async throws -> [S] {
         try await context.fetch(request)
     }
 
-    public func stream() -> AsyncThrowingStream<[ResultType], Error> {
+    public func stream() -> AsyncThrowingStream<[S], Error> {
         AsyncThrowingStream { continuation in
             let observer = FetchedResultsObserver(
                 request: request,
@@ -50,15 +51,15 @@ public final class AsyncFetchedResults<ResultType: NSFetchRequestResult> {
     }
 }
 
-private final class FetchedResultsObserver<ResultType: NSFetchRequestResult>: NSObject, NSFetchedResultsControllerDelegate {
-    private var controller: NSFetchedResultsController<ResultType>?
-    private let continuation: AsyncThrowingStream<[ResultType], Error>.Continuation
+private final class FetchedResultsObserver<S: Snapshot>: NSObject, NSFetchedResultsControllerDelegate {
+    private var controller: NSFetchedResultsController<S.Model>?
+    private let continuation: AsyncThrowingStream<[S], Error>.Continuation
     private let context: NSManagedObjectContext
 
     init(
-        request: NSFetchRequest<ResultType>,
+        request: NSFetchRequest<S.Model>,
         context: NSManagedObjectContext,
-        continuation: AsyncThrowingStream<[ResultType], Error>.Continuation
+        continuation: AsyncThrowingStream<[S], Error>.Continuation
     ) {
         self.continuation = continuation
         self.context = context
@@ -86,9 +87,8 @@ private final class FetchedResultsObserver<ResultType: NSFetchRequestResult>: NS
 
     private func sendElement() {
         context.perform { [weak self] in
-            guard let self else { return }
-            let entities = self.controller?.fetchedObjects ?? []
-            self.continuation.yield(entities)
+            let entities = self?.controller?.fetchedObjects ?? []
+            self?.continuation.yield(entities.map(S.init))
         }
     }
 
@@ -106,9 +106,9 @@ private final class FetchedResultsObserver<ResultType: NSFetchRequestResult>: NS
 }
 
 extension NSManagedObjectContext {
-    public func fetch<R: NSFetchRequestResult>(_ request: NSFetchRequest<R>) async throws -> [R] {
+    public func fetch<S: Snapshot>(_ request: NSFetchRequest<S.Model>) async throws -> [S] {
         try await perform {
-            try self.fetch(request)
+            try self.fetch(request).map(S.init)
         }
     }
 }
