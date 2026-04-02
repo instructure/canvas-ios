@@ -1,8 +1,13 @@
 import Snapshots
+import CoreData
 
-let a = 17
-let b = 25
+@Detachable
+final class TestModel: NSManagedObject {
+    @NSManaged var id: String
+    @NSManaged var name: String
 
-let (result, code) = #stringify(a + b)
+    @Raw
+    @NSManaged var valueRaw: Int
+    @NSManaged var value: Int
 
-print("The value \(result) was produced by the code \"\(code)\"")
+}

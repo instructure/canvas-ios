@@ -16,23 +16,14 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CoreData
+import SwiftCompilerPlugin
+import SwiftSyntaxMacros
 
-public protocol Snapshot: Sendable where Model: NSManagedObject {
-    associatedtype Model
-
-    init(model: Model)
+@main
+struct SnapshotsPlugin: CompilerPlugin {
+    let providingMacros: [Macro.Type] = [
+        DetachableMacro.self,
+        RelationMacro.self,
+        RawMacro.self
+    ]
 }
-
-public protocol Detachable {
-    associatedtype Snapshot: Snapshots.Snapshot
-}
-
-@attached(extension, names: named(Snapshot), conformances: Detachable)
-public macro Detachable() = #externalMacro(module: "SnapshotsMacros", type: "DetachableMacro")
-
-@attached(peer)
-public macro Relation() = #externalMacro(module: "SnapshotsMacros", type: "RelationMacro")
-
-@attached(peer)
-public macro Raw() = #externalMacro(module: "SnapshotsMacros", type: "RawMacro")
