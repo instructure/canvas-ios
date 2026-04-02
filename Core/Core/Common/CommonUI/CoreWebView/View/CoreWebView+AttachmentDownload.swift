@@ -51,6 +51,18 @@ public struct CoreWebAttachment: Equatable {
     }
 }
 
+#if DEBUG
+extension CoreWebAttachment {
+    static func make(
+        url: URL = URL(string: "https://instructure.com")!,
+        contentType: String? = nil,
+        originIsBlob: Bool = false
+    ) -> CoreWebAttachment {
+        CoreWebAttachment(url: url, contentType: contentType, isBlob: originIsBlob)
+    }
+}
+#endif
+
 // MARK: - Download Delegate's Methods
 
 extension CoreWebView: WKDownloadDelegate {
