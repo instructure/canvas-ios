@@ -37,7 +37,8 @@ class BlobURLDownload: CoreWebViewFeature {
                 .then(function(blob) {
 
                     if (blob.size > 100 * 1024 * 1024) {
-                        console.warn('BlobURLDownload: File is too large. This is not expected for the like of transcripts download.');
+                        alert('Attachment file size is too large!');
+                        return
                     }
 
                     var reader = new FileReader();
@@ -50,12 +51,12 @@ class BlobURLDownload: CoreWebViewFeature {
                         });
                     }
                     reader.onerror = function(err) {
-                        console.error('BlobURLDownload FileReader error:', err);
+                        alert('Attachment download error: ' + err);
                     }
                     reader.readAsDataURL(blob);
                 })
                 .catch(function(err) {
-                    console.error('BlobURLDownload fetch error:', err);
+                    alert('Attachment fetch error: ' + err);
                 });
         }, true);
         """
