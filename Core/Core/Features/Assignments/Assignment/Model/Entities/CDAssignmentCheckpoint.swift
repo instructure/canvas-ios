@@ -20,20 +20,18 @@ import Foundation
 import CoreData
 import Snapshots
 
-@Detachable
 public class CDAssignmentCheckpoint: NSManagedObject {
 
     @NSManaged public var assignmentId: String
     @NSManaged public var assignmentName: String
 
     @NSManaged public var tag: String
-    @Raw
+
     @NSManaged private var discussionCheckpointStepRaw: DiscussionCheckpointStepWrapper?
     public var discussionCheckpointStep: DiscussionCheckpointStep? {
         get { discussionCheckpointStepRaw?.value } set { discussionCheckpointStepRaw = .init(newValue) }
     }
 
-    @Raw
     @NSManaged private var pointsPossibleRaw: NSNumber?
     public var pointsPossible: Double? {
         get { pointsPossibleRaw?.doubleValue } set { pointsPossibleRaw = .init(newValue) }
@@ -46,7 +44,6 @@ public class CDAssignmentCheckpoint: NSManagedObject {
     @NSManaged public var lockDate: Date?
 
     @NSManaged public var isOnlyVisibleToOverrides: Bool
-    @Relation
     @NSManaged public var overrides: Set<AssignmentOverride>
 
     public var title: String {
