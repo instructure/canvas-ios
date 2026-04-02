@@ -18,21 +18,14 @@
 
 import Foundation
 
-struct PutAnalyticsConsentFlagRequest: APIRequestable {
-    struct Response: Codable {
-        let data: String
-    }
+struct GetAnalyticsConsentRequest: APIRequestable {
+    typealias Response = APIAnalyticsConsent
 
-    struct Body: Codable {
-        let ns: String
-        let data: String
-    }
+    let namespace: APIAnalyticsConsentRequestNamespace
 
-    let value: Bool
-
-    var method: APIMethod { .put }
     var path: String { "users/self/custom_data/data_sync" }
-    var body: Body? {
-        Body(ns: "MOBILE_CANVAS_COOKIE_CONSENT", data: String(value))
+
+    var query: [APIQueryItem] {
+        [.value("ns", namespace.rawValue)]
     }
 }

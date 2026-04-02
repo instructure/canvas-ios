@@ -40,9 +40,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         return env
     }()
 
-    private lazy var analyticsHandler: AnalyticsHandler = {
-        .live(environment: environment)
-    }()
+    private lazy var analyticsHandler: AnalyticsHandler = .live()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
@@ -104,17 +102,17 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             // The method call below ensures that we always start with the first color scheme.
             ColorScheme.clear()
         }
-        Analytics.shared.logSession(session)
 
         Self.getPreferences(env: environment)
             .flatMap { user in Self.checkLocalizationChange(locale: user.locale) }
             .flatMap { Self.loadFeatureFlags() }
-            .flatMap { self.analyticsHandler.initializeTracking() }
+            .flatMap { self.analyticsHandler.initializeTracking(environment: self.environment) {} }
             .flatMap { Self.fetchBrandVariables() }
             .sink(
                 receiveCompletion: { [weak self] completion in
                     switch completion {
                     case .finished:
+                        Analytics.shared.logSession(session)
                         self?.showRootView()
                     case .failure:
                         UIAlertController.showLoginErrorAlert(

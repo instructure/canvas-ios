@@ -21,7 +21,7 @@ import UIKit
 extension UIAlertController {
 
     public static func showAnalyticsConsentDialog(
-        env: AppEnvironment,
+        env: AppEnvironment = .shared,
         consentAction: @escaping (Bool) -> Void
     ) {
         guard let viewController = env.topViewController else {

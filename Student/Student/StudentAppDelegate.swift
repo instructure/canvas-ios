@@ -55,9 +55,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private lazy var gradeListWidgetRouter = WidgetRouter.createGradeListRouter()
     private lazy var courseGradeWidgetRouter = WidgetRouter.createCourseGradeRouter()
 
-    private lazy var analyticsHandler: AnalyticsHandler = {
-        .live(environment: environment)
-    }()
+    private lazy var analyticsHandler: AnalyticsHandler = .live()
 
     private lazy var appExperienceInteractor = ExperienceSummaryInteractorLive(environment: environment)
 
@@ -131,7 +129,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                         unownedSelf.isLearnerDashboardEnabledOnInstance = featureFlags.isFeatureEnabled(.widget_dashboard)
                     }
                     .flatMap {
-                        unownedSelf.analyticsHandler.initializeTracking {
+                        unownedSelf.analyticsHandler.initializeTracking(environment: unownedSelf.environment) {
                             unownedSelf.checkForWidgetsPresence()
                         }
                     }

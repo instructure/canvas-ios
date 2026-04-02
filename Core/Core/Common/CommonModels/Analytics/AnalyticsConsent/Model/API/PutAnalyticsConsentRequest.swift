@@ -16,16 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import CoreData
 import Foundation
 
-struct GetAnalyticsConsentFlag: APIUseCase {
-    let cacheKey: String? = nil
-    let request = GetAnalyticsConsentFlagRequest()
+struct PutAnalyticsConsentRequest: APIRequestable {
+    typealias Response = APIAnalyticsConsent
 
-    func write(
-        response: GetAnalyticsConsentFlagRequest.Response?,
-        urlResponse: URLResponse?,
-        to client: NSManagedObjectContext
-    ) {}
+    struct Body: Codable {
+        let ns: String
+        let data: APIAnalyticsConsent.Data
+    }
+
+    let namespace: APIAnalyticsConsentRequestNamespace
+    let value: Bool
+
+    var method: APIMethod { .put }
+    var path: String { "users/self/custom_data/data_sync" }
+    var body: Body? {
+        Body(ns: namespace.rawValue, data: .init(mobile_consent: value))
+    }
 }

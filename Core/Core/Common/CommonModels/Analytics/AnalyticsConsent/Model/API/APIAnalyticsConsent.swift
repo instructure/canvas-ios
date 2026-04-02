@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -18,13 +18,19 @@
 
 import Foundation
 
-struct GetAnalyticsConsentFlagRequest: APIRequestable {
-    struct Response: Codable {
-        let data: String
+public struct APIAnalyticsConsent: Codable, Equatable {
+
+    /// Received if the user hadn't yet provided or refused their consent
+    static let noDataMessage = "no data for scope"
+
+    let data: Data?
+    let message: String?
+
+    struct Data: Codable, Equatable {
+        let mobile_consent: Bool
     }
 
-    var path: String { "users/self/custom_data/data_sync" }
-    var query: [APIQueryItem] { [
-        .value("ns", "MOBILE_CANVAS_COOKIE_CONSENT")
-    ] }
+    var isValid: Bool {
+        data != nil || message == Self.noDataMessage
+    }
 }

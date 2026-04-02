@@ -42,9 +42,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
     }()
     private var isK5User = false
 
-    private lazy var analyticsHandler: AnalyticsHandler = {
-        .live(environment: environment)
-    }()
+    private lazy var analyticsHandler: AnalyticsHandler = .live()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if NSClassFromString("XCTestCase") != nil { return true }
@@ -86,7 +84,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                 let userProfile = list.first
                 return unownedSelf.setupUserEnvironment()
                     .flatMap { unownedSelf.loadFeatureFlags() }
-                    .flatMap { unownedSelf.analyticsHandler.initializeTracking() }
+                    .flatMap { unownedSelf.analyticsHandler.initializeTracking(environment: unownedSelf.environment) {} }
                     .flatMap { unownedSelf.showLanguageAlertIfNeeded(locale: userProfile?.locale ?? session.locale) }
                     .flatMap { unownedSelf.getAndSetBrandTheme() }
                     .eraseToAnyPublisher()
@@ -256,7 +254,6 @@ extension TeacherAppDelegate {
         )
     }
 }
-
 
 // MARK: PageView Logging
 

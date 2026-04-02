@@ -20,44 +20,47 @@ import Combine
 import Foundation
 
 public protocol AnalyticsConsentInteractor {
-    func isTrackingEnabled() -> AnyPublisher<Bool?, Error>
-    func getConsent() -> AnyPublisher<Bool?, Error>
+    func isTrackingEnabled(ignoreConsentCache: Bool) -> AnyPublisher<Bool?, Error>
     func setConsent(_ value: Bool) -> AnyPublisher<Void, Error>
+}
+
+extension AnalyticsConsentInteractor where Self == AnalyticsConsentInteractorLive {
+    public static func live(environment: AppEnvironment) -> AnalyticsConsentInteractorLive {
+        .init(environment: environment)
+    }
 }
 
 public class AnalyticsConsentInteractorLive: AnalyticsConsentInteractor {
 
     private let featureFlagStore: ReactiveStore<GetEnvironmentFeatureFlags>
-    private let consentStore: ReactiveStore<GetAnalyticsConsentFlag>
+    private let consentStore: ReactiveStore<GetAnalyticsConsent>
 
     private let environment: AppEnvironment
 
     public init(environment: AppEnvironment) {
         self.environment = environment
-        let readContext = environment.database.backgroundReadContext
 
         self.featureFlagStore = ReactiveStore(
-            context: readContext,
             useCase: GetEnvironmentFeatureFlags(context: Context.currentUser),
-            environment: environment
+            backgroundEnv: environment
         )
 
         self.consentStore = ReactiveStore(
-            context: readContext,
-            useCase: GetAnalyticsConsentFlag(),
-            environment: environment
+            useCase: GetAnalyticsConsent(app: environment.app ?? .student),
+            backgroundEnv: environment
         )
     }
 
-    public func isTrackingEnabled() -> AnyPublisher<Bool?, Error> {
-        featureFlagStore.getEntities()
+    public func isTrackingEnabled(ignoreConsentCache: Bool) -> AnyPublisher<Bool?, Error> {
+        featureFlagStore
+            .getEntities()
             .flatMap { [weak self] featureFlags -> AnyPublisher<Bool?, Error> in
                 guard featureFlags.isFeatureEnabled(.send_usage_metrics) else {
                     return Publishers.typedJust(false)
                 }
 
                 if featureFlags.isFeatureEnabled(.cookie_consent_necessary) {
-                    return self?.getConsent()
+                    return self?.getConsent(ignoreCache: ignoreConsentCache)
                         ?? Publishers.typedEmpty()
                 } else {
                     return Publishers.typedJust(true)
@@ -66,20 +69,20 @@ public class AnalyticsConsentInteractorLive: AnalyticsConsentInteractor {
             .eraseToAnyPublisher()
     }
 
-    public func getConsent() -> AnyPublisher<Bool?, Error> {
-        GetAnalyticsConsentFlag()
-            .fetchWithAPIResponse(environment: environment)
-            .map { response, _ in
-                guard let data = response?.data else { return nil }
-                return data == "true"
-            }
+    private func getConsent(ignoreCache: Bool) -> AnyPublisher<Bool?, Error> {
+        consentStore
+            .getEntities(ignoreCache: ignoreCache)
+            .map { entities in entities.first?.consentValue }
             .eraseToAnyPublisher()
     }
 
     public func setConsent(_ value: Bool) -> AnyPublisher<Void, Error> {
-        SetAnalyticsConsentFlag(value: value)
-            .fetchWithFuture(environment: environment)
-            .map { _ in }
-            .eraseToAnyPublisher()
+        ReactiveStore(
+            useCase: SetAnalyticsConsent(app: environment.app ?? .student, value: value),
+            backgroundEnv: environment
+        )
+        .getEntities(ignoreCache: true)
+        .map { _ in }
+        .eraseToAnyPublisher()
     }
 }

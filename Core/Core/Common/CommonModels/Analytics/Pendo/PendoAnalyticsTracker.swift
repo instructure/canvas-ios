@@ -34,7 +34,6 @@ public final class PendoAnalyticsTracker {
 
     // MARK: Properties
 
-    private weak var environment: AppEnvironment?
     private let interactor: AnalyticsMetadataInteractor
     private let pendoManager: PendoManagerWrapper
     private let pendoApiKey: String?
@@ -45,12 +44,10 @@ public final class PendoAnalyticsTracker {
     // MARK: Initialization
 
     public init(
-        environment: AppEnvironment,
         interactor: AnalyticsMetadataInteractor = AnalyticsMetadataInteractorLive(),
         pendoManager: PendoManagerWrapper = PendoManager.shared(),
         pendoApiKey: String? = nil
     ) {
-        self.environment = environment
         self.interactor = interactor
         self.pendoManager = pendoManager
         self.pendoApiKey = (pendoApiKey ?? Secret.pendoApiKey.string)?.nilIfEmpty
@@ -110,7 +107,8 @@ public final class PendoAnalyticsTracker {
 
     @MainActor
     private func startSession(withMetadata metadata: AnalyticsMetadata) {
-        environment?.pendoID = metadata.userId
+        // Using the current environment at the time of call, because the initial one might be different
+        AppEnvironment.shared.pendoID = metadata.userId
 
         // This will also terminate the current session if there is one.
         pendoManager.startSession(

@@ -20,12 +20,12 @@ import Combine
 import Foundation
 import UIKit
 
-/// Handles starting and ending analyitcs sessions, and handles the actual custom event tracking.
+/// Handles starting and ending analytics sessions, and handles the actual custom event tracking.
 /// Intended to be created at application start and assigned to the singleton `Analytics.shared`.
 /// Its `handleEvent()` is not intended to be used directly, but via the singleton's matching method.
 public protocol AnalyticsHandler: AnyObject {
 
-    func initializeTracking(sessionStartCompletion: @escaping () -> Void) -> AnyPublisher<Void, Error>
+    func initializeTracking(environment: AppEnvironment, sessionStartCompletion: @escaping () -> Void) -> AnyPublisher<Void, Error>
 
     func endTracking()
 
@@ -38,34 +38,39 @@ public protocol AnalyticsHandler: AnyObject {
 }
 
 extension AnalyticsHandler where Self == AnalyticsHandlerLive {
-    public static func live(environment: AppEnvironment) -> AnalyticsHandlerLive {
-        .init(environment: environment)
+    public static func live() -> AnalyticsHandlerLive {
+        .init(consentInteractorProvider: { .live(environment: $0) })
     }
 }
 
 public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
 
-    private var analyticsTracker: PendoAnalyticsTracker
-    private let consentInteractor: AnalyticsConsentInteractor
+    // This is always created at user login even if tracking is disabled.
+    // (The actual tracking is of course disabled in that case.)
+    // Pendo setup can only be called once during the application lifecycle,
+    // and the related flag is stored in `analyticsTracker.isSetupCalled`.
+    // That's why this is not an optional and cleared out when not needed for the given user.
+    private let analyticsTracker: PendoAnalyticsTracker
 
-    private let environment: AppEnvironment
+    // The interactor is created only when it's actually needed, so it uses
+    // the environment after it's already set up for the logged in user.
+    // This works around the lazy initialization of the AnalyticsHandler
+    // in the AppDelegates, which happens before login.
+    private let consentInteractorProvider: (AppEnvironment) -> AnalyticsConsentInteractor
+    private var consentInteractor: AnalyticsConsentInteractor?
 
-    public init(environment: AppEnvironment) {
-        // This is always created at user login even if tracking is disabled.
-        // (The actual tracking is of course disabled in that case.)
-        // Pendo setup can only be called once during the application lifecycle,
-        // and the related flag is stored in `analyticsTracker.isSetupCalled`.
-        // That's why this is not an optional and cleared out when not needed for the given user.
-        self.analyticsTracker = PendoAnalyticsTracker(environment: environment)
-
-        self.consentInteractor = AnalyticsConsentInteractorLive(environment: environment)
-
-        self.environment = environment
+    public init(
+        consentInteractorProvider: @escaping (AppEnvironment) -> AnalyticsConsentInteractor
+    ) {
+        self.analyticsTracker = PendoAnalyticsTracker()
+        self.consentInteractorProvider = consentInteractorProvider
     }
 
     @MainActor
-    public func initializeTracking(sessionStartCompletion: @escaping () -> Void) -> AnyPublisher<Void, Error> {
-        isTrackingEnabled()
+    public func initializeTracking(environment: AppEnvironment, sessionStartCompletion: @escaping () -> Void) -> AnyPublisher<Void, Error> {
+        consentInteractor = consentInteractorProvider(environment)
+
+        return isTrackingEnabled()
             .receive(on: DispatchQueue.main)
             .map { [analyticsTracker] isEnabled in
                 if isEnabled {
@@ -82,28 +87,46 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
             return Publishers.typedJust(false)
         }
 
-        return consentInteractor.isTrackingEnabled()
+        guard let consentInteractor else {
+            return Publishers.typedJust(false)
+        }
+
+        return consentInteractor.isTrackingEnabled(ignoreConsentCache: true)
             .receive(on: DispatchQueue.main)
-            .flatMap { [weak self] isEnabled -> AnyPublisher<Bool, Never> in
+            .flatMap { [weak self] isEnabled -> AnyPublisher<Bool, Error> in
                 // If the user had already choosen or the feature flags enforce something
                 if let isEnabled {
                     return Publishers.typedJust(isEnabled)
                 }
 
                 // If the user must be asked
-                return self?.showConsentDialog()
+                return self?.showAndHandleConsentDialog()
                     ?? Publishers.typedEmpty()
             }
             .eraseToAnyPublisher()
     }
 
-    private func showConsentDialog() -> AnyPublisher<Bool, Never> {
-        Future { [environment] promise in
-            UIAlertController.showAnalyticsConsentDialog(env: environment) { consentFromDialog in
+    private func showAndHandleConsentDialog() -> AnyPublisher<Bool, Error> {
+        Future { promise in
+            UIAlertController.showAnalyticsConsentDialog { consentFromDialog in
                 promise(.success(consentFromDialog))
             }
         }
+        .flatMap { [weak self] value in
+            self?.setConsent(value)
+                ?? Publishers.typedEmpty()
+        }
         .eraseToAnyPublisher()
+    }
+
+    private func setConsent(_ value: Bool) -> AnyPublisher<Bool, Error> {
+        guard let consentInteractor else {
+            return Publishers.typedJust(value)
+        }
+
+        return consentInteractor.setConsent(value)
+            .map { value }
+            .eraseToAnyPublisher()
     }
 
     @MainActor
