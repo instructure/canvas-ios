@@ -653,12 +653,12 @@ extension CoreWebView: WKUIDelegate {
         _ webView: WKWebView,
         runJavaScriptAlertPanelWithMessage message: String,
         initiatedByFrame frame: WKFrameInfo,
-        completionHandler: @escaping (Bool) -> Void
+        completionHandler: @escaping @MainActor () -> Void
     ) {
-        guard let from = linkDelegate?.routeLinksFrom else { return completionHandler(false) }
-        let alert = UIAlertController(title: frame.request.url?.host, message: message, preferredStyle: .alert)
+        guard let from = linkDelegate?.routeLinksFrom else { return completionHandler() }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { _ in
-            completionHandler(true)
+            completionHandler()
         })
         env.router.show(alert, from: from, options: .modal())
     }

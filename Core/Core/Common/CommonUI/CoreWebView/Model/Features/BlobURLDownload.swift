@@ -31,7 +31,7 @@ class BlobURLDownload: CoreWebViewFeature {
             var el = event.target.closest('a[href^="blob:"]');
             if (!el) { return; }
             event.preventDefault();
-            var fileName = el.download || '';
+            var fileName = el.download || 'download';
             fetch(el.href)
                 .then(function(r) { return r.blob(); })
                 .then(function(blob) {

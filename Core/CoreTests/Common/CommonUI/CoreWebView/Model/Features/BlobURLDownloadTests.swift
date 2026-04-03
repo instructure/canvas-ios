@@ -22,22 +22,12 @@ import XCTest
 
 final class BlobURLDownloadTests: CoreTestCase {
 
-    private class LinkDelegate: CoreWebViewLinkDelegate {
-        var routeLinksFrom = UIViewController()
-        func handleLink(_ url: URL) -> Bool { false }
-
-        var startedAttachment: CoreWebAttachment?
-        func coreWebView(_ webView: CoreWebView, didStartDownloadAttachment attachment: CoreWebAttachment) {
-            startedAttachment = attachment
-        }
-    }
-
     private var webView: CoreWebView!
-    private var linkDelegate: LinkDelegate!
+    private var linkDelegate: MockCoreWebViewLinkDelegate!
 
     override func setUp() {
         super.setUp()
-        linkDelegate = LinkDelegate()
+        linkDelegate = MockCoreWebViewLinkDelegate()
         webView = CoreWebView(features: [.blobURLDownload])
         webView.linkDelegate = linkDelegate
         window.rootViewController?.view.addSubview(webView)
@@ -79,32 +69,12 @@ final class BlobURLDownloadTests: CoreTestCase {
 
         waitForPageLoad()
 
-        clickAtLocation(elementId: "link")
+        clickAtElement("link")
 
         waitUntil(shouldFail: true) { self.linkDelegate.startedAttachment != nil }
         XCTAssertEqual(linkDelegate.startedAttachment?.url.lastPathComponent, "report.txt")
         XCTAssertEqual(linkDelegate.startedAttachment?.contentType, "text/plain")
         XCTAssertEqual(linkDelegate.startedAttachment?.originIsBlob, true)
-    }
-
-    func test_clickListener_whenBlobLinkHasNoDownloadAttribute_shouldUseDefaultFileName() {
-        webView.loadHTMLString("""
-            <html><body><script>
-                var blob = new Blob(['content'], {type: 'text/plain'});
-                var a = document.createElement('a');
-                a.id = 'link';
-                a.href = URL.createObjectURL(blob);
-                a.textContent = 'Download';
-                document.body.appendChild(a);
-            </script></body></html>
-        """)
-
-        waitForPageLoad()
-
-        clickAtLocation(elementId: "link")
-
-        waitUntil(shouldFail: true) { self.linkDelegate.startedAttachment != nil }
-        XCTAssertEqual(linkDelegate.startedAttachment?.url.lastPathComponent, "download.txt")
     }
 
     func test_clickListener_whenBlobHasNoMimeType_shouldDefaultToOctetStream() {
@@ -122,10 +92,31 @@ final class BlobURLDownloadTests: CoreTestCase {
 
         waitForPageLoad()
 
-        clickAtLocation(elementId: "link")
+        clickAtElement("link")
 
         waitUntil(shouldFail: true) { self.linkDelegate.startedAttachment != nil }
+        XCTAssertEqual(linkDelegate.startedAttachment?.url.lastPathComponent, "file")
         XCTAssertEqual(linkDelegate.startedAttachment?.contentType, "application/octet-stream")
+    }
+
+    func test_clickListener_whenBlobLinkHasNoDownloadAttribute_shouldUseDefaultFileName() {
+        webView.loadHTMLString("""
+                <html><body><script>
+                    var blob = new Blob(['content'], {type: 'text/plain'});
+                    var a = document.createElement('a');
+                    a.id = 'link';
+                    a.href = URL.createObjectURL(blob);
+                    a.textContent = 'Download';
+                    document.body.appendChild(a);
+                </script></body></html>
+            """)
+
+        waitForPageLoad()
+
+        clickAtElement("link")
+
+        waitUntil(shouldFail: true) { self.linkDelegate.startedAttachment != nil }
+        XCTAssertEqual(linkDelegate.startedAttachment?.url.lastPathComponent, "download.txt")
     }
 
     func test_clickListener_whenNonBlobLinkIsClicked_shouldNotTriggerDownload() {
@@ -135,7 +126,7 @@ final class BlobURLDownloadTests: CoreTestCase {
 
         waitForPageLoad()
 
-        clickAtLocation(elementId: "link")
+        clickAtElement("link")
 
         RunLoop.current.run(until: Date().addingTimeInterval(0.5))
         XCTAssertEqual(linkDelegate.startedAttachment, nil)
@@ -145,33 +136,33 @@ final class BlobURLDownloadTests: CoreTestCase {
 
     func test_clickListener_whenBlobSizeExceedsLimit_shouldShowSizeAlert() {
         webView.loadHTMLString("""
-            <html><body><script>
+            <html>
+            <body>
+            <script>
                 var blob = new Blob(['x'], {type: 'text/plain'});
                 var a = document.createElement('a');
                 a.id = 'link';
                 a.href = URL.createObjectURL(blob);
                 a.textContent = 'Download';
                 document.body.appendChild(a);
-            </script></body></html>
+            </script>
+            </body>
+            </html>
         """)
 
         waitForPageLoad()
 
-        webView.evaluateJavaScript("""
+        evaluateJavaScript("""
             window.fetch = function(url) {
                 return Promise.resolve({
                     blob: function() {
-                        var b = new Blob(['x'], {type: 'text/plain'});
-                        Object.defineProperty(b, 'size', {
-                            get: function() { return 200 * 1024 * 1024; }
-                        });
-                        return Promise.resolve(b);
+                        return Promise.resolve({ size: 200 * 1024 * 1024 });
                     }
                 });
-            };
-        """) { _, _ in }
+            }
+        """)
 
-        clickAtLocation(elementId: "link")
+        clickAtElement("link")
 
         waitUntil(shouldFail: true) { (self.router.presented as? UIAlertController) != nil }
         XCTAssertEqual(
@@ -183,25 +174,29 @@ final class BlobURLDownloadTests: CoreTestCase {
 
     func test_clickListener_whenFetchFails_shouldShowFetchErrorAlert() {
         webView.loadHTMLString("""
-            <html><body><script>
+            <html>
+            <body>
+            <script>
                 var blob = new Blob(['x'], {type: 'text/plain'});
                 var a = document.createElement('a');
                 a.id = 'link';
                 a.href = URL.createObjectURL(blob);
                 a.textContent = 'Download';
                 document.body.appendChild(a);
-            </script></body></html>
+            </script>
+            </body>
+            </html>
         """)
 
         waitForPageLoad()
 
-        webView.evaluateJavaScript("""
+        evaluateJavaScript("""
             window.fetch = function() {
                 return Promise.reject(new Error('Network error'));
-            };
-        """) { _, _ in }
+            }
+        """)
 
-        clickAtLocation(elementId: "link")
+        clickAtElement("link")
 
         waitUntil(shouldFail: true) { (self.router.presented as? UIAlertController) != nil }
         XCTAssertEqual(
@@ -214,28 +209,21 @@ final class BlobURLDownloadTests: CoreTestCase {
     // MARK: - Private helpers
 
     private func waitForPageLoad() {
-        var isComplete = false
-        waitUntil(shouldFail: true) {
-            self.webView.evaluateJavaScript("document.readyState") { result, _ in
-                isComplete = (result as? String) == "complete"
-            }
-            return isComplete
-        }
+        wait(for: [linkDelegate.navigationFinishedExpectation], timeout: 10)
     }
 
-    private func clickAtLocation(elementId: String) {
-        webView.evaluateJavaScript("""
-            (function() {
-                var el = document.getElementById('\(elementId)');
-                var rect = el.getBoundingClientRect();
-                el.dispatchEvent(new MouseEvent('click', {
-                    bubbles: true,
-                    cancelable: true,
-                    view: window,
-                    clientX: rect.left + rect.width / 2,
-                    clientY: rect.top + rect.height / 2
-                }));
-            })();
-        """) { _, _ in }
+    private func evaluateJavaScript(_ script: String, description: String? = nil) {
+        let jsEvaluated = expectation(description: description ?? "JS evaluated")
+        webView.evaluateJavaScript(script) { _, _ in
+            jsEvaluated.fulfill()
+        }
+        wait(for: [jsEvaluated], timeout: 10)
+    }
+
+    private func clickAtElement(_ elementId: String) {
+        webView.evaluateJavaScript(
+            "document.getElementById('\(elementId)').click()",
+            completionHandler: nil
+        )
     }
 }
