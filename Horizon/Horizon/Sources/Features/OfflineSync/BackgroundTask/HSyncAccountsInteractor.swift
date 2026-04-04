@@ -19,7 +19,7 @@
 import Core
 import Foundation
 
-public class HSyncAccountsInteractor {
+public struct HSyncAccountsInteractor {
 
     public init() {}
 

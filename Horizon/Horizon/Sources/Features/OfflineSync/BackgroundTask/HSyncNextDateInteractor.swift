@@ -19,7 +19,7 @@
 import Core
 import Foundation
 
-final public class HSyncNextDateInteractor {
+public final class HSyncNextDateInteractor {
 
     public func calculate(sessionUniqueIDs: [String]) -> Date? {
         guard !sessionUniqueIDs.isEmpty else { return nil }
