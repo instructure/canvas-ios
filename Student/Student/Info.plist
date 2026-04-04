@@ -5,6 +5,7 @@
 	<key>BGTaskSchedulerPermittedIdentifiers</key>
 	<array>
 		<string>$(PRODUCT_BUNDLE_IDENTIFIER).offline-sync</string>
+		<string>$(PRODUCT_BUNDLE_IDENTIFIER).horizon-sync</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
