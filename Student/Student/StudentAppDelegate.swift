@@ -68,6 +68,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             CourseSyncBackgroundUpdatesAssembly.makeOfflineSyncBackgroundTask()
         }
         BackgroundProcessingAssembly.resolveInteractor().register(taskID: OfflineSyncBackgroundTaskRequest.ID)
+        BackgroundProcessingAssembly.register(taskID: HSyncBackgroundTaskRequest.ID) {
+            HBackgroundUpdatesAssembly.makeBackgroundTask()
+        }
+        BackgroundProcessingAssembly.resolveInteractor().register(taskID: HSyncBackgroundTaskRequest.ID)
         setupFirebase()
         CacheManager.resetAppIfNecessary()
 
@@ -185,8 +189,11 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         CoreWebView.stopCookieKeepAlive()
         BackgroundVideoPlayer.shared.background()
         environment.refreshWidgets()
-
-        OfflineSyncScheduleInteractor().scheduleNextSync()
+        if AppEnvironment.shared.app == .horizon {
+            HSyncScheduleInteractor().scheduleNextSync()
+        } else {
+            OfflineSyncScheduleInteractor().scheduleNextSync()
+        }
 
         if LocalizationManager.needsRestart {
             exit(EXIT_SUCCESS)

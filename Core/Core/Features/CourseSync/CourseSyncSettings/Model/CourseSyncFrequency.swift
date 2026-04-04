@@ -25,7 +25,7 @@ public enum CourseSyncFrequency: Int, CaseIterable {
     case daily
     case weekly
 
-    var stringValue: String {
+    public var stringValue: String {
         switch self {
         #if DEBUG
         case .osBased: return "As frequent as the OS allows (DEBUG)"
@@ -35,7 +35,7 @@ public enum CourseSyncFrequency: Int, CaseIterable {
         }
     }
 
-    func nextSyncDate(from date: Date) -> Date {
+    public func nextSyncDate(from date: Date) -> Date {
         switch self {
         #if DEBUG
         case .osBased: return date

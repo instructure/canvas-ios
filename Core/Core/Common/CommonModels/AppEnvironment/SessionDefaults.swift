@@ -29,6 +29,10 @@ public struct SessionDefaults: Equatable {
     public static let fallback = SessionDefaults(sessionID: "")
     public let sessionID: String
 
+    public init(sessionID: String) {
+        self.sessionID = sessionID
+    }
+
     /// The underlying UserDefaults instance used for storage.
     /// Automatically configured to use the app group suite for sharing data between app and extensions.
     public var userDefaults: UserDefaults {
@@ -249,6 +253,32 @@ public struct SessionDefaults: Equatable {
     public var isOfflineWifiOnlySyncEnabled: Bool? {
         get { self["isOfflineWifiOnlySyncEnabled"] as? Bool }
         set { self["isOfflineWifiOnlySyncEnabled"] = newValue }
+    }
+
+    public var horizonSyncFrequency: CourseSyncFrequency? {
+        get {
+            guard let raw = self["horizonSyncFrequency"] as? Int,
+                  let frequency = CourseSyncFrequency(rawValue: raw) else {
+                return nil
+            }
+            return frequency
+        }
+        set { self["horizonSyncFrequency"] = newValue?.rawValue }
+    }
+
+    public var horizonSyncNextDate: Date? {
+        get { self["horizonSyncNextDate"] as? Date }
+        set { self["horizonSyncNextDate"] = newValue }
+    }
+
+    public var isHorizonAutoSyncEnabled: Bool? {
+        get { self["isHorizonAutoSyncEnabled"] as? Bool }
+        set { self["isHorizonAutoSyncEnabled"] = newValue }
+    }
+
+    public var horizonOfflineSyncItems: [String] {
+        get { self["horizonOfflineSyncItems"] as? [String] ?? [] }
+        set { self["horizonOfflineSyncItems"] = newValue }
     }
 
     public var offlineSyncSelections: [CourseSyncItemSelection] {
