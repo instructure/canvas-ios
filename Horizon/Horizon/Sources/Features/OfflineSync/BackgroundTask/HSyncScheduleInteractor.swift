@@ -18,7 +18,7 @@
 
 import Core
 
-public struct HSyncScheduleInteractor {
+public class HSyncScheduleInteractor {
 
     public init() {}
 
