@@ -23,14 +23,14 @@ public enum HBackgroundUpdatesAssembly {
 
     public static func makeBackgroundTask() -> BackgroundTask {
         HSyncBackgroundTask(
-            syncableAccounts: HSyncAccountsInteractor(),
+            syncableAccounts: HSyncAccountsInteractorLive(),
             sessions: LoginSession.sessions
         )
     }
 
     public static func makeTaskRequest() -> BGProcessingTaskRequest? {
         HSyncBackgroundTaskRequest(
-            nextSyncDate: HSyncNextDateInteractor(),
+            nextSyncDate: HSyncNextDateInteractorLive(),
             sessions: LoginSession.sessions
         )
     }

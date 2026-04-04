@@ -22,14 +22,14 @@ import Core
 public final class HSyncBackgroundTask: BackgroundTask {
     private let sessions: [LoginSession]
     private let lastLoggedInSession: LoginSession?
-    private let scheduleInteractor: HSyncScheduleInteractor
+    private let scheduleInteractor: any HSyncScheduleInteractor
     private var isCancelled = false
     private var subscriptions = Set<AnyCancellable>()
 
     public init(
-        syncableAccounts: HSyncAccountsInteractor,
+        syncableAccounts: any HSyncAccountsInteractor,
         sessions: Set<LoginSession>,
-        scheduleInteractor: HSyncScheduleInteractor = HSyncScheduleInteractor()
+        scheduleInteractor: any HSyncScheduleInteractor = HSyncScheduleInteractorLive()
     ) {
         self.sessions = syncableAccounts.calculate(Array(sessions), date: Clock.now)
         self.lastLoggedInSession = LoginSession.mostRecent

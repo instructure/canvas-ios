@@ -18,7 +18,12 @@
 
 import Core
 
-public class HSyncScheduleInteractor {
+public protocol HSyncScheduleInteractor {
+    func scheduleNextSync()
+    func updateNextSyncDate(sessionUniqueID: String)
+}
+
+public struct HSyncScheduleInteractorLive: HSyncScheduleInteractor {
 
     public init() {}
 

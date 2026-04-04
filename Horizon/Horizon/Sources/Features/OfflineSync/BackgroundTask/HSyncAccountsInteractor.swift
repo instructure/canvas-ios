@@ -19,7 +19,11 @@
 import Core
 import Foundation
 
-public struct HSyncAccountsInteractor {
+public protocol HSyncAccountsInteractor {
+    func calculate(_ sessions: [LoginSession], date: Date) -> [LoginSession]
+}
+
+public struct HSyncAccountsInteractorLive: HSyncAccountsInteractor {
 
     public init() {}
 

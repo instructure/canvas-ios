@@ -54,7 +54,7 @@ final class HSyncAccountsInteractorTests: XCTestCase {
         defaults.isHorizonAutoSyncEnabled = true
         defaults.horizonSyncNextDate = now
 
-        let result = HSyncAccountsInteractor().calculate(
+        let result = HSyncAccountsInteractorLive().calculate(
             [disabledSession, futureDateSession, pastDateSession, nowDateSession],
             date: now
         )

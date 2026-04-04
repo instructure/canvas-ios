@@ -66,11 +66,11 @@ final class HSyncBackgroundTaskRequestTests: XCTestCase {
 
 // MARK: - Mocks
 
-private class MockHSyncNextDateInteractor: HSyncNextDateInteractor {
+private final class MockHSyncNextDateInteractor: HSyncNextDateInteractor {
     var mockedDate: Date? = Date(timeIntervalSince1970: 3456)
     var receivedSessionIDs: [String] = []
 
-    override func calculate(sessionUniqueIDs: [String]) -> Date? {
+    func calculate(sessionUniqueIDs: [String]) -> Date? {
         receivedSessionIDs = sessionUniqueIDs
         return mockedDate
     }

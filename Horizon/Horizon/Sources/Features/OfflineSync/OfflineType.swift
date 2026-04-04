@@ -21,7 +21,6 @@ enum OfflineType {
     case file(courseID: String)
     case program
     case learningLibrary
-    
     func path(for id: String) -> String {
         switch self {
         case .course:

@@ -190,7 +190,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         BackgroundVideoPlayer.shared.background()
         environment.refreshWidgets()
         if AppEnvironment.shared.app == .horizon {
-            HSyncScheduleInteractor().scheduleNextSync()
+            HSyncScheduleInteractorLive().scheduleNextSync()
         } else {
             OfflineSyncScheduleInteractor().scheduleNextSync()
         }

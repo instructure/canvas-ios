@@ -39,7 +39,7 @@ final class HSyncScheduleInteractorTests: XCTestCase {
         var defaults = SessionDefaults(sessionID: Self.sessionID)
         defaults.horizonSyncFrequency = .daily
 
-        HSyncScheduleInteractor().updateNextSyncDate(sessionUniqueID: Self.sessionID)
+        HSyncScheduleInteractorLive().updateNextSyncDate(sessionUniqueID: Self.sessionID)
 
         XCTAssertEqual(defaults.horizonSyncNextDate, now.addingTimeInterval(24 * 60 * 60))
     }
@@ -50,7 +50,7 @@ final class HSyncScheduleInteractorTests: XCTestCase {
         var defaults = SessionDefaults(sessionID: Self.sessionID)
         defaults.horizonSyncFrequency = .weekly
 
-        HSyncScheduleInteractor().updateNextSyncDate(sessionUniqueID: Self.sessionID)
+        HSyncScheduleInteractorLive().updateNextSyncDate(sessionUniqueID: Self.sessionID)
 
         XCTAssertEqual(defaults.horizonSyncNextDate, now.addingTimeInterval(7 * 24 * 60 * 60))
     }
@@ -61,7 +61,7 @@ final class HSyncScheduleInteractorTests: XCTestCase {
         var defaults = SessionDefaults(sessionID: Self.sessionID)
         defaults.horizonSyncFrequency = nil
 
-        HSyncScheduleInteractor().updateNextSyncDate(sessionUniqueID: Self.sessionID)
+        HSyncScheduleInteractorLive().updateNextSyncDate(sessionUniqueID: Self.sessionID)
 
         XCTAssertEqual(defaults.horizonSyncNextDate, now.addingTimeInterval(24 * 60 * 60))
     }

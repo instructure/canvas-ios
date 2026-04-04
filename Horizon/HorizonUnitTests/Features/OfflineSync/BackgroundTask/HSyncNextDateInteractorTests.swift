@@ -39,7 +39,7 @@ final class HSyncNextDateInteractorTests: XCTestCase {
     // MARK: - Edge cases
 
     func test_calculate_withEmptySessionList_shouldReturnNil() {
-        let result = HSyncNextDateInteractor().calculate(sessionUniqueIDs: [])
+        let result = HSyncNextDateInteractorLive().calculate(sessionUniqueIDs: [])
 
         XCTAssertEqual(result, nil)
     }
@@ -52,7 +52,7 @@ final class HSyncNextDateInteractorTests: XCTestCase {
         defaults.horizonOfflineSyncItems = ["course-1"]
         defaults.horizonSyncNextDate = Date()
 
-        let result = HSyncNextDateInteractor().calculate(sessionUniqueIDs: [testData.sessionID1])
+        let result = HSyncNextDateInteractorLive().calculate(sessionUniqueIDs: [testData.sessionID1])
 
         XCTAssertEqual(result, nil)
     }
@@ -63,7 +63,7 @@ final class HSyncNextDateInteractorTests: XCTestCase {
         defaults.horizonOfflineSyncItems = []
         defaults.horizonSyncNextDate = Date()
 
-        let result = HSyncNextDateInteractor().calculate(sessionUniqueIDs: [testData.sessionID1])
+        let result = HSyncNextDateInteractorLive().calculate(sessionUniqueIDs: [testData.sessionID1])
 
         XCTAssertEqual(result, nil)
     }
@@ -74,7 +74,7 @@ final class HSyncNextDateInteractorTests: XCTestCase {
         defaults.horizonOfflineSyncItems = ["course-1"]
         defaults.horizonSyncNextDate = nil
 
-        let result = HSyncNextDateInteractor().calculate(sessionUniqueIDs: [testData.sessionID1])
+        let result = HSyncNextDateInteractorLive().calculate(sessionUniqueIDs: [testData.sessionID1])
 
         XCTAssertEqual(result, nil)
     }
@@ -95,7 +95,7 @@ final class HSyncNextDateInteractorTests: XCTestCase {
         defaults.horizonOfflineSyncItems = ["course-2"]
         defaults.horizonSyncNextDate = earlierDate
 
-        let result = HSyncNextDateInteractor().calculate(sessionUniqueIDs: [testData.sessionID1, testData.sessionID2])
+        let result = HSyncNextDateInteractorLive().calculate(sessionUniqueIDs: [testData.sessionID1, testData.sessionID2])
 
         XCTAssertEqual(result, earlierDate)
     }
