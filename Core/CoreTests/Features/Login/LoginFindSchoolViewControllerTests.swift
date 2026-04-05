@@ -63,7 +63,7 @@ class LoginFindSchoolViewControllerTests: CoreTestCase {
     }
 
     func testManualOAuth() {
-        controller.method = .manualOAuthLogin
+        let controller = LoginFindSchoolViewController.create(loginDelegate: self, method: .manualOAuthLogin)
         controller.view.layoutIfNeeded()
         XCTAssertEqual(controller.searchField.delegate?.textFieldShouldReturn?(controller.searchField), false)
         XCTAssert(router.viewControllerCalls.isEmpty)

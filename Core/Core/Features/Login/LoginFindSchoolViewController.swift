@@ -167,7 +167,7 @@ extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDeleg
                 cell.textLabel?.attributedText = NSAttributedString(
                     string: String(localized: "Failed. Tap to retry.", bundle: .core),
                     attributes: [
-                        .foregroundColor: UIColor.textInfo,
+                        .foregroundColor: UIColor.textWarning,
                         .font: UIFont.scaledNamedFont(.regular14)
                     ]
                 )
