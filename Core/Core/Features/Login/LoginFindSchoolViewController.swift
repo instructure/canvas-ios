@@ -174,7 +174,7 @@ extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDeleg
             } else {
                 cell.selectionStyle = .none
                 cell.textLabel?.attributedText = NSAttributedString(
-                    string: String(localized: "Loading ..", bundle: .core),
+                    string: String(localized: "Loading ...", bundle: .core),
                     attributes: [
                         .foregroundColor: UIColor.textDark,
                         .font: UIFont.scaledNamedFont(.regular14)

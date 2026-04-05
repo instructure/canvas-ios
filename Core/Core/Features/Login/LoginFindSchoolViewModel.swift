@@ -19,7 +19,7 @@
 import Combine
 import UIKit
 
-class LoginFindSchoolViewModel {
+final class LoginFindSchoolViewModel {
 
     enum State { case idle, searching, loaded, loadingNextPage, nextPageFailed }
 
@@ -109,7 +109,7 @@ class LoginFindSchoolViewModel {
         }
     }
 
-    func rowWillDisplay(at indexPath: IndexPath, in viewController: UIViewController) {
+    func rowWillDisplay(at indexPath: IndexPath) {
         guard !accounts.isEmpty,
               state.value == .loaded,
               hasNextPage,
@@ -129,7 +129,7 @@ class LoginFindSchoolViewModel {
         }
     }
 
-    func openHelpPage() {
+    private func openHelpPage() {
         guard
             let loginDelegate,
             let url = loginDelegate.helpURL
