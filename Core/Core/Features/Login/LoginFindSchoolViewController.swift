@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import UIKit
 
 class LoginFindSchoolViewController: UIViewController {
@@ -31,14 +32,11 @@ class LoginFindSchoolViewController: UIViewController {
         UIBarButtonItem(title: String(localized: "Next", bundle: .core), style: .done, target: self, action: #selector(nextPressed))
     }
 
-    var accounts = [APIAccountResult]()
-    var api: API = API()
-    let env = AppEnvironment.shared
     var keyboard: KeyboardTransitioning?
     let logoView = UIImageView()
-    var method = AuthenticationMethod.normalLogin
-    weak var loginDelegate: LoginDelegate?
-    var searchTask: APITask?
+
+    private let viewModel = LoginFindSchoolViewModel()
+    private var subscriptions = Set<AnyCancellable>()
 
     var notFoundAttributedText: NSAttributedString = {
         let text = String(localized: "Can’t find your school? Try typing the full school URL.", bundle: .core)
@@ -59,8 +57,8 @@ class LoginFindSchoolViewController: UIViewController {
 
     static func create(loginDelegate: LoginDelegate?, method: AuthenticationMethod) -> LoginFindSchoolViewController {
         let controller = loadFromStoryboard()
-        controller.loginDelegate = loginDelegate
-        controller.method = method
+        controller.viewModel.loginDelegate = loginDelegate
+        controller.viewModel.method = method
         return controller
     }
 
@@ -74,6 +72,7 @@ class LoginFindSchoolViewController: UIViewController {
         logoView.widthAnchor.constraint(equalToConstant: 32).isActive = true
         navigationItem.titleView = logoView
         navigationItem.title = String(localized: "Find School", bundle: .core)
+        resultsTableView.register(UITableViewCell.self, forCellReuseIdentifier: "LoadingCell")
 
         promptLabel.text = String(localized: "What’s your school’s name?", bundle: .core)
         searchField.attributedPlaceholder = NSAttributedString(
@@ -81,6 +80,19 @@ class LoginFindSchoolViewController: UIViewController {
             attributes: [.foregroundColor: UIColor.textDark]
         )
         searchField.accessibilityLabel = String(localized: "School’s name", bundle: .core)
+
+        viewModel.state
+            .sink { [weak self] state in
+                guard let self else { return }
+
+                if state == .searching {
+                    loadingView.startAnimating()
+                } else {
+                    loadingView.stopAnimating()
+                    resultsTableView.reloadData()
+                }
+            }
+            .store(in: &subscriptions)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -101,63 +113,18 @@ class LoginFindSchoolViewController: UIViewController {
         parseInputAndShowLoginScreen()
     }
 
-    func search(query: String) {
-        guard !query.isEmpty else {
-            accounts = []
-            return resultsTableView.reloadData()
-        }
-
-        searchTask?.cancel()
-        loadingView?.startAnimating()
-        searchTask = api.makeRequest(GetAccountsSearchRequest(searchTerm: query)) { [weak self] (results, _, error) in performUIUpdate {
-            guard let self = self, error == nil else { return }
-            self.accounts = results?.sortedPromotingQueryPrefixed(query) ?? []
-            self.loadingView.stopAnimating()
-            self.resultsTableView.reloadData()
-            self.searchTask = nil
-        } }
-    }
-
-    func showLoginForHost(_ host: String, authenticationProvider: String? = nil) {
-        let controller: UIViewController
-        var analyticsRoute = "/login/find"
-
-        if method == .manualOAuthLogin {
-            controller = LoginManualOAuthViewController.create(
-                authenticationProvider: authenticationProvider,
-                host: host,
-                loginDelegate: loginDelegate
-            )
-            analyticsRoute = "/login/manualoauth"
-        } else {
-            controller = LoginWebViewController.create(
-                authenticationProvider: authenticationProvider,
-                host: host,
-                loginDelegate: loginDelegate,
-                method: method
-            )
-            analyticsRoute = "/login/weblogin"
-        }
-
-        env.router.show(controller, from: self, analyticsRoute: analyticsRoute)
-    }
-
     private func parseInputAndShowLoginScreen() {
-        guard var host = searchField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !host.isEmpty else { return }
-        host = host.lowercased()
-
-        // For manual oauth logins we trust the developer and don't modify the host.
-        if method != .manualOAuthLogin, !host.contains(".") {
-            host = "\(host).instructure.com"
-        }
+        guard
+            let domain = viewModel.accountDomain(
+                from: searchField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            )
+        else { return }
 
         searchField.resignFirstResponder()
-        if let account = accounts.first(where: { $0.domain == host }) {
-            env.lastLoginAccount = account
-        } else {
-            env.lastLoginAccount = APIAccountResult(name: "", domain: host, authentication_provider: nil)
-        }
-        showLoginForHost(host)
+
+        let account = viewModel.accounts.first(where: { $0.domain == domain })
+            ?? APIAccountResult(name: "", domain: domain, authentication_provider: nil)
+        viewModel.showLoginForAccount(account, from: self)
     }
 
     private func toggleNextButtonVisibility() {
@@ -174,7 +141,7 @@ extension LoginFindSchoolViewController: UITextFieldDelegate {
     @IBAction func textFieldDidChange(_ textField: UITextField) {
         toggleNextButtonVisibility()
         guard let query = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
-        search(query: query)
+        viewModel.search(query: query)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -184,34 +151,65 @@ extension LoginFindSchoolViewController: UITextFieldDelegate {
 }
 
 extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return max(accounts.count, 1)
+        viewModel.rowsCount
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if !viewModel.accounts.isEmpty && indexPath.row == viewModel.accounts.count {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath)
+            cell.backgroundColor = .backgroundLightest
+
+            if viewModel.state.value == .nextPageFailed {
+                cell.selectionStyle = .default
+                cell.accessoryView = nil
+                cell.textLabel?.attributedText = NSAttributedString(
+                    string: String(localized: "Failed. Tap to retry.", bundle: .core),
+                    attributes: [
+                        .foregroundColor: UIColor.textInfo,
+                        .font: UIFont.scaledNamedFont(.regular14)
+                    ]
+                )
+            } else {
+                cell.selectionStyle = .none
+                cell.textLabel?.attributedText = NSAttributedString(
+                    string: String(localized: "Loading ..", bundle: .core),
+                    attributes: [
+                        .foregroundColor: UIColor.textDark,
+                        .font: UIFont.scaledNamedFont(.regular14)
+                    ]
+                )
+
+                if cell.accessoryView == nil {
+                    cell.accessoryView = UIActivityIndicatorView(style: .medium)
+                }
+
+                (cell.accessoryView as? UIActivityIndicatorView)?.startAnimating()
+            }
+            return cell
+        }
+
         let cell = tableView.dequeue(UITableViewCell.self, for: indexPath)
         cell.backgroundColor = .backgroundLightest
         cell.textLabel?.font = .scaledNamedFont(.regular16)
         cell.textLabel?.textColor = .textDarkest
-        if accounts.isEmpty {
+        if viewModel.accounts.isEmpty {
             cell.textLabel?.accessibilityIdentifier = "LoginFindAccountResult.emptyCell"
             cell.textLabel?.attributedText = searchField?.text?.isEmpty == true ? helpAttributedText : notFoundAttributedText
         } else {
-            cell.textLabel?.accessibilityIdentifier = "LoginFindAccountResult.\(accounts[indexPath.row].domain)"
-            cell.textLabel?.attributedText = NSAttributedString(string: accounts[indexPath.row].name)
+            cell.textLabel?.accessibilityIdentifier = "LoginFindAccountResult.\(viewModel.accounts[indexPath.row].domain)"
+            cell.textLabel?.attributedText = NSAttributedString(string: viewModel.accounts[indexPath.row].name)
         }
         return cell
     }
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        viewModel.rowWillDisplay(at: indexPath, in: self)
+    }
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if accounts.isEmpty {
-            guard let url = loginDelegate?.helpURL else { return }
-            loginDelegate?.openExternalURL(url)
-        } else {
-            let account = accounts[indexPath.row]
-            env.lastLoginAccount = account
-            showLoginForHost(account.domain, authenticationProvider: account.authentication_provider)
-        }
+        viewModel.rowSelected(at: indexPath, in: self)
     }
 }

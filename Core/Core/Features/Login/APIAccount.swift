@@ -94,7 +94,7 @@ public struct GetAccountsSearchRequest: APIRequestable {
     public let path = API.loginURLString(path: "/api/v1/accounts/search")
     public var query: [APIQueryItem] {
         return [
-            .perPage(100),
+            .perPage(50),
             .value("search_term", searchTerm)
         ]
     }
