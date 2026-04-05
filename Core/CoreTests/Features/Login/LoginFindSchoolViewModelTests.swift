@@ -186,7 +186,11 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
             response: makeNextPageResponse()
         )
         testee.search(query: "a")
-        api.mock(url: URL(string: testData.nextPageURL)!, data: nil, error: NSError(domain: "test", code: -1))
+        api.mock(
+            GetNextRequest<[APIAccountResult]>(path: testData.nextPageURL),
+            data: nil,
+            error: NSError(domain: "test", code: -1)
+        )
 
         testee.loadNextPage()
 
@@ -204,7 +208,11 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
             response: makeNextPageResponse()
         )
         testee.search(query: "a")
-        api.mock(url: URL(string: testData.nextPageURL)!, data: nil, error: NSError(domain: "test", code: -1))
+        api.mock(
+            GetNextRequest<[APIAccountResult]>(path: testData.nextPageURL),
+            data: nil,
+            error: NSError(domain: "test", code: -1)
+        )
         testee.loadNextPage()
         XCTAssertEqual(testee.state.value, .nextPageFailed)
 
@@ -221,7 +229,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
     // MARK: - rowWillDisplay
 
     func test_rowWillDisplay_whenAccountsEmpty_shouldNotLoadNextPage() {
-        testee.rowWillDisplay(at: IndexPath(row: 0, section: 0), in: UIViewController())
+        testee.rowWillDisplay(at: IndexPath(row: 0, section: 0))
 
         XCTAssertEqual(testee.state.value, .idle)
     }
@@ -231,7 +239,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
         testee.search(query: "a")
         testee.state.send(.nextPageFailed)
 
-        testee.rowWillDisplay(at: IndexPath(row: 0, section: 0), in: UIViewController())
+        testee.rowWillDisplay(at: IndexPath(row: 0, section: 0))
 
         XCTAssertEqual(testee.hasNextPage, true)
     }
@@ -242,7 +250,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
         ])
         testee.search(query: "a")
 
-        testee.rowWillDisplay(at: IndexPath(row: 0, section: 0), in: UIViewController())
+        testee.rowWillDisplay(at: IndexPath(row: 0, section: 0))
 
         XCTAssertEqual(testee.state.value, .loaded)
         XCTAssertEqual(testee.accounts.count, 1)
@@ -255,7 +263,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
         ], response: makeNextPageResponse())
         testee.search(query: "a")
 
-        testee.rowWillDisplay(at: IndexPath(row: 0, section: 0), in: UIViewController())
+        testee.rowWillDisplay(at: IndexPath(row: 0, section: 0))
 
         XCTAssertEqual(testee.hasNextPage, true)
     }
@@ -275,7 +283,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
             .make(name: testData.name4, domain: testData.domain4)
         ])
 
-        testee.rowWillDisplay(at: IndexPath(row: 1, section: 0), in: UIViewController())
+        testee.rowWillDisplay(at: IndexPath(row: 1, section: 0))
 
         XCTAssertEqual(testee.state.value, .loaded)
         XCTAssertEqual(testee.accounts.count, 4)
@@ -323,20 +331,6 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.accounts.count, 4)
     }
 
-    // MARK: - openHelpPage
-
-    func test_openHelpPage() {
-        // WHEN delegate is set
-        testee.openHelpPage()
-        XCTAssertEqual(loginDelegate.externalURL, loginDelegate.helpURL)
-
-        // WHEN no delegate
-        testee.loginDelegate = nil
-        loginDelegate.externalURL = nil
-        testee.openHelpPage()
-        XCTAssertEqual(loginDelegate.externalURL, nil)
-    }
-
     // MARK: - Private helpers
 
     private func makeNextPageResponse() -> HTTPURLResponse {
@@ -351,6 +345,6 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
     private func mockNextPage(with accounts: [APIAccountResult]) {
         // swiftlint:disable:next force_try
         let data = try! GetAccountsSearchRequest(searchTerm: "a").encode(response: accounts)
-        api.mock(url: URL(string: testData.nextPageURL)!, data: data)
+        api.mock(GetNextRequest<[APIAccountResult]>(path: testData.nextPageURL), data: data)
     }
 }

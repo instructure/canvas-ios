@@ -129,15 +129,6 @@ final class LoginFindSchoolViewModel {
         }
     }
 
-    private func openHelpPage() {
-        guard
-            let loginDelegate,
-            let url = loginDelegate.helpURL
-        else { return }
-
-        loginDelegate.openExternalURL(url)
-    }
-
     func showLoginForAccount(_ account: APIAccountResult, from viewController: UIViewController) {
         env.lastLoginAccount = account
         showLoginForHost(account.domain, authenticationProvider: account.authentication_provider, from: viewController)
@@ -166,5 +157,14 @@ final class LoginFindSchoolViewModel {
         }
 
         env.router.show(controller, from: viewController, analyticsRoute: analyticsRoute)
+    }
+
+    private func openHelpPage() {
+        guard
+            let loginDelegate,
+            let url = loginDelegate.helpURL
+        else { return }
+
+        loginDelegate.openExternalURL(url)
     }
 }
