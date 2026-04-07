@@ -66,7 +66,7 @@ struct SpeedGraderPageHeaderView: View {
                         nameText
 
                         ViewThatFits(in: .horizontal) {
-                            InstUI.JoinedSubtitleLabels(
+                            AUI.JoinedSubtitleLabels(
                                 label1: { status },
                                 label2: { dueText },
                                 alignment: .top
@@ -176,7 +176,7 @@ struct SpeedGraderPageHeaderView: View {
 
     @ViewBuilder
     private var gradeSavingStateView: some View {
-        let trailingPadding: InstUI.Styles.Padding = isLandscapeLayout ? .zero : .standard
+        let trailingPadding: AUI.Styles.Padding = isLandscapeLayout ? .zero : .standard
 
         switch gradeSavingState {
         case .saving:

@@ -41,7 +41,7 @@ struct SubmissionListScreen: View {
     }
 
     private var content: some View {
-        InstUI.BaseScreen(
+        BaseScreen(
             state: viewModel.state,
             refreshAction: { completion in
                 viewModel.refresh(completion)
@@ -102,7 +102,7 @@ struct SubmissionListScreen: View {
 
         ToolbarItemGroup(placement: .topBarTrailing) {
             if #available(iOS 26, *) {
-                InstUI
+                AUI
                     .NavigationBarButton
                     .filterIcon(
                         isSolid: viewModel.isFilterActive,
@@ -112,7 +112,7 @@ struct SubmissionListScreen: View {
                     )
                     .tint(Color.textLightest)
             } else {
-                InstUI
+                AUI
                     .NavigationBarButton
                     .filterIcon(
                         isBackgroundContextColor: true,
@@ -156,7 +156,7 @@ private extension SubmissionListScreen {
         var body: some View {
             VStack(spacing: 0) {
                 content()
-                InstUI.Divider()
+                AUI.Divider()
                 Spacer().frame(height: 0.5)
             }
             .listRowInsets(.zero)

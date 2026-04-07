@@ -26,7 +26,7 @@ import SwiftUI
 final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     let id: String = EditableWidgetIdentifier.weeklySummary.rawValue
 
-    private(set) var state: InstUI.ScreenState = .loading
+    private(set) var state: ScreenState = .loading
     private(set) var isWeekLoading: Bool = false
     private(set) var config: DashboardWidgetConfig
     let isEditable = false

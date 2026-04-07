@@ -41,7 +41,7 @@ final class EditCalendarEventViewModel: ObservableObject {
     let pageViewEvent = ScreenViewTrackingParameters(eventName: "/calendar/new")
     let uploadParameters: RichContentEditorUploadParameters
 
-    @Published private(set) var state: InstUI.ScreenState = .data
+    @Published private(set) var state: ScreenState = .data
     @Published var title: String = ""
     @Published var date: Date?
     @Published var isAllDay: Bool = false

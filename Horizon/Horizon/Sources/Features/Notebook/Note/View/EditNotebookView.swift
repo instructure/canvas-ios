@@ -52,7 +52,7 @@ struct EditNotebookView: View {
     }
 
     private var baseScreen: some View {
-        InstUI.BaseScreen(
+        BaseScreen(
             state: viewModel.state,
             config: .init(
                 refreshable: false,

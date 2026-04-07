@@ -24,9 +24,9 @@ import SwiftUI
 
 class TodoListViewModel: ObservableObject {
     @Published private(set) var items: [TodoGroupViewModel] = []
-    @Published private(set) var state: InstUI.ScreenState = .loading
+    @Published private(set) var state: ScreenState = .loading
     @Published private(set) var filterIcon: Image = .filterLine
-    let screenConfig = InstUI.BaseScreenConfig(
+    let screenConfig = BaseScreenConfig(
         emptyPandaConfig: .init(
             scene: VacationPanda(),
             title: String(localized: "No To-dos for now!", bundle: .core),

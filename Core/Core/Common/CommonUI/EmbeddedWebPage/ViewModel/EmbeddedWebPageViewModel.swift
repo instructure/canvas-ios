@@ -23,13 +23,13 @@ public protocol EmbeddedWebPageViewModel {
     var queryItems: [URLQueryItem] { get }
     var navigationBarTitle: String { get }
 
-    func leadingNavigationButton(host: UIViewController) -> InstUI.NavigationBarButton?
+    func leadingNavigationButton(host: UIViewController) -> AUI.NavigationBarButton?
     func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation?)
 }
 
 public extension EmbeddedWebPageViewModel {
 
-    func leadingNavigationButton(host: UIViewController) -> InstUI.NavigationBarButton? {
+    func leadingNavigationButton(host: UIViewController) -> AUI.NavigationBarButton? {
         nil
     }
 

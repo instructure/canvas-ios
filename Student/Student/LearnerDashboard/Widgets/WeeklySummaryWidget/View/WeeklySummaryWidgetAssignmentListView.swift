@@ -37,7 +37,7 @@ struct WeeklySummaryWidgetAssignmentListView: View {
                 .buttonStyle(.plain)
                 .accessibilityLabel(item.accessibilityLabel)
                 .identifier("Dashboard.Forecast.Item.cellButton")
-                InstUI.Divider(item.id != assignments.last?.id ? .padded : .hidden)
+                AUI.Divider(item.id != assignments.last?.id ? .padded : .hidden)
             }
         }
         .accessibilityElement(children: .contain)
@@ -54,7 +54,7 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 2) {
-            HStack(alignment: .top, spacing: InstUI.Styles.Padding.standard.rawValue) {
+            HStack(alignment: .top, spacing: AUI.Styles.Padding.standard.rawValue) {
                 VStack(alignment: .leading, spacing: 2) {
                     courseLabel
                     assignmentTitle
@@ -73,7 +73,7 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
     }
 
     private var courseLabel: some View {
-        InstUI.JoinedSubtitleLabels(
+        AUI.JoinedSubtitleLabels(
             label1: {
                 assignment.icon
                     .scaledIcon(size: 16)
@@ -106,7 +106,7 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
     private var bottomLabels: some View {
         VStack(alignment: .leading, spacing: 2) {
             if let dueDateText = assignment.dueDateText, let statusModel = assignment.submissionStatus {
-                InstUI.JoinedSubtitleLabels(
+                AUI.JoinedSubtitleLabels(
                     label1: { dueDateLabel(dueDateText) },
                     label2: { SubmissionStatusLabel(model: statusModel, iconSize: 12, font: .regular12) }
                 )
@@ -115,7 +115,7 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
             }
 
             if let pointsText = assignment.pointsPossible, let gradeWeightText = assignment.gradeWeightText {
-                InstUI.JoinedSubtitleLabels(
+                AUI.JoinedSubtitleLabels(
                     label1: { pointsLabel(pointsText) },
                     label2: { gradeWeightPill(gradeWeightText) }
                 )
@@ -140,7 +140,7 @@ private struct WeeklySummaryWidgetAssignmentCell: View {
     }
 
     private func gradeWeightPill(_ text: String) -> some View {
-        InstUI.PillContent(title: text, size: .height20)
+        AUI.PillContent(title: text, size: .height20)
             .overlay(
                 Capsule()
                     .stroke(assignment.courseColor, lineWidth: 1 / displayScale)

@@ -21,7 +21,7 @@ import UIKit
 
 public class CalendarFilterViewModel: ObservableObject {
     // MARK: - Outputs
-    @Published public private(set) var state: InstUI.ScreenState = .loading
+    @Published public private(set) var state: ScreenState = .loading
     @Published public private(set) var userFilterOptions: [OptionItem] = []
     @Published public private(set) var courseFilterOptions: [OptionItem] = []
     @Published public private(set) var groupFilterOptions: [OptionItem] = []

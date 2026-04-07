@@ -100,7 +100,7 @@ public class CoreSwitch: UIControl {
 }
 
 /// Since we can't modify the wrapped view once we passed it to the hosting controller
-/// we use this model to communicate with the InstUI.Toggle.
+/// we use this model to communicate with the AcademicUI.Toggle.
 private class ToggleViewModel: ObservableObject {
     @Published var isOn = false
     @Published var isEnabled = true
@@ -110,12 +110,12 @@ private class ToggleViewModel: ObservableObject {
 }
 
 /// The purpose of this view is just to create a SwiftUI environment from where variables can be passed
-/// down to the underlying InstUI.Toggle.
+/// down to the underlying AcademicUI.Toggle.
 private struct ToggleWrapper: View {
     @EnvironmentObject var toggleViewModel: ToggleViewModel
 
     var body: some View {
-        InstUI.Toggle(isOn: $toggleViewModel.isOn) {}
+        AUI.Toggle(isOn: $toggleViewModel.isOn) {}
             .environment(\.isEnabled, toggleViewModel.isEnabled)
             .accentColor(toggleViewModel.tintColor)
             .accessibilityLabel(toggleViewModel.accessibilityLabel)

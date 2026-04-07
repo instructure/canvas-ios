@@ -45,7 +45,7 @@ final class HInboxViewModel {
     var isSearchDisabled: Bool { filterSubject.value == .announcements }
     private(set) var messageRows: [InboxMessageModel] = []
     private(set) var peopleSelectionViewModel: RecipientSelectionViewModel
-    private(set) var screenState: InstUI.ScreenState = .loading
+    private(set) var screenState: ScreenState = .loading
 
     // MARK: - Private
 

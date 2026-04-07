@@ -123,7 +123,7 @@ public struct AssignmentListScreen: View, ScreenViewTrackable {
     private var assignmentList: some View {
         ScrollView {
             VStack(spacing: 0) {
-                InstUI.TopDivider()
+                AUI.TopDivider()
                 AssignmentListView(
                     sections: viewModel.sections,
                     identifierGroup: "AssignmentList",

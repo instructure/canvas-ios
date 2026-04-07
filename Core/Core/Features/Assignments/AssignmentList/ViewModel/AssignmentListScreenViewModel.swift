@@ -36,7 +36,7 @@ public class AssignmentListScreenViewModel: ObservableObject {
 
     // MARK: - Outputs
 
-    @Published public private(set) var state: InstUI.ScreenState = .loading
+    @Published public private(set) var state: ScreenState = .loading
     @Published private(set) var sections: [AssignmentListSection] = []
     @Published public private(set) var courseColor: UIColor?
     @Published public private(set) var courseName: String?
@@ -442,7 +442,7 @@ public class AssignmentListScreenViewModel: ObservableObject {
 
 #if DEBUG
 
-    init(state: InstUI.ScreenState, sections: [AssignmentListSection] = []) {
+    init(state: ScreenState, sections: [AssignmentListSection] = []) {
         self.env = .shared
         self.courseID = ""
         self.state = state

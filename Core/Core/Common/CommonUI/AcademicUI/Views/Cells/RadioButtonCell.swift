@@ -1,0 +1,135 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2024-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import SwiftUI
+
+extension AUI {
+
+    public struct RadioButtonCell<Value: Equatable>: View {
+        @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+
+        @Binding private var selectedValue: Value?
+        private let title: String
+        private let headerTitle: String?
+        private let subtitle: String?
+        private let value: Value?
+        private let dividerStyle: AUI.Divider.Style
+
+        /// - parameters:
+        ///   - value: The value represented by this cell that will be passed to the `selectedValue` binding upon tap.
+        ///   - selectedValue: This binding holds the currently selected value belonging to the radio button group. The value is equatable so this cell can decide when to display the selected state.
+        public init(
+            title: String,
+            headerTitle: String? = nil,
+            subtitle: String? = nil,
+            value: Value?,
+            selectedValue: Binding<Value?>,
+            dividerStyle: AUI.Divider.Style = .full
+        ) {
+            self.title = title
+            self.headerTitle = headerTitle
+            self.subtitle = subtitle
+            self.value = value
+            self._selectedValue = selectedValue
+            self.dividerStyle = dividerStyle
+        }
+
+        public var body: some View {
+            let isSelected = value == selectedValue
+
+            VStack(spacing: 0) {
+                Button {
+                    selectedValue = value
+                } label: {
+                    HStack(spacing: 0) {
+                        AUI.RadioButton(isSelected: isSelected)
+                        .paddingStyle(.trailing, .cellIconText)
+                        .animation(.default, value: selectedValue)
+
+                        VStack(spacing: 2) {
+                            if let headerTitle {
+                                Text(headerTitle)
+                                    .textStyle(.cellLabelSubtitle)
+                                    .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                            Text(title)
+                                .textStyle(.cellLabel)
+                                .multilineTextAlignment(.leading)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                            if let subtitle {
+                                Text(subtitle)
+                                    .textStyle(.cellLabelSubtitle)
+                                    .multilineTextAlignment(.leading)
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                            }
+                        }
+                    }
+                    .paddingStyle(set: .iconCell)
+                }
+                .accessibilityLabel(Text(accessibilityLabel))
+                .accessibilityRemoveTraits(.isButton)
+                .accessibilityAddTraits(isSelected ? .isSelected : [])
+
+                AUI.Divider(dividerStyle)
+            }
+        }
+
+        // This is a workaround to not having a `isRadioButton` trait.
+        // The closing "." is needed to make VoiceOver read "Button" the same as with the trait.
+        private var accessibilityLabel: String {
+            let radioButton = String(localized: "Radio Button", bundle: .core, comment: "UI element type read out in VoiceOver.")
+            return [headerTitle, title, subtitle, "\(radioButton)."].accessibilityJoined()
+        }
+    }
+}
+
+#if DEBUG
+
+#Preview {
+    @Previewable @State var selectedValue: Int?
+
+    VStack(spacing: 0) {
+        AUI.RadioButtonCell(
+            title: "Value 1",
+            value: 1,
+            selectedValue: $selectedValue
+        )
+        AUI.RadioButtonCell(
+            title: "Value 2",
+            subtitle: "Subtitle",
+            value: 2,
+            selectedValue: $selectedValue
+        )
+        AUI.RadioButtonCell(
+            title: "Value 3",
+            headerTitle: "Header Title",
+            subtitle: "Subtitle",
+            value: 3,
+            selectedValue: $selectedValue
+        )
+        AUI.RadioButtonCell(
+            title: "Value 4",
+            headerTitle: "Header Title",
+            value: 4,
+            selectedValue: $selectedValue
+        )
+    }
+}
+
+#endif

@@ -34,7 +34,7 @@ struct SubmissionListRowView: View {
                     .layoutPriority(1)
                 if item.needsGrading {
                     if dynamicTypeSize < .accessibility3 {
-                        InstUI.JoinedSubtitleLabels(
+                        AUI.JoinedSubtitleLabels(
                             label1: { statusLabel },
                             label2: { needsGradingLabel },
                             alignment: .top
