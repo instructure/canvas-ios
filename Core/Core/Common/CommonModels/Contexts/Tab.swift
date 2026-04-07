@@ -30,6 +30,7 @@ public class Tab: NSManagedObject {
     @NSManaged public var position: Int
     @NSManaged var typeRaw: String
     @NSManaged var visibilityRaw: String
+    @NSManaged public var course: CourseSyncSelectorCourse?
 
     public var context: Context {
         get { return Context(canvasContextID: contextRaw) ?? .currentUser }
@@ -87,6 +88,7 @@ public class Tab: NSManagedObject {
                 )
             )
         else { return }
-        course.tabs.insert(self)
+
+        self.course = course
     }
 }
