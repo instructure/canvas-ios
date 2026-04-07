@@ -34,3 +34,13 @@ public struct APIAnalyticsConsent: Codable, Equatable {
         data != nil || message == Self.noDataMessage
     }
 }
+#if DEBUG
+extension APIAnalyticsConsent {
+    static func make(
+        data: Data? = nil,
+        message: String? = nil
+    ) -> APIAnalyticsConsent {
+        APIAnalyticsConsent(data: data, message: message)
+    }
+}
+#endif

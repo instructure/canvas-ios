@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,23 +16,24 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import XCTest
+@testable import Core
 
-// https://developerdocs.instructure.com/services/canvas/resources/users#method.custom_data.set_data
-struct PutAnalyticsConsentRequest: APIRequestable {
-    typealias Response = APIAnalyticsConsent
+final class APIAnalyticsConsentRequestNamespaceTests: XCTestCase {
 
-    struct Body: Codable {
-        let ns: String
-        let data: APIAnalyticsConsent.Data
-    }
+    // MARK: - consentNamespace
 
-    let namespace: APIAnalyticsConsentRequestNamespace
-    let value: Bool
+    func test_consentNamespace_shouldReturnCorrectNamespacePerApp() {
+        var app = AppEnvironment.App.student
+        XCTAssertEqual(app.consentNamespace, .student)
 
-    var method: APIMethod { .put }
-    var path: String { "users/self/custom_data/data_sync" }
-    var body: Body? {
-        Body(ns: namespace.rawValue, data: .init(mobile_consent: value))
+        app = .horizon
+        XCTAssertEqual(app.consentNamespace, .student)
+
+        app = .teacher
+        XCTAssertEqual(app.consentNamespace, .teacher)
+
+        app = .parent
+        XCTAssertEqual(app.consentNamespace, .parent)
     }
 }

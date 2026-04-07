@@ -18,6 +18,7 @@
 
 import Foundation
 
+// https://developerdocs.instructure.com/services/canvas/resources/users#method.custom_data.get_data
 struct GetAnalyticsConsentRequest: APIRequestable {
     typealias Response = APIAnalyticsConsent
 

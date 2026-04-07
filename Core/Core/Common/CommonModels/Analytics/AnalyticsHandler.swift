@@ -60,9 +60,10 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
     private var consentInteractor: AnalyticsConsentInteractor?
 
     public init(
+        analyticsTracker: PendoAnalyticsTracker = .init(),
         consentInteractorProvider: @escaping (AppEnvironment) -> AnalyticsConsentInteractor
     ) {
-        self.analyticsTracker = PendoAnalyticsTracker()
+        self.analyticsTracker = analyticsTracker
         self.consentInteractorProvider = consentInteractorProvider
     }
 
