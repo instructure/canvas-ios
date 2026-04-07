@@ -20,7 +20,19 @@ import Combine
 import Foundation
 
 public protocol AnalyticsConsentInteractor {
+
+    /// Returns whether analytics tracking is enabled.
+    /// Returns `true` or `false` if feature flags govern that it's always enabled/disabled,
+    /// or if consent is required and the user had already chosen.
+    /// Returns `nil` if consent is required but it's not yet provided by the user.
     func isTrackingEnabled(ignoreConsentCache: Bool) -> AnyPublisher<Bool?, Error>
+
+    /// Returns the value of the analytics tracking consent, if any.
+    /// Returns `true` or `false` if consent is required and the user had already chosen.
+    /// Returns `nil` if consent is not required (or if the user had not yet provided it).
+    func getConsentIfRequired(ignoreConsentCache: Bool) -> AnyPublisher<Bool?, Error>
+
+    /// Sets the consent to `value`.
     func setConsent(_ value: Bool) -> AnyPublisher<Void, Error>
 }
 
@@ -64,6 +76,23 @@ public class AnalyticsConsentInteractorLive: AnalyticsConsentInteractor {
                         ?? Publishers.typedEmpty()
                 } else {
                     return Publishers.typedJust(true)
+                }
+            }
+            .eraseToAnyPublisher()
+    }
+
+    public func getConsentIfRequired(ignoreConsentCache: Bool) -> AnyPublisher<Bool?, Error> {
+        featureFlagStore
+            .getEntities()
+            .flatMap { [weak self] featureFlags -> AnyPublisher<Bool?, Error> in
+                let isConsentRequired = featureFlags.isFeatureEnabled(.send_usage_metrics)
+                    && featureFlags.isFeatureEnabled(.cookie_consent_necessary)
+
+                if isConsentRequired {
+                    return self?.getConsent(ignoreCache: ignoreConsentCache)
+                        ?? Publishers.typedEmpty()
+                } else {
+                    return Publishers.typedJust(nil)
                 }
             }
             .eraseToAnyPublisher()

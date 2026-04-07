@@ -46799,6 +46799,9 @@
         }
       }
     },
+    "Anonymous Application Analytics" : {
+
+    },
     "Anyone" : {
       "localizations" : {
         "ar" : {
@@ -333706,6 +333709,9 @@
           }
         }
       }
+    },
+    "Share anonymous data about app performance and feature use. This helps us fix bugs and improve the overall application experience. We do not collect personal identifiers." : {
+
     },
     "Show a month at a time" : {
       "extractionState" : "stale",

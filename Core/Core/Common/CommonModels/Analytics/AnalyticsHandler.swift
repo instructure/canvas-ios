@@ -94,7 +94,7 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
         return consentInteractor.isTrackingEnabled(ignoreConsentCache: true)
             .receive(on: DispatchQueue.main)
             .flatMap { [weak self] isEnabled -> AnyPublisher<Bool, Error> in
-                // If the user had already choosen or the feature flags enforce something
+                // If the user had already chosen or the feature flags enforce something
                 if let isEnabled {
                     return Publishers.typedJust(isEnabled)
                 }

@@ -27,8 +27,10 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     private var onElementaryViewToggleChanged: (() -> Void)?
     private var showInboxSignatureSettings = false
     private var isInboxSignatureEnabled = false
+    private var analyticsConsentValue: Bool?
     private var offlineModeInteractor = OfflineModeAssembly.make()
     private lazy var inboxSettingsInteractor = InboxSettingsInteractorLive(environment: env)
+    private lazy var analyticsConsentInteractor = AnalyticsConsentInteractorLive(environment: env)
     private var subscriptions = Set<AnyCancellable>()
 
     private var landingPage: LandingPage {
@@ -113,6 +115,18 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                 self?.reloadData()
             }
             .store(in: &subscriptions)
+
+        loadAnalyticsConsent(isForced: false)
+    }
+
+    private func loadAnalyticsConsent(isForced: Bool) {
+        analyticsConsentInteractor.getConsentIfRequired(ignoreConsentCache: isForced)
+            .replaceError(with: nil)
+            .sink { [weak self] consentValue in
+                self?.analyticsConsentValue = consentValue
+                self?.reloadData()
+            }
+            .store(in: &subscriptions)
     }
 
     public override func viewWillAppear(_ animated: Bool) {
@@ -169,6 +183,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         channels.exhaust(while: { _ in true })
         profile.refresh(force: force)
         refreshTermsOfService()
+        loadAnalyticsConsent(isForced: force)
     }
 
     func reloadData() {
@@ -210,18 +225,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                 sections.append(offlineSettingSection)
             }
 
-            sections.append(
-                Section(String(localized: "Legal", bundle: .core), rows: [
-                    Row(String(localized: "Privacy Policy", bundle: .core), isSupportedOffline: false, accessibilityTraits: .link) { [weak self] in
-                        guard let self = self else { return }
-                        self.env.router.route(to: "https://www.instructure.com/canvas/privacy/", from: self)
-                    },
-                    Row(String(localized: "Terms of Use", bundle: .core), isSupportedOffline: false) { [weak self] in
-                        guard let self = self else { return }
-                        self.env.router.route(to: "/accounts/self/terms_of_service", from: self)
-                    }
-                ])
-            )
+            sections.append(legalSection)
             self.sections = sections
 
             if !channels.pending && !profile.pending && termsOfServiceRequest == nil {
@@ -440,6 +444,64 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     private func networkStateDidChange() {
         tableView.reloadData()
     }
+
+    private var legalSection: Section {
+        var section = Section(String(localized: "Legal", bundle: .core), rows: [])
+
+        if let analyticsConsentValue {
+            section.rows.append(
+                Switch(
+                    String(localized: "Anonymous Application Analytics", bundle: .core),
+                    subtitle: String(localized: """
+                    Share anonymous data about app performance and feature use. \
+                    This helps us fix bugs and improve the overall application experience. \
+                    We do not collect personal identifiers.
+                    """, bundle: .core),
+                    initialValue: analyticsConsentValue,
+                    isSupportedOffline: true
+                ) { [weak self] isOn in
+                    self?.setAnalyticsConsent(to: isOn)
+                }
+            )
+        }
+
+        section.rows.append(
+            Row(String(localized: "Privacy Policy", bundle: .core), isSupportedOffline: false, accessibilityTraits: .link) { [weak self] in
+                guard let self = self else { return }
+                self.env.router.route(to: "https://www.instructure.com/canvas/privacy/", from: self)
+            }
+        )
+
+        section.rows.append(
+            Row(String(localized: "Terms of Use", bundle: .core), isSupportedOffline: false) { [weak self] in
+                guard let self = self else { return }
+                self.env.router.route(to: "/accounts/self/terms_of_service", from: self)
+            }
+        )
+
+        return section
+    }
+
+    private func setAnalyticsConsent(to value: Bool) {
+        analyticsConsentValue = value
+        analyticsConsentInteractor.setConsent(value)
+            .flatMap { _ -> AnyPublisher<Void, Error> in
+                guard let handler = Analytics.shared.handler else {
+                    return Publishers.typedFailure(error: NSError.internalError())
+                }
+
+                return handler.initializeTracking(environment: .shared) { }
+            }
+            .receive(on: DispatchQueue.main)
+            .catch { [weak self] _ in
+                self?.analyticsConsentValue?.toggle()
+                return Just(())
+            }
+            .sink { [weak self] in
+                self?.reloadData()
+            }
+            .store(in: &subscriptions)
+    }
 }
 
 extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -487,7 +549,9 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
                 switchRow.value = toggle.isOn
             }
             cell.backgroundColor = .backgroundLightest
-            cell.textLabel?.text = switchRow.title
+            cell.titleLabel.text = switchRow.title
+            cell.subtitleLabel.text = switchRow.subtitle
+            cell.subtitleLabel.isHidden = switchRow.subtitle == nil
             let isAvailable = !offlineModeInteractor.isOfflineModeEnabled() || switchRow.isSupportedOffline
             cell.contentView.alpha = isAvailable ? 1 : 0.5
             return cell
@@ -560,6 +624,7 @@ private struct Row {
 
 private class Switch {
     let title: String
+    let subtitle: String?
     var value: Bool {
         didSet {
             onSelect(value)
@@ -568,8 +633,15 @@ private class Switch {
     let isSupportedOffline: Bool
     private let onSelect: (_ value: Bool) -> Void
 
-    init(_ title: String, initialValue: Bool = false, isSupportedOffline: Bool, onSelect: @escaping (_ value: Bool) -> Void) {
+    init(
+        _ title: String,
+        subtitle: String? = nil,
+        initialValue: Bool = false,
+        isSupportedOffline: Bool,
+        onSelect: @escaping (_ value: Bool) -> Void
+    ) {
         self.title = title
+        self.subtitle = subtitle
         self.value = initialValue
         self.isSupportedOffline = isSupportedOffline
         self.onSelect = onSelect

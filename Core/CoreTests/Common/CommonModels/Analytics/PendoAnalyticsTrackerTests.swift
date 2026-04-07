@@ -25,17 +25,14 @@ import XCTest
 class PendoAnalyticsTrackerTests: XCTestCase {
 
     private var testee: PendoAnalyticsTracker!
-    private var environment: TestEnvironment!
     private var interactor: AnalyticsMetadataInteractorMock!
     private var pendoManager: PendoManagerMock!
 
     override func setUp() {
         super.setUp()
-        environment = .init()
         interactor = .init()
         pendoManager = .init()
         testee = .init(
-            environment: environment,
             interactor: interactor,
             pendoManager: pendoManager,
             pendoApiKey: "some api key"
@@ -43,7 +40,6 @@ class PendoAnalyticsTrackerTests: XCTestCase {
     }
 
     override func tearDown() {
-        environment = nil
         interactor = nil
         pendoManager = nil
         testee = nil

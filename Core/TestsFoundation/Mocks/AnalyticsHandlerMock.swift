@@ -26,7 +26,7 @@ public final class AnalyticsHandlerMock: AnalyticsHandler {
 
     // MARK: - initializeTracking
 
-    public func initializeTracking(sessionStartCompletion: @escaping () -> Void) -> AnyPublisher<Void, Error> {
+    public func initializeTracking(environment: AppEnvironment, sessionStartCompletion: @escaping () -> Void) -> AnyPublisher<Void, Error> {
         Publishers.typedJust()
     }
 
