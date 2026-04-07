@@ -18,7 +18,7 @@
 
 import UIKit
 
-public final class ModuleItemSequenceViewController: UIViewController {
+public final class ModuleItemSequenceViewController: ScreenViewTrackableViewController {
     public typealias AssetType = GetModuleItemSequenceRequest.AssetType
 
     @IBOutlet weak var pagesContainer: UIView!
@@ -33,6 +33,9 @@ public final class ModuleItemSequenceViewController: UIViewController {
 
     private var env: AppEnvironment = .defaultValue
     private var courseID: String!
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/courses/\(courseID!)/modules/items"
+    )
     private var assetType: AssetType!
     private var assetID: String!
     private var url: URLComponents!
