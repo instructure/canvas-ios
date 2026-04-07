@@ -18,16 +18,18 @@
 
 import CoreData
 import UIKit
+import Snapshots
 
+@Detachable
 public final class ContextColor: NSManagedObject {
     @NSManaged public private(set) var canvasContextID: String
     @NSManaged public private(set) var color: UIColor
 
     // This is a Set because we need to allow for multiple Groups to reference
     // the same course color in the case where a student is in multiple groups in the same course.
-    @NSManaged public var groups: Set<Group>
-    @NSManaged public var course: Course?
-    @NSManaged public var card: DashboardCard?
+    @Raw @NSManaged public var groups: Set<Group>
+    @Raw @NSManaged public var course: Course?
+    @Raw @NSManaged public var card: DashboardCard?
 
     @discardableResult
     public static func save(

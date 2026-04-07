@@ -122,6 +122,83 @@ struct StudentAssignmentListItem: Equatable, Identifiable {
             self.subItems = nil
         }
     }
+
+    init(
+        assignment: AssignmentSnapshot,
+        userId: String?,
+        dateTextsProvider: AssignmentDateTextsProvider = .live
+    ) {
+        let submission: SubmissionSnapshot?
+        if let userId {
+            submission = assignment.submissions?.first { $0.userID == userId }
+        } else {
+            submission = assignment.submission
+        }
+
+        let hasSubAssignments = assignment.attributes.hasSubAssignments
+
+        self.id = assignment.attributes.id
+        self.title = assignment.attributes.name
+        self.icon = assignment.attributes.icon.asImage
+
+        self.dueDates = dateTextsProvider.summarizedDueDates(for: assignment)
+
+        let status = submission?.attributes.status ?? .notSubmitted
+        self.submissionStatus = status.labelModel
+
+        // The pointsPossible check safeguards against backend issues like in MBL-15698
+        let hasPointsPossible = assignment.attributes.pointsPossible != nil
+        let score = hasPointsPossible && !status.isExcused
+            ? GradeFormatter.string(from: assignment, submission: submission, style: .medium)
+            : nil
+        self.score = score
+        self.scoreA11yLabel = score.flatMap {
+            [String(localized: "Grade", bundle: .core), GradeFormatter.a11yString(from: $0)]
+                .accessibilityJoined()
+        }
+
+        self.route = assignment.attributes.htmlURL
+
+        if hasSubAssignments {
+            self.subItems = assignment.checkpoints
+                .map { checkpoint in
+                    let subSubmission = submission?.subAssignmentSubmissions
+                        .first { $0.subAssignmentTag == checkpoint.attributes.tag }
+
+                    let status = subSubmission?.status ?? .notSubmitted
+
+                    var score: String?
+                    if let pointsPossible = checkpoint.attributes.pointsPossible, !status.isExcused {
+                        score = GradeFormatter.string(
+                            pointsPossible: pointsPossible,
+                            gradingType: assignment.attributes.gradingType,
+                            gradingScheme: assignment.attributes.gradingScheme,
+                            hideScores: assignment.attributes.hideQuantitativeData,
+                            style: .medium,
+                            isExcused: false,
+                            score: subSubmission?.score,
+                            normalizedScore: (subSubmission?.score).map { $0 / pointsPossible },
+                            grade: subSubmission?.grade
+                        )
+                    }
+                    let scoreA11yLabel = score.flatMap {
+                        [String(localized: "Grade", bundle: .core), GradeFormatter.a11yString(from: $0)]
+                            .accessibilityJoined()
+                    }
+
+                    return SubItem(
+                        tag: checkpoint.attributes.tag,
+                        title: checkpoint.attributes.title,
+                        dueDate: DueDateFormatter.format(checkpoint.attributes.dueDate, lockDate: checkpoint.attributes.lockDate),
+                        submissionStatus: status.labelModel,
+                        score: score,
+                        scoreA11yLabel: scoreA11yLabel
+                    )
+                }
+        } else {
+            self.subItems = nil
+        }
+    }
 }
 
 #if DEBUG

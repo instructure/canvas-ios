@@ -99,11 +99,32 @@ public class GradeFormatter {
         )
     }
 
+    /// Creates a formatted grade string (including metrics) for the given `assignment` and `submission`.
+    public static func string(
+        from assignment: AssignmentSnapshot,
+        submission: SubmissionSnapshot?,
+        style: Style,
+        customStyleForLetterGrade: Style? = nil
+    ) -> String? {
+        string(
+            pointsPossible: assignment.attributes.pointsPossible,
+            gradingType: assignment.attributes.gradingType,
+            gradingScheme: submission?.assignment?.gradingScheme, // maybe we could use assignment directly, but not finding out now
+            hideScores: assignment.attributes.hideQuantitativeData,
+            style: style,
+            customStyleForLetterGrade: customStyleForLetterGrade,
+            isExcused: submission?.attributes.excused ?? false,
+            score: submission?.attributes.score,
+            normalizedScore: submission?.attributes.normalizedScore,
+            grade: submission?.attributes.grade
+        )
+    }
+
     /// Creates a formatted grade string (including metrics) for the given `assignment` and `submission` properties.
     public static func string(
         pointsPossible: Double?,
         gradingType: GradingType,
-        gradingScheme: GradingScheme?,
+        gradingScheme: (any GradingScheme)?,
         hideScores: Bool,
         style: Style,
         customStyleForLetterGrade: Style? = nil,

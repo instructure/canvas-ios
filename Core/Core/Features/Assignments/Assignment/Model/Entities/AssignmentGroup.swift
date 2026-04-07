@@ -18,7 +18,9 @@
 
 import Foundation
 import CoreData
+import Snapshots
 
+@Detachable
 public final class AssignmentGroup: NSManagedObject {
     public typealias JSON = APIAssignmentGroup
 
@@ -27,8 +29,10 @@ public final class AssignmentGroup: NSManagedObject {
     @NSManaged public var position: Int
     @NSManaged public var courseID: String
     @NSManaged public var groupWeight: NSNumber?
-    @NSManaged public var assignments: Set<Assignment>?
+    @Relation @NSManaged public var assignments: Set<Assignment>?
+}
 
+extension AssignmentGroup {
     @discardableResult
     public static func save(_ item: APIAssignmentGroup, courseID: String, in context: NSManagedObjectContext, updateSubmission: Bool, updateScoreStatistics: Bool) -> AssignmentGroup {
         let model: AssignmentGroup = context.first(where: #keyPath(AssignmentGroup.id), equals: item.id.value) ?? context.insert()

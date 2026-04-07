@@ -18,50 +18,52 @@
 
 import Foundation
 import CoreData
+import Snapshots
 
+@Detachable
 final public class Enrollment: NSManagedObject {
     @NSManaged public var id: String?
     @NSManaged public var canvasContextID: String?
     @NSManaged public var role: String?
     @NSManaged public var roleID: String?
-    @NSManaged public var stateRaw: String?
+    @Raw @NSManaged public var stateRaw: String?
     @NSManaged public var userID: String?
     @NSManaged public var multipleGradingPeriodsEnabled: Bool
     @NSManaged public var currentGradingPeriodID: String?
     @NSManaged public var totalsForAllGradingPeriodsOption: Bool
     @NSManaged public var type: String
-    @NSManaged public var course: Course?
+    @Relation @NSManaged public var course: Course?
     @NSManaged public var courseSectionID: String?
-    @NSManaged public var grades: Set<Grade>
-    @NSManaged public var observedUser: User?
+    @Relation @NSManaged public var grades: Set<Grade>
+    @Relation @NSManaged public var observedUser: User?
     @NSManaged public var isFromInvitation: Bool
     @NSManaged public var lastActivityAt: Date?
     @NSManaged public var createdAt: Date?
 
-    @NSManaged public var computedCurrentScoreRaw: NSNumber?
+    @Raw @NSManaged public var computedCurrentScoreRaw: NSNumber?
     @NSManaged public var computedCurrentGrade: String?
     @NSManaged public var computedCurrentLetterGrade: String?
-    @NSManaged public var computedFinalScoreRaw: NSNumber?
+    @Raw @NSManaged public var computedFinalScoreRaw: NSNumber?
     @NSManaged public var computedFinalGrade: String?
 
-    @NSManaged public var currentPeriodComputedCurrentScoreRaw: NSNumber?
+    @Raw @NSManaged public var currentPeriodComputedCurrentScoreRaw: NSNumber?
     @NSManaged public var currentPeriodComputedCurrentGrade: String?
-    @NSManaged public var currentPeriodComputedFinalScoreRaw: NSNumber?
+    @Raw @NSManaged public var currentPeriodComputedFinalScoreRaw: NSNumber?
     @NSManaged public var currentPeriodComputedFinalGrade: String?
 
-    @NSManaged public var submissions: Set<Submission>
+    @Relation @NSManaged public var submissions: Set<Submission>
 
     public var hideQuantitativeData: Bool {
         course?.hideQuantitativeData == true
     }
-}
 
-extension Enrollment {
     public var state: EnrollmentState {
         get { return EnrollmentState(rawValue: stateRaw ?? "") ?? .inactive }
         set { stateRaw = newValue.rawValue }
     }
+}
 
+extension Enrollment {
     public var computedCurrentScore: Double? {
         get { return computedCurrentScoreRaw?.doubleValue }
         set { computedCurrentScoreRaw = NSNumber(value: newValue) }
@@ -131,7 +133,7 @@ extension Enrollment {
     }
 
     // Used when "Base on graded assignment" is ON
-    public func formattedCurrentScore(gradingPeriodID: String?, gradingScheme: GradingScheme) -> String {
+    public func formattedCurrentScore(gradingPeriodID: String?, gradingScheme: any GradingScheme) -> String {
         let notAvailable = String(localized: "N/A", bundle: .core)
         if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {
             return notAvailable
@@ -143,7 +145,7 @@ extension Enrollment {
     }
 
     // Used when "Base on graded assignment" is OFF
-    public func formattedFinalScore(gradingPeriodID: String?, gradingScheme: GradingScheme) -> String {
+    public func formattedFinalScore(gradingPeriodID: String?, gradingScheme: any GradingScheme) -> String {
         let notAvailable = String(localized: "N/A", bundle: .core)
         if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {
             return notAvailable
@@ -155,7 +157,7 @@ extension Enrollment {
     }
 
     // Used when "Base on graded assignment" is ON
-    public func convertedLetterGrade(gradingPeriodID: String?, gradingScheme: GradingScheme) -> String {
+    public func convertedLetterGrade(gradingPeriodID: String?, gradingScheme: any GradingScheme) -> String {
         let notAvailable = String(localized: "N/A", bundle: .core)
         if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {
             return notAvailable
@@ -168,7 +170,7 @@ extension Enrollment {
     }
 
     // Used when "Base on graded assignment" is OFF
-    public func convertedFinalLetterGrade(gradingPeriodID: String?, gradingScheme: GradingScheme) -> String {
+    public func convertedFinalLetterGrade(gradingPeriodID: String?, gradingScheme: any GradingScheme) -> String {
         let notAvailable = String(localized: "N/A", bundle: .core)
         if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {
             return notAvailable
@@ -180,7 +182,7 @@ extension Enrollment {
         return notAvailable
     }
 
-    public func convertedLetterGrade(scorePercentage: Double, gradingScheme: GradingScheme) -> String {
+    public func convertedLetterGrade(scorePercentage: Double, gradingScheme: any GradingScheme) -> String {
         let notAvailable = String(localized: "N/A", bundle: .core)
         let normalizedScore = scorePercentage / 100.0
         return gradingScheme.convertNormalizedScoreToLetterGrade(normalizedScore) ?? notAvailable

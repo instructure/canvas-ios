@@ -27,15 +27,15 @@ import SwiftUI
 /// It could not be reasonably represented as a flat enum,
 /// so it groups together related properties and provides accessors instead.
 /// - It has a `.notSubmitted` fallback value for convenience.
-public struct SubmissionStatus: Equatable {
-    public enum GradeStatus: Equatable {
+public struct SubmissionStatus: Equatable, Sendable {
+    public enum GradeStatus: Equatable, Sendable {
         case excused
         case custom(id: String, name: String)
         case late
         case missing
     }
 
-    public enum NonSubmittableType: Equatable {
+    public enum NonSubmittableType: Equatable, Sendable {
         case onPaper
         case noSubmission
         case notGradable

@@ -20,7 +20,7 @@ import SwiftUI
 
 struct GradeListHeaderView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
-    @ObservedObject var viewModel: GradeListViewModel
+    @State var viewModel: GradeListViewModel
     let toggleViewIsVisible: Bool
 
     var body: some View {

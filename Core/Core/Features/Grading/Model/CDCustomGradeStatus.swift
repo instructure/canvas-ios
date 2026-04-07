@@ -18,7 +18,9 @@
 
 import CoreData
 import UIKit
+import Snapshots
 
+@Detachable
 public class CDCustomGradeStatus: NSManagedObject {
 
     @NSManaged public var id: String

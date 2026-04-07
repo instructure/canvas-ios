@@ -18,7 +18,9 @@
 
 import Foundation
 import CoreData
+import Snapshots
 
+@Detachable
 public class CDSubAssignmentSubmission: NSManagedObject {
 
     @NSManaged public var submissionId: String
@@ -28,7 +30,7 @@ public class CDSubAssignmentSubmission: NSManagedObject {
     // Status
     @NSManaged public var isExcused: Bool
     @NSManaged public var isLate: Bool
-    @NSManaged private var latePolicyStatusRaw: String?
+    @Raw @NSManaged private var latePolicyStatusRaw: String?
     public var latePolicyStatus: LatePolicyStatus? {
         get { .init(rawValue: latePolicyStatusRaw) } set { latePolicyStatusRaw = newValue?.rawValue }
     }
@@ -39,15 +41,15 @@ public class CDSubAssignmentSubmission: NSManagedObject {
     @NSManaged public var customGradeStatusName: String?
 
     // Score
-    @NSManaged private var enteredScoreRaw: NSNumber?
+    @Raw @NSManaged private var enteredScoreRaw: NSNumber?
     public var enteredScore: Double? {
         get { enteredScoreRaw?.doubleValue } set { enteredScoreRaw = .init(newValue) }
     }
-    @NSManaged private var scoreRaw: NSNumber?
+    @Raw @NSManaged private var scoreRaw: NSNumber?
     public var score: Double? {
         get { scoreRaw?.doubleValue } set { scoreRaw = .init(newValue) }
     }
-    @NSManaged private var publishedScoreRaw: NSNumber?
+    @Raw @NSManaged private var publishedScoreRaw: NSNumber?
     public var publishedScore: Double? {
         get { publishedScoreRaw?.doubleValue } set { publishedScoreRaw = .init(newValue) }
     }

@@ -18,34 +18,36 @@
 
 import Foundation
 import CoreData
+import Snapshots
 
+@Detachable
 public class Grade: NSManagedObject {
     @NSManaged public var gradingPeriodID: String?
-    @NSManaged public var enrollment: Enrollment?
+    @Relation @NSManaged public var enrollment: Enrollment?
 
     @NSManaged public var currentGrade: String?
-    @NSManaged var currentScoreRaw: NSNumber?
+    @Raw @NSManaged var currentScoreRaw: NSNumber?
     public var currentScore: Double? {
         get { currentScoreRaw?.doubleValue }
         set { currentScoreRaw = NSNumber(value: newValue) }
     }
 
     @NSManaged public var finalGrade: String?
-    @NSManaged var finalScoreRaw: NSNumber?
+    @Raw @NSManaged var finalScoreRaw: NSNumber?
     public var finalScore: Double? {
         get { finalScoreRaw?.doubleValue }
         set { finalScoreRaw = NSNumber(value: newValue) }
     }
 
     @NSManaged public var overrideGrade: String?
-    @NSManaged var overrideScoreRaw: NSNumber?
+    @Raw @NSManaged var overrideScoreRaw: NSNumber?
     public var overrideScore: Double? {
         get { return overrideScoreRaw?.doubleValue }
         set { overrideScoreRaw = NSNumber(value: newValue) }
     }
 
     @NSManaged public var unpostedCurrentGrade: String?
-    @NSManaged var unpostedCurrentScoreRaw: NSNumber?
+    @Raw @NSManaged var unpostedCurrentScoreRaw: NSNumber?
     public var unpostedCurrentScore: Double? {
         get { return unpostedCurrentScoreRaw?.doubleValue }
         set { unpostedCurrentScoreRaw = NSNumber(value: newValue) }

@@ -16,7 +16,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
 import SwiftUI
 
 public struct GradeListScreen: View, ScreenViewTrackable {
@@ -25,7 +24,7 @@ public struct GradeListScreen: View, ScreenViewTrackable {
     }
 
     // MARK: - Dependencies
-    @ObservedObject private var viewModel: GradeListViewModel
+    @State private var viewModel: GradeListViewModel
     @ObservedObject private var offlineModeViewModel: OfflineModeViewModel
     @Environment(\.viewController) private var viewController
     @Environment(\.verticalSizeClass) private var verticalSizeClass
@@ -46,7 +45,7 @@ public struct GradeListScreen: View, ScreenViewTrackable {
     }
 
     @AccessibilityFocusState private var accessibilityFocus: AccessibilityFocusArea?
-    private var subscriptions = Set<AnyCancellable>()
+//    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
@@ -70,7 +69,9 @@ public struct GradeListScreen: View, ScreenViewTrackable {
             }
             .background(Color.backgroundLight)
             .accessibilityHidden(isScoreEditorPresented)
-            .refreshable(action: viewModel.pullToRefreshDidTrigger.accept)
+            .refreshable {
+                await viewModel.refresh()
+            }
 
             whatIfScoreEditorView
         }
@@ -148,7 +149,7 @@ public struct GradeListScreen: View, ScreenViewTrackable {
             identifierGroup: "GradeList",
             selectedAssignmentId: viewModel.selectedAssignmentId,
             navigateToDetailsAction: { url, id in
-                viewModel.didSelectAssignment.accept((url, id, viewController))
+                viewModel.selectAssignment(url: url, id: id, controller: viewController)
             },
             whatIfModel: .init(
                 isEnabled: viewModel.isWhatIfScoreModeOn,

@@ -20,19 +20,21 @@ import Foundation
 import CoreData
 import CryptoKit
 import UIKit
+import Snapshots
 
+@Detachable
 final public class Submission: NSManagedObject, Identifiable {
-    @NSManaged public var assignment: Assignment?
+    @Relation @NSManaged public var assignment: Assignment?
     @NSManaged public var assignmentID: String
-    @NSManaged public var attachments: Set<File>?
+    @Relation @NSManaged public var attachments: Set<File>?
     @NSManaged public var attempt: Int
     @NSManaged public var body: String?
     @NSManaged public var customGradeStatusId: String?
     @NSManaged public var customGradeStatusName: String?
-    @NSManaged public var discussionEntries: Set<DiscussionEntry>?
+    @Relation @NSManaged public var discussionEntries: Set<DiscussionEntry>?
     @NSManaged public var dueAt: Date?
     @NSManaged public var enteredGrade: String?
-    @NSManaged var enteredScoreRaw: NSNumber?
+    @Raw @NSManaged var enteredScoreRaw: NSNumber?
     @NSManaged public var excused: Bool
     @NSManaged public var externalToolURL: URL?
     @NSManaged public var grade: String?
@@ -44,32 +46,32 @@ final public class Submission: NSManagedObject, Identifiable {
     @NSManaged public var id: String
     @NSManaged public var isLatest: Bool
     @NSManaged public var late: Bool
-    @NSManaged var latePolicyStatusRaw: String?
+    @Raw @NSManaged var latePolicyStatusRaw: String?
     @NSManaged public var lateSeconds: Int
     @NSManaged public var missing: Bool
-    @NSManaged var pointsDeductedRaw: NSNumber?
+    @Raw @NSManaged var pointsDeductedRaw: NSNumber?
     @NSManaged public var postedAt: Date?
     @NSManaged public var previewUrl: URL?
-    @NSManaged var scoreRaw: NSNumber?
+    @Raw @NSManaged var scoreRaw: NSNumber?
     @NSManaged public var shuffleOrder: String
     @NSManaged public var similarityScore: Double
     @NSManaged public var similarityStatus: String?
     @NSManaged public var similarityURL: URL?
     @NSManaged public var sortableName: String?
     @NSManaged public var submittedAt: Date?
-    @NSManaged var typeRaw: String?
+    @Raw @NSManaged var typeRaw: String?
     @NSManaged public var url: URL?
     @NSManaged public var userID: String
-    @NSManaged public var workflowStateRaw: String
+    @Raw @NSManaged public var workflowStateRaw: String
 
-    @NSManaged public var enrollments: Set<Enrollment>
-    @NSManaged public var mediaComment: MediaComment?
-    @NSManaged public var rubricAssesmentRaw: Set<RubricAssessment>?
-    @NSManaged public var user: User?
+    @Relation @NSManaged public var enrollments: Set<Enrollment>
+    @Relation @NSManaged public var mediaComment: MediaComment?
+    @Relation @NSManaged public var rubricAssesmentRaw: Set<RubricAssessment>?
+    @Relation @NSManaged public var user: User?
 
     // Sub-assignment (aka: Checkpoint) submissions
     @NSManaged public var hasSubAssignmentSubmissions: Bool
-    @NSManaged public var subAssignmentSubmissions: Set<CDSubAssignmentSubmission>
+    @Relation @NSManaged public var subAssignmentSubmissions: Set<CDSubAssignmentSubmission>
 
     /// Transient property to use for group resolving in Teacher's submission list
     public var fetchedGroup: FetchedGroup?
@@ -131,11 +133,36 @@ final public class Submission: NSManagedObject, Identifiable {
     public var discussionEntriesOrdered: [DiscussionEntry] {
         return discussionEntries?.sorted(by: { $0.id < $1.id }) ?? []
     }
+
+    /// This status is the single source of truth for any related logic.
+    /// Use this property instead of the properties it builds on.
+    /// Submissions and subassignment-submissions have their own, independent statuses.
+    ///
+    /// About the `isSubmitted` logic, after analyzing the backend logic:
+    /// - `workflow_state: submitted` is not guaranteed for submissions which had been submitted.
+    /// That's why we rely on `submitted_at` instead.
+    /// - `submittedAt != nil` also means `type != nil`
+    /// - It is valid for LTIs to set `workflow_state: pending_review` but `submitted_at: null`.
+    /// Quizzes may also use `pending_review` (ie.: for essay questions), but the `submitted_at` is populated in that case.
+    /// Those still mean the assignment is submitted.
+    public var status: SubmissionStatus {
+        .init(
+            isSubmitted: submittedAt != nil || workflowState == .pending_review,
+            isGraded: score != nil && workflowState == .graded,
+            isGradeBelongsToCurrentSubmission: gradeMatchesCurrentSubmission,
+            isLate: late,
+            isMissing: missing,
+            isExcused: excused,
+            customStatusId: customGradeStatusId,
+            customStatusName: customGradeStatusName,
+            submissionType: type ?? assignment?.submissionTypes.first
+        )
+    }
 }
 
 extension Submission {
 
-    public struct FetchedGroup {
+    public struct FetchedGroup: Sendable {
         public let id: String
         public let name: String
 
@@ -406,31 +433,6 @@ private extension String {
 
 extension Submission {
 
-    /// This status is the single source of truth for any related logic.
-    /// Use this property instead of the properties it builds on.
-    /// Submissions and subassignment-submissions have their own, independent statuses.
-    ///
-    /// About the `isSubmitted` logic, after analyzing the backend logic:
-    /// - `workflow_state: submitted` is not guaranteed for submissions which had been submitted.
-    /// That's why we rely on `submitted_at` instead.
-    /// - `submittedAt != nil` also means `type != nil`
-    /// - It is valid for LTIs to set `workflow_state: pending_review` but `submitted_at: null`.
-    /// Quizzes may also use `pending_review` (ie.: for essay questions), but the `submitted_at` is populated in that case.
-    /// Those still mean the assignment is submitted.
-    public var status: SubmissionStatus {
-        .init(
-            isSubmitted: submittedAt != nil || workflowState == .pending_review,
-            isGraded: score != nil && workflowState == .graded,
-            isGradeBelongsToCurrentSubmission: gradeMatchesCurrentSubmission,
-            isLate: late,
-            isMissing: missing,
-            isExcused: excused,
-            customStatusId: customGradeStatusId,
-            customStatusName: customGradeStatusName,
-            submissionType: type ?? assignment?.submissionTypes.first
-        )
-    }
-
     /// True if the submission is a resubmission, a previous attempt had been graded,
     /// and that grade had not been removed by the teacher.
     public var hasGradeFromEarlierSubmission: Bool {
@@ -457,6 +459,6 @@ extension Submission: Comparable {
 
 extension Submission: DueViewable {}
 
-public enum SubmissionWorkflowState: String, Codable {
+public enum SubmissionWorkflowState: String, Codable, Sendable {
     case submitted, unsubmitted, graded, pending_review, complete
 }

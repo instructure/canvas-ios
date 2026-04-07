@@ -19,7 +19,7 @@
 import Foundation
 import UniformTypeIdentifiers
 
-public enum SubmissionType: String, Codable, CaseIterable {
+public enum SubmissionType: String, Codable, CaseIterable, Sendable {
     case discussion_topic
     case external_tool
     case media_recording

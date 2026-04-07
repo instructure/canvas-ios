@@ -19,34 +19,36 @@
 import Foundation
 import CoreData
 import UIKit
+import Snapshots
 
+@Detachable
 public class Assignment: NSManagedObject {
-    @NSManaged public var allDates: Set<AssignmentDate>
+    @Relation @NSManaged public var allDates: Set<AssignmentDate>
     @NSManaged public var allowedAttempts: Int // 0 is flag disabled, -1 is unlimited
-    @NSManaged public var allowedExtensionsRaw: String
+    @Raw @NSManaged public var allowedExtensionsRaw: String
     /**
      The ID of the file to be annotated by students in case of a student_annotation type assignment, nil otherwise.
      */
     @NSManaged public var annotatableAttachmentID: String?
     @NSManaged public var anonymizeStudents: Bool
     @NSManaged public var anonymousSubmissions: Bool
-    @NSManaged public var assignmentGroup: AssignmentGroup?
+    @Relation @NSManaged public var assignmentGroup: AssignmentGroup?
     @NSManaged public var assignmentGroupID: String?
     @NSManaged public var assignmentGroupPosition: Int
     @NSManaged public var canSubmit: Bool
     @NSManaged public var canUnpublish: Bool
     @NSManaged public var courseID: String
     @NSManaged public var details: String?
-    @NSManaged public var discussionTopic: DiscussionTopic?
+    @Relation @NSManaged public var discussionTopic: DiscussionTopic?
     @NSManaged public var dueAt: Date?
     @NSManaged public var dueAtOrCheckpointsDueAt: Date?
     @NSManaged public var dueAtForSorting: Date
     @NSManaged public var externalToolContentID: String?
     @NSManaged public var freeFormCriterionCommentsOnRubric: Bool
     @NSManaged public var gradedIndividually: Bool
-    @NSManaged public var gradingPeriods: Set<GradingPeriod>
+    @Relation @NSManaged public var gradingPeriods: Set<GradingPeriod>
     @NSManaged public var gradingStandardId: String?
-    @NSManaged public var gradingTypeRaw: String
+    @Raw @NSManaged public var gradingTypeRaw: String
     @NSManaged public var groupCategoryID: String?
     @NSManaged public var hasSubmittedSubmissions: Bool
     @NSManaged public var hasOverrides: Bool
@@ -59,22 +61,22 @@ public class Assignment: NSManagedObject {
     @NSManaged public var lockAt: Date?
     @NSManaged public var lockedForUser: Bool
     @NSManaged public var lockExplanation: String?
-    @NSManaged public var masteryPathAssignment: MasteryPathAssignment?
+    @Relation @NSManaged public var masteryPathAssignment: MasteryPathAssignment?
     @NSManaged public var moderatedGrading: Bool
     @NSManaged public var name: String
     @NSManaged public var needsGradingCount: Int
     @NSManaged public var onlyVisibleToOverrides: Bool
-    @NSManaged public var overrides: Set<AssignmentOverride>
-    @NSManaged public var pointsPossibleRaw: NSNumber?
+    @Relation @NSManaged public var overrides: Set<AssignmentOverride>
+    @Raw @NSManaged public var pointsPossibleRaw: NSNumber?
     @NSManaged public var position: Int
     @NSManaged public var published: Bool
     @NSManaged public var quizID: String?
-    @NSManaged public var rubricPointsPossibleRaw: NSNumber?
-    @NSManaged public var rubricRaw: NSOrderedSet?
-    @NSManaged public var scoreStatistics: AssignmentScoreStatistics?
-    @NSManaged public var submissionTypesRaw: String
-    @NSManaged public var syllabus: Syllabus?
-    @NSManaged public var todo: Todo?
+    @Raw @NSManaged public var rubricPointsPossibleRaw: NSNumber?
+    @Raw @NSManaged public var rubricRaw: NSOrderedSet?
+    @Relation @NSManaged public var scoreStatistics: AssignmentScoreStatistics?
+    @Raw @NSManaged public var submissionTypesRaw: String
+    @Relation @NSManaged public var syllabus: Syllabus?
+    @Relation @NSManaged public var todo: Todo?
     @NSManaged public var unlockAt: Date?
     @NSManaged public var url: URL?
     @NSManaged public var useRubricForGrading: Bool
@@ -82,8 +84,8 @@ public class Assignment: NSManagedObject {
 
     // Checkpoints
     @NSManaged public var hasSubAssignments: Bool
-    @NSManaged private var checkpointsRaw: NSOrderedSet
-    public var checkpoints: [CDAssignmentCheckpoint] {
+    @Raw @NSManaged private var checkpointsRaw: NSOrderedSet
+    @Relation public var checkpoints: [CDAssignmentCheckpoint] {
         get { checkpointsRaw.typedArray() ?? [] } set { checkpointsRaw = .init(newValue) }
     }
 
@@ -96,7 +98,7 @@ public class Assignment: NSManagedObject {
      commonly for a student (i.e. Student app, all submissions returned are for 1 particular student)
      - Returns: most recent submission from student
      */
-    public var submission: Submission? {
+    @Relation public var submission: Submission? {
         get {
             return submissions?.first
         }
@@ -114,9 +116,9 @@ public class Assignment: NSManagedObject {
      from multiple students (i.e. Parent app when user is observer role)
      - Returns: all submissions related to assignment that may be for various different students
      */
-    @NSManaged public var submissions: Set<Submission>?
+    @Relation @NSManaged public var submissions: Set<Submission>?
 
-    public var course: Course? {
+    @Relation public var course: Course? {
         managedObjectContext?.first(where: #keyPath(Course.id), equals: courseID)
     }
     public var hideQuantitativeData: Bool {
@@ -125,7 +127,7 @@ public class Assignment: NSManagedObject {
     }
 
     // TODO: Should be deleted because assignments grading scheme may differ from the course one
-    public var gradingScheme: GradingScheme? {
+    public var gradingScheme: (any GradingScheme)? {
         guard let course: Course = managedObjectContext?.first(where: #keyPath(Course.id),
                                                                equals: courseID)
         else { return nil }
@@ -148,7 +150,7 @@ public class Assignment: NSManagedObject {
         set { pointsPossibleRaw = NSNumber(value: newValue) }
     }
 
-    public var rubric: [CDRubricCriterion]? {
+    @Relation public var rubric: [CDRubricCriterion]? {
         get { rubricRaw?.array as? [CDRubricCriterion] }
         set { rubricRaw = newValue.map { NSOrderedSet(array: $0) } }
     }
@@ -179,6 +181,20 @@ public class Assignment: NSManagedObject {
     public var isMasteryPathAssignment: Bool { masteryPathAssignment != nil }
 
     public var hasRubrics: Bool { rubric?.isNotEmpty ?? false }
+
+    public var icon: UIImage {
+        if lockedForUser {
+            .lockLine
+        } else if quizID != nil || isQuizLTI {
+            .quizLine
+        } else if submissionTypes.contains(.discussion_topic) {
+            .discussionLine
+        } else if submissionTypes.contains(.external_tool) || submissionTypes.contains(.basic_lti_launch) {
+            .ltiLine
+        } else {
+            .assignmentLine
+        }
+    }
 
     /// - parameters:
     ///     - requiredReplyCount: Needed for Discussions with Checkpoints when Assignment is saved from DiscussionTopic.
@@ -418,20 +434,6 @@ extension Assignment {
             return .after
         } else {
             return .unlocked
-        }
-    }
-
-    public var icon: UIImage {
-        if lockedForUser {
-            .lockLine
-        } else if quizID != nil || isQuizLTI {
-            .quizLine
-        } else if submissionTypes.contains(.discussion_topic) {
-            .discussionLine
-        } else if submissionTypes.contains(.external_tool) || submissionTypes.contains(.basic_lti_launch) {
-            .ltiLine
-        } else {
-            .assignmentLine
         }
     }
 

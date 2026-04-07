@@ -26,6 +26,12 @@ public protocol AssignmentDateTextsProvider {
     /// This method formats dates adding the "Due" prefix.
     func summarizedDueDates(for assignment: Assignment) -> [String]
 
+    /// If `assignment` has sub-assignments, this returns the formatted due date for each sub-assignment,
+    /// or only a single item if any of the dates is a special case which overrules them.
+    /// If `assignment` has no sub-assignments, this returns the formatted due date.
+    /// This method formats dates adding the "Due" prefix.
+    func summarizedDueDates(for assignment: AssignmentSnapshot) -> [String]
+
     /// Returns items which contain a title & formatted due date pair.
     /// If `assignment` has sub-assignments, this returns an item for each sub-assignment.
     /// In this case each title is the sub-assignments title and the "due" suffix.
@@ -63,6 +69,31 @@ public struct AssignmentDateTextsProviderLive: AssignmentDateTextsProvider {
                     assignment.dueAt,
                     lockDate: assignment.lockAt,
                     hasOverrides: isTeacher && assignment.hasOverrides
+                )
+            ]
+        }
+    }
+
+    public func summarizedDueDates(for assignment: AssignmentSnapshot) -> [String] {
+        let isTeacher = AppEnvironment.shared.app == .teacher
+
+        if assignment.attributes.hasSubAssignments {
+            return assignment.checkpoints
+                .map {
+                    DueDateSummary(
+                        $0.attributes.dueDate,
+                        lockDate: $0.attributes.lockDate,
+                        hasOverrides: isTeacher && $0.overrides.isNotEmpty
+                    )
+                }
+                .reduceIfNeeded()
+                .map(\.text)
+        } else {
+            return [
+                DueDateFormatter.format(
+                    assignment.attributes.dueAt,
+                    lockDate: assignment.attributes.lockAt,
+                    hasOverrides: isTeacher && assignment.attributes.hasOverrides
                 )
             ]
         }

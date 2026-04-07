@@ -34,10 +34,17 @@ final class AssignmentDateTextsProviderMock: AssignmentDateTextsProvider {
         return summarizedDueDatesResult
     }
 
+    func summarizedDueDates(for assignment: AssignmentSnapshot) -> [String] {
+        summarizedDueDatesCallsCount += 1
+        dueDateItemsInputSnapshot = assignment
+        return summarizedDueDatesResult
+    }
+
     // MARK: - dueDateItems
 
     var dueDateItemsCallsCount: Int = 0
     var dueDateItemsInput: Assignment?
+    var dueDateItemsInputSnapshot: AssignmentSnapshot?
     var dueDateItemsResult: [AssignmentDateListItem] = []
 
     func dueDateItems(for assignment: Assignment) -> [AssignmentDateListItem] {

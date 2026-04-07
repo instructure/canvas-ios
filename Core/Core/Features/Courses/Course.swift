@@ -18,7 +18,9 @@
 
 import CoreData
 import UIKit
+import Snapshots
 
+@Detachable
 final public class Course: NSManagedObject, WriteableModel {
     public typealias JSON = APICourse
 
@@ -26,15 +28,15 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var bannerImageDownloadURL: URL?
     @NSManaged public var canCreateAnnouncement: Bool
     @NSManaged public var canCreateDiscussionTopic: Bool
-    @NSManaged var contextColor: ContextColor?
+    @Relation @NSManaged var contextColor: ContextColor?
     @NSManaged public var courseCode: String?
     /** Teacher assigned course color for K5 in hex format. */
     @NSManaged public var courseColor: String?
-    @NSManaged var defaultViewRaw: String?
-    @NSManaged public var enrollments: Set<Enrollment>?
+    @Raw @NSManaged var defaultViewRaw: String?
+    @Relation @NSManaged public var enrollments: Set<Enrollment>?
     @NSManaged public var gradingStandardId: String?
-    @NSManaged public var grades: Set<Grade>?
-    @NSManaged public var gradingPeriods: Set<GradingPeriod>?
+    @Relation @NSManaged public var grades: Set<Grade>?
+    @Relation @NSManaged public var gradingPeriods: Set<GradingPeriod>?
     @NSManaged public var hideFinalGrades: Bool
     @NSManaged public var id: String
     @NSManaged public var imageDownloadURL: URL?
@@ -47,12 +49,12 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var name: String?
     /** If `name` property contains the user given nickname, then this field contains the original teacher associated name. Nil otherwise. */
     @NSManaged public var originalName: String?
-    @NSManaged public var sections: Set<CourseSection>
+    @Relation @NSManaged public var sections: Set<CourseSection>
     @NSManaged public var syllabusBody: String?
     @NSManaged public var termName: String?
-    @NSManaged public var settings: CourseSettings?
-    @NSManaged public var weeklySummaryEntries: Set<CDDashboardWeeklySummaryEntry>
-    @NSManaged public var gradingSchemeRaw: Data?
+    @Relation @NSManaged public var settings: CourseSettings?
+    @Relation @NSManaged public var weeklySummaryEntries: Set<CDDashboardWeeklySummaryEntry>
+    @Raw @NSManaged public var gradingSchemeRaw: Data?
     @NSManaged public var roles: String?
 
     @NSManaged public var scalingFactor: Double
@@ -63,7 +65,7 @@ final public class Course: NSManagedObject, WriteableModel {
         return gradingSchemeRaw.jsonDecode(to: [GradingSchemeEntry].self) ?? []
     }
 
-    public var gradingScheme: GradingScheme {
+    public var gradingScheme: any GradingScheme {
         if pointsBasedGradingScheme {
             PointsBasedGradingScheme(entries: gradingSchemeEntries, scaleFactor: scalingFactor)
         } else {
@@ -92,6 +94,12 @@ final public class Course: NSManagedObject, WriteableModel {
         }
     }
 
+    public var hideQuantitativeData: Bool {
+        return settings?.restrictQuantitativeData ?? false
+    }
+}
+
+extension Course {
     @discardableResult
     public static func save(_ item: APICourse, in context: NSManagedObjectContext) -> Course {
         let model: Course = context.first(where: #keyPath(Course.id), equals: item.id.value) ?? context.insert()
@@ -310,10 +318,6 @@ extension Course {
 }
 
 extension Course {
-
-    public var hideQuantitativeData: Bool {
-        return settings?.restrictQuantitativeData ?? false
-    }
 
     public var hideTotalGrade: Bool {
         let enrollment = enrollments?.filter({ $0.isStudent }).first

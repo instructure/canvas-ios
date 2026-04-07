@@ -18,14 +18,16 @@
 
 import Foundation
 import CoreData
+import Snapshots
 
+@Detachable
 public final class GradingPeriod: NSManagedObject {
     public typealias JSON = APIGradingPeriod
 
     @NSManaged public var id: String?
     @NSManaged public var title: String?
     @NSManaged public var courseID: String
-    @NSManaged public var assignments: Set<Assignment>
+    @Relation @NSManaged public var assignments: Set<Assignment>
     @NSManaged public var startDate: Date?
     @NSManaged public var endDate: Date?
 
@@ -47,6 +49,8 @@ public final class GradingPeriod: NSManagedObject {
         return model
     }
 }
+
+extension GradingPeriod.Snapshot: Equatable { }
 
 extension Array where Element: GradingPeriod {
     public var current: Element? {

@@ -25,8 +25,8 @@ public struct GradeListData: Identifiable, Equatable {
     public var courseColor: UIColor?
     var assignmentSections: [AssignmentListSection] = []
     var isGradingPeriodHidden: Bool = true
-    var gradingPeriods: [GradingPeriod] = []
-    var currentGradingPeriod: GradingPeriod?
+    var gradingPeriods: [GradingPeriod.Snapshot] = []
+    var currentGradingPeriod: GradingPeriod.Snapshot?
     public var totalGradeText: String?
     var currentGradingPeriodID: String?
 }

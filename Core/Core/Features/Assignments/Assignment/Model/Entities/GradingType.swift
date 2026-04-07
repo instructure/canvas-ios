@@ -18,7 +18,7 @@
 
 import Foundation
 
-public enum GradingType: String, Codable, CaseIterable {
+public enum GradingType: String, Codable, CaseIterable, Sendable {
     case percent, pass_fail, points, letter_grade, gpa_scale, not_graded
 
     var string: String {

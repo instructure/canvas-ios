@@ -18,7 +18,7 @@
 
 import Foundation
 
-public enum LatePolicyStatus: String, Codable {
+public enum LatePolicyStatus: String, Codable, Sendable {
     case late, missing, none, extended
 
     public init?(rawValue: String?) {

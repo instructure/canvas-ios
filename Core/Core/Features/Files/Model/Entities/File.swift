@@ -19,7 +19,7 @@
 import CoreData
 import UIKit
 
-final public class File: NSManagedObject {
+final public class File: NSManagedObject, Sendable {
     struct User: Codable {
         let id: String
         let baseURL: URL

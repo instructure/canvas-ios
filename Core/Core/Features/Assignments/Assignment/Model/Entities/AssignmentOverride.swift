@@ -18,7 +18,9 @@
 
 import Foundation
 import CoreData
+import Snapshots
 
+@Detachable
 public final class AssignmentOverride: NSManagedObject, WriteableModel {
     @NSManaged public var id: String
     @NSManaged public var assignmentID: String
@@ -26,7 +28,7 @@ public final class AssignmentOverride: NSManagedObject, WriteableModel {
 
     @NSManaged public var courseSectionID: String?
     @NSManaged public var groupID: String?
-    @NSManaged var studentIDsRaw: String?
+    @Raw @NSManaged var studentIDsRaw: String?
 
     @NSManaged public var dueAt: Date?
     @NSManaged public var unlockAt: Date?
