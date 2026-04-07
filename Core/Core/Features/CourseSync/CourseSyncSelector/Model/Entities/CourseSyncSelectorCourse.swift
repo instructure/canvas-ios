@@ -56,11 +56,14 @@ public final class CourseSyncSelectorCourse: NSManagedObject {
                 tab.save(
                     apiTab,
                     in: context,
-                    context: .course(dbEntity.courseId),
-                    fixingCourseSyncRelationship: false
+                    context: .course(dbEntity.courseId)
                 )
                 return tab
             }
+
+            // By this point of execution, this relationship would be already set as
+            // a result of setting `Tab.course` property to this object in `Tab.save(..)`
+            // method. But we do it anyway here for more emphasis and consistency.
             dbEntity.tabs = Set(tabs)
         } else {
             dbEntity.tabs = []
