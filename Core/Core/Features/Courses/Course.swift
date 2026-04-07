@@ -315,8 +315,21 @@ extension Course {
         return settings?.restrictQuantitativeData ?? false
     }
 
-    public var hideTotalGrade: Bool {
-        let enrollment = enrollments?.filter({ $0.isStudent }).first
+    public func enrollmentForGrade(userID: String?) -> Enrollment? {
+        func first(of state: EnrollmentState) -> Enrollment? {
+            enrollments?.first {
+                $0.id != nil &&
+                $0.state == state &&
+                $0.userID == userID &&
+                $0.isStudent
+            }
+        }
+        return first(of: .active) ?? first(of: .completed)
+    }
+
+    public func hideTotalGrade(userID: String?) -> Bool {
+        let enrollment = enrollmentForGrade(userID: userID)
+
         return hideFinalGrades == true || (
             enrollment?.multipleGradingPeriodsEnabled == true &&
             enrollment?.totalsForAllGradingPeriodsOption == false &&

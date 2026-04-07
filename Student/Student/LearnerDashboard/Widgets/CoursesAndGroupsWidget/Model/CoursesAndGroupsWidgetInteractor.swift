@@ -103,12 +103,13 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
                 .filterUsingDashboardCards(sortedCourseCards)
             let courseItems = courses.map {
                 let announcements = announcementsByContextId[$0.canvasContextID] ?? []
+                let userID = self?.env.currentSession?.userID
                 return CoursesAndGroupsWidgetCourseItem(
                     id: $0.id,
                     title: $0.name ?? "",
                     color: $0.color.asColor,
                     imageUrl: $0.imageDownloadURL,
-                    grade: $0.hideTotalGrade ? nil : $0.displayGradeForLearnerDashboard,
+                    grade: $0.hideTotalGrade(userID: userID) ? nil : $0.displayGradeForLearnerDashboard,
                     unreadAnnouncementCount: announcements.count,
                     singleUnreadAnnouncementId: announcements.count == 1 ? announcements.first?.id : nil
                 )
