@@ -53,7 +53,12 @@ public final class CourseSyncSelectorCourse: NSManagedObject {
                 )
                 let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [urlPredicate, contextPredicate])
                 let tab: Tab = context.fetch(predicate).first ?? context.insert()
-                tab.save(apiTab, in: context, context: .course(dbEntity.courseId))
+                tab.save(
+                    apiTab,
+                    in: context,
+                    context: .course(dbEntity.courseId),
+                    fixingCourseSyncRelationship: false
+                )
                 return tab
             }
             dbEntity.tabs = Set(tabs)
@@ -61,24 +66,5 @@ public final class CourseSyncSelectorCourse: NSManagedObject {
             dbEntity.tabs = []
         }
         return dbEntity
-    }
-
-    public override func awakeFromFetch() {
-        super.awakeFromFetch()
-
-        // Fix tabs relationship
-        guard let context = managedObjectContext else { return }
-
-        let predicate = NSPredicate(
-            format: "%K == %@", #keyPath(Tab.contextRaw),
-            Context.course(courseId).canvasContextID
-        )
-
-        let count = context.count(of: Tab.self, predicate: predicate)
-
-        guard tabs.count != count else { return }
-
-        let tabs: [Tab] = context.fetch(predicate)
-        self.tabs = Set(tabs)
     }
 }

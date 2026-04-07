@@ -59,7 +59,7 @@ public class Tab: NSManagedObject {
         TabName(rawValue: id) ?? .custom
     }
 
-    func save(_ item: APITab, in client: NSManagedObjectContext, context: Context) {
+    func save(_ item: APITab, in client: NSManagedObjectContext, context: Context, fixingCourseSyncRelationship: Bool = true) {
         id = item.id.value
         htmlURL = item.html_url
         fullURL = item.full_url
@@ -70,5 +70,23 @@ public class Tab: NSManagedObject {
         type = item.type
         visibility = TabVisibility(rawValue: item.visibility) ?? .none
         hidden = item.hidden
+
+        if fixingCourseSyncRelationship {
+            fixCourseSyncRelationship(in: client)
+        }
+    }
+
+    private func fixCourseSyncRelationship(in client: NSManagedObjectContext) {
+        guard
+            let courseId = context.courseId,
+            let course: CourseSyncSelectorCourse = client
+            .first(
+                scope: .where(
+                    #keyPath(CourseSyncSelectorCourse.courseId),
+                    equals: courseId
+                )
+            )
+        else { return }
+        course.tabs.insert(self)
     }
 }
