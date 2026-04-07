@@ -26,6 +26,21 @@ class BlobURLDownload: CoreWebViewFeature {
 
     static let messageHandlerName = "blobDownload"
 
+    private enum AlertPrefix {
+
+        static var fileTooLargeError: String {
+            String(localized: "Attachment file size is too large!", bundle: .core)
+        }
+
+        static var downloadError: String {
+            String(localized: "Attachment download error", bundle: .core)
+        }
+
+        static var fetchError: String {
+            String(localized: "Attachment fetch error", bundle: .core)
+        }
+    }
+
     private let script = """
         document.addEventListener('click', function(event) {
             var el = event.target.closest('a[href^="blob:"]');
@@ -37,7 +52,7 @@ class BlobURLDownload: CoreWebViewFeature {
                 .then(function(blob) {
 
                     if (blob.size > 100 * 1024 * 1024) {
-                        alert('Attachment file size is too large!');
+                        alert('\(AlertPrefix.fileTooLargeError)');
                         return
                     }
 
@@ -51,12 +66,12 @@ class BlobURLDownload: CoreWebViewFeature {
                         });
                     }
                     reader.onerror = function(err) {
-                        alert('Attachment download error: ' + err);
+                        alert('\(AlertPrefix.downloadError): ' + err);
                     }
                     reader.readAsDataURL(blob);
                 })
                 .catch(function(err) {
-                    alert('Attachment fetch error: ' + err);
+                    alert('\(AlertPrefix.fetchError): ' + err);
                 });
         }, true);
         """
