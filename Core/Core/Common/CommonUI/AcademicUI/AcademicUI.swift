@@ -17,6 +17,6 @@
 //
 
 /// Namespace for the Academic UI design system.
-/// Use `AcademicUI` to access components, styles, and utilities intended
+/// Use `AUI` to access components, styles, and utilities intended
 /// for the Canvas Academic experience.
 public enum AUI {}
