@@ -35,6 +35,11 @@ public extension InstUI {
                     } label: {
                         Text(verbatim: "Sizes")
                     }
+                    NavigationLink {
+                        InstUI.Primitives.FontWeights.Storybook()
+                    } label: {
+                        Text(verbatim: "Font Weights")
+                    }
                 }
             }
             .listStyle(.sidebar)

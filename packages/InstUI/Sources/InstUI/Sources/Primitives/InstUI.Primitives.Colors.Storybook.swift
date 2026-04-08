@@ -21,17 +21,6 @@ import SwiftUI
 public extension InstUI.Primitives.Colors {
     
     struct Storybook: View {
-        private let colors: [ColorEntry] = Mirror(reflecting: InstUI.Primitives.Colors())
-            .children
-            .compactMap { child in
-                guard
-                    let name = child.label,
-                    let color = child.value as? Color
-                else { return nil }
-
-                return ColorEntry(name: name, color: color)
-            }
-
         public var body: some View {
             ScrollView {
                 LazyVGrid(
@@ -64,6 +53,17 @@ public extension InstUI.Primitives.Colors {
             .navigationBarTitleDisplayMode(.large)
         }
 
+        private let colors: [ColorEntry] = Mirror(reflecting: InstUI.Primitives.Colors())
+            .children
+            .compactMap { child in
+                guard
+                    let name = child.label,
+                    let color = child.value as? Color
+                else { return nil }
+
+                return ColorEntry(name: name, color: color)
+            }
+
         private static let checkeredTexture: Image = {
             let tileSize: CGFloat = 6
             let size = CGSize(width: tileSize * 2, height: tileSize * 2)
@@ -79,7 +79,7 @@ public extension InstUI.Primitives.Colors {
         }()
     }
 
-    struct ColorEntry: Identifiable {
+    private struct ColorEntry: Identifiable {
         let name: String
         let color: Color
         let hasAlpha: Bool

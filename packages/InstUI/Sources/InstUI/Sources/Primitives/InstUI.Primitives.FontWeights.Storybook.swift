@@ -18,53 +18,46 @@
 
 import SwiftUI
 
-public extension InstUI.Primitives.Sizes {
+public extension InstUI.Primitives.FontWeights {
 
     struct Storybook: View {
 
         public var body: some View {
-            List(sizes) { entry in
+            List(weights) { entry in
                 HStack(spacing: 12) {
-                    Text(verbatim: entry.name)
+                    Text(entry.name)
                         .font(.system(size: 12, design: .monospaced))
                         .frame(width: 90, alignment: .leading)
-                    Text(verbatim: "\(entry.formattedValue) pt")
-                        .font(.system(size: 11))
-                        .foregroundStyle(.secondary)
-                        .frame(width: 48, alignment: .leading)
-                    Rectangle()
-                        .frame(width: min(entry.value, 200), height: 8)
-                        .foregroundStyle(.blue)
+                    Text(verbatim: "The quick brown fox")
+                        .fontWeight(entry.weight)
                     Spacer()
                 }
             }
-            .navigationTitle(Text(verbatim: "Primitive Sizes"))
+            .navigationTitle(Text(verbatim: "Primitive Font Weights"))
             .navigationBarTitleDisplayMode(.large)
         }
 
-        private let sizes: [SizeEntry] = Mirror(reflecting: InstUI.Primitives.Sizes())
+        private let weights: [WeightEntry] = Mirror(reflecting: InstUI.Primitives.FontWeights())
             .children
             .compactMap { child in
-                guard let name = child.label, let value = child.value as? CGFloat else { return nil }
-                return SizeEntry(name: name, value: value)
+                guard
+                    let name = child.label,
+                    let weight = child.value as? Font.Weight
+                else { return nil }
+
+                return WeightEntry(name: name, weight: weight)
             }
     }
 
-    private struct SizeEntry: Identifiable {
+    private struct WeightEntry: Identifiable {
         let name: String
-        let value: CGFloat
+        let weight: Font.Weight
         public var id: String { name }
-
-        var formattedValue: String {
-            value.truncatingRemainder(dividingBy: 1) == 0
-                ? String(Int(value))
-                : String(Double(value))
-        }
     }
 }
 
 #Preview {
     NavigationStack {
-        InstUI.Primitives.Sizes.Storybook()
+        InstUI.Primitives.FontWeights.Storybook()
     }
 }
