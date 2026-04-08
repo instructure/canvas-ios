@@ -121,7 +121,7 @@ struct GradeInputTextFieldCell: View {
     }
 
     private var numericTextField: some View {
-        InstUI.NumericTextField(
+        AUI.NumericTextField(
             text: $internalText,
             placeholder: placeholder,
             style: .init(
@@ -214,7 +214,7 @@ extension GradeInputTextFieldCell {
     @Previewable @State var textNumber: String = "24"
 
     VStack {
-        InstUI.Divider()
+        AUI.Divider()
         GradeInputTextFieldCell(
             title: "Label",
             subtitle: "(stuff)",

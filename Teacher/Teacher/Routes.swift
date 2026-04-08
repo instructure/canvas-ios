@@ -419,8 +419,8 @@ let router = Router(routes: [
         CoreHostingController(SnackBarTestView())
     },
 
-    RouteHandler("/dev-menu/instui-storybook") { _, _, _ in
-        CoreHostingController(InstUI.Storybook())
+    RouteHandler("/dev-menu/aui-storybook") { _, _, _ in
+        CoreHostingController(AUI.Storybook())
     },
 
     RouteHandler("/logs") { _, _, _ in

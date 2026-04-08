@@ -29,7 +29,7 @@ struct LearnerDashboardScreen: View, ScreenViewTrackable {
     @Environment(\.colorScheme) private var colorScheme
     let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/")
 
-    private let screenPadding = InstUI.Styles.Padding.standard
+    private let screenPadding = AUI.Styles.Padding.standard
     @State private var isAnimationEnabled = false
 
     init(
@@ -41,7 +41,7 @@ struct LearnerDashboardScreen: View, ScreenViewTrackable {
     }
 
     var body: some View {
-        InstUI.BaseScreen(
+        BaseScreen(
             state: viewModel.state,
             config: viewModel.screenConfig,
             refreshAction: { completion in
@@ -54,7 +54,7 @@ struct LearnerDashboardScreen: View, ScreenViewTrackable {
             VStack(spacing: screenPadding.rawValue) {
                 ForEach(viewModel.widgets, id: \.id) { widgetViewModel in
                     // This is a workaround for Todo widget's toggle to have the proper color
-                    // TODO: Update InstUI.Toggle to use tint color instead of accent color
+                    // TODO: Update AUI.Toggle to use tint color instead of accent color
                     let needsAccentColorOverride = widgetViewModel.id == EditableWidgetIdentifier.todo.rawValue
 
                     if widgetViewModel.shouldRenderWidget {
@@ -117,7 +117,7 @@ struct LearnerDashboardScreen: View, ScreenViewTrackable {
         Button {
             isSettingsPresented = true
         } label: {
-            InstUI.PillContent(
+            AUI.PillContent(
                 title: String(localized: "Customize Dashboard", bundle: .student),
                 leadingIcon: .editLine,
                 size: .height30

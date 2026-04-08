@@ -90,7 +90,7 @@ struct AssignmentListSectionView: View {
     }
 
     var body: some View {
-        InstUI.CollapsibleListSection(
+        AUI.CollapsibleListSection(
             title: section.title,
             itemCount: section.rows.count,
             headerIdentifier: sectionIdentifier,
@@ -121,7 +121,7 @@ struct AssignmentListSectionView: View {
         let itemIdentifier = "\(itemIdentifierGroup).\(model.id)"
 
         if let subItems = model.subItems {
-            InstUI.CollapsibleListRow(
+            AUI.CollapsibleListRow(
                 cell: StudentAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
                     .identifier(itemIdentifier),
                 isInitiallyExpanded: false
@@ -132,7 +132,7 @@ struct AssignmentListSectionView: View {
                         .identifier(itemIdentifier, subItem.tag)
                 }
             }
-            InstUI.Divider(isLast: isLastItem)
+            AUI.Divider(isLast: isLastItem)
         } else {
             StudentAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
                 .identifier(itemIdentifier)
@@ -145,7 +145,7 @@ struct AssignmentListSectionView: View {
         let itemIdentifier = "\(itemIdentifierGroup).\(model.id)"
 
         if let subItems = model.subItems {
-            InstUI.CollapsibleListRow(
+            AUI.CollapsibleListRow(
                 cell: TeacherAssignmentListItemCell(model: model, isLastItem: nil, action: routeAction)
                     .identifier(itemIdentifier),
                 isInitiallyExpanded: false
@@ -156,7 +156,7 @@ struct AssignmentListSectionView: View {
                         .identifier(itemIdentifier, subItem.tag)
                 }
             }
-            InstUI.Divider(isLast: isLastItem)
+            AUI.Divider(isLast: isLastItem)
         } else {
             TeacherAssignmentListItemCell(model: model, isLastItem: isLastItem, action: routeAction)
                 .identifier(itemIdentifier)
@@ -169,7 +169,7 @@ struct AssignmentListSectionView: View {
         let itemIdentifier = "\(itemIdentifierGroup).\(model.id)"
 
         if let subItems = model.subItems {
-            InstUI.CollapsibleListRow(
+            AUI.CollapsibleListRow(
                 cell: GradeListItemCell(
                     model: model,
                     whatIfModel: whatIfModel,
@@ -185,7 +185,7 @@ struct AssignmentListSectionView: View {
                         .identifier(itemIdentifier, subItem.tag)
                 }
             }
-            InstUI.Divider(isLast: isLastItem)
+            AUI.Divider(isLast: isLastItem)
         } else {
             GradeListItemCell(
                 model: model,

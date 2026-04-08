@@ -74,7 +74,7 @@ struct CommentInputView: View {
     var body: some View {
         VStack(spacing: 0) {
             if hasDividerAbove {
-                InstUI.Divider()
+                AUI.Divider()
             }
 
             content
@@ -95,7 +95,7 @@ struct CommentInputView: View {
         VStack(alignment: .leading, spacing: 12) {
             commentEditor
 
-            HStack(alignment: .bottom, spacing: InstUI.Styles.Padding.standard.rawValue) {
+            HStack(alignment: .bottom, spacing: AUI.Styles.Padding.standard.rawValue) {
                 switch commentLibraryButtonType {
                 case .openLibrary:
                     commentLibraryButton(isCurrentlyClosed: true)
@@ -129,7 +129,7 @@ struct CommentInputView: View {
                     .font(.regular12)
                     .foregroundStyle(.textPlaceholder)
             }
-            InstUI.ScrollableTextEditor(
+            AUI.ScrollableTextEditor(
                 text: Binding(
                     get: { commentSubject.value },
                     set: { commentSubject.value = $0 }

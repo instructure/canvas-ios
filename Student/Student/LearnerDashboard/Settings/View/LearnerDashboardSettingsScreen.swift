@@ -63,7 +63,7 @@ struct LearnerDashboardSettingsScreen: View {
             get: { viewModel.useNewLearnerDashboard },
             set: { _ in showSwitchAlert = true }
         )
-        return InstUI.Toggle(isOn: isOnBinding) {
+        return AUI.Toggle(isOn: isOnBinding) {
             Text("New Mobile Dashboard", bundle: .student)
                 .font(.semibold16)
                 .foregroundStyle(Color.textDarkest)
@@ -75,7 +75,7 @@ struct LearnerDashboardSettingsScreen: View {
     private var dashboardColorSelector: some View {
         VStack(alignment: .leading, spacing: 0) {
             LearnerDashboardColorSelectorView(selectedColor: $viewModel.mainColor, colors: viewModel.colors)
-            InstUI.Divider()
+            AUI.Divider()
         }
     }
 
@@ -93,7 +93,7 @@ struct LearnerDashboardSettingsScreen: View {
             Button {
                 viewModel.letUsKnow(from: viewController.value)
             } label: {
-                InstUI.PillContent(
+                AUI.PillContent(
                     title: String(localized: "Let us know!", bundle: .student),
                     trailingIcon: .externalLinkLine,
                     size: .height30

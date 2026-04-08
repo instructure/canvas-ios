@@ -132,7 +132,7 @@ struct SpeedGraderPageView: View {
             landscapeLeftColumn(bottomInset: bottomInset)
                 .frame(width: landscapeSplitLayoutViewModel.leftColumnWidth)
 
-            InstUI.Divider()
+            AUI.Divider()
 
             landscapeRightColumn(bottomInset: bottomInset)
                 .frame(width: landscapeSplitLayoutViewModel.rightColumnWidth)
@@ -154,12 +154,12 @@ struct SpeedGraderPageView: View {
                 .accessibility(sortPriority: 2)
                 .onHeightChange(update: $headerHeight)
 
-            InstUI.Divider()
+            AUI.Divider()
 
             VStack(alignment: .leading, spacing: 0) {
                 if viewModel.hasSubmissions {
                     attemptAndFilePickers
-                    InstUI.Divider()
+                    AUI.Divider()
                 }
 
                 ZStack(alignment: .top) {
@@ -190,13 +190,13 @@ struct SpeedGraderPageView: View {
             VStack(alignment: .leading, spacing: 0) {
                 headerView(isLandscapeLayout: false)
 
-                InstUI.Divider()
+                AUI.Divider()
 
                 if viewModel.hasSubmissions {
                     attemptAndFilePickers
                         .accessibilityElement(children: .contain)
                         .accessibilityHidden(drawerState.isFullyOpen)
-                    InstUI.Divider()
+                    AUI.Divider()
                 }
 
                 VStack(spacing: 0) {
@@ -253,7 +253,7 @@ struct SpeedGraderPageView: View {
 
     private var attemptAndFilePickers: some View {
         HStack(alignment: .center, spacing: 12) {
-            InstUI.PickerMenu(
+            AUI.PickerMenu(
                 selectedId: Binding(
                     get: { viewModel.selectedAttemptNumber },
                     set: { attemptPickerDidSelect(index: $0) }
@@ -273,7 +273,7 @@ struct SpeedGraderPageView: View {
             }
 
             if viewModel.hasMultipleFiles {
-                InstUI.PickerMenu(
+                AUI.PickerMenu(
                     selectedId: Binding(
                         get: { viewModel.selectedFile?.id },
                         set: { filePickerDidSelect(id: $0) }

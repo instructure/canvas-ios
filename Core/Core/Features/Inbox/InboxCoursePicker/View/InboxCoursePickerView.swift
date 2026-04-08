@@ -88,7 +88,7 @@ public struct InboxCoursePickerView: View {
             Section {
                 ForEach(courses, id: \.id) { courseRow($0) }
             } header: {
-                InstUI.ListSectionHeader(title: title, itemCount: courses.count)
+                AUI.ListSectionHeader(title: title, itemCount: courses.count)
             }
         }
     }
@@ -102,7 +102,7 @@ public struct InboxCoursePickerView: View {
                     }
                 } header: {
                     VStack(spacing: 0) {
-                        InstUI.ListSectionHeader(title: String(localized: "Groups", bundle: .core), itemCount: groups.count)
+                        AUI.ListSectionHeader(title: String(localized: "Groups", bundle: .core), itemCount: groups.count)
                     }
                 }
             }
@@ -146,7 +146,7 @@ public struct InboxCoursePickerView: View {
             .accessibilityLabel(accessibilityLabel)
             .accessibilityIdentifier("Inbox.course.\(course.id)")
 
-            InstUI.Divider()
+            AUI.Divider()
         }
     }
 
@@ -179,7 +179,7 @@ public struct InboxCoursePickerView: View {
             .accessibilityLabel(accessibilityLabel)
             .accessibilityIdentifier("Inbox.group.\(group.id)")
 
-            InstUI.Divider()
+            AUI.Divider()
         }
     }
 }

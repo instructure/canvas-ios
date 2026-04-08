@@ -103,11 +103,11 @@ public struct TodoListItemCell: View {
         ZStack {
             switch item.markAsDoneState {
             case .notDone:
-                InstUI.Checkbox(isSelected: false)
+                AUI.Checkbox(isSelected: false)
             case .loading:
                 ProgressView().tint(nil)
             case .done:
-                InstUI.Checkbox(isSelected: true)
+                AUI.Checkbox(isSelected: true)
             }
         }
         .frame(width: 44, height: 44)

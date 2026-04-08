@@ -22,7 +22,7 @@ import SwiftUI
 
 class CommentLibraryViewModel: ObservableObject {
 
-    @Published private(set) var state: InstUI.ScreenState = .loading
+    @Published private(set) var state: ScreenState = .loading
     @Published private(set) var comments: [LibraryComment] = []
     @Published var endCursor: String?
 

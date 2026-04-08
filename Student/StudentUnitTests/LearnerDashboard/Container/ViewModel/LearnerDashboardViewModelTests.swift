@@ -310,7 +310,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
 private class WidgetViewModelMock: DashboardWidgetViewModel {
     let id: String
     let isHiddenInEmptyState = false
-    let state: InstUI.ScreenState = .data
+    let state: ScreenState = .data
 
     var refreshCallCount = 0
     var refreshInput: Bool?
