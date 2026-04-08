@@ -19,3 +19,14 @@ let snapshot = model.snapshot
 let models: Set = [TestModel(), TestModel()]
 
 let snapshots = models.snapshots()
+
+struct TestSnapshot: CustomSnapshot {
+    let attributes: TestModel.Snapshot
+
+    public init(model: TestModel) {
+        self.attributes = model.snapshot
+    }
+}
+
+let s = TestSnapshot(model: model)
+let x = s.name

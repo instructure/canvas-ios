@@ -36,11 +36,20 @@ final class SnapshotsTests: XCTestCase {
         #if canImport(SnapshotsMacros)
         assertMacroExpansion(
             """
+            @Exposes<TestModel>(\\.name)
+            struct TestSnapshot: Snapshot {
+                private let attributes: TestModel.Snapshot
+
+                init(model: TestModel) {
+                    self.attributes = model.snapshot
+                }
+            }
+            
             @Detachable
             final class TestModel: NSManagedObject {
                 @NSManaged var id: String
             
-                @NSManaged var idRaw: String
+                @Raw @NSManaged var idRaw: String
             }
             """,
             expandedSource: """
