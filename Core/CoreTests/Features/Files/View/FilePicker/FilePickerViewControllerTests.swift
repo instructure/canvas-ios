@@ -45,7 +45,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
     let batchID = "1"
 
     lazy var controller = FilePickerViewController
-        .create(env: environment, batchID: batchID)
+        .create(env: environment, batchID: batchID, avPermissionInteractor: AVPermissionInteractorAlwaysGranted())
 
     func testLayout() {
         let navigation = UINavigationController(rootViewController: controller)
@@ -112,11 +112,16 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
 
     func testImage() {
         controller.view.layoutIfNeeded()
+//        let tabBar = controller.sourcesTabBar!
+//        tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items![FilePickerSource.camera.rawValue])
         controller.select(source: .camera)
-        // FIXME: always fails locally, always works on CI
-        XCTAssertNil(router.presented) // camera is unsupported in simulator
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            XCTAssertEqual((router.presented as? UIImagePickerController)?.sourceType, .camera)
+        } else {
+            XCTAssertNil(router.presented)
+        }
+//        tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items![FilePickerSource.library.rawValue])
         controller.select(source: .library)
-
         XCTAssert(router.presented is PHPickerViewController)
 
         // PHPickerResult has no public initializer, so we test through add(_:source:)
@@ -145,7 +150,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         controller.sources = [.documentScan]
         controller.view.layoutIfNeeded()
         controller.select(source: .documentScan)
-        // FIXME: always fails locally, always works on CI
+
         XCTAssertNil(router.presented)
     }
 
@@ -168,10 +173,9 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
     }
 }
 
-class MockImagePicker: UIImagePickerController {
-    var dismissed = false
-    override func dismiss(animated _: Bool, completion: (() -> Void)? = nil) {
-        dismissed = true
-        completion?()
-    }
+struct AVPermissionInteractorAlwaysGranted: AVPermissionInteractor {
+    var isCameraPermitted: Bool? { true }
+    var isMicrophonePermitted: Bool? { true }
+    func requestCameraPermission(_ response: @escaping (Bool) -> Void) { response(true) }
+    func requestMicrophonePermission(_ response: @escaping (Bool) -> Void) { response(true) }
 }

@@ -85,7 +85,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     public var batchID = ""
     public var maxFileCount = Int.max
 
-    private let avPermissionViewModel: AVPermissionViewModel = .init()
+    private var avPermissionViewModel: AVPermissionViewModel = .init()
 
     private var subscriptions = Set<AnyCancellable>()
     private var pickedFilesSourceMap: [URL: FilePickerSource] = [:]
@@ -94,10 +94,15 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         self?.update()
     }
 
-    public static func create(env: AppEnvironment, batchID: String = UUID.string) -> FilePickerViewController {
+    public static func create(
+        env: AppEnvironment,
+        batchID: String = UUID.string,
+        avPermissionInteractor: AVPermissionInteractor = AVPermissionInteractorLive()
+    ) -> FilePickerViewController {
         let controller = loadFromStoryboard()
         controller.env = env
         controller.batchID = batchID
+        controller.avPermissionViewModel = AVPermissionViewModel(interactor: avPermissionInteractor, env: env)
         return controller
     }
 
@@ -251,8 +256,9 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     func select(source: FilePickerSource) {
         switch source {
         case .camera:
+            guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
             avPermissionViewModel.performAfterVideoPermissions(from: .init(self)) { [weak self] in
-                guard let self, UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
+                guard let self else { return }
 
                 let cameraController = UIImagePickerController()
                 cameraController.delegate = self
@@ -280,13 +286,13 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
                 self.env.router.show(audioRecorder, from: self, options: .modal())
             }
         case .documentScan:
+            #if !targetEnvironment(simulator)
             if VNDocumentCameraViewController.isSupported {
                 let scanner = VNDocumentCameraViewController()
                 scanner.delegate = self
                 env.router.show(scanner, from: self, options: .modal())
-            } else {
-                break
             }
+            #endif
         }
     }
 }

@@ -18,6 +18,7 @@
 
 import Core
 import Combine
+import CombineSchedulers
 import Foundation
 
 class QuizSubmissionListViewModel: ObservableObject {
@@ -42,12 +43,19 @@ class QuizSubmissionListViewModel: ObservableObject {
     // MARK: - Private
     private var subscriptions = Set<AnyCancellable>()
     private let interactor: QuizSubmissionListInteractor
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
-    public init(router: Router, filterValue: QuizSubmissionListFilter, interactor: QuizSubmissionListInteractor) {
+    public init(
+        router: Router,
+        filterValue: QuizSubmissionListFilter,
+        interactor: QuizSubmissionListInteractor,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
+    ) {
         self.interactor = interactor
         self.filter = filterValue
         self.courseID = interactor.courseID
         self.quizID = interactor.quizID
+        self.scheduler = scheduler
 
         filterDidChange = CurrentValueSubject<QuizSubmissionListFilter, Never>(filterValue)
 
@@ -75,13 +83,14 @@ class QuizSubmissionListViewModel: ObservableObject {
 
     private func setupInputBindings(router: Router) {
         let interactor = self.interactor
+        let scheduler = self.scheduler
         subscribeToMessageUsersTapEvents(router: router)
         refreshDidTrigger
-            .delay(for: .seconds(1), scheduler: RunLoop.main)
+            .delay(for: .seconds(1), scheduler: scheduler)
             .flatMap { refreshCompletion in
                 interactor
                     .refresh()
-                    .receive(on: DispatchQueue.main)
+                    .receive(on: scheduler)
                     .handleEvents(receiveOutput: { refreshCompletion() })
             }
             .sink()

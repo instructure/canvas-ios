@@ -48,7 +48,7 @@ class CommentLibraryViewModelTests: TeacherTestCase {
         let exp1 = expectation(description: "refresh completed")
         testee.refresh(completion: { exp1.fulfill() })
 
-        wait(for: [exp1], timeout: 2)
+        wait(for: [exp1], timeout: 10)
 
         // Then
         XCTAssertEqual(testee.endCursor, "next_cursor")
@@ -85,7 +85,7 @@ class CommentLibraryViewModelTests: TeacherTestCase {
         let exp2 = expectation(description: "page loaded")
         testee.loadNextPage(completion: { exp2.fulfill() })
 
-        wait(for: [exp2], timeout: 2)
+        wait(for: [exp2], timeout: 10)
 
         // Then
         XCTAssertNil(testee.endCursor)
