@@ -68,8 +68,8 @@ public class StudioVideoPosterInteractorLive: StudioVideoPosterInteractor {
                     promise(.success(posterLocation))
                 } catch let error {
                     if error.isSourceTrackMissing == false {
-                            // Because we swallow all errors they won't be caught and reported
-                            // at a higher level so we have to manually report it here to analytics.
+                        // Because we swallow all errors they won't be caught and reported
+                        // at a higher level so we have to manually report it here to analytics.
                         self?.analytics.logError(
                             name: "Studio Offline Sync Failed",
                             reason: error.localizedDescription
