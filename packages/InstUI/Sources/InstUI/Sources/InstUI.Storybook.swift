@@ -30,6 +30,11 @@ public extension InstUI {
                     } label: {
                         Text(verbatim: "Colors")
                     }
+                    NavigationLink {
+                        InstUI.Primitives.Sizes.Storybook()
+                    } label: {
+                        Text(verbatim: "Sizes")
+                    }
                 }
             }
             .listStyle(.sidebar)

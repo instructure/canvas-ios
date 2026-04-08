@@ -20,5 +20,6 @@ public enum InstUI {
     public enum Primitives {
 
         public static let colors = Colors()
+        public static let sizes = Sizes()
     }
 }
