@@ -52,32 +52,32 @@ class CGSizeExtensionsTests: CoreTestCase {
         XCTAssertFalse(CGSize(width: 0, height: 0).isHorizontalSwipe)
     }
 
-    // MARK: - contained(in:)
+    // MARK: - downscaledToFit(_:)
 
-    func test_contained_whenZeroSize_shouldReturnZero() {
-        XCTAssertEqual(CGSize.zero.contained(in: CGSize(width: 100, height: 100)), .zero)
-        XCTAssertEqual(CGSize(width: 0, height: 50).contained(in: CGSize(width: 100, height: 100)), .zero)
-        XCTAssertEqual(CGSize(width: 50, height: 0).contained(in: CGSize(width: 100, height: 100)), .zero)
+    func test_downscaledToFit_whenZeroSize_shouldReturnZero() {
+        XCTAssertEqual(CGSize.zero.downscaledToFit(CGSize(width: 100, height: 100)), .zero)
+        XCTAssertEqual(CGSize(width: 0, height: 50).downscaledToFit(CGSize(width: 100, height: 100)), .zero)
+        XCTAssertEqual(CGSize(width: 50, height: 0).downscaledToFit(CGSize(width: 100, height: 100)), .zero)
     }
 
-    func test_contained_whenAlreadyFits_shouldReturnSelf() {
+    func test_downscaledToFit_whenAlreadyFits_shouldReturnSelf() {
         let size = CGSize(width: 50, height: 40)
-        XCTAssertEqual(size.contained(in: CGSize(width: 100, height: 100)), size)
-        XCTAssertEqual(size.contained(in: CGSize(width: 50, height: 40)), size)
+        XCTAssertEqual(size.downscaledToFit(CGSize(width: 100, height: 100)), size)
+        XCTAssertEqual(size.downscaledToFit(CGSize(width: 50, height: 40)), size)
     }
 
-    func test_contained_whenWiderThanMax_shouldScaleByWidth() {
-        let result = CGSize(width: 200, height: 100).contained(in: CGSize(width: 100, height: 100))
+    func test_downscaledToFit_whenWiderThanMax_shouldScaleByWidth() {
+        let result = CGSize(width: 200, height: 100).downscaledToFit(CGSize(width: 100, height: 100))
         XCTAssertEqual(result, CGSize(width: 100, height: 50))
     }
 
-    func test_contained_whenTallerThanMax_shouldScaleByHeight() {
-        let result = CGSize(width: 100, height: 200).contained(in: CGSize(width: 100, height: 100))
+    func test_downscaledToFit_whenTallerThanMax_shouldScaleByHeight() {
+        let result = CGSize(width: 100, height: 200).downscaledToFit(CGSize(width: 100, height: 100))
         XCTAssertEqual(result, CGSize(width: 50, height: 100))
     }
 
-    func test_contained_whenBothDimensionsExceedMax_shouldScaleByLimitingDimension() {
-        let result = CGSize(width: 400, height: 200).contained(in: CGSize(width: 100, height: 100))
+    func test_downscaledToFit_whenBothDimensionsExceedMax_shouldScaleByLimitingDimension() {
+        let result = CGSize(width: 400, height: 200).downscaledToFit(CGSize(width: 100, height: 100))
         XCTAssertEqual(result, CGSize(width: 100, height: 50))
     }
 }

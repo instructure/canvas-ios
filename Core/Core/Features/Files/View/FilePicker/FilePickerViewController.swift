@@ -411,7 +411,7 @@ extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
             let pages = (0 ..< scan.pageCount).compactMap { index -> PDFPage? in
                 let image = scan.imageOfPage(at: index)
 
-                let mediaBoxSize = image.size.contained(in: .letterSize)
+                let mediaBoxSize = image.size.downscaledToFit(.letterSize)
                 if mediaBoxSize.isZero { return nil }
 
                 return PDFPage(

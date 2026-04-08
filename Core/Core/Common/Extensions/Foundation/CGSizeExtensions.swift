@@ -34,7 +34,7 @@ extension CGSize {
     ///   - If either dimension exceeds `maxSize`, the size is uniformly scaled by the smaller of the width and height ratios
     ///     (`maxSize.width / width` and `maxSize.height / height`) to ensure the result fits within both constraints.
     ///   - Maintains the aspect ratio of the original size.
-    public func contained(in maxSize: CGSize) -> CGSize {
+    public func downscaledToFit(_ maxSize: CGSize) -> CGSize {
         guard width > 0, height > 0 else { return .zero }
         guard width > maxSize.width || height > maxSize.height else { return self }
 
