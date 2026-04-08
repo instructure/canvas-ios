@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build-icons": "./scripts/build-icons.js",
+    "build-instui": "./scripts/instui/build-instui.js",
     "build-secrets": "./scripts/build-secrets.js",
     "export-translations": "./scripts/translations/export.js",
     "import-translations": "./scripts/translations/import.js",
@@ -15,6 +16,7 @@
   },
   "devDependencies": {
     "@types/react-dom": "^19.0.4",
+    "style-dictionary": "^3.9.0",
     "aws-sdk": "^2.178.0",
     "chalk": "^2.4.1",
     "commander": "^2.19.0",

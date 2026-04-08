@@ -16,9 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import SafariServices
 import Core
+import Foundation
+import InstUI
+import SafariServices
 
 let router = Router(routes: [
 
@@ -161,6 +162,9 @@ let router = Router(routes: [
 
     RouteHandler("/dev-menu/aui-storybook") { _, _, _ in
         CoreHostingController(AUI.Storybook())
+    },
+    RouteHandler("/dev-menu/instui-storybook") { _, _, _ in
+        CoreHostingController(InstUI.Storybook())
     },
 
     RouteHandler("/wrong-app") { _, _, _ in
