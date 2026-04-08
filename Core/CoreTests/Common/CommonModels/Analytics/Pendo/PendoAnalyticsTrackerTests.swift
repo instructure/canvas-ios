@@ -163,5 +163,3 @@ class PendoAnalyticsTrackerTests: XCTestCase {
         XCTAssertEqual(pendoManager.trackCallsCount, 3)
     }
 }
-
-
