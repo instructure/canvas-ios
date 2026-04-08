@@ -172,7 +172,6 @@ extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDeleg
                     ]
                 )
             } else {
-
                 cell.selectionStyle = .none
                 cell.textLabel?.attributedText = NSAttributedString(
                     string: String(localized: "Loading…", bundle: .core),
