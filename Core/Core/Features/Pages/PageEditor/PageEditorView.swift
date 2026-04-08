@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct PageEditorView: View {
+public struct PageEditorView: View, ScreenViewTrackable {
     let context: Context
     let url: String?
 
@@ -39,6 +39,15 @@ public struct PageEditorView: View {
     @State var showError: Bool = false
     @State var error: Error? {
         didSet { showError = error != nil }
+    }
+
+    public var screenViewTrackingParameters: ScreenViewTrackingParameters {
+        let eventName = if let url {
+            "/\(context.pathComponent)/pages/\(url)/edit"
+        } else {
+            "/\(context.pathComponent)/pages/new"
+        }
+        return ScreenViewTrackingParameters(eventName: eventName)
     }
 
     public init(context: Context, url: String? = nil) {
