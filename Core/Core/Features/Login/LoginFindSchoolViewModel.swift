@@ -37,7 +37,7 @@ final class LoginFindSchoolViewModel {
     private var nextPageRequest: GetNextRequest<[APIAccountResult]>?
 
     func search(query: String) {
-        guard !query.isEmpty else {
+        guard query.isNotEmpty else {
             accounts = []
             nextPageRequest = nil
             pageTask?.cancel()

@@ -157,7 +157,7 @@ extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDeleg
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if !viewModel.accounts.isEmpty && indexPath.row == viewModel.accounts.count {
+        if viewModel.accounts.isNotEmpty && indexPath.row == viewModel.accounts.count {
             let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath)
             cell.backgroundColor = .backgroundLightest
 
