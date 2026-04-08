@@ -25,7 +25,7 @@ struct AccountView: View {
         case profile
         case notifications
         case advanced
-        case sync
+        case offlineSync
         case reportBug
     }
 
@@ -177,11 +177,11 @@ struct AccountView: View {
                     title: String(localized: "Offline settings", bundle: .horizon),
                     isLastItem: true,
                     didTapRow: {
-                        lastFocusedId = SettingIDs.sync.rawValue
+                        lastFocusedId = SettingIDs.offlineSync.rawValue
                         viewModel.syncSettingsDidTap(viewController: viewController)
                     }
                 )
-                .accessibilityFocused($focusedSettingID, equals: SettingIDs.sync.rawValue)
+                .accessibilityFocused($focusedSettingID, equals: SettingIDs.offlineSync.rawValue)
             }
         }
         .onAppear {

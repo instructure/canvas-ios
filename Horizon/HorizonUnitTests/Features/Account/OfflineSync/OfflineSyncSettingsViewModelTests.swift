@@ -83,19 +83,6 @@ final class OfflineSyncSettingsViewModelTests: HorizonTestCase {
         XCTAssertEqual(testee.isWifiOnlySyncEnabled, true)
         XCTAssertEqual(storage.isOfflineWifiOnlySyncEnabled, true)
     }
-
-    // MARK: - cancelWifiSyncChange
-
-//    func test_cancelWifiSyncChange_shouldLeaveWifiSyncUnchanged() {
-//        testee = makeViewModel()
-//        testee.wifiOnlySyncToggled(newValue: false)
-//
-//        testee.cancelWifiSyncChange()
-//
-//        XCTAssertEqual(testee.isWifiOnlySyncEnabled, true)
-//        XCTAssertEqual(storage.isOfflineWifiOnlySyncEnabled, nil)
-//    }
-
     // MARK: - wifiConfirmationTitle
 
     func test_wifiConfirmationTitle_whenPendingTrue_shouldReturnTurnOnTitle() {
