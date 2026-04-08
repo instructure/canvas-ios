@@ -112,15 +112,12 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
 
     func testImage() {
         controller.view.layoutIfNeeded()
-//        let tabBar = controller.sourcesTabBar!
-//        tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items![FilePickerSource.camera.rawValue])
         controller.select(source: .camera)
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             XCTAssertEqual((router.presented as? UIImagePickerController)?.sourceType, .camera)
         } else {
             XCTAssertNil(router.presented)
         }
-//        tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items![FilePickerSource.library.rawValue])
         controller.select(source: .library)
         XCTAssert(router.presented is PHPickerViewController)
 
