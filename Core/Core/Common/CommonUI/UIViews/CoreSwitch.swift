@@ -110,7 +110,7 @@ private class ToggleViewModel: ObservableObject {
 }
 
 /// The purpose of this view is just to create a SwiftUI environment from where variables can be passed
-/// down to the underlying AcademicUI.Toggle.
+/// down to the underlying AUI.Toggle.
 private struct ToggleWrapper: View {
     @EnvironmentObject var toggleViewModel: ToggleViewModel
 
