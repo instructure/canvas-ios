@@ -53,7 +53,7 @@ struct LearnerDashboardScreen: View {
             VStack(spacing: screenPadding.rawValue) {
                 ForEach(viewModel.widgets, id: \.id) { widgetViewModel in
                     // This is a workaround for Todo widget's toggle to have the proper color
-                    // TODO: Update AcademicUI.Toggle to use tint color instead of accent color
+                    // TODO: Update AUI.Toggle to use tint color instead of accent color
                     let needsAccentColorOverride = widgetViewModel.id == EditableWidgetIdentifier.todo.rawValue
 
                     if widgetViewModel.shouldRenderWidget {
