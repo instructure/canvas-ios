@@ -100,7 +100,7 @@ public class CoreSwitch: UIControl {
 }
 
 /// Since we can't modify the wrapped view once we passed it to the hosting controller
-/// we use this model to communicate with the AcademicUI.Toggle.
+/// we use this model to communicate with the AUI.Toggle.
 private class ToggleViewModel: ObservableObject {
     @Published var isOn = false
     @Published var isEnabled = true
