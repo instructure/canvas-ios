@@ -1,5 +1,7 @@
 # AcademicUI & SwiftUI Patterns
 
+> **Namespace**: All AcademicUI components are scoped under the `AUI` enum namespace. Always reference them as `AUI.Button`, `AUI.Label`, etc. Never spell out `AcademicUI.` at call sites.
+
 ## SwiftUI Recipes
 
 - For 1-physical-pixel borders: `@Environment(\.displayScale) private var displayScale` and `lineWidth: 1 / displayScale`
