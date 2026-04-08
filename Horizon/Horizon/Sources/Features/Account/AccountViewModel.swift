@@ -134,6 +134,12 @@ final class AccountViewModel {
         }
     }
 
+    func syncSettingsDidTap(viewController: WeakViewController) {
+        if let url = URL(string: "/account/sync-settings") {
+            router.route(to: url, from: viewController)
+        }
+    }
+
     func switchExperienceDidTap() {
         isLoading = true
 
