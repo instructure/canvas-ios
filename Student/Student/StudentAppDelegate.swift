@@ -129,7 +129,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                         unownedSelf.isLearnerDashboardEnabledOnInstance = featureFlags.isFeatureEnabled(.widget_dashboard)
                     }
                     .flatMap {
-                        unownedSelf.analyticsHandler.initializeTracking(environment: unownedSelf.environment) {
+                        unownedSelf.analyticsHandler.initializeTracking(isLogin: true, environment: unownedSelf.environment) {
                             unownedSelf.checkForWidgetsPresence()
                         }
                     }
@@ -272,7 +272,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
 extension StudentAppDelegate {
     private func setupUserEnvironment() -> AnyPublisher<Void, Error> {
-        PageViewEventController.instance.userDidChange()
         updateInterfaceStyle(for: window)
         CoreWebView.keepCookieAlive(for: environment)
         PushNotificationsInteractor.shared.userDidLogin(api: environment.api)
@@ -699,7 +698,6 @@ extension StudentAppDelegate: LoginDelegate {
         analyticsHandler.endTracking()
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
-        PageViewEventController.instance.userDidChange()
         PushNotificationsInteractor.shared.unsubscribeFromCanvasPushNotifications()
         UNUserNotificationCenter.current().setBadgeCount(0)
         environment.userDidLogout(session: session)

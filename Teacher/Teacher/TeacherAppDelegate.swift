@@ -84,7 +84,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                 let userProfile = list.first
                 return unownedSelf.setupUserEnvironment()
                     .flatMap { unownedSelf.loadFeatureFlags() }
-                    .flatMap { unownedSelf.analyticsHandler.initializeTracking(environment: unownedSelf.environment) {} }
+                    .flatMap { unownedSelf.analyticsHandler.initializeTracking(isLogin: true, environment: unownedSelf.environment) {} }
                     .flatMap { unownedSelf.showLanguageAlertIfNeeded(locale: userProfile?.locale ?? session.locale) }
                     .flatMap { unownedSelf.getAndSetBrandTheme() }
                     .eraseToAnyPublisher()
@@ -196,7 +196,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 extension TeacherAppDelegate {
 
     private func setupUserEnvironment() -> AnyPublisher<Void, Error> {
-        PageViewEventController.instance.userDidChange()
         updateInterfaceStyle(for: window)
         CoreWebView.keepCookieAlive(for: environment)
         PushNotificationsInteractor.shared.userDidLogin(api: environment.api)
@@ -332,7 +331,6 @@ extension TeacherAppDelegate: LoginDelegate {
         analyticsHandler.endTracking()
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
-        PageViewEventController.instance.userDidChange()
         PushNotificationsInteractor.shared.unsubscribeFromCanvasPushNotifications()
         UNUserNotificationCenter.current().setBadgeCount(0)
         environment.userDidLogout(session: session)

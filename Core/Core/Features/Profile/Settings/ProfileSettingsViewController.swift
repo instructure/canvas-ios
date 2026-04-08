@@ -490,7 +490,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
                     return Publishers.typedFailure(error: NSError.internalError())
                 }
 
-                return handler.initializeTracking(environment: .shared) { }
+                return handler.initializeTracking(isLogin: false, environment: .shared) { }
             }
             .receive(on: DispatchQueue.main)
             .catch { [weak self] _ in

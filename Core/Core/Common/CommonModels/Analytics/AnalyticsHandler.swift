@@ -25,7 +25,11 @@ import UIKit
 /// Its `handleEvent()` is not intended to be used directly, but via the singleton's matching method.
 public protocol AnalyticsHandler: AnyObject {
 
-    func initializeTracking(environment: AppEnvironment, sessionStartCompletion: @escaping () -> Void) -> AnyPublisher<Void, Error>
+    func initializeTracking(
+        isLogin: Bool,
+        environment: AppEnvironment,
+        sessionStartCompletion: @escaping () -> Void
+    ) -> AnyPublisher<Void, Error>
 
     func endTracking()
 
@@ -68,16 +72,27 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
     }
 
     @MainActor
-    public func initializeTracking(environment: AppEnvironment, sessionStartCompletion: @escaping () -> Void) -> AnyPublisher<Void, Error> {
+    public func initializeTracking(
+        isLogin: Bool,
+        environment: AppEnvironment,
+        sessionStartCompletion: @escaping () -> Void
+    ) -> AnyPublisher<Void, Error> {
         consentInteractor = consentInteractorProvider(environment)
+
+        if isLogin {
+            // Ensure pageview tracking is disabled (clears any leftover from previous user)
+            PageViewEventController.instance.endTracking()
+        }
 
         return isTrackingEnabled()
             .receive(on: DispatchQueue.main)
             .map { [analyticsTracker] isEnabled in
                 if isEnabled {
                     analyticsTracker.startSession(completion: sessionStartCompletion)
+                    PageViewEventController.instance.startTracking()
                 } else {
                     analyticsTracker.endSession()
+                    PageViewEventController.instance.endTracking()
                 }
             }
             .eraseToAnyPublisher()
@@ -133,6 +148,7 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
     @MainActor
     public func endTracking() {
         analyticsTracker.endSession()
+        PageViewEventController.instance.flushEventsAndEndTracking()
     }
 
     public func handleEvent(_ name: String, parameters: [String: Any]?) {
