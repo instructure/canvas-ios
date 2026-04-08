@@ -29,20 +29,7 @@ public protocol Detachable {
 }
 
 extension Detachable where Self == Snapshot.Model {
-    public var snapshot: Snapshot { Snapshot(model: self) }
-}
-
-@dynamicMemberLookup
-public protocol CustomSnapshot: Snapshot where Model: Detachable {
-    var attributes: Model.Snapshot { get }
-
-    subscript<T>(dynamicMember keyPath: KeyPath<Model.Snapshot, T>) -> T { get }
-}
-
-public extension CustomSnapshot {
-    subscript<T>(dynamicMember keyPath: KeyPath<Model.Snapshot, T>) -> T {
-        attributes[keyPath: keyPath]
-    }
+    public var snapshot: Snapshot { .init(model: self) }
 }
 
 extension Array where Element: Detachable, Element == Element.Snapshot.Model {

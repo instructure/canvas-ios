@@ -18,14 +18,14 @@
 
 import Snapshots
 
-struct CourseSnapshot: CustomSnapshot {
+struct CourseSnapshot: Snapshot {
     let attributes: Course.Snapshot
 
     let enrollments: [EnrollmentSnapshot]?
 
     init(model: Course) {
-        attributes = model.snapshot
-        enrollments = model.enrollments?.map(EnrollmentSnapshot.init)
+        self.attributes = model.snapshot
+        self.enrollments = model.enrollments?.map(EnrollmentSnapshot.init)
     }
 
     func enrollmentForGrades(userId: String?, includingCompleted: Bool = false) -> EnrollmentSnapshot? {
@@ -50,24 +50,24 @@ struct CourseSnapshot: CustomSnapshot {
     }
 }
 
-public struct AssignmentSnapshot: CustomSnapshot {
-    public let attributes: Assignment.Snapshot
+public struct AssignmentSnapshot: Snapshot {
+    let attributes: Assignment.Snapshot
     let submission: SubmissionSnapshot?
     let submissions: [SubmissionSnapshot]?
     let assignmentGroup: AssignmentGroup.Snapshot?
     let checkpoints: [AssignmentCheckpointSnapshot]
 
     public init(model: Assignment) {
-        attributes = model.snapshot
-        submission = model.submission.map(SubmissionSnapshot.init)
-        submissions = model.submissions.map { $0.map(SubmissionSnapshot.init) }
-        assignmentGroup = model.assignmentGroup?.snapshot
-        checkpoints = model.checkpoints.map(AssignmentCheckpointSnapshot.init)
+        self.attributes = model.snapshot
+        self.submission = model.submission.map(SubmissionSnapshot.init)
+        self.submissions = model.submissions.map { $0.map(SubmissionSnapshot.init) }
+        self.assignmentGroup = model.assignmentGroup?.snapshot
+        self.checkpoints = model.checkpoints.map(AssignmentCheckpointSnapshot.init)
     }
 }
 
-public struct AssignmentCheckpointSnapshot: CustomSnapshot {
-    public let attributes: CDAssignmentCheckpoint.Snapshot
+public struct AssignmentCheckpointSnapshot: Snapshot {
+    let attributes: CDAssignmentCheckpoint.Snapshot
     let overrides: [AssignmentOverride.Snapshot]
 
     public init(model: CDAssignmentCheckpoint) {
@@ -76,21 +76,21 @@ public struct AssignmentCheckpointSnapshot: CustomSnapshot {
     }
 }
 
-public struct SubmissionSnapshot: CustomSnapshot {
-    public let attributes: Submission.Snapshot
+public struct SubmissionSnapshot: Snapshot {
+    let attributes: Submission.Snapshot
     let assignment: Assignment.Snapshot?
     let subAssignmentSubmissions: [CDSubAssignmentSubmission.Snapshot]
 
     var userID: String? { attributes.userID }
 
     public init(model: Submission) {
-        attributes = model.snapshot
-        assignment = model.assignment?.snapshot
-        subAssignmentSubmissions = model.subAssignmentSubmissions.snapshots()
+        self.attributes = model.snapshot
+        self.assignment = model.assignment?.snapshot
+        self.subAssignmentSubmissions = model.subAssignmentSubmissions.snapshots()
     }
 }
 
-struct EnrollmentSnapshot: CustomSnapshot {
+struct EnrollmentSnapshot: Snapshot {
     let attributes: Enrollment.Snapshot
     let grades: [Grade.Snapshot]
 

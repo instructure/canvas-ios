@@ -107,16 +107,16 @@ public class GradeFormatter {
         customStyleForLetterGrade: Style? = nil
     ) -> String? {
         string(
-            pointsPossible: assignment.pointsPossible,
-            gradingType: assignment.gradingType,
+            pointsPossible: assignment.attributes.pointsPossible,
+            gradingType: assignment.attributes.gradingType,
             gradingScheme: submission?.assignment?.gradingScheme, // maybe we could use assignment directly, but not finding out now
-            hideScores: assignment.hideQuantitativeData,
+            hideScores: assignment.attributes.hideQuantitativeData,
             style: style,
             customStyleForLetterGrade: customStyleForLetterGrade,
-            isExcused: submission?.excused ?? false,
-            score: submission?.score,
-            normalizedScore: submission?.normalizedScore,
-            grade: submission?.grade
+            isExcused: submission?.attributes.excused ?? false,
+            score: submission?.attributes.score,
+            normalizedScore: submission?.attributes.normalizedScore,
+            grade: submission?.attributes.grade
         )
     }
 

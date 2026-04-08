@@ -108,7 +108,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
 
         return GradeListGradingPeriodData(
             course: try await course,
-            currentlyActiveGradingPeriodID: courseEnrollment?.currentGradingPeriodID,
+            currentlyActiveGradingPeriodID: courseEnrollment?.attributes.currentGradingPeriodID,
             gradingPeriods: try await gradingPeriods
         )
     }
@@ -166,14 +166,14 @@ public final class GradeListInteractorLive: GradeListInteractor {
         return GradeListData(
             id: UUID.string,
             userID: userID ?? "",
-            courseName: try await course.name,
-            courseColor: try await course.color,
+            courseName: try await course.attributes.name,
+            courseColor: try await course.attributes.color,
             assignmentSections: assignmentSections,
             isGradingPeriodHidden: isGradingPeriodHidden,
             gradingPeriods: try await gradingPeriods,
             currentGradingPeriod: try await getGradingPeriod(id: gradingPeriodID, gradingPeriods: gradingPeriods),
             totalGradeText: totalGradeText,
-            currentGradingPeriodID: courseEnrollment?.currentGradingPeriodID
+            currentGradingPeriodID: courseEnrollment?.attributes.currentGradingPeriodID
         )
     }
 
@@ -200,11 +200,11 @@ public final class GradeListInteractorLive: GradeListInteractor {
     private func groupAssignmentsByAssignmentGroups(_ assignments: [AssignmentSnapshot]) -> [AssignmentListSection] {
         let allAssignments = assignments
             .sorted {
-                switch ($0.assignmentGroupPosition, $1.assignmentGroupPosition) {
+                switch ($0.attributes.assignmentGroupPosition, $1.attributes.assignmentGroupPosition) {
                 case let (lhsPosition, rhsPosition) where lhsPosition < rhsPosition:
                     true
                 case let (lhsPosition, rhsPosition) where lhsPosition == rhsPosition:
-                    $0.dueAtForSorting < $1.dueAtForSorting
+                    $0.attributes.dueAtForSorting < $1.attributes.dueAtForSorting
                 default:
                     false
                 }
@@ -213,7 +213,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
         var assignmentsByGroup: [String: [AssignmentSnapshot]] = [:]
         var groupIds: [String] = []
         allAssignments.forEach { assignment in
-            let groupId = assignment.assignmentGroupID ?? ""
+            let groupId = assignment.attributes.assignmentGroupID ?? ""
             if assignmentsByGroup.keys.contains(groupId) {
                 assignmentsByGroup[groupId]?.append(assignment)
             } else {
@@ -235,7 +235,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
     private func groupAssignmentsByDueDate(_ assignments: [AssignmentSnapshot]) -> [AssignmentListSection] {
         let allAssignments = assignments
             .sorted {
-                $0.dueAtForSorting < $1.dueAtForSorting
+                $0.attributes.dueAtForSorting < $1.attributes.dueAtForSorting
             }
 
         var overdueAssignments: [AssignmentSnapshot] = []
@@ -243,8 +243,8 @@ public final class GradeListInteractorLive: GradeListInteractor {
         var pastAssignments: [AssignmentSnapshot] = []
         let now = Clock.now
         allAssignments.forEach { assignment in
-            let dueAt = assignment.dueAtForSorting
-            if let lockAt = assignment.lockAt {
+            let dueAt = assignment.attributes.dueAtForSorting
+            if let lockAt = assignment.attributes.lockAt {
                 if lockAt >= now, dueAt <= now {
                     overdueAssignments.append(assignment)
                 } else if lockAt > now, dueAt > now {
@@ -297,12 +297,12 @@ public final class GradeListInteractorLive: GradeListInteractor {
     ) -> String? {
         let courseEnrollment = course.enrollmentForGrades(userId: userID, includingCompleted: true)
         let gradeEnrollment = gradeEnrollment(from: enrollments)
-        let hideQuantitativeData = course.hideQuantitativeData == true
+        let hideQuantitativeData = course.attributes.hideQuantitativeData == true
 
         // When these conditions are met we don't show any grade, instead we display a lock icon.
-        if (courseEnrollment?.multipleGradingPeriodsEnabled == true &&
-            courseEnrollment?.totalsForAllGradingPeriodsOption == false &&
-            gradingPeriodID == nil) || course.hideFinalGrades {
+        if (courseEnrollment?.attributes.multipleGradingPeriodsEnabled == true &&
+            courseEnrollment?.attributes.totalsForAllGradingPeriodsOption == false &&
+            gradingPeriodID == nil) || course.attributes.hideFinalGrades {
             return nil
         } else if hideQuantitativeData {
             return getGradeForHideQuantitativeData(
@@ -318,7 +318,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 courseEnrollment: courseEnrollment,
                 gradeEnrollment: gradeEnrollment,
                 gradingPeriodID: gradingPeriodID,
-                gradingScheme: course.gradingScheme
+                gradingScheme: course.attributes.gradingScheme
             )
         }
     }
@@ -346,7 +346,7 @@ public final class GradeListInteractorLive: GradeListInteractor {
             } else {
                 return gradeEnrollment?.convertedLetterGrade(
                     gradingPeriodID: gradingPeriodID,
-                    gradingScheme: course.gradingScheme
+                    gradingScheme: course.attributes.gradingScheme
                 )
             }
         }
@@ -354,19 +354,19 @@ public final class GradeListInteractorLive: GradeListInteractor {
         func getGradeForNoGradingPeriod() -> String? {
             let letterGrade = (
                 baseOnGradedAssignments
-                ? courseEnrollment?.computedCurrentGrade
-                : courseEnrollment?.computedFinalGrade
-            ) ?? courseEnrollment?.computedCurrentLetterGrade
+                ? courseEnrollment?.attributes.computedCurrentGrade
+                : courseEnrollment?.attributes.computedFinalGrade
+            ) ?? courseEnrollment?.attributes.computedCurrentLetterGrade
 
-            if courseEnrollment?.multipleGradingPeriodsEnabled == true,
-               courseEnrollment?.totalsForAllGradingPeriodsOption == false {
+            if courseEnrollment?.attributes.multipleGradingPeriodsEnabled == true,
+               courseEnrollment?.attributes.totalsForAllGradingPeriodsOption == false {
                 return nil
             } else if let letterGrade {
                 return letterGrade
             } else {
                 return courseEnrollment?.convertedLetterGrade(
                     gradingPeriodID: nil,
-                    gradingScheme: course.gradingScheme
+                    gradingScheme: course.attributes.gradingScheme
                 )
             }
         }
@@ -413,9 +413,9 @@ public final class GradeListInteractorLive: GradeListInteractor {
                 letterGrade = nil
             } else {
                 if baseOnGradedAssignments {
-                    letterGrade = courseEnrollment?.computedCurrentGrade ?? courseEnrollment?.computedCurrentLetterGrade
+                    letterGrade = courseEnrollment?.attributes.computedCurrentGrade ?? courseEnrollment?.attributes.computedCurrentLetterGrade
                 } else {
-                    letterGrade = courseEnrollment?.computedFinalGrade ?? courseEnrollment?.computedCurrentLetterGrade
+                    letterGrade = courseEnrollment?.attributes.computedFinalGrade ?? courseEnrollment?.attributes.computedCurrentLetterGrade
                 }
             }
         }
@@ -428,10 +428,12 @@ public final class GradeListInteractorLive: GradeListInteractor {
     private func gradeEnrollment(from list: [EnrollmentSnapshot]) -> EnrollmentSnapshot? {
         func first(of state: EnrollmentState) -> EnrollmentSnapshot? {
             list.first {
-                return $0.id != nil &&
-                $0.state == state &&
-                $0.userID == userID &&
-                $0.type.lowercased().contains("student")
+                let attributes = $0.attributes
+
+                return attributes.id != nil &&
+                attributes.state == state &&
+                attributes.userID == userID &&
+                attributes.type.lowercased().contains("student")
             }
         }
         return first(of: .active) ?? first(of: .completed)
