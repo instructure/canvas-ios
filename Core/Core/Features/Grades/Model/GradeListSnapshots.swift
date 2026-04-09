@@ -18,7 +18,7 @@
 
 import Snapshots
 
-struct CourseSnapshot: Snapshot {
+struct CourseSnapshot: CustomSnapshot {
     let attributes: Course.Snapshot
 
     let enrollments: [EnrollmentSnapshot]?
@@ -50,8 +50,9 @@ struct CourseSnapshot: Snapshot {
     }
 }
 
-public struct AssignmentSnapshot: Snapshot {
-    let attributes: Assignment.Snapshot
+public struct AssignmentSnapshot: CustomSnapshot {
+    public let attributes: Assignment.Snapshot
+
     let submission: SubmissionSnapshot?
     let submissions: [SubmissionSnapshot]?
     let assignmentGroup: AssignmentGroup.Snapshot?
@@ -66,8 +67,9 @@ public struct AssignmentSnapshot: Snapshot {
     }
 }
 
-public struct AssignmentCheckpointSnapshot: Snapshot {
-    let attributes: CDAssignmentCheckpoint.Snapshot
+public struct AssignmentCheckpointSnapshot: CustomSnapshot {
+    public let attributes: CDAssignmentCheckpoint.Snapshot
+
     let overrides: [AssignmentOverride.Snapshot]
 
     public init(model: CDAssignmentCheckpoint) {
@@ -76,12 +78,11 @@ public struct AssignmentCheckpointSnapshot: Snapshot {
     }
 }
 
-public struct SubmissionSnapshot: Snapshot {
-    let attributes: Submission.Snapshot
+public struct SubmissionSnapshot: CustomSnapshot {
+    public let attributes: Submission.Snapshot
+
     let assignment: Assignment.Snapshot?
     let subAssignmentSubmissions: [CDSubAssignmentSubmission.Snapshot]
-
-    var userID: String? { attributes.userID }
 
     public init(model: Submission) {
         self.attributes = model.snapshot
@@ -90,17 +91,15 @@ public struct SubmissionSnapshot: Snapshot {
     }
 }
 
-struct EnrollmentSnapshot: Snapshot {
+struct EnrollmentSnapshot: CustomSnapshot {
     let attributes: Enrollment.Snapshot
+
     let grades: [Grade.Snapshot]
 
     init(model: Enrollment) {
         self.attributes = model.snapshot
         self.grades = model.grades.snapshots()
     }
-
-    var multipleGradingPeriodsEnabled: Bool { attributes.multipleGradingPeriodsEnabled }
-    var totalsForAllGradingPeriodsOption: Bool { attributes.totalsForAllGradingPeriodsOption }
 
     public func finalScore(gradingPeriodID: String?) -> Double? {
         return grades.first { $0.gradingPeriodID == gradingPeriodID }?.finalScore
@@ -121,7 +120,7 @@ struct EnrollmentSnapshot: Snapshot {
     // Used when "Base on graded assignment" is ON
     public func formattedCurrentScore(gradingPeriodID: String?, gradingScheme: any GradingScheme) -> String {
         let notAvailable = String(localized: "N/A", bundle: .core)
-        if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {
+        if gradingPeriodID == nil, self.multipleGradingPeriodsEnabled, !self.totalsForAllGradingPeriodsOption {
             return notAvailable
         }
         if let score = currentScore(gradingPeriodID: gradingPeriodID) {
@@ -133,7 +132,7 @@ struct EnrollmentSnapshot: Snapshot {
     // Used when "Base on graded assignment" is OFF
     public func formattedFinalScore(gradingPeriodID: String?, gradingScheme: any GradingScheme) -> String {
         let notAvailable = String(localized: "N/A", bundle: .core)
-        if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {
+        if gradingPeriodID == nil, self.multipleGradingPeriodsEnabled, !self.totalsForAllGradingPeriodsOption {
             return notAvailable
         }
         if let score = finalScore(gradingPeriodID: gradingPeriodID) {
@@ -145,7 +144,7 @@ struct EnrollmentSnapshot: Snapshot {
     // Used when "Base on graded assignment" is ON
     public func convertedLetterGrade(gradingPeriodID: String?, gradingScheme: any GradingScheme) -> String {
         let notAvailable = String(localized: "N/A", bundle: .core)
-        if gradingPeriodID == nil, multipleGradingPeriodsEnabled, !totalsForAllGradingPeriodsOption {
+        if gradingPeriodID == nil, self.multipleGradingPeriodsEnabled, !self.totalsForAllGradingPeriodsOption {
             return notAvailable
         }
         if let score = currentScore(gradingPeriodID: gradingPeriodID) {
