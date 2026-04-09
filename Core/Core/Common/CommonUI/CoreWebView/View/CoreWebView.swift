@@ -94,7 +94,7 @@ open class CoreWebView: WKWebView {
     ) {
 
         configuration.applyDefaultSettings()
-        let features = features + [.dynamicFontSize, .canvasLTIPostMessageHandler]
+        let features = features + [.dynamicFontSize, .canvasLTIPostMessageHandler, .blobURLDownload]
         features.forEach { $0.apply(on: configuration) }
 
         super.init(frame: .zero, configuration: configuration)
@@ -587,6 +587,10 @@ extension CoreWebView: WKNavigationDelegate {
             return decisionHandler(.cancel)
         }
 
+        if action.navigationType == .linkActivated, action.request.url?.scheme == "blob" {
+            return decisionHandler(.cancel)
+        }
+
         // Forward decision to delegate
         if action.navigationType == .linkActivated, let url = action.request.url,
            linkDelegate?.handleLink(url) == true {
@@ -649,12 +653,12 @@ extension CoreWebView: WKUIDelegate {
         _ webView: WKWebView,
         runJavaScriptAlertPanelWithMessage message: String,
         initiatedByFrame frame: WKFrameInfo,
-        completionHandler: @escaping (Bool) -> Void
+        completionHandler: @escaping @MainActor () -> Void
     ) {
-        guard let from = linkDelegate?.routeLinksFrom else { return completionHandler(false) }
-        let alert = UIAlertController(title: frame.request.url?.host, message: message, preferredStyle: .alert)
+        guard let from = linkDelegate?.routeLinksFrom else { return completionHandler() }
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(AlertAction(String(localized: "OK", bundle: .core), style: .default) { _ in
-            completionHandler(true)
+            completionHandler()
         })
         env.router.show(alert, from: from, options: .modal())
     }

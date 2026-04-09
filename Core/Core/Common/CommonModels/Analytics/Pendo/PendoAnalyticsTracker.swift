@@ -50,7 +50,7 @@ public final class PendoAnalyticsTracker {
     ) {
         self.interactor = interactor
         self.pendoManager = pendoManager
-        self.pendoApiKey = (pendoApiKey ?? Secret.pendoApiKey.string)?.nilIfEmpty
+        self.pendoApiKey = pendoApiKey?.nilIfEmpty
     }
 
     public func initManager(with url: URL) {
