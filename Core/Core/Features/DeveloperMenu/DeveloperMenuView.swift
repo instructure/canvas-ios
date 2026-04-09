@@ -146,6 +146,7 @@ public struct DeveloperMenuView: View {
         #endif
     }
 
+#if DEBUG
     private var invalidateItems: [DeveloperMenuItem] {
         [
             DeveloperMenuItem("Access Token\n\(env.currentSession?.accessToken ?? "N/A")", icon: .toClipboard) {
@@ -187,6 +188,7 @@ public struct DeveloperMenuView: View {
             }
         ]
     }
+#endif
 
     private struct DeveloperMenuItem: Identifiable {
         public enum Icon {

@@ -56,7 +56,7 @@ final class PrivacySettingsViewModel {
 
         interactor.getConsentIfRequired(ignoreConsentCache: false)
             .replaceError(with: nil)
-            .compactMap { $0 }
+            .compactMap { $0 } // consent value should exist already
             .receive(on: mainScheduler)
             .sink { [weak self] value in
                 self?.isAnalyticsEnabled = value

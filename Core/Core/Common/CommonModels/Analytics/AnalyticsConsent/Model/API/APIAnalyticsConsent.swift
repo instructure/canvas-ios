@@ -25,7 +25,7 @@ public struct APIAnalyticsConsent: Codable, Equatable {
         case noData = "no data for scope"
 
         /// Received if the consent data got messed up somehow.
-        /// Handling this allows the user to "fix" this by chosing again.
+        /// Handling this allows the user to "fix" this by choosing again.
         case invalidData = "invalid scope for hash"
     }
 
@@ -37,7 +37,7 @@ public struct APIAnalyticsConsent: Codable, Equatable {
     }
 
     var isValid: Bool {
-        message == nil || HandledMessage.allCases.map(\.rawValue).contains(message)
+        message == nil || HandledMessage.allCases.contains { $0.rawValue == message }
     }
 }
 
