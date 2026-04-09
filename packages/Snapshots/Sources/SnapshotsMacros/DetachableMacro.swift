@@ -71,9 +71,9 @@ public struct DetachableMacro: ExtensionMacro {
                 var newNode = varDecl
                 newNode.attributes = [.attribute("\n@Raw")] + newNode.attributes
                 
-                let message = MacroExpansionWarningMessage("Property '\(name)' appears to be raw, but is not marked with '@Raw'")
-                let fixIt = FixIt.replace(message: .insertAttributeArguments, oldNode: varDecl, newNode: newNode)
-                
+                let message = MacroExpansionWarningMessage("Property '\(name)' appears to be raw, but is not marked with @Raw")
+                let fixIt = FixIt.replace(message: MarkWithRaw(), oldNode: varDecl, newNode: newNode)
+
                 context.diagnose(.init(node: varDecl, message: message, fixIt: fixIt))
             }
 
@@ -108,5 +108,10 @@ public struct DetachableMacro: ExtensionMacro {
                 }
             }
         ]
+    }
+
+    private struct MarkWithRaw: FixItMessage {
+        let message = "Mark with @Raw"
+        let fixItID: MessageID = .init(domain: "Snapshots", id: "InsertRawAttribute")
     }
 }
