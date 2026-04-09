@@ -46,7 +46,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        InstUI.BaseScreen(state: model.state, config: .notRefreshable) { geometry in
+        BaseScreen(state: model.state, config: .notRefreshable) { geometry in
             baseScreenView(geometry)
                 .font(.regular12)
                 .foregroundColor(.textDarkest)
@@ -295,7 +295,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                         .foregroundColor(.textDarkest)
                 }
                 Spacer()
-                if !model.isContextDisabled { InstUI.DisclosureIndicator() }
+                if !model.isContextDisabled { AUI.DisclosureIndicator() }
             }
             .padding(.horizontal, defaultHorizontalPaddingValue)
             .padding(.vertical, defaultVerticalPaddingValue)
@@ -392,7 +392,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
     }
 
     private var individualView: some View {
-        InstUI.Toggle(isOn: $model.sendIndividual) {
+        AUI.Toggle(isOn: $model.sendIndividual) {
             VStack(alignment: .leading, spacing: .zero) {
                 Text("Send individual message to each recipient", bundle: .core)
                     .font(.regular16, lineHeight: .condensed)
@@ -442,7 +442,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
             .padding(.leading, defaultHorizontalPaddingValue)
             .padding(.top, defaultVerticalPaddingValue)
 
-            InstUI.UITextViewWrapper(text: $model.bodyText) { tv in
+            AUI.UITextViewWrapper(text: $model.bodyText) { tv in
                 tv.isScrollEnabled = false
                 tv.textContainer.widthTracksTextView = true
                 tv.textColor = .textDarkest

@@ -25,7 +25,7 @@ class SpeedGraderScreenViewModel: ObservableObject {
 
     // MARK: - Outputs
 
-    @Published private(set) var state: InstUI.ScreenState = .loading
+    @Published private(set) var state: ScreenState = .loading
     @Published private(set) var currentPage: UIViewController?
     @Published private(set) var isPostPolicyButtonVisible = false
     @Published private(set) var navigationTitle = ""

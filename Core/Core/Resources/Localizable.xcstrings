@@ -2995,6 +2995,12 @@
             "value" : "%1$@ (%2$d)"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$@ (%2$d)"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",

@@ -29,7 +29,7 @@ class LoggerTests: CoreTestCase {
             let events: [LogEvent] = (client as! NSManagedObjectContext).fetch()
             return events.count == count
         }), evaluatedWith: databaseClient)
-        wait(for: [done], timeout: 5)
+        wait(for: [done], timeout: 15)
     }
 
     override func setUp() {

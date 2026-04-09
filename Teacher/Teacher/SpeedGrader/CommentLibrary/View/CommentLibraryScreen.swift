@@ -115,7 +115,7 @@ struct CommentLibraryScreen: View {
                     .paddingStyle(set: .standardCell)
             }
 
-            InstUI.Divider(viewModel.comments.last == libraryComment ? .full : .padded)
+            AUI.Divider(viewModel.comments.last == libraryComment ? .full : .padded)
         }
         .background(.backgroundLightest)
     }

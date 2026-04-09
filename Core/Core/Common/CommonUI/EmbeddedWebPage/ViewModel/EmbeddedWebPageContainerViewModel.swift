@@ -21,7 +21,7 @@ import WebKit
 
 public class EmbeddedWebPageContainerViewModel: ObservableObject {
     // MARK: - Outputs
-    @Published public private(set) var leadingNavigationButton: InstUI.NavigationBarButton?
+    @Published public private(set) var leadingNavigationButton: AUI.NavigationBarButton?
     @Published public private(set) var subTitle: String?
     @Published public private(set) var contextColor: UIColor?
 

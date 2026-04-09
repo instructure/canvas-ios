@@ -270,6 +270,6 @@ extension StudentTabBarController: UITabBarControllerDelegate {
         animationControllerForTransitionFrom fromVC: UIViewController,
         to toVC: UIViewController
     ) -> (any UIViewControllerAnimatedTransitioning)? {
-        InstUI.TabChangeTransition()
+        AUI.TabChangeTransition()
     }
 }

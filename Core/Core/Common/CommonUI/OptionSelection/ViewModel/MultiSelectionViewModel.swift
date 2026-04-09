@@ -98,7 +98,7 @@ final class MultiSelectionViewModel: ObservableObject {
         selectedOptions.value.contains(option)
     }
 
-    func dividerStyle(for item: OptionItem) -> InstUI.Divider.Style {
+    func dividerStyle(for item: OptionItem) -> AUI.Divider.Style {
         item.id == allOptions.last?.id ? .full : .padded
     }
 

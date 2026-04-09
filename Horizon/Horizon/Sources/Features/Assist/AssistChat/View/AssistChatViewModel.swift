@@ -37,7 +37,7 @@ final class AssistChatViewModel {
     private(set) var isLoaderVisible = false
     private(set) var isRetryButtonVisible = false
     private let scheduler: AnySchedulerOf<DispatchQueue>
-    private(set) var state: InstUI.ScreenState = .data
+    private(set) var state: ScreenState = .data
     var isDisableSendButton: Bool {
         message.trimmed().isEmpty || !canSendMessage
     }

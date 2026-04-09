@@ -5,14 +5,11 @@
   "scripts": {
     "build-icons": "./scripts/build-icons.js",
     "build-secrets": "./scripts/build-secrets.js",
-    "coverage": "./scripts/coverage/coverage.js",
-    "danger": "danger",
     "export-translations": "./scripts/translations/export.js",
     "import-translations": "./scripts/translations/import.js",
     "label-released": "./scripts/update-jira-issues.js label-released",
     "release": "./scripts/build_automation/release.sh",
     "released": "./scripts/update-jira-issues.js released",
-    "test": "./scripts/coverage/coverage.js --test",
     "update-headers": "./scripts/update-headers.js",
     "terminal-service": "./scripts/terminal-server/start.sh"
   },

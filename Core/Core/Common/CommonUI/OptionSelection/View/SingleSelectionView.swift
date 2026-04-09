@@ -98,7 +98,7 @@ public struct SingleSelectionView: View {
             .accessibilityElement(children: .contain)
             .accessibilityLabel(viewModel.listLevelAccessibilityLabel)
         } header: {
-            InstUI.ListSectionHeader(title: viewModel.title, itemCount: viewModel.optionCount)
+            AUI.ListSectionHeader(title: viewModel.title, itemCount: viewModel.optionCount)
         }
     }
 
@@ -106,7 +106,7 @@ public struct SingleSelectionView: View {
     private func optionCell(with item: OptionItem) -> some View {
         switch style {
         case .radioButton:
-            InstUI.RadioButtonCell(
+            AUI.RadioButtonCell(
                 title: item.title,
                 headerTitle: item.headerTitle,
                 subtitle: item.subtitle,
@@ -116,7 +116,7 @@ public struct SingleSelectionView: View {
             )
             .customTint(item.color)
         case .trailingCheckmark:
-            InstUI.TrailingCheckmarkCell(
+            AUI.TrailingCheckmarkCell(
                 title: item.title,
                 headerTitle: item.headerTitle,
                 subtitle: item.subtitle,
@@ -145,7 +145,7 @@ public struct SingleSelectionView: View {
 
 #Preview {
     VStack(spacing: 0) {
-        InstUI.Divider()
+        AUI.Divider()
         SingleSelectionView(
             title: "Radio group",
             allOptions: [

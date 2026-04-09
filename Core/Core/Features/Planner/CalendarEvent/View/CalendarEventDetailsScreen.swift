@@ -29,7 +29,7 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        InstUI.BaseScreen(
+        BaseScreen(
             state: viewModel.state,
             refreshAction: viewModel.reload
         ) { _ in
@@ -39,13 +39,13 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
             let isBackgroundContextColor = if #available(iOS 26, *) { false } else { true }
 
             if viewModel.shouldShowMenuButton {
-                InstUI.NavigationBarButton.moreIcon(
+                AUI.NavigationBarButton.moreIcon(
                     isBackgroundContextColor: isBackgroundContextColor,
                     isEnabled: viewModel.isMoreButtonEnabled,
                     isAvailableOffline: false,
                     menuContent: {
-                        InstUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
-                        InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
+                        AUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
+                        AUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
                     }
                 )
                 .confirmation(
@@ -75,9 +75,9 @@ public struct CalendarEventDetailsScreen: View, ScreenViewTrackable {
 
     private var eventContent: some View {
         VStack(alignment: .leading, spacing: 0) {
-            InstUI.Header(title: viewModel.title, subtitle: viewModel.date)
-            InstUI.TextSectionView(viewModel.locationInfo)
-            InstUI.TextSectionView(viewModel.details)
+            AUI.Header(title: viewModel.title, subtitle: viewModel.date)
+            AUI.TextSectionView(viewModel.locationInfo)
+            AUI.TextSectionView(viewModel.details)
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }

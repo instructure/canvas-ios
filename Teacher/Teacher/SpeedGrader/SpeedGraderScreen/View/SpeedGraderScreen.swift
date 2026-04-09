@@ -30,7 +30,7 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
     @StateObject private var viewModel: SpeedGraderScreenViewModel
     @ScaledMetric private var uiScale: CGFloat = 1
 
-    private let screenConfig = InstUI.BaseScreenConfig(
+    private let screenConfig = BaseScreenConfig(
         refreshable: false,
         scrollBounce: .basedOnSize,
         emptyPandaConfig: .init(
@@ -86,7 +86,7 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
     }
 
     private var content: some View {
-        InstUI.BaseScreen(state: viewModel.state, config: screenConfig) { proxy in
+        BaseScreen(state: viewModel.state, config: screenConfig) { proxy in
             PagesViewControllerWrapper(
                 dataSource: viewModel,
                 delegate: viewModel,
@@ -120,7 +120,7 @@ struct SpeedGraderScreen: View, ScreenViewTrackable {
         }
     }
 
-    private var doneButton: InstUI.NavigationBarButton {
+    private var doneButton: AUI.NavigationBarButton {
         let isBackgroundContextColor = if #available(iOS 26, *) { false } else { true }
         return .done(
             isBackgroundContextColor: isBackgroundContextColor,

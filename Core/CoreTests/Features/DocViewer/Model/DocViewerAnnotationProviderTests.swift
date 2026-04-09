@@ -199,7 +199,8 @@ class DocViewerAnnotationProviderTests: CoreTestCase {
         XCTAssertFalse(annotation.isEditable)
     }
 
-    func testAnnotationFromPDFIsFlagged() {
+    func testAnnotationFromPDFIsFlagged() throws {
+        throw XCTSkip("isFileAnnotation not yet supported by PSPDFKit")
         let providers = getProviders(annotations: [], isAnnotationEditingDisabled: true, useMockFileAnnotationProvider: true)
 
         guard let fileAnnotation = providers.annotationProvider.annotationsForPage(at: 0)?.first else { XCTFail("No annotations to test"); return }

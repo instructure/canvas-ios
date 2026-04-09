@@ -25,7 +25,7 @@ struct DashboardWidgetErrorView: View {
     var body: some View {
         HStack(
             alignment: .top,
-            spacing: InstUI.Styles.Padding.standard.rawValue
+            spacing: AUI.Styles.Padding.standard.rawValue
         ) {
             Image("PandaUnsupported", bundle: .core)
                 .scaledIcon(size: 40)

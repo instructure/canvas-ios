@@ -31,7 +31,7 @@ final class EditNotebookViewModel {
     // MARK: - Outputs
 
     private(set) var courseNote: CourseNotebookNote?
-    private(set) var state: InstUI.ScreenState = .data
+    private(set) var state: ScreenState = .data
     private(set) var errorMessage: String = ""
     private(set) var isSaveButtonEnabled: Bool = false
     var isErrorMessagePresented = false
