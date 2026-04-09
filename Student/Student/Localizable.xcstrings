@@ -9276,6 +9276,12 @@
             "value" : "%lld soumissions attendues"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld travaux à rendre"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9532,6 +9538,12 @@
             "value" : "%lld soumissions manquantes"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld travaux manquants"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -9783,6 +9795,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld nouvelles notes"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld nouvelles notes"
@@ -20792,6 +20810,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tous les cours"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tous les cours"
@@ -45065,6 +45089,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personnaliser le cours"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Personnaliser le cours"
@@ -91128,6 +91158,12 @@
             "value" : "Gérer le contenu hors ligne"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gérer le contenu hors connexion"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -95140,6 +95176,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manquant"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Manquant"
@@ -100508,6 +100550,12 @@
             "value" : "Nouvelles notes"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nouvelles notes"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -101822,6 +101870,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semaine prochaine"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Semaine prochaine"
@@ -103426,6 +103480,12 @@
             "value" : "Aucune date d’échéance cette semaine, profitez de la tranquillité !"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pas de date limite cette semaine — profitez du calme!"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -104216,6 +104276,12 @@
             "value" : "Aucune soumission attendue"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucuns travaux à rendre"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -104742,6 +104808,12 @@
             "value" : "Aucune soumission manquante"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucuns travaux manquants"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -104998,6 +105070,12 @@
             "value" : "Aucune nouvelle note"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucunes nouvelles notes"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -105252,6 +105330,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucune nouvelle note. Tout est à jour !"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucunes nouvelles notes — vous êtes coincé!"
           }
         },
         "ga" : {
@@ -109780,6 +109864,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aucun retard. Félicitations pour votre excellente gestion !"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rien en retard — vous gérez bien!"
           }
         },
         "ga" : {
@@ -121539,6 +121629,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semaine précédente"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Semaine précédente"
@@ -178310,6 +178406,12 @@
           }
         },
         "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Résumé hebdomadaire"
+          }
+        },
+        "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Résumé hebdomadaire"

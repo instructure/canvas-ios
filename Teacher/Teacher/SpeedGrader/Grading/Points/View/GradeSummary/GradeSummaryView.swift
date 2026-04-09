@@ -40,7 +40,7 @@ struct GradeSummaryView: View {
                 PointsRowView(viewModel: pointsRow)
 
                 if latePenaltyRow != nil || finalGradeRow != nil {
-                    InstUI.Divider(.padded)
+                    AUI.Divider(.padded)
                 }
             }
 
@@ -48,7 +48,7 @@ struct GradeSummaryView: View {
                 LatePenaltyRowView(viewModel: latePenaltyRow)
 
                 if finalGradeRow != nil {
-                    InstUI.Divider(.padded)
+                    AUI.Divider(.padded)
                 }
             }
 

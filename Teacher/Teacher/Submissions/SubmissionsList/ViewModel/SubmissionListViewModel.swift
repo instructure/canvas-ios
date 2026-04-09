@@ -23,8 +23,8 @@ import CombineSchedulers
 
 class SubmissionListViewModel: ObservableObject {
 
-    let screenConfig = InstUI.BaseScreenConfig(refreshable: false)
-    @Published private(set) var state: InstUI.ScreenState = .loading
+    let screenConfig = BaseScreenConfig(refreshable: false)
+    @Published private(set) var state: ScreenState = .loading
 
     @Published var searchText: String = ""
     @Published var statusFilters: Set<SubmissionStatusFilter>

@@ -130,7 +130,7 @@ extension View {
     private func navigationBarTitleView(title: String, subtitle: String?) -> some View {
         toolbar {
             ToolbarItem(placement: .principal) {
-                InstUI.NavigationBarTitleView(title: title, subtitle: subtitle)
+                AUI.NavigationBarTitleView(title: title, subtitle: subtitle)
             }
         }
     }

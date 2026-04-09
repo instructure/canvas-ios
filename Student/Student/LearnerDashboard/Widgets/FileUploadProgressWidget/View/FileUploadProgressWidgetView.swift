@@ -26,7 +26,7 @@ struct FileUploadProgressWidgetView: View {
 
     var body: some View {
         if model.state != .empty {
-            VStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
+            VStack(spacing: AUI.Styles.Padding.standard.rawValue) {
                 ForEach(model.uploadCards) { card in
                     FileUploadProgressCardView(
                         card: card,

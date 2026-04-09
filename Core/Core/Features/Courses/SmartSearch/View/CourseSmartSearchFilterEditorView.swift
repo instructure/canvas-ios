@@ -33,7 +33,7 @@ public struct CourseSmartSearchFilterEditorView: View {
         NavigationView {
             ScrollView {
                 VStack(spacing: 0) {
-                    InstUI.Divider()
+                    AUI.Divider()
 
                     MultiSelectionView(
                         title: String(localized: "Result types", bundle: .core),

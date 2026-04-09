@@ -99,7 +99,7 @@ struct WeeklySummaryWidgetSegmentedControl: View {
     }
 
     private func divider(isVisible: Bool) -> some View {
-        InstUI.Divider()
+        AUI.Divider()
             .padding(.vertical, 10)
             .opacity(isVisible ? 1 : 0)
     }

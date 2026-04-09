@@ -44,7 +44,7 @@ struct CourseSearchResultsHeaderView: View {
         .padding(16)
         .background(Color.backgroundLight)
         .overlay(alignment: .bottom) {
-            InstUI.Divider()
+            AUI.Divider()
         }
         .accessibilityElement(children: .combine)
         .accessibilityAddTraits(.isHeader)

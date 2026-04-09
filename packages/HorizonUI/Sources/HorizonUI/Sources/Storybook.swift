@@ -23,140 +23,140 @@ public struct Storybook: View {
     public init() {}
 
     public var body: some View {
-        VStack {
-            List {
-                Section(header: Text("Foundations: Atoms")) {
-                    NavigationLink {
-                        HorizonUI.Colors.Storybook()
-                    } label: {
-                        Text("Colors").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.Typography.Storybook()
-                    } label: {
-                        Text("Typography").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.CornerRadius.Storybook()
-                    } label: {
-                        Text("Corner Radius").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.Borders.Storybook()
-                    } label: {
-                        Text("Border").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.Elevations.Storybook()
-                    } label: {
-                        Text("Elevation / Shadows").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.Icons.Storybook()
-                    } label: {
-                        Text("Iconography").tint(Color.black)
-                    }
+        List {
+            Section(header: Text("Foundations: Atoms")) {
+                NavigationLink {
+                    HorizonUI.Colors.Storybook()
+                } label: {
+                    Text("Colors")
                 }
-                Section(header: Text("Components: Molecules")) {
-                    NavigationLink {
-                        HorizonUI.Badge.Storybook()
-                    } label: {
-                        Text("Badge").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.ButtonStyles.Storybook()
-                    } label: {
-                        Text("Buttons and Links").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.ProgressBar.Storybook()
-                    } label: {
-                        Text("Progress Bar").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.Spinner.Storybook()
-                    } label: {
-                        Text("Spinner").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.Tooltip.Storybook()
-                    } label: {
-                        Text("Tooltip").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.Tabs.Storybook()
-                    } label: {
-                        Text("Tabs").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.MenuActionsTextView.Storybook()
-                    } label: {
-                        Text("Custom Menu Actions").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.SegmentedControl.Storybook()
-                    } label: {
-                        Text("Segmented Control").tint(Color.black)
-                    }
+                NavigationLink {
+                    HorizonUI.Typography.Storybook()
+                } label: {
+                    Text("Typography")
                 }
-                Section(header: Text("Components: Organisms")) {
-                    NavigationLink {
-                        HorizonUI.Controls.Storybook()
-                    } label: {
-                        Text("Controls").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.Inputs.Storybook()
-                    } label: {
-                        Text("Inputs and Interactive Fields").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.Cards.Storybook()
-                    } label: {
-                        Text("Cards").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.NavigationBar.Storybook()
-                    } label: {
-                        Text("Navigation").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.Overlay.Storybook()
-                    } label: {
-                        Text("Navigation Overlay").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.Toast.Storybook()
-                    } label: {
-                        Text("Alert Toast").tint(Color.black)
-                    }
-
-                    NavigationLink {
-                        HorizonUI.FileDrop.Storybook()
-                    } label: {
-                        Text("File Drop").tint(Color.black)
-                    }
-
-                    NavigationLink {
-                        HorizonUI.UploadedFile.Storybook()
-                    } label: {
-                        Text("Uploaded File").tint(Color.black)
-                    }
-                    NavigationLink {
-                        HorizonUI.Modal<EmptyView>.Storybook()
-                    } label: {
-                        Text("Modal").tint(Color.black)
-                    }
+                NavigationLink {
+                    HorizonUI.CornerRadius.Storybook()
+                } label: {
+                    Text("Corner Radius")
+                }
+                NavigationLink {
+                    HorizonUI.Borders.Storybook()
+                } label: {
+                    Text("Border")
+                }
+                NavigationLink {
+                    HorizonUI.Elevations.Storybook()
+                } label: {
+                    Text("Elevation / Shadows")
+                }
+                NavigationLink {
+                    HorizonUI.Icons.Storybook()
+                } label: {
+                    Text("Iconography")
                 }
             }
-            .listStyle(.sidebar)
-            .navigationBarHidden(false)
+            Section(header: Text("Components: Molecules")) {
+                NavigationLink {
+                    HorizonUI.Badge.Storybook()
+                } label: {
+                    Text("Badge")
+                }
+                NavigationLink {
+                    HorizonUI.ButtonStyles.Storybook()
+                } label: {
+                    Text("Buttons and Links")
+                }
+                NavigationLink {
+                    HorizonUI.ProgressBar.Storybook()
+                } label: {
+                    Text("Progress Bar")
+                }
+                NavigationLink {
+                    HorizonUI.Spinner.Storybook()
+                } label: {
+                    Text("Spinner")
+                }
+                NavigationLink {
+                    HorizonUI.Tooltip.Storybook()
+                } label: {
+                    Text("Tooltip")
+                }
+                NavigationLink {
+                    HorizonUI.Tabs.Storybook()
+                } label: {
+                    Text("Tabs")
+                }
+                NavigationLink {
+                    HorizonUI.MenuActionsTextView.Storybook()
+                } label: {
+                    Text("Custom Menu Actions")
+                }
+                NavigationLink {
+                    HorizonUI.SegmentedControl.Storybook()
+                } label: {
+                    Text("Segmented Control")
+                }
+            }
+            Section(header: Text("Components: Organisms")) {
+                NavigationLink {
+                    HorizonUI.Controls.Storybook()
+                } label: {
+                    Text("Controls")
+                }
+                NavigationLink {
+                    HorizonUI.Inputs.Storybook()
+                } label: {
+                    Text("Inputs and Interactive Fields")
+                }
+                NavigationLink {
+                    HorizonUI.Cards.Storybook()
+                } label: {
+                    Text("Cards")
+                }
+                NavigationLink {
+                    HorizonUI.NavigationBar.Storybook()
+                } label: {
+                    Text("Navigation")
+                }
+                NavigationLink {
+                    HorizonUI.Overlay.Storybook()
+                } label: {
+                    Text("Navigation Overlay")
+                }
+                NavigationLink {
+                    HorizonUI.Toast.Storybook()
+                } label: {
+                    Text("Alert Toast")
+                }
+
+                NavigationLink {
+                    HorizonUI.FileDrop.Storybook()
+                } label: {
+                    Text("File Drop")
+                }
+
+                NavigationLink {
+                    HorizonUI.UploadedFile.Storybook()
+                } label: {
+                    Text("Uploaded File")
+                }
+                NavigationLink {
+                    HorizonUI.Modal<EmptyView>.Storybook()
+                } label: {
+                    Text("Modal")
+                }
+            }
         }
+        .listStyle(.sidebar)
+        .navigationBarHidden(false)
         .navigationTitle("Design System")
         .navigationBarTitleDisplayMode(.large)
     }
 }
 
 #Preview {
-    Storybook()
+    NavigationStack {
+        Storybook()
+    }
 }

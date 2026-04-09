@@ -60,7 +60,7 @@ final class DashboardWidgetViewModelArrayTests: XCTestCase {
 
 private final class MockDashboardWidgetViewModel: DashboardWidgetViewModel {
     let id: String
-    let state: InstUI.ScreenState = .data
+    let state: ScreenState = .data
     let isHiddenInEmptyState = false
 
     init(id: String) {

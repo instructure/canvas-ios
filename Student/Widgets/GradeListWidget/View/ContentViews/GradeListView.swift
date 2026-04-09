@@ -38,7 +38,7 @@ struct GradeListView: View {
             ForEach(items) { item in
                 GradeListItemView(item: item)
                 if items.last != item {
-                    InstUI.Divider()
+                    AUI.Divider()
                 }
             }
         }

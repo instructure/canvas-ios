@@ -23,6 +23,10 @@ public struct APIGradingPeriod: Codable, Equatable {
     let title: String
     let start_date: Date?
     let end_date: Date?
+
+    /// This is optional because it is relevant only when used in `APICourse().grading_periods` attribute.
+    /// It is not included in the response for `GetGradingPeriodsRequest`.
+    let workflow_state: String?
 }
 
 #if DEBUG
@@ -32,7 +36,8 @@ extension APIGradingPeriod {
             id: id,
             title: title,
             start_date: start_date,
-            end_date: end_date
+            end_date: end_date,
+            workflow_state: nil
         )
     }
 }

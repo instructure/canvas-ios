@@ -32,7 +32,7 @@ struct SubmissionsFilterScreen: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                InstUI.TopDivider()
+                AUI.TopDivider()
 
                 MultiSelectionView(
                     title: String(localized: "Statuses", bundle: .teacher),
@@ -52,7 +52,7 @@ struct SubmissionsFilterScreen: View {
                                 text: viewModel.scoredMoreFilterValue.binding,
                                 isSaving: .init(false)
                             )
-                            InstUI.Divider(.padded)
+                            AUI.Divider(.padded)
                             GradeInputTextFieldCell(
                                 title: String(localized: "Scored Less than", bundle: .teacher),
                                 inputType: .points,
@@ -62,10 +62,10 @@ struct SubmissionsFilterScreen: View {
                                 text: viewModel.scoredLessFilterValue.binding,
                                 isSaving: .init(false)
                             )
-                            InstUI.Divider()
+                            AUI.Divider()
                         }
                     } header: {
-                        InstUI.ListSectionHeader(
+                        AUI.ListSectionHeader(
                             title: String(localized: "Precise filtering", bundle: .teacher),
                             itemCount: 2
                         )

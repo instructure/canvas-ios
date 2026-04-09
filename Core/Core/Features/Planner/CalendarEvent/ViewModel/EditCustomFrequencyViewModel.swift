@@ -36,7 +36,7 @@ final class EditCustomFrequencyViewModel: ObservableObject {
 
     // MARK: - Inputs / Outputs
 
-    @Published private(set) var state: InstUI.ScreenState = .data
+    @Published private(set) var state: ScreenState = .data
     @Published var isOccurrencesDialogPresented: Bool = false
 
     @Published var frequency: RecurrenceFrequency = .daily

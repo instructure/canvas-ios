@@ -63,7 +63,7 @@ public final class SingleSelectionViewModel: ObservableObject {
             .store(in: &subscriptions)
     }
 
-    public func dividerStyle(for item: OptionItem) -> InstUI.Divider.Style {
+    public func dividerStyle(for item: OptionItem) -> AUI.Divider.Style {
         item.id == allOptions.last?.id ? .full : .padded
     }
 }

@@ -38,7 +38,7 @@ struct CourseSearchResultRowView: View {
         } label: {
             HStack(alignment: .top, spacing: 0) {
                 result.content_type.icon.foregroundStyle(accentColor)
-                Spacer().frame(width: InstUI.Styles.Padding.cellIconText.rawValue)
+                Spacer().frame(width: AUI.Styles.Padding.cellIconText.rawValue)
                 VStack(alignment: .leading, spacing: 5) {
                     Text(result.title).font(.semibold16).foregroundStyle(titleColor)
                     if showsType {
@@ -52,7 +52,7 @@ struct CourseSearchResultRowView: View {
                             .lineLimit(3)
                     }
                 }
-                Spacer(minLength: InstUI.Styles.Padding.cellAccessoryPadding.rawValue)
+                Spacer(minLength: AUI.Styles.Padding.cellAccessoryPadding.rawValue)
                 VStack {
                     Spacer()
                     HStack(spacing: 2) {
