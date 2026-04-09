@@ -35,13 +35,13 @@ public extension InstUI.Primitives.FontFamilies {
 
 public extension String {
 
-    /// Access primitive font families via `String.instui.primitives.lato`
+    /// Access primitive font families via `String.instui.primitives.fontLato`
     enum instui {
         public enum primitives {
-            public static let lato = InstUI.Primitives.FontFamilies.lato
-            public static let inclusiveSans = InstUI.Primitives.FontFamilies.inclusiveSans
-            public static let atkinson = InstUI.Primitives.FontFamilies.atkinson
-            public static let menlo = InstUI.Primitives.FontFamilies.menlo
+            public static let fontLato = InstUI.Primitives.FontFamilies.lato
+            public static let fontInclusiveSans = InstUI.Primitives.FontFamilies.inclusiveSans
+            public static let fontAtkinson = InstUI.Primitives.FontFamilies.atkinson
+            public static let fontMenlo = InstUI.Primitives.FontFamilies.menlo
         }
     }
 }

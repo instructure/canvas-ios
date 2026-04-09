@@ -327,14 +327,15 @@ StyleDictionary.registerFormat({
     const familyExtProps = familyTokens
       .map(t => {
         const name = t.path[t.path.length - 1]
-        return `            public static let ${name} = InstUI.Primitives.FontFamilies.${name}`
+        const prefixed = 'font' + name.charAt(0).toUpperCase() + name.slice(1)
+        return `            public static let ${prefixed} = InstUI.Primitives.FontFamilies.${name}`
       })
       .join('\n')
 
     const familyExtension =
 `public extension String {
 
-    /// Access primitive font families via \`String.instui.primitives.lato\`
+    /// Access primitive font families via \`String.instui.primitives.fontLato\`
     enum instui {
         public enum primitives {
 ${familyExtProps}
