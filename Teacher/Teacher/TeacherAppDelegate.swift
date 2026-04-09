@@ -226,9 +226,9 @@ extension TeacherAppDelegate {
                 } else {
                     self?.environment.router.show(languageAlert, from: rootVC, options: .modal())
                 }
-                return Empty().setFailureType(to: Error.self).eraseToAnyPublisher()
+                return Publishers.typedEmpty()
             } else {
-                return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+                return Publishers.typedJust()
             }
         }
         .eraseToAnyPublisher()

@@ -21,7 +21,7 @@ import Foundation
 /// The singleton Analytics object which provides global access to analytics event tracking.
 /// With the current architecture this doesn't need to be injected.
 /// For analytics testing mock the `Analytics.shared.handler` with an `AnalyticsHandlerMock`.
-/// A default mock instance is already setup in `CoretestCase.analytics`.
+/// A default mock instance is already setup in `CoreTestCase.analytics`.
 public class Analytics: NSObject {
     public static var shared: Analytics = Analytics()
 
