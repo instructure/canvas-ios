@@ -33,4 +33,9 @@ class MockCoreWebViewLinkDelegate: CoreWebViewLinkDelegate {
     public func finishedNavigation() {
         navigationFinishedExpectation.fulfill()
     }
+
+    var startedAttachment: CoreWebAttachment?
+    func coreWebView(_ webView: CoreWebView, didStartDownloadAttachment attachment: CoreWebAttachment) {
+        startedAttachment = attachment
+    }
 }
