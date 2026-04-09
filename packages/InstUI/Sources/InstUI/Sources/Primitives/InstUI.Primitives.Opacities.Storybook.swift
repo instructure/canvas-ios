@@ -42,6 +42,10 @@ public extension InstUI.Primitives.Opacities {
                         .frame(width: 44, height: 22)
                         .foregroundStyle(.black)
                         .opacity(Double(entry.value))
+                        .background {
+                            Image.checkeredTile
+                                .resizable(resizingMode: .tile)
+                        }
                         .overlay(Rectangle().strokeBorder(.gray, lineWidth: 1))
                     Spacer()
                 }

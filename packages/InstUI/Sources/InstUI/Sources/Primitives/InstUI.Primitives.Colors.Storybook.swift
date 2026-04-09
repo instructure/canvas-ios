@@ -34,7 +34,7 @@ public extension InstUI.Primitives.Colors {
                                 .foregroundStyle(entry.color)
                                 .background {
                                     if entry.hasAlpha {
-                                        Self.checkeredTexture
+                                        Image.checkeredTile
                                             .resizable(resizingMode: .tile)
                                             .clipShape(Circle())
                                     }
@@ -63,20 +63,6 @@ public extension InstUI.Primitives.Colors {
 
                 return ColorEntry(name: name, color: color)
             }
-
-        private static let checkeredTexture: Image = {
-            let tileSize: CGFloat = 6
-            let size = CGSize(width: tileSize * 2, height: tileSize * 2)
-            let uiImage = UIGraphicsImageRenderer(size: size).image { _ in
-                UIColor.white.setFill()
-                UIRectFill(CGRect(x: 0, y: 0, width: tileSize, height: tileSize))
-                UIRectFill(CGRect(x: tileSize, y: tileSize, width: tileSize, height: tileSize))
-                UIColor(white: 0.88, alpha: 1).setFill()
-                UIRectFill(CGRect(x: tileSize, y: 0, width: tileSize, height: tileSize))
-                UIRectFill(CGRect(x: 0, y: tileSize, width: tileSize, height: tileSize))
-            }
-            return Image(uiImage: uiImage)
-        }()
     }
 
     private struct ColorEntry: Identifiable {
