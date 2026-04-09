@@ -43,20 +43,20 @@ public extension InstUI.Primitives.FontWeights {
     ]
 }
 
-extension Font.Weight {
+public extension Font.Weight {
 
     /// Access primitive font weights via `Font.Weight.instui.primitives.semiBold`
     enum instui {
-        enum primitives {
-            static let thin = InstUI.Primitives.FontWeights.thin
-            static let extraLight = InstUI.Primitives.FontWeights.extraLight
-            static let light = InstUI.Primitives.FontWeights.light
-            static let regular = InstUI.Primitives.FontWeights.regular
-            static let medium = InstUI.Primitives.FontWeights.medium
-            static let semiBold = InstUI.Primitives.FontWeights.semiBold
-            static let bold = InstUI.Primitives.FontWeights.bold
-            static let extraBold = InstUI.Primitives.FontWeights.extraBold
-            static let black = InstUI.Primitives.FontWeights.black
+        public enum primitives {
+            public static let thin = InstUI.Primitives.FontWeights.thin
+            public static let extraLight = InstUI.Primitives.FontWeights.extraLight
+            public static let light = InstUI.Primitives.FontWeights.light
+            public static let regular = InstUI.Primitives.FontWeights.regular
+            public static let medium = InstUI.Primitives.FontWeights.medium
+            public static let semiBold = InstUI.Primitives.FontWeights.semiBold
+            public static let bold = InstUI.Primitives.FontWeights.bold
+            public static let extraBold = InstUI.Primitives.FontWeights.extraBold
+            public static let black = InstUI.Primitives.FontWeights.black
         }
     }
 }

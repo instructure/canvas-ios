@@ -63,7 +63,7 @@ StyleDictionary.registerFormat({
     const colorExtProps = colorTokens
       .map(t => {
         const name = t.path[t.path.length - 1]
-        return `            static let ${name} = InstUI.Primitives.Colors.${name}`
+        return `            public static let ${name} = InstUI.Primitives.Colors.${name}`
       })
       .join('\n')
 
@@ -71,26 +71,26 @@ StyleDictionary.registerFormat({
     const uiColorExtProps = colorTokens
       .map(t => {
         const name = t.path[t.path.length - 1]
-        return `            static let ${name} = UIColor(.instui.primitives.${name})`
+        return `            public static let ${name} = UIColor(.instui.primitives.${name})`
       })
       .join('\n')
 
     const colorExtensions =
-`extension Color {
+`public extension Color {
 
     /// Access primitive colors via \`Color.instui.primitives.navy120\`
     enum instui {
-        enum primitives {
+        public enum primitives {
 ${colorExtProps}
         }
     }
 }
 
-extension UIColor {
+public extension UIColor {
 
     /// Access primitive colors via \`UIColor.instui.primitives.navy120\`
     enum instui {
-        enum primitives {
+        public enum primitives {
 ${uiColorExtProps}
         }
     }
@@ -142,16 +142,16 @@ StyleDictionary.registerFormat({
     const sizeExtProps = sizeTokens
       .map(t => {
         const name = t.path[t.path.length - 1]
-        return `            static let ${name} = InstUI.Primitives.Sizes.${name}`
+        return `            public static let ${name} = InstUI.Primitives.Sizes.${name}`
       })
       .join('\n')
 
     const sizeExtension =
-`extension CGFloat {
+`public extension CGFloat {
 
     /// Access primitive sizes via \`CGFloat.instui.primitives.size16\`
     enum instui {
-        enum primitives {
+        public enum primitives {
 ${sizeExtProps}
         }
     }
@@ -212,16 +212,16 @@ StyleDictionary.registerFormat({
     const weightExtProps = weightTokens
       .map(t => {
         const name = t.path[t.path.length - 1]
-        return `            static let ${name} = InstUI.Primitives.FontWeights.${name}`
+        return `            public static let ${name} = InstUI.Primitives.FontWeights.${name}`
       })
       .join('\n')
 
     const weightExtension =
-`extension Font.Weight {
+`public extension Font.Weight {
 
     /// Access primitive font weights via \`Font.Weight.instui.primitives.semiBold\`
     enum instui {
-        enum primitives {
+        public enum primitives {
 ${weightExtProps}
         }
     }
@@ -271,16 +271,16 @@ StyleDictionary.registerFormat({
     const opacityExtProps = opacityTokens
       .map(t => {
         const name = t.path[t.path.length - 1]
-        return `            static let ${name} = InstUI.Primitives.Opacities.${name}`
+        return `            public static let ${name} = InstUI.Primitives.Opacities.${name}`
       })
       .join('\n')
 
     const opacityExtension =
-`extension Double {
+`public extension Double {
 
     /// Access primitive opacities via \`Double.instui.primitives.opacity50\`
     enum instui {
-        enum primitives {
+        public enum primitives {
 ${opacityExtProps}
         }
     }
@@ -327,16 +327,16 @@ StyleDictionary.registerFormat({
     const familyExtProps = familyTokens
       .map(t => {
         const name = t.path[t.path.length - 1]
-        return `            static let ${name} = InstUI.Primitives.FontFamilies.${name}`
+        return `            public static let ${name} = InstUI.Primitives.FontFamilies.${name}`
       })
       .join('\n')
 
     const familyExtension =
-`extension String {
+`public extension String {
 
     /// Access primitive font families via \`String.instui.primitives.lato\`
     enum instui {
-        enum primitives {
+        public enum primitives {
 ${familyExtProps}
         }
     }

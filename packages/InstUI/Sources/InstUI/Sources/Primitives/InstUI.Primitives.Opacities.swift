@@ -27,13 +27,13 @@ public extension InstUI.Primitives.Opacities {
     ]
 }
 
-extension Double {
+public extension Double {
 
     /// Access primitive opacities via `Double.instui.primitives.opacity50`
     enum instui {
-        enum primitives {
-            static let opacity50 = InstUI.Primitives.Opacities.opacity50
-            static let opacity100 = InstUI.Primitives.Opacities.opacity100
+        public enum primitives {
+            public static let opacity50 = InstUI.Primitives.Opacities.opacity50
+            public static let opacity100 = InstUI.Primitives.Opacities.opacity100
         }
     }
 }

@@ -63,30 +63,30 @@ public extension InstUI.Primitives.Sizes {
     ]
 }
 
-extension CGFloat {
+public extension CGFloat {
 
     /// Access primitive sizes via `CGFloat.instui.primitives.size16`
     enum instui {
-        enum primitives {
-            static let size1 = InstUI.Primitives.Sizes.size1
-            static let size1_25 = InstUI.Primitives.Sizes.size1_25
-            static let size1_5 = InstUI.Primitives.Sizes.size1_5
-            static let size2 = InstUI.Primitives.Sizes.size2
-            static let size2_5 = InstUI.Primitives.Sizes.size2_5
-            static let size3 = InstUI.Primitives.Sizes.size3
-            static let size4 = InstUI.Primitives.Sizes.size4
-            static let size8 = InstUI.Primitives.Sizes.size8
-            static let size12 = InstUI.Primitives.Sizes.size12
-            static let size14 = InstUI.Primitives.Sizes.size14
-            static let size16 = InstUI.Primitives.Sizes.size16
-            static let size20 = InstUI.Primitives.Sizes.size20
-            static let size24 = InstUI.Primitives.Sizes.size24
-            static let size28 = InstUI.Primitives.Sizes.size28
-            static let size32 = InstUI.Primitives.Sizes.size32
-            static let size36 = InstUI.Primitives.Sizes.size36
-            static let size40 = InstUI.Primitives.Sizes.size40
-            static let size48 = InstUI.Primitives.Sizes.size48
-            static let size64 = InstUI.Primitives.Sizes.size64
+        public enum primitives {
+            public static let size1 = InstUI.Primitives.Sizes.size1
+            public static let size1_25 = InstUI.Primitives.Sizes.size1_25
+            public static let size1_5 = InstUI.Primitives.Sizes.size1_5
+            public static let size2 = InstUI.Primitives.Sizes.size2
+            public static let size2_5 = InstUI.Primitives.Sizes.size2_5
+            public static let size3 = InstUI.Primitives.Sizes.size3
+            public static let size4 = InstUI.Primitives.Sizes.size4
+            public static let size8 = InstUI.Primitives.Sizes.size8
+            public static let size12 = InstUI.Primitives.Sizes.size12
+            public static let size14 = InstUI.Primitives.Sizes.size14
+            public static let size16 = InstUI.Primitives.Sizes.size16
+            public static let size20 = InstUI.Primitives.Sizes.size20
+            public static let size24 = InstUI.Primitives.Sizes.size24
+            public static let size28 = InstUI.Primitives.Sizes.size28
+            public static let size32 = InstUI.Primitives.Sizes.size32
+            public static let size36 = InstUI.Primitives.Sizes.size36
+            public static let size40 = InstUI.Primitives.Sizes.size40
+            public static let size48 = InstUI.Primitives.Sizes.size48
+            public static let size64 = InstUI.Primitives.Sizes.size64
         }
     }
 }
