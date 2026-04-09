@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-struct TodoListItemCell: View {
+public struct TodoListItemCell: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @Environment(\.viewController) private var viewController
 
@@ -28,16 +28,18 @@ struct TodoListItemCell: View {
     private let onMarkAsDone: (_ item: TodoItemViewModel) -> Void
     private let onSwipe: (_ item: TodoItemViewModel) -> Void
     private let onSwipeCommitted: ((_ item: TodoItemViewModel) -> Void)?
+    private let showCompletedOverride: Bool?
 
     private static let hapticGenerator = UIImpactFeedbackGenerator(style: .light)
 
-    init(
+    public init(
         item: TodoItemViewModel,
         onTap: @escaping (TodoItemViewModel, WeakViewController) -> Void,
         onMarkAsDone: @escaping (TodoItemViewModel) -> Void,
         onSwipe: @escaping (TodoItemViewModel) -> Void,
         onSwipeCommitted: ((TodoItemViewModel) -> Void)? = nil,
-        isSwiping: Binding<Bool> = .constant(false)
+        isSwiping: Binding<Bool> = .constant(false),
+        showCompletedOverride: Bool? = nil
     ) {
         self.item = item
         self.onTap = onTap
@@ -45,9 +47,10 @@ struct TodoListItemCell: View {
         self.onSwipe = onSwipe
         self.onSwipeCommitted = onSwipeCommitted
         self._isSwiping = isSwiping
+        self.showCompletedOverride = showCompletedOverride
     }
 
-    var body: some View {
+    public var body: some View {
         HStack(spacing: 0) {
             TodoItemContentView(item: item, isCompactLayout: false)
 
@@ -74,7 +77,7 @@ struct TodoListItemCell: View {
         }
         .swipeAction(
             backgroundColor: item.swipeBackgroundColor,
-            completionBehavior: item.swipeCompletionBehavior,
+            completionBehavior: item.swipeCompletionBehavior(showCompleted: showCompletedOverride),
             isSwiping: $isSwiping,
             isEnabled: item.isSwipeEnabled,
             onSwipeCommitted: { onSwipeCommitted?(item) },
@@ -100,15 +103,14 @@ struct TodoListItemCell: View {
         ZStack {
             switch item.markAsDoneState {
             case .notDone:
-                InstUI.Checkbox(isSelected: false)
+                AUI.Checkbox(isSelected: false)
             case .loading:
                 ProgressView().tint(nil)
             case .done:
-                InstUI.Checkbox(isSelected: true)
+                AUI.Checkbox(isSelected: true)
             }
         }
         .frame(width: 44, height: 44)
-        .tint(Color(Brand.shared.primary))
         .contentShape(Rectangle())
         .onTapGesture {
             if isSwiping { return }

@@ -43,7 +43,7 @@ public struct DeveloperMenuView: View {
 
                             switch item.icon {
                             case .disclosure:
-                                InstUI.DisclosureIndicator()
+                                AUI.DisclosureIndicator()
                             case .toClipboard:
                                 Image(systemName: "doc.on.clipboard")
                                     .frame(width: 20, height: 20)
@@ -95,8 +95,8 @@ public struct DeveloperMenuView: View {
                 .absoluteString
         }()
 
-        items.append(DeveloperMenuItem("InstUI Storybook") {
-            router.route(to: "/dev-menu/instui-storybook", from: controller)
+        items.append(DeveloperMenuItem("AUI Storybook") {
+            router.route(to: "/dev-menu/aui-storybook", from: controller)
         })
 
         items.append(contentsOf: [

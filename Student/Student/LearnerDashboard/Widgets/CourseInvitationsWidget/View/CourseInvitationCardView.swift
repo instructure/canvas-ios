@@ -40,7 +40,7 @@ struct CourseInvitationCardView: View {
             .paddingStyle(set: .standardCell)
             .multilineTextAlignment(.leading)
 
-            HStack(spacing: InstUI.Styles.Padding.cellAccessoryPadding.rawValue) {
+            HStack(spacing: AUI.Styles.Padding.cellAccessoryPadding.rawValue) {
                 declineButton
                 acceptButton
             }
@@ -64,7 +64,7 @@ struct CourseInvitationCardView: View {
                 if viewModel.isAccepting {
                     PillContentProgressView(size: .height24, color: .textLightest)
                 } else {
-                    InstUI.PillContent(
+                    AUI.PillContent(
                         title: String(localized: "Accept", bundle: .student),
                         size: .height24,
                         isTextBold: true
@@ -74,7 +74,7 @@ struct CourseInvitationCardView: View {
             .frame(maxWidth: .infinity)
         }
         .buttonStyle(.pillTintFilled)
-        .identifier("CourseInvitation.\(viewModel.id).acceptButton")
+        .identifier("Dashboard.Invitations.CourseInvitation.acceptButton")
     }
 
     private var declineButton: some View {
@@ -83,7 +83,7 @@ struct CourseInvitationCardView: View {
                 if viewModel.isDeclining {
                     PillContentProgressView(size: .height24, color: .textDarkest)
                 } else {
-                    InstUI.PillContent(
+                    AUI.PillContent(
                         title: String(localized: "Decline", bundle: .student),
                         size: .height24
                     )
@@ -92,14 +92,14 @@ struct CourseInvitationCardView: View {
             .frame(maxWidth: .infinity)
         }
         .buttonStyle(.pillDefaultOutlined)
-        .identifier("CourseInvitation.\(viewModel.id).rejectButton")
+        .identifier("Dashboard.Invitations.CourseInvitation.declineButton")
     }
 }
 
 private struct PillContentProgressView: View {
     @ScaledMetric private var uiScale: CGFloat = 1
 
-    let size: InstUI.PillContent.SizeConfig
+    let size: AUI.PillContent.SizeConfig
     let color: Color
 
     var body: some View {

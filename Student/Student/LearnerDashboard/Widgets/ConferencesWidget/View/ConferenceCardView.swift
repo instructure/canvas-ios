@@ -46,7 +46,7 @@ struct ConferenceCardView: View {
             .paddingStyle(set: .standardCell)
             .multilineTextAlignment(.leading)
 
-            HStack(spacing: InstUI.Styles.Padding.cellAccessoryPadding.rawValue) {
+            HStack(spacing: AUI.Styles.Padding.cellAccessoryPadding.rawValue) {
                 dismissButton
                 joinButton
             }
@@ -62,7 +62,7 @@ struct ConferenceCardView: View {
             isAvailable: offlineMode.isAppOnline,
             action: { viewModel.didTapJoin(controller: controller) }
         ) {
-            InstUI.PillContent(
+            AUI.PillContent(
                 title: String(localized: "Join", bundle: .student),
                 size: .height24,
                 isTextBold: true
@@ -70,7 +70,7 @@ struct ConferenceCardView: View {
             .frame(maxWidth: .infinity)
         }
         .buttonStyle(.pillTintFilled)
-        .identifier("Conference.\(viewModel.id).joinButton")
+        .identifier("Dashboard.Conferences.Invitation.joinButton")
     }
 
     private var dismissButton: some View {
@@ -78,14 +78,14 @@ struct ConferenceCardView: View {
             isAvailable: offlineMode.isAppOnline,
             action: { viewModel.didTapDismiss() }
         ) {
-            InstUI.PillContent(
+            AUI.PillContent(
                 title: String(localized: "Dismiss", bundle: .student),
                 size: .height24
             )
             .frame(maxWidth: .infinity)
         }
         .buttonStyle(.pillDefaultOutlined)
-        .identifier("Conference.\(viewModel.id).dismissButton")
+        .identifier("Dashboard.Conferences.Invitation.dismissButton")
     }
 }
 

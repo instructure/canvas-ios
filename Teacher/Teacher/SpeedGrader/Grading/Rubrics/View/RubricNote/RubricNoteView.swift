@@ -57,7 +57,7 @@ struct RubricNoteView: View {
         .padding(.bottom, 16)
         .frame(maxWidth: .infinity, alignment: .leading)
         .overlay(alignment: .top) {
-            InstUI.Divider()
+            AUI.Divider()
         }
     }
 }

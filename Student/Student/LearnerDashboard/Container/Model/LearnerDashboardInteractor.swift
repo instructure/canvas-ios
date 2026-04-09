@@ -20,30 +20,31 @@ import Combine
 import Core
 import Foundation
 
+enum LearnerDashboardLoadReason {
+    case onStartup
+    case onConfigChange
+}
+
 protocol LearnerDashboardInteractor {
-    func loadWidgets() -> AnyPublisher<[any DashboardWidgetViewModel], Never>
+    func loadEditableWidgetConfigs(loadReason: LearnerDashboardLoadReason) -> AnyPublisher<[DashboardWidgetConfig], Never>
 }
 
 final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
     private let userDefaults: SessionDefaults
-    private let systemWidgetFactory: (SystemWidgetIdentifier) -> any DashboardWidgetViewModel
-    private let editableWidgetFactory: (DashboardWidgetConfig) -> any DashboardWidgetViewModel
+    private let analytics: Analytics
 
     init(
         userDefaults: SessionDefaults = AppEnvironment.shared.userDefaults ?? .fallback,
-        systemWidgetFactory: @escaping (SystemWidgetIdentifier) -> any DashboardWidgetViewModel,
-        editableWidgetFactory: @escaping (DashboardWidgetConfig) -> any DashboardWidgetViewModel
+        analytics: Analytics = .shared
     ) {
         self.userDefaults = userDefaults
-        self.systemWidgetFactory = systemWidgetFactory
-        self.editableWidgetFactory = editableWidgetFactory
+        self.analytics = analytics
     }
 
-    func loadWidgets() -> AnyPublisher<[any DashboardWidgetViewModel], Never> {
+    func loadEditableWidgetConfigs(loadReason: LearnerDashboardLoadReason) -> AnyPublisher<[DashboardWidgetConfig], Never> {
         Just(())
             .subscribe(on: DispatchQueue.global(qos: .userInitiated))
-            .map { [userDefaults, systemWidgetFactory, editableWidgetFactory] _ in
-                let systemVMs = SystemWidgetIdentifier.allCases.map { systemWidgetFactory($0) }
+            .map { [userDefaults, analytics] _ in
 
                 let defaultConfigs = EditableWidgetIdentifier.makeDefaultConfigs()
                 let savedConfigs = userDefaults.learnerDashboardWidgetConfigs ?? []
@@ -52,12 +53,19 @@ final class LearnerDashboardInteractorLive: LearnerDashboardInteractor {
                 let mergedConfigs = defaultConfigs.map { defaultConfig in
                     savedConfigs.first { $0.id == defaultConfig.id } ?? defaultConfig
                 }
+
+                switch loadReason {
+                case .onStartup:
+                    analytics.logDashboardWidgetVisibility(DashboardWidgetVisibilityEvent(configs: mergedConfigs))
+                case .onConfigChange:
+                    analytics.logDashboardWidgetCustomization()
+                }
+
                 let editableConfigs = mergedConfigs
                     .filter { $0.isVisible }
                     .sorted()
-                let editableVMs = editableConfigs.map { editableWidgetFactory($0) }
 
-                return systemVMs + editableVMs
+                return editableConfigs
             }
             .eraseToAnyPublisher()
     }

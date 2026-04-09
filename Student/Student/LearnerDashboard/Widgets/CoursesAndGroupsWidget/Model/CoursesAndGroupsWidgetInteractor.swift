@@ -27,7 +27,7 @@ protocol CoursesAndGroupsWidgetInteractor {
     var showGrades: CurrentValueSubject<Bool, Never> { get }
     var showColorOverlay: CurrentValueSubject<Bool, Never> { get }
 
-    func getCoursesAndGroups(ignoreCache: Bool) -> AnyPublisher<Model, Error>
+    func getCoursesAndGroups(ignoreCache: Bool, shouldForceCoursesRefresh: Bool) -> AnyPublisher<Model, Error>
     func reorderCourses(newOrder: [String])
 }
 
@@ -50,7 +50,6 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
     private var subscriptions = Set<AnyCancellable>()
 
     private var currentDashboardCards: [DashboardCard] = []
-    private var favoritesDidChange: Bool = false
 
     init(coursesInteractor: CoursesInteractor, env: AppEnvironment) {
         self.coursesInteractor = coursesInteractor
@@ -67,7 +66,6 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
         self.showColorOverlay = .init(true)
         observeShowGrades()
         observeShowColorOverlay()
-        observeFavoritesDidChange()
     }
 
     /// Returns a tupple of course items and group items.
@@ -82,12 +80,8 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
     /// If there are no favorite groups: no groups are returned.
     /// (This uses the 'favorites/groups' endpoint which provides an already filtered list of groups to display,
     /// but it needs to be further filtered for active courses)
-    func getCoursesAndGroups(ignoreCache: Bool) -> AnyPublisher<Model, Error> {
-        // Favorite changes require refresh from API, because those can't be applied properly on client side.
-        let shouldForceCoursesRefresh = favoritesDidChange
-        favoritesDidChange = false
-
-        return Publishers.CombineLatest(
+    func getCoursesAndGroups(ignoreCache: Bool, shouldForceCoursesRefresh: Bool) -> AnyPublisher<Model, Error> {
+        Publishers.CombineLatest(
             coursesInteractor.getCourses(ignoreCache: ignoreCache || shouldForceCoursesRefresh),
             userSettingsStore.getEntities(ignoreCache: ignoreCache)
         )
@@ -170,15 +164,6 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
             card.position = newIndex
         }
         PutDashboardCardPositions(cards: currentDashboardCards).fetch()
-    }
-
-    private func observeFavoritesDidChange() {
-        NotificationCenter.default
-            .publisher(for: .favoritesDidChange)
-            .sink { [weak self] _ in
-                self?.favoritesDidChange = true
-            }
-            .store(in: &subscriptions)
     }
 
     private func observeShowGrades() {

@@ -61,9 +61,6 @@
       location = "group:.bitrise">
    </FileRef>
    <FileRef
-      location = "group:dangerfile.js">
-   </FileRef>
-   <FileRef
       location = "group:package.json">
    </FileRef>
 </Workspace>

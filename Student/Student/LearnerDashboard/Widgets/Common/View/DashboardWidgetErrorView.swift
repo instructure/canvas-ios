@@ -25,7 +25,7 @@ struct DashboardWidgetErrorView: View {
     var body: some View {
         HStack(
             alignment: .top,
-            spacing: InstUI.Styles.Padding.standard.rawValue
+            spacing: AUI.Styles.Padding.standard.rawValue
         ) {
             Image("PandaUnsupported", bundle: .core)
                 .scaledIcon(size: 40)
@@ -53,6 +53,7 @@ struct DashboardWidgetErrorView: View {
                     .background(Color(Brand.shared.primary))
                     .clipShape(.rect(cornerRadius: 100))
                 }
+                .identifier("Dashboard.Error.refreshButton")
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

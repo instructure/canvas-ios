@@ -40,6 +40,7 @@ protocol ModuleItemSequenceInteractor {
     ) -> AnyPublisher<[HModuleItem], Error>
 
     func getCourse(ignoreCache: Bool) -> AnyPublisher<HCourse, Never>
+    func syncCourseProgress() -> AnyPublisher<Void, Never>
 }
 
 final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
@@ -50,16 +51,19 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
     private let courseID: String
     private let offlineModeInteractor: OfflineModeInteractor
     private let getCoursesInteractor: GetCoursesInteractor
+    private let domainService: DomainServiceProtocol
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     init(
         courseID: String,
         getCoursesInteractor: GetCoursesInteractor,
+        domainService: DomainServiceProtocol = DomainService(),
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
     ) {
         self.courseID = courseID
         self.getCoursesInteractor = getCoursesInteractor
+        self.domainService = domainService
         self.scheduler = scheduler
         self.offlineModeInteractor = offlineModeInteractor
     }
@@ -157,6 +161,17 @@ final class ModuleItemSequenceInteractorLive: ModuleItemSequenceInteractor {
         getCoursesInteractor
             .getCourseWithModules(id: courseID, ignoreCache: ignoreCache)
             .compactMap { $0 }
+            .eraseToAnyPublisher()
+    }
+
+    func syncCourseProgress() -> AnyPublisher<Void, Never> {
+        domainService.api()
+            .flatMap {[courseID] api in
+                api.makeRequest(HSyncCourseProgressRequest(courseId: courseID))
+            }
+            .map(\.body)
+            .mapToVoid()
+            .replaceError(with: ())
             .eraseToAnyPublisher()
     }
 }

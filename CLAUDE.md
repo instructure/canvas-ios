@@ -30,7 +30,7 @@ The workspace root contains the following key projects:
 - **Shared utilities**: `Core/Core/Common/Extensions/`
 - **Shared components**: `Core/Core/Common/CommonUI/`
 - **Shared models**: `Core/Core/Common/CommonModels/`
-- **InstUI Design System**: `Core/Core/Common/CommonUI/InstUI/` — see @Core/Core/Common/CommonUI/InstUI/CLAUDE.md for patterns
+- **AcademicUI Design System**: `Core/Core/Common/CommonUI/AcademicUI/` — see @Core/Core/Common/CommonUI/AcademicUI/CLAUDE.md for patterns
 - **HorizonUI Design System**: `Horizon/Horizon/Sources/Common/View/`
 
 ## Response Preferences
@@ -60,9 +60,9 @@ The workspace root contains the following key projects:
 - Follow project's component structure and naming conventions
 - Use existing utility functions and shared components from the Key Directories listed above
 - If working inside the Horizon project, use the HorizonUI Design System to compose new UI components
-- When working on UI inside Core, Student, Parent or Teacher projects, use elements from InstUI and CommonUI helpers
+- When working on UI inside Core, Student, Parent or Teacher projects, use elements from AcademicUI and CommonUI helpers
 - Ensure the code compiles and runs without errors
 - After creating new files or modifying project settings, run `make sync` to update Xcode projects via XcodeGen
 - When writing tests, make sure the tests pass
-- When you are asked to write or modify tests, follow the conventions outlined in CLAUDE-unit-tests.md
+- IMPORTANT: Before writing or modifying ANY test file, you MUST first read @CLAUDE-unit-tests.md in full. Do not rely on patterns from existing test files or prior knowledge — the guide is the authoritative source of truth for all test conventions.
 

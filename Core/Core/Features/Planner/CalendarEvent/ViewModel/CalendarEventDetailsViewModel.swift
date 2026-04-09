@@ -29,11 +29,11 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
 
     @Published public private(set) var pageSubtitle: String?
     @Published public private(set) var contextColor: UIColor?
-    @Published public private(set) var state: InstUI.ScreenState = .loading
+    @Published public private(set) var state: ScreenState = .loading
     @Published public private(set) var title: String = ""
     @Published public private(set) var date: String?
-    @Published public private(set) var locationInfo: [InstUI.TextSectionView.Model] = []
-    @Published public private(set) var details: InstUI.TextSectionView.Model?
+    @Published public private(set) var locationInfo: [AUI.TextSectionView.Model] = []
+    @Published public private(set) var details: AUI.TextSectionView.Model?
     @Published public var shouldShowMenuButton: Bool = false
     @Published public var shouldShowDeleteConfirmation: Bool = false
     @Published public var shouldShowDeleteError: Bool = false
@@ -171,7 +171,7 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
                 }
 
                 locationInfo = {
-                    var result: [InstUI.TextSectionView.Model] = []
+                    var result: [AUI.TextSectionView.Model] = []
                     if let locationName = event.locationName, locationName.isNotEmpty {
                         result.append(.init(
                             title: String(localized: "Location", bundle: .core),
@@ -284,7 +284,7 @@ public final class CalendarEventDetailsViewModel: ObservableObject {
                 },
                 receiveValue: { [weak self] in
                     self?.completion?(.didDelete)
-                    self?.router.pop(from: source)
+                    self?.router.dismiss(source)
                 }
             )
             .store(in: &subscriptions)

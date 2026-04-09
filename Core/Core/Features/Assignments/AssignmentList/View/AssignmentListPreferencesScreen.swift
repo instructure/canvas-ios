@@ -57,14 +57,14 @@ public struct AssignmentListPreferencesScreen: View {
     }
 
     private var cancelButton: some View {
-        InstUI.NavigationBarButton.cancel {
+        AUI.NavigationBarButton.cancel {
             viewModel.didTapCancel(viewController: viewController)
         }
         .accessibilityIdentifier("AssignmentFilter.cancelButton")
     }
 
     private var doneButton: some View {
-        InstUI.NavigationBarButton.done {
+        AUI.NavigationBarButton.done {
             viewModel.didTapDone(viewController: viewController)
         }
         .accessibilityIdentifier("AssignmentFilter.doneButton")

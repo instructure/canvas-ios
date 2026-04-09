@@ -32,16 +32,18 @@ struct ConferencesWidgetView: View {
                     viewModel.widgetTitle,
                     customAccessibilityTitle: viewModel.widgetAccessibilityTitle
                 ) {
-                    VStack(spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue) {
+                    VStack(spacing: AUI.Styles.Padding.sectionHeaderVertical.rawValue) {
                         HorizontalCarouselView(
                             items: viewModel.conferences,
                             currentPage: $currentPage,
                             totalPages: $totalPages
                         ) { cardViewModel in
                             ConferenceCardView(viewModel: cardViewModel)
+                                .accessibilityElement(children: .contain)
+                                .identifier("Dashboard.Conferences.Invitation.Id.\(cardViewModel.id)")
                         }
 
-                        InstUI.PageIndicator(currentIndex: currentPage, count: totalPages)
+                        AUI.PageIndicator(currentIndex: currentPage, count: totalPages)
                     }
                 }
                 .animation(.dashboardWidget, value: viewModel.conferences)

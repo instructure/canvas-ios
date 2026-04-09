@@ -126,7 +126,7 @@ struct AllCoursesCellView: View {
                 Image.noSolid.foregroundColor(.textDark)
             icon.padding(.trailing, 16)
         } else {
-            InstUI.DisclosureIndicator()
+            AUI.DisclosureIndicator()
                 .padding(.trailing, 16)
                 .hidden(viewModel.isCellDisabled)
         }

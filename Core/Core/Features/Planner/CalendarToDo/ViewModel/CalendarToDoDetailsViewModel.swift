@@ -25,7 +25,7 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
 
     public let navigationTitle = String(localized: "To-do", bundle: .core)
 
-    @Published private(set) var state: InstUI.ScreenState = .data
+    @Published private(set) var state: ScreenState = .data
     @Published public private(set) var title: String?
     @Published public private(set) var date: String?
     @Published public private(set) var description: String?
@@ -155,7 +155,7 @@ public class CalendarToDoDetailsViewModel: ObservableObject {
                     }
                 },
                 receiveValue: { [router] in
-                    router.pop(from: source)
+                    router.dismiss(source)
                 }
             )
             .store(in: &subscriptions)

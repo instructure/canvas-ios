@@ -87,7 +87,7 @@ struct CourseSyncSettingsView: View {
                         .foregroundColor(.textDark)
                         .font(.regular14)
                         .padding(.trailing, 15)
-                    InstUI.DisclosureIndicator()
+                    AUI.DisclosureIndicator()
                 }
                 .padding(.horizontal, 16)
                 .accessibilityHint(viewModel.labels.syncFrequency)
@@ -116,7 +116,7 @@ struct CourseSyncSettingsView: View {
     }
 
     private func toggle(text: Text, isOn: Binding<Bool>) -> some View {
-        InstUI.Toggle(isOn: isOn) {
+        AUI.Toggle(isOn: isOn) {
             text
                 .font(.semibold16)
                 .foregroundColor(.textDarkest)

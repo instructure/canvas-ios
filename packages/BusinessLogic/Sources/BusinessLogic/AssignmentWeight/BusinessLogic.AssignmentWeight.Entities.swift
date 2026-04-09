@@ -27,11 +27,24 @@ extension BusinessLogic.AssignmentWeight {
             isOmittedFromFinalGrade: Bool?,
             pointsPossible: Double?
         ) {
-            guard isOmittedFromFinalGrade != true,
+            let isOmittedFromFinalGrade = isOmittedFromFinalGrade ?? false
+            guard isOmittedFromFinalGrade == false,
                   let pointsPossible, pointsPossible > 0
             else { return nil }
 
             self.pointsPossible = pointsPossible
         }
+
+#if DEBUG
+
+        private init(pointsPossible: Double) {
+            self.pointsPossible = pointsPossible
+        }
+
+        static func make(pointsPossible: Double = 100) -> Self {
+            .init(pointsPossible: pointsPossible)
+        }
+
+#endif
     }
 }

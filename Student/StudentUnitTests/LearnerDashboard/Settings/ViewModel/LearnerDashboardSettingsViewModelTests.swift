@@ -25,16 +25,20 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
 
     private var testee: LearnerDashboardSettingsViewModel!
     private var testDefaults: SessionDefaults!
+    private var analytics: AnalyticsHandlerMock!
 
     override func setUp() {
         super.setUp()
         testDefaults = SessionDefaults(sessionID: "test-session")
         testDefaults.reset()
+        analytics = .init()
+        Analytics.shared.handler = analytics
     }
 
     override func tearDown() {
         testee = nil
         testDefaults = nil
+        analytics = nil
         super.tearDown()
     }
 
@@ -54,6 +58,25 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
         testee = makeTestee()
 
         XCTAssertEqual(testee.useNewLearnerDashboard, false)
+    }
+
+    // MARK: - Color change analytics
+
+    func test_mainColor_whenChanged_shouldLogCustomizationEvent() {
+        testee = makeTestee()
+
+        testee.mainColor = .red
+
+        XCTAssertEqual(analytics.handleEventInput, "dashboard_widget_customization")
+    }
+
+    func test_mainColor_whenChangedMultipleTimes_shouldLogOneEventPerChange() {
+        testee = makeTestee()
+
+        testee.mainColor = .red
+        testee.mainColor = .blue
+
+        XCTAssertEqual(analytics.handleEventCallCount, 2)
     }
 
     // MARK: - Switch to Classic Dashboard
@@ -121,12 +144,12 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
         return LearnerDashboardSettingsViewModel(
             defaults: testDefaults,
             colorInteractor: colorInteractor,
-            courseSettingsViewModel: makeCourseSettingsViewModel(),
+            widgetsSectionViewModel: makeWidgetsSectionViewModel(),
             environment: env
         )
     }
 
-    private func makeCourseSettingsViewModel() -> LearnerDashboardSettingsWidgetsSectionViewModel {
+    private func makeWidgetsSectionViewModel() -> LearnerDashboardSettingsWidgetsSectionViewModel {
         LearnerDashboardSettingsWidgetsSectionViewModel(
             userDefaults: testDefaults,
             configs: EditableWidgetIdentifier.makeDefaultConfigs(),
@@ -144,5 +167,15 @@ private final class MockViewController: UIViewController {
         dismissCalled = true
         dismissExpectation?.fulfill()
         completion?()
+    }
+}
+
+private final class AnalyticsHandlerMock: AnalyticsHandler {
+    var handleEventInput: String?
+    var handleEventCallCount = 0
+
+    func handleEvent(_ name: String, parameters: [String: Any]?) {
+        handleEventInput = name
+        handleEventCallCount += 1
     }
 }

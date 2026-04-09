@@ -18,7 +18,7 @@
 
 import UIKit
 
-public class LTIViewController: UIViewController, ErrorViewController, ColoredNavViewProtocol {
+public class LTIViewController: ScreenViewTrackableViewController, ErrorViewController, ColoredNavViewProtocol {
     @IBOutlet weak var spinnerView: CircleProgressView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -44,6 +44,12 @@ public class LTIViewController: UIViewController, ErrorViewController, ColoredNa
         guard tools.context.contextType == .course else { return nil }
         return tools.context.id
     }
+    public lazy var screenViewTrackingParameters: ScreenViewTrackingParameters = {
+        if let courseID, let toolID = tools.id {
+            return ScreenViewTrackingParameters(eventName: "/courses/\(courseID)/external_tools/\(toolID)")
+        }
+        return ScreenViewTrackingParameters(eventName: "/external_tools")
+    }()
 
     public static func create(env: AppEnvironment, tools: LTITools, name: String? = nil) -> Self {
         let controller = loadFromStoryboard()

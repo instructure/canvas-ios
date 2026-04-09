@@ -20,9 +20,13 @@ import Combine
 @testable import Student
 
 final class LearnerDashboardInteractorMock: LearnerDashboardInteractor {
-    var loadWidgetsPublisher = PassthroughSubject<[any DashboardWidgetViewModel], Never>()
+    var loadEditableWidgetConfigsInput: LearnerDashboardLoadReason?
+    var loadEditableWidgetConfigsCallCount = 0
+    var loadEditableWidgetConfigsPublisher = PassthroughSubject<[DashboardWidgetConfig], Never>()
 
-    func loadWidgets() -> AnyPublisher<[any DashboardWidgetViewModel], Never> {
-        loadWidgetsPublisher.eraseToAnyPublisher()
+    func loadEditableWidgetConfigs(loadReason: LearnerDashboardLoadReason) -> AnyPublisher<[DashboardWidgetConfig], Never> {
+        loadEditableWidgetConfigsInput = loadReason
+        loadEditableWidgetConfigsCallCount += 1
+        return loadEditableWidgetConfigsPublisher.eraseToAnyPublisher()
     }
 }

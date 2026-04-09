@@ -50,7 +50,6 @@ public extension HorizonUI {
             case let .number(number):
                 Text(number)
                     .huiTypography(.tag)
-                    .frame(minWidth: 19, minHeight: 19)
                     .padding(.huiSpaces.space4)
                     .multilineTextAlignment(.center)
             case let .icon(icon):

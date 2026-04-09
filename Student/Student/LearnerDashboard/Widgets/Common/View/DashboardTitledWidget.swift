@@ -19,32 +19,39 @@
 import Core
 import SwiftUI
 
-struct DashboardTitledWidget<Content: View>: View {
+struct DashboardTitledWidget<Content: View, TrailingContent: View>: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     let title: String
     let customAccessibilityTitle: String?
+    let trailingContent: TrailingContent
     let content: Content
 
     init(
         _ title: String,
         customAccessibilityTitle: String? = nil,
-        @ViewBuilder content: () -> Content
+        @ViewBuilder content: () -> Content,
+        @ViewBuilder trailingContent: () -> TrailingContent = { SwiftUI.EmptyView() }
     ) {
         self.title = title
         self.customAccessibilityTitle = customAccessibilityTitle
         self.content = content()
+        self.trailingContent = trailingContent()
     }
 
     var body: some View {
         VStack(
             alignment: .leading,
-            spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue
+            spacing: AUI.Styles.Padding.sectionHeaderVertical.rawValue
         ) {
-            Text(title)
-                .font(.regular14, lineHeight: .fit)
-                .foregroundStyle(.textDarkest)
-                .accessibilityAddTraits(.isHeader)
-                .accessibilityLabel(customAccessibilityTitle ?? title)
+            HStack {
+                Text(title)
+                    .font(.regular14, lineHeight: .fit)
+                    .foregroundStyle(.textDarkest)
+                    .accessibilityAddTraits(.isHeader)
+                    .accessibilityLabel(customAccessibilityTitle ?? title)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                trailingContent
+            }
             content
         }
     }
@@ -54,7 +61,7 @@ struct DashboardTitledWidget<Content: View>: View {
 
 #Preview {
     DashboardTitledWidget("Weekly Summary") {
-        Text(verbatim: InstUI.PreviewData.loremIpsumShort)
+        Text(verbatim: AUI.PreviewData.loremIpsumShort)
     }
 }
 

@@ -32,8 +32,9 @@ public extension HorizonUI.StatusChip {
         case plum
         case violet
         case institution
+        case custom(foregroundColor: Color, backgroundColor: Color)
 
-        func foregroundColor(isFilled: Bool) -> Color {
+        public func foregroundColor(isFilled: Bool = true) -> Color {
             switch self {
             case .white: isFilled ? Color.huiColors.text.title : Color.huiColors.text.surfaceColored
             case .gray: Color.huiColors.text.title
@@ -47,10 +48,11 @@ public extension HorizonUI.StatusChip {
             case .plum: Color.huiColors.primitives.plum90
             case .violet: Color.huiColors.primitives.violet90
             case .institution: isFilled ? Color.huiColors.text.surfaceColored : Color.huiColors.surface.institution
+            case let .custom(foregroundColor, _): foregroundColor
             }
         }
 
-        var backgroundColor: Color {
+       public var backgroundColor: Color {
             switch self {
             case .white: Color.huiColors.surface.pageSecondary
             case .gray: Color.huiColors.primitives.grey11
@@ -64,10 +66,11 @@ public extension HorizonUI.StatusChip {
             case .plum: Color.huiColors.primitives.plum12
             case .violet: Color.huiColors.primitives.violet12
             case .institution: Color.huiColors.surface.institution
+            case let .custom(_, backgroundColor): backgroundColor
             }
         }
 
-        func iconColor(isFilled: Bool) -> Color {
+        public func iconColor(isFilled: Bool) -> Color {
             switch self {
             case .white: isFilled ? Color.huiColors.icon.default : Color.huiColors.icon.surfaceColored
             case .gray: Color.huiColors.icon.default
@@ -81,6 +84,7 @@ public extension HorizonUI.StatusChip {
             case .plum: Color.huiColors.primitives.plum90
             case .violet: Color.huiColors.primitives.violet90
             case .institution: isFilled ? Color.huiColors.icon.surfaceColored : Color.huiColors.surface.institution
+            case let .custom(foregroundColor, _): foregroundColor
             }
         }
     }

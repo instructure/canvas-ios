@@ -19,28 +19,28 @@
 import Foundation
 
 public struct APISubAssignmentSubmission: Codable, Equatable {
-    let user_id: ID
-    let sub_assignment_tag: String
+    public let user_id: ID
+    public let sub_assignment_tag: String
 
     // Status
-    let excused: Bool?
-    let late: Bool?
-    let late_policy_status: LatePolicyStatus?
-    let seconds_late: Int?
-    let missing: Bool?
-    let submitted_at: Date?
-    let custom_grade_status_id: String?
+    public let excused: Bool?
+    public let late: Bool?
+    public let late_policy_status: LatePolicyStatus?
+    public let seconds_late: Int?
+    public let missing: Bool?
+    public let submitted_at: Date?
+    public let custom_grade_status_id: String?
 
     // Score
-    let entered_score: Double?
-    let score: Double?
-    let published_score: Double?
+    public let entered_score: Double?
+    public let score: Double?
+    public let published_score: Double?
 
     // Grade
-    let entered_grade: String?
-    let grade: String?
-    let published_grade: String?
-    let grade_matches_current_submission: Bool?
+    public let entered_grade: String?
+    public let grade: String?
+    public let published_grade: String?
+    public let grade_matches_current_submission: Bool?
 }
 
 #if DEBUG

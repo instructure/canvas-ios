@@ -68,7 +68,7 @@ struct CourseCardView: View {
             .animation(.dashboardWidget, value: viewModel)
             .accessibilityElement(children: .combine)
             .accessibilityLabel(a11yLabel)
-            .identifier("Dashboard.CourseCard.cardButton")
+            .identifier("Dashboard.Courses.CourseCard.cardButton")
     }
 
     // MARK: - Card
@@ -120,6 +120,7 @@ struct CourseCardView: View {
             .font(.semibold16, lineHeight: .fit)
             .foregroundStyle(.textDarkest)
             .multilineTextAlignment(.leading)
+            .lineLimit(2)
     }
 
     // MARK: - Kebab button
@@ -138,12 +139,12 @@ struct CourseCardView: View {
             Button(String(localized: "Manage Offline Content", bundle: .student)) {
                 didTapManageOfflineContent()
             }
-            .identifier("Dashboard.CourseCard.manageOfflineButton")
+            .identifier("Dashboard.Courses.CourseCard.manageOfflineButton")
 
             Button(String(localized: "Customize Course", bundle: .student)) {
                 didTapCustomize()
             }
-            .identifier("Dashboard.CourseCard.customizeButton")
+            .identifier("Dashboard.Courses.CourseCard.customizeButton")
         } label: {
             kebabIcon
         }
@@ -154,7 +155,7 @@ struct CourseCardView: View {
         .accessibilityAction(named: String(localized: "Manage Offline Content", bundle: .student)) {
             didTapManageOfflineContent()
         }
-        .identifier("Dashboard.CourseCard.optionsButton")
+        .identifier("Dashboard.Courses.CourseCard.optionsButton")
     }
 
     private func didTapManageOfflineContent() {
@@ -180,7 +181,7 @@ struct CourseCardView: View {
             kebabIcon
         }
         .accessibilityLabel(String(localized: "Customize Course", bundle: .student))
-        .identifier("Dashboard.CourseCard.customizeButton")
+        .identifier("Dashboard.Courses.CourseCard.customizeButton")
     }
 
     private var kebabIcon: some View {
@@ -218,7 +219,7 @@ struct CourseCardView: View {
         }
         .foregroundStyle(viewModel.courseColor)
         .fixedSize(horizontal: true, vertical: false)
-        .identifier("Dashboard.CourseCard.gradePill")
+        .identifier("Dashboard.Courses.CourseCard.gradePill")
     }
 
     // MARK: - Announcements button
@@ -230,11 +231,14 @@ struct CourseCardView: View {
             Image.announcementSolid
                 .scaledIcon()
                 .foregroundStyle(.textDark)
-                .instBadge(viewModel.unreadAnnouncementCount, style: .accessory)
+                .instBadge(
+                    viewModel.unreadAnnouncementCount,
+                    style: .accessory
+                )
                 .scaledFrame(height: 72, useIconScale: true) // increases tap area
         }
         .accessibilityLabel(viewModel.openAnnouncementsA11yLabel)
-        .identifier("Dashboard.CourseCard.announcementsButton")
+        .identifier("Dashboard.Courses.CourseCard.announcementsButton")
     }
 }
 

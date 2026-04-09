@@ -34,7 +34,7 @@ struct LearnerDashboardSettingsWidgetCardView: View {
             HStack(spacing: 8) {
                 buttons
 
-                InstUI.Toggle(isOn: $isVisible) {
+                AUI.Toggle(isOn: $isVisible) {
                     Text(config.id.settingsTitle(username: username))
                         .font(.semibold16, lineHeight: .fit)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -49,7 +49,7 @@ struct LearnerDashboardSettingsWidgetCardView: View {
             .accessibilityElement(children: .combine)
 
             if let subSettings = subSettingsView, isVisible {
-                InstUI.Divider()
+                AUI.Divider()
                     .padding(.horizontal, -16)
                 subSettings
                     .padding(.horizontal, -16)
@@ -82,7 +82,7 @@ struct LearnerDashboardSettingsWidgetCardView: View {
             ))
             .accessibilityHidden(isMoveUpDisabled)
 
-            InstUI.Divider()
+            AUI.Divider()
                 .padding(.vertical, 4)
 
             Button {

@@ -26,13 +26,13 @@ import UIKit
 
 @Observable
 final class LearnerDashboardViewModel {
-    private(set) var state: InstUI.ScreenState = .loading
+    private(set) var state: ScreenState = .loading
     private(set) var widgets: [any DashboardWidgetViewModel] = []
     private(set) var mainColor: Color
     private(set) var showWidgetsTurnedOffPanda: Bool = false
     let snackBarViewModel: SnackBarViewModel
 
-    let screenConfig = InstUI.BaseScreenConfig(
+    let screenConfig = BaseScreenConfig(
         refreshable: true,
         showsScrollIndicators: false,
         backgroundColor: .backgroundLight
@@ -42,6 +42,8 @@ final class LearnerDashboardViewModel {
     private let colorInteractor: LearnerDashboardColorInteractor
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
     private let courseSyncInteractor: CourseSyncInteractor
+    private let systemWidgetFactory: (SystemWidgetIdentifier) -> any DashboardWidgetViewModel
+    private let editableWidgetFactory: (DashboardWidgetConfig) -> any DashboardWidgetViewModel
     private let environment: AppEnvironment
     private let widgetDidRequestRefresh = PassthroughSubject<Void, Never>()
 
@@ -53,6 +55,8 @@ final class LearnerDashboardViewModel {
         snackBarViewModel: SnackBarViewModel,
         mainScheduler: AnySchedulerOf<DispatchQueue> = DispatchQueue.main.eraseToAnyScheduler(),
         courseSyncInteractor: CourseSyncInteractor = CourseSyncDownloaderAssembly.makeInteractor(),
+        systemWidgetFactory: @escaping (SystemWidgetIdentifier) -> any DashboardWidgetViewModel,
+        editableWidgetFactory: @escaping (DashboardWidgetConfig) -> any DashboardWidgetViewModel,
         environment: AppEnvironment
     ) {
         self.interactor = interactor
@@ -60,6 +64,8 @@ final class LearnerDashboardViewModel {
         self.snackBarViewModel = snackBarViewModel
         self.mainScheduler = mainScheduler
         self.courseSyncInteractor = courseSyncInteractor
+        self.systemWidgetFactory = systemWidgetFactory
+        self.editableWidgetFactory = editableWidgetFactory
         self.environment = environment
         self.mainColor = colorInteractor.dashboardColor.value
 
@@ -69,7 +75,7 @@ final class LearnerDashboardViewModel {
             }
             .store(in: &subscriptions)
 
-        loadWidgets()
+        loadWidgets(loadReason: .onStartup)
         setupOfflineSyncHandlers()
         observeColorChanges()
     }
@@ -91,7 +97,7 @@ final class LearnerDashboardViewModel {
         LearnerDashboardSettingsAssembly.makeViewModel(
             env: environment,
             colorInteractor: colorInteractor,
-            onConfigsChanged: { [weak self] in self?.loadWidgets() }
+            onConfigsChanged: { [weak self] in self?.loadWidgets(loadReason: .onConfigChange) }
         )
     }
 
@@ -104,21 +110,41 @@ final class LearnerDashboardViewModel {
             .store(in: &subscriptions)
     }
 
-    private func loadWidgets() {
-        interactor.loadWidgets()
+    private func loadWidgets(loadReason: LearnerDashboardLoadReason) {
+        interactor.loadEditableWidgetConfigs(loadReason: loadReason)
             .receive(on: mainScheduler)
-            .sink { [weak self] result in
+            .sink { [weak self] editableConfigs in
                 guard let self else { return }
-                widgets = result
-                widgets.forEach {
-                    guard let mutatorWidget = $0 as? DashboardMutatorWidget else { return }
-                    mutatorWidget.requestDashboardRefresh = self.widgetDidRequestRefresh
-                }
-                showWidgetsTurnedOffPanda = result.allEditableWidgetsTurnedOff
+                updateWidgets(from: editableConfigs)
+                showWidgetsTurnedOffPanda = editableConfigs.isEmpty
                 state = .data
                 refresh(ignoreCache: false)
             }
             .store(in: &subscriptions)
+    }
+
+    private func updateWidgets(from editableConfigs: [DashboardWidgetConfig]) {
+        var result: [DashboardWidgetViewModel] = []
+
+        // add system widgets
+        SystemWidgetIdentifier.allCases.forEach { identifier in
+            let existingWidget = widgets.first { $0.id == identifier.rawValue }
+            result.append(existingWidget ?? systemWidgetFactory(identifier))
+        }
+
+        // add editable widgets
+        editableConfigs.forEach { config in
+            let existingWidget = widgets.first { $0.id == config.id.rawValue }
+            result.append(existingWidget ?? editableWidgetFactory(config))
+        }
+
+        // set requestDashboardRefresh
+        result.forEach {
+            guard let mutatorWidget = $0 as? DashboardMutatorWidget else { return }
+            mutatorWidget.requestDashboardRefresh = widgetDidRequestRefresh
+        }
+
+        widgets = result
     }
 
     private func setupOfflineSyncHandlers() {

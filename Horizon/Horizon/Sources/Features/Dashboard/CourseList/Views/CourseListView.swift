@@ -135,7 +135,7 @@ struct CourseListView: View {
             items: ProgressStatus.courses,
             selectedOption: selectedOption
         ) { option in
-            viewModel.filter(status: .init(rawValue: option?.id ?? 0))
+            viewModel.filter(status: .init(rawValue: option?.id ?? "0"))
             lastFocusedCourseID = selectFilterFocusedID
             restoreFocusIfNeeded(after: 1)
             selectedOption = option ?? selectedOption

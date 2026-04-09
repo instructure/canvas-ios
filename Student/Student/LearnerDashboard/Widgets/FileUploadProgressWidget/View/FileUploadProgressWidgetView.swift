@@ -26,13 +26,15 @@ struct FileUploadProgressWidgetView: View {
 
     var body: some View {
         if model.state != .empty {
-            VStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
+            VStack(spacing: AUI.Styles.Padding.standard.rawValue) {
                 ForEach(model.uploadCards) { card in
                     FileUploadProgressCardView(
                         card: card,
                         onDismiss: { model.dismiss(uploadId: card.id) },
                         onTap: { model.navigateToAssignment(route: card.assignmentRoute, from: controller) }
                     )
+                    .accessibilityElement(children: .contain)
+                    .identifier("Dashboard.ProgressViews.FileUpload.Id.\(card.id)")
                 }
             }
         }

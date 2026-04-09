@@ -31,7 +31,7 @@ struct TodoListScreen: View {
     }
 
     var body: some View {
-        InstUI.BaseScreen(
+        BaseScreen(
             state: viewModel.state,
             config: viewModel.screenConfig,
             refreshAction: { completion in
@@ -43,11 +43,11 @@ struct TodoListScreen: View {
             }
         ) { _ in
             LazyVStack(spacing: 0, pinnedViews: .sectionHeaders) {
-                InstUI.TopDivider()
+                AUI.TopDivider()
                 ForEach(viewModel.items) { group in
                     groupView(for: group)
                 }
-                InstUI.Divider()
+                AUI.Divider()
                 upsideDownPanda
             }
         }
@@ -80,7 +80,7 @@ struct TodoListScreen: View {
                 let isLastItemInGroup = (group.items.last == item)
 
                 if !isLastItemInGroup {
-                    InstUI.Divider()
+                    AUI.Divider()
                         .padding(.leading, leadingPadding)
                         .paddingStyle(.trailing, .standard)
                 }
@@ -90,7 +90,7 @@ struct TodoListScreen: View {
                 let isFirstSection = (viewModel.items.first == group)
 
                 if !isFirstSection {
-                    InstUI.Divider().paddingStyle(.horizontal, .standard)
+                    AUI.Divider().paddingStyle(.horizontal, .standard)
                 }
 
                 TodoDayHeaderView(group: group) { group in

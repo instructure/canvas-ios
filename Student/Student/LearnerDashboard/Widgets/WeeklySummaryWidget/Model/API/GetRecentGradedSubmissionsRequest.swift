@@ -72,8 +72,38 @@ struct GetRecentGradedSubmissionsRequest: APIGraphQLRequestable {
     }
 
     static let operationName = "RecentGradedSubmissionsQuery"
-    // swiftlint:disable:next line_length
-    static let query = "query RecentGradedSubmissionsQuery($studentId: ID!, $gradedSince: DateTime!) { allCourses { _id name submissions: submissionsConnection(first: 100 orderBy: [{field: gradedAt, direction: descending}] studentIds: [$studentId] filter: {states: graded, gradedSince: $gradedSince}) { edges { node { _id score grade excused gradeHidden gradedAt assignment { _id name htmlUrl pointsPossible gradingType } } } } } }"
+    static let query = """
+        query RecentGradedSubmissionsQuery($studentId: ID!, $gradedSince: DateTime!) {
+            allCourses {
+                _id
+                name
+                submissions: submissionsConnection(
+                    first: 100
+                    orderBy: [{field: gradedAt, direction: descending}]
+                    studentIds: [$studentId]
+                    filter: {states: graded, gradedSince: $gradedSince}
+                ) {
+                    edges {
+                        node {
+                            _id
+                            score
+                            grade
+                            excused
+                            gradeHidden
+                            gradedAt
+                            assignment {
+                                _id
+                                name
+                                htmlUrl
+                                pointsPossible
+                                gradingType
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        """
 
     let variables: Variables
 }

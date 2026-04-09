@@ -38,6 +38,39 @@ class CoreWebViewLinkDelegateTests: CoreTestCase {
         XCTAssertTrue(didHandleLink)
         XCTAssertTrue(router.lastRoutedTo("/test"))
     }
+
+    // MARK: - didFinishAttachmentDownload
+
+    func test_didFinishAttachmentDownload_whenOriginIsBlob_shouldShowShareSheet() {
+        let testee = TestViewController()
+        let attachment = CoreWebAttachment.make(originIsBlob: true)
+
+        testee.coreWebView(CoreWebView(), didFinishAttachmentDownload: attachment)
+
+        XCTAssertTrue(router.presented is UIActivityViewController)
+    }
+
+    func test_didFinishAttachmentDownload_whenOriginIsNotBlob_shouldNotShowShareSheet() {
+        let testee = TestViewController()
+        let attachment = CoreWebAttachment.make(originIsBlob: false)
+
+        testee.coreWebView(CoreWebView(), didFinishAttachmentDownload: attachment)
+
+        XCTAssertEqual(router.presented, nil)
+    }
+
+    // MARK: - showShareSheet
+
+    func test_showShareSheet_shouldPresentActivityViewControllerWithPageSheetModal() {
+        let testee = TestViewController()
+        let attachmentUrl = URL(string: "https://instructure.com/file.pdf")!
+        let attachment = CoreWebAttachment.make(url: attachmentUrl)
+
+        testee.showShareSheet(for: attachment)
+
+        XCTAssertTrue(router.presented is UIActivityViewController)
+        XCTAssertEqual(router.lastShownOptions, .modal(.pageSheet, isDismissable: true))
+    }
 }
 
 private class TestViewController: UIViewController, CoreWebViewLinkDelegate {

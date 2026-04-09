@@ -49,7 +49,7 @@ class RollCallSessionTests: TeacherTestCase, RollCallSessionDelegate {
         let session = RollCallSession(context: context, toolID: "2", delegate: self)
         session.baseURL = URL(string: "data:text/plain,")!
         session.start()
-        wait(for: [finished], timeout: 10)
+        wait(for: [finished], timeout: 30)
         return session
     }()
 

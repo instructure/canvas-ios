@@ -22,8 +22,11 @@ import SwiftUI
 
 struct WeeklySummaryWidgetView: View {
     static let animation: Animation = .snappy
+    static let weekTransitionOffsetMagnitude: CGFloat = 80
+
     @Environment(\.viewController) var controller
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @State private var weekTransitionOffset: CGFloat = 80
 
     var viewModel: WeeklySummaryWidgetViewModel
 
@@ -42,7 +45,7 @@ struct WeeklySummaryWidgetView: View {
             } else {
                 DashboardWidgetCard(background: .tint) {
                     VStack(spacing: 8) {
-                        WeeklySummaryWidgetWeekSelectorView(viewModel: viewModel)
+                        WeeklySummaryWidgetWeekSelectorView(viewModel: viewModel, transitionOffset: $weekTransitionOffset)
                         VStack(spacing: 8) {
                             WeeklySummaryWidgetSegmentedControl(viewModel: viewModel)
                             if let expanded = viewModel.expandedFilter {
@@ -59,8 +62,31 @@ struct WeeklySummaryWidgetView: View {
                 .animation(Self.animation, value: viewModel.expandedFilter?.assignments.map(\.id))
                 .animation(Self.animation, value: viewModel.weekStartDate)
             }
+        } trailingContent: {
+            currentWeekButton
         }
         .animation(Self.animation, value: viewModel.state)
+        .animation(Self.animation, value: viewModel.isCurrentWeek)
+    }
+
+    private var currentWeekButton: some View {
+        Button {
+            weekTransitionOffset = viewModel.isFutureWeek
+                ? -Self.weekTransitionOffsetMagnitude
+                : Self.weekTransitionOffsetMagnitude
+            withAnimation(Self.animation) {
+                viewModel.navigateToCurrentWeek()
+            }
+        } label: {
+            AUI.PillContent(
+                title: String(localized: "Current Week", bundle: .student),
+                trailingIcon: .calendarTab,
+                size: .height24
+            )
+        }
+        .buttonStyle(.pillTintFilled)
+        .hidden(viewModel.isCurrentWeek)
+        .identifier("Dashboard.Forecast.currentWeekButton")
     }
 
     @ViewBuilder

@@ -21,6 +21,7 @@ import UIKit
 
 struct LearnAssembly {
     static func makeLearnView() -> UIViewController {
-        return CoreHostingController( LearnView())
+        let viewModel = LearnViewModel(interactor: LearningLibraryInteractorLive())
+        return CoreHostingController( LearnView(viewModel: viewModel))
     }
 }

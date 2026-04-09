@@ -20,4 +20,5 @@ import Foundation
 
 extension NSNotification.Name {
     static let showToastAlert = Notification.Name("com.instructure.horizon.notification.showToastAlert")
+    static let forceRefreshJourneyCourses = Notification.Name("com.instructure.horizon.notification.forceRefreshJourney")
 }

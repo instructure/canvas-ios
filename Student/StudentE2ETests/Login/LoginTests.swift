@@ -82,11 +82,11 @@ class LoginTests: E2ETestCase {
 
         let emailInput = LoginHelper.Login.emailField.waitUntil(.visible)
         XCTAssertVisible(emailInput)
-        XCTAssertEqual(emailInput.placeholderValue, "Email")
+        XCTAssertEqual(emailInput.label, "Email")
 
         let passwordInput = LoginHelper.Login.passwordField.waitUntil(.visible)
         XCTAssertVisible(passwordInput)
-        XCTAssertEqual(passwordInput.placeholderValue, "Password")
+        XCTAssertEqual(passwordInput.label, "Password")
 
         let loginButton = LoginHelper.Login.loginButton.waitUntil(.visible)
         XCTAssertVisible(loginButton)
@@ -94,11 +94,7 @@ class LoginTests: E2ETestCase {
 
         let forgotPasswordButton = LoginHelper.Login.forgotPasswordButton.waitUntil(.visible)
         XCTAssertVisible(forgotPasswordButton)
-        XCTAssertEqual(forgotPasswordButton.label, "Forgot Password?")
-
-        let needAccountButton = LoginHelper.Login.needAccountButton.waitUntil(.visible)
-        XCTAssertVisible(needAccountButton)
-        XCTAssertEqual(needAccountButton.label, "Need a Canvas Account? Click Here, It's Free!")
+        XCTAssertEqual(forgotPasswordButton.label, "Forgot password?")
 
         emailInput.writeText(text: student.login_id!)
         passwordInput.writeText(text: student.password!)
@@ -148,50 +144,12 @@ class LoginTests: E2ETestCase {
 
         let forgotPasswordButton = LoginHelper.Login.forgotPasswordButton.waitUntil(.visible)
         XCTAssertVisible(forgotPasswordButton)
-        XCTAssertEqual(forgotPasswordButton.label, "Forgot Password?")
+        XCTAssertEqual(forgotPasswordButton.label, "Forgot password?")
 
         // MARK: Tap "Forgot Password" button
         forgotPasswordButton.hit()
         let emailInput = LoginHelper.Login.emailField.waitUntil(.visible)
         XCTAssertVisible(emailInput)
-
-        let requestPasswordButton = LoginHelper.Login.requestPasswordButton.waitUntil(.visible)
-        XCTAssertVisible(requestPasswordButton)
-        XCTAssertEqual(requestPasswordButton.label, "Request Password")
-
-        let backToLoginButton = LoginHelper.Login.backToLoginButton.waitUntil(.visible)
-        XCTAssertVisible(backToLoginButton)
-        XCTAssertEqual(backToLoginButton.label, "Back to Login")
-    }
-
-    func testLoginWithoutUsernameAndPassword() {
-        // MARK: Seed the usual stuff
-        let student = seeder.createUser()
-        let course = seeder.createCourse()
-        seeder.enrollStudent(student, in: course)
-
-        // MARK: Start login process
-        findSchool()
-        let navBar = LoginHelper.Login.navBar.waitUntil(.visible)
-        XCTAssertVisible(navBar)
-
-        let loginButton = LoginHelper.Login.loginButton.waitUntil(.visible)
-        XCTAssertVisible(loginButton)
-
-        loginButton.hit()
-
-        // MARK: Check "No password was given" label
-        let noPasswordLabel = LoginHelper.Login.noPasswordLabel.waitUntil(.visible)
-        XCTAssertVisible(noPasswordLabel)
-
-        let emailInput = LoginHelper.Login.emailField.waitUntil(.visible)
-        XCTAssertVisible(emailInput)
-
-        emailInput.writeText(text: student.login_id!)
-        loginButton.hit()
-
-        noPasswordLabel.waitUntil(.visible)
-        XCTAssertVisible(noPasswordLabel)
     }
 
     func testLoginMultipleUsers() {

@@ -23,7 +23,11 @@ import Observation
 @Observable
 final class CoursesAndGroupsWidgetSettingsViewModel {
     var showGrades: Bool {
-        didSet { env.userDefaults?.showGradesOnDashboard = showGrades }
+        didSet {
+            env.userDefaults?.showGradesOnDashboard = showGrades
+
+            analytics.logDashboardWidgetCustomization()
+        }
     }
 
     var showColorOverlay: Bool {
@@ -35,13 +39,17 @@ final class CoursesAndGroupsWidgetSettingsViewModel {
             )
             .getEntities(ignoreCache: true)
             .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+
+            analytics.logDashboardWidgetCustomization()
         }
     }
 
     private var updateColorOverlayTask: AnyCancellable?
+    private let analytics: Analytics
     private let env: AppEnvironment
 
-    init(env: AppEnvironment) {
+    init(analytics: Analytics = .shared, env: AppEnvironment) {
+        self.analytics = analytics
         self.env = env
         self.showGrades = env.userDefaults?.showGradesOnDashboard ?? false
         let settings: [UserSettings] = env.database.viewContext.fetch()

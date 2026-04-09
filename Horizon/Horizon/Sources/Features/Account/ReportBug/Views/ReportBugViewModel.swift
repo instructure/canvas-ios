@@ -33,7 +33,7 @@ final class ReportBugViewModel {
 
     // MARK: - Outputs
 
-    private(set) var state: InstUI.ScreenState = .loading
+    private(set) var state: ScreenState = .loading
     private(set) var errorMessage = ""
     private(set) var formValidation = ReportBugFormValidator()
 

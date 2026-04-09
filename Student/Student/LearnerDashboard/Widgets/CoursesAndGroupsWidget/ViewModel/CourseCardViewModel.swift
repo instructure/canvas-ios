@@ -122,3 +122,21 @@ struct CourseCardViewModel: Identifiable, Equatable {
         lhs.model == rhs.model
     }
 }
+
+extension CourseCardViewModel {
+    static func placeholder(id: String, color: Color) -> Self {
+        .init(
+            model: .init(
+                id: id,
+                title: "Redacted placeholder course name",
+                color: color,
+                imageUrl: nil,
+                grade: nil,
+                unreadAnnouncementCount: 1,
+                singleUnreadAnnouncementId: nil
+            ),
+            didSaveChanges: .init(),
+            router: .init(routes: [])
+        )
+    }
+}

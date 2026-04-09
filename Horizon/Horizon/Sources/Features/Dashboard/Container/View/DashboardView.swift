@@ -58,7 +58,7 @@ struct DashboardView: View {
     }
 
     var body: some View {
-        InstUI.BaseScreen(
+        BaseScreen(
             state: .data,
             config: .init(
                 refreshable: true,

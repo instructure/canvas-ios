@@ -69,8 +69,13 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
     }
 
     func coursesTab() -> UIViewController {
-        let cardView = CoreHostingController(DashboardContainerView(shouldShowGroupList: false,
-                                                               showOnlyTeacherEnrollment: true))
+        let cardView = CoreHostingController(
+            DashboardContainerView(
+                shouldShowGroupList: false,
+                showOnlyTeacherEnrollment: true,
+                isLearnerDashboardEnabledOnInstance: false
+            )
+        )
         let dashboard = DashboardContainerViewController(rootViewController: cardView) {
             if #available(iOS 26, *) {
                 return CoreSplitViewController(style: .doubleColumn)
@@ -159,6 +164,6 @@ extension TeacherTabBarController: UITabBarControllerDelegate {
         animationControllerForTransitionFrom fromVC: UIViewController,
         to toVC: UIViewController
     ) -> (any UIViewControllerAnimatedTransitioning)? {
-        InstUI.TabChangeTransition()
+        AUI.TabChangeTransition()
     }
 }

@@ -37,8 +37,8 @@ final class WeeklySummaryWidgetFilterViewModelTests: StudentTestCase {
 
     func test_withExpandedState_shouldUpdateA11yValueAndHint() {
         let testee = WeeklySummaryWidgetFilterViewModel.missing(assignments: [])
-        let expandedState = InstUI.CollapseButtonExpandedState(isExpanded: true)
-        let collapsedState = InstUI.CollapseButtonExpandedState(isExpanded: false)
+        let expandedState = AUI.CollapseButtonExpandedState(isExpanded: true)
+        let collapsedState = AUI.CollapseButtonExpandedState(isExpanded: false)
 
         // WHEN expanded
         let expanded = testee.withExpandedState(true)
@@ -68,7 +68,7 @@ final class WeeklySummaryWidgetFilterViewModelTests: StudentTestCase {
     // MARK: - Static factories
 
     func test_missingFactory() {
-        let collapsedState = InstUI.CollapseButtonExpandedState(isExpanded: false)
+        let collapsedState = AUI.CollapseButtonExpandedState(isExpanded: false)
 
         // WHEN zero assignments
         var testee = WeeklySummaryWidgetFilterViewModel.missing(assignments: [])
@@ -131,7 +131,8 @@ final class WeeklySummaryWidgetFilterViewModelTests: StudentTestCase {
                 submissionStatus: nil,
                 pointsPossible: nil,
                 grade: nil,
-                gradeWeightText: nil
+                gradeWeightText: nil,
+                discussionCheckpointText: nil
             )
         }
     }

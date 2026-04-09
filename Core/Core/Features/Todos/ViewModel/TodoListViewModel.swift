@@ -24,9 +24,9 @@ import SwiftUI
 
 class TodoListViewModel: ObservableObject {
     @Published private(set) var items: [TodoGroupViewModel] = []
-    @Published private(set) var state: InstUI.ScreenState = .loading
+    @Published private(set) var state: ScreenState = .loading
     @Published private(set) var filterIcon: Image = .filterLine
-    let screenConfig = InstUI.BaseScreenConfig(
+    let screenConfig = BaseScreenConfig(
         emptyPandaConfig: .init(
             scene: VacationPanda(),
             title: String(localized: "No To-dos for now!", bundle: .core),
@@ -65,8 +65,9 @@ class TodoListViewModel: ObservableObject {
             .dropFirst() // Skip the initial value to avoid overwriting the loading state
             .receive(on: scheduler)
             .sink { [weak self] todos in
-                self?.items = todos
-                self?.state = todos.isEmpty ? .empty : .data
+                guard let self else { return }
+                items = addPendingGroups(to: todos)
+                state = items.isEmpty ? .empty : .data
             }
             .store(in: &subscriptions)
 
@@ -74,6 +75,45 @@ class TodoListViewModel: ObservableObject {
 
         updateFilterIcon()
         refresh(ignorePlannablesCache: false, ignoreCoursesCache: false)
+    }
+
+    /// Inserts the items (and their group) which have pending mark-as-done timers
+    /// into the newly fetched `groups`. This allows them to stay on screen while their timer runs out.
+    private func addPendingGroups(to groups: [TodoGroupViewModel]) -> [TodoGroupViewModel] {
+        let showCompleted = filterOptions.visibilityOptions.contains(.showCompleted)
+        if showCompleted {
+            return groups
+        }
+
+        let timerIds = Set(markDoneTimers.keys)
+        if timerIds.isEmpty {
+            return groups
+        }
+
+        let timerGroups: [TodoGroupViewModel] = items.compactMap { group in
+            let matchingItems = group.items.filter { timerIds.contains($0.plannableId) }
+            guard matchingItems.isNotEmpty else { return nil }
+            return TodoGroupViewModel(date: group.date, items: matchingItems)
+        }
+        if timerGroups.isEmpty {
+            return groups
+        }
+
+        var result = groups
+        for timerGroup in timerGroups {
+            if let existingIndex = result.firstIndex(where: { $0.id == timerGroup.id }) {
+                let existingGroup = result[existingIndex]
+                let existingIds = Set(existingGroup.items.map(\.plannableId))
+                let newItems = timerGroup.items.filter { !existingIds.contains($0.plannableId) }
+                guard newItems.isNotEmpty else { continue }
+                let mergedItems = (existingGroup.items + newItems).sorted()
+                result[existingIndex] = TodoGroupViewModel(date: existingGroup.date, items: mergedItems)
+            } else {
+                result.append(timerGroup)
+            }
+        }
+
+        return result.sorted()
     }
 
     // MARK: - User Actions

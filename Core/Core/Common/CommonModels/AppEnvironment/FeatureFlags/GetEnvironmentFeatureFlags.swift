@@ -24,6 +24,7 @@ public enum EnvironmentFeatureFlags: String {
     case mobile_offline_mode
     case account_survey_notifications
     case restrict_student_access
+    case widget_dashboard
 }
 
 public class GetEnvironmentFeatureFlags: CollectionUseCase {

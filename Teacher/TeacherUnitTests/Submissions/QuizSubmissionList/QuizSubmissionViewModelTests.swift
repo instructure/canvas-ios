@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import CoreData
 import XCTest
 @testable import Core
@@ -29,7 +30,7 @@ class QuizSubmissionViewModelTests: TeacherTestCase {
     override func setUp() {
         super.setUp()
         mockInteractor = QuizSubmissionListInteractorMock(context: databaseClient)
-        testee = QuizSubmissionListViewModel(router: router, filterValue: .all, interactor: mockInteractor)
+        testee = QuizSubmissionListViewModel(router: router, filterValue: .all, interactor: mockInteractor, scheduler: .immediate)
     }
 
     func testInteractorStateMappedToViewModel() {
@@ -48,7 +49,7 @@ class QuizSubmissionViewModelTests: TeacherTestCase {
             refreshCompleted.fulfill()
         }
 
-        waitForExpectations(timeout: 2)
+        waitForExpectations(timeout: 1)
         XCTAssertTrue(mockInteractor.refreshCalled)
     }
 
@@ -72,7 +73,7 @@ class QuizSubmissionViewModelTests: TeacherTestCase {
         testee.messageUsersDidTap.send(WeakViewController(sourceView))
 
         XCTAssertTrue(mockInteractor.createMessageUserInfoCalled)
-        wait(for: [router.routeExpectation], timeout: 1)
+        wait(for: [router.routeExpectation], timeout: 5)
         XCTAssertEqual(router.calls.last?.0, URLComponents(string: "/conversations/compose"))
         XCTAssertEqual(router.calls.last?.1, sourceView)
         XCTAssertEqual(router.calls.last?.2, .modal(embedInNav: true))

@@ -23,12 +23,12 @@ struct CoursesAndGroupsWidgetSettingsView: View {
     @Bindable var viewModel: CoursesAndGroupsWidgetSettingsViewModel
 
     var body: some View {
-        InstUI.ToggleCell(
+        AUI.ToggleCell(
             label: Text("Show Grades", bundle: .student),
             value: $viewModel.showGrades,
             dividerStyle: .padded
         )
-        InstUI.ToggleCell(
+        AUI.ToggleCell(
             label: Text("Show Color Overlay", bundle: .student),
             value: $viewModel.showColorOverlay,
             dividerStyle: .hidden

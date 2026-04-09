@@ -83,7 +83,7 @@ struct SpeedGraderPageTabsView: View {
             }
             .identifier("SpeedGrader.toolPicker")
 
-            InstUI.Divider()
+            AUI.Divider()
 
             GeometryReader { geometry in
                 HStack(spacing: 0) {
@@ -113,7 +113,7 @@ struct SpeedGraderPageTabsView: View {
             }
         }
         if shouldOpenDrawerIfNeeded {
-            InstUI.SegmentedPicker(
+            AUI.SegmentedPicker(
                 selection: $selectedTab,
                 segmentCount: SpeedGraderPageTab.allCases.count,
                 onTapSelectedTab: {
@@ -124,7 +124,7 @@ struct SpeedGraderPageTabsView: View {
                 content: content
             )
         } else {
-            InstUI.SegmentedPicker(
+            AUI.SegmentedPicker(
                 selection: $selectedTab,
                 content: content
             )
@@ -179,7 +179,7 @@ struct SpeedGraderPageTabsView: View {
     }
 
     private var detailsTabContent: some View {
-        InstUI.BaseScreen(
+        BaseScreen(
             state: viewModel.isDetailsTabEmpty ? .empty : .data,
             config: .init(
                 refreshable: false,
@@ -190,10 +190,10 @@ struct SpeedGraderPageTabsView: View {
             )
         ) { _ in
             VStack(spacing: 0) {
-                InstUI.TopDivider()
+                AUI.TopDivider()
 
                 if viewModel.submissionWordCountViewModel.hasContent {
-                    InstUI.LabelValueCell(
+                    AUI.LabelValueCell(
                         label: Text("Word Count", bundle: .teacher),
                         value: viewModel.submissionWordCountViewModel.wordCount
                     )

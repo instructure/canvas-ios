@@ -40,7 +40,7 @@ struct RecipientFilterRow: View {
             .background(Color.backgroundLightest)
             .paddingStyle(.horizontal, .standard)
             .padding(.vertical, 7)
-            InstUI.Divider()
+            AUI.Divider()
                 .hidden(!isShowSeparator)
         }
     }

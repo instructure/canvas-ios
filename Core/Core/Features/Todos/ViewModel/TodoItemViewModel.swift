@@ -41,11 +41,18 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
 
     public var shouldKeepCompletedItemsVisible: Bool = false
 
-    public var swipeCompletionBehavior: InstUI.SwipeCompletionBehavior {
+    /// The item is either in `.undone` or in `.loading` state.
+    public var isNotDone: Bool {
+        markAsDoneState != .done
+    }
+
+    public func swipeCompletionBehavior(showCompleted: Bool? = nil) -> AUI.SwipeCompletionBehavior {
+        let showCompleted = showCompleted ?? shouldKeepCompletedItemsVisible
+
         if markAsDoneState == .done {
             return .reset
         } else {
-            return shouldKeepCompletedItemsVisible ? .reset : .stayOpen
+            return showCompleted ? .reset : .stayOpen
         }
     }
 
@@ -232,7 +239,12 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         if lhs.date != rhs.date {
             return lhs.date < rhs.date
         }
-        return lhs.title < rhs.title
+
+        if lhs.title != rhs.title {
+            return lhs.title < rhs.title
+        }
+
+        return lhs.plannableId < rhs.plannableId
     }
 }
 
