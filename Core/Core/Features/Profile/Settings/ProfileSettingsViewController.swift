@@ -27,7 +27,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     private var onElementaryViewToggleChanged: (() -> Void)?
     private var showInboxSignatureSettings = false
     private var isInboxSignatureEnabled = false
-    private var analyticsConsentValue: Bool?
+    private var isAnalyticsConsentRequired: Bool = false
     private var offlineModeInteractor = OfflineModeAssembly.make()
     private lazy var inboxSettingsInteractor = InboxSettingsInteractorLive(environment: env)
     private lazy var analyticsConsentInteractor = AnalyticsConsentInteractorLive(environment: env)
@@ -123,7 +123,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         analyticsConsentInteractor.getConsentIfRequired(ignoreConsentCache: isForced)
             .replaceError(with: nil)
             .sink { [weak self] consentValue in
-                self?.analyticsConsentValue = consentValue
+                self?.isAnalyticsConsentRequired = consentValue != nil
                 self?.reloadData()
             }
             .store(in: &subscriptions)
@@ -448,19 +448,13 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     private var legalSection: Section {
         var section = Section(String(localized: "Legal", bundle: .core), rows: [])
 
-        if let analyticsConsentValue {
+        if isAnalyticsConsentRequired {
             section.rows.append(
-                Switch(
-                    String(localized: "Anonymous Application Analytics", bundle: .core),
-                    subtitle: String(localized: """
-                    Share anonymous data about app performance and feature use. \
-                    This helps us fix bugs and improve the overall application experience. \
-                    We do not collect personal identifiers.
-                    """, bundle: .core),
-                    initialValue: analyticsConsentValue,
-                    isSupportedOffline: true
-                ) { [weak self] isOn in
-                    self?.setAnalyticsConsent(to: isOn)
+                Row(String(localized: "Privacy Settings", bundle: .core), isSupportedOffline: false) { [weak self] in
+                    guard let self else { return }
+                    let viewModel = PrivacySettingsViewModel(interactor: analyticsConsentInteractor)
+                    let vc = CoreHostingController(PrivacySettingsScreen(viewModel: viewModel))
+                    env.router.show(vc, from: self, options: .push)
                 }
             )
         }
@@ -468,39 +462,18 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
         section.rows.append(
             Row(String(localized: "Privacy Policy", bundle: .core), isSupportedOffline: false, accessibilityTraits: .link) { [weak self] in
                 guard let self = self else { return }
-                self.env.router.route(to: "https://www.instructure.com/canvas/privacy/", from: self)
+                env.router.route(to: "https://www.instructure.com/canvas/privacy/", from: self)
             }
         )
 
         section.rows.append(
             Row(String(localized: "Terms of Use", bundle: .core), isSupportedOffline: false) { [weak self] in
                 guard let self = self else { return }
-                self.env.router.route(to: "/accounts/self/terms_of_service", from: self)
+                env.router.route(to: "/accounts/self/terms_of_service", from: self)
             }
         )
 
         return section
-    }
-
-    private func setAnalyticsConsent(to value: Bool) {
-        analyticsConsentValue = value
-        analyticsConsentInteractor.setConsent(value)
-            .flatMap { _ -> AnyPublisher<Void, Error> in
-                guard let handler = Analytics.shared.handler else {
-                    return Publishers.typedFailure(error: NSError.internalError())
-                }
-
-                return handler.initializeTracking(isLogin: false, environment: .shared) { }
-            }
-            .receive(on: DispatchQueue.main)
-            .catch { [weak self] _ in
-                self?.analyticsConsentValue?.toggle()
-                return Just(())
-            }
-            .sink { [weak self] in
-                self?.reloadData()
-            }
-            .store(in: &subscriptions)
     }
 }
 

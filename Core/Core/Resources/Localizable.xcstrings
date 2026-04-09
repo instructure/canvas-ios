@@ -158007,6 +158007,9 @@
         }
       }
     },
+    "Failed to save setting" : {
+
+    },
     "Failed to start upload." : {
       "localizations" : {
         "ar" : {
@@ -290452,6 +290455,9 @@
           }
         }
       }
+    },
+    "Privacy Settings" : {
+
     },
     "Profile avatar" : {
       "localizations" : {

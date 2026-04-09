@@ -84,7 +84,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                 let userProfile = list.first
                 return unownedSelf.setupUserEnvironment()
                     .flatMap { unownedSelf.loadFeatureFlags() }
-                    .flatMap { unownedSelf.analyticsHandler.initializeTracking(isLogin: true, environment: unownedSelf.environment) {} }
+                    .flatMap { unownedSelf.analyticsHandler.initializeTracking(environment: unownedSelf.environment) }
                     .flatMap { unownedSelf.showLanguageAlertIfNeeded(locale: userProfile?.locale ?? session.locale) }
                     .flatMap { unownedSelf.getAndSetBrandTheme() }
                     .eraseToAnyPublisher()

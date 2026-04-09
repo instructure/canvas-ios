@@ -106,7 +106,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         Self.getPreferences(env: environment)
             .flatMap { user in Self.checkLocalizationChange(locale: user.locale) }
             .flatMap { Self.loadFeatureFlags() }
-            .flatMap { self.analyticsHandler.initializeTracking(isLogin: true, environment: self.environment) {} }
+            .flatMap { self.analyticsHandler.initializeTracking(environment: self.environment) }
             .flatMap { Self.fetchBrandVariables() }
             .sink(
                 receiveCompletion: { [weak self] completion in

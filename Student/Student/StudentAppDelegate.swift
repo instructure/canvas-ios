@@ -129,7 +129,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                         unownedSelf.isLearnerDashboardEnabledOnInstance = featureFlags.isFeatureEnabled(.widget_dashboard)
                     }
                     .flatMap {
-                        unownedSelf.analyticsHandler.initializeTracking(isLogin: true, environment: unownedSelf.environment) {
+                        unownedSelf.analyticsHandler.initializeTracking(environment: unownedSelf.environment) {
                             unownedSelf.checkForWidgetsPresence()
                         }
                     }

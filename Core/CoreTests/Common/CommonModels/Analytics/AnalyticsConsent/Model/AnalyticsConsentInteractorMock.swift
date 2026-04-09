@@ -42,10 +42,11 @@ final class AnalyticsConsentInteractorMock: AnalyticsConsentInteractor {
 
     var setConsentCallCount = 0
     var setConsentInput: Bool?
+    var setConsentPublisher: AnyPublisher<Void, Error>?
 
     func setConsent(_ value: Bool) -> AnyPublisher<Void, Error> {
         setConsentInput = value
         setConsentCallCount += 1
-        return Publishers.typedJust()
+        return setConsentPublisher ?? Publishers.typedJust()
     }
 }

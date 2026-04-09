@@ -26,13 +26,23 @@ public final class AnalyticsHandlerMock: AnalyticsHandler {
 
     // MARK: - initializeTracking
 
-    public func initializeTracking(isLogin: Bool, environment: AppEnvironment, sessionStartCompletion: @escaping () -> Void) -> AnyPublisher<Void, Error> {
+    public func initializeTracking(environment: AppEnvironment, sessionStartCompletion: @escaping () -> Void) -> AnyPublisher<Void, Error> {
         Publishers.typedJust()
     }
 
     // MARK: - endTracking
 
     public func endTracking() { }
+
+    // MARK: - handleConsentChange
+
+    public var handleConsentChangeInput: (isAnalyticsEnabled: Bool, sessionStartCompletion: () -> Void)?
+    public var handleConsentChangeCallCount = 0
+
+    public func handleConsentChange(to isAnalyticsEnabled: Bool, sessionStartCompletion: @escaping () -> Void) {
+        handleConsentChangeInput = (isAnalyticsEnabled, sessionStartCompletion)
+        handleConsentChangeCallCount += 1
+    }
 
     // MARK: - handleEvent
 

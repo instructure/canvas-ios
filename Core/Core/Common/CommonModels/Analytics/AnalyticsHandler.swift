@@ -26,12 +26,13 @@ import UIKit
 public protocol AnalyticsHandler: AnyObject {
 
     func initializeTracking(
-        isLogin: Bool,
         environment: AppEnvironment,
         sessionStartCompletion: @escaping () -> Void
     ) -> AnyPublisher<Void, Error>
 
     func endTracking()
+
+    func handleConsentChange(to isAnalyticsEnabled: Bool, sessionStartCompletion: @escaping () -> Void)
 
     func handleEvent(_ name: String, parameters: [String: Any]?)
 
@@ -39,6 +40,16 @@ public protocol AnalyticsHandler: AnyObject {
     /// If that applies, enters the app into Pendo Pairing Mode, and returns true.
     /// Otherwise does nothing and returns false.
     func handlePendoPairingModeUrl(url: URL) -> Bool
+}
+
+extension AnalyticsHandler {
+    public func initializeTracking(environment: AppEnvironment) -> AnyPublisher<Void, Error> {
+        initializeTracking(environment: environment, sessionStartCompletion: { })
+    }
+
+    public func handleConsentChange(to isAnalyticsEnabled: Bool) {
+        handleConsentChange(to: isAnalyticsEnabled, sessionStartCompletion: { })
+    }
 }
 
 extension AnalyticsHandler where Self == AnalyticsHandlerLive {
@@ -76,27 +87,18 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
 
     @MainActor
     public func initializeTracking(
-        isLogin: Bool,
         environment: AppEnvironment,
         sessionStartCompletion: @escaping () -> Void
     ) -> AnyPublisher<Void, Error> {
         consentInteractor = consentInteractorProvider(environment)
 
-        if isLogin {
-            // Ensure pageview tracking is disabled (clears any leftover from previous user)
-            PageViewEventController.instance.endTracking()
-        }
+        // Ensure pageview tracking is disabled (clears any leftover from previous user)
+        PageViewEventController.instance.endTracking()
 
         return isTrackingEnabled()
             .receive(on: DispatchQueue.main)
-            .map { [analyticsTracker] isEnabled in
-                if isEnabled {
-                    analyticsTracker.startSession(completion: sessionStartCompletion)
-                    PageViewEventController.instance.startTracking()
-                } else {
-                    analyticsTracker.endSession()
-                    PageViewEventController.instance.endTracking()
-                }
+            .map { [weak self] isEnabled in
+                self?.handleConsentChange(to: isEnabled, sessionStartCompletion: sessionStartCompletion)
             }
             .eraseToAnyPublisher()
     }
@@ -152,6 +154,17 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
     public func endTracking() {
         analyticsTracker.endSession()
         PageViewEventController.instance.flushEventsAndEndTracking()
+    }
+
+    @MainActor
+    public func handleConsentChange(to isAnalyticsEnabled: Bool, sessionStartCompletion: @escaping () -> Void) {
+        if isAnalyticsEnabled {
+            analyticsTracker.startSession(completion: sessionStartCompletion)
+            PageViewEventController.instance.startTracking()
+        } else {
+            analyticsTracker.endSession()
+            PageViewEventController.instance.endTracking()
+        }
     }
 
     public func handleEvent(_ name: String, parameters: [String: Any]?) {

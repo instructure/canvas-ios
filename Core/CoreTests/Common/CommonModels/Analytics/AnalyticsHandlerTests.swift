@@ -50,7 +50,7 @@ final class AnalyticsHandlerLiveTests: CoreTestCase {
         consentInteractor.isTrackingEnabledResult = true
 
         let sessionStarted = expectation(description: "session start completion called")
-        XCTAssertFinish(testee.initializeTracking(isLogin: false, environment: environment) {
+        XCTAssertFinish(testee.initializeTracking(environment: environment) {
             sessionStarted.fulfill()
         })
 
@@ -63,7 +63,7 @@ final class AnalyticsHandlerLiveTests: CoreTestCase {
     func test_initializeTracking_whenTrackingIsDisabled_shouldEndSession() {
         consentInteractor.isTrackingEnabledResult = false
 
-        XCTAssertFinish(testee.initializeTracking(isLogin: false, environment: environment) { })
+        XCTAssertFinish(testee.initializeTracking(environment: environment))
 
         XCTAssertEqual(pendoManager.endSessionCallsCount, 1)
         XCTAssertEqual(pendoManager.startSessionCallsCount, 0)
@@ -73,7 +73,7 @@ final class AnalyticsHandlerLiveTests: CoreTestCase {
     func test_initializeTracking_whenConsentIsNil_shouldShowConsentDialogAndNotFinish() {
         consentInteractor.isTrackingEnabledResult = nil
 
-        XCTAssertNoOutput(testee.initializeTracking(isLogin: false, environment: environment) { })
+        XCTAssertNoOutput(testee.initializeTracking(environment: environment))
 
         XCTAssertEqual(pendoManager.endSessionCallsCount, 0)
         XCTAssertEqual(pendoManager.startSessionCallsCount, 0)
@@ -84,14 +84,35 @@ final class AnalyticsHandlerLiveTests: CoreTestCase {
         consentInteractor.isTrackingEnabledResult = true
 
         let sessionStarted = expectation(description: "first session start")
-        XCTAssertFinish(testee.initializeTracking(isLogin: false, environment: environment) { sessionStarted.fulfill() })
+        XCTAssertFinish(testee.initializeTracking(environment: environment) { sessionStarted.fulfill() })
         wait(for: [sessionStarted], timeout: 2)
 
         let sessionStarted2 = expectation(description: "second session start")
-        XCTAssertFinish(testee.initializeTracking(isLogin: false, environment: environment) { sessionStarted2.fulfill() })
+        XCTAssertFinish(testee.initializeTracking(environment: environment) { sessionStarted2.fulfill() })
         wait(for: [sessionStarted2], timeout: 2)
 
         XCTAssertEqual(pendoManager.setupCallsCount, 1)
+    }
+
+    // MARK: - handleConsentChange
+
+    @MainActor
+    func test_handleConsentChange_whenEnabled_shouldStartSession() {
+        let sessionStarted = expectation(description: "session start completion called")
+
+        testee.handleConsentChange(to: true) { sessionStarted.fulfill() }
+
+        wait(for: [sessionStarted], timeout: 2)
+        XCTAssertEqual(pendoManager.startSessionCallsCount, 1)
+        XCTAssertEqual(pendoManager.endSessionCallsCount, 0)
+    }
+
+    @MainActor
+    func test_handleConsentChange_whenDisabled_shouldEndSession() {
+        testee.handleConsentChange(to: false, sessionStartCompletion: { })
+
+        XCTAssertEqual(pendoManager.endSessionCallsCount, 1)
+        XCTAssertEqual(pendoManager.startSessionCallsCount, 0)
     }
 
     // MARK: - endTracking
@@ -169,7 +190,7 @@ final class AnalyticsHandlerLiveTests: CoreTestCase {
     private func startTrackerSession() {
         consentInteractor.isTrackingEnabledResult = true
         let sessionStarted = expectation(description: "session started")
-        XCTAssertFinish(testee.initializeTracking(isLogin: false, environment: environment) { sessionStarted.fulfill() })
+        XCTAssertFinish(testee.initializeTracking(environment: environment) { sessionStarted.fulfill() })
         wait(for: [sessionStarted], timeout: 2)
     }
 }
