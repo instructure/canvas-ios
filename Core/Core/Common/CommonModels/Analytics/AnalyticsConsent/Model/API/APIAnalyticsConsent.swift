@@ -27,7 +27,7 @@ public struct APIAnalyticsConsent: Codable, Equatable {
     let message: String?
 
     struct Data: Codable, Equatable {
-        let mobile_consent: Bool
+        let mobile_consent: Bool?
     }
 
     var isValid: Bool {

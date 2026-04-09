@@ -28,6 +28,11 @@ final class APIAnalyticsConsentTests: XCTestCase {
         XCTAssertEqual(testee.isValid, true)
     }
 
+    func test_isValid_whenMobileConsentIsNil_shouldBeTrue() {
+        let testee = APIAnalyticsConsent(data: .init(mobile_consent: nil), message: nil)
+        XCTAssertEqual(testee.isValid, true)
+    }
+
     func test_isValid_whenMessageIsNoData_shouldBeTrue() {
         let testee = APIAnalyticsConsent(data: nil, message: APIAnalyticsConsent.noDataMessage)
         XCTAssertEqual(testee.isValid, true)
