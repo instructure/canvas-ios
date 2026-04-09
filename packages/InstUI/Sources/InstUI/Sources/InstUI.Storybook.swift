@@ -40,6 +40,11 @@ public extension InstUI {
                     } label: {
                         Text(verbatim: "Font Weights")
                     }
+                    NavigationLink {
+                        InstUI.Primitives.Opacities.Storybook()
+                    } label: {
+                        Text(verbatim: "Opacities")
+                    }
                 }
             }
             .listStyle(.sidebar)
