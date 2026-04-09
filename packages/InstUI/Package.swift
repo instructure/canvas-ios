@@ -32,7 +32,8 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "InstUI"
+            name: "InstUI",
+            resources: [.process("Resources")]
         ),
     ]
 )

@@ -31,6 +31,11 @@ public extension InstUI {
                         Text(verbatim: "Colors")
                     }
                     NavigationLink {
+                        InstUI.Primitives.Opacities.Storybook()
+                    } label: {
+                        Text(verbatim: "Opacities")
+                    }
+                    NavigationLink {
                         InstUI.Primitives.Sizes.Storybook()
                     } label: {
                         Text(verbatim: "Sizes")
@@ -41,9 +46,9 @@ public extension InstUI {
                         Text(verbatim: "Font Weights")
                     }
                     NavigationLink {
-                        InstUI.Primitives.Opacities.Storybook()
+                        InstUI.Primitives.FontFamilies.Storybook()
                     } label: {
-                        Text(verbatim: "Opacities")
+                        Text(verbatim: "Font Families")
                     }
                 }
             }
