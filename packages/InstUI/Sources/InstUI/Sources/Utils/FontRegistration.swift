@@ -18,6 +18,7 @@
 
 import CoreText
 import Foundation
+import UIKit
 
 /// Registers bundled font files with Core Text so they are available via `Font.custom`.
 ///
@@ -43,7 +44,28 @@ enum FontRegistration {
         }
 
         for case let url as URL in enumerator where url.pathExtension == "ttf" || url.pathExtension == "otf" {
-            CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
+            guard !isFontAlreadyAvailable(at: url) else { continue }
+
+            var cfError: Unmanaged<CFError>?
+            if !CTFontManagerRegisterFontsForURL(url as CFURL, .process, &cfError) {
+                if let error = cfError?.takeRetainedValue() as? NSError {
+                    assertionFailure("InstUI: failed to register font at \(url): \(error)")
+                }
+            }
         }
+    }
+
+    // Pre-checking font availability avoids "GSFont: already exists" console errors
+    // that occur when the host app has already registered the same fonts (e.g. via UIAppFonts
+    // in Info.plist). CTFontManagerRegisterFontsForURL returns a name-conflict error (code 305)
+    // in that case, which we cannot distinguish from other registration failures.
+    private static func isFontAlreadyAvailable(at url: URL) -> Bool {
+        guard
+            let descriptors = CTFontManagerCreateFontDescriptorsFromURL(url as CFURL) as? [CTFontDescriptor],
+            let descriptor = descriptors.first,
+            let postScriptName = CTFontDescriptorCopyAttribute(descriptor, kCTFontNameAttribute) as? String
+        else { return false }
+
+        return UIFont(name: postScriptName, size: 12) != nil
     }
 }
