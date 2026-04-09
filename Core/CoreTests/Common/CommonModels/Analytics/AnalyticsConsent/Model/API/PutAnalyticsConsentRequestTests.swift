@@ -35,19 +35,26 @@ final class PutAnalyticsConsentRequestTests: XCTestCase {
         XCTAssertEqual(testee.method, .put)
     }
 
-    // MARK: - body
+    // MARK: - query
 
-    func test_body_shouldContainNamespaceAndConsentValue() {
+    func test_query_shouldIncludeNamespace() {
         var testee = PutAnalyticsConsentRequest(namespace: .student, value: true)
-        XCTAssertEqual(testee.body?.ns, "MOBILE_CANVAS_STUDENT_COOKIE_CONSENT")
-        XCTAssertEqual(testee.body?.data.mobile_consent, true)
+        XCTAssertEqual(testee.query, [.value("ns", "MOBILE_CANVAS_STUDENT_COOKIE_CONSENT")])
 
-        testee = PutAnalyticsConsentRequest(namespace: .teacher, value: false)
-        XCTAssertEqual(testee.body?.ns, "MOBILE_CANVAS_TEACHER_COOKIE_CONSENT")
-        XCTAssertEqual(testee.body?.data.mobile_consent, false)
+        testee = PutAnalyticsConsentRequest(namespace: .teacher, value: true)
+        XCTAssertEqual(testee.query, [.value("ns", "MOBILE_CANVAS_TEACHER_COOKIE_CONSENT")])
 
         testee = PutAnalyticsConsentRequest(namespace: .parent, value: true)
-        XCTAssertEqual(testee.body?.ns, "MOBILE_CANVAS_PARENT_COOKIE_CONSENT")
-        XCTAssertEqual(testee.body?.data.mobile_consent, true)
+        XCTAssertEqual(testee.query, [.value("ns", "MOBILE_CANVAS_PARENT_COOKIE_CONSENT")])
+    }
+
+    // MARK: - body
+
+    func test_body_shouldContainConsentValue() {
+        var testee = PutAnalyticsConsentRequest(namespace: .student, value: true)
+        XCTAssertEqual(testee.body?.data?.mobile_consent, true)
+
+        testee = PutAnalyticsConsentRequest(namespace: .teacher, value: false)
+        XCTAssertEqual(testee.body?.data?.mobile_consent, false)
     }
 }

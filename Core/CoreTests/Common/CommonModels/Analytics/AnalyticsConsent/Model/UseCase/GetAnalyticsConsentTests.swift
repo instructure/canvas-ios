@@ -49,7 +49,7 @@ final class GetAnalyticsConsentTests: CoreTestCase {
 
     // MARK: - makeRequest
 
-    func test_makeRequest_whenAPIReturnsValidResponse_shouldForwardResponse() {
+    func test_makeRequest_whenAPIReturnsValidData_shouldForwardResponse() {
         let response = APIAnalyticsConsent.make(data: .init(mobile_consent: true))
         api.mock(Self.studentRequest, value: response)
         let testee = GetAnalyticsConsent(app: .student)
@@ -64,8 +64,8 @@ final class GetAnalyticsConsentTests: CoreTestCase {
         wait(for: [responseReceived], timeout: 1)
     }
 
-    func test_makeRequest_whenAPIReturnsNoDataMessage_shouldForwardResponse() {
-        let response = APIAnalyticsConsent.make(message: APIAnalyticsConsent.noDataMessage)
+    func test_makeRequest_whenAPIReturnsValidMessage_shouldForwardResponse() {
+        let response = APIAnalyticsConsent.make(message: APIAnalyticsConsent.HandledMessage.noData.rawValue)
         api.mock(Self.studentRequest, value: response)
         let testee = GetAnalyticsConsent(app: .student)
 
@@ -80,7 +80,7 @@ final class GetAnalyticsConsentTests: CoreTestCase {
     }
 
     func test_makeRequest_whenAPIReturnsInvalidResponse_shouldReturnError() {
-        let invalidResponse = APIAnalyticsConsent.make()
+        let invalidResponse = APIAnalyticsConsent.make(message: "some unexpected message")
         api.mock(Self.studentRequest, value: invalidResponse)
         let testee = GetAnalyticsConsent(app: .student)
 

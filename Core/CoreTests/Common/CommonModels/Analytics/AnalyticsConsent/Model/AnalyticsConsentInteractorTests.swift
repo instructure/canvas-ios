@@ -81,7 +81,7 @@ final class AnalyticsConsentInteractorLiveTests: CoreTestCase {
 
     func test_isTrackingEnabled_whenConsentRequiredAndNotYetProvided_shouldReturnNil() {
         mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: true)
-        mockConsent(.make(message: APIAnalyticsConsent.noDataMessage))
+        mockConsent(.make(message: APIAnalyticsConsent.HandledMessage.noData.rawValue))
 
         XCTAssertSingleOutputEqualsAndFinish(
             testee.isTrackingEnabled(ignoreConsentCache: true),
@@ -122,7 +122,7 @@ final class AnalyticsConsentInteractorLiveTests: CoreTestCase {
 
     func test_getConsentIfRequired_whenConsentRequiredAndNotYetProvided_shouldReturnNil() {
         mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: true)
-        mockConsent(.make(message: APIAnalyticsConsent.noDataMessage))
+        mockConsent(.make(message: APIAnalyticsConsent.HandledMessage.noData.rawValue))
 
         XCTAssertSingleOutputEqualsAndFinish(
             testee.getConsentIfRequired(ignoreConsentCache: true),

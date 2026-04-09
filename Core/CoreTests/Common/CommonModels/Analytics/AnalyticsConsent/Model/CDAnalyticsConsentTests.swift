@@ -48,15 +48,7 @@ final class CDAnalyticsConsentTests: CoreTestCase {
         XCTAssertEqual(testee.consentValue, nil)
     }
 
-    func test_save_whenMessageIsNoData_shouldSetConsentValueToNil() {
-        let item = APIAnalyticsConsent.make(message: APIAnalyticsConsent.noDataMessage)
-
-        let testee = CDAnalyticsConsent.save(item, in: databaseClient)
-
-        XCTAssertEqual(testee.consentValue, nil)
-    }
-
-    func test_save_whenDataAndMessageAreNil_shouldSetConsentValueToNil() {
+    func test_save_whenDataIsNil_shouldSetConsentValueToNil() {
         let item = APIAnalyticsConsent.make()
 
         let testee = CDAnalyticsConsent.save(item, in: databaseClient)

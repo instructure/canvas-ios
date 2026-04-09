@@ -23,8 +23,11 @@ final class APIAnalyticsConsentTests: XCTestCase {
 
     // MARK: - isValid
 
-    func test_isValid_whenDataIsPresent_shouldBeTrue() {
-        let testee = APIAnalyticsConsent(data: .init(mobile_consent: true), message: nil)
+    func test_isValid_whenMobileConsentIsPresent_shouldBeTrue() {
+        var testee = APIAnalyticsConsent(mobileConsentValue: true)
+        XCTAssertEqual(testee.isValid, true)
+
+        testee = APIAnalyticsConsent(mobileConsentValue: false)
         XCTAssertEqual(testee.isValid, true)
     }
 
@@ -33,14 +36,17 @@ final class APIAnalyticsConsentTests: XCTestCase {
         XCTAssertEqual(testee.isValid, true)
     }
 
-    func test_isValid_whenMessageIsNoData_shouldBeTrue() {
-        let testee = APIAnalyticsConsent(data: nil, message: APIAnalyticsConsent.noDataMessage)
+    func test_isValid_whenDataIsNilMessageIsHandledCase_shouldBeTrue() {
+        var testee = APIAnalyticsConsent(data: nil, message: APIAnalyticsConsent.HandledMessage.noData.rawValue)
+        XCTAssertEqual(testee.isValid, true)
+
+        testee = APIAnalyticsConsent(data: nil, message: APIAnalyticsConsent.HandledMessage.invalidData.rawValue)
         XCTAssertEqual(testee.isValid, true)
     }
 
-    func test_isValid_whenDataIsNilAndMessageIsNil_shouldBeFalse() {
+    func test_isValid_whenDataIsNilAndMessageIsNil_shouldBeTrue() {
         let testee = APIAnalyticsConsent(data: nil, message: nil)
-        XCTAssertEqual(testee.isValid, false)
+        XCTAssertEqual(testee.isValid, true)
     }
 
     func test_isValid_whenDataIsNilAndMessageIsUnexpected_shouldBeFalse() {

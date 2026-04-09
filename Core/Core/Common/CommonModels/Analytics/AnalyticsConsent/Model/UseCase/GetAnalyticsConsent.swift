@@ -30,7 +30,7 @@ struct GetAnalyticsConsent: APIUseCase {
     }
 
     func makeRequest(environment: AppEnvironment, completionHandler: @escaping (APIAnalyticsConsent?, URLResponse?, Error?) -> Void) {
-        // There is one error case which is a valid response,
+        // There are error cases which are considered valid responses,
         // so we need this custom `makeRequest()` implementation to handle that.
         environment.api.makeRequest(request) { response, urlResponse, error in
             if let error {

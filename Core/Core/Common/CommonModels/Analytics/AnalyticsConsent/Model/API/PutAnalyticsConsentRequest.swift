@@ -22,17 +22,17 @@ import Foundation
 struct PutAnalyticsConsentRequest: APIRequestable {
     typealias Response = APIAnalyticsConsent
 
-    struct Body: Codable {
-        let ns: String
-        let data: APIAnalyticsConsent.Data
-    }
-
     let namespace: APIAnalyticsConsentRequestNamespace
     let value: Bool
 
     var method: APIMethod { .put }
     var path: String { "users/self/custom_data/data_sync" }
-    var body: Body? {
-        Body(ns: namespace.rawValue, data: .init(mobile_consent: value))
+
+    var query: [APIQueryItem] {
+        [.value("ns", namespace.rawValue)]
+    }
+
+    var body: APIAnalyticsConsent? {
+        .init(mobileConsentValue: value)
     }
 }

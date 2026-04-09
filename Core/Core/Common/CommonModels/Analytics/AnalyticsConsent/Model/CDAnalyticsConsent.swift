@@ -37,14 +37,7 @@ public final class CDAnalyticsConsent: NSManagedObject, WriteableModel {
     ) -> CDAnalyticsConsent {
         let model: CDAnalyticsConsent = context.fetch(.all).first ?? context.insert()
 
-        if item.message == APIAnalyticsConsent.noDataMessage {
-            model.consentValue = nil
-        } else if let data = item.data {
-            model.consentValue = data.mobile_consent
-        } else {
-            // This should never be reached. The usecase is expected to fail in this case.
-            model.consentValue = nil
-        }
+        model.consentValue = item.data?.mobile_consent
         return model
     }
 }

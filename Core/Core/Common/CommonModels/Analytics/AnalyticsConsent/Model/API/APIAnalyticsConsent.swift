@@ -20,8 +20,14 @@ import Foundation
 
 public struct APIAnalyticsConsent: Codable, Equatable {
 
-    /// Received if the user hadn't yet provided or refused their consent
-    static let noDataMessage = "no data for scope"
+    enum HandledMessage: String, CaseIterable {
+        /// Received if the user hadn't yet provided or refused their consent.
+        case noData = "no data for scope"
+
+        /// Received if the consent data got messed up somehow.
+        /// Handling this allows the user to "fix" this by chosing again.
+        case invalidData = "invalid scope for hash"
+    }
 
     let data: Data?
     let message: String?
@@ -31,9 +37,16 @@ public struct APIAnalyticsConsent: Codable, Equatable {
     }
 
     var isValid: Bool {
-        data != nil || message == Self.noDataMessage
+        message == nil || HandledMessage.allCases.map(\.rawValue).contains(message)
     }
 }
+
+extension APIAnalyticsConsent {
+    init(mobileConsentValue: Bool) {
+        self.init(data: .init(mobile_consent: mobileConsentValue), message: nil)
+    }
+}
+
 #if DEBUG
 extension APIAnalyticsConsent {
     static func make(
