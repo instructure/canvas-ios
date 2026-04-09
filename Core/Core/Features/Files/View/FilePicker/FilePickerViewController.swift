@@ -267,7 +267,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
                 self.env.router.show(cameraController, from: self, options: .modal())
             }
         case .library:
-            let libraryController = PHPickerViewController(configuration: .init(photoLibrary: .shared()))
+            let libraryController = PHPickerViewController(configuration: createPHPickerViewConfig())
             libraryController.delegate = self
             env.router.show(libraryController, from: self, options: .modal())
         case .files:
@@ -378,7 +378,7 @@ extension FilePickerViewController: PHPickerViewControllerDelegate {
 
             guard let url else {
                 DispatchQueue.main.async {
-                    self.showError(message: "Could not load video from library.")
+                    self.showError(message: String(localized: "Could not load video from library.", bundle: .core))
                 }
                 return
             }
