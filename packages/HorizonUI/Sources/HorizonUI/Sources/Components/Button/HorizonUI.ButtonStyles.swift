@@ -193,6 +193,7 @@ public extension HorizonUI.ButtonStyles {
         case black = "Black"
         case danger = "Danger"
         case dangerInverse = "DangerInverse"
+        case dangerOutline = "DangerOutline"
         case darkOutline = "DarkOutline"
         case grayOutline = "grayOutline"
         case ghost = "Ghost"
@@ -212,6 +213,7 @@ public extension HorizonUI.ButtonStyles {
                 .black: .huiColors.surface.inversePrimary,
                 .danger: .huiColors.surface.error,
                 .dangerInverse: .huiColors.surface.pageSecondary,
+                .dangerOutline: .clear,
                 .darkOutline: .clear,
                 .grayOutline: .clear,
                 .ghost: .clear,
@@ -227,6 +229,7 @@ public extension HorizonUI.ButtonStyles {
             let pressedColorMap: [Self: Color] = [
                 .black: .huiColors.surface.trueBlack,
                 .danger: .huiColors.surface.errorPressed,
+                .dangerOutline: .huiColors.surface.errorPressed,
                 .darkOutline: .huiColors.surface.inversePrimary,
                 .grayOutline: .clear,
                 .gray: .huiColors.surface.pageTertiary,
@@ -259,6 +262,7 @@ public extension HorizonUI.ButtonStyles {
                 return AnyShapeStyle(Color.clear)
             }
             let borderMap: [Self: any ShapeStyle] = [
+                .dangerOutline: Color.huiColors.surface.error,
                 .darkOutline: Color.huiColors.surface.inversePrimary,
                 .grayOutline: Color.huiColors.lineAndBorders.lineStroke,
                 .whiteGrayOutline: Color.huiColors.lineAndBorders.lineStroke,
@@ -281,6 +285,7 @@ public extension HorizonUI.ButtonStyles {
                 .black: Color.huiColors.text.surfaceColored,
                 .danger: Color.huiColors.text.surfaceColored,
                 .dangerInverse: Color.huiColors.text.error,
+                .dangerOutline: Color.huiColors.text.error,
                 .darkOutline: Color.huiColors.text.title,
                 .ghost: Color.huiColors.text.title,
                 .gray: Color.huiColors.text.title,

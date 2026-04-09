@@ -21,10 +21,14 @@ import UIKit
 
 final class AccountAssembly {
     static func makeView() -> AccountView {
-        AccountView(
+        let onShowTabBar: (Bool) -> Void = { isVisible in
+            AppEnvironment.shared.tabBar(isVisible: isVisible)
+        }
+       return AccountView(
             viewModel: AccountViewModel(
-                getUserInteractor: GetUserInteractorLive()
-            )
+                getUserInteractor: GetUserInteractorLive(),
+                onShowTabBar: onShowTabBar
+            ), onShowTabBar: onShowTabBar
         )
     }
 
@@ -33,8 +37,8 @@ final class AccountAssembly {
         let getUserInteractorPreview = GetUserInteractorPreview()
         let viewModel = AccountViewModel(
             getUserInteractor: getUserInteractorPreview
-        )
-        return AccountView(viewModel: viewModel)
+        ) { _ in }
+        return AccountView(viewModel: viewModel) { _ in }
     }
     #endif
 }

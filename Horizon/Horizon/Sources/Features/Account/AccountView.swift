@@ -35,6 +35,7 @@ struct AccountView: View {
     @AccessibilityFocusState private var focusedSettingID: String?
 
     @Bindable var viewModel: AccountViewModel
+    let onShowTabBar: (Bool) -> Void
     @Environment(\.viewController) private var viewController
 
     var body: some View {
@@ -65,6 +66,7 @@ struct AccountView: View {
             }
             .refreshable { await viewModel.refresh() }
             .toolbar(.hidden)
+            .onWillAppear { onShowTabBar(true) }
             .background(Color.huiColors.surface.pagePrimary)
             .onAppear {
                 guard let lastFocusedId else { return }

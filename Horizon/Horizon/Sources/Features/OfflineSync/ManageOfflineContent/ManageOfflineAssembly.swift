@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,19 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-#if DEBUG
+import Core
+import UIKit
 
-import Foundation
-
-public class DiskSpaceInteractorPreview: DiskSpaceInteractor {
-    public init() {}
-    public func getDiskSpace() -> DiskSpace {
-        let total = Double(64_000_000_000)
-        return DiskSpace(total: Int64(total),
-                         available: Int64(0.5 * total),
-                         app: Int64(0.25 * total),
-                         otherApps: Int64(0.25 * total))
+struct ManageOfflineAssembly {
+    static func makeView() -> UIViewController {
+        let viewModel = ManageOfflineContentViewModel(router: AppEnvironment.shared.router)
+        let view = ManageOfflineContentView(viewModel: viewModel)
+        return CoreHostingController(view)
     }
 }
-
-#endif

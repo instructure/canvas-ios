@@ -90,6 +90,10 @@ final class OfflineSyncSettingsViewModel {
         storage.isOfflineWifiOnlySyncEnabled = pendingWifiSyncValue
     }
 
+    func navigateToMangeOffline(viewController: WeakViewController) {
+        router.show(ManageOfflineAssembly.makeView(), from: viewController)
+    }
+
     // MARK: - Private
 
     private func saveAutoSync() {

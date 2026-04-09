@@ -43,6 +43,7 @@ final class AccountViewModel {
     private let getUserInteractor: GetUserInteractor
     private let appExperienceInteractor: ExperienceSummaryInteractor
     private let careerHelpInteractor: CareerHelpInteractor
+    private let onShowTabBar: (Bool) -> Void
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Private properties
@@ -64,13 +65,15 @@ final class AccountViewModel {
         appExperienceInteractor: ExperienceSummaryInteractor = ExperienceSummaryInteractorLive(),
         sessionInteractor: SessionInteractor = SessionInteractor(),
         careerHelpInteractor: CareerHelpInteractor = CareerHelpInteractorLive(),
-        scheduler: AnySchedulerOf<DispatchQueue> = .main
+        scheduler: AnySchedulerOf<DispatchQueue> = .main,
+        onShowTabBar: @escaping (Bool) -> Void
     ) {
         self.router = router
         self.getUserInteractor = getUserInteractor
         self.appExperienceInteractor = appExperienceInteractor
         self.scheduler = scheduler
         self.careerHelpInteractor = careerHelpInteractor
+        self.onShowTabBar = onShowTabBar
         getAccountHelpLinks()
         confirmLogoutViewModel.userConfirmation()
             .sink {
@@ -136,6 +139,7 @@ final class AccountViewModel {
 
     func syncSettingsDidTap(viewController: WeakViewController) {
         if let url = URL(string: "/account/sync-settings") {
+            onShowTabBar(false)
             router.route(to: url, from: viewController)
         }
     }

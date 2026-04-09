@@ -18,7 +18,7 @@
 
 import Foundation
 
-struct DiskSpace {
+public struct DiskSpace {
     let total: Int64
     let available: Int64
     var used: Int64 {
@@ -29,12 +29,13 @@ struct DiskSpace {
     let otherApps: Int64
 }
 
-protocol DiskSpaceInteractor {
+public protocol DiskSpaceInteractor {
     func getDiskSpace() -> DiskSpace
 }
 
-final class DiskSpaceInteractorLive: DiskSpaceInteractor {
-    func getDiskSpace() -> DiskSpace {
+public final class DiskSpaceInteractorLive: DiskSpaceInteractor {
+    public init() {}
+    public func getDiskSpace() -> DiskSpace {
         let (total, available) = getTotalAndAvailableSpace()
         let app = getAppSpace()
         return DiskSpace(
