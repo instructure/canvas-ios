@@ -142,7 +142,12 @@ public struct DeveloperMenuView: View {
         }
 
         #if DEBUG
-        items.append(contentsOf: [
+        items.append(contentsOf: invalidateItems)
+        #endif
+    }
+
+    private var invalidateItems: [DeveloperMenuItem] {
+        [
             DeveloperMenuItem("Access Token\n\(env.currentSession?.accessToken ?? "N/A")", icon: .toClipboard) {
                 UIPasteboard.general.string = env.currentSession?.accessToken
                 snackBarViewModel.showSnack("Access Token copied to clipboard.")
@@ -171,9 +176,16 @@ public struct DeveloperMenuView: View {
                 LoginSession.add(session)
                 env.api.loginSession = session
                 snackBarViewModel.showSnack("Refresh Token Invalidated")
+            },
+            DeveloperMenuItem("Clear analytics consent") {
+                guard let app = env.app else { return }
+                env.api.makeRequest(DeleteAnalyticsConsentRequest(namespace: app.consentNamespace)) { _, _, error in
+                    if error == nil {
+                        snackBarViewModel.showSnack("Analytics consent cleared")
+                    }
+                }
             }
-        ])
-        #endif
+        ]
     }
 
     private struct DeveloperMenuItem: Identifiable {

@@ -36,3 +36,22 @@ struct PutAnalyticsConsentRequest: APIRequestable {
         .init(mobileConsentValue: value)
     }
 }
+
+#if DEBUG
+
+/// Exists only for debug purposes.
+struct DeleteAnalyticsConsentRequest: APIRequestable {
+//    typealias Response = APIAnalyticsConsent
+    typealias Response = APINoContent
+
+    let namespace: APIAnalyticsConsentRequestNamespace
+
+    var method: APIMethod { .delete }
+    var path: String { "users/self/custom_data/data_sync" }
+
+    var query: [APIQueryItem] {
+        [.value("ns", namespace.rawValue)]
+    }
+}
+
+#endif
