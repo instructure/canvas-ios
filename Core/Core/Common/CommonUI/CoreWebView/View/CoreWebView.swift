@@ -26,19 +26,19 @@ open class CoreWebView: WKWebView {
     private static var BalsamiqRegularCSSFontFace: String = {
         let url = Bundle.core.url(forResource: "font_balsamiq_regular", withExtension: "css")!
         // swiftlint:disable:next force_try
-        return try! String(contentsOf: url, encoding: .utf16)
+        return try! String(contentsOf: url, encoding: .utf8)
     }()
 
     private static var LatoRegularCSSFontFace: String = {
         let url = Bundle.core.url(forResource: "font_lato_regular", withExtension: "css")!
         // swiftlint:disable:next force_try
-        return try! String(contentsOf: url, encoding: .utf16)
+        return try! String(contentsOf: url, encoding: .utf8)
     }()
 
     private static var FigtreeRegularCSSFontFace: String = {
         let url = Bundle.core.url(forResource: "font_figtree_regular", withExtension: "css")!
         // swiftlint:disable:next force_try
-        return try! String(contentsOf: url, encoding: .utf16)
+        return try! String(contentsOf: url, encoding: .utf8)
     }()
 
     @IBInspectable public var autoresizesHeight: Bool = false

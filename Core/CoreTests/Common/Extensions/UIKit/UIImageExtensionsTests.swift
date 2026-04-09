@@ -65,9 +65,9 @@ class UIImageExtensionsTests: XCTestCase {
     func testWriteOverwritesExistingFile() {
         let tmp = URL.Directories.temporary
         let file = tmp.appendingPathComponent("hey.jpg")
-        try! "hey".write(to: file, atomically: true, encoding: .utf16)
+        try! "hey".write(to: file, atomically: true, encoding: .utf8)
         try! image.write(to: tmp, nameIt: "hey")
         XCTAssertNotNil(UIImage(contentsOfFile: file.path))
-        XCTAssertThrowsError(try String(contentsOf: file, encoding: .utf16))
+        XCTAssertThrowsError(try String(contentsOf: file, encoding: .utf8))
     }
 }

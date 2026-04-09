@@ -269,7 +269,7 @@ class PostFileUploadRequestTests: XCTestCase {
         // Note: the ^M characters in file-post-body.txt file are needed!!
         // If the body needs to change, write the data to disk and copy it over.
         let url = bundle.url(forResource: "file-post-body", withExtension: "txt")!
-        return try String(contentsOf: url, encoding: .utf16)
+        return try String(contentsOf: url, encoding: .utf8)
     }
 
     func testPostFileUploadRequest() throws {
