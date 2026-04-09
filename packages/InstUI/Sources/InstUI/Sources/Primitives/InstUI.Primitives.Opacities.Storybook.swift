@@ -21,12 +21,8 @@ import SwiftUI
 public extension InstUI.Primitives.Opacities {
 
     struct Storybook: View {
-        private let opacities: [OpacityEntry] = Mirror(reflecting: InstUI.Primitives.Opacities())
-            .children
-            .compactMap { child in
-                guard let name = child.label, let value = child.value as? Float else { return nil }
-                return OpacityEntry(name: name, value: value)
-            }
+        private let opacities: [OpacityEntry] = InstUI.Primitives.Opacities.all
+            .map { OpacityEntry(name: $0.name, value: $0.opacity) }
 
         public var body: some View {
             List(opacities) { entry in
@@ -41,7 +37,7 @@ public extension InstUI.Primitives.Opacities {
                     Rectangle()
                         .frame(width: 44, height: 22)
                         .foregroundStyle(.black)
-                        .opacity(Double(entry.value))
+                        .opacity(entry.value)
                         .background {
                             Image.checkeredTile
                                 .resizable(resizingMode: .tile)
@@ -57,7 +53,7 @@ public extension InstUI.Primitives.Opacities {
 
     private struct OpacityEntry: Identifiable {
         let name: String
-        let value: Float
+        let value: Double
         public var id: String { name }
 
         var formattedValue: String {

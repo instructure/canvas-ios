@@ -18,14 +18,10 @@
 
 public enum InstUI {
     public enum Primitives {
-
         public enum Colors {}
-        public static let sizes = Sizes()
-        public static let fontWeights = FontWeights()
-        public static let opacities = Opacities()
-        public static let fontFamilies: FontFamilies = {
-            FontRegistration.registerFonts()
-            return FontFamilies()
-        }()
+        public enum Sizes {}
+        public enum FontWeights {}
+        public enum Opacities {}
+        public enum FontFamilies {}
     }
 }

@@ -42,12 +42,8 @@ public extension InstUI.Primitives.Sizes {
             .navigationBarTitleDisplayMode(.large)
         }
 
-        private let sizes: [SizeEntry] = Mirror(reflecting: InstUI.Primitives.Sizes())
-            .children
-            .compactMap { child in
-                guard let name = child.label, let value = child.value as? CGFloat else { return nil }
-                return SizeEntry(name: name, value: value)
-            }
+        private let sizes: [SizeEntry] = InstUI.Primitives.Sizes.all
+            .map { SizeEntry(name: $0.name, value: $0.size) }
     }
 
     private struct SizeEntry: Identifiable {

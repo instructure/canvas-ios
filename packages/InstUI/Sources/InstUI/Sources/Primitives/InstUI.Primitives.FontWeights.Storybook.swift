@@ -23,7 +23,7 @@ public extension InstUI.Primitives.FontWeights {
     struct Storybook: View {
 
         public var body: some View {
-            List(weights) { entry in
+            List(InstUI.Primitives.FontWeights.all, id: \.name) { entry in
                 HStack(spacing: 12) {
                     Text(entry.name)
                         .font(.system(size: 12, design: .monospaced))
@@ -36,23 +36,6 @@ public extension InstUI.Primitives.FontWeights {
             .navigationTitle(Text(verbatim: "Primitive Font Weights"))
             .navigationBarTitleDisplayMode(.large)
         }
-
-        private let weights: [WeightEntry] = Mirror(reflecting: InstUI.Primitives.FontWeights())
-            .children
-            .compactMap { child in
-                guard
-                    let name = child.label,
-                    let weight = child.value as? Font.Weight
-                else { return nil }
-
-                return WeightEntry(name: name, weight: weight)
-            }
-    }
-
-    private struct WeightEntry: Identifiable {
-        let name: String
-        let weight: Font.Weight
-        public var id: String { name }
     }
 }
 

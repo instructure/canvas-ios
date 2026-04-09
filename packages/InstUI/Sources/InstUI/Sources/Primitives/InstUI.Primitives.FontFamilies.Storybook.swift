@@ -22,16 +22,16 @@ public extension InstUI.Primitives.FontFamilies {
 
     struct Storybook: View {
         public var body: some View {
-            List(families) { family in
+            List(InstUI.Primitives.FontFamilies.all, id: \.name) { family in
                 Section(header: Text(verbatim: family.name).font(.system(size: 12, design: .monospaced))) {
-                    ForEach(weights) { weight in
+                    ForEach(InstUI.Primitives.FontWeights.all, id: \.name) { weight in
                         HStack(spacing: 12) {
                             Text(verbatim: weight.name)
                                 .font(.system(size: 11, design: .monospaced))
                                 .foregroundStyle(.secondary)
                                 .frame(width: 80, alignment: .leading)
                             Text(verbatim: "The quick brown fox jamps")
-                                .font(.custom(family.fontName, size: 16))
+                                .font(.custom(family.family, size: 16))
                                 .fontWeight(weight.weight)
                         }
                     }
@@ -40,40 +40,6 @@ public extension InstUI.Primitives.FontFamilies {
             .navigationTitle(Text(verbatim: "Primitive Font Families"))
             .navigationBarTitleDisplayMode(.large)
         }
-
-        private let families: [FamilyEntry] = Mirror(reflecting: InstUI.Primitives.fontFamilies)
-            .children
-            .compactMap { child in
-                guard
-                    let name = child.label,
-                    let fontName = child.value as? String
-                else { return nil }
-
-                return FamilyEntry(name: name, fontName: fontName)
-            }
-
-        private let weights: [WeightEntry] = Mirror(reflecting: InstUI.Primitives.FontWeights())
-            .children
-            .compactMap { child in
-                guard
-                    let name = child.label,
-                    let weight = child.value as? Font.Weight
-                else { return nil }
-
-                return WeightEntry(name: name, weight: weight)
-            }
-    }
-
-    private struct FamilyEntry: Identifiable {
-        let name: String
-        let fontName: String
-        var id: String { name }
-    }
-
-    private struct WeightEntry: Identifiable {
-        let name: String
-        let weight: Font.Weight
-        var id: String { name }
     }
 }
 
