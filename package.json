@@ -14,21 +14,15 @@
     "terminal-service": "./scripts/terminal-server/start.sh"
   },
   "devDependencies": {
-    "@types/react-dom": "^19.2.3",
     "aws-sdk": "^2.1693.0",
     "commander": "^14.0.3",
-    "d3": "^7.9.0",
     "express": "^5.2.1",
-    "highlight.js": "^11.11.1",
     "jira-client": "^8.2.2",
-    "jsdom": "^29.0.1",
     "mkdirp": "^3.0.1",
     "ts-loader": "^9.5.4",
     "typescript": "^6.0.2",
     "webpack": "^5.105.4",
     "webpack-cli": "^7.0.2"
   },
-  "dependencies": {
-    "react": "^19.2.4"
-  }
+  "dependencies": { }
 }
