@@ -84,7 +84,7 @@ extension AUI {
             )
         }
 
-            // MARK: - Body
+        // MARK: - Body
 
         public var body: some View {
             // Using `Section` instead of `DisclosureGroup` to support pinning the header.
