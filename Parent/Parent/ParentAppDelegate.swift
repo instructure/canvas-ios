@@ -40,7 +40,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         return env
     }()
 
-    private lazy var analyticsHandler: AnalyticsHandler = .live()
+    private lazy var analyticsHandler: AnalyticsHandler = .live(environment: environment)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()

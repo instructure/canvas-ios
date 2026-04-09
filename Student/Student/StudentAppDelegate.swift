@@ -55,7 +55,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private lazy var gradeListWidgetRouter = WidgetRouter.createGradeListRouter()
     private lazy var courseGradeWidgetRouter = WidgetRouter.createCourseGradeRouter()
 
-    private lazy var analyticsHandler: AnalyticsHandler = .live()
+    private lazy var analyticsHandler: AnalyticsHandler = .live(environment: environment)
 
     private lazy var appExperienceInteractor = ExperienceSummaryInteractorLive(environment: environment)
 

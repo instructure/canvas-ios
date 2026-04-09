@@ -42,8 +42,11 @@ public protocol AnalyticsHandler: AnyObject {
 }
 
 extension AnalyticsHandler where Self == AnalyticsHandlerLive {
-    public static func live() -> AnalyticsHandlerLive {
-        .init(consentInteractorProvider: { .live(environment: $0) })
+    public static func live(environment: AppEnvironment) -> AnalyticsHandlerLive {
+        .init(
+            analyticsTracker: .init(pendoApiKey: environment.pendoApiKey),
+            consentInteractorProvider: { .live(environment: $0) }
+        )
     }
 }
 
@@ -64,7 +67,7 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
     private var consentInteractor: AnalyticsConsentInteractor?
 
     public init(
-        analyticsTracker: PendoAnalyticsTracker = .init(),
+        analyticsTracker: PendoAnalyticsTracker,
         consentInteractorProvider: @escaping (AppEnvironment) -> AnalyticsConsentInteractor
     ) {
         self.analyticsTracker = analyticsTracker
@@ -162,5 +165,17 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
         }
 
         return false
+    }
+}
+
+private extension AppEnvironment {
+    var pendoApiKey: String? {
+        guard let app else { return nil }
+
+        return switch app {
+        case .student, .horizon: Secret.studentPendoApiKey.string
+        case .teacher: Secret.teacherPendoApiKey.string
+        case .parent: Secret.parentPendoApiKey.string
+        }
     }
 }

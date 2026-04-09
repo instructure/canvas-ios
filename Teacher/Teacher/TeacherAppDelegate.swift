@@ -42,7 +42,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
     }()
     private var isK5User = false
 
-    private lazy var analyticsHandler: AnalyticsHandler = .live()
+    private lazy var analyticsHandler: AnalyticsHandler = .live(environment: environment)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if NSClassFromString("XCTestCase") != nil { return true }
