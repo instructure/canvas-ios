@@ -19,7 +19,7 @@
 public enum InstUI {
     public enum Primitives {
 
-        public static let colors = Colors()
+        public enum Colors {}
         public static let sizes = Sizes()
         public static let fontWeights = FontWeights()
         public static let opacities = Opacities()

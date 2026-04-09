@@ -53,16 +53,8 @@ public extension InstUI.Primitives.Colors {
             .navigationBarTitleDisplayMode(.large)
         }
 
-        private let colors: [ColorEntry] = Mirror(reflecting: InstUI.Primitives.Colors())
-            .children
-            .compactMap { child in
-                guard
-                    let name = child.label,
-                    let color = child.value as? Color
-                else { return nil }
-
-                return ColorEntry(name: name, color: color)
-            }
+        private let colors: [ColorEntry] = InstUI.Primitives.Colors.all
+            .map { ColorEntry(name: $0.name, color: $0.color) }
     }
 
     private struct ColorEntry: Identifiable {
