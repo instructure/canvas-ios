@@ -41,7 +41,9 @@ final class PrivacySettingsViewModel {
 
     private let interactor: AnalyticsConsentInteractor
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
+
     private var subscriptions = Set<AnyCancellable>()
+    private var setConsentCancellable: AnyCancellable?
 
     init(
         interactor: AnalyticsConsentInteractor,
@@ -66,7 +68,7 @@ final class PrivacySettingsViewModel {
     }
 
     private func setAnalyticsConsent(to value: Bool) {
-        interactor.setConsent(value)
+        setConsentCancellable = interactor.setConsent(value)
             .receive(on: mainScheduler)
             .sink(
                 receiveCompletion: { [weak self] completion in
@@ -83,6 +85,5 @@ final class PrivacySettingsViewModel {
                     handler.handleConsentChange(to: value)
                 }
             )
-            .store(in: &subscriptions)
     }
 }

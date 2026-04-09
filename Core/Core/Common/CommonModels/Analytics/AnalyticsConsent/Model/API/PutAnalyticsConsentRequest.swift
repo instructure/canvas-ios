@@ -41,7 +41,6 @@ struct PutAnalyticsConsentRequest: APIRequestable {
 
 /// Exists only for debug purposes.
 struct DeleteAnalyticsConsentRequest: APIRequestable {
-//    typealias Response = APIAnalyticsConsent
     typealias Response = APINoContent
 
     let namespace: APIAnalyticsConsentRequestNamespace
