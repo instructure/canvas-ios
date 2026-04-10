@@ -25,11 +25,12 @@ public extension InstUI.Primitives.FontFamilies {
     static let atkinson: String = { _ = _fontRegistrationToken; return "Atkinson Hyperlegible Next" }()
     static let menlo: String = { _ = _fontRegistrationToken; return "Menlo" }()
 
+    // `name` is the full dotted token path, e.g. "fontFamily.lato"
     internal static let all: [(name: String, family: String)] = [
-        ("lato", lato),
-        ("inclusiveSans", inclusiveSans),
-        ("atkinson", atkinson),
-        ("menlo", menlo)
+        ("fontFamily.lato", lato),
+        ("fontFamily.inclusiveSans", inclusiveSans),
+        ("fontFamily.atkinson", atkinson),
+        ("fontFamily.menlo", menlo)
     ]
 }
 

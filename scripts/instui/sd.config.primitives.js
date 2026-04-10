@@ -55,7 +55,8 @@ StyleDictionary.registerFormat({
     const allEntries = colorTokens
       .map(t => {
         const name = t.path[t.path.length - 1]
-        return `        ("${name}", ${name})`
+        const fullPath = t.path.join('.')
+        return `        ("${fullPath}", ${name})`
       })
       .join(',\n')
 
@@ -106,6 +107,7 @@ ${uiColorExtProps}
       'public extension InstUI.Primitives.Colors {',
       colorProperties,
       '',
+      '    // `name` is the full dotted token path, e.g. "color.honey.honey110"',
       '    internal static let all: [(name: String, color: Color)] = [',
       allEntries,
       '    ]',
@@ -135,7 +137,8 @@ StyleDictionary.registerFormat({
     const allEntries = sizeTokens
       .map(t => {
         const name = t.path[t.path.length - 1]
-        return `        ("${name}", ${name})`
+        const fullPath = t.path.join('.')
+        return `        ("${fullPath}", ${name})`
       })
       .join(',\n')
 
@@ -167,6 +170,7 @@ ${sizeExtProps}
       'public extension InstUI.Primitives.Sizes {',
       sizeProperties,
       '',
+      '    // `name` is the full dotted token path, e.g. "size.size4"',
       '    internal static let all: [(name: String, size: CGFloat)] = [',
       allEntries,
       '    ]',
@@ -206,7 +210,8 @@ StyleDictionary.registerFormat({
     const allEntries = weightTokens
       .map(t => {
         const name = t.path[t.path.length - 1]
-        return `        ("${name}", ${name})`
+        const fullPath = t.path.join('.')
+        return `        ("${fullPath}", ${name})`
       })
       .join(',\n')
 
@@ -241,6 +246,7 @@ ${weightExtProps}
       'public extension InstUI.Primitives.FontWeights {',
       weightProperties,
       '',
+      '    // `name` is the full dotted token path, e.g. "fontWeight.bold"',
       '    internal static let all: [(name: String, weight: Font.Weight)] = [',
       allEntries,
       '    ]',
@@ -269,7 +275,8 @@ StyleDictionary.registerFormat({
     const allEntries = opacityTokens
       .map(t => {
         const name = t.path[t.path.length - 1]
-        return `        ("${name}", ${name})`
+        const fullPath = t.path.join('.')
+        return `        ("${fullPath}", ${name})`
       })
       .join(',\n')
 
@@ -299,6 +306,7 @@ ${opacityExtProps}
       'public extension InstUI.Primitives.Opacities {',
       opacityProperties,
       '',
+      '    // `name` is the full dotted token path, e.g. "opacity50"',
       '    internal static let all: [(name: String, opacity: Double)] = [',
       allEntries,
       '    ]',
@@ -326,7 +334,8 @@ StyleDictionary.registerFormat({
     const allEntries = familyTokens
       .map(t => {
         const name = t.path[t.path.length - 1]
-        return `        ("${name}", ${name})`
+        const fullPath = t.path.join('.')
+        return `        ("${fullPath}", ${name})`
       })
       .join(',\n')
 
@@ -363,6 +372,7 @@ ${familyExtProps}
       '',
       familyProperties,
       '',
+      '    // `name` is the full dotted token path, e.g. "fontFamily.lato"',
       '    internal static let all: [(name: String, family: String)] = [',
       allEntries,
       '    ]',

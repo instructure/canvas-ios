@@ -21,6 +21,7 @@ public extension InstUI.Primitives.Opacities {
     static let opacity50: Double = 0.5
     static let opacity100: Double = 1
 
+    // `name` is the full dotted token path, e.g. "opacity50"
     internal static let all: [(name: String, opacity: Double)] = [
         ("opacity50", opacity50),
         ("opacity100", opacity100)

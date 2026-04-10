@@ -33,16 +33,17 @@ public extension InstUI.Primitives.FontWeights {
     static let extraBold: Font.Weight = .heavy
     static let black: Font.Weight = .black
 
+    // `name` is the full dotted token path, e.g. "fontWeight.bold"
     internal static let all: [(name: String, weight: Font.Weight)] = [
-        ("thin", thin),
-        ("extraLight", extraLight),
-        ("light", light),
-        ("regular", regular),
-        ("medium", medium),
-        ("semiBold", semiBold),
-        ("bold", bold),
-        ("extraBold", extraBold),
-        ("black", black)
+        ("fontWeight.thin", thin),
+        ("fontWeight.extraLight", extraLight),
+        ("fontWeight.light", light),
+        ("fontWeight.regular", regular),
+        ("fontWeight.medium", medium),
+        ("fontWeight.semiBold", semiBold),
+        ("fontWeight.bold", bold),
+        ("fontWeight.extraBold", extraBold),
+        ("fontWeight.black", black)
     ]
 }
 

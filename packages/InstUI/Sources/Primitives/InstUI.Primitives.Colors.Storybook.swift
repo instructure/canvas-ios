@@ -54,7 +54,7 @@ public extension InstUI.Primitives.Colors {
         }
 
         private let colors: [ColorEntry] = InstUI.Primitives.Colors.all
-            .map { ColorEntry(name: $0.name, color: $0.color) }
+            .map { ColorEntry(name: $0.name.components(separatedBy: ".").last ?? $0.name, color: $0.color) }
     }
 
     private struct ColorEntry: Identifiable {

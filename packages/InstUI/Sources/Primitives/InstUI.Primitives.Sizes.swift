@@ -40,26 +40,27 @@ public extension InstUI.Primitives.Sizes {
     static let size48: CGFloat = 48
     static let size64: CGFloat = 64
 
+    // `name` is the full dotted token path, e.g. "size.size4"
     internal static let all: [(name: String, size: CGFloat)] = [
-        ("size1", size1),
-        ("size1_25", size1_25),
-        ("size1_5", size1_5),
-        ("size2", size2),
-        ("size2_5", size2_5),
-        ("size3", size3),
-        ("size4", size4),
-        ("size8", size8),
-        ("size12", size12),
-        ("size14", size14),
-        ("size16", size16),
-        ("size20", size20),
-        ("size24", size24),
-        ("size28", size28),
-        ("size32", size32),
-        ("size36", size36),
-        ("size40", size40),
-        ("size48", size48),
-        ("size64", size64)
+        ("size.size1", size1),
+        ("additionalSize.size1_25", size1_25),
+        ("additionalSize.size1_5", size1_5),
+        ("size.size2", size2),
+        ("additionalSize.size2_5", size2_5),
+        ("additionalSize.size3", size3),
+        ("size.size4", size4),
+        ("size.size8", size8),
+        ("size.size12", size12),
+        ("size.size14", size14),
+        ("size.size16", size16),
+        ("size.size20", size20),
+        ("size.size24", size24),
+        ("size.size28", size28),
+        ("size.size32", size32),
+        ("size.size36", size36),
+        ("size.size40", size40),
+        ("size.size48", size48),
+        ("size.size64", size64)
     ]
 }
 

@@ -23,10 +23,10 @@ public extension InstUI.Primitives.FontFamilies {
     struct Storybook: View {
         public var body: some View {
             List(InstUI.Primitives.FontFamilies.all, id: \.name) { family in
-                Section(header: Text(verbatim: family.name).font(.system(size: 12, design: .monospaced))) {
+                Section(header: Text(verbatim: family.name.components(separatedBy: ".").last ?? family.name).font(.system(size: 12, design: .monospaced))) {
                     ForEach(InstUI.Primitives.FontWeights.all, id: \.name) { weight in
                         HStack(spacing: 12) {
-                            Text(verbatim: weight.name)
+                            Text(verbatim: weight.name.components(separatedBy: ".").last ?? weight.name)
                                 .font(.system(size: 11, design: .monospaced))
                                 .foregroundStyle(.secondary)
                                 .frame(width: 80, alignment: .leading)

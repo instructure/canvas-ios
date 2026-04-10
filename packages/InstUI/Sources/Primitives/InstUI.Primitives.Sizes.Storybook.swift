@@ -43,7 +43,7 @@ public extension InstUI.Primitives.Sizes {
         }
 
         private let sizes: [SizeEntry] = InstUI.Primitives.Sizes.all
-            .map { SizeEntry(name: $0.name, value: $0.size) }
+            .map { SizeEntry(name: $0.name.components(separatedBy: ".").last ?? $0.name, value: $0.size) }
     }
 
     private struct SizeEntry: Identifiable {

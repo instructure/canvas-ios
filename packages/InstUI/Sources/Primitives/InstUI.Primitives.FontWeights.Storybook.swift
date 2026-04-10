@@ -25,7 +25,7 @@ public extension InstUI.Primitives.FontWeights {
         public var body: some View {
             List(InstUI.Primitives.FontWeights.all, id: \.name) { entry in
                 HStack(spacing: 12) {
-                    Text(entry.name)
+                    Text(verbatim: entry.name.components(separatedBy: ".").last ?? entry.name)
                         .font(.system(size: 12, design: .monospaced))
                         .frame(width: 90, alignment: .leading)
                     Text(verbatim: "The quick brown fox")

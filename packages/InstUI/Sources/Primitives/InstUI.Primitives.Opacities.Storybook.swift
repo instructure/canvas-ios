@@ -22,7 +22,7 @@ public extension InstUI.Primitives.Opacities {
 
     struct Storybook: View {
         private let opacities: [OpacityEntry] = InstUI.Primitives.Opacities.all
-            .map { OpacityEntry(name: $0.name, value: $0.opacity) }
+            .map { OpacityEntry(name: $0.name.components(separatedBy: ".").last ?? $0.name, value: $0.opacity) }
 
         public var body: some View {
             List(opacities) { entry in
