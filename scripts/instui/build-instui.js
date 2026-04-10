@@ -24,11 +24,11 @@ Downloads design tokens from the instructure-ui repository (pinned to INSTUI_VER
 and generates the SwiftUI source files for the InstUI Swift package.
 
 Generated files (DO NOT EDIT manually):
-  packages/InstUI/Sources/Primitives/InstUI.Primitives.Colors.swift
-  packages/InstUI/Sources/Primitives/InstUI.Primitives.Sizes.swift
-  packages/InstUI/Sources/Primitives/InstUI.Primitives.FontWeights.swift
-  packages/InstUI/Sources/Primitives/InstUI.Primitives.FontFamilies.swift
-  packages/InstUI/Sources/Primitives/InstUI.Primitives.Opacities.swift
+  packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.Colors.swift
+  packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.Sizes.swift
+  packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.FontWeights.swift
+  packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.FontFamilies.swift
+  packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.Opacities.swift
 
 To update to a newer version of instructure-ui, bump INSTUI_VERSION below and re-run.
 */

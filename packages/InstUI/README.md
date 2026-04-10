@@ -21,12 +21,14 @@ packages/InstUI/
 ├── Sources/
 │   ├── InstUI.swift                              # Namespace declarations
 │   ├── Primitives/
-│   │   ├── InstUI.Primitives.Colors.swift        # Generated
-│   │   ├── InstUI.Primitives.Sizes.swift         # Generated
-│   │   ├── InstUI.Primitives.FontWeights.swift   # Generated
-│   │   ├── InstUI.Primitives.FontFamilies.swift  # Generated
-│   │   ├── InstUI.Primitives.Opacities.swift     # Generated
-│   │   └── *.Storybook.swift                     # In-app previews (one per primitive)
+│   │   ├── Generated/
+│   │   │   ├── InstUI.Primitives.Colors.swift        # DO NOT EDIT — auto-generated
+│   │   │   ├── InstUI.Primitives.Sizes.swift         # DO NOT EDIT — auto-generated
+│   │   │   ├── InstUI.Primitives.FontWeights.swift   # DO NOT EDIT — auto-generated
+│   │   │   ├── InstUI.Primitives.FontFamilies.swift  # DO NOT EDIT — auto-generated
+│   │   │   └── InstUI.Primitives.Opacities.swift     # DO NOT EDIT — auto-generated
+│   │   └── Storybook/
+│   │       └── *.Storybook.swift                     # In-app previews (one per primitive)
 │   └── Utils/
 │       ├── CheckeredTexture.swift                # Internal storybook helper
 │       ├── Color+HexInit.swift                   # Internal hex initializer
@@ -171,6 +173,6 @@ Tokens are generated from [instructure-ui](https://github.com/instructure/instru
 
 1. Bump `INSTUI_VERSION` in `scripts/instui/build-instui.js`.
 2. Run `yarn build-instui` from the repo root.
-3. Commit the regenerated `Sources/Primitives/*.swift` files.
+3. Commit the regenerated `Sources/Primitives/Generated/*.swift` files.
 
 The five generated files are marked `// DO NOT EDIT` — all token changes must go through the build script.
