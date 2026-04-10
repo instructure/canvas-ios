@@ -30,7 +30,7 @@ public extension InstUI.Primitives.FontFamilies {
                                 .font(.system(size: 11, design: .monospaced))
                                 .foregroundStyle(.secondary)
                                 .frame(width: 80, alignment: .leading)
-                            Text(verbatim: "The quick brown fox jamps")
+                            Text(verbatim: "The quick brown fox jumps\nover the lazy dog")
                                 .font(.custom(family.family, size: 16))
                                 .fontWeight(weight.weight)
                         }
