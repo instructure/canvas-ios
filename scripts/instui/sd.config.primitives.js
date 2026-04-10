@@ -376,7 +376,7 @@ module.exports = function buildConfig(tokens) {
     platforms: {
       swift: {
         transforms: ['attribute/cti', 'color/hex8'],
-        buildPath: 'packages/InstUI/Sources/InstUI/Sources/Primitives/',
+        buildPath: 'packages/InstUI/Sources/Primitives/',
         files: [
           {
             destination: 'InstUI.Primitives.Colors.swift',

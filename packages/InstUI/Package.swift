@@ -33,6 +33,8 @@ let package = Package(
     targets: [
         .target(
             name: "InstUI",
+            path: ".",
+            sources: ["Sources"],
             resources: [.process("Resources")]
         ),
     ]

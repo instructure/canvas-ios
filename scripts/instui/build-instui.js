@@ -18,17 +18,26 @@
 //
 
 /*
-Downloads design tokens from instructure-ui and generates SwiftUI primitives
-for the InstUI Swift package.
+yarn build-instui
 
-Run from the repo root:
-  yarn build-instui
+Downloads design tokens from the instructure-ui repository (pinned to INSTUI_VERSION)
+and generates the SwiftUI source files for the InstUI Swift package.
+
+Generated files (DO NOT EDIT manually):
+  packages/InstUI/Sources/Primitives/InstUI.Primitives.Colors.swift
+  packages/InstUI/Sources/Primitives/InstUI.Primitives.Sizes.swift
+  packages/InstUI/Sources/Primitives/InstUI.Primitives.FontWeights.swift
+  packages/InstUI/Sources/Primitives/InstUI.Primitives.FontFamilies.swift
+  packages/InstUI/Sources/Primitives/InstUI.Primitives.Opacities.swift
+
+To update to a newer version of instructure-ui, bump INSTUI_VERSION below and re-run.
 */
 
 const https = require('https')
-const buildConfig = require('./sd.config')
+const buildPrimitivesConfig = require('./sd.config.primitives')
 
-const TOKEN_URL = 'https://raw.githubusercontent.com/instructure/instructure-ui/v11.7.1/packages/ui-scripts/lib/build/tokensStudio/primitives/default.json'
+const INSTUI_VERSION = 'v11.7.1'
+const TOKENS_BASE_URL = `https://raw.githubusercontent.com/instructure/instructure-ui/${INSTUI_VERSION}/packages/ui-scripts/lib/build/tokensStudio`
 
 function download(url) {
   return new Promise((resolve, reject) => {
@@ -41,15 +50,16 @@ function download(url) {
   })
 }
 
-async function main() {
-  console.log('Downloading tokens from instructure-ui...')
-  const json = await download(TOKEN_URL)
-  const tokens = JSON.parse(json)
-
+async function buildPrimitives() {
+  const url = `${TOKENS_BASE_URL}/primitives/default.json`
+  console.log('Downloading primitive tokens...')
+  const primitives = JSON.parse(await download(url))
   console.log('Building SwiftUI primitives...')
-  const sd = buildConfig(tokens)
-  sd.buildAllPlatforms()
+  buildPrimitivesConfig(primitives).buildAllPlatforms()
+}
 
+async function main() {
+  await buildPrimitives()
   console.log('Done.')
 }
 
