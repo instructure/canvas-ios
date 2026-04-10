@@ -414,6 +414,125 @@ class CourseTests: CoreTestCase {
         XCTAssertFalse(courseWithoutNickName.hasNickName)
     }
 
+    // MARK: - hideTotalGrade
+
+    func test_hideTotalGrade_whenHideFinalGradesIsTrue_shouldBeTrue() {
+        let course = Course.make(from: .make(
+            enrollments: [.make(
+                id: nil,
+                enrollment_state: .active,
+                user_id: "12",
+                multiple_grading_periods_enabled: false
+            )],
+            hide_final_grades: true
+        ))
+
+        XCTAssertEqual(course.hideTotalGrade(userID: "12"), true)
+    }
+
+    func test_hideTotalGrade_whenHideFinalGradesIsFalseAndNoEnrollment_shouldBeFalse() {
+        let course = Course.make(from: .make(
+            enrollments: [],
+            hide_final_grades: false
+        ))
+
+        XCTAssertEqual(course.hideTotalGrade(userID: "12"), false)
+    }
+
+    func test_hideTotalGrade_whenMGPEnabledAndTotalsFalseAndNoCurrentPeriod_shouldBeTrue() {
+        let course = Course.make(from: .make(
+            enrollments: [.make(
+                id: nil,
+                enrollment_state: .active,
+                user_id: "12",
+                multiple_grading_periods_enabled: true,
+                totals_for_all_grading_periods_option: false,
+                current_grading_period_id: nil
+            )],
+            hide_final_grades: false
+        ))
+
+        XCTAssertEqual(course.hideTotalGrade(userID: "12"), true)
+    }
+
+    func test_hideTotalGrade_whenMGPEnabledAndTotalsTrueAndNoCurrentPeriod_shouldBeFalse() {
+        let course = Course.make(from: .make(
+            enrollments: [.make(
+                id: nil,
+                enrollment_state: .active,
+                user_id: "12",
+                multiple_grading_periods_enabled: true,
+                totals_for_all_grading_periods_option: true,
+                current_grading_period_id: nil
+            )],
+            hide_final_grades: false
+        ))
+
+        XCTAssertEqual(course.hideTotalGrade(userID: "12"), false)
+    }
+
+    func test_hideTotalGrade_whenMGPEnabledAndTotalsFalseAndHasCurrentPeriod_shouldBeFalse() {
+        let course = Course.make(from: .make(
+            enrollments: [.make(
+                id: nil,
+                enrollment_state: .active,
+                user_id: "12",
+                multiple_grading_periods_enabled: true,
+                totals_for_all_grading_periods_option: false,
+                current_grading_period_id: "42"
+            )],
+            hide_final_grades: false
+        ))
+
+        XCTAssertEqual(course.hideTotalGrade(userID: "12"), false)
+    }
+
+    func test_hideTotalGrade_whenMGPDisabled_shouldBeFalse() {
+        let course = Course.make(from: .make(
+            enrollments: [.make(
+                id: nil,
+                enrollment_state: .active,
+                user_id: "12",
+                multiple_grading_periods_enabled: false
+            )],
+            hide_final_grades: false
+        ))
+
+        XCTAssertEqual(course.hideTotalGrade(userID: "12"), false)
+    }
+
+    func test_hideTotalGrade_whenEnrollmentIsCompletedAndMGPConditionMet_shouldBeTrue() {
+        let course = Course.make(from: .make(
+            enrollments: [.make(
+                id: nil,
+                enrollment_state: .completed,
+                user_id: "12",
+                multiple_grading_periods_enabled: true,
+                totals_for_all_grading_periods_option: false,
+                current_grading_period_id: nil
+            )],
+            hide_final_grades: false
+        ))
+
+        XCTAssertEqual(course.hideTotalGrade(userID: "12"), true)
+    }
+
+    func test_hideTotalGrade_whenUserIDDoesNotMatch_shouldBeFalse() {
+        let course = Course.make(from: .make(
+            enrollments: [.make(
+                id: nil,
+                enrollment_state: .active,
+                user_id: "99",
+                multiple_grading_periods_enabled: true,
+                totals_for_all_grading_periods_option: false,
+                current_grading_period_id: nil
+            )],
+            hide_final_grades: false
+        ))
+
+        XCTAssertEqual(course.hideTotalGrade(userID: "12"), false)
+    }
+
     // MARK: - Grading periods
 
     func test_save_whenGradingPeriodIsDeleted_shouldNotSaveIt() {
