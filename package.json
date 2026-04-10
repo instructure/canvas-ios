@@ -16,7 +16,6 @@
   },
   "devDependencies": {
     "@types/react-dom": "^19.0.4",
-    "style-dictionary": "^3.9.0",
     "aws-sdk": "^2.178.0",
     "chalk": "^2.4.1",
     "commander": "^2.19.0",
@@ -31,6 +30,7 @@
     "mkdirp": "^1.0.4",
     "pdfkit": "^0.9.1",
     "react-dom": "^19.0.0",
+    "style-dictionary": "^3.9.0",
     "ts-loader": "^9.5.2",
     "typescript": "^5.7.3",
     "webpack": "^5.98.0",

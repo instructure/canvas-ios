@@ -39,9 +39,11 @@ const buildPrimitivesConfig = require('./sd.config.primitives')
 const INSTUI_VERSION = 'v11.7.1'
 const TOKENS_BASE_URL = `https://raw.githubusercontent.com/instructure/instructure-ui/${INSTUI_VERSION}/packages/ui-scripts/lib/build/tokensStudio`
 
+const DOWNLOAD_TIMEOUT_MS = 30_000
+
 function download(url) {
   return new Promise((resolve, reject) => {
-    https.get(url, res => {
+    const req = https.get(url, res => {
       let data = ''
       res.on('data', chunk => { data += chunk })
       res.on('end', () => {
@@ -52,7 +54,11 @@ function download(url) {
         }
       })
       res.on('error', reject)
-    }).on('error', reject)
+    })
+    req.setTimeout(DOWNLOAD_TIMEOUT_MS, () => {
+      req.destroy(new Error(`Timed out after ${DOWNLOAD_TIMEOUT_MS}ms: ${url}`))
+    })
+    req.on('error', reject)
   })
 }
 
