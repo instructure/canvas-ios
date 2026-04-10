@@ -44,7 +44,13 @@ function download(url) {
     https.get(url, res => {
       let data = ''
       res.on('data', chunk => { data += chunk })
-      res.on('end', () => resolve(data))
+      res.on('end', () => {
+        if (res.statusCode !== 200) {
+          reject(new Error(`HTTP ${res.statusCode} for ${url}`))
+        } else {
+          resolve(data)
+        }
+      })
       res.on('error', reject)
     }).on('error', reject)
   })
