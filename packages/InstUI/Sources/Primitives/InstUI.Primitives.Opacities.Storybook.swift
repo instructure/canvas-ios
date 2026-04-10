@@ -54,7 +54,7 @@ public extension InstUI.Primitives.Opacities {
     private struct OpacityEntry: Identifiable {
         let name: String
         let value: Double
-        public var id: String { name }
+        var id: String { name }
 
         var formattedValue: String {
             value.truncatingRemainder(dividingBy: 1) == 0

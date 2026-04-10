@@ -49,7 +49,7 @@ public extension InstUI.Primitives.Sizes {
     private struct SizeEntry: Identifiable {
         let name: String
         let value: CGFloat
-        public var id: String { name }
+        var id: String { name }
 
         var formattedValue: String {
             value.truncatingRemainder(dividingBy: 1) == 0

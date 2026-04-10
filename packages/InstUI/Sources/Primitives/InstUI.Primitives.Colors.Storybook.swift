@@ -61,7 +61,7 @@ public extension InstUI.Primitives.Colors {
         let name: String
         let color: Color
         let hasAlpha: Bool
-        public var id: String { name }
+        var id: String { name }
 
         init(name: String, color: Color) {
             self.name = name
