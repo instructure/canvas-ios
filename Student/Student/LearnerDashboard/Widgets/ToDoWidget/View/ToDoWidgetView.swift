@@ -162,13 +162,6 @@ struct ToDoWidgetView: View {
             weekDaysForOffset: { viewModel.weekDays(forOffset: $0) }
         )
         .padding(.horizontal, 32)
-        .accessibilityRepresentation {
-            HStack(spacing: 0) {
-                weekNavigationButton(toPrevious: true)
-                ToDoWidgetWeekView(weekDays: viewModel.currentWeekDays, viewModel: viewModel)
-                weekNavigationButton(toPrevious: false)
-            }
-        }
     }
 
     private var weekNavigationButtons: some View {
@@ -179,7 +172,6 @@ struct ToDoWidgetView: View {
             weekNavigationButton(toPrevious: false)
             .offset(x: 8)
         }
-        .accessibilityHidden(true)
     }
 
     private func weekNavigationButton(toPrevious: Bool) -> some View {

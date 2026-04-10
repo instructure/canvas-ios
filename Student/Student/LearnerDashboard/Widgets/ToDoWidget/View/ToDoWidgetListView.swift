@@ -22,6 +22,7 @@ import SwiftUI
 struct ToDoWidgetListView: View {
     @Environment(\.viewController) private var viewController
 
+    @AccessibilityFocusState private var isFirstItemFocused: Bool
     let viewModel: ToDoWidgetListViewModel
 
     @State private var swipingItemId: String?
@@ -40,6 +41,12 @@ struct ToDoWidgetListView: View {
                 )
                 .identifier("Dashboard.Todo.TodoList.Item")
                 .paddingStyle(.leading, .standard)
+                .accessibilityFocused($isFirstItemFocused, when: item == viewModel.items.first)
+                .task {
+                    try? await Task.sleep(for: .seconds(0.5))
+                    isFirstItemFocused = true
+                }
+
                 AUI.Divider(.padded)
             }
         }
@@ -50,5 +57,16 @@ struct ToDoWidgetListView: View {
             get: { swipingItemId == item.id },
             set: { isSwiping in swipingItemId = isSwiping ? item.id : nil }
         )
+    }
+}
+
+private extension View {
+    @ViewBuilder
+    func accessibilityFocused(_ focusState: AccessibilityFocusState<Bool>.Binding, when condition: Bool) -> some View {
+        if condition {
+            self.accessibilityFocused(focusState)
+        } else {
+            self
+        }
     }
 }
