@@ -33,7 +33,7 @@ public extension InstUI.Primitives.FontWeights {
     static let extraBold: Font.Weight = .heavy
     static let black: Font.Weight = .black
 
-    static let all: [(name: String, weight: Font.Weight)] = [
+    internal static let all: [(name: String, weight: Font.Weight)] = [
         ("thin", thin),
         ("extraLight", extraLight),
         ("light", light),
@@ -46,20 +46,21 @@ public extension InstUI.Primitives.FontWeights {
     ]
 }
 
+private typealias _PrimitiveFontWeights = InstUI.Primitives.FontWeights
+
 public extension Font.Weight {
 
-    /// Access primitive font weights via `Font.Weight.instui.primitives.semiBold`
-    enum instui {
-        public enum primitives {
-            public static let thin = InstUI.Primitives.FontWeights.thin
-            public static let extraLight = InstUI.Primitives.FontWeights.extraLight
-            public static let light = InstUI.Primitives.FontWeights.light
-            public static let regular = InstUI.Primitives.FontWeights.regular
-            public static let medium = InstUI.Primitives.FontWeights.medium
-            public static let semiBold = InstUI.Primitives.FontWeights.semiBold
-            public static let bold = InstUI.Primitives.FontWeights.bold
-            public static let extraBold = InstUI.Primitives.FontWeights.extraBold
-            public static let black = InstUI.Primitives.FontWeights.black
+    enum InstUI {
+        public enum Primitives {
+            public static let thin = _PrimitiveFontWeights.thin
+            public static let extraLight = _PrimitiveFontWeights.extraLight
+            public static let light = _PrimitiveFontWeights.light
+            public static let regular = _PrimitiveFontWeights.regular
+            public static let medium = _PrimitiveFontWeights.medium
+            public static let semiBold = _PrimitiveFontWeights.semiBold
+            public static let bold = _PrimitiveFontWeights.bold
+            public static let extraBold = _PrimitiveFontWeights.extraBold
+            public static let black = _PrimitiveFontWeights.black
         }
     }
 }

@@ -21,19 +21,20 @@ public extension InstUI.Primitives.Opacities {
     static let opacity50: Double = 0.5
     static let opacity100: Double = 1
 
-    static let all: [(name: String, opacity: Double)] = [
+    internal static let all: [(name: String, opacity: Double)] = [
         ("opacity50", opacity50),
         ("opacity100", opacity100)
     ]
 }
 
+private typealias _PrimitiveOpacities = InstUI.Primitives.Opacities
+
 public extension Double {
 
-    /// Access primitive opacities via `Double.instui.primitives.opacity50`
-    enum instui {
-        public enum primitives {
-            public static let opacity50 = InstUI.Primitives.Opacities.opacity50
-            public static let opacity100 = InstUI.Primitives.Opacities.opacity100
+    enum InstUI {
+        public enum Primitives {
+            public static let opacity50 = _PrimitiveOpacities.opacity50
+            public static let opacity100 = _PrimitiveOpacities.opacity100
         }
     }
 }

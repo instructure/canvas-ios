@@ -62,10 +62,13 @@ enum FontRegistration {
     private static func isFontAlreadyAvailable(at url: URL) -> Bool {
         guard
             let descriptors = CTFontManagerCreateFontDescriptorsFromURL(url as CFURL) as? [CTFontDescriptor],
-            let descriptor = descriptors.first,
-            let postScriptName = CTFontDescriptorCopyAttribute(descriptor, kCTFontNameAttribute) as? String
+            !descriptors.isEmpty
         else { return false }
 
-        return UIFont(name: postScriptName, size: 12) != nil
+        return descriptors.allSatisfy { descriptor in
+            guard let postScriptName = CTFontDescriptorCopyAttribute(descriptor, kCTFontNameAttribute) as? String
+            else { return false }
+            return UIFont(name: postScriptName, size: 12) != nil
+        }
     }
 }

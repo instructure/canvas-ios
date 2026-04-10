@@ -25,7 +25,7 @@ public extension InstUI.Primitives.FontFamilies {
     static let atkinson: String = { _ = _fontRegistrationToken; return "Atkinson Hyperlegible Next" }()
     static let menlo: String = { _ = _fontRegistrationToken; return "Menlo" }()
 
-    static let all: [(name: String, family: String)] = [
+    internal static let all: [(name: String, family: String)] = [
         ("lato", lato),
         ("inclusiveSans", inclusiveSans),
         ("atkinson", atkinson),
@@ -33,15 +33,16 @@ public extension InstUI.Primitives.FontFamilies {
     ]
 }
 
+private typealias _PrimitiveFontFamilies = InstUI.Primitives.FontFamilies
+
 public extension String {
 
-    /// Access primitive font families via `String.instui.primitives.fontLato`
-    enum instui {
-        public enum primitives {
-            public static let fontLato = InstUI.Primitives.FontFamilies.lato
-            public static let fontInclusiveSans = InstUI.Primitives.FontFamilies.inclusiveSans
-            public static let fontAtkinson = InstUI.Primitives.FontFamilies.atkinson
-            public static let fontMenlo = InstUI.Primitives.FontFamilies.menlo
+    enum InstUI {
+        public enum Primitives {
+            public static let fontLato = _PrimitiveFontFamilies.lato
+            public static let fontInclusiveSans = _PrimitiveFontFamilies.inclusiveSans
+            public static let fontAtkinson = _PrimitiveFontFamilies.atkinson
+            public static let fontMenlo = _PrimitiveFontFamilies.menlo
         }
     }
 }
