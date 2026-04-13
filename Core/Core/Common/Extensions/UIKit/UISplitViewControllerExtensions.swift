@@ -20,12 +20,11 @@ import UIKit
 
 public extension UISplitViewController {
     var detailNavigationController: UINavigationController? {
-        guard viewControllers.count > 1 else { return nil }
-        return viewControllers.last as? UINavigationController
+        viewController(for: .secondary) as? UINavigationController
     }
 
     var masterNavigationController: UINavigationController? {
-        viewControllers.first as? UINavigationController
+        viewController(for: .primary) as? UINavigationController
     }
 
     var masterTopViewController: UIViewController? {

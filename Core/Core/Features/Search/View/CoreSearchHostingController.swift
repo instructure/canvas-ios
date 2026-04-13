@@ -208,8 +208,6 @@ public class CoreSearchHostingController<
             filterBarItem
         ].compactMap({ $0 })
 
-        splitViewController?.safelySetDisplayModeButtonVisibility(.never)
-
         searchFieldState = .visible
         applyNavBarTransition(.fadeIn)
         searchFieldView.field.becomeFirstResponder()
@@ -220,8 +218,6 @@ public class CoreSearchHostingController<
         navigationItem.leftBarButtonItems = leftBarButtonItemsToRestore
         navigationItem.titleView = titleViewToRestore
         navigationItem.rightBarButtonItems = [searchBarItem]
-
-        splitViewController?.safelySetDisplayModeButtonVisibility(.automatic)
 
         searchFieldState = .hidden
         applyNavBarTransition(.fadeOut)
@@ -263,10 +259,11 @@ public class CoreSearchHostingController<
         containerNav.delegate = self
 
         splitView.delegate = self
-        splitView.viewControllers = [
-            containerNav,
-            CoreNavigationController(rootViewController: EmptyViewController())
-        ]
+        splitView.setViewController(containerNav, for: .primary)
+        splitView.setViewController(
+            CoreNavigationController(rootViewController: EmptyViewController()),
+            for: .secondary
+        )
 
         splitView.modalTransitionStyle = .crossDissolve
 

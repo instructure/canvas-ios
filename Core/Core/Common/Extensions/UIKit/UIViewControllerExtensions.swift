@@ -60,12 +60,21 @@ extension UIViewController {
     @available(iOS, deprecated: 26)
     public var splitDisplayModeButtonItem: UIBarButtonItem? {
         guard let splitView = splitViewController else { return nil }
-        let defaultButton = splitView.displayModeButtonItem
         let isExpanded = splitView.displayMode == .oneOverSecondary || splitView.displayMode == .secondaryOnly
         let icon: UIImage = isExpanded ? .exitFullScreenLine : .fullScreenLine
-        let buttonItem = UIBarButtonItem(image: icon, style: .plain, target: defaultButton.target, action: defaultButton.action)
+        let buttonItem = UIBarButtonItem(image: icon, style: .plain, target: self, action: #selector(didTapSplitDisplayModeButton))
         buttonItem.accessibilityLabel = splitView.isCollapsed ? String(localized: "Collapse", bundle: .core) : String(localized: "Expand", bundle: .core)
         return buttonItem
+    }
+
+    @objc private func didTapSplitDisplayModeButton() {
+        guard let splitView = splitViewController else { return }
+
+        if splitView.displayMode == .secondaryOnly {
+            splitView.show(.primary)
+        } else {
+            splitView.hide(.primary)
+        }
     }
 
     public func findParentViewController<T: UIViewController>() -> T? {

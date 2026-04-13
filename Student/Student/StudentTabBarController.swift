@@ -125,11 +125,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
                     )
                 )
                 result = DashboardContainerViewController(rootViewController: dashboard) {
-                    if #available(iOS 26, *) {
-                        return CoreSplitViewController(style: .doubleColumn)
-                    } else {
-                        return CoreSplitViewController()
-                    }
+                    CoreSplitViewController()
                 }
             }
 
@@ -160,10 +156,12 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
             )
         }
 
-        split.viewControllers = [
-            planner,
-            CoreNavigationController(rootViewController: EmptyViewController())
-        ]
+        split.setViewController(planner, for: .primary)
+        split.setViewController(
+            CoreNavigationController(rootViewController: EmptyViewController()),
+            for: .secondary
+        )
+
         split.view.tintColor = Brand.shared.primary
         split.tabBarItem.title = String(localized: "Calendar", bundle: .student, comment: "Tab title, max character count is 14")
         split.tabBarItem.image = .calendarTab
@@ -180,10 +178,12 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
             let useOldTodo = ExperimentalFeature.revertToOldStudentToDo.isEnabled
             return useOldTodo ? TodoListViewController.create() : TodoAssembly.makeTodoListViewController(env: .shared)
         }()
-        todo.viewControllers = [
-            CoreNavigationController(rootViewController: todoController),
-            CoreNavigationController(rootViewController: EmptyViewController())
-        ]
+
+        todo.setViewController(CoreNavigationController(rootViewController: todoController),
+                               for: .primary)
+        todo.setViewController(CoreNavigationController(rootViewController: EmptyViewController()),
+                               for: .secondary)
+
         todo.tabBarItem.title = String(localized: "To-do", bundle: .student, comment: "Tab title, max character count is 14")
         todo.tabBarItem.image = .todoTab
         todo.tabBarItem.selectedImage = .todoTabActive
@@ -197,10 +197,15 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
 
     func notificationsTab() -> UIViewController {
         let split = CoreSplitViewController()
-        split.viewControllers = [
+        split.setViewController(
             CoreNavigationController(rootViewController: ActivityStreamViewController.create()),
-            CoreNavigationController(rootViewController: EmptyViewController())
-        ]
+            for: .primary
+        )
+        split.setViewController(
+            CoreNavigationController(rootViewController: EmptyViewController()),
+            for: .secondary
+        )
+
         split.tabBarItem.title = String(localized: "Notifications", bundle: .student, comment: "Tab title, max character count is 14")
         split.tabBarItem.image = .alertsTab
         split.tabBarItem.selectedImage = .alertsTabActive
@@ -219,7 +224,9 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         let empty = CoreNavigationController()
         empty.navigationBar.useGlobalNavStyle()
 
-        inboxSplit.viewControllers = [inboxController, empty]
+        inboxSplit.setViewController(inboxController, for: .primary)
+        inboxSplit.setViewController(empty, for: .secondary)
+
         let title = String(localized: "Inbox", bundle: .student, comment: "Tab title, max character count is 14")
         inboxSplit.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
         inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"

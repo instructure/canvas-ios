@@ -77,11 +77,7 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
             )
         )
         let dashboard = DashboardContainerViewController(rootViewController: cardView) {
-            if #available(iOS 26, *) {
-                return CoreSplitViewController(style: .doubleColumn)
-            } else {
-                return CoreSplitViewController()
-            }
+            CoreSplitViewController()
         }
         dashboard.tabBarItem.title = String(localized: "Courses", bundle: .teacher, comment: "Tab title, max character count is 14")
         dashboard.tabBarItem.image = .coursesTab

@@ -17,28 +17,19 @@
 //
 
 import UIKit
-import Combine
 
 public class CoreSplitViewController: UISplitViewController {
 
-    private var subscriptions = Set<AnyCancellable>()
-
-    /// Introduced to get around the issue where SplitViewController
-    /// report collapse then expansion when app is put to background.
-    /// This property is used to cache secondary controller to be returned
-    /// on expansion state configuration (secondary separation delegate's method)
-    private var preBackgroundedSecondaryController: UIViewController?
+    public convenience init() {
+        self.init(style: .doubleColumn)
+    }
 
     public override init(style: UISplitViewController.Style) {
         super.init(style: style)
+        preferredDisplayMode = .oneBesideSecondary
+        preferredSplitBehavior = .displace
+        displayModeButtonVisibility = .never
         delegate = self
-        setupBackgroundStateObservers()
-    }
-
-    public override init(nibName: String? = nil, bundle: Bundle? = nil) {
-        super.init(nibName: nibName, bundle: bundle)
-        delegate = self
-        setupBackgroundStateObservers()
     }
 
     required init?(coder: NSCoder) {
@@ -47,36 +38,7 @@ public class CoreSplitViewController: UISplitViewController {
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        preferredDisplayMode = .oneBesideSecondary
         registerForTraitChanges()
-    }
-
-    private func setupBackgroundStateObservers() {
-        NotificationCenter
-            .default
-            .publisher(for: UIApplication.didEnterBackgroundNotification)
-            .mapToVoid()
-            .sink { [weak self] in
-                self?.saveCurrentSecondaryController()
-            }
-            .store(in: &subscriptions)
-
-        NotificationCenter
-            .default
-            .publisher(for: UIApplication.willEnterForegroundNotification)
-            .mapToVoid()
-            .sink { [weak self] in
-                self?.removePreBackgroundedSecondaryController()
-            }
-            .store(in: &subscriptions)
-    }
-
-    private func saveCurrentSecondaryController() {
-        preBackgroundedSecondaryController = secondaryViewController
-    }
-
-    private func removePreBackgroundedSecondaryController() {
-        preBackgroundedSecondaryController = nil
     }
 
     public override var prefersStatusBarHidden: Bool {
@@ -84,13 +46,14 @@ public class CoreSplitViewController: UISplitViewController {
     }
 
     public override func showDetailViewController(_ vc: UIViewController, sender: Any?) {
-        super.showDetailViewController(vc, sender: sender)
-        self.masterNavigationController?.syncStyles()
-    }
+        masterNavigationController?.syncStyles()
 
-    public override func show(_ vc: UIViewController, sender: Any?) {
-        super.show(vc, sender: sender)
-        self.masterNavigationController?.syncStyles()
+        if isCollapsed {
+            masterNavigationController?.show(vc, sender: sender)
+        } else {
+            setViewController(vc, for: .secondary)
+            show(.secondary)
+        }
     }
 
     private func updateTitleViews() {
@@ -105,15 +68,22 @@ public class CoreSplitViewController: UISplitViewController {
     }
 
     @available(iOS, deprecated: 26, message: "iOS26 has a default implementation")
-    public func prettyDisplayModeButtonItem(_ displayMode: DisplayMode) -> UIBarButtonItem {
-        let defaultButton = self.displayModeButtonItem
+    private func prettyDisplayModeButtonItem(_ displayMode: DisplayMode) -> UIBarButtonItem {
         let collapse = displayMode == .oneOverSecondary || displayMode == .secondaryOnly
         let icon: UIImage = collapse ? .exitFullScreenLine : .fullScreenLine
-        let prettyButton = UIBarButtonItem(image: icon, style: .plain, target: defaultButton.target, action: defaultButton.action)
+        let prettyButton = UIBarButtonItem(image: icon, style: .plain, target: self, action: #selector(didTabDisplayButton))
         prettyButton.accessibilityLabel = collapse ?
             String(localized: "Collapse detail view", bundle: .core) :
             String(localized: "Expand detail view", bundle: .core)
         return prettyButton
+    }
+
+    @objc private func didTabDisplayButton() {
+        if displayMode == .secondaryOnly {
+            show(.primary)
+        } else {
+            hide(.primary)
+        }
     }
 
     private func registerForTraitChanges() {
@@ -127,12 +97,20 @@ public class CoreSplitViewController: UISplitViewController {
 extension CoreSplitViewController: UISplitViewControllerDelegate {
 
     public func splitViewControllerDidExpand(_ svc: UISplitViewController) {
-        if let secondaryView = secondaryViewController {
-            resetSecondaryViewDisplayModeButton(secondaryView)
+        guard let secondaryView = secondaryViewController else { return }
+        resetSecondaryViewDisplayModeButton(secondaryView)
+        (secondaryView as? UINavigationController)?.syncStyles()
+        updateTitleViews()
+    }
+
+    public func splitViewController(_ svc: UISplitViewController, willShow column: UISplitViewController.Column) {
+        if case .secondary = column {
+            //resetSecondaryView()
         }
     }
 
     public func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
+
         guard let secondaryView = secondaryViewController else { return }
 
         resetSecondaryViewDisplayModeButton(secondaryView, displayMode: displayMode)
@@ -143,103 +121,65 @@ extension CoreSplitViewController: UISplitViewControllerDelegate {
         }
     }
 
-    public func splitViewController(_ splitViewController: UISplitViewController, collapseSecondary secondaryViewController: UIViewController, onto primaryViewController: UIViewController) -> Bool {
-
-        guard preBackgroundedSecondaryController == nil else { return false }
-
-        if let nav = secondaryViewController as? UINavigationController {
-            // swiftlint:disable:next unused_optional_binding
-            if let _ = nav.topViewController as? EmptyViewController {
-                return true
-            } else {
-                // Remove the display mode button item
-                for vc in nav.viewControllers {
-                    vc.navigationItem.leftBarButtonItem = nil
-                }
-            }
-        }
-
-        return false
-    }
-
-    public func splitViewController(_ splitViewController: UISplitViewController, separateSecondaryFrom primaryViewController: UIViewController) -> UIViewController? {
-
-        // Return cached secondary controller when called on background
-        if let secondaryView = preBackgroundedSecondaryController {
-            resetSecondaryViewStyle(secondaryView, from: primaryViewController)
-            return secondaryView
-        }
-
-        // Setup default detail view provided by the master view controller
-        if let nav = primaryViewController as? UINavigationController,
-           nav.viewControllers.count > 1,
-           let defaultViewProvider = nav.viewControllers.last as? DefaultViewProvider,
-           let defaultRoute = defaultViewProvider.defaultViewRoute,
-           let defaultViewController = AppEnvironment.shared.router.match(defaultRoute.url, userInfo: defaultRoute.userInfo) {
-            let detailNavController = CoreNavigationController(rootViewController: defaultViewController)
-            detailNavController.syncStyles(from: nav, to: detailNavController)
-
-            if let routeTemplate = AppEnvironment.shared.router.template(for: defaultRoute.url) {
-                RemoteLogger.shared.logBreadcrumb(route: routeTemplate, viewController: defaultViewController)
-            }
-
-            return detailNavController
-        }
-
-        // Default behaviour of putting the current top viewcontroller into a nav controller and moving it to the detail view
-        if let nav = primaryViewController as? UINavigationController,
-           nav.viewControllers.count >= 2 {
-
-            var newDeets = nav.viewControllers[nav.viewControllers.count - 1]
-            nav.popViewController(animated: true)
-
-            if !(newDeets is UINavigationController) {
-                newDeets = CoreNavigationController(rootViewController: newDeets)
-            }
-
-            resetSecondaryViewStyle(newDeets, from: primaryViewController)
-
-            return newDeets
-        }
-
-        return nil
-    }
-
     /// This necessary to fix an issue on iPadOS 26, where app freezes upon window resizing.
-    /// It also mimics the same behavior for other Classic-style split views we use.
     public func splitViewController(_ svc: UISplitViewController, topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column) -> UISplitViewController.Column {
         .primary
     }
 
-    private func resetSecondaryViewStyle(
-        _ viewController: UIViewController,
-        from primaryViewController: UIViewController
-    ) {
+    public func splitViewController(
+        _ svc: UISplitViewController,
+        displayModeForExpandingToProposedDisplayMode proposedDisplayMode: UISplitViewController.DisplayMode
+    ) -> UISplitViewController.DisplayMode {
 
-        resetSecondaryViewDisplayModeButton(viewController)
+        switch proposedDisplayMode {
+        case .oneOverSecondary:
+            return .secondaryOnly
+        default:
+            return .oneBesideSecondary
+        }
+    }
 
-        if let nav = viewController as? UINavigationController {
-            // If viewController is a newly created navigation controller then it won't have a splitViewController yet, so syncStyles() won't work at this point.
-            if viewController.splitViewController == nil,
-               let masterNav = primaryViewController as? UINavigationController {
-                nav.syncStyles(from: masterNav, to: nav)
-            } else {
-                nav.syncStyles()
+    private func resetSecondaryView() {
+        guard
+            let primary = masterNavigationController,
+            let secondary = detailNavigationController
+        else { return }
+
+        // Setup default detail view provided by the master view controller
+        if primary.viewControllers.count > 1,
+           let defaultViewProvider = primary.viewControllers.last as? DefaultViewProvider,
+           let defaultRoute = defaultViewProvider.defaultViewRoute,
+           let defaultViewController = AppEnvironment.shared.router.match(defaultRoute.url, userInfo: defaultRoute.userInfo) {
+
+            secondary.viewControllers = [defaultViewController]
+            secondary.syncStyles(from: primary, to: secondary)
+
+            if let routeTemplate = AppEnvironment.shared.router.template(for: defaultRoute.url) {
+                RemoteLogger.shared.logBreadcrumb(route: routeTemplate, viewController: defaultViewController)
             }
         }
 
-        // Updating titles again _after_ separation, because registering for trait changes
-        // doesn't trigger it.
-        updateTitleViews()
+        // Default behaviour of putting the current top viewcontroller into a nav controller and moving it to the detail view
+        if primary.viewControllers.count >= 2 {
+
+            let newDeets = primary.viewControllers[primary.viewControllers.count - 1]
+            primary.popViewController(animated: true)
+
+            if let nav = newDeets as? UINavigationController,
+               let nvc = nav.viewControllers.first {
+                secondary.viewControllers = [nvc]
+            } else {
+                secondary.viewControllers = [newDeets]
+            }
+        }
     }
 
     private func resetSecondaryViewDisplayModeButton(_ viewController: UIViewController, displayMode: UISplitViewController.DisplayMode? = nil) {
+
         let viewControllers = (viewController as? UINavigationController)?.viewControllers ?? [viewController]
-        if #unavailable(iOS 26) {
-            for vc in viewControllers where (vc is EmptyViewController) == false {
-                vc.navigationItem.leftItemsSupplementBackButton = true
-                vc.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem(displayMode ?? self.displayMode)
-            }
+        for vc in viewControllers where (vc is EmptyViewController) == false {
+            vc.navigationItem.leftItemsSupplementBackButton = true
+            vc.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem(displayMode ?? self.displayMode)
         }
     }
 }
@@ -271,13 +211,6 @@ extension CoreSplitViewController: UIGestureRecognizerDelegate { }
 private extension UISplitViewController {
 
     var secondaryViewController: UIViewController? {
-        switch style {
-        case .doubleColumn, .unspecified:
-            viewControllers.count == 2 ? viewControllers.last : nil
-        case .tripleColumn:
-            viewControllers.count == 3 ? viewControllers.last : nil
-        @unknown default:
-            nil
-        }
+        viewController(for: .secondary)
     }
 }

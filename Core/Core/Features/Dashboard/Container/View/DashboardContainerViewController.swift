@@ -80,10 +80,17 @@ public class DashboardContainerViewController: CoreNavigationController {
     private func makeSplitViewController(masterViewController: UIViewController) -> UIViewController {
         let split = splitViewControllerFactory()
         split.preferredDisplayMode = .oneBesideSecondary
-        split.viewControllers = [
+
+        split.setViewController(
             CoreNavigationController(rootViewController: masterViewController),
-            CoreNavigationController(rootViewController: EmptyViewController())
-        ]
+            for: .primary
+        )
+
+        split.setViewController(
+            CoreNavigationController(rootViewController: EmptyViewController()),
+            for: .secondary
+        )
+
         split.masterNavigationController?.delegate = split
         return split
     }
