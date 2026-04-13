@@ -93,7 +93,7 @@ struct OfflineSyncSettingsView: View {
             fillsWidth: true,
             trailing: HorizonUI.icons.arrowForward,
         ) {
-            viewModel.navigateToMangeOffline(viewController: viewController)
+            viewModel.navigateToManageOffline(viewController: viewController)
             lastFocusedItemID = manageOfflineFocusedID
         }
         .accessibilityFocused($focusedItemID, equals: manageOfflineFocusedID)

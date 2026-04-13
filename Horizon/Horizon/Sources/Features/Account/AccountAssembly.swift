@@ -24,7 +24,7 @@ final class AccountAssembly {
         let onShowTabBar: (Bool) -> Void = { isVisible in
             AppEnvironment.shared.tabBar(isVisible: isVisible)
         }
-       return AccountView(
+        return AccountView(
             viewModel: AccountViewModel(
                 getUserInteractor: GetUserInteractorLive(),
                 onShowTabBar: onShowTabBar
@@ -32,7 +32,7 @@ final class AccountAssembly {
         )
     }
 
-    #if DEBUG
+#if DEBUG
     static func makePreview() -> AccountView {
         let getUserInteractorPreview = GetUserInteractorPreview()
         let viewModel = AccountViewModel(
@@ -40,5 +40,5 @@ final class AccountAssembly {
         ) { _ in }
         return AccountView(viewModel: viewModel) { _ in }
     }
-    #endif
+#endif
 }

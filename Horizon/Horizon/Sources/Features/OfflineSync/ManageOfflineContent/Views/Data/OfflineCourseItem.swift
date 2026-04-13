@@ -17,6 +17,7 @@
 //
 
 import Core
+import Foundation
 
 enum OfflineCheckboxState {
     case unchecked
@@ -32,19 +33,12 @@ enum OfflineCheckboxState {
     }
 }
 
-struct OfflineSubItem: Identifiable {
-    let id: String
-    let name: String
-    let size: String
-    var isSelected: Bool
-}
-
 struct OfflineCourseItem: Identifiable {
     let id: String
     let name: String
     let size: String
-    var isExpanded: Bool
-    var isSelected: Bool
+    var isExpanded: Bool = false
+    var isSelected: Bool = false
     var subItems: [OfflineSubItem]
     var hasSubItems: Bool { subItems.isNotEmpty }
 
@@ -58,50 +52,33 @@ struct OfflineCourseItem: Identifiable {
         return .partial
     }
 
-    // MARK: - Mock Data
+    var sizeToDownload: Double {
+        guard subItems.isNotEmpty else {
+            return 100_000
+        }
+        return subItems.map(\.sizeInBytes).reduce(0, +)
+    }
 
-    static let mockOfflineCourses: [OfflineCourseItem] = [
-        .init(
-            id: "course1",
-            name: "Mathematics 101",
-            size: "1.2 GB",
-            isExpanded: true,
-            isSelected: false,
-            subItems: [
-                OfflineSubItem(id: "file1", name: "Lecture 1.pdf", size: "50 MB", isSelected: true),
-                OfflineSubItem(id: "file2", name: "Lecture 2.pdf", size: "60 MB", isSelected: true),
-                OfflineSubItem(id: "file3", name: "Lecture 3.pdf", size: "55 MB", isSelected: true)
-            ]
-        ),
-        OfflineCourseItem(
-            id: "course2",
-            name: "Physics 201",
-            size: "900 MB",
-            isExpanded: false,
-            isSelected: false,
-            subItems: [
-                OfflineSubItem(id: "file1", name: "Chapter 1.mp4", size: "300 MB", isSelected: false),
-                OfflineSubItem(id: "file2", name: "Chapter 2.mp4", size: "250 MB", isSelected: true)
-            ]
-        ),
-        OfflineCourseItem(
-            id: "course3",
-            name: "History 101",
-            size: "700 MB",
-            isExpanded: false,
-            isSelected: false,
-            subItems: [
-                OfflineSubItem(id: "file1", name: "Introduction.pdf", size: "40 MB", isSelected: false),
-                OfflineSubItem(id: "file2", name: "Lecture Notes.pdf", size: "60 MB", isSelected: false)
-            ]
-        ),
-        OfflineCourseItem(
-            id: "course4",
-            name: "Biology 101",
-            size: "1.5 GB",
-            isExpanded: true,
-            isSelected: false,
-            subItems: []
-        )
-    ]
+    init(
+        id: String,
+        name: String,
+        size: String,
+        isExpanded: Bool,
+        isSelected: Bool,
+        subItems: [OfflineSubItem]
+    ) {
+        self.id = id
+        self.name = name
+        self.size = size
+        self.isExpanded = isExpanded
+        self.isSelected = isSelected
+        self.subItems = subItems
+    }
+
+    init(from entity: CDHCourseSelection) {
+        self.id = entity.id
+        self.name = entity.name
+        self.size = entity.size
+        self.subItems = entity.files.map { .init(from: $0) }
+    }
 }

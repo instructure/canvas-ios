@@ -24,8 +24,9 @@ import Foundation
 final class ManageOfflineContentViewModel {
     // MARK: - Outputs
 
-    private(set) var courses: [OfflineCourseItem] = OfflineCourseItem.mockOfflineCourses
-
+    private(set) var courses: [OfflineCourseItem] = []
+    private(set) var isLoaderVisible: Bool = true
+    private(set) var errorMessage = ""
     var selectAllState: OfflineCheckboxState {
         let allChecked = courses.allSatisfy { $0.selectionState == .checked }
         let noneChecked = courses.allSatisfy { $0.selectionState == .unchecked }
@@ -34,14 +35,72 @@ final class ManageOfflineContentViewModel {
         return .partial
     }
 
+    var selectedSizeCourse: String {
+        let selectedCourses = courses.filter({ $0.selectionState == .checked || $0.selectionState == .partial })
+        let size = selectedCourses.reduce(0) { $0 + $1.sizeToDownload }
+        return ByteCountFormatter.string(fromByteCount: Int64(size), countStyle: .file)
+    }
+
+    var isRemoveButtonEnabled: Bool {
+        session.horizonOfflineSyncItems.isNotEmpty
+    }
+
+    // MARK: - Inputs / Outputs
+
+    var isErrorVisible = false
+
+    // MARK: - Private variables
+
+    private var subscriptions = Set<AnyCancellable>()
+
     // MARK: - Dependencies
 
+    private let interactor: ManageOfflineContentInteractor
     private let router: Router
+    private let session: SessionDefaults
 
     // MARK: - Init
 
-    init(router: Router) {
+    init(
+        interactor: ManageOfflineContentInteractor,
+        router: Router,
+        session: SessionDefaults
+    ) {
+        self.interactor = interactor
         self.router = router
+        self.session = session
+        fetchCourses(ignoreCache: false)
+    }
+
+    // MARK: - Private Functions
+
+    private func fetchCourses(
+        ignoreCache: Bool,
+        completion: (() -> Void)? = nil
+    ) {
+        interactor.getCourses(ignoreCache: ignoreCache)
+            .sinkFailureOrValue { [weak self] error in
+                self?.isLoaderVisible = false
+                self?.errorMessage = error.localizedDescription
+                self?.isErrorVisible = true
+                completion?()
+            } receiveValue: { [weak self] items in
+                self?.courses = items
+                self?.isLoaderVisible = false
+                completion?()
+            }
+            .store(in: &subscriptions)
+    }
+
+    // MARK: - Input Actions
+
+    @MainActor
+    func refresh() async {
+        await withCheckedContinuation { continuation in
+            fetchCourses(ignoreCache: true) {
+                continuation.resume()
+            }
+        }
     }
 
     func toggleSelectAll() {
@@ -63,7 +122,9 @@ final class ManageOfflineContentViewModel {
 
     func toggleExpand(_ courseID: String) {
         guard let index = courses.firstIndex(where: { $0.id == courseID }) else { return }
-        courses[index].isExpanded.toggle()
+        var updated = courses[index]
+        updated.isExpanded.toggle()
+        courses[index] = updated
     }
 
     func toggleCourse(_ course: OfflineCourseItem) {
@@ -84,10 +145,19 @@ final class ManageOfflineContentViewModel {
         guard let courseIndex = courses.firstIndex(where: { $0.id == courseID }),
               let itemIndex = courses[courseIndex].subItems.firstIndex(where: { $0.id == subItemID })
         else { return }
-        courses[courseIndex].subItems[itemIndex].isSelected.toggle()
+        var updatedCourse = courses[courseIndex]
+        updatedCourse.subItems[itemIndex].isSelected.toggle()
+        courses[courseIndex] = updatedCourse
     }
 
     func pop(viewController: WeakViewController) {
         router.dismiss(viewController)
+    }
+
+    func presentConfirmation(type: OfflineConfirmationView.ConfirmationType, viewController: WeakViewController) {
+        let view = OfflineConfirmationAssembly.makeView(type: type) {
+
+        }
+        router.show(view, from: viewController, options: .modal(.fullScreen))
     }
 }

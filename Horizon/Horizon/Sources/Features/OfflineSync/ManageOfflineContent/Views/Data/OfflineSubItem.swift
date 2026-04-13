@@ -17,19 +17,37 @@
 //
 
 import Core
-import UIKit
+import Foundation
 
-struct ManageOfflineAssembly {
-    static func makeView() -> UIViewController {
-        let interact = ManageOfflineContentInteractorLive(
-            userID: (AppEnvironment.shared.currentSession?.userID).defaultToEmpty
-        )
-        let viewModel = ManageOfflineContentViewModel(
-            interactor: interact,
-            router: AppEnvironment.shared.router,
-            session: SessionDefaults(sessionID: (AppEnvironment.shared.currentSession?.uniqueID).defaultToEmpty)
-        )
-        let view = ManageOfflineContentView(viewModel: viewModel)
-        return CoreHostingController(view)
+struct OfflineSubItem: Identifiable {
+    let id: String
+    let name: String
+    let size: String
+    let url: URL?
+    let sizeInBytes: Double
+    var isSelected: Bool = false
+
+    init(
+        id: String,
+        name: String,
+        size: String,
+        url: URL? = nil,
+        sizeInBytes: Double,
+        isSelected: Bool
+    ) {
+        self.id = id
+        self.name = name
+        self.size = size
+        self.url = url
+        self.sizeInBytes = sizeInBytes
+        self.isSelected = isSelected
+    }
+
+    init(from entity: CDHCourseSelectionFile) {
+        self.id = entity.id
+        self.name = entity.name
+        self.size = entity.size
+        self.url = entity.url
+        self.sizeInBytes = entity.sizeInBytes
     }
 }

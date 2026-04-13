@@ -207,7 +207,7 @@ final class AccountViewModelTests: HorizonTestCase {
             appExperienceInteractor: experienceInteractor,
             careerHelpInteractor: careerHelpInteractor,
             scheduler: .immediate
-        )
+        ) { _ in }
     }
 }
 

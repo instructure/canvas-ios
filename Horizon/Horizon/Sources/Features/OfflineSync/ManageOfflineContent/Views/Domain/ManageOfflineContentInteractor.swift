@@ -17,19 +17,28 @@
 //
 
 import Core
-import UIKit
+import Combine
 
-struct ManageOfflineAssembly {
-    static func makeView() -> UIViewController {
-        let interact = ManageOfflineContentInteractorLive(
-            userID: (AppEnvironment.shared.currentSession?.userID).defaultToEmpty
-        )
-        let viewModel = ManageOfflineContentViewModel(
-            interactor: interact,
-            router: AppEnvironment.shared.router,
-            session: SessionDefaults(sessionID: (AppEnvironment.shared.currentSession?.uniqueID).defaultToEmpty)
-        )
-        let view = ManageOfflineContentView(viewModel: viewModel)
-        return CoreHostingController(view)
+protocol ManageOfflineContentInteractor {
+    func getCourses(ignoreCache: Bool) -> AnyPublisher<[OfflineCourseItem], Error>
+}
+
+final class ManageOfflineContentInteractorLive: ManageOfflineContentInteractor {
+    // MARK: - Dependencies
+    private let userID: String
+
+    // MARK: - Init
+
+    init(userID: String) {
+        self.userID = userID
+    }
+
+    func getCourses(ignoreCache: Bool) -> AnyPublisher<[OfflineCourseItem], Error> {
+        ReactiveStore(useCase: GetHCourseSelectionUseCase(userId: userID))
+            .getEntities(ignoreCache: ignoreCache)
+            .map { courses in
+                courses.map { OfflineCourseItem(from: $0) }
+            }
+            .eraseToAnyPublisher()
     }
 }

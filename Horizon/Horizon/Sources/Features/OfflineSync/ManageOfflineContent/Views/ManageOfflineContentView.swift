@@ -24,6 +24,10 @@ struct ManageOfflineContentView: View {
     // MARK: - Properties
 
     @Environment(\.viewController) private var viewController
+    @State var courseSpaceviewModel = CourseSyncDiskSpaceInfoViewModel(
+        interactor: DiskSpaceInteractorLive(),
+        app: .horizon
+    )
     @State private var viewModel: ManageOfflineContentViewModel
 
     // MARK: - Init
@@ -36,9 +40,18 @@ struct ManageOfflineContentView: View {
         ZStack {
             Color.huiColors.surface.pagePrimary.edgesIgnoringSafeArea(.all)
             scrollContent
+                .refreshable { await viewModel.refresh() }
         }
         .toolbar(.hidden)
         .safeAreaInset(edge: .bottom, spacing: .zero) { bottomActionBar }
+        .huiLoader(isVisible: viewModel.isLoaderVisible)
+        .huiToast(
+            viewModel: .init(
+                text: viewModel.errorMessage,
+                style: .error
+            ),
+            isPresented: $viewModel.isErrorVisible
+        )
     }
 
     // MARK: - Navigation Bar
@@ -66,12 +79,7 @@ struct ManageOfflineContentView: View {
     private var scrollContent: some View {
         ScrollView {
             VStack(spacing: .huiSpaces.space8) {
-                OfflineStorageView(
-                    viewModel: CourseSyncDiskSpaceInfoViewModel(
-                        interactor: DiskSpaceInteractorLive(),
-                        app: .horizon
-                    )
-                )
+                OfflineStorageView(viewModel: courseSpaceviewModel)
                 contentListSection
             }
             .padding(.top, .huiSpaces.space32)
@@ -115,7 +123,10 @@ struct ManageOfflineContentView: View {
                 fillsWidth: true,
                 trailing: Image.huiIcons.sync
             ) {
-
+                viewModel.presentConfirmation(
+                    type: .download(size: viewModel.selectedSizeCourse),
+                    viewController: viewController
+                )
             }
             .disabled(viewModel.selectAllState == .unchecked)
 
@@ -125,8 +136,10 @@ struct ManageOfflineContentView: View {
                 fillsWidth: true,
                 trailing: Image.huiIcons.cancel
             ) {
-
+                viewModel.presentConfirmation(type: .remove, viewController: viewController)
             }
+            .disabled(!viewModel.isRemoveButtonEnabled)
+            .opacity(viewModel.isRemoveButtonEnabled ? 1 : 0.5)
         }
         .padding([.horizontal, .top], .huiSpaces.space16)
         .background(Color.huiColors.surface.pageSecondary)
@@ -141,7 +154,11 @@ struct ManageOfflineContentView: View {
 
 #if DEBUG
 #Preview {
-    let viewModel = ManageOfflineContentViewModel(router: AppEnvironment.shared.router)
+    let viewModel = ManageOfflineContentViewModel(
+        interactor: ManageOfflineContentInteractorPreview(),
+        router: AppEnvironment.shared.router,
+        session: AppEnvironment.shared.userDefaults!
+    )
     ManageOfflineContentView(viewModel: viewModel)
 }
 #endif

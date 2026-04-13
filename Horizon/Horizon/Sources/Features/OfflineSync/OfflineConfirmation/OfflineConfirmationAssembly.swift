@@ -19,17 +19,16 @@
 import Core
 import UIKit
 
-struct ManageOfflineAssembly {
-    static func makeView() -> UIViewController {
-        let interact = ManageOfflineContentInteractorLive(
-            userID: (AppEnvironment.shared.currentSession?.userID).defaultToEmpty
+enum OfflineConfirmationAssembly {
+    static func makeView(
+        type: OfflineConfirmationView.ConfirmationType,
+        onTapConfirmation: @escaping () -> Void
+    ) -> UIViewController {
+        CoreHostingController(
+            OfflineConfirmationView(
+                type: type,
+                onTapConfirmation: onTapConfirmation
+            )
         )
-        let viewModel = ManageOfflineContentViewModel(
-            interactor: interact,
-            router: AppEnvironment.shared.router,
-            session: SessionDefaults(sessionID: (AppEnvironment.shared.currentSession?.uniqueID).defaultToEmpty)
-        )
-        let view = ManageOfflineContentView(viewModel: viewModel)
-        return CoreHostingController(view)
     }
 }

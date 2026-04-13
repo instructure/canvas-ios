@@ -16,20 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
-import UIKit
+import Combine
+import Foundation
+@testable import Horizon
 
-struct ManageOfflineAssembly {
-    static func makeView() -> UIViewController {
-        let interact = ManageOfflineContentInteractorLive(
-            userID: (AppEnvironment.shared.currentSession?.userID).defaultToEmpty
-        )
-        let viewModel = ManageOfflineContentViewModel(
-            interactor: interact,
-            router: AppEnvironment.shared.router,
-            session: SessionDefaults(sessionID: (AppEnvironment.shared.currentSession?.uniqueID).defaultToEmpty)
-        )
-        let view = ManageOfflineContentView(viewModel: viewModel)
-        return CoreHostingController(view)
+final class ManageOfflineContentInteractorMock: ManageOfflineContentInteractor {
+    var shouldFail = false
+    var coursesToReturn: [OfflineCourseItem] = []
+
+    func getCourses(ignoreCache: Bool) -> AnyPublisher<[OfflineCourseItem], Error> {
+        if shouldFail {
+            return Fail(error: NSError.instructureError("mock error"))
+                .eraseToAnyPublisher()
+        }
+        return Just(coursesToReturn)
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
     }
 }

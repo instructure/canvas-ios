@@ -296,6 +296,21 @@
         <attribute name="overviewDescription" optional="YES" attributeType="String"/>
         <attribute name="state" attributeType="String"/>
     </entity>
+    <entity name="CDHCourseSelection" representedClassName=".CDHCourseSelection" syncable="YES">
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="size" attributeType="String"/>
+        <relationship name="files" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDHCourseSelectionFile" inverseName="relationship" inverseEntity="CDHCourseSelectionFile"/>
+    </entity>
+    <entity name="CDHCourseSelectionFile" representedClassName=".CDHCourseSelectionFile" syncable="YES">
+        <attribute name="courseID" attributeType="String"/>
+        <attribute name="id" attributeType="String"/>
+        <attribute name="name" attributeType="String"/>
+        <attribute name="size" attributeType="String"/>
+        <attribute name="sizeInBytes" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="url" optional="YES" attributeType="URI"/>
+        <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHCourseSelection" inverseName="files" inverseEntity="CDHCourseSelection"/>
+    </entity>
     <entity name="CDHCourseTools" representedClassName="Core.CDHCourseTools" syncable="YES">
         <attribute name="courseContextsCodes" attributeType="String"/>
         <attribute name="iconURL" optional="YES" attributeType="URI"/>
