@@ -6,13 +6,6 @@ Tokens are sourced from the [instructure-ui](https://github.com/instructure/inst
 
 ---
 
-## Requirements
-
-- iOS 17+
-- Swift 6
-
----
-
 ## Package structure
 
 ```

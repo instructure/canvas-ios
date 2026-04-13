@@ -18,10 +18,5 @@
 
 public enum InstUI {
     public enum Primitives {
-        public enum Colors {}
-        public enum Sizes {}
-        public enum FontWeights {}
-        public enum Opacities {}
-        public enum FontFamilies {}
     }
 }

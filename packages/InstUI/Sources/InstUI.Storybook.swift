@@ -25,36 +25,37 @@ public extension InstUI {
         public var body: some View {
             List {
                 Section(header: Text(verbatim: "Primitives")) {
-                    NavigationLink {
-                        InstUI.Primitives.Colors.Storybook()
-                    } label: {
-                        Text(verbatim: "Colors")
-                    }
-                    NavigationLink {
-                        InstUI.Primitives.Opacities.Storybook()
-                    } label: {
-                        Text(verbatim: "Opacities")
-                    }
-                    NavigationLink {
-                        InstUI.Primitives.Sizes.Storybook()
-                    } label: {
-                        Text(verbatim: "Sizes")
-                    }
-                    NavigationLink {
-                        InstUI.Primitives.FontWeights.Storybook()
-                    } label: {
-                        Text(verbatim: "Font Weights")
-                    }
-                    NavigationLink {
-                        InstUI.Primitives.FontFamilies.Storybook()
-                    } label: {
-                        Text(verbatim: "Font Families")
-                    }
+                    StorybookItem("Colors") { InstUI.Primitives.Colors.Storybook() }
+                    StorybookItem("Opacities") { InstUI.Primitives.Opacities.Storybook() }
+                    StorybookItem("Sizes") { InstUI.Primitives.Sizes.Storybook() }
+                    StorybookItem("Font Weights") { InstUI.Primitives.FontWeights.Storybook() }
+                    StorybookItem("Font Families") { InstUI.Primitives.FontFamilies.Storybook() }
                 }
             }
             .listStyle(.sidebar)
             .navigationTitle(Text(verbatim: "InstUI"))
             .navigationBarTitleDisplayMode(.large)
+        }
+    }
+}
+
+private struct StorybookItem<Destination: View>: View {
+    private let label: String
+    private let destination: Destination
+
+    init(
+        _ label: String,
+        @ViewBuilder destination: () -> Destination
+    ) {
+        self.label = label
+        self.destination = destination()
+    }
+
+    var body: some View {
+        NavigationLink {
+            destination
+        } label: {
+            Text(verbatim: label)
         }
     }
 }

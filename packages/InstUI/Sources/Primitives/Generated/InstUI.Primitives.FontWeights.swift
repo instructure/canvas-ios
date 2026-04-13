@@ -22,29 +22,31 @@ import SwiftUI
 // Names follow the CSS / design-token convention (thin=100, extraLight=200, …).
 // SwiftUI uses different names for the same numeric values (100=.ultraLight, 200=.thin, …),
 // so the mapping below is correct by weight value, not by name.
-public extension InstUI.Primitives.FontWeights {
-    static let thin: Font.Weight = .ultraLight
-    static let extraLight: Font.Weight = .thin
-    static let light: Font.Weight = .light
-    static let regular: Font.Weight = .regular
-    static let medium: Font.Weight = .medium
-    static let semiBold: Font.Weight = .semibold
-    static let bold: Font.Weight = .bold
-    static let extraBold: Font.Weight = .heavy
-    static let black: Font.Weight = .black
+public extension InstUI.Primitives {
+    enum FontWeights {
+        static let thin: Font.Weight = .ultraLight
+        static let extraLight: Font.Weight = .thin
+        static let light: Font.Weight = .light
+        static let regular: Font.Weight = .regular
+        static let medium: Font.Weight = .medium
+        static let semiBold: Font.Weight = .semibold
+        static let bold: Font.Weight = .bold
+        static let extraBold: Font.Weight = .heavy
+        static let black: Font.Weight = .black
 
-    // `name` is the full dotted token path, e.g. "fontWeight.bold"
-    internal static let all: [(name: String, weight: Font.Weight)] = [
-        ("fontWeight.thin", thin),
-        ("fontWeight.extraLight", extraLight),
-        ("fontWeight.light", light),
-        ("fontWeight.regular", regular),
-        ("fontWeight.medium", medium),
-        ("fontWeight.semiBold", semiBold),
-        ("fontWeight.bold", bold),
-        ("fontWeight.extraBold", extraBold),
-        ("fontWeight.black", black)
-    ]
+        // `name` is the full dotted token path, e.g. "fontWeight.bold"
+        internal static let all: [(name: String, weight: Font.Weight)] = [
+            ("fontWeight.thin", thin),
+            ("fontWeight.extraLight", extraLight),
+            ("fontWeight.light", light),
+            ("fontWeight.regular", regular),
+            ("fontWeight.medium", medium),
+            ("fontWeight.semiBold", semiBold),
+            ("fontWeight.bold", bold),
+            ("fontWeight.extraBold", extraBold),
+            ("fontWeight.black", black)
+        ]
+    }
 }
 
 private typealias _PrimitiveFontWeights = InstUI.Primitives.FontWeights
