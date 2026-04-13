@@ -305,6 +305,7 @@
     <entity name="CDHCourseSelectionFile" representedClassName=".CDHCourseSelectionFile" syncable="YES">
         <attribute name="courseID" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
+        <attribute name="mimeClass" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="size" attributeType="String"/>
         <attribute name="sizeInBytes" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>

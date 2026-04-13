@@ -31,9 +31,30 @@ final class ManageOfflineContentInteractorPreview: ManageOfflineContentInteracto
                     isExpanded: true,
                     isSelected: false,
                     subItems: [
-                        OfflineSubItem(id: "file1", name: "Lecture 1.pdf", size: "50 MB", sizeInBytes: 1000, isSelected: true),
-                        OfflineSubItem(id: "file2", name: "Lecture 2.pdf", size: "60 MB", sizeInBytes: 2000, isSelected: true),
-                        OfflineSubItem(id: "file3", name: "Lecture 3.pdf", size: "55 MB", sizeInBytes: 30000, isSelected: true)
+                        OfflineSubItem(
+                            id: "file1",
+                            name: "Lecture 1.pdf",
+                            size: "50 MB",
+                            sizeInBytes: 1000,
+                            isSelected: true,
+                            mimeClass: "pdf"
+                        ),
+                        OfflineSubItem(
+                            id: "file2",
+                            name: "Lecture 2.pdf",
+                            size: "60 MB",
+                            sizeInBytes: 2000,
+                            isSelected: true,
+                            mimeClass: "doc"
+                        ),
+                        OfflineSubItem(
+                            id: "file3",
+                            name: "Lecture 3.pdf",
+                            size: "55 MB",
+                            sizeInBytes: 30000,
+                            isSelected: true,
+                            mimeClass: "ppt"
+                        )
                     ]
                 )
             ]

@@ -68,5 +68,6 @@ public struct GetHCourseSelectionResponse: Codable {
     struct Content: Codable {
         let id, displayName, size: String?
         let url: URL?
+        let mimeClass: String?
     }
 }

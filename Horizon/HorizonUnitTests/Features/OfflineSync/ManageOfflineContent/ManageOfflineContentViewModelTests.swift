@@ -356,7 +356,8 @@ final class ManageOfflineContentViewModelTests: HorizonTestCase {
             name: "sub item name",
             size: "1 MB",
             sizeInBytes: 1_000_000,
-            isSelected: isSelected
+            isSelected: isSelected,
+            mimeClass: "pdf"
         )
     }
 }

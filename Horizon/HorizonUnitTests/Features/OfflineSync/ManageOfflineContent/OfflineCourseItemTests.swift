@@ -209,7 +209,8 @@ final class OfflineCourseItemTests: HorizonTestCase {
             name: "sub item name",
             size: "1 MB",
             sizeInBytes: sizeInBytes,
-            isSelected: isSelected
+            isSelected: isSelected,
+            mimeClass: "pdf"
         )
     }
 }

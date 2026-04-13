@@ -24,6 +24,7 @@ struct OfflineSubItem: Identifiable {
     let name: String
     let size: String
     let url: URL?
+    let mimeClass: String
     let sizeInBytes: Double
     var isSelected: Bool = false
 
@@ -33,7 +34,8 @@ struct OfflineSubItem: Identifiable {
         size: String,
         url: URL? = nil,
         sizeInBytes: Double,
-        isSelected: Bool
+        isSelected: Bool,
+        mimeClass: String
     ) {
         self.id = id
         self.name = name
@@ -41,6 +43,7 @@ struct OfflineSubItem: Identifiable {
         self.url = url
         self.sizeInBytes = sizeInBytes
         self.isSelected = isSelected
+        self.mimeClass = mimeClass
     }
 
     init(from entity: CDHCourseSelectionFile) {
@@ -49,5 +52,6 @@ struct OfflineSubItem: Identifiable {
         self.size = entity.size
         self.url = entity.url
         self.sizeInBytes = entity.sizeInBytes
+        self.mimeClass = entity.mimeClass
     }
 }
