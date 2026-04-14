@@ -45,7 +45,7 @@ struct HNotificationView: View {
                     contentView
                         .padding(.vertical, .huiSpaces.space24)
                 }
-                .accessibilityLabel(String(localized: "Notifications list"))
+                .accessibilityLabel(String(localized: "Notifications list", bundle: .horizon))
                 .onAppear {
                     if let lastFocused = lastFocusedNotificationID {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
