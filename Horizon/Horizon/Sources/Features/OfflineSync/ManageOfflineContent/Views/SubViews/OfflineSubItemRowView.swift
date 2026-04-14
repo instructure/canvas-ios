@@ -49,7 +49,7 @@ struct OfflineSubItemRowView: View {
                 .foregroundStyle(Color.huiColors.text.body)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .multilineTextAlignment(.leading)
-            Text(subItem.size)
+            Text("~\(subItem.size)")
                 .huiTypography(.p2)
                 .foregroundStyle(Color.huiColors.text.timestamp)
                 .frame(maxWidth: .infinity, alignment: .leading)

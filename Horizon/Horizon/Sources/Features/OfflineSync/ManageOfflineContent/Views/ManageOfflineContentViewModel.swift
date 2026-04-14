@@ -35,10 +35,14 @@ final class ManageOfflineContentViewModel {
         return .partial
     }
 
-    var selectedSizeCourse: String {
+    private var selectedCourses: [OfflineCourseItem] {
+        courses.filter({ $0.selectionState == .checked || $0.selectionState == .partial })
+    }
+
+    var selectedSizeCourse: String? {
         let selectedCourses = courses.filter({ $0.selectionState == .checked || $0.selectionState == .partial })
         let size = selectedCourses.reduce(0) { $0 + $1.sizeToDownload }
-        return ByteCountFormatter.string(fromByteCount: Int64(size), countStyle: .file)
+        return size == 0 ? nil : Int(size).humanReadableFileSize
     }
 
     var isRemoveButtonEnabled: Bool {

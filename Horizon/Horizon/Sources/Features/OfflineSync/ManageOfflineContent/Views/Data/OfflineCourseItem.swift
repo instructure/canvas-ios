@@ -36,7 +36,7 @@ enum OfflineCheckboxState {
 struct OfflineCourseItem: Identifiable {
     let id: String
     let name: String
-    let size: String
+    let size: String?
     var isExpanded: Bool = false
     var isSelected: Bool = false
     var files: [OfflineFileItem]
@@ -52,17 +52,14 @@ struct OfflineCourseItem: Identifiable {
         return .partial
     }
 
-    var sizeToDownload: Double {
-        guard files.isNotEmpty else {
-            return 100_000
-        }
-        return files.map(\.sizeInBytes).reduce(0, +)
-    }
+    var selectedFiles: [OfflineFileItem] { files.filter { $0.isSelected } }
+
+    var sizeToDownload: Double { selectedFiles.map(\.sizeInBytes).reduce(0, +) }
 
     init(
         id: String,
         name: String,
-        size: String,
+        size: String?,
         isExpanded: Bool,
         isSelected: Bool,
         subItems: [OfflineFileItem]

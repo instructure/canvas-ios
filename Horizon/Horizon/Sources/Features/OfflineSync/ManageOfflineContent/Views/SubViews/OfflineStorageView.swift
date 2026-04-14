@@ -88,7 +88,7 @@ struct OfflineStorageView: View {
             )
             legendItem(
                 color: HorizonUI.colors.primitives.blue45,
-                label: String(localized: "Canvas", bundle: .horizon)
+                label: String(localized: "Canvas Career", bundle: .horizon)
             )
             legendItem(
                 color: HorizonUI.colors.primitives.blue12,

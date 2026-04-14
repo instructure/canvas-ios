@@ -29,7 +29,7 @@ struct OfflineCourseRowView: View {
         HStack(spacing: .huiSpaces.space24) {
             OfflineCheckboxCell(
                 state: course.selectionState,
-                label: "\(course.name), \(course.size)",
+                label: "\(course.name), \(course.size.defaultToEmpty)",
                 action: onToggle
             )
             Button {
@@ -75,6 +75,7 @@ struct OfflineCourseRowView: View {
         }
     }
 
+    @ViewBuilder
     private var courseInfoView: some View {
         VStack(alignment: .leading, spacing: .huiSpaces.space2) {
             Text(course.name)
@@ -82,10 +83,12 @@ struct OfflineCourseRowView: View {
                 .foregroundStyle(Color.huiColors.text.body)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .multilineTextAlignment(.leading)
-            Text(course.size)
-                .huiTypography(.p2)
-                .foregroundStyle(Color.huiColors.text.timestamp)
-                .frame(maxWidth: .infinity, alignment: .leading)
+            if let size = course.size {
+                Text("~\(size)")
+                    .huiTypography(.p2)
+                    .foregroundStyle(Color.huiColors.text.timestamp)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+            }
         }
     }
 }

@@ -22,7 +22,7 @@ import Foundation
 public final class CDHCourseSelection: NSManagedObject, SizeStringConvertible {
     @NSManaged public var id: String
     @NSManaged public var name: String
-    @NSManaged public var size: String
+    @NSManaged public var size: String?
     @NSManaged public var files: Set<CDHCourseSelectionFile>
 
     // MARK: - Save
@@ -76,24 +76,14 @@ private extension CDHCourseSelection {
             .filter { $0.id != nil }
     }
 
-    static func calculateFormattedSize(from files: [File]) -> String {
-        let totalBytes: Double
-
-        if files.isEmpty {
-            totalBytes = 100_000 // fallback
-        } else {
-            totalBytes = files
-                .map { $0.size ?? "" }
-                .reduce(0) { $0 + bytes(from: $1) }
+    static func calculateFormattedSize(from files: [File]) -> String? {
+        guard files.isNotEmpty else {
+            return nil
         }
-        return format(bytes: totalBytes)
-    }
-
-    static func format(bytes: Double) -> String {
-        let formatter = ByteCountFormatter()
-        formatter.allowedUnits = [.useKB, .useMB, .useGB]
-        formatter.countStyle = .file
-        return formatter.string(fromByteCount: Int64(bytes))
+        let totalBytes = files
+            .map { $0.size ?? "" }
+            .reduce(0) { $0 + bytes(from: $1) }
+        return Int(totalBytes).humanReadableFileSize
     }
 }
 

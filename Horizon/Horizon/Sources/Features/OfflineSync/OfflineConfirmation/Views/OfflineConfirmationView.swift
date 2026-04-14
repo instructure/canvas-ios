@@ -115,7 +115,7 @@ struct OfflineConfirmationView: View {
 extension OfflineConfirmationView {
     enum ConfirmationType {
         case remove
-        case download(size: String)
+        case download(size: String?)
 
         var title: String {
             switch self {
@@ -131,7 +131,11 @@ extension OfflineConfirmationView {
             case .remove:
                 return String(localized: "This will remove all previously synced content from your device.")
             case .download(size: let size):
-                return String(format: String(localized: "This will sync ~%@ content while you are connected to a Wi-Fi network"), size)
+                if let size {
+                    return String(format: String(localized: "This will sync ~%@ content while you are connected to a Wi-Fi network", bundle: .horizon), size)
+                } else {
+                    return String(localized: "This will sync content while you are connected to a Wi-Fi network", bundle: .horizon)
+                }
             }
         }
 
