@@ -19,6 +19,7 @@
 
 const program = require('commander')
 const { spawn } = require('child_process')
+const path = require('path')
 const { createReadStream, readFileSync, writeFileSync } = require('fs')
 const S3 = require('aws-sdk/clients/s3')
 const localizables = require('./localizables.json')
@@ -82,12 +83,30 @@ async function exportTranslations() {
 
 async function processNativeLocalizations(toUpload) {
   const outputPath = 'scripts/translations/source/all/'
-  await exportLocalizations(outputPath)
-  
-  const outputFile = `${outputPath}en.xcloc/Localized Contents/en.xliff`
-  let xml = readFileSync(outputFile, 'utf8')
-  xml = removeNonLocalizedFiles(xml)
+  const projects = [
+    'Student/Student.xcodeproj',
+    'Teacher/Teacher.xcodeproj',
+    'Parent/Parent.xcodeproj',
+  ]
+
+  const xliffContents = []
+  for (const project of projects) {
+    const projectOutputPath = `${outputPath}${path.basename(project, '.xcodeproj')}/`
+    await exportLocalizations(project, projectOutputPath)
+    const xliffFile = `${projectOutputPath}en.xcloc/Localized Contents/en.xliff`
+    xliffContents.push({
+      xml: readFileSync(xliffFile, 'utf8'),
+      projectDir: path.dirname(project),
+    })
+  }
+
+  const mergedXml = mergeXliffs(xliffContents)
+  let xml = removeNonLocalizedFiles(mergedXml)
   xml = removeNonLocalizedKeys(xml)
+
+  const outputFile = `${outputPath}en.xcloc/Localized Contents/en.xliff`
+  const outputDir = path.dirname(outputFile)
+  require('fs').mkdirSync(outputDir, { recursive: true })
   writeFileSync(outputFile, xml, 'utf8')
   toUpload.push({ from: outputFile, to: `all.xliff` })
 }
@@ -110,17 +129,49 @@ async function pushToS3(toUpload) {
   }))
 }
 
-async function exportLocalizations(outputPath) {
+async function exportLocalizations(project, outputPath) {
   await run('xcodebuild', [
     '-exportLocalizations',
-    '-workspace',
-    'Canvas.xcworkspace',
-    '-sdk',
-    'iphonesimulator',
+    '-project',
+    project,
     '-localizationPath',
     outputPath,
-    '-n'
+    'SDKROOT=iphonesimulator',
   ])
+}
+
+function mergeXliffs(xliffContents) {
+  // Use the first xliff as the base, extract <file> elements from all others
+  const filePattern = new RegExp(`<file\\s+original="([^"]+)"[^>]*>[\\s\\S]*?<\\/file>`, 'g')
+
+  const seenOriginals = new Set()
+  const allFiles = []
+
+  for (const { xml, projectDir } of xliffContents) {
+    let match
+    while ((match = filePattern.exec(xml)) !== null) {
+      const rawOriginal = match[1]
+      // Normalize path: resolve relative to project dir, then make relative to repo root
+      const normalized = path.normalize(path.join(projectDir, rawOriginal))
+      if (!seenOriginals.has(normalized)) {
+        seenOriginals.add(normalized)
+        // Replace the original attribute with the normalized path
+        const normalizedFile = match[0].replace(
+          `original="${rawOriginal}"`,
+          `original="${normalized}"`
+        )
+        allFiles.push(normalizedFile)
+      }
+    }
+  }
+
+  // Build a valid xliff document from the first content's header
+  const firstXml = xliffContents[0].xml
+  const headerMatch = firstXml.match(/^[\s\S]*?(?=<file\s)/)
+  const header = headerMatch ? headerMatch[0] : '<?xml version="1.0" encoding="UTF-8"?>\n<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">\n'
+  const footer = '\n</xliff>\n'
+
+  return header + allFiles.join('\n') + footer
 }
 
 function removeNonLocalizedFiles(xml) {
