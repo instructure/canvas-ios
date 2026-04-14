@@ -25,26 +25,26 @@ final class SetAnalyticsConsentTests: XCTestCase {
     // MARK: - cacheKey
 
     func test_cacheKey_shouldBeNil() {
-        let testee = SetAnalyticsConsent(app: .student, value: true)
+        let testee = PutAnalyticsConsent(app: .student, value: true)
         XCTAssertEqual(testee.cacheKey, nil)
     }
 
     // MARK: - request
 
     func test_request_shouldUseAppConsentNamespaceAndValue() {
-        var testee = SetAnalyticsConsent(app: .student, value: true)
+        var testee = PutAnalyticsConsent(app: .student, value: true)
         XCTAssertEqual(testee.request.namespace, .student)
         XCTAssertEqual(testee.request.value, true)
 
-        testee = SetAnalyticsConsent(app: .horizon, value: false)
+        testee = PutAnalyticsConsent(app: .horizon, value: false)
         XCTAssertEqual(testee.request.namespace, .student)
         XCTAssertEqual(testee.request.value, false)
 
-        testee = SetAnalyticsConsent(app: .teacher, value: true)
+        testee = PutAnalyticsConsent(app: .teacher, value: true)
         XCTAssertEqual(testee.request.namespace, .teacher)
         XCTAssertEqual(testee.request.value, true)
 
-        testee = SetAnalyticsConsent(app: .parent, value: false)
+        testee = PutAnalyticsConsent(app: .parent, value: false)
         XCTAssertEqual(testee.request.namespace, .parent)
         XCTAssertEqual(testee.request.value, false)
     }

@@ -18,7 +18,7 @@
 
 import Foundation
 
-struct SetAnalyticsConsent: APIUseCase {
+struct PutAnalyticsConsent: APIUseCase {
     typealias Model = CDAnalyticsConsent
 
     let cacheKey: String? = nil

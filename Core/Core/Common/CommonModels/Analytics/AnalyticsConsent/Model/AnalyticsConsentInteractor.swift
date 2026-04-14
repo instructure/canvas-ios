@@ -107,7 +107,7 @@ public class AnalyticsConsentInteractorLive: AnalyticsConsentInteractor {
 
     public func setConsent(_ value: Bool) -> AnyPublisher<Void, Error> {
         ReactiveStore(
-            useCase: SetAnalyticsConsent(app: environment.app ?? .student, value: value),
+            useCase: PutAnalyticsConsent(app: environment.app ?? .student, value: value),
             backgroundEnv: environment
         )
         .getEntities(ignoreCache: true)

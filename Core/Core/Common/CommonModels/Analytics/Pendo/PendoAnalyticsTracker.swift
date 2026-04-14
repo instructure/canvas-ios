@@ -107,7 +107,6 @@ public final class PendoAnalyticsTracker {
 
     @MainActor
     private func startSession(withMetadata metadata: AnalyticsMetadata) {
-        // Using the current environment at the time of call, because the initial one might be different
         AppEnvironment.shared.pendoID = metadata.userId
 
         // This will also terminate the current session if there is one.
