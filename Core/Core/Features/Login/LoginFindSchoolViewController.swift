@@ -140,8 +140,11 @@ class LoginFindSchoolViewController: UIViewController {
 extension LoginFindSchoolViewController: UITextFieldDelegate {
     @IBAction func textFieldDidChange(_ textField: UITextField) {
         toggleNextButtonVisibility()
-        guard let query = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
-        viewModel.search(query: query)
+
+        guard let query = textField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+        else { return }
+
+        viewModel.searchQuery.send(query)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

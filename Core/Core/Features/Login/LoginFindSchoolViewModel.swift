@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import UIKit
 
 final class LoginFindSchoolViewModel {
@@ -26,6 +27,7 @@ final class LoginFindSchoolViewModel {
     private(set) var accounts: [APIAccountResult] = []
     var hasNextPage: Bool { nextPageRequest != nil }
 
+    let searchQuery = CurrentValueSubject<String, Never>("")
     let state = CurrentValueSubject<State, Never>(.idle)
     let env: AppEnvironment = .shared
 
@@ -35,8 +37,18 @@ final class LoginFindSchoolViewModel {
     private var searchTask: APITask?
     private var pageTask: APITask?
     private var nextPageRequest: GetNextRequest<[APIAccountResult]>?
+    private var subscriptions = Set<AnyCancellable>()
 
-    func search(query: String) {
+    init(scheduler: AnySchedulerOf<DispatchQueue> = .main) {
+        searchQuery
+            .debounce(for: 0.3, scheduler: scheduler)
+            .sink { [weak self] newQuery in
+                self?.performSearch(query: newQuery)
+            }
+            .store(in: &subscriptions)
+    }
+
+    private func performSearch(query: String) {
         guard query.isNotEmpty else {
             accounts = []
             nextPageRequest = nil
@@ -54,10 +66,13 @@ final class LoginFindSchoolViewModel {
 
         let request = GetAccountsSearchRequest(searchTerm: query)
         searchTask = env.api.makeRequest(request) { [weak self] (results, urlResponse, error) in
+            let newAccounts = results?.sortedPromotingQueryPrefixed(query) ?? []
+            let nextRequest = urlResponse.flatMap { request.getNext(from: $0) }
+
             performUIUpdate {
                 guard let self, error == nil else { return }
-                self.accounts = results?.sortedPromotingQueryPrefixed(query) ?? []
-                self.nextPageRequest = urlResponse.flatMap { request.getNext(from: $0) }
+                self.accounts = newAccounts
+                self.nextPageRequest = nextRequest
                 self.searchTask = nil
                 self.state.send(.loaded)
             }
@@ -69,6 +84,9 @@ final class LoginFindSchoolViewModel {
               state.value == .loaded || state.value == .nextPageFailed else { return }
         state.send(.loadingNextPage)
         pageTask = env.api.makeRequest(nextReq) { [weak self] (results, urlResponse, error) in
+            let newAccounts = results ?? []
+            let nextRequest = urlResponse.flatMap { nextReq.getNext(from: $0) }
+
             performUIUpdate {
                 guard let self else { return }
                 guard error == nil else {
@@ -76,8 +94,8 @@ final class LoginFindSchoolViewModel {
                     self.state.send(.nextPageFailed)
                     return
                 }
-                self.accounts.append(contentsOf: results ?? [])
-                self.nextPageRequest = urlResponse.flatMap { nextReq.getNext(from: $0) }
+                self.accounts.append(contentsOf: newAccounts)
+                self.nextPageRequest = nextRequest
                 self.pageTask = nil
                 self.state.send(.loaded)
             }
@@ -101,19 +119,15 @@ final class LoginFindSchoolViewModel {
         if accounts.isEmpty {
             return 1
         }
-        switch state.value {
-        case .loadingNextPage, .nextPageFailed:
-            return accounts.count + 1
-        default:
-            return accounts.count
-        }
+
+        return hasNextPage ? accounts.count + 1 : accounts.count
     }
 
     func rowWillDisplay(at indexPath: IndexPath) {
         guard !accounts.isEmpty,
               state.value == .loaded,
               hasNextPage,
-              indexPath.row == accounts.count - 1 else { return }
+              indexPath.row == rowsCount - 1 else { return }
 
         loadNextPage()
     }

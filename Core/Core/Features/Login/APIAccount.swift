@@ -49,6 +49,8 @@ extension Array where Element == APIAccountResult {
     func sortedPromotingQueryPrefixed(_ query: String) -> Self {
         let qValue = query.lowercased().trimmed()
 
+        guard qValue.isNotEmpty else { return self }
+
         return enumerated()
             .sorted { result1, result2 in
                 let name1 = result1.element.name.lowercased().trimmed()

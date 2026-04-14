@@ -41,7 +41,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         loginDelegate = TestLoginDelegate()
-        testee = LoginFindSchoolViewModel()
+        testee = LoginFindSchoolViewModel(scheduler: .immediate)
         testee.loginDelegate = loginDelegate
     }
 
@@ -82,7 +82,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
 
     func test_rowsCount_withAccounts() {
         api.mock(GetAccountsSearchRequest(searchTerm: "a"), value: [.make(name: testData.name1, domain: testData.domain1)])
-        testee.search(query: "a")
+        testee.searchQuery.send("a")
 
         // WHEN loaded
         XCTAssertEqual(testee.rowsCount, 1)
@@ -100,9 +100,9 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
 
     func test_search_withEmptyQuery_shouldClearAccountsAndSetIdleState() {
         api.mock(GetAccountsSearchRequest(searchTerm: "a"), value: [.make()])
-        testee.search(query: "a")
+        testee.searchQuery.send("a")
 
-        testee.search(query: "")
+        testee.searchQuery.send("")
 
         XCTAssertEqual(testee.state.value, .idle)
         XCTAssertEqual(testee.accounts.count, 0)
@@ -114,7 +114,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
             .make(name: testData.name2, domain: testData.domain2)
         ])
 
-        testee.search(query: "school")
+        testee.searchQuery.send("school")
 
         XCTAssertEqual(testee.state.value, .loaded)
         XCTAssertEqual(testee.accounts.count, 2)
@@ -123,7 +123,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
     func test_search_withNextPageLinkHeader_shouldSetHasNextPage() {
         api.mock(GetAccountsSearchRequest(searchTerm: "school"), value: [.make()], response: makeNextPageResponse())
 
-        testee.search(query: "school")
+        testee.searchQuery.send("school")
 
         XCTAssertEqual(testee.hasNextPage, true)
     }
@@ -131,7 +131,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
     func test_search_withoutNextPageLinkHeader_shouldNotHaveNextPage() {
         api.mock(GetAccountsSearchRequest(searchTerm: "school"), value: [.make()])
 
-        testee.search(query: "school")
+        testee.searchQuery.send("school")
 
         XCTAssertEqual(testee.hasNextPage, false)
     }
@@ -140,7 +140,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
 
     func test_loadNextPage_whenNoNextPage_shouldNotChangeState() {
         api.mock(GetAccountsSearchRequest(searchTerm: "a"), value: [.make()])
-        testee.search(query: "a")
+        testee.searchQuery.send("a")
 
         testee.loadNextPage()
 
@@ -165,7 +165,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
             ],
             response: makeNextPageResponse()
         )
-        testee.search(query: "a")
+        testee.searchQuery.send("a")
         mockNextPage(with: [
             .make(name: testData.name3, domain: testData.domain3),
             .make(name: testData.name4, domain: testData.domain4)
@@ -185,7 +185,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
             value: [.make(name: testData.name1, domain: testData.domain1)],
             response: makeNextPageResponse()
         )
-        testee.search(query: "a")
+        testee.searchQuery.send("a")
         api.mock(
             GetNextRequest<[APIAccountResult]>(path: testData.nextPageURL),
             data: nil,
@@ -207,7 +207,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
             ],
             response: makeNextPageResponse()
         )
-        testee.search(query: "a")
+        testee.searchQuery.send("a")
         api.mock(
             GetNextRequest<[APIAccountResult]>(path: testData.nextPageURL),
             data: nil,
@@ -236,7 +236,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
 
     func test_rowWillDisplay_whenStateIsNotLoaded_shouldNotLoadNextPage() {
         api.mock(GetAccountsSearchRequest(searchTerm: "a"), value: [.make()], response: makeNextPageResponse())
-        testee.search(query: "a")
+        testee.searchQuery.send("a")
         testee.state.send(.nextPageFailed)
 
         testee.rowWillDisplay(at: IndexPath(row: 0, section: 0))
@@ -248,7 +248,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
         api.mock(GetAccountsSearchRequest(searchTerm: "a"), value: [
             .make(name: testData.name1, domain: testData.domain1)
         ])
-        testee.search(query: "a")
+        testee.searchQuery.send("a")
 
         testee.rowWillDisplay(at: IndexPath(row: 0, section: 0))
 
@@ -261,7 +261,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
             .make(name: testData.name1, domain: testData.domain1),
             .make(name: testData.name2, domain: testData.domain2)
         ], response: makeNextPageResponse())
-        testee.search(query: "a")
+        testee.searchQuery.send("a")
 
         testee.rowWillDisplay(at: IndexPath(row: 0, section: 0))
 
@@ -277,7 +277,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
             ],
             response: makeNextPageResponse()
         )
-        testee.search(query: "a")
+        testee.searchQuery.send("a")
         mockNextPage(with: [
             .make(name: testData.name3, domain: testData.domain3),
             .make(name: testData.name4, domain: testData.domain4)
@@ -301,7 +301,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
         api.mock(GetAccountsSearchRequest(searchTerm: "a"), value: [
             .make(name: testData.name1, domain: testData.domain1)
         ])
-        testee.search(query: "a")
+        testee.searchQuery.send("a")
 
         testee.rowSelected(at: IndexPath(row: 0, section: 0), in: UIViewController())
 
@@ -318,7 +318,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
             ],
             response: makeNextPageResponse()
         )
-        testee.search(query: "a")
+        testee.searchQuery.send("a")
         testee.state.send(.nextPageFailed)
         mockNextPage(with: [
             .make(name: testData.name3, domain: testData.domain3),
