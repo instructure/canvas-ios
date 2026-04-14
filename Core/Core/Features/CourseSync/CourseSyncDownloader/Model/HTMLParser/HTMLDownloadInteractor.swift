@@ -116,7 +116,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
                             envResolver: envResolver
                         )
                         .map { [sectionName] _ in
-                            "\(loginSession.baseURL)/courses/\(courseId)/files/\(sectionName)/\(resourceId)/\(fileID)/offline"
+                            "\(loginSession.baseURL)/courses/\(courseId.value)/files/\(sectionName)/\(resourceId)/\(fileID)/offline"
                         }
                     }
                     .eraseToAnyPublisher()

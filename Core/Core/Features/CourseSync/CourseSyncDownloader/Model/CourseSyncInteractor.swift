@@ -232,7 +232,7 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
                 let rootURL = URL.Directories.documents
                     .appendingPathComponent(self.envResolver.sessionId(for: courseId))
                     .appendingPathComponent("Offline")
-                    .appendingPathComponent("course-\(courseId)")
+                    .appendingPathComponent("course-\(courseId.value)")
                 try? FileManager.default.removeItem(at: rootURL)
             }
             .collect()
