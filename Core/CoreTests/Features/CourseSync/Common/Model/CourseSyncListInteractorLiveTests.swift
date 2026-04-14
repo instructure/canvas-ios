@@ -150,7 +150,7 @@ class CourseSyncListInteractorLiveTests: CoreTestCase {
 
     // MARK: - Embedded Content Error
 
-    func testEmbeddedContentErrorCourseIsIncludedWhenDeselected() {
+    func test_getCourseSyncEntries_whenCourseHasEmbeddedContentError_shouldBeIncluded() {
         // GIVEN
         CourseSyncSelectorCourse.save(.make(id: "1", name: "1"), in: databaseClient)
         try? databaseClient.save()
@@ -173,7 +173,7 @@ class CourseSyncListInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
-    func testEmbeddedContentErrorCourseIsExcludedWhenProgressIsNil() {
+    func test_getCourseSyncEntries_whenProgressIsNil_shouldExcludeErrorCourse() {
         // GIVEN
         CourseSyncSelectorCourse.save(.make(id: "1", name: "1"), in: databaseClient)
         try? databaseClient.save()
@@ -189,7 +189,7 @@ class CourseSyncListInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
-    func testEmbeddedContentErrorCourseIsExcludedWhenCourseIdNotInErrorList() {
+    func test_getCourseSyncEntries_whenCourseIdNotInErrorList_shouldExcludeIt() {
         // GIVEN
         CourseSyncSelectorCourse.save(.make(id: "1", name: "1"), in: databaseClient)
         try? databaseClient.save()
@@ -210,7 +210,7 @@ class CourseSyncListInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
-    func testEmbeddedContentErrorSelectedEntryTakesPrecedence() {
+    func test_getCourseSyncEntries_whenCourseIsSelectedAndHasEmbeddedError_shouldUseSelectedEntry() {
         // GIVEN — course is fully selected AND has an embedded content error
         environment.userDefaults?.offlineSyncSelections = ["courses/1"]
         CourseSyncSelectorCourse.save(.make(id: "1", name: "1"), in: databaseClient)
@@ -234,7 +234,7 @@ class CourseSyncListInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
-    func testEmbeddedContentErrorEntryHasDeselectedTabsAndFilesRemoved() {
+    func test_getCourseSyncEntries_whenEmbeddedContentError_shouldRemoveDeselectedTabsAndFiles() {
         // GIVEN
         let selectedTab = CourseSyncEntry.Tab(id: "tab-pages", name: "Pages", type: .pages, isCollapsed: false, selectionState: .selected)
         let deselectedTab = CourseSyncEntry.Tab(id: "tab-assignments", name: "Assignments", type: .assignments, isCollapsed: false, selectionState: .deselected)

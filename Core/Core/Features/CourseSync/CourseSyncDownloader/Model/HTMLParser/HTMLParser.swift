@@ -204,12 +204,12 @@ public class HTMLParserLive: HTMLParser {
     }
 
     private static func handleDownloadError(
-        _ `self`: HTMLParserLive?,
+        _ parser: HTMLParserLive?,
         courseId: CourseSyncID,
         error: Error
     ) -> AnyPublisher<(URL, String)?, Error> {
 
-        self?.embeddedContentFailureSubject.send(courseId)
+        parser?.embeddedContentFailureSubject.send(courseId)
 
         // Non-blocking failure, Non-fatal errors, will get reported as warning
         if error.isForbidden || error.isNotFound {

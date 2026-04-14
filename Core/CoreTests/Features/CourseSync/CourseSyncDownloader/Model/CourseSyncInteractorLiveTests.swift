@@ -923,7 +923,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
-    func testReportsErrorOnStudioMediaSyncFailure() {
+    func test_downloadContent_whenStudioMediaSyncFails_shouldReportEmbeddedContentError() {
         // GIVEN
         let studioInteractorMock = CourseSyncStudioMediaInteractorMock()
         studioInteractorMock.mockedHadError = true
@@ -953,7 +953,7 @@ class CourseSyncInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
-    func testReportsErrorOnEmbeddedPageContentFailure() {
+    func test_downloadContent_whenEmbeddedPageContentFails_shouldReportEmbeddedContentError() {
         // GIVEN
         let pagesWithFailureMock = CourseSyncPagesWithEmbeddedFailureMock()
         let testee = CourseSyncInteractorLive(
@@ -1245,6 +1245,6 @@ private class HTMLParserEmbeddedFailureMock: HTMLParser {
 
 // MARK: - Helper Case
 
-extension CourseSyncEntry.State {
+private extension CourseSyncEntry.State {
     static var downloaded: Self { .downloaded(isEmbeddedMediaComplete: true) }
 }
