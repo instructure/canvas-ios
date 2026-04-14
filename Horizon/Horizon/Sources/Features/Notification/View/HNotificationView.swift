@@ -45,7 +45,7 @@ struct HNotificationView: View {
                     contentView
                         .padding(.vertical, .huiSpaces.space24)
                 }
-                .accessibilityLabel("Notifications list")
+                .accessibilityLabel(String(localized: "Notifications list"))
                 .onAppear {
                     if let lastFocused = lastFocusedNotificationID {
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
@@ -75,7 +75,7 @@ struct HNotificationView: View {
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                     .padding(.huiSpaces.space24)
                     .padding(.top, .huiSpaces.space24)
-                    .accessibilityLabel("No notification activity yet")
+                    .accessibilityLabel(String(localized: "No notification activity yet"))
             } else {
                 ForEach(viewModel.notifications) { activity in
                     Button {
@@ -94,7 +94,7 @@ struct HNotificationView: View {
                         )
                     }
                     .padding(.horizontal, .huiSpaces.space24)
-                    .accessibilityHint("Double tap to view details")
+                    .accessibilityHint(String(localized: "Double tap to view details"))
                     .accessibilityFocused($focusedNotificationID, equals: activity.id)
                 }
                 .animation(.linear, value: viewModel.notifications.count)
@@ -137,7 +137,7 @@ struct HNotificationView: View {
                 Color.huiColors.surface.pageSecondary
                     .ignoresSafeArea()
                 HorizonUI.Spinner(size: .small, showBackground: true)
-                    .accessibilityLabel("Loading notifications")
+                    .accessibilityLabel(String(localized: "Loading notifications"))
             }
         }
     }
@@ -151,8 +151,8 @@ struct HNotificationView: View {
         ) {
             viewModel.seeMore()
         }
-        .accessibilityLabel("Show more")
-        .accessibilityHint("Double tap to load more notifications")
+        .accessibilityLabel(String(localized: "Show more"))
+        .accessibilityHint(String(localized: "Double tap to load more notifications"))
     }
 }
 

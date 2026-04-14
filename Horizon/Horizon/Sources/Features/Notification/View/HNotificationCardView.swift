@@ -30,13 +30,13 @@ struct HNotificationCardView: View {
         VStack(alignment: .leading, spacing: .huiSpaces.space8) {
             HStack {
                 HorizonUI.StatusChip(title: type.title, style: type.style)
-                    .accessibilityLabel("\(type.title) notification type")
+                    .accessibilityLabel(String(format: String(localized: "%@ notification type"), type.title))
                 Spacer()
                 if !isRead {
                     Circle()
                         .fill(Color.huiColors.surface.inversePrimary)
                         .frame(width: 8, height: 8)
-                        .accessibilityLabel("New notification unread")
+                        .accessibilityLabel(String(localized: "New notification unread"))
                         .accessibilityHidden(false)
                 }
             }
@@ -45,18 +45,18 @@ struct HNotificationCardView: View {
                     .multilineTextAlignment(.leading)
                     .huiTypography(.p3)
                     .foregroundStyle(Color.huiColors.text.timestamp)
-                    .accessibilityLabel("Course: \(courseName)")
+                    .accessibilityLabel(String(format: String(localized: "Course %@"), courseName))
             }
             Text(title)
                 .huiTypography(.p1)
                 .multilineTextAlignment(.leading)
                 .foregroundStyle(Color.huiColors.text.body)
-                .accessibilityLabel("Title: \(title)")
+                .accessibilityLabel(String(format: String(localized: "Title %@"), title))
 
             Text(date)
                 .huiTypography(.p3)
                 .foregroundStyle(Color.huiColors.text.timestamp)
-                .accessibilityLabel("Date: \(date)")
+                .accessibilityLabel(String(format: String(localized: "Date: %@"), date) )
         }
         .padding(.huiSpaces.space16)
         .huiCornerRadius(level: .level2)
