@@ -50,6 +50,8 @@ struct ToDoWidgetListView: View {
                 AUI.Divider(.padded)
             }
         }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(.format(accessibilityListCount: viewModel.items.count))
     }
 
     private func isSwipingBinding(for item: TodoItemViewModel) -> Binding<Bool> {
