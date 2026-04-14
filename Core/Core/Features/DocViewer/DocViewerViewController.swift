@@ -33,6 +33,7 @@ public class DocViewerViewController: UIViewController {
             annotationToolbarViewModel.annotationProvider = annotationProvider
         }
     }
+    var annotationToolbarTintColor: UIColor?
     private var env: AppEnvironment = .defaultValue
     public var fallbackURL: URL!
     var fallbackUsed = false
@@ -184,6 +185,15 @@ public class DocViewerViewController: UIViewController {
 
         if isAnnotatable, metadata?.annotations?.enabled == true {
             let annotationToolbar = DocViewerAnnotationToolbar(annotationStateManager: pdf.annotationStateManager)
+
+            /// This is set here to avoid the issue where annotationToolbar tintColor
+            /// is being derived from current navigationBar barTintColor, while being not set
+            /// intentionally in `navigationBar.useStyle(_:)` for iOS 26, so to achieve the
+            /// the look and feel of iOS 26 liquid glass.
+            if let color = annotationToolbarTintColor {
+                annotationToolbar.tintColor = color
+            }
+
             annotationToolbar.backgroundView = nil
             annotationToolbar.borderedToolbarPositions = []
             annotationToolbar.isDragButtonSelected
