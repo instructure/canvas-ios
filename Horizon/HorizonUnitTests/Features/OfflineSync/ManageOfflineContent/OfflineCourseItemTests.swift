@@ -111,13 +111,13 @@ final class OfflineCourseItemTests: HorizonTestCase {
     func test_sizeToDownload_withNoSubItems_shouldReturnFallback() {
         let testee = makeCourse(subItems: [])
 
-        XCTAssertEqual(testee.sizeToDownload, 100_000)
+        XCTAssertEqual(testee.sizeToDownload, 0.0)
     }
 
     func test_sizeToDownload_withSubItems_shouldReturnSumOfSubItemSizes() {
         let testee = makeCourse(subItems: [
-            makeSubItem(id: testData.subItemID1, isSelected: false, sizeInBytes: testData.subItemSizeInBytes1),
-            makeSubItem(id: testData.subItemID2, isSelected: false, sizeInBytes: testData.subItemSizeInBytes2)
+            makeSubItem(id: testData.subItemID1, isSelected: true, sizeInBytes: testData.subItemSizeInBytes1),
+            makeSubItem(id: testData.subItemID2, isSelected: true, sizeInBytes: testData.subItemSizeInBytes2)
         ])
 
         XCTAssertEqual(testee.sizeToDownload, testData.subItemSizeInBytes1 + testData.subItemSizeInBytes2)

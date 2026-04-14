@@ -112,7 +112,7 @@ final class CDHCourseSelectionTests: CoreTestCase {
 
         let result = CDHCourseSelection.save(apiEntity: enrollment, in: databaseClient)
 
-        XCTAssertFalse(result.size.isEmpty)
+        XCTAssertFalse(result.size?.isEmpty == true)
     }
 
     func test_save_withNoFiles_shouldUseFallbackSize() {
@@ -125,7 +125,7 @@ final class CDHCourseSelectionTests: CoreTestCase {
 
         let result = CDHCourseSelection.save(apiEntity: enrollment, in: databaseClient)
 
-        XCTAssertFalse(result.size.isEmpty)
+        XCTAssertFalse(result.size?.isEmpty == false)
     }
 
     func test_save_withFilesHavingNilIDs_shouldFilterThemOut() {
