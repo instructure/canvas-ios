@@ -84,9 +84,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
                         environment: envResolver.targetEnvironment(for: courseId)
                     )
                     .getEntities(ignoreCache: false)
-                    .map { files in
-                        return files.first?.url ?? url
-                    }
+                    .extractUnlockedFileURL(defaultURL: url)
                     .eraseToAnyPublisher()
                 } else {
                     return Just(url).setFailureType(to: Error.self).eraseToAnyPublisher()
@@ -201,5 +199,26 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         } catch {
             return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image", bundle: .core)))).eraseToAnyPublisher()
         }
+    }
+}
+
+// MARK: - Helpers
+
+private extension Publisher where Output == [File] {
+
+    func extractUnlockedFileURL(defaultURL: URL) -> some Publisher<URL, any Error> {
+        tryMap({ files in
+            if let file = files.first {
+                if file.locked {
+                    throw NSError.instructureError(
+                        "File is locked",
+                        code: HttpError.forbidden
+                    )
+                } else {
+                    return file.url ?? defaultURL
+                }
+            }
+            return defaultURL
+        })
     }
 }
