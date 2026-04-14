@@ -29,10 +29,4 @@ extension View {
             self
         }
     }
-
-    /// This is a convenience overload of the `accessibilityLabel` that accepts a `String` instead of a `Text`.
-    @ViewBuilder
-    public func accessibilityLabel(_ label: String, isEnabled: Bool) -> some View {
-        self.accessibilityLabel(Text(label), isEnabled: isEnabled)
-    }
 }
