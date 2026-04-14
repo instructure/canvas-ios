@@ -179,15 +179,15 @@ final class OfflineCourseItemTests: HorizonTestCase {
 
         let testee = OfflineCourseItem(from: courseEntity)
 
-        XCTAssertEqual(testee.subItems.count, 1)
-        XCTAssertEqual(testee.subItems.first?.id, testData.subItemID1)
+        XCTAssertEqual(testee.files.count, 1)
+        XCTAssertEqual(testee.files.first?.id, testData.subItemID1)
     }
 
     // MARK: - Private helpers
 
     private func makeCourse(
         isSelected: Bool = false,
-        subItems: [OfflineSubItem]
+        subItems: [OfflineFileItem]
     ) -> OfflineCourseItem {
         OfflineCourseItem(
             id: testData.courseID,
@@ -203,14 +203,15 @@ final class OfflineCourseItemTests: HorizonTestCase {
         id: String,
         isSelected: Bool,
         sizeInBytes: Double = 1_000_000
-    ) -> OfflineSubItem {
-        OfflineSubItem(
+    ) -> OfflineFileItem {
+        OfflineFileItem(
             id: id,
             name: "sub item name",
             size: "1 MB",
             sizeInBytes: sizeInBytes,
             isSelected: isSelected,
-            mimeClass: "pdf"
+            mimeClass: "pdf",
+            courseID: "11"
         )
     }
 }

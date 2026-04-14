@@ -127,7 +127,9 @@ final class CDHCourseSelectionFileTests: CoreTestCase {
             id: id,
             displayName: displayName,
             size: size,
-            url: url
+            url: url,
+            mimeClass: "pdf",
+            updatedAt: nil
         )
     }
 }

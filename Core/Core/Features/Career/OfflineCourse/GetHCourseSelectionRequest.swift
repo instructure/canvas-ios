@@ -48,7 +48,7 @@ public struct GetHCourseSelectionRequest: APIGraphQLRequestable {
                                     moduleItems {
                                         content {
                                             ... on File {
-                                                id
+                                                _id
                                                 displayName
                                                 size
                                                 url

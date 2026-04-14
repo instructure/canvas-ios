@@ -20,7 +20,7 @@ import HorizonUI
 import SwiftUI
 
 struct OfflineSubItemRowView: View {
-    let subItem: OfflineSubItem
+    let subItem: OfflineFileItem
     let onToggle: () -> Void
 
     var body: some View {

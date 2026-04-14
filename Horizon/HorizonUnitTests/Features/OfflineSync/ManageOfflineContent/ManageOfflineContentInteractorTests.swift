@@ -69,10 +69,10 @@ final class ManageOfflineContentInteractorLiveTests: HorizonTestCase {
         ])
 
         XCTAssertSingleOutputAndFinish(testee.getCourses(ignoreCache: true)) { items in
-            XCTAssertEqual(items.first?.subItems.count, 1)
-            XCTAssertEqual(items.first?.subItems.first?.id, "file 1")
-            XCTAssertEqual(items.first?.subItems.first?.name, "file name 1")
-            XCTAssertEqual(items.first?.subItems.first?.size, "2 MB")
+            XCTAssertEqual(items.first?.files.count, 1)
+            XCTAssertEqual(items.first?.files.first?.id, "file 1")
+            XCTAssertEqual(items.first?.files.first?.name, "file name 1")
+            XCTAssertEqual(items.first?.files.first?.size, "2 MB")
         }
     }
 
@@ -128,6 +128,13 @@ final class ManageOfflineContentInteractorLiveTests: HorizonTestCase {
         displayName: String,
         size: String
     ) -> GetHCourseSelectionResponse.Content {
-        GetHCourseSelectionResponse.Content(id: id, displayName: displayName, size: size, url: nil)
+        GetHCourseSelectionResponse.Content(
+            id: id,
+            displayName: displayName,
+            size: size,
+            url: nil,
+            mimeClass: "pdf",
+            updatedAt: nil
+        )
     }
 }

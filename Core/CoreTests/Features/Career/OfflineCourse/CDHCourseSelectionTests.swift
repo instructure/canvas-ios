@@ -151,7 +151,14 @@ final class CDHCourseSelectionTests: CoreTestCase {
         displayName: String?,
         size: String?
     ) -> GetHCourseSelectionResponse.Content {
-        GetHCourseSelectionResponse.Content(id: id, displayName: displayName, size: size, url: nil)
+        GetHCourseSelectionResponse.Content(
+            id: id,
+            displayName: displayName,
+            size: size,
+            url: nil,
+            mimeClass: "pdf",
+            updatedAt: nil
+        )
     }
 
     private func makeEnrollment(

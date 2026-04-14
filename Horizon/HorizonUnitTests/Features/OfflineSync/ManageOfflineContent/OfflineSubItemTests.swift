@@ -43,7 +43,7 @@ final class OfflineSubItemTests: HorizonTestCase {
         entity.sizeInBytes = testData.fileSizeInBytes
         entity.url = testData.fileURL
 
-        let testee = OfflineSubItem(from: entity)
+        let testee = OfflineFileItem(from: entity)
 
         XCTAssertEqual(testee.id, testData.fileID)
         XCTAssertEqual(testee.name, testData.fileName)
@@ -60,7 +60,7 @@ final class OfflineSubItemTests: HorizonTestCase {
         entity.size = testData.fileSize
         entity.sizeInBytes = testData.fileSizeInBytes
 
-        let testee = OfflineSubItem(from: entity)
+        let testee = OfflineFileItem(from: entity)
 
         XCTAssertEqual(testee.isSelected, false)
     }
@@ -74,7 +74,7 @@ final class OfflineSubItemTests: HorizonTestCase {
         entity.sizeInBytes = testData.fileSizeInBytes
         entity.url = nil
 
-        let testee = OfflineSubItem(from: entity)
+        let testee = OfflineFileItem(from: entity)
 
         XCTAssertEqual(testee.url, nil)
     }

@@ -39,24 +39,24 @@ struct OfflineCourseItem: Identifiable {
     let size: String
     var isExpanded: Bool = false
     var isSelected: Bool = false
-    var subItems: [OfflineSubItem]
-    var hasSubItems: Bool { subItems.isNotEmpty }
+    var files: [OfflineFileItem]
+    var hasSubItems: Bool { files.isNotEmpty }
 
     var selectionState: OfflineCheckboxState {
-        guard !subItems.isEmpty else {
+        guard !files.isEmpty else {
             return isSelected ? .checked : .unchecked
         }
-        let selectedCount = subItems.filter { $0.isSelected }.count
-        if selectedCount == subItems.count { return .checked }
+        let selectedCount = files.filter { $0.isSelected }.count
+        if selectedCount == files.count { return .checked }
         if selectedCount == 0 { return .unchecked }
         return .partial
     }
 
     var sizeToDownload: Double {
-        guard subItems.isNotEmpty else {
+        guard files.isNotEmpty else {
             return 100_000
         }
-        return subItems.map(\.sizeInBytes).reduce(0, +)
+        return files.map(\.sizeInBytes).reduce(0, +)
     }
 
     init(
@@ -65,20 +65,20 @@ struct OfflineCourseItem: Identifiable {
         size: String,
         isExpanded: Bool,
         isSelected: Bool,
-        subItems: [OfflineSubItem]
+        subItems: [OfflineFileItem]
     ) {
         self.id = id
         self.name = name
         self.size = size
         self.isExpanded = isExpanded
         self.isSelected = isSelected
-        self.subItems = subItems
+        self.files = subItems
     }
 
     init(from entity: CDHCourseSelection) {
         self.id = entity.id
         self.name = entity.name
         self.size = entity.size
-        self.subItems = entity.files.map { .init(from: $0) }
+        self.files = entity.files.map { .init(from: $0) }
     }
 }

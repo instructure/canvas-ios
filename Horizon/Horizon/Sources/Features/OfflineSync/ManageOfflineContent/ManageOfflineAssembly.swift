@@ -28,7 +28,9 @@ struct ManageOfflineAssembly {
             interactor: interact,
             router: AppEnvironment.shared.router,
             session: SessionDefaults(sessionID: (AppEnvironment.shared.currentSession?.uniqueID).defaultToEmpty)
-        )
+        ) {
+            AppEnvironment.shared.switchToTab(at: HorizonTabBarType.dashboard.index)
+        }
         let view = ManageOfflineContentView(viewModel: viewModel)
         return CoreHostingController(view)
     }

@@ -92,8 +92,10 @@ struct OfflineConfirmationView: View {
                                         type: type.isRemove ? .danger : .black,
                                         fillsWidth: false
                 ) {
-                    onTapConfirmation()
                     dismiss()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                        onTapConfirmation()
+                    }
                 }
                 .padding(.horizontal, .huiSpaces.space16)
                 .padding(.top, .huiSpaces.space12)

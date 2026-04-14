@@ -69,5 +69,10 @@ public struct GetHCourseSelectionResponse: Codable {
         let id, displayName, size: String?
         let url: URL?
         let mimeClass: String?
+        let updatedAt: Date?
+        enum CodingKeys: String, CodingKey {
+            case id = "_id"
+            case displayName, size, url, mimeClass, updatedAt
+        }
     }
 }

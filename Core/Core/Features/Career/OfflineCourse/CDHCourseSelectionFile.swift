@@ -27,6 +27,7 @@ public final class CDHCourseSelectionFile: NSManagedObject, SizeStringConvertibl
     @NSManaged public var sizeInBytes: Double
     @NSManaged public var url: URL?
     @NSManaged public var mimeClass: String
+    @NSManaged public var updatedAt: Date?
 
     @discardableResult
     static func save(
@@ -47,6 +48,7 @@ public final class CDHCourseSelectionFile: NSManagedObject, SizeStringConvertibl
         dbEntity.sizeInBytes = bytes(from: file.size.defaultToEmpty)
         dbEntity.size = file.size.defaultToEmpty
         dbEntity.mimeClass = file.mimeClass.defaultToEmpty
+        dbEntity.updatedAt = file.updatedAt
         return dbEntity
     }
 }

@@ -44,7 +44,7 @@ struct OfflineCourseListView: View {
     }
 
     private func filesListView(course: OfflineCourseItem) -> some View {
-        ForEach(course.subItems) { subItem in
+        ForEach(course.files) { subItem in
             OfflineSubItemRowView(
                 subItem: subItem,
                 onToggle: { onToggleSubItem(course.id, subItem.id) }

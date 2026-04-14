@@ -58,17 +58,20 @@ final class ManageOfflineContentViewModel {
     private let interactor: ManageOfflineContentInteractor
     private let router: Router
     private let session: SessionDefaults
+    private let onSwitchDashboardTap: () -> Void
 
     // MARK: - Init
 
     init(
         interactor: ManageOfflineContentInteractor,
         router: Router,
-        session: SessionDefaults
+        session: SessionDefaults,
+        onSwitchDashboardTap: @escaping () -> Void
     ) {
         self.interactor = interactor
         self.router = router
         self.session = session
+        self.onSwitchDashboardTap = onSwitchDashboardTap
         fetchCourses(ignoreCache: false)
     }
 
@@ -107,10 +110,10 @@ final class ManageOfflineContentViewModel {
         let shouldSelectAll = selectAllState != .checked
         courses = courses.map { course in
             var updated = course
-            if course.subItems.isEmpty {
+            if course.files.isEmpty {
                 updated.isSelected = shouldSelectAll
             } else {
-                updated.subItems = course.subItems.map { item in
+                updated.files = course.files.map { item in
                     var updatedItem = item
                     updatedItem.isSelected = shouldSelectAll
                     return updatedItem
@@ -133,7 +136,7 @@ final class ManageOfflineContentViewModel {
         if !courses[index].hasSubItems {
             courses[index].isSelected = shouldSelect
         } else {
-            courses[index].subItems = courses[index].subItems.map { item in
+            courses[index].files = courses[index].files.map { item in
                 var updated = item
                 updated.isSelected = shouldSelect
                 return updated
@@ -143,10 +146,10 @@ final class ManageOfflineContentViewModel {
 
     func toggleSubItem(courseID: String, subItemID: String) {
         guard let courseIndex = courses.firstIndex(where: { $0.id == courseID }),
-              let itemIndex = courses[courseIndex].subItems.firstIndex(where: { $0.id == subItemID })
+              let itemIndex = courses[courseIndex].files.firstIndex(where: { $0.id == subItemID })
         else { return }
         var updatedCourse = courses[courseIndex]
-        updatedCourse.subItems[itemIndex].isSelected.toggle()
+        updatedCourse.files[itemIndex].isSelected.toggle()
         courses[courseIndex] = updatedCourse
     }
 
@@ -155,9 +158,15 @@ final class ManageOfflineContentViewModel {
     }
 
     func presentConfirmation(type: OfflineConfirmationView.ConfirmationType, viewController: WeakViewController) {
-        let view = OfflineConfirmationAssembly.makeView(type: type) {
-
+        let confirmationView = OfflineConfirmationAssembly.makeView(type: type) { [weak self] in
+            switch type {
+            case .remove:
+                debugPrint("Removed")
+            case .download:
+                self?.router.popToRoot(from: viewController.value, animated: false)
+                self?.onSwitchDashboardTap()
+            }
         }
-        router.show(view, from: viewController, options: .modal(.fullScreen))
+        router.show(confirmationView, from: viewController, options: .modal(.fullScreen))
     }
 }

@@ -158,7 +158,7 @@ struct ManageOfflineContentView: View {
         interactor: ManageOfflineContentInteractorPreview(),
         router: AppEnvironment.shared.router,
         session: AppEnvironment.shared.userDefaults!
-    )
+    ) {}
     ManageOfflineContentView(viewModel: viewModel)
 }
 #endif

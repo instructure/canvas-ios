@@ -74,7 +74,44 @@ final class GetHCourseSelectionRequestTests: CoreTestCase {
     func test_input_equality_whenDifferentHorizonCourses_shouldNotBeEqual() {
         let input1 = GetHCourseSelectionRequest.Input(id: Self.userID, horizonCourses: true)
         let input2 = GetHCourseSelectionRequest.Input(id: Self.userID, horizonCourses: false)
-
         XCTAssertNotEqual(input1, input2)
+    }
+
+    func test_query() {
+        let query =
+            """
+            query GetCourseSelection($id: ID!, $horizonCourses: Boolean) {
+                legacyNode(_id: $id, type: User) {
+                    ... on User {
+                        enrollments(currentOnly: true, horizonCourses: $horizonCourses) {
+                            _id
+                            course {
+                                _id
+                                name
+                                modulesConnection {
+                                    edges {
+                                        node {
+                                            moduleItems {
+                                                content {
+                                                    ... on File {
+                                                        _id
+                                                        displayName
+                                                        size
+                                                        url
+                                                        mimeClass
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            """
+
+        XCTAssertEqual(GetHCourseSelectionRequest.query, query)
     }
 }

@@ -29,7 +29,6 @@ struct OfflineFileItem: Identifiable {
     let sizeInBytes: Double
     let updatedAt: Date?
     var isSelected: Bool = false
-    var downloadState: DownloadState = .idle
     init(
         id: String,
         name: String,
@@ -62,11 +61,4 @@ struct OfflineFileItem: Identifiable {
         self.courseID = entity.courseID
         self.updatedAt = entity.updatedAt
     }
-}
-enum DownloadState: Equatable {
-    case idle
-    case loading
-    case downloading(progress: Float)
-    case downloaded
-    case failed(String) // better than Error for Equatable
 }

@@ -128,7 +128,7 @@ final class ManageOfflineContentViewModelTests: HorizonTestCase {
 
         testee.toggleSelectAll()
 
-        XCTAssertEqual(testee.courses.first?.subItems.allSatisfy { $0.isSelected }, true)
+        XCTAssertEqual(testee.courses.first?.files.allSatisfy { $0.isSelected }, true)
     }
 
     func test_toggleSelectAll_whenNoneSelected_shouldSelectAllCourses() {
@@ -162,7 +162,7 @@ final class ManageOfflineContentViewModelTests: HorizonTestCase {
 
         testee.toggleSelectAll()
 
-        XCTAssertEqual(testee.courses.first?.subItems.allSatisfy { $0.isSelected }, true)
+        XCTAssertEqual(testee.courses.first?.files.allSatisfy { $0.isSelected }, true)
     }
 
     // MARK: - toggleExpand
@@ -225,7 +225,7 @@ final class ManageOfflineContentViewModelTests: HorizonTestCase {
 
         testee.toggleCourse(course)
 
-        XCTAssertEqual(testee.courses.first?.subItems.allSatisfy { $0.isSelected }, true)
+        XCTAssertEqual(testee.courses.first?.files.allSatisfy { $0.isSelected }, true)
     }
 
     func test_toggleCourse_withPartiallySelectedSubItems_shouldSelectAllSubItems() {
@@ -237,7 +237,7 @@ final class ManageOfflineContentViewModelTests: HorizonTestCase {
 
         testee.toggleCourse(course)
 
-        XCTAssertEqual(testee.courses.first?.subItems.allSatisfy { $0.isSelected }, true)
+        XCTAssertEqual(testee.courses.first?.files.allSatisfy { $0.isSelected }, true)
     }
 
     func test_toggleCourse_withAllSubItemsSelected_shouldDeselectAllSubItems() {
@@ -249,7 +249,7 @@ final class ManageOfflineContentViewModelTests: HorizonTestCase {
 
         testee.toggleCourse(course)
 
-        XCTAssertEqual(testee.courses.first?.subItems.allSatisfy { !$0.isSelected }, true)
+        XCTAssertEqual(testee.courses.first?.files.allSatisfy { !$0.isSelected }, true)
     }
 
     // MARK: - toggleSubItem
@@ -261,7 +261,7 @@ final class ManageOfflineContentViewModelTests: HorizonTestCase {
 
         testee.toggleSubItem(courseID: testData.courseID1, subItemID: testData.subItemID1)
 
-        XCTAssertEqual(testee.courses.first?.subItems.first?.isSelected, true)
+        XCTAssertEqual(testee.courses.first?.files.first?.isSelected, true)
     }
 
     func test_toggleSubItem_whenAlreadySelected_shouldDeselect() {
@@ -271,7 +271,7 @@ final class ManageOfflineContentViewModelTests: HorizonTestCase {
 
         testee.toggleSubItem(courseID: testData.courseID1, subItemID: testData.subItemID1)
 
-        XCTAssertEqual(testee.courses.first?.subItems.first?.isSelected, false)
+        XCTAssertEqual(testee.courses.first?.files.first?.isSelected, false)
     }
 
     func test_toggleSubItem_withUnknownCourseID_shouldNotChangeState() {
@@ -281,7 +281,7 @@ final class ManageOfflineContentViewModelTests: HorizonTestCase {
 
         testee.toggleSubItem(courseID: "unknown id", subItemID: testData.subItemID1)
 
-        XCTAssertEqual(testee.courses.first?.subItems.first?.isSelected, false)
+        XCTAssertEqual(testee.courses.first?.files.first?.isSelected, false)
     }
 
     func test_toggleSubItem_withUnknownSubItemID_shouldNotChangeState() {
@@ -291,7 +291,7 @@ final class ManageOfflineContentViewModelTests: HorizonTestCase {
 
         testee.toggleSubItem(courseID: testData.courseID1, subItemID: "unknown id")
 
-        XCTAssertEqual(testee.courses.first?.subItems.first?.isSelected, false)
+        XCTAssertEqual(testee.courses.first?.files.first?.isSelected, false)
     }
 
     // MARK: - pop
@@ -327,7 +327,7 @@ final class ManageOfflineContentViewModelTests: HorizonTestCase {
             interactor: interactor,
             router: router,
             session: session
-        )
+        ) {}
     }
 
     private func makeCourse(
@@ -335,7 +335,7 @@ final class ManageOfflineContentViewModelTests: HorizonTestCase {
         name: String = "course name",
         isExpanded: Bool = false,
         isSelected: Bool = false,
-        subItems: [OfflineSubItem] = []
+        subItems: [OfflineFileItem] = []
     ) -> OfflineCourseItem {
         OfflineCourseItem(
             id: id,
@@ -350,14 +350,15 @@ final class ManageOfflineContentViewModelTests: HorizonTestCase {
     private func makeSubItem(
         id: String,
         isSelected: Bool
-    ) -> OfflineSubItem {
-        OfflineSubItem(
+    ) -> OfflineFileItem {
+        OfflineFileItem(
             id: id,
             name: "sub item name",
             size: "1 MB",
             sizeInBytes: 1_000_000,
             isSelected: isSelected,
-            mimeClass: "pdf"
+            mimeClass: "pdf",
+            courseID: "121"
         )
     }
 }

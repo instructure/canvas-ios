@@ -309,6 +309,7 @@
         <attribute name="name" attributeType="String"/>
         <attribute name="size" attributeType="String"/>
         <attribute name="sizeInBytes" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
         <relationship name="relationship" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDHCourseSelection" inverseName="files" inverseEntity="CDHCourseSelection"/>
     </entity>
