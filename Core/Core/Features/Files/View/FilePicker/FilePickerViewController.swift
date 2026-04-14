@@ -24,7 +24,7 @@ import PDFKit
 import UniformTypeIdentifiers
 import PhotosUI
 
-public enum FilePickerSource: CaseIterable {
+public enum FilePickerSource: CaseIterable, Comparable {
     case audio, camera, library, files, documentScan
 
     static var defaults: [FilePickerSource] = [.camera, .library, .files, .documentScan]
@@ -119,7 +119,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         navigationController?.setToolbarHidden(false, animated: true)
 
         let items = {
-            sources.map { source in
+            sources.sorted().map { source in
                 let item = UIBarButtonItemWithCompletion(
                     title: source.title,
                     image: source.image,
