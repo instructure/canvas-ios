@@ -1,6 +1,6 @@
 ---
 name: Student
-attributes: { LastUpgradeCheck: "1600" }
+attributes: { LastUpgradeCheck: "2640" }
 options:
   groupSortPosition: top
   bundleIdPrefix: com.instructure.icanvas
