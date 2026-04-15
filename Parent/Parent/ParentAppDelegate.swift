@@ -45,6 +45,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
         setupFirebase()
+        Analytics.shared.handler = analyticsHandler
         CacheManager.resetAppIfNecessary()
         #if DEBUG
             UITestHelpers.setup(self)
@@ -322,7 +323,6 @@ extension ParentAppDelegate {
         if FirebaseOptions.defaultOptions()?.apiKey != nil {
             FirebaseApp.configure()
             configureRemoteConfig()
-            Analytics.shared.handler = analyticsHandler
             RemoteLogger.shared.handler = self
         }
     }

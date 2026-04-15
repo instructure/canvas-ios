@@ -68,6 +68,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         }
         BackgroundProcessingAssembly.resolveInteractor().register(taskID: OfflineSyncBackgroundTaskRequest.ID)
         setupFirebase()
+        Analytics.shared.handler = analyticsHandler
         CacheManager.resetAppIfNecessary()
 
         #if DEBUG
@@ -543,7 +544,6 @@ extension StudentAppDelegate {
         if FirebaseOptions.defaultOptions()?.apiKey != nil {
             FirebaseApp.configure()
             configureRemoteConfig()
-            Core.Analytics.shared.handler = analyticsHandler
             RemoteLogger.shared.handler = self
         }
     }

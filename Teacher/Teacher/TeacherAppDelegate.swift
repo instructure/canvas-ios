@@ -48,6 +48,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         if NSClassFromString("XCTestCase") != nil { return true }
         LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
         setupFirebase()
+        Analytics.shared.handler = analyticsHandler
         CacheManager.resetAppIfNecessary()
         #if DEBUG
             UITestHelpers.setup(self)
@@ -419,7 +420,6 @@ extension TeacherAppDelegate {
         if FirebaseOptions.defaultOptions()?.apiKey != nil {
             FirebaseApp.configure()
             configureRemoteConfig()
-            Core.Analytics.shared.handler = analyticsHandler
             RemoteLogger.shared.handler = self
         }
     }
