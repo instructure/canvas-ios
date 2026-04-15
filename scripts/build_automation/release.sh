@@ -55,7 +55,6 @@ if [ "${1}" = "--branch" ]; then
 		printHelp
 		exit 1
 	fi
- 1Uh7hn0M6RQvyues
 	BRANCH=$2
 	shift 2
 fi
