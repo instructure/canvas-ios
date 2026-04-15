@@ -61,9 +61,6 @@ public final class CourseSyncSelectorCourse: NSManagedObject {
                 return tab
             }
 
-            // By this point of execution, this relationship would be already set as
-            // a result of setting `Tab.course` property to this object in `Tab.save(..)`
-            // method. But we do it anyway here for more emphasis and consistency.
             dbEntity.tabs = Set(tabs)
         } else {
             dbEntity.tabs = []
