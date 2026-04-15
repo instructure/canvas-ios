@@ -91,6 +91,7 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
         sessionStartCompletion: @escaping () -> Void
     ) -> AnyPublisher<Void, Error> {
         consentInteractor = consentInteractorProvider(environment)
+        Logger.shared.log("AnalyticsHandlerLive.initializeTracking()")
 
         // Ensure pageview tracking is disabled (clears any leftover from previous user)
         PageViewEventController.instance.endTracking()

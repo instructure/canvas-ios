@@ -536,6 +536,7 @@ extension StudentAppDelegate {
 extension StudentAppDelegate {
     @objc func setupFirebase() {
         guard !testing else {
+            Logger.shared.log("StudentAppDelegate.setupFirebase(): testing ⚠️")
             setupDebugCrashLogging()
             return
         }
