@@ -91,7 +91,6 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
         sessionStartCompletion: @escaping () -> Void
     ) -> AnyPublisher<Void, Error> {
         consentInteractor = consentInteractorProvider(environment)
-        Logger.shared.log("AnalyticsHandlerLive.initializeTracking()")
 
         // Ensure pageview tracking is disabled (clears any leftover from previous user)
         PageViewEventController.instance.endTracking()
@@ -159,7 +158,6 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
 
     @MainActor
     public func handleConsentChange(to isAnalyticsEnabled: Bool, sessionStartCompletion: @escaping () -> Void) {
-        Logger.shared.log("AnalyticsHandlerLive.handleConsentChange(to: \(isAnalyticsEnabled ? "✅" : "❌"))")
         if isAnalyticsEnabled {
             analyticsTracker.startSession(completion: sessionStartCompletion)
             PageViewEventController.instance.startTracking()
