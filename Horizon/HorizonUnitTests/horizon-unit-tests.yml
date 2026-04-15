@@ -12,3 +12,4 @@ targets:
           - ".swiftlint.yml"
     dependencies:
       - target: Horizon
+      - target: Core/TestsFoundation
