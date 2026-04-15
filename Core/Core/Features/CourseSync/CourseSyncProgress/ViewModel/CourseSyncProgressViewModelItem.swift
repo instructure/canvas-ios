@@ -68,7 +68,7 @@ extension CourseSyncProgressViewModel {
 extension Array where Element == CourseSyncEntry {
 
     func makeSyncProgressViewModelItems(interactor: CourseSyncProgressInteractor) -> [CourseSyncProgressViewModel.Cell] {
-        weak var interactor = interactor
+        weak let interactor = interactor
 
         var cells: [CourseSyncProgressViewModel.Cell] = []
 
