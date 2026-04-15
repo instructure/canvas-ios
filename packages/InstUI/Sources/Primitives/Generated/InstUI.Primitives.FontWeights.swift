@@ -22,17 +22,17 @@ import SwiftUI
 // Names follow the CSS / design-token convention (thin=100, extraLight=200, …).
 // SwiftUI uses different names for the same numeric values (100=.ultraLight, 200=.thin, …),
 // so the mapping below is correct by weight value, not by name.
-public extension InstUI.Primitives {
-    enum FontWeights {
-        static let thin: Font.Weight = .ultraLight
-        static let extraLight: Font.Weight = .thin
-        static let light: Font.Weight = .light
-        static let regular: Font.Weight = .regular
-        static let medium: Font.Weight = .medium
-        static let semiBold: Font.Weight = .semibold
-        static let bold: Font.Weight = .bold
-        static let extraBold: Font.Weight = .heavy
-        static let black: Font.Weight = .black
+extension InstUI.Primitives {
+    public enum FontWeights {
+        public static let thin: Font.Weight = .ultraLight
+        public static let extraLight: Font.Weight = .thin
+        public static let light: Font.Weight = .light
+        public static let regular: Font.Weight = .regular
+        public static let medium: Font.Weight = .medium
+        public static let semiBold: Font.Weight = .semibold
+        public static let bold: Font.Weight = .bold
+        public static let extraBold: Font.Weight = .heavy
+        public static let black: Font.Weight = .black
 
         // `name` is the full dotted token path, e.g. "fontWeight.bold"
         internal static let all: [(name: String, weight: Font.Weight)] = [
@@ -51,9 +51,9 @@ public extension InstUI.Primitives {
 
 private typealias _PrimitiveFontWeights = InstUI.Primitives.FontWeights
 
-public extension Font.Weight {
+extension Font.Weight {
 
-    enum InstUI {
+    public enum InstUI {
         public enum Primitives {
             public static let thin = _PrimitiveFontWeights.thin
             public static let extraLight = _PrimitiveFontWeights.extraLight
