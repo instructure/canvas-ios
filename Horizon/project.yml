@@ -1,7 +1,7 @@
 ---
 name: Horizon
 attributes: {
-  LastUpgradeCheck: "2610"
+  LastUpgradeCheck: "2640"
 }
 options:
   groupSortPosition: top
@@ -21,6 +21,8 @@ settings:
   MARKETING_VERSION: 0.0.1
   platform: iOS
   CODE_SIGN_ENTITLEMENTS: Horizon/Resources/Horizon.entitlements
+  ENABLE_MODULE_VERIFIER: true
+  MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS: 'gnu11 gnu++14'
 sources:
   - path: ./
     excludes:
