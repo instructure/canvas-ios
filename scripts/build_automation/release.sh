@@ -50,11 +50,12 @@ shift 2
 
 BRANCH="master"
 if [ "${1}" = "--branch" ]; then
-	if [ -z ${2} ]; then
+	if [ -z "${2}" ]; then
 		echo "branch name missing after --branch"
 		printHelp
 		exit 1
 	fi
+ 
 	BRANCH=$2
 	shift 2
 fi
