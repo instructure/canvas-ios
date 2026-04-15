@@ -158,6 +158,7 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
 
     @MainActor
     public func handleConsentChange(to isAnalyticsEnabled: Bool, sessionStartCompletion: @escaping () -> Void) {
+        Logger.shared.log("AnalyticsHandlerLive.handleConsentChange(to: \(isAnalyticsEnabled ? "✅" : "❌"))")
         if isAnalyticsEnabled {
             analyticsTracker.startSession(completion: sessionStartCompletion)
             PageViewEventController.instance.startTracking()

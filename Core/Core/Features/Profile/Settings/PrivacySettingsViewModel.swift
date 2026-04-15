@@ -80,8 +80,12 @@ final class PrivacySettingsViewModel {
                     }
                 },
                 receiveValue: {
-                    guard let handler = Analytics.shared.handler else { return }
+                    guard let handler = Analytics.shared.handler else {
+                        Logger.shared.log("PrivacySettingsViewModel.setAnalyticsConsent(to: \(value ? "✅" : "❌")) sink: Analytics.shared.handler is nil ❌")
+                        return
+                    }
 
+                    Logger.shared.log("PrivacySettingsViewModel.setAnalyticsConsent(to: \(value ? "✅" : "❌")) sink: Analytics.shared.handler exists ✅")
                     handler.handleConsentChange(to: value)
                 }
             )

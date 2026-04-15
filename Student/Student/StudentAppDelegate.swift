@@ -541,10 +541,13 @@ extension StudentAppDelegate {
         }
 
         if FirebaseOptions.defaultOptions()?.apiKey != nil {
+            Logger.shared.log("StudentAppDelegate.setupFirebase(): API key exists ✅")
             FirebaseApp.configure()
             configureRemoteConfig()
             Core.Analytics.shared.handler = analyticsHandler
             RemoteLogger.shared.handler = self
+        } else {
+            Logger.shared.log("StudentAppDelegate.setupFirebase(): API key is nil ❌")
         }
     }
 

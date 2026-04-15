@@ -51,6 +51,7 @@ public final class PendoAnalyticsTracker {
         self.interactor = interactor
         self.pendoManager = pendoManager
         self.pendoApiKey = pendoApiKey?.nilIfEmpty
+        Logger.shared.log("PendoAnalyticsTracker.init(): pendoApiKey exists: \(self.pendoApiKey != nil ? "✅" : "❌")")
     }
 
     public func initManager(with url: URL) {
