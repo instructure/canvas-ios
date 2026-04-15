@@ -18,7 +18,6 @@
 
 import CoreText
 import Foundation
-import UIKit
 
 /// Registers bundled font files with Core Text so they are available via `Font.custom`.
 ///
@@ -68,7 +67,8 @@ enum FontRegistration {
         return descriptors.allSatisfy { descriptor in
             guard let postScriptName = CTFontDescriptorCopyAttribute(descriptor, kCTFontNameAttribute) as? String
             else { return false }
-            return UIFont(name: postScriptName, size: 12) != nil
+            let ctFont = CTFontCreateWithName(postScriptName as CFString, 12, nil)
+            return CTFontCopyPostScriptName(ctFont) as String == postScriptName
         }
     }
 }

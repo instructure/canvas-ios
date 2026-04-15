@@ -19,7 +19,7 @@
 import SwiftUI
 
 public extension InstUI.Primitives.Colors {
-    
+
     struct Storybook: View {
         public var body: some View {
             ScrollView {
