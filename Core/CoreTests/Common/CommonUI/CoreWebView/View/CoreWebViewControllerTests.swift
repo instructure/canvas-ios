@@ -28,7 +28,7 @@ class CoreWebViewControllerTests: CoreTestCase {
     func testLimitedInteraction() {
         controller.isInteractionLimited = true
         controller.view.layoutIfNeeded()
-        weak var limitedView = controller.limitedInteractionView
+        weak let limitedView = controller.limitedInteractionView
         XCTAssert(limitedView?.isDescendant(of: controller.view) == true)
         controller.limitedInteractionView?.dismiss.sendActions(for: .primaryActionTriggered)
         XCTAssert(limitedView?.isDescendant(of: controller.view) == false)

@@ -151,7 +151,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     }
 
     private func animateLoadingIndicator(show: Bool) {
-        weak var weakSelf = self
+        weak let weakSelf = self
 
         if show {
             guard let window = view.window ?? AppEnvironment.shared.window else {
@@ -393,7 +393,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
             await appExperienceInteractor.isExperienceSwitchAvailableAsync() else {
             return nil
         }
-        weak var weakSelf = self
+        weak let weakSelf = self
 
         let row = Row(
             String(localized: "Switch to Canvas Career", bundle: .core),

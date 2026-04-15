@@ -394,7 +394,7 @@ extension FilePickerViewController: UITableViewDelegate, UITableViewDataSource {
 extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
 
     private var shouldMergeScannedImagesIntoPDF: Bool {
-        utis.contains(where: { $0.isPDF }) && utis.contains(where: { $0.isImage }) == false
+        utis.allSatisfy { $0.isPDF }
     }
 
     private func proposeFilenameForNewPDFScan() -> String {
@@ -414,8 +414,19 @@ extension FilePickerViewController: VNDocumentCameraViewControllerDelegate {
 
         if shouldMergeScannedImagesIntoPDF {
             let pdfDocument = PDFDocument()
-            let pages = (0 ..< scan.pageCount).compactMap {
-                PDFPage(image: scan.imageOfPage(at: $0))
+            let pages = (0 ..< scan.pageCount).compactMap { index -> PDFPage? in
+                let image = scan.imageOfPage(at: index)
+
+                let mediaBoxSize = image.size.downscaledToFit(.letterSize)
+                if mediaBoxSize.isZero { return nil }
+
+                return PDFPage(
+                    image: image,
+                    options: [
+                        .compressionQuality: 0.8,
+                        .mediaBox: CGRect(origin: .zero, size: mediaBoxSize)
+                    ]
+                )
             }
 
             pages.forEach {
@@ -451,5 +462,20 @@ extension FilePickerViewController: FilePickerCellDelegate {
             self?.env.uploadManager.cancel(file: file)
         }))
         env.router.show(alert, from: self, options: .modal())
+    }
+}
+
+// MARK: - Page Size Utils
+
+private extension CGSize {
+
+    static let fittingDPI: CGFloat = 1.5 * 72
+
+    /// Letter size for (1.5 * 72) dpi resolution. 72 DPI is the standard for digital screen
+    /// and web images. While (1.5 * 72) dpi is definitely suitable for screens, it can
+    /// also provide good print quality for submissions as well, and it also produces a fairly
+    /// zoomable document when viewed on Canvas Web DocViewer.
+    static var letterSize: CGSize {
+        CGSize(width: 8.5 * fittingDPI, height: 11 * fittingDPI)
     }
 }
