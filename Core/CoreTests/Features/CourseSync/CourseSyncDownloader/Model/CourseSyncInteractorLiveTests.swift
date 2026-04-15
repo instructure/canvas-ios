@@ -1242,9 +1242,3 @@ private class HTMLParserEmbeddedFailureMock: HTMLParser {
         envResolver.folderURL(forSection: sectionName, ofCourse: courseId)
     }
 }
-
-// MARK: - Helper Case
-
-private extension CourseSyncEntry.State {
-    static var downloaded: Self { .downloaded(isEmbeddedMediaComplete: true) }
-}
