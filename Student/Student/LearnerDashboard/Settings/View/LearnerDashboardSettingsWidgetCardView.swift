@@ -33,6 +33,7 @@ struct LearnerDashboardSettingsWidgetCardView: View {
         VStack(spacing: 0) {
             HStack(spacing: 8) {
                 buttons
+                    .accessibilityHidden(true)
 
                 AUI.Toggle(isOn: $isVisible) {
                     Text(config.id.settingsTitle(username: username))
@@ -49,6 +50,29 @@ struct LearnerDashboardSettingsWidgetCardView: View {
             .accessibilityElement(children: .combine)
             .accessibilityAction {
                 isVisible.toggle()
+            }
+            .accessibilityActions {
+                Button(String(localized: "Move \(config.id.settingsTitle(username: username)) widget up", bundle: .student)) {
+                    if !isMoveUpDisabled {
+                        onMoveUp()
+                    } else {
+                        AccessibilityNotification.Announcement(String(
+                            localized: "Move up disabled",
+                            bundle: .student
+                        )).post()
+                    }
+                }
+
+                Button(String(localized: "Move \(config.id.settingsTitle(username: username)) widget down", bundle: .student)) {
+                    if !isMoveDownDisabled {
+                        onMoveDown()
+                    } else {
+                        AccessibilityNotification.Announcement(String(
+                            localized: "Move down disabled",
+                            bundle: .student
+                        )).post()
+                    }
+                }
             }
 
             if let subSettings = subSettingsView, isVisible {
@@ -79,11 +103,6 @@ struct LearnerDashboardSettingsWidgetCardView: View {
                     .rotationEffect(.degrees(180))
             }
             .disabled(isMoveUpDisabled)
-            .accessibilityLabel(String(
-                localized: "Move \(config.id.settingsTitle(username: username)) widget up",
-                bundle: .student
-            ))
-            .accessibilityHidden(isMoveUpDisabled)
 
             AUI.Divider()
                 .padding(.vertical, 4)
@@ -95,11 +114,6 @@ struct LearnerDashboardSettingsWidgetCardView: View {
                     .scaledIcon()
             }
             .disabled(isMoveDownDisabled)
-            .accessibilityLabel(String(
-                localized: "Move \(config.id.settingsTitle(username: username)) widget down",
-                bundle: .student
-            ))
-            .accessibilityHidden(isMoveDownDisabled)
         }
         .padding(.horizontal, 8)
         .fixedSize(horizontal: false, vertical: true)
