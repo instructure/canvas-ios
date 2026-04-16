@@ -16,35 +16,36 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-@testable import Core
 import Combine
 import Foundation
 
-final class AnalyticsConsentInteractorMock: AnalyticsConsentInteractor {
+public final class AnalyticsConsentInteractorMock: AnalyticsConsentInteractor {
+
+    public init() { }
 
     // MARK: - isTrackingEnabled
 
-    var isTrackingEnabledResult: Bool? = false
+    public var isTrackingEnabledResult: Bool? = false
 
-    func isTrackingEnabled(ignoreConsentCache: Bool) -> AnyPublisher<Bool?, Error> {
+    public func isTrackingEnabled(ignoreConsentCache: Bool) -> AnyPublisher<Bool?, Error> {
         Publishers.typedJust(isTrackingEnabledResult)
     }
 
     // MARK: - getConsentIfRequired
 
-    var getConsentIfRequiredResult: Bool?
+    public var getConsentIfRequiredResult: Bool?
 
-    func getConsentIfRequired(ignoreConsentCache: Bool) -> AnyPublisher<Bool?, Error> {
+    public func getConsentIfRequired(ignoreConsentCache: Bool) -> AnyPublisher<Bool?, Error> {
         Publishers.typedJust(getConsentIfRequiredResult)
     }
 
     // MARK: - setConsent
 
-    var setConsentCallCount = 0
-    var setConsentInput: Bool?
-    var setConsentPublisher: AnyPublisher<Void, Error>?
+    public var setConsentCallCount = 0
+    public var setConsentInput: Bool?
+    public var setConsentPublisher: AnyPublisher<Void, Error>?
 
-    func setConsent(_ value: Bool) -> AnyPublisher<Void, Error> {
+    public func setConsent(_ value: Bool) -> AnyPublisher<Void, Error> {
         setConsentInput = value
         setConsentCallCount += 1
         return setConsentPublisher ?? Publishers.typedJust()

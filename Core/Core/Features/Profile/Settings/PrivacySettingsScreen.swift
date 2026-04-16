@@ -18,10 +18,15 @@
 
 import SwiftUI
 
-struct PrivacySettingsScreen: View {
-    var viewModel: PrivacySettingsViewModel
+public struct PrivacySettingsScreen: View {
 
-    var body: some View {
+    private let viewModel: PrivacySettingsViewModel
+
+    public init(viewModel: PrivacySettingsViewModel) {
+        self.viewModel = viewModel
+    }
+
+    public var body: some View {
         BaseScreen(state: viewModel.state, config: .notRefreshable) { _ in
             VStack(alignment: .leading, spacing: 0) {
                 AUI.ToggleCell(

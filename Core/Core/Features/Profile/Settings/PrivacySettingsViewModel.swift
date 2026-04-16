@@ -22,7 +22,7 @@ import Foundation
 import SwiftUI
 
 @Observable
-final class PrivacySettingsViewModel {
+public final class PrivacySettingsViewModel {
 
     private(set) var state: ScreenState = .loading
 
@@ -45,7 +45,7 @@ final class PrivacySettingsViewModel {
     private var subscriptions = Set<AnyCancellable>()
     private var setConsentCancellable: AnyCancellable?
 
-    init(
+    public init(
         interactor: AnalyticsConsentInteractor,
         mainScheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
