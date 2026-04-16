@@ -33,6 +33,8 @@ projectReferences:
   Core:
     path: ../Core/Core.xcodeproj
 packages:
+  InstUI:
+    path: ../packages/InstUI
   Pendo:
     url: https://github.com/pendo-io/pendo-mobile-sdk
     exactVersion: 3.12.0

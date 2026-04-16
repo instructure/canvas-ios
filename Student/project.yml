@@ -39,6 +39,8 @@ projectReferences:
 packages:
   BusinessLogic:
     path: ../packages/BusinessLogic
+  InstUI:
+    path: ../packages/InstUI
   Pendo:
     url: https://github.com/pendo-io/pendo-mobile-sdk
     exactVersion: 3.12.0
