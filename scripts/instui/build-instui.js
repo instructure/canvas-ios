@@ -34,7 +34,10 @@ To update to a newer version of instructure-ui, bump INSTUI_VERSION below and re
 */
 
 const https = require('https')
+const fs = require('fs')
+const path = require('path')
 const buildPrimitivesConfig = require('./sd.config.primitives')
+const buildSemanticConfig = require('./sd.config.semantic')
 
 const INSTUI_VERSION = 'v11.7.1'
 const TOKENS_BASE_URL = `https://raw.githubusercontent.com/instructure/instructure-ui/${INSTUI_VERSION}/packages/ui-scripts/lib/build/tokensStudio`
@@ -70,8 +73,27 @@ async function buildPrimitives() {
   buildPrimitivesConfig(primitives).buildAllPlatforms()
 }
 
+async function buildSemantic() {
+  const semanticBase = `${TOKENS_BASE_URL}/rebrand/semantic/color`
+  console.log('Downloading semantic color tokens...')
+  const [light, dark] = await Promise.all([
+    download(`${semanticBase}/rebrandLight.json`),
+    download(`${semanticBase}/rebrandDark.json`),
+  ])
+
+  const tokensDir = path.join(__dirname, '../../packages/InstUI/Resources/Tokens')
+  fs.mkdirSync(tokensDir, { recursive: true })
+  fs.writeFileSync(path.join(tokensDir, 'rebrandLight.json'), light)
+  fs.writeFileSync(path.join(tokensDir, 'rebrandDark.json'), dark)
+  console.log('Saved rebrandLight.json and rebrandDark.json to Resources/Tokens/')
+
+  console.log('Building SwiftUI semantic color types...')
+  buildSemanticConfig(JSON.parse(light), JSON.parse(dark))
+}
+
 async function main() {
   await buildPrimitives()
+  await buildSemantic()
   console.log('Done.')
 }
 

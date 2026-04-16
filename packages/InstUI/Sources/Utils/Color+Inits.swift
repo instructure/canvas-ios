@@ -17,6 +17,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 extension Color {
 
@@ -38,5 +39,35 @@ extension Color {
             (r, g, b, a) = (255, 0, 255, 255)
         }
         self.init(.sRGB, red: Double(r) / 255, green: Double(g) / 255, blue: Double(b) / 255, opacity: Double(a) / 255)
+    }
+
+    /// Initializes a `Color` from an rgba string.
+    /// Supported format: `rgba(r, g, b, a)` where r/g/b are 0–255 integers and a is a 0.0–1.0 decimal.
+    /// Falls back to magenta on invalid input.
+    init(rgba: String) {
+        let trimmed = rgba.trimmingCharacters(in: .whitespaces)
+        guard trimmed.lowercased().hasPrefix("rgba("), trimmed.hasSuffix(")") else {
+            self.init(.sRGB, red: 1, green: 0, blue: 1, opacity: 1)
+            return
+        }
+        let parts = trimmed.dropFirst(5).dropLast()
+            .split(separator: ",")
+            .map { String($0).trimmingCharacters(in: .whitespaces) }
+        guard parts.count == 4,
+              let r = Double(parts[0]),
+              let g = Double(parts[1]),
+              let b = Double(parts[2]),
+              let a = Double(parts[3]) else {
+            self.init(.sRGB, red: 1, green: 0, blue: 1, opacity: 1)
+            return
+        }
+        self.init(.sRGB, red: r / 255, green: g / 255, blue: b / 255, opacity: a)
+    }
+
+    /// Initializes a light/dark adaptive `Color` resolved at render time via `UITraitCollection`.
+    init(light: Color, dark: Color) {
+        self = Color(UIColor { traits in
+            UIColor(traits.userInterfaceStyle == .dark ? dark : light)
+        })
     }
 }
