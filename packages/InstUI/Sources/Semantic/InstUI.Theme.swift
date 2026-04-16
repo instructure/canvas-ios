@@ -28,23 +28,11 @@ extension InstUI {
         }()
 
         public init() throws {
-            guard let lightURL = Bundle.module.url(forResource: "rebrandLight", withExtension: "json"),
-                  let darkURL  = Bundle.module.url(forResource: "rebrandDark", withExtension: "json")
-            else {
-                throw InstUIColorLoadError.missingTokenFile("Bundled theme JSON not found")
-            }
-            try self.init(lightURL: lightURL, darkURL: darkURL)
+            try self.init(loader: InstUI.Semantic.ColorLoader())
         }
 
-        public init(lightURL: URL, darkURL: URL) throws {
-            let lightData = try Data(contentsOf: lightURL)
-            let darkData  = try Data(contentsOf: darkURL)
-            let resolver  = InstUIColorResolver()
-            self.colors = try InstUI.Semantic.Colors.load(
-                lightData: lightData,
-                darkData: darkData,
-                resolver: resolver
-            )
+        public init(loader: InstUI.Semantic.ColorLoader) throws {
+            self.colors = try loader.load()
         }
     }
 }

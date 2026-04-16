@@ -81,11 +81,23 @@ async function buildSemantic() {
     download(`${semanticBase}/rebrandDark.json`),
   ])
 
-  const tokensDir = path.join(__dirname, '../../packages/InstUI/Resources/Tokens')
-  fs.mkdirSync(tokensDir, { recursive: true })
-  fs.writeFileSync(path.join(tokensDir, 'rebrandLight.json'), light)
-  fs.writeFileSync(path.join(tokensDir, 'rebrandDark.json'), dark)
-  console.log('Saved rebrandLight.json and rebrandDark.json to Resources/Tokens/')
+  const resourcesDir = path.join(__dirname, '../../packages/InstUI/Resources')
+  const tokensFolderName = `Tokens-${INSTUI_VERSION.replace(/^v/, '')}`
+  const tokensDir = path.join(resourcesDir, tokensFolderName)
+
+  for (const entry of fs.readdirSync(resourcesDir)) {
+    if (entry.startsWith('Tokens') && entry !== tokensFolderName) {
+      fs.rmSync(path.join(resourcesDir, entry), { recursive: true, force: true })
+      console.log(`Removed old tokens folder: ${entry}`)
+    }
+  }
+
+  const colorDir = path.join(tokensDir, 'Semantic', 'Color')
+  fs.rmSync(tokensDir, { recursive: true, force: true })
+  fs.mkdirSync(colorDir, { recursive: true })
+  fs.writeFileSync(path.join(colorDir, 'rebrandLight.json'), light)
+  fs.writeFileSync(path.join(colorDir, 'rebrandDark.json'), dark)
+  console.log(`Saved rebrandLight.json and rebrandDark.json to Resources/${tokensFolderName}/Semantic/Color/`)
 
   console.log('Building SwiftUI semantic color types...')
   buildSemanticConfig(JSON.parse(light), JSON.parse(dark))
