@@ -44,7 +44,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
     private var isK5User = false
 
     private lazy var analyticsTracker: PendoAnalyticsTracker = {
-        .init(environment: environment)
+        .init(environment: environment, pendoApiKey: Secret.teacherPendoApiKey.string)
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

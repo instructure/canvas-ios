@@ -83,14 +83,11 @@ struct SpeedGraderPageTabsView: View {
             }
             .identifier("SpeedGrader.toolPicker")
 
-            InstUI.Divider()
+            AUI.Divider()
 
             GeometryReader { geometry in
                 HStack(spacing: 0) {
                     gradesTab(geometry: geometry)
-                        // `.clipped` and `.contentShape` don't prevent touches outside of the drawer on iOS17
-                        // and it would block interaction with the attempts picker and the submission content.
-                        .allowsHitTesting(selectedTab == .grades)
                     detailsTab(geometry: geometry)
                 }
                 .frame(width: geometry.size.width, alignment: .leading)
@@ -113,7 +110,7 @@ struct SpeedGraderPageTabsView: View {
             }
         }
         if shouldOpenDrawerIfNeeded {
-            InstUI.SegmentedPicker(
+            AUI.SegmentedPicker(
                 selection: $selectedTab,
                 segmentCount: SpeedGraderPageTab.allCases.count,
                 onTapSelectedTab: {
@@ -124,7 +121,7 @@ struct SpeedGraderPageTabsView: View {
                 content: content
             )
         } else {
-            InstUI.SegmentedPicker(
+            AUI.SegmentedPicker(
                 selection: $selectedTab,
                 content: content
             )
@@ -179,7 +176,7 @@ struct SpeedGraderPageTabsView: View {
     }
 
     private var detailsTabContent: some View {
-        InstUI.BaseScreen(
+        BaseScreen(
             state: viewModel.isDetailsTabEmpty ? .empty : .data,
             config: .init(
                 refreshable: false,
@@ -190,10 +187,10 @@ struct SpeedGraderPageTabsView: View {
             )
         ) { _ in
             VStack(spacing: 0) {
-                InstUI.TopDivider()
+                AUI.TopDivider()
 
                 if viewModel.submissionWordCountViewModel.hasContent {
-                    InstUI.LabelValueCell(
+                    AUI.LabelValueCell(
                         label: Text("Word Count", bundle: .teacher),
                         value: viewModel.submissionWordCountViewModel.wordCount
                     )

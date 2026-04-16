@@ -25,7 +25,7 @@ class PullToRefreshTests: XCTestCase {
     func testRefreshControlAdded() {
         let webView = CoreWebView(features: [.pullToRefresh])
 
-        guard let refreshControl = refreshControl(for: webView) else {
+        guard refreshControl(for: webView) != nil else {
             return XCTFail("No refresh control found")
         }
 

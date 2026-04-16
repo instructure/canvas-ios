@@ -64,9 +64,12 @@ public class FilePreviewProvider {
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         imageGenerator.appliesPreferredTrackTransform = true
 
+        async let (cgImage, _) = imageGenerator.image(at: .zero)
+        async let duration = asset.load(.duration)
+
         guard
-            let cgImage = try? imageGenerator.copyCGImage(at: .zero, actualTime: nil),
-            let duration = try? await asset.load(.duration)
+            let cgImage = try? await cgImage,
+            let duration = try? await duration
         else {
             return nil
         }

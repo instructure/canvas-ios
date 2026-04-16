@@ -51,7 +51,7 @@ struct SubmissionCommentListView: View {
                 switch viewModel.state {
                 case .data:
                     comments
-                    InstUI.Divider()
+                    AUI.Divider()
                     // Assume already loaded by parent, so skip loading & error
                 default:
                     SwiftUI.EmptyView()

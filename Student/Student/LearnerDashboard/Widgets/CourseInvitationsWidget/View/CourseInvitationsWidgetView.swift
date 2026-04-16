@@ -32,7 +32,7 @@ struct CourseInvitationsWidgetView: View {
                     viewModel.widgetTitle,
                     customAccessibilityTitle: viewModel.widgetAccessibilityTitle
                 ) {
-                    VStack(spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue) {
+                    VStack(spacing: AUI.Styles.Padding.sectionHeaderVertical.rawValue) {
                         HorizontalCarouselView(
                             items: viewModel.invitations,
                             currentPage: $currentPage,
@@ -43,7 +43,7 @@ struct CourseInvitationsWidgetView: View {
                                 .identifier("Dashboard.Invitations.CourseInvitation.Id.\(cardViewModel.id)")
                         }
 
-                        InstUI.PageIndicator(currentIndex: currentPage, count: totalPages)
+                        AUI.PageIndicator(currentIndex: currentPage, count: totalPages)
                     }
                 }
                 .animation(.dashboardWidget, value: viewModel.invitations)

@@ -24,7 +24,7 @@ extension View {
         navBarItems(trailing: { trailing })
     }
 
-    public func navBarItems(trailing: InstUI.NavigationBarButton?) -> some View {
+    public func navBarItems(trailing: AUI.NavigationBarButton?) -> some View {
         navBarItems(trailing: { trailing })
     }
 
@@ -32,7 +32,7 @@ extension View {
         navBarItems(leading: { leading })
     }
 
-    public func navBarItems(leading: InstUI.NavigationBarButton?) -> some View {
+    public func navBarItems(leading: AUI.NavigationBarButton?) -> some View {
         navBarItems(leading: { leading })
     }
 
@@ -52,7 +52,7 @@ extension View {
         navBarItems(leading: { leading }, trailing: { trailing })
     }
 
-    public func navBarItems(leading: InstUI.NavigationBarButton, trailing: InstUI.NavigationBarButton) -> some View {
+    public func navBarItems(leading: AUI.NavigationBarButton, trailing: AUI.NavigationBarButton) -> some View {
         navBarItems(leading: { leading }, trailing: { trailing })
     }
 

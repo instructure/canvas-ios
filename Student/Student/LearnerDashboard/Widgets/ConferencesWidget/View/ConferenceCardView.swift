@@ -46,7 +46,7 @@ struct ConferenceCardView: View {
             .paddingStyle(set: .standardCell)
             .multilineTextAlignment(.leading)
 
-            HStack(spacing: InstUI.Styles.Padding.cellAccessoryPadding.rawValue) {
+            HStack(spacing: AUI.Styles.Padding.cellAccessoryPadding.rawValue) {
                 dismissButton
                 joinButton
             }
@@ -62,7 +62,7 @@ struct ConferenceCardView: View {
             isAvailable: offlineMode.isAppOnline,
             action: { viewModel.didTapJoin(controller: controller) }
         ) {
-            InstUI.PillContent(
+            AUI.PillContent(
                 title: String(localized: "Join", bundle: .student),
                 size: .height24,
                 isTextBold: true
@@ -78,7 +78,7 @@ struct ConferenceCardView: View {
             isAvailable: offlineMode.isAppOnline,
             action: { viewModel.didTapDismiss() }
         ) {
-            InstUI.PillContent(
+            AUI.PillContent(
                 title: String(localized: "Dismiss", bundle: .student),
                 size: .height24
             )

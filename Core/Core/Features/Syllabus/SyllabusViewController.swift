@@ -19,8 +19,9 @@
 import UIKit
 import SwiftUI
 
-open class SyllabusViewController: UIViewController, CoreWebViewLinkDelegate {
+open class SyllabusViewController: ScreenViewTrackableViewController, CoreWebViewLinkDelegate {
     public var courseID = ""
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/courses/\(courseID)/syllabus")
     public private(set) var env = AppEnvironment.shared
     public let refreshControl = UIRefreshControl()
     public var webView = CoreWebView(features: [])

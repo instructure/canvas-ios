@@ -56,7 +56,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private lazy var courseGradeWidgetRouter = WidgetRouter.createCourseGradeRouter()
 
     private lazy var analyticsTracker: PendoAnalyticsTracker = {
-        .init(environment: environment)
+        .init(environment: environment, pendoApiKey: Secret.studentPendoApiKey.string)
     }()
     private lazy var appExperienceInteractor = ExperienceSummaryInteractorLive(environment: environment)
 

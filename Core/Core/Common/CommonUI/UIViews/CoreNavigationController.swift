@@ -24,7 +24,11 @@ open class CoreNavigationController: UINavigationController, VisibilityObserving
         topViewController?.prefersStatusBarHidden ?? super.prefersStatusBarHidden
     }
     public override var childForStatusBarStyle: UIViewController? {
-        topViewController?.preferredStatusBarStyle != .default ? topViewController : nil
+        if #available(iOS 26, *) {
+            topViewController
+        } else {
+            topViewController?.preferredStatusBarStyle != .default ? topViewController : nil
+        }
     }
 
     public private(set) var visibilityObservation = VisibilityObservation()

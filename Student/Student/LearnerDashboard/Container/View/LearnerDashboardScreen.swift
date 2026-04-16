@@ -19,7 +19,7 @@
 import Core
 import SwiftUI
 
-struct LearnerDashboardScreen: View {
+struct LearnerDashboardScreen: View, ScreenViewTrackable {
     @State private var viewModel: LearnerDashboardViewModel
     @StateObject private var offlineModeViewModel: OfflineModeViewModel
     @State private var isShowingKebabDialog = false
@@ -27,8 +27,9 @@ struct LearnerDashboardScreen: View {
     @Environment(\.viewController) private var viewController
     @Environment(\.appEnvironment) private var env
     @Environment(\.colorScheme) private var colorScheme
+    let screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "/")
 
-    private let screenPadding = InstUI.Styles.Padding.standard
+    private let screenPadding = AUI.Styles.Padding.standard
     @State private var isAnimationEnabled = false
 
     init(
@@ -40,7 +41,7 @@ struct LearnerDashboardScreen: View {
     }
 
     var body: some View {
-        InstUI.BaseScreen(
+        BaseScreen(
             state: viewModel.state,
             config: viewModel.screenConfig,
             refreshAction: { completion in
@@ -53,7 +54,7 @@ struct LearnerDashboardScreen: View {
             VStack(spacing: screenPadding.rawValue) {
                 ForEach(viewModel.widgets, id: \.id) { widgetViewModel in
                     // This is a workaround for Todo widget's toggle to have the proper color
-                    // TODO: Update InstUI.Toggle to use tint color instead of accent color
+                    // TODO: Update AUI.Toggle to use tint color instead of accent color
                     let needsAccentColorOverride = widgetViewModel.id == EditableWidgetIdentifier.todo.rawValue
 
                     if widgetViewModel.shouldRenderWidget {
@@ -105,8 +106,6 @@ struct LearnerDashboardScreen: View {
                     iOS26RightNavBarButtons
                 } else if #available(iOS 18, *) {
                     iOS18RightNavBarButtons
-                } else {
-                    iOS17RightNavBarButtons
                 }
             }
         }
@@ -116,7 +115,7 @@ struct LearnerDashboardScreen: View {
         Button {
             isSettingsPresented = true
         } label: {
-            InstUI.PillContent(
+            AUI.PillContent(
                 title: String(localized: "Customize Dashboard", bundle: .student),
                 leadingIcon: .editLine,
                 size: .height30
@@ -187,26 +186,6 @@ struct LearnerDashboardScreen: View {
             }
         }
         .popover(isPresented: $isSettingsPresented, content: popverContent)
-    }
-
-    @ViewBuilder
-    @available(iOS, deprecated: 18, message: "Multiple versions exist")
-    private var iOS17RightNavBarButtons: some View {
-        Group {
-            if offlineModeViewModel.isOfflineFeatureEnabled {
-                DashboardOptionsButton(
-                    isShowingDialog: $isShowingKebabDialog,
-                    offlineModeViewModel: offlineModeViewModel,
-                    onSettingsTapped: { isSettingsPresented.toggle() },
-                    environment: env
-                )
-            } else {
-                LegacyDashboardSettingsButton(
-                    onTapped: { isSettingsPresented.toggle() }
-                )
-            }
-        }
-        .sheet(isPresented: $isSettingsPresented, content: popverContent)
     }
 
     @ViewBuilder

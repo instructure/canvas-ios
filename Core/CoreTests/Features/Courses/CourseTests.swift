@@ -413,4 +413,47 @@ class CourseTests: CoreTestCase {
 
         XCTAssertFalse(courseWithoutNickName.hasNickName)
     }
+
+    // MARK: - Grading periods
+
+    func test_save_whenGradingPeriodIsDeleted_shouldNotSaveIt() {
+        let deletedPeriod = APIGradingPeriod(id: "1", title: "Period 1", start_date: nil, end_date: nil, workflow_state: "deleted")
+        Course.save(.make(id: "42", grading_periods: [deletedPeriod]), in: databaseClient)
+
+        let gradingPeriods: [GradingPeriod] = databaseClient.fetch(scope: .where(#keyPath(GradingPeriod.courseID), equals: "42"))
+        XCTAssertEqual(gradingPeriods.count, 0)
+    }
+
+    func test_save_whenGradingPeriodIsActive_shouldSaveIt() {
+        let activePeriod = APIGradingPeriod(id: "1", title: "Period 1", start_date: nil, end_date: nil, workflow_state: nil)
+        Course.save(.make(id: "42", grading_periods: [activePeriod]), in: databaseClient)
+
+        let gradingPeriods: [GradingPeriod] = databaseClient.fetch(scope: .where(#keyPath(GradingPeriod.courseID), equals: "42"))
+        XCTAssertEqual(gradingPeriods.count, 1)
+        XCTAssertEqual(gradingPeriods.first?.id, "1")
+    }
+
+    func test_save_whenResavingCourse_shouldRemovePreviouslyActivePeriodThatIsNowDeleted() {
+        let activePeriod = APIGradingPeriod(id: "1", title: "Period 1", start_date: nil, end_date: nil, workflow_state: nil)
+        Course.save(.make(id: "42", grading_periods: [activePeriod]), in: databaseClient)
+
+        let deletedPeriod = APIGradingPeriod(id: "1", title: "Period 1", start_date: nil, end_date: nil, workflow_state: "deleted")
+        Course.save(.make(id: "42", grading_periods: [deletedPeriod]), in: databaseClient)
+
+        let gradingPeriods: [GradingPeriod] = databaseClient.fetch(scope: .where(#keyPath(GradingPeriod.courseID), equals: "42"))
+        XCTAssertEqual(gradingPeriods.count, 0)
+    }
+
+    func test_save_whenResavingCourse_shouldNotAffectGradingPeriodsOfOtherCourses() {
+        let period1 = APIGradingPeriod(id: "1", title: "Period 1", start_date: nil, end_date: nil, workflow_state: nil)
+        let period2 = APIGradingPeriod(id: "2", title: "Period 2", start_date: nil, end_date: nil, workflow_state: nil)
+        Course.save(.make(id: "42", grading_periods: [period1]), in: databaseClient)
+        Course.save(.make(id: "7", grading_periods: [period2]), in: databaseClient)
+
+        Course.save(.make(id: "42", grading_periods: []), in: databaseClient)
+
+        let course7Periods: [GradingPeriod] = databaseClient.fetch(scope: .where(#keyPath(GradingPeriod.courseID), equals: "7"))
+        XCTAssertEqual(course7Periods.count, 1)
+        XCTAssertEqual(course7Periods.first?.id, "2")
+    }
 }

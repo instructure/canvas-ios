@@ -157,10 +157,12 @@ class MockStudioVideoPosterInteractor: StudioVideoPosterInteractor {
         isVideoCached: Bool,
         mediaFolder: URL,
         videoFile: URL
-    ) -> URL? {
+    ) -> AnyPublisher<URL?, Never> {
         receivedCachedFlag = isVideoCached
         receivedMediaFolder = mediaFolder
         receivedVideoFile = videoFile
-        return posterLocationResult
+
+        return Just(posterLocationResult)
+            .eraseToAnyPublisher()
     }
 }

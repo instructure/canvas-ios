@@ -32,14 +32,14 @@ public struct AssignmentRemindersView: View {
     public var body: some View {
         if viewModel.isReminderSectionVisible {
             VStack(alignment: .leading, spacing: 0) {
-                InstUI.Divider(.padded)
+                AUI.Divider(.padded)
                     .animation(.none, value: viewModel.reminders)
                 header
                     .animation(.none, value: viewModel.reminders)
                     .padding(.horizontal, 16)
                 reminderItemList
                     .padding(.horizontal, 16)
-                InstUI.Divider()
+                AUI.Divider()
                     .padding(.bottom, 24) // To look nice when embedded into assignment details
                     .animation(.none, value: viewModel.reminders)
             }

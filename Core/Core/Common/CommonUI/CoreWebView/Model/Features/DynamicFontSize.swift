@@ -99,7 +99,6 @@ private extension UIContentSizeCategory {
 
 /// The purpose of this preview is to get an estimation of how each content size category affects font size.
 /// You need to modify the fontScale values above until the two strings are the same size.
-@available(iOS 17.0, *)
 #Preview(traits: .fixedLayout(width: 400, height: 1200)) {
     let referenceFontSize: CGFloat = 16.0
 

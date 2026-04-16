@@ -40,33 +40,33 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
 
     var body: some View {
         ScrollViewReader { scrollProxy in
-            InstUI.BaseScreen(state: viewModel.state, config: .notRefreshable) { geometry in
+            BaseScreen(state: viewModel.state, config: .notRefreshable) { geometry in
                 VStack(alignment: .leading, spacing: 0) {
                     VStack(spacing: 0) {
-                        InstUI.TextFieldCell(
+                        AUI.TextFieldCell(
                             label: Text("Title", bundle: .core),
                             placeholder: String(localized: "Add title (required)", bundle: .core),
                             text: $viewModel.title
                         )
                         .focused($focusedInput, equals: .title)
 
-                        InstUI.DatePickerCell(
+                        AUI.DatePickerCell(
                             label: Text("Date", bundle: .core),
                             date: $viewModel.date,
                             mode: .dateOnly
                         )
 
-                        InstUI.ToggleCell(label: Text("All Day", bundle: .core), value: $viewModel.isAllDay)
+                        AUI.ToggleCell(label: Text("All Day", bundle: .core), value: $viewModel.isAllDay)
 
                         if !viewModel.isAllDay {
-                            InstUI.DatePickerCell(
+                            AUI.DatePickerCell(
                                 label: Text("From", bundle: .core),
                                 customAccessibilityLabel: Text("Start time", bundle: .core),
                                 date: $viewModel.startTime,
                                 mode: .timeOnly
                             )
 
-                            InstUI.DatePickerCell(
+                            AUI.DatePickerCell(
                                 label: Text("To", bundle: .core),
                                 customAccessibilityLabel: Text("End time", bundle: .core),
                                 date: $viewModel.endTime,
@@ -75,7 +75,7 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                             )
                         }
 
-                        InstUI.LabelValueCell(
+                        AUI.LabelValueCell(
                             label: Text("Frequency", bundle: .core),
                             value: viewModel.frequencySelectionText,
                             action: {
@@ -83,7 +83,7 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                             }
                         )
 
-                        InstUI.LabelValueCell(
+                        AUI.LabelValueCell(
                             label: Text("Calendar", bundle: .core),
                             value: viewModel.calendarName,
                             action: {
@@ -91,21 +91,21 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
                             }
                         )
 
-                        InstUI.TextEditorCell(
+                        AUI.TextEditorCell(
                             label: Text("Location", bundle: .core),
                             text: $viewModel.location
                         )
                         .focused($focusedInput, equals: .location)
-                        InstUI.Divider()
+                        AUI.Divider()
 
-                        InstUI.TextEditorCell(
+                        AUI.TextEditorCell(
                             label: Text("Address", bundle: .core),
                             text: $viewModel.address
                         )
                         .focused($focusedInput, equals: .address)
-                        InstUI.Divider()
+                        AUI.Divider()
 
-                        InstUI.RichContentEditorCell(
+                        AUI.RichContentEditorCell(
                             label: Text("Details", bundle: .core),
                             html: $viewModel.details,
                             uploadParameters: viewModel.uploadParameters,
@@ -126,13 +126,13 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
 
                     // defocus inputs when otherwise non-tappable area is tapped
                     .background(
-                        InstUI.TapArea()
+                        AUI.TapArea()
                             .onTapGesture {
                                 focusedInput = nil
                             }
                     )
                     // focus 'Details' input when tapped below last cell
-                    InstUI.TapArea()
+                    AUI.TapArea()
                         .layoutPriority(-1)
                         .onTapGesture {
                             focusedInput = .details
@@ -142,10 +142,10 @@ struct EditCalendarEventScreen: View, ScreenViewTrackable {
             }
         }
         .navBarItems(
-            leading: InstUI.NavigationBarButton.cancel {
+            leading: AUI.NavigationBarButton.cancel {
                 viewModel.didTapCancel.send()
             },
-            trailing: InstUI.NavigationBarButton(
+            trailing: AUI.NavigationBarButton(
                 isEnabled: viewModel.isSaveButtonEnabled,
                 isAvailableOffline: false,
                 title: viewModel.saveButtonTitle,

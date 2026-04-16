@@ -30,7 +30,7 @@ public struct CalendarToDoDetailsScreen: View {
     public var body: some View {
         let isContextColorBackground = if #available(iOS 26, *) { false } else { true }
 
-        InstUI.BaseScreen(state: viewModel.state, config: .notRefreshable) { _ in
+        BaseScreen(state: viewModel.state, config: .notRefreshable) { _ in
             eventContent
         }
         .navBarItems(
@@ -39,8 +39,8 @@ public struct CalendarToDoDetailsScreen: View {
                 isEnabled: viewModel.isMoreButtonEnabled,
                 isAvailableOffline: false,
                 menuContent: {
-                    InstUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
-                    InstUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
+                    AUI.MenuItem.edit { viewModel.didTapEdit.send(controller) }
+                    AUI.MenuItem.delete { viewModel.didTapDelete.send(controller) }
                 }
             )
         )
@@ -68,11 +68,11 @@ public struct CalendarToDoDetailsScreen: View {
                     .accessibilityAddTraits(.isHeader)
             }
             if let date = viewModel.date {
-                InstUI.TextSectionView(title: String(localized: "Date", bundle: .core),
+                AUI.TextSectionView(title: String(localized: "Date", bundle: .core),
                                        description: date)
             }
             if let description = viewModel.description {
-                InstUI.TextSectionView(title: String(localized: "Description", bundle: .core),
+                AUI.TextSectionView(title: String(localized: "Description", bundle: .core),
                                        description: description)
             }
         }

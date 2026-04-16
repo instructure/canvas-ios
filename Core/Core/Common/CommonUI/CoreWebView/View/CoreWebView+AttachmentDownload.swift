@@ -17,6 +17,7 @@
 //
 
 import Foundation
+import UniformTypeIdentifiers
 import WebKit
 
 // MARK: Navigation's Delegate Methods
@@ -41,12 +42,26 @@ extension CoreWebView {
 public struct CoreWebAttachment: Equatable {
     public let url: URL
     public let contentType: String?
+    public let originIsBlob: Bool
 
-    fileprivate init(url: URL, contentType: String?) {
+    fileprivate init(url: URL, contentType: String?, isBlob: Bool = false) {
         self.url = url
         self.contentType = contentType
+        self.originIsBlob = isBlob
     }
 }
+
+#if DEBUG
+extension CoreWebAttachment {
+    static func make(
+        url: URL = URL(string: "https://instructure.com")!,
+        contentType: String? = nil,
+        originIsBlob: Bool = false
+    ) -> CoreWebAttachment {
+        CoreWebAttachment(url: url, contentType: contentType, isBlob: originIsBlob)
+    }
+}
+#endif
 
 // MARK: - Download Delegate's Methods
 
@@ -100,6 +115,51 @@ extension CoreWebView: WKDownloadDelegate {
             fileURL == attachment.url
         else { return }
 
+        linkDelegate?.coreWebView(self, didFinishAttachmentDownload: attachment)
+        downloadingAttachment = nil
+    }
+}
+
+// MARK: - Blob URL Download
+
+extension CoreWebView {
+
+    func handleBlobDownload(
+        base64: String,
+        mimeType: String,
+        fileName: String,
+        fileWriter: (Data, URL) throws -> Void = { (data, url) in try data.write(to: url) }
+    ) {
+        guard let data = Data(base64Encoded: base64) else { return }
+
+        let safeFileName = {
+            let name = URL(fileURLWithPath: fileName).lastPathComponent
+            return name.isEmpty ? "download" : name
+        }()
+
+        let fullName: String
+        if let ext = UTType(mimeType: mimeType)?.preferredFilenameExtension,
+           URL(fileURLWithPath: safeFileName).pathExtension.isEmpty {
+            fullName = safeFileName + "." + ext
+        } else {
+            fullName = safeFileName
+        }
+
+        let url = URL.Directories.temporary.appending(component: fullName)
+        let attachment = CoreWebAttachment(url: url, contentType: mimeType, isBlob: true)
+
+        do {
+            if FileManager.default.fileExists(atPath: url.path()) {
+                try FileManager.default.removeItem(at: url)
+            }
+            try fileWriter(data, url)
+        } catch {
+            linkDelegate?.coreWebView(self, didFailAttachmentDownload: attachment, with: error)
+            return
+        }
+
+        downloadingAttachment = attachment
+        linkDelegate?.coreWebView(self, didStartDownloadAttachment: attachment)
         linkDelegate?.coreWebView(self, didFinishAttachmentDownload: attachment)
         downloadingAttachment = nil
     }
