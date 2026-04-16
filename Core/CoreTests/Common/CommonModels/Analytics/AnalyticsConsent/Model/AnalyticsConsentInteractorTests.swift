@@ -142,6 +142,44 @@ final class AnalyticsConsentInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(stored.first?.consentValue, true)
     }
 
+    // MARK: - Storing consent in session defaults
+
+    func test_isTrackingEnabled_whenSendUsageMetricsFlagIsOff_shouldClearConsentInSessionDefaults() {
+        environment.userDefaults?.userProvidedAnalyticsConsent = true
+        mockFeatureFlags(sendUsageMetrics: false, cookieConsentNecessary: false)
+
+        XCTAssertFinish(testee.isTrackingEnabled(ignoreConsentCache: true))
+
+        XCTAssertEqual(environment.userDefaults?.userProvidedAnalyticsConsent, nil)
+    }
+
+    func test_isTrackingEnabled_whenConsentNotRequired_shouldClearConsentInSessionDefaults() {
+        environment.userDefaults?.userProvidedAnalyticsConsent = true
+        mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: false)
+
+        XCTAssertFinish(testee.isTrackingEnabled(ignoreConsentCache: true))
+
+        XCTAssertEqual(environment.userDefaults?.userProvidedAnalyticsConsent, nil)
+    }
+
+    func test_isTrackingEnabled_whenConsentRequired_shouldStoreConsentValueInSessionDefaults() {
+        mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: true)
+        mockConsent(.make(data: .init(mobile_consent: true)))
+
+        XCTAssertFinish(testee.isTrackingEnabled(ignoreConsentCache: true))
+
+        XCTAssertEqual(environment.userDefaults?.userProvidedAnalyticsConsent, true)
+    }
+
+    func test_setConsent_shouldStoreConsentValueInSessionDefaults() {
+        let putRequest = PutAnalyticsConsentRequest(namespace: .student, value: true)
+        api.mock(putRequest, value: .make(data: .init(mobile_consent: true)))
+
+        XCTAssertFinish(testee.setConsent(true))
+
+        XCTAssertEqual(environment.userDefaults?.userProvidedAnalyticsConsent, true)
+    }
+
     // MARK: - Private helpers
 
     private func mockFeatureFlags(sendUsageMetrics: Bool, cookieConsentNecessary: Bool) {

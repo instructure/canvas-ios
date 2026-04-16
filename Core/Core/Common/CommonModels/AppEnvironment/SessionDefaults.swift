@@ -342,4 +342,11 @@ public struct SessionDefaults: Equatable {
             self["shouldShowDashboardFeedback"] = newValue
         }
     }
+
+    // MARK: - Analytics
+
+    public var userProvidedAnalyticsConsent: Bool? {
+        get { self["userProvidedAnalyticsConsent"] as? Bool }
+        set { self["userProvidedAnalyticsConsent"] = newValue }
+    }
 }

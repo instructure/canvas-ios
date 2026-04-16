@@ -67,14 +67,17 @@ public class AnalyticsConsentInteractorLive: AnalyticsConsentInteractor {
         featureFlagStore
             .getEntities()
             .flatMap { [weak self] featureFlags -> AnyPublisher<Bool?, Error> in
+                guard let self else { return Publishers.typedEmpty() }
+
                 guard featureFlags.isFeatureEnabled(.send_usage_metrics) else {
+                    storeUserProvidedAnalyticsConsent(nil)
                     return Publishers.typedJust(false)
                 }
 
                 if featureFlags.isFeatureEnabled(.cookie_consent_necessary) {
-                    return self?.getConsent(ignoreCache: ignoreConsentCache)
-                        ?? Publishers.typedEmpty()
+                    return getConsent(ignoreCache: ignoreConsentCache)
                 } else {
+                    storeUserProvidedAnalyticsConsent(nil)
                     return Publishers.typedJust(true)
                 }
             }
@@ -85,13 +88,15 @@ public class AnalyticsConsentInteractorLive: AnalyticsConsentInteractor {
         featureFlagStore
             .getEntities()
             .flatMap { [weak self] featureFlags -> AnyPublisher<Bool?, Error> in
+                guard let self else { return Publishers.typedEmpty() }
+
                 let isConsentRequired = featureFlags.isFeatureEnabled(.send_usage_metrics)
                     && featureFlags.isFeatureEnabled(.cookie_consent_necessary)
 
                 if isConsentRequired {
-                    return self?.getConsent(ignoreCache: ignoreConsentCache)
-                        ?? Publishers.typedEmpty()
+                    return getConsent(ignoreCache: ignoreConsentCache)
                 } else {
+                    storeUserProvidedAnalyticsConsent(nil)
                     return Publishers.typedJust(nil)
                 }
             }
@@ -101,17 +106,32 @@ public class AnalyticsConsentInteractorLive: AnalyticsConsentInteractor {
     private func getConsent(ignoreCache: Bool) -> AnyPublisher<Bool?, Error> {
         consentStore
             .getEntities(ignoreCache: ignoreCache)
-            .map { entities in entities.first?.consentValue }
+            .map { [weak self] entities in
+                let value = entities.first?.consentValue
+                self?.storeUserProvidedAnalyticsConsent(value)
+                return value
+            }
             .eraseToAnyPublisher()
     }
 
     public func setConsent(_ value: Bool) -> AnyPublisher<Void, Error> {
-        ReactiveStore(
+        return ReactiveStore(
             useCase: PutAnalyticsConsent(app: environment.app ?? .student, value: value),
             backgroundEnv: environment
         )
         .getEntities(ignoreCache: true)
-        .map { _ in }
+        .map { [weak self] _ in
+            self?.storeUserProvidedAnalyticsConsent(value)
+            return
+        }
         .eraseToAnyPublisher()
+    }
+
+    /// Stores user's consent in UserDefaults to allow for sync readout.
+    /// This sync usage is needed in `GetWebSessionRequest`.
+    /// It's only supposed to have a value when consent is actualy required
+    /// and the user already accepted/declined.
+    private func storeUserProvidedAnalyticsConsent(_ value: Bool?) {
+        environment.userDefaults?.userProvidedAnalyticsConsent = value
     }
 }
