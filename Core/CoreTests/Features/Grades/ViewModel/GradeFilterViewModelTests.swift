@@ -177,19 +177,18 @@ final class GradeFilterViewModelTests: CoreTestCase {
 
     func test_saveButtonTapped() {
         // Given
-        let selectedGradingPeriodPublisher = PassthroughRelay<String?>()
-        let selectedSortByPublisher = CurrentValueRelay<GradeArrangementOptions>(.groupName)
+        var didSelectGradingPeriod = false
+        var didSelectSortByOption = false
+
         let listGradingPeriods = getListGradingPeriods()
         let viewController = WeakViewController()
-        var isSelectedGradingPeriodPublisherFired = false
-        var isSelectedSortByPublisherFired = false
 
         let dependency = GradeFilterViewModel.Dependency(
             router: router,
             isShowGradingPeriod: true,
             initialGradingPeriodID: nil,
-            selectedGradingPeriodPublisher: selectedGradingPeriodPublisher,
-            selectedSortByPublisher: selectedSortByPublisher,
+            selectGradingPeriod: { _ in didSelectGradingPeriod = true },
+            selectSortByOption: { _ in didSelectSortByOption = true },
             gradingPeriods: listGradingPeriods,
             sortByOptions: GradeArrangementOptions.allCases
         )
@@ -200,28 +199,20 @@ final class GradeFilterViewModelTests: CoreTestCase {
         )
         testee.sortModeOptions.selected.send(.make(id: "groupName"))
         testee.gradingPeriodOptions.selected.send(nil)
-        selectedGradingPeriodPublisher.sink { _ in
-            isSelectedGradingPeriodPublisherFired = true
-        }
-        .store(in: &subscriptions)
 
-        selectedSortByPublisher.sink { _ in
-            isSelectedSortByPublisherFired = true
-        }
-        .store(in: &subscriptions)
         testee.saveButtonTapped(viewController: viewController)
         wait(for: [router.dismissExpectation], timeout: 1)
         // Then
-        XCTAssertTrue(isSelectedGradingPeriodPublisherFired)
-        XCTAssertTrue(isSelectedSortByPublisherFired)
+        XCTAssertTrue(didSelectGradingPeriod)
+        XCTAssertTrue(didSelectSortByOption)
     }
 
-    private func getListGradingPeriods() -> [GradingPeriod] {
+    private func getListGradingPeriods() -> [GradingPeriod.Snapshot] {
         [
-            .save(.make(id: "1", title: "Spring"), courseID: "1", in: database.viewContext),
+            GradingPeriod.save(.make(id: "1", title: "Spring"), courseID: "1", in: database.viewContext),
             .save(.make(id: "2", title: "Summer"), courseID: "2", in: database.viewContext),
             .save(.make(id: "3", title: "Autumn"), courseID: "3", in: database.viewContext),
             .save(.make(id: "4", title: "Winter"), courseID: "4", in: database.viewContext)
-        ]
+        ].snapshots()
     }
 }

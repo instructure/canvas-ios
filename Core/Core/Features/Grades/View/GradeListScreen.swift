@@ -45,7 +45,6 @@ public struct GradeListScreen: View, ScreenViewTrackable {
     }
 
     @AccessibilityFocusState private var accessibilityFocus: AccessibilityFocusArea?
-//    private var subscriptions = Set<AnyCancellable>()
 
     // MARK: - Init
 
@@ -69,7 +68,8 @@ public struct GradeListScreen: View, ScreenViewTrackable {
             }
             .background(Color.backgroundLight)
             .accessibilityHidden(isScoreEditorPresented)
-            .refreshable {
+            // safeAreaInset causes refreshable to cancel, cancellation behavior needs to be ignored
+            .nonCancellingRefreshable {
                 await viewModel.refresh()
             }
 

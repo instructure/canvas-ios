@@ -22,9 +22,8 @@ import CoreData
 import XCTest
 import TestsFoundation
 
-@MainActor
 final class AsyncStoreTests: CoreTestCase {
-    nonisolated var store: AsyncStore<TestUseCase>!
+    nonisolated var store: DetachableAsyncStore<TestUseCase>!
 
     override func tearDown() {
         super.tearDown()
@@ -223,6 +222,7 @@ final class AsyncStoreTests: CoreTestCase {
         task.cancel()
     }
 
+    @MainActor
     func testDatabaseDeletionsArePublished() async throws {
         let course = Course.save(.make(id: "1"), in: databaseClient)
         try databaseClient.save()
@@ -331,7 +331,7 @@ final class AsyncStoreTests: CoreTestCase {
 
     // MARK: - Private methods
 
-    private func createStore<U: UseCase>(useCase: U) -> AsyncStore<U> {
+    private func createStore<U: UseCase>(useCase: U) -> DetachableAsyncStore<U> {
         AsyncStore(
             useCase: useCase,
             context: environment.database.viewContext,

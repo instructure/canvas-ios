@@ -45,12 +45,14 @@ public final class GradeListViewModel {
     private(set) var courseColor: UIColor?
     private(set) var totalGradeText: String?
     private(set) var state: ViewState = .initialLoading
-    private(set) var task: Task<Void, Never>?
     public var isWhatIfScoreModeOn = false
     public var isWhatIfScoreFlagEnabled = false
     public var selectedAssignmentId: String?
     var courseID: String { interactor.courseID }
     var isParentApp: Bool { gradeFilterInteractor.isParentApp }
+
+    private(set) var initialLoadTask: Task<Void, Never>?
+    private(set) var baseOnGradedAssignmentTask: Task<Void, Never>?
 
     // MARK: - Input
     let confirmRevertAlertViewModel = ConfirmationAlertViewModel(
@@ -64,7 +66,14 @@ public final class GradeListViewModel {
     // MARK: - Input / Output
     var baseOnGradedAssignment = true {
         didSet {
-            task = Task { await refreshGrades(ignoreCache: false) }
+            baseOnGradedAssignmentTask = Task {
+                do {
+                    try await refreshGrades(ignoreCache: false)
+                } catch {
+                    debugPrint(error)
+                    state = .error
+                }
+            }
         }
     }
     var isShowingRevertDialog = false
@@ -91,17 +100,23 @@ public final class GradeListViewModel {
 
         loadSortPreferences()
 
-        task = Task {
+        initialLoadTask = Task {
             await loadBaseDataAndGrades(ignoreCache: false, isInitialLoad: true)
         }
     }
 
-    func selectGradingPeriod(id: String?) {
+    @discardableResult
+    func selectGradingPeriod(id: String?) -> Task<Void, Never> {
         selectedGradingPeriod = id
         state = .initialLoading
 
-        task = Task {
-            await refreshGrades(ignoreCache: true)
+        return Task {
+            do {
+                try await refreshGrades(ignoreCache: true)
+            } catch {
+                debugPrint(error)
+                state = .error
+            }
         }
     }
 
@@ -126,30 +141,26 @@ public final class GradeListViewModel {
                 selectedGradingPeriod = gradingPeriodData.currentlyActiveGradingPeriodID
             }
 
-            await refreshGrades(ignoreCache: ignoreCache)
+            try await refreshGrades(ignoreCache: ignoreCache)
         } catch {
             debugPrint(error)
             state = .error
         }
     }
 
-    private func refreshGrades(ignoreCache: Bool) async {
-        do {
-            let listData = try await interactor.getGrades(
-                arrangeBy: selectedGroupByOption,
-                baseOnGradedAssignment: baseOnGradedAssignment,
-                gradingPeriodID: selectedGradingPeriod,
-                ignoreCache: ignoreCache
-            )
+    private func refreshGrades(ignoreCache: Bool) async throws {
+        let listData = try await interactor.getGrades(
+            arrangeBy: selectedGroupByOption,
+            baseOnGradedAssignment: baseOnGradedAssignment,
+            gradingPeriodID: selectedGradingPeriod,
+            ignoreCache: ignoreCache
+        )
 
-            courseName = listData.courseName
-            courseColor = listData.courseColor
-            totalGradeText = listData.totalGradeText
+        courseName = listData.courseName
+        courseColor = listData.courseColor
+        totalGradeText = listData.totalGradeText
 
-            state = listData.assignmentSections.count == 0 ? .empty(listData) : .data(listData)
-        } catch {
-            state = .error
-        }
+        state = listData.assignmentSections.count == 0 ? .empty(listData) : .data(listData)
     }
 
     private func loadSortPreferences() {

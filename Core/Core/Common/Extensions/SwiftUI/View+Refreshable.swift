@@ -35,4 +35,12 @@ extension View {
             self
         }
     }
+
+    /// SwiftUI's native `refreshable()` method ignoring it's cancellation behavior.
+    @ViewBuilder
+    public func nonCancellingRefreshable(action: @escaping @Sendable () async -> Void) -> some View {
+        self.refreshable {
+            await Task(operation: action).value
+        }
+    }
 }
