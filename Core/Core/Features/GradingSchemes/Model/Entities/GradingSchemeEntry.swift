@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public struct GradingSchemeEntry: Codable, Equatable {
+public struct GradingSchemeEntry: Codable, Equatable, Sendable {
     public let name: String
     public let value: Double
     public let calculatedValue: Double?

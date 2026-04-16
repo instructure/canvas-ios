@@ -41,7 +41,7 @@ public struct AsyncStore<U: UseCase, S: Snapshot<U.Model>> {
     public init(
         useCase: U,
         returns: S.Type = S.self,
-        context: NSManagedObjectContext = AppEnvironment.shared.database.viewContext,
+        context: NSManagedObjectContext = AppEnvironment.shared.database.backgroundReadContext,
         offlineModeInteractor: OfflineModeInteractor? = OfflineModeAssembly.make(),
         environment: AppEnvironment = .shared
     ) {

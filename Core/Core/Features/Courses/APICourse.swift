@@ -113,7 +113,7 @@ public struct APICourseSettings: Codable, Equatable {
     public let hide_final_grade: Bool?
 }
 
-public enum CourseDefaultView: String, Codable, CaseIterable {
+public enum CourseDefaultView: String, Codable, CaseIterable, Sendable {
     case assignments, feed, modules, syllabus, wiki
 
     var string: String {

@@ -22,9 +22,10 @@ import CoreData
 import XCTest
 import TestsFoundation
 
+// The tests save to the database, so they need to be ran on the Main Actor.
 @MainActor
 final class AsyncStoreTests: CoreTestCase {
-    nonisolated var store: AsyncStore<TestUseCase>!
+    nonisolated var store: DetachableAsyncStore<TestUseCase>!
 
     override func tearDown() {
         super.tearDown()
@@ -32,14 +33,18 @@ final class AsyncStoreTests: CoreTestCase {
     }
 
     func testErrorHandling() async {
-        let useCase = TestUseCase(courses: nil, requestError: NSError.instructureError("TestError"))
+        enum TestError: Error {
+            case expectedError
+        }
+
+        let useCase = TestUseCase(courses: nil, requestError: TestError.expectedError)
         let testee = createStore(useCase: useCase)
 
         do {
             _ = try await testee.getEntities()
             XCTFail("Expected to throw error")
         } catch {
-            XCTAssertTrue(Thread.isMainThread)
+            XCTAssertEqual(error is TestError, true)
         }
     }
 
@@ -110,7 +115,7 @@ final class AsyncStoreTests: CoreTestCase {
 
     func testObjectsAreReturnedFromDatabase() async throws {
         Course.save(.make(id: "0"), in: databaseClient)
-        try! databaseClient.save()
+        try databaseClient.save()
         let useCase = TestUseCase()
         let testee = createStore(useCase: useCase)
 
@@ -331,7 +336,7 @@ final class AsyncStoreTests: CoreTestCase {
 
     // MARK: - Private methods
 
-    private func createStore<U: UseCase>(useCase: U) -> AsyncStore<U> {
+    private func createStore<U: UseCase>(useCase: U) -> DetachableAsyncStore<U> {
         AsyncStore(
             useCase: useCase,
             context: environment.database.viewContext,

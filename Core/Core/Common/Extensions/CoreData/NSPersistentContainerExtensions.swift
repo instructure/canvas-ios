@@ -103,6 +103,16 @@ extension NSPersistentContainer {
         return try await context.perform { try block(self.context) }
     }
 
+    public var backgroundReadContext: NSManagedObjectContext {
+        cachedBackgroundReadContext ?? {
+            let context = newBackgroundContext()
+            context.automaticallyMergesChangesFromParent = true
+            context.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
+            cachedBackgroundReadContext = context
+            return context
+        }()
+    }
+
     // MARK: - Private Methods
 
     private var context: NSManagedObjectContext {
