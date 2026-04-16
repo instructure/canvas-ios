@@ -5,7 +5,7 @@ options:
   groupSortPosition: top
   bundleIdPrefix: com.instructure.parentapp
   deploymentTarget:
-    iOS: 17.0
+    iOS: 18.0
   createIntermediateGroups: true
   fileTypes:
     "icon":
