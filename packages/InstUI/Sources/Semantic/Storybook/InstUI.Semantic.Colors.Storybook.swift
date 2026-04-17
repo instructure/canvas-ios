@@ -59,7 +59,7 @@ public extension InstUI.Semantic.Colors {
             return grouped.keys.sorted().map { key in
                 ColorSection(
                     title: key,
-                    entries: grouped[key]!.map { ColorEntry(sectionTitle: key, name: $0.name, color: $0.color) }
+                    entries: grouped[key]!.map { ColorEntry(sectionTitle: key, name: $0.name, color: $0.value) }
                 )
             }
         }

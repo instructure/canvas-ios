@@ -26,6 +26,14 @@ public extension InstUI {
             List {
                 Section(header: Text(verbatim: "Semantic")) {
                     StorybookItem("Colors") { InstUI.Semantic.Colors.Storybook() }
+                    StorybookItem("Sizes") { InstUI.Semantic.Size.Storybook() }
+                    StorybookItem("Spacing") { InstUI.Semantic.Spacing.Storybook() }
+                    StorybookItem("Border Radii") { InstUI.Semantic.BorderRadius.Storybook() }
+                    StorybookItem("Border Widths") { InstUI.Semantic.BorderWidth.Storybook() }
+                    StorybookItem("Font Sizes") { InstUI.Semantic.FontSize.Storybook() }
+                    StorybookItem("Opacities") { InstUI.Semantic.Opacity.Storybook() }
+                    StorybookItem("Font Weights") { InstUI.Semantic.FontWeights.Storybook() }
+                    StorybookItem("Font Families") { InstUI.Semantic.FontFamilies.Storybook() }
                 }
                 Section(header: Text(verbatim: "Primitives")) {
                     StorybookItem("Colors") { InstUI.Primitives.Colors.Storybook() }
