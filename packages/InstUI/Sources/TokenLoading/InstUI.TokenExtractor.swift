@@ -43,12 +43,26 @@ extension InstUI {
         /// - Parameters:
         ///   - data: Raw JSON data of a DTCG token file.
         ///   - section: Top-level key to extract (e.g. `"color"`, `"size"`, `"spacing"`).
-        /// - Throws: `InstUI.TokenLoadError.missingTokenFile` if the section key is absent.
+        /// - Throws: `InstUI.TokenLoadError.missingToken` if the section key is absent.
         static func extractLeaves(from data: Data, section: String) throws -> [TokenKey: String] {
             let root = try JSONSerialization.jsonObject(with: data)
-            guard let rootDict = root as? [String: Any],
-                  let sectionDict = rootDict[section] as? [String: Any] else {
-                throw InstUI.TokenLoadError.missingTokenFile(section)
+            guard let rootDict = root as? [String: Any] else {
+                throw InstUI.TokenLoadError.missingToken(section)
+            }
+            return try extractLeaves(from: rootDict, section: section)
+        }
+
+        /// Extracts leaf token values under a given top-level section from an already-parsed
+        /// JSON dictionary. Use this overload when extracting multiple sections from the same
+        /// file to avoid re-parsing the JSON for each section.
+        ///
+        /// - Parameters:
+        ///   - rootDict: Pre-parsed top-level JSON object.
+        ///   - section: Top-level key to extract (e.g. `"size"`, `"spacing"`).
+        /// - Throws: `InstUI.TokenLoadError.missingToken` if the section key is absent.
+        static func extractLeaves(from rootDict: [String: Any], section: String) throws -> [TokenKey: String] {
+            guard let sectionDict = rootDict[section] as? [String: Any] else {
+                throw InstUI.TokenLoadError.missingToken(section)
             }
             var result: [String: String] = [:]
             func walk(_ dict: [String: Any], _ prefix: String) {
@@ -63,27 +77,6 @@ extension InstUI {
             }
             walk(sectionDict, "")
             return result
-        }
-
-        /// Extracts leaves from multiple top-level sections in one pass, prefixing each
-        /// path with its section name to avoid collisions across sections.
-        ///
-        /// For example, sections `["spacing", "borderRadius"]` produces paths like
-        /// `"spacing.spaceMd"` and `"borderRadius.sm"`.
-        ///
-        /// - Parameters:
-        ///   - data: Raw JSON data of a DTCG token file.
-        ///   - sections: Top-level keys to extract.
-        /// - Throws: `InstUI.TokenLoadError.missingTokenFile` if any section key is absent.
-        static func extractLeaves(from data: Data, sections: [String]) throws -> [TokenKey: String] {
-            var merged: [String: String] = [:]
-            for section in sections {
-                let leaves = try extractLeaves(from: data, section: section)
-                for (path, value) in leaves {
-                    merged["\(section).\(path)"] = value
-                }
-            }
-            return merged
         }
     }
 }

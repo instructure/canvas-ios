@@ -17,7 +17,7 @@
 //
 
 /*
-Shared utilities used by both sd.config.semantic.js and sd.config.component.js:
+Shared utilities used by sd.config.semantic.js and sd.config.primitives.js:
   - fileHeader        — AGPL license header for generated Swift files
   - isLeaf            — DTCG leaf node detection
   - toTypeName        — camelCase key → PascalCase Swift type name

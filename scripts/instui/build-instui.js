@@ -24,11 +24,29 @@ Downloads design tokens from the instructure-ui repository (pinned to INSTUI_VER
 and generates the SwiftUI source files for the InstUI Swift package.
 
 Generated files (DO NOT EDIT manually):
+
+  Primitives:
   packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.Colors.swift
   packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.Sizes.swift
   packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.FontWeights.swift
   packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.FontFamilies.swift
   packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.Opacities.swift
+
+  Semantic Swift types:
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.Colors.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.Size.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.Spacing.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.BorderRadius.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.BorderWidth.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.FontSize.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.Opacity.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.FontWeights.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.FontFamilies.swift
+
+  Semantic token values (bundled JSON):
+  packages/InstUI/Resources/Tokens-{version}/Semantic/Color/rebrandLight.json
+  packages/InstUI/Resources/Tokens-{version}/Semantic/Color/rebrandDark.json
+  packages/InstUI/Resources/Tokens-{version}/Semantic/Layout/default.json
 
 To update to a newer version of instructure-ui, bump INSTUI_VERSION below and re-run.
 */

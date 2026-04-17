@@ -38,7 +38,7 @@ public extension InstUI.Semantic {
 
         public init() throws {
             guard let url = Bundle.module.url(forResource: "default", withExtension: "json") else {
-                throw InstUI.TokenLoadError.missingTokenFile("Bundled layout JSON not found")
+                throw InstUI.TokenLoadError.missingFile("Bundled layout JSON not found")
             }
             self.url = url
         }
@@ -49,37 +49,45 @@ public extension InstUI.Semantic {
 
         public func load() throws -> LayoutSections {
             let data = try Data(contentsOf: url)
+            let root = try JSONSerialization.jsonObject(with: data)
+            guard let rootDict = root as? [String: Any] else {
+                throw InstUI.TokenLoadError.missingFile("Layout JSON root is not a dictionary")
+            }
 
             let sizeResolver = InstUI.SizeResolver()
             let opacityResolver = InstUI.OpacityResolver()
             let fontWeightResolver = InstUI.FontWeightResolver()
             let fontFamilyResolver = InstUI.FontFamilyResolver()
 
-            let sizeLeaves = try InstUI.TokenExtractor.extractLeaves(from: data, section: "size")
-            let spacingLeaves = try InstUI.TokenExtractor.extractLeaves(from: data, section: "spacing")
-            let borderRadiusLeaves = try InstUI.TokenExtractor.extractLeaves(from: data, section: "borderRadius")
-            let borderWidthLeaves = try InstUI.TokenExtractor.extractLeaves(from: data, section: "borderWidth")
-            let fontSizeLeaves = try InstUI.TokenExtractor.extractLeaves(from: data, section: "fontSize")
-            let opacityLeaves = try InstUI.TokenExtractor.extractLeaves(from: data, section: "opacity")
-            let fontWeightLeaves = try InstUI.TokenExtractor.extractLeaves(from: data, section: "fontWeight")
-            let fontFamilyLeaves = try InstUI.TokenExtractor.extractLeaves(from: data, section: "fontFamily")
+            func leaves(section: String) throws -> [InstUI.TokenKey: String] {
+                try InstUI.TokenExtractor.extractLeaves(from: rootDict, section: section)
+            }
+
+            let sizeLeaves = try leaves(section: "size")
+            let spacingLeaves = try leaves(section: "spacing")
+            let borderRadiusLeaves = try leaves(section: "borderRadius")
+            let borderWidthLeaves = try leaves(section: "borderWidth")
+            let fontSizeLeaves = try leaves(section: "fontSize")
+            let opacityLeaves = try leaves(section: "opacity")
+            let fontWeightLeaves = try leaves(section: "fontWeight")
+            let fontFamilyLeaves = try leaves(section: "fontFamily")
 
             func cgFloat(from leaves: [InstUI.TokenKey: String]) -> (InstUI.TokenKey) throws -> CGFloat {
                 { path in
-                    guard let raw = leaves[path] else { throw InstUI.TokenLoadError.missingTokenFile(path) }
+                    guard let raw = leaves[path] else { throw InstUI.TokenLoadError.missingToken(path) }
                     return try sizeResolver.resolve(raw)
                 }
             }
             func opacity(_ path: InstUI.TokenKey) throws -> Double {
-                guard let raw = opacityLeaves[path] else { throw InstUI.TokenLoadError.missingTokenFile(path) }
+                guard let raw = opacityLeaves[path] else { throw InstUI.TokenLoadError.missingToken(path) }
                 return try opacityResolver.resolve(raw)
             }
             func fontWeight(_ path: InstUI.TokenKey) throws -> Font.Weight {
-                guard let raw = fontWeightLeaves[path] else { throw InstUI.TokenLoadError.missingTokenFile(path) }
+                guard let raw = fontWeightLeaves[path] else { throw InstUI.TokenLoadError.missingToken(path) }
                 return try fontWeightResolver.resolve(raw)
             }
             func fontFamily(_ path: InstUI.TokenKey) throws -> String {
-                guard let raw = fontFamilyLeaves[path] else { throw InstUI.TokenLoadError.missingTokenFile(path) }
+                guard let raw = fontFamilyLeaves[path] else { throw InstUI.TokenLoadError.missingToken(path) }
                 return try fontFamilyResolver.resolve(raw)
             }
 

@@ -38,7 +38,7 @@ extension InstUI {
                 return size
             }
             if raw.hasSuffix("rem"), let value = Double(raw.dropLast(3)) {
-                return CGFloat(value * 16)
+                return CGFloat(value * 16) // 1rem = 16pt, matching the standard CSS base font size used by design tokens
             }
             if let value = Double(raw) {
                 return CGFloat(value)

@@ -18,7 +18,8 @@
 
 extension InstUI {
     enum TokenLoadError: Error {
-        case missingTokenFile(TokenKey)
+        case missingFile(String)
+        case missingToken(TokenKey)
         case unknownPrimitive(TokenKey)
     }
 }
