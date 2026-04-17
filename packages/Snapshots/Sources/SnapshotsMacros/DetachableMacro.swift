@@ -41,8 +41,8 @@ public struct DetachableMacro: ExtensionMacro {
 
         let varDecls: [VariableDeclSyntax] = classDecl.memberBlock.members.compactMap { member in
             guard let varDecl = member.decl.as(VariableDeclSyntax.self),
-                  varDecl.isNotMarked(as: .relation),
-                  varDecl.isNotMarked(as: .raw)
+                  varDecl.isNotMarked(with: .relation),
+                  varDecl.isNotMarked(with: .raw)
             else {
                 return nil
             }

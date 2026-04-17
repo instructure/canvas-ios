@@ -16,7 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-// swift-tools-version: 6.3
+// swift-tools-version: 6.3.1
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
