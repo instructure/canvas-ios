@@ -26,7 +26,7 @@ public extension InstUI.Semantic {
         public init() throws {
             guard
                 let lightURL = Bundle.module.url(forResource: "rebrandLight", withExtension: "json"),
-                let darkURL  = Bundle.module.url(forResource: "rebrandDark",  withExtension: "json")
+                let darkURL = Bundle.module.url(forResource: "rebrandDark", withExtension: "json")
             else {
                 throw InstUI.TokenLoadError.missingTokenFile("Bundled theme JSON not found")
             }
@@ -41,11 +41,11 @@ public extension InstUI.Semantic {
 
         public func load() throws -> InstUI.Semantic.Colors {
             let lightData = try Data(contentsOf: lightURL)
-            let darkData  = try Data(contentsOf: darkURL)
-            let resolver  = InstUI.ColorResolver()
+            let darkData = try Data(contentsOf: darkURL)
+            let resolver = InstUI.ColorResolver()
             let lightLeaves = try InstUI.TokenExtractor.extractLeaves(from: lightData, section: "color")
-            let darkLeaves  = try InstUI.TokenExtractor.extractLeaves(from: darkData,  section: "color")
-            func token(_ path: String) throws -> Color {
+            let darkLeaves = try InstUI.TokenExtractor.extractLeaves(from: darkData, section: "color")
+            func token(_ path: InstUI.TokenKey) throws -> Color {
                 guard let lv = lightLeaves[path], let dv = darkLeaves[path] else {
                     throw InstUI.TokenLoadError.missingTokenFile(path)
                 }

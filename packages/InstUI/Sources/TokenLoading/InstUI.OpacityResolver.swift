@@ -16,40 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
-
 extension InstUI {
-    struct ColorResolver {
-        private let primitivesByName: [TokenKey: Color]
+    struct OpacityResolver {
+        private let primitivesByName: [TokenKey: Double]
 
         init() {
             primitivesByName = Dictionary(
-                InstUI.Primitives.Colors.all.map { ($0.name, $0.color) },
+                InstUI.Primitives.Opacities.all.map { ($0.name, $0.opacity) },
                 uniquingKeysWith: { first, _ in first }
             )
         }
 
-        func adaptive(light: String, dark: String) throws -> Color {
-            Color(light: try resolve(light), dark: try resolve(dark))
-        }
-
-        private func resolve(_ raw: String) throws -> Color {
-            if raw.isColorToken {
-                let inner = String(raw.dropFirst().dropLast())
-                guard let color = primitivesByName[inner] else {
-                    throw InstUI.TokenLoadError.unknownPrimitive(inner)
-                }
-                return color
+        func resolve(_ raw: String) throws -> Double {
+            guard raw.hasPrefix("{") else {
+                throw InstUI.TokenLoadError.unknownPrimitive(raw)
             }
-            if raw.isRGBAValue {
-                return Color(rgba: raw)
+            let inner = String(raw.dropFirst().dropLast())
+            guard let opacity = primitivesByName[inner] else {
+                throw InstUI.TokenLoadError.unknownPrimitive(inner)
             }
-            return Color(hex: raw)
+            return opacity
         }
     }
-}
-
-private extension String {
-    var isColorToken: Bool { hasPrefix("{") }
-    var isRGBAValue: Bool { lowercased().hasPrefix("rgba") }
 }

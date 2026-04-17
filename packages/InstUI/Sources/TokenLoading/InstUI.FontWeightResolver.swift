@@ -19,37 +19,25 @@
 import SwiftUI
 
 extension InstUI {
-    struct ColorResolver {
-        private let primitivesByName: [TokenKey: Color]
+    struct FontWeightResolver {
+        private let primitivesByName: [TokenKey: Font.Weight]
 
         init() {
             primitivesByName = Dictionary(
-                InstUI.Primitives.Colors.all.map { ($0.name, $0.color) },
+                InstUI.Primitives.FontWeights.all.map { ($0.name, $0.weight) },
                 uniquingKeysWith: { first, _ in first }
             )
         }
 
-        func adaptive(light: String, dark: String) throws -> Color {
-            Color(light: try resolve(light), dark: try resolve(dark))
-        }
-
-        private func resolve(_ raw: String) throws -> Color {
-            if raw.isColorToken {
-                let inner = String(raw.dropFirst().dropLast())
-                guard let color = primitivesByName[inner] else {
-                    throw InstUI.TokenLoadError.unknownPrimitive(inner)
-                }
-                return color
+        func resolve(_ raw: String) throws -> Font.Weight {
+            guard raw.hasPrefix("{") else {
+                throw InstUI.TokenLoadError.unknownPrimitive(raw)
             }
-            if raw.isRGBAValue {
-                return Color(rgba: raw)
+            let inner = String(raw.dropFirst().dropLast())
+            guard let weight = primitivesByName[inner] else {
+                throw InstUI.TokenLoadError.unknownPrimitive(inner)
             }
-            return Color(hex: raw)
+            return weight
         }
     }
-}
-
-private extension String {
-    var isColorToken: Bool { hasPrefix("{") }
-    var isRGBAValue: Bool { lowercased().hasPrefix("rgba") }
 }

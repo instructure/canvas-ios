@@ -21,6 +21,14 @@ import SwiftUI
 extension InstUI {
     public struct Theme: Sendable {
         public let colors: InstUI.Semantic.Colors
+        public let size: InstUI.Semantic.Size
+        public let spacing: InstUI.Semantic.Spacing
+        public let borderRadius: InstUI.Semantic.BorderRadius
+        public let borderWidth: InstUI.Semantic.BorderWidth
+        public let fontSize: InstUI.Semantic.FontSize
+        public let opacity: InstUI.Semantic.Opacity
+        public let fontWeights: InstUI.Semantic.FontWeights
+        public let fontFamilies: InstUI.Semantic.FontFamilies
 
         public static let `default`: InstUI.Theme = {
             // swiftlint:disable:next force_try
@@ -28,11 +36,26 @@ extension InstUI {
         }()
 
         public init() throws {
-            try self.init(loader: InstUI.Semantic.ColorLoader())
+            try self.init(
+                colorLoader: InstUI.Semantic.ColorLoader(),
+                layoutLoader: InstUI.Semantic.LayoutLoader()
+            )
         }
 
-        public init(loader: InstUI.Semantic.ColorLoader) throws {
-            self.colors = try loader.load()
+        public init(
+            colorLoader: InstUI.Semantic.ColorLoader,
+            layoutLoader: InstUI.Semantic.LayoutLoader
+        ) throws {
+            self.colors = try colorLoader.load()
+            let layout = try layoutLoader.load()
+            self.size = layout.size
+            self.spacing = layout.spacing
+            self.borderRadius = layout.borderRadius
+            self.borderWidth = layout.borderWidth
+            self.fontSize = layout.fontSize
+            self.opacity = layout.opacity
+            self.fontWeights = layout.fontWeights
+            self.fontFamilies = layout.fontFamilies
         }
     }
 }

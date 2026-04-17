@@ -74,11 +74,11 @@ async function buildPrimitives() {
 }
 
 async function buildSemantic() {
-  const semanticBase = `${TOKENS_BASE_URL}/rebrand/semantic/color`
-  console.log('Downloading semantic color tokens...')
-  const [light, dark] = await Promise.all([
-    download(`${semanticBase}/rebrandLight.json`),
-    download(`${semanticBase}/rebrandDark.json`),
+  console.log('Downloading semantic tokens...')
+  const [light, dark, layout] = await Promise.all([
+    download(`${TOKENS_BASE_URL}/rebrand/semantic/color/rebrandLight.json`),
+    download(`${TOKENS_BASE_URL}/rebrand/semantic/color/rebrandDark.json`),
+    download(`${TOKENS_BASE_URL}/rebrand/semantic/layout/default.json`),
   ])
 
   const resourcesDir = path.join(__dirname, '../../packages/InstUI/Resources')
@@ -93,14 +93,17 @@ async function buildSemantic() {
   }
 
   const colorDir = path.join(tokensDir, 'Semantic', 'Color')
+  const layoutDir = path.join(tokensDir, 'Semantic', 'Layout')
   fs.rmSync(tokensDir, { recursive: true, force: true })
   fs.mkdirSync(colorDir, { recursive: true })
+  fs.mkdirSync(layoutDir, { recursive: true })
   fs.writeFileSync(path.join(colorDir, 'rebrandLight.json'), light)
   fs.writeFileSync(path.join(colorDir, 'rebrandDark.json'), dark)
-  console.log(`Saved rebrandLight.json and rebrandDark.json to Resources/${tokensFolderName}/Semantic/Color/`)
+  fs.writeFileSync(path.join(layoutDir, 'default.json'), layout)
+  console.log(`Saved color + layout tokens to Resources/${tokensFolderName}/Semantic/`)
 
-  console.log('Building SwiftUI semantic color types...')
-  buildSemanticConfig(JSON.parse(light), JSON.parse(dark))
+  console.log('Building SwiftUI semantic types...')
+  buildSemanticConfig(JSON.parse(light), JSON.parse(dark), JSON.parse(layout))
 }
 
 async function main() {

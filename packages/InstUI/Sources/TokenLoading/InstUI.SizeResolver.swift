@@ -16,40 +16,34 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import SwiftUI
+import CoreGraphics
 
 extension InstUI {
-    struct ColorResolver {
-        private let primitivesByName: [TokenKey: Color]
+    struct SizeResolver {
+        private let primitivesByName: [TokenKey: CGFloat]
 
         init() {
             primitivesByName = Dictionary(
-                InstUI.Primitives.Colors.all.map { ($0.name, $0.color) },
+                InstUI.Primitives.Sizes.all.map { ($0.name, $0.size) },
                 uniquingKeysWith: { first, _ in first }
             )
         }
 
-        func adaptive(light: String, dark: String) throws -> Color {
-            Color(light: try resolve(light), dark: try resolve(dark))
-        }
-
-        private func resolve(_ raw: String) throws -> Color {
-            if raw.isColorToken {
+        func resolve(_ raw: String) throws -> CGFloat {
+            if raw.hasPrefix("{") {
                 let inner = String(raw.dropFirst().dropLast())
-                guard let color = primitivesByName[inner] else {
+                guard let size = primitivesByName[inner] else {
                     throw InstUI.TokenLoadError.unknownPrimitive(inner)
                 }
-                return color
+                return size
             }
-            if raw.isRGBAValue {
-                return Color(rgba: raw)
+            if raw.hasSuffix("rem"), let value = Double(raw.dropLast(3)) {
+                return CGFloat(value * 16)
             }
-            return Color(hex: raw)
+            if let value = Double(raw) {
+                return CGFloat(value)
+            }
+            throw InstUI.TokenLoadError.unknownPrimitive(raw)
         }
     }
-}
-
-private extension String {
-    var isColorToken: Bool { hasPrefix("{") }
-    var isRGBAValue: Bool { lowercased().hasPrefix("rgba") }
 }

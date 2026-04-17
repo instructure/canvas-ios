@@ -19,6 +19,10 @@
 import Foundation
 
 extension InstUI {
+    public typealias TokenKey = String
+}
+
+extension InstUI {
     enum TokenExtractor {
         /// Parses a W3C Design Tokens (DTCG) JSON file and returns all leaf token values
         /// under a given top-level section as a flat dictionary.
@@ -40,7 +44,7 @@ extension InstUI {
         ///   - data: Raw JSON data of a DTCG token file.
         ///   - section: Top-level key to extract (e.g. `"color"`, `"size"`, `"spacing"`).
         /// - Throws: `InstUI.TokenLoadError.missingTokenFile` if the section key is absent.
-        static func extractLeaves(from data: Data, section: String) throws -> [String: String] {
+        static func extractLeaves(from data: Data, section: String) throws -> [TokenKey: String] {
             let root = try JSONSerialization.jsonObject(with: data)
             guard let rootDict = root as? [String: Any],
                   let sectionDict = rootDict[section] as? [String: Any] else {
@@ -59,6 +63,27 @@ extension InstUI {
             }
             walk(sectionDict, "")
             return result
+        }
+
+        /// Extracts leaves from multiple top-level sections in one pass, prefixing each
+        /// path with its section name to avoid collisions across sections.
+        ///
+        /// For example, sections `["spacing", "borderRadius"]` produces paths like
+        /// `"spacing.spaceMd"` and `"borderRadius.sm"`.
+        ///
+        /// - Parameters:
+        ///   - data: Raw JSON data of a DTCG token file.
+        ///   - sections: Top-level keys to extract.
+        /// - Throws: `InstUI.TokenLoadError.missingTokenFile` if any section key is absent.
+        static func extractLeaves(from data: Data, sections: [String]) throws -> [TokenKey: String] {
+            var merged: [String: String] = [:]
+            for section in sections {
+                let leaves = try extractLeaves(from: data, section: section)
+                for (path, value) in leaves {
+                    merged["\(section).\(path)"] = value
+                }
+            }
+            return merged
         }
     }
 }
