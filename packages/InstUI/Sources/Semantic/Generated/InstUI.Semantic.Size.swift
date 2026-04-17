@@ -70,4 +70,17 @@ extension InstUI.Semantic.Size {
             )
         )
     }
+
+    var all: [(name: String, value: CGFloat)] {
+        [
+            ("interactive.height.xxs", interactive.height.xxs),
+            ("interactive.height.xs", interactive.height.xs),
+            ("interactive.height.sm", interactive.height.sm),
+            ("interactive.height.md", interactive.height.md),
+            ("interactive.height.lg", interactive.height.lg),
+            ("choiceControl.height.sm", choiceControl.height.sm),
+            ("choiceControl.height.md", choiceControl.height.md),
+            ("choiceControl.height.lg", choiceControl.height.lg),
+        ]
+    }
 }

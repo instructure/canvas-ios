@@ -35,4 +35,11 @@ extension InstUI.Semantic.Opacity {
             disabled: token("disabled")
         )
     }
+
+    var all: [(name: String, value: Double)] {
+        [
+            ("base", base),
+            ("disabled", disabled),
+        ]
+    }
 }

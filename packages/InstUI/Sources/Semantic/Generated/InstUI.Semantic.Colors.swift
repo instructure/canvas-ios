@@ -1107,7 +1107,7 @@ extension InstUI.Semantic.Colors {
         )
     }
 
-    public var all: [(name: String, color: Color)] {
+    var all: [(name: String, value: Color)] {
         [
             ("background.base", background.base),
             ("background.muted", background.muted),

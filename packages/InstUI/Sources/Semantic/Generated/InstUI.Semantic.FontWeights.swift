@@ -52,4 +52,14 @@ extension InstUI.Semantic.FontWeights {
             interactive: token("interactive")
         )
     }
+
+    var all: [(name: String, value: Font.Weight)] {
+        [
+            ("body.base", body.base),
+            ("body.strong", body.strong),
+            ("heading.base", heading.base),
+            ("heading.strong", heading.strong),
+            ("interactive", interactive),
+        ]
+    }
 }

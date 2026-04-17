@@ -116,4 +116,32 @@ extension InstUI.Semantic.Spacing {
             )
         )
     }
+
+    var all: [(name: String, value: CGFloat)] {
+        [
+            ("space2xs", space2xs),
+            ("spaceXs", spaceXs),
+            ("spaceSm", spaceSm),
+            ("spaceMd", spaceMd),
+            ("spaceLg", spaceLg),
+            ("spaceXl", spaceXl),
+            ("space2xl", space2xl),
+            ("gap.sections", gap.sections),
+            ("gap.cards.sm", gap.cards.sm),
+            ("gap.cards.md", gap.cards.md),
+            ("gap.cards.lg", gap.cards.lg),
+            ("gap.inputs.horizontal", gap.inputs.horizontal),
+            ("gap.inputs.vertical", gap.inputs.vertical),
+            ("gap.inputElements", gap.inputElements),
+            ("padding.container.xxs", padding.container.xxs),
+            ("padding.container.xs", padding.container.xs),
+            ("padding.container.sm", padding.container.sm),
+            ("padding.container.md", padding.container.md),
+            ("padding.container.lg", padding.container.lg),
+            ("padding.interactive.horizontal.sm", padding.interactive.horizontal.sm),
+            ("padding.interactive.horizontal.md", padding.interactive.horizontal.md),
+            ("padding.interactive.horizontal.lg", padding.interactive.horizontal.lg),
+            ("padding.interactive.horizontal.xl", padding.interactive.horizontal.xl),
+        ]
+    }
 }

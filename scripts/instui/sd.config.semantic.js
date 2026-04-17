@@ -195,8 +195,8 @@ function genAllEntries(tree, pathPrefix, swiftPrefix, indentLevel) {
 // Generates a single `InstUI.Semantic.<typeName>.swift` containing:
 //   • The public struct definition (via genStructBlock)
 //   • A static build() function
-//   • An optional `all` computed property (used by Colors for the Storybook)
-function generateSemanticFile({ typeName, tree, swiftImport, leafType, includeAll = false }) {
+//   • An `all` computed property listing every token as (name, value) pairs
+function generateSemanticFile({ typeName, tree, swiftImport, leafType }) {
   const lines = []
   lines.push(fileHeader)
   lines.push('')
@@ -234,14 +234,12 @@ function generateSemanticFile({ typeName, tree, swiftImport, leafType, includeAl
   lines.push(...retLines)
   lines.push('    }')
 
-  if (includeAll) {
-    lines.push('')
-    lines.push(`    public var all: [(name: String, color: ${leafType})] {`)
-    lines.push('        [')
-    lines.push(...genAllEntries(tree, '', '', 3))
-    lines.push('        ]')
-    lines.push('    }')
-  }
+  lines.push('')
+  lines.push(`    var all: [(name: String, value: ${leafType})] {`)
+  lines.push('        [')
+  lines.push(...genAllEntries(tree, '', '', 3))
+  lines.push('        ]')
+  lines.push('    }')
 
   lines.push('}')
   lines.push('')
@@ -261,7 +259,7 @@ function generateSemanticFile({ typeName, tree, swiftImport, leafType, includeAl
 //   media       — CSS media query values (em-based), no iOS equivalent
 //   visibleInCanvas / visibleInRebrand — design tool visibility flags, not runtime values
 const COLOR_SECTION = {
-  typeName: 'Colors', swiftImport: 'import SwiftUI', leafType: 'Color', includeAll: true
+  typeName: 'Colors', swiftImport: 'import SwiftUI', leafType: 'Color'
 }
 
 const LAYOUT_SECTIONS = [

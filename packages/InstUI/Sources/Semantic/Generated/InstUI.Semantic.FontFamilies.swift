@@ -37,4 +37,12 @@ extension InstUI.Semantic.FontFamilies {
             code: token("code")
         )
     }
+
+    var all: [(name: String, value: String)] {
+        [
+            ("heading", heading),
+            ("base", base),
+            ("code", code),
+        ]
+    }
 }

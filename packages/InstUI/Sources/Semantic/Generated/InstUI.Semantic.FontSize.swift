@@ -43,4 +43,15 @@ extension InstUI.Semantic.FontSize {
             text2xl: token("text2xl")
         )
     }
+
+    var all: [(name: String, value: CGFloat)] {
+        [
+            ("textXs", textXs),
+            ("textSm", textSm),
+            ("textBase", textBase),
+            ("textLg", textLg),
+            ("textXl", textXl),
+            ("text2xl", text2xl),
+        ]
+    }
 }

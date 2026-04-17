@@ -66,4 +66,21 @@ extension InstUI.Semantic.BorderRadius {
             )
         )
     }
+
+    var all: [(name: String, value: CGFloat)] {
+        [
+            ("xs", xs),
+            ("sm", sm),
+            ("md", md),
+            ("lg", lg),
+            ("xl", xl),
+            ("xxl", xxl),
+            ("full", full),
+            ("container.sm", container.sm),
+            ("container.md", container.md),
+            ("container.lg", container.lg),
+            ("container.xl", container.xl),
+            ("interactive.base", interactive.base),
+        ]
+    }
 }

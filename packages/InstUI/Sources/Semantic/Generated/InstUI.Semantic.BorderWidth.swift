@@ -47,4 +47,14 @@ extension InstUI.Semantic.BorderWidth {
             )
         )
     }
+
+    var all: [(name: String, value: CGFloat)] {
+        [
+            ("sm", sm),
+            ("md", md),
+            ("lg", lg),
+            ("interactive.base", interactive.base),
+            ("interactive.focus", interactive.focus),
+        ]
+    }
 }
