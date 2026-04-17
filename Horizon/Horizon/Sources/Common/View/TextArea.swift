@@ -68,7 +68,7 @@ struct TextArea: View {
     }
 
     private var textField: some View {
-        InstUI.UITextViewWrapper(text: $text) { textView in
+        AUI.UITextViewWrapper(text: $text) { textView in
             configureLayout(for: textView)
             configureToolbar(for: textView)
         }

@@ -26,7 +26,7 @@ final class ConferencesWidgetViewModel: DashboardWidgetViewModel {
     let id: String = SystemWidgetIdentifier.conferences.rawValue
     let isHiddenInEmptyState = true
 
-    private(set) var state: InstUI.ScreenState = .loading
+    private(set) var state: ScreenState = .loading
     private(set) var conferences: [ConferenceCardViewModel] = []
     private(set) var widgetTitle: String = ""
     private(set) var widgetAccessibilityTitle: String = ""

@@ -49,15 +49,13 @@ extension MarkerMacro where Self == RawMacro {
 }
 
 extension VariableDeclSyntax {
-    func isMarked(as markerMacro: MarkerMacro) -> Bool {
+    func isMarked(with markerMacro: MarkerMacro) -> Bool {
         attributes.contains { attribute in
-            let attributeName = attribute.as(AttributeSyntax.self)?.attributeName.as(IdentifierTypeSyntax.self)?.name.text
-
-            return attributeName == markerMacro.syntax
+            markerMacro.syntax == attribute.as(AttributeSyntax.self)?.attributeName.as(IdentifierTypeSyntax.self)?.name.text
         }
     }
 
-    func isNotMarked(as markerMacro: MarkerMacro) -> Bool {
-        !isMarked(as: markerMacro)
+    func isNotMarked(with markerMacro: MarkerMacro) -> Bool {
+        !isMarked(with: markerMacro)
     }
 }

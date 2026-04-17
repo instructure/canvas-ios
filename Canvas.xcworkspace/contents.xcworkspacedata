@@ -28,6 +28,9 @@
       <FileRef
          location = "group:BusinessLogic">
       </FileRef>
+      <FileRef
+         location = "group:InstUI">
+      </FileRef>
    </Group>
    <Group
       location = "container:TestPlans"
@@ -62,9 +65,6 @@
    </Group>
    <FileRef
       location = "group:.bitrise">
-   </FileRef>
-   <FileRef
-      location = "group:dangerfile.js">
    </FileRef>
    <FileRef
       location = "group:package.json">

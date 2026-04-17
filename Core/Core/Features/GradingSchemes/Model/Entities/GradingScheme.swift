@@ -18,7 +18,7 @@
 
 import Foundation
 
-public protocol GradingScheme {
+public protocol GradingScheme: Sendable {
     var entries: [GradingSchemeEntry] { get }
 
     var formattedEntries: [FormattedGradingSchemeEntry] { get }

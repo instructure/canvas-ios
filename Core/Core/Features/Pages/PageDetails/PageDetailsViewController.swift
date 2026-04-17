@@ -18,7 +18,7 @@
 
 import UIKit
 
-open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, ErrorViewController {
+open class PageDetailsViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController {
     lazy var optionsButton = UIBarButtonItem(image: .moreLine, style: .plain, target: self, action: #selector(showOptions))
     @IBOutlet weak var webViewContainer: UIView!
     public var webView = CoreWebView(features: [])
@@ -30,6 +30,10 @@ open class PageDetailsViewController: UIViewController, ColoredNavViewProtocol, 
     var context = Context.currentUser
     var env: AppEnvironment = .shared
     var pageURL = ""
+
+    public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
+        eventName: "/courses/\(context.id)/pages/\(pageURL)"
+    )
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()

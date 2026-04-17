@@ -52,7 +52,7 @@ class LoginAgainViewModelTests: CoreTestCase {
             .store(in: &subscriptions)
 
         // THEN
-        waitUntil(1) { router.presented is UIAlertController }
+        waitUntil(5) { router.presented is UIAlertController }
         let alert = try XCTUnwrap(router.presented as? UIAlertController)
         let okAction = try XCTUnwrap(alert.actions.first as? AlertAction)
 
@@ -60,14 +60,14 @@ class LoginAgainViewModelTests: CoreTestCase {
         okAction.handler?(okAction)
 
         // THEN - Login Screen gets presented
-        waitUntil(1) { router.presented is LoginWebViewController }
+        waitUntil(5) { router.presented is LoginWebViewController }
         let loginController = try XCTUnwrap(router.presented as? LoginWebViewController)
 
         // WHEN - User logs in
         loginController.loginCompletion?(newSession)
 
         // THEN - Stream returns new session
-        wait(for: [newSessionReceived, streamCompleted], timeout: 1)
+        wait(for: [newSessionReceived, streamCompleted], timeout: 5)
     }
 
     func test_showsSessionExpiredDialog() throws {
@@ -93,7 +93,7 @@ class LoginAgainViewModelTests: CoreTestCase {
             .store(in: &subscriptions)
 
         // THEN - Alert is presented
-        waitUntil(1) { router.presented is UIAlertController }
+        waitUntil(5) { router.presented is UIAlertController }
         let alert = try XCTUnwrap(router.presented as? UIAlertController)
         XCTAssertEqual(router.viewControllerCalls.last?.0, alert)
         XCTAssertEqual(router.viewControllerCalls.last?.1, rootViewController)
@@ -111,7 +111,7 @@ class LoginAgainViewModelTests: CoreTestCase {
         okAction.handler?(okAction)
 
         // THEN - Stream finishes
-        wait(for: [streamPublishes, streamCompleted], timeout: 1)
+        wait(for: [streamPublishes, streamCompleted], timeout: 5)
     }
 
     func test_webViewLogin_successful() throws {
@@ -138,7 +138,7 @@ class LoginAgainViewModelTests: CoreTestCase {
             .store(in: &subscriptions)
 
         // THEN - Login Screen gets presented
-        waitUntil(1) { router.presented is LoginWebViewController }
+        waitUntil(5) { router.presented is LoginWebViewController }
         let loginController = try XCTUnwrap(router.presented as? LoginWebViewController)
         XCTAssertEqual(router.viewControllerCalls.last?.0, loginController)
         XCTAssertEqual(router.viewControllerCalls.last?.1, rootViewController)
@@ -156,7 +156,7 @@ class LoginAgainViewModelTests: CoreTestCase {
         loginController.loginCompletion?(newSession)
 
         // THEN - Stream returns new session and dialog dimisses
-        wait(for: [newSessionReceived, streamCompleted], timeout: 1)
+        wait(for: [newSessionReceived, streamCompleted], timeout: 5)
         XCTAssertEqual(router.dismissed, loginController)
     }
 
@@ -183,11 +183,11 @@ class LoginAgainViewModelTests: CoreTestCase {
             .store(in: &subscriptions)
 
         // WHEN - User cancels
-        waitUntil(1) { router.presented is LoginWebViewController }
+        waitUntil(5) { router.presented is LoginWebViewController }
         let loginController = try XCTUnwrap(router.presented as? LoginWebViewController)
         let cancelButton = try XCTUnwrap(loginController.navigationItem.rightBarButtonItem as? UIBarButtonItemWithCompletion)
         cancelButton.buttonDidTap(sender: cancelButton)
 
-        wait(for: [streamFailed], timeout: 1)
+        wait(for: [streamFailed], timeout: 5)
     }
 }

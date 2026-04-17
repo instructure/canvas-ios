@@ -43,7 +43,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
 
     private lazy var analyticsTracker: PendoAnalyticsTracker = {
-        .init(environment: environment)
+        .init(environment: environment, pendoApiKey: Secret.parentPendoApiKey.string)
     }()
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

@@ -47,7 +47,7 @@ struct SpeedGraderSubmissionGradesView: View {
 
     var body: some View {
         ScrollViewReader { scrollViewProxy in
-            InstUI.BaseScreen(
+            BaseScreen(
                 state: gradeViewModel.state,
                 config: .init(
                     refreshable: false,
@@ -259,7 +259,7 @@ struct SpeedGraderSubmissionGradesView: View {
     @ViewBuilder
     private func gradeInputSelector() -> some View {
         VStack(spacing: 0) {
-            InstUI.Divider()
+            AUI.Divider()
             SingleSelectionView(
                 title: nil,
                 identifierGroup: "SpeedGrader.GradeInputSelectorItem",
@@ -340,10 +340,10 @@ struct SpeedGraderSubmissionGradesView: View {
         )
 
         VStack(spacing: 0) {
-            InstUI.Divider()
+            AUI.Divider()
 
             if assignment.hasRubrics {
-                InstUI.CollapsibleListSection(
+                AUI.CollapsibleListSection(
                     title: title,
                     label: { commentsHeaderLabel(title: $0) },
                     itemCount: commentCount,
@@ -365,7 +365,7 @@ struct SpeedGraderSubmissionGradesView: View {
                     .accessibilityLabel(a11yLabel)
                     .accessibilityAddTraits(.isHeader)
 
-                InstUI.Divider()
+                AUI.Divider()
 
                 content
             }
@@ -374,7 +374,7 @@ struct SpeedGraderSubmissionGradesView: View {
     }
 
     private func commentsHeaderLabel(title: String) -> some View {
-        HStack(spacing: InstUI.Styles.Padding.cellIconText.rawValue) {
+        HStack(spacing: AUI.Styles.Padding.cellIconText.rawValue) {
             Image.discussionLine
                 .scaledIcon()
                 .applyTint()

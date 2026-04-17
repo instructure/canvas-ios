@@ -36,7 +36,7 @@ struct StudentAssignmentListItemCell: View {
     }
 
     var body: some View {
-        InstUI.ContextItemListCell(
+        AUI.ContextItemListCell(
             icon: {
                 model.icon
                     .scaledIcon()
@@ -72,7 +72,7 @@ struct StudentAssignmentListItemCell: View {
     @ViewBuilder
     private var scoreAndStatusLine: some View {
         if let score = model.score {
-            InstUI.JoinedSubtitleLabels(
+            AUI.JoinedSubtitleLabels(
                 label1: { scoreLabel(score) },
                 label2: { submissionStatusLabel }
             )

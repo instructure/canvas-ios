@@ -24,7 +24,7 @@ protocol DashboardWidgetViewModel: AnyObject {
     var id: String { get }
 
     /// The state helps the dashboard screen to decide if the empty state should be shown or not.
-    var state: InstUI.ScreenState { get }
+    var state: ScreenState { get }
 
     /// When true, the widget will be completely hidden (not rendered) when state is .empty.
     /// This prevents empty widgets from creating spacing in the layout.

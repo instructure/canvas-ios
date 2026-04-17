@@ -38,7 +38,7 @@ struct RubricTextRatingsListView: View {
                         ratingViewModel.isSelected.toggle()
                     }) {
                         HStack(alignment: .top, spacing: 0) {
-                            InstUI
+                            AUI
                                 .RadioButton(isSelected: ratingViewModel.isSelected)
                                 .paddingStyle(.trailing, .cellIconText)
 
@@ -57,7 +57,7 @@ struct RubricTextRatingsListView: View {
                     }
                     .buttonStyle(.plain)
 
-                    InstUI.Divider(ratingViewModel.id == lastRatingId ? .hidden : .padded)
+                    AUI.Divider(ratingViewModel.id == lastRatingId ? .hidden : .padded)
                 }
             }
             .padding(.bottom, 8)

@@ -29,7 +29,7 @@ struct GlobalAnnouncementDetailsScreen: View {
     }
 
     var body: some View {
-        InstUI.BaseScreen(state: .data, config: .notRefreshable) { _ in
+        BaseScreen(state: .data, config: .notRefreshable) { _ in
             contentView
         }
         .navigationTitle(String(localized: "Global Announcement", bundle: .student), style: .modal)
@@ -66,13 +66,13 @@ struct GlobalAnnouncementDetailsScreen: View {
                 .accessibilityAddTraits(.isHeader)
 
             if let date = viewModel.date {
-                InstUI.TextSectionView(
+                AUI.TextSectionView(
                     title: String(localized: "Date", bundle: .student),
                     description: date
                 )
             }
 
-            InstUI.TextSectionView(
+            AUI.TextSectionView(
                 title: String(localized: "Message", bundle: .student),
                 description: viewModel.message,
                 isRichContent: true,

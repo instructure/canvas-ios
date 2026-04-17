@@ -139,7 +139,7 @@ public struct CourseDetailsView: View, ScreenViewTrackable {
                 }
                 .foregroundColor(.textDarkest)
                 Spacer()
-                InstUI.DisclosureIndicator()
+                AUI.DisclosureIndicator()
             }
             .frame(minHeight: 76)
             .padding(.horizontal, 16)

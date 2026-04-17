@@ -52,7 +52,7 @@ struct SpeedGraderPickerCell: View {
     }
 
     var body: some View {
-        HStack(spacing: InstUI.Styles.Padding.cellAccessoryPadding.rawValue) {
+        HStack(spacing: AUI.Styles.Padding.cellAccessoryPadding.rawValue) {
             Text(title)
                 .textStyle(.cellLabel)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -68,7 +68,7 @@ struct SpeedGraderPickerCell: View {
     }
 
     private var picker: some View {
-        InstUI.PickerMenu(
+        AUI.PickerMenu(
             selectedOption: Binding(
                 get: { viewModel.selectedOption },
                 set: { viewModel.didSelectOption?.send($0) }

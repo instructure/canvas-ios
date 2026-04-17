@@ -27,7 +27,7 @@ struct AssignmentReminderItemView: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            InstUI.Divider()
+            AUI.Divider()
             HStack(spacing: 0) {
                 bellIcon
                 titleView
