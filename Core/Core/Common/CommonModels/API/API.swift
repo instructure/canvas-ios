@@ -71,13 +71,6 @@ public class API {
                     return callback(nil, response, error)
                 }
 
-                print()
-                print("-- Request --")
-                print(request)
-                print("-- Response --")
-                print(data.toJsonString() ?? "")
-                print()
-
                 do {
                     callback(try requestable.decode(data), response, error)
                 } catch let error {
@@ -267,24 +260,4 @@ public class FollowRedirect: NSObject, URLSessionTaskDelegate {
 
 public enum APIAsyncError: Error {
     case invalidResponse
-}
-
-
-private extension Data {
-
-    func toJsonString() -> String? {
-
-        if let object = try? JSONSerialization.jsonObject(with: self, options: [.fragmentsAllowed]) {
-
-            if let str = object as? String {
-                return str
-            }
-
-            if let json = try? JSONSerialization.data(withJSONObject: object, options: .prettyPrinted) {
-                return String(data: json, encoding: .utf8)
-            }
-        }
-
-        return nil
-    }
 }
