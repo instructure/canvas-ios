@@ -20,6 +20,7 @@ import Combine
 import CombineExt
 import CombineSchedulers
 import UIKit
+import FoundationModels
 
 final class ComposeMessageViewModel: ObservableObject {
     // MARK: - Outputs
@@ -67,7 +68,9 @@ final class ComposeMessageViewModel: ObservableObject {
     @Published public var subject: String = ""
     @Published public var selectedContext: RecipientContext?
     @Published public var conversation: Conversation?
+    @Published public private(set) var generationErrorMessage: String?
     @Published public var includedMessages: [ConversationMessage] = []
+    @Published public var quickReplies: [String] = []
     @Published public var attachments: [File] = []
     @Published public var isShowingCancelDialog = false
     @Published var showSearchRecipientsView: Bool = false
@@ -129,6 +132,10 @@ final class ComposeMessageViewModel: ObservableObject {
         self.env = env
         setIncludedMessages(messageType: options.messageType)
         setOptionItems(options: options)
+
+        if #available(iOS 26.0, *) {
+            generateQuickReplies()
+        }
 
         setupOutputBindings()
         setupInputBindings()
@@ -584,6 +591,37 @@ final class ComposeMessageViewModel: ObservableObject {
         changedMessageProperties.courseName = selectedContext?.name
         changedMessageProperties.recipients = selectedRecipients.value
         return changedMessageProperties != initialMessageProperties
+    }
+
+    @available(iOS 26.0, *)
+    private func generateQuickReplies() {
+        let model = SystemLanguageModel.default
+        guard let message = includedMessages.first?.body, model.isAvailable  else { return }
+
+        Task { @MainActor in
+            do {
+                let instructions = "Your task is to write exactly 3 **short** replies to the following message. One sentence each."
+                let session = LanguageModelSession(model: model, instructions: instructions)
+                let options = GenerationOptions(temperature: 0.2)
+
+                for try await chunk in session.streamResponse(to: message, generating: [QuickReply].self, options: options) {
+                    quickReplies = chunk.content.map { $0.body ?? "" }
+                }
+            } catch let error as LanguageModelSession.GenerationError {
+                debugPrint(error)
+
+                switch error {
+                case .exceededContextWindowSize: generationErrorMessage = "Message is too long to generate quick replies"
+                case .assetsUnavailable: generationErrorMessage = "Apple Intelligence got disabled"
+                case .guardrailViolation: generationErrorMessage = "The generated content violates Apple Intelligence's guardrails"
+                case .unsupportedLanguageOrLocale: generationErrorMessage = "Language is not supported by Apple Intelligence"
+                case .refusal(_, let context): generationErrorMessage = context.debugDescription
+                default: generationErrorMessage = "Failed to generate quick replies"
+                }
+            } catch {
+                debugPrint(error)
+            }
+        }
     }
 }
 

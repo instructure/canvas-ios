@@ -135,6 +135,21 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                     propertiesView
                     separator
 
+                    FoundationModelsStatusView {
+                        if let errorMessage = model.generationErrorMessage {
+                            Label {
+                                Text(verbatim: errorMessage)
+                            } icon: {
+                                Image(systemName: "apple.intelligence.badge.xmark")
+                            }
+
+                        }
+                        quickReplies
+                    }
+                    .frame(maxWidth: .infinity)
+                    .foregroundStyle(.textDark)
+                    .padding(.top)
+
                     bodyView(geometry: geometry)
                     attachmentsView
                     if !model.includedMessages.isEmpty {
@@ -162,6 +177,28 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
             }
         }
+    }
+
+    @ViewBuilder
+    private var quickReplies: some View {
+        ScrollView(.horizontal) {
+            HStack {
+                ForEach(model.quickReplies, id: \.self) { quickReply in
+                    Button {
+                        model.bodyText = quickReply
+                    } label: {
+                        Text(quickReply)
+                            .foregroundStyle(.textDarkest)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 8)
+                            .background(.backgroundMedium, in: Capsule())
+                    }
+                }
+            }
+            .padding(.horizontal)
+        }
+        .scrollIndicators(.hidden)
+        .animation(.default, value: model.quickReplies)
     }
 
     @available(iOS, introduced: 26, message: "Legacy version exists")
