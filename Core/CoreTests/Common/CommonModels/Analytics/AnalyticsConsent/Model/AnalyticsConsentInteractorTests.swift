@@ -89,6 +89,26 @@ final class AnalyticsConsentInteractorLiveTests: CoreTestCase {
         )
     }
 
+    func test_isTrackingEnabled_whenMasqueradingAndConsentRequired_shouldReturnFalse() {
+        environment.currentSession = .make(masquerader: URL(string: "/"))
+        mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: true)
+
+        XCTAssertSingleOutputEqualsAndFinish(
+            testee.isTrackingEnabled(ignoreConsentCache: true),
+            false
+        )
+    }
+
+    func test_isTrackingEnabled_whenMasqueradingAndConsentNotRequired_shouldReturnTrue() {
+        environment.currentSession = .make(masquerader: URL(string: "/"))
+        mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: false)
+
+        XCTAssertSingleOutputEqualsAndFinish(
+            testee.isTrackingEnabled(ignoreConsentCache: true),
+            true
+        )
+    }
+
     // MARK: - getConsentIfRequired
 
     func test_getConsentIfRequired_whenConsentNotRequired_shouldReturnNil() {
@@ -130,6 +150,26 @@ final class AnalyticsConsentInteractorLiveTests: CoreTestCase {
         )
     }
 
+    func test_getConsentIfRequired_whenMasqueradingAndConsentRequired_shouldReturnFalse() {
+        environment.currentSession = .make(masquerader: URL(string: "/"))
+        mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: true)
+
+        XCTAssertSingleOutputEqualsAndFinish(
+            testee.getConsentIfRequired(ignoreConsentCache: true),
+            false
+        )
+    }
+
+    func test_getConsentIfRequired_whenMasqueradingAndConsentNotRequired_shouldReturnNil() {
+        environment.currentSession = .make(masquerader: URL(string: "/"))
+        mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: false)
+
+        XCTAssertSingleOutputEqualsAndFinish(
+            testee.getConsentIfRequired(ignoreConsentCache: true),
+            nil
+        )
+    }
+
     // MARK: - setConsent
 
     func test_setConsent_shouldPersistConsentValueInCoreData() {
@@ -140,6 +180,12 @@ final class AnalyticsConsentInteractorLiveTests: CoreTestCase {
 
         let stored: [CDAnalyticsConsent] = databaseClient.fetch()
         XCTAssertEqual(stored.first?.consentValue, true)
+    }
+
+    func test_setConsent_whenMasquerading_shouldFail() {
+        environment.currentSession = .make(masquerader: URL(string: "/"))
+
+        XCTAssertFailure(testee.setConsent(true))
     }
 
     // MARK: - Storing consent in session defaults
@@ -169,6 +215,16 @@ final class AnalyticsConsentInteractorLiveTests: CoreTestCase {
         XCTAssertFinish(testee.isTrackingEnabled(ignoreConsentCache: true))
 
         XCTAssertEqual(environment.userDefaults?.userProvidedAnalyticsConsent, true)
+    }
+
+    func test_isTrackingEnabled_whenMasqueradingAndConsentRequired_shouldStoreConsentValueFalseInSessionDefaults() {
+        environment.currentSession = .make(masquerader: URL(string: "/"))
+        environment.userDefaults?.userProvidedAnalyticsConsent = true
+        mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: true)
+
+        XCTAssertFinish(testee.isTrackingEnabled(ignoreConsentCache: true))
+
+        XCTAssertEqual(environment.userDefaults?.userProvidedAnalyticsConsent, false)
     }
 
     func test_setConsent_shouldStoreConsentValueInSessionDefaults() {
