@@ -182,7 +182,9 @@ public struct DeveloperMenuView: View {
                 guard let app = env.app else { return }
                 env.api.makeRequest(DeleteAnalyticsConsentRequest(namespace: app.consentNamespace)) { _, _, error in
                     if error == nil {
-                        snackBarViewModel.showSnack("Analytics consent cleared")
+                        performUIUpdate {
+                            snackBarViewModel.showSnack("Analytics consent cleared. Restart the app!")
+                        }
                     }
                 }
             }
