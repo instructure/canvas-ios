@@ -40,9 +40,7 @@ public enum InboxAssembly {
             inboxVC.navigationItem.titleView = Core.Brand.shared.headerImageView()
         }
 
-        let nav = CoreNavigationController(rootViewController: inboxVC)
-        nav.navigationBar.useGlobalNavStyle()
-        return nav
+        return inboxVC
     }
 
     public static func makeInboxViewControllerForParent() -> UIViewController {

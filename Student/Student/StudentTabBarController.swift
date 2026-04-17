@@ -125,7 +125,7 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
                     )
                 )
                 result = DashboardContainerViewController(rootViewController: dashboard) {
-                    CoreSplitViewController()
+                    return CoreSplitViewController()
                 }
             }
 
@@ -149,40 +149,37 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         if ExperimentalFeature.rebuiltCalendar.isEnabled {
             planner = PlannerAssembly.makeNewPlannerViewController()
         } else {
-            planner = CoreNavigationController(
-                rootViewController: PlannerViewController.create(
-                    studentAccessInteractor: StudentAccessInteractorLive(env: AppEnvironment.shared)
-                )
+            planner = PlannerViewController.create(
+                studentAccessInteractor: StudentAccessInteractorLive(env: AppEnvironment.shared)
             )
         }
 
         split.setViewController(planner, for: .primary)
-        split.setViewController(
-            CoreNavigationController(rootViewController: EmptyViewController()),
-            for: .secondary
-        )
+        split.setViewController(EmptyViewController(), for: .secondary)
 
-        split.view.tintColor = Brand.shared.primary
-        split.tabBarItem.title = String(localized: "Calendar", bundle: .student, comment: "Tab title, max character count is 14")
-        split.tabBarItem.image = .calendarTab
-        split.tabBarItem.selectedImage = .calendarTabActive
-        split.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
-        split.tabBarItem.makeUnavailableInOfflineMode()
-        split.embedOfflineBanner()
-        return split
+        let calendar = split.tabNavigation()
+
+        calendar.view.tintColor = Brand.shared.primary
+        calendar.tabBarItem.title = String(localized: "Calendar", bundle: .student, comment: "Tab title, max character count is 14")
+        calendar.tabBarItem.image = .calendarTab
+        calendar.tabBarItem.selectedImage = .calendarTabActive
+        calendar.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
+        calendar.tabBarItem.makeUnavailableInOfflineMode()
+        calendar.embedOfflineBanner()
+        return calendar
     }
 
     func todoTab() -> UIViewController {
-        let todo = CoreSplitViewController()
+        let todoSplit = CoreSplitViewController()
         let todoController = {
             let useOldTodo = ExperimentalFeature.revertToOldStudentToDo.isEnabled
             return useOldTodo ? TodoListViewController.create() : TodoAssembly.makeTodoListViewController(env: .shared)
         }()
 
-        todo.setViewController(CoreNavigationController(rootViewController: todoController),
-                               for: .primary)
-        todo.setViewController(CoreNavigationController(rootViewController: EmptyViewController()),
-                               for: .secondary)
+        todoSplit.setViewController(todoController, for: .primary)
+        todoSplit.setViewController(EmptyViewController(), for: .secondary)
+
+        let todo = todoSplit.tabNavigation()
 
         todo.tabBarItem.title = String(localized: "To-do", bundle: .student, comment: "Tab title, max character count is 14")
         todo.tabBarItem.image = .todoTab
@@ -197,45 +194,39 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
 
     func notificationsTab() -> UIViewController {
         let split = CoreSplitViewController()
-        split.setViewController(
-            CoreNavigationController(rootViewController: ActivityStreamViewController.create()),
-            for: .primary
-        )
-        split.setViewController(
-            CoreNavigationController(rootViewController: EmptyViewController()),
-            for: .secondary
-        )
+        split.setViewController(ActivityStreamViewController.create(), for: .primary)
+        split.setViewController(EmptyViewController(), for: .secondary)
 
-        split.tabBarItem.title = String(localized: "Notifications", bundle: .student, comment: "Tab title, max character count is 14")
-        split.tabBarItem.image = .alertsTab
-        split.tabBarItem.selectedImage = .alertsTabActive
-        split.tabBarItem.accessibilityIdentifier = "TabBar.notificationsTab"
-        split.tabBarItem.makeUnavailableInOfflineMode()
-        split.embedOfflineBanner()
-        return split
+        let notif = split.tabNavigation()
+
+        notif.tabBarItem.title = String(localized: "Notifications", bundle: .student, comment: "Tab title, max character count is 14")
+        notif.tabBarItem.image = .alertsTab
+        notif.tabBarItem.selectedImage = .alertsTabActive
+        notif.tabBarItem.accessibilityIdentifier = "TabBar.notificationsTab"
+        notif.tabBarItem.makeUnavailableInOfflineMode()
+        notif.embedOfflineBanner()
+        return notif
     }
 
     func inboxTab() -> UIViewController {
         let inboxController: UIViewController
         let inboxSplit = CoreSplitViewController()
-
         inboxController = InboxAssembly.makeInboxViewController()
 
-        let empty = CoreNavigationController()
-        empty.navigationBar.useGlobalNavStyle()
-
         inboxSplit.setViewController(inboxController, for: .primary)
-        inboxSplit.setViewController(empty, for: .secondary)
+        inboxSplit.setViewController(EmptyViewController(), for: .secondary)
+
+        let inbox = inboxSplit.tabNavigation()
 
         let title = String(localized: "Inbox", bundle: .student, comment: "Tab title, max character count is 14")
-        inboxSplit.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
-        inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
-        inboxSplit.tabBarItem.makeUnavailableInOfflineMode()
-        inboxSplit.extendedLayoutIncludesOpaqueBars = true
-        inboxSplit.embedOfflineBanner()
-        TabBarBadgeCounts.messageItem = inboxSplit.tabBarItem
+        inbox.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
+        inbox.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
+        inbox.tabBarItem.makeUnavailableInOfflineMode()
+        inbox.extendedLayoutIncludesOpaqueBars = true
+        inbox.embedOfflineBanner()
+        TabBarBadgeCounts.messageItem = inbox.tabBarItem
 
-        return inboxSplit
+        return inbox
     }
 
     private func reportScreenView(for tabIndex: Int, viewController: UIViewController) {

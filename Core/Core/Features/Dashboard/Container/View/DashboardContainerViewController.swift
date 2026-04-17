@@ -82,16 +82,15 @@ public class DashboardContainerViewController: CoreNavigationController {
         split.preferredDisplayMode = .oneBesideSecondary
 
         split.setViewController(
-            CoreNavigationController(rootViewController: masterViewController),
+            masterViewController,
             for: .primary
         )
 
         split.setViewController(
-            CoreNavigationController(rootViewController: EmptyViewController()),
+            EmptyViewController(),
             for: .secondary
         )
 
-        split.masterNavigationController?.delegate = split
         return split
     }
 }

@@ -20,197 +20,177 @@ import UIKit
 
 public class CoreSplitViewController: UISplitViewController {
 
-    public convenience init() {
-        self.init(style: .doubleColumn)
-    }
-
-    public override init(style: UISplitViewController.Style) {
-        super.init(style: style)
-        preferredDisplayMode = .oneBesideSecondary
-        preferredSplitBehavior = .displace
-        displayModeButtonVisibility = .never
-        delegate = self
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-    }
-
-    public override func viewDidLoad() {
-        super.viewDidLoad()
-        registerForTraitChanges()
-    }
+    private lazy var expandButton: UIBarButtonItem = {
+        let button = UIBarButtonItem(
+            image: .fullScreenLine,
+            style: .plain, target: self, action: #selector(didTapExpand)
+        )
+        return button
+    }()
 
     public override var prefersStatusBarHidden: Bool {
-        return masterNavigationController?.prefersStatusBarHidden ?? false
+        return masterNavigationController?.topViewController?.prefersStatusBarHidden ?? false
     }
 
-    public override func showDetailViewController(_ vc: UIViewController, sender: Any?) {
-        masterNavigationController?.syncStyles()
-
-        if isCollapsed {
-            masterNavigationController?.show(vc, sender: sender)
+    public override var childForStatusBarStyle: UIViewController? {
+        let topViewController = masterNavigationController?.topViewController
+        if #available(iOS 26, *) {
+            return topViewController
         } else {
-            setViewController(vc, for: .secondary)
-            show(.secondary)
+            return topViewController?.preferredStatusBarStyle != .default ? topViewController : nil
         }
     }
 
-    private func updateTitleViews() {
-        // Recreating the titleView seems to be the most reliable way to get it to draw
-        // correctly when the traitCollection changes on iPad
-        if let titleView = masterTopViewController?.navigationItem.titleView as? TitleSubtitleView {
-            masterTopViewController?.navigationItem.titleView = titleView.recreate()
-        }
-        if let titleView = detailTopViewController?.navigationItem.titleView as? TitleSubtitleView {
-            detailTopViewController?.navigationItem.titleView = titleView.recreate()
+    private func removeExpandButton() {
+        guard let currentExpandableViewController else { return }
+
+        var items = currentExpandableViewController.navigationItem.leftBarButtonItems ?? []
+        items.removeAll(where: { $0 === expandButton })
+        currentExpandableViewController.navigationItem.leftBarButtonItems = items
+    }
+
+    private weak var _currentExpandableViewController: UIViewController?
+    fileprivate var currentExpandableViewController: UIViewController? {
+        get { _currentExpandableViewController }
+        set {
+            removeExpandButton()
+
+            if newValue is EmptyViewController { return }
+            _currentExpandableViewController = newValue
+
+            guard let viewController = newValue, isCollapsed == false
+            else { return }
+
+            var items = viewController.navigationItem.leftBarButtonItems ?? []
+            if items.contains(expandButton) == false {
+                items.insert(expandButton, at: 0)
+            }
+
+            viewController.navigationItem.leftBarButtonItems = items
+            viewController.navigationItem.leftItemsSupplementBackButton = true
         }
     }
 
-    @available(iOS, deprecated: 26, message: "iOS26 has a default implementation")
-    private func prettyDisplayModeButtonItem(_ displayMode: DisplayMode) -> UIBarButtonItem {
-        let collapse = displayMode == .oneOverSecondary || displayMode == .secondaryOnly
-        let icon: UIImage = collapse ? .exitFullScreenLine : .fullScreenLine
-        let prettyButton = UIBarButtonItem(image: icon, style: .plain, target: self, action: #selector(didTabDisplayButton))
-        prettyButton.accessibilityLabel = collapse ?
-            String(localized: "Collapse detail view", bundle: .core) :
-            String(localized: "Expand detail view", bundle: .core)
-        return prettyButton
+    func updateExpandButtonState(for displayMode: UISplitViewController.DisplayMode?) {
+        let mode = displayMode ?? self.displayMode
+        let isExpanded = mode == .oneOverSecondary || mode == .secondaryOnly
+
+        expandButton.image = isExpanded ? .exitFullScreenLine : .fullScreenLine
+        expandButton.accessibilityLabel = isExpanded
+            ? String(localized: "Collapse detail view", bundle: .core)
+            : String(localized: "Expand detail view", bundle: .core)
     }
 
-    @objc private func didTabDisplayButton() {
-        if displayMode == .secondaryOnly {
+    @objc private func didTapExpand() {
+        updateExpandButtonState(for: displayMode)
+
+        let isExpanded = displayMode == .oneOverSecondary || displayMode == .secondaryOnly
+
+        if isExpanded {
             show(.primary)
         } else {
             hide(.primary)
         }
     }
 
-    private func registerForTraitChanges() {
-        let traits: [UITrait] = [UITraitVerticalSizeClass.self, UITraitHorizontalSizeClass.self, UITraitLayoutDirection.self]
-        registerForTraitChanges(traits) { (self: CoreSplitViewController, _) in
-            self.updateTitleViews()
+    private func updateTitleViews() {
+        // Recreating the titleView seems to be the most reliable way to get it to draw
+        // correctly when the traitCollection changes on iPad
+        if let primaryViewController = masterNavigationController?.topViewController,
+           let titleView = primaryViewController.navigationItem.titleView as? TitleSubtitleView {
+            primaryViewController.navigationItem.titleView = titleView.recreate()
         }
+
+        if let secondaryViewController = detailNavigationController?.topViewController,
+           let titleView = secondaryViewController.navigationItem.titleView as? TitleSubtitleView {
+            secondaryViewController.navigationItem.titleView = titleView.recreate()
+        }
+    }
+
+    convenience init() {
+        self.init(style: .doubleColumn)
+        displayModeButtonVisibility = .never
+        preferredDisplayMode = .oneBesideSecondary
+        preferredSplitBehavior = .displace
+        delegate = self
+    }
+
+    public override func showDetailViewController(_ vc: UIViewController, sender: Any?) {
+        detailNavigationController?.setViewControllers([vc], animated: false)
+        show(.secondary)
     }
 }
 
 extension CoreSplitViewController: UISplitViewControllerDelegate {
 
     public func splitViewControllerDidExpand(_ svc: UISplitViewController) {
-        guard let secondaryView = secondaryViewController else { return }
-        resetSecondaryViewDisplayModeButton(secondaryView)
-        (secondaryView as? UINavigationController)?.syncStyles()
-        updateTitleViews()
+        currentExpandableViewController = detailNavigationController?.topViewController
+        masterNavigationController?.syncStyles()
     }
 
-    public func splitViewController(_ svc: UISplitViewController, willShow column: UISplitViewController.Column) {
-        if case .secondary = column {
-            //resetSecondaryView()
-        }
-    }
-
-    public func splitViewController(_ svc: UISplitViewController, willChangeTo displayMode: UISplitViewController.DisplayMode) {
-
-        guard let secondaryView = secondaryViewController else { return }
-
-        resetSecondaryViewDisplayModeButton(secondaryView, displayMode: displayMode)
-
-        if let top = (secondaryView as? UINavigationController)?.topViewController,
-           (top is EmptyViewController) == false {
-            NotificationCenter.default.post(name: NSNotification.Name.SplitViewControllerWillChangeDisplayModeNotification, object: self)
-        }
-    }
-
-    /// This necessary to fix an issue on iPadOS 26, where app freezes upon window resizing.
-    public func splitViewController(_ svc: UISplitViewController, topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column) -> UISplitViewController.Column {
-        .primary
+    public func splitViewControllerDidCollapse(_ svc: UISplitViewController) {
+        currentExpandableViewController = nil
     }
 
     public func splitViewController(
         _ svc: UISplitViewController,
-        displayModeForExpandingToProposedDisplayMode proposedDisplayMode: UISplitViewController.DisplayMode
-    ) -> UISplitViewController.DisplayMode {
+        didShow column: UISplitViewController.Column
+    ) {
+        masterNavigationController?.delegate = self
+        detailNavigationController?.delegate = self
+        currentExpandableViewController = detailNavigationController?.topViewController
+        masterNavigationController?.syncStyles()
+    }
 
-        switch proposedDisplayMode {
-        case .oneOverSecondary:
-            return .secondaryOnly
-        default:
-            return .oneBesideSecondary
+    public func splitViewController(
+        _ svc: UISplitViewController,
+        willChangeTo displayMode: UISplitViewController.DisplayMode
+    ) {
+        masterNavigationController?.delegate = self
+        detailNavigationController?.delegate = self
+        currentExpandableViewController = detailNavigationController?.topViewController
+        updateExpandButtonState(for: displayMode)
+
+        if #unavailable(iOS 26) {
+            updateTitleViews()
         }
     }
 
-    private func resetSecondaryView() {
-        guard
-            let primary = masterNavigationController,
-            let secondary = detailNavigationController
-        else { return }
+    public func splitViewController(
+        _ svc: UISplitViewController,
+        topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column
+    ) -> UISplitViewController.Column {
+        currentExpandableViewController = nil
 
-        // Setup default detail view provided by the master view controller
-        if primary.viewControllers.count > 1,
-           let defaultViewProvider = primary.viewControllers.last as? DefaultViewProvider,
-           let defaultRoute = defaultViewProvider.defaultViewRoute,
-           let defaultViewController = AppEnvironment.shared.router.match(defaultRoute.url, userInfo: defaultRoute.userInfo) {
+        if detailNavigationController?.topViewController == nil { return .primary }
 
-            secondary.viewControllers = [defaultViewController]
-            secondary.syncStyles(from: primary, to: secondary)
-
-            if let routeTemplate = AppEnvironment.shared.router.template(for: defaultRoute.url) {
-                RemoteLogger.shared.logBreadcrumb(route: routeTemplate, viewController: defaultViewController)
-            }
+        if let currentDetailVC = detailNavigationController?.topViewController,
+           (currentDetailVC is EmptyViewController) {
+            return if #available(iOS 26, *) { .compact } else { .primary }
         }
 
-        // Default behaviour of putting the current top viewcontroller into a nav controller and moving it to the detail view
-        if primary.viewControllers.count >= 2 {
-
-            let newDeets = primary.viewControllers[primary.viewControllers.count - 1]
-            primary.popViewController(animated: true)
-
-            if let nav = newDeets as? UINavigationController,
-               let nvc = nav.viewControllers.first {
-                secondary.viewControllers = [nvc]
-            } else {
-                secondary.viewControllers = [newDeets]
-            }
-        }
-    }
-
-    private func resetSecondaryViewDisplayModeButton(_ viewController: UIViewController, displayMode: UISplitViewController.DisplayMode? = nil) {
-
-        let viewControllers = (viewController as? UINavigationController)?.viewControllers ?? [viewController]
-        for vc in viewControllers where (vc is EmptyViewController) == false {
-            vc.navigationItem.leftItemsSupplementBackButton = true
-            vc.navigationItem.leftBarButtonItem = prettyDisplayModeButtonItem(displayMode ?? self.displayMode)
-        }
+        return proposedTopColumn
     }
 }
-
-// - MARK: Master Navigation Controller Transition Actions
 
 extension CoreSplitViewController: UINavigationControllerDelegate {
 
-    /**
-     This method gets called only when a real transition occurs. UINavigationControllerDelegate.willShow/didShow also
-     gets called when the navigation controller is removed from the screen and re-added for example on a tab bar change
-     event so we can't use those to determine when a view controller is pushed for the first time.
-     */
-    open func navigationController(_ navigationController: UINavigationController,
-                                   animationControllerFor operation: UINavigationController.Operation,
-                                   from fromVC: UIViewController,
-                                   to toVC: UIViewController)
-    -> UIViewControllerAnimatedTransitioning? {
-        toVC.showDefaultDetailViewIfNeeded()
-        return nil
-    }
-}
+    public func navigationController(
+        _ navigationController: UINavigationController,
+        didShow viewController: UIViewController,
+        animated: Bool
+    ) {
+        if navigationController === detailNavigationController {
+            currentExpandableViewController = viewController
+        }
 
-// Needed for the above bug mentioned in comments
-extension CoreSplitViewController: UIGestureRecognizerDelegate { }
+        // Show default when primary is popped
+        guard isCollapsed == false,
+              navigationController === masterNavigationController,
+              let primaryView = navigationController.topViewController as? DefaultViewProvider,
+              navigationController.transitionCoordinator?.viewController(forKey: .from) != nil
+        else { return }
 
-// - MARK: Helper Utils
-
-private extension UISplitViewController {
-
-    var secondaryViewController: UIViewController? {
-        viewController(for: .secondary)
+        primaryView.showDefaultDetailViewIfNeeded()
     }
 }

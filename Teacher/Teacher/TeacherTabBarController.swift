@@ -88,18 +88,18 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
 
     func calendarTab() -> UIViewController {
         let split = CoreSplitViewController()
-        split.viewControllers = [
-            CoreNavigationController(rootViewController: PlannerViewController.create()),
-            CoreNavigationController(rootViewController: EmptyViewController())
-        ]
-        split.view.tintColor = Brand.shared.primary
-        split.tabBarItem.title = String(localized: "Calendar", bundle: .teacher, comment: "Tab title, max character count is 14")
-        split.tabBarItem.image = .calendarTab
-        split.tabBarItem.selectedImage = .calendarTabActive
-        split.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
-        split.tabBarItem.makeUnavailableInOfflineMode()
-        split.embedOfflineBanner()
-        return split
+        split.setViewController(PlannerViewController.create(), for: .primary)
+        split.setViewController(EmptyViewController(), for: .secondary)
+
+        let calendar = split.tabNavigation()
+        calendar.view.tintColor = Brand.shared.primary
+        calendar.tabBarItem.title = String(localized: "Calendar", bundle: .teacher, comment: "Tab title, max character count is 14")
+        calendar.tabBarItem.image = .calendarTab
+        calendar.tabBarItem.selectedImage = .calendarTabActive
+        calendar.tabBarItem.accessibilityIdentifier = "TabBar.calendarTab"
+        calendar.tabBarItem.makeUnavailableInOfflineMode()
+        calendar.embedOfflineBanner()
+        return calendar
     }
 
     func toDoTab() -> UIViewController {
@@ -119,17 +119,18 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
 
         inboxController = InboxAssembly.makeInboxViewController()
 
-        let empty = CoreNavigationController()
-        empty.navigationBar.useGlobalNavStyle()
+        inboxSplit.setViewController(inboxController, for: .primary)
+        inboxSplit.setViewController(EmptyViewController(), for: .secondary)
 
-        inboxSplit.viewControllers = [inboxController, empty]
+        let inbox = inboxSplit.tabNavigation()
+        
         let title = String(localized: "Inbox", bundle: .teacher, comment: "Tab title, max character count is 14")
-        inboxSplit.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
-        inboxSplit.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
-        inboxSplit.extendedLayoutIncludesOpaqueBars = true
-        TabBarBadgeCounts.messageItem = inboxSplit.tabBarItem
+        inbox.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
+        inbox.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
+        inbox.extendedLayoutIncludesOpaqueBars = true
+        TabBarBadgeCounts.messageItem = inbox.tabBarItem
 
-        return inboxSplit
+        return inbox
     }
 
     private func reportScreenView(for tabIndex: Int, viewController: UIViewController) {

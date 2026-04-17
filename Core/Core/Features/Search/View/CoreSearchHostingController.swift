@@ -21,9 +21,8 @@ import UIKit
 import Combine
 
 public protocol CoreSearchController: UIViewController,
-                                        UITextFieldDelegate,
-                                        UINavigationControllerDelegate,
-                                        UISplitViewControllerDelegate {}
+                                      UITextFieldDelegate,
+                                      UINavigationControllerDelegate {}
 
 public class CoreSearchHostingController<
         Attributes: SearchViewAttributes,
@@ -254,19 +253,14 @@ public class CoreSearchHostingController<
             coverVC.navigationBarStyle = .color(contextColor)
         }
 
+        let backItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
+        coverVC.navigationItem.backBarButtonItem = backItem
+
         let splitView = CoreSplitViewController()
-        let containerNav = CoreNavigationController(rootViewController: coverVC)
-        containerNav.delegate = self
-
-        splitView.delegate = self
-        splitView.setViewController(containerNav, for: .primary)
-        splitView.setViewController(
-            CoreNavigationController(rootViewController: EmptyViewController()),
-            for: .secondary
-        )
-
+        splitView.setViewController(coverVC, for: .primary)
+        splitView.setViewController(EmptyViewController(), for: .secondary)
         splitView.modalTransitionStyle = .crossDissolve
-
+        
         router.show(
             splitView,
             from: self,
@@ -327,15 +321,6 @@ public class CoreSearchHostingController<
         searchContext.didSubmit.send(searchTerm)
         startSearchExperience(with: searchTerm)
         return true
-    }
-
-    public func navigationController(
-        _ navigationController: UINavigationController,
-        willShow viewController: UIViewController,
-        animated: Bool
-    ) {
-        let backItem = UIBarButtonItem(title: nil, style: .plain, target: nil, action: nil)
-        viewController.navigationItem.backBarButtonItem = backItem
     }
 }
 

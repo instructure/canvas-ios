@@ -27,10 +27,6 @@ public final class ModuleItemSequenceViewController: ScreenViewTrackableViewCont
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
 
-    /// These should get set only once in viewDidLoad
-    private var leftBarButtonItems: [UIBarButtonItem]?
-    private var rightBarButtonItems: [UIBarButtonItem]?
-
     private var env: AppEnvironment = .defaultValue
     private var courseID: String!
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
@@ -69,8 +65,6 @@ public final class ModuleItemSequenceViewController: ScreenViewTrackableViewCont
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        leftBarButtonItems = navigationItem.leftBarButtonItems
-        rightBarButtonItems = navigationItem.rightBarButtonItems
 
         if #available(iOS 26, *) {
             // Since titleSubtitleView is in use, we need to set the toolbar appearance to match the screen's
@@ -155,8 +149,6 @@ public final class ModuleItemSequenceViewController: ScreenViewTrackableViewCont
     internal func setCurrentPage(_ page: UIViewController, direction: PagesViewController.Direction? = nil) {
         pages.currentPage?.pauseWebViewPlayback()
         pages.setCurrentPage(page, direction: direction)
-        navigationItem.rightBarButtonItems = rightBarButtonItems
-        navigationItem.leftBarButtonItems = leftBarButtonItems
         observations = syncNavigationBar(with: page)
     }
 

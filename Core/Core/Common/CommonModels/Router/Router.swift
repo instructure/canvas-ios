@@ -257,16 +257,6 @@ open class Router {
 
         if view is UIAlertController { return from.present(view, animated: true, completion: completion) }
 
-        if #unavailable(iOS 26),
-           let displayModeButton = from.splitDisplayModeButtonItem,
-           from.splitViewController?.isCollapsed == false,
-           options.isDetail || from.isInSplitViewDetail,
-           !options.isModal {
-
-            view.addNavigationButton(displayModeButton, side: .left)
-            view.navigationItem.leftItemsSupplementBackButton = true
-        }
-
         var nav: UINavigationController?
         if options.embedInNav {
             nav = view as? UINavigationController ?? CoreNavigationController(rootViewController: view)
@@ -299,7 +289,7 @@ open class Router {
                     from.show(view, sender: nil)
                 }
             } else {
-                from.showDetailViewController(nav ?? view, sender: from)
+                from.showDetailViewController(view, sender: from)
             }
         case .push:
             from.show(nav ?? view, sender: nil)

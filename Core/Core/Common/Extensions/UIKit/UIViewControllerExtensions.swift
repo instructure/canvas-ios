@@ -47,34 +47,15 @@ extension UIViewController {
     }
 
     public var isInSplitViewDetail: Bool {
-        if
+        guard
             let splitView = splitViewController,
-            splitView.viewControllers.count == 2,
-            let nav = splitView.viewControllers.last as? UINavigationController,
-            nav.viewControllers.contains(self) || (parent != nil && nav.viewControllers.contains(parent!)) {
-            return true
-        }
+            let nav = splitView.detailNavigationController
+        else { return false }
+
+        if nav.viewControllers.contains(self) { return true }
+        if let parent, nav.viewControllers.contains(parent) { return true }
+
         return false
-    }
-
-    @available(iOS, deprecated: 26)
-    public var splitDisplayModeButtonItem: UIBarButtonItem? {
-        guard let splitView = splitViewController else { return nil }
-        let isExpanded = splitView.displayMode == .oneOverSecondary || splitView.displayMode == .secondaryOnly
-        let icon: UIImage = isExpanded ? .exitFullScreenLine : .fullScreenLine
-        let buttonItem = UIBarButtonItem(image: icon, style: .plain, target: self, action: #selector(didTapSplitDisplayModeButton))
-        buttonItem.accessibilityLabel = splitView.isCollapsed ? String(localized: "Collapse", bundle: .core) : String(localized: "Expand", bundle: .core)
-        return buttonItem
-    }
-
-    @objc private func didTapSplitDisplayModeButton() {
-        guard let splitView = splitViewController else { return }
-
-        if splitView.displayMode == .secondaryOnly {
-            splitView.show(.primary)
-        } else {
-            splitView.hide(.primary)
-        }
     }
 
     public func findParentViewController<T: UIViewController>() -> T? {
@@ -255,4 +236,22 @@ extension UIViewController {
 
 public class ResetTransitionDelegate: NSObject, UIViewControllerTransitioningDelegate {
     public static let shared = ResetTransitionDelegate()
+}
+
+extension UIViewController {
+
+    public func tabNavigation() -> UIViewController {
+        let container = UIViewController()
+        container.embed(self, in: container.view)
+        return TabNavigationController(rootViewController: container)
+    }
+}
+
+private class TabNavigationController: UINavigationController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let hidden = UIDevice.current.userInterfaceIdiom == .phone
+        setNavigationBarHidden(hidden, animated: false)
+    }
 }

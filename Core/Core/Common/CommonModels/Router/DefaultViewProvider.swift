@@ -50,8 +50,7 @@ extension UIViewController {
      If yes and it's in a split view controller in split mode then shows its default view in the split view controller's detail area.
      */
     public func showDefaultDetailViewIfNeeded() {
-        guard !isInSplitViewDetail, // a detail view presenting its detail view in the detail view area makes no sense
-              isAddedToSplitViewController(), // if we rotate from single column to split view it could happen that the view is not yet added to the split view's detail area
+        guard !isInSplitViewDetail,
               let defaultViewProvider = self as? DefaultViewProvider,
               let defaultRoute = defaultViewProvider.defaultViewRoute,
               let splitViewController = splitViewController,
@@ -66,15 +65,5 @@ extension UIViewController {
             from: self,
             options: .detail
         )
-    }
-
-    private func isAddedToSplitViewController() -> Bool {
-        guard let navController = navigationController,
-              let splitController = splitViewController
-        else {
-            return false
-        }
-
-        return splitController.viewControllers.contains(navController)
     }
 }
