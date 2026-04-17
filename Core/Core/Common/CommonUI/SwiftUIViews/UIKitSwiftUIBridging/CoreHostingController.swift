@@ -59,7 +59,6 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
     var testTree: TestTree?
     private var screenViewTracker: ScreenViewTrackerLive?
     private var didAppearSubject = PassthroughSubject<Void, Never>()
-    private var preLayoutDisplayModeButtonVisibility: UISplitViewController.DisplayModeButtonVisibility?
     public private(set) var visibilityObservation = VisibilityObservation()
 
     public init(_ rootView: Content, env: AppEnvironment = .shared, customization: ((UIViewController) -> Void)? = nil) {
@@ -84,23 +83,6 @@ public class CoreHostingController<Content: View>: UIHostingController<CoreHosti
 
     @objc required dynamic init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-    }
-
-    // MARK: SplitView DisplayMode Button Visibility Fix
-
-    public override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        preLayoutDisplayModeButtonVisibility = splitViewController?.displayModeButtonVisibility
-    }
-
-    public override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-
-        if let buttonVisibility1 = preLayoutDisplayModeButtonVisibility,
-           let buttonVisibility2 = splitViewController?.displayModeButtonVisibility,
-           buttonVisibility1 != buttonVisibility2 {
-            splitViewController?.displayModeButtonVisibility = buttonVisibility1
-        }
     }
 
     // MARK: Appearance Methods
