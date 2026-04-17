@@ -70,7 +70,6 @@ public class API {
                 guard let data = data, error == nil, !(Request.Response.self is APINoContent.Type) else {
                     return callback(nil, response, error)
                 }
-
                 do {
                     callback(try requestable.decode(data), response, error)
                 } catch let error {
