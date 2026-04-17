@@ -25,17 +25,14 @@ import XCTest
 class PendoAnalyticsTrackerTests: XCTestCase {
 
     private var testee: PendoAnalyticsTracker!
-    private var environment: TestEnvironment!
     private var interactor: AnalyticsMetadataInteractorMock!
     private var pendoManager: PendoManagerMock!
 
     override func setUp() {
         super.setUp()
-        environment = .init()
         interactor = .init()
         pendoManager = .init()
         testee = .init(
-            environment: environment,
             interactor: interactor,
             pendoManager: pendoManager,
             pendoApiKey: "some api key"
@@ -43,7 +40,6 @@ class PendoAnalyticsTrackerTests: XCTestCase {
     }
 
     override func tearDown() {
-        environment = nil
         interactor = nil
         pendoManager = nil
         testee = nil
@@ -165,78 +161,5 @@ class PendoAnalyticsTrackerTests: XCTestCase {
         try await testee.startSessionAsync()
         testee.track("", properties: nil)
         XCTAssertEqual(pendoManager.trackCallsCount, 3)
-    }
-}
-
-// MARK: - Private Helpers
-
-private final class PendoManagerMock: PendoManagerWrapper {
-
-    init() {}
-
-    // MARK: - initWithUrl
-
-    var initWithUrlCallsCount: Int = 0
-    var initWithUrlInput: URL?
-
-    func initWith(_ url: URL) {
-        initWithUrlInput = url
-        initWithUrlCallsCount += 1
-    }
-
-    // MARK: - setup
-
-    var setupCallsCount: Int = 0
-    var setupInput: String?
-
-    func setup(_ appKey: String) {
-        setupInput = appKey
-        setupCallsCount += 1
-    }
-
-    // MARK: - startSession
-
-    var startSessionCallsCount: Int = 0
-    var startSessionInput: (
-        visitorId: String?,
-        accountId: String?,
-        visitorData: [AnyHashable: Any]?,
-        accountData: [AnyHashable: Any]?
-    )?
-
-    func startSession(
-        _ visitorId: String?,
-        accountId: String?,
-        visitorData: [AnyHashable: Any]?,
-        accountData: [AnyHashable: Any]?
-    ) {
-        startSessionInput = (visitorId, accountId, visitorData, accountData)
-        startSessionCallsCount += 1
-    }
-
-    // MARK: - endSession
-
-    var endSessionCallsCount: Int = 0
-
-    func endSession() {
-        endSessionCallsCount += 1
-    }
-
-    // MARK: - track
-
-    var trackCallsCount: Int = 0
-    var trackInput: (event: String, properties: [AnyHashable: Any]?)?
-
-    func track(_ event: String, properties: [AnyHashable: Any]?) {
-        trackInput = (event, properties)
-        trackCallsCount += 1
-    }
-}
-
-private class AnalyticsMetadataInteractorMock: AnalyticsMetadataInteractor {
-
-    var getMetadataResult: AnalyticsMetadata = .make()
-    func getMetadata() async throws -> AnalyticsMetadata {
-        getMetadataResult
     }
 }

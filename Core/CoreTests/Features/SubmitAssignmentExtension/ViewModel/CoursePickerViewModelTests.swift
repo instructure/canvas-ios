@@ -76,21 +76,17 @@ class CoursePickerViewModelTests: CoreTestCase {
     }
 
     func testReportsCourseSelectionToAnalytics() {
-        let analyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = analyticsHandler
         let testee = CoursePickerViewModel()
-        XCTAssertEqual(analyticsHandler.totalEventCount, 1) // courses loaded event
+        XCTAssertEqual(analytics.handleEventCallCount, 1) // courses loaded event
 
         testee.courseSelected(.init(id: "", name: ""))
 
-        XCTAssertEqual(analyticsHandler.totalEventCount, 2)
-        XCTAssertEqual(analyticsHandler.lastEvent, "course_selected")
-        XCTAssertNil(analyticsHandler.lastEventParameters)
+        XCTAssertEqual(analytics.handleEventCallCount, 2)
+        XCTAssertEqual(analytics.handleEventInput?.name, "course_selected")
+        XCTAssertNil(analytics.handleEventInput?.parameters)
     }
 
     func testReportsNumberOfCourses() {
-        let analyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = analyticsHandler
         api.mock(GetCoursesRequest(enrollmentState: .active, perPage: 100), value: [
             APICourse.make(id: "testCourse1_ID", name: "testCourse1"),
             APICourse.make(id: "testCourse2_ID", name: "testCourse2")
@@ -98,21 +94,18 @@ class CoursePickerViewModelTests: CoreTestCase {
 
         _ = CoursePickerViewModel()
 
-        XCTAssertEqual(analyticsHandler.totalEventCount, 1)
-        XCTAssertEqual(analyticsHandler.lastEvent, "courses_loaded")
-        XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: Int], ["count": 2])
+        XCTAssertEqual(analytics.handleEventCallCount, 1)
+        XCTAssertEqual(analytics.handleEventInput?.name, "courses_loaded")
+        XCTAssertEqual(analytics.handleEventInput?.parameters as? [String: Int], ["count": 2])
     }
 
     func testReportsCourseLoadFailure() {
-        let analyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = analyticsHandler
-
         api.mock(GetCoursesRequest(enrollmentState: .active, perPage: 100), error: NSError.instructureError("custom error"))
 
         _ = CoursePickerViewModel()
 
-        XCTAssertEqual(analyticsHandler.totalEventCount, 1)
-        XCTAssertEqual(analyticsHandler.lastEvent, "error_loading_courses")
-        XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], ["error": "custom error"])
+        XCTAssertEqual(analytics.handleEventCallCount, 1)
+        XCTAssertEqual(analytics.handleEventInput?.name, "error_loading_courses")
+        XCTAssertEqual(analytics.handleEventInput?.parameters as? [String: String], ["error": "custom error"])
     }
 }
