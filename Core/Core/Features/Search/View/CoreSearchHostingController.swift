@@ -260,7 +260,7 @@ public class CoreSearchHostingController<
         splitView.setViewController(coverVC, for: .primary)
         splitView.setViewController(EmptyViewController(), for: .secondary)
         splitView.modalTransitionStyle = .crossDissolve
-        
+
         router.show(
             splitView,
             from: self,

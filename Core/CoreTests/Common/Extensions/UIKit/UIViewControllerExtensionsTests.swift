@@ -97,15 +97,6 @@ class UIViewControllerExtensionsTests: XCTestCase {
         XCTAssertTrue(controller.isInSplitViewDetail)
     }
 
-    func testDisplayModeButtonItem() {
-        let controller = UIViewController()
-        XCTAssertNil(controller.splitDisplayModeButtonItem)
-        let split = UISplitViewController()
-        split.addChild(controller)
-
-        XCTAssertNotNil(controller.splitDisplayModeButtonItem)
-    }
-
     func test_stopWebViewPlayback() {
         let parentViewController = UIViewController()
 

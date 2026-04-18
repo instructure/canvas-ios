@@ -123,7 +123,6 @@ class TeacherTabBarController: UITabBarController, SnackBarProvider {
         inboxSplit.setViewController(EmptyViewController(), for: .secondary)
 
         let inbox = inboxSplit.tabNavigation()
-        
         let title = String(localized: "Inbox", bundle: .teacher, comment: "Tab title, max character count is 14")
         inbox.tabBarItem = UITabBarItem(title: title, image: .inboxTab, selectedImage: .inboxTabActive)
         inbox.tabBarItem.accessibilityIdentifier = "TabBar.inboxTab"
