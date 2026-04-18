@@ -95,7 +95,7 @@ final class SubmissionCommentViewModel {
     func postComment() {
         viewState = .postingComment
 
-        weak var weakSelf = self
+        weak let weakSelf = self
 
         interactor.postComment(
             courseID: courseID,
@@ -120,7 +120,7 @@ final class SubmissionCommentViewModel {
         guard let url = attachment.url, let name = attachment.displayName else {
             return
         }
-        weak var weakSelf = self
+        weak let weakSelf = self
         fileState = .loading
         fileSubscription = fileInteractor.download(
             remoteURL: url,

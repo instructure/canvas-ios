@@ -53,7 +53,7 @@ extension AUI {
 
         public init(
             label: Text,
-            labelModifiers: @escaping (Text) -> Label = { $0 },
+            labelModifiers: @escaping (Text) -> Label,
             customAccessibilityLabel: Text? = nil,
             identifierGroup: String? = nil,
             date: Binding<Date?>,
@@ -75,6 +75,33 @@ extension AUI {
             self.validUntil = validUntil
             self.errorMessage = errorMessage
             self.isClearable = isClearable
+        }
+
+        public init(
+            label: Text,
+            customAccessibilityLabel: Text? = nil,
+            identifierGroup: String? = nil,
+            date: Binding<Date?>,
+            mode: Mode = .dateAndTime,
+            defaultDate: Date = .now,
+            validFrom: Date = .distantPast,
+            validUntil: Date = .distantFuture,
+            errorMessage: String? = nil,
+            isClearable: Bool = false
+        ) where Text == Label {
+            self.init(
+                label: label,
+                labelModifiers: { $0 },
+                customAccessibilityLabel: customAccessibilityLabel,
+                identifierGroup: identifierGroup,
+                date: date,
+                mode: mode,
+                defaultDate: defaultDate,
+                validFrom: validFrom,
+                validUntil: validUntil,
+                errorMessage: errorMessage,
+                isClearable: isClearable
+            )
         }
 
         public var body: some View {

@@ -108,7 +108,7 @@ extension DashboardContainerViewController: UINavigationControllerDelegate {
          // horizontal size class (full iPad size), as it could
          // break the navigation bar when swiping back to dashboard
          let isCompact = traitCollection.horizontalSizeClass == .compact
-         let canBeAnimated = if #available(iOS 18, *) { isCompact } else { true }
+         let canBeAnimated = isCompact
          setNavigationBarHidden(isPush, animated: canBeAnimated && animated)
     }
 }

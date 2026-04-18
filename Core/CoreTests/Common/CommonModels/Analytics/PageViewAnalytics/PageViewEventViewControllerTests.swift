@@ -20,7 +20,7 @@ import XCTest
 import TestsFoundation
 @testable import Core
 
-class PageViewEventViewControllerLoggingProtocolTests: XCTestCase {
+class PageViewEventViewControllerTests: XCTestCase {
     let userID = "321"
     var start: Date!
     var end: Date!
@@ -64,7 +64,7 @@ class PageViewEventViewControllerLoggingProtocolTests: XCTestCase {
         screenViewTracker = ScreenViewTrackerLive(
             parameters: ScreenViewTrackingParameters(eventName: "\(#function)")
         )
-        PageViewEventController.instance.appCanLogEvents = { return true }
+        PageViewEventController.instance.startTracking()
 
         XCTAssertEqual(p.queueCount(for: userID), 0)
         //  when

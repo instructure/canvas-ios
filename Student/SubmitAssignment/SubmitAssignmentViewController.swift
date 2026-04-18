@@ -75,16 +75,7 @@ class SubmitAssignmentViewController: UIViewController {
     private func setupFirebaseServices() {
         guard FirebaseOptions.defaultOptions()?.apiKey != nil else { return }
         FirebaseApp.configure()
-        Core.Analytics.shared.handler = self
         RemoteLogger.shared.handler = self
-    }
-}
-
-extension SubmitAssignmentViewController: Core.AnalyticsHandler {
-
-    func handleEvent(_ name: String, parameters: [String: Any]?) {
-        // Google Analytics needs to be disabled for now
-//        Analytics.logEvent("sharex_\(name)", parameters: parameters)
     }
 }
 

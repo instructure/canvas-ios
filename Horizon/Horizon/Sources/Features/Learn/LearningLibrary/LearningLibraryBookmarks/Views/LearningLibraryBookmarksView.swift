@@ -84,26 +84,22 @@ struct LearningLibraryBookmarksView: View {
 
     private var contentView: some View {
         VStack(spacing: .zero) {
-            if #available(iOS 18.0, *) {
-                listItemView
-                    .onScrollGeometryChange(for: ScrollData.self) { geometry in
-                        ScrollData(
-                            offset: geometry.contentOffset.y,
-                            contentHeight: geometry.contentSize.height
-                        )
-                    } action: { _, newValue in
-                        let viewportHeight = UIScreen.main.bounds.height
-                        if newValue.contentHeight > viewportHeight + 200 {
-                            isShowHeader = newValue.offset <= 200
-                            isShowDivider = newValue.offset >= 10
-                        } else {
-                            isShowHeader = true
-                            isShowDivider = newValue.offset >= 10
-                        }
+            listItemView
+                .onScrollGeometryChange(for: ScrollData.self) { geometry in
+                    ScrollData(
+                        offset: geometry.contentOffset.y,
+                        contentHeight: geometry.contentSize.height
+                    )
+                } action: { _, newValue in
+                    let viewportHeight = UIScreen.main.bounds.height
+                    if newValue.contentHeight > viewportHeight + 200 {
+                        isShowHeader = newValue.offset <= 200
+                        isShowDivider = newValue.offset >= 10
+                    } else {
+                        isShowHeader = true
+                        isShowDivider = newValue.offset >= 10
                     }
-            } else {
-                listItemView
-            }
+                }
         }
     }
 

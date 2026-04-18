@@ -22663,6 +22663,15 @@
         }
       }
     },
+    "• Full Control: You can adjust these settings at any time." : {
+
+    },
+    "• No Data Selling: Your information is never sold to third parties." : {
+
+    },
+    "• No Personal Profiles: We do not track your identity or show advertisements." : {
+
+    },
     "+%d" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -42591,6 +42600,9 @@
         }
       }
     },
+    "Allow" : {
+
+    },
     "Allow liking" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -46786,6 +46798,9 @@
           }
         }
       }
+    },
+    "Anonymous Application Analytics" : {
+
     },
     "Anyone" : {
       "localizations" : {
@@ -157992,6 +158007,9 @@
         }
       }
     },
+    "Failed to save setting" : {
+
+    },
     "Failed to start upload." : {
       "localizations" : {
         "ar" : {
@@ -190506,6 +190524,9 @@
           }
         }
       }
+    },
+    "Help us build a better app" : {
+
     },
     "Help your students with this assignment by adding instructions." : {
       "localizations" : {
@@ -290435,6 +290456,9 @@
         }
       }
     },
+    "Privacy Settings" : {
+
+    },
     "Profile avatar" : {
       "localizations" : {
         "ar" : {
@@ -333703,6 +333727,9 @@
           }
         }
       }
+    },
+    "Share anonymous data about app performance and feature use. This helps us fix bugs and improve the overall application experience. We do not collect personal identifiers." : {
+
     },
     "Show a month at a time" : {
       "extractionState" : "stale",
@@ -422740,6 +422767,9 @@
         }
       }
     },
+    "We collect anonymous application data to help our team identify technical issues and optimize app features." : {
+
+    },
     "We couldn't add your Event at this time. You can try it again." : {
       "localizations" : {
         "ar" : {
@@ -430188,7 +430218,7 @@
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cad a cheapann tú faoin bpainéal nua?"
+            "value" : "Cad a cheapann tú faoin deais nua?"
           }
         },
         "hi" : {

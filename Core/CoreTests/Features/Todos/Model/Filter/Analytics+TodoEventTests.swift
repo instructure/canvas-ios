@@ -31,7 +31,7 @@ class AnalyticsTodoEventTests: CoreTestCase {
         Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(analytics.lastEvent, "todo_list_loaded_default_filter")
+        XCTAssertEqual(analytics.handleEventInput?.name, "todo_list_loaded_default_filter")
     }
 
     func test_logsCustomEvent_whenFilterIsNotDefault() {
@@ -46,7 +46,7 @@ class AnalyticsTodoEventTests: CoreTestCase {
         Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(analytics.lastEvent, "todo_list_loaded_custom_filter")
+        XCTAssertEqual(analytics.handleEventInput?.name, "todo_list_loaded_custom_filter")
     }
 
     // MARK: - Analytics Parameters
@@ -59,12 +59,12 @@ class AnalyticsTodoEventTests: CoreTestCase {
         Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertNotNil(analytics.lastEventParameter("filter_personal_todos", ofType: Bool.self))
-        XCTAssertNotNil(analytics.lastEventParameter("filter_calendar_events", ofType: Bool.self))
-        XCTAssertNotNil(analytics.lastEventParameter("filter_show_completed", ofType: Bool.self))
-        XCTAssertNotNil(analytics.lastEventParameter("filter_favourite_courses", ofType: Bool.self))
-        XCTAssertNotNil(analytics.lastEventParameter("filter_selected_date_range_past", ofType: String.self))
-        XCTAssertNotNil(analytics.lastEventParameter("filter_selected_date_range_future", ofType: String.self))
+        XCTAssertNotNil(analytics.handleEventInput?.parameters?["filter_personal_todos"] as? Bool)
+        XCTAssertNotNil(analytics.handleEventInput?.parameters?["filter_calendar_events"] as? Bool)
+        XCTAssertNotNil(analytics.handleEventInput?.parameters?["filter_show_completed"] as? Bool)
+        XCTAssertNotNil(analytics.handleEventInput?.parameters?["filter_favourite_courses"] as? Bool)
+        XCTAssertNotNil(analytics.handleEventInput?.parameters?["filter_selected_date_range_past"] as? String)
+        XCTAssertNotNil(analytics.handleEventInput?.parameters?["filter_selected_date_range_future"] as? String)
     }
 
     func test_logsShowPersonalTodos_asFalse_whenNotIncluded() {
@@ -79,7 +79,7 @@ class AnalyticsTodoEventTests: CoreTestCase {
         Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(analytics.lastEventParameter("filter_personal_todos", ofType: Bool.self), false)
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["filter_personal_todos"] as? Bool, false)
     }
 
     func test_logsShowPersonalTodos_asTrue_whenIncluded() {
@@ -94,7 +94,7 @@ class AnalyticsTodoEventTests: CoreTestCase {
         Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(analytics.lastEventParameter("filter_personal_todos", ofType: Bool.self), true)
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["filter_personal_todos"] as? Bool, true)
     }
 
     func test_logsShowCalendarEvents_asFalse_whenNotIncluded() {
@@ -109,7 +109,7 @@ class AnalyticsTodoEventTests: CoreTestCase {
         Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(analytics.lastEventParameter("filter_calendar_events", ofType: Bool.self), false)
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["filter_calendar_events"] as? Bool, false)
     }
 
     func test_logsShowCalendarEvents_asTrue_whenIncluded() {
@@ -124,7 +124,7 @@ class AnalyticsTodoEventTests: CoreTestCase {
         Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(analytics.lastEventParameter("filter_calendar_events", ofType: Bool.self), true)
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["filter_calendar_events"] as? Bool, true)
     }
 
     func test_logsShowCompleted_asFalse_whenNotIncluded() {
@@ -139,7 +139,7 @@ class AnalyticsTodoEventTests: CoreTestCase {
         Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(analytics.lastEventParameter("filter_show_completed", ofType: Bool.self), false)
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["filter_show_completed"] as? Bool, false)
     }
 
     func test_logsShowCompleted_asTrue_whenIncluded() {
@@ -154,7 +154,7 @@ class AnalyticsTodoEventTests: CoreTestCase {
         Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(analytics.lastEventParameter("filter_show_completed", ofType: Bool.self), true)
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["filter_show_completed"] as? Bool, true)
     }
 
     func test_logsFavouriteCourses_asFalse_whenNotIncluded() {
@@ -169,7 +169,7 @@ class AnalyticsTodoEventTests: CoreTestCase {
         Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(analytics.lastEventParameter("filter_favourite_courses", ofType: Bool.self), false)
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["filter_favourite_courses"] as? Bool, false)
     }
 
     func test_logsFavouriteCourses_asTrue_whenIncluded() {
@@ -184,7 +184,7 @@ class AnalyticsTodoEventTests: CoreTestCase {
         Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(analytics.lastEventParameter("filter_favourite_courses", ofType: Bool.self), true)
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["filter_favourite_courses"] as? Bool, true)
     }
 
     func test_logsDateRangeStart() {
@@ -199,7 +199,7 @@ class AnalyticsTodoEventTests: CoreTestCase {
         Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(analytics.lastEventParameter("filter_selected_date_range_past", ofType: String.self), "two_weeks")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["filter_selected_date_range_past"] as? String, "two_weeks")
     }
 
     func test_logsDateRangeEnd() {
@@ -214,7 +214,7 @@ class AnalyticsTodoEventTests: CoreTestCase {
         Analytics.shared.logTodoEvent(.filterApplied(filterOptions))
 
         // THEN
-        XCTAssertEqual(analytics.lastEventParameter("filter_selected_date_range_future", ofType: String.self), "three_weeks")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["filter_selected_date_range_future"] as? String, "three_weeks")
     }
 
     // MARK: - TodoDateRangeStart Analytics Value
@@ -247,8 +247,8 @@ class AnalyticsTodoEventTests: CoreTestCase {
         Analytics.shared.logTodoEvent(.itemMarkedDone)
 
         // THEN
-        XCTAssertEqual(analytics.lastEvent, "todo_item_marked_done")
-        XCTAssertNil(analytics.lastEventParameters)
+        XCTAssertEqual(analytics.handleEventInput?.name, "todo_item_marked_done")
+        XCTAssertNil(analytics.handleEventInput?.parameters)
     }
 
     func test_logsItemMarkedUndone() {
@@ -256,7 +256,7 @@ class AnalyticsTodoEventTests: CoreTestCase {
         Analytics.shared.logTodoEvent(.itemMarkedUndone)
 
         // THEN
-        XCTAssertEqual(analytics.lastEvent, "todo_item_marked_undone")
-        XCTAssertNil(analytics.lastEventParameters)
+        XCTAssertEqual(analytics.handleEventInput?.name, "todo_item_marked_undone")
+        XCTAssertNil(analytics.handleEventInput?.parameters)
     }
 }

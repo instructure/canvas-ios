@@ -42,8 +42,8 @@ class AnalyticsHelpersTests: CoreTestCase {
         publisher.send(())
 
         // THEN
-        XCTAssertEqual(analytics.totalEventCount, 1)
-        XCTAssertEqual(analytics.lastEvent, "test_event")
+        XCTAssertEqual(analytics.handleEventCallCount, 1)
+        XCTAssertEqual(analytics.handleEventInput?.name, "test_event")
     }
 
     func test_logReceiveOutput_completionNotReportedToAnalytics() {
@@ -58,8 +58,7 @@ class AnalyticsHelpersTests: CoreTestCase {
         publisher.send(completion: .finished)
 
         // THEN
-        XCTAssertEqual(analytics.totalEventCount, 0)
-        XCTAssertEqual(analytics.lastEvent, nil)
+        XCTAssertEqual(analytics.handleEventCallCount, 0)
     }
 
     func test_logReceiveOutput_errorNotReportedToAnalytics() {
@@ -74,8 +73,7 @@ class AnalyticsHelpersTests: CoreTestCase {
         publisher.send(completion: .failure(NSError.internalError()))
 
         // THEN
-        XCTAssertEqual(analytics.totalEventCount, 0)
-        XCTAssertEqual(analytics.lastEvent, nil)
+        XCTAssertEqual(analytics.handleEventCallCount, 0)
     }
 
     // MARK: - LogReceiveOutput With Dynamic Name
@@ -95,8 +93,8 @@ class AnalyticsHelpersTests: CoreTestCase {
         publisher.send(1)
 
         // THEN
-        XCTAssertEqual(analytics.totalEventCount, 1)
-        XCTAssertEqual(analytics.lastEvent, "test_event")
+        XCTAssertEqual(analytics.handleEventCallCount, 1)
+        XCTAssertEqual(analytics.handleEventInput?.name, "test_event")
     }
 
     func test_logReceiveOutputDynamicName_completionNotReportedToAnalytics() {
@@ -116,8 +114,7 @@ class AnalyticsHelpersTests: CoreTestCase {
         publisher.send(completion: .finished)
 
         // THEN
-        XCTAssertEqual(analytics.totalEventCount, 0)
-        XCTAssertEqual(analytics.lastEvent, nil)
+        XCTAssertEqual(analytics.handleEventCallCount, 0)
         waitForExpectations(timeout: 1)
     }
 
@@ -138,8 +135,7 @@ class AnalyticsHelpersTests: CoreTestCase {
         publisher.send(completion: .failure(NSError.internalError()))
 
         // THEN
-        XCTAssertEqual(analytics.totalEventCount, 0)
-        XCTAssertEqual(analytics.lastEvent, nil)
+        XCTAssertEqual(analytics.handleEventCallCount, 0)
         waitForExpectations(timeout: 1)
     }
 }
