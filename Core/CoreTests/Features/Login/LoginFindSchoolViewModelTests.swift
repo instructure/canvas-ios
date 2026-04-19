@@ -41,7 +41,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
     override func setUp() {
         super.setUp()
         loginDelegate = TestLoginDelegate()
-        testee = LoginFindSchoolViewModel(scheduler: .immediate)
+        testee = LoginFindSchoolViewModel(scheduler: .immediate, debounceTimeout: 0)
         testee.loginDelegate = loginDelegate
     }
 
@@ -81,19 +81,36 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
     }
 
     func test_rowsCount_withAccounts() {
-        api.mock(GetAccountsSearchRequest(searchTerm: "a"), value: [.make(name: testData.name1, domain: testData.domain1)])
+        api.mock(
+            GetAccountsSearchRequest(searchTerm: "a"),
+            value: [
+                .make(name: testData.name1, domain: testData.domain1)
+            ],
+            response: makeNextPageResponse()
+        )
+
+        // When
         testee.searchQuery.send("a")
 
-        // WHEN loaded
-        XCTAssertEqual(testee.rowsCount, 1)
-
-        // WHEN loadingNextPage
-        testee.state.send(.loadingNextPage)
+        // Then
         XCTAssertEqual(testee.rowsCount, 2)
 
         // WHEN nextPageFailed
-        testee.state.send(.nextPageFailed)
+        api.mock(
+            GetNextRequest<[APIAccountResult]>(path: testData.nextPageURL),
+            data: nil,
+            error: NSError(domain: "test", code: -1)
+        )
+
+        testee.loadNextPage()
+        XCTAssertEqual(testee.state.value, .nextPageFailed)
         XCTAssertEqual(testee.rowsCount, 2)
+
+        // WHEN nextPageLoaded
+        mockNextPage(with: [])
+        testee.loadNextPage()
+        XCTAssertEqual(testee.state.value, .loaded)
+        XCTAssertEqual(testee.rowsCount, 1)
     }
 
     // MARK: - search
@@ -283,7 +300,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
             .make(name: testData.name4, domain: testData.domain4)
         ])
 
-        testee.rowWillDisplay(at: IndexPath(row: 1, section: 0))
+        testee.rowWillDisplay(at: IndexPath(row: 2, section: 0))
 
         XCTAssertEqual(testee.state.value, .loaded)
         XCTAssertEqual(testee.accounts.count, 4)

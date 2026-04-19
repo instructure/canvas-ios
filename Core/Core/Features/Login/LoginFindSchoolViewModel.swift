@@ -21,6 +21,8 @@ import CombineSchedulers
 import UIKit
 
 final class LoginFindSchoolViewModel {
+    typealias Scheduler = AnySchedulerOf<DispatchQueue>
+    typealias Stride = Scheduler.SchedulerTimeType.Stride
 
     enum State { case idle, searching, loaded, loadingNextPage, nextPageFailed }
 
@@ -39,9 +41,9 @@ final class LoginFindSchoolViewModel {
     private var nextPageRequest: GetNextRequest<[APIAccountResult]>?
     private var subscriptions = Set<AnyCancellable>()
 
-    init(scheduler: AnySchedulerOf<DispatchQueue> = .main) {
+    init(scheduler: Scheduler = .main, debounceTimeout: Stride = .milliseconds(300)) {
         searchQuery
-            .debounce(for: 0.3, scheduler: scheduler)
+            .debounce(for: debounceTimeout, scheduler: scheduler)
             .sink { [weak self] newQuery in
                 self?.performSearch(query: newQuery)
             }
@@ -116,10 +118,7 @@ final class LoginFindSchoolViewModel {
     }
 
     var rowsCount: Int {
-        if accounts.isEmpty {
-            return 1
-        }
-
+        if accounts.isEmpty { return 1 }
         return hasNextPage ? accounts.count + 1 : accounts.count
     }
 
