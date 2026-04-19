@@ -36,7 +36,7 @@ struct TeacherAssignmentListItemCell: View {
     }
 
     var body: some View {
-        InstUI.ContextItemListCell(
+        AUI.ContextItemListCell(
             icon: {
                 model.icon
                     .scaledIcon()
@@ -68,7 +68,7 @@ struct TeacherAssignmentListItemCell: View {
     private var needsGradingAndPointsPossibleLine: some View {
         switch (model.needsGrading, model.pointsPossible) {
         case (.some(let needsGrading), .some(let pointsPossible)):
-            InstUI.JoinedSubtitleLabels(
+            AUI.JoinedSubtitleLabels(
                 label1: { needsGradingTag(needsGrading) },
                 label2: { pointsPossibleLabel(pointsPossible) },
                 spacing: 8,

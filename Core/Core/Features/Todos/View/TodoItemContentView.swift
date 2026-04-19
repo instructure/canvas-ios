@@ -47,7 +47,7 @@ public struct TodoItemContentView: View {
     }
 
     private var contextSection: some View {
-        InstUI.JoinedSubtitleLabels(
+        AUI.JoinedSubtitleLabels(
             label1: {
                 item.icon
                     .scaledIcon(size: 16)

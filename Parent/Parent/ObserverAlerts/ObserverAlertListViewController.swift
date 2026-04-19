@@ -32,7 +32,7 @@ class ObserverAlertListViewController: UIViewController {
     let env = AppEnvironment.shared
     var studentID = ""
 
-    private var state: InstUI.ScreenState = .loading {
+    private var state: ScreenState = .loading {
         didSet {
             update()
         }

@@ -147940,7 +147940,7 @@
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "डेटा उपलब्ध होने पर यह विजेट अपडेट हो जाएगा।"
+            "value" : "डेटा उपलब्ध होने पर यह विजेट अपडेट \n हो जाएगा।"
           }
         },
         "ht" : {
@@ -147970,7 +147970,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "データが入手可能になり次第、このウィジェットは更新されます。"
+            "value" : "データが入手可能になり次第、このウィジェット\n は更新されます。"
           }
         },
         "ko" : {
@@ -148012,19 +148012,19 @@
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ten widżet zaktualizuje się, gdy dane staną się dostępne."
+            "value" : "Ten widżet zaktualizuje się, gdy dane \n staną się dostępne."
           }
         },
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Este widget será atualizado assim que os dados estiverem disponíveis."
+            "value" : "Este widget será atualizado assim que os dados \n estiverem disponíveis."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Este widget será atualizado assim que os dados estiverem disponíveis."
+            "value" : "Este widget será atualizado assim que os dados \n estiverem disponíveis."
           }
         },
         "ru" : {
@@ -148060,19 +148060,19 @@
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tiện ích này sẽ cập nhật khi dữ liệu có sẵn."
+            "value" : "Tiện ích này sẽ cập nhật khi \n dữ liệu có sẵn."
           }
         },
         "zh" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "数据可用后，小工具将更新。"
+            "value" : "数据可用后，小工具\n 将更新。"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "数据可用后，小工具将更新。"
+            "value" : "数据可用后，小工具\n 将更新。"
           }
         },
         "zh-Hant" : {

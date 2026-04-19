@@ -296,7 +296,7 @@ extension DashboardViewController: UITabBarControllerDelegate {
         animationControllerForTransitionFrom fromVC: UIViewController,
         to toVC: UIViewController
     ) -> (any UIViewControllerAnimatedTransitioning)? {
-        InstUI.TabChangeTransition()
+        AUI.TabChangeTransition()
     }
 
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {

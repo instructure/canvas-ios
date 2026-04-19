@@ -25,20 +25,16 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
 
     private var testee: LearnerDashboardSettingsViewModel!
     private var testDefaults: SessionDefaults!
-    private var analytics: AnalyticsHandlerMock!
 
     override func setUp() {
         super.setUp()
         testDefaults = SessionDefaults(sessionID: "test-session")
         testDefaults.reset()
-        analytics = .init()
-        Analytics.shared.handler = analytics
     }
 
     override func tearDown() {
         testee = nil
         testDefaults = nil
-        analytics = nil
         super.tearDown()
     }
 
@@ -67,7 +63,7 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
 
         testee.mainColor = .red
 
-        XCTAssertEqual(analytics.handleEventInput, "dashboard_widget_customization")
+        XCTAssertEqual(analytics.handleEventInput?.name, "dashboard_widget_customization")
     }
 
     func test_mainColor_whenChangedMultipleTimes_shouldLogOneEventPerChange() {
@@ -167,15 +163,5 @@ private final class MockViewController: UIViewController {
         dismissCalled = true
         dismissExpectation?.fulfill()
         completion?()
-    }
-}
-
-private final class AnalyticsHandlerMock: AnalyticsHandler {
-    var handleEventInput: String?
-    var handleEventCallCount = 0
-
-    func handleEvent(_ name: String, parameters: [String: Any]?) {
-        handleEventInput = name
-        handleEventCallCount += 1
     }
 }

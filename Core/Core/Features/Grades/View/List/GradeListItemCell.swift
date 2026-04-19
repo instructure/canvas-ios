@@ -39,7 +39,7 @@ struct GradeListItemCell: View {
     }
 
     var body: some View {
-        InstUI.ContextItemListCell(
+        AUI.ContextItemListCell(
             icon: {
                 model.icon
                     .scaledIcon()
@@ -80,7 +80,7 @@ struct GradeListItemCell: View {
     @ViewBuilder
     private var scoreAndStatusLine: some View {
         if let score = model.score {
-            InstUI.JoinedSubtitleLabels(
+            AUI.JoinedSubtitleLabels(
                 label1: { scoreLabel(score) },
                 label2: { submissionStatusLabel }
             )

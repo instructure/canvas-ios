@@ -35,13 +35,13 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     }
 
     var body: some View {
-        InstUI.BaseScreen(state: viewModel.state, config: .notRefreshable) { geometry in
+        BaseScreen(state: viewModel.state, config: .notRefreshable) { geometry in
             VStack(alignment: .leading, spacing: 0) {
-                InstUI.LabelCell(
+                AUI.LabelCell(
                     label: Text("Repeats every", bundle: .core)
                 )
 
-                InstUI.MultiPickerView(
+                AUI.MultiPickerView(
                     content1: FrequencyInterval.options,
                     titleKey1: \.title,
                     selection1: $viewModel.interval,
@@ -56,7 +56,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
                 )
                 .frame(maxWidth: .infinity)
 
-                InstUI.Divider()
+                AUI.Divider()
 
                 if case .weekly = viewModel.frequency {
                     weekDaysCell
@@ -95,7 +95,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     }
 
     private var monthDaysCell: some View {
-        return InstUI.SelectionMenuCell(
+        return AUI.SelectionMenuCell(
             label: onLabel,
             options: viewModel.dayOfMonthOptions(for: viewModel.proposedDate),
             text: \.title,
@@ -106,14 +106,14 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
 
     @ViewBuilder
     private var yearDayCell: some View {
-        InstUI.LabelValueCell(
+        AUI.LabelValueCell(
             label: onLabel,
             value: viewModel.dayOfYear.title
         )
     }
 
     private var weekDaysCell: some View {
-        InstUI.DropDownCell(
+        AUI.DropDownCell(
             label: onLabel,
             state: $weekDayDropDownState) {
 
@@ -140,7 +140,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     }
 
     private var endModeCell: some View {
-        InstUI.SelectionMenuCell(
+        AUI.SelectionMenuCell(
             label: Text("Ends", bundle: .core),
             options: EndMode.allCases,
             id: \.self,
@@ -160,7 +160,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     }
 
     private var endDateCell: some View {
-        InstUI.DatePickerCell(
+        AUI.DatePickerCell(
             label: Text("End date", bundle: .core),
             date: $viewModel.endDate,
             mode: .dateOnly,
@@ -170,7 +170,7 @@ struct EditCustomFrequencyScreen: View, ScreenViewTrackable {
     }
 
     private var endOccurrencesCountCell: some View {
-        InstUI.LabelValueCell(
+        AUI.LabelValueCell(
             label: Text("Number of Occurrences", bundle: .core),
             value: viewModel.occurrenceCount.formatted(.number)
         ) {

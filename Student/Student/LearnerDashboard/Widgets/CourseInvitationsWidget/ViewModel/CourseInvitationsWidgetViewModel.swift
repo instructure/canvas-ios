@@ -30,7 +30,7 @@ final class CourseInvitationsWidgetViewModel: DashboardWidgetViewModel, Dashboar
     private(set) var invitations: [CourseInvitationCardViewModel] = [] {
         didSet { updateTitles() }
     }
-    private(set) var state: InstUI.ScreenState = .loading
+    private(set) var state: ScreenState = .loading
     private(set) var widgetTitle: String = ""
     private(set) var widgetAccessibilityTitle: String = ""
 

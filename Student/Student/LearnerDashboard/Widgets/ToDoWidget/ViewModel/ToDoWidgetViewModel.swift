@@ -29,7 +29,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     let config: DashboardWidgetConfig
     let isHiddenInEmptyState = false
 
-    private(set) var state: InstUI.ScreenState = .loading
+    private(set) var state: ScreenState = .loading
     private(set) var selectedDay: Date = .distantPast
     private(set) var currentWeekDays: [Date] = []
     private(set) var yearTitle: String?

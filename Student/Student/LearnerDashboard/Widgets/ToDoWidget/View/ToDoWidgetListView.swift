@@ -40,7 +40,7 @@ struct ToDoWidgetListView: View {
                 )
                 .identifier("Dashboard.Todo.TodoList.Item")
                 .paddingStyle(.leading, .standard)
-                InstUI.Divider(.padded)
+                AUI.Divider(.padded)
             }
         }
     }

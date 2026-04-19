@@ -30,7 +30,7 @@ struct TodoFilterScreen: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                InstUI.TopDivider()
+                AUI.TopDivider()
                 MultiSelectionView(
                     title: String(localized: "Visible Items", bundle: .core),
                     allOptions: viewModel.visibilityOptionItems,

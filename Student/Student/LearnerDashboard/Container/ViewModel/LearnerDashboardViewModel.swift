@@ -26,13 +26,13 @@ import UIKit
 
 @Observable
 final class LearnerDashboardViewModel {
-    private(set) var state: InstUI.ScreenState = .loading
+    private(set) var state: ScreenState = .loading
     private(set) var widgets: [any DashboardWidgetViewModel] = []
     private(set) var mainColor: Color
     private(set) var showWidgetsTurnedOffPanda: Bool = false
     let snackBarViewModel: SnackBarViewModel
 
-    let screenConfig = InstUI.BaseScreenConfig(
+    let screenConfig = BaseScreenConfig(
         refreshable: true,
         showsScrollIndicators: false,
         backgroundColor: .backgroundLight

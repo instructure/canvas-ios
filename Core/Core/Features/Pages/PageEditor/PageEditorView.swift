@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public struct PageEditorView: View {
+public struct PageEditorView: View, ScreenViewTrackable {
     let context: Context
     let url: String?
 
@@ -39,6 +39,15 @@ public struct PageEditorView: View {
     @State var showError: Bool = false
     @State var error: Error? {
         didSet { showError = error != nil }
+    }
+
+    public var screenViewTrackingParameters: ScreenViewTrackingParameters {
+        let eventName = if let url {
+            "/\(context.pathComponent)/pages/\(url)/edit"
+        } else {
+            "/\(context.pathComponent)/pages/new"
+        }
+        return ScreenViewTrackingParameters(eventName: eventName)
     }
 
     public init(context: Context, url: String? = nil) {
@@ -102,7 +111,7 @@ public struct PageEditorView: View {
             if env.app == .teacher || context.contextType == .group {
                 EditorSection(label: Text("Details", bundle: .core)) {
                     if url != "front_page" && env.app == .teacher {
-                        InstUI.Toggle(isOn: $published) { Text("Publish", bundle: .core) }
+                        AUI.Toggle(isOn: $published) { Text("Publish", bundle: .core) }
                             .font(.semibold16).foregroundColor(.textDarkest)
                             .padding(16)
                             .disabled(isFrontPage)
@@ -110,7 +119,7 @@ public struct PageEditorView: View {
                         Divider()
                     }
                     if url != "front_page" && env.app == .teacher {
-                        InstUI.Toggle(isOn: $isFrontPage) { Text("Set as Front Page", bundle: .core) }
+                        AUI.Toggle(isOn: $isFrontPage) { Text("Set as Front Page", bundle: .core) }
                             .font(.semibold16).foregroundColor(.textDarkest)
                             .padding(16)
                             .disabled(!published)
@@ -137,7 +146,7 @@ public struct PageEditorView: View {
                         Text(editingRoles.string)
                             .font(.medium16).foregroundColor(.textDark)
                         Spacer().frame(width: 16)
-                        InstUI.DisclosureIndicator()
+                        AUI.DisclosureIndicator()
                     })
                         .identifier("PageEditor.editorsButton")
                 }

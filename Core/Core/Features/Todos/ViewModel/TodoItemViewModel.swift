@@ -46,7 +46,7 @@ public class TodoItemViewModel: Identifiable, Equatable, Comparable, ObservableO
         markAsDoneState != .done
     }
 
-    public func swipeCompletionBehavior(showCompleted: Bool? = nil) -> InstUI.SwipeCompletionBehavior {
+    public func swipeCompletionBehavior(showCompleted: Bool? = nil) -> AUI.SwipeCompletionBehavior {
         let showCompleted = showCompleted ?? shouldKeepCompletedItemsVisible
 
         if markAsDoneState == .done {

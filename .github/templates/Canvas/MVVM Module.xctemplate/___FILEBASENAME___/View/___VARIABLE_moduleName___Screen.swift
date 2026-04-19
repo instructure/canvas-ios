@@ -12,7 +12,7 @@ public struct ___VARIABLE_moduleName___Screen: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        InstUI.BaseScreen(state: viewModel.state) { _ in
+        BaseScreen(state: viewModel.state) { _ in
             Text(verbatim: "template")
         }
         .navigationTitle(viewModel.pageTitle)

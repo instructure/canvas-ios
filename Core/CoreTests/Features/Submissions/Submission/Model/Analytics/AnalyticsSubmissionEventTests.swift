@@ -18,67 +18,61 @@
 
 import XCTest
 @testable import Core
+import TestsFoundation
 
-class AnalyticsSubmissionEventTests: XCTestCase {
-    private var testAnalyticsHandler: MockAnalyticsHandler!
-
-    override func setUp() {
-        super.setUp()
-        testAnalyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = testAnalyticsHandler
-    }
+class AnalyticsSubmissionEventTests: CoreTestCase {
 
     func testLogSingleEvents() {
         Analytics.shared.logSubmission(.start)
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "assignmentDetails_submitButton_selected")
+        XCTAssertEqual(analytics.handleEventInput?.name, "assignmentDetails_submitButton_selected")
     }
 
     func testLogPhasedEvents() {
         Analytics.shared.logSubmission(.phase(.selected, .textEntry, 3))
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_textEntry_selected")
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 3)
+        XCTAssertEqual(analytics.handleEventInput?.name, "submit_textEntry_selected")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["attempt"] as? Int, 3)
 
         Analytics.shared.logSubmission(.phase(.succeeded, .url, 2))
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_url_succeeded")
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 2)
+        XCTAssertEqual(analytics.handleEventInput?.name, "submit_url_succeeded")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["attempt"] as? Int, 2)
 
         Analytics.shared.logSubmission(
             .phase(.failed, .fileUpload, nil),
             additionalParams: [.retry: 1, .error: "Random error desc"]
         )
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_fileUpload_failed")
-        XCTAssertNil(testAnalyticsHandler.lastEventParameter("attempt", ofType: Int.self))
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("error"), "Random error desc")
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("retry"), 1)
+        XCTAssertEqual(analytics.handleEventInput?.name, "submit_fileUpload_failed")
+        XCTAssertNil(analytics.handleEventInput?.parameters?["attempt"] as? Int)
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["error"] as? String, "Random error desc")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["retry"] as? Int, 1)
 
         Analytics.shared.logSubmission(
             .phase(.failed, .mediaRecording, 10),
             additionalParams: [.media_type: "video", .media_source: "camera"]
         )
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_mediaRecording_failed")
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 10)
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("media_source"), "camera")
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("media_type"), "video")
+        XCTAssertEqual(analytics.handleEventInput?.name, "submit_mediaRecording_failed")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["attempt"] as? Int, 10)
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["media_source"] as? String, "camera")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["media_type"] as? String, "video")
 
         Analytics.shared.logSubmission(.phase(.presented, .annotation, nil))
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_annotation_presented")
+        XCTAssertEqual(analytics.handleEventInput?.name, "submit_annotation_presented")
 
         Analytics.shared.logSubmission(.phase(.selected, .studio, 2))
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_studio_selected")
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 2)
+        XCTAssertEqual(analytics.handleEventInput?.name, "submit_studio_selected")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["attempt"] as? Int, 2)
     }
 
     func testLogDetailEvents() {
         Analytics.shared.logSubmission(.detail(.discussion))
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "assignmentDetails_discussion_opened")
+        XCTAssertEqual(analytics.handleEventInput?.name, "assignmentDetails_discussion_opened")
 
         Analytics.shared.logSubmission(.detail(.classicQuiz))
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "assignmentDetails_classicQuiz_opened")
+        XCTAssertEqual(analytics.handleEventInput?.name, "assignmentDetails_classicQuiz_opened")
 
         Analytics.shared.logSubmission(.detail(.newQuiz))
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "assignmentDetails_newQuiz_opened")
+        XCTAssertEqual(analytics.handleEventInput?.name, "assignmentDetails_newQuiz_opened")
 
         Analytics.shared.logSubmission(.detail(.lti))
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "assignmentDetails_lti_opened")
+        XCTAssertEqual(analytics.handleEventInput?.name, "assignmentDetails_lti_opened")
     }
 }

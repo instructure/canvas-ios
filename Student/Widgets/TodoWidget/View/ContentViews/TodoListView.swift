@@ -59,14 +59,14 @@ struct TodoListView: View {
                             TodoItemView(item: item)
 
                             if day.items.last != item {
-                                InstUI.Divider()
+                                AUI.Divider()
                             }
                         }
                     }
                 }
 
                 if todoList.days.last?.id != day.id {
-                    InstUI.Divider().padding(.horizontal, 4)
+                    AUI.Divider().padding(.horizontal, 4)
                 }
             }
             Spacer(minLength: 0)
