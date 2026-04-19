@@ -156,9 +156,6 @@ extension HorizonTabBarController {
     }
 
     private var shouldPresentChatBot: Bool {
-        if #available(iOS 18, *), UIDevice.current.userInterfaceIdiom == .pad {
-            return true
-        }
-        return false
+        UIDevice.current.userInterfaceIdiom == .pad
     }
 }

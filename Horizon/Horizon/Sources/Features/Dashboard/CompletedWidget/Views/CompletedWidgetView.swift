@@ -46,9 +46,8 @@ struct CompletedWidgetView: View {
         .accessibilityElement(children: viewModel.state == .loading ? .ignore : .contain)
         .containerRelativeFrame(.horizontal)
         .accessibilityLabel(
-            viewModel.state == .loading
-                            ? Text(String(localized: "Loading courses progress", bundle: .horizon))
-                            : nil
+            String(localized: "Loading courses progress", bundle: .horizon),
+            isEnabled: viewModel.state == .loading
         )
         .onWidgetReload { _ in
             viewModel.getCompletedModulesCount(ignoreCache: true)

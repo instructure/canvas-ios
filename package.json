@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build-icons": "./scripts/build-icons.js",
+    "build-instui": "./scripts/instui/build-instui.js",
     "build-secrets": "./scripts/build-secrets.js",
     "export-translations": "./scripts/translations/export.js",
     "import-translations": "./scripts/translations/import.js",
@@ -22,7 +23,8 @@
     "ts-loader": "^9.5.4",
     "typescript": "^6.0.2",
     "webpack": "^5.105.4",
-    "webpack-cli": "^7.0.2"
+    "webpack-cli": "^7.0.2",
+    "style-dictionary": "^3.9.0"
   },
   "dependencies": { }
 }

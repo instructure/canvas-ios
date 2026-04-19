@@ -120,8 +120,7 @@ async function exportLocalizations(outputPath) {
     '-sdk',
     'iphonesimulator',
     '-localizationPath',
-    outputPath,
-    '-n'
+    outputPath
   ])
 }
 

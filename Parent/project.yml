@@ -1,11 +1,11 @@
 ---
 name: Parent
-attributes: { LastUpgradeCheck: "1600" }
+attributes: { LastUpgradeCheck: "2640" }
 options:
   groupSortPosition: top
   bundleIdPrefix: com.instructure.parentapp
   deploymentTarget:
-    iOS: 17.0
+    iOS: 18.0
   createIntermediateGroups: true
   fileTypes:
     "icon":
@@ -33,6 +33,8 @@ projectReferences:
   Core:
     path: ../Core/Core.xcodeproj
 packages:
+  InstUI:
+    path: ../packages/InstUI
   Pendo:
     url: https://github.com/pendo-io/pendo-mobile-sdk
     exactVersion: 3.12.0

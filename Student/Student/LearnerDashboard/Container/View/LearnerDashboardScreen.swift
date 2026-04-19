@@ -106,8 +106,6 @@ struct LearnerDashboardScreen: View, ScreenViewTrackable {
                     iOS26RightNavBarButtons
                 } else if #available(iOS 18, *) {
                     iOS18RightNavBarButtons
-                } else {
-                    iOS17RightNavBarButtons
                 }
             }
         }
@@ -188,26 +186,6 @@ struct LearnerDashboardScreen: View, ScreenViewTrackable {
             }
         }
         .popover(isPresented: $isSettingsPresented, content: popverContent)
-    }
-
-    @ViewBuilder
-    @available(iOS, deprecated: 18, message: "Multiple versions exist")
-    private var iOS17RightNavBarButtons: some View {
-        Group {
-            if offlineModeViewModel.isOfflineFeatureEnabled {
-                DashboardOptionsButton(
-                    isShowingDialog: $isShowingKebabDialog,
-                    offlineModeViewModel: offlineModeViewModel,
-                    onSettingsTapped: { isSettingsPresented.toggle() },
-                    environment: env
-                )
-            } else {
-                LegacyDashboardSettingsButton(
-                    onTapped: { isSettingsPresented.toggle() }
-                )
-            }
-        }
-        .sheet(isPresented: $isSettingsPresented, content: popverContent)
     }
 
     @ViewBuilder
