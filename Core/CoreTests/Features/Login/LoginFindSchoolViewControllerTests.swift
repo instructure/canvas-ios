@@ -25,7 +25,7 @@ class LoginFindSchoolViewControllerTests: CoreTestCase {
     var opened: URL?
     let first = IndexPath(row: 0, section: 0)
 
-    lazy var controller = LoginFindSchoolViewController.create(loginDelegate: self, method: .normalLogin)
+    lazy var controller = LoginFindSchoolViewController.makePreview(loginDelegate: self, method: .normalLogin)
 
     override func tearDown() {
         UserDefaults.standard.removeObject(forKey: "lastLoginAccount")

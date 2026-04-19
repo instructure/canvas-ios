@@ -35,7 +35,7 @@ class LoginFindSchoolViewController: UIViewController {
     var keyboard: KeyboardTransitioning?
     let logoView = UIImageView()
 
-    private let viewModel = LoginFindSchoolViewModel()
+    private var viewModel = LoginFindSchoolViewModel()
     private var subscriptions = Set<AnyCancellable>()
 
     var notFoundAttributedText: NSAttributedString = {
@@ -216,3 +216,18 @@ extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDeleg
         viewModel.rowSelected(at: indexPath, in: self)
     }
 }
+
+#if DEBUG
+
+extension LoginFindSchoolViewController {
+
+    static func makePreview(loginDelegate: LoginDelegate?, method: AuthenticationMethod) -> LoginFindSchoolViewController {
+        let controller = loadFromStoryboard()
+        controller.viewModel = LoginFindSchoolViewModel(scheduler: .immediate, debounceTimeout: 0)
+        controller.viewModel.loginDelegate = loginDelegate
+        controller.viewModel.method = method
+        return controller
+    }
+}
+
+#endif
