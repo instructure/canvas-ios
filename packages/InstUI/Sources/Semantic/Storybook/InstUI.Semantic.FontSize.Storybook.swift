@@ -21,7 +21,6 @@ import SwiftUI
 public extension InstUI.Semantic.FontSize {
 
     struct Storybook: View {
-        @Environment(\.instUITheme) private var theme
 
         public var body: some View {
             List(entries) { entry in
@@ -43,7 +42,7 @@ public extension InstUI.Semantic.FontSize {
         }
 
         private var entries: [FontSizeEntry] {
-            theme.fontSize.all.map { FontSizeEntry(name: $0.name, value: $0.value) }
+            InstUI.Theme.default.fontSize.all.map { FontSizeEntry(name: $0.name, value: $0.value) }
         }
     }
 }

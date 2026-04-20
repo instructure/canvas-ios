@@ -21,7 +21,6 @@ import SwiftUI
 public extension InstUI.Semantic.Size {
 
     struct Storybook: View {
-        @Environment(\.instUITheme) private var theme
 
         public var body: some View {
             List {
@@ -50,7 +49,7 @@ public extension InstUI.Semantic.Size {
         }
 
         private var sections: [TokenSection] {
-            let grouped = Dictionary(grouping: theme.size.all) { entry in
+            let grouped = Dictionary(grouping: InstUI.Theme.default.size.all) { entry in
                 entry.name.components(separatedBy: ".").first ?? entry.name
             }
             return grouped.keys.sorted().map { key in

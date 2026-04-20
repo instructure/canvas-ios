@@ -59,13 +59,3 @@ extension InstUI {
         }
     }
 }
-
-public extension EnvironmentValues {
-    /// The active InstUI theme, injected into the SwiftUI environment.
-    ///
-    /// > Warning: The `iuiSemantic` static accessors on `Color`, `CGFloat`, etc.
-    /// > always read from `InstUI.Theme.default` and are **not** aware of a custom
-    /// > theme injected here. If you override this key, use
-    /// > `@Environment(\.instUITheme)` to access the correct theme in your views.
-    @Entry var instUITheme: InstUI.Theme = .default
-}

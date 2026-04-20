@@ -21,7 +21,6 @@ import SwiftUI
 public extension InstUI.Semantic.BorderWidth {
 
     struct Storybook: View {
-        @Environment(\.instUITheme) private var theme
 
         public var body: some View {
             List(entries) { entry in
@@ -44,7 +43,7 @@ public extension InstUI.Semantic.BorderWidth {
         }
 
         private var entries: [WidthEntry] {
-            theme.borderWidth.all.map { WidthEntry(name: $0.name, value: $0.value) }
+            InstUI.Theme.default.borderWidth.all.map { WidthEntry(name: $0.name, value: $0.value) }
         }
     }
 }

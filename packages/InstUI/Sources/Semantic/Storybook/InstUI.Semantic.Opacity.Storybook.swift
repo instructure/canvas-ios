@@ -21,7 +21,6 @@ import SwiftUI
 public extension InstUI.Semantic.Opacity {
 
     struct Storybook: View {
-        @Environment(\.instUITheme) private var theme
 
         public var body: some View {
             List(entries) { entry in
@@ -50,7 +49,7 @@ public extension InstUI.Semantic.Opacity {
         }
 
         private var entries: [OpacityEntry] {
-            theme.opacity.all.map { OpacityEntry(name: $0.name, value: $0.value) }
+            InstUI.Theme.default.opacity.all.map { OpacityEntry(name: $0.name, value: $0.value) }
         }
     }
 }

@@ -21,7 +21,7 @@ import SwiftUI
 public extension InstUI.Semantic.FontFamilies {
 
     struct Storybook: View {
-        @Environment(\.instUITheme) private var theme
+        private let theme = InstUI.Theme.default
 
         public var body: some View {
             List {

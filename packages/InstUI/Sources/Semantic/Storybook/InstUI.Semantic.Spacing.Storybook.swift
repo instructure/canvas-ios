@@ -21,7 +21,6 @@ import SwiftUI
 public extension InstUI.Semantic.Spacing {
 
     struct Storybook: View {
-        @Environment(\.instUITheme) private var theme
 
         public var body: some View {
             List {
@@ -50,7 +49,7 @@ public extension InstUI.Semantic.Spacing {
         }
 
         private var sections: [TokenSection] {
-            let grouped = Dictionary(grouping: theme.spacing.all) { entry in
+            let grouped = Dictionary(grouping: InstUI.Theme.default.spacing.all) { entry in
                 entry.name.contains(".")
                     ? entry.name.components(separatedBy: ".").first ?? entry.name
                     : "spacing"

@@ -21,10 +21,9 @@ import SwiftUI
 public extension InstUI.Semantic.FontWeights {
 
     struct Storybook: View {
-        @Environment(\.instUITheme) private var theme
 
         public var body: some View {
-            List(theme.fontWeights.all, id: \.name) { entry in
+            List(InstUI.Theme.default.fontWeights.all, id: \.name) { entry in
                 HStack(spacing: 12) {
                     Text(verbatim: entry.name)
                         .font(.system(size: 12, design: .monospaced))

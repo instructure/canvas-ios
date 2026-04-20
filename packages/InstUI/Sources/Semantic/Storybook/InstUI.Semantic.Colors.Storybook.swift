@@ -22,7 +22,6 @@ import UIKit
 public extension InstUI.Semantic.Colors {
 
     struct Storybook: View {
-        @Environment(\.instUITheme) private var theme
 
         public var body: some View {
             List {
@@ -53,7 +52,7 @@ public extension InstUI.Semantic.Colors {
         }
 
         private var sections: [ColorSection] {
-            let grouped = Dictionary(grouping: theme.colors.all) { entry in
+            let grouped = Dictionary(grouping: InstUI.Theme.default.colors.all) { entry in
                 entry.name.components(separatedBy: ".").first ?? entry.name
             }
             return grouped.keys.sorted().map { key in

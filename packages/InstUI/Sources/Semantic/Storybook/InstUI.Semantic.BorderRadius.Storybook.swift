@@ -21,7 +21,6 @@ import SwiftUI
 public extension InstUI.Semantic.BorderRadius {
 
     struct Storybook: View {
-        @Environment(\.instUITheme) private var theme
 
         public var body: some View {
             List(entries) { entry in
@@ -44,7 +43,7 @@ public extension InstUI.Semantic.BorderRadius {
         }
 
         private var entries: [RadiusEntry] {
-            theme.borderRadius.all.map { RadiusEntry(name: $0.name, value: $0.value) }
+            InstUI.Theme.default.borderRadius.all.map { RadiusEntry(name: $0.name, value: $0.value) }
         }
     }
 }

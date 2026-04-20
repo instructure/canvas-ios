@@ -13,7 +13,7 @@ Tokens originate from the [instructure-ui](https://github.com/instructure/instru
 │                  Semantic layer                 │
 │  Role-based tokens — runtime-loaded from JSON   │
 │  (colors, sizes, spacing, typography, …)        │
-│  Accessed via @Environment(\.instUITheme)       │
+│  Accessed via InstUI.Theme.default              │
 └──────────────────────┬──────────────────────────┘
                        │ references
 ┌──────────────────────▼──────────────────────────┐
@@ -60,14 +60,14 @@ Role-based tokens that map design decisions onto primitives (e.g. "the interacti
 
 ## Using semantic tokens
 
-Semantic tokens are accessed through `InstUI.Theme`, which is injected into the SwiftUI environment under the `instUITheme` key. A default theme is provided automatically.
+Semantic tokens are accessed through `InstUI.Theme.default`.
 
 ```swift
 import InstUI
 import SwiftUI
 
 struct MyView: View {
-    @Environment(\.instUITheme) private var theme
+    private let theme = InstUI.Theme.default
 
     var body: some View {
         Text("Hello")
@@ -76,13 +76,6 @@ struct MyView: View {
             .padding(theme.spacing.spaceMd)
     }
 }
-```
-
-To inject a custom theme (e.g. in tests or previews):
-
-```swift
-MyView()
-    .environment(\.instUITheme, myCustomTheme)
 ```
 
 ---
