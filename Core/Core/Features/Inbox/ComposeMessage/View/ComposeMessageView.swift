@@ -149,7 +149,7 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                     }
                     .frame(maxWidth: .infinity)
                     .foregroundStyle(.textDark)
-                    .padding(.top)
+                    .padding(.top, 8)
 
                     bodyView(geometry: geometry)
                     attachmentsView
@@ -182,6 +182,12 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
 
     @ViewBuilder
     private var quickReplies: some View {
+        let gradient = LinearGradient(
+            colors: [.blue, .purple, .red, .orange],
+            startPoint: .topLeading,
+            endPoint: .bottomTrailing
+        )
+
         ScrollView(.horizontal) {
             HStack {
                 ForEach(model.quickReplies, id: \.self) { quickReply in
@@ -192,7 +198,14 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                             .foregroundStyle(.textDarkest)
                             .padding(.horizontal, 12)
                             .padding(.vertical, 8)
-                            .background(.backgroundMedium, in: Capsule())
+                            .background(.backgroundLight, in: Capsule())
+                            .padding(1)
+                            .background {
+                                Capsule()
+                                    .fill(gradient)
+                                    .blur(radius: 2)
+                            }
+                            .padding(.vertical, 4)
                     }
                 }
             }
