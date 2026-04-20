@@ -99,7 +99,6 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
             if type == .files {
                 downloaders.append(getModuleFiles(filesInteractor: filesInteractor, courseId: courseId, moduleItems: moduleItems))
             }
-
         }
 
         return downloaders.zip()
