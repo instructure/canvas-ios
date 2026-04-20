@@ -150,11 +150,13 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
         courseId: CourseSyncID,
         moduleItems: [ModuleItem]
     ) -> AnyPublisher<Void, Error> {
-        let studioItems = moduleItems.filter { $0.type?.studioMediaLTILaunchID != nil }
+        let studioItems = moduleItems.compactMap { item -> (ModuleItem, String)? in
+            guard let id = item.type?.studioMediaLTILaunchID else { return nil }
+            return (item, id)
+        }
 
         return studioItems.publisher
-            .tryMap { [envResolver] item in
-                guard let ltiLaunchID = item.type?.studioMediaLTILaunchID else { return }
+            .tryMap { [envResolver] (item, ltiLaunchID) in
                 let folderURL = URL.Paths.Offline.courseSectionResourceFolderURL(
                     sessionId: envResolver.sessionId(for: courseId),
                     courseId: courseId.value,
