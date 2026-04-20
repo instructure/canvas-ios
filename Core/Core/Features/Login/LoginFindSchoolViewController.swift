@@ -89,8 +89,24 @@ class LoginFindSchoolViewController: UIViewController {
                     loadingView.startAnimating()
                 } else {
                     loadingView.stopAnimating()
-                    resultsTableView.reloadData()
                 }
+            }
+            .store(in: &subscriptions)
+
+        viewModel.state
+            .scan(
+                (prev: viewModel.state.value, current: viewModel.state.value),
+                { ($0.1, $1) }
+            )
+            .filter { (prev, current) in
+                if case .loadingNextPage = current {
+                    return prev == .failure
+                }
+                return true
+            }
+            .mapToVoid()
+            .sink { [weak self] in
+                self?.resultsTableView.reloadData()
             }
             .store(in: &subscriptions)
     }
@@ -160,37 +176,12 @@ extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDeleg
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if viewModel.accounts.isNotEmpty && indexPath.row == viewModel.accounts.count {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath)
-            cell.backgroundColor = .backgroundLightest
-
-            if viewModel.state.value == .nextPageFailed {
-                cell.selectionStyle = .default
-                cell.accessoryView = nil
-                cell.textLabel?.attributedText = NSAttributedString(
-                    string: String(localized: "Failed. Tap to retry.", bundle: .core),
-                    attributes: [
-                        .foregroundColor: UIColor.textWarning,
-                        .font: UIFont.scaledNamedFont(.regular14)
-                    ]
-                )
-            } else {
-                cell.selectionStyle = .none
-                cell.textLabel?.attributedText = NSAttributedString(
-                    string: String(localized: "Loading…", bundle: .core),
-                    attributes: [
-                        .foregroundColor: UIColor.textDark,
-                        .font: UIFont.scaledNamedFont(.regular14)
-                    ]
-                )
-
-                if cell.accessoryView == nil {
-                    cell.accessoryView = UIActivityIndicatorView(style: .medium)
-                }
-
-                (cell.accessoryView as? UIActivityIndicatorView)?.startAnimating()
+        if indexPath.row == viewModel.accounts.count {
+            if viewModel.state.value == .failure {
+                return dequeueFailureCell(in: tableView, for: indexPath)
+            } else if viewModel.accounts.isNotEmpty {
+                return dequeueLoadingCell(in: tableView, for: indexPath)
             }
-            return cell
         }
 
         let cell = tableView.dequeue(UITableViewCell.self, for: indexPath)
@@ -214,6 +205,42 @@ extension LoginFindSchoolViewController: UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         viewModel.rowSelected(at: indexPath, in: self)
+    }
+
+    // MARK: Loading & Failure Cells
+
+    private func dequeueFailureCell(in tableView: UITableView, for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath)
+        cell.backgroundColor = .backgroundLightest
+        cell.selectionStyle = .default
+        cell.accessoryView = nil
+        cell.textLabel?.attributedText = NSAttributedString(
+            string: String(localized: "Failed. Tap to retry.", bundle: .core),
+            attributes: [
+                .foregroundColor: UIColor.textWarning,
+                .font: UIFont.scaledNamedFont(.regular14)
+            ]
+        )
+        return cell
+    }
+
+    private func dequeueLoadingCell(in tableView: UITableView, for indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "LoadingCell", for: indexPath)
+        cell.selectionStyle = .none
+        cell.textLabel?.attributedText = NSAttributedString(
+            string: String(localized: "Loading…", bundle: .core),
+            attributes: [
+                .foregroundColor: UIColor.textDark,
+                .font: UIFont.scaledNamedFont(.regular14)
+            ]
+        )
+
+        if cell.accessoryView == nil {
+            cell.accessoryView = UIActivityIndicatorView(style: .medium)
+        }
+
+        (cell.accessoryView as? UIActivityIndicatorView)?.startAnimating()
+        return cell
     }
 }
 

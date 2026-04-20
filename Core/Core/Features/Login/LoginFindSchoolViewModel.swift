@@ -24,7 +24,7 @@ final class LoginFindSchoolViewModel {
     typealias Scheduler = AnySchedulerOf<DispatchQueue>
     typealias Stride = Scheduler.SchedulerTimeType.Stride
 
-    enum State { case idle, searching, loaded, loadingNextPage, nextPageFailed }
+    enum State { case idle, searching, failure, loaded, loadingNextPage }
 
     private(set) var accounts: [APIAccountResult] = []
     var hasNextPage: Bool { nextPageRequest != nil }
@@ -72,7 +72,14 @@ final class LoginFindSchoolViewModel {
             let nextRequest = urlResponse.flatMap { request.getNext(from: $0) }
 
             performUIUpdate {
-                guard let self, error == nil else { return }
+                guard let self else { return }
+                guard error == nil else {
+                    self.searchTask = nil
+                    self.accounts = []
+                    self.state.send(.failure)
+                    return
+                }
+
                 self.accounts = newAccounts
                 self.nextPageRequest = nextRequest
                 self.searchTask = nil
@@ -83,7 +90,7 @@ final class LoginFindSchoolViewModel {
 
     func loadNextPage() {
         guard let nextReq = nextPageRequest,
-              state.value == .loaded || state.value == .nextPageFailed else { return }
+              state.value == .loaded || state.value == .failure else { return }
         state.send(.loadingNextPage)
         pageTask = env.api.makeRequest(nextReq) { [weak self] (results, urlResponse, error) in
             let newAccounts = results ?? []
@@ -93,7 +100,7 @@ final class LoginFindSchoolViewModel {
                 guard let self else { return }
                 guard error == nil else {
                     self.pageTask = nil
-                    self.state.send(.nextPageFailed)
+                    self.state.send(.failure)
                     return
                 }
                 self.accounts.append(contentsOf: newAccounts)
@@ -132,13 +139,24 @@ final class LoginFindSchoolViewModel {
     }
 
     func rowSelected(at indexPath: IndexPath, in viewController: UIViewController) {
-        if accounts.isEmpty {
+
+        if accounts.isEmpty, state.value != .failure {
             openHelpPage()
-        } else if indexPath.row == accounts.count && state.value == .nextPageFailed {
-            loadNextPage()
-        } else {
-            guard indexPath.row < accounts.count else { return }
+            return
+        }
+
+        if indexPath.row < accounts.count {
             showLoginForAccount(accounts[indexPath.row], from: viewController)
+        } else if state.value == .failure {
+            retryLoading()
+        }
+    }
+
+    func retryLoading() {
+        if accounts.isEmpty {
+            performSearch(query: searchQuery.value)
+        } else {
+            loadNextPage()
         }
     }
 
