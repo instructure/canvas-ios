@@ -31,7 +31,7 @@ struct FoundationModelsStatusView<Content: View>: View {
                 Label {
                     switch reason {
                     case .deviceNotEligible:
-                        Text(verbatim: "The device does not support Apple Intelligence")
+                        Text(verbatim: "This device does not support Apple Intelligence")
                     case .appleIntelligenceNotEnabled:
                         Text(verbatim: "Apple Intelligence is not enabled on the system")
                     case .modelNotReady:
