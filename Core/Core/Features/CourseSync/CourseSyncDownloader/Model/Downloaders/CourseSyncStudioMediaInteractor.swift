@@ -169,13 +169,24 @@ public class CourseSyncStudioMediaInteractorLive: CourseSyncStudioMediaInteracto
             .collect()
             .tryMap { [studioIFrameReplaceInteractor] offlineVideos in
 
+                var catchedErrors: [Error] = []
                 for (htmlURL, iframes) in mediaData.iframes {
-                    try studioIFrameReplaceInteractor.replaceStudioIFrames(
-                        inHtmlAtURL: htmlURL,
-                        iframes: iframes,
-                        offlineVideos: offlineVideos
-                    )
+
+                    do {
+                        try studioIFrameReplaceInteractor.replaceStudioIFrames(
+                            inHtmlAtURL: htmlURL,
+                            iframes: iframes,
+                            offlineVideos: offlineVideos
+                        )
+                    } catch {
+                        catchedErrors.append(error)
+                    }
                 }
+
+                // This is to avoid blocking the whole replacing process
+                // if a single iframe failed to be replaced.
+                if let lastError = catchedErrors.last { throw lastError }
+
                 return ()
             }
             .eraseToAnyPublisher()
