@@ -68,7 +68,7 @@ extension CourseSyncSelectorViewModel {
 extension Array where Element == CourseSyncEntry {
 
     func makeViewModelItems(interactor: CourseSyncSelectorInteractor) -> [CourseSyncSelectorViewModel.Cell] {
-        weak var interactor = interactor
+        weak let interactor = interactor
 
         var cells: [CourseSyncSelectorViewModel.Cell] = []
 

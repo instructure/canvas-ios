@@ -111,7 +111,7 @@ public struct PageEditorView: View, ScreenViewTrackable {
             if env.app == .teacher || context.contextType == .group {
                 EditorSection(label: Text("Details", bundle: .core)) {
                     if url != "front_page" && env.app == .teacher {
-                        InstUI.Toggle(isOn: $published) { Text("Publish", bundle: .core) }
+                        AUI.Toggle(isOn: $published) { Text("Publish", bundle: .core) }
                             .font(.semibold16).foregroundColor(.textDarkest)
                             .padding(16)
                             .disabled(isFrontPage)
@@ -119,7 +119,7 @@ public struct PageEditorView: View, ScreenViewTrackable {
                         Divider()
                     }
                     if url != "front_page" && env.app == .teacher {
-                        InstUI.Toggle(isOn: $isFrontPage) { Text("Set as Front Page", bundle: .core) }
+                        AUI.Toggle(isOn: $isFrontPage) { Text("Set as Front Page", bundle: .core) }
                             .font(.semibold16).foregroundColor(.textDarkest)
                             .padding(16)
                             .disabled(!published)
@@ -146,7 +146,7 @@ public struct PageEditorView: View, ScreenViewTrackable {
                         Text(editingRoles.string)
                             .font(.medium16).foregroundColor(.textDark)
                         Spacer().frame(width: 16)
-                        InstUI.DisclosureIndicator()
+                        AUI.DisclosureIndicator()
                     })
                         .identifier("PageEditor.editorsButton")
                 }

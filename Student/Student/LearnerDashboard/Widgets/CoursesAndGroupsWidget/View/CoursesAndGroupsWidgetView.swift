@@ -71,7 +71,7 @@ struct CoursesAndGroupsWidgetView: View {
             Button {
                 viewModel.didTapAllCourses(from: controller)
             } label: {
-                InstUI.PillContent(
+                AUI.PillContent(
                     title: String(localized: "All Courses", bundle: .student),
                     trailingIcon: .chevronRight,
                     size: .height30
@@ -105,7 +105,7 @@ struct CoursesAndGroupsWidgetView: View {
                         showGrades: viewModel.showGrades,
                         showColorOverlay: viewModel.showColorOverlay
                     )
-                    .contentShape(.dragPreview, RoundedRectangle(cornerRadius: InstUI.Styles.Elevation.Shape.cardLarge.cornerRadius))
+                    .contentShape(.dragPreview, RoundedRectangle(cornerRadius: AUI.Styles.Elevation.Shape.cardLarge.cornerRadius))
                     .onDrag {
                         draggedCourseCardId = cardViewModel.id
                         return NSItemProvider(item: nil, typeIdentifier: CourseCardDropToReorderDelegate.DropID)
@@ -171,8 +171,8 @@ struct CoursesAndGroupsWidgetView: View {
         isExpanded: Binding<Bool>,
         @ViewBuilder content: () -> some View
     ) -> some View {
-        VStack(alignment: .leading, spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue) {
-            InstUI.CollapsibleListSection(
+        VStack(alignment: .leading, spacing: AUI.Styles.Padding.sectionHeaderVertical.rawValue) {
+            AUI.CollapsibleListSection(
                 title: title,
                 label: {
                     Text($0)

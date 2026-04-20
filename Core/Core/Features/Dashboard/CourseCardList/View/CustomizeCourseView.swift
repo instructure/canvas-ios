@@ -54,7 +54,7 @@ public struct CustomizeCourseView: View {
                 placeholder: String(localized: "Add Course Nickname", bundle: .core),
                 text: $viewModel.courseName
             )
-            InstUI.Divider()
+            AUI.Divider()
             EditorRow {
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Color", bundle: .core)
@@ -83,7 +83,7 @@ public struct CustomizeCourseView: View {
                     .padding(.vertical, 12)
                 }
             }
-            InstUI.Divider()
+            AUI.Divider()
         }
         .navigationBarItems(leading: cancelNavBarButton, trailing: doneNavBarButton)
         .navigationTitles(

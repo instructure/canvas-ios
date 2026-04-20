@@ -228,7 +228,7 @@ struct MessageDetailsView_Previews: PreviewProvider {
 
     static var previews: some View {
         NavigationStack {
-            MessageDetailsAssembly.makePreview(env: env, subject: "Message Title", messages: .make(count: 5, body: InstUI.PreviewData.loremIpsumLong, in: context))
+            MessageDetailsAssembly.makePreview(env: env, subject: "Message Title", messages: .make(count: 5, body: AUI.PreviewData.loremIpsumLong, in: context))
         }
     }
 }

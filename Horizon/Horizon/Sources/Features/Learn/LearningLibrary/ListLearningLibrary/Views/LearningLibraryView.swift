@@ -81,26 +81,22 @@ struct LearningLibraryView: View {
 
     @ViewBuilder
     private var libraryContentView: some View {
-        if #available(iOS 18.0, *) {
-            listLibraryView
-                .onScrollGeometryChange(for: ScrollData.self) { geometry in
-                    ScrollData(
-                        offset: geometry.contentOffset.y,
-                        contentHeight: geometry.contentSize.height
-                    )
-                } action: { _, newValue in
-                    let viewportHeight = UIScreen.main.bounds.height
-                    if newValue.contentHeight > viewportHeight + 200 {
-                        isShowHeader = newValue.offset <= 200
-                        isShowDivider = newValue.offset >= 10
-                    } else {
-                        isShowHeader = true
-                        isShowDivider = false
-                    }
+        listLibraryView
+            .onScrollGeometryChange(for: ScrollData.self) { geometry in
+                ScrollData(
+                    offset: geometry.contentOffset.y,
+                    contentHeight: geometry.contentSize.height
+                )
+            } action: { _, newValue in
+                let viewportHeight = UIScreen.main.bounds.height
+                if newValue.contentHeight > viewportHeight + 200 {
+                    isShowHeader = newValue.offset <= 200
+                    isShowDivider = newValue.offset >= 10
+                } else {
+                    isShowHeader = true
+                    isShowDivider = false
                 }
-        } else {
-            listLibraryView
-        }
+            }
     }
 
     private var listLibraryView: some View {
@@ -157,26 +153,22 @@ struct LearningLibraryView: View {
 
     @ViewBuilder
     private var globalSearchContentView: some View {
-        if #available(iOS 18.0, *) {
-            globalSearchListView
-                .onScrollGeometryChange(for: ScrollData.self) { geometry in
-                    ScrollData(
-                        offset: geometry.contentOffset.y,
-                        contentHeight: geometry.contentSize.height
-                    )
-                } action: { _, newValue in
-                    let viewportHeight = UIScreen.main.bounds.height
-                    if newValue.contentHeight > viewportHeight + 200 {
-                        isShowHeader = newValue.offset <= 200
-                        isShowDivider = newValue.offset >= 10
-                    } else {
-                        isShowHeader = true
-                        isShowDivider = false
-                    }
+        globalSearchListView
+            .onScrollGeometryChange(for: ScrollData.self) { geometry in
+                ScrollData(
+                    offset: geometry.contentOffset.y,
+                    contentHeight: geometry.contentSize.height
+                )
+            } action: { _, newValue in
+                let viewportHeight = UIScreen.main.bounds.height
+                if newValue.contentHeight > viewportHeight + 200 {
+                    isShowHeader = newValue.offset <= 200
+                    isShowDivider = newValue.offset >= 10
+                } else {
+                    isShowHeader = true
+                    isShowDivider = false
                 }
-        } else {
-            globalSearchListView
-        }
+            }
     }
 
     private var globalSearchListView: some View {

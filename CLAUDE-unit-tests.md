@@ -234,6 +234,7 @@ final class StudentAssignmentListItemTests: CoreTestCase {
   - Clean up any global state that was set up
   - Example: use `Clock.mockNow(date)` in setUp and `Clock.reset()` in tearDown to pin the current date (`Core/Core/Common/CommonModels/AppEnvironment/Clock.swift`)
 - **Declaration**: Declare properties as implicitly unwrapped optionals (`!`) so they can be set in setUp
+- **Initialization**: Use `.init()` in setUp instead of repeating the type name, since the type is already declared on the property
 
 ### Grouping with MARKs
 

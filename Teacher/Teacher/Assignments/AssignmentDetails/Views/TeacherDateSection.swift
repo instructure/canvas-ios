@@ -78,7 +78,7 @@ struct TeacherDateSection<ViewModel: DateSectionViewModelProtocol>: View {
 
                 if viewModel.isButton {
                     Spacer()
-                    InstUI.DisclosureIndicator().padding(.trailing, 16)
+                    AUI.DisclosureIndicator().padding(.trailing, 16)
                 }
             }
         }

@@ -33,12 +33,12 @@ struct RubricPointsRatingsListView: View {
                 let lastRatingId = ratingModels.last?.id
                 ForEach(ratingModels) { ratingViewModel in
                     RubricRatingExpandedView(viewModel: ratingViewModel)
-                    InstUI.Divider(ratingViewModel.id == lastRatingId ? .hidden : .padded)
+                    AUI.Divider(ratingViewModel.id == lastRatingId ? .hidden : .padded)
                 }
             }
             .padding(.bottom, 8)
 
-            InstUI.Divider()
+            AUI.Divider()
 
         } else {
             FlowLayout(spacing: 16, minimumLineSpacing: 16) {

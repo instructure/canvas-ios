@@ -81,14 +81,16 @@ public class StudioVideoDownloadInteractorLive: StudioVideoDownloadInteractor {
                 )
                 .map { (isVideoCached, $0) }
             }
-            .map { [posterInteractor] (isVideoCached: Bool, captionURLs: [URL]) -> ([URL], URL?) in
-                let posterLocation = posterInteractor.createVideoPosterIfNeeded(
+            .flatMap { [posterInteractor] (isVideoCached: Bool, captionURLs: [URL]) -> AnyPublisher<([URL], URL?), Never> in
+                posterInteractor.createVideoPosterIfNeeded(
                     isVideoCached: isVideoCached,
                     mediaFolder: mediaFolder,
                     videoFile: videoFileLocation
                 )
-
-                return (captionURLs, posterLocation)
+                .map { posterLocation in
+                    return (captionURLs, posterLocation)
+                }
+                .eraseToAnyPublisher()
             }
             .tryMap { (captionURLs, posterURL) in
                 try StudioOfflineVideo(

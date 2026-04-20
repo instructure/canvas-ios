@@ -19,10 +19,10 @@
 import SwiftUI
 
 struct BaseScreenTesterScreen: View {
-    @State var state = InstUI.ScreenState.loading
+    @State var state = ScreenState.loading
 
     var body: some View {
-        InstUI.BaseScreen(state: state) { _ in
+        BaseScreen(state: state) { _ in
             VStack(spacing: 16) {
                 ForEach(0..<100) { index in
                     HStack {
@@ -36,11 +36,11 @@ struct BaseScreenTesterScreen: View {
         }
         .overlay(alignment: .bottom) {
             Picker("", selection: $state) {
-                Text(verbatim: "Loading").tag(InstUI.ScreenState.loading)
-                Text(verbatim: "Error").tag(InstUI.ScreenState.error)
-                Text(verbatim: "Empty").tag(InstUI.ScreenState.empty)
-                Text(verbatim: "Data").tag(InstUI.ScreenState.data)
-                Text(verbatim: "Data with LoadingOverlay").tag(InstUI.ScreenState.data(loadingOverlay: true))
+                Text(verbatim: "Loading").tag(ScreenState.loading)
+                Text(verbatim: "Error").tag(ScreenState.error)
+                Text(verbatim: "Empty").tag(ScreenState.empty)
+                Text(verbatim: "Data").tag(ScreenState.data)
+                Text(verbatim: "Data with LoadingOverlay").tag(ScreenState.data(loadingOverlay: true))
             }
             .padding()
         }

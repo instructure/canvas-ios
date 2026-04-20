@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build-icons": "./scripts/build-icons.js",
+    "build-instui": "./scripts/instui/build-instui.js",
     "build-secrets": "./scripts/build-secrets.js",
     "export-translations": "./scripts/translations/export.js",
     "import-translations": "./scripts/translations/import.js",
@@ -29,6 +30,7 @@
     "mkdirp": "^1.0.4",
     "pdfkit": "^0.9.1",
     "react-dom": "^19.0.0",
+    "style-dictionary": "^3.9.0",
     "ts-loader": "^9.5.2",
     "typescript": "^5.7.3",
     "webpack": "^5.98.0",

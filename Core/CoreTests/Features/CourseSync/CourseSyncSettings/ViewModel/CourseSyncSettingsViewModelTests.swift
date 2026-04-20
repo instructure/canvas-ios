@@ -104,7 +104,7 @@ class CourseSyncSettingsViewModelTests: XCTestCase {
     }
 
     func testLogsAutoSyncSwitchToggles() {
-        let mockAnalytics = MockAnalyticsHandler()
+        let mockAnalytics = AnalyticsHandlerMock()
         Analytics.shared.handler = mockAnalytics
         let testee = CourseSyncSettingsViewModel(interactor: makeInteractor())
 
@@ -112,15 +112,15 @@ class CourseSyncSettingsViewModelTests: XCTestCase {
         testee.isAutoContentSyncEnabled.accept(true)
 
         // THEN
-        XCTAssertEqual(mockAnalytics.lastEvent, "offline_auto_sync_turned_on")
-        XCTAssertEqual(mockAnalytics.totalEventCount, 1)
+        XCTAssertEqual(mockAnalytics.handleEventInput?.name, "offline_auto_sync_turned_on")
+        XCTAssertEqual(mockAnalytics.handleEventCallCount, 1)
 
         // WHEN
         testee.isAutoContentSyncEnabled.accept(false)
 
         // THEN
-        XCTAssertEqual(mockAnalytics.lastEvent, "offline_auto_sync_turned_off")
-        XCTAssertEqual(mockAnalytics.totalEventCount, 2)
+        XCTAssertEqual(mockAnalytics.handleEventInput?.name, "offline_auto_sync_turned_off")
+        XCTAssertEqual(mockAnalytics.handleEventCallCount, 2)
     }
 
     private func makeInteractor() -> CourseSyncSettingsInteractor {
