@@ -103,7 +103,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
         )
 
         testee.loadNextPage()
-        XCTAssertEqual(testee.state.value, .nextPageFailed)
+        XCTAssertEqual(testee.state.value, .failure)
         XCTAssertEqual(testee.rowsCount, 2)
 
         // WHEN nextPageLoaded
@@ -211,7 +211,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
 
         testee.loadNextPage()
 
-        XCTAssertEqual(testee.state.value, .nextPageFailed)
+        XCTAssertEqual(testee.state.value, .failure)
         XCTAssertEqual(testee.accounts.count, 1)
     }
 
@@ -231,7 +231,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
             error: NSError(domain: "test", code: -1)
         )
         testee.loadNextPage()
-        XCTAssertEqual(testee.state.value, .nextPageFailed)
+        XCTAssertEqual(testee.state.value, .failure)
 
         mockNextPage(with: [
             .make(name: testData.name3, domain: testData.domain3),
@@ -254,7 +254,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
     func test_rowWillDisplay_whenStateIsNotLoaded_shouldNotLoadNextPage() {
         api.mock(GetAccountsSearchRequest(searchTerm: "a"), value: [.make()], response: makeNextPageResponse())
         testee.searchQuery.send("a")
-        testee.state.send(.nextPageFailed)
+        testee.state.send(.failure)
 
         testee.rowWillDisplay(at: IndexPath(row: 0, section: 0))
 
@@ -336,7 +336,7 @@ final class LoginFindSchoolViewModelTests: CoreTestCase {
             response: makeNextPageResponse()
         )
         testee.searchQuery.send("a")
-        testee.state.send(.nextPageFailed)
+        testee.state.send(.failure)
         mockNextPage(with: [
             .make(name: testData.name3, domain: testData.domain3),
             .make(name: testData.name4, domain: testData.domain4)
