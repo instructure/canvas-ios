@@ -39,19 +39,26 @@ struct CoursesAndGroupsWidgetView: View {
         ZStack {
             switch viewModel.state {
             case .empty:
-                InteractivePanda(config: .empty(
-                    title: String(localized: "Welcome to Canvas!", bundle: .student),
-                    subtitle: String(localized: """
-                        You don't have any courses yet — so things are a bit quiet here. \
-                        Once you enroll in a class, your dashboard will start filling up with new activity.
-                        """, bundle: .student)
-                ))
+                VStack(spacing: 16) {
+                    emptyPanda
+                    allCoursesButton
+                }
             case .loading, .data:
                 content
             case .error:
                 SwiftUI.EmptyView()
             }
         }
+    }
+
+    private var emptyPanda: some View {
+        InteractivePanda(config: .empty(
+            title: String(localized: "Welcome to Canvas!", bundle: .student),
+            subtitle: String(localized: """
+            You don't have any active courses yet — so things are a bit quiet here. \
+            Once you enroll in a class, your dashboard will start filling up with new activity.
+            """, bundle: .student)
+        ))
     }
 
     @ViewBuilder
@@ -68,17 +75,7 @@ struct CoursesAndGroupsWidgetView: View {
                 groupsSection(itemWidth: itemWidth, columnCount: columnCount)
             }
 
-            Button {
-                viewModel.didTapAllCourses(from: controller)
-            } label: {
-                AUI.PillContent(
-                    title: String(localized: "All Courses", bundle: .student),
-                    trailingIcon: .chevronRight,
-                    size: .height30
-                )
-            }
-            .buttonStyle(.pillTintFilled)
-            .identifier("Dashboard.Courses.allCoursesButton")
+            allCoursesButton
         }
         .animation(.dashboardWidget, value: columnCount)
         .animation(.dashboardWidget, value: viewModel.layoutIdentifier)
@@ -193,11 +190,25 @@ struct CoursesAndGroupsWidgetView: View {
             )
         }
     }
+
+    private var allCoursesButton: some View {
+        Button {
+            viewModel.didTapAllCourses(from: controller)
+        } label: {
+            AUI.PillContent(
+                title: String(localized: "All Courses", bundle: .student),
+                trailingIcon: .chevronRight,
+                size: .height30
+            )
+        }
+        .buttonStyle(.pillTintFilled)
+        .identifier("Dashboard.Courses.allCoursesButton")
+    }
 }
 
 #if DEBUG
 
-#Preview {
+#Preview("Data State") {
     @Previewable @State var viewModel = makePreviewViewModel()
     @Previewable @State var subscriptions = Set<AnyCancellable>()
 
@@ -210,10 +221,23 @@ struct CoursesAndGroupsWidgetView: View {
     .background(.backgroundLight)
 }
 
-private func makePreviewViewModel() -> CoursesAndGroupsWidgetViewModel {
+#Preview("Empty State") {
+    @Previewable @State var viewModel = makePreviewViewModel(.preview(mockCourses: [], mockGroups: []))
+    @Previewable @State var subscriptions = Set<AnyCancellable>()
+
+    PreviewContainer(horizontalPadding: 16) {
+        CoursesAndGroupsWidgetView(viewModel: viewModel)
+            .onAppear {
+                viewModel.refresh(ignoreCache: false).sink { _ in }.store(in: &subscriptions)
+            }
+    }
+    .background(.backgroundLight)
+}
+
+private func makePreviewViewModel(_ interactor: CoursesAndGroupsWidgetInteractor = .preview()) -> CoursesAndGroupsWidgetViewModel {
     CoursesAndGroupsWidgetViewModel(
         config: .make(id: .coursesAndGroups),
-        interactor: .preview(),
+        interactor: interactor,
         environment: PreviewEnvironment()
     )
 }
