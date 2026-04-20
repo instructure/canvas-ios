@@ -25,22 +25,22 @@ public extension InstUI {
         public var body: some View {
             List {
                 Section(header: Text(verbatim: "Semantic")) {
-                    StorybookItem("Colors") { InstUI.Semantic.Colors.Storybook() }
-                    StorybookItem("Sizes") { InstUI.Semantic.Size.Storybook() }
+                    StorybookItem("Color") { InstUI.Semantic.Color.Storybook() }
+                    StorybookItem("Size") { InstUI.Semantic.Size.Storybook() }
                     StorybookItem("Spacing") { InstUI.Semantic.Spacing.Storybook() }
-                    StorybookItem("Border Radii") { InstUI.Semantic.BorderRadius.Storybook() }
-                    StorybookItem("Border Widths") { InstUI.Semantic.BorderWidth.Storybook() }
-                    StorybookItem("Font Sizes") { InstUI.Semantic.FontSize.Storybook() }
-                    StorybookItem("Opacities") { InstUI.Semantic.Opacity.Storybook() }
-                    StorybookItem("Font Weights") { InstUI.Semantic.FontWeights.Storybook() }
-                    StorybookItem("Font Families") { InstUI.Semantic.FontFamilies.Storybook() }
+                    StorybookItem("Border Radius") { InstUI.Semantic.BorderRadius.Storybook() }
+                    StorybookItem("Border Width") { InstUI.Semantic.BorderWidth.Storybook() }
+                    StorybookItem("Font Size") { InstUI.Semantic.FontSize.Storybook() }
+                    StorybookItem("Opacity") { InstUI.Semantic.Opacity.Storybook() }
+                    StorybookItem("Font Weight") { InstUI.Semantic.FontWeight.Storybook() }
+                    StorybookItem("Font Family") { InstUI.Semantic.FontFamily.Storybook() }
                 }
-                Section(header: Text(verbatim: "Primitives")) {
-                    StorybookItem("Colors") { InstUI.Primitives.Colors.Storybook() }
-                    StorybookItem("Opacities") { InstUI.Primitives.Opacities.Storybook() }
-                    StorybookItem("Sizes") { InstUI.Primitives.Sizes.Storybook() }
-                    StorybookItem("Font Weights") { InstUI.Primitives.FontWeights.Storybook() }
-                    StorybookItem("Font Families") { InstUI.Primitives.FontFamilies.Storybook() }
+                Section(header: Text(verbatim: "Primitive")) {
+                    StorybookItem("Color") { InstUI.Primitive.Color.Storybook() }
+                    StorybookItem("Opacity") { InstUI.Primitive.Opacity.Storybook() }
+                    StorybookItem("Size") { InstUI.Primitive.Size.Storybook() }
+                    StorybookItem("Font Weight") { InstUI.Primitive.FontWeight.Storybook() }
+                    StorybookItem("Font Family") { InstUI.Primitive.FontFamily.Storybook() }
                 }
             }
             .listStyle(.sidebar)

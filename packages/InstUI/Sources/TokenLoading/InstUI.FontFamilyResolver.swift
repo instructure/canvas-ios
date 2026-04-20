@@ -22,7 +22,7 @@ extension InstUI {
 
         init() {
             primitivesByName = Dictionary(
-                InstUI.Primitives.FontFamilies.all.map { ($0.name, $0.family) },
+                InstUI.Primitive.FontFamily.all.map { ($0.name, $0.family) },
                 uniquingKeysWith: { first, _ in first }
             )
         }

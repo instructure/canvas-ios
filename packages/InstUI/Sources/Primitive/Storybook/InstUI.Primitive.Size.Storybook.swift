@@ -18,54 +18,49 @@
 
 import SwiftUI
 
-public extension InstUI.Primitives.Opacities {
+public extension InstUI.Primitive.Size {
 
     struct Storybook: View {
-        private let opacities: [OpacityEntry] = InstUI.Primitives.Opacities.all
-            .map { OpacityEntry(name: $0.name.components(separatedBy: ".").last ?? $0.name, value: $0.opacity) }
 
         public var body: some View {
-            List(opacities) { entry in
+            List(sizes) { entry in
                 HStack(spacing: 12) {
                     Text(verbatim: entry.name)
                         .font(.system(size: 12, design: .monospaced))
-                        .frame(width: 110, alignment: .leading)
-                    Text(verbatim: entry.formattedValue)
+                        .frame(width: 90, alignment: .leading)
+                    Text(verbatim: "\(entry.formattedValue) pt")
                         .font(.system(size: 11))
                         .foregroundStyle(.secondary)
-                        .frame(width: 36, alignment: .leading)
+                        .frame(width: 48, alignment: .leading)
                     Rectangle()
-                        .frame(width: 44, height: 22)
-                        .foregroundStyle(.black)
-                        .opacity(entry.value)
-                        .background {
-                            Image.checkeredTile
-                                .resizable(resizingMode: .tile)
-                        }
-                        .overlay(Rectangle().strokeBorder(.gray, lineWidth: 1))
+                        .frame(width: min(entry.value, 200), height: 8)
+                        .foregroundStyle(.blue)
                     Spacer()
                 }
             }
-            .navigationTitle(Text(verbatim: "Primitive Opacities"))
+            .navigationTitle(Text(verbatim: "Primitive Sizes"))
             .navigationBarTitleDisplayMode(.large)
         }
+
+        private let sizes: [SizeEntry] = InstUI.Primitive.Size.all
+            .map { SizeEntry(name: $0.name.components(separatedBy: ".").last ?? $0.name, value: $0.size) }
     }
 
-    private struct OpacityEntry: Identifiable {
+    private struct SizeEntry: Identifiable {
         let name: String
-        let value: Double
+        let value: CGFloat
         var id: String { name }
 
         var formattedValue: String {
             value.truncatingRemainder(dividingBy: 1) == 0
                 ? String(Int(value))
-                : String(value)
+                : String(Double(value))
         }
     }
 }
 
 #Preview {
     NavigationStack {
-        InstUI.Primitives.Opacities.Storybook()
+        InstUI.Primitive.Size.Storybook()
     }
 }

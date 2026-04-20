@@ -26,22 +26,22 @@ and generates the SwiftUI source files for the InstUI Swift package.
 Generated files (DO NOT EDIT manually):
 
   Primitives:
-  packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.Colors.swift
-  packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.Sizes.swift
-  packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.FontWeights.swift
-  packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.FontFamilies.swift
-  packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.Opacities.swift
+  packages/InstUI/Sources/Primitive/Generated/InstUI.Primitive.Color.swift
+  packages/InstUI/Sources/Primitive/Generated/InstUI.Primitive.Size.swift
+  packages/InstUI/Sources/Primitive/Generated/InstUI.Primitive.FontWeight.swift
+  packages/InstUI/Sources/Primitive/Generated/InstUI.Primitive.FontFamily.swift
+  packages/InstUI/Sources/Primitive/Generated/InstUI.Primitive.Opacity.swift
 
   Semantic Swift types:
-  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.Colors.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.Color.swift
   packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.Size.swift
   packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.Spacing.swift
   packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.BorderRadius.swift
   packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.BorderWidth.swift
   packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.FontSize.swift
   packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.Opacity.swift
-  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.FontWeights.swift
-  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.FontFamilies.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.FontWeight.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.FontFamily.swift
 
   Semantic token values (bundled JSON):
   packages/InstUI/Resources/Tokens/Semantic/Color/rebrandLight.json

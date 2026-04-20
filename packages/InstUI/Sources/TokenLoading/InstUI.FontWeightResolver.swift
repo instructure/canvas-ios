@@ -24,7 +24,7 @@ extension InstUI {
 
         init() {
             primitivesByName = Dictionary(
-                InstUI.Primitives.FontWeights.all.map { ($0.name, $0.weight) },
+                InstUI.Primitive.FontWeight.all.map { ($0.name, $0.weight) },
                 uniquingKeysWith: { first, _ in first }
             )
         }

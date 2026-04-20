@@ -39,19 +39,19 @@ public extension InstUI.Semantic {
             self.darkURL = darkURL
         }
 
-        public func load() throws -> InstUI.Semantic.Colors {
+        public func load() throws -> InstUI.Semantic.Color {
             let lightData = try Data(contentsOf: lightURL)
             let darkData = try Data(contentsOf: darkURL)
             let resolver = InstUI.ColorResolver()
             let lightLeaves = try InstUI.TokenExtractor.extractLeaves(from: lightData, section: "color")
             let darkLeaves = try InstUI.TokenExtractor.extractLeaves(from: darkData, section: "color")
-            func token(_ path: InstUI.TokenKey) throws -> Color {
+            func token(_ path: InstUI.TokenKey) throws -> SwiftUI.Color {
                 guard let lv = lightLeaves[path], let dv = darkLeaves[path] else {
                     throw InstUI.TokenLoadError.missingToken(path)
                 }
                 return try resolver.adaptive(light: lv, dark: dv)
             }
-            return try Colors.build(token)
+            return try InstUI.Semantic.Color.build(token)
         }
     }
 }

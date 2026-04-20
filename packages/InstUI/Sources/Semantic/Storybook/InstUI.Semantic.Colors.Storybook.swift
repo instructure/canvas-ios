@@ -19,7 +19,7 @@
 import SwiftUI
 import UIKit
 
-public extension InstUI.Semantic.Colors {
+public extension InstUI.Semantic.Color {
 
     struct Storybook: View {
 
@@ -87,6 +87,6 @@ private struct ColorEntry: Identifiable {
 
 #Preview {
     NavigationStack {
-        InstUI.Semantic.Colors.Storybook()
+        InstUI.Semantic.Color.Storybook()
     }
 }

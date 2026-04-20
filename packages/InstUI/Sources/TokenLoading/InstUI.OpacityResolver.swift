@@ -22,7 +22,7 @@ extension InstUI {
 
         init() {
             primitivesByName = Dictionary(
-                InstUI.Primitives.Opacities.all.map { ($0.name, $0.opacity) },
+                InstUI.Primitive.Opacity.all.map { ($0.name, $0.opacity) },
                 uniquingKeysWith: { first, _ in first }
             )
         }

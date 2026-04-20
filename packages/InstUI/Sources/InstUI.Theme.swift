@@ -25,15 +25,15 @@ extension InstUI {
             try! InstUI.Theme()
         }()
 
-        public let colors: InstUI.Semantic.Colors
+        public let colors: InstUI.Semantic.Color
         public let size: InstUI.Semantic.Size
         public let spacing: InstUI.Semantic.Spacing
         public let borderRadius: InstUI.Semantic.BorderRadius
         public let borderWidth: InstUI.Semantic.BorderWidth
         public let fontSize: InstUI.Semantic.FontSize
         public let opacity: InstUI.Semantic.Opacity
-        public let fontWeights: InstUI.Semantic.FontWeights
-        public let fontFamilies: InstUI.Semantic.FontFamilies
+        public let fontWeights: InstUI.Semantic.FontWeight
+        public let fontFamilies: InstUI.Semantic.FontFamily
 
         public init() throws {
             try self.init(

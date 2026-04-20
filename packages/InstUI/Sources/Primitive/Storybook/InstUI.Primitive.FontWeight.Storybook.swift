@@ -18,12 +18,12 @@
 
 import SwiftUI
 
-public extension InstUI.Primitives.FontWeights {
+public extension InstUI.Primitive.FontWeight {
 
     struct Storybook: View {
 
         public var body: some View {
-            List(InstUI.Primitives.FontWeights.all, id: \.name) { entry in
+            List(InstUI.Primitive.FontWeight.all, id: \.name) { entry in
                 HStack(spacing: 12) {
                     Text(verbatim: entry.name.components(separatedBy: ".").last ?? entry.name)
                         .font(.system(size: 12, design: .monospaced))
@@ -41,6 +41,6 @@ public extension InstUI.Primitives.FontWeights {
 
 #Preview {
     NavigationStack {
-        InstUI.Primitives.FontWeights.Storybook()
+        InstUI.Primitive.FontWeight.Storybook()
     }
 }

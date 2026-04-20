@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public extension InstUI.Semantic.FontWeights {
+public extension InstUI.Semantic.FontWeight {
 
     struct Storybook: View {
 
@@ -41,6 +41,6 @@ public extension InstUI.Semantic.FontWeights {
 
 #Preview {
     NavigationStack {
-        InstUI.Semantic.FontWeights.Storybook()
+        InstUI.Semantic.FontWeight.Storybook()
     }
 }

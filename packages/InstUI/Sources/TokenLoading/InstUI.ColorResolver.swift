@@ -24,7 +24,7 @@ extension InstUI {
 
         init() {
             primitivesByName = Dictionary(
-                InstUI.Primitives.Colors.all.map { ($0.name, $0.color) },
+                InstUI.Primitive.Color.all.map { ($0.name, $0.color) },
                 uniquingKeysWith: { first, _ in first }
             )
         }

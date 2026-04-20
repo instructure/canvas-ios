@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public extension InstUI.Semantic.FontFamilies {
+public extension InstUI.Semantic.FontFamily {
 
     struct Storybook: View {
         private let theme = InstUI.Theme.default
@@ -58,6 +58,6 @@ public extension InstUI.Semantic.FontFamilies {
 
 #Preview {
     NavigationStack {
-        InstUI.Semantic.FontFamilies.Storybook()
+        InstUI.Semantic.FontFamily.Storybook()
     }
 }

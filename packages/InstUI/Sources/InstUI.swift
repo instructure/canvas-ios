@@ -17,6 +17,6 @@
 //
 
 public enum InstUI {
-    public enum Primitives {}
+    public enum Primitive {}
     public enum Semantic {}
 }

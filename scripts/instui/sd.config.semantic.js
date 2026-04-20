@@ -19,7 +19,7 @@
 /*
 Generates Swift files from semantic design token JSON files:
 
-  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.Colors.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.Color.swift
     — Nested Swift struct + build() for semantic Color tokens (light/dark pair)
 
   packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.<Section>.swift
@@ -65,6 +65,11 @@ function buildTree(obj) {
 //   • A static build() function
 //   • An `all` computed property listing every token as (name, value) pairs
 function generateSemanticFile({ typeName, tree, swiftImport, leafType }) {
+  // When typeName === leafType (e.g. Color/Color), bare leafType inside the extension
+  // on InstUI.Semantic.Color would shadow SwiftUI.Color. Qualify it with the module.
+  const extLeafType = typeName === leafType
+    ? `${swiftImport.replace('import ', '')}.${leafType}`
+    : leafType
   const lines = []
   lines.push(fileHeader)
   lines.push('')
@@ -74,13 +79,13 @@ function generateSemanticFile({ typeName, tree, swiftImport, leafType }) {
 
   lines.push('extension InstUI.Semantic {')
   lines.push('')
-  lines.push(genStructBlock(typeName, tree, 1, leafType))
+  lines.push(genStructBlock(typeName, tree, 1, extLeafType))
   lines.push('}')
   lines.push('')
 
   lines.push(`extension InstUI.Semantic.${typeName} {`)
   lines.push('')
-  lines.push(`    static func build(_ token: (InstUI.TokenKey) throws -> ${leafType}) throws -> InstUI.Semantic.${typeName} {`)
+  lines.push(`    static func build(_ token: (InstUI.TokenKey) throws -> ${extLeafType}) throws -> InstUI.Semantic.${typeName} {`)
 
   const retLines = [`        try InstUI.Semantic.${typeName}(`]
   const entries = Object.entries(tree.children)
@@ -101,7 +106,7 @@ function generateSemanticFile({ typeName, tree, swiftImport, leafType }) {
   lines.push('    }')
 
   lines.push('')
-  lines.push(`    var all: [(name: String, value: ${leafType})] {`)
+  lines.push(`    var all: [(name: String, value: ${extLeafType})] {`)
   lines.push('        [')
   lines.push(...genAllEntries(tree, '', '', 3))
   lines.push('        ]')
@@ -125,7 +130,7 @@ function generateSemanticFile({ typeName, tree, swiftImport, leafType }) {
 //   media       — CSS media query values (em-based), no iOS equivalent
 //   visibleInCanvas / visibleInRebrand — design tool visibility flags, not runtime values
 const COLOR_SECTION = {
-  typeName: 'Colors', swiftImport: 'import SwiftUI', leafType: 'Color'
+  typeName: 'Color', swiftImport: 'import SwiftUI', leafType: 'Color'
 }
 
 const LAYOUT_SECTIONS = [
@@ -135,8 +140,8 @@ const LAYOUT_SECTIONS = [
   { key: 'borderWidth', typeName: 'BorderWidth', swiftImport: 'import CoreGraphics', leafType: 'CGFloat' },
   { key: 'fontSize', typeName: 'FontSize', swiftImport: 'import CoreGraphics', leafType: 'CGFloat' },
   { key: 'opacity', typeName: 'Opacity', swiftImport: 'import Foundation', leafType: 'Double' },
-  { key: 'fontWeight', typeName: 'FontWeights', swiftImport: 'import SwiftUI', leafType: 'Font.Weight' },
-  { key: 'fontFamily', typeName: 'FontFamilies', swiftImport: 'import Foundation', leafType: 'String' },
+  { key: 'fontWeight', typeName: 'FontWeight', swiftImport: 'import SwiftUI', leafType: 'Font.Weight' },
+  { key: 'fontFamily', typeName: 'FontFamily', swiftImport: 'import Foundation', leafType: 'String' },
 ]
 
 // ---------------------------------------------------------------------------
@@ -149,7 +154,7 @@ module.exports = function buildSemantic(light, dark, layout) {
 
   // Color section — derived from light/dark JSON pair
   fs.writeFileSync(
-    path.join(sourcesDir, 'InstUI.Semantic.Colors.swift'),
+    path.join(sourcesDir, 'InstUI.Semantic.Color.swift'),
     generateSemanticFile({ ...COLOR_SECTION, tree: buildTree(light.color) })
   )
 

@@ -29,8 +29,8 @@ public extension InstUI.Semantic {
         public let borderWidth: BorderWidth
         public let fontSize: FontSize
         public let opacity: Opacity
-        public let fontWeights: FontWeights
-        public let fontFamilies: FontFamilies
+        public let fontWeights: FontWeight
+        public let fontFamilies: FontFamily
     }
 
     final class LayoutLoader: Sendable {
@@ -98,8 +98,8 @@ public extension InstUI.Semantic {
                 borderWidth: BorderWidth.build(cgFloat(from: borderWidthLeaves)),
                 fontSize: FontSize.build(cgFloat(from: fontSizeLeaves)),
                 opacity: Opacity.build(opacity),
-                fontWeights: FontWeights.build(fontWeight),
-                fontFamilies: FontFamilies.build(fontFamily)
+                fontWeights: FontWeight.build(fontWeight),
+                fontFamilies: FontFamily.build(fontFamily)
             )
         }
     }
