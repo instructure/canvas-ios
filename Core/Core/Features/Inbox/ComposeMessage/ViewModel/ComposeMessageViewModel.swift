@@ -68,7 +68,7 @@ final class ComposeMessageViewModel: ObservableObject {
     @Published public var subject: String = ""
     @Published public var selectedContext: RecipientContext?
     @Published public var conversation: Conversation?
-    @Published public private(set) var generationErrorMessage: String?
+    @Published public var generationErrorMessage: String?
     @Published public var includedMessages: [ConversationMessage] = []
     @Published public var quickReplies: [String] = []
     @Published public var attachments: [File] = []
@@ -595,13 +595,13 @@ final class ComposeMessageViewModel: ObservableObject {
 
     @available(iOS 26.0, *)
     private func generateQuickReplies() {
-        let model = SystemLanguageModel.default
-        guard let message = includedMessages.first?.body, model.isAvailable  else { return }
+        guard let message = includedMessages.first?.body, SystemLanguageModel.default.isAvailable else { return }
 
+        // ObservableObject needs changes to be published from the Main Actor, the generation happens in the background regardless
         Task { @MainActor in
             do {
                 let instructions = "Your task is to write exactly 3 **short** replies to the following message. One sentence each."
-                let session = LanguageModelSession(model: model, instructions: instructions)
+                let session = LanguageModelSession(instructions: instructions)
                 let options = GenerationOptions(temperature: 0.2)
 
                 for try await chunk in session.streamResponse(to: message, generating: [QuickReply].self, options: options) {

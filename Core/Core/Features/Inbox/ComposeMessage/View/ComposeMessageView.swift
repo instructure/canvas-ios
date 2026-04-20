@@ -143,8 +143,9 @@ public struct ComposeMessageView: View, ScreenViewTrackable {
                                 Image(systemName: "apple.intelligence.badge.xmark")
                             }
 
+                        } else {
+                            quickReplies
                         }
-                        quickReplies
                     }
                     .frame(maxWidth: .infinity)
                     .foregroundStyle(.textDark)
