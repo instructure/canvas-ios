@@ -44,9 +44,9 @@ Generated files (DO NOT EDIT manually):
   packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.FontFamilies.swift
 
   Semantic token values (bundled JSON):
-  packages/InstUI/Resources/Tokens-{version}/Semantic/Color/rebrandLight.json
-  packages/InstUI/Resources/Tokens-{version}/Semantic/Color/rebrandDark.json
-  packages/InstUI/Resources/Tokens-{version}/Semantic/Layout/default.json
+  packages/InstUI/Resources/Tokens/Semantic/Color/rebrandLight.json
+  packages/InstUI/Resources/Tokens/Semantic/Color/rebrandDark.json
+  packages/InstUI/Resources/Tokens/Semantic/Layout/default.json
 
 To update to a newer version of instructure-ui, bump INSTUI_VERSION below and re-run.
 */
@@ -100,15 +100,15 @@ async function buildSemantic() {
   ])
 
   const resourcesDir = path.join(__dirname, '../../packages/InstUI/Resources')
-  const tokensFolderName = `Tokens-${INSTUI_VERSION.replace(/^v/, '')}`
-  const tokensDir = path.join(resourcesDir, tokensFolderName)
+  const tokensDir = path.join(resourcesDir, 'Tokens')
 
   for (const entry of fs.readdirSync(resourcesDir)) {
-    if (entry.startsWith('Tokens') && entry !== tokensFolderName) {
-      fs.rmSync(path.join(resourcesDir, entry), { recursive: true, force: true })
-      console.log(`Removed old tokens folder: ${entry}`)
+    if (entry.startsWith('InstUI_v') && entry !== `InstUI_${INSTUI_VERSION}`) {
+      fs.rmSync(path.join(resourcesDir, entry))
+      console.log(`Removed old version marker: ${entry}`)
     }
   }
+  fs.writeFileSync(path.join(resourcesDir, `InstUI_${INSTUI_VERSION}`), '')
 
   const colorDir = path.join(tokensDir, 'Semantic', 'Color')
   const layoutDir = path.join(tokensDir, 'Semantic', 'Layout')
@@ -118,7 +118,7 @@ async function buildSemantic() {
   fs.writeFileSync(path.join(colorDir, 'rebrandLight.json'), light)
   fs.writeFileSync(path.join(colorDir, 'rebrandDark.json'), dark)
   fs.writeFileSync(path.join(layoutDir, 'default.json'), layout)
-  console.log(`Saved color + layout tokens to Resources/${tokensFolderName}/Semantic/`)
+  console.log(`Saved color + layout tokens to Resources/Tokens/Semantic/`)
 
   console.log('Building SwiftUI semantic types...')
   buildSemanticConfig(JSON.parse(light), JSON.parse(dark), JSON.parse(layout))
