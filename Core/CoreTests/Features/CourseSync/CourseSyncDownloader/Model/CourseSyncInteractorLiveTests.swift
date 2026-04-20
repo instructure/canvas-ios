@@ -1124,7 +1124,7 @@ private class CourseSyncModulesInteractorMock2: CourseSyncModulesInteractor {
     }
 
     func createStudioModulePlaceholders(courseId _: CourseSyncID, moduleItems _: [Core.ModuleItem]) -> AnyPublisher<Void, Error> {
-        Empty().setFailureType(to: Error.self).eraseToAnyPublisher()
+        Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }
 
