@@ -115,7 +115,16 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
         updateNavBar()
     }
 
-    private var viewTitle: String {
+    private func updateNavBar() {
+        // When embedded view controllers adapt course color for their own spinner view,
+        // we should enable this line below.
+        // spinnerView.color = course.first?.color
+        if #available(iOS 26, *) {
+            navigationItem.subtitle = course.first?.name
+        } else {
+            updateNavBar(subtitle: course.first?.name, color: course.first?.color)
+        }
+
         let title: String
         switch item?.type {
         case .assignment:
@@ -137,23 +146,11 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
         case nil, .subHeader:
             title = String(localized: "Module Item", bundle: .core)
         }
-        return title
-    }
-
-    private func updateNavBar() {
-        // When embedded view controllers adapt course color for their own spinner view,
-        // we should enable this line below.
-//        spinnerView.color = course.first?.color
-        if #available(iOS 26, *) {
-            navigationItem.subtitle = course.first?.name
-        } else {
-            updateNavBar(subtitle: course.first?.name, color: course.first?.color)
-        }
 
         if #available(iOS 26, *) {
-            navigationItem.title = viewTitle
+            navigationItem.title = title
         } else {
-            setupTitleViewInNavbar(title: viewTitle)
+            setupTitleViewInNavbar(title: title)
         }
 
         if item?.completionRequirementType == .must_mark_done {
@@ -170,14 +167,12 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
         case let .externalTool(toolID, url):
 
             if isOfflineStudioItem, let sessionID = env.currentSession?.uniqueID {
-                let offlineView = StudioOfflineModuleItemViewController.create(
+                return StudioOfflineModuleItemViewController.create(
                     sessionID: sessionID,
                     courseID: courseID,
                     moduleItemID: itemID,
                     title: item.title
                 )
-                offlineView.title = viewTitle
-                return offlineView
             }
 
             let tools = LTITools(

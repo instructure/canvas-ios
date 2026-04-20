@@ -36,6 +36,7 @@ public final class StudioOfflineModuleItemViewController: UIViewController {
             moduleItemID: moduleItemID
         )
         vc.navigationItem.title = title
+        vc.title = title
         return vc
     }
 
