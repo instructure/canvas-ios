@@ -112,6 +112,7 @@ final class ComposeMessageViewModel: ObservableObject {
     private var sendIndividualToggleLastValue: Bool = false
     private let maxRecipientCount = 100
 
+    
     // MARK: Public interface
     public init(
         options: ComposeMessageOptions,
