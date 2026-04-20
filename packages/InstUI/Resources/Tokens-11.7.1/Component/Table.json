@@ -1,0 +1,204 @@
+{
+  "table": {
+    "background": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "color": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    }
+  },
+  "tableBody": {
+    "background": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "color": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    }
+  },
+  "tableHead": {
+    "background": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "color": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.strong}",
+      "type": "fontWeights"
+    }
+  },
+  "tableCell": {
+    "background": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "color": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "lineHeight": {
+      "value": "{lineHeight.standalone.base}",
+      "type": "lineHeights"
+    },
+    "paddingVertical": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "paddingHorizontal": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    }
+  },
+  "tableRowHeader": {
+    "background": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "color": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "lineHeight": {
+      "value": "{lineHeight.standalone.base}",
+      "type": "lineHeights"
+    },
+    "paddingVertical": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "paddingHorizontal": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    }
+  },
+  "tableRow": {
+    "background": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "color": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "borderColor": {
+      "value": "{color.stroke.base}",
+      "type": "color"
+    },
+    "hoverBorderColor": {
+      "value": "{color.stroke.brand}",
+      "type": "color"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "paddingVertical": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "paddingHorizontal": {
+      "value": "0rem",
+      "type": "spacing"
+    }
+  },
+  "tableColHeader": {
+    "background": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "color": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "lineHeight": {
+      "value": "{lineHeight.standalone.base}",
+      "type": "lineHeights"
+    },
+    "paddingVertical": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "paddingHorizontal": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    }
+  }
+}

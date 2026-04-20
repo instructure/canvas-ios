@@ -20,19 +20,23 @@ import CoreGraphics
 
 extension InstUI {
     struct SizeResolver {
-        private let primitivesByName: [TokenKey: CGFloat]
+        private let map: [TokenKey: CGFloat]
 
         init() {
-            primitivesByName = Dictionary(
+            map = Dictionary(
                 InstUI.Primitive.Size.all.map { ($0.name, $0.size) },
                 uniquingKeysWith: { first, _ in first }
             )
         }
 
+        init(map: [TokenKey: CGFloat]) {
+            self.map = map
+        }
+
         func resolve(_ raw: String) throws -> CGFloat {
             if raw.hasPrefix("{") {
                 let inner = String(raw.dropFirst().dropLast())
-                guard let size = primitivesByName[inner] else {
+                guard let size = map[inner] else {
                     throw InstUI.TokenLoadError.unknownPrimitive(inner)
                 }
                 return size

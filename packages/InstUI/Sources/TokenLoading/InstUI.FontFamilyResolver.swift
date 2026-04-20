@@ -18,13 +18,17 @@
 
 extension InstUI {
     struct FontFamilyResolver {
-        private let primitivesByName: [TokenKey: String]
+        private let map: [TokenKey: String]
 
         init() {
-            primitivesByName = Dictionary(
+            map = Dictionary(
                 InstUI.Primitive.FontFamily.all.map { ($0.name, $0.family) },
                 uniquingKeysWith: { first, _ in first }
             )
+        }
+
+        init(map: [TokenKey: String]) {
+            self.map = map
         }
 
         func resolve(_ raw: String) throws -> String {
@@ -32,7 +36,7 @@ extension InstUI {
                 throw InstUI.TokenLoadError.unknownPrimitive(raw)
             }
             let inner = String(raw.dropFirst().dropLast())
-            guard let family = primitivesByName[inner] else {
+            guard let family = map[inner] else {
                 throw InstUI.TokenLoadError.unknownPrimitive(inner)
             }
             return family

@@ -1,0 +1,22 @@
+{
+  "pagination": {
+    "pageIndicatorGap": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    }
+  },
+  "paginationPageInput": {
+    "inputSpacing": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "inputWidth": {
+      "value": "4.5rem",
+      "type": "sizing"
+    },
+    "labelColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    }
+  }
+}
