@@ -102,13 +102,14 @@ async function buildSemantic() {
   const resourcesDir = path.join(__dirname, '../../packages/InstUI/Resources')
   const tokensDir = path.join(resourcesDir, 'Tokens')
 
+  const versionMarker = `InstUI_${INSTUI_VERSION.replace(/\./g, '_')}`
   for (const entry of fs.readdirSync(resourcesDir)) {
-    if (entry.startsWith('InstUI_v') && entry !== `InstUI_${INSTUI_VERSION}`) {
+    if (entry.startsWith('InstUI_v') && entry !== versionMarker) {
       fs.rmSync(path.join(resourcesDir, entry))
       console.log(`Removed old version marker: ${entry}`)
     }
   }
-  fs.writeFileSync(path.join(resourcesDir, `InstUI_${INSTUI_VERSION}`), '')
+  fs.writeFileSync(path.join(resourcesDir, versionMarker), '')
 
   const colorDir = path.join(tokensDir, 'Semantic', 'Color')
   const layoutDir = path.join(tokensDir, 'Semantic', 'Layout')
