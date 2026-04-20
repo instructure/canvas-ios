@@ -119,7 +119,9 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         navigationController?.setToolbarHidden(false, animated: true)
 
         let items = {
-            sources.sorted().map { source in
+            let sortedSources = sources.sorted()
+
+            return sortedSources.flatMap { source in
                 let item = UIBarButtonItemWithCompletion(
                     title: source.title,
                     image: source.image,
@@ -128,7 +130,12 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
                 }
                 item.accessibilityIdentifier = source.accessibilityIdentifier
 
-                return item
+                // flexible spaces are neccessary on iOS 18 but on iOS 26 they create separate containers instead of one, so we only add them on iOS 18
+                if #available(iOS 26, *) {
+                    return [item]
+                } else {
+                    return source == sortedSources.last ? [item] : [item, .flexibleSpace()]
+                }
             }
         }()
 
