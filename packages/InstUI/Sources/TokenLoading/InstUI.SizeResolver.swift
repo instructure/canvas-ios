@@ -25,7 +25,7 @@ extension InstUI {
         init() {
             map = Dictionary(
                 InstUI.Primitive.Size.all.map { ($0.name, $0.size) },
-                uniquingKeysWith: { first, _ in first }
+                uniquingKeysWith: { $1 }
             )
         }
 
@@ -41,10 +41,14 @@ extension InstUI {
                 }
                 return size
             }
-            // 1rem = 1em = 16pt, matching the standard CSS base font size used by design tokens
+            // 1rem = 16pt, matching the standard CSS base font size used by design tokens
             if raw.hasSuffix("rem"), let value = Double(raw.dropLast(3)) {
                 return CGFloat(value * 16)
             }
+            // em is context-relative in CSS (relative to the element's font size), not the root.
+            // Design tokens that use em are authored against a 16px base, so we treat em = rem here.
+            // This is an approximation: it's correct for components with a 16px font, and close
+            // enough for others given that token authors target the same baseline.
             if raw.hasSuffix("em"), let value = Double(raw.dropLast(2)) {
                 return CGFloat(value * 16)
             }

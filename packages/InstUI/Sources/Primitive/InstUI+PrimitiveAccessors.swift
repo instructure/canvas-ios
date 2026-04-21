@@ -19,6 +19,10 @@
 import SwiftUI
 import UIKit
 
+extension InstUI {
+    public enum Primitive {}
+}
+
 extension Color {
     public typealias iuiPrimitive = Color.InstUI.Primitive
 }

@@ -18,6 +18,10 @@
 
 import SwiftUI
 
+extension InstUI {
+    public enum Semantic {}
+}
+
 extension Color {
     public static var iuiSemantic: InstUISemanticColor { _iuiSemanticColor() }
 }

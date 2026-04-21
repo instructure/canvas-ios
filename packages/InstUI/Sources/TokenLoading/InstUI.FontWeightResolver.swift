@@ -25,7 +25,7 @@ extension InstUI {
         init() {
             map = Dictionary(
                 InstUI.Primitive.FontWeight.all.map { ($0.name, $0.weight) },
-                uniquingKeysWith: { first, _ in first }
+                uniquingKeysWith: { $1 }
             )
         }
 

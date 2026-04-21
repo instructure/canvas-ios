@@ -18,6 +18,10 @@
 
 import SwiftUI
 
+extension InstUI {
+    public enum Component {}
+}
+
 extension Color {
     public enum iui {} // Namespace for the component layer
 }

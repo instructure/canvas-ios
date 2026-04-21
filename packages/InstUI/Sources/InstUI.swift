@@ -16,8 +16,4 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public enum InstUI {
-    public enum Primitive {}
-    public enum Semantic {}
-    public enum Component {}
-}
+public enum InstUI {}
