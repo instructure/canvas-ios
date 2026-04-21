@@ -394,15 +394,15 @@ extension InstUI.Theme.Components {
 
     static func load(using theme: InstUI.Theme) throws -> Self {
         try load(
-            colors: theme.colors,
+            colors: theme.color,
             size: theme.size,
             spacing: theme.spacing,
             borderRadius: theme.borderRadius,
             borderWidth: theme.borderWidth,
             fontSize: theme.fontSize,
             opacity: theme.opacity,
-            fontWeights: theme.fontWeights,
-            fontFamilies: theme.fontFamilies
+            fontWeights: theme.fontWeight,
+            fontFamilies: theme.fontFamily
         )
     }
 }

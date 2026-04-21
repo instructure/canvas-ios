@@ -21,7 +21,7 @@ import UIKit
 
 extension Color {
     public typealias iuiPrimitive = Color.InstUI.Primitive
-    public static var iuiSemantic: InstUISemanticColor { _iuiSemanticColors() }
+    public static var iuiSemantic: InstUISemanticColor { _iuiSemanticColor() }
 }
 
 extension UIColor {
@@ -68,9 +68,9 @@ public typealias InstUISemanticBorderRadius = InstUI.Semantic.BorderRadius
 public typealias InstUISemanticBorderWidth = InstUI.Semantic.BorderWidth
 public typealias InstUISemanticFontSize = InstUI.Semantic.FontSize
 
-private func _iuiSemanticColors() -> InstUISemanticColor { InstUI.Theme.default.colors }
-private func _iuiSemanticFontWeight() -> InstUISemanticFontWeight { InstUI.Theme.default.fontWeights }
-private func _iuiSemanticFontFamily() -> InstUISemanticFontFamily { InstUI.Theme.default.fontFamilies }
+private func _iuiSemanticColor() -> InstUISemanticColor { InstUI.Theme.default.color }
+private func _iuiSemanticFontWeight() -> InstUISemanticFontWeight { InstUI.Theme.default.fontWeight }
+private func _iuiSemanticFontFamily() -> InstUISemanticFontFamily { InstUI.Theme.default.fontFamily }
 private func _iuiSemanticOpacity() -> InstUISemanticOpacity { InstUI.Theme.default.opacity }
 private func _iuiSemanticSize() -> InstUISemanticSize { InstUI.Theme.default.size }
 private func _iuiSemanticSpacing() -> InstUISemanticSpacing { InstUI.Theme.default.spacing }

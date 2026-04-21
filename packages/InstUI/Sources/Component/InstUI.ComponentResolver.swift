@@ -84,15 +84,15 @@ extension InstUI {
 
         init(theme: InstUI.Theme, leaves: [TokenKey: String]) {
             self.init(
-                colors: theme.colors,
+                colors: theme.color,
                 size: theme.size,
                 spacing: theme.spacing,
                 borderRadius: theme.borderRadius,
                 borderWidth: theme.borderWidth,
                 fontSize: theme.fontSize,
                 opacity: theme.opacity,
-                fontWeights: theme.fontWeights,
-                fontFamilies: theme.fontFamilies,
+                fontWeights: theme.fontWeight,
+                fontFamilies: theme.fontFamily,
                 leaves: leaves
             )
         }
