@@ -25,7 +25,6 @@ extension InstUI.Component {
 
     public struct TopNavBarActionItems: Sendable {
         public let smallViewportActionItemContainerMargin: CGFloat
-        public let smallViewportActionItemContainerMaxWidth: CGFloat
         public let smallViewportDropdownMenuActiveOptionFontWeight: Font.Weight
         public let smallViewportDropdownMenuActiveOptionIndicatorSpacing: CGFloat
         public let smallViewportDropdownMenuActiveOptionIndicatorWidth: CGFloat
@@ -41,7 +40,6 @@ extension InstUI.Component.TopNavBarActionItems {
     ) throws -> InstUI.Component.TopNavBarActionItems {
         try InstUI.Component.TopNavBarActionItems(
             smallViewportActionItemContainerMargin: dimension("smallViewportActionItemContainerMargin"),
-            smallViewportActionItemContainerMaxWidth: dimension("smallViewportActionItemContainerMaxWidth"),
             smallViewportDropdownMenuActiveOptionFontWeight: fontWeight("smallViewportDropdownMenuActiveOptionFontWeight"),
             smallViewportDropdownMenuActiveOptionIndicatorSpacing: dimension("smallViewportDropdownMenuActiveOptionIndicatorSpacing"),
             smallViewportDropdownMenuActiveOptionIndicatorWidth: dimension("smallViewportDropdownMenuActiveOptionIndicatorWidth"),

@@ -34,14 +34,15 @@ extension InstUI {
         }
 
         func resolve(_ raw: String) throws -> Font.Weight {
-            guard raw.hasPrefix("{") else {
-                throw InstUI.TokenLoadError.unknownPrimitive(raw)
+            if raw.hasPrefix("{") {
+                let inner = String(raw.dropFirst().dropLast())
+                guard let weight = map[inner] else {
+                    throw InstUI.TokenLoadError.unknownPrimitive(inner)
+                }
+                return weight
             }
-            let inner = String(raw.dropFirst().dropLast())
-            guard let weight = map[inner] else {
-                throw InstUI.TokenLoadError.unknownPrimitive(inner)
-            }
-            return weight
+            if let numeric = Font.Weight(cssNumeric: raw) { return numeric }
+            throw InstUI.TokenLoadError.unknownPrimitive(raw)
         }
     }
 }

@@ -24,6 +24,9 @@ extension InstUI.Semantic {
     public struct Size: Sendable {
         public let interactive: Interactive
         public let choiceControl: ChoiceControl
+        public let breakpoints: Breakpoints
+        public let media: Media
+        public let all: [(name: String, value: CGFloat)]
 
         public struct Interactive: Sendable {
             public let height: Height
@@ -45,34 +48,58 @@ extension InstUI.Semantic {
                 public let lg: CGFloat
             }
         }
+        public struct Breakpoints: Sendable {
+            public let xxs: CGFloat
+            public let xs: CGFloat
+            public let sm: CGFloat
+            public let md: CGFloat
+            public let lg: CGFloat
+            public let desktop: CGFloat
+            public let xl: CGFloat
+        }
+        public struct Media: Sendable {
+            public let mediumMin: CGFloat
+            public let largeMin: CGFloat
+            public let xLargeMin: CGFloat
+        }
     }
 }
 
 extension InstUI.Semantic.Size {
 
     static func build(_ token: (InstUI.TokenKey) throws -> CGFloat) throws -> InstUI.Semantic.Size {
-        try InstUI.Semantic.Size(
-            interactive: .init(
-                height: .init(
-                    xxs: token("interactive.height.xxs"),
-                    xs: token("interactive.height.xs"),
-                    sm: token("interactive.height.sm"),
-                    md: token("interactive.height.md"),
-                    lg: token("interactive.height.lg")
-                )
-            ),
-            choiceControl: .init(
-                height: .init(
-                    sm: token("choiceControl.height.sm"),
-                    md: token("choiceControl.height.md"),
-                    lg: token("choiceControl.height.lg")
-                )
+        let interactive = try Interactive.init(
+            height: .init(
+                xxs: token("interactive.height.xxs"),
+                xs: token("interactive.height.xs"),
+                sm: token("interactive.height.sm"),
+                md: token("interactive.height.md"),
+                lg: token("interactive.height.lg")
             )
         )
-    }
+        let choiceControl = try ChoiceControl.init(
+            height: .init(
+                sm: token("choiceControl.height.sm"),
+                md: token("choiceControl.height.md"),
+                lg: token("choiceControl.height.lg")
+            )
+        )
+        let breakpoints = try Breakpoints.init(
+            xxs: token("breakpoints.xxs"),
+            xs: token("breakpoints.xs"),
+            sm: token("breakpoints.sm"),
+            md: token("breakpoints.md"),
+            lg: token("breakpoints.lg"),
+            desktop: token("breakpoints.desktop"),
+            xl: token("breakpoints.xl")
+        )
+        let media = try Media.init(
+            mediumMin: token("media.mediumMin"),
+            largeMin: token("media.largeMin"),
+            xLargeMin: token("media.xLargeMin")
+        )
 
-    var all: [(name: String, value: CGFloat)] {
-        [
+        let all: [(name: String, value: CGFloat)] = [
             ("interactive.height.xxs", interactive.height.xxs),
             ("interactive.height.xs", interactive.height.xs),
             ("interactive.height.sm", interactive.height.sm),
@@ -81,6 +108,24 @@ extension InstUI.Semantic.Size {
             ("choiceControl.height.sm", choiceControl.height.sm),
             ("choiceControl.height.md", choiceControl.height.md),
             ("choiceControl.height.lg", choiceControl.height.lg),
+            ("breakpoints.xxs", breakpoints.xxs),
+            ("breakpoints.xs", breakpoints.xs),
+            ("breakpoints.sm", breakpoints.sm),
+            ("breakpoints.md", breakpoints.md),
+            ("breakpoints.lg", breakpoints.lg),
+            ("breakpoints.desktop", breakpoints.desktop),
+            ("breakpoints.xl", breakpoints.xl),
+            ("media.mediumMin", media.mediumMin),
+            ("media.largeMin", media.largeMin),
+            ("media.xLargeMin", media.xLargeMin),
         ]
+
+        return InstUI.Semantic.Size(
+            interactive: interactive,
+            choiceControl: choiceControl,
+            breakpoints: breakpoints,
+            media: media,
+            all: all
+        )
     }
 }

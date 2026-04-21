@@ -24,22 +24,25 @@ extension InstUI.Semantic {
     public struct Opacity: Sendable {
         public let base: Double
         public let disabled: Double
+        public let all: [(name: String, value: Double)]
     }
 }
 
 extension InstUI.Semantic.Opacity {
 
     static func build(_ token: (InstUI.TokenKey) throws -> Double) throws -> InstUI.Semantic.Opacity {
-        try InstUI.Semantic.Opacity(
-            base: token("base"),
-            disabled: token("disabled")
-        )
-    }
+        let base = try token("base")
+        let disabled = try token("disabled")
 
-    var all: [(name: String, value: Double)] {
-        [
+        let all: [(name: String, value: Double)] = [
             ("base", base),
             ("disabled", disabled),
         ]
+
+        return InstUI.Semantic.Opacity(
+            base: base,
+            disabled: disabled,
+            all: all
+        )
     }
 }

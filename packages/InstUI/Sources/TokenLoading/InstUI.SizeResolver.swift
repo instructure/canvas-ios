@@ -41,8 +41,16 @@ extension InstUI {
                 }
                 return size
             }
+            // 1rem = 1em = 16pt, matching the standard CSS base font size used by design tokens
             if raw.hasSuffix("rem"), let value = Double(raw.dropLast(3)) {
-                return CGFloat(value * 16) // 1rem = 16pt, matching the standard CSS base font size used by design tokens
+                return CGFloat(value * 16)
+            }
+            if raw.hasSuffix("em"), let value = Double(raw.dropLast(2)) {
+                return CGFloat(value * 16)
+            }
+            // 1px = 1pt (logical pixels map 1:1 to points in design tokens)
+            if raw.hasSuffix("px"), let value = Double(raw.dropLast(2)) {
+                return CGFloat(value)
             }
             if let value = Double(raw) {
                 return CGFloat(value)

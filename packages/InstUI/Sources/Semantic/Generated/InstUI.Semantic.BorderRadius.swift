@@ -31,6 +31,7 @@ extension InstUI.Semantic {
         public let full: CGFloat
         public let container: Container
         public let interactive: Interactive
+        public let all: [(name: String, value: CGFloat)]
 
         public struct Container: Sendable {
             public let sm: CGFloat
@@ -47,28 +48,24 @@ extension InstUI.Semantic {
 extension InstUI.Semantic.BorderRadius {
 
     static func build(_ token: (InstUI.TokenKey) throws -> CGFloat) throws -> InstUI.Semantic.BorderRadius {
-        try InstUI.Semantic.BorderRadius(
-            xs: token("xs"),
-            sm: token("sm"),
-            md: token("md"),
-            lg: token("lg"),
-            xl: token("xl"),
-            xxl: token("xxl"),
-            full: token("full"),
-            container: .init(
-                sm: token("container.sm"),
-                md: token("container.md"),
-                lg: token("container.lg"),
-                xl: token("container.xl")
-            ),
-            interactive: .init(
-                base: token("interactive.base")
-            )
+        let xs = try token("xs")
+        let sm = try token("sm")
+        let md = try token("md")
+        let lg = try token("lg")
+        let xl = try token("xl")
+        let xxl = try token("xxl")
+        let full = try token("full")
+        let container = try Container.init(
+            sm: token("container.sm"),
+            md: token("container.md"),
+            lg: token("container.lg"),
+            xl: token("container.xl")
         )
-    }
+        let interactive = try Interactive.init(
+            base: token("interactive.base")
+        )
 
-    var all: [(name: String, value: CGFloat)] {
-        [
+        let all: [(name: String, value: CGFloat)] = [
             ("xs", xs),
             ("sm", sm),
             ("md", md),
@@ -82,5 +79,18 @@ extension InstUI.Semantic.BorderRadius {
             ("container.xl", container.xl),
             ("interactive.base", interactive.base),
         ]
+
+        return InstUI.Semantic.BorderRadius(
+            xs: xs,
+            sm: sm,
+            md: md,
+            lg: lg,
+            xl: xl,
+            xxl: xxl,
+            full: full,
+            container: container,
+            interactive: interactive,
+            all: all
+        )
     }
 }

@@ -31,6 +31,7 @@ extension InstUI.Semantic {
         public let space2xl: CGFloat
         public let gap: Gap
         public let padding: Padding
+        public let all: [(name: String, value: CGFloat)]
 
         public struct Gap: Sendable {
             public let sections: CGFloat
@@ -76,49 +77,45 @@ extension InstUI.Semantic {
 extension InstUI.Semantic.Spacing {
 
     static func build(_ token: (InstUI.TokenKey) throws -> CGFloat) throws -> InstUI.Semantic.Spacing {
-        try InstUI.Semantic.Spacing(
-            space2xs: token("space2xs"),
-            spaceXs: token("spaceXs"),
-            spaceSm: token("spaceSm"),
-            spaceMd: token("spaceMd"),
-            spaceLg: token("spaceLg"),
-            spaceXl: token("spaceXl"),
-            space2xl: token("space2xl"),
-            gap: .init(
-                sections: token("gap.sections"),
-                cards: .init(
-                    sm: token("gap.cards.sm"),
-                    md: token("gap.cards.md"),
-                    lg: token("gap.cards.lg")
-                ),
-                inputs: .init(
-                    horizontal: token("gap.inputs.horizontal"),
-                    vertical: token("gap.inputs.vertical")
-                ),
-                inputElements: token("gap.inputElements")
+        let space2xs = try token("space2xs")
+        let spaceXs = try token("spaceXs")
+        let spaceSm = try token("spaceSm")
+        let spaceMd = try token("spaceMd")
+        let spaceLg = try token("spaceLg")
+        let spaceXl = try token("spaceXl")
+        let space2xl = try token("space2xl")
+        let gap = try Gap.init(
+            sections: token("gap.sections"),
+            cards: .init(
+                sm: token("gap.cards.sm"),
+                md: token("gap.cards.md"),
+                lg: token("gap.cards.lg")
             ),
-            padding: .init(
-                container: .init(
-                    xxs: token("padding.container.xxs"),
-                    xs: token("padding.container.xs"),
-                    sm: token("padding.container.sm"),
-                    md: token("padding.container.md"),
-                    lg: token("padding.container.lg")
-                ),
-                interactive: .init(
-                    horizontal: .init(
-                        sm: token("padding.interactive.horizontal.sm"),
-                        md: token("padding.interactive.horizontal.md"),
-                        lg: token("padding.interactive.horizontal.lg"),
-                        xl: token("padding.interactive.horizontal.xl")
-                    )
+            inputs: .init(
+                horizontal: token("gap.inputs.horizontal"),
+                vertical: token("gap.inputs.vertical")
+            ),
+            inputElements: token("gap.inputElements")
+        )
+        let padding = try Padding.init(
+            container: .init(
+                xxs: token("padding.container.xxs"),
+                xs: token("padding.container.xs"),
+                sm: token("padding.container.sm"),
+                md: token("padding.container.md"),
+                lg: token("padding.container.lg")
+            ),
+            interactive: .init(
+                horizontal: .init(
+                    sm: token("padding.interactive.horizontal.sm"),
+                    md: token("padding.interactive.horizontal.md"),
+                    lg: token("padding.interactive.horizontal.lg"),
+                    xl: token("padding.interactive.horizontal.xl")
                 )
             )
         )
-    }
 
-    var all: [(name: String, value: CGFloat)] {
-        [
+        let all: [(name: String, value: CGFloat)] = [
             ("space2xs", space2xs),
             ("spaceXs", spaceXs),
             ("spaceSm", spaceSm),
@@ -143,5 +140,18 @@ extension InstUI.Semantic.Spacing {
             ("padding.interactive.horizontal.lg", padding.interactive.horizontal.lg),
             ("padding.interactive.horizontal.xl", padding.interactive.horizontal.xl),
         ]
+
+        return InstUI.Semantic.Spacing(
+            space2xs: space2xs,
+            spaceXs: spaceXs,
+            spaceSm: spaceSm,
+            spaceMd: spaceMd,
+            spaceLg: spaceLg,
+            spaceXl: spaceXl,
+            space2xl: space2xl,
+            gap: gap,
+            padding: padding,
+            all: all
+        )
     }
 }

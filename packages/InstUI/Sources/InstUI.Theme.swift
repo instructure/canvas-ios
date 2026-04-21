@@ -34,6 +34,7 @@ extension InstUI {
         public let opacity: InstUI.Semantic.Opacity
         public let fontWeights: InstUI.Semantic.FontWeight
         public let fontFamilies: InstUI.Semantic.FontFamily
+        public let components: InstUI.Theme.Components
 
         public init() throws {
             try self.init(
@@ -46,8 +47,9 @@ extension InstUI {
             colorLoader: InstUI.Semantic.ColorLoader,
             layoutLoader: InstUI.Semantic.LayoutLoader
         ) throws {
-            self.colors = try colorLoader.load()
+            let colors = try colorLoader.load()
             let layout = try layoutLoader.load()
+            self.colors = colors
             self.size = layout.size
             self.spacing = layout.spacing
             self.borderRadius = layout.borderRadius
@@ -56,6 +58,17 @@ extension InstUI {
             self.opacity = layout.opacity
             self.fontWeights = layout.fontWeights
             self.fontFamilies = layout.fontFamilies
+            self.components = try .load(
+                colors: colors,
+                size: layout.size,
+                spacing: layout.spacing,
+                borderRadius: layout.borderRadius,
+                borderWidth: layout.borderWidth,
+                fontSize: layout.fontSize,
+                opacity: layout.opacity,
+                fontWeights: layout.fontWeights,
+                fontFamilies: layout.fontFamilies
+            )
         }
     }
 }

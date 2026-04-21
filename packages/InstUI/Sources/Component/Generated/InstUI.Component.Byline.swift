@@ -32,7 +32,6 @@ extension InstUI.Component {
         public let fontFamily: String
         public let titleFontSize: CGFloat
         public let titleFontWeight: Font.Weight
-        public let titleMargin: CGFloat
     }
 }
 
@@ -52,8 +51,7 @@ extension InstUI.Component.Byline {
             figureMargin: dimension("figureMargin"),
             fontFamily: fontFamily("fontFamily"),
             titleFontSize: dimension("titleFontSize"),
-            titleFontWeight: fontWeight("titleFontWeight"),
-            titleMargin: dimension("titleMargin")
+            titleFontWeight: fontWeight("titleFontWeight")
         )
     }
 }

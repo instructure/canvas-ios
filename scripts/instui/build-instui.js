@@ -46,6 +46,9 @@ Generated files (DO NOT EDIT manually):
   Component Swift types (one file per component, sync'd from upstream):
   packages/InstUI/Sources/Component/Generated/InstUI.Component.<Name>.swift
 
+  Component collector (generated from the component list):
+  packages/InstUI/Sources/Component/Generated/InstUI.Theme.Components.swift
+
   Token values (bundled JSON):
   packages/InstUI/Resources/Tokens/Semantic/Color/rebrandLight.json
   packages/InstUI/Resources/Tokens/Semantic/Color/rebrandDark.json

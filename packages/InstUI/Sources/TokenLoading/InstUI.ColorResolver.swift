@@ -49,7 +49,7 @@ extension InstUI {
     }
 }
 
-private extension String {
+extension String {
     var isColorToken: Bool { hasPrefix("{") }
     var isRGBAValue: Bool { lowercased().hasPrefix("rgba") }
 }

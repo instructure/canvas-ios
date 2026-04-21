@@ -27,32 +27,85 @@ extension InstUI {
         private let fontWeightResolver: FontWeightResolver
         private let fontFamilyResolver: FontFamilyResolver
 
-        init(theme: InstUI.Theme, leaves: [TokenKey: String]) {
+        init(
+            colors: InstUI.Semantic.Color,
+            size: InstUI.Semantic.Size,
+            spacing: InstUI.Semantic.Spacing,
+            borderRadius: InstUI.Semantic.BorderRadius,
+            borderWidth: InstUI.Semantic.BorderWidth,
+            fontSize: InstUI.Semantic.FontSize,
+            opacity: InstUI.Semantic.Opacity,
+            fontWeights: InstUI.Semantic.FontWeight,
+            fontFamilies: InstUI.Semantic.FontFamily,
+            leaves: [TokenKey: String]
+        ) {
             self.leaves = leaves
             colorMap = Dictionary(
-                theme.colors.all.map { ("color.\($0.name)", $0.value) },
+                colors.all.map { ("color.\($0.name)", $0.value) },
                 uniquingKeysWith: { $1 }
             )
             sizeResolver = SizeResolver(map: Dictionary(
-                theme.size.all.map { ("size.\($0.name)", $0.value) } +
-                theme.spacing.all.map { ("spacing.\($0.name)", $0.value) } +
-                theme.borderRadius.all.map { ("borderRadius.\($0.name)", $0.value) } +
-                theme.borderWidth.all.map { ("borderWidth.\($0.name)", $0.value) } +
-                theme.fontSize.all.map { ("fontSize.\($0.name)", $0.value) },
+                size.all.map { ("size.\($0.name)", $0.value) } +
+                spacing.all.map { ("spacing.\($0.name)", $0.value) } +
+                borderRadius.all.map { ("borderRadius.\($0.name)", $0.value) } +
+                borderWidth.all.map { ("borderWidth.\($0.name)", $0.value) } +
+                fontSize.all.map { ("fontSize.\($0.name)", $0.value) },
                 uniquingKeysWith: { $1 }
             ))
             opacityResolver = OpacityResolver(map: Dictionary(
-                theme.opacity.all.map { ("opacity.\($0.name)", $0.value) },
+                opacity.all.map { ("opacity.\($0.name)", $0.value) },
                 uniquingKeysWith: { $1 }
             ))
             fontWeightResolver = FontWeightResolver(map: Dictionary(
-                theme.fontWeights.all.map { ("fontWeight.\($0.name)", $0.value) },
+                fontWeights.all.map { ("fontWeight.\($0.name)", $0.value) },
                 uniquingKeysWith: { $1 }
             ))
             fontFamilyResolver = FontFamilyResolver(map: Dictionary(
-                theme.fontFamilies.all.map { ("fontFamily.\($0.name)", $0.value) },
+                fontFamilies.all.map { ("fontFamily.\($0.name)", $0.value) },
                 uniquingKeysWith: { $1 }
             ))
+        }
+
+        private init(
+            colorMap: [String: Color],
+            sizeResolver: SizeResolver,
+            opacityResolver: OpacityResolver,
+            fontWeightResolver: FontWeightResolver,
+            fontFamilyResolver: FontFamilyResolver,
+            leaves: [TokenKey: String]
+        ) {
+            self.leaves = leaves
+            self.colorMap = colorMap
+            self.sizeResolver = sizeResolver
+            self.opacityResolver = opacityResolver
+            self.fontWeightResolver = fontWeightResolver
+            self.fontFamilyResolver = fontFamilyResolver
+        }
+
+        init(theme: InstUI.Theme, leaves: [TokenKey: String]) {
+            self.init(
+                colors: theme.colors,
+                size: theme.size,
+                spacing: theme.spacing,
+                borderRadius: theme.borderRadius,
+                borderWidth: theme.borderWidth,
+                fontSize: theme.fontSize,
+                opacity: theme.opacity,
+                fontWeights: theme.fontWeights,
+                fontFamilies: theme.fontFamilies,
+                leaves: leaves
+            )
+        }
+
+        func withLeaves(_ leaves: [TokenKey: String]) -> ComponentResolver {
+            ComponentResolver(
+                colorMap: colorMap,
+                sizeResolver: sizeResolver,
+                opacityResolver: opacityResolver,
+                fontWeightResolver: fontWeightResolver,
+                fontFamilyResolver: fontFamilyResolver,
+                leaves: leaves
+            )
         }
 
         func color(_ key: TokenKey) throws -> Color {
@@ -63,6 +116,8 @@ extension InstUI {
                 guard let value = colorMap[ref] else { throw TokenLoadError.missingToken(ref) }
                 return value
             }
+            if raw.isRGBAValue { return Color(rgba: raw) }
+            if raw.hasPrefix("#") { return Color(hex: raw) }
             throw TokenLoadError.invalidValue(raw)
         }
 

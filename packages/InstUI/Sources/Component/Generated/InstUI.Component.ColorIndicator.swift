@@ -24,7 +24,6 @@ import SwiftUI
 extension InstUI.Component {
 
     public struct ColorIndicator: Sendable {
-        public let backgroundSize: CGFloat
         public let borderWidth: CGFloat
         public let rectangularIndicatorBorderWidth: CGFloat
         public let circleIndicatorSize: CGFloat
@@ -41,7 +40,6 @@ extension InstUI.Component.ColorIndicator {
         color: (InstUI.TokenKey) throws -> Color
     ) throws -> InstUI.Component.ColorIndicator {
         try InstUI.Component.ColorIndicator(
-            backgroundSize: dimension("backgroundSize"),
             borderWidth: dimension("borderWidth"),
             rectangularIndicatorBorderWidth: dimension("rectangularIndicatorBorderWidth"),
             circleIndicatorSize: dimension("circleIndicatorSize"),
