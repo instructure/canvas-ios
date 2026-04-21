@@ -105,3 +105,51 @@ extension InstUI.Component.Text {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum text {
+        public static var fontSizeXSmall: CGFloat { _iuiComponents().text.fontSizeXSmall }
+        public static var fontSizeSmall: CGFloat { _iuiComponents().text.fontSizeSmall }
+        public static var fontSizeMedium: CGFloat { _iuiComponents().text.fontSizeMedium }
+        public static var fontSizeLarge: CGFloat { _iuiComponents().text.fontSizeLarge }
+        public static var fontSizeXLarge: CGFloat { _iuiComponents().text.fontSizeXLarge }
+        public static var fontSizeXXLarge: CGFloat { _iuiComponents().text.fontSizeXXLarge }
+    }
+}
+
+extension Color.iui {
+
+    public enum text {
+        public static var aiBackgroundColor: Color { _iuiComponents().text.aiBackgroundColor }
+        public static var aiColor: Color { _iuiComponents().text.aiColor }
+        public static var primaryColor: Color { _iuiComponents().text.primaryColor }
+        public static var errorColor: Color { _iuiComponents().text.errorColor }
+        public static var baseColor: Color { _iuiComponents().text.baseColor }
+        public static var baseOnColor: Color { _iuiComponents().text.baseOnColor }
+        public static var inverseColor: Color { _iuiComponents().text.inverseColor }
+        public static var mutedColor: Color { _iuiComponents().text.mutedColor }
+        public static var mutedOnColor: Color { _iuiComponents().text.mutedOnColor }
+        public static var successColor: Color { _iuiComponents().text.successColor }
+        public static var warningColor: Color { _iuiComponents().text.warningColor }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum text {
+        public static var fontWeightLight: Font.Weight { _iuiComponents().text.fontWeightLight }
+        public static var fontWeightNormal: Font.Weight { _iuiComponents().text.fontWeightNormal }
+        public static var fontWeightBold: Font.Weight { _iuiComponents().text.fontWeightBold }
+        public static var fontWeightImportant: Font.Weight { _iuiComponents().text.fontWeightImportant }
+        public static var fontWeightRegular: Font.Weight { _iuiComponents().text.fontWeightRegular }
+    }
+}
+
+extension String.iui {
+
+    public enum text {
+        public static var fontFamily: String { _iuiComponents().text.fontFamily }
+        public static var fontFamilyMonospace: String { _iuiComponents().text.fontFamilyMonospace }
+    }
+}

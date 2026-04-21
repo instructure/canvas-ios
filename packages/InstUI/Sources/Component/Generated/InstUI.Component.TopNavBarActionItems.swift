@@ -63,3 +63,20 @@ extension InstUI.Component.TopNavBarActionItems {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum topNavBarActionItems {
+        public static var smallViewportActionItemContainerMargin: CGFloat { _iuiComponents().topNavBarActionItems.smallViewportActionItemContainerMargin }
+        public static var smallViewportDropdownMenuActiveOptionIndicatorSpacing: CGFloat { _iuiComponents().topNavBarActionItems.smallViewportDropdownMenuActiveOptionIndicatorSpacing }
+        public static var smallViewportDropdownMenuActiveOptionIndicatorWidth: CGFloat { _iuiComponents().topNavBarActionItems.smallViewportDropdownMenuActiveOptionIndicatorWidth }
+        public static var activeIndicatorWidth: CGFloat { _iuiComponents().topNavBarActionItems.activeIndicatorWidth }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum topNavBarActionItems {
+        public static var smallViewportDropdownMenuActiveOptionFontWeight: Font.Weight { _iuiComponents().topNavBarActionItems.smallViewportDropdownMenuActiveOptionFontWeight }
+    }
+}

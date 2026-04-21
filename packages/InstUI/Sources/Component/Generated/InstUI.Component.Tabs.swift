@@ -63,3 +63,20 @@ extension InstUI.Component.Tabs {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum tabs {
+        public static var scrollOverlayWidthDefault: CGFloat { _iuiComponents().tabs.scrollOverlayWidthDefault }
+        public static var scrollOverlayWidthSecondary: CGFloat { _iuiComponents().tabs.scrollOverlayWidthSecondary }
+        public static var tabVerticalOffset: CGFloat { _iuiComponents().tabs.tabVerticalOffset }
+    }
+}
+
+extension Color.iui {
+
+    public enum tabs {
+        public static var defaultBackground: Color { _iuiComponents().tabs.defaultBackground }
+        public static var scrollFadeColor: Color { _iuiComponents().tabs.scrollFadeColor }
+    }
+}

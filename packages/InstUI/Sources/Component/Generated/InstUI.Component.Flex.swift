@@ -51,3 +51,10 @@ extension InstUI.Component.Flex {
         )
     }
 }
+
+extension String.iui {
+
+    public enum flex {
+        public static var fontFamily: String { _iuiComponents().flex.fontFamily }
+    }
+}

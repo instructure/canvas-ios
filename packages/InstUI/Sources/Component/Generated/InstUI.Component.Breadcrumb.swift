@@ -56,3 +56,12 @@ extension InstUI.Component.Breadcrumb {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum breadcrumb {
+        public static var gapSm: CGFloat { _iuiComponents().breadcrumb.gapSm }
+        public static var gapMd: CGFloat { _iuiComponents().breadcrumb.gapMd }
+        public static var gapLg: CGFloat { _iuiComponents().breadcrumb.gapLg }
+    }
+}

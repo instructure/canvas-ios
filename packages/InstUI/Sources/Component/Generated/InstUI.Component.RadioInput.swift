@@ -137,3 +137,67 @@ extension InstUI.Component.RadioInput {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum radioInput {
+        public static var fontSizeSm: CGFloat { _iuiComponents().radioInput.fontSizeSm }
+        public static var fontSizeMd: CGFloat { _iuiComponents().radioInput.fontSizeMd }
+        public static var fontSizeLg: CGFloat { _iuiComponents().radioInput.fontSizeLg }
+        public static var toggleSmallFontSize: CGFloat { _iuiComponents().radioInput.toggleSmallFontSize }
+        public static var toggleMediumFontSize: CGFloat { _iuiComponents().radioInput.toggleMediumFontSize }
+        public static var toggleLargeFontSize: CGFloat { _iuiComponents().radioInput.toggleLargeFontSize }
+        public static var gap: CGFloat { _iuiComponents().radioInput.gap }
+        public static var borderWidth: CGFloat { _iuiComponents().radioInput.borderWidth }
+        public static var controlSizeSm: CGFloat { _iuiComponents().radioInput.controlSizeSm }
+        public static var controlSizeMd: CGFloat { _iuiComponents().radioInput.controlSizeMd }
+        public static var controlSizeLg: CGFloat { _iuiComponents().radioInput.controlSizeLg }
+        public static var checkedInsetSm: CGFloat { _iuiComponents().radioInput.checkedInsetSm }
+        public static var checkedInsetMd: CGFloat { _iuiComponents().radioInput.checkedInsetMd }
+        public static var checkedInsetLg: CGFloat { _iuiComponents().radioInput.checkedInsetLg }
+        public static var toggleSmallHeight: CGFloat { _iuiComponents().radioInput.toggleSmallHeight }
+        public static var toggleMediumHeight: CGFloat { _iuiComponents().radioInput.toggleMediumHeight }
+        public static var toggleLargeHeight: CGFloat { _iuiComponents().radioInput.toggleLargeHeight }
+        public static var controlVerticalMargin: CGFloat { _iuiComponents().radioInput.controlVerticalMargin }
+        public static var toggleBorderRadius: CGFloat { _iuiComponents().radioInput.toggleBorderRadius }
+        public static var toggleBorderWidth: CGFloat { _iuiComponents().radioInput.toggleBorderWidth }
+    }
+}
+
+extension Color.iui {
+
+    public enum radioInput {
+        public static var backgroundColor: Color { _iuiComponents().radioInput.backgroundColor }
+        public static var backgroundHoverColor: Color { _iuiComponents().radioInput.backgroundHoverColor }
+        public static var backgroundReadonlyColor: Color { _iuiComponents().radioInput.backgroundReadonlyColor }
+        public static var backgroundDisabledColor: Color { _iuiComponents().radioInput.backgroundDisabledColor }
+        public static var borderColor: Color { _iuiComponents().radioInput.borderColor }
+        public static var borderHoverColor: Color { _iuiComponents().radioInput.borderHoverColor }
+        public static var borderReadonlyColor: Color { _iuiComponents().radioInput.borderReadonlyColor }
+        public static var borderDisabledColor: Color { _iuiComponents().radioInput.borderDisabledColor }
+        public static var borderSelectedColor: Color { _iuiComponents().radioInput.borderSelectedColor }
+        public static var labelBaseColor: Color { _iuiComponents().radioInput.labelBaseColor }
+        public static var labelHoverColor: Color { _iuiComponents().radioInput.labelHoverColor }
+        public static var labelDisabledColor: Color { _iuiComponents().radioInput.labelDisabledColor }
+        public static var labelReadonlyColor: Color { _iuiComponents().radioInput.labelReadonlyColor }
+        public static var toggleBackgroundDanger: Color { _iuiComponents().radioInput.toggleBackgroundDanger }
+        public static var toggleBackgroundOff: Color { _iuiComponents().radioInput.toggleBackgroundOff }
+        public static var toggleBackgroundSuccess: Color { _iuiComponents().radioInput.toggleBackgroundSuccess }
+        public static var toggleBackgroundWarning: Color { _iuiComponents().radioInput.toggleBackgroundWarning }
+        public static var toggleHandleText: Color { _iuiComponents().radioInput.toggleHandleText }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum radioInput {
+        public static var fontWeight: Font.Weight { _iuiComponents().radioInput.fontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum radioInput {
+        public static var fontFamily: String { _iuiComponents().radioInput.fontFamily }
+    }
+}

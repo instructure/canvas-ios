@@ -87,3 +87,42 @@ extension InstUI.Component.Link {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum link {
+        public static var fontSizeSm: CGFloat { _iuiComponents().link.fontSizeSm }
+        public static var fontSizeMd: CGFloat { _iuiComponents().link.fontSizeMd }
+        public static var fontSizeLg: CGFloat { _iuiComponents().link.fontSizeLg }
+        public static var gapSm: CGFloat { _iuiComponents().link.gapSm }
+        public static var gapMd: CGFloat { _iuiComponents().link.gapMd }
+        public static var gapLg: CGFloat { _iuiComponents().link.gapLg }
+    }
+}
+
+extension Color.iui {
+
+    public enum link {
+        public static var textColor: Color { _iuiComponents().link.textColor }
+        public static var textHoverColor: Color { _iuiComponents().link.textHoverColor }
+        public static var textDisabledColor: Color { _iuiComponents().link.textDisabledColor }
+        public static var onColorTextColor: Color { _iuiComponents().link.onColorTextColor }
+        public static var onColorTextHoverColor: Color { _iuiComponents().link.onColorTextHoverColor }
+        public static var onColorTextDisabledColor: Color { _iuiComponents().link.onColorTextDisabledColor }
+        public static var unstyledTextColor: Color { _iuiComponents().link.unstyledTextColor }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum link {
+        public static var fontWeight: Font.Weight { _iuiComponents().link.fontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum link {
+        public static var fontFamily: String { _iuiComponents().link.fontFamily }
+    }
+}

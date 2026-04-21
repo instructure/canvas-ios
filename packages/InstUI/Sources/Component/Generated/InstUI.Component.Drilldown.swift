@@ -67,3 +67,27 @@ extension InstUI.Component.Drilldown {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum drilldown {
+        public static var borderRadius: CGFloat { _iuiComponents().drilldown.borderRadius }
+        public static var labelInfoPadding: CGFloat { _iuiComponents().drilldown.labelInfoPadding }
+    }
+}
+
+extension Color.iui {
+
+    public enum drilldown {
+        public static var borderColor: Color { _iuiComponents().drilldown.borderColor }
+        public static var headerActionColor: Color { _iuiComponents().drilldown.headerActionColor }
+        public static var labelInfoColor: Color { _iuiComponents().drilldown.labelInfoColor }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum drilldown {
+        public static var headerTitleFontWeight: Font.Weight { _iuiComponents().drilldown.headerTitleFontWeight }
+    }
+}

@@ -52,3 +52,10 @@ extension InstUI.Component.TreeBrowser {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum treeBrowser {
+        public static var borderRadius: CGFloat { _iuiComponents().treeBrowser.borderRadius }
+    }
+}

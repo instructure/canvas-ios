@@ -54,3 +54,11 @@ extension InstUI.Component.Menu {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum menu {
+        public static var maxWidth: CGFloat { _iuiComponents().menu.maxWidth }
+        public static var minWidth: CGFloat { _iuiComponents().menu.minWidth }
+    }
+}

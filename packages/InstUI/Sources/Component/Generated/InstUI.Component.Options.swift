@@ -63,3 +63,25 @@ extension InstUI.Component.Options {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum options {
+        public static var nestedLabelPaddingVertical: CGFloat { _iuiComponents().options.nestedLabelPaddingVertical }
+        public static var nestedLabelPaddingHorizontal: CGFloat { _iuiComponents().options.nestedLabelPaddingHorizontal }
+    }
+}
+
+extension Color.iui {
+
+    public enum options {
+        public static var labelColor: Color { _iuiComponents().options.labelColor }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum options {
+        public static var labelFontWeight: Font.Weight { _iuiComponents().options.labelFontWeight }
+    }
+}

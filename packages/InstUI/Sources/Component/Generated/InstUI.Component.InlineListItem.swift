@@ -95,3 +95,46 @@ extension InstUI.Component.InlineListItem {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum inlineListItem {
+        public static var arrowSpacing: CGFloat { _iuiComponents().inlineListItem.arrowSpacing }
+        public static var fontSizeLarge: CGFloat { _iuiComponents().inlineListItem.fontSizeLarge }
+        public static var fontSizeMedium: CGFloat { _iuiComponents().inlineListItem.fontSizeMedium }
+        public static var fontSizeSmall: CGFloat { _iuiComponents().inlineListItem.fontSizeSmall }
+        public static var noneSpacing: CGFloat { _iuiComponents().inlineListItem.noneSpacing }
+        public static var pipeSpacing: CGFloat { _iuiComponents().inlineListItem.pipeSpacing }
+        public static var slashSpacing: CGFloat { _iuiComponents().inlineListItem.slashSpacing }
+        public static var spacingLarge: CGFloat { _iuiComponents().inlineListItem.spacingLarge }
+        public static var spacingMedium: CGFloat { _iuiComponents().inlineListItem.spacingMedium }
+        public static var spacingSmall: CGFloat { _iuiComponents().inlineListItem.spacingSmall }
+        public static var spacingXLarge: CGFloat { _iuiComponents().inlineListItem.spacingXLarge }
+        public static var spacingXSmall: CGFloat { _iuiComponents().inlineListItem.spacingXSmall }
+        public static var spacingXXLarge: CGFloat { _iuiComponents().inlineListItem.spacingXXLarge }
+        public static var spacingXXSmall: CGFloat { _iuiComponents().inlineListItem.spacingXXSmall }
+        public static var spacingXXXSmall: CGFloat { _iuiComponents().inlineListItem.spacingXXXSmall }
+    }
+}
+
+extension Color.iui {
+
+    public enum inlineListItem {
+        public static var color: Color { _iuiComponents().inlineListItem.color }
+        public static var delimiterColor: Color { _iuiComponents().inlineListItem.delimiterColor }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum inlineListItem {
+        public static var fontWeight: Font.Weight { _iuiComponents().inlineListItem.fontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum inlineListItem {
+        public static var fontFamily: String { _iuiComponents().inlineListItem.fontFamily }
+    }
+}

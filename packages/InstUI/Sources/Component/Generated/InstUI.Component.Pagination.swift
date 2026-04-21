@@ -52,3 +52,10 @@ extension InstUI.Component.Pagination {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum pagination {
+        public static var pageIndicatorGap: CGFloat { _iuiComponents().pagination.pageIndicatorGap }
+    }
+}

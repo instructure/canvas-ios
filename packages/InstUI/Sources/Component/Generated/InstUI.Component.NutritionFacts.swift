@@ -69,3 +69,23 @@ extension InstUI.Component.NutritionFacts {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum nutritionFacts {
+        public static var borderRadius: CGFloat { _iuiComponents().nutritionFacts.borderRadius }
+        public static var cardBorderWidth: CGFloat { _iuiComponents().nutritionFacts.cardBorderWidth }
+        public static var cardPadding: CGFloat { _iuiComponents().nutritionFacts.cardPadding }
+        public static var cardExplainerContainerBottomMargin: CGFloat { _iuiComponents().nutritionFacts.cardExplainerContainerBottomMargin }
+        public static var cardGap: CGFloat { _iuiComponents().nutritionFacts.cardGap }
+        public static var bodyPadding: CGFloat { _iuiComponents().nutritionFacts.bodyPadding }
+        public static var blockGap: CGFloat { _iuiComponents().nutritionFacts.blockGap }
+    }
+}
+
+extension Color.iui {
+
+    public enum nutritionFacts {
+        public static var cardBorderColor: Color { _iuiComponents().nutritionFacts.cardBorderColor }
+    }
+}

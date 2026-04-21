@@ -52,3 +52,10 @@ extension InstUI.Component.ToggleGroup {
         )
     }
 }
+
+extension Color.iui {
+
+    public enum toggleGroup {
+        public static var borderColor: Color { _iuiComponents().toggleGroup.borderColor }
+    }
+}

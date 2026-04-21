@@ -54,3 +54,11 @@ extension InstUI.Component.Mask {
         )
     }
 }
+
+extension Color.iui {
+
+    public enum mask {
+        public static var backgroundColor: Color { _iuiComponents().mask.backgroundColor }
+        public static var darkBackgroundColor: Color { _iuiComponents().mask.darkBackgroundColor }
+    }
+}

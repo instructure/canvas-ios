@@ -21,6 +21,8 @@ Generates Swift files from component design token JSON files:
 
   packages/InstUI/Sources/Component/Generated/InstUI.Component.<Name>.swift
     — Heterogeneous public struct + build() for each component
+    — Typed accessor helper extensions (CGFloat.InstUI, Color.InstUI, etc.)
+      so call sites can write `.iuiComponent.<componentName>.<propName>`
 
 Each component JSON file has a flat (occasionally nested) token tree under a
 single root key. Token types are mixed — color, sizing, spacing, fontWeights,
@@ -118,6 +120,28 @@ function collectSwiftTypes(tree) {
   return [...types].sort()
 }
 
+// Recursively collects all leaf paths in a component tree.
+// Returns [{swiftAccess, swiftType}] where swiftAccess is the dot-separated
+// property path on the generated struct (e.g. "border.width" for nested props).
+function collectLeafPaths(node, accessPath = '') {
+  if (node.type === 'leaf') {
+    return [{ swiftAccess: accessPath, swiftType: node.swiftType }]
+  }
+  const results = []
+  for (const [k, child] of Object.entries(node.children)) {
+    const childPath = accessPath ? `${accessPath}.${k}` : k
+    results.push(...collectLeafPaths(child, childPath))
+  }
+  return results
+}
+
+// Converts a dot-separated path to camelCase for use as a Swift identifier.
+// e.g. "border.width" → "borderWidth", "bodyPadding" → "bodyPadding"
+function pathToCamelCase(dotPath) {
+  const parts = dotPath.split('.')
+  return parts[0] + parts.slice(1).map(p => p.charAt(0).toUpperCase() + p.slice(1)).join('')
+}
+
 // ---------------------------------------------------------------------------
 // File generator
 // ---------------------------------------------------------------------------
@@ -192,6 +216,28 @@ function generateComponentFile({ typeName, tree, fileResource, rootKey }) {
   lines.push(`    }`)
   lines.push(`}`)
   lines.push('')
+
+  // Typed accessor helper extensions — one extension block per Swift type present.
+  // e.g. extension CGFloat.InstUI { public enum aiInformation { ... } }
+  const leafPaths = collectLeafPaths(tree)
+  const byType = {}
+  for (const leaf of leafPaths) {
+    if (!byType[leaf.swiftType]) byType[leaf.swiftType] = []
+    byType[leaf.swiftType].push(leaf)
+  }
+  for (const swiftType of Object.keys(byType).sort()) {
+    lines.push(`extension ${swiftType}.iui {`)
+    lines.push('')
+    lines.push(`    public enum ${rootKey} {`)
+    for (const leaf of byType[swiftType]) {
+      const varName = pathToCamelCase(leaf.swiftAccess)
+      lines.push(`        public static var ${varName}: ${swiftType} { _iuiComponents().${rootKey}.${leaf.swiftAccess} }`)
+    }
+    lines.push('    }')
+    lines.push('}')
+    lines.push('')
+  }
+
   return lines.join('\n')
 }
 

@@ -109,3 +109,48 @@ extension InstUI.Component.SourceCodeEditor {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum sourceCodeEditor {
+        public static var borderRadius: CGFloat { _iuiComponents().sourceCodeEditor.borderRadius }
+        public static var borderWidth: CGFloat { _iuiComponents().sourceCodeEditor.borderWidth }
+        public static var fontSize: CGFloat { _iuiComponents().sourceCodeEditor.fontSize }
+        public static var horizontalPadding: CGFloat { _iuiComponents().sourceCodeEditor.horizontalPadding }
+        public static var verticalPadding: CGFloat { _iuiComponents().sourceCodeEditor.verticalPadding }
+    }
+}
+
+extension Color.iui {
+
+    public enum sourceCodeEditor {
+        public static var background: Color { _iuiComponents().sourceCodeEditor.background }
+        public static var borderColor: Color { _iuiComponents().sourceCodeEditor.borderColor }
+        public static var color: Color { _iuiComponents().sourceCodeEditor.color }
+        public static var gutterBackground: Color { _iuiComponents().sourceCodeEditor.gutterBackground }
+        public static var focusedSelectionBackgroundColor: Color { _iuiComponents().sourceCodeEditor.focusedSelectionBackgroundColor }
+        public static var placeholderBackgroundColor: Color { _iuiComponents().sourceCodeEditor.placeholderBackgroundColor }
+        public static var tagKeywordColor: Color { _iuiComponents().sourceCodeEditor.tagKeywordColor }
+        public static var tagLiteralColor: Color { _iuiComponents().sourceCodeEditor.tagLiteralColor }
+        public static var tagStringColor: Color { _iuiComponents().sourceCodeEditor.tagStringColor }
+        public static var tagDefinitionVariableNameColor: Color { _iuiComponents().sourceCodeEditor.tagDefinitionVariableNameColor }
+        public static var tagLocalVariableNameColor: Color { _iuiComponents().sourceCodeEditor.tagLocalVariableNameColor }
+        public static var tagClassNameColor: Color { _iuiComponents().sourceCodeEditor.tagClassNameColor }
+        public static var tagSpecialVariableNameColor: Color { _iuiComponents().sourceCodeEditor.tagSpecialVariableNameColor }
+        public static var tagDefinitionPropertyNameColor: Color { _iuiComponents().sourceCodeEditor.tagDefinitionPropertyNameColor }
+        public static var tagCommentColor: Color { _iuiComponents().sourceCodeEditor.tagCommentColor }
+        public static var tagMetaColor: Color { _iuiComponents().sourceCodeEditor.tagMetaColor }
+        public static var tagRegExpColor: Color { _iuiComponents().sourceCodeEditor.tagRegExpColor }
+        public static var tagTypeNameColor: Color { _iuiComponents().sourceCodeEditor.tagTypeNameColor }
+        public static var tagInvalidColor: Color { _iuiComponents().sourceCodeEditor.tagInvalidColor }
+        public static var tagAtomColor: Color { _iuiComponents().sourceCodeEditor.tagAtomColor }
+        public static var activeLineColor: Color { _iuiComponents().sourceCodeEditor.activeLineColor }
+    }
+}
+
+extension String.iui {
+
+    public enum sourceCodeEditor {
+        public static var fontFamily: String { _iuiComponents().sourceCodeEditor.fontFamily }
+    }
+}

@@ -75,3 +75,36 @@ extension InstUI.Component.Calendar {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum calendar {
+        public static var fontSize: CGFloat { _iuiComponents().calendar.fontSize }
+        public static var navMargin: CGFloat { _iuiComponents().calendar.navMargin }
+        public static var navWithYearMargin: CGFloat { _iuiComponents().calendar.navWithYearMargin }
+        public static var yearPickerMargin: CGFloat { _iuiComponents().calendar.yearPickerMargin }
+        public static var maxHeaderWidth: CGFloat { _iuiComponents().calendar.maxHeaderWidth }
+    }
+}
+
+extension Color.iui {
+
+    public enum calendar {
+        public static var background: Color { _iuiComponents().calendar.background }
+        public static var color: Color { _iuiComponents().calendar.color }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum calendar {
+        public static var fontWeight: Font.Weight { _iuiComponents().calendar.fontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum calendar {
+        public static var fontFamily: String { _iuiComponents().calendar.fontFamily }
+    }
+}

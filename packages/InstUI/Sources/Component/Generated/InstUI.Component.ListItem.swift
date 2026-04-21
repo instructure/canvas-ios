@@ -85,3 +85,41 @@ extension InstUI.Component.ListItem {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum listItem {
+        public static var fontSizeLarge: CGFloat { _iuiComponents().listItem.fontSizeLarge }
+        public static var fontSizeMedium: CGFloat { _iuiComponents().listItem.fontSizeMedium }
+        public static var fontSizeSmall: CGFloat { _iuiComponents().listItem.fontSizeSmall }
+        public static var spacingXXXSmall: CGFloat { _iuiComponents().listItem.spacingXXXSmall }
+        public static var spacingXXSmall: CGFloat { _iuiComponents().listItem.spacingXXSmall }
+        public static var spacingXSmall: CGFloat { _iuiComponents().listItem.spacingXSmall }
+        public static var spacingSmall: CGFloat { _iuiComponents().listItem.spacingSmall }
+        public static var spacingMedium: CGFloat { _iuiComponents().listItem.spacingMedium }
+        public static var spacingLarge: CGFloat { _iuiComponents().listItem.spacingLarge }
+        public static var spacingXLarge: CGFloat { _iuiComponents().listItem.spacingXLarge }
+        public static var spacingXXLarge: CGFloat { _iuiComponents().listItem.spacingXXLarge }
+    }
+}
+
+extension Color.iui {
+
+    public enum listItem {
+        public static var color: Color { _iuiComponents().listItem.color }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum listItem {
+        public static var fontWeight: Font.Weight { _iuiComponents().listItem.fontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum listItem {
+        public static var fontFamily: String { _iuiComponents().listItem.fontFamily }
+    }
+}

@@ -133,3 +133,65 @@ extension InstUI.Component.TextInput {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum textInput {
+        public static var borderRadius: CGFloat { _iuiComponents().textInput.borderRadius }
+        public static var borderWidth: CGFloat { _iuiComponents().textInput.borderWidth }
+        public static var arrowsContainerWidth: CGFloat { _iuiComponents().textInput.arrowsContainerWidth }
+        public static var fontSizeSm: CGFloat { _iuiComponents().textInput.fontSizeSm }
+        public static var fontSizeMd: CGFloat { _iuiComponents().textInput.fontSizeMd }
+        public static var fontSizeLg: CGFloat { _iuiComponents().textInput.fontSizeLg }
+        public static var heightSm: CGFloat { _iuiComponents().textInput.heightSm }
+        public static var heightMd: CGFloat { _iuiComponents().textInput.heightMd }
+        public static var heightLg: CGFloat { _iuiComponents().textInput.heightLg }
+        public static var gapContent: CGFloat { _iuiComponents().textInput.gapContent }
+        public static var paddingHorizontalSm: CGFloat { _iuiComponents().textInput.paddingHorizontalSm }
+        public static var paddingHorizontalMd: CGFloat { _iuiComponents().textInput.paddingHorizontalMd }
+        public static var paddingHorizontalLg: CGFloat { _iuiComponents().textInput.paddingHorizontalLg }
+    }
+}
+
+extension Color.iui {
+
+    public enum textInput {
+        public static var backgroundColor: Color { _iuiComponents().textInput.backgroundColor }
+        public static var backgroundHoverColor: Color { _iuiComponents().textInput.backgroundHoverColor }
+        public static var backgroundReadonlyColor: Color { _iuiComponents().textInput.backgroundReadonlyColor }
+        public static var backgroundDisabledColor: Color { _iuiComponents().textInput.backgroundDisabledColor }
+        public static var borderColor: Color { _iuiComponents().textInput.borderColor }
+        public static var borderHoverColor: Color { _iuiComponents().textInput.borderHoverColor }
+        public static var borderReadonlyColor: Color { _iuiComponents().textInput.borderReadonlyColor }
+        public static var borderDisabledColor: Color { _iuiComponents().textInput.borderDisabledColor }
+        public static var errorBorderColor: Color { _iuiComponents().textInput.errorBorderColor }
+        public static var successBorderColor: Color { _iuiComponents().textInput.successBorderColor }
+        public static var textColor: Color { _iuiComponents().textInput.textColor }
+        public static var textReadonlyColor: Color { _iuiComponents().textInput.textReadonlyColor }
+        public static var textDisabledColor: Color { _iuiComponents().textInput.textDisabledColor }
+        public static var placeholderColor: Color { _iuiComponents().textInput.placeholderColor }
+        public static var placeholderHoverColor: Color { _iuiComponents().textInput.placeholderHoverColor }
+        public static var arrowsBackgroundColor: Color { _iuiComponents().textInput.arrowsBackgroundColor }
+        public static var arrowsBackgroundHoverColor: Color { _iuiComponents().textInput.arrowsBackgroundHoverColor }
+        public static var arrowsBackgroundActiveColor: Color { _iuiComponents().textInput.arrowsBackgroundActiveColor }
+        public static var arrowsBackgroundDisabledColor: Color { _iuiComponents().textInput.arrowsBackgroundDisabledColor }
+        public static var arrowsBorderColor: Color { _iuiComponents().textInput.arrowsBorderColor }
+        public static var arrowsBorderHoverColor: Color { _iuiComponents().textInput.arrowsBorderHoverColor }
+        public static var arrowsBorderActiveColor: Color { _iuiComponents().textInput.arrowsBorderActiveColor }
+        public static var arrowsBorderDisabledColor: Color { _iuiComponents().textInput.arrowsBorderDisabledColor }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum textInput {
+        public static var fontWeight: Font.Weight { _iuiComponents().textInput.fontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum textInput {
+        public static var fontFamily: String { _iuiComponents().textInput.fontFamily }
+    }
+}

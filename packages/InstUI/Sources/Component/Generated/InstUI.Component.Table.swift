@@ -67,3 +67,32 @@ extension InstUI.Component.Table {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum table {
+        public static var fontSize: CGFloat { _iuiComponents().table.fontSize }
+    }
+}
+
+extension Color.iui {
+
+    public enum table {
+        public static var background: Color { _iuiComponents().table.background }
+        public static var color: Color { _iuiComponents().table.color }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum table {
+        public static var fontWeight: Font.Weight { _iuiComponents().table.fontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum table {
+        public static var fontFamily: String { _iuiComponents().table.fontFamily }
+    }
+}

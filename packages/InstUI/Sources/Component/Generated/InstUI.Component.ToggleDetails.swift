@@ -83,3 +83,40 @@ extension InstUI.Component.ToggleDetails {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum toggleDetails {
+        public static var fontSizeLarge: CGFloat { _iuiComponents().toggleDetails.fontSizeLarge }
+        public static var fontSizeMedium: CGFloat { _iuiComponents().toggleDetails.fontSizeMedium }
+        public static var fontSizeSmall: CGFloat { _iuiComponents().toggleDetails.fontSizeSmall }
+        public static var iconMargin: CGFloat { _iuiComponents().toggleDetails.iconMargin }
+        public static var toggleBorderRadius: CGFloat { _iuiComponents().toggleDetails.toggleBorderRadius }
+        public static var toggleBorderWidth: CGFloat { _iuiComponents().toggleDetails.toggleBorderWidth }
+        public static var togglePadding: CGFloat { _iuiComponents().toggleDetails.togglePadding }
+        public static var contentPaddingSmall: CGFloat { _iuiComponents().toggleDetails.contentPaddingSmall }
+        public static var contentPaddingMedium: CGFloat { _iuiComponents().toggleDetails.contentPaddingMedium }
+        public static var contentPaddingLarge: CGFloat { _iuiComponents().toggleDetails.contentPaddingLarge }
+    }
+}
+
+extension Color.iui {
+
+    public enum toggleDetails {
+        public static var textColor: Color { _iuiComponents().toggleDetails.textColor }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum toggleDetails {
+        public static var fontWeight: Font.Weight { _iuiComponents().toggleDetails.fontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum toggleDetails {
+        public static var fontFamily: String { _iuiComponents().toggleDetails.fontFamily }
+    }
+}

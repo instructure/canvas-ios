@@ -73,3 +73,25 @@ extension InstUI.Component.ColorPreset {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum colorPreset {
+        public static var popoverContentBlockBottomMargin: CGFloat { _iuiComponents().colorPreset.popoverContentBlockBottomMargin }
+        public static var popoverContentBlockTopMargin: CGFloat { _iuiComponents().colorPreset.popoverContentBlockTopMargin }
+        public static var popoverContentBlockTopPadding: CGFloat { _iuiComponents().colorPreset.popoverContentBlockTopPadding }
+        public static var smallBorder: CGFloat { _iuiComponents().colorPreset.smallBorder }
+        public static var smallSpacing: CGFloat { _iuiComponents().colorPreset.smallSpacing }
+        public static var xxSmallSpacing: CGFloat { _iuiComponents().colorPreset.xxSmallSpacing }
+    }
+}
+
+extension Color.iui {
+
+    public enum colorPreset {
+        public static var popoverDividerColor: Color { _iuiComponents().colorPreset.popoverDividerColor }
+        public static var popoverFooterColor: Color { _iuiComponents().colorPreset.popoverFooterColor }
+        public static var selectedIndicatorBackgroundColor: Color { _iuiComponents().colorPreset.selectedIndicatorBackgroundColor }
+        public static var selectedIndicatorBorderColor: Color { _iuiComponents().colorPreset.selectedIndicatorBorderColor }
+    }
+}

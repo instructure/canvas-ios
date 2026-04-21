@@ -69,3 +69,33 @@ extension InstUI.Component.FormFieldMessage {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum formFieldMessage {
+        public static var fontSize: CGFloat { _iuiComponents().formFieldMessage.fontSize }
+    }
+}
+
+extension Color.iui {
+
+    public enum formFieldMessage {
+        public static var hintTextColor: Color { _iuiComponents().formFieldMessage.hintTextColor }
+        public static var errorTextColor: Color { _iuiComponents().formFieldMessage.errorTextColor }
+        public static var successTextColor: Color { _iuiComponents().formFieldMessage.successTextColor }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum formFieldMessage {
+        public static var fontWeight: Font.Weight { _iuiComponents().formFieldMessage.fontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum formFieldMessage {
+        public static var fontFamily: String { _iuiComponents().formFieldMessage.fontFamily }
+    }
+}

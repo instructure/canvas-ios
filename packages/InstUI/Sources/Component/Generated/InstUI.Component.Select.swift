@@ -52,3 +52,10 @@ extension InstUI.Component.Select {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum select {
+        public static var popoverBorderWidth: CGFloat { _iuiComponents().select.popoverBorderWidth }
+    }
+}

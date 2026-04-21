@@ -65,3 +65,21 @@ extension InstUI.Component.RatingIcon {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum ratingIcon {
+        public static var iconMargin: CGFloat { _iuiComponents().ratingIcon.iconMargin }
+        public static var smallIconFontSize: CGFloat { _iuiComponents().ratingIcon.smallIconFontSize }
+        public static var mediumIconFontSize: CGFloat { _iuiComponents().ratingIcon.mediumIconFontSize }
+        public static var largeIconFontSize: CGFloat { _iuiComponents().ratingIcon.largeIconFontSize }
+    }
+}
+
+extension Color.iui {
+
+    public enum ratingIcon {
+        public static var iconEmptyColor: Color { _iuiComponents().ratingIcon.iconEmptyColor }
+        public static var iconFilledColor: Color { _iuiComponents().ratingIcon.iconFilledColor }
+    }
+}

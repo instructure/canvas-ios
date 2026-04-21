@@ -96,3 +96,37 @@ extension InstUI.Component.View {
         )
     }
 }
+
+extension Color.iui {
+
+    public enum view {
+        public static var color: Color { _iuiComponents().view.color }
+        public static var colorPrimaryInverse: Color { _iuiComponents().view.colorPrimaryInverse }
+        public static var borderColorPrimary: Color { _iuiComponents().view.borderColorPrimary }
+        public static var borderColorSecondary: Color { _iuiComponents().view.borderColorSecondary }
+        public static var borderColorSuccess: Color { _iuiComponents().view.borderColorSuccess }
+        public static var borderColorBrand: Color { _iuiComponents().view.borderColorBrand }
+        public static var borderColorInfo: Color { _iuiComponents().view.borderColorInfo }
+        public static var borderColorAlert: Color { _iuiComponents().view.borderColorAlert }
+        public static var borderColorWarning: Color { _iuiComponents().view.borderColorWarning }
+        public static var borderColorDanger: Color { _iuiComponents().view.borderColorDanger }
+        public static var borderColorTransparent: Color { _iuiComponents().view.borderColorTransparent }
+        public static var debugOutlineColor: Color { _iuiComponents().view.debugOutlineColor }
+        public static var backgroundPrimary: Color { _iuiComponents().view.backgroundPrimary }
+        public static var backgroundSecondary: Color { _iuiComponents().view.backgroundSecondary }
+        public static var backgroundPrimaryInverse: Color { _iuiComponents().view.backgroundPrimaryInverse }
+        public static var backgroundBrand: Color { _iuiComponents().view.backgroundBrand }
+        public static var backgroundInfo: Color { _iuiComponents().view.backgroundInfo }
+        public static var backgroundAlert: Color { _iuiComponents().view.backgroundAlert }
+        public static var backgroundSuccess: Color { _iuiComponents().view.backgroundSuccess }
+        public static var backgroundDanger: Color { _iuiComponents().view.backgroundDanger }
+        public static var backgroundWarning: Color { _iuiComponents().view.backgroundWarning }
+    }
+}
+
+extension String.iui {
+
+    public enum view {
+        public static var fontFamily: String { _iuiComponents().view.fontFamily }
+    }
+}

@@ -77,3 +77,27 @@ extension InstUI.Component.SideNavBarNew {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum sideNavBarNew {
+        public static var minimizedWidth: CGFloat { _iuiComponents().sideNavBarNew.minimizedWidth }
+        public static var width: CGFloat { _iuiComponents().sideNavBarNew.width }
+        public static var margin: CGFloat { _iuiComponents().sideNavBarNew.margin }
+        public static var minimizedMargin: CGFloat { _iuiComponents().sideNavBarNew.minimizedMargin }
+        public static var contentMargin: CGFloat { _iuiComponents().sideNavBarNew.contentMargin }
+        public static var contentGap: CGFloat { _iuiComponents().sideNavBarNew.contentGap }
+        public static var borderRadius: CGFloat { _iuiComponents().sideNavBarNew.borderRadius }
+        public static var minimizedBorderRadius: CGFloat { _iuiComponents().sideNavBarNew.minimizedBorderRadius }
+    }
+}
+
+extension Color.iui {
+
+    public enum sideNavBarNew {
+        public static var backgroundColor: Color { _iuiComponents().sideNavBarNew.backgroundColor }
+        public static var fill: Color { _iuiComponents().sideNavBarNew.fill }
+        public static var borderColor: Color { _iuiComponents().sideNavBarNew.borderColor }
+        public static var fontColor: Color { _iuiComponents().sideNavBarNew.fontColor }
+    }
+}

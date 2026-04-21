@@ -77,3 +77,27 @@ extension InstUI.Component.DataPermissionLevels {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum dataPermissionLevels {
+        public static var cardBorderRadius: CGFloat { _iuiComponents().dataPermissionLevels.cardBorderRadius }
+        public static var contentContainerBorderRadius: CGFloat { _iuiComponents().dataPermissionLevels.contentContainerBorderRadius }
+        public static var cardBorderWidth: CGFloat { _iuiComponents().dataPermissionLevels.cardBorderWidth }
+        public static var currentFeaturePaddingSides: CGFloat { _iuiComponents().dataPermissionLevels.currentFeaturePaddingSides }
+        public static var currentFeaturePaddingTopBottom: CGFloat { _iuiComponents().dataPermissionLevels.currentFeaturePaddingTopBottom }
+        public static var permissionTitleBottomMargin: CGFloat { _iuiComponents().dataPermissionLevels.permissionTitleBottomMargin }
+        public static var bodyPadding: CGFloat { _iuiComponents().dataPermissionLevels.bodyPadding }
+    }
+}
+
+extension Color.iui {
+
+    public enum dataPermissionLevels {
+        public static var cardBorderColor: Color { _iuiComponents().dataPermissionLevels.cardBorderColor }
+        public static var levelColor: Color { _iuiComponents().dataPermissionLevels.levelColor }
+        public static var aiTextLeftGradientColor: Color { _iuiComponents().dataPermissionLevels.aiTextLeftGradientColor }
+        public static var aiTextRightGradientColor: Color { _iuiComponents().dataPermissionLevels.aiTextRightGradientColor }
+        public static var contentContainerColor: Color { _iuiComponents().dataPermissionLevels.contentContainerColor }
+    }
+}

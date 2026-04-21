@@ -83,3 +83,30 @@ extension InstUI.Component.Spinner {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum spinner {
+        public static var strokeWidthXs: CGFloat { _iuiComponents().spinner.strokeWidthXs }
+        public static var strokeWidthSm: CGFloat { _iuiComponents().spinner.strokeWidthSm }
+        public static var strokeWidthMd: CGFloat { _iuiComponents().spinner.strokeWidthMd }
+        public static var strokeWidthLg: CGFloat { _iuiComponents().spinner.strokeWidthLg }
+        public static var containerSizeXs: CGFloat { _iuiComponents().spinner.containerSizeXs }
+        public static var containerSizeSm: CGFloat { _iuiComponents().spinner.containerSizeSm }
+        public static var containerSizeMd: CGFloat { _iuiComponents().spinner.containerSizeMd }
+        public static var containerSizeLg: CGFloat { _iuiComponents().spinner.containerSizeLg }
+        public static var spinnerSizeXs: CGFloat { _iuiComponents().spinner.spinnerSizeXs }
+        public static var spinnerSizeSm: CGFloat { _iuiComponents().spinner.spinnerSizeSm }
+        public static var spinnerSizeMd: CGFloat { _iuiComponents().spinner.spinnerSizeMd }
+        public static var spinnerSizeLg: CGFloat { _iuiComponents().spinner.spinnerSizeLg }
+    }
+}
+
+extension Color.iui {
+
+    public enum spinner {
+        public static var color: Color { _iuiComponents().spinner.color }
+        public static var inverseColor: Color { _iuiComponents().spinner.inverseColor }
+        public static var trackColor: Color { _iuiComponents().spinner.trackColor }
+    }
+}

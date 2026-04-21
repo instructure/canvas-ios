@@ -145,3 +145,71 @@ extension InstUI.Component.ProgressCircle {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum progressCircle {
+        public static var xSmallSize: CGFloat { _iuiComponents().progressCircle.xSmallSize }
+        public static var xSmallCircumference: CGFloat { _iuiComponents().progressCircle.xSmallCircumference }
+        public static var xSmallTransform: CGFloat { _iuiComponents().progressCircle.xSmallTransform }
+        public static var xSmallStrokeWidth: CGFloat { _iuiComponents().progressCircle.xSmallStrokeWidth }
+        public static var smallSize: CGFloat { _iuiComponents().progressCircle.smallSize }
+        public static var smallCircumference: CGFloat { _iuiComponents().progressCircle.smallCircumference }
+        public static var smallTransform: CGFloat { _iuiComponents().progressCircle.smallTransform }
+        public static var smallStrokeWidth: CGFloat { _iuiComponents().progressCircle.smallStrokeWidth }
+        public static var mediumSize: CGFloat { _iuiComponents().progressCircle.mediumSize }
+        public static var mediumCircumference: CGFloat { _iuiComponents().progressCircle.mediumCircumference }
+        public static var mediumTransform: CGFloat { _iuiComponents().progressCircle.mediumTransform }
+        public static var mediumStrokeWidth: CGFloat { _iuiComponents().progressCircle.mediumStrokeWidth }
+        public static var largeSize: CGFloat { _iuiComponents().progressCircle.largeSize }
+        public static var largeCircumference: CGFloat { _iuiComponents().progressCircle.largeCircumference }
+        public static var largeTransform: CGFloat { _iuiComponents().progressCircle.largeTransform }
+        public static var largeStrokeWidth: CGFloat { _iuiComponents().progressCircle.largeStrokeWidth }
+        public static var xSmallRadius: CGFloat { _iuiComponents().progressCircle.xSmallRadius }
+        public static var smallRadius: CGFloat { _iuiComponents().progressCircle.smallRadius }
+        public static var mediumRadius: CGFloat { _iuiComponents().progressCircle.mediumRadius }
+        public static var largeRadius: CGFloat { _iuiComponents().progressCircle.largeRadius }
+        public static var xSmallBorderOffset: CGFloat { _iuiComponents().progressCircle.xSmallBorderOffset }
+        public static var smallBorderOffset: CGFloat { _iuiComponents().progressCircle.smallBorderOffset }
+        public static var  mediumBorderOffset: CGFloat { _iuiComponents().progressCircle. mediumBorderOffset }
+        public static var largeBorderOffset: CGFloat { _iuiComponents().progressCircle.largeBorderOffset }
+    }
+}
+
+extension Color.iui {
+
+    public enum progressCircle {
+        public static var color: Color { _iuiComponents().progressCircle.color }
+        public static var colorInverse: Color { _iuiComponents().progressCircle.colorInverse }
+        public static var trackColor: Color { _iuiComponents().progressCircle.trackColor }
+        public static var trackColorInverse: Color { _iuiComponents().progressCircle.trackColorInverse }
+        public static var trackBorderColor: Color { _iuiComponents().progressCircle.trackBorderColor }
+        public static var trackBorderColorInverse: Color { _iuiComponents().progressCircle.trackBorderColorInverse }
+        public static var meterColorAlert: Color { _iuiComponents().progressCircle.meterColorAlert }
+        public static var meterColorAlertInverse: Color { _iuiComponents().progressCircle.meterColorAlertInverse }
+        public static var meterColorBrand: Color { _iuiComponents().progressCircle.meterColorBrand }
+        public static var meterColorBrandInverse: Color { _iuiComponents().progressCircle.meterColorBrandInverse }
+        public static var meterColorDanger: Color { _iuiComponents().progressCircle.meterColorDanger }
+        public static var meterColorDangerInverse: Color { _iuiComponents().progressCircle.meterColorDangerInverse }
+        public static var meterColorInfo: Color { _iuiComponents().progressCircle.meterColorInfo }
+        public static var meterColorInfoInverse: Color { _iuiComponents().progressCircle.meterColorInfoInverse }
+        public static var meterColorSuccess: Color { _iuiComponents().progressCircle.meterColorSuccess }
+        public static var meterColorSuccessInverse: Color { _iuiComponents().progressCircle.meterColorSuccessInverse }
+        public static var meterColorWarning: Color { _iuiComponents().progressCircle.meterColorWarning }
+        public static var meterColorWarningInverse: Color { _iuiComponents().progressCircle.meterColorWarningInverse }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum progressCircle {
+        public static var fontWeight: Font.Weight { _iuiComponents().progressCircle.fontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum progressCircle {
+        public static var fontFamily: String { _iuiComponents().progressCircle.fontFamily }
+    }
+}

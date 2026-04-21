@@ -107,3 +107,52 @@ extension InstUI.Component.TextArea {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum textArea {
+        public static var borderRadius: CGFloat { _iuiComponents().textArea.borderRadius }
+        public static var borderWidth: CGFloat { _iuiComponents().textArea.borderWidth }
+        public static var fontSizeSm: CGFloat { _iuiComponents().textArea.fontSizeSm }
+        public static var fontSizeMd: CGFloat { _iuiComponents().textArea.fontSizeMd }
+        public static var fontSizeLg: CGFloat { _iuiComponents().textArea.fontSizeLg }
+        public static var gapContent: CGFloat { _iuiComponents().textArea.gapContent }
+        public static var padding: CGFloat { _iuiComponents().textArea.padding }
+        public static var gapPrimitives: CGFloat { _iuiComponents().textArea.gapPrimitives }
+    }
+}
+
+extension Color.iui {
+
+    public enum textArea {
+        public static var backgroundColor: Color { _iuiComponents().textArea.backgroundColor }
+        public static var backgroundHoverColor: Color { _iuiComponents().textArea.backgroundHoverColor }
+        public static var backgroundReadonlyColor: Color { _iuiComponents().textArea.backgroundReadonlyColor }
+        public static var backgroundDisabledColor: Color { _iuiComponents().textArea.backgroundDisabledColor }
+        public static var borderColor: Color { _iuiComponents().textArea.borderColor }
+        public static var borderHoverColor: Color { _iuiComponents().textArea.borderHoverColor }
+        public static var borderReadonlyColor: Color { _iuiComponents().textArea.borderReadonlyColor }
+        public static var borderDisabledColor: Color { _iuiComponents().textArea.borderDisabledColor }
+        public static var errorBorderColor: Color { _iuiComponents().textArea.errorBorderColor }
+        public static var successBorderColor: Color { _iuiComponents().textArea.successBorderColor }
+        public static var textColor: Color { _iuiComponents().textArea.textColor }
+        public static var textReadonlyColor: Color { _iuiComponents().textArea.textReadonlyColor }
+        public static var textDisabledColor: Color { _iuiComponents().textArea.textDisabledColor }
+        public static var placeholderColor: Color { _iuiComponents().textArea.placeholderColor }
+        public static var placeholderHoverColor: Color { _iuiComponents().textArea.placeholderHoverColor }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum textArea {
+        public static var fontWeight: Font.Weight { _iuiComponents().textArea.fontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum textArea {
+        public static var fontFamily: String { _iuiComponents().textArea.fontFamily }
+    }
+}

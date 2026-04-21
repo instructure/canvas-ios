@@ -67,3 +67,22 @@ extension InstUI.Component.FileDrop {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum fileDrop {
+        public static var borderRadius: CGFloat { _iuiComponents().fileDrop.borderRadius }
+        public static var borderWidth: CGFloat { _iuiComponents().fileDrop.borderWidth }
+    }
+}
+
+extension Color.iui {
+
+    public enum fileDrop {
+        public static var acceptedColor: Color { _iuiComponents().fileDrop.acceptedColor }
+        public static var backgroundColor: Color { _iuiComponents().fileDrop.backgroundColor }
+        public static var borderColor: Color { _iuiComponents().fileDrop.borderColor }
+        public static var hoverBorderColor: Color { _iuiComponents().fileDrop.hoverBorderColor }
+        public static var rejectedColor: Color { _iuiComponents().fileDrop.rejectedColor }
+    }
+}

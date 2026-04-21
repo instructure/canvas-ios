@@ -65,3 +65,21 @@ extension InstUI.Component.ColorIndicator {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum colorIndicator {
+        public static var borderWidth: CGFloat { _iuiComponents().colorIndicator.borderWidth }
+        public static var rectangularIndicatorBorderWidth: CGFloat { _iuiComponents().colorIndicator.rectangularIndicatorBorderWidth }
+        public static var circleIndicatorSize: CGFloat { _iuiComponents().colorIndicator.circleIndicatorSize }
+        public static var rectangleIndicatorSize: CGFloat { _iuiComponents().colorIndicator.rectangleIndicatorSize }
+        public static var rectangularIndicatorBorderRadius: CGFloat { _iuiComponents().colorIndicator.rectangularIndicatorBorderRadius }
+    }
+}
+
+extension Color.iui {
+
+    public enum colorIndicator {
+        public static var colorIndicatorBorderColor: Color { _iuiComponents().colorIndicator.colorIndicatorBorderColor }
+    }
+}

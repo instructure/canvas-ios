@@ -71,3 +71,24 @@ extension InstUI.Component.Tray {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum tray {
+        public static var borderWidth: CGFloat { _iuiComponents().tray.borderWidth }
+        public static var widthXs: CGFloat { _iuiComponents().tray.widthXs }
+        public static var widthSm: CGFloat { _iuiComponents().tray.widthSm }
+        public static var widthMd: CGFloat { _iuiComponents().tray.widthMd }
+        public static var widthLg: CGFloat { _iuiComponents().tray.widthLg }
+        public static var widthXl: CGFloat { _iuiComponents().tray.widthXl }
+        public static var padding: CGFloat { _iuiComponents().tray.padding }
+    }
+}
+
+extension Color.iui {
+
+    public enum tray {
+        public static var backgroundColor: Color { _iuiComponents().tray.backgroundColor }
+        public static var borderColor: Color { _iuiComponents().tray.borderColor }
+    }
+}

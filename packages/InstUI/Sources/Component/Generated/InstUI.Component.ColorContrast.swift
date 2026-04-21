@@ -85,3 +85,41 @@ extension InstUI.Component.ColorContrast {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum colorContrast {
+        public static var colorIndicatorRightMargin: CGFloat { _iuiComponents().colorContrast.colorIndicatorRightMargin }
+        public static var colorPreviewBottomMargin: CGFloat { _iuiComponents().colorContrast.colorPreviewBottomMargin }
+        public static var colorPreviewTopMargin: CGFloat { _iuiComponents().colorContrast.colorPreviewTopMargin }
+        public static var fontSize: CGFloat { _iuiComponents().colorContrast.fontSize }
+        public static var labelBottomMargin: CGFloat { _iuiComponents().colorContrast.labelBottomMargin }
+        public static var smallBorder: CGFloat { _iuiComponents().colorContrast.smallBorder }
+        public static var statusWrapperBottomMargin: CGFloat { _iuiComponents().colorContrast.statusWrapperBottomMargin }
+        public static var width: CGFloat { _iuiComponents().colorContrast.width }
+    }
+}
+
+extension Color.iui {
+
+    public enum colorContrast {
+        public static var failureColor: Color { _iuiComponents().colorContrast.failureColor }
+        public static var pickedHexColor: Color { _iuiComponents().colorContrast.pickedHexColor }
+        public static var successColor: Color { _iuiComponents().colorContrast.successColor }
+        public static var colorIndicatorLabelColor: Color { _iuiComponents().colorContrast.colorIndicatorLabelColor }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum colorContrast {
+        public static var fontWeight: Font.Weight { _iuiComponents().colorContrast.fontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum colorContrast {
+        public static var fontFamily: String { _iuiComponents().colorContrast.fontFamily }
+    }
+}

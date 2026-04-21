@@ -67,3 +67,27 @@ extension InstUI.Component.AppNav {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum appNav {
+        public static var borderWidth: CGFloat { _iuiComponents().appNav.borderWidth }
+        public static var height: CGFloat { _iuiComponents().appNav.height }
+        public static var horizontalMargin: CGFloat { _iuiComponents().appNav.horizontalMargin }
+        public static var menuTriggerWidth: CGFloat { _iuiComponents().appNav.menuTriggerWidth }
+    }
+}
+
+extension Color.iui {
+
+    public enum appNav {
+        public static var borderColor: Color { _iuiComponents().appNav.borderColor }
+    }
+}
+
+extension String.iui {
+
+    public enum appNav {
+        public static var fontFamily: String { _iuiComponents().appNav.fontFamily }
+    }
+}

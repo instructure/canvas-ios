@@ -67,3 +67,22 @@ extension InstUI.Component.ContextView {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum contextView {
+        public static var arrowSize: CGFloat { _iuiComponents().contextView.arrowSize }
+        public static var arrowBorderWidth: CGFloat { _iuiComponents().contextView.arrowBorderWidth }
+        public static var borderRadius: CGFloat { _iuiComponents().contextView.borderRadius }
+    }
+}
+
+extension Color.iui {
+
+    public enum contextView {
+        public static var arrowBackgroundColor: Color { _iuiComponents().contextView.arrowBackgroundColor }
+        public static var arrowBackgroundColorInverse: Color { _iuiComponents().contextView.arrowBackgroundColorInverse }
+        public static var arrowBorderColor: Color { _iuiComponents().contextView.arrowBorderColor }
+        public static var arrowBorderColorInverse: Color { _iuiComponents().contextView.arrowBorderColorInverse }
+    }
+}

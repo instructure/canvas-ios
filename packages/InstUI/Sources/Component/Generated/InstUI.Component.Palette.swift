@@ -65,3 +65,21 @@ extension InstUI.Component.Palette {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum palette {
+        public static var indicatorBorderWidth: CGFloat { _iuiComponents().palette.indicatorBorderWidth }
+        public static var paletteBorderWidth: CGFloat { _iuiComponents().palette.paletteBorderWidth }
+        public static var paletteBorderRadius: CGFloat { _iuiComponents().palette.paletteBorderRadius }
+    }
+}
+
+extension Color.iui {
+
+    public enum palette {
+        public static var whiteColor: Color { _iuiComponents().palette.whiteColor }
+        public static var indicatorBorderColor: Color { _iuiComponents().palette.indicatorBorderColor }
+        public static var colorIndicatorBorderColor: Color { _iuiComponents().palette.colorIndicatorBorderColor }
+    }
+}

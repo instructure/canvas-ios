@@ -57,3 +57,17 @@ extension InstUI.Component.Popover {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum popover {
+        public static var borderRadius: CGFloat { _iuiComponents().popover.borderRadius }
+    }
+}
+
+extension Color.iui {
+
+    public enum popover {
+        public static var borderColor: Color { _iuiComponents().popover.borderColor }
+    }
+}

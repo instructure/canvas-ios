@@ -97,3 +97,47 @@ extension InstUI.Component.Pill {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum pill {
+        public static var paddingHorizontal: CGFloat { _iuiComponents().pill.paddingHorizontal }
+        public static var height: CGFloat { _iuiComponents().pill.height }
+        public static var textFontSize: CGFloat { _iuiComponents().pill.textFontSize }
+        public static var maxWidth: CGFloat { _iuiComponents().pill.maxWidth }
+        public static var borderRadius: CGFloat { _iuiComponents().pill.borderRadius }
+        public static var borderWidth: CGFloat { _iuiComponents().pill.borderWidth }
+    }
+}
+
+extension Color.iui {
+
+    public enum pill {
+        public static var backgroundColor: Color { _iuiComponents().pill.backgroundColor }
+        public static var baseTextColor: Color { _iuiComponents().pill.baseTextColor }
+        public static var baseBorderColor: Color { _iuiComponents().pill.baseBorderColor }
+        public static var infoTextColor: Color { _iuiComponents().pill.infoTextColor }
+        public static var infoBorderColor: Color { _iuiComponents().pill.infoBorderColor }
+        public static var errorTextColor: Color { _iuiComponents().pill.errorTextColor }
+        public static var errorBorderColor: Color { _iuiComponents().pill.errorBorderColor }
+        public static var successTextColor: Color { _iuiComponents().pill.successTextColor }
+        public static var successBorderColor: Color { _iuiComponents().pill.successBorderColor }
+        public static var warningTextColor: Color { _iuiComponents().pill.warningTextColor }
+        public static var warningBorderColor: Color { _iuiComponents().pill.warningBorderColor }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum pill {
+        public static var textFontWeight: Font.Weight { _iuiComponents().pill.textFontWeight }
+        public static var statusLabelFontWeight: Font.Weight { _iuiComponents().pill.statusLabelFontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum pill {
+        public static var fontFamily: String { _iuiComponents().pill.fontFamily }
+    }
+}

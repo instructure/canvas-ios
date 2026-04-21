@@ -77,3 +77,27 @@ extension InstUI.Component.AiInformation {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum aiInformation {
+        public static var bodyPadding: CGFloat { _iuiComponents().aiInformation.bodyPadding }
+        public static var headingBottomMargin: CGFloat { _iuiComponents().aiInformation.headingBottomMargin }
+        public static var featureNameBottomMargin: CGFloat { _iuiComponents().aiInformation.featureNameBottomMargin }
+        public static var permissionLevelTextBottomMargin: CGFloat { _iuiComponents().aiInformation.permissionLevelTextBottomMargin }
+        public static var permissionLevelBottomMargin: CGFloat { _iuiComponents().aiInformation.permissionLevelBottomMargin }
+        public static var descriptionBottomMargin: CGFloat { _iuiComponents().aiInformation.descriptionBottomMargin }
+        public static var modelNameTextBottomMargin: CGFloat { _iuiComponents().aiInformation.modelNameTextBottomMargin }
+        public static var modelNameBottomMargin: CGFloat { _iuiComponents().aiInformation.modelNameBottomMargin }
+        public static var dividerMargin: CGFloat { _iuiComponents().aiInformation.dividerMargin }
+        public static var permissionLevelsModalTriggerBottomMargin: CGFloat { _iuiComponents().aiInformation.permissionLevelsModalTriggerBottomMargin }
+    }
+}
+
+extension Color.iui {
+
+    public enum aiInformation {
+        public static var dividerColor: Color { _iuiComponents().aiInformation.dividerColor }
+        public static var levelColor: Color { _iuiComponents().aiInformation.levelColor }
+    }
+}

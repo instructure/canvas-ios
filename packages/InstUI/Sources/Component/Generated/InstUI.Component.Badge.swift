@@ -81,3 +81,39 @@ extension InstUI.Component.Badge {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum badge {
+        public static var borderRadius: CGFloat { _iuiComponents().badge.borderRadius }
+        public static var fontSize: CGFloat { _iuiComponents().badge.fontSize }
+        public static var sizeNotification: CGFloat { _iuiComponents().badge.sizeNotification }
+        public static var size: CGFloat { _iuiComponents().badge.size }
+        public static var padding: CGFloat { _iuiComponents().badge.padding }
+    }
+}
+
+extension Color.iui {
+
+    public enum badge {
+        public static var color: Color { _iuiComponents().badge.color }
+        public static var colorInverse: Color { _iuiComponents().badge.colorInverse }
+        public static var colorDanger: Color { _iuiComponents().badge.colorDanger }
+        public static var colorSuccess: Color { _iuiComponents().badge.colorSuccess }
+        public static var colorPrimary: Color { _iuiComponents().badge.colorPrimary }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum badge {
+        public static var fontWeight: Font.Weight { _iuiComponents().badge.fontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum badge {
+        public static var fontFamily: String { _iuiComponents().badge.fontFamily }
+    }
+}

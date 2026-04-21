@@ -87,3 +87,37 @@ extension InstUI.Component.Billboard {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum billboard {
+        public static var paddingSmall: CGFloat { _iuiComponents().billboard.paddingSmall }
+        public static var paddingMedium: CGFloat { _iuiComponents().billboard.paddingMedium }
+        public static var paddingLarge: CGFloat { _iuiComponents().billboard.paddingLarge }
+        public static var mediumMargin: CGFloat { _iuiComponents().billboard.mediumMargin }
+        public static var largeMargin: CGFloat { _iuiComponents().billboard.largeMargin }
+        public static var buttonBorderWidth: CGFloat { _iuiComponents().billboard.buttonBorderWidth }
+        public static var buttonBorderRadius: CGFloat { _iuiComponents().billboard.buttonBorderRadius }
+        public static var messageFontSizeSmall: CGFloat { _iuiComponents().billboard.messageFontSizeSmall }
+        public static var messageFontSizeMedium: CGFloat { _iuiComponents().billboard.messageFontSizeMedium }
+        public static var messageFontSizeLarge: CGFloat { _iuiComponents().billboard.messageFontSizeLarge }
+    }
+}
+
+extension Color.iui {
+
+    public enum billboard {
+        public static var backgroundColor: Color { _iuiComponents().billboard.backgroundColor }
+        public static var clickableActiveBg: Color { _iuiComponents().billboard.clickableActiveBg }
+        public static var messageColor: Color { _iuiComponents().billboard.messageColor }
+        public static var messageColorClickable: Color { _iuiComponents().billboard.messageColorClickable }
+        public static var clickableActiveText: Color { _iuiComponents().billboard.clickableActiveText }
+    }
+}
+
+extension String.iui {
+
+    public enum billboard {
+        public static var fontFamily: String { _iuiComponents().billboard.fontFamily }
+    }
+}

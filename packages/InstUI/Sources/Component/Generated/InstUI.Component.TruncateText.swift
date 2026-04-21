@@ -51,3 +51,10 @@ extension InstUI.Component.TruncateText {
         )
     }
 }
+
+extension String.iui {
+
+    public enum truncateText {
+        public static var fontFamily: String { _iuiComponents().truncateText.fontFamily }
+    }
+}

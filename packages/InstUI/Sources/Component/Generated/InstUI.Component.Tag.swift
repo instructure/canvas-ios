@@ -105,3 +105,46 @@ extension InstUI.Component.Tag {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum tag {
+        public static var defaultBorderRadius: CGFloat { _iuiComponents().tag.defaultBorderRadius }
+        public static var defaultBorderWidth: CGFloat { _iuiComponents().tag.defaultBorderWidth }
+        public static var inlineBorderWidth: CGFloat { _iuiComponents().tag.inlineBorderWidth }
+        public static var fontSizeLarge: CGFloat { _iuiComponents().tag.fontSizeLarge }
+        public static var fontSizeMedium: CGFloat { _iuiComponents().tag.fontSizeMedium }
+        public static var fontSizeSmall: CGFloat { _iuiComponents().tag.fontSizeSmall }
+        public static var heightLarge: CGFloat { _iuiComponents().tag.heightLarge }
+        public static var heightMedium: CGFloat { _iuiComponents().tag.heightMedium }
+        public static var heightSmall: CGFloat { _iuiComponents().tag.heightSmall }
+        public static var iconMargin: CGFloat { _iuiComponents().tag.iconMargin }
+        public static var inlineBorderRadius: CGFloat { _iuiComponents().tag.inlineBorderRadius }
+        public static var maxWidth: CGFloat { _iuiComponents().tag.maxWidth }
+        public static var paddingHorizontal: CGFloat { _iuiComponents().tag.paddingHorizontal }
+        public static var paddingHorizontalSmall: CGFloat { _iuiComponents().tag.paddingHorizontalSmall }
+    }
+}
+
+extension Color.iui {
+
+    public enum tag {
+        public static var defaultBackground: Color { _iuiComponents().tag.defaultBackground }
+        public static var defaultBackgroundHover: Color { _iuiComponents().tag.defaultBackgroundHover }
+        public static var defaultBorderColor: Color { _iuiComponents().tag.defaultBorderColor }
+        public static var defaultColor: Color { _iuiComponents().tag.defaultColor }
+        public static var inlineColor: Color { _iuiComponents().tag.inlineColor }
+        public static var inlineBackground: Color { _iuiComponents().tag.inlineBackground }
+        public static var inlineBackgroundHover: Color { _iuiComponents().tag.inlineBackgroundHover }
+        public static var inlineBorderColor: Color { _iuiComponents().tag.inlineBorderColor }
+        public static var inlineIconColor: Color { _iuiComponents().tag.inlineIconColor }
+        public static var inlineIconHoverColor: Color { _iuiComponents().tag.inlineIconHoverColor }
+    }
+}
+
+extension String.iui {
+
+    public enum tag {
+        public static var fontFamily: String { _iuiComponents().tag.fontFamily }
+    }
+}

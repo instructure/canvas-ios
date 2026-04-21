@@ -77,3 +77,37 @@ extension InstUI.Component.Metric {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum metric {
+        public static var labelFontSize: CGFloat { _iuiComponents().metric.labelFontSize }
+        public static var paddingHorizontal: CGFloat { _iuiComponents().metric.paddingHorizontal }
+        public static var valueFontSize: CGFloat { _iuiComponents().metric.valueFontSize }
+        public static var gapTexts: CGFloat { _iuiComponents().metric.gapTexts }
+    }
+}
+
+extension Color.iui {
+
+    public enum metric {
+        public static var labelColor: Color { _iuiComponents().metric.labelColor }
+        public static var valueColor: Color { _iuiComponents().metric.valueColor }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum metric {
+        public static var labelFontWeight: Font.Weight { _iuiComponents().metric.labelFontWeight }
+        public static var valueFontWeight: Font.Weight { _iuiComponents().metric.valueFontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum metric {
+        public static var labelFontFamily: String { _iuiComponents().metric.labelFontFamily }
+        public static var valueFontFamily: String { _iuiComponents().metric.valueFontFamily }
+    }
+}

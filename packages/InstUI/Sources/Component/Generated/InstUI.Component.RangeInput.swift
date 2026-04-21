@@ -99,3 +99,48 @@ extension InstUI.Component.RangeInput {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum rangeInput {
+        public static var handleBorderSize: CGFloat { _iuiComponents().rangeInput.handleBorderSize }
+        public static var handleFocusInset: CGFloat { _iuiComponents().rangeInput.handleFocusInset }
+        public static var valueSmallFontSize: CGFloat { _iuiComponents().rangeInput.valueSmallFontSize }
+        public static var valueMediumFontSize: CGFloat { _iuiComponents().rangeInput.valueMediumFontSize }
+        public static var valueLargeFontSize: CGFloat { _iuiComponents().rangeInput.valueLargeFontSize }
+        public static var valueSmallPadding: CGFloat { _iuiComponents().rangeInput.valueSmallPadding }
+        public static var valueMediumPadding: CGFloat { _iuiComponents().rangeInput.valueMediumPadding }
+        public static var valueLargePadding: CGFloat { _iuiComponents().rangeInput.valueLargePadding }
+        public static var minWidth: CGFloat { _iuiComponents().rangeInput.minWidth }
+        public static var handleSize: CGFloat { _iuiComponents().rangeInput.handleSize }
+        public static var handleFocusOutlineWidth: CGFloat { _iuiComponents().rangeInput.handleFocusOutlineWidth }
+    }
+}
+
+extension Color.iui {
+
+    public enum rangeInput {
+        public static var handleBackground: Color { _iuiComponents().rangeInput.handleBackground }
+        public static var handleHoverBackground: Color { _iuiComponents().rangeInput.handleHoverBackground }
+        public static var handleFocusBackground: Color { _iuiComponents().rangeInput.handleFocusBackground }
+        public static var handleFocusOutlineColor: Color { _iuiComponents().rangeInput.handleFocusOutlineColor }
+        public static var handleShadowColor: Color { _iuiComponents().rangeInput.handleShadowColor }
+        public static var handleBorderColor: Color { _iuiComponents().rangeInput.handleBorderColor }
+        public static var trackBackground: Color { _iuiComponents().rangeInput.trackBackground }
+        public static var trackBorderColor: Color { _iuiComponents().rangeInput.trackBorderColor }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum rangeInput {
+        public static var valueFontWeight: Font.Weight { _iuiComponents().rangeInput.valueFontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum rangeInput {
+        public static var valueFontFamily: String { _iuiComponents().rangeInput.valueFontFamily }
+    }
+}

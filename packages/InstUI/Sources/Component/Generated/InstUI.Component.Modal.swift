@@ -81,3 +81,34 @@ extension InstUI.Component.Modal {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum modal {
+        public static var autoMinWidth: CGFloat { _iuiComponents().modal.autoMinWidth }
+        public static var borderRadius: CGFloat { _iuiComponents().modal.borderRadius }
+        public static var largeMaxWidth: CGFloat { _iuiComponents().modal.largeMaxWidth }
+        public static var mediumMaxWidth: CGFloat { _iuiComponents().modal.mediumMaxWidth }
+        public static var smallMaxWidth: CGFloat { _iuiComponents().modal.smallMaxWidth }
+        public static var borderWidth: CGFloat { _iuiComponents().modal.borderWidth }
+    }
+}
+
+extension Color.iui {
+
+    public enum modal {
+        public static var backgroundColor: Color { _iuiComponents().modal.backgroundColor }
+        public static var borderColor: Color { _iuiComponents().modal.borderColor }
+        public static var inverseBackgroundColor: Color { _iuiComponents().modal.inverseBackgroundColor }
+        public static var inverseBorderColor: Color { _iuiComponents().modal.inverseBorderColor }
+        public static var textColor: Color { _iuiComponents().modal.textColor }
+        public static var inverseTextColor: Color { _iuiComponents().modal.inverseTextColor }
+    }
+}
+
+extension String.iui {
+
+    public enum modal {
+        public static var fontFamily: String { _iuiComponents().modal.fontFamily }
+    }
+}

@@ -97,3 +97,37 @@ extension InstUI.Component.ColorPicker {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum colorPicker {
+        public static var colorMixerButtonContainerLeftMargin: CGFloat { _iuiComponents().colorPicker.colorMixerButtonContainerLeftMargin }
+        public static var errorIconsRightPadding: CGFloat { _iuiComponents().colorPicker.errorIconsRightPadding }
+        public static var hashMarkContainerLeftPadding: CGFloat { _iuiComponents().colorPicker.hashMarkContainerLeftPadding }
+        public static var hashMarkContainerRightPadding: CGFloat { _iuiComponents().colorPicker.hashMarkContainerRightPadding }
+        public static var labelRightMargin: CGFloat { _iuiComponents().colorPicker.labelRightMargin }
+        public static var popoverContentBlockBorderWidth: CGFloat { _iuiComponents().colorPicker.popoverContentBlockBorderWidth }
+        public static var popoverFooterTopBorderWidth: CGFloat { _iuiComponents().colorPicker.popoverFooterTopBorderWidth }
+        public static var popoverContentPadding: CGFloat { _iuiComponents().colorPicker.popoverContentPadding }
+        public static var popoverFooterPadding: CGFloat { _iuiComponents().colorPicker.popoverFooterPadding }
+        public static var simpleColorContainerLeftPadding: CGFloat { _iuiComponents().colorPicker.simpleColorContainerLeftPadding }
+        public static var successIconRightPadding: CGFloat { _iuiComponents().colorPicker.successIconRightPadding }
+        public static var xLargeFontSize: CGFloat { _iuiComponents().colorPicker.xLargeFontSize }
+        public static var xSmallSpacing: CGFloat { _iuiComponents().colorPicker.xSmallSpacing }
+        public static var xxxSmallSpacing: CGFloat { _iuiComponents().colorPicker.xxxSmallSpacing }
+        public static var popoverContentBlockBottomMargin: CGFloat { _iuiComponents().colorPicker.popoverContentBlockBottomMargin }
+        public static var popoverContentBlockTopMargin: CGFloat { _iuiComponents().colorPicker.popoverContentBlockTopMargin }
+        public static var popoverContentBlockTopPadding: CGFloat { _iuiComponents().colorPicker.popoverContentBlockTopPadding }
+    }
+}
+
+extension Color.iui {
+
+    public enum colorPicker {
+        public static var checkerboardBackgroundColor: Color { _iuiComponents().colorPicker.checkerboardBackgroundColor }
+        public static var colorIndicatorBorderColor: Color { _iuiComponents().colorPicker.colorIndicatorBorderColor }
+        public static var hashMarkColor: Color { _iuiComponents().colorPicker.hashMarkColor }
+        public static var popoverSeparatorColor: Color { _iuiComponents().colorPicker.popoverSeparatorColor }
+        public static var popoverFooterColor: Color { _iuiComponents().colorPicker.popoverFooterColor }
+    }
+}

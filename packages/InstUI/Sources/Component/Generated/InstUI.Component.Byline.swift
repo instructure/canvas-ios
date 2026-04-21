@@ -73,3 +73,35 @@ extension InstUI.Component.Byline {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum byline {
+        public static var descriptionFontSize: CGFloat { _iuiComponents().byline.descriptionFontSize }
+        public static var figureMargin: CGFloat { _iuiComponents().byline.figureMargin }
+        public static var titleFontSize: CGFloat { _iuiComponents().byline.titleFontSize }
+    }
+}
+
+extension Color.iui {
+
+    public enum byline {
+        public static var background: Color { _iuiComponents().byline.background }
+        public static var color: Color { _iuiComponents().byline.color }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum byline {
+        public static var descriptionFontWeight: Font.Weight { _iuiComponents().byline.descriptionFontWeight }
+        public static var titleFontWeight: Font.Weight { _iuiComponents().byline.titleFontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum byline {
+        public static var fontFamily: String { _iuiComponents().byline.fontFamily }
+    }
+}

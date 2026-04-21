@@ -63,3 +63,25 @@ extension InstUI.Component.Tooltip {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum tooltip {
+        public static var padding: CGFloat { _iuiComponents().tooltip.padding }
+        public static var fontSize: CGFloat { _iuiComponents().tooltip.fontSize }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum tooltip {
+        public static var fontWeight: Font.Weight { _iuiComponents().tooltip.fontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum tooltip {
+        public static var fontFamily: String { _iuiComponents().tooltip.fontFamily }
+    }
+}

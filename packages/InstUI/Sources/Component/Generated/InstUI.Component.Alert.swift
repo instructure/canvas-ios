@@ -93,3 +93,45 @@ extension InstUI.Component.Alert {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum alert {
+        public static var borderRadius: CGFloat { _iuiComponents().alert.borderRadius }
+        public static var borderWidth: CGFloat { _iuiComponents().alert.borderWidth }
+        public static var contentFontSize: CGFloat { _iuiComponents().alert.contentFontSize }
+        public static var contentPaddingVertical: CGFloat { _iuiComponents().alert.contentPaddingVertical }
+        public static var contentPaddingHorizontal: CGFloat { _iuiComponents().alert.contentPaddingHorizontal }
+    }
+}
+
+extension Color.iui {
+
+    public enum alert {
+        public static var background: Color { _iuiComponents().alert.background }
+        public static var color: Color { _iuiComponents().alert.color }
+        public static var dangerBorderColor: Color { _iuiComponents().alert.dangerBorderColor }
+        public static var dangerIconBackground: Color { _iuiComponents().alert.dangerIconBackground }
+        public static var iconColor: Color { _iuiComponents().alert.iconColor }
+        public static var infoBorderColor: Color { _iuiComponents().alert.infoBorderColor }
+        public static var infoIconBackground: Color { _iuiComponents().alert.infoIconBackground }
+        public static var successBorderColor: Color { _iuiComponents().alert.successBorderColor }
+        public static var successIconBackground: Color { _iuiComponents().alert.successIconBackground }
+        public static var warningBorderColor: Color { _iuiComponents().alert.warningBorderColor }
+        public static var warningIconBackground: Color { _iuiComponents().alert.warningIconBackground }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum alert {
+        public static var contentFontWeight: Font.Weight { _iuiComponents().alert.contentFontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum alert {
+        public static var contentFontFamily: String { _iuiComponents().alert.contentFontFamily }
+    }
+}

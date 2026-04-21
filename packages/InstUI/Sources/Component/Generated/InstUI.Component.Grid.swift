@@ -56,3 +56,12 @@ extension InstUI.Component.Grid {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum grid {
+        public static var mediumMin: CGFloat { _iuiComponents().grid.mediumMin }
+        public static var largeMin: CGFloat { _iuiComponents().grid.largeMin }
+        public static var xLargeMin: CGFloat { _iuiComponents().grid.xLargeMin }
+    }
+}

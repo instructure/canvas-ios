@@ -75,3 +75,36 @@ extension InstUI.Component.FormFieldLayout {
         )
     }
 }
+
+extension CGFloat.iui {
+
+    public enum formFieldLayout {
+        public static var fontSize: CGFloat { _iuiComponents().formFieldLayout.fontSize }
+        public static var gapPrimitives: CGFloat { _iuiComponents().formFieldLayout.gapPrimitives }
+        public static var stackedOrInlineBreakpoint: CGFloat { _iuiComponents().formFieldLayout.stackedOrInlineBreakpoint }
+        public static var gapInputs: CGFloat { _iuiComponents().formFieldLayout.gapInputs }
+    }
+}
+
+extension Color.iui {
+
+    public enum formFieldLayout {
+        public static var textColor: Color { _iuiComponents().formFieldLayout.textColor }
+        public static var readonlyTextColor: Color { _iuiComponents().formFieldLayout.readonlyTextColor }
+        public static var asteriskColor: Color { _iuiComponents().formFieldLayout.asteriskColor }
+    }
+}
+
+extension Font.Weight.iui {
+
+    public enum formFieldLayout {
+        public static var fontWeight: Font.Weight { _iuiComponents().formFieldLayout.fontWeight }
+    }
+}
+
+extension String.iui {
+
+    public enum formFieldLayout {
+        public static var fontFamily: String { _iuiComponents().formFieldLayout.fontFamily }
+    }
+}
