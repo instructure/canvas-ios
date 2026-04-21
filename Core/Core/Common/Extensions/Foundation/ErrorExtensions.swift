@@ -62,3 +62,8 @@ extension Error {
         self as NSError
     }
 }
+
+public protocol DebugDescriptionProvider {
+    /// The non-localized string representation of an entity for debugging / analytics purposes.
+    var debugDescription: String { get }
+}

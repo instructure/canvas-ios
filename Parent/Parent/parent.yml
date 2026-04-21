@@ -17,6 +17,7 @@ targets:
           - ".swiftlint.yml"
       - path: ../Settings.bundle
     dependencies:
+      - package: InstUI
       - package: PSPDFKit
       - package: Pendo
       - package: FirebaseCrashlytics

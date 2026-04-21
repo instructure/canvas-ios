@@ -253,6 +253,9 @@
         <attribute name="disableInboxSignatureBlockForStudents" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="enableInboxSignatureBlock" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
+    <entity name="CDAnalyticsConsent" representedClassName="Core.CDAnalyticsConsent" syncable="YES">
+        <attribute name="consentValueRaw" optional="YES" attributeType="Boolean" usesScalarValueType="NO"/>
+    </entity>
     <entity name="CDExperienceSummary" representedClassName="Core.CDExperienceSummary" syncable="YES">
         <attribute name="availableAppsRaw" attributeType="Transformable" valueTransformerName="StringSetValueTransformer"/>
         <attribute name="currentAppRaw" attributeType="String" valueTransformerName="StringSetValueTransformer"/>

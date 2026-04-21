@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,7 +16,13 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public protocol DebugDescriptionProvider {
-    /// The non-localized string representation of an entity for debugging / analytics purposes.
-    var debugDescription: String { get }
+@testable import Core
+
+final class AnalyticsMetadataInteractorMock: AnalyticsMetadataInteractor {
+
+    var getMetadataResult: AnalyticsMetadata = .make()
+
+    func getMetadata() async throws -> AnalyticsMetadata {
+        getMetadataResult
+    }
 }

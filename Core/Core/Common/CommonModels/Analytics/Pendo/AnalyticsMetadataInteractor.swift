@@ -20,6 +20,8 @@ import Combine
 import Foundation
 
 public protocol AnalyticsMetadataInteractor {
+
+    /// Returns the metadata which is sent at Pendo session start.
     func getMetadata() async throws -> AnalyticsMetadata
 }
 

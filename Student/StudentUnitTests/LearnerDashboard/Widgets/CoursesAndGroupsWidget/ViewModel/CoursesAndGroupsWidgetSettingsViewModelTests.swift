@@ -24,17 +24,9 @@ import XCTest
 final class CoursesAndGroupsWidgetSettingsViewModelTests: StudentTestCase {
 
     private var testee: CoursesAndGroupsWidgetSettingsViewModel!
-    private var analytics: AnalyticsHandlerMock!
-
-    override func setUp() {
-        super.setUp()
-        analytics = .init()
-        Analytics.shared.handler = analytics
-    }
 
     override func tearDown() {
         testee = nil
-        analytics = nil
         super.tearDown()
     }
 
@@ -106,7 +98,7 @@ final class CoursesAndGroupsWidgetSettingsViewModelTests: StudentTestCase {
 
         testee.showGrades = true
 
-        XCTAssertEqual(analytics.handleEventInput, "dashboard_widget_customization")
+        XCTAssertEqual(analytics.handleEventInput?.name, "dashboard_widget_customization")
     }
 
     func test_showColorOverlay_whenChanged_shouldLogCustomizationEvent() {
@@ -114,7 +106,7 @@ final class CoursesAndGroupsWidgetSettingsViewModelTests: StudentTestCase {
 
         testee.showColorOverlay = false
 
-        XCTAssertEqual(analytics.handleEventInput, "dashboard_widget_customization")
+        XCTAssertEqual(analytics.handleEventInput?.name, "dashboard_widget_customization")
     }
 
     func test_showGrades_whenChangedMultipleTimes_shouldLogOneEventPerChange() {
@@ -130,15 +122,5 @@ final class CoursesAndGroupsWidgetSettingsViewModelTests: StudentTestCase {
 
     private func makeViewModel() -> CoursesAndGroupsWidgetSettingsViewModel {
         CoursesAndGroupsWidgetSettingsViewModel(env: env)
-    }
-}
-
-private final class AnalyticsHandlerMock: AnalyticsHandler {
-    var handleEventInput: String?
-    var handleEventCallCount = 0
-
-    func handleEvent(_ name: String, parameters: [String: Any]?) {
-        handleEventInput = name
-        handleEventCallCount += 1
     }
 }

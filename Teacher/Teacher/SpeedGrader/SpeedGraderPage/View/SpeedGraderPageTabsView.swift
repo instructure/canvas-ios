@@ -88,9 +88,6 @@ struct SpeedGraderPageTabsView: View {
             GeometryReader { geometry in
                 HStack(spacing: 0) {
                     gradesTab(geometry: geometry)
-                        // `.clipped` and `.contentShape` don't prevent touches outside of the drawer on iOS17
-                        // and it would block interaction with the attempts picker and the submission content.
-                        .allowsHitTesting(selectedTab == .grades)
                     detailsTab(geometry: geometry)
                 }
                 .frame(width: geometry.size.width, alignment: .leading)

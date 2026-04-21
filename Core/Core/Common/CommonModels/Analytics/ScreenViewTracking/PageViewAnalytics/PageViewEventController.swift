@@ -28,14 +28,18 @@ public class PageViewEventController: NSObject {
     }
 
     @objc public static let instance = PageViewEventController()
+
     private var requestManager = PageViewEventRequestManager()
     private let session = PageViewSession()
     var persistency: Persistency = Persistency.instance
-    var appCanLogEvents: () -> Bool = {
+
+    private var isConfigured: Bool = false
+    private var isTrackingEnabled: Bool = false
+
+    var appCanLogEvents: Bool {
         let isNotExtension = !Bundle.isExtension
         let isNotTest = !ProcessInfo.isUITest
-        let isStudentOrTeacher = Bundle.main.isStudentApp || Bundle.main.isTeacherApp
-        return isNotTest && isStudentOrTeacher && isNotExtension
+        return isNotTest && isConfigured && isNotExtension && isTrackingEnabled
     }
 
     private override init() {
@@ -50,7 +54,24 @@ public class PageViewEventController: NSObject {
     // MARK: - Public
 
     public func configure(backgroundAppHelper: AppBackgroundHelperProtocol) {
+        isConfigured = true
         requestManager.backgroundAppHelper = backgroundAppHelper
+    }
+
+    public func startTracking() {
+        isTrackingEnabled = true
+        resetTracking()
+    }
+
+    public func endTracking() {
+        isTrackingEnabled = false
+        resetTracking()
+    }
+
+    public func flushEventsAndEndTracking() {
+        sync { [weak self] in
+            self?.endTracking()
+        }
     }
 
     public func logPageView(
@@ -70,7 +91,7 @@ public class PageViewEventController: NSObject {
         attributes: [String: String] = [:],
         eventDurationInSeconds: TimeInterval = 0
     ) {
-        if(!appCanLogEvents()) { return }
+        if(!appCanLogEvents) { return }
         guard
             requestManager.backgroundAppHelper != nil,
             let authSession = LoginSession.mostRecent else {
@@ -99,11 +120,9 @@ public class PageViewEventController: NSObject {
         persistency.addToQueue(event)
     }
 
-    @objc public func userDidChange() {
-        sync({ [weak self] in
-            self?.requestManager.cleanup()
-            self?.session.resetSessionInfo()
-        })
+    private func resetTracking() {
+        requestManager.cleanup()
+        session.resetSessionInfo()
     }
 
     // MARK: - App Lifecycle
@@ -134,7 +153,7 @@ public class PageViewEventController: NSObject {
     }
 
     fileprivate func sync(_ handler: EmptyHandler? = nil) {
-        if(!appCanLogEvents()) { handler?(); return }
+        if(!appCanLogEvents) { handler?(); return }
         requestManager.sendEvents { _ in
             handler?()
         }
