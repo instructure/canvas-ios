@@ -106,7 +106,7 @@ extension InstUI.Theme.Components {
         fontWeights: InstUI.Semantic.FontWeight,
         fontFamilies: InstUI.Semantic.FontFamily
     ) throws -> Self {
-        let base = InstUI.ComponentResolver(
+        let base = InstUI.Component.Resolver(
             colors: colors,
             size: size,
             spacing: spacing,
@@ -121,7 +121,7 @@ extension InstUI.Theme.Components {
         func resolveComponent<T>(
             _ resource: String,
             _ section: String,
-            _ build: (InstUI.ComponentResolver) throws -> T
+            _ build: (InstUI.Component.Resolver) throws -> T
         ) throws -> T {
             guard let url = Bundle.module.url(forResource: resource, withExtension: "json") else {
                 throw InstUI.TokenLoadError.missingFile("\(resource).json not found in bundle")

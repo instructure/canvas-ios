@@ -17,44 +17,29 @@
 //
 
 import SwiftUI
-import UIKit
 
 extension Color {
-    public enum iui {} // Namespace for the component layer
     public static var iuiSemantic: InstUISemanticColor { _iuiSemanticColor() }
-    public typealias iuiPrimitive = Color.InstUI.Primitive
-}
-
-extension UIColor {
-    public typealias iuiPrimitive = UIColor.InstUI.Primitive
 }
 
 extension Font.Weight {
-    public enum iui {} // Namespace for the component layer
     public static var iuiSemantic: InstUISemanticFontWeight { _iuiSemanticFontWeight() }
-    public typealias iuiPrimitive = Font.Weight.InstUI.Primitive
 }
 
 extension String {
-    public enum iui {} // Namespace for the component layer
     public static var iuiSemanticFontFamily: InstUISemanticFontFamily { _iuiSemanticFontFamily() }
-    public typealias iuiPrimitiveFontFamily = String.InstUI.Primitive
 }
 
 extension Double {
-    public enum iui {} // Namespace for the component layer
     public static var iuiSemanticOpacity: InstUISemanticOpacity { _iuiSemanticOpacity() }
-    public typealias iuiPrimitiveOpacity = Double.InstUI.Primitive
 }
 
 extension CGFloat {
-    public enum iui {} // Namespace for the component layer
     public static var iuiSemanticSize: InstUISemanticSize { _iuiSemanticSize() }
     public static var iuiSemanticSpacing: InstUISemanticSpacing { _iuiSemanticSpacing() }
     public static var iuiSemanticBorderRadius: InstUISemanticBorderRadius { _iuiSemanticBorderRadius() }
     public static var iuiSemanticBorderWidth: InstUISemanticBorderWidth { _iuiSemanticBorderWidth() }
     public static var iuiSemanticFontSize: InstUISemanticFontSize { _iuiSemanticFontSize() }
-    public typealias iuiPrimitiveSize = CGFloat.InstUI.Primitive
 }
 
 // MARK: - Helpers
@@ -62,7 +47,7 @@ extension CGFloat {
 // Each generated Primitives file adds `extension SomeType { public enum InstUI { ... } }`,
 // shadowing our module-level `InstUI` enum inside any extension on that type.
 // File-scope typealiases and private helpers keep `InstUI` unambiguous — use them
-// for any reference to InstUI types inside the extensions below.
+// for any reference to InstUI types inside the extensions above.
 public typealias InstUISemanticColor = InstUI.Semantic.Color
 public typealias InstUISemanticFontWeight = InstUI.Semantic.FontWeight
 public typealias InstUISemanticFontFamily = InstUI.Semantic.FontFamily
@@ -72,10 +57,6 @@ public typealias InstUISemanticSpacing = InstUI.Semantic.Spacing
 public typealias InstUISemanticBorderRadius = InstUI.Semantic.BorderRadius
 public typealias InstUISemanticBorderWidth = InstUI.Semantic.BorderWidth
 public typealias InstUISemanticFontSize = InstUI.Semantic.FontSize
-
-// Called from generated component accessor extensions — module-level scope keeps `InstUI`
-// unambiguous even though each Swift type has a shadowing `Color.InstUI` / `CGFloat.InstUI` etc.
-func _iuiComponents() -> InstUI.Theme.Components { InstUI.Theme.default.components }
 
 private func _iuiSemanticColor() -> InstUISemanticColor { InstUI.Theme.default.color }
 private func _iuiSemanticFontWeight() -> InstUISemanticFontWeight { InstUI.Theme.default.fontWeight }
