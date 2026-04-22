@@ -19,21 +19,28 @@
 @testable import Core
 @testable import Horizon
 import XCTest
+import Combine
 
 final class HSyncBackgroundTaskTests: HorizonTestCase {
 
     private var mockAccountsInteractor: MockHSyncAccountsInteractor!
     private var mockScheduleInteractor: MockHSyncScheduleInteractor!
+    private var mockCourseSyncInteractor: HCourseSyncInteractorMock!
+    private var mockNetworkService: MockNetworkAvailabilityService!
 
     override func setUp() {
         super.setUp()
         mockAccountsInteractor = MockHSyncAccountsInteractor()
         mockScheduleInteractor = MockHSyncScheduleInteractor()
+        mockCourseSyncInteractor = HCourseSyncInteractorMock()
+        mockNetworkService = MockNetworkAvailabilityService()
     }
 
     override func tearDown() {
         mockAccountsInteractor = nil
         mockScheduleInteractor = nil
+        mockCourseSyncInteractor = nil
+        mockNetworkService = nil
         super.tearDown()
     }
 
@@ -92,7 +99,9 @@ final class HSyncBackgroundTaskTests: HorizonTestCase {
         HSyncBackgroundTask(
             syncableAccounts: mockAccountsInteractor,
             sessions: [],
-            scheduleInteractor: mockScheduleInteractor
+            scheduleInteractor: mockScheduleInteractor,
+            networkAvailabilityService: mockNetworkService,
+            courseSyncInteractor: mockCourseSyncInteractor
         )
     }
 }
@@ -117,5 +126,18 @@ private final class MockHSyncScheduleInteractor: HSyncScheduleInteractor {
 
     func updateNextSyncDate(sessionUniqueID: String) {
         updatedSessionIDs.append(sessionUniqueID)
+    }
+}
+
+private final class MockNetworkAvailabilityService: NetworkAvailabilityService {
+    private let statusSubject = CurrentValueSubject<NetworkAvailabilityStatus?, Never>(.connected(.wifi))
+
+    var status: NetworkAvailabilityStatus? { statusSubject.value }
+
+    func startMonitoring() {}
+    func stopMonitoring() {}
+
+    func startObservingStatus() -> CurrentValueSubject<NetworkAvailabilityStatus?, Never> {
+        statusSubject
     }
 }

@@ -36,17 +36,22 @@ final class ManageOfflineContentViewModelTests: HorizonTestCase {
 
     private var interactor: ManageOfflineContentInteractorMock!
     private var session: SessionDefaults!
+    private var courseSyncInteractor: HCourseSyncInteractorMock!
+    private var onSwitchDashboardTapCallCount = 0
     private var testee: ManageOfflineContentViewModel!
 
     override func setUp() {
         super.setUp()
         interactor = ManageOfflineContentInteractorMock()
         session = SessionDefaults(sessionID: testData.sessionID)
+        courseSyncInteractor = HCourseSyncInteractorMock()
+        onSwitchDashboardTapCallCount = 0
     }
 
     override func tearDown() {
         testee = nil
         interactor = nil
+        courseSyncInteractor = nil
         session.reset()
         session = nil
         super.tearDown()
@@ -320,14 +325,96 @@ final class ManageOfflineContentViewModelTests: HorizonTestCase {
         XCTAssertEqual(testee.courses.count, 2)
     }
 
+    // MARK: - presentConfirmation
+
+    func test_presentConfirmation_withRemoveType_shouldShowModalConfirmation() {
+        createTestee()
+        let viewController = WeakViewController(UIViewController())
+
+        testee.presentConfirmation(type: .remove, viewController: viewController)
+
+        XCTAssertNotNil(router.presented)
+        XCTAssertEqual(router.lastShownOptions, .modal(.fullScreen))
+    }
+
+    func test_presentConfirmation_withDownloadType_shouldShowModalConfirmation() {
+        createTestee()
+        let viewController = WeakViewController(UIViewController())
+
+        testee.presentConfirmation(type: .download(size: nil), viewController: viewController)
+
+        XCTAssertNotNil(router.presented)
+        XCTAssertEqual(router.lastShownOptions, .modal(.fullScreen))
+    }
+
+    func test_presentConfirmation_whenRemoveConfirmed_shouldClearCourseSyncInteractor() {
+        createTestee()
+        let viewController = WeakViewController(UIViewController())
+
+        testee.handleConfirmationAction(type: .remove, viewController: viewController)
+
+        XCTAssertEqual(courseSyncInteractor.clearCallCount, 1)
+    }
+
+    func test_presentConfirmation_whenRemoveConfirmed_shouldRefetchCourses() {
+        interactor.coursesToReturn = [makeCourse(id: testData.courseID1)]
+        createTestee()
+        interactor.coursesToReturn = [
+            makeCourse(id: testData.courseID1),
+            makeCourse(id: testData.courseID2)
+        ]
+        let viewController = WeakViewController(UIViewController())
+
+        testee.handleConfirmationAction(type: .remove, viewController: viewController)
+
+        XCTAssertEqual(testee.courses.count, 2)
+    }
+
+    func test_presentConfirmation_whenDownloadConfirmed_shouldPostOfflineSyncTriggeredNotification() {
+        createTestee()
+        let viewController = WeakViewController(UIViewController())
+        var notificationPosted = false
+        let observer = NotificationCenter.default.addObserver(
+            forName: .OfflineSyncTriggered,
+            object: nil,
+            queue: nil
+        ) { _ in notificationPosted = true }
+        defer { NotificationCenter.default.removeObserver(observer) }
+
+        testee.handleConfirmationAction(type: .download(size: nil), viewController: viewController)
+
+        XCTAssertEqual(notificationPosted, true)
+    }
+
+    func test_presentConfirmation_whenDownloadConfirmed_shouldPopToRoot() {
+        createTestee()
+        let viewController = WeakViewController(UIViewController())
+
+        testee.handleConfirmationAction(type: .download(size: nil), viewController: viewController)
+
+        XCTAssertNotNil(router.popped)
+    }
+
+    func test_presentConfirmation_whenDownloadConfirmed_shouldCallOnSwitchDashboardTap() {
+        createTestee()
+        let viewController = WeakViewController(UIViewController())
+
+        testee.handleConfirmationAction(type: .download(size: nil), viewController: viewController)
+
+        XCTAssertEqual(onSwitchDashboardTapCallCount, 1)
+    }
+
     // MARK: - Private helpers
 
     private func createTestee() {
         testee = ManageOfflineContentViewModel(
             interactor: interactor,
             router: router,
-            session: session
-        ) {}
+            session: session,
+            courseSyncInteractor: courseSyncInteractor
+        ) { [weak self] in
+            self?.onSwitchDashboardTapCallCount += 1
+        }
     }
 
     private func makeCourse(

@@ -167,17 +167,20 @@ final class ManageOfflineContentViewModel {
 
     func presentConfirmation(type: OfflineConfirmationView.ConfirmationType, viewController: WeakViewController) {
         let confirmationView = OfflineConfirmationAssembly.makeView(type: type) { [weak self] in
-            guard let self else { return }
-            switch type {
-            case .remove:
-                courseSyncInteractor.clear()
-                fetchCourses()
-            case .download:
-                NotificationCenter.default.post(name: .OfflineSyncTriggered, object: selectedCourses)
-                router.popToRoot(from: viewController.value, animated: false)
-                onSwitchDashboardTap()
-            }
+            self?.handleConfirmationAction(type: type, viewController: viewController)
         }
         router.show(confirmationView, from: viewController, options: .modal(.fullScreen))
+    }
+
+    func handleConfirmationAction(type: OfflineConfirmationView.ConfirmationType, viewController: WeakViewController) {
+        switch type {
+        case .remove:
+            courseSyncInteractor.clear()
+            fetchCourses()
+        case .download:
+            NotificationCenter.default.post(name: .OfflineSyncTriggered, object: selectedCourses)
+            router.popToRoot(from: viewController.value, animated: false)
+            onSwitchDashboardTap()
+        }
     }
 }
