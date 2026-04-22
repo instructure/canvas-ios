@@ -21,7 +21,6 @@ import UIKit
 enum HorizonTabBarType: CaseIterable {
     case dashboard
     case learn
-    case chatBot
     case skillspace
     case account
 
@@ -29,7 +28,6 @@ enum HorizonTabBarType: CaseIterable {
         switch self {
         case .dashboard: String(localized: "Home", bundle: .horizon)
         case .learn: String(localized: "Learn", bundle: .horizon)
-        case .chatBot: String(localized: "chat Bot", bundle: .horizon)
         case .skillspace: String(localized: "Skillspace", bundle: .horizon)
         case .account: String(localized: "Account", bundle: .horizon)
         }
@@ -39,9 +37,8 @@ enum HorizonTabBarType: CaseIterable {
         switch self {
         case .dashboard: 0
         case .learn: 1
-        case .chatBot: 2
-        case .skillspace: 3
-        case .account: 4
+        case .skillspace: 2
+        case .account: 3
         }
     }
 
@@ -49,7 +46,6 @@ enum HorizonTabBarType: CaseIterable {
         switch self {
         case .dashboard: getHorizonImage(name: "home")
         case .learn: getHorizonImage(name: "book_2")
-        case .chatBot: UIImage(resource: .chatBot)
         case .skillspace: getHorizonImage(name: "hub")
         case .account: getHorizonImage(name: "account_circle")
         }
@@ -59,7 +55,6 @@ enum HorizonTabBarType: CaseIterable {
         switch self {
         case .dashboard: getHorizonImage(name: "home_filled")
         case .learn: getHorizonImage(name: "book_2_filled")
-        case .chatBot: UIImage(resource: .chatBot)
         case .skillspace: getHorizonImage(name: "hub_filled")
         case .account: getHorizonImage(name: "account_circle_filled")
         }

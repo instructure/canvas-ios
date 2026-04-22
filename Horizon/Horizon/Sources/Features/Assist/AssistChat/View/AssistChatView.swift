@@ -27,6 +27,7 @@ struct AssistChatView: View {
 
     // MARK: - Properties
 
+    @State private var showInfoView = false
     @Bindable var viewModel: AssistChatViewModel
     @FocusState private var isFocused: Bool
     private let retryViewId = "retry"
@@ -40,7 +41,6 @@ struct AssistChatView: View {
                     contentView
                 }
                 .scrollDismissesKeyboard(.immediately)
-                sendMessageView
             }
             .scrollIndicators(.hidden)
             .onReceive(viewModel.shouldOpenKeyboardPublisher) { value in
@@ -62,11 +62,21 @@ struct AssistChatView: View {
             )
         }
         .applyHorizonGradient()
+        .bottomSheet(
+            isPresented: $showInfoView,
+            backgroundDismissible: true
+        ) {
+            AssistInfoView {
+                showInfoView = false
+            }
+        }
     }
 
     private var topHeader: some View {
         AssistTitle(onBack: viewModel.isBackButtonVisible ? viewModel.setInitialState : nil) {
             viewModel.dismiss(controller: viewController)
+        } onTapInfo: {
+            showInfoView.toggle()
         }
     }
 
