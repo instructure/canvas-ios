@@ -47,9 +47,7 @@ struct AssistPermissionView: View {
                 title: String(localized: "LEVEL 1"),
                 subtitle: String(localized: "Descriptive Analytics and Research"),
                 description: String(
-                    localized: """
-                    We leverage anonymized aggregate data for detailed analytics to inform model development and product improvements. No AI models are used at this level.
-                    """
+                    localized: "We leverage anonymized aggregate data for detailed analytics to inform model development and product improvements. No AI models are used at this level."
                 )
             )
         }
