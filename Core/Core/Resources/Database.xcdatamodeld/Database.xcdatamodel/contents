@@ -581,6 +581,12 @@
         <attribute name="userId" attributeType="String"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="subAssignmentSubmissions" inverseEntity="Submission"/>
     </entity>
+    <entity name="CDUnreadCourseAnnouncementCount" representedClassName="Core.CDUnreadCourseAnnouncementCount" syncable="YES">
+        <attribute name="courseId" attributeType="String"/>
+        <attribute name="singleUnreadAnnouncementId" optional="YES" attributeType="String"/>
+        <attribute name="unreadCount" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="unreadAnnouncementCount" inverseEntity="Course"/>
+    </entity>
     <entity name="CDUserGroup" representedClassName="Core.CDUserGroup" syncable="YES">
         <attribute name="id" attributeType="String"/>
         <attribute name="isDifferentiationTag" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -731,6 +737,7 @@
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection"/>
         <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSettings" inverseName="course" inverseEntity="CourseSettings"/>
         <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="course" inverseEntity="Todo"/>
+        <relationship name="unreadAnnouncementCount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUnreadCourseAnnouncementCount" inverseName="course" inverseEntity="CDUnreadCourseAnnouncementCount"/>
         <relationship name="weeklySummaryEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDDashboardWeeklySummaryEntry" inverseName="course" inverseEntity="CDDashboardWeeklySummaryEntry"/>
     </entity>
     <entity name="CourseSection" representedClassName="Core.CourseSection" syncable="YES">
