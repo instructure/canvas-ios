@@ -40,7 +40,7 @@ public struct ListSectionHeaderOld<Content: View>: View {
                 .foregroundColor(.textDark)
                 .padding(16)
                 .padding(.vertical, isLarge ? 0 : -12)
-            InstUI.Divider()
+            AUI.Divider()
                 .clipped()
         }
         .background(backgroundColor)

@@ -45,6 +45,8 @@ class StudentTestCase: XCTestCase {
     var env: TestEnvironment!
     var logger: TestLogger!
     var router: TestRouter { env.router as! TestRouter }
+    var userDefaults: SessionDefaults!
+    var analytics: AnalyticsHandlerMock!
     lazy var uploadManager = MockUploadManager(env: env)
     var currentSession: LoginSession!
 
@@ -59,6 +61,10 @@ class StudentTestCase: XCTestCase {
         env = TestEnvironment()
         logger = env.logger as? TestLogger
         currentSession = env.currentSession
+        userDefaults = env.userDefaults!
+        userDefaults.reset()
+        analytics = .init()
+        Analytics.shared.handler = analytics
         AppEnvironment.shared = env
         AppEnvironment.shared.uploadManager = uploadManager
         MockUploadManager.reset()

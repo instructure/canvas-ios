@@ -56,6 +56,25 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.useNewLearnerDashboard, false)
     }
 
+    // MARK: - Color change analytics
+
+    func test_mainColor_whenChanged_shouldLogCustomizationEvent() {
+        testee = makeTestee()
+
+        testee.mainColor = .red
+
+        XCTAssertEqual(analytics.handleEventInput?.name, "dashboard_widget_customization")
+    }
+
+    func test_mainColor_whenChangedMultipleTimes_shouldLogOneEventPerChange() {
+        testee = makeTestee()
+
+        testee.mainColor = .red
+        testee.mainColor = .blue
+
+        XCTAssertEqual(analytics.handleEventCallCount, 2)
+    }
+
     // MARK: - Switch to Classic Dashboard
 
     func test_switchToClassicDashboard_shouldUpdateDefaults() {
@@ -121,12 +140,12 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
         return LearnerDashboardSettingsViewModel(
             defaults: testDefaults,
             colorInteractor: colorInteractor,
-            courseSettingsViewModel: makeCourseSettingsViewModel(),
+            widgetsSectionViewModel: makeWidgetsSectionViewModel(),
             environment: env
         )
     }
 
-    private func makeCourseSettingsViewModel() -> LearnerDashboardSettingsWidgetsSectionViewModel {
+    private func makeWidgetsSectionViewModel() -> LearnerDashboardSettingsWidgetsSectionViewModel {
         LearnerDashboardSettingsWidgetsSectionViewModel(
             userDefaults: testDefaults,
             configs: EditableWidgetIdentifier.makeDefaultConfigs(),

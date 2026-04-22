@@ -177,7 +177,7 @@ public struct MessageView: View {
     MessageDetailsAssembly.makePreview(
         env: env,
         subject: "Message Title",
-        messages: .make(count: 5, body: InstUI.PreviewData.loremIpsumLong, in: context)
+        messages: .make(count: 5, body: AUI.PreviewData.loremIpsumLong, in: context)
     )
 }
 

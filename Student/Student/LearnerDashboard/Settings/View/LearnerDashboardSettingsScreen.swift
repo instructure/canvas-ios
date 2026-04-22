@@ -63,7 +63,7 @@ struct LearnerDashboardSettingsScreen: View {
             get: { viewModel.useNewLearnerDashboard },
             set: { _ in showSwitchAlert = true }
         )
-        return InstUI.Toggle(isOn: isOnBinding) {
+        return AUI.Toggle(isOn: isOnBinding) {
             Text("New Mobile Dashboard", bundle: .student)
                 .font(.semibold16)
                 .foregroundStyle(Color.textDarkest)
@@ -75,12 +75,12 @@ struct LearnerDashboardSettingsScreen: View {
     private var dashboardColorSelector: some View {
         VStack(alignment: .leading, spacing: 0) {
             LearnerDashboardColorSelectorView(selectedColor: $viewModel.mainColor, colors: viewModel.colors)
-            InstUI.Divider()
+            AUI.Divider()
         }
     }
 
     private var widgetsSection: some View {
-        LearnerDashboardSettingsWidgetsSectionView(viewModel: viewModel.courseSettingsViewModel)
+        LearnerDashboardSettingsWidgetsSectionView(viewModel: viewModel.widgetsSectionViewModel)
     }
 
     @ViewBuilder
@@ -93,7 +93,7 @@ struct LearnerDashboardSettingsScreen: View {
             Button {
                 viewModel.letUsKnow(from: viewController.value)
             } label: {
-                InstUI.PillContent(
+                AUI.PillContent(
                     title: String(localized: "Let us know!", bundle: .student),
                     trailingIcon: .externalLinkLine,
                     size: .height30
@@ -101,6 +101,7 @@ struct LearnerDashboardSettingsScreen: View {
             }
             .buttonStyle(.pillTintOutlined)
             .tint(viewModel.mainColor)
+            .identifier("Dashboard.Settings.feedbackButton")
         }
         .frame(maxWidth: .infinity)
     }
@@ -120,13 +121,13 @@ struct LearnerDashboardSettingsScreen: View {
             var defaults = SessionDefaults.fallback
             defaults.preferNewLearnerDashboard = true
             let configs = EditableWidgetIdentifier.makeDefaultConfigs()
-            let courseSettingsVM = LearnerDashboardSettingsWidgetsSectionViewModel(
+            let widgetsSectionViewModel = LearnerDashboardSettingsWidgetsSectionViewModel(
                 userDefaults: defaults,
                 configs: configs,
                 username: "Riley",
                 onConfigsChanged: {}
             )
-            return LearnerDashboardSettingsViewModel(defaults: defaults, colorInteractor: LearnerDashboardColorInteractorLive(defaults: defaults), courseSettingsViewModel: courseSettingsVM)
+            return LearnerDashboardSettingsViewModel(defaults: defaults, colorInteractor: LearnerDashboardColorInteractorLive(defaults: defaults), widgetsSectionViewModel: widgetsSectionViewModel)
         }()
     )
 }
@@ -137,13 +138,13 @@ struct LearnerDashboardSettingsScreen: View {
             var defaults = SessionDefaults.fallback
             defaults.preferNewLearnerDashboard = false
             let configs = EditableWidgetIdentifier.makeDefaultConfigs()
-            let courseSettingsVM = LearnerDashboardSettingsWidgetsSectionViewModel(
+            let widgetsSectionViewModel = LearnerDashboardSettingsWidgetsSectionViewModel(
                 userDefaults: defaults,
                 configs: configs,
                 username: "Riley",
                 onConfigsChanged: {}
             )
-            return LearnerDashboardSettingsViewModel(defaults: defaults, colorInteractor: LearnerDashboardColorInteractorLive(defaults: defaults), courseSettingsViewModel: courseSettingsVM)
+            return LearnerDashboardSettingsViewModel(defaults: defaults, colorInteractor: LearnerDashboardColorInteractorLive(defaults: defaults), widgetsSectionViewModel: widgetsSectionViewModel)
         }()
     )
 }

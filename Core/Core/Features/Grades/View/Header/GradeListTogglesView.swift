@@ -28,7 +28,7 @@ struct GradeListTogglesView: View {
                     .frame(minHeight: 51)
                     .padding(.horizontal, 16)
             }
-            InstUI.Divider()
+            AUI.Divider()
         }
         .background(Color.backgroundLight)
     }
@@ -36,7 +36,7 @@ struct GradeListTogglesView: View {
     @ViewBuilder
     private var togglesView: some View {
         VStack(spacing: 0) {
-            InstUI.Toggle(isOn: $viewModel.baseOnGradedAssignment) {
+            AUI.Toggle(isOn: $viewModel.baseOnGradedAssignment) {
                 Text("Based on graded assignments", bundle: .core)
                     .foregroundStyle(Color.textDarkest)
                     .font(.regular16)
@@ -48,7 +48,7 @@ struct GradeListTogglesView: View {
             if viewModel.isWhatIfScoreFlagEnabled {
                 Divider()
 
-                InstUI.Toggle(isOn: $viewModel.isWhatIfScoreModeOn) {
+                AUI.Toggle(isOn: $viewModel.isWhatIfScoreModeOn) {
                     Text("Show What-if Score", bundle: .core)
                         .foregroundStyle(Color.textDarkest)
                         .font(.regular16)

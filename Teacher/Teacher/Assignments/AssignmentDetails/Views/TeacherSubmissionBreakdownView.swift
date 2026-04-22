@@ -46,7 +46,7 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
                             action: routeToAll, label: {
                                 HStack(spacing: 5) {
                                     Text("All", bundle: .teacher)
-                                    InstUI.DisclosureIndicator()
+                                    AUI.DisclosureIndicator()
                                 }
                             }
                         )
@@ -65,7 +65,7 @@ struct TeacherSubmissionBreakdownView<ViewModel: SubmissionBreakdownViewModelPro
                             .font(.regular16)
                             .foregroundColor(.textDarkest)
                         Spacer()
-                        InstUI.DisclosureIndicator()
+                        AUI.DisclosureIndicator()
                     }
                 } else if viewModel.paperSubmissionTypes {
                     HStack(alignment: .top, spacing: 0) {

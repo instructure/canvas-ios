@@ -32,14 +32,13 @@ enum LearnerDashboardAssembly {
         let editableFactory: (DashboardWidgetConfig) -> any DashboardWidgetViewModel = { config in
             config.id.makeViewModel(config: config, snackBarViewModel: snackBarViewModel, coursesInteractor: coursesInteractor)
         }
-        let interactor = LearnerDashboardInteractorLive(
-            systemWidgetFactory: systemFactory,
-            editableWidgetFactory: editableFactory
-        )
+        let interactor = LearnerDashboardInteractorLive()
         let viewModel = LearnerDashboardViewModel(
             interactor: interactor,
             colorInteractor: colorInteractor,
             snackBarViewModel: snackBarViewModel,
+            systemWidgetFactory: systemFactory,
+            editableWidgetFactory: editableFactory,
             environment: .shared
         )
         return LearnerDashboardScreen(viewModel: viewModel)

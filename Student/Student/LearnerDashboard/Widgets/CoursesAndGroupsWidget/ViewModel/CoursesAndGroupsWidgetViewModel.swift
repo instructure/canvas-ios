@@ -27,7 +27,7 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel, Dashboard
     var id: String { config.id.rawValue }
     let isHiddenInEmptyState = true
 
-    private(set) var state: InstUI.ScreenState = .loading
+    private(set) var state: ScreenState = .loading
     private(set) var courseCards: [CourseCardViewModel] = [
         .placeholder(id: "1", color: .course1),
         .placeholder(id: "2", color: .course2),

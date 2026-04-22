@@ -41,7 +41,7 @@ struct DashboardTitledWidget<Content: View, TrailingContent: View>: View {
     var body: some View {
         VStack(
             alignment: .leading,
-            spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue
+            spacing: AUI.Styles.Padding.sectionHeaderVertical.rawValue
         ) {
             HStack {
                 Text(title)
@@ -61,7 +61,7 @@ struct DashboardTitledWidget<Content: View, TrailingContent: View>: View {
 
 #Preview {
     DashboardTitledWidget("Weekly Summary") {
-        Text(verbatim: InstUI.PreviewData.loremIpsumShort)
+        Text(verbatim: AUI.PreviewData.loremIpsumShort)
     }
 }
 

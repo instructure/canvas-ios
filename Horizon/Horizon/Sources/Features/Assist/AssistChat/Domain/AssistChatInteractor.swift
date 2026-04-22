@@ -121,7 +121,7 @@ final class AssistChatInteractorLive: AssistChatInteractor {
     /// Publishes a new user action to the interactor
     override
     func publish(prompt: String? = nil, history: [AssistChatMessage] = []) {
-        weak var weakSelf = self
+        weak let weakSelf = self
         cancellable?.cancel()
         cancellable = publishLearnersResponseAndAmmendHistory(prompt: prompt, history: history)
             .delay(for: .milliseconds(1), scheduler: DispatchQueue.main)

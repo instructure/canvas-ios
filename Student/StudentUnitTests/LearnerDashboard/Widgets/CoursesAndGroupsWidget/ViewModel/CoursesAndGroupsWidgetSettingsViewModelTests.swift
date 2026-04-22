@@ -35,7 +35,7 @@ final class CoursesAndGroupsWidgetSettingsViewModelTests: StudentTestCase {
     func test_init_showGrades_readsFromUserDefaults_true() {
         env.userDefaults?.showGradesOnDashboard = true
 
-        testee = CoursesAndGroupsWidgetSettingsViewModel(env: env)
+        testee = makeViewModel()
 
         XCTAssertEqual(testee.showGrades, true)
     }
@@ -43,7 +43,7 @@ final class CoursesAndGroupsWidgetSettingsViewModelTests: StudentTestCase {
     func test_init_showGrades_readsFromUserDefaults_false() {
         env.userDefaults?.showGradesOnDashboard = false
 
-        testee = CoursesAndGroupsWidgetSettingsViewModel(env: env)
+        testee = makeViewModel()
 
         XCTAssertEqual(testee.showGrades, false)
     }
@@ -53,7 +53,7 @@ final class CoursesAndGroupsWidgetSettingsViewModelTests: StudentTestCase {
     func test_init_showColorOverlay_readsFromCoreData() {
         _ = UserSettings.save(.make(hide_dashcard_color_overlays: true), in: databaseClient)
 
-        testee = CoursesAndGroupsWidgetSettingsViewModel(env: env)
+        testee = makeViewModel()
 
         XCTAssertEqual(testee.showColorOverlay, false)
     }
@@ -62,7 +62,7 @@ final class CoursesAndGroupsWidgetSettingsViewModelTests: StudentTestCase {
 
     func test_setShowGrades_persistsToUserDefaults() {
         env.userDefaults?.showGradesOnDashboard = false
-        testee = CoursesAndGroupsWidgetSettingsViewModel(env: env)
+        testee = makeViewModel()
 
         testee.showGrades = true
 
@@ -72,7 +72,7 @@ final class CoursesAndGroupsWidgetSettingsViewModelTests: StudentTestCase {
     // MARK: - setShowColorOverlay
 
     func test_setShowColorOverlay_makesApiCall() {
-        testee = CoursesAndGroupsWidgetSettingsViewModel(env: env)
+        testee = makeViewModel()
 
         let apiExpectation = expectation(description: "PUT users/self/settings called")
         let request = PutUserSettingsRequest(
@@ -89,5 +89,38 @@ final class CoursesAndGroupsWidgetSettingsViewModelTests: StudentTestCase {
         testee.showColorOverlay = false
 
         waitForExpectations(timeout: 1)
+    }
+
+    // MARK: - Analytics
+
+    func test_showGrades_whenChanged_shouldLogCustomizationEvent() {
+        testee = makeViewModel()
+
+        testee.showGrades = true
+
+        XCTAssertEqual(analytics.handleEventInput?.name, "dashboard_widget_customization")
+    }
+
+    func test_showColorOverlay_whenChanged_shouldLogCustomizationEvent() {
+        testee = makeViewModel()
+
+        testee.showColorOverlay = false
+
+        XCTAssertEqual(analytics.handleEventInput?.name, "dashboard_widget_customization")
+    }
+
+    func test_showGrades_whenChangedMultipleTimes_shouldLogOneEventPerChange() {
+        testee = makeViewModel()
+
+        testee.showGrades = true
+        testee.showGrades = false
+
+        XCTAssertEqual(analytics.handleEventCallCount, 2)
+    }
+
+    // MARK: - Private helpers
+
+    private func makeViewModel() -> CoursesAndGroupsWidgetSettingsViewModel {
+        CoursesAndGroupsWidgetSettingsViewModel(env: env)
     }
 }

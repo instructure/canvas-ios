@@ -220,11 +220,7 @@ open class AppEnvironment {
 
     public func tabBar(isVisible: Bool) {
         let currentTabBar = (window?.rootViewController as? UITabBarController)
-        if #available(iOS 18, *) {
-            currentTabBar?.setTabBarHidden(!isVisible, animated: false)
-        } else {
-            currentTabBar?.tabBar.isHidden = !isVisible
-        }
+        currentTabBar?.setTabBarHidden(!isVisible, animated: false)
     }
 
     public func switchToTab(at index: Int) {

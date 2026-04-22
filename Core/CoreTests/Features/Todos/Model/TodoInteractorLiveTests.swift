@@ -24,7 +24,6 @@ import Combine
 class TodoInteractorLiveTests: CoreTestCase {
 
     private var testee: TodoInteractorLive!
-    private var mockAnalyticsHandler: MockAnalyticsHandler!
     private static let mockDate = Date.make(year: 2025, month: 1, day: 15, hour: 12)
 
     // MARK: - Setup and teardown
@@ -33,15 +32,12 @@ class TodoInteractorLiveTests: CoreTestCase {
         super.setUp()
         Clock.mockNow(Self.mockDate)
         environment.currentSession = LoginSession.make(userID: "1")
-        mockAnalyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = mockAnalyticsHandler
         let sessionDefaults = SessionDefaults(sessionID: "test")
         testee = TodoInteractorLive(alwaysExcludeCompleted: false, sessionDefaults: sessionDefaults, env: environment)
     }
 
     override func tearDown() {
         testee = nil
-        Analytics.shared.handler = nil
         Clock.reset()
         super.tearDown()
     }
@@ -440,7 +436,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         XCTAssertFinish(testee.markItemAsDone(item, done: true))
 
         // Then
-        XCTAssertEqual(mockAnalyticsHandler.lastEvent, "todo_item_marked_done")
+        XCTAssertEqual(analytics.handleEventInput?.name, "todo_item_marked_done")
     }
 
     func testMarkItemAsDone_logsAnalyticsEvent_whenMarkingAsUndone() {
@@ -472,7 +468,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         XCTAssertFinish(testee.markItemAsDone(item, done: false))
 
         // Then
-        XCTAssertEqual(mockAnalyticsHandler.lastEvent, "todo_item_marked_undone")
+        XCTAssertEqual(analytics.handleEventInput?.name, "todo_item_marked_undone")
     }
 
     func testMarkItemAsDone_doesNotLogAnalytics_whenAPICallFails() {
@@ -498,7 +494,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         XCTAssertFailure(testee.markItemAsDone(item, done: true))
 
         // Then
-        XCTAssertNil(mockAnalyticsHandler.lastEvent)
+        XCTAssertNil(analytics.handleEventInput?.name)
     }
 
     func test_refresh_logsFilterAnalytics() {
@@ -512,9 +508,9 @@ class TodoInteractorLiveTests: CoreTestCase {
         XCTAssertFinish(testee.refresh(ignorePlannablesCache: false, ignoreCoursesCache: false), timeout: 5)
 
         // THEN
-        XCTAssertNotNil(mockAnalyticsHandler.lastEvent)
-        XCTAssertTrue(mockAnalyticsHandler.lastEvent == "todo_list_loaded_default_filter" || mockAnalyticsHandler.lastEvent == "todo_list_loaded_custom_filter")
-        XCTAssertNotNil(mockAnalyticsHandler.lastEventParameters)
+        XCTAssertNotNil(analytics.handleEventInput?.name)
+        XCTAssertTrue(analytics.handleEventInput?.name == "todo_list_loaded_default_filter" || analytics.handleEventInput?.name == "todo_list_loaded_custom_filter")
+        XCTAssertNotNil(analytics.handleEventInput?.parameters)
     }
 
     // MARK: - alwaysExcludeCompleted Tests
@@ -739,7 +735,7 @@ class TodoInteractorLiveTests: CoreTestCase {
         XCTAssertFinish(testee.refresh(startDate: startDate, endDate: endDate, ignorePlannablesCache: false, ignoreCoursesCache: false))
 
         // THEN - filter analytics must NOT be logged for widget refresh
-        XCTAssertEqual(mockAnalyticsHandler.lastEvent, nil)
+        XCTAssertEqual(analytics.handleEventInput?.name, nil)
     }
 
     func test_widgetRefresh_includesCompletedItemsRegardlessOfFilterSettings() {

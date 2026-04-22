@@ -22,7 +22,7 @@ import SwiftUI
 enum LearnerDashboardSettingsAssembly {
 
     static func makeViewModel(
-        env: AppEnvironment = .shared,
+        env: AppEnvironment,
         colorInteractor: LearnerDashboardColorInteractor,
         onConfigsChanged: @escaping () -> Void
     ) -> LearnerDashboardSettingsViewModel {
@@ -37,7 +37,7 @@ enum LearnerDashboardSettingsAssembly {
             result[id] = id.makeSubSettingsView(env: env)
         }
 
-        let courseSettingsViewModel = LearnerDashboardSettingsWidgetsSectionViewModel(
+        let widgetsSectionViewModel = LearnerDashboardSettingsWidgetsSectionViewModel(
             userDefaults: defaults,
             configs: configs,
             username: username,
@@ -48,7 +48,7 @@ enum LearnerDashboardSettingsAssembly {
         let viewModel = LearnerDashboardSettingsViewModel(
             defaults: defaults,
             colorInteractor: colorInteractor,
-            courseSettingsViewModel: courseSettingsViewModel
+            widgetsSectionViewModel: widgetsSectionViewModel
         )
         return viewModel
     }

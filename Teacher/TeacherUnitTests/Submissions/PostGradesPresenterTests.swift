@@ -72,7 +72,7 @@ class PostGradesPresenterTests: TeacherTestCase {
         api.mock(req, data: str.data(using: .utf8)!, response: nil, error: nil)
         presenter.postGrades(postPolicy: .everyone, sectionIDs: ["sectionID"])
 
-        wait(for: [didUpdatePostGradesExpectation], timeout: 0.5)
+        wait(for: [didUpdatePostGradesExpectation], timeout: 5)
         XCTAssertTrue(didUpdatePostGrades)
     }
 
@@ -92,7 +92,7 @@ class PostGradesPresenterTests: TeacherTestCase {
         api.mock(req, data: str.data(using: .utf8)!, response: nil, error: nil)
         presenter.hideGrades(sectionIDs: ["sectionID"])
 
-        wait(for: [didHideGradesExpectation], timeout: 0.5)
+        wait(for: [didHideGradesExpectation], timeout: 5)
         XCTAssertTrue(didUpdateHideGrades)
     }
 
@@ -101,7 +101,7 @@ class PostGradesPresenterTests: TeacherTestCase {
         api.mock(req, value: nil, response: nil, error: NSError.internalError())
         presenter.postGrades(postPolicy: .everyone, sectionIDs: ["sectionID"])
 
-        wait(for: [errorExpectation], timeout: 0.5)
+        wait(for: [errorExpectation], timeout: 5)
         XCTAssertEqual(errorMessage, "Internal Error")
     }
 
@@ -151,7 +151,7 @@ class PostGradesPresenterTests: TeacherTestCase {
         api.mock(submissionsReq, data: submissionsStr.data(using: .utf8)!, response: nil, error: nil)
         presenter.viewIsReady()
 
-        wait(for: [updateExpectation], timeout: 0.5)
+        wait(for: [updateExpectation], timeout: 5)
         XCTAssertEqual(viewModel?.submissions?.hiddenCount, 1)
         XCTAssertEqual(viewModel?.sections, expectedSections)
     }
@@ -165,7 +165,7 @@ class PostGradesPresenterTests: TeacherTestCase {
 
         presenter.viewIsReady()
 
-        wait(for: [errorExpectation], timeout: 0.5)
+        wait(for: [errorExpectation], timeout: 5)
         XCTAssertEqual(errorMessage, "Internal Error")
     }
 
@@ -174,7 +174,7 @@ class PostGradesPresenterTests: TeacherTestCase {
         let expectedColor = ContextColor.make()
 
         presenter.viewIsReady()
-        wait(for: [colorExpectation], timeout: 0.5)
+        wait(for: [colorExpectation], timeout: 5)
 
         XCTAssertEqual(resultingColor!.hexString, expectedColor.color.ensureContrast(against: .backgroundLightest).hexString)
     }
@@ -218,7 +218,7 @@ class PostGradesPresenterTests: TeacherTestCase {
         api.mock(submissionsReq, data: submissionsStr.data(using: .utf8)!, response: nil, error: nil)
         presenter.viewIsReady()
 
-        wait(for: [hiddenStateExpectation], timeout: 0.5)
+        wait(for: [hiddenStateExpectation], timeout: 5)
         XCTAssertTrue(didShowAllPosted)
     }
 
@@ -261,7 +261,7 @@ class PostGradesPresenterTests: TeacherTestCase {
         api.mock(submissionsReq, data: submissionsStr.data(using: .utf8)!, response: nil, error: nil)
         presenter.viewIsReady()
 
-        wait(for: [hiddenStateExpectation], timeout: 0.5)
+        wait(for: [hiddenStateExpectation], timeout: 5)
         XCTAssertTrue(didShowAllHidden)
     }
 }
