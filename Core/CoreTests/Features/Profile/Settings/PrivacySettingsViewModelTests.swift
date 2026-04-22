@@ -16,10 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Combine
 import CombineSchedulers
 import XCTest
 @testable import Core
+import TestsFoundation
 
 final class PrivacySettingsViewModelTests: CoreTestCase {
 
@@ -89,7 +89,7 @@ final class PrivacySettingsViewModelTests: CoreTestCase {
     func test_isAnalyticsEnabledBinding_whenSetConsentFails_shouldRevertValue() {
         interactor.getConsentIfRequiredResult = false
         testee.loadConsent()
-        interactor.setConsentPublisher = Publishers.typedFailure()
+        interactor.setConsentError = MockError()
 
         testee.isAnalyticsEnabledBinding.wrappedValue = true
 
@@ -99,7 +99,7 @@ final class PrivacySettingsViewModelTests: CoreTestCase {
     func test_isAnalyticsEnabledBinding_whenSetConsentFails_shouldShowSnackBar() {
         interactor.getConsentIfRequiredResult = false
         testee.loadConsent()
-        interactor.setConsentPublisher = Publishers.typedFailure()
+        interactor.setConsentError = MockError()
 
         testee.isAnalyticsEnabledBinding.wrappedValue = true
 

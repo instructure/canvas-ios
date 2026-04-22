@@ -24,20 +24,19 @@ public protocol AnalyticsConsentInteractor {
     /// Returns whether analytics tracking is enabled.
     /// - Returns `true` or `false` if feature flags govern that it's always enabled/disabled.
     ///   In this case no consent is required.
+    /// - Returns `false` if the user is masqueareding.
     /// - Returns `true` or `false` if consent is required and the user had already chosen.
     /// - Returns `nil` if consent is required but it's not yet provided by the user.
-    /// - Returns `false` if consent is required and the user is masqueareding.
-    ///   In this case the actual consent is ignored: tracking is disabled.
-    func isTrackingEnabled(ignoreConsentCache: Bool) -> AnyPublisher<Bool?, Error>
+    func isTrackingEnabled() -> AnyPublisher<Bool?, Error>
 
     /// Returns the value of the analytics tracking consent, if any.
     /// - Returns `true` or `false` if consent is required and the user had already chosen.
-    /// - Returns `false` if consent is required and the user is masqueareding.
     /// - Returns `nil` if consent is not required (or if the user had not yet provided it).
-    func getConsentIfRequired(ignoreConsentCache: Bool) -> AnyPublisher<Bool?, Error>
+    /// - Returns `nil` if the user is masqueareding.
+    func getConsentIfRequired(ignoreCache: Bool) -> AnyPublisher<Bool?, Error>
 
     /// Sets the consent to `value`.
-    func setConsent(_ value: Bool) -> AnyPublisher<Void, Error>
+    func setConsent(_ value: Bool) throws
 }
 
 extension AnalyticsConsentInteractor where Self == AnalyticsConsentInteractorLive {
@@ -50,6 +49,11 @@ public class AnalyticsConsentInteractorLive: AnalyticsConsentInteractor {
 
     private let featureFlagStore: ReactiveStore<GetEnvironmentFeatureFlags>
     private let consentStore: ReactiveStore<GetAnalyticsConsent>
+
+    private var userProvidedConsent: Bool? {
+        get { environment.userDefaults?.userProvidedAnalyticsConsent }
+        set { environment.userDefaults?.userProvidedAnalyticsConsent = newValue }
+    }
 
     private let environment: AppEnvironment
 
@@ -67,89 +71,68 @@ public class AnalyticsConsentInteractorLive: AnalyticsConsentInteractor {
         )
     }
 
-    public func isTrackingEnabled(ignoreConsentCache: Bool) -> AnyPublisher<Bool?, Error> {
+    public func isTrackingEnabled() -> AnyPublisher<Bool?, Error> {
         featureFlagStore
             .getEntities()
-            .flatMap { [weak self] featureFlags -> AnyPublisher<Bool?, Error> in
-                guard let self else { return Publishers.typedEmpty() }
+            .map { [weak self] featureFlags in
+                guard let self else { return nil }
 
-                guard featureFlags.isFeatureEnabled(.send_usage_metrics) else {
-                    storeUserProvidedAnalyticsConsent(nil)
-                    return Publishers.typedJust(false)
+                if let value = isTrackingEnabledPreConsent(featureFlags: featureFlags) {
+                    clearUserProvidedConsent()
+                    return value
                 }
 
-                if featureFlags.isFeatureEnabled(.cookie_consent_necessary) {
-                    return getConsent(ignoreCache: ignoreConsentCache)
-                } else {
-                    storeUserProvidedAnalyticsConsent(nil)
-                    return Publishers.typedJust(true)
-                }
+                return userProvidedConsent
             }
             .eraseToAnyPublisher()
     }
 
-    public func getConsentIfRequired(ignoreConsentCache: Bool) -> AnyPublisher<Bool?, Error> {
+    public func getConsentIfRequired(ignoreCache: Bool) -> AnyPublisher<Bool?, Error> {
         featureFlagStore
-            .getEntities()
-            .flatMap { [weak self] featureFlags -> AnyPublisher<Bool?, Error> in
-                guard let self else { return Publishers.typedEmpty() }
-
-                let isConsentRequired = featureFlags.isFeatureEnabled(.send_usage_metrics)
-                    && featureFlags.isFeatureEnabled(.cookie_consent_necessary)
-
-                if isConsentRequired {
-                    return getConsent(ignoreCache: ignoreConsentCache)
-                } else {
-                    storeUserProvidedAnalyticsConsent(nil)
-                    return Publishers.typedJust(nil)
-                }
-            }
-            .eraseToAnyPublisher()
-    }
-
-    private func getConsent(ignoreCache: Bool) -> AnyPublisher<Bool?, Error> {
-        if isMasqueareding {
-            storeUserProvidedAnalyticsConsent(false)
-            return Publishers.typedJust(false)
-        }
-
-        return consentStore
             .getEntities(ignoreCache: ignoreCache)
-            .map { [weak self] entities in
-                let value = entities.first?.consentValue
-                self?.storeUserProvidedAnalyticsConsent(value)
-                return value
+            .map { [weak self] featureFlags in
+                guard let self else { return nil }
+
+                if isTrackingEnabledPreConsent(featureFlags: featureFlags) != nil {
+                    clearUserProvidedConsent()
+                    return nil
+                }
+
+                return userProvidedConsent
             }
             .eraseToAnyPublisher()
     }
 
-    public func setConsent(_ value: Bool) -> AnyPublisher<Void, Error> {
+    private func isTrackingEnabledPreConsent(featureFlags: [FeatureFlag]) -> Bool? {
         if isMasqueareding {
-            return Publishers.typedFailure(error: AnalyticsConsentError())
+            return false
         }
 
-        return ReactiveStore(
-            useCase: PutAnalyticsConsent(app: environment.app ?? .student, value: value),
-            backgroundEnv: environment
-        )
-        .getEntities(ignoreCache: true)
-        .map { [weak self] _ in
-            self?.storeUserProvidedAnalyticsConsent(value)
-            return
+        guard featureFlags.isFeatureEnabled(.send_usage_metrics) else {
+            return false
         }
-        .eraseToAnyPublisher()
+
+        if featureFlags.isFeatureEnabled(.cookie_consent_necessary) {
+            return nil
+        } else {
+            return true
+        }
+    }
+
+    public func setConsent(_ value: Bool) throws {
+        if isMasqueareding {
+            throw AnalyticsConsentError()
+        }
+
+        userProvidedConsent = value
     }
 
     private var isMasqueareding: Bool {
         AppEnvironment.shared.currentSession?.masquerader != nil
     }
 
-    /// Stores user's consent in UserDefaults to allow for sync readout.
-    /// This sync usage is needed in `GetWebSessionRequest`.
-    /// It's only supposed to have a value when consent is actualy required
-    /// and the user already accepted/declined.
-    private func storeUserProvidedAnalyticsConsent(_ value: Bool?) {
-        environment.userDefaults?.userProvidedAnalyticsConsent = value
+    private func clearUserProvidedConsent() {
+        userProvidedConsent = nil
     }
 }
 

@@ -112,7 +112,7 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
             return Publishers.typedJust(false)
         }
 
-        return consentInteractor.isTrackingEnabled(ignoreConsentCache: true)
+        return consentInteractor.isTrackingEnabled()
             .receive(on: DispatchQueue.main)
             .flatMap { [weak self] isEnabled -> AnyPublisher<Bool, Error> in
                 // If the user had already chosen or the feature flags enforce something
@@ -128,26 +128,16 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
     }
 
     private func showAndHandleConsentDialog() -> AnyPublisher<Bool, Error> {
-        Future { promise in
+        Future<Bool, Never> { promise in
             UIAlertController.showAnalyticsConsentDialog { consentFromDialog in
                 promise(.success(consentFromDialog))
             }
         }
-        .flatMap { [weak self] value in
-            self?.setConsent(value)
-                ?? Publishers.typedEmpty()
+        .tryMap { [weak self] value in
+            try self?.consentInteractor?.setConsent(value)
+            return value
         }
         .eraseToAnyPublisher()
-    }
-
-    private func setConsent(_ value: Bool) -> AnyPublisher<Bool, Error> {
-        guard let consentInteractor else {
-            return Publishers.typedJust(value)
-        }
-
-        return consentInteractor.setConsent(value)
-            .map { value }
-            .eraseToAnyPublisher()
     }
 
     @MainActor

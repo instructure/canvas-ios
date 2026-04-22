@@ -24,7 +24,6 @@ import TestsFoundation
 final class AnalyticsConsentInteractorLiveTests: CoreTestCase {
 
     private static let featureFlagRequest = GetEnvironmentFeatureFlagsRequest(context: .currentUser)
-    private static let consentRequest = GetAnalyticsConsentRequest(namespace: .student)
 
     private var testee: AnalyticsConsentInteractorLive!
 
@@ -45,7 +44,7 @@ final class AnalyticsConsentInteractorLiveTests: CoreTestCase {
         mockFeatureFlags(sendUsageMetrics: false, cookieConsentNecessary: false)
 
         XCTAssertSingleOutputEqualsAndFinish(
-            testee.isTrackingEnabled(ignoreConsentCache: true),
+            testee.isTrackingEnabled(),
             false
         )
     }
@@ -54,37 +53,36 @@ final class AnalyticsConsentInteractorLiveTests: CoreTestCase {
         mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: false)
 
         XCTAssertSingleOutputEqualsAndFinish(
-            testee.isTrackingEnabled(ignoreConsentCache: true),
+            testee.isTrackingEnabled(),
             true
         )
     }
 
     func test_isTrackingEnabled_whenConsentRequiredAndUserAccepted_shouldReturnTrue() {
+        environment.userDefaults?.userProvidedAnalyticsConsent = true
         mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: true)
-        mockConsent(.make(data: .init(mobile_consent: true)))
 
         XCTAssertSingleOutputEqualsAndFinish(
-            testee.isTrackingEnabled(ignoreConsentCache: true),
+            testee.isTrackingEnabled(),
             true
         )
     }
 
     func test_isTrackingEnabled_whenConsentRequiredAndUserDeclined_shouldReturnFalse() {
+        environment.userDefaults?.userProvidedAnalyticsConsent = false
         mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: true)
-        mockConsent(.make(data: .init(mobile_consent: false)))
 
         XCTAssertSingleOutputEqualsAndFinish(
-            testee.isTrackingEnabled(ignoreConsentCache: true),
+            testee.isTrackingEnabled(),
             false
         )
     }
 
     func test_isTrackingEnabled_whenConsentRequiredAndNotYetProvided_shouldReturnNil() {
         mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: true)
-        mockConsent(.make(message: APIAnalyticsConsent.HandledMessage.noData.rawValue))
 
         XCTAssertSingleOutputEqualsAndFinish(
-            testee.isTrackingEnabled(ignoreConsentCache: true),
+            testee.isTrackingEnabled(),
             nil
         )
     }
@@ -94,18 +92,18 @@ final class AnalyticsConsentInteractorLiveTests: CoreTestCase {
         mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: true)
 
         XCTAssertSingleOutputEqualsAndFinish(
-            testee.isTrackingEnabled(ignoreConsentCache: true),
+            testee.isTrackingEnabled(),
             false
         )
     }
 
-    func test_isTrackingEnabled_whenMasqueradingAndConsentNotRequired_shouldReturnTrue() {
+    func test_isTrackingEnabled_whenMasqueradingAndConsentNotRequired_shouldReturnFalse() {
         environment.currentSession = .make(masquerader: URL(string: "/"))
         mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: false)
 
         XCTAssertSingleOutputEqualsAndFinish(
-            testee.isTrackingEnabled(ignoreConsentCache: true),
-            true
+            testee.isTrackingEnabled(),
+            false
         )
     }
 
@@ -115,48 +113,47 @@ final class AnalyticsConsentInteractorLiveTests: CoreTestCase {
         mockFeatureFlags(sendUsageMetrics: false, cookieConsentNecessary: true)
 
         XCTAssertSingleOutputEqualsAndFinish(
-            testee.getConsentIfRequired(ignoreConsentCache: true),
+            testee.getConsentIfRequired(ignoreCache: true),
             nil
         )
     }
 
     func test_getConsentIfRequired_whenConsentRequiredAndUserAccepted_shouldReturnTrue() {
+        environment.userDefaults?.userProvidedAnalyticsConsent = true
         mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: true)
-        mockConsent(.make(data: .init(mobile_consent: true)))
 
         XCTAssertSingleOutputEqualsAndFinish(
-            testee.getConsentIfRequired(ignoreConsentCache: true),
+            testee.getConsentIfRequired(ignoreCache: true),
             true
         )
     }
 
     func test_getConsentIfRequired_whenConsentRequiredAndUserDeclined_shouldReturnFalse() {
+        environment.userDefaults?.userProvidedAnalyticsConsent = false
         mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: true)
-        mockConsent(.make(data: .init(mobile_consent: false)))
 
         XCTAssertSingleOutputEqualsAndFinish(
-            testee.getConsentIfRequired(ignoreConsentCache: true),
+            testee.getConsentIfRequired(ignoreCache: true),
             false
         )
     }
 
     func test_getConsentIfRequired_whenConsentRequiredAndNotYetProvided_shouldReturnNil() {
         mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: true)
-        mockConsent(.make(message: APIAnalyticsConsent.HandledMessage.noData.rawValue))
 
         XCTAssertSingleOutputEqualsAndFinish(
-            testee.getConsentIfRequired(ignoreConsentCache: true),
+            testee.getConsentIfRequired(ignoreCache: true),
             nil
         )
     }
 
-    func test_getConsentIfRequired_whenMasqueradingAndConsentRequired_shouldReturnFalse() {
+    func test_getConsentIfRequired_whenMasqueradingAndConsentRequired_shouldReturnNil() {
         environment.currentSession = .make(masquerader: URL(string: "/"))
         mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: true)
 
         XCTAssertSingleOutputEqualsAndFinish(
-            testee.getConsentIfRequired(ignoreConsentCache: true),
-            false
+            testee.getConsentIfRequired(ignoreCache: true),
+            nil
         )
     }
 
@@ -165,27 +162,21 @@ final class AnalyticsConsentInteractorLiveTests: CoreTestCase {
         mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: false)
 
         XCTAssertSingleOutputEqualsAndFinish(
-            testee.getConsentIfRequired(ignoreConsentCache: true),
+            testee.getConsentIfRequired(ignoreCache: true),
             nil
         )
     }
 
     // MARK: - setConsent
 
-    func test_setConsent_shouldPersistConsentValueInCoreData() {
-        let putRequest = PutAnalyticsConsentRequest(namespace: .student, value: true)
-        api.mock(putRequest, value: .make(data: .init(mobile_consent: true)))
-
-        XCTAssertFinish(testee.setConsent(true))
-
-        let stored: [CDAnalyticsConsent] = databaseClient.fetch()
-        XCTAssertEqual(stored.first?.consentValue, true)
+    func test_setConsent_shouldNotThrow() {
+        XCTAssertNoThrow(try testee.setConsent(true))
     }
 
-    func test_setConsent_whenMasquerading_shouldFail() {
+    func test_setConsent_whenMasquerading_shouldThrow() {
         environment.currentSession = .make(masquerader: URL(string: "/"))
 
-        XCTAssertFailure(testee.setConsent(true))
+        XCTAssertThrowsError(try testee.setConsent(true))
     }
 
     // MARK: - Storing consent in session defaults
@@ -194,7 +185,7 @@ final class AnalyticsConsentInteractorLiveTests: CoreTestCase {
         environment.userDefaults?.userProvidedAnalyticsConsent = true
         mockFeatureFlags(sendUsageMetrics: false, cookieConsentNecessary: false)
 
-        XCTAssertFinish(testee.isTrackingEnabled(ignoreConsentCache: true))
+        XCTAssertFinish(testee.isTrackingEnabled())
 
         XCTAssertEqual(environment.userDefaults?.userProvidedAnalyticsConsent, nil)
     }
@@ -203,35 +194,32 @@ final class AnalyticsConsentInteractorLiveTests: CoreTestCase {
         environment.userDefaults?.userProvidedAnalyticsConsent = true
         mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: false)
 
-        XCTAssertFinish(testee.isTrackingEnabled(ignoreConsentCache: true))
+        XCTAssertFinish(testee.isTrackingEnabled())
 
         XCTAssertEqual(environment.userDefaults?.userProvidedAnalyticsConsent, nil)
     }
 
-    func test_isTrackingEnabled_whenConsentRequired_shouldStoreConsentValueInSessionDefaults() {
+    func test_isTrackingEnabled_whenConsentRequired_shouldPreserveConsentInSessionDefaults() {
+        environment.userDefaults?.userProvidedAnalyticsConsent = true
         mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: true)
-        mockConsent(.make(data: .init(mobile_consent: true)))
 
-        XCTAssertFinish(testee.isTrackingEnabled(ignoreConsentCache: true))
+        XCTAssertFinish(testee.isTrackingEnabled())
 
         XCTAssertEqual(environment.userDefaults?.userProvidedAnalyticsConsent, true)
     }
 
-    func test_isTrackingEnabled_whenMasqueradingAndConsentRequired_shouldStoreConsentValueFalseInSessionDefaults() {
+    func test_isTrackingEnabled_whenMasqueradingAndConsentRequired_shouldClearConsentInSessionDefaults() {
         environment.currentSession = .make(masquerader: URL(string: "/"))
         environment.userDefaults?.userProvidedAnalyticsConsent = true
         mockFeatureFlags(sendUsageMetrics: true, cookieConsentNecessary: true)
 
-        XCTAssertFinish(testee.isTrackingEnabled(ignoreConsentCache: true))
+        XCTAssertFinish(testee.isTrackingEnabled())
 
-        XCTAssertEqual(environment.userDefaults?.userProvidedAnalyticsConsent, false)
+        XCTAssertEqual(environment.userDefaults?.userProvidedAnalyticsConsent, nil)
     }
 
     func test_setConsent_shouldStoreConsentValueInSessionDefaults() {
-        let putRequest = PutAnalyticsConsentRequest(namespace: .student, value: true)
-        api.mock(putRequest, value: .make(data: .init(mobile_consent: true)))
-
-        XCTAssertFinish(testee.setConsent(true))
+        XCTAssertNoThrow(try testee.setConsent(true))
 
         XCTAssertEqual(environment.userDefaults?.userProvidedAnalyticsConsent, true)
     }
@@ -246,9 +234,5 @@ final class AnalyticsConsentInteractorLiveTests: CoreTestCase {
                 "cookie_consent_necessary": cookieConsentNecessary
             ]
         )
-    }
-
-    private func mockConsent(_ response: APIAnalyticsConsent) {
-        api.mock(Self.consentRequest, value: response)
     }
 }

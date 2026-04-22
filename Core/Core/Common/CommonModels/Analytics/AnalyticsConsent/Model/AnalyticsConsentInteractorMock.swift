@@ -27,7 +27,7 @@ public final class AnalyticsConsentInteractorMock: AnalyticsConsentInteractor {
 
     public var isTrackingEnabledResult: Bool? = false
 
-    public func isTrackingEnabled(ignoreConsentCache: Bool) -> AnyPublisher<Bool?, Error> {
+    public func isTrackingEnabled() -> AnyPublisher<Bool?, Error> {
         Publishers.typedJust(isTrackingEnabledResult)
     }
 
@@ -35,7 +35,7 @@ public final class AnalyticsConsentInteractorMock: AnalyticsConsentInteractor {
 
     public var getConsentIfRequiredResult: Bool?
 
-    public func getConsentIfRequired(ignoreConsentCache: Bool) -> AnyPublisher<Bool?, Error> {
+    public func getConsentIfRequired(ignoreCache: Bool) -> AnyPublisher<Bool?, Error> {
         Publishers.typedJust(getConsentIfRequiredResult)
     }
 
@@ -43,11 +43,13 @@ public final class AnalyticsConsentInteractorMock: AnalyticsConsentInteractor {
 
     public var setConsentCallCount = 0
     public var setConsentInput: Bool?
-    public var setConsentPublisher: AnyPublisher<Void, Error>?
+    public var setConsentError: Error?
 
-    public func setConsent(_ value: Bool) -> AnyPublisher<Void, Error> {
+    public func setConsent(_ value: Bool) throws {
         setConsentInput = value
         setConsentCallCount += 1
-        return setConsentPublisher ?? Publishers.typedJust()
+        if let setConsentError {
+            throw setConsentError
+        }
     }
 }
