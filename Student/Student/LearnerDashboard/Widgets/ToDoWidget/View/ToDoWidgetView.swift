@@ -26,7 +26,6 @@ struct ToDoWidgetView: View {
     private let viewModel: ToDoWidgetViewModel
     @State private var weekPagerProxy = WeekPagerProxy()
 
-    @AccessibilityFocusState private var isTitleFocused: Bool
     @AccessibilityFocusState private var isFirstItemFocused: Bool
 
     init(viewModel: ToDoWidgetViewModel) {
@@ -79,12 +78,10 @@ struct ToDoWidgetView: View {
             .font(.regular14, lineHeight: .fit)
             .foregroundStyle(.textDarkest)
             .accessibilityAddTraits(.isHeader)
-            .accessibilityFocused($isTitleFocused)
     }
 
     private var todayButton: some View {
         Button {
-            isTitleFocused = true // TODO: focus on the day button
             viewModel.didTapTodayButton()
             weekPagerProxy.scrollToToday()
         } label: {

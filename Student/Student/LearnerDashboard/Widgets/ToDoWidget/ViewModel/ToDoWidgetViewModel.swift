@@ -36,6 +36,7 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     private(set) var monthTitle: String = ""
 
     private(set) var isFirstItemFocused = false
+    private(set) var isTodayFocused = false
 
     private(set) var itemCountPerDay: [Date: Int] = [:]
     let listViewModel: ToDoWidgetListViewModel
@@ -198,6 +199,8 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
 
     func didTapTodayButton() {
         selectDay(Clock.now)
+
+        isTodayFocused.toggle()
     }
 
     func setWeek(absoluteOffset offset: Int) {

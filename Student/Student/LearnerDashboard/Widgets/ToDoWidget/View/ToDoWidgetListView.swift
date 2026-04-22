@@ -57,14 +57,3 @@ struct ToDoWidgetListView: View {
         )
     }
 }
-
-private extension View {
-    @ViewBuilder
-    func accessibilityFocused(_ focusState: AccessibilityFocusState<Bool>.Binding, when condition: Bool) -> some View {
-        if condition {
-            self.accessibilityFocused(focusState)
-        } else {
-            self
-        }
-    }
-}
