@@ -35,6 +35,8 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
     private(set) var yearTitle: String?
     private(set) var monthTitle: String = ""
 
+    private(set) var isFirstItemFocused = false
+
     private(set) var itemCountPerDay: [Date: Int] = [:]
     let listViewModel: ToDoWidgetListViewModel
 
@@ -185,6 +187,13 @@ final class ToDoWidgetViewModel: DashboardWidgetViewModel {
 
     func didTapDay(_ date: Date) {
         selectDay(date)
+
+        Task {
+            try? await Task.sleep(for: .seconds(0.5))
+            if state == .data {
+                isFirstItemFocused.toggle()
+            }
+        }
     }
 
     func didTapTodayButton() {

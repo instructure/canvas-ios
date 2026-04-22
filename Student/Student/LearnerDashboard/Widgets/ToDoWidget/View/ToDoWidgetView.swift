@@ -27,6 +27,7 @@ struct ToDoWidgetView: View {
     @State private var weekPagerProxy = WeekPagerProxy()
 
     @AccessibilityFocusState private var isTitleFocused: Bool
+    @AccessibilityFocusState private var isFirstItemFocused: Bool
 
     init(viewModel: ToDoWidgetViewModel) {
         self.viewModel = viewModel
@@ -272,7 +273,10 @@ struct ToDoWidgetView: View {
     }
 
     private var listDayView: some View {
-        ToDoWidgetListView(viewModel: viewModel.listViewModel)
+        ToDoWidgetListView(viewModel: viewModel.listViewModel, isFirstItemFocused: _isFirstItemFocused)
+            .onChange(of: viewModel.isFirstItemFocused) {
+                isFirstItemFocused = true
+            }
     }
 
     private var addToDoButton: some View {
