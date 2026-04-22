@@ -97,7 +97,7 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Travaux"
+            "value" : "Travail"
           }
         },
         "fr-CA" : {
@@ -157,7 +157,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Whakataunga"
+            "value" : "Taumahi"
           }
         },
         "ms" : {
@@ -229,7 +229,7 @@
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "งาน"
+            "value" : "ภารกิจ"
           }
         },
         "vi" : {
@@ -420,7 +420,7 @@
         "mi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ngā Whakataunga"
+            "value" : "Whakataunga"
           }
         },
         "ms" : {

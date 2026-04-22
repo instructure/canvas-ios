@@ -93,6 +93,15 @@ class RouterTests: CoreTestCase {
         XCTAssertEqual(clean?.queryItems?[1], URLQueryItem(name: "u", value: "a&b"))
     }
 
+    func testRouteCleanURLMailtoScheme() {
+        var routedURL: URLComponents?
+        let router = Router(routes: []) { url, _, _, _ in
+            routedURL = url
+        }
+        router.route(to: .parse("mailto:user@example.com"), from: MockViewController())
+        XCTAssertEqual(routedURL?.url, URL(string: "mailto:user@example.com"))
+    }
+
     func testAddDoneButton() throws {
         let mockView = MockViewController()
         let router = Router(routes: [
