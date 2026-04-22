@@ -70,15 +70,15 @@ struct AnnouncementModel: Equatable, RelativeDateRepresentable {
     }
 
     var accessibilityCourseName: String {
-        String.localizedStringWithFormat(String(localized: "Course %@", bundle: .horizon), courseName.defaultToEmpty)
+        String.localizedStringWithFormat(String(localized: "Course: %@", bundle: .horizon), courseName.defaultToEmpty)
     }
 
     var accessibilityDate: String {
-        String.localizedStringWithFormat(String(localized: "Date %@", bundle: .horizon), dateFormatted)
+        String.localizedStringWithFormat(String(localized: "Date: %@", bundle: .horizon), dateFormatted)
     }
 
     var accessibilityTitle: String {
-        String.localizedStringWithFormat(String(localized: "Title %@", bundle: .horizon), title)
+        String.localizedStringWithFormat(String(localized: "Title: %@", bundle: .horizon), title)
     }
 
     static let mock: Self = .init(

@@ -29,16 +29,28 @@ class StudioVideoPosterInteractorLiveTests: CoreTestCase {
     )!
 
     func testGeneratesPoster() {
+        var subscriptions = Set<AnyCancellable>()
+        let finishedPosterCreationExpectation = expectation(description: "finishedPosterCreationExpectation")
+        var posterURL: URL?
+
         let testee = StudioVideoPosterInteractorLive()
         let expectedPosterURL = workingDirectory.appending(path: "123/poster.png")
+
         XCTAssertEqual(FileManager.default.fileExists(atPath: expectedPosterURL.path()), false)
 
         // WHEN
-        let posterURL = testee.createVideoPosterIfNeeded(
+        testee.createVideoPosterIfNeeded(
             isVideoCached: false,
             mediaFolder: mediaFolder,
             videoFile: videoURL
         )
+        .sink { url in
+            posterURL = url
+            finishedPosterCreationExpectation.fulfill()
+        }
+        .store(in: &subscriptions)
+
+        wait(for: [finishedPosterCreationExpectation], timeout: 1)
 
         // THEN
         XCTAssertEqual(FileManager.default.fileExists(atPath: expectedPosterURL.path()), true)
@@ -46,6 +58,10 @@ class StudioVideoPosterInteractorLiveTests: CoreTestCase {
     }
 
     func testSkipsPosterGenerationIfVideoIsCached() {
+        var subscriptions = Set<AnyCancellable>()
+        let finishedPosterCreationExpectation = expectation(description: "finishedPosterCreationExpectation")
+        var posterURL: URL?
+
         let posterFactoryNotCalled = expectation(description: "posterFactoryNotCalled")
         posterFactoryNotCalled.isInverted = true
         let testee = StudioVideoPosterInteractorLive { _, _ in
@@ -55,11 +71,18 @@ class StudioVideoPosterInteractorLiveTests: CoreTestCase {
         XCTAssertEqual(FileManager.default.fileExists(atPath: expectedPosterURL.path()), false)
 
         // WHEN
-        let posterURL = testee.createVideoPosterIfNeeded(
+        testee.createVideoPosterIfNeeded(
             isVideoCached: true,
             mediaFolder: mediaFolder,
             videoFile: videoURL
         )
+        .sink { url in
+            posterURL = url
+            finishedPosterCreationExpectation.fulfill()
+        }
+        .store(in: &subscriptions)
+
+        wait(for: [finishedPosterCreationExpectation], timeout: 1)
 
         // THEN
         XCTAssertEqual(FileManager.default.fileExists(atPath: expectedPosterURL.path()), false)
@@ -68,16 +91,27 @@ class StudioVideoPosterInteractorLiveTests: CoreTestCase {
     }
 
     func testSwallowsNoVideoTrackError() {
+        var subscriptions = Set<AnyCancellable>()
+        let finishedPosterCreationExpectation = expectation(description: "finishedPosterCreationExpectation")
+        var posterURL: URL?
+
         let testee = StudioVideoPosterInteractorLive { _, _ in
             throw NSError(domain: AVFoundationErrorDomain, code: AVError.Code.noSourceTrack.rawValue)
         }
 
         // WHEN
-        let posterURL = testee.createVideoPosterIfNeeded(
+        testee.createVideoPosterIfNeeded(
             isVideoCached: false,
             mediaFolder: mediaFolder,
             videoFile: videoURL
         )
+        .sink { url in
+            posterURL = url
+            finishedPosterCreationExpectation.fulfill()
+        }
+        .store(in: &subscriptions)
+
+        wait(for: [finishedPosterCreationExpectation], timeout: 1)
 
         // THEN
         XCTAssertEqual(posterURL, nil)
@@ -85,16 +119,27 @@ class StudioVideoPosterInteractorLiveTests: CoreTestCase {
     }
 
     func testReportsUnknownErrors() {
+        var subscriptions = Set<AnyCancellable>()
+        let finishedPosterCreationExpectation = expectation(description: "finishedPosterCreationExpectation")
+        var posterURL: URL?
+
         let testee = StudioVideoPosterInteractorLive { _, _ in
             throw NSError.instructureError("random error")
         }
 
         // WHEN
-        let posterURL = testee.createVideoPosterIfNeeded(
+        testee.createVideoPosterIfNeeded(
             isVideoCached: false,
             mediaFolder: mediaFolder,
             videoFile: videoURL
         )
+        .sink { url in
+            posterURL = url
+            finishedPosterCreationExpectation.fulfill()
+        }
+        .store(in: &subscriptions)
+
+        wait(for: [finishedPosterCreationExpectation], timeout: 1)
 
         // THEN
         XCTAssertEqual(posterURL, nil)

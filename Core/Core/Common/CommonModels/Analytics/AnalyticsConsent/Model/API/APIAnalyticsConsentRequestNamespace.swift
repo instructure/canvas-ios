@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2023-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,20 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Core
+import Foundation
 
-class MockAnalyticsHandler: AnalyticsHandler {
-    var lastEvent: String?
-    var lastEventParameters: [String: Any]?
-    var totalEventCount = 0
+enum APIAnalyticsConsentRequestNamespace: String {
+    case student = "MOBILE_CANVAS_STUDENT_COOKIE_CONSENT"
+    case teacher = "MOBILE_CANVAS_TEACHER_COOKIE_CONSENT"
+    case parent = "MOBILE_CANVAS_PARENT_COOKIE_CONSENT"
+}
 
-    func handleEvent(_ name: String, parameters: [String: Any]?) {
-        lastEvent = name
-        lastEventParameters = parameters
-        totalEventCount += 1
-    }
-
-    func lastEventParameter<T: Equatable>(_ key: String, ofType type: T.Type = T.self) -> T? {
-        lastEventParameters?[key] as? T
+extension AppEnvironment.App {
+    var consentNamespace: APIAnalyticsConsentRequestNamespace {
+        switch self {
+        case .student, .horizon: .student
+        case .teacher: .teacher
+        case .parent: .parent
+        }
     }
 }

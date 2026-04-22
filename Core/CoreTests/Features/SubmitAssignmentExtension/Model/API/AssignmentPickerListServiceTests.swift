@@ -139,9 +139,6 @@ class AssignmentPickerListServiceTests: CoreTestCase {
     }
 
     func testReportsNumberOfAssignments() {
-        let analyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = analyticsHandler
-
         api.mock(AssignmentPickerListRequest(courseID: "successID"), value: mockAssignments([
             .make(id: "A1", name: "online upload", submission_types: [.online_upload]),
             .make(id: "A2", name: "online upload", submission_types: [.online_upload])
@@ -151,24 +148,21 @@ class AssignmentPickerListServiceTests: CoreTestCase {
         testee.courseID = "successID"
         waitForExpectations(timeout: 1)
 
-        XCTAssertEqual(analyticsHandler.totalEventCount, 1)
-        XCTAssertEqual(analyticsHandler.lastEvent, "assignments_loaded")
-        XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: Int], ["count": 2])
+        XCTAssertEqual(analytics.handleEventCallCount, 1)
+        XCTAssertEqual(analytics.handleEventInput?.name, "assignments_loaded")
+        XCTAssertEqual(analytics.handleEventInput?.parameters as? [String: Int], ["count": 2])
     }
 
     func testReportsAssignmentLoadFailure() {
-        let analyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = analyticsHandler
-
         api.mock(AssignmentPickerListRequest(courseID: "failureID"), error: NSError.instructureError("custom error"))
 
         expect()
         testee.courseID = "failureID"
         waitForExpectations(timeout: 1)
 
-        XCTAssertEqual(analyticsHandler.totalEventCount, 1)
-        XCTAssertEqual(analyticsHandler.lastEvent, "error_loading_assignments")
-        XCTAssertEqual(analyticsHandler.lastEventParameters as? [String: String], ["error": "custom error"])
+        XCTAssertEqual(analytics.handleEventCallCount, 1)
+        XCTAssertEqual(analytics.handleEventInput?.name, "error_loading_assignments")
+        XCTAssertEqual(analytics.handleEventInput?.parameters as? [String: String], ["error": "custom error"])
     }
 
     private func mockAssignments(_ assignments: [AssignmentPickerListResponse.Assignment], pageInfo: APIPageInfo? = nil) -> AssignmentPickerListRequest.Response {

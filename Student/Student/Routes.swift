@@ -17,6 +17,7 @@
 //
 
 import Core
+import InstUI
 import UIKit
 
 let academicRouter = Router(routes: [
@@ -441,6 +442,9 @@ let academicRouter = Router(routes: [
 
     RouteHandler("/dev-menu/aui-storybook") { _, _, _ in
         CoreHostingController(AUI.Storybook())
+    },
+    RouteHandler("/dev-menu/instui-storybook") { _, _, _ in
+        CoreHostingController(InstUI.Storybook())
     },
 
     RouteHandler("/logs") { _, _, _ in

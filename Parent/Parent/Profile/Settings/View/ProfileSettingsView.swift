@@ -48,6 +48,7 @@ struct ProfileSettingsView_Previews: PreviewProvider {
     static let viewModel = ProfileSettingsViewModel(
         inboxSettingsInteractor: InboxSettingsInteractorPreview(),
         offlineInteractor: OfflineModeInteractorMock(),
+        analyticsConsentInteractor: AnalyticsConsentInteractorMock(),
         environment: env
     )
 
