@@ -27,7 +27,8 @@ final class AccountAssembly {
         return AccountView(
             viewModel: AccountViewModel(
                 getUserInteractor: GetUserInteractorLive(),
-                onShowTabBar: onShowTabBar
+                offlineModeInteractor: OfflineModeAssembly.make(),
+                onShowTabBar: onShowTabBar,
             ), onShowTabBar: onShowTabBar
         )
     }
@@ -36,7 +37,8 @@ final class AccountAssembly {
     static func makePreview() -> AccountView {
         let getUserInteractorPreview = GetUserInteractorPreview()
         let viewModel = AccountViewModel(
-            getUserInteractor: getUserInteractorPreview
+            getUserInteractor: getUserInteractorPreview,
+            offlineModeInteractor: OfflineModeAssembly.make(),
         ) { _ in }
         return AccountView(viewModel: viewModel) { _ in }
     }

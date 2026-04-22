@@ -18,7 +18,7 @@
 
 import Foundation
 
-protocol LocalFileURLCreator {
+public protocol LocalFileURLCreator {
     func prepareLocalURL(
         fileName: String,
         mimeClass: String,
@@ -26,7 +26,7 @@ protocol LocalFileURLCreator {
     ) -> URL
 }
 
-extension LocalFileURLCreator {
+public extension LocalFileURLCreator {
     func prepareLocalURL(
         fileName: String,
         mimeClass: String,

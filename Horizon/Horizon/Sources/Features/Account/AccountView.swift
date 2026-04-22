@@ -168,27 +168,35 @@ struct AccountView: View {
                 divider
                 AccountEntryRowView(
                     title: String(localized: "Advanced", bundle: .horizon),
+                    isLastItem: !viewModel.isOfflineModeEnabled,
                     didTapRow: {
                         lastFocusedId = SettingIDs.advanced.rawValue
                         viewModel.advancedDidTap(viewController: viewController)
                     }
                 )
                 .accessibilityFocused($focusedSettingID, equals: SettingIDs.advanced.rawValue)
-                divider
-                AccountEntryRowView(
-                    title: String(localized: "Offline settings", bundle: .horizon),
-                    isLastItem: true,
-                    didTapRow: {
-                        lastFocusedId = SettingIDs.offlineSync.rawValue
-                        viewModel.syncSettingsDidTap(viewController: viewController)
-                    }
-                )
-                .accessibilityFocused($focusedSettingID, equals: SettingIDs.offlineSync.rawValue)
+
+                if viewModel.isOfflineModeEnabled {
+                    divider
+                    offlineSettingsView
+                }
             }
         }
         .onAppear {
             viewModel.getUserName()
         }
+    }
+
+    private var offlineSettingsView: some View {
+        AccountEntryRowView(
+            title: String(localized: "Offline settings", bundle: .horizon),
+            isLastItem: true,
+            didTapRow: {
+                lastFocusedId = SettingIDs.offlineSync.rawValue
+                viewModel.syncSettingsDidTap(viewController: viewController)
+            }
+        )
+        .accessibilityFocused($focusedSettingID, equals: SettingIDs.offlineSync.rawValue)
     }
 
     private var divider: some View {

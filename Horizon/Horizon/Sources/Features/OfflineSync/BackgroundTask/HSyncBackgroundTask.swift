@@ -22,29 +22,44 @@ import Core
 public final class HSyncBackgroundTask: BackgroundTask {
     private let sessions: [LoginSession]
     private let lastLoggedInSession: LoginSession?
-    private let scheduleInteractor: any HSyncScheduleInteractor
+    private let scheduleInteractor: HSyncScheduleInteractor
+    private let networkAvailabilityService: NetworkAvailabilityService
+    private let courseSyncInteractor: HCourseSyncInteractor
     private var isCancelled = false
     private var subscriptions = Set<AnyCancellable>()
 
     public init(
-        syncableAccounts: any HSyncAccountsInteractor,
+        syncableAccounts: HSyncAccountsInteractor,
         sessions: Set<LoginSession>,
-        scheduleInteractor: any HSyncScheduleInteractor = HSyncScheduleInteractorLive()
+        scheduleInteractor: HSyncScheduleInteractor = HSyncScheduleInteractorLive(),
+        networkAvailabilityService: NetworkAvailabilityService = NetworkAvailabilityServiceLive(),
+        courseSyncInteractor: HCourseSyncInteractor
     ) {
         self.sessions = syncableAccounts.calculate(Array(sessions), date: Clock.now)
         self.lastLoggedInSession = LoginSession.mostRecent
         self.scheduleInteractor = scheduleInteractor
+        self.networkAvailabilityService = networkAvailabilityService
+        self.courseSyncInteractor = courseSyncInteractor
     }
 
     public func start(completion: @escaping () -> Void) {
         Logger.shared.log("Horizon: Background sync started with \(sessions.count) session(s).")
-        syncNextSession(in: sessions, completion: completion)
+        networkAvailabilityService.startMonitoring()
+        networkAvailabilityService
+            .startObservingStatus()
+            .compactMap { $0 }
+            .first()
+            .sink { [sessions, weak self] _ in
+                self?.syncNextSession(in: sessions, completion: completion)
+            } receiveValue: { _ in }
+            .store(in: &subscriptions)
     }
 
     public func cancel() {
         Logger.shared.log("Horizon: Background sync cancelled.")
         isCancelled = true
         subscriptions.removeAll()
+        networkAvailabilityService.stopMonitoring()
         restoreLastLoggedInSession()
         scheduleInteractor.scheduleNextSync()
     }
@@ -52,7 +67,10 @@ public final class HSyncBackgroundTask: BackgroundTask {
     // MARK: - Private
 
     private func syncNextSession(in sessions: [LoginSession], completion: @escaping () -> Void) {
-        guard !isCancelled else { return }
+        guard !isCancelled else {
+            Logger.shared.log("Horizon Offline: Sync cancelled, aborting next account sync.")
+            return
+        }
 
         guard let session = sessions.first else {
             return handleSyncCompleted(completion: completion)
@@ -61,26 +79,82 @@ public final class HSyncBackgroundTask: BackgroundTask {
         Logger.shared.log("Horizon: Syncing session \(session.uniqueID).")
         AppEnvironment.shared.userDidLogin(session: session, isSilent: true)
 
-        GetCoursesInteractorLive(userId: session.userID)
-            .getCoursesWithoutModules(ignoreCache: true)
+        let sessionDefaults = SessionDefaults(sessionID: session.uniqueID)
+
+        if sessionDefaults.isOfflineWifiOnlySyncEnabled == true, networkAvailabilityService.status == .connected(.cellular) {
+            Logger.shared.log("Offline: Wifi only sync is selected but wifi not available, postponing.")
+            scheduleInteractor.updateNextSyncDate(sessionUniqueID: session.uniqueID)
+            removeCompletedSessionAndStartNextSync(sessions: sessions, completion: completion)
+            return
+        }
+
+        let courses = buildCourses(from: sessionDefaults)
+
+        courseSyncInteractor.downloadContent(courses: courses, environment: AppEnvironment.shared)
+        courseSyncInteractor.progressPublisher
+            .filter(\.isComplete)
             .first()
-            .sink(
-                receiveCompletion: { [weak self] _ in
-                    self?.scheduleInteractor.updateNextSyncDate(sessionUniqueID: session.uniqueID)
-                    var remaining = sessions
-                    remaining.removeFirst()
-                    self?.syncNextSession(in: remaining, completion: completion)
-                },
-                receiveValue: { _ in }
-            )
+            .sink { [weak self] _ in
+                self?.scheduleInteractor.updateNextSyncDate(sessionUniqueID: session.uniqueID)
+                self?.removeCompletedSessionAndStartNextSync(sessions: sessions, completion: completion)
+            }
             .store(in: &subscriptions)
+    }
+
+    private func buildCourses(from sessionDefaults: SessionDefaults) -> [OfflineCourseItem] {
+        let types = sessionDefaults.horizonOfflineSyncItems.compactMap { OfflineType.parse(path: $0) }
+        let fileMetadata = sessionDefaults.horizonOfflineSyncFileMetadata
+
+        var courseFilesMap: [String: [String]] = [:]
+        var courseOnlyIDs: Set<String> = []
+
+        for type in types {
+            switch type {
+            case .course(let id):
+                courseOnlyIDs.insert(id)
+            case .file(let courseID, let fileID):
+                courseFilesMap[courseID, default: []].append(fileID)
+            default:
+                break
+            }
+        }
+
+        return courseOnlyIDs.union(Set(courseFilesMap.keys)).map { courseID in
+            let fileItems = (courseFilesMap[courseID] ?? []).compactMap { fileID -> OfflineFileItem? in
+                guard let info = fileMetadata[fileID] else { return nil }
+                return OfflineFileItem(
+                    id: fileID,
+                    name: info["name"] as? String ?? "",
+                    size: "",
+                    sizeInBytes: info["sizeInBytes"] as? Double ?? 0,
+                    isSelected: true,
+                    mimeClass: info["mimeClass"] as? String ?? "",
+                    courseID: courseID
+                )
+            }
+            return OfflineCourseItem(
+                id: courseID,
+                name: "",
+                size: nil,
+                isExpanded: false,
+                isSelected: fileItems.isEmpty,
+                subItems: fileItems
+            )
+        }
     }
 
     private func handleSyncCompleted(completion: () -> Void) {
         Logger.shared.log("Horizon: Background sync completed.")
+        networkAvailabilityService.stopMonitoring()
         restoreLastLoggedInSession()
         scheduleInteractor.scheduleNextSync()
         completion()
+    }
+
+    private func removeCompletedSessionAndStartNextSync(sessions: [LoginSession], completion: @escaping () -> Void) {
+        var remaining = sessions
+        remaining.removeFirst()
+        syncNextSession(in: remaining, completion: completion)
     }
 
     private func restoreLastLoggedInSession() {

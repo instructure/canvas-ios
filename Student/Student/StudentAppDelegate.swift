@@ -496,9 +496,6 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
         willPresent _: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        guard environment.app != .horizon else {
-            return
-        }
         completionHandler([.banner, .sound])
     }
 

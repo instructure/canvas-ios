@@ -29,7 +29,7 @@ final class ManageOfflineContentInteractorLiveTests: HorizonTestCase {
 
     override func setUp() {
         super.setUp()
-        testee = ManageOfflineContentInteractorLive(userID: Self.userID)
+        testee = ManageOfflineContentInteractorLive(userID: Self.userID, session: .fallback)
     }
 
     override func tearDown() {

@@ -132,7 +132,7 @@ final class OfflineCourseItemTests: HorizonTestCase {
         entity.size = testData.courseSize
         entity.files = []
 
-        let testee = OfflineCourseItem(from: entity)
+        let testee = OfflineCourseItem(from: entity, offlineSyncItems: [])
 
         XCTAssertEqual(testee.id, testData.courseID)
         XCTAssertEqual(testee.name, testData.courseName)
@@ -146,7 +146,7 @@ final class OfflineCourseItemTests: HorizonTestCase {
         entity.size = testData.courseSize
         entity.files = []
 
-        let testee = OfflineCourseItem(from: entity)
+        let testee = OfflineCourseItem(from: entity, offlineSyncItems: [])
 
         XCTAssertEqual(testee.isExpanded, false)
     }
@@ -158,7 +158,7 @@ final class OfflineCourseItemTests: HorizonTestCase {
         entity.size = testData.courseSize
         entity.files = []
 
-        let testee = OfflineCourseItem(from: entity)
+        let testee = OfflineCourseItem(from: entity, offlineSyncItems: [])
 
         XCTAssertEqual(testee.isSelected, false)
     }
@@ -177,7 +177,7 @@ final class OfflineCourseItemTests: HorizonTestCase {
         fileEntity.sizeInBytes = testData.subItemSizeInBytes1
         courseEntity.files = [fileEntity]
 
-        let testee = OfflineCourseItem(from: courseEntity)
+        let testee = OfflineCourseItem(from: courseEntity, offlineSyncItems: [])
 
         XCTAssertEqual(testee.files.count, 1)
         XCTAssertEqual(testee.files.first?.id, testData.subItemID1)

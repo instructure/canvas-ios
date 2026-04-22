@@ -50,7 +50,7 @@ public class LocalNotificationsInteractor {
         return notify(identifier: "upload-manager", title: title, body: body, route: nil)
     }
 
-    func sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: Int) -> Future<Void, Error> {
+   public func sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: Int) -> Future<Void, Error> {
         let title = String(localized: "Offline Content Sync Success", bundle: .core)
         let bodyFormat = String(localized: "offline_sync_finished", bundle: .core)
         let body = String.localizedStringWithFormat(bodyFormat, syncedItemsCount, syncedItemsCount)
@@ -75,7 +75,7 @@ public class LocalNotificationsInteractor {
         return isScheduled
     }
 
-    func sendOfflineSyncFailedNotification() -> Future<Void, Error> {
+    public func sendOfflineSyncFailedNotification() -> Future<Void, Error> {
         Future<Void, Error> { [self] promise in
             let isScheduled = sendOfflineSyncFailedNotificationAndWait()
             promise(isScheduled ? .success(()) : .failure(NSError.internalError()))

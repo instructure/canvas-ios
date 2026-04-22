@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,23 +16,25 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import BackgroundTasks
+#if DEBUG
+
+import Combine
 import Core
 
-public enum HBackgroundUpdatesAssembly {
+final class HCourseSyncInteractorPreview: HCourseSyncInteractor {
+    private let progressSubject = CurrentValueSubject<HOfflineSyncProgress, Never>(
+        HOfflineSyncProgress(progress: 0, downloadedSize: "", totalSize: "", isComplete: false)
+    )
 
-    public static func makeBackgroundTask() -> BackgroundTask {
-        HSyncBackgroundTask(
-            syncableAccounts: HSyncAccountsInteractorLive(),
-            sessions: LoginSession.sessions,
-            courseSyncInteractor: HCourseSyncInteractorLive(session: AppEnvironment.shared.userDefaults ?? .fallback)
-        )
+    var progressPublisher: AnyPublisher<HOfflineSyncProgress, Never> {
+        progressSubject.eraseToAnyPublisher()
     }
 
-    public static func makeTaskRequest() -> BGProcessingTaskRequest? {
-        HSyncBackgroundTaskRequest(
-            nextSyncDate: HSyncNextDateInteractorLive(),
-            sessions: LoginSession.sessions
-        )
+    func downloadContent(courses: [OfflineCourseItem], environment: AppEnvironment) {
+        progressSubject.send(HOfflineSyncProgress(progress: 0.5, downloadedSize: "50 MB", totalSize: "100 MB", isComplete: false))
     }
+
+    func clear() {}
 }
+
+#endif

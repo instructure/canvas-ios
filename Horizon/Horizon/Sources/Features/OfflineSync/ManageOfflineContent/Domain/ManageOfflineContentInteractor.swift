@@ -25,19 +25,22 @@ protocol ManageOfflineContentInteractor {
 
 final class ManageOfflineContentInteractorLive: ManageOfflineContentInteractor {
     // MARK: - Dependencies
+
     private let userID: String
+    private let session: SessionDefaults
 
     // MARK: - Init
 
-    init(userID: String) {
+    init(userID: String, session: SessionDefaults) {
         self.userID = userID
+        self.session = session
     }
 
     func getCourses(ignoreCache: Bool) -> AnyPublisher<[OfflineCourseItem], Error> {
         ReactiveStore(useCase: GetHCourseSelectionUseCase(userId: userID))
             .getEntities(ignoreCache: ignoreCache)
-            .map { courses in
-                courses.map { OfflineCourseItem(from: $0) }
+            .map { [session] courses in
+                courses.map { OfflineCourseItem(from: $0, offlineSyncItems: session.horizonOfflineSyncItems) }
             }
             .eraseToAnyPublisher()
     }

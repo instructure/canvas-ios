@@ -21,13 +21,17 @@ import UIKit
 
 struct ManageOfflineAssembly {
     static func makeView() -> UIViewController {
+        let env = AppEnvironment.shared
+        let session = env.userDefaults ?? .fallback
         let interact = ManageOfflineContentInteractorLive(
-            userID: (AppEnvironment.shared.currentSession?.userID).defaultToEmpty
+            userID: (env.currentSession?.userID).defaultToEmpty,
+            session: session
         )
         let viewModel = ManageOfflineContentViewModel(
             interactor: interact,
             router: AppEnvironment.shared.router,
-            session: SessionDefaults(sessionID: (AppEnvironment.shared.currentSession?.uniqueID).defaultToEmpty)
+            session: session,
+            courseSyncInteractor: HCourseSyncInteractorLive(session: session)
         ) {
             AppEnvironment.shared.switchToTab(at: HorizonTabBarType.dashboard.index)
         }

@@ -61,7 +61,8 @@ final class ManageOfflineContentViewModel {
 
     private let interactor: ManageOfflineContentInteractor
     private let router: Router
-    private let session: SessionDefaults
+    private var session: SessionDefaults
+    private let courseSyncInteractor: HCourseSyncInteractor
     private let onSwitchDashboardTap: () -> Void
 
     // MARK: - Init
@@ -70,19 +71,21 @@ final class ManageOfflineContentViewModel {
         interactor: ManageOfflineContentInteractor,
         router: Router,
         session: SessionDefaults,
+        courseSyncInteractor: HCourseSyncInteractor,
         onSwitchDashboardTap: @escaping () -> Void
     ) {
         self.interactor = interactor
         self.router = router
         self.session = session
+        self.courseSyncInteractor = courseSyncInteractor
         self.onSwitchDashboardTap = onSwitchDashboardTap
-        fetchCourses(ignoreCache: false)
+        fetchCourses()
     }
 
     // MARK: - Private Functions
 
     private func fetchCourses(
-        ignoreCache: Bool,
+        ignoreCache: Bool = false,
         completion: (() -> Void)? = nil
     ) {
         interactor.getCourses(ignoreCache: ignoreCache)
@@ -92,8 +95,9 @@ final class ManageOfflineContentViewModel {
                 self?.isErrorVisible = true
                 completion?()
             } receiveValue: { [weak self] items in
-                self?.courses = items
-                self?.isLoaderVisible = false
+                guard let self else { return }
+                courses = items
+                isLoaderVisible = false
                 completion?()
             }
             .store(in: &subscriptions)
@@ -163,12 +167,15 @@ final class ManageOfflineContentViewModel {
 
     func presentConfirmation(type: OfflineConfirmationView.ConfirmationType, viewController: WeakViewController) {
         let confirmationView = OfflineConfirmationAssembly.makeView(type: type) { [weak self] in
+            guard let self else { return }
             switch type {
             case .remove:
-                debugPrint("Removed")
+                courseSyncInteractor.clear()
+                fetchCourses()
             case .download:
-                self?.router.popToRoot(from: viewController.value, animated: false)
-                self?.onSwitchDashboardTap()
+                NotificationCenter.default.post(name: .OfflineSyncTriggered, object: selectedCourses)
+                router.popToRoot(from: viewController.value, animated: false)
+                onSwitchDashboardTap()
             }
         }
         router.show(confirmationView, from: viewController, options: .modal(.fullScreen))

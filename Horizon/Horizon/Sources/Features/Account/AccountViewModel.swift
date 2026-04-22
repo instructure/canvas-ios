@@ -33,6 +33,7 @@ final class AccountViewModel {
 
     private(set) var name: String = ""
     private(set) var helpItems: [HelpModel] = []
+    private(set) var isOfflineModeEnabled = false
     var isShowingLogoutConfirmationAlert = false
     var isExperienceSwitchAvailable = false
     var isLoading = false
@@ -43,6 +44,7 @@ final class AccountViewModel {
     private let getUserInteractor: GetUserInteractor
     private let appExperienceInteractor: ExperienceSummaryInteractor
     private let careerHelpInteractor: CareerHelpInteractor
+    private let offlineModeInteractor: OfflineModeInteractor
     private let onShowTabBar: (Bool) -> Void
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
@@ -65,6 +67,7 @@ final class AccountViewModel {
         appExperienceInteractor: ExperienceSummaryInteractor = ExperienceSummaryInteractorLive(),
         sessionInteractor: SessionInteractor = SessionInteractor(),
         careerHelpInteractor: CareerHelpInteractor = CareerHelpInteractorLive(),
+        offlineModeInteractor: OfflineModeInteractor,
         scheduler: AnySchedulerOf<DispatchQueue> = .main,
         onShowTabBar: @escaping (Bool) -> Void
     ) {
@@ -73,6 +76,7 @@ final class AccountViewModel {
         self.appExperienceInteractor = appExperienceInteractor
         self.scheduler = scheduler
         self.careerHelpInteractor = careerHelpInteractor
+        self.offlineModeInteractor = offlineModeInteractor
         self.onShowTabBar = onShowTabBar
         getAccountHelpLinks()
         confirmLogoutViewModel.userConfirmation()
@@ -85,6 +89,8 @@ final class AccountViewModel {
             .isExperienceSwitchAvailable()
             .assign(to: \.isExperienceSwitchAvailable, on: self, ownership: .weak)
             .store(in: &subscriptions)
+
+        isOfflineModeEnabled = offlineModeInteractor.isFeatureFlagEnabled()
     }
 
     private func getAccountHelpLinks(ignoreCache: Bool = false, completion: (() -> Void)? = nil) {

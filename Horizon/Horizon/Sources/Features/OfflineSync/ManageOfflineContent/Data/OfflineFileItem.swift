@@ -52,15 +52,26 @@ struct OfflineFileItem: Identifiable {
         self.updatedAt = updatedAt
     }
 
-    init(from entity: CDHCourseSelectionFile) {
+    init(from entity: CDHCourseSelectionFile, offlineSyncItems: [String]) {
         self.id = entity.id
         self.name = entity.name
-        self.size = entity.size
+        self.size = Int(entity.sizeInBytes).humanReadableFileSize
         self.url = entity.url
         self.sizeInBytes = entity.sizeInBytes
         self.mimeClass = entity.mimeClass
         self.courseID = entity.courseID
         self.updatedAt = entity.updatedAt
+        let path = OfflineType.file(courseID: entity.courseID, fileID: entity.id).path()
+        self.isSelected = offlineSyncItems.contains(path)
+    }
+
+    func toDic() -> [String: Any] {
+        [
+            "name": name,
+            "mimeClass": mimeClass,
+            "courseID": courseID,
+            "sizeInBytes": sizeInBytes
+        ]
     }
 }
 enum OfflineDownloadState: Equatable {
@@ -68,5 +79,12 @@ enum OfflineDownloadState: Equatable {
     case loading
     case downloading(progress: Float)
     case downloaded
-    case failed(String) // better than Error for Equatable
+    case failed(String)
+
+    var isTerminal: Bool {
+        switch self {
+        case .downloaded, .failed: true
+        default: false
+        }
+    }
 }

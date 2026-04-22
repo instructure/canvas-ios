@@ -409,10 +409,12 @@ public class FileDetailsViewController: ScreenViewTrackableViewController, CoreW
                 source: offlineFileSource
             )
         default:
-            guard let name = files.first?.filename else { return nil }
+            let file = files.first
+            let name = env.app == .horizon ? file?.displayName : file?.filename
+            guard let name else { return nil }
             if offlineFileInteractor?.isOffline == true {
-                guard let contextId = context?.id, let fileName = files.first?.filename else { return nil }
-                return offlineFileInteractor?.filePath(sessionID: sessionID, courseId: contextId, fileID: fileID, fileName: fileName)
+                guard let contextId = context?.id else { return nil }
+                return offlineFileInteractor?.filePath(sessionID: sessionID, courseId: contextId, fileID: fileID, fileName: name)
             } else {
                 return "\(sessionID)/\(fileID)/\(name)"
             }

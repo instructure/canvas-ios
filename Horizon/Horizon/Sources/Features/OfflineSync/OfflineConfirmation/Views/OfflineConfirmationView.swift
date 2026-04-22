@@ -93,7 +93,7 @@ struct OfflineConfirmationView: View {
                                         fillsWidth: false
                 ) {
                     dismiss()
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                         onTapConfirmation()
                     }
                 }

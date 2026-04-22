@@ -19,7 +19,7 @@
 import Core
 import Foundation
 
-enum OfflineCheckboxState {
+public enum OfflineCheckboxState {
     case unchecked
     case partial
     case checked
@@ -33,8 +33,8 @@ enum OfflineCheckboxState {
     }
 }
 
-struct OfflineCourseItem: Identifiable {
-    let id: String
+public struct OfflineCourseItem: Identifiable {
+    public let id: String
     let name: String
     let size: String?
     var isExpanded: Bool = false
@@ -72,10 +72,12 @@ struct OfflineCourseItem: Identifiable {
         self.files = subItems
     }
 
-    init(from entity: CDHCourseSelection) {
+    init(from entity: CDHCourseSelection, offlineSyncItems: [String]) {
         self.id = entity.id
         self.name = entity.name
         self.size = entity.size
-        self.files = entity.files.map { .init(from: $0) }
+        let isCourseSynced = offlineSyncItems.contains(OfflineType.course(id: entity.id).path())
+        self.isSelected = isCourseSynced
+        self.files = entity.files.map { .init(from: $0, offlineSyncItems: offlineSyncItems) }
     }
 }

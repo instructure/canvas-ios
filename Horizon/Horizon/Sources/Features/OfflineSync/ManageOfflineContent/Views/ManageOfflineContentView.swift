@@ -157,7 +157,8 @@ struct ManageOfflineContentView: View {
     let viewModel = ManageOfflineContentViewModel(
         interactor: ManageOfflineContentInteractorPreview(),
         router: AppEnvironment.shared.router,
-        session: AppEnvironment.shared.userDefaults!
+        session: AppEnvironment.shared.userDefaults!,
+        courseSyncInteractor: HCourseSyncInteractorPreview()
     ) {}
     ManageOfflineContentView(viewModel: viewModel)
 }
