@@ -16,7 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public enum InstUI {
-    public enum Primitive {}
-    public enum Semantic {}
+extension InstUI {
+    enum TokenLoadError: Error {
+        case missingFile(String)
+        case missingToken(TokenKey)
+        case unknownPrimitive(TokenKey)
+    }
 }

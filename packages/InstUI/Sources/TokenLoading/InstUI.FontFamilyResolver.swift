@@ -16,7 +16,26 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-public enum InstUI {
-    public enum Primitive {}
-    public enum Semantic {}
+extension InstUI {
+    struct FontFamilyResolver {
+        private let primitivesByName: [TokenKey: String]
+
+        init() {
+            primitivesByName = Dictionary(
+                InstUI.Primitive.FontFamily.all.map { ($0.name, $0.family) },
+                uniquingKeysWith: { first, _ in first }
+            )
+        }
+
+        func resolve(_ raw: String) throws -> String {
+            guard raw.hasPrefix("{") else {
+                throw InstUI.TokenLoadError.unknownPrimitive(raw)
+            }
+            let inner = String(raw.dropFirst().dropLast())
+            guard let family = primitivesByName[inner] else {
+                throw InstUI.TokenLoadError.unknownPrimitive(inner)
+            }
+            return family
+        }
+    }
 }

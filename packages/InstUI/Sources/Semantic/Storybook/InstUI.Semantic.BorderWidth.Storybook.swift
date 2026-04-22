@@ -18,49 +18,50 @@
 
 import SwiftUI
 
-public extension InstUI.Primitives.Sizes {
+public extension InstUI.Semantic.BorderWidth {
 
     struct Storybook: View {
 
         public var body: some View {
-            List(sizes) { entry in
+            List(entries) { entry in
                 HStack(spacing: 12) {
                     Text(verbatim: entry.name)
                         .font(.system(size: 12, design: .monospaced))
-                        .frame(width: 90, alignment: .leading)
+                        .frame(width: 120, alignment: .leading)
                     Text(verbatim: "\(entry.formattedValue) pt")
                         .font(.system(size: 11))
                         .foregroundStyle(.secondary)
-                        .frame(width: 48, alignment: .leading)
+                        .frame(width: 44, alignment: .leading)
                     Rectangle()
-                        .frame(width: min(entry.value, 200), height: 8)
-                        .foregroundStyle(.blue)
+                        .strokeBorder(.blue, lineWidth: entry.value)
+                        .frame(width: 48, height: 24)
                     Spacer()
                 }
             }
-            .navigationTitle(Text(verbatim: "Primitive Sizes"))
+            .navigationTitle(Text(verbatim: "Semantic Border Widths"))
             .navigationBarTitleDisplayMode(.large)
         }
 
-        private let sizes: [SizeEntry] = InstUI.Primitives.Sizes.all
-            .map { SizeEntry(name: $0.name.components(separatedBy: ".").last ?? $0.name, value: $0.size) }
-    }
-
-    private struct SizeEntry: Identifiable {
-        let name: String
-        let value: CGFloat
-        var id: String { name }
-
-        var formattedValue: String {
-            value.truncatingRemainder(dividingBy: 1) == 0
-                ? String(Int(value))
-                : String(Double(value))
+        private var entries: [WidthEntry] {
+            InstUI.Theme.default.borderWidth.all.map { WidthEntry(name: $0.name, value: $0.value) }
         }
+    }
+}
+
+private struct WidthEntry: Identifiable {
+    let name: String
+    let value: CGFloat
+    var id: String { name }
+
+    var formattedValue: String {
+        value.truncatingRemainder(dividingBy: 1) == 0
+            ? String(Int(value))
+            : String(Double(value))
     }
 }
 
 #Preview {
     NavigationStack {
-        InstUI.Primitives.Sizes.Storybook()
+        InstUI.Semantic.BorderWidth.Storybook()
     }
 }

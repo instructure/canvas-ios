@@ -17,12 +17,27 @@
 //
 
 import SwiftUI
-import UIKit
 
-extension Color {
-     public typealias iuiPrimitive = Color.InstUI.Primitives
-}
+extension InstUI {
+    struct FontWeightResolver {
+        private let primitivesByName: [TokenKey: Font.Weight]
 
-extension UIColor {
-    public typealias iuiPrimitive = UIColor.InstUI.Primitives
+        init() {
+            primitivesByName = Dictionary(
+                InstUI.Primitive.FontWeight.all.map { ($0.name, $0.weight) },
+                uniquingKeysWith: { first, _ in first }
+            )
+        }
+
+        func resolve(_ raw: String) throws -> Font.Weight {
+            guard raw.hasPrefix("{") else {
+                throw InstUI.TokenLoadError.unknownPrimitive(raw)
+            }
+            let inner = String(raw.dropFirst().dropLast())
+            guard let weight = primitivesByName[inner] else {
+                throw InstUI.TokenLoadError.unknownPrimitive(inner)
+            }
+            return weight
+        }
+    }
 }

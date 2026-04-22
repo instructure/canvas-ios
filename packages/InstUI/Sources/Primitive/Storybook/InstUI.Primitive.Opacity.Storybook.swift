@@ -18,10 +18,10 @@
 
 import SwiftUI
 
-public extension InstUI.Primitives.Opacities {
+public extension InstUI.Primitive.Opacity {
 
     struct Storybook: View {
-        private let opacities: [OpacityEntry] = InstUI.Primitives.Opacities.all
+        private let opacities: [OpacityEntry] = InstUI.Primitive.Opacity.all
             .map { OpacityEntry(name: $0.name.components(separatedBy: ".").last ?? $0.name, value: $0.opacity) }
 
         public var body: some View {
@@ -66,6 +66,6 @@ public extension InstUI.Primitives.Opacities {
 
 #Preview {
     NavigationStack {
-        InstUI.Primitives.Opacities.Storybook()
+        InstUI.Primitive.Opacity.Storybook()
     }
 }

@@ -22,8 +22,8 @@ import SwiftUI
 // Names follow the CSS / design-token convention (thin=100, extraLight=200, …).
 // SwiftUI uses different names for the same numeric values (100=.ultraLight, 200=.thin, …),
 // so the mapping below is correct by weight value, not by name.
-extension InstUI.Primitives {
-    public enum FontWeights {
+extension InstUI.Primitive {
+    public enum FontWeight {
         public static let thin: Font.Weight = .ultraLight
         public static let extraLight: Font.Weight = .thin
         public static let light: Font.Weight = .light
@@ -49,21 +49,21 @@ extension InstUI.Primitives {
     }
 }
 
-private typealias _PrimitiveFontWeights = InstUI.Primitives.FontWeights
+private typealias _PrimitiveFontWeight = InstUI.Primitive.FontWeight
 
 extension Font.Weight {
 
     public enum InstUI {
-        public enum Primitives {
-            public static let thin = _PrimitiveFontWeights.thin
-            public static let extraLight = _PrimitiveFontWeights.extraLight
-            public static let light = _PrimitiveFontWeights.light
-            public static let regular = _PrimitiveFontWeights.regular
-            public static let medium = _PrimitiveFontWeights.medium
-            public static let semiBold = _PrimitiveFontWeights.semiBold
-            public static let bold = _PrimitiveFontWeights.bold
-            public static let extraBold = _PrimitiveFontWeights.extraBold
-            public static let black = _PrimitiveFontWeights.black
+        public enum Primitive {
+            public static let thin = _PrimitiveFontWeight.thin
+            public static let extraLight = _PrimitiveFontWeight.extraLight
+            public static let light = _PrimitiveFontWeight.light
+            public static let regular = _PrimitiveFontWeight.regular
+            public static let medium = _PrimitiveFontWeight.medium
+            public static let semiBold = _PrimitiveFontWeight.semiBold
+            public static let bold = _PrimitiveFontWeight.bold
+            public static let extraBold = _PrimitiveFontWeight.extraBold
+            public static let black = _PrimitiveFontWeight.black
         }
     }
 }

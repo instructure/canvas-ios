@@ -18,7 +18,7 @@
 
 import SwiftUI
 
-public extension InstUI.Primitives.Colors {
+public extension InstUI.Primitive.Color {
 
     struct Storybook: View {
         public var body: some View {
@@ -53,7 +53,7 @@ public extension InstUI.Primitives.Colors {
             .navigationBarTitleDisplayMode(.large)
         }
 
-        private let colors: [ColorEntry] = InstUI.Primitives.Colors.all
+        private let colors: [ColorEntry] = InstUI.Primitive.Color.all
             .map { ColorEntry(name: $0.name.components(separatedBy: ".").last ?? $0.name, color: $0.color) }
     }
 
@@ -73,6 +73,6 @@ public extension InstUI.Primitives.Colors {
 
 #Preview {
     NavigationStack {
-        InstUI.Primitives.Colors.Storybook()
+        InstUI.Primitive.Color.Storybook()
     }
 }
