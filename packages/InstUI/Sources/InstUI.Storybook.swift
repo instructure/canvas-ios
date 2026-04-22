@@ -24,6 +24,9 @@ public extension InstUI {
 
         public var body: some View {
             List {
+                Section(header: Text(verbatim: "Icons")) {
+                    StorybookItem("Icons") { Image.iui.Storybook() }
+                }
                 Section(header: Text(verbatim: "Semantic")) {
                     StorybookItem("Color") { InstUI.Semantic.Color.Storybook() }
                     StorybookItem("Size") { InstUI.Semantic.Size.Storybook() }

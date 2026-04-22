@@ -56,6 +56,7 @@ const fs = require('fs')
 const path = require('path')
 const buildPrimitivesConfig = require('./sd.config.primitives')
 const buildSemanticConfig = require('./sd.config.semantic')
+const { buildIcons } = require('./build-icons')
 
 const INSTUI_VERSION = 'v11.7.1'
 const TOKENS_BASE_URL = `https://raw.githubusercontent.com/instructure/instructure-ui/${INSTUI_VERSION}/packages/ui-scripts/lib/build/tokensStudio`
@@ -126,6 +127,7 @@ async function buildSemantic() {
 }
 
 async function main() {
+  await buildIcons(INSTUI_VERSION)
   await buildPrimitives()
   await buildSemantic()
   console.log('Done.')
