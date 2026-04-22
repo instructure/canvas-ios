@@ -48,7 +48,6 @@ extension AnalyticsConsentInteractor where Self == AnalyticsConsentInteractorLiv
 public class AnalyticsConsentInteractorLive: AnalyticsConsentInteractor {
 
     private let featureFlagStore: ReactiveStore<GetEnvironmentFeatureFlags>
-    private let consentStore: ReactiveStore<GetAnalyticsConsent>
 
     private var userProvidedConsent: Bool? {
         get { environment.userDefaults?.userProvidedAnalyticsConsent }
@@ -62,11 +61,6 @@ public class AnalyticsConsentInteractorLive: AnalyticsConsentInteractor {
 
         self.featureFlagStore = ReactiveStore(
             useCase: GetEnvironmentFeatureFlags(context: Context.currentUser),
-            backgroundEnv: environment
-        )
-
-        self.consentStore = ReactiveStore(
-            useCase: GetAnalyticsConsent(app: environment.app ?? .student),
             backgroundEnv: environment
         )
     }
