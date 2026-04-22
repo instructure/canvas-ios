@@ -252,91 +252,6 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         }
     }
 
-    // MARK: - Announcement mapping
-
-    func test_getCoursesAndGroups_whenNoCourses_shouldNotCallGetAnnouncementsAPI() {
-        coursesInteractor.mockCoursesResult = .make(allCourses: [], courseCards: [])
-        let noRequestExpectation = expectation(description: "Announcements API should not be called")
-        noRequestExpectation.isInverted = true
-        api.mock(GetAnnouncementsForCourses(courseContextIds: []), expectation: noRequestExpectation)
-        testee = makeInteractor()
-
-        XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5)
-
-        waitForExpectations(timeout: 0.5)
-    }
-
-    func test_getCoursesAndGroups_shouldMapUnreadAnnouncementsCountPerCourse() {
-        Clock.mockNow(Date.make(year: 2026, month: 1, day: 1))
-        coursesInteractor.mockCoursesResult = .make(
-            allCourses: [
-                saveCourse(id: testData.courseId1, name: testData.courseName1),
-                saveCourse(id: testData.courseId2, name: testData.courseName2)
-            ],
-            courseCards: [
-                saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0),
-                saveDashboardCard(id: testData.courseId2, shortName: testData.courseName2, position: 1)
-            ]
-        )
-        mockAnnouncements(
-            courseContextIds: ["course_\(testData.courseId1)", "course_\(testData.courseId2)"],
-            value: [
-                makeAnnouncement(id: "a1", courseId: testData.courseId1),
-                makeAnnouncement(id: "a2", courseId: testData.courseId1)
-            ]
-        )
-        testee = makeInteractor()
-
-        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (courses, _) in
-            XCTAssertEqual(courses.first?.unreadAnnouncementCount, 2)
-            XCTAssertEqual(courses.first?.singleUnreadAnnouncementId, nil)
-            XCTAssertEqual(courses.last?.unreadAnnouncementCount, 0)
-            XCTAssertEqual(courses.last?.singleUnreadAnnouncementId, nil)
-        }
-        Clock.reset()
-    }
-
-    func test_getCoursesAndGroups_whenCourseHasSingleUnreadAnnouncement_shouldSetAnnouncementId() {
-        Clock.mockNow(Date.make(year: 2026, month: 1, day: 1))
-        coursesInteractor.mockCoursesResult = .make(
-            allCourses: [saveCourse(id: testData.courseId1, name: testData.courseName1)],
-            courseCards: [saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0)]
-        )
-        mockAnnouncements(
-            courseContextIds: ["course_\(testData.courseId1)"],
-            value: [makeAnnouncement(id: "a1", courseId: testData.courseId1)]
-        )
-        testee = makeInteractor()
-
-        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (courses, _) in
-            XCTAssertEqual(courses.first?.unreadAnnouncementCount, 1)
-            XCTAssertEqual(courses.first?.singleUnreadAnnouncementId, "a1")
-        }
-        Clock.reset()
-    }
-
-    func test_getCoursesAndGroups_shouldNotCountReadAnnouncements() {
-        Clock.mockNow(Date.make(year: 2026, month: 1, day: 1))
-        coursesInteractor.mockCoursesResult = .make(
-            allCourses: [saveCourse(id: testData.courseId1, name: testData.courseName1)],
-            courseCards: [saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0)]
-        )
-        mockAnnouncements(
-            courseContextIds: ["course_\(testData.courseId1)"],
-            value: [
-                makeAnnouncement(id: "a1", courseId: testData.courseId1, readState: "read"),
-                makeAnnouncement(id: "a2", courseId: testData.courseId1, readState: "unread")
-            ]
-        )
-        testee = makeInteractor()
-
-        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (courses, _) in
-            XCTAssertEqual(courses.first?.unreadAnnouncementCount, 1)
-            XCTAssertEqual(courses.first?.singleUnreadAnnouncementId, "a2")
-        }
-        Clock.reset()
-    }
-
     func test_getCoursesAndGroups_whenFavoritesDidChange_flagIsResetAfterNextCall() {
         coursesInteractor.mockCoursesResult = .make(
             allCourses: [saveCourse(id: testData.courseId1, name: testData.courseName1)],
@@ -362,6 +277,47 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         XCTAssertFinish(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5)
 
         XCTAssertEqual(coursesInteractor.getCoursesInput, false)
+    }
+
+    // MARK: - Announcement counts
+
+    func test_getCoursesAndGroups_shouldReturnUnreadAnnouncementCount() {
+        coursesInteractor.mockCoursesResult = .make(
+            allCourses: [saveCourse(id: testData.courseId1, name: testData.courseName1)],
+            courseCards: [saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0)]
+        )
+        saveUnreadAnnouncementCount(courseId: testData.courseId1, unreadCount: 2, singleUnreadAnnouncementId: nil)
+        testee = makeInteractor()
+
+        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (courses, _) in
+            XCTAssertEqual(courses.first?.unreadAnnouncementCount, 2)
+        }
+    }
+
+    func test_getCoursesAndGroups_whenSingleUnreadAnnouncement_shouldReturnSingleUnreadAnnouncementId() {
+        coursesInteractor.mockCoursesResult = .make(
+            allCourses: [saveCourse(id: testData.courseId1, name: testData.courseName1)],
+            courseCards: [saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0)]
+        )
+        saveUnreadAnnouncementCount(courseId: testData.courseId1, unreadCount: 1, singleUnreadAnnouncementId: "a1")
+        testee = makeInteractor()
+
+        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (courses, _) in
+            XCTAssertEqual(courses.first?.singleUnreadAnnouncementId, "a1")
+        }
+    }
+
+    func test_getCoursesAndGroups_whenMultipleUnreadAnnouncements_shouldReturnNilSingleUnreadAnnouncementId() {
+        coursesInteractor.mockCoursesResult = .make(
+            allCourses: [saveCourse(id: testData.courseId1, name: testData.courseName1)],
+            courseCards: [saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0)]
+        )
+        saveUnreadAnnouncementCount(courseId: testData.courseId1, unreadCount: 3, singleUnreadAnnouncementId: nil)
+        testee = makeInteractor()
+
+        XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (courses, _) in
+            XCTAssertEqual(courses.first?.singleUnreadAnnouncementId, nil)
+        }
     }
 
     // MARK: - reorderCourses
@@ -446,18 +402,15 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
 
     private func setupDefaultAPIMocks() {
         api.mock(GetUserSettingsRequest(userID: "self"), value: .make())
+        api.mock(GetUnreadAnnouncementsCountRequest(), value: GetUnreadAnnouncementsCountResponse(data: .init(allCourses: [])))
     }
 
-    private func mockAnnouncements(courseContextIds: [String], value: [APIDiscussionTopic]) {
-        api.mock(GetAnnouncementsForCourses(courseContextIds: courseContextIds), value: value)
-    }
-
-    private func makeAnnouncement(id: String, courseId: String, readState: String = "unread") -> APIDiscussionTopic {
-        APIDiscussionTopic.make(
-            html_url: URL(string: "https://canvas.instructure.com/courses/\(courseId)/announcements/\(id)"),
-            id: ID(id),
-            subscription_hold: "topic_is_announcement",
-            read_state: readState
+    private func saveUnreadAnnouncementCount(courseId: String, unreadCount: Int, singleUnreadAnnouncementId: String?) {
+        CDUnreadCourseAnnouncementCount.save(
+            courseId: courseId,
+            unreadCount: unreadCount,
+            singleUnreadAnnouncementId: singleUnreadAnnouncementId,
+            in: databaseClient
         )
     }
 

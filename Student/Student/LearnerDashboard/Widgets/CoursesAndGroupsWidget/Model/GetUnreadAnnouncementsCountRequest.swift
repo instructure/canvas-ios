@@ -79,3 +79,28 @@ struct GetUnreadAnnouncementsCountResponse: Codable {
         let read: Bool
     }
 }
+
+#if DEBUG
+
+extension GetUnreadAnnouncementsCountResponse {
+    static func make(courses: [CourseData] = []) -> GetUnreadAnnouncementsCountResponse {
+        .init(data: .init(allCourses: courses))
+    }
+}
+
+extension GetUnreadAnnouncementsCountResponse.CourseData {
+    static func make(
+        id: String = "some id",
+        nodes: [GetUnreadAnnouncementsCountResponse.DiscussionNode] = []
+    ) -> GetUnreadAnnouncementsCountResponse.CourseData {
+        .init(_id: id, discussionsConnection: .init(nodes: nodes))
+    }
+}
+
+extension GetUnreadAnnouncementsCountResponse.DiscussionNode {
+    static func make(id: String = "some id", read: Bool = true) -> GetUnreadAnnouncementsCountResponse.DiscussionNode {
+        .init(_id: id, participant: .init(read: read))
+    }
+}
+
+#endif
