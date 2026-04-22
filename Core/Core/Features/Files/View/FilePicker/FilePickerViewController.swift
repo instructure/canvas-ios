@@ -117,6 +117,7 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         emptyView.titleText = String(localized: "Choose a File", bundle: .core)
         emptyView.bodyText = String(localized: "Attach files to your submission by tapping an option below.", bundle: .core)
         navigationController?.setToolbarHidden(false, animated: true)
+        navigationController?.toolbar.tintColor = Brand.shared.linkColor
 
         let items = {
             let sortedSources = sources.sorted()
