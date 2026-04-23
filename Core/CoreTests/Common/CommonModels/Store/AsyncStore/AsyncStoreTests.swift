@@ -25,7 +25,7 @@ import TestsFoundation
 // The tests save to the database, so they need to be ran on the Main Actor.
 @MainActor
 final class AsyncStoreTests: CoreTestCase {
-    nonisolated var store: DetachableAsyncStore<TestUseCase>!
+    nonisolated var store: AsyncStore<TestUseCase>!
 
     override func tearDown() {
         super.tearDown()
@@ -336,7 +336,7 @@ final class AsyncStoreTests: CoreTestCase {
 
     // MARK: - Private methods
 
-    private func createStore<U: UseCase>(useCase: U) -> DetachableAsyncStore<U> {
+    private func createStore<U: UseCase>(useCase: U) -> AsyncStore<U> {
         AsyncStore(
             useCase: useCase,
             context: environment.database.viewContext,
