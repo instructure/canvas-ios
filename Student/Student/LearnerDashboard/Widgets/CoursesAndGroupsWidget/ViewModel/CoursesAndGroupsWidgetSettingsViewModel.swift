@@ -34,7 +34,7 @@ final class CoursesAndGroupsWidgetSettingsViewModel {
         didSet {
             updateColorOverlayTask = ReactiveStore(
                 context: env.database.viewContext,
-                useCase: UpdateUserSettings(hide_dashcard_color_overlays: !showColorOverlay),
+                useCase: UpdateUserSettings(hideDashcardColorOverlays: !showColorOverlay),
                 environment: env
             )
             .getEntities(ignoreCache: true)

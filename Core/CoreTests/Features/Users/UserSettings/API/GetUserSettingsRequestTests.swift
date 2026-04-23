@@ -19,10 +19,20 @@
 import XCTest
 @testable import Core
 
-class GetUserSettingsRequestTests: XCTestCase {
-    func testGetUserSettingsRequest() {
-        let request = GetUserSettingsRequest(userID: "self")
-        XCTAssertEqual(request.path, "users/self/settings")
+final class GetUserSettingsRequestTests: XCTestCase {
+
+    func test_path() {
+        let request = GetUserSettingsRequest(userID: "some-user-id")
+        XCTAssertEqual(request.path, "users/some-user-id/settings")
+    }
+
+    func test_method() {
+        let request = GetUserSettingsRequest(userID: "some-user-id")
         XCTAssertEqual(request.method, .get)
+    }
+
+    func test_query_shouldIncludeMobileSettings() {
+        let request = GetUserSettingsRequest(userID: "some-user-id")
+        XCTAssertEqual(request.query, [.include(["mobile_settings"])])
     }
 }
