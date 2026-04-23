@@ -25,7 +25,7 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel, Dashboard
 
     let config: DashboardWidgetConfig
     var id: String { config.id.rawValue }
-    let isHiddenInEmptyState = true
+    let isHiddenInEmptyState = false
 
     private(set) var state: ScreenState = .loading
     private(set) var courseCards: [CourseCardViewModel] = [

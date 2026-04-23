@@ -41,7 +41,7 @@ class StudentViewCellViewModel: CourseDetailsCellViewModel {
 
     private func launchStudentView() {
         guard studentViewStudentRequest == nil else { return }
-        let request = GetStudentViewStudent(courseID: courseID)
+        let request = GetStudentViewStudentRequest(courseID: courseID)
         studentViewStudentRequest = env.api.makeRequest(request) { [weak self] user, _, _ in
             self?.handleStudentViewStudentResponse(user)
         }

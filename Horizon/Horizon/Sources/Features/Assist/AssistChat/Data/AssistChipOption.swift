@@ -16,7 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-struct AssistChipOption: Equatable {
+import Foundation
+
+struct AssistChipOption: Equatable, Identifiable {
+    let id = UUID().uuidString
     let chip: String
     let prompt: String?
 

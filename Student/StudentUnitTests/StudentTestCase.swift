@@ -62,7 +62,6 @@ class StudentTestCase: XCTestCase {
         logger = env.logger as? TestLogger
         currentSession = env.currentSession
         userDefaults = env.userDefaults!
-        userDefaults.reset()
         analytics = .init()
         Analytics.shared.handler = analytics
         AppEnvironment.shared = env

@@ -1,154 +1,126 @@
 # InstUI
 
-A Swift Package that exposes Instructure design-system **primitives** — raw design tokens (colors, sizes, font weights, font families, opacities) — as typed Swift constants for use in SwiftUI and UIKit.
+A Swift Package that provides Instructure design-system tokens for use in SwiftUI and UIKit. Tokens are organized into two layers: **Primitives** (raw values) and **Semantic** (role-based, theme-aware values).
 
-Tokens are sourced from the [instructure-ui](https://github.com/instructure/instructure-ui) repository and generated automatically via `yarn build-instui`. Do not edit the generated source files by hand.
-
----
-
-## Package structure
-
-```
-packages/InstUI/
-├── Package.swift
-├── Sources/
-│   ├── InstUI.swift                              # Namespace declarations
-│   ├── Primitives/
-│   │   ├── Generated/
-│   │   │   ├── InstUI.Primitives.Colors.swift        # DO NOT EDIT — auto-generated
-│   │   │   ├── InstUI.Primitives.Sizes.swift         # DO NOT EDIT — auto-generated
-│   │   │   ├── InstUI.Primitives.FontWeights.swift   # DO NOT EDIT — auto-generated
-│   │   │   ├── InstUI.Primitives.FontFamilies.swift  # DO NOT EDIT — auto-generated
-│   │   │   └── InstUI.Primitives.Opacities.swift     # DO NOT EDIT — auto-generated
-│   │   └── Storybook/
-│   │       └── *.Storybook.swift                     # In-app previews (one per primitive)
-│   └── Utils/
-│       ├── CheckeredTexture.swift                # Internal storybook helper
-│       ├── Color+HexInit.swift                   # Internal hex initializer
-│       └── FontRegistration.swift                # Internal font registration
-├── Resources/
-│   └── Fonts/
-│       ├── Lato/
-│       ├── Inclusive_Sans/
-│       └── Atkinson_Hyperlegible_Next/
-└── README.md
-```
+Tokens originate from the [instructure-ui](https://github.com/instructure/instructure-ui) repository. Do not edit the generated Swift source files by hand.
 
 ---
 
-## Public API
+## Architecture
 
-Everything lives under the `InstUI` namespace, scoped further under `InstUI.Primitives`.
-
-### Namespace hierarchy
-
-```swift
-InstUI
-└── Primitives
-    ├── Colors
-    ├── Sizes
-    ├── FontWeights
-    ├── FontFamilies
-    └── Opacities
+```
+┌─────────────────────────────────────────────────┐
+│                  Semantic layer                 │
+│  Role-based tokens — runtime-loaded from JSON   │
+│  (colors, sizes, spacing, typography, …)        │
+│  Accessed via InstUI.Theme.default              │
+└──────────────────────┬──────────────────────────┘
+                       │ references
+┌──────────────────────▼──────────────────────────┐
+│                 Primitives layer                │
+│  Raw design values — compile-time Swift consts  │
+│  (palette colors, size scale, font weights, …)  │
+│  Accessed via InstUI.Primitives.*               │
+└─────────────────────────────────────────────────┘
 ```
 
-Each primitive group also extends the relevant Swift/SwiftUI type so tokens are reachable via dot syntax in contexts where the expected type is already known.
+### Primitives
+
+Raw, context-free design values. Every primitive is a typed Swift constant generated at build time from the instructure-ui token set. Primitives are the source of truth that semantic tokens reference.
+
+**Token types:**
+
+| Type | Swift type | Namespace |
+|---|---|---|
+| Colors | `Color` / `UIColor` | `InstUI.Primitives.Colors` |
+| Sizes | `CGFloat` | `InstUI.Primitives.Sizes` |
+| Font Weights | `Font.Weight` | `InstUI.Primitives.FontWeights` |
+| Font Families | `String` | `InstUI.Primitives.FontFamilies` |
+| Opacities | `Double` | `InstUI.Primitives.Opacities` |
+
+### Semantic layer
+
+Role-based tokens that map design decisions onto primitives (e.g. "the interactive element height at medium size" or "the text color for a danger state"). Semantic tokens are loaded at runtime from versioned JSON files bundled in the package resources. This allows the token set to evolve independently of the Swift type definitions.
+
+**Token types:**
+
+| Type | Swift type | Theme property |
+|---|---|---|
+| Colors | `Color` | `theme.colors` |
+| Size | `CGFloat` | `theme.size` |
+| Spacing | `CGFloat` | `theme.spacing` |
+| Border Radius | `CGFloat` | `theme.borderRadius` |
+| Border Width | `CGFloat` | `theme.borderWidth` |
+| Font Size | `CGFloat` | `theme.fontSize` |
+| Opacity | `Double` | `theme.opacity` |
+| Font Weights | `Font.Weight` | `theme.fontWeights` |
+| Font Families | `String` | `theme.fontFamilies` |
 
 ---
 
-### Colors — `InstUI.Primitives.Colors`
+## Using semantic tokens
 
-Static `Color` constants. Tokens are grouped by hue; each hue has steps from `10` (lightest) to `180` (darkest).
-
-**Hue groups:** `green`, `grey`, `blue`, `red`, `orange`, `plum`, `violet`, `stone`, `sky`, `honey`, `sea`, `aurora`, `navy`
-
-**Special tokens:** `white`, `transparent`
-
-**Semi-transparent tokens:** `whiteOpacity10`, `whiteOpacity20`, `whiteOpacity75`, `greyOpacity10`, `greyOpacity75`, `navyOpacity10`
-
-**Three access styles for the same value:**
+Semantic tokens are accessed through `InstUI.Theme.default`.
 
 ```swift
 import InstUI
 import SwiftUI
 
+struct MyView: View {
+    private let theme = InstUI.Theme.default
+
+    var body: some View {
+        Text("Hello")
+            .foregroundStyle(theme.colors.text.body)
+            .font(.system(size: theme.fontSize.textBase))
+            .padding(theme.spacing.spaceMd)
+    }
+}
+```
+
+---
+
+## Using primitive tokens
+
+Primitives are compile-time constants. Three access styles are available for the same value:
+
+```swift
 // 1. Canonical — via the primitive namespace (preferred)
 let c: Color = InstUI.Primitives.Colors.blue100
 
-// 2. SwiftUI dot syntax — when the type is already Color
+// 2. SwiftUI dot syntax — when the type is already known
 let c: Color = .InstUI.Primitives.blue100
 
 // 3. UIKit
 let c: UIColor = UIColor.InstUI.Primitives.blue100
 ```
 
----
-
-### Sizes — `InstUI.Primitives.Sizes`
-
-Static `CGFloat` constants covering the spacing and sizing scale. Token names reflect their intended point size (e.g. `size16` is 16 pt). For the current set of tokens and their values, see the generated source file or browse the Storybook.
-
-```swift
-// Canonical
-let padding: CGFloat = InstUI.Primitives.Sizes.size16
-
-// CGFloat dot syntax
-let padding: CGFloat = .InstUI.Primitives.size16
-```
+The same pattern applies to `CGFloat` (Sizes), `Font.Weight` (FontWeights), `Double` (Opacities), and `String` (FontFamilies).
 
 ---
 
-### Font Weights — `InstUI.Primitives.FontWeights`
+## Code generation
 
-Static `Font.Weight` constants following the CSS / design-token weight naming convention (`thin`, `extraLight`, `light`, `regular`, `medium`, `semiBold`, `bold`, `extraBold`, `black`).
+Both layers are generated by the `yarn build-instui` script. The script:
 
-> Note: CSS and SwiftUI use the same numeric weight values but different names (e.g. CSS `thin` = SwiftUI `.ultraLight`). The mapping is by numeric value, not by name.
+1. Fetches the token JSON from [instructure-ui](https://github.com/instructure/instructure-ui) at a pinned version.
+2. Generates the `Sources/Primitives/Generated/*.swift` files — typed Swift constants for each primitive token.
+3. Generates the `Sources/Semantic/Generated/*.swift` files — Swift structs that define the shape of each semantic token group, along with a `build(_:)` factory and an `all` property for enumeration.
+4. Writes the resolved token values into the JSON files under `Resources/Tokens/Semantic/` and updates the `InstUI_v{version}` (dots replaced with underscores, e.g. `InstUI_v11_7_1`) marker file in `Resources/`.
 
-```swift
-// Canonical
-Text("Hello").fontWeight(InstUI.Primitives.FontWeights.semiBold)
+The generated Swift structs (Semantic layer) define the **shape** only — no values are hardcoded in Swift. Values are resolved at runtime by `ColorLoader` and `LayoutLoader`, which parse the bundled JSON and construct the typed structs via the generated `build(_:)` factories.
 
-// Font.Weight dot syntax
-Text("Hello").fontWeight(.InstUI.Primitives.semiBold)
-```
+To update tokens:
 
----
-
-### Font Families — `InstUI.Primitives.FontFamilies`
-
-Static `String` constants (PostScript family names) for the fonts available to the package: `lato`, `inclusiveSans`, `atkinson`, and `menlo`. The first three are bundled under OFL licenses; `menlo` is a system font.
-
-Accessing any property automatically registers the bundled font files with Core Text on first use — no additional setup required.
-
-```swift
-// Canonical
-Font.custom(InstUI.Primitives.FontFamilies.lato, size: 16)
-
-// String dot syntax
-Font.custom(.InstUI.Primitives.fontLato, size: 16)
-```
-
-> Note: Font family string tokens on `String.InstUI.Primitives` are prefixed with `font` (e.g. `fontLato`, `fontAtkinson`) to avoid collisions with any existing `String` members.
-
----
-
-### Opacities — `InstUI.Primitives.Opacities`
-
-Static `Double` constants for opacity values. Token names reflect their percentage (e.g. `opacity50` = 50% opacity). For the current set of tokens, see the generated source file or browse the Storybook.
-
-```swift
-// Canonical
-view.opacity(InstUI.Primitives.Opacities.opacity50)
-
-// Double dot syntax
-view.opacity(.InstUI.Primitives.opacity50)
-```
+1. Bump `INSTUI_VERSION` in `scripts/instui/build-instui.js`.
+2. Run `yarn build-instui` from the repo root.
+3. Commit the regenerated `Generated/*.swift` files, the updated `Resources/Tokens/` directory, and the new `Resources/InstUI_v{version}` marker file.
 
 ---
 
 ## Storybook
 
-A live in-app component browser that shows all primitive tokens organized by category. To use it:
+An in-app browser showing all tokens organized by type. Both primitive and semantic tokens are covered.
 
 ```swift
 import InstUI
@@ -157,15 +129,3 @@ NavigationStack {
     InstUI.Storybook()
 }
 ```
-
----
-
-## Updating design tokens
-
-Tokens are generated from [instructure-ui](https://github.com/instructure/instructure-ui) at a pinned version. To update:
-
-1. Bump `INSTUI_VERSION` in `scripts/instui/build-instui.js`.
-2. Run `yarn build-instui` from the repo root.
-3. Commit the regenerated `Sources/Primitives/Generated/*.swift` files.
-
-The five generated files are marked `// DO NOT EDIT` — all token changes must go through the build script.

@@ -24,17 +24,38 @@ Downloads design tokens from the instructure-ui repository (pinned to INSTUI_VER
 and generates the SwiftUI source files for the InstUI Swift package.
 
 Generated files (DO NOT EDIT manually):
-  packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.Colors.swift
-  packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.Sizes.swift
-  packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.FontWeights.swift
-  packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.FontFamilies.swift
-  packages/InstUI/Sources/Primitives/Generated/InstUI.Primitives.Opacities.swift
+
+  Primitives:
+  packages/InstUI/Sources/Primitive/Generated/InstUI.Primitive.Color.swift
+  packages/InstUI/Sources/Primitive/Generated/InstUI.Primitive.Size.swift
+  packages/InstUI/Sources/Primitive/Generated/InstUI.Primitive.FontWeight.swift
+  packages/InstUI/Sources/Primitive/Generated/InstUI.Primitive.FontFamily.swift
+  packages/InstUI/Sources/Primitive/Generated/InstUI.Primitive.Opacity.swift
+
+  Semantic Swift types:
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.Color.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.Size.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.Spacing.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.BorderRadius.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.BorderWidth.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.FontSize.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.Opacity.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.FontWeight.swift
+  packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.FontFamily.swift
+
+  Semantic token values (bundled JSON):
+  packages/InstUI/Resources/Tokens/Semantic/Color/rebrandLight.json
+  packages/InstUI/Resources/Tokens/Semantic/Color/rebrandDark.json
+  packages/InstUI/Resources/Tokens/Semantic/Layout/default.json
 
 To update to a newer version of instructure-ui, bump INSTUI_VERSION below and re-run.
 */
 
 const https = require('https')
+const fs = require('fs')
+const path = require('path')
 const buildPrimitivesConfig = require('./sd.config.primitives')
+const buildSemanticConfig = require('./sd.config.semantic')
 
 const INSTUI_VERSION = 'v11.7.1'
 const TOKENS_BASE_URL = `https://raw.githubusercontent.com/instructure/instructure-ui/${INSTUI_VERSION}/packages/ui-scripts/lib/build/tokensStudio`
@@ -70,8 +91,43 @@ async function buildPrimitives() {
   buildPrimitivesConfig(primitives).buildAllPlatforms()
 }
 
+async function buildSemantic() {
+  console.log('Downloading semantic tokens...')
+  const [light, dark, layout] = await Promise.all([
+    download(`${TOKENS_BASE_URL}/rebrand/semantic/color/rebrandLight.json`),
+    download(`${TOKENS_BASE_URL}/rebrand/semantic/color/rebrandDark.json`),
+    download(`${TOKENS_BASE_URL}/rebrand/semantic/layout/default.json`),
+  ])
+
+  const resourcesDir = path.join(__dirname, '../../packages/InstUI/Resources')
+  const tokensDir = path.join(resourcesDir, 'Tokens')
+
+  const versionMarker = `InstUI_${INSTUI_VERSION.replace(/\./g, '_')}`
+  for (const entry of fs.readdirSync(resourcesDir)) {
+    if (entry.startsWith('InstUI_v') && entry !== versionMarker) {
+      fs.rmSync(path.join(resourcesDir, entry))
+      console.log(`Removed old version marker: ${entry}`)
+    }
+  }
+  fs.writeFileSync(path.join(resourcesDir, versionMarker), '')
+
+  const colorDir = path.join(tokensDir, 'Semantic', 'Color')
+  const layoutDir = path.join(tokensDir, 'Semantic', 'Layout')
+  fs.rmSync(tokensDir, { recursive: true, force: true })
+  fs.mkdirSync(colorDir, { recursive: true })
+  fs.mkdirSync(layoutDir, { recursive: true })
+  fs.writeFileSync(path.join(colorDir, 'rebrandLight.json'), light)
+  fs.writeFileSync(path.join(colorDir, 'rebrandDark.json'), dark)
+  fs.writeFileSync(path.join(layoutDir, 'default.json'), layout)
+  console.log(`Saved color + layout tokens to Resources/Tokens/Semantic/`)
+
+  console.log('Building SwiftUI semantic types...')
+  buildSemanticConfig(JSON.parse(light), JSON.parse(dark), JSON.parse(layout))
+}
+
 async function main() {
   await buildPrimitives()
+  await buildSemantic()
   console.log('Done.')
 }
 
