@@ -27,6 +27,12 @@ public final class UserSettings: NSManagedObject, WriteableModel {
     @NSManaged public var hideDashcardColorOverlays: Bool
     @NSManaged public var commentLibrarySuggestionsEnabled: Bool
 
+    @NSManaged private var trackingPolicyRaw: String?
+    public var trackingPolicy: TrackingPolicy? {
+        get { trackingPolicyRaw.flatMap { .init(rawValue: $0) } }
+        set { trackingPolicyRaw = newValue?.rawValue }
+    }
+
     @discardableResult
     public static func save(_ item: APIUserSettings, in context: NSManagedObjectContext) -> UserSettings {
         let model: UserSettings = context.fetch(nil).first ?? context.insert()
@@ -34,6 +40,7 @@ public final class UserSettings: NSManagedObject, WriteableModel {
         model.collapseGlobalNav = item.collapse_global_nav
         model.hideDashcardColorOverlays = item.hide_dashcard_color_overlays
         model.commentLibrarySuggestionsEnabled = item.comment_library_suggestions_enabled
+        model.trackingPolicy = .init(usageMetrics: item.usage_metrics)
         return model
     }
 }
