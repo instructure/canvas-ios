@@ -41,13 +41,3 @@ public struct GetCourseSingleUser: APIUseCase {
             NSPredicate(key: #keyPath(User.id), equals: userID)
         ]), order: [])}
 }
-
-public struct GetCourseSingleUserRequest: APIRequestable {
-    public typealias Response = APIUser
-
-    let context: Context
-    let userID: String
-
-    public var path: String { "\(context.pathComponent)/users/\(userID)" }
-    public var query: [APIQueryItem] { [.include(["avatar_url", "enrollments", "email"])] }
-}

@@ -30,13 +30,6 @@ class UserProfileTests: CoreTestCase {
         XCTAssertEqual(profile.defaultTimeZone, apiProfile.time_zone)
     }
 
-    func testGetUserProfile() {
-        let useCase = GetUserProfile()
-        XCTAssertEqual(useCase.userID, "self")
-        XCTAssertEqual(useCase.cacheKey, "get-user-self-profile")
-        XCTAssertEqual(useCase.request.userID, "self")
-    }
-
     func testK5UserDefaultValue() {
         let apiProfile = APIProfile.make(k5_user: nil)
         let profile = UserProfile.save(apiProfile, in: databaseClient)
