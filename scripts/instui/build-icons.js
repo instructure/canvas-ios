@@ -58,6 +58,19 @@ function apiGet(url) {
   })
 }
 
+async function mapConcurrent(items, limit, fn) {
+  const results = []
+  let index = 0
+  async function worker() {
+    while (index < items.length) {
+      const i = index++
+      results[i] = await fn(items[i])
+    }
+  }
+  await Promise.all(Array.from({ length: limit }, worker))
+  return results
+}
+
 function download(url) {
   return new Promise((resolve, reject) => {
     const req = https.get(url, res => {
@@ -83,6 +96,7 @@ function toCamelCase(name) {
   const result = name.replace(/\W+(\w)/g, (_, c) => c.toUpperCase())
   return result.charAt(0).toLowerCase() + result.slice(1)
 }
+
 
 function capitalize(str) {
   return str.charAt(0).toUpperCase() + str.slice(1)
@@ -138,9 +152,11 @@ const fileHeader =
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //`
 
+const LUCIDE_REF = '1.8.0'
+
 async function buildIcons(version) {
-  const apiBase = `https://api.github.com/repos/instructure/instructure-ui/contents/packages/ui-icons/svg`
-  const rawBase = `https://raw.githubusercontent.com/instructure/instructure-ui/${version}/packages/ui-icons/svg`
+  const iuiRawBase = `https://raw.githubusercontent.com/instructure/instructure-ui/${version}/packages/ui-icons/svg`
+  const lucideRawBase = `https://raw.githubusercontent.com/lucide-icons/lucide/${LUCIDE_REF}/icons`
 
   const packageRoot = path.join(__dirname, '../../packages/InstUI')
   const xcassetsDir = path.join(packageRoot, 'Resources/Icons.xcassets')
@@ -156,24 +172,36 @@ async function buildIcons(version) {
     null, 2
   ) + '\n')
 
-  console.log('Discovering icon subdirectories...')
-  const rootEntries = await apiGet(`${apiBase}?ref=${version}`)
-  const subdirs = rootEntries.filter(e => e.type === 'dir').map(e => e.name)
-  console.log(`Found: ${subdirs.join(', ')}`)
-
   const icons = []
-  for (const subdir of subdirs) {
-    const entries = await apiGet(`${apiBase}/${subdir}?ref=${version}`)
-    const suffix = capitalize(subdir)
-    for (const entry of entries.filter(e => e.type === 'file' && e.name.endsWith('.svg'))) {
-      const baseName = entry.name.slice(0, -4)
-      const iconName = toCamelCase(baseName) + suffix
-      icons.push({ name: iconName, url: `${rawBase}/${subdir}/${entry.name}` })
-    }
+
+  // Lucide license
+  const lucideLicense = await download(`https://raw.githubusercontent.com/lucide-icons/lucide/${LUCIDE_REF}/LICENSE`)
+  fs.writeFileSync(path.join(packageRoot, 'Resources/LICENSE-lucide'), lucideLicense)
+
+  // Lucide icons — flat folder, no suffix
+  console.log('Fetching Lucide icon list...')
+  const lucideTree = await apiGet(`https://api.github.com/repos/lucide-icons/lucide/git/trees/${LUCIDE_REF}?recursive=1`)
+  const lucideFiles = lucideTree.tree.filter(e => e.path.startsWith('icons/') && e.path.endsWith('.svg'))
+  console.log(`Found ${lucideFiles.length} Lucide icons`)
+  for (const file of lucideFiles) {
+    const baseName = path.basename(file.path, '.svg')
+    icons.push({ name: toCamelCase(baseName), url: `${lucideRawBase}/${baseName}.svg` })
+  }
+
+  // instructure-ui Custom icons — suffix "Custom" only on name conflicts with Lucide
+  console.log('Fetching instructure-ui Custom icons...')
+  const customEntries = await apiGet(`https://api.github.com/repos/instructure/instructure-ui/contents/packages/ui-icons/svg/Custom?ref=${version}`)
+  const customFiles = customEntries.filter(e => e.type === 'file' && e.name.endsWith('.svg'))
+  console.log(`Found ${customFiles.length} Custom icons`)
+  const lucideNames = new Set(icons.map(i => i.name))
+  for (const entry of customFiles) {
+    const baseName = entry.name.slice(0, -4)
+    const name = toCamelCase(baseName)
+    icons.push({ name: lucideNames.has(name) ? name + 'Custom' : name, url: `${iuiRawBase}/Custom/${entry.name}` })
   }
 
   console.log(`Downloading ${icons.length} icons...`)
-  await Promise.all(icons.map(async ({ name, url }) => {
+  await mapConcurrent(icons, 20, async ({ name, url }) => {
     const svgSrc = await download(url)
     const transformed = transformSvg(svgSrc)
 
@@ -197,15 +225,15 @@ async function buildIcons(version) {
         }
       }, null, 2) + '\n'
     )
-  }))
+  })
 
   const sortedNames = icons.map(i => i.name).sort()
   const accessors = sortedNames
-    .map(name => `    public static var ${name}: Image { Image("${name}", bundle: .module) }`)
+    .map(name => `    public static var \`${name}\`: Image { Image("${name}", bundle: .module) }`)
     .join('\n')
 
   const allEntries = sortedNames
-    .map(name => `        ("${name}", Image.iui.${name}),`)
+    .map(name => `        ("${name}", Image.iui.\`${name}\`),`)
     .join('\n')
 
   fs.writeFileSync(

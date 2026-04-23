@@ -21,1723 +21,3569 @@
 import SwiftUI
 
 extension Image.iui {
-    public static var a11yLine: Image { Image("a11yLine", bundle: .module) }
-    public static var a11ySolid: Image { Image("a11ySolid", bundle: .module) }
-    public static var aIInfoLine: Image { Image("aIInfoLine", bundle: .module) }
-    public static var aIInfoSolid: Image { Image("aIInfoSolid", bundle: .module) }
-    public static var accessibility2Custom: Image { Image("accessibility2Custom", bundle: .module) }
-    public static var addFolderLine: Image { Image("addFolderLine", bundle: .module) }
-    public static var addFolderSolid: Image { Image("addFolderSolid", bundle: .module) }
-    public static var addLine: Image { Image("addLine", bundle: .module) }
-    public static var addMediaLine: Image { Image("addMediaLine", bundle: .module) }
-    public static var addMediaSolid: Image { Image("addMediaSolid", bundle: .module) }
-    public static var addSolid: Image { Image("addSolid", bundle: .module) }
-    public static var addressBookLine: Image { Image("addressBookLine", bundle: .module) }
-    public static var addressBookSolid: Image { Image("addressBookSolid", bundle: .module) }
-    public static var adminLine: Image { Image("adminLine", bundle: .module) }
-    public static var adminSolid: Image { Image("adminSolid", bundle: .module) }
-    public static var adminToolsLine: Image { Image("adminToolsLine", bundle: .module) }
-    public static var adminToolsSolid: Image { Image("adminToolsSolid", bundle: .module) }
-    public static var aiColoredLine: Image { Image("aiColoredLine", bundle: .module) }
-    public static var aiColoredSolid: Image { Image("aiColoredSolid", bundle: .module) }
-    public static var aiInfoCustom: Image { Image("aiInfoCustom", bundle: .module) }
-    public static var aiLine: Image { Image("aiLine", bundle: .module) }
-    public static var aiSolid: Image { Image("aiSolid", bundle: .module) }
-    public static var alertsLine: Image { Image("alertsLine", bundle: .module) }
-    public static var alertsSolid: Image { Image("alertsSolid", bundle: .module) }
-    public static var analyticsLine: Image { Image("analyticsLine", bundle: .module) }
-    public static var analyticsSolid: Image { Image("analyticsSolid", bundle: .module) }
-    public static var androidLine: Image { Image("androidLine", bundle: .module) }
-    public static var androidSolid: Image { Image("androidSolid", bundle: .module) }
-    public static var annotateLine: Image { Image("annotateLine", bundle: .module) }
-    public static var annotateSolid: Image { Image("annotateSolid", bundle: .module) }
-    public static var announcementLine: Image { Image("announcementLine", bundle: .module) }
-    public static var announcementSolid: Image { Image("announcementSolid", bundle: .module) }
-    public static var appleLine: Image { Image("appleLine", bundle: .module) }
-    public static var appleSolid: Image { Image("appleSolid", bundle: .module) }
-    public static var appsCustom: Image { Image("appsCustom", bundle: .module) }
-    public static var arcLine: Image { Image("arcLine", bundle: .module) }
-    public static var arcSolid: Image { Image("arcSolid", bundle: .module) }
-    public static var archiveLine: Image { Image("archiveLine", bundle: .module) }
-    public static var archiveSolid: Image { Image("archiveSolid", bundle: .module) }
-    public static var arrowDoubleEndLine: Image { Image("arrowDoubleEndLine", bundle: .module) }
-    public static var arrowDoubleEndSolid: Image { Image("arrowDoubleEndSolid", bundle: .module) }
-    public static var arrowDoubleStartLine: Image { Image("arrowDoubleStartLine", bundle: .module) }
-    public static var arrowDoubleStartSolid: Image { Image("arrowDoubleStartSolid", bundle: .module) }
-    public static var arrowDownLine: Image { Image("arrowDownLine", bundle: .module) }
-    public static var arrowDownSolid: Image { Image("arrowDownSolid", bundle: .module) }
-    public static var arrowEndLine: Image { Image("arrowEndLine", bundle: .module) }
-    public static var arrowEndSolid: Image { Image("arrowEndSolid", bundle: .module) }
-    public static var arrowLeftLine: Image { Image("arrowLeftLine", bundle: .module) }
-    public static var arrowLeftSolid: Image { Image("arrowLeftSolid", bundle: .module) }
-    public static var arrowNestLine: Image { Image("arrowNestLine", bundle: .module) }
-    public static var arrowNestSolid: Image { Image("arrowNestSolid", bundle: .module) }
-    public static var arrowOpenDownLine: Image { Image("arrowOpenDownLine", bundle: .module) }
-    public static var arrowOpenDownSolid: Image { Image("arrowOpenDownSolid", bundle: .module) }
-    public static var arrowOpenEndLine: Image { Image("arrowOpenEndLine", bundle: .module) }
-    public static var arrowOpenEndSolid: Image { Image("arrowOpenEndSolid", bundle: .module) }
-    public static var arrowOpenLeftLine: Image { Image("arrowOpenLeftLine", bundle: .module) }
-    public static var arrowOpenLeftSolid: Image { Image("arrowOpenLeftSolid", bundle: .module) }
-    public static var arrowOpenRightLine: Image { Image("arrowOpenRightLine", bundle: .module) }
-    public static var arrowOpenRightSolid: Image { Image("arrowOpenRightSolid", bundle: .module) }
-    public static var arrowOpenStartLine: Image { Image("arrowOpenStartLine", bundle: .module) }
-    public static var arrowOpenStartSolid: Image { Image("arrowOpenStartSolid", bundle: .module) }
-    public static var arrowOpenUpLine: Image { Image("arrowOpenUpLine", bundle: .module) }
-    public static var arrowOpenUpSolid: Image { Image("arrowOpenUpSolid", bundle: .module) }
-    public static var arrowRightLine: Image { Image("arrowRightLine", bundle: .module) }
-    public static var arrowRightSolid: Image { Image("arrowRightSolid", bundle: .module) }
-    public static var arrowStartLine: Image { Image("arrowStartLine", bundle: .module) }
-    public static var arrowStartSolid: Image { Image("arrowStartSolid", bundle: .module) }
-    public static var arrowUpLine: Image { Image("arrowUpLine", bundle: .module) }
-    public static var arrowUpSolid: Image { Image("arrowUpSolid", bundle: .module) }
-    public static var assignmentLine: Image { Image("assignmentLine", bundle: .module) }
-    public static var assignmentSolid: Image { Image("assignmentSolid", bundle: .module) }
-    public static var attachMediaLine: Image { Image("attachMediaLine", bundle: .module) }
-    public static var attachMediaSolid: Image { Image("attachMediaSolid", bundle: .module) }
-    public static var audioLine: Image { Image("audioLine", bundle: .module) }
-    public static var audioOffLine: Image { Image("audioOffLine", bundle: .module) }
-    public static var audioOffSolid: Image { Image("audioOffSolid", bundle: .module) }
-    public static var audioSolid: Image { Image("audioSolid", bundle: .module) }
-    public static var awardLine: Image { Image("awardLine", bundle: .module) }
-    public static var awardSolid: Image { Image("awardSolid", bundle: .module) }
-    public static var backgroundColorCustom: Image { Image("backgroundColorCustom", bundle: .module) }
-    public static var bankLine: Image { Image("bankLine", bundle: .module) }
-    public static var bankSolid: Image { Image("bankSolid", bundle: .module) }
-    public static var bellSolidCustom: Image { Image("bellSolidCustom", bundle: .module) }
-    public static var blueprintLine: Image { Image("blueprintLine", bundle: .module) }
-    public static var blueprintLockLine: Image { Image("blueprintLockLine", bundle: .module) }
-    public static var blueprintLockSolid: Image { Image("blueprintLockSolid", bundle: .module) }
-    public static var blueprintSolid: Image { Image("blueprintSolid", bundle: .module) }
-    public static var boldLine: Image { Image("boldLine", bundle: .module) }
-    public static var boldSolid: Image { Image("boldSolid", bundle: .module) }
-    public static var bookmarkLine: Image { Image("bookmarkLine", bundle: .module) }
-    public static var bookmarkSolid: Image { Image("bookmarkSolid", bundle: .module) }
-    public static var bookmarkSolidCustom: Image { Image("bookmarkSolidCustom", bundle: .module) }
-    public static var boxLine: Image { Image("boxLine", bundle: .module) }
-    public static var boxSolid: Image { Image("boxSolid", bundle: .module) }
-    public static var bulletListAlphaLine: Image { Image("bulletListAlphaLine", bundle: .module) }
-    public static var bulletListAlphaSolid: Image { Image("bulletListAlphaSolid", bundle: .module) }
-    public static var bulletListCircleOutlineLine: Image { Image("bulletListCircleOutlineLine", bundle: .module) }
-    public static var bulletListCircleOutlineSolid: Image { Image("bulletListCircleOutlineSolid", bundle: .module) }
-    public static var bulletListLine: Image { Image("bulletListLine", bundle: .module) }
-    public static var bulletListRomanLine: Image { Image("bulletListRomanLine", bundle: .module) }
-    public static var bulletListRomanSolid: Image { Image("bulletListRomanSolid", bundle: .module) }
-    public static var bulletListSolid: Image { Image("bulletListSolid", bundle: .module) }
-    public static var bulletListSquareLine: Image { Image("bulletListSquareLine", bundle: .module) }
-    public static var bulletListSquareSolid: Image { Image("bulletListSquareSolid", bundle: .module) }
-    public static var buttonAndIconMakerLine: Image { Image("buttonAndIconMakerLine", bundle: .module) }
-    public static var buttonAndIconMakerSolid: Image { Image("buttonAndIconMakerSolid", bundle: .module) }
-    public static var calculatorDesmosCustom: Image { Image("calculatorDesmosCustom", bundle: .module) }
-    public static var calculatorDesmosLine: Image { Image("calculatorDesmosLine", bundle: .module) }
-    public static var calculatorDesmosSolid: Image { Image("calculatorDesmosSolid", bundle: .module) }
-    public static var calculatorLine: Image { Image("calculatorLine", bundle: .module) }
-    public static var calculatorSolid: Image { Image("calculatorSolid", bundle: .module) }
-    public static var calendarAddLine: Image { Image("calendarAddLine", bundle: .module) }
-    public static var calendarAddSolid: Image { Image("calendarAddSolid", bundle: .module) }
-    public static var calendarClockLine: Image { Image("calendarClockLine", bundle: .module) }
-    public static var calendarClockSolid: Image { Image("calendarClockSolid", bundle: .module) }
-    public static var calendarDayLine: Image { Image("calendarDayLine", bundle: .module) }
-    public static var calendarDaySolid: Image { Image("calendarDaySolid", bundle: .module) }
-    public static var calendarDaysLine: Image { Image("calendarDaysLine", bundle: .module) }
-    public static var calendarDaysSolid: Image { Image("calendarDaysSolid", bundle: .module) }
-    public static var calendarMonthLine: Image { Image("calendarMonthLine", bundle: .module) }
-    public static var calendarMonthSolid: Image { Image("calendarMonthSolid", bundle: .module) }
-    public static var calendarReservedLine: Image { Image("calendarReservedLine", bundle: .module) }
-    public static var calendarReservedSolid: Image { Image("calendarReservedSolid", bundle: .module) }
-    public static var canvasLogoCustom: Image { Image("canvasLogoCustom", bundle: .module) }
-    public static var canvasLogoLine: Image { Image("canvasLogoLine", bundle: .module) }
-    public static var canvasLogoSolid: Image { Image("canvasLogoSolid", bundle: .module) }
-    public static var captionsSolidCustom: Image { Image("captionsSolidCustom", bundle: .module) }
-    public static var certifiedLine: Image { Image("certifiedLine", bundle: .module) }
-    public static var certifiedSolid: Image { Image("certifiedSolid", bundle: .module) }
-    public static var chartLineLine: Image { Image("chartLineLine", bundle: .module) }
-    public static var chartLineSolid: Image { Image("chartLineSolid", bundle: .module) }
-    public static var chartPieLine: Image { Image("chartPieLine", bundle: .module) }
-    public static var chartPieSolid: Image { Image("chartPieSolid", bundle: .module) }
-    public static var chartScatterLine: Image { Image("chartScatterLine", bundle: .module) }
-    public static var chartScatterSolid: Image { Image("chartScatterSolid", bundle: .module) }
-    public static var chatLine: Image { Image("chatLine", bundle: .module) }
-    public static var chatSolid: Image { Image("chatSolid", bundle: .module) }
-    public static var checkDarkLine: Image { Image("checkDarkLine", bundle: .module) }
-    public static var checkDarkSolid: Image { Image("checkDarkSolid", bundle: .module) }
-    public static var checkLine: Image { Image("checkLine", bundle: .module) }
-    public static var checkMarkIndeterminateLine: Image { Image("checkMarkIndeterminateLine", bundle: .module) }
-    public static var checkMarkIndeterminateSolid: Image { Image("checkMarkIndeterminateSolid", bundle: .module) }
-    public static var checkMarkLine: Image { Image("checkMarkLine", bundle: .module) }
-    public static var checkMarkSolid: Image { Image("checkMarkSolid", bundle: .module) }
-    public static var checkPlusLine: Image { Image("checkPlusLine", bundle: .module) }
-    public static var checkPlusSolid: Image { Image("checkPlusSolid", bundle: .module) }
-    public static var checkSolid: Image { Image("checkSolid", bundle: .module) }
-    public static var circleAlphaCustom: Image { Image("circleAlphaCustom", bundle: .module) }
-    public static var circleArrowDownLine: Image { Image("circleArrowDownLine", bundle: .module) }
-    public static var circleArrowDownRightCustom: Image { Image("circleArrowDownRightCustom", bundle: .module) }
-    public static var circleArrowDownSolid: Image { Image("circleArrowDownSolid", bundle: .module) }
-    public static var circleArrowInLeftCustom: Image { Image("circleArrowInLeftCustom", bundle: .module) }
-    public static var circleArrowInRightCustom: Image { Image("circleArrowInRightCustom", bundle: .module) }
-    public static var circleArrowUpLine: Image { Image("circleArrowUpLine", bundle: .module) }
-    public static var circleArrowUpRightCustom: Image { Image("circleArrowUpRightCustom", bundle: .module) }
-    public static var circleArrowUpSolid: Image { Image("circleArrowUpSolid", bundle: .module) }
-    public static var circleMuCustom: Image { Image("circleMuCustom", bundle: .module) }
-    public static var circleSigmaCustom: Image { Image("circleSigmaCustom", bundle: .module) }
-    public static var clearTextFormattingLine: Image { Image("clearTextFormattingLine", bundle: .module) }
-    public static var clearTextFormattingSolid: Image { Image("clearTextFormattingSolid", bundle: .module) }
-    public static var clockLine: Image { Image("clockLine", bundle: .module) }
-    public static var clockSolid: Image { Image("clockSolid", bundle: .module) }
-    public static var closedCaptionCheckCustom: Image { Image("closedCaptionCheckCustom", bundle: .module) }
-    public static var closedCaptionSolidCustom: Image { Image("closedCaptionSolidCustom", bundle: .module) }
-    public static var closedCaptionXCustom: Image { Image("closedCaptionXCustom", bundle: .module) }
-    public static var closedCaptioningLine: Image { Image("closedCaptioningLine", bundle: .module) }
-    public static var closedCaptioningOffLine: Image { Image("closedCaptioningOffLine", bundle: .module) }
-    public static var closedCaptioningOffSolid: Image { Image("closedCaptioningOffSolid", bundle: .module) }
-    public static var closedCaptioningOnLine: Image { Image("closedCaptioningOnLine", bundle: .module) }
-    public static var closedCaptioningOnSolid: Image { Image("closedCaptioningOnSolid", bundle: .module) }
-    public static var closedCaptioningSolid: Image { Image("closedCaptioningSolid", bundle: .module) }
-    public static var cloudDownloadLine: Image { Image("cloudDownloadLine", bundle: .module) }
-    public static var cloudDownloadSolid: Image { Image("cloudDownloadSolid", bundle: .module) }
-    public static var cloudLockCustom: Image { Image("cloudLockCustom", bundle: .module) }
-    public static var cloudLockLine: Image { Image("cloudLockLine", bundle: .module) }
-    public static var cloudLockSolid: Image { Image("cloudLockSolid", bundle: .module) }
-    public static var cloudUploadLine: Image { Image("cloudUploadLine", bundle: .module) }
-    public static var cloudUploadSolid: Image { Image("cloudUploadSolid", bundle: .module) }
-    public static var codeLine: Image { Image("codeLine", bundle: .module) }
-    public static var codeSolid: Image { Image("codeSolid", bundle: .module) }
-    public static var collapseLine: Image { Image("collapseLine", bundle: .module) }
-    public static var collapseSolid: Image { Image("collapseSolid", bundle: .module) }
-    public static var collectionLine: Image { Image("collectionLine", bundle: .module) }
-    public static var collectionSaveLine: Image { Image("collectionSaveLine", bundle: .module) }
-    public static var collectionSaveSolid: Image { Image("collectionSaveSolid", bundle: .module) }
-    public static var collectionSolid: Image { Image("collectionSolid", bundle: .module) }
-    public static var commentLine: Image { Image("commentLine", bundle: .module) }
-    public static var commentSolid: Image { Image("commentSolid", bundle: .module) }
-    public static var commentsOffLine: Image { Image("commentsOffLine", bundle: .module) }
-    public static var commentsOffSolid: Image { Image("commentsOffSolid", bundle: .module) }
-    public static var commentsOnLine: Image { Image("commentsOnLine", bundle: .module) }
-    public static var commentsOnSolid: Image { Image("commentsOnSolid", bundle: .module) }
-    public static var commonsCustom: Image { Image("commonsCustom", bundle: .module) }
-    public static var commonsLine: Image { Image("commonsLine", bundle: .module) }
-    public static var commonsSolid: Image { Image("commonsSolid", bundle: .module) }
-    public static var compareCustom: Image { Image("compareCustom", bundle: .module) }
-    public static var compareLine: Image { Image("compareLine", bundle: .module) }
-    public static var compareSolid: Image { Image("compareSolid", bundle: .module) }
-    public static var compassLine: Image { Image("compassLine", bundle: .module) }
-    public static var compassSolid: Image { Image("compassSolid", bundle: .module) }
-    public static var completeLine: Image { Image("completeLine", bundle: .module) }
-    public static var completeSolid: Image { Image("completeSolid", bundle: .module) }
-    public static var composeLine: Image { Image("composeLine", bundle: .module) }
-    public static var composeSolid: Image { Image("composeSolid", bundle: .module) }
-    public static var configureLine: Image { Image("configureLine", bundle: .module) }
-    public static var configureSolid: Image { Image("configureSolid", bundle: .module) }
-    public static var copyCourseLine: Image { Image("copyCourseLine", bundle: .module) }
-    public static var copyCourseSolid: Image { Image("copyCourseSolid", bundle: .module) }
-    public static var copyLine: Image { Image("copyLine", bundle: .module) }
-    public static var copySolid: Image { Image("copySolid", bundle: .module) }
-    public static var copyrightFairUseCustom: Image { Image("copyrightFairUseCustom", bundle: .module) }
-    public static var copyrightObtainedPermissionCustom: Image { Image("copyrightObtainedPermissionCustom", bundle: .module) }
-    public static var copyrightPublicDomainCustom: Image { Image("copyrightPublicDomainCustom", bundle: .module) }
-    public static var coursesLine: Image { Image("coursesLine", bundle: .module) }
-    public static var coursesSolid: Image { Image("coursesSolid", bundle: .module) }
-    public static var cropLine: Image { Image("cropLine", bundle: .module) }
-    public static var cropSolid: Image { Image("cropSolid", bundle: .module) }
-    public static var dashboardLine: Image { Image("dashboardLine", bundle: .module) }
-    public static var dashboardSolid: Image { Image("dashboardSolid", bundle: .module) }
-    public static var deactivateUserLine: Image { Image("deactivateUserLine", bundle: .module) }
-    public static var deactivateUserSolid: Image { Image("deactivateUserSolid", bundle: .module) }
-    public static var discussionCheckLine: Image { Image("discussionCheckLine", bundle: .module) }
-    public static var discussionCheckSolid: Image { Image("discussionCheckSolid", bundle: .module) }
-    public static var discussionLine: Image { Image("discussionLine", bundle: .module) }
-    public static var discussionNewLine: Image { Image("discussionNewLine", bundle: .module) }
-    public static var discussionNewSolid: Image { Image("discussionNewSolid", bundle: .module) }
-    public static var discussionReply2Line: Image { Image("discussionReply2Line", bundle: .module) }
-    public static var discussionReply2Solid: Image { Image("discussionReply2Solid", bundle: .module) }
-    public static var discussionReplyDarkLine: Image { Image("discussionReplyDarkLine", bundle: .module) }
-    public static var discussionReplyDarkSolid: Image { Image("discussionReplyDarkSolid", bundle: .module) }
-    public static var discussionReplyLine: Image { Image("discussionReplyLine", bundle: .module) }
-    public static var discussionReplySolid: Image { Image("discussionReplySolid", bundle: .module) }
-    public static var discussionSearchLine: Image { Image("discussionSearchLine", bundle: .module) }
-    public static var discussionSearchSolid: Image { Image("discussionSearchSolid", bundle: .module) }
-    public static var discussionSolid: Image { Image("discussionSolid", bundle: .module) }
-    public static var discussionXLine: Image { Image("discussionXLine", bundle: .module) }
-    public static var discussionXSolid: Image { Image("discussionXSolid", bundle: .module) }
-    public static var documentLine: Image { Image("documentLine", bundle: .module) }
-    public static var documentSolid: Image { Image("documentSolid", bundle: .module) }
-    public static var downloadLine: Image { Image("downloadLine", bundle: .module) }
-    public static var downloadSolid: Image { Image("downloadSolid", bundle: .module) }
-    public static var dragHandleLine: Image { Image("dragHandleLine", bundle: .module) }
-    public static var dragHandleSolid: Image { Image("dragHandleSolid", bundle: .module) }
-    public static var dropDownLine: Image { Image("dropDownLine", bundle: .module) }
-    public static var dropDownSolid: Image { Image("dropDownSolid", bundle: .module) }
-    public static var duplicateLine: Image { Image("duplicateLine", bundle: .module) }
-    public static var duplicateSolid: Image { Image("duplicateSolid", bundle: .module) }
-    public static var editLine: Image { Image("editLine", bundle: .module) }
-    public static var editSolid: Image { Image("editSolid", bundle: .module) }
-    public static var educatorsLine: Image { Image("educatorsLine", bundle: .module) }
-    public static var educatorsSolid: Image { Image("educatorsSolid", bundle: .module) }
-    public static var elevateLogoCustom: Image { Image("elevateLogoCustom", bundle: .module) }
-    public static var elevateLogoLine: Image { Image("elevateLogoLine", bundle: .module) }
-    public static var elevateLogoSolid: Image { Image("elevateLogoSolid", bundle: .module) }
-    public static var emailLine: Image { Image("emailLine", bundle: .module) }
-    public static var emailSolid: Image { Image("emailSolid", bundle: .module) }
-    public static var emptyLine: Image { Image("emptyLine", bundle: .module) }
-    public static var emptySolid: Image { Image("emptySolid", bundle: .module) }
-    public static var endLine: Image { Image("endLine", bundle: .module) }
-    public static var endSolid: Image { Image("endSolid", bundle: .module) }
-    public static var eportfolioLine: Image { Image("eportfolioLine", bundle: .module) }
-    public static var eportfolioSolid: Image { Image("eportfolioSolid", bundle: .module) }
-    public static var equationLine: Image { Image("equationLine", bundle: .module) }
-    public static var equationSolid: Image { Image("equationSolid", bundle: .module) }
-    public static var equellaLine: Image { Image("equellaLine", bundle: .module) }
-    public static var equellaSolid: Image { Image("equellaSolid", bundle: .module) }
-    public static var essayLine: Image { Image("essayLine", bundle: .module) }
-    public static var essaySolid: Image { Image("essaySolid", bundle: .module) }
-    public static var exitFullScreenLine: Image { Image("exitFullScreenLine", bundle: .module) }
-    public static var exitFullScreenSolid: Image { Image("exitFullScreenSolid", bundle: .module) }
-    public static var expandItemsLine: Image { Image("expandItemsLine", bundle: .module) }
-    public static var expandItemsSolid: Image { Image("expandItemsSolid", bundle: .module) }
-    public static var expandLeftLine: Image { Image("expandLeftLine", bundle: .module) }
-    public static var expandLeftSolid: Image { Image("expandLeftSolid", bundle: .module) }
-    public static var expandLine: Image { Image("expandLine", bundle: .module) }
-    public static var expandSolid: Image { Image("expandSolid", bundle: .module) }
-    public static var expandStartLine: Image { Image("expandStartLine", bundle: .module) }
-    public static var expandStartSolid: Image { Image("expandStartSolid", bundle: .module) }
-    public static var exportContentLine: Image { Image("exportContentLine", bundle: .module) }
-    public static var exportContentSolid: Image { Image("exportContentSolid", bundle: .module) }
-    public static var exportLine: Image { Image("exportLine", bundle: .module) }
-    public static var exportSolid: Image { Image("exportSolid", bundle: .module) }
-    public static var externalLinkLine: Image { Image("externalLinkLine", bundle: .module) }
-    public static var externalLinkSolid: Image { Image("externalLinkSolid", bundle: .module) }
-    public static var eyeLine: Image { Image("eyeLine", bundle: .module) }
-    public static var eyeSolid: Image { Image("eyeSolid", bundle: .module) }
-    public static var facebookBoxedLine: Image { Image("facebookBoxedLine", bundle: .module) }
-    public static var facebookBoxedSolid: Image { Image("facebookBoxedSolid", bundle: .module) }
-    public static var facebookLine: Image { Image("facebookLine", bundle: .module) }
-    public static var facebookSolid: Image { Image("facebookSolid", bundle: .module) }
-    public static var fastForwardLine: Image { Image("fastForwardLine", bundle: .module) }
-    public static var fastForwardSolid: Image { Image("fastForwardSolid", bundle: .module) }
-    public static var fastForwardSolidCustom: Image { Image("fastForwardSolidCustom", bundle: .module) }
-    public static var feedbackLine: Image { Image("feedbackLine", bundle: .module) }
-    public static var feedbackSolid: Image { Image("feedbackSolid", bundle: .module) }
-    public static var fileLockedLine: Image { Image("fileLockedLine", bundle: .module) }
-    public static var fileLockedSolid: Image { Image("fileLockedSolid", bundle: .module) }
-    public static var filesCopyrightLine: Image { Image("filesCopyrightLine", bundle: .module) }
-    public static var filesCopyrightSolid: Image { Image("filesCopyrightSolid", bundle: .module) }
-    public static var filesCreativeCommonsLine: Image { Image("filesCreativeCommonsLine", bundle: .module) }
-    public static var filesCreativeCommonsSolid: Image { Image("filesCreativeCommonsSolid", bundle: .module) }
-    public static var filesFairUseLine: Image { Image("filesFairUseLine", bundle: .module) }
-    public static var filesFairUseSolid: Image { Image("filesFairUseSolid", bundle: .module) }
-    public static var filesObtainedPermissionLine: Image { Image("filesObtainedPermissionLine", bundle: .module) }
-    public static var filesObtainedPermissionSolid: Image { Image("filesObtainedPermissionSolid", bundle: .module) }
-    public static var filesPublicDomainLine: Image { Image("filesPublicDomainLine", bundle: .module) }
-    public static var filesPublicDomainSolid: Image { Image("filesPublicDomainSolid", bundle: .module) }
-    public static var filesXCustom: Image { Image("filesXCustom", bundle: .module) }
-    public static var filmstripLine: Image { Image("filmstripLine", bundle: .module) }
-    public static var filmstripSolid: Image { Image("filmstripSolid", bundle: .module) }
-    public static var filterLine: Image { Image("filterLine", bundle: .module) }
-    public static var filterSolid: Image { Image("filterSolid", bundle: .module) }
-    public static var flagLine: Image { Image("flagLine", bundle: .module) }
-    public static var flagSolid: Image { Image("flagSolid", bundle: .module) }
-    public static var flagSolidCustom: Image { Image("flagSolidCustom", bundle: .module) }
-    public static var folderLine: Image { Image("folderLine", bundle: .module) }
-    public static var folderLockedLine: Image { Image("folderLockedLine", bundle: .module) }
-    public static var folderLockedSolid: Image { Image("folderLockedSolid", bundle: .module) }
-    public static var folderSolid: Image { Image("folderSolid", bundle: .module) }
-    public static var forwardLine: Image { Image("forwardLine", bundle: .module) }
-    public static var forwardSolid: Image { Image("forwardSolid", bundle: .module) }
-    public static var fullScreenLine: Image { Image("fullScreenLine", bundle: .module) }
-    public static var fullScreenSolid: Image { Image("fullScreenSolid", bundle: .module) }
-    public static var githubLine: Image { Image("githubLine", bundle: .module) }
-    public static var githubSolid: Image { Image("githubSolid", bundle: .module) }
-    public static var giveAwardLine: Image { Image("giveAwardLine", bundle: .module) }
-    public static var giveAwardSolid: Image { Image("giveAwardSolid", bundle: .module) }
-    public static var gradebookExportLine: Image { Image("gradebookExportLine", bundle: .module) }
-    public static var gradebookExportSolid: Image { Image("gradebookExportSolid", bundle: .module) }
-    public static var gradebookImportLine: Image { Image("gradebookImportLine", bundle: .module) }
-    public static var gradebookImportSolid: Image { Image("gradebookImportSolid", bundle: .module) }
-    public static var gradebookLine: Image { Image("gradebookLine", bundle: .module) }
-    public static var gradebookSolid: Image { Image("gradebookSolid", bundle: .module) }
-    public static var gridViewLine: Image { Image("gridViewLine", bundle: .module) }
-    public static var gridViewSolid: Image { Image("gridViewSolid", bundle: .module) }
-    public static var groupDarkNewLine: Image { Image("groupDarkNewLine", bundle: .module) }
-    public static var groupDarkNewSolid: Image { Image("groupDarkNewSolid", bundle: .module) }
-    public static var groupLine: Image { Image("groupLine", bundle: .module) }
-    public static var groupNewLine: Image { Image("groupNewLine", bundle: .module) }
-    public static var groupNewSolid: Image { Image("groupNewSolid", bundle: .module) }
-    public static var groupSolid: Image { Image("groupSolid", bundle: .module) }
-    public static var hamburgerLine: Image { Image("hamburgerLine", bundle: .module) }
-    public static var hamburgerSolid: Image { Image("hamburgerSolid", bundle: .module) }
-    public static var headerLine: Image { Image("headerLine", bundle: .module) }
-    public static var headerSolid: Image { Image("headerSolid", bundle: .module) }
-    public static var heartLine: Image { Image("heartLine", bundle: .module) }
-    public static var heartSolid: Image { Image("heartSolid", bundle: .module) }
-    public static var heartSolidCustom: Image { Image("heartSolidCustom", bundle: .module) }
-    public static var highlighterLine: Image { Image("highlighterLine", bundle: .module) }
-    public static var highlighterSolid: Image { Image("highlighterSolid", bundle: .module) }
-    public static var historyCheckCustom: Image { Image("historyCheckCustom", bundle: .module) }
-    public static var historyXCustom: Image { Image("historyXCustom", bundle: .module) }
-    public static var homeLine: Image { Image("homeLine", bundle: .module) }
-    public static var homeSolid: Image { Image("homeSolid", bundle: .module) }
-    public static var hourGlassLine: Image { Image("hourGlassLine", bundle: .module) }
-    public static var hourGlassSolid: Image { Image("hourGlassSolid", bundle: .module) }
-    public static var igniteaiLogoCustom: Image { Image("igniteaiLogoCustom", bundle: .module) }
-    public static var imageLine: Image { Image("imageLine", bundle: .module) }
-    public static var imageSolid: Image { Image("imageSolid", bundle: .module) }
-    public static var immersiveReaderLine: Image { Image("immersiveReaderLine", bundle: .module) }
-    public static var immersiveReaderSolid: Image { Image("immersiveReaderSolid", bundle: .module) }
-    public static var impactLogoCustom: Image { Image("impactLogoCustom", bundle: .module) }
-    public static var impactLogoLine: Image { Image("impactLogoLine", bundle: .module) }
-    public static var impactLogoSolid: Image { Image("impactLogoSolid", bundle: .module) }
-    public static var importContentLine: Image { Image("importContentLine", bundle: .module) }
-    public static var importContentSolid: Image { Image("importContentSolid", bundle: .module) }
-    public static var importLine: Image { Image("importLine", bundle: .module) }
-    public static var importSolid: Image { Image("importSolid", bundle: .module) }
-    public static var importantDatesLine: Image { Image("importantDatesLine", bundle: .module) }
-    public static var importantDatesSolid: Image { Image("importantDatesSolid", bundle: .module) }
-    public static var inboxLine: Image { Image("inboxLine", bundle: .module) }
-    public static var inboxSolid: Image { Image("inboxSolid", bundle: .module) }
-    public static var indent2Line: Image { Image("indent2Line", bundle: .module) }
-    public static var indent2Solid: Image { Image("indent2Solid", bundle: .module) }
-    public static var indentLine: Image { Image("indentLine", bundle: .module) }
-    public static var indentSolid: Image { Image("indentSolid", bundle: .module) }
-    public static var infoBorderlessLine: Image { Image("infoBorderlessLine", bundle: .module) }
-    public static var infoBorderlessSolid: Image { Image("infoBorderlessSolid", bundle: .module) }
-    public static var infoLine: Image { Image("infoLine", bundle: .module) }
-    public static var infoSolid: Image { Image("infoSolid", bundle: .module) }
-    public static var instructure1DotCustom: Image { Image("instructure1DotCustom", bundle: .module) }
-    public static var instructure1DotLine: Image { Image("instructure1DotLine", bundle: .module) }
-    public static var instructure1DotSolid: Image { Image("instructure1DotSolid", bundle: .module) }
-    public static var instructure3DotCustom: Image { Image("instructure3DotCustom", bundle: .module) }
-    public static var instructure3DotLine: Image { Image("instructure3DotLine", bundle: .module) }
-    public static var instructure3DotSolid: Image { Image("instructure3DotSolid", bundle: .module) }
-    public static var instructureCustom: Image { Image("instructureCustom", bundle: .module) }
-    public static var instructureLine: Image { Image("instructureLine", bundle: .module) }
-    public static var instructureLogoCustom: Image { Image("instructureLogoCustom", bundle: .module) }
-    public static var instructureLogoLine: Image { Image("instructureLogoLine", bundle: .module) }
-    public static var instructureLogoSolid: Image { Image("instructureLogoSolid", bundle: .module) }
-    public static var instructureSolid: Image { Image("instructureSolid", bundle: .module) }
-    public static var integrationsLine: Image { Image("integrationsLine", bundle: .module) }
-    public static var integrationsSolid: Image { Image("integrationsSolid", bundle: .module) }
-    public static var invitationLine: Image { Image("invitationLine", bundle: .module) }
-    public static var invitationSolid: Image { Image("invitationSolid", bundle: .module) }
-    public static var italicLine: Image { Image("italicLine", bundle: .module) }
-    public static var italicSolid: Image { Image("italicSolid", bundle: .module) }
-    public static var keyboardShortcutsLine: Image { Image("keyboardShortcutsLine", bundle: .module) }
-    public static var keyboardShortcutsSolid: Image { Image("keyboardShortcutsSolid", bundle: .module) }
-    public static var launchLine: Image { Image("launchLine", bundle: .module) }
-    public static var launchSolid: Image { Image("launchSolid", bundle: .module) }
-    public static var learnplatformLine: Image { Image("learnplatformLine", bundle: .module) }
-    public static var learnplatformSolid: Image { Image("learnplatformSolid", bundle: .module) }
-    public static var lifePreserverLine: Image { Image("lifePreserverLine", bundle: .module) }
-    public static var lifePreserverSolid: Image { Image("lifePreserverSolid", bundle: .module) }
-    public static var likeLine: Image { Image("likeLine", bundle: .module) }
-    public static var likeSolid: Image { Image("likeSolid", bundle: .module) }
-    public static var lineReaderCustom: Image { Image("lineReaderCustom", bundle: .module) }
-    public static var lineReaderLine: Image { Image("lineReaderLine", bundle: .module) }
-    public static var lineReaderSolid: Image { Image("lineReaderSolid", bundle: .module) }
-    public static var linkLine: Image { Image("linkLine", bundle: .module) }
-    public static var linkSolid: Image { Image("linkSolid", bundle: .module) }
-    public static var linkedinLine: Image { Image("linkedinLine", bundle: .module) }
-    public static var linkedinSolid: Image { Image("linkedinSolid", bundle: .module) }
-    public static var listCircleCustom: Image { Image("listCircleCustom", bundle: .module) }
-    public static var listDownCustom: Image { Image("listDownCustom", bundle: .module) }
-    public static var listOrderedAlphaCustom: Image { Image("listOrderedAlphaCustom", bundle: .module) }
-    public static var listOrderedRomanCustom: Image { Image("listOrderedRomanCustom", bundle: .module) }
-    public static var listSquareCustom: Image { Image("listSquareCustom", bundle: .module) }
-    public static var listUpCustom: Image { Image("listUpCustom", bundle: .module) }
-    public static var listViewLine: Image { Image("listViewLine", bundle: .module) }
-    public static var listViewSolid: Image { Image("listViewSolid", bundle: .module) }
-    public static var lockLine: Image { Image("lockLine", bundle: .module) }
-    public static var lockResetCustom: Image { Image("lockResetCustom", bundle: .module) }
-    public static var lockSolid: Image { Image("lockSolid", bundle: .module) }
-    public static var ltiLine: Image { Image("ltiLine", bundle: .module) }
-    public static var ltiSolid: Image { Image("ltiSolid", bundle: .module) }
-    public static var mailCircleCustom: Image { Image("mailCircleCustom", bundle: .module) }
-    public static var markAsReadLine: Image { Image("markAsReadLine", bundle: .module) }
-    public static var markAsReadSolid: Image { Image("markAsReadSolid", bundle: .module) }
-    public static var markerLine: Image { Image("markerLine", bundle: .module) }
-    public static var markerSolid: Image { Image("markerSolid", bundle: .module) }
-    public static var masqueradeLine: Image { Image("masqueradeLine", bundle: .module) }
-    public static var masqueradeSolid: Image { Image("masqueradeSolid", bundle: .module) }
-    public static var masteryLogoCustom: Image { Image("masteryLogoCustom", bundle: .module) }
-    public static var masteryLogoLine: Image { Image("masteryLogoLine", bundle: .module) }
-    public static var masteryLogoSolid: Image { Image("masteryLogoSolid", bundle: .module) }
-    public static var masteryPathsLine: Image { Image("masteryPathsLine", bundle: .module) }
-    public static var masteryPathsSolid: Image { Image("masteryPathsSolid", bundle: .module) }
-    public static var materialsRequiredLightLine: Image { Image("materialsRequiredLightLine", bundle: .module) }
-    public static var materialsRequiredLightSolid: Image { Image("materialsRequiredLightSolid", bundle: .module) }
-    public static var materialsRequiredLine: Image { Image("materialsRequiredLine", bundle: .module) }
-    public static var materialsRequiredSolid: Image { Image("materialsRequiredSolid", bundle: .module) }
-    public static var matureLightLine: Image { Image("matureLightLine", bundle: .module) }
-    public static var matureLightSolid: Image { Image("matureLightSolid", bundle: .module) }
-    public static var matureLine: Image { Image("matureLine", bundle: .module) }
-    public static var matureSolid: Image { Image("matureSolid", bundle: .module) }
-    public static var mediaAttachmentCustom: Image { Image("mediaAttachmentCustom", bundle: .module) }
-    public static var mediaLine: Image { Image("mediaLine", bundle: .module) }
-    public static var mediaPlusCustom: Image { Image("mediaPlusCustom", bundle: .module) }
-    public static var mediaSolid: Image { Image("mediaSolid", bundle: .module) }
-    public static var messageLine: Image { Image("messageLine", bundle: .module) }
-    public static var messageSolid: Image { Image("messageSolid", bundle: .module) }
-    public static var messageSquareCheckCustom: Image { Image("messageSquareCheckCustom", bundle: .module) }
-    public static var messageSquareXCustom: Image { Image("messageSquareXCustom", bundle: .module) }
-    public static var micLine: Image { Image("micLine", bundle: .module) }
-    public static var micOffLine: Image { Image("micOffLine", bundle: .module) }
-    public static var micOffSolid: Image { Image("micOffSolid", bundle: .module) }
-    public static var micSolid: Image { Image("micSolid", bundle: .module) }
-    public static var miniArrowDoubleLine: Image { Image("miniArrowDoubleLine", bundle: .module) }
-    public static var miniArrowDoubleSolid: Image { Image("miniArrowDoubleSolid", bundle: .module) }
-    public static var miniArrowDownLine: Image { Image("miniArrowDownLine", bundle: .module) }
-    public static var miniArrowDownSolid: Image { Image("miniArrowDownSolid", bundle: .module) }
-    public static var miniArrowEndLine: Image { Image("miniArrowEndLine", bundle: .module) }
-    public static var miniArrowEndSolid: Image { Image("miniArrowEndSolid", bundle: .module) }
-    public static var miniArrowLeftLine: Image { Image("miniArrowLeftLine", bundle: .module) }
-    public static var miniArrowLeftSolid: Image { Image("miniArrowLeftSolid", bundle: .module) }
-    public static var miniArrowRightLine: Image { Image("miniArrowRightLine", bundle: .module) }
-    public static var miniArrowRightSolid: Image { Image("miniArrowRightSolid", bundle: .module) }
-    public static var miniArrowStartLine: Image { Image("miniArrowStartLine", bundle: .module) }
-    public static var miniArrowStartSolid: Image { Image("miniArrowStartSolid", bundle: .module) }
-    public static var miniArrowUpLine: Image { Image("miniArrowUpLine", bundle: .module) }
-    public static var miniArrowUpSolid: Image { Image("miniArrowUpSolid", bundle: .module) }
-    public static var minimizeLine: Image { Image("minimizeLine", bundle: .module) }
-    public static var minimizeSolid: Image { Image("minimizeSolid", bundle: .module) }
-    public static var moduleLine: Image { Image("moduleLine", bundle: .module) }
-    public static var moduleSolid: Image { Image("moduleSolid", bundle: .module) }
-    public static var moreLine: Image { Image("moreLine", bundle: .module) }
-    public static var moreSolid: Image { Image("moreSolid", bundle: .module) }
-    public static var moveDownBottomLine: Image { Image("moveDownBottomLine", bundle: .module) }
-    public static var moveDownBottomSolid: Image { Image("moveDownBottomSolid", bundle: .module) }
-    public static var moveDownLine: Image { Image("moveDownLine", bundle: .module) }
-    public static var moveDownSolid: Image { Image("moveDownSolid", bundle: .module) }
-    public static var moveEndLine: Image { Image("moveEndLine", bundle: .module) }
-    public static var moveEndSolid: Image { Image("moveEndSolid", bundle: .module) }
-    public static var moveLeftLine: Image { Image("moveLeftLine", bundle: .module) }
-    public static var moveLeftSolid: Image { Image("moveLeftSolid", bundle: .module) }
-    public static var moveRightLine: Image { Image("moveRightLine", bundle: .module) }
-    public static var moveRightSolid: Image { Image("moveRightSolid", bundle: .module) }
-    public static var moveStartLine: Image { Image("moveStartLine", bundle: .module) }
-    public static var moveStartSolid: Image { Image("moveStartSolid", bundle: .module) }
-    public static var moveUpLine: Image { Image("moveUpLine", bundle: .module) }
-    public static var moveUpSolid: Image { Image("moveUpSolid", bundle: .module) }
-    public static var moveUpTopLine: Image { Image("moveUpTopLine", bundle: .module) }
-    public static var moveUpTopSolid: Image { Image("moveUpTopSolid", bundle: .module) }
-    public static var msExcelLine: Image { Image("msExcelLine", bundle: .module) }
-    public static var msExcelSolid: Image { Image("msExcelSolid", bundle: .module) }
-    public static var msPptLine: Image { Image("msPptLine", bundle: .module) }
-    public static var msPptSolid: Image { Image("msPptSolid", bundle: .module) }
-    public static var msWordLine: Image { Image("msWordLine", bundle: .module) }
-    public static var msWordSolid: Image { Image("msWordSolid", bundle: .module) }
-    public static var mutedLine: Image { Image("mutedLine", bundle: .module) }
-    public static var mutedSolid: Image { Image("mutedSolid", bundle: .module) }
-    public static var neutralLine: Image { Image("neutralLine", bundle: .module) }
-    public static var neutralSolid: Image { Image("neutralSolid", bundle: .module) }
-    public static var nextUnreadLine: Image { Image("nextUnreadLine", bundle: .module) }
-    public static var nextUnreadSolid: Image { Image("nextUnreadSolid", bundle: .module) }
-    public static var noLine: Image { Image("noLine", bundle: .module) }
-    public static var noSolid: Image { Image("noSolid", bundle: .module) }
-    public static var notGradedLine: Image { Image("notGradedLine", bundle: .module) }
-    public static var notGradedSolid: Image { Image("notGradedSolid", bundle: .module) }
-    public static var noteDarkLine: Image { Image("noteDarkLine", bundle: .module) }
-    public static var noteDarkSolid: Image { Image("noteDarkSolid", bundle: .module) }
-    public static var noteLightLine: Image { Image("noteLightLine", bundle: .module) }
-    public static var noteLightSolid: Image { Image("noteLightSolid", bundle: .module) }
-    public static var noteLine: Image { Image("noteLine", bundle: .module) }
-    public static var noteSolid: Image { Image("noteSolid", bundle: .module) }
-    public static var notepadLine: Image { Image("notepadLine", bundle: .module) }
-    public static var notepadSolid: Image { Image("notepadSolid", bundle: .module) }
-    public static var numberedListLine: Image { Image("numberedListLine", bundle: .module) }
-    public static var numberedListSolid: Image { Image("numberedListSolid", bundle: .module) }
-    public static var offLine: Image { Image("offLine", bundle: .module) }
-    public static var offSolid: Image { Image("offSolid", bundle: .module) }
-    public static var openFolderLine: Image { Image("openFolderLine", bundle: .module) }
-    public static var openFolderSolid: Image { Image("openFolderSolid", bundle: .module) }
-    public static var outcomesLine: Image { Image("outcomesLine", bundle: .module) }
-    public static var outcomesSolid: Image { Image("outcomesSolid", bundle: .module) }
-    public static var outdent2Line: Image { Image("outdent2Line", bundle: .module) }
-    public static var outdent2Solid: Image { Image("outdent2Solid", bundle: .module) }
-    public static var outdentLine: Image { Image("outdentLine", bundle: .module) }
-    public static var outdentSolid: Image { Image("outdentSolid", bundle: .module) }
-    public static var ovalHalfLine: Image { Image("ovalHalfLine", bundle: .module) }
-    public static var ovalHalfSolid: Image { Image("ovalHalfSolid", bundle: .module) }
-    public static var pageDownLine: Image { Image("pageDownLine", bundle: .module) }
-    public static var pageDownSolid: Image { Image("pageDownSolid", bundle: .module) }
-    public static var pageUpLine: Image { Image("pageUpLine", bundle: .module) }
-    public static var pageUpSolid: Image { Image("pageUpSolid", bundle: .module) }
-    public static var paintLine: Image { Image("paintLine", bundle: .module) }
-    public static var paintSolid: Image { Image("paintSolid", bundle: .module) }
-    public static var paperclipLine: Image { Image("paperclipLine", bundle: .module) }
-    public static var paperclipSolid: Image { Image("paperclipSolid", bundle: .module) }
-    public static var partialLine: Image { Image("partialLine", bundle: .module) }
-    public static var partialSolid: Image { Image("partialSolid", bundle: .module) }
-    public static var passwordResetLine: Image { Image("passwordResetLine", bundle: .module) }
-    public static var passwordResetSolid: Image { Image("passwordResetSolid", bundle: .module) }
-    public static var pauseLine: Image { Image("pauseLine", bundle: .module) }
-    public static var pauseSolid: Image { Image("pauseSolid", bundle: .module) }
-    public static var pauseSolidCustom: Image { Image("pauseSolidCustom", bundle: .module) }
-    public static var pdfLine: Image { Image("pdfLine", bundle: .module) }
-    public static var pdfSolid: Image { Image("pdfSolid", bundle: .module) }
-    public static var peerGradedLine: Image { Image("peerGradedLine", bundle: .module) }
-    public static var peerGradedSolid: Image { Image("peerGradedSolid", bundle: .module) }
-    public static var peerReviewLine: Image { Image("peerReviewLine", bundle: .module) }
-    public static var peerReviewSolid: Image { Image("peerReviewSolid", bundle: .module) }
-    public static var pencilAnnotateCustom: Image { Image("pencilAnnotateCustom", bundle: .module) }
-    public static var permissionsLine: Image { Image("permissionsLine", bundle: .module) }
-    public static var permissionsSolid: Image { Image("permissionsSolid", bundle: .module) }
-    public static var pinLine: Image { Image("pinLine", bundle: .module) }
-    public static var pinSolid: Image { Image("pinSolid", bundle: .module) }
-    public static var pinterestLine: Image { Image("pinterestLine", bundle: .module) }
-    public static var pinterestSolid: Image { Image("pinterestSolid", bundle: .module) }
-    public static var playLine: Image { Image("playLine", bundle: .module) }
-    public static var playSolid: Image { Image("playSolid", bundle: .module) }
-    public static var playSolidCustom: Image { Image("playSolidCustom", bundle: .module) }
-    public static var plusLine: Image { Image("plusLine", bundle: .module) }
-    public static var plusSolid: Image { Image("plusSolid", bundle: .module) }
-    public static var postSisCustom: Image { Image("postSisCustom", bundle: .module) }
-    public static var postToSisLine: Image { Image("postToSisLine", bundle: .module) }
-    public static var postToSisSolid: Image { Image("postToSisSolid", bundle: .module) }
-    public static var predictiveLine: Image { Image("predictiveLine", bundle: .module) }
-    public static var predictiveSolid: Image { Image("predictiveSolid", bundle: .module) }
-    public static var prerequisiteLine: Image { Image("prerequisiteLine", bundle: .module) }
-    public static var prerequisiteSolid: Image { Image("prerequisiteSolid", bundle: .module) }
-    public static var printerLine: Image { Image("printerLine", bundle: .module) }
-    public static var printerSolid: Image { Image("printerSolid", bundle: .module) }
-    public static var progressLine: Image { Image("progressLine", bundle: .module) }
-    public static var progressSolid: Image { Image("progressSolid", bundle: .module) }
-    public static var protractorCustom: Image { Image("protractorCustom", bundle: .module) }
-    public static var protractorLine: Image { Image("protractorLine", bundle: .module) }
-    public static var protractorSolid: Image { Image("protractorSolid", bundle: .module) }
-    public static var publishLine: Image { Image("publishLine", bundle: .module) }
-    public static var publishSolid: Image { Image("publishSolid", bundle: .module) }
-    public static var questionLine: Image { Image("questionLine", bundle: .module) }
-    public static var questionSolid: Image { Image("questionSolid", bundle: .module) }
-    public static var quizInstructionsLine: Image { Image("quizInstructionsLine", bundle: .module) }
-    public static var quizInstructionsSolid: Image { Image("quizInstructionsSolid", bundle: .module) }
-    public static var quizLine: Image { Image("quizLine", bundle: .module) }
-    public static var quizSolid: Image { Image("quizSolid", bundle: .module) }
-    public static var quizStatsAvgLine: Image { Image("quizStatsAvgLine", bundle: .module) }
-    public static var quizStatsAvgSolid: Image { Image("quizStatsAvgSolid", bundle: .module) }
-    public static var quizStatsCronbachsAlphaLine: Image { Image("quizStatsCronbachsAlphaLine", bundle: .module) }
-    public static var quizStatsCronbachsAlphaSolid: Image { Image("quizStatsCronbachsAlphaSolid", bundle: .module) }
-    public static var quizStatsDeviationLine: Image { Image("quizStatsDeviationLine", bundle: .module) }
-    public static var quizStatsDeviationSolid: Image { Image("quizStatsDeviationSolid", bundle: .module) }
-    public static var quizStatsHighLine: Image { Image("quizStatsHighLine", bundle: .module) }
-    public static var quizStatsHighSolid: Image { Image("quizStatsHighSolid", bundle: .module) }
-    public static var quizStatsLowLine: Image { Image("quizStatsLowLine", bundle: .module) }
-    public static var quizStatsLowSolid: Image { Image("quizStatsLowSolid", bundle: .module) }
-    public static var quizStatsTimeLine: Image { Image("quizStatsTimeLine", bundle: .module) }
-    public static var quizStatsTimeSolid: Image { Image("quizStatsTimeSolid", bundle: .module) }
-    public static var quizTitleLine: Image { Image("quizTitleLine", bundle: .module) }
-    public static var quizTitleSolid: Image { Image("quizTitleSolid", bundle: .module) }
-    public static var recordLine: Image { Image("recordLine", bundle: .module) }
-    public static var recordSolid: Image { Image("recordSolid", bundle: .module) }
-    public static var redoLine: Image { Image("redoLine", bundle: .module) }
-    public static var redoSolid: Image { Image("redoSolid", bundle: .module) }
-    public static var refreshLine: Image { Image("refreshLine", bundle: .module) }
-    public static var refreshSolid: Image { Image("refreshSolid", bundle: .module) }
-    public static var removeBookmarkLine: Image { Image("removeBookmarkLine", bundle: .module) }
-    public static var removeBookmarkSolid: Image { Image("removeBookmarkSolid", bundle: .module) }
-    public static var removeFromCollectionLine: Image { Image("removeFromCollectionLine", bundle: .module) }
-    public static var removeFromCollectionSolid: Image { Image("removeFromCollectionSolid", bundle: .module) }
-    public static var removeLinkLine: Image { Image("removeLinkLine", bundle: .module) }
-    public static var removeLinkSolid: Image { Image("removeLinkSolid", bundle: .module) }
-    public static var repliedLine: Image { Image("repliedLine", bundle: .module) }
-    public static var repliedSolid: Image { Image("repliedSolid", bundle: .module) }
-    public static var reply2Line: Image { Image("reply2Line", bundle: .module) }
-    public static var reply2Solid: Image { Image("reply2Solid", bundle: .module) }
-    public static var replyAll2Line: Image { Image("replyAll2Line", bundle: .module) }
-    public static var replyAll2Solid: Image { Image("replyAll2Solid", bundle: .module) }
-    public static var replyLine: Image { Image("replyLine", bundle: .module) }
-    public static var replySolid: Image { Image("replySolid", bundle: .module) }
-    public static var resetLine: Image { Image("resetLine", bundle: .module) }
-    public static var resetSolid: Image { Image("resetSolid", bundle: .module) }
-    public static var restoreLine: Image { Image("restoreLine", bundle: .module) }
-    public static var restoreSolid: Image { Image("restoreSolid", bundle: .module) }
-    public static var reviewScreenLine: Image { Image("reviewScreenLine", bundle: .module) }
-    public static var reviewScreenSolid: Image { Image("reviewScreenSolid", bundle: .module) }
-    public static var rewindLine: Image { Image("rewindLine", bundle: .module) }
-    public static var rewindSolid: Image { Image("rewindSolid", bundle: .module) }
-    public static var rewindSolidCustom: Image { Image("rewindSolidCustom", bundle: .module) }
-    public static var rocketSolidCustom: Image { Image("rocketSolidCustom", bundle: .module) }
-    public static var rotateLeftLine: Image { Image("rotateLeftLine", bundle: .module) }
-    public static var rotateLeftSolid: Image { Image("rotateLeftSolid", bundle: .module) }
-    public static var rotateRightLine: Image { Image("rotateRightLine", bundle: .module) }
-    public static var rotateRightSolid: Image { Image("rotateRightSolid", bundle: .module) }
-    public static var rssAddLine: Image { Image("rssAddLine", bundle: .module) }
-    public static var rssAddSolid: Image { Image("rssAddSolid", bundle: .module) }
-    public static var rssLine: Image { Image("rssLine", bundle: .module) }
-    public static var rssSolid: Image { Image("rssSolid", bundle: .module) }
-    public static var rubricDarkLine: Image { Image("rubricDarkLine", bundle: .module) }
-    public static var rubricDarkSolid: Image { Image("rubricDarkSolid", bundle: .module) }
-    public static var rubricLine: Image { Image("rubricLine", bundle: .module) }
-    public static var rubricSolid: Image { Image("rubricSolid", bundle: .module) }
-    public static var rulerLine: Image { Image("rulerLine", bundle: .module) }
-    public static var rulerSolid: Image { Image("rulerSolid", bundle: .module) }
-    public static var saveLine: Image { Image("saveLine", bundle: .module) }
-    public static var saveSolid: Image { Image("saveSolid", bundle: .module) }
-    public static var screenCaptureLine: Image { Image("screenCaptureLine", bundle: .module) }
-    public static var screenCaptureSolid: Image { Image("screenCaptureSolid", bundle: .module) }
-    public static var searchAddressBookLine: Image { Image("searchAddressBookLine", bundle: .module) }
-    public static var searchAddressBookSolid: Image { Image("searchAddressBookSolid", bundle: .module) }
-    public static var searchAiCustom: Image { Image("searchAiCustom", bundle: .module) }
-    public static var searchAiLine: Image { Image("searchAiLine", bundle: .module) }
-    public static var searchAiSolid: Image { Image("searchAiSolid", bundle: .module) }
-    public static var searchLine: Image { Image("searchLine", bundle: .module) }
-    public static var searchSolid: Image { Image("searchSolid", bundle: .module) }
-    public static var settings2Line: Image { Image("settings2Line", bundle: .module) }
-    public static var settings2Solid: Image { Image("settings2Solid", bundle: .module) }
-    public static var settingsLine: Image { Image("settingsLine", bundle: .module) }
-    public static var settingsSolid: Image { Image("settingsSolid", bundle: .module) }
-    public static var shapeOvalLine: Image { Image("shapeOvalLine", bundle: .module) }
-    public static var shapeOvalSolid: Image { Image("shapeOvalSolid", bundle: .module) }
-    public static var shapePolygonLine: Image { Image("shapePolygonLine", bundle: .module) }
-    public static var shapePolygonSolid: Image { Image("shapePolygonSolid", bundle: .module) }
-    public static var shapeRectangleLine: Image { Image("shapeRectangleLine", bundle: .module) }
-    public static var shapeRectangleSolid: Image { Image("shapeRectangleSolid", bundle: .module) }
-    public static var shareLine: Image { Image("shareLine", bundle: .module) }
-    public static var shareSolid: Image { Image("shareSolid", bundle: .module) }
-    public static var shoppingCartCheckCustom: Image { Image("shoppingCartCheckCustom", bundle: .module) }
-    public static var sidebarRightHideLine: Image { Image("sidebarRightHideLine", bundle: .module) }
-    public static var sidebarRightHideSolid: Image { Image("sidebarRightHideSolid", bundle: .module) }
-    public static var sidebarRightShowLine: Image { Image("sidebarRightShowLine", bundle: .module) }
-    public static var sidebarRightShowSolid: Image { Image("sidebarRightShowSolid", bundle: .module) }
-    public static var singleMetricLine: Image { Image("singleMetricLine", bundle: .module) }
-    public static var singleMetricSolid: Image { Image("singleMetricSolid", bundle: .module) }
-    public static var sisImportedLine: Image { Image("sisImportedLine", bundle: .module) }
-    public static var sisImportedSolid: Image { Image("sisImportedSolid", bundle: .module) }
-    public static var sisNotSyncedLine: Image { Image("sisNotSyncedLine", bundle: .module) }
-    public static var sisNotSyncedSolid: Image { Image("sisNotSyncedSolid", bundle: .module) }
-    public static var sisSyncedLine: Image { Image("sisSyncedLine", bundle: .module) }
-    public static var sisSyncedSolid: Image { Image("sisSyncedSolid", bundle: .module) }
-    public static var skypeLine: Image { Image("skypeLine", bundle: .module) }
-    public static var skypeSolid: Image { Image("skypeSolid", bundle: .module) }
-    public static var sortLine: Image { Image("sortLine", bundle: .module) }
-    public static var sortSolid: Image { Image("sortSolid", bundle: .module) }
-    public static var speedGraderCustom: Image { Image("speedGraderCustom", bundle: .module) }
-    public static var speedGraderLine: Image { Image("speedGraderLine", bundle: .module) }
-    public static var speedGraderSolid: Image { Image("speedGraderSolid", bundle: .module) }
-    public static var squareSolidCustom: Image { Image("squareSolidCustom", bundle: .module) }
-    public static var squaresBlueprintCustom: Image { Image("squaresBlueprintCustom", bundle: .module) }
-    public static var squaresBlueprintLockCustom: Image { Image("squaresBlueprintLockCustom", bundle: .module) }
-    public static var standardsLine: Image { Image("standardsLine", bundle: .module) }
-    public static var standardsSolid: Image { Image("standardsSolid", bundle: .module) }
-    public static var starLightLine: Image { Image("starLightLine", bundle: .module) }
-    public static var starLightSolid: Image { Image("starLightSolid", bundle: .module) }
-    public static var starLine: Image { Image("starLine", bundle: .module) }
-    public static var starSolid: Image { Image("starSolid", bundle: .module) }
-    public static var starSolidCustom: Image { Image("starSolidCustom", bundle: .module) }
-    public static var statsLine: Image { Image("statsLine", bundle: .module) }
-    public static var statsSolid: Image { Image("statsSolid", bundle: .module) }
-    public static var stopLine: Image { Image("stopLine", bundle: .module) }
-    public static var stopSolid: Image { Image("stopSolid", bundle: .module) }
-    public static var strikethroughLine: Image { Image("strikethroughLine", bundle: .module) }
-    public static var strikethroughSolid: Image { Image("strikethroughSolid", bundle: .module) }
-    public static var studentViewLine: Image { Image("studentViewLine", bundle: .module) }
-    public static var studentViewSolid: Image { Image("studentViewSolid", bundle: .module) }
-    public static var studioCustom: Image { Image("studioCustom", bundle: .module) }
-    public static var studioLine: Image { Image("studioLine", bundle: .module) }
-    public static var studioSolid: Image { Image("studioSolid", bundle: .module) }
-    public static var subaccountsLine: Image { Image("subaccountsLine", bundle: .module) }
-    public static var subaccountsSolid: Image { Image("subaccountsSolid", bundle: .module) }
-    public static var subtitlesLine: Image { Image("subtitlesLine", bundle: .module) }
-    public static var subtitlesSolid: Image { Image("subtitlesSolid", bundle: .module) }
-    public static var syllabusLine: Image { Image("syllabusLine", bundle: .module) }
-    public static var syllabusSolid: Image { Image("syllabusSolid", bundle: .module) }
-    public static var table2CheckCustom: Image { Image("table2CheckCustom", bundle: .module) }
-    public static var table2XCustom: Image { Image("table2XCustom", bundle: .module) }
-    public static var tableCellSelectAllLine: Image { Image("tableCellSelectAllLine", bundle: .module) }
-    public static var tableCellSelectAllSolid: Image { Image("tableCellSelectAllSolid", bundle: .module) }
-    public static var tableCogCustom: Image { Image("tableCogCustom", bundle: .module) }
-    public static var tableColumnCustom: Image { Image("tableColumnCustom", bundle: .module) }
-    public static var tableColumnPlusLeftCustom: Image { Image("tableColumnPlusLeftCustom", bundle: .module) }
-    public static var tableColumnPlusRightCustom: Image { Image("tableColumnPlusRightCustom", bundle: .module) }
-    public static var tableColumnXCustom: Image { Image("tableColumnXCustom", bundle: .module) }
-    public static var tableDeleteColumnLine: Image { Image("tableDeleteColumnLine", bundle: .module) }
-    public static var tableDeleteColumnSolid: Image { Image("tableDeleteColumnSolid", bundle: .module) }
-    public static var tableDeleteRowLine: Image { Image("tableDeleteRowLine", bundle: .module) }
-    public static var tableDeleteRowSolid: Image { Image("tableDeleteRowSolid", bundle: .module) }
-    public static var tableDeleteTableLine: Image { Image("tableDeleteTableLine", bundle: .module) }
-    public static var tableDeleteTableSolid: Image { Image("tableDeleteTableSolid", bundle: .module) }
-    public static var tableInsertColumnAfterLine: Image { Image("tableInsertColumnAfterLine", bundle: .module) }
-    public static var tableInsertColumnAfterSolid: Image { Image("tableInsertColumnAfterSolid", bundle: .module) }
-    public static var tableInsertColumnBeforeLine: Image { Image("tableInsertColumnBeforeLine", bundle: .module) }
-    public static var tableInsertColumnBeforeSolid: Image { Image("tableInsertColumnBeforeSolid", bundle: .module) }
-    public static var tableInsertRowAboveLine: Image { Image("tableInsertRowAboveLine", bundle: .module) }
-    public static var tableInsertRowAboveSolid: Image { Image("tableInsertRowAboveSolid", bundle: .module) }
-    public static var tableInsertRowAfterLine: Image { Image("tableInsertRowAfterLine", bundle: .module) }
-    public static var tableInsertRowAfterSolid: Image { Image("tableInsertRowAfterSolid", bundle: .module) }
-    public static var tableLeftHeaderLine: Image { Image("tableLeftHeaderLine", bundle: .module) }
-    public static var tableLeftHeaderSolid: Image { Image("tableLeftHeaderSolid", bundle: .module) }
-    public static var tableLine: Image { Image("tableLine", bundle: .module) }
-    public static var tableMergeCellsLine: Image { Image("tableMergeCellsLine", bundle: .module) }
-    public static var tableMergeCellsSolid: Image { Image("tableMergeCellsSolid", bundle: .module) }
-    public static var tableRowCustom: Image { Image("tableRowCustom", bundle: .module) }
-    public static var tableRowPlusBottomCustom: Image { Image("tableRowPlusBottomCustom", bundle: .module) }
-    public static var tableRowPlusTopCustom: Image { Image("tableRowPlusTopCustom", bundle: .module) }
-    public static var tableRowPropertiesLine: Image { Image("tableRowPropertiesLine", bundle: .module) }
-    public static var tableRowPropertiesSolid: Image { Image("tableRowPropertiesSolid", bundle: .module) }
-    public static var tableRowXCustom: Image { Image("tableRowXCustom", bundle: .module) }
-    public static var tableSolid: Image { Image("tableSolid", bundle: .module) }
-    public static var tableSplitCellsLine: Image { Image("tableSplitCellsLine", bundle: .module) }
-    public static var tableSplitCellsSolid: Image { Image("tableSplitCellsSolid", bundle: .module) }
-    public static var tableTopHeaderLine: Image { Image("tableTopHeaderLine", bundle: .module) }
-    public static var tableTopHeaderSolid: Image { Image("tableTopHeaderSolid", bundle: .module) }
-    public static var tagLine: Image { Image("tagLine", bundle: .module) }
-    public static var tagSolid: Image { Image("tagSolid", bundle: .module) }
-    public static var targetLine: Image { Image("targetLine", bundle: .module) }
-    public static var targetSolid: Image { Image("targetSolid", bundle: .module) }
-    public static var textBackgroundColorLine: Image { Image("textBackgroundColorLine", bundle: .module) }
-    public static var textBackgroundColorSolid: Image { Image("textBackgroundColorSolid", bundle: .module) }
-    public static var textCenteredLine: Image { Image("textCenteredLine", bundle: .module) }
-    public static var textCenteredSolid: Image { Image("textCenteredSolid", bundle: .module) }
-    public static var textColorCustom: Image { Image("textColorCustom", bundle: .module) }
-    public static var textColorLine: Image { Image("textColorLine", bundle: .module) }
-    public static var textColorSolid: Image { Image("textColorSolid", bundle: .module) }
-    public static var textDirectionLtrLine: Image { Image("textDirectionLtrLine", bundle: .module) }
-    public static var textDirectionLtrSolid: Image { Image("textDirectionLtrSolid", bundle: .module) }
-    public static var textDirectionRtlLine: Image { Image("textDirectionRtlLine", bundle: .module) }
-    public static var textDirectionRtlSolid: Image { Image("textDirectionRtlSolid", bundle: .module) }
-    public static var textEndLine: Image { Image("textEndLine", bundle: .module) }
-    public static var textEndSolid: Image { Image("textEndSolid", bundle: .module) }
-    public static var textLeftLine: Image { Image("textLeftLine", bundle: .module) }
-    public static var textLeftSolid: Image { Image("textLeftSolid", bundle: .module) }
-    public static var textLine: Image { Image("textLine", bundle: .module) }
-    public static var textRightLine: Image { Image("textRightLine", bundle: .module) }
-    public static var textRightSolid: Image { Image("textRightSolid", bundle: .module) }
-    public static var textSolid: Image { Image("textSolid", bundle: .module) }
-    public static var textStartLine: Image { Image("textStartLine", bundle: .module) }
-    public static var textStartSolid: Image { Image("textStartSolid", bundle: .module) }
-    public static var textSubscriptLine: Image { Image("textSubscriptLine", bundle: .module) }
-    public static var textSubscriptSolid: Image { Image("textSubscriptSolid", bundle: .module) }
-    public static var textSuperscriptLine: Image { Image("textSuperscriptLine", bundle: .module) }
-    public static var textSuperscriptSolid: Image { Image("textSuperscriptSolid", bundle: .module) }
-    public static var textareaLine: Image { Image("textareaLine", bundle: .module) }
-    public static var textareaSolid: Image { Image("textareaSolid", bundle: .module) }
-    public static var thumbsDownSolidCustom: Image { Image("thumbsDownSolidCustom", bundle: .module) }
-    public static var thumbsUpSolidCustom: Image { Image("thumbsUpSolidCustom", bundle: .module) }
-    public static var timerLine: Image { Image("timerLine", bundle: .module) }
-    public static var timerSolid: Image { Image("timerSolid", bundle: .module) }
-    public static var titleCustom: Image { Image("titleCustom", bundle: .module) }
-    public static var toggleEndLine: Image { Image("toggleEndLine", bundle: .module) }
-    public static var toggleEndSolid: Image { Image("toggleEndSolid", bundle: .module) }
-    public static var toggleLeftLine: Image { Image("toggleLeftLine", bundle: .module) }
-    public static var toggleLeftSolid: Image { Image("toggleLeftSolid", bundle: .module) }
-    public static var toggleRightLine: Image { Image("toggleRightLine", bundle: .module) }
-    public static var toggleRightSolid: Image { Image("toggleRightSolid", bundle: .module) }
-    public static var toggleStartLine: Image { Image("toggleStartLine", bundle: .module) }
-    public static var toggleStartSolid: Image { Image("toggleStartSolid", bundle: .module) }
-    public static var trashLine: Image { Image("trashLine", bundle: .module) }
-    public static var trashSolid: Image { Image("trashSolid", bundle: .module) }
-    public static var troubleLine: Image { Image("troubleLine", bundle: .module) }
-    public static var troubleSolid: Image { Image("troubleSolid", bundle: .module) }
-    public static var twitterBoxedLine: Image { Image("twitterBoxedLine", bundle: .module) }
-    public static var twitterBoxedSolid: Image { Image("twitterBoxedSolid", bundle: .module) }
-    public static var twitterLine: Image { Image("twitterLine", bundle: .module) }
-    public static var twitterSolid: Image { Image("twitterSolid", bundle: .module) }
-    public static var unarchiveLine: Image { Image("unarchiveLine", bundle: .module) }
-    public static var unarchiveSolid: Image { Image("unarchiveSolid", bundle: .module) }
-    public static var underlineLine: Image { Image("underlineLine", bundle: .module) }
-    public static var underlineSolid: Image { Image("underlineSolid", bundle: .module) }
-    public static var undoLine: Image { Image("undoLine", bundle: .module) }
-    public static var undoSolid: Image { Image("undoSolid", bundle: .module) }
-    public static var unlockLine: Image { Image("unlockLine", bundle: .module) }
-    public static var unlockSolid: Image { Image("unlockSolid", bundle: .module) }
-    public static var unmutedLine: Image { Image("unmutedLine", bundle: .module) }
-    public static var unmutedSolid: Image { Image("unmutedSolid", bundle: .module) }
-    public static var unpublishLine: Image { Image("unpublishLine", bundle: .module) }
-    public static var unpublishSolid: Image { Image("unpublishSolid", bundle: .module) }
-    public static var unpublishedLine: Image { Image("unpublishedLine", bundle: .module) }
-    public static var unpublishedSolid: Image { Image("unpublishedSolid", bundle: .module) }
-    public static var updownLine: Image { Image("updownLine", bundle: .module) }
-    public static var updownSolid: Image { Image("updownSolid", bundle: .module) }
-    public static var uploadLine: Image { Image("uploadLine", bundle: .module) }
-    public static var uploadSolid: Image { Image("uploadSolid", bundle: .module) }
-    public static var userAddLine: Image { Image("userAddLine", bundle: .module) }
-    public static var userAddSolid: Image { Image("userAddSolid", bundle: .module) }
-    public static var userAssignLine: Image { Image("userAssignLine", bundle: .module) }
-    public static var userAssignSolid: Image { Image("userAssignSolid", bundle: .module) }
-    public static var userLine: Image { Image("userLine", bundle: .module) }
-    public static var userRoundArrowUpCustom: Image { Image("userRoundArrowUpCustom", bundle: .module) }
-    public static var userRoundBlackboardCustom: Image { Image("userRoundBlackboardCustom", bundle: .module) }
-    public static var userRoundLockCustom: Image { Image("userRoundLockCustom", bundle: .module) }
-    public static var userSolid: Image { Image("userSolid", bundle: .module) }
-    public static var videoCameraLine: Image { Image("videoCameraLine", bundle: .module) }
-    public static var videoCameraOffLine: Image { Image("videoCameraOffLine", bundle: .module) }
-    public static var videoCameraOffSolid: Image { Image("videoCameraOffSolid", bundle: .module) }
-    public static var videoCameraSolid: Image { Image("videoCameraSolid", bundle: .module) }
-    public static var videoLine: Image { Image("videoLine", bundle: .module) }
-    public static var videoSolid: Image { Image("videoSolid", bundle: .module) }
-    public static var warningBorderlessLine: Image { Image("warningBorderlessLine", bundle: .module) }
-    public static var warningBorderlessSolid: Image { Image("warningBorderlessSolid", bundle: .module) }
-    public static var warningLine: Image { Image("warningLine", bundle: .module) }
-    public static var warningSolid: Image { Image("warningSolid", bundle: .module) }
-    public static var windowsLine: Image { Image("windowsLine", bundle: .module) }
-    public static var windowsSolid: Image { Image("windowsSolid", bundle: .module) }
-    public static var wordpressLine: Image { Image("wordpressLine", bundle: .module) }
-    public static var wordpressSolid: Image { Image("wordpressSolid", bundle: .module) }
-    public static var xLine: Image { Image("xLine", bundle: .module) }
-    public static var xSolid: Image { Image("xSolid", bundle: .module) }
-    public static var zippedLine: Image { Image("zippedLine", bundle: .module) }
-    public static var zippedSolid: Image { Image("zippedSolid", bundle: .module) }
-    public static var zoomInLine: Image { Image("zoomInLine", bundle: .module) }
-    public static var zoomInSolid: Image { Image("zoomInSolid", bundle: .module) }
-    public static var zoomOutLine: Image { Image("zoomOutLine", bundle: .module) }
-    public static var zoomOutSolid: Image { Image("zoomOutSolid", bundle: .module) }
+    public static var `aArrowDown`: Image { Image("aArrowDown", bundle: .module) }
+    public static var `aArrowUp`: Image { Image("aArrowUp", bundle: .module) }
+    public static var `aLargeSmall`: Image { Image("aLargeSmall", bundle: .module) }
+    public static var `accessibility`: Image { Image("accessibility", bundle: .module) }
+    public static var `accessibility2`: Image { Image("accessibility2", bundle: .module) }
+    public static var `activity`: Image { Image("activity", bundle: .module) }
+    public static var `aiInfo`: Image { Image("aiInfo", bundle: .module) }
+    public static var `airVent`: Image { Image("airVent", bundle: .module) }
+    public static var `airplay`: Image { Image("airplay", bundle: .module) }
+    public static var `alarmClock`: Image { Image("alarmClock", bundle: .module) }
+    public static var `alarmClockCheck`: Image { Image("alarmClockCheck", bundle: .module) }
+    public static var `alarmClockMinus`: Image { Image("alarmClockMinus", bundle: .module) }
+    public static var `alarmClockOff`: Image { Image("alarmClockOff", bundle: .module) }
+    public static var `alarmClockPlus`: Image { Image("alarmClockPlus", bundle: .module) }
+    public static var `alarmSmoke`: Image { Image("alarmSmoke", bundle: .module) }
+    public static var `album`: Image { Image("album", bundle: .module) }
+    public static var `alignCenterHorizontal`: Image { Image("alignCenterHorizontal", bundle: .module) }
+    public static var `alignCenterVertical`: Image { Image("alignCenterVertical", bundle: .module) }
+    public static var `alignEndHorizontal`: Image { Image("alignEndHorizontal", bundle: .module) }
+    public static var `alignEndVertical`: Image { Image("alignEndVertical", bundle: .module) }
+    public static var `alignHorizontalDistributeCenter`: Image { Image("alignHorizontalDistributeCenter", bundle: .module) }
+    public static var `alignHorizontalDistributeEnd`: Image { Image("alignHorizontalDistributeEnd", bundle: .module) }
+    public static var `alignHorizontalDistributeStart`: Image { Image("alignHorizontalDistributeStart", bundle: .module) }
+    public static var `alignHorizontalJustifyCenter`: Image { Image("alignHorizontalJustifyCenter", bundle: .module) }
+    public static var `alignHorizontalJustifyEnd`: Image { Image("alignHorizontalJustifyEnd", bundle: .module) }
+    public static var `alignHorizontalJustifyStart`: Image { Image("alignHorizontalJustifyStart", bundle: .module) }
+    public static var `alignHorizontalSpaceAround`: Image { Image("alignHorizontalSpaceAround", bundle: .module) }
+    public static var `alignHorizontalSpaceBetween`: Image { Image("alignHorizontalSpaceBetween", bundle: .module) }
+    public static var `alignStartHorizontal`: Image { Image("alignStartHorizontal", bundle: .module) }
+    public static var `alignStartVertical`: Image { Image("alignStartVertical", bundle: .module) }
+    public static var `alignVerticalDistributeCenter`: Image { Image("alignVerticalDistributeCenter", bundle: .module) }
+    public static var `alignVerticalDistributeEnd`: Image { Image("alignVerticalDistributeEnd", bundle: .module) }
+    public static var `alignVerticalDistributeStart`: Image { Image("alignVerticalDistributeStart", bundle: .module) }
+    public static var `alignVerticalJustifyCenter`: Image { Image("alignVerticalJustifyCenter", bundle: .module) }
+    public static var `alignVerticalJustifyEnd`: Image { Image("alignVerticalJustifyEnd", bundle: .module) }
+    public static var `alignVerticalJustifyStart`: Image { Image("alignVerticalJustifyStart", bundle: .module) }
+    public static var `alignVerticalSpaceAround`: Image { Image("alignVerticalSpaceAround", bundle: .module) }
+    public static var `alignVerticalSpaceBetween`: Image { Image("alignVerticalSpaceBetween", bundle: .module) }
+    public static var `ambulance`: Image { Image("ambulance", bundle: .module) }
+    public static var `ampersand`: Image { Image("ampersand", bundle: .module) }
+    public static var `ampersands`: Image { Image("ampersands", bundle: .module) }
+    public static var `amphora`: Image { Image("amphora", bundle: .module) }
+    public static var `anchor`: Image { Image("anchor", bundle: .module) }
+    public static var `angry`: Image { Image("angry", bundle: .module) }
+    public static var `annoyed`: Image { Image("annoyed", bundle: .module) }
+    public static var `antenna`: Image { Image("antenna", bundle: .module) }
+    public static var `anvil`: Image { Image("anvil", bundle: .module) }
+    public static var `aperture`: Image { Image("aperture", bundle: .module) }
+    public static var `appWindow`: Image { Image("appWindow", bundle: .module) }
+    public static var `appWindowMac`: Image { Image("appWindowMac", bundle: .module) }
+    public static var `apple`: Image { Image("apple", bundle: .module) }
+    public static var `apps`: Image { Image("apps", bundle: .module) }
+    public static var `archive`: Image { Image("archive", bundle: .module) }
+    public static var `archiveRestore`: Image { Image("archiveRestore", bundle: .module) }
+    public static var `archiveX`: Image { Image("archiveX", bundle: .module) }
+    public static var `armchair`: Image { Image("armchair", bundle: .module) }
+    public static var `arrowBigDown`: Image { Image("arrowBigDown", bundle: .module) }
+    public static var `arrowBigDownDash`: Image { Image("arrowBigDownDash", bundle: .module) }
+    public static var `arrowBigLeft`: Image { Image("arrowBigLeft", bundle: .module) }
+    public static var `arrowBigLeftDash`: Image { Image("arrowBigLeftDash", bundle: .module) }
+    public static var `arrowBigRight`: Image { Image("arrowBigRight", bundle: .module) }
+    public static var `arrowBigRightDash`: Image { Image("arrowBigRightDash", bundle: .module) }
+    public static var `arrowBigUp`: Image { Image("arrowBigUp", bundle: .module) }
+    public static var `arrowBigUpDash`: Image { Image("arrowBigUpDash", bundle: .module) }
+    public static var `arrowDown`: Image { Image("arrowDown", bundle: .module) }
+    public static var `arrowDown01`: Image { Image("arrowDown01", bundle: .module) }
+    public static var `arrowDown10`: Image { Image("arrowDown10", bundle: .module) }
+    public static var `arrowDownAZ`: Image { Image("arrowDownAZ", bundle: .module) }
+    public static var `arrowDownFromLine`: Image { Image("arrowDownFromLine", bundle: .module) }
+    public static var `arrowDownLeft`: Image { Image("arrowDownLeft", bundle: .module) }
+    public static var `arrowDownNarrowWide`: Image { Image("arrowDownNarrowWide", bundle: .module) }
+    public static var `arrowDownRight`: Image { Image("arrowDownRight", bundle: .module) }
+    public static var `arrowDownToDot`: Image { Image("arrowDownToDot", bundle: .module) }
+    public static var `arrowDownToLine`: Image { Image("arrowDownToLine", bundle: .module) }
+    public static var `arrowDownUp`: Image { Image("arrowDownUp", bundle: .module) }
+    public static var `arrowDownWideNarrow`: Image { Image("arrowDownWideNarrow", bundle: .module) }
+    public static var `arrowDownZA`: Image { Image("arrowDownZA", bundle: .module) }
+    public static var `arrowLeft`: Image { Image("arrowLeft", bundle: .module) }
+    public static var `arrowLeftFromLine`: Image { Image("arrowLeftFromLine", bundle: .module) }
+    public static var `arrowLeftRight`: Image { Image("arrowLeftRight", bundle: .module) }
+    public static var `arrowLeftToLine`: Image { Image("arrowLeftToLine", bundle: .module) }
+    public static var `arrowRight`: Image { Image("arrowRight", bundle: .module) }
+    public static var `arrowRightFromLine`: Image { Image("arrowRightFromLine", bundle: .module) }
+    public static var `arrowRightLeft`: Image { Image("arrowRightLeft", bundle: .module) }
+    public static var `arrowRightToLine`: Image { Image("arrowRightToLine", bundle: .module) }
+    public static var `arrowUp`: Image { Image("arrowUp", bundle: .module) }
+    public static var `arrowUp01`: Image { Image("arrowUp01", bundle: .module) }
+    public static var `arrowUp10`: Image { Image("arrowUp10", bundle: .module) }
+    public static var `arrowUpAZ`: Image { Image("arrowUpAZ", bundle: .module) }
+    public static var `arrowUpDown`: Image { Image("arrowUpDown", bundle: .module) }
+    public static var `arrowUpFromDot`: Image { Image("arrowUpFromDot", bundle: .module) }
+    public static var `arrowUpFromLine`: Image { Image("arrowUpFromLine", bundle: .module) }
+    public static var `arrowUpLeft`: Image { Image("arrowUpLeft", bundle: .module) }
+    public static var `arrowUpNarrowWide`: Image { Image("arrowUpNarrowWide", bundle: .module) }
+    public static var `arrowUpRight`: Image { Image("arrowUpRight", bundle: .module) }
+    public static var `arrowUpToLine`: Image { Image("arrowUpToLine", bundle: .module) }
+    public static var `arrowUpWideNarrow`: Image { Image("arrowUpWideNarrow", bundle: .module) }
+    public static var `arrowUpZA`: Image { Image("arrowUpZA", bundle: .module) }
+    public static var `arrowsUpFromLine`: Image { Image("arrowsUpFromLine", bundle: .module) }
+    public static var `asterisk`: Image { Image("asterisk", bundle: .module) }
+    public static var `atSign`: Image { Image("atSign", bundle: .module) }
+    public static var `atom`: Image { Image("atom", bundle: .module) }
+    public static var `audioLines`: Image { Image("audioLines", bundle: .module) }
+    public static var `audioWaveform`: Image { Image("audioWaveform", bundle: .module) }
+    public static var `award`: Image { Image("award", bundle: .module) }
+    public static var `axe`: Image { Image("axe", bundle: .module) }
+    public static var `axis3d`: Image { Image("axis3d", bundle: .module) }
+    public static var `baby`: Image { Image("baby", bundle: .module) }
+    public static var `backgroundColor`: Image { Image("backgroundColor", bundle: .module) }
+    public static var `backpack`: Image { Image("backpack", bundle: .module) }
+    public static var `badge`: Image { Image("badge", bundle: .module) }
+    public static var `badgeAlert`: Image { Image("badgeAlert", bundle: .module) }
+    public static var `badgeCent`: Image { Image("badgeCent", bundle: .module) }
+    public static var `badgeCheck`: Image { Image("badgeCheck", bundle: .module) }
+    public static var `badgeDollarSign`: Image { Image("badgeDollarSign", bundle: .module) }
+    public static var `badgeEuro`: Image { Image("badgeEuro", bundle: .module) }
+    public static var `badgeIndianRupee`: Image { Image("badgeIndianRupee", bundle: .module) }
+    public static var `badgeInfo`: Image { Image("badgeInfo", bundle: .module) }
+    public static var `badgeJapaneseYen`: Image { Image("badgeJapaneseYen", bundle: .module) }
+    public static var `badgeMinus`: Image { Image("badgeMinus", bundle: .module) }
+    public static var `badgePercent`: Image { Image("badgePercent", bundle: .module) }
+    public static var `badgePlus`: Image { Image("badgePlus", bundle: .module) }
+    public static var `badgePoundSterling`: Image { Image("badgePoundSterling", bundle: .module) }
+    public static var `badgeQuestionMark`: Image { Image("badgeQuestionMark", bundle: .module) }
+    public static var `badgeRussianRuble`: Image { Image("badgeRussianRuble", bundle: .module) }
+    public static var `badgeSwissFranc`: Image { Image("badgeSwissFranc", bundle: .module) }
+    public static var `badgeTurkishLira`: Image { Image("badgeTurkishLira", bundle: .module) }
+    public static var `badgeX`: Image { Image("badgeX", bundle: .module) }
+    public static var `baggageClaim`: Image { Image("baggageClaim", bundle: .module) }
+    public static var `balloon`: Image { Image("balloon", bundle: .module) }
+    public static var `ban`: Image { Image("ban", bundle: .module) }
+    public static var `banana`: Image { Image("banana", bundle: .module) }
+    public static var `bandage`: Image { Image("bandage", bundle: .module) }
+    public static var `banknote`: Image { Image("banknote", bundle: .module) }
+    public static var `banknoteArrowDown`: Image { Image("banknoteArrowDown", bundle: .module) }
+    public static var `banknoteArrowUp`: Image { Image("banknoteArrowUp", bundle: .module) }
+    public static var `banknoteX`: Image { Image("banknoteX", bundle: .module) }
+    public static var `barcode`: Image { Image("barcode", bundle: .module) }
+    public static var `barrel`: Image { Image("barrel", bundle: .module) }
+    public static var `baseline`: Image { Image("baseline", bundle: .module) }
+    public static var `bath`: Image { Image("bath", bundle: .module) }
+    public static var `battery`: Image { Image("battery", bundle: .module) }
+    public static var `batteryCharging`: Image { Image("batteryCharging", bundle: .module) }
+    public static var `batteryFull`: Image { Image("batteryFull", bundle: .module) }
+    public static var `batteryLow`: Image { Image("batteryLow", bundle: .module) }
+    public static var `batteryMedium`: Image { Image("batteryMedium", bundle: .module) }
+    public static var `batteryPlus`: Image { Image("batteryPlus", bundle: .module) }
+    public static var `batteryWarning`: Image { Image("batteryWarning", bundle: .module) }
+    public static var `beaker`: Image { Image("beaker", bundle: .module) }
+    public static var `bean`: Image { Image("bean", bundle: .module) }
+    public static var `beanOff`: Image { Image("beanOff", bundle: .module) }
+    public static var `bed`: Image { Image("bed", bundle: .module) }
+    public static var `bedDouble`: Image { Image("bedDouble", bundle: .module) }
+    public static var `bedSingle`: Image { Image("bedSingle", bundle: .module) }
+    public static var `beef`: Image { Image("beef", bundle: .module) }
+    public static var `beefOff`: Image { Image("beefOff", bundle: .module) }
+    public static var `beer`: Image { Image("beer", bundle: .module) }
+    public static var `beerOff`: Image { Image("beerOff", bundle: .module) }
+    public static var `bell`: Image { Image("bell", bundle: .module) }
+    public static var `bellDot`: Image { Image("bellDot", bundle: .module) }
+    public static var `bellElectric`: Image { Image("bellElectric", bundle: .module) }
+    public static var `bellMinus`: Image { Image("bellMinus", bundle: .module) }
+    public static var `bellOff`: Image { Image("bellOff", bundle: .module) }
+    public static var `bellPlus`: Image { Image("bellPlus", bundle: .module) }
+    public static var `bellRing`: Image { Image("bellRing", bundle: .module) }
+    public static var `bellSolid`: Image { Image("bellSolid", bundle: .module) }
+    public static var `betweenHorizontalEnd`: Image { Image("betweenHorizontalEnd", bundle: .module) }
+    public static var `betweenHorizontalStart`: Image { Image("betweenHorizontalStart", bundle: .module) }
+    public static var `betweenVerticalEnd`: Image { Image("betweenVerticalEnd", bundle: .module) }
+    public static var `betweenVerticalStart`: Image { Image("betweenVerticalStart", bundle: .module) }
+    public static var `bicepsFlexed`: Image { Image("bicepsFlexed", bundle: .module) }
+    public static var `bike`: Image { Image("bike", bundle: .module) }
+    public static var `binary`: Image { Image("binary", bundle: .module) }
+    public static var `binoculars`: Image { Image("binoculars", bundle: .module) }
+    public static var `biohazard`: Image { Image("biohazard", bundle: .module) }
+    public static var `bird`: Image { Image("bird", bundle: .module) }
+    public static var `birdhouse`: Image { Image("birdhouse", bundle: .module) }
+    public static var `bitcoin`: Image { Image("bitcoin", bundle: .module) }
+    public static var `blend`: Image { Image("blend", bundle: .module) }
+    public static var `blinds`: Image { Image("blinds", bundle: .module) }
+    public static var `blocks`: Image { Image("blocks", bundle: .module) }
+    public static var `bluetooth`: Image { Image("bluetooth", bundle: .module) }
+    public static var `bluetoothConnected`: Image { Image("bluetoothConnected", bundle: .module) }
+    public static var `bluetoothOff`: Image { Image("bluetoothOff", bundle: .module) }
+    public static var `bluetoothSearching`: Image { Image("bluetoothSearching", bundle: .module) }
+    public static var `bold`: Image { Image("bold", bundle: .module) }
+    public static var `bolt`: Image { Image("bolt", bundle: .module) }
+    public static var `bomb`: Image { Image("bomb", bundle: .module) }
+    public static var `bone`: Image { Image("bone", bundle: .module) }
+    public static var `book`: Image { Image("book", bundle: .module) }
+    public static var `bookA`: Image { Image("bookA", bundle: .module) }
+    public static var `bookAlert`: Image { Image("bookAlert", bundle: .module) }
+    public static var `bookAudio`: Image { Image("bookAudio", bundle: .module) }
+    public static var `bookCheck`: Image { Image("bookCheck", bundle: .module) }
+    public static var `bookCopy`: Image { Image("bookCopy", bundle: .module) }
+    public static var `bookDashed`: Image { Image("bookDashed", bundle: .module) }
+    public static var `bookDown`: Image { Image("bookDown", bundle: .module) }
+    public static var `bookHeadphones`: Image { Image("bookHeadphones", bundle: .module) }
+    public static var `bookHeart`: Image { Image("bookHeart", bundle: .module) }
+    public static var `bookImage`: Image { Image("bookImage", bundle: .module) }
+    public static var `bookKey`: Image { Image("bookKey", bundle: .module) }
+    public static var `bookLock`: Image { Image("bookLock", bundle: .module) }
+    public static var `bookMarked`: Image { Image("bookMarked", bundle: .module) }
+    public static var `bookMinus`: Image { Image("bookMinus", bundle: .module) }
+    public static var `bookOpen`: Image { Image("bookOpen", bundle: .module) }
+    public static var `bookOpenCheck`: Image { Image("bookOpenCheck", bundle: .module) }
+    public static var `bookOpenText`: Image { Image("bookOpenText", bundle: .module) }
+    public static var `bookPlus`: Image { Image("bookPlus", bundle: .module) }
+    public static var `bookSearch`: Image { Image("bookSearch", bundle: .module) }
+    public static var `bookText`: Image { Image("bookText", bundle: .module) }
+    public static var `bookType`: Image { Image("bookType", bundle: .module) }
+    public static var `bookUp`: Image { Image("bookUp", bundle: .module) }
+    public static var `bookUp2`: Image { Image("bookUp2", bundle: .module) }
+    public static var `bookUser`: Image { Image("bookUser", bundle: .module) }
+    public static var `bookX`: Image { Image("bookX", bundle: .module) }
+    public static var `bookmark`: Image { Image("bookmark", bundle: .module) }
+    public static var `bookmarkCheck`: Image { Image("bookmarkCheck", bundle: .module) }
+    public static var `bookmarkMinus`: Image { Image("bookmarkMinus", bundle: .module) }
+    public static var `bookmarkOff`: Image { Image("bookmarkOff", bundle: .module) }
+    public static var `bookmarkPlus`: Image { Image("bookmarkPlus", bundle: .module) }
+    public static var `bookmarkSolid`: Image { Image("bookmarkSolid", bundle: .module) }
+    public static var `bookmarkX`: Image { Image("bookmarkX", bundle: .module) }
+    public static var `boomBox`: Image { Image("boomBox", bundle: .module) }
+    public static var `bot`: Image { Image("bot", bundle: .module) }
+    public static var `botMessageSquare`: Image { Image("botMessageSquare", bundle: .module) }
+    public static var `botOff`: Image { Image("botOff", bundle: .module) }
+    public static var `bottleWine`: Image { Image("bottleWine", bundle: .module) }
+    public static var `bowArrow`: Image { Image("bowArrow", bundle: .module) }
+    public static var `box`: Image { Image("box", bundle: .module) }
+    public static var `boxes`: Image { Image("boxes", bundle: .module) }
+    public static var `braces`: Image { Image("braces", bundle: .module) }
+    public static var `brackets`: Image { Image("brackets", bundle: .module) }
+    public static var `brain`: Image { Image("brain", bundle: .module) }
+    public static var `brainCircuit`: Image { Image("brainCircuit", bundle: .module) }
+    public static var `brainCog`: Image { Image("brainCog", bundle: .module) }
+    public static var `brickWall`: Image { Image("brickWall", bundle: .module) }
+    public static var `brickWallFire`: Image { Image("brickWallFire", bundle: .module) }
+    public static var `brickWallShield`: Image { Image("brickWallShield", bundle: .module) }
+    public static var `briefcase`: Image { Image("briefcase", bundle: .module) }
+    public static var `briefcaseBusiness`: Image { Image("briefcaseBusiness", bundle: .module) }
+    public static var `briefcaseConveyorBelt`: Image { Image("briefcaseConveyorBelt", bundle: .module) }
+    public static var `briefcaseMedical`: Image { Image("briefcaseMedical", bundle: .module) }
+    public static var `bringToFront`: Image { Image("bringToFront", bundle: .module) }
+    public static var `brush`: Image { Image("brush", bundle: .module) }
+    public static var `brushCleaning`: Image { Image("brushCleaning", bundle: .module) }
+    public static var `bubbles`: Image { Image("bubbles", bundle: .module) }
+    public static var `bug`: Image { Image("bug", bundle: .module) }
+    public static var `bugOff`: Image { Image("bugOff", bundle: .module) }
+    public static var `bugPlay`: Image { Image("bugPlay", bundle: .module) }
+    public static var `building`: Image { Image("building", bundle: .module) }
+    public static var `building2`: Image { Image("building2", bundle: .module) }
+    public static var `bus`: Image { Image("bus", bundle: .module) }
+    public static var `busFront`: Image { Image("busFront", bundle: .module) }
+    public static var `cable`: Image { Image("cable", bundle: .module) }
+    public static var `cableCar`: Image { Image("cableCar", bundle: .module) }
+    public static var `cake`: Image { Image("cake", bundle: .module) }
+    public static var `cakeSlice`: Image { Image("cakeSlice", bundle: .module) }
+    public static var `calculator`: Image { Image("calculator", bundle: .module) }
+    public static var `calculatorDesmos`: Image { Image("calculatorDesmos", bundle: .module) }
+    public static var `calendar`: Image { Image("calendar", bundle: .module) }
+    public static var `calendar1`: Image { Image("calendar1", bundle: .module) }
+    public static var `calendarArrowDown`: Image { Image("calendarArrowDown", bundle: .module) }
+    public static var `calendarArrowUp`: Image { Image("calendarArrowUp", bundle: .module) }
+    public static var `calendarCheck`: Image { Image("calendarCheck", bundle: .module) }
+    public static var `calendarCheck2`: Image { Image("calendarCheck2", bundle: .module) }
+    public static var `calendarClock`: Image { Image("calendarClock", bundle: .module) }
+    public static var `calendarCog`: Image { Image("calendarCog", bundle: .module) }
+    public static var `calendarDays`: Image { Image("calendarDays", bundle: .module) }
+    public static var `calendarFold`: Image { Image("calendarFold", bundle: .module) }
+    public static var `calendarHeart`: Image { Image("calendarHeart", bundle: .module) }
+    public static var `calendarMinus`: Image { Image("calendarMinus", bundle: .module) }
+    public static var `calendarMinus2`: Image { Image("calendarMinus2", bundle: .module) }
+    public static var `calendarOff`: Image { Image("calendarOff", bundle: .module) }
+    public static var `calendarPlus`: Image { Image("calendarPlus", bundle: .module) }
+    public static var `calendarPlus2`: Image { Image("calendarPlus2", bundle: .module) }
+    public static var `calendarRange`: Image { Image("calendarRange", bundle: .module) }
+    public static var `calendarSearch`: Image { Image("calendarSearch", bundle: .module) }
+    public static var `calendarSync`: Image { Image("calendarSync", bundle: .module) }
+    public static var `calendarX`: Image { Image("calendarX", bundle: .module) }
+    public static var `calendarX2`: Image { Image("calendarX2", bundle: .module) }
+    public static var `calendars`: Image { Image("calendars", bundle: .module) }
+    public static var `camera`: Image { Image("camera", bundle: .module) }
+    public static var `cameraOff`: Image { Image("cameraOff", bundle: .module) }
+    public static var `candy`: Image { Image("candy", bundle: .module) }
+    public static var `candyCane`: Image { Image("candyCane", bundle: .module) }
+    public static var `candyOff`: Image { Image("candyOff", bundle: .module) }
+    public static var `cannabis`: Image { Image("cannabis", bundle: .module) }
+    public static var `cannabisOff`: Image { Image("cannabisOff", bundle: .module) }
+    public static var `canvasLogo`: Image { Image("canvasLogo", bundle: .module) }
+    public static var `captions`: Image { Image("captions", bundle: .module) }
+    public static var `captionsOff`: Image { Image("captionsOff", bundle: .module) }
+    public static var `captionsSolid`: Image { Image("captionsSolid", bundle: .module) }
+    public static var `car`: Image { Image("car", bundle: .module) }
+    public static var `carFront`: Image { Image("carFront", bundle: .module) }
+    public static var `carTaxiFront`: Image { Image("carTaxiFront", bundle: .module) }
+    public static var `caravan`: Image { Image("caravan", bundle: .module) }
+    public static var `cardSim`: Image { Image("cardSim", bundle: .module) }
+    public static var `carrot`: Image { Image("carrot", bundle: .module) }
+    public static var `caseLower`: Image { Image("caseLower", bundle: .module) }
+    public static var `caseSensitive`: Image { Image("caseSensitive", bundle: .module) }
+    public static var `caseUpper`: Image { Image("caseUpper", bundle: .module) }
+    public static var `cassetteTape`: Image { Image("cassetteTape", bundle: .module) }
+    public static var `cast`: Image { Image("cast", bundle: .module) }
+    public static var `castle`: Image { Image("castle", bundle: .module) }
+    public static var `cat`: Image { Image("cat", bundle: .module) }
+    public static var `cctv`: Image { Image("cctv", bundle: .module) }
+    public static var `cctvOff`: Image { Image("cctvOff", bundle: .module) }
+    public static var `chartArea`: Image { Image("chartArea", bundle: .module) }
+    public static var `chartBar`: Image { Image("chartBar", bundle: .module) }
+    public static var `chartBarBig`: Image { Image("chartBarBig", bundle: .module) }
+    public static var `chartBarDecreasing`: Image { Image("chartBarDecreasing", bundle: .module) }
+    public static var `chartBarIncreasing`: Image { Image("chartBarIncreasing", bundle: .module) }
+    public static var `chartBarStacked`: Image { Image("chartBarStacked", bundle: .module) }
+    public static var `chartCandlestick`: Image { Image("chartCandlestick", bundle: .module) }
+    public static var `chartColumn`: Image { Image("chartColumn", bundle: .module) }
+    public static var `chartColumnBig`: Image { Image("chartColumnBig", bundle: .module) }
+    public static var `chartColumnDecreasing`: Image { Image("chartColumnDecreasing", bundle: .module) }
+    public static var `chartColumnIncreasing`: Image { Image("chartColumnIncreasing", bundle: .module) }
+    public static var `chartColumnStacked`: Image { Image("chartColumnStacked", bundle: .module) }
+    public static var `chartGantt`: Image { Image("chartGantt", bundle: .module) }
+    public static var `chartLine`: Image { Image("chartLine", bundle: .module) }
+    public static var `chartNetwork`: Image { Image("chartNetwork", bundle: .module) }
+    public static var `chartNoAxesColumn`: Image { Image("chartNoAxesColumn", bundle: .module) }
+    public static var `chartNoAxesColumnDecreasing`: Image { Image("chartNoAxesColumnDecreasing", bundle: .module) }
+    public static var `chartNoAxesColumnIncreasing`: Image { Image("chartNoAxesColumnIncreasing", bundle: .module) }
+    public static var `chartNoAxesCombined`: Image { Image("chartNoAxesCombined", bundle: .module) }
+    public static var `chartNoAxesGantt`: Image { Image("chartNoAxesGantt", bundle: .module) }
+    public static var `chartPie`: Image { Image("chartPie", bundle: .module) }
+    public static var `chartScatter`: Image { Image("chartScatter", bundle: .module) }
+    public static var `chartSpline`: Image { Image("chartSpline", bundle: .module) }
+    public static var `check`: Image { Image("check", bundle: .module) }
+    public static var `checkCheck`: Image { Image("checkCheck", bundle: .module) }
+    public static var `checkLine`: Image { Image("checkLine", bundle: .module) }
+    public static var `chefHat`: Image { Image("chefHat", bundle: .module) }
+    public static var `cherry`: Image { Image("cherry", bundle: .module) }
+    public static var `chessBishop`: Image { Image("chessBishop", bundle: .module) }
+    public static var `chessKing`: Image { Image("chessKing", bundle: .module) }
+    public static var `chessKnight`: Image { Image("chessKnight", bundle: .module) }
+    public static var `chessPawn`: Image { Image("chessPawn", bundle: .module) }
+    public static var `chessQueen`: Image { Image("chessQueen", bundle: .module) }
+    public static var `chessRook`: Image { Image("chessRook", bundle: .module) }
+    public static var `chevronDown`: Image { Image("chevronDown", bundle: .module) }
+    public static var `chevronFirst`: Image { Image("chevronFirst", bundle: .module) }
+    public static var `chevronLast`: Image { Image("chevronLast", bundle: .module) }
+    public static var `chevronLeft`: Image { Image("chevronLeft", bundle: .module) }
+    public static var `chevronRight`: Image { Image("chevronRight", bundle: .module) }
+    public static var `chevronUp`: Image { Image("chevronUp", bundle: .module) }
+    public static var `chevronsDown`: Image { Image("chevronsDown", bundle: .module) }
+    public static var `chevronsDownUp`: Image { Image("chevronsDownUp", bundle: .module) }
+    public static var `chevronsLeft`: Image { Image("chevronsLeft", bundle: .module) }
+    public static var `chevronsLeftRight`: Image { Image("chevronsLeftRight", bundle: .module) }
+    public static var `chevronsLeftRightEllipsis`: Image { Image("chevronsLeftRightEllipsis", bundle: .module) }
+    public static var `chevronsRight`: Image { Image("chevronsRight", bundle: .module) }
+    public static var `chevronsRightLeft`: Image { Image("chevronsRightLeft", bundle: .module) }
+    public static var `chevronsUp`: Image { Image("chevronsUp", bundle: .module) }
+    public static var `chevronsUpDown`: Image { Image("chevronsUpDown", bundle: .module) }
+    public static var `church`: Image { Image("church", bundle: .module) }
+    public static var `cigarette`: Image { Image("cigarette", bundle: .module) }
+    public static var `cigaretteOff`: Image { Image("cigaretteOff", bundle: .module) }
+    public static var `circle`: Image { Image("circle", bundle: .module) }
+    public static var `circleAlert`: Image { Image("circleAlert", bundle: .module) }
+    public static var `circleAlpha`: Image { Image("circleAlpha", bundle: .module) }
+    public static var `circleArrowDown`: Image { Image("circleArrowDown", bundle: .module) }
+    public static var `circleArrowDownRight`: Image { Image("circleArrowDownRight", bundle: .module) }
+    public static var `circleArrowInLeft`: Image { Image("circleArrowInLeft", bundle: .module) }
+    public static var `circleArrowInRight`: Image { Image("circleArrowInRight", bundle: .module) }
+    public static var `circleArrowLeft`: Image { Image("circleArrowLeft", bundle: .module) }
+    public static var `circleArrowOutDownLeft`: Image { Image("circleArrowOutDownLeft", bundle: .module) }
+    public static var `circleArrowOutDownRight`: Image { Image("circleArrowOutDownRight", bundle: .module) }
+    public static var `circleArrowOutUpLeft`: Image { Image("circleArrowOutUpLeft", bundle: .module) }
+    public static var `circleArrowOutUpRight`: Image { Image("circleArrowOutUpRight", bundle: .module) }
+    public static var `circleArrowRight`: Image { Image("circleArrowRight", bundle: .module) }
+    public static var `circleArrowUp`: Image { Image("circleArrowUp", bundle: .module) }
+    public static var `circleArrowUpRight`: Image { Image("circleArrowUpRight", bundle: .module) }
+    public static var `circleCheck`: Image { Image("circleCheck", bundle: .module) }
+    public static var `circleCheckBig`: Image { Image("circleCheckBig", bundle: .module) }
+    public static var `circleChevronDown`: Image { Image("circleChevronDown", bundle: .module) }
+    public static var `circleChevronLeft`: Image { Image("circleChevronLeft", bundle: .module) }
+    public static var `circleChevronRight`: Image { Image("circleChevronRight", bundle: .module) }
+    public static var `circleChevronUp`: Image { Image("circleChevronUp", bundle: .module) }
+    public static var `circleDashed`: Image { Image("circleDashed", bundle: .module) }
+    public static var `circleDivide`: Image { Image("circleDivide", bundle: .module) }
+    public static var `circleDollarSign`: Image { Image("circleDollarSign", bundle: .module) }
+    public static var `circleDot`: Image { Image("circleDot", bundle: .module) }
+    public static var `circleDotDashed`: Image { Image("circleDotDashed", bundle: .module) }
+    public static var `circleEllipsis`: Image { Image("circleEllipsis", bundle: .module) }
+    public static var `circleEqual`: Image { Image("circleEqual", bundle: .module) }
+    public static var `circleFadingArrowUp`: Image { Image("circleFadingArrowUp", bundle: .module) }
+    public static var `circleFadingPlus`: Image { Image("circleFadingPlus", bundle: .module) }
+    public static var `circleGauge`: Image { Image("circleGauge", bundle: .module) }
+    public static var `circleMinus`: Image { Image("circleMinus", bundle: .module) }
+    public static var `circleMu`: Image { Image("circleMu", bundle: .module) }
+    public static var `circleOff`: Image { Image("circleOff", bundle: .module) }
+    public static var `circleParking`: Image { Image("circleParking", bundle: .module) }
+    public static var `circleParkingOff`: Image { Image("circleParkingOff", bundle: .module) }
+    public static var `circlePause`: Image { Image("circlePause", bundle: .module) }
+    public static var `circlePercent`: Image { Image("circlePercent", bundle: .module) }
+    public static var `circlePile`: Image { Image("circlePile", bundle: .module) }
+    public static var `circlePlay`: Image { Image("circlePlay", bundle: .module) }
+    public static var `circlePlus`: Image { Image("circlePlus", bundle: .module) }
+    public static var `circlePoundSterling`: Image { Image("circlePoundSterling", bundle: .module) }
+    public static var `circlePower`: Image { Image("circlePower", bundle: .module) }
+    public static var `circleQuestionMark`: Image { Image("circleQuestionMark", bundle: .module) }
+    public static var `circleSigma`: Image { Image("circleSigma", bundle: .module) }
+    public static var `circleSlash`: Image { Image("circleSlash", bundle: .module) }
+    public static var `circleSlash2`: Image { Image("circleSlash2", bundle: .module) }
+    public static var `circleSmall`: Image { Image("circleSmall", bundle: .module) }
+    public static var `circleStar`: Image { Image("circleStar", bundle: .module) }
+    public static var `circleStop`: Image { Image("circleStop", bundle: .module) }
+    public static var `circleUser`: Image { Image("circleUser", bundle: .module) }
+    public static var `circleUserRound`: Image { Image("circleUserRound", bundle: .module) }
+    public static var `circleX`: Image { Image("circleX", bundle: .module) }
+    public static var `circuitBoard`: Image { Image("circuitBoard", bundle: .module) }
+    public static var `citrus`: Image { Image("citrus", bundle: .module) }
+    public static var `clapperboard`: Image { Image("clapperboard", bundle: .module) }
+    public static var `clipboard`: Image { Image("clipboard", bundle: .module) }
+    public static var `clipboardCheck`: Image { Image("clipboardCheck", bundle: .module) }
+    public static var `clipboardClock`: Image { Image("clipboardClock", bundle: .module) }
+    public static var `clipboardCopy`: Image { Image("clipboardCopy", bundle: .module) }
+    public static var `clipboardList`: Image { Image("clipboardList", bundle: .module) }
+    public static var `clipboardMinus`: Image { Image("clipboardMinus", bundle: .module) }
+    public static var `clipboardPaste`: Image { Image("clipboardPaste", bundle: .module) }
+    public static var `clipboardPen`: Image { Image("clipboardPen", bundle: .module) }
+    public static var `clipboardPenLine`: Image { Image("clipboardPenLine", bundle: .module) }
+    public static var `clipboardPlus`: Image { Image("clipboardPlus", bundle: .module) }
+    public static var `clipboardType`: Image { Image("clipboardType", bundle: .module) }
+    public static var `clipboardX`: Image { Image("clipboardX", bundle: .module) }
+    public static var `clock`: Image { Image("clock", bundle: .module) }
+    public static var `clock1`: Image { Image("clock1", bundle: .module) }
+    public static var `clock10`: Image { Image("clock10", bundle: .module) }
+    public static var `clock11`: Image { Image("clock11", bundle: .module) }
+    public static var `clock12`: Image { Image("clock12", bundle: .module) }
+    public static var `clock2`: Image { Image("clock2", bundle: .module) }
+    public static var `clock3`: Image { Image("clock3", bundle: .module) }
+    public static var `clock4`: Image { Image("clock4", bundle: .module) }
+    public static var `clock5`: Image { Image("clock5", bundle: .module) }
+    public static var `clock6`: Image { Image("clock6", bundle: .module) }
+    public static var `clock7`: Image { Image("clock7", bundle: .module) }
+    public static var `clock8`: Image { Image("clock8", bundle: .module) }
+    public static var `clock9`: Image { Image("clock9", bundle: .module) }
+    public static var `clockAlert`: Image { Image("clockAlert", bundle: .module) }
+    public static var `clockArrowDown`: Image { Image("clockArrowDown", bundle: .module) }
+    public static var `clockArrowUp`: Image { Image("clockArrowUp", bundle: .module) }
+    public static var `clockCheck`: Image { Image("clockCheck", bundle: .module) }
+    public static var `clockFading`: Image { Image("clockFading", bundle: .module) }
+    public static var `clockPlus`: Image { Image("clockPlus", bundle: .module) }
+    public static var `closedCaption`: Image { Image("closedCaption", bundle: .module) }
+    public static var `closedCaptionCheck`: Image { Image("closedCaptionCheck", bundle: .module) }
+    public static var `closedCaptionSolid`: Image { Image("closedCaptionSolid", bundle: .module) }
+    public static var `closedCaptionX`: Image { Image("closedCaptionX", bundle: .module) }
+    public static var `cloud`: Image { Image("cloud", bundle: .module) }
+    public static var `cloudAlert`: Image { Image("cloudAlert", bundle: .module) }
+    public static var `cloudBackup`: Image { Image("cloudBackup", bundle: .module) }
+    public static var `cloudCheck`: Image { Image("cloudCheck", bundle: .module) }
+    public static var `cloudCog`: Image { Image("cloudCog", bundle: .module) }
+    public static var `cloudDownload`: Image { Image("cloudDownload", bundle: .module) }
+    public static var `cloudDrizzle`: Image { Image("cloudDrizzle", bundle: .module) }
+    public static var `cloudFog`: Image { Image("cloudFog", bundle: .module) }
+    public static var `cloudHail`: Image { Image("cloudHail", bundle: .module) }
+    public static var `cloudLightning`: Image { Image("cloudLightning", bundle: .module) }
+    public static var `cloudLock`: Image { Image("cloudLock", bundle: .module) }
+    public static var `cloudMoon`: Image { Image("cloudMoon", bundle: .module) }
+    public static var `cloudMoonRain`: Image { Image("cloudMoonRain", bundle: .module) }
+    public static var `cloudOff`: Image { Image("cloudOff", bundle: .module) }
+    public static var `cloudRain`: Image { Image("cloudRain", bundle: .module) }
+    public static var `cloudRainWind`: Image { Image("cloudRainWind", bundle: .module) }
+    public static var `cloudSnow`: Image { Image("cloudSnow", bundle: .module) }
+    public static var `cloudSun`: Image { Image("cloudSun", bundle: .module) }
+    public static var `cloudSunRain`: Image { Image("cloudSunRain", bundle: .module) }
+    public static var `cloudSync`: Image { Image("cloudSync", bundle: .module) }
+    public static var `cloudUpload`: Image { Image("cloudUpload", bundle: .module) }
+    public static var `cloudy`: Image { Image("cloudy", bundle: .module) }
+    public static var `clover`: Image { Image("clover", bundle: .module) }
+    public static var `club`: Image { Image("club", bundle: .module) }
+    public static var `code`: Image { Image("code", bundle: .module) }
+    public static var `codeXml`: Image { Image("codeXml", bundle: .module) }
+    public static var `coffee`: Image { Image("coffee", bundle: .module) }
+    public static var `cog`: Image { Image("cog", bundle: .module) }
+    public static var `coins`: Image { Image("coins", bundle: .module) }
+    public static var `columns2`: Image { Image("columns2", bundle: .module) }
+    public static var `columns3`: Image { Image("columns3", bundle: .module) }
+    public static var `columns3Cog`: Image { Image("columns3Cog", bundle: .module) }
+    public static var `columns4`: Image { Image("columns4", bundle: .module) }
+    public static var `combine`: Image { Image("combine", bundle: .module) }
+    public static var `command`: Image { Image("command", bundle: .module) }
+    public static var `commons`: Image { Image("commons", bundle: .module) }
+    public static var `compare`: Image { Image("compare", bundle: .module) }
+    public static var `compass`: Image { Image("compass", bundle: .module) }
+    public static var `component`: Image { Image("component", bundle: .module) }
+    public static var `computer`: Image { Image("computer", bundle: .module) }
+    public static var `conciergeBell`: Image { Image("conciergeBell", bundle: .module) }
+    public static var `cone`: Image { Image("cone", bundle: .module) }
+    public static var `construction`: Image { Image("construction", bundle: .module) }
+    public static var `contact`: Image { Image("contact", bundle: .module) }
+    public static var `contactRound`: Image { Image("contactRound", bundle: .module) }
+    public static var `container`: Image { Image("container", bundle: .module) }
+    public static var `contrast`: Image { Image("contrast", bundle: .module) }
+    public static var `cookie`: Image { Image("cookie", bundle: .module) }
+    public static var `cookingPot`: Image { Image("cookingPot", bundle: .module) }
+    public static var `copy`: Image { Image("copy", bundle: .module) }
+    public static var `copyCheck`: Image { Image("copyCheck", bundle: .module) }
+    public static var `copyMinus`: Image { Image("copyMinus", bundle: .module) }
+    public static var `copyPlus`: Image { Image("copyPlus", bundle: .module) }
+    public static var `copySlash`: Image { Image("copySlash", bundle: .module) }
+    public static var `copyX`: Image { Image("copyX", bundle: .module) }
+    public static var `copyleft`: Image { Image("copyleft", bundle: .module) }
+    public static var `copyright`: Image { Image("copyright", bundle: .module) }
+    public static var `copyrightFairUse`: Image { Image("copyrightFairUse", bundle: .module) }
+    public static var `copyrightObtainedPermission`: Image { Image("copyrightObtainedPermission", bundle: .module) }
+    public static var `copyrightPublicDomain`: Image { Image("copyrightPublicDomain", bundle: .module) }
+    public static var `cornerDownLeft`: Image { Image("cornerDownLeft", bundle: .module) }
+    public static var `cornerDownRight`: Image { Image("cornerDownRight", bundle: .module) }
+    public static var `cornerLeftDown`: Image { Image("cornerLeftDown", bundle: .module) }
+    public static var `cornerLeftUp`: Image { Image("cornerLeftUp", bundle: .module) }
+    public static var `cornerRightDown`: Image { Image("cornerRightDown", bundle: .module) }
+    public static var `cornerRightUp`: Image { Image("cornerRightUp", bundle: .module) }
+    public static var `cornerUpLeft`: Image { Image("cornerUpLeft", bundle: .module) }
+    public static var `cornerUpRight`: Image { Image("cornerUpRight", bundle: .module) }
+    public static var `cpu`: Image { Image("cpu", bundle: .module) }
+    public static var `creativeCommons`: Image { Image("creativeCommons", bundle: .module) }
+    public static var `creditCard`: Image { Image("creditCard", bundle: .module) }
+    public static var `croissant`: Image { Image("croissant", bundle: .module) }
+    public static var `crop`: Image { Image("crop", bundle: .module) }
+    public static var `cross`: Image { Image("cross", bundle: .module) }
+    public static var `crosshair`: Image { Image("crosshair", bundle: .module) }
+    public static var `crown`: Image { Image("crown", bundle: .module) }
+    public static var `cuboid`: Image { Image("cuboid", bundle: .module) }
+    public static var `cupSoda`: Image { Image("cupSoda", bundle: .module) }
+    public static var `currency`: Image { Image("currency", bundle: .module) }
+    public static var `cylinder`: Image { Image("cylinder", bundle: .module) }
+    public static var `dam`: Image { Image("dam", bundle: .module) }
+    public static var `database`: Image { Image("database", bundle: .module) }
+    public static var `databaseBackup`: Image { Image("databaseBackup", bundle: .module) }
+    public static var `databaseSearch`: Image { Image("databaseSearch", bundle: .module) }
+    public static var `databaseZap`: Image { Image("databaseZap", bundle: .module) }
+    public static var `decimalsArrowLeft`: Image { Image("decimalsArrowLeft", bundle: .module) }
+    public static var `decimalsArrowRight`: Image { Image("decimalsArrowRight", bundle: .module) }
+    public static var `delete`: Image { Image("delete", bundle: .module) }
+    public static var `dessert`: Image { Image("dessert", bundle: .module) }
+    public static var `diameter`: Image { Image("diameter", bundle: .module) }
+    public static var `diamond`: Image { Image("diamond", bundle: .module) }
+    public static var `diamondMinus`: Image { Image("diamondMinus", bundle: .module) }
+    public static var `diamondPercent`: Image { Image("diamondPercent", bundle: .module) }
+    public static var `diamondPlus`: Image { Image("diamondPlus", bundle: .module) }
+    public static var `dice1`: Image { Image("dice1", bundle: .module) }
+    public static var `dice2`: Image { Image("dice2", bundle: .module) }
+    public static var `dice3`: Image { Image("dice3", bundle: .module) }
+    public static var `dice4`: Image { Image("dice4", bundle: .module) }
+    public static var `dice5`: Image { Image("dice5", bundle: .module) }
+    public static var `dice6`: Image { Image("dice6", bundle: .module) }
+    public static var `dices`: Image { Image("dices", bundle: .module) }
+    public static var `diff`: Image { Image("diff", bundle: .module) }
+    public static var `disc`: Image { Image("disc", bundle: .module) }
+    public static var `disc2`: Image { Image("disc2", bundle: .module) }
+    public static var `disc3`: Image { Image("disc3", bundle: .module) }
+    public static var `discAlbum`: Image { Image("discAlbum", bundle: .module) }
+    public static var `divide`: Image { Image("divide", bundle: .module) }
+    public static var `dna`: Image { Image("dna", bundle: .module) }
+    public static var `dnaOff`: Image { Image("dnaOff", bundle: .module) }
+    public static var `dock`: Image { Image("dock", bundle: .module) }
+    public static var `dog`: Image { Image("dog", bundle: .module) }
+    public static var `dollarSign`: Image { Image("dollarSign", bundle: .module) }
+    public static var `donut`: Image { Image("donut", bundle: .module) }
+    public static var `doorClosed`: Image { Image("doorClosed", bundle: .module) }
+    public static var `doorClosedLocked`: Image { Image("doorClosedLocked", bundle: .module) }
+    public static var `doorOpen`: Image { Image("doorOpen", bundle: .module) }
+    public static var `dot`: Image { Image("dot", bundle: .module) }
+    public static var `download`: Image { Image("download", bundle: .module) }
+    public static var `draftingCompass`: Image { Image("draftingCompass", bundle: .module) }
+    public static var `drama`: Image { Image("drama", bundle: .module) }
+    public static var `drill`: Image { Image("drill", bundle: .module) }
+    public static var `drone`: Image { Image("drone", bundle: .module) }
+    public static var `droplet`: Image { Image("droplet", bundle: .module) }
+    public static var `dropletOff`: Image { Image("dropletOff", bundle: .module) }
+    public static var `droplets`: Image { Image("droplets", bundle: .module) }
+    public static var `drum`: Image { Image("drum", bundle: .module) }
+    public static var `drumstick`: Image { Image("drumstick", bundle: .module) }
+    public static var `dumbbell`: Image { Image("dumbbell", bundle: .module) }
+    public static var `ear`: Image { Image("ear", bundle: .module) }
+    public static var `earOff`: Image { Image("earOff", bundle: .module) }
+    public static var `earth`: Image { Image("earth", bundle: .module) }
+    public static var `earthLock`: Image { Image("earthLock", bundle: .module) }
+    public static var `eclipse`: Image { Image("eclipse", bundle: .module) }
+    public static var `egg`: Image { Image("egg", bundle: .module) }
+    public static var `eggFried`: Image { Image("eggFried", bundle: .module) }
+    public static var `eggOff`: Image { Image("eggOff", bundle: .module) }
+    public static var `elevateLogo`: Image { Image("elevateLogo", bundle: .module) }
+    public static var `ellipse`: Image { Image("ellipse", bundle: .module) }
+    public static var `ellipsis`: Image { Image("ellipsis", bundle: .module) }
+    public static var `ellipsisVertical`: Image { Image("ellipsisVertical", bundle: .module) }
+    public static var `equal`: Image { Image("equal", bundle: .module) }
+    public static var `equalApproximately`: Image { Image("equalApproximately", bundle: .module) }
+    public static var `equalNot`: Image { Image("equalNot", bundle: .module) }
+    public static var `eraser`: Image { Image("eraser", bundle: .module) }
+    public static var `ethernetPort`: Image { Image("ethernetPort", bundle: .module) }
+    public static var `euro`: Image { Image("euro", bundle: .module) }
+    public static var `evCharger`: Image { Image("evCharger", bundle: .module) }
+    public static var `expand`: Image { Image("expand", bundle: .module) }
+    public static var `externalLink`: Image { Image("externalLink", bundle: .module) }
+    public static var `eye`: Image { Image("eye", bundle: .module) }
+    public static var `eyeClosed`: Image { Image("eyeClosed", bundle: .module) }
+    public static var `eyeOff`: Image { Image("eyeOff", bundle: .module) }
+    public static var `factory`: Image { Image("factory", bundle: .module) }
+    public static var `fan`: Image { Image("fan", bundle: .module) }
+    public static var `fastForward`: Image { Image("fastForward", bundle: .module) }
+    public static var `fastForwardSolid`: Image { Image("fastForwardSolid", bundle: .module) }
+    public static var `feather`: Image { Image("feather", bundle: .module) }
+    public static var `fence`: Image { Image("fence", bundle: .module) }
+    public static var `ferrisWheel`: Image { Image("ferrisWheel", bundle: .module) }
+    public static var `file`: Image { Image("file", bundle: .module) }
+    public static var `fileArchive`: Image { Image("fileArchive", bundle: .module) }
+    public static var `fileAxis3d`: Image { Image("fileAxis3d", bundle: .module) }
+    public static var `fileBadge`: Image { Image("fileBadge", bundle: .module) }
+    public static var `fileBox`: Image { Image("fileBox", bundle: .module) }
+    public static var `fileBraces`: Image { Image("fileBraces", bundle: .module) }
+    public static var `fileBracesCorner`: Image { Image("fileBracesCorner", bundle: .module) }
+    public static var `fileChartColumn`: Image { Image("fileChartColumn", bundle: .module) }
+    public static var `fileChartColumnIncreasing`: Image { Image("fileChartColumnIncreasing", bundle: .module) }
+    public static var `fileChartLine`: Image { Image("fileChartLine", bundle: .module) }
+    public static var `fileChartPie`: Image { Image("fileChartPie", bundle: .module) }
+    public static var `fileCheck`: Image { Image("fileCheck", bundle: .module) }
+    public static var `fileCheckCorner`: Image { Image("fileCheckCorner", bundle: .module) }
+    public static var `fileClock`: Image { Image("fileClock", bundle: .module) }
+    public static var `fileCode`: Image { Image("fileCode", bundle: .module) }
+    public static var `fileCodeCorner`: Image { Image("fileCodeCorner", bundle: .module) }
+    public static var `fileCog`: Image { Image("fileCog", bundle: .module) }
+    public static var `fileDiff`: Image { Image("fileDiff", bundle: .module) }
+    public static var `fileDigit`: Image { Image("fileDigit", bundle: .module) }
+    public static var `fileDown`: Image { Image("fileDown", bundle: .module) }
+    public static var `fileExclamationPoint`: Image { Image("fileExclamationPoint", bundle: .module) }
+    public static var `fileHeadphone`: Image { Image("fileHeadphone", bundle: .module) }
+    public static var `fileHeart`: Image { Image("fileHeart", bundle: .module) }
+    public static var `fileImage`: Image { Image("fileImage", bundle: .module) }
+    public static var `fileInput`: Image { Image("fileInput", bundle: .module) }
+    public static var `fileKey`: Image { Image("fileKey", bundle: .module) }
+    public static var `fileLock`: Image { Image("fileLock", bundle: .module) }
+    public static var `fileMinus`: Image { Image("fileMinus", bundle: .module) }
+    public static var `fileMinusCorner`: Image { Image("fileMinusCorner", bundle: .module) }
+    public static var `fileMusic`: Image { Image("fileMusic", bundle: .module) }
+    public static var `fileOutput`: Image { Image("fileOutput", bundle: .module) }
+    public static var `filePen`: Image { Image("filePen", bundle: .module) }
+    public static var `filePenLine`: Image { Image("filePenLine", bundle: .module) }
+    public static var `filePlay`: Image { Image("filePlay", bundle: .module) }
+    public static var `filePlus`: Image { Image("filePlus", bundle: .module) }
+    public static var `filePlusCorner`: Image { Image("filePlusCorner", bundle: .module) }
+    public static var `fileQuestionMark`: Image { Image("fileQuestionMark", bundle: .module) }
+    public static var `fileScan`: Image { Image("fileScan", bundle: .module) }
+    public static var `fileSearch`: Image { Image("fileSearch", bundle: .module) }
+    public static var `fileSearchCorner`: Image { Image("fileSearchCorner", bundle: .module) }
+    public static var `fileSignal`: Image { Image("fileSignal", bundle: .module) }
+    public static var `fileSliders`: Image { Image("fileSliders", bundle: .module) }
+    public static var `fileSpreadsheet`: Image { Image("fileSpreadsheet", bundle: .module) }
+    public static var `fileStack`: Image { Image("fileStack", bundle: .module) }
+    public static var `fileSymlink`: Image { Image("fileSymlink", bundle: .module) }
+    public static var `fileTerminal`: Image { Image("fileTerminal", bundle: .module) }
+    public static var `fileText`: Image { Image("fileText", bundle: .module) }
+    public static var `fileType`: Image { Image("fileType", bundle: .module) }
+    public static var `fileTypeCorner`: Image { Image("fileTypeCorner", bundle: .module) }
+    public static var `fileUp`: Image { Image("fileUp", bundle: .module) }
+    public static var `fileUser`: Image { Image("fileUser", bundle: .module) }
+    public static var `fileVideoCamera`: Image { Image("fileVideoCamera", bundle: .module) }
+    public static var `fileVolume`: Image { Image("fileVolume", bundle: .module) }
+    public static var `fileX`: Image { Image("fileX", bundle: .module) }
+    public static var `fileXCorner`: Image { Image("fileXCorner", bundle: .module) }
+    public static var `files`: Image { Image("files", bundle: .module) }
+    public static var `filesX`: Image { Image("filesX", bundle: .module) }
+    public static var `film`: Image { Image("film", bundle: .module) }
+    public static var `fingerprintPattern`: Image { Image("fingerprintPattern", bundle: .module) }
+    public static var `fireExtinguisher`: Image { Image("fireExtinguisher", bundle: .module) }
+    public static var `fish`: Image { Image("fish", bundle: .module) }
+    public static var `fishOff`: Image { Image("fishOff", bundle: .module) }
+    public static var `fishSymbol`: Image { Image("fishSymbol", bundle: .module) }
+    public static var `fishingHook`: Image { Image("fishingHook", bundle: .module) }
+    public static var `fishingRod`: Image { Image("fishingRod", bundle: .module) }
+    public static var `flag`: Image { Image("flag", bundle: .module) }
+    public static var `flagOff`: Image { Image("flagOff", bundle: .module) }
+    public static var `flagSolid`: Image { Image("flagSolid", bundle: .module) }
+    public static var `flagTriangleLeft`: Image { Image("flagTriangleLeft", bundle: .module) }
+    public static var `flagTriangleRight`: Image { Image("flagTriangleRight", bundle: .module) }
+    public static var `flame`: Image { Image("flame", bundle: .module) }
+    public static var `flameKindling`: Image { Image("flameKindling", bundle: .module) }
+    public static var `flashlight`: Image { Image("flashlight", bundle: .module) }
+    public static var `flashlightOff`: Image { Image("flashlightOff", bundle: .module) }
+    public static var `flaskConical`: Image { Image("flaskConical", bundle: .module) }
+    public static var `flaskConicalOff`: Image { Image("flaskConicalOff", bundle: .module) }
+    public static var `flaskRound`: Image { Image("flaskRound", bundle: .module) }
+    public static var `flipHorizontal2`: Image { Image("flipHorizontal2", bundle: .module) }
+    public static var `flipVertical2`: Image { Image("flipVertical2", bundle: .module) }
+    public static var `flower`: Image { Image("flower", bundle: .module) }
+    public static var `flower2`: Image { Image("flower2", bundle: .module) }
+    public static var `focus`: Image { Image("focus", bundle: .module) }
+    public static var `foldHorizontal`: Image { Image("foldHorizontal", bundle: .module) }
+    public static var `foldVertical`: Image { Image("foldVertical", bundle: .module) }
+    public static var `folder`: Image { Image("folder", bundle: .module) }
+    public static var `folderArchive`: Image { Image("folderArchive", bundle: .module) }
+    public static var `folderCheck`: Image { Image("folderCheck", bundle: .module) }
+    public static var `folderClock`: Image { Image("folderClock", bundle: .module) }
+    public static var `folderClosed`: Image { Image("folderClosed", bundle: .module) }
+    public static var `folderCode`: Image { Image("folderCode", bundle: .module) }
+    public static var `folderCog`: Image { Image("folderCog", bundle: .module) }
+    public static var `folderDot`: Image { Image("folderDot", bundle: .module) }
+    public static var `folderDown`: Image { Image("folderDown", bundle: .module) }
+    public static var `folderGit`: Image { Image("folderGit", bundle: .module) }
+    public static var `folderGit2`: Image { Image("folderGit2", bundle: .module) }
+    public static var `folderHeart`: Image { Image("folderHeart", bundle: .module) }
+    public static var `folderInput`: Image { Image("folderInput", bundle: .module) }
+    public static var `folderKanban`: Image { Image("folderKanban", bundle: .module) }
+    public static var `folderKey`: Image { Image("folderKey", bundle: .module) }
+    public static var `folderLock`: Image { Image("folderLock", bundle: .module) }
+    public static var `folderMinus`: Image { Image("folderMinus", bundle: .module) }
+    public static var `folderOpen`: Image { Image("folderOpen", bundle: .module) }
+    public static var `folderOpenDot`: Image { Image("folderOpenDot", bundle: .module) }
+    public static var `folderOutput`: Image { Image("folderOutput", bundle: .module) }
+    public static var `folderPen`: Image { Image("folderPen", bundle: .module) }
+    public static var `folderPlus`: Image { Image("folderPlus", bundle: .module) }
+    public static var `folderRoot`: Image { Image("folderRoot", bundle: .module) }
+    public static var `folderSearch`: Image { Image("folderSearch", bundle: .module) }
+    public static var `folderSearch2`: Image { Image("folderSearch2", bundle: .module) }
+    public static var `folderSymlink`: Image { Image("folderSymlink", bundle: .module) }
+    public static var `folderSync`: Image { Image("folderSync", bundle: .module) }
+    public static var `folderTree`: Image { Image("folderTree", bundle: .module) }
+    public static var `folderUp`: Image { Image("folderUp", bundle: .module) }
+    public static var `folderX`: Image { Image("folderX", bundle: .module) }
+    public static var `folders`: Image { Image("folders", bundle: .module) }
+    public static var `footprints`: Image { Image("footprints", bundle: .module) }
+    public static var `forklift`: Image { Image("forklift", bundle: .module) }
+    public static var `form`: Image { Image("form", bundle: .module) }
+    public static var `forward`: Image { Image("forward", bundle: .module) }
+    public static var `frame`: Image { Image("frame", bundle: .module) }
+    public static var `frown`: Image { Image("frown", bundle: .module) }
+    public static var `fuel`: Image { Image("fuel", bundle: .module) }
+    public static var `fullscreen`: Image { Image("fullscreen", bundle: .module) }
+    public static var `funnel`: Image { Image("funnel", bundle: .module) }
+    public static var `funnelPlus`: Image { Image("funnelPlus", bundle: .module) }
+    public static var `funnelX`: Image { Image("funnelX", bundle: .module) }
+    public static var `galleryHorizontal`: Image { Image("galleryHorizontal", bundle: .module) }
+    public static var `galleryHorizontalEnd`: Image { Image("galleryHorizontalEnd", bundle: .module) }
+    public static var `galleryThumbnails`: Image { Image("galleryThumbnails", bundle: .module) }
+    public static var `galleryVertical`: Image { Image("galleryVertical", bundle: .module) }
+    public static var `galleryVerticalEnd`: Image { Image("galleryVerticalEnd", bundle: .module) }
+    public static var `gamepad`: Image { Image("gamepad", bundle: .module) }
+    public static var `gamepad2`: Image { Image("gamepad2", bundle: .module) }
+    public static var `gamepadDirectional`: Image { Image("gamepadDirectional", bundle: .module) }
+    public static var `gauge`: Image { Image("gauge", bundle: .module) }
+    public static var `gavel`: Image { Image("gavel", bundle: .module) }
+    public static var `gem`: Image { Image("gem", bundle: .module) }
+    public static var `georgianLari`: Image { Image("georgianLari", bundle: .module) }
+    public static var `ghost`: Image { Image("ghost", bundle: .module) }
+    public static var `gift`: Image { Image("gift", bundle: .module) }
+    public static var `gitBranch`: Image { Image("gitBranch", bundle: .module) }
+    public static var `gitBranchMinus`: Image { Image("gitBranchMinus", bundle: .module) }
+    public static var `gitBranchPlus`: Image { Image("gitBranchPlus", bundle: .module) }
+    public static var `gitCommitHorizontal`: Image { Image("gitCommitHorizontal", bundle: .module) }
+    public static var `gitCommitVertical`: Image { Image("gitCommitVertical", bundle: .module) }
+    public static var `gitCompare`: Image { Image("gitCompare", bundle: .module) }
+    public static var `gitCompareArrows`: Image { Image("gitCompareArrows", bundle: .module) }
+    public static var `gitFork`: Image { Image("gitFork", bundle: .module) }
+    public static var `gitGraph`: Image { Image("gitGraph", bundle: .module) }
+    public static var `gitMerge`: Image { Image("gitMerge", bundle: .module) }
+    public static var `gitMergeConflict`: Image { Image("gitMergeConflict", bundle: .module) }
+    public static var `gitPullRequest`: Image { Image("gitPullRequest", bundle: .module) }
+    public static var `gitPullRequestArrow`: Image { Image("gitPullRequestArrow", bundle: .module) }
+    public static var `gitPullRequestClosed`: Image { Image("gitPullRequestClosed", bundle: .module) }
+    public static var `gitPullRequestCreate`: Image { Image("gitPullRequestCreate", bundle: .module) }
+    public static var `gitPullRequestCreateArrow`: Image { Image("gitPullRequestCreateArrow", bundle: .module) }
+    public static var `gitPullRequestDraft`: Image { Image("gitPullRequestDraft", bundle: .module) }
+    public static var `glassWater`: Image { Image("glassWater", bundle: .module) }
+    public static var `glasses`: Image { Image("glasses", bundle: .module) }
+    public static var `globe`: Image { Image("globe", bundle: .module) }
+    public static var `globeLock`: Image { Image("globeLock", bundle: .module) }
+    public static var `globeOff`: Image { Image("globeOff", bundle: .module) }
+    public static var `globeX`: Image { Image("globeX", bundle: .module) }
+    public static var `goal`: Image { Image("goal", bundle: .module) }
+    public static var `gpu`: Image { Image("gpu", bundle: .module) }
+    public static var `graduationCap`: Image { Image("graduationCap", bundle: .module) }
+    public static var `grape`: Image { Image("grape", bundle: .module) }
+    public static var `grid2x2`: Image { Image("grid2x2", bundle: .module) }
+    public static var `grid2x2Check`: Image { Image("grid2x2Check", bundle: .module) }
+    public static var `grid2x2Plus`: Image { Image("grid2x2Plus", bundle: .module) }
+    public static var `grid2x2X`: Image { Image("grid2x2X", bundle: .module) }
+    public static var `grid3x2`: Image { Image("grid3x2", bundle: .module) }
+    public static var `grid3x3`: Image { Image("grid3x3", bundle: .module) }
+    public static var `grip`: Image { Image("grip", bundle: .module) }
+    public static var `gripHorizontal`: Image { Image("gripHorizontal", bundle: .module) }
+    public static var `gripVertical`: Image { Image("gripVertical", bundle: .module) }
+    public static var `group`: Image { Image("group", bundle: .module) }
+    public static var `guitar`: Image { Image("guitar", bundle: .module) }
+    public static var `ham`: Image { Image("ham", bundle: .module) }
+    public static var `hamburger`: Image { Image("hamburger", bundle: .module) }
+    public static var `hammer`: Image { Image("hammer", bundle: .module) }
+    public static var `hand`: Image { Image("hand", bundle: .module) }
+    public static var `handCoins`: Image { Image("handCoins", bundle: .module) }
+    public static var `handFist`: Image { Image("handFist", bundle: .module) }
+    public static var `handGrab`: Image { Image("handGrab", bundle: .module) }
+    public static var `handHeart`: Image { Image("handHeart", bundle: .module) }
+    public static var `handHelping`: Image { Image("handHelping", bundle: .module) }
+    public static var `handMetal`: Image { Image("handMetal", bundle: .module) }
+    public static var `handPlatter`: Image { Image("handPlatter", bundle: .module) }
+    public static var `handbag`: Image { Image("handbag", bundle: .module) }
+    public static var `handshake`: Image { Image("handshake", bundle: .module) }
+    public static var `hardDrive`: Image { Image("hardDrive", bundle: .module) }
+    public static var `hardDriveDownload`: Image { Image("hardDriveDownload", bundle: .module) }
+    public static var `hardDriveUpload`: Image { Image("hardDriveUpload", bundle: .module) }
+    public static var `hardHat`: Image { Image("hardHat", bundle: .module) }
+    public static var `hash`: Image { Image("hash", bundle: .module) }
+    public static var `hatGlasses`: Image { Image("hatGlasses", bundle: .module) }
+    public static var `haze`: Image { Image("haze", bundle: .module) }
+    public static var `hd`: Image { Image("hd", bundle: .module) }
+    public static var `hdmiPort`: Image { Image("hdmiPort", bundle: .module) }
+    public static var `heading`: Image { Image("heading", bundle: .module) }
+    public static var `heading1`: Image { Image("heading1", bundle: .module) }
+    public static var `heading2`: Image { Image("heading2", bundle: .module) }
+    public static var `heading3`: Image { Image("heading3", bundle: .module) }
+    public static var `heading4`: Image { Image("heading4", bundle: .module) }
+    public static var `heading5`: Image { Image("heading5", bundle: .module) }
+    public static var `heading6`: Image { Image("heading6", bundle: .module) }
+    public static var `headphoneOff`: Image { Image("headphoneOff", bundle: .module) }
+    public static var `headphones`: Image { Image("headphones", bundle: .module) }
+    public static var `headset`: Image { Image("headset", bundle: .module) }
+    public static var `heart`: Image { Image("heart", bundle: .module) }
+    public static var `heartCrack`: Image { Image("heartCrack", bundle: .module) }
+    public static var `heartHandshake`: Image { Image("heartHandshake", bundle: .module) }
+    public static var `heartMinus`: Image { Image("heartMinus", bundle: .module) }
+    public static var `heartOff`: Image { Image("heartOff", bundle: .module) }
+    public static var `heartPlus`: Image { Image("heartPlus", bundle: .module) }
+    public static var `heartPulse`: Image { Image("heartPulse", bundle: .module) }
+    public static var `heartSolid`: Image { Image("heartSolid", bundle: .module) }
+    public static var `heater`: Image { Image("heater", bundle: .module) }
+    public static var `helicopter`: Image { Image("helicopter", bundle: .module) }
+    public static var `hexagon`: Image { Image("hexagon", bundle: .module) }
+    public static var `highlighter`: Image { Image("highlighter", bundle: .module) }
+    public static var `history`: Image { Image("history", bundle: .module) }
+    public static var `historyCheck`: Image { Image("historyCheck", bundle: .module) }
+    public static var `historyX`: Image { Image("historyX", bundle: .module) }
+    public static var `hop`: Image { Image("hop", bundle: .module) }
+    public static var `hopOff`: Image { Image("hopOff", bundle: .module) }
+    public static var `hospital`: Image { Image("hospital", bundle: .module) }
+    public static var `hotel`: Image { Image("hotel", bundle: .module) }
+    public static var `hourglass`: Image { Image("hourglass", bundle: .module) }
+    public static var `house`: Image { Image("house", bundle: .module) }
+    public static var `houseHeart`: Image { Image("houseHeart", bundle: .module) }
+    public static var `housePlug`: Image { Image("housePlug", bundle: .module) }
+    public static var `housePlus`: Image { Image("housePlus", bundle: .module) }
+    public static var `houseWifi`: Image { Image("houseWifi", bundle: .module) }
+    public static var `iceCreamBowl`: Image { Image("iceCreamBowl", bundle: .module) }
+    public static var `iceCreamCone`: Image { Image("iceCreamCone", bundle: .module) }
+    public static var `idCard`: Image { Image("idCard", bundle: .module) }
+    public static var `idCardLanyard`: Image { Image("idCardLanyard", bundle: .module) }
+    public static var `igniteaiLogo`: Image { Image("igniteaiLogo", bundle: .module) }
+    public static var `image`: Image { Image("image", bundle: .module) }
+    public static var `imageDown`: Image { Image("imageDown", bundle: .module) }
+    public static var `imageMinus`: Image { Image("imageMinus", bundle: .module) }
+    public static var `imageOff`: Image { Image("imageOff", bundle: .module) }
+    public static var `imagePlay`: Image { Image("imagePlay", bundle: .module) }
+    public static var `imagePlus`: Image { Image("imagePlus", bundle: .module) }
+    public static var `imageUp`: Image { Image("imageUp", bundle: .module) }
+    public static var `imageUpscale`: Image { Image("imageUpscale", bundle: .module) }
+    public static var `images`: Image { Image("images", bundle: .module) }
+    public static var `impactLogo`: Image { Image("impactLogo", bundle: .module) }
+    public static var `import`: Image { Image("import", bundle: .module) }
+    public static var `inbox`: Image { Image("inbox", bundle: .module) }
+    public static var `indianRupee`: Image { Image("indianRupee", bundle: .module) }
+    public static var `infinity`: Image { Image("infinity", bundle: .module) }
+    public static var `info`: Image { Image("info", bundle: .module) }
+    public static var `inspectionPanel`: Image { Image("inspectionPanel", bundle: .module) }
+    public static var `instructure`: Image { Image("instructure", bundle: .module) }
+    public static var `instructure1Dot`: Image { Image("instructure1Dot", bundle: .module) }
+    public static var `instructure3Dot`: Image { Image("instructure3Dot", bundle: .module) }
+    public static var `instructureLogo`: Image { Image("instructureLogo", bundle: .module) }
+    public static var `italic`: Image { Image("italic", bundle: .module) }
+    public static var `iterationCcw`: Image { Image("iterationCcw", bundle: .module) }
+    public static var `iterationCw`: Image { Image("iterationCw", bundle: .module) }
+    public static var `japaneseYen`: Image { Image("japaneseYen", bundle: .module) }
+    public static var `joystick`: Image { Image("joystick", bundle: .module) }
+    public static var `kanban`: Image { Image("kanban", bundle: .module) }
+    public static var `kayak`: Image { Image("kayak", bundle: .module) }
+    public static var `key`: Image { Image("key", bundle: .module) }
+    public static var `keyRound`: Image { Image("keyRound", bundle: .module) }
+    public static var `keySquare`: Image { Image("keySquare", bundle: .module) }
+    public static var `keyboard`: Image { Image("keyboard", bundle: .module) }
+    public static var `keyboardMusic`: Image { Image("keyboardMusic", bundle: .module) }
+    public static var `keyboardOff`: Image { Image("keyboardOff", bundle: .module) }
+    public static var `lamp`: Image { Image("lamp", bundle: .module) }
+    public static var `lampCeiling`: Image { Image("lampCeiling", bundle: .module) }
+    public static var `lampDesk`: Image { Image("lampDesk", bundle: .module) }
+    public static var `lampFloor`: Image { Image("lampFloor", bundle: .module) }
+    public static var `lampWallDown`: Image { Image("lampWallDown", bundle: .module) }
+    public static var `lampWallUp`: Image { Image("lampWallUp", bundle: .module) }
+    public static var `landPlot`: Image { Image("landPlot", bundle: .module) }
+    public static var `landmark`: Image { Image("landmark", bundle: .module) }
+    public static var `languages`: Image { Image("languages", bundle: .module) }
+    public static var `laptop`: Image { Image("laptop", bundle: .module) }
+    public static var `laptopMinimal`: Image { Image("laptopMinimal", bundle: .module) }
+    public static var `laptopMinimalCheck`: Image { Image("laptopMinimalCheck", bundle: .module) }
+    public static var `lasso`: Image { Image("lasso", bundle: .module) }
+    public static var `lassoSelect`: Image { Image("lassoSelect", bundle: .module) }
+    public static var `laugh`: Image { Image("laugh", bundle: .module) }
+    public static var `layers`: Image { Image("layers", bundle: .module) }
+    public static var `layers2`: Image { Image("layers2", bundle: .module) }
+    public static var `layersPlus`: Image { Image("layersPlus", bundle: .module) }
+    public static var `layoutDashboard`: Image { Image("layoutDashboard", bundle: .module) }
+    public static var `layoutGrid`: Image { Image("layoutGrid", bundle: .module) }
+    public static var `layoutList`: Image { Image("layoutList", bundle: .module) }
+    public static var `layoutPanelLeft`: Image { Image("layoutPanelLeft", bundle: .module) }
+    public static var `layoutPanelTop`: Image { Image("layoutPanelTop", bundle: .module) }
+    public static var `layoutTemplate`: Image { Image("layoutTemplate", bundle: .module) }
+    public static var `leaf`: Image { Image("leaf", bundle: .module) }
+    public static var `leafyGreen`: Image { Image("leafyGreen", bundle: .module) }
+    public static var `lectern`: Image { Image("lectern", bundle: .module) }
+    public static var `lensConcave`: Image { Image("lensConcave", bundle: .module) }
+    public static var `lensConvex`: Image { Image("lensConvex", bundle: .module) }
+    public static var `library`: Image { Image("library", bundle: .module) }
+    public static var `libraryBig`: Image { Image("libraryBig", bundle: .module) }
+    public static var `lifeBuoy`: Image { Image("lifeBuoy", bundle: .module) }
+    public static var `ligature`: Image { Image("ligature", bundle: .module) }
+    public static var `lightbulb`: Image { Image("lightbulb", bundle: .module) }
+    public static var `lightbulbOff`: Image { Image("lightbulbOff", bundle: .module) }
+    public static var `lineDotRightHorizontal`: Image { Image("lineDotRightHorizontal", bundle: .module) }
+    public static var `lineReader`: Image { Image("lineReader", bundle: .module) }
+    public static var `lineSquiggle`: Image { Image("lineSquiggle", bundle: .module) }
+    public static var `lineStyle`: Image { Image("lineStyle", bundle: .module) }
+    public static var `link`: Image { Image("link", bundle: .module) }
+    public static var `link2`: Image { Image("link2", bundle: .module) }
+    public static var `link2Off`: Image { Image("link2Off", bundle: .module) }
+    public static var `list`: Image { Image("list", bundle: .module) }
+    public static var `listCheck`: Image { Image("listCheck", bundle: .module) }
+    public static var `listChecks`: Image { Image("listChecks", bundle: .module) }
+    public static var `listChevronsDownUp`: Image { Image("listChevronsDownUp", bundle: .module) }
+    public static var `listChevronsUpDown`: Image { Image("listChevronsUpDown", bundle: .module) }
+    public static var `listCircle`: Image { Image("listCircle", bundle: .module) }
+    public static var `listCollapse`: Image { Image("listCollapse", bundle: .module) }
+    public static var `listDown`: Image { Image("listDown", bundle: .module) }
+    public static var `listEnd`: Image { Image("listEnd", bundle: .module) }
+    public static var `listFilter`: Image { Image("listFilter", bundle: .module) }
+    public static var `listFilterPlus`: Image { Image("listFilterPlus", bundle: .module) }
+    public static var `listIndentDecrease`: Image { Image("listIndentDecrease", bundle: .module) }
+    public static var `listIndentIncrease`: Image { Image("listIndentIncrease", bundle: .module) }
+    public static var `listMinus`: Image { Image("listMinus", bundle: .module) }
+    public static var `listMusic`: Image { Image("listMusic", bundle: .module) }
+    public static var `listOrdered`: Image { Image("listOrdered", bundle: .module) }
+    public static var `listOrderedAlpha`: Image { Image("listOrderedAlpha", bundle: .module) }
+    public static var `listOrderedRoman`: Image { Image("listOrderedRoman", bundle: .module) }
+    public static var `listPlus`: Image { Image("listPlus", bundle: .module) }
+    public static var `listRestart`: Image { Image("listRestart", bundle: .module) }
+    public static var `listSquare`: Image { Image("listSquare", bundle: .module) }
+    public static var `listStart`: Image { Image("listStart", bundle: .module) }
+    public static var `listTodo`: Image { Image("listTodo", bundle: .module) }
+    public static var `listTree`: Image { Image("listTree", bundle: .module) }
+    public static var `listUp`: Image { Image("listUp", bundle: .module) }
+    public static var `listVideo`: Image { Image("listVideo", bundle: .module) }
+    public static var `listX`: Image { Image("listX", bundle: .module) }
+    public static var `loader`: Image { Image("loader", bundle: .module) }
+    public static var `loaderCircle`: Image { Image("loaderCircle", bundle: .module) }
+    public static var `loaderPinwheel`: Image { Image("loaderPinwheel", bundle: .module) }
+    public static var `locate`: Image { Image("locate", bundle: .module) }
+    public static var `locateFixed`: Image { Image("locateFixed", bundle: .module) }
+    public static var `locateOff`: Image { Image("locateOff", bundle: .module) }
+    public static var `lock`: Image { Image("lock", bundle: .module) }
+    public static var `lockKeyhole`: Image { Image("lockKeyhole", bundle: .module) }
+    public static var `lockKeyholeOpen`: Image { Image("lockKeyholeOpen", bundle: .module) }
+    public static var `lockOpen`: Image { Image("lockOpen", bundle: .module) }
+    public static var `lockReset`: Image { Image("lockReset", bundle: .module) }
+    public static var `logIn`: Image { Image("logIn", bundle: .module) }
+    public static var `logOut`: Image { Image("logOut", bundle: .module) }
+    public static var `logs`: Image { Image("logs", bundle: .module) }
+    public static var `lollipop`: Image { Image("lollipop", bundle: .module) }
+    public static var `luggage`: Image { Image("luggage", bundle: .module) }
+    public static var `magnet`: Image { Image("magnet", bundle: .module) }
+    public static var `mail`: Image { Image("mail", bundle: .module) }
+    public static var `mailCheck`: Image { Image("mailCheck", bundle: .module) }
+    public static var `mailCircle`: Image { Image("mailCircle", bundle: .module) }
+    public static var `mailMinus`: Image { Image("mailMinus", bundle: .module) }
+    public static var `mailOpen`: Image { Image("mailOpen", bundle: .module) }
+    public static var `mailPlus`: Image { Image("mailPlus", bundle: .module) }
+    public static var `mailQuestionMark`: Image { Image("mailQuestionMark", bundle: .module) }
+    public static var `mailSearch`: Image { Image("mailSearch", bundle: .module) }
+    public static var `mailWarning`: Image { Image("mailWarning", bundle: .module) }
+    public static var `mailX`: Image { Image("mailX", bundle: .module) }
+    public static var `mailbox`: Image { Image("mailbox", bundle: .module) }
+    public static var `mails`: Image { Image("mails", bundle: .module) }
+    public static var `map`: Image { Image("map", bundle: .module) }
+    public static var `mapMinus`: Image { Image("mapMinus", bundle: .module) }
+    public static var `mapPin`: Image { Image("mapPin", bundle: .module) }
+    public static var `mapPinCheck`: Image { Image("mapPinCheck", bundle: .module) }
+    public static var `mapPinCheckInside`: Image { Image("mapPinCheckInside", bundle: .module) }
+    public static var `mapPinHouse`: Image { Image("mapPinHouse", bundle: .module) }
+    public static var `mapPinMinus`: Image { Image("mapPinMinus", bundle: .module) }
+    public static var `mapPinMinusInside`: Image { Image("mapPinMinusInside", bundle: .module) }
+    public static var `mapPinOff`: Image { Image("mapPinOff", bundle: .module) }
+    public static var `mapPinPen`: Image { Image("mapPinPen", bundle: .module) }
+    public static var `mapPinPlus`: Image { Image("mapPinPlus", bundle: .module) }
+    public static var `mapPinPlusInside`: Image { Image("mapPinPlusInside", bundle: .module) }
+    public static var `mapPinSearch`: Image { Image("mapPinSearch", bundle: .module) }
+    public static var `mapPinX`: Image { Image("mapPinX", bundle: .module) }
+    public static var `mapPinXInside`: Image { Image("mapPinXInside", bundle: .module) }
+    public static var `mapPinned`: Image { Image("mapPinned", bundle: .module) }
+    public static var `mapPlus`: Image { Image("mapPlus", bundle: .module) }
+    public static var `mars`: Image { Image("mars", bundle: .module) }
+    public static var `marsStroke`: Image { Image("marsStroke", bundle: .module) }
+    public static var `martini`: Image { Image("martini", bundle: .module) }
+    public static var `masteryLogo`: Image { Image("masteryLogo", bundle: .module) }
+    public static var `maximize`: Image { Image("maximize", bundle: .module) }
+    public static var `maximize2`: Image { Image("maximize2", bundle: .module) }
+    public static var `medal`: Image { Image("medal", bundle: .module) }
+    public static var `mediaAttachment`: Image { Image("mediaAttachment", bundle: .module) }
+    public static var `mediaPlus`: Image { Image("mediaPlus", bundle: .module) }
+    public static var `megaphone`: Image { Image("megaphone", bundle: .module) }
+    public static var `megaphoneOff`: Image { Image("megaphoneOff", bundle: .module) }
+    public static var `meh`: Image { Image("meh", bundle: .module) }
+    public static var `memoryStick`: Image { Image("memoryStick", bundle: .module) }
+    public static var `menu`: Image { Image("menu", bundle: .module) }
+    public static var `merge`: Image { Image("merge", bundle: .module) }
+    public static var `messageCircle`: Image { Image("messageCircle", bundle: .module) }
+    public static var `messageCircleCheck`: Image { Image("messageCircleCheck", bundle: .module) }
+    public static var `messageCircleCode`: Image { Image("messageCircleCode", bundle: .module) }
+    public static var `messageCircleDashed`: Image { Image("messageCircleDashed", bundle: .module) }
+    public static var `messageCircleHeart`: Image { Image("messageCircleHeart", bundle: .module) }
+    public static var `messageCircleMore`: Image { Image("messageCircleMore", bundle: .module) }
+    public static var `messageCircleOff`: Image { Image("messageCircleOff", bundle: .module) }
+    public static var `messageCirclePlus`: Image { Image("messageCirclePlus", bundle: .module) }
+    public static var `messageCircleQuestionMark`: Image { Image("messageCircleQuestionMark", bundle: .module) }
+    public static var `messageCircleReply`: Image { Image("messageCircleReply", bundle: .module) }
+    public static var `messageCircleWarning`: Image { Image("messageCircleWarning", bundle: .module) }
+    public static var `messageCircleX`: Image { Image("messageCircleX", bundle: .module) }
+    public static var `messageSquare`: Image { Image("messageSquare", bundle: .module) }
+    public static var `messageSquareCheck`: Image { Image("messageSquareCheck", bundle: .module) }
+    public static var `messageSquareCheckCustom`: Image { Image("messageSquareCheckCustom", bundle: .module) }
+    public static var `messageSquareCode`: Image { Image("messageSquareCode", bundle: .module) }
+    public static var `messageSquareDashed`: Image { Image("messageSquareDashed", bundle: .module) }
+    public static var `messageSquareDiff`: Image { Image("messageSquareDiff", bundle: .module) }
+    public static var `messageSquareDot`: Image { Image("messageSquareDot", bundle: .module) }
+    public static var `messageSquareHeart`: Image { Image("messageSquareHeart", bundle: .module) }
+    public static var `messageSquareLock`: Image { Image("messageSquareLock", bundle: .module) }
+    public static var `messageSquareMore`: Image { Image("messageSquareMore", bundle: .module) }
+    public static var `messageSquareOff`: Image { Image("messageSquareOff", bundle: .module) }
+    public static var `messageSquarePlus`: Image { Image("messageSquarePlus", bundle: .module) }
+    public static var `messageSquareQuote`: Image { Image("messageSquareQuote", bundle: .module) }
+    public static var `messageSquareReply`: Image { Image("messageSquareReply", bundle: .module) }
+    public static var `messageSquareShare`: Image { Image("messageSquareShare", bundle: .module) }
+    public static var `messageSquareText`: Image { Image("messageSquareText", bundle: .module) }
+    public static var `messageSquareWarning`: Image { Image("messageSquareWarning", bundle: .module) }
+    public static var `messageSquareX`: Image { Image("messageSquareX", bundle: .module) }
+    public static var `messageSquareXCustom`: Image { Image("messageSquareXCustom", bundle: .module) }
+    public static var `messagesSquare`: Image { Image("messagesSquare", bundle: .module) }
+    public static var `metronome`: Image { Image("metronome", bundle: .module) }
+    public static var `mic`: Image { Image("mic", bundle: .module) }
+    public static var `micOff`: Image { Image("micOff", bundle: .module) }
+    public static var `micVocal`: Image { Image("micVocal", bundle: .module) }
+    public static var `microchip`: Image { Image("microchip", bundle: .module) }
+    public static var `microscope`: Image { Image("microscope", bundle: .module) }
+    public static var `microwave`: Image { Image("microwave", bundle: .module) }
+    public static var `milestone`: Image { Image("milestone", bundle: .module) }
+    public static var `milk`: Image { Image("milk", bundle: .module) }
+    public static var `milkOff`: Image { Image("milkOff", bundle: .module) }
+    public static var `minimize`: Image { Image("minimize", bundle: .module) }
+    public static var `minimize2`: Image { Image("minimize2", bundle: .module) }
+    public static var `minus`: Image { Image("minus", bundle: .module) }
+    public static var `mirrorRectangular`: Image { Image("mirrorRectangular", bundle: .module) }
+    public static var `mirrorRound`: Image { Image("mirrorRound", bundle: .module) }
+    public static var `monitor`: Image { Image("monitor", bundle: .module) }
+    public static var `monitorCheck`: Image { Image("monitorCheck", bundle: .module) }
+    public static var `monitorCloud`: Image { Image("monitorCloud", bundle: .module) }
+    public static var `monitorCog`: Image { Image("monitorCog", bundle: .module) }
+    public static var `monitorDot`: Image { Image("monitorDot", bundle: .module) }
+    public static var `monitorDown`: Image { Image("monitorDown", bundle: .module) }
+    public static var `monitorOff`: Image { Image("monitorOff", bundle: .module) }
+    public static var `monitorPause`: Image { Image("monitorPause", bundle: .module) }
+    public static var `monitorPlay`: Image { Image("monitorPlay", bundle: .module) }
+    public static var `monitorSmartphone`: Image { Image("monitorSmartphone", bundle: .module) }
+    public static var `monitorSpeaker`: Image { Image("monitorSpeaker", bundle: .module) }
+    public static var `monitorStop`: Image { Image("monitorStop", bundle: .module) }
+    public static var `monitorUp`: Image { Image("monitorUp", bundle: .module) }
+    public static var `monitorX`: Image { Image("monitorX", bundle: .module) }
+    public static var `moon`: Image { Image("moon", bundle: .module) }
+    public static var `moonStar`: Image { Image("moonStar", bundle: .module) }
+    public static var `motorbike`: Image { Image("motorbike", bundle: .module) }
+    public static var `mountain`: Image { Image("mountain", bundle: .module) }
+    public static var `mountainSnow`: Image { Image("mountainSnow", bundle: .module) }
+    public static var `mouse`: Image { Image("mouse", bundle: .module) }
+    public static var `mouseLeft`: Image { Image("mouseLeft", bundle: .module) }
+    public static var `mouseOff`: Image { Image("mouseOff", bundle: .module) }
+    public static var `mousePointer`: Image { Image("mousePointer", bundle: .module) }
+    public static var `mousePointer2`: Image { Image("mousePointer2", bundle: .module) }
+    public static var `mousePointer2Off`: Image { Image("mousePointer2Off", bundle: .module) }
+    public static var `mousePointerBan`: Image { Image("mousePointerBan", bundle: .module) }
+    public static var `mousePointerClick`: Image { Image("mousePointerClick", bundle: .module) }
+    public static var `mouseRight`: Image { Image("mouseRight", bundle: .module) }
+    public static var `move`: Image { Image("move", bundle: .module) }
+    public static var `move3d`: Image { Image("move3d", bundle: .module) }
+    public static var `moveDiagonal`: Image { Image("moveDiagonal", bundle: .module) }
+    public static var `moveDiagonal2`: Image { Image("moveDiagonal2", bundle: .module) }
+    public static var `moveDown`: Image { Image("moveDown", bundle: .module) }
+    public static var `moveDownLeft`: Image { Image("moveDownLeft", bundle: .module) }
+    public static var `moveDownRight`: Image { Image("moveDownRight", bundle: .module) }
+    public static var `moveHorizontal`: Image { Image("moveHorizontal", bundle: .module) }
+    public static var `moveLeft`: Image { Image("moveLeft", bundle: .module) }
+    public static var `moveRight`: Image { Image("moveRight", bundle: .module) }
+    public static var `moveUp`: Image { Image("moveUp", bundle: .module) }
+    public static var `moveUpLeft`: Image { Image("moveUpLeft", bundle: .module) }
+    public static var `moveUpRight`: Image { Image("moveUpRight", bundle: .module) }
+    public static var `moveVertical`: Image { Image("moveVertical", bundle: .module) }
+    public static var `music`: Image { Image("music", bundle: .module) }
+    public static var `music2`: Image { Image("music2", bundle: .module) }
+    public static var `music3`: Image { Image("music3", bundle: .module) }
+    public static var `music4`: Image { Image("music4", bundle: .module) }
+    public static var `navigation`: Image { Image("navigation", bundle: .module) }
+    public static var `navigation2`: Image { Image("navigation2", bundle: .module) }
+    public static var `navigation2Off`: Image { Image("navigation2Off", bundle: .module) }
+    public static var `navigationOff`: Image { Image("navigationOff", bundle: .module) }
+    public static var `network`: Image { Image("network", bundle: .module) }
+    public static var `newspaper`: Image { Image("newspaper", bundle: .module) }
+    public static var `nfc`: Image { Image("nfc", bundle: .module) }
+    public static var `nonBinary`: Image { Image("nonBinary", bundle: .module) }
+    public static var `notebook`: Image { Image("notebook", bundle: .module) }
+    public static var `notebookPen`: Image { Image("notebookPen", bundle: .module) }
+    public static var `notebookTabs`: Image { Image("notebookTabs", bundle: .module) }
+    public static var `notebookText`: Image { Image("notebookText", bundle: .module) }
+    public static var `notepadText`: Image { Image("notepadText", bundle: .module) }
+    public static var `notepadTextDashed`: Image { Image("notepadTextDashed", bundle: .module) }
+    public static var `nut`: Image { Image("nut", bundle: .module) }
+    public static var `nutOff`: Image { Image("nutOff", bundle: .module) }
+    public static var `octagon`: Image { Image("octagon", bundle: .module) }
+    public static var `octagonAlert`: Image { Image("octagonAlert", bundle: .module) }
+    public static var `octagonMinus`: Image { Image("octagonMinus", bundle: .module) }
+    public static var `octagonPause`: Image { Image("octagonPause", bundle: .module) }
+    public static var `octagonX`: Image { Image("octagonX", bundle: .module) }
+    public static var `omega`: Image { Image("omega", bundle: .module) }
+    public static var `option`: Image { Image("option", bundle: .module) }
+    public static var `orbit`: Image { Image("orbit", bundle: .module) }
+    public static var `origami`: Image { Image("origami", bundle: .module) }
+    public static var `package`: Image { Image("package", bundle: .module) }
+    public static var `package2`: Image { Image("package2", bundle: .module) }
+    public static var `packageCheck`: Image { Image("packageCheck", bundle: .module) }
+    public static var `packageMinus`: Image { Image("packageMinus", bundle: .module) }
+    public static var `packageOpen`: Image { Image("packageOpen", bundle: .module) }
+    public static var `packagePlus`: Image { Image("packagePlus", bundle: .module) }
+    public static var `packageSearch`: Image { Image("packageSearch", bundle: .module) }
+    public static var `packageX`: Image { Image("packageX", bundle: .module) }
+    public static var `paintBucket`: Image { Image("paintBucket", bundle: .module) }
+    public static var `paintRoller`: Image { Image("paintRoller", bundle: .module) }
+    public static var `paintbrush`: Image { Image("paintbrush", bundle: .module) }
+    public static var `paintbrushVertical`: Image { Image("paintbrushVertical", bundle: .module) }
+    public static var `palette`: Image { Image("palette", bundle: .module) }
+    public static var `panda`: Image { Image("panda", bundle: .module) }
+    public static var `panelBottom`: Image { Image("panelBottom", bundle: .module) }
+    public static var `panelBottomClose`: Image { Image("panelBottomClose", bundle: .module) }
+    public static var `panelBottomDashed`: Image { Image("panelBottomDashed", bundle: .module) }
+    public static var `panelBottomOpen`: Image { Image("panelBottomOpen", bundle: .module) }
+    public static var `panelLeft`: Image { Image("panelLeft", bundle: .module) }
+    public static var `panelLeftClose`: Image { Image("panelLeftClose", bundle: .module) }
+    public static var `panelLeftDashed`: Image { Image("panelLeftDashed", bundle: .module) }
+    public static var `panelLeftOpen`: Image { Image("panelLeftOpen", bundle: .module) }
+    public static var `panelLeftRightDashed`: Image { Image("panelLeftRightDashed", bundle: .module) }
+    public static var `panelRight`: Image { Image("panelRight", bundle: .module) }
+    public static var `panelRightClose`: Image { Image("panelRightClose", bundle: .module) }
+    public static var `panelRightDashed`: Image { Image("panelRightDashed", bundle: .module) }
+    public static var `panelRightOpen`: Image { Image("panelRightOpen", bundle: .module) }
+    public static var `panelTop`: Image { Image("panelTop", bundle: .module) }
+    public static var `panelTopBottomDashed`: Image { Image("panelTopBottomDashed", bundle: .module) }
+    public static var `panelTopClose`: Image { Image("panelTopClose", bundle: .module) }
+    public static var `panelTopDashed`: Image { Image("panelTopDashed", bundle: .module) }
+    public static var `panelTopOpen`: Image { Image("panelTopOpen", bundle: .module) }
+    public static var `panelsLeftBottom`: Image { Image("panelsLeftBottom", bundle: .module) }
+    public static var `panelsRightBottom`: Image { Image("panelsRightBottom", bundle: .module) }
+    public static var `panelsTopLeft`: Image { Image("panelsTopLeft", bundle: .module) }
+    public static var `paperclip`: Image { Image("paperclip", bundle: .module) }
+    public static var `parentheses`: Image { Image("parentheses", bundle: .module) }
+    public static var `parkingMeter`: Image { Image("parkingMeter", bundle: .module) }
+    public static var `partyPopper`: Image { Image("partyPopper", bundle: .module) }
+    public static var `pause`: Image { Image("pause", bundle: .module) }
+    public static var `pauseSolid`: Image { Image("pauseSolid", bundle: .module) }
+    public static var `pawPrint`: Image { Image("pawPrint", bundle: .module) }
+    public static var `pcCase`: Image { Image("pcCase", bundle: .module) }
+    public static var `pen`: Image { Image("pen", bundle: .module) }
+    public static var `penLine`: Image { Image("penLine", bundle: .module) }
+    public static var `penOff`: Image { Image("penOff", bundle: .module) }
+    public static var `penTool`: Image { Image("penTool", bundle: .module) }
+    public static var `pencil`: Image { Image("pencil", bundle: .module) }
+    public static var `pencilAnnotate`: Image { Image("pencilAnnotate", bundle: .module) }
+    public static var `pencilLine`: Image { Image("pencilLine", bundle: .module) }
+    public static var `pencilOff`: Image { Image("pencilOff", bundle: .module) }
+    public static var `pencilRuler`: Image { Image("pencilRuler", bundle: .module) }
+    public static var `pentagon`: Image { Image("pentagon", bundle: .module) }
+    public static var `percent`: Image { Image("percent", bundle: .module) }
+    public static var `personStanding`: Image { Image("personStanding", bundle: .module) }
+    public static var `philippinePeso`: Image { Image("philippinePeso", bundle: .module) }
+    public static var `phone`: Image { Image("phone", bundle: .module) }
+    public static var `phoneCall`: Image { Image("phoneCall", bundle: .module) }
+    public static var `phoneForwarded`: Image { Image("phoneForwarded", bundle: .module) }
+    public static var `phoneIncoming`: Image { Image("phoneIncoming", bundle: .module) }
+    public static var `phoneMissed`: Image { Image("phoneMissed", bundle: .module) }
+    public static var `phoneOff`: Image { Image("phoneOff", bundle: .module) }
+    public static var `phoneOutgoing`: Image { Image("phoneOutgoing", bundle: .module) }
+    public static var `pi`: Image { Image("pi", bundle: .module) }
+    public static var `piano`: Image { Image("piano", bundle: .module) }
+    public static var `pickaxe`: Image { Image("pickaxe", bundle: .module) }
+    public static var `pictureInPicture`: Image { Image("pictureInPicture", bundle: .module) }
+    public static var `pictureInPicture2`: Image { Image("pictureInPicture2", bundle: .module) }
+    public static var `piggyBank`: Image { Image("piggyBank", bundle: .module) }
+    public static var `pilcrow`: Image { Image("pilcrow", bundle: .module) }
+    public static var `pilcrowLeft`: Image { Image("pilcrowLeft", bundle: .module) }
+    public static var `pilcrowRight`: Image { Image("pilcrowRight", bundle: .module) }
+    public static var `pill`: Image { Image("pill", bundle: .module) }
+    public static var `pillBottle`: Image { Image("pillBottle", bundle: .module) }
+    public static var `pin`: Image { Image("pin", bundle: .module) }
+    public static var `pinOff`: Image { Image("pinOff", bundle: .module) }
+    public static var `pipette`: Image { Image("pipette", bundle: .module) }
+    public static var `pizza`: Image { Image("pizza", bundle: .module) }
+    public static var `plane`: Image { Image("plane", bundle: .module) }
+    public static var `planeLanding`: Image { Image("planeLanding", bundle: .module) }
+    public static var `planeTakeoff`: Image { Image("planeTakeoff", bundle: .module) }
+    public static var `play`: Image { Image("play", bundle: .module) }
+    public static var `playSolid`: Image { Image("playSolid", bundle: .module) }
+    public static var `plug`: Image { Image("plug", bundle: .module) }
+    public static var `plug2`: Image { Image("plug2", bundle: .module) }
+    public static var `plugZap`: Image { Image("plugZap", bundle: .module) }
+    public static var `plus`: Image { Image("plus", bundle: .module) }
+    public static var `pocketKnife`: Image { Image("pocketKnife", bundle: .module) }
+    public static var `podcast`: Image { Image("podcast", bundle: .module) }
+    public static var `pointer`: Image { Image("pointer", bundle: .module) }
+    public static var `pointerOff`: Image { Image("pointerOff", bundle: .module) }
+    public static var `popcorn`: Image { Image("popcorn", bundle: .module) }
+    public static var `popsicle`: Image { Image("popsicle", bundle: .module) }
+    public static var `postSis`: Image { Image("postSis", bundle: .module) }
+    public static var `poundSterling`: Image { Image("poundSterling", bundle: .module) }
+    public static var `power`: Image { Image("power", bundle: .module) }
+    public static var `powerOff`: Image { Image("powerOff", bundle: .module) }
+    public static var `presentation`: Image { Image("presentation", bundle: .module) }
+    public static var `printer`: Image { Image("printer", bundle: .module) }
+    public static var `printerCheck`: Image { Image("printerCheck", bundle: .module) }
+    public static var `printerX`: Image { Image("printerX", bundle: .module) }
+    public static var `projector`: Image { Image("projector", bundle: .module) }
+    public static var `proportions`: Image { Image("proportions", bundle: .module) }
+    public static var `protractor`: Image { Image("protractor", bundle: .module) }
+    public static var `puzzle`: Image { Image("puzzle", bundle: .module) }
+    public static var `pyramid`: Image { Image("pyramid", bundle: .module) }
+    public static var `qrCode`: Image { Image("qrCode", bundle: .module) }
+    public static var `quote`: Image { Image("quote", bundle: .module) }
+    public static var `rabbit`: Image { Image("rabbit", bundle: .module) }
+    public static var `radar`: Image { Image("radar", bundle: .module) }
+    public static var `radiation`: Image { Image("radiation", bundle: .module) }
+    public static var `radical`: Image { Image("radical", bundle: .module) }
+    public static var `radio`: Image { Image("radio", bundle: .module) }
+    public static var `radioOff`: Image { Image("radioOff", bundle: .module) }
+    public static var `radioReceiver`: Image { Image("radioReceiver", bundle: .module) }
+    public static var `radioTower`: Image { Image("radioTower", bundle: .module) }
+    public static var `radius`: Image { Image("radius", bundle: .module) }
+    public static var `rainbow`: Image { Image("rainbow", bundle: .module) }
+    public static var `rat`: Image { Image("rat", bundle: .module) }
+    public static var `ratio`: Image { Image("ratio", bundle: .module) }
+    public static var `receipt`: Image { Image("receipt", bundle: .module) }
+    public static var `receiptCent`: Image { Image("receiptCent", bundle: .module) }
+    public static var `receiptEuro`: Image { Image("receiptEuro", bundle: .module) }
+    public static var `receiptIndianRupee`: Image { Image("receiptIndianRupee", bundle: .module) }
+    public static var `receiptJapaneseYen`: Image { Image("receiptJapaneseYen", bundle: .module) }
+    public static var `receiptPoundSterling`: Image { Image("receiptPoundSterling", bundle: .module) }
+    public static var `receiptRussianRuble`: Image { Image("receiptRussianRuble", bundle: .module) }
+    public static var `receiptSwissFranc`: Image { Image("receiptSwissFranc", bundle: .module) }
+    public static var `receiptText`: Image { Image("receiptText", bundle: .module) }
+    public static var `receiptTurkishLira`: Image { Image("receiptTurkishLira", bundle: .module) }
+    public static var `rectangleCircle`: Image { Image("rectangleCircle", bundle: .module) }
+    public static var `rectangleEllipsis`: Image { Image("rectangleEllipsis", bundle: .module) }
+    public static var `rectangleGoggles`: Image { Image("rectangleGoggles", bundle: .module) }
+    public static var `rectangleHorizontal`: Image { Image("rectangleHorizontal", bundle: .module) }
+    public static var `rectangleVertical`: Image { Image("rectangleVertical", bundle: .module) }
+    public static var `recycle`: Image { Image("recycle", bundle: .module) }
+    public static var `redo`: Image { Image("redo", bundle: .module) }
+    public static var `redo2`: Image { Image("redo2", bundle: .module) }
+    public static var `redoDot`: Image { Image("redoDot", bundle: .module) }
+    public static var `refreshCcw`: Image { Image("refreshCcw", bundle: .module) }
+    public static var `refreshCcwDot`: Image { Image("refreshCcwDot", bundle: .module) }
+    public static var `refreshCw`: Image { Image("refreshCw", bundle: .module) }
+    public static var `refreshCwOff`: Image { Image("refreshCwOff", bundle: .module) }
+    public static var `refrigerator`: Image { Image("refrigerator", bundle: .module) }
+    public static var `regex`: Image { Image("regex", bundle: .module) }
+    public static var `removeFormatting`: Image { Image("removeFormatting", bundle: .module) }
+    public static var `repeat`: Image { Image("repeat", bundle: .module) }
+    public static var `repeat1`: Image { Image("repeat1", bundle: .module) }
+    public static var `repeat2`: Image { Image("repeat2", bundle: .module) }
+    public static var `replace`: Image { Image("replace", bundle: .module) }
+    public static var `replaceAll`: Image { Image("replaceAll", bundle: .module) }
+    public static var `reply`: Image { Image("reply", bundle: .module) }
+    public static var `replyAll`: Image { Image("replyAll", bundle: .module) }
+    public static var `rewind`: Image { Image("rewind", bundle: .module) }
+    public static var `rewindSolid`: Image { Image("rewindSolid", bundle: .module) }
+    public static var `ribbon`: Image { Image("ribbon", bundle: .module) }
+    public static var `road`: Image { Image("road", bundle: .module) }
+    public static var `rocket`: Image { Image("rocket", bundle: .module) }
+    public static var `rocketSolid`: Image { Image("rocketSolid", bundle: .module) }
+    public static var `rockingChair`: Image { Image("rockingChair", bundle: .module) }
+    public static var `rollerCoaster`: Image { Image("rollerCoaster", bundle: .module) }
+    public static var `rose`: Image { Image("rose", bundle: .module) }
+    public static var `rotate3d`: Image { Image("rotate3d", bundle: .module) }
+    public static var `rotateCcw`: Image { Image("rotateCcw", bundle: .module) }
+    public static var `rotateCcwKey`: Image { Image("rotateCcwKey", bundle: .module) }
+    public static var `rotateCcwSquare`: Image { Image("rotateCcwSquare", bundle: .module) }
+    public static var `rotateCw`: Image { Image("rotateCw", bundle: .module) }
+    public static var `rotateCwSquare`: Image { Image("rotateCwSquare", bundle: .module) }
+    public static var `route`: Image { Image("route", bundle: .module) }
+    public static var `routeOff`: Image { Image("routeOff", bundle: .module) }
+    public static var `router`: Image { Image("router", bundle: .module) }
+    public static var `rows2`: Image { Image("rows2", bundle: .module) }
+    public static var `rows3`: Image { Image("rows3", bundle: .module) }
+    public static var `rows4`: Image { Image("rows4", bundle: .module) }
+    public static var `rss`: Image { Image("rss", bundle: .module) }
+    public static var `ruler`: Image { Image("ruler", bundle: .module) }
+    public static var `rulerDimensionLine`: Image { Image("rulerDimensionLine", bundle: .module) }
+    public static var `russianRuble`: Image { Image("russianRuble", bundle: .module) }
+    public static var `sailboat`: Image { Image("sailboat", bundle: .module) }
+    public static var `salad`: Image { Image("salad", bundle: .module) }
+    public static var `sandwich`: Image { Image("sandwich", bundle: .module) }
+    public static var `satellite`: Image { Image("satellite", bundle: .module) }
+    public static var `satelliteDish`: Image { Image("satelliteDish", bundle: .module) }
+    public static var `saudiRiyal`: Image { Image("saudiRiyal", bundle: .module) }
+    public static var `save`: Image { Image("save", bundle: .module) }
+    public static var `saveAll`: Image { Image("saveAll", bundle: .module) }
+    public static var `saveOff`: Image { Image("saveOff", bundle: .module) }
+    public static var `scale`: Image { Image("scale", bundle: .module) }
+    public static var `scale3d`: Image { Image("scale3d", bundle: .module) }
+    public static var `scaling`: Image { Image("scaling", bundle: .module) }
+    public static var `scan`: Image { Image("scan", bundle: .module) }
+    public static var `scanBarcode`: Image { Image("scanBarcode", bundle: .module) }
+    public static var `scanEye`: Image { Image("scanEye", bundle: .module) }
+    public static var `scanFace`: Image { Image("scanFace", bundle: .module) }
+    public static var `scanHeart`: Image { Image("scanHeart", bundle: .module) }
+    public static var `scanLine`: Image { Image("scanLine", bundle: .module) }
+    public static var `scanQrCode`: Image { Image("scanQrCode", bundle: .module) }
+    public static var `scanSearch`: Image { Image("scanSearch", bundle: .module) }
+    public static var `scanText`: Image { Image("scanText", bundle: .module) }
+    public static var `school`: Image { Image("school", bundle: .module) }
+    public static var `scissors`: Image { Image("scissors", bundle: .module) }
+    public static var `scissorsLineDashed`: Image { Image("scissorsLineDashed", bundle: .module) }
+    public static var `scooter`: Image { Image("scooter", bundle: .module) }
+    public static var `screenShare`: Image { Image("screenShare", bundle: .module) }
+    public static var `screenShareOff`: Image { Image("screenShareOff", bundle: .module) }
+    public static var `scroll`: Image { Image("scroll", bundle: .module) }
+    public static var `scrollText`: Image { Image("scrollText", bundle: .module) }
+    public static var `search`: Image { Image("search", bundle: .module) }
+    public static var `searchAi`: Image { Image("searchAi", bundle: .module) }
+    public static var `searchAlert`: Image { Image("searchAlert", bundle: .module) }
+    public static var `searchCheck`: Image { Image("searchCheck", bundle: .module) }
+    public static var `searchCode`: Image { Image("searchCode", bundle: .module) }
+    public static var `searchSlash`: Image { Image("searchSlash", bundle: .module) }
+    public static var `searchX`: Image { Image("searchX", bundle: .module) }
+    public static var `section`: Image { Image("section", bundle: .module) }
+    public static var `send`: Image { Image("send", bundle: .module) }
+    public static var `sendHorizontal`: Image { Image("sendHorizontal", bundle: .module) }
+    public static var `sendToBack`: Image { Image("sendToBack", bundle: .module) }
+    public static var `separatorHorizontal`: Image { Image("separatorHorizontal", bundle: .module) }
+    public static var `separatorVertical`: Image { Image("separatorVertical", bundle: .module) }
+    public static var `server`: Image { Image("server", bundle: .module) }
+    public static var `serverCog`: Image { Image("serverCog", bundle: .module) }
+    public static var `serverCrash`: Image { Image("serverCrash", bundle: .module) }
+    public static var `serverOff`: Image { Image("serverOff", bundle: .module) }
+    public static var `settings`: Image { Image("settings", bundle: .module) }
+    public static var `settings2`: Image { Image("settings2", bundle: .module) }
+    public static var `shapes`: Image { Image("shapes", bundle: .module) }
+    public static var `share`: Image { Image("share", bundle: .module) }
+    public static var `share2`: Image { Image("share2", bundle: .module) }
+    public static var `sheet`: Image { Image("sheet", bundle: .module) }
+    public static var `shell`: Image { Image("shell", bundle: .module) }
+    public static var `shelvingUnit`: Image { Image("shelvingUnit", bundle: .module) }
+    public static var `shield`: Image { Image("shield", bundle: .module) }
+    public static var `shieldAlert`: Image { Image("shieldAlert", bundle: .module) }
+    public static var `shieldBan`: Image { Image("shieldBan", bundle: .module) }
+    public static var `shieldCheck`: Image { Image("shieldCheck", bundle: .module) }
+    public static var `shieldCog`: Image { Image("shieldCog", bundle: .module) }
+    public static var `shieldCogCorner`: Image { Image("shieldCogCorner", bundle: .module) }
+    public static var `shieldEllipsis`: Image { Image("shieldEllipsis", bundle: .module) }
+    public static var `shieldHalf`: Image { Image("shieldHalf", bundle: .module) }
+    public static var `shieldMinus`: Image { Image("shieldMinus", bundle: .module) }
+    public static var `shieldOff`: Image { Image("shieldOff", bundle: .module) }
+    public static var `shieldPlus`: Image { Image("shieldPlus", bundle: .module) }
+    public static var `shieldQuestionMark`: Image { Image("shieldQuestionMark", bundle: .module) }
+    public static var `shieldUser`: Image { Image("shieldUser", bundle: .module) }
+    public static var `shieldX`: Image { Image("shieldX", bundle: .module) }
+    public static var `ship`: Image { Image("ship", bundle: .module) }
+    public static var `shipWheel`: Image { Image("shipWheel", bundle: .module) }
+    public static var `shirt`: Image { Image("shirt", bundle: .module) }
+    public static var `shoppingBag`: Image { Image("shoppingBag", bundle: .module) }
+    public static var `shoppingBasket`: Image { Image("shoppingBasket", bundle: .module) }
+    public static var `shoppingCart`: Image { Image("shoppingCart", bundle: .module) }
+    public static var `shoppingCartCheck`: Image { Image("shoppingCartCheck", bundle: .module) }
+    public static var `shovel`: Image { Image("shovel", bundle: .module) }
+    public static var `showerHead`: Image { Image("showerHead", bundle: .module) }
+    public static var `shredder`: Image { Image("shredder", bundle: .module) }
+    public static var `shrimp`: Image { Image("shrimp", bundle: .module) }
+    public static var `shrink`: Image { Image("shrink", bundle: .module) }
+    public static var `shrub`: Image { Image("shrub", bundle: .module) }
+    public static var `shuffle`: Image { Image("shuffle", bundle: .module) }
+    public static var `sigma`: Image { Image("sigma", bundle: .module) }
+    public static var `signal`: Image { Image("signal", bundle: .module) }
+    public static var `signalHigh`: Image { Image("signalHigh", bundle: .module) }
+    public static var `signalLow`: Image { Image("signalLow", bundle: .module) }
+    public static var `signalMedium`: Image { Image("signalMedium", bundle: .module) }
+    public static var `signalZero`: Image { Image("signalZero", bundle: .module) }
+    public static var `signature`: Image { Image("signature", bundle: .module) }
+    public static var `signpost`: Image { Image("signpost", bundle: .module) }
+    public static var `signpostBig`: Image { Image("signpostBig", bundle: .module) }
+    public static var `siren`: Image { Image("siren", bundle: .module) }
+    public static var `skipBack`: Image { Image("skipBack", bundle: .module) }
+    public static var `skipForward`: Image { Image("skipForward", bundle: .module) }
+    public static var `skull`: Image { Image("skull", bundle: .module) }
+    public static var `slash`: Image { Image("slash", bundle: .module) }
+    public static var `slice`: Image { Image("slice", bundle: .module) }
+    public static var `slidersHorizontal`: Image { Image("slidersHorizontal", bundle: .module) }
+    public static var `slidersVertical`: Image { Image("slidersVertical", bundle: .module) }
+    public static var `smartphone`: Image { Image("smartphone", bundle: .module) }
+    public static var `smartphoneCharging`: Image { Image("smartphoneCharging", bundle: .module) }
+    public static var `smartphoneNfc`: Image { Image("smartphoneNfc", bundle: .module) }
+    public static var `smile`: Image { Image("smile", bundle: .module) }
+    public static var `smilePlus`: Image { Image("smilePlus", bundle: .module) }
+    public static var `snail`: Image { Image("snail", bundle: .module) }
+    public static var `snowflake`: Image { Image("snowflake", bundle: .module) }
+    public static var `soapDispenserDroplet`: Image { Image("soapDispenserDroplet", bundle: .module) }
+    public static var `sofa`: Image { Image("sofa", bundle: .module) }
+    public static var `solarPanel`: Image { Image("solarPanel", bundle: .module) }
+    public static var `soup`: Image { Image("soup", bundle: .module) }
+    public static var `space`: Image { Image("space", bundle: .module) }
+    public static var `spade`: Image { Image("spade", bundle: .module) }
+    public static var `sparkle`: Image { Image("sparkle", bundle: .module) }
+    public static var `sparkles`: Image { Image("sparkles", bundle: .module) }
+    public static var `speaker`: Image { Image("speaker", bundle: .module) }
+    public static var `speech`: Image { Image("speech", bundle: .module) }
+    public static var `speedGrader`: Image { Image("speedGrader", bundle: .module) }
+    public static var `spellCheck`: Image { Image("spellCheck", bundle: .module) }
+    public static var `spellCheck2`: Image { Image("spellCheck2", bundle: .module) }
+    public static var `spline`: Image { Image("spline", bundle: .module) }
+    public static var `splinePointer`: Image { Image("splinePointer", bundle: .module) }
+    public static var `split`: Image { Image("split", bundle: .module) }
+    public static var `spool`: Image { Image("spool", bundle: .module) }
+    public static var `sportShoe`: Image { Image("sportShoe", bundle: .module) }
+    public static var `spotlight`: Image { Image("spotlight", bundle: .module) }
+    public static var `sprayCan`: Image { Image("sprayCan", bundle: .module) }
+    public static var `sprout`: Image { Image("sprout", bundle: .module) }
+    public static var `square`: Image { Image("square", bundle: .module) }
+    public static var `squareActivity`: Image { Image("squareActivity", bundle: .module) }
+    public static var `squareArrowDown`: Image { Image("squareArrowDown", bundle: .module) }
+    public static var `squareArrowDownLeft`: Image { Image("squareArrowDownLeft", bundle: .module) }
+    public static var `squareArrowDownRight`: Image { Image("squareArrowDownRight", bundle: .module) }
+    public static var `squareArrowLeft`: Image { Image("squareArrowLeft", bundle: .module) }
+    public static var `squareArrowOutDownLeft`: Image { Image("squareArrowOutDownLeft", bundle: .module) }
+    public static var `squareArrowOutDownRight`: Image { Image("squareArrowOutDownRight", bundle: .module) }
+    public static var `squareArrowOutUpLeft`: Image { Image("squareArrowOutUpLeft", bundle: .module) }
+    public static var `squareArrowOutUpRight`: Image { Image("squareArrowOutUpRight", bundle: .module) }
+    public static var `squareArrowRight`: Image { Image("squareArrowRight", bundle: .module) }
+    public static var `squareArrowRightEnter`: Image { Image("squareArrowRightEnter", bundle: .module) }
+    public static var `squareArrowRightExit`: Image { Image("squareArrowRightExit", bundle: .module) }
+    public static var `squareArrowUp`: Image { Image("squareArrowUp", bundle: .module) }
+    public static var `squareArrowUpLeft`: Image { Image("squareArrowUpLeft", bundle: .module) }
+    public static var `squareArrowUpRight`: Image { Image("squareArrowUpRight", bundle: .module) }
+    public static var `squareAsterisk`: Image { Image("squareAsterisk", bundle: .module) }
+    public static var `squareBottomDashedScissors`: Image { Image("squareBottomDashedScissors", bundle: .module) }
+    public static var `squareCenterlineDashedHorizontal`: Image { Image("squareCenterlineDashedHorizontal", bundle: .module) }
+    public static var `squareCenterlineDashedVertical`: Image { Image("squareCenterlineDashedVertical", bundle: .module) }
+    public static var `squareChartGantt`: Image { Image("squareChartGantt", bundle: .module) }
+    public static var `squareCheck`: Image { Image("squareCheck", bundle: .module) }
+    public static var `squareCheckBig`: Image { Image("squareCheckBig", bundle: .module) }
+    public static var `squareChevronDown`: Image { Image("squareChevronDown", bundle: .module) }
+    public static var `squareChevronLeft`: Image { Image("squareChevronLeft", bundle: .module) }
+    public static var `squareChevronRight`: Image { Image("squareChevronRight", bundle: .module) }
+    public static var `squareChevronUp`: Image { Image("squareChevronUp", bundle: .module) }
+    public static var `squareCode`: Image { Image("squareCode", bundle: .module) }
+    public static var `squareDashed`: Image { Image("squareDashed", bundle: .module) }
+    public static var `squareDashedBottom`: Image { Image("squareDashedBottom", bundle: .module) }
+    public static var `squareDashedBottomCode`: Image { Image("squareDashedBottomCode", bundle: .module) }
+    public static var `squareDashedKanban`: Image { Image("squareDashedKanban", bundle: .module) }
+    public static var `squareDashedMousePointer`: Image { Image("squareDashedMousePointer", bundle: .module) }
+    public static var `squareDashedText`: Image { Image("squareDashedText", bundle: .module) }
+    public static var `squareDashedTopSolid`: Image { Image("squareDashedTopSolid", bundle: .module) }
+    public static var `squareDivide`: Image { Image("squareDivide", bundle: .module) }
+    public static var `squareDot`: Image { Image("squareDot", bundle: .module) }
+    public static var `squareEqual`: Image { Image("squareEqual", bundle: .module) }
+    public static var `squareFunction`: Image { Image("squareFunction", bundle: .module) }
+    public static var `squareKanban`: Image { Image("squareKanban", bundle: .module) }
+    public static var `squareLibrary`: Image { Image("squareLibrary", bundle: .module) }
+    public static var `squareM`: Image { Image("squareM", bundle: .module) }
+    public static var `squareMenu`: Image { Image("squareMenu", bundle: .module) }
+    public static var `squareMinus`: Image { Image("squareMinus", bundle: .module) }
+    public static var `squareMousePointer`: Image { Image("squareMousePointer", bundle: .module) }
+    public static var `squareParking`: Image { Image("squareParking", bundle: .module) }
+    public static var `squareParkingOff`: Image { Image("squareParkingOff", bundle: .module) }
+    public static var `squarePause`: Image { Image("squarePause", bundle: .module) }
+    public static var `squarePen`: Image { Image("squarePen", bundle: .module) }
+    public static var `squarePercent`: Image { Image("squarePercent", bundle: .module) }
+    public static var `squarePi`: Image { Image("squarePi", bundle: .module) }
+    public static var `squarePilcrow`: Image { Image("squarePilcrow", bundle: .module) }
+    public static var `squarePlay`: Image { Image("squarePlay", bundle: .module) }
+    public static var `squarePlus`: Image { Image("squarePlus", bundle: .module) }
+    public static var `squarePower`: Image { Image("squarePower", bundle: .module) }
+    public static var `squareRadical`: Image { Image("squareRadical", bundle: .module) }
+    public static var `squareRoundCorner`: Image { Image("squareRoundCorner", bundle: .module) }
+    public static var `squareScissors`: Image { Image("squareScissors", bundle: .module) }
+    public static var `squareSigma`: Image { Image("squareSigma", bundle: .module) }
+    public static var `squareSlash`: Image { Image("squareSlash", bundle: .module) }
+    public static var `squareSolid`: Image { Image("squareSolid", bundle: .module) }
+    public static var `squareSplitHorizontal`: Image { Image("squareSplitHorizontal", bundle: .module) }
+    public static var `squareSplitVertical`: Image { Image("squareSplitVertical", bundle: .module) }
+    public static var `squareSquare`: Image { Image("squareSquare", bundle: .module) }
+    public static var `squareStack`: Image { Image("squareStack", bundle: .module) }
+    public static var `squareStar`: Image { Image("squareStar", bundle: .module) }
+    public static var `squareStop`: Image { Image("squareStop", bundle: .module) }
+    public static var `squareTerminal`: Image { Image("squareTerminal", bundle: .module) }
+    public static var `squareUser`: Image { Image("squareUser", bundle: .module) }
+    public static var `squareUserRound`: Image { Image("squareUserRound", bundle: .module) }
+    public static var `squareX`: Image { Image("squareX", bundle: .module) }
+    public static var `squaresBlueprint`: Image { Image("squaresBlueprint", bundle: .module) }
+    public static var `squaresBlueprintLock`: Image { Image("squaresBlueprintLock", bundle: .module) }
+    public static var `squaresExclude`: Image { Image("squaresExclude", bundle: .module) }
+    public static var `squaresIntersect`: Image { Image("squaresIntersect", bundle: .module) }
+    public static var `squaresSubtract`: Image { Image("squaresSubtract", bundle: .module) }
+    public static var `squaresUnite`: Image { Image("squaresUnite", bundle: .module) }
+    public static var `squircle`: Image { Image("squircle", bundle: .module) }
+    public static var `squircleDashed`: Image { Image("squircleDashed", bundle: .module) }
+    public static var `squirrel`: Image { Image("squirrel", bundle: .module) }
+    public static var `stamp`: Image { Image("stamp", bundle: .module) }
+    public static var `star`: Image { Image("star", bundle: .module) }
+    public static var `starHalf`: Image { Image("starHalf", bundle: .module) }
+    public static var `starOff`: Image { Image("starOff", bundle: .module) }
+    public static var `starSolid`: Image { Image("starSolid", bundle: .module) }
+    public static var `stepBack`: Image { Image("stepBack", bundle: .module) }
+    public static var `stepForward`: Image { Image("stepForward", bundle: .module) }
+    public static var `stethoscope`: Image { Image("stethoscope", bundle: .module) }
+    public static var `sticker`: Image { Image("sticker", bundle: .module) }
+    public static var `stickyNote`: Image { Image("stickyNote", bundle: .module) }
+    public static var `stone`: Image { Image("stone", bundle: .module) }
+    public static var `store`: Image { Image("store", bundle: .module) }
+    public static var `stretchHorizontal`: Image { Image("stretchHorizontal", bundle: .module) }
+    public static var `stretchVertical`: Image { Image("stretchVertical", bundle: .module) }
+    public static var `strikethrough`: Image { Image("strikethrough", bundle: .module) }
+    public static var `studio`: Image { Image("studio", bundle: .module) }
+    public static var `subscript`: Image { Image("subscript", bundle: .module) }
+    public static var `sun`: Image { Image("sun", bundle: .module) }
+    public static var `sunDim`: Image { Image("sunDim", bundle: .module) }
+    public static var `sunMedium`: Image { Image("sunMedium", bundle: .module) }
+    public static var `sunMoon`: Image { Image("sunMoon", bundle: .module) }
+    public static var `sunSnow`: Image { Image("sunSnow", bundle: .module) }
+    public static var `sunrise`: Image { Image("sunrise", bundle: .module) }
+    public static var `sunset`: Image { Image("sunset", bundle: .module) }
+    public static var `superscript`: Image { Image("superscript", bundle: .module) }
+    public static var `swatchBook`: Image { Image("swatchBook", bundle: .module) }
+    public static var `swissFranc`: Image { Image("swissFranc", bundle: .module) }
+    public static var `switchCamera`: Image { Image("switchCamera", bundle: .module) }
+    public static var `sword`: Image { Image("sword", bundle: .module) }
+    public static var `swords`: Image { Image("swords", bundle: .module) }
+    public static var `syringe`: Image { Image("syringe", bundle: .module) }
+    public static var `table`: Image { Image("table", bundle: .module) }
+    public static var `table2`: Image { Image("table2", bundle: .module) }
+    public static var `table2Check`: Image { Image("table2Check", bundle: .module) }
+    public static var `table2X`: Image { Image("table2X", bundle: .module) }
+    public static var `tableCellsMerge`: Image { Image("tableCellsMerge", bundle: .module) }
+    public static var `tableCellsSplit`: Image { Image("tableCellsSplit", bundle: .module) }
+    public static var `tableCog`: Image { Image("tableCog", bundle: .module) }
+    public static var `tableColumn`: Image { Image("tableColumn", bundle: .module) }
+    public static var `tableColumnPlusLeft`: Image { Image("tableColumnPlusLeft", bundle: .module) }
+    public static var `tableColumnPlusRight`: Image { Image("tableColumnPlusRight", bundle: .module) }
+    public static var `tableColumnX`: Image { Image("tableColumnX", bundle: .module) }
+    public static var `tableColumnsSplit`: Image { Image("tableColumnsSplit", bundle: .module) }
+    public static var `tableOfContents`: Image { Image("tableOfContents", bundle: .module) }
+    public static var `tableProperties`: Image { Image("tableProperties", bundle: .module) }
+    public static var `tableRow`: Image { Image("tableRow", bundle: .module) }
+    public static var `tableRowPlusBottom`: Image { Image("tableRowPlusBottom", bundle: .module) }
+    public static var `tableRowPlusTop`: Image { Image("tableRowPlusTop", bundle: .module) }
+    public static var `tableRowX`: Image { Image("tableRowX", bundle: .module) }
+    public static var `tableRowsSplit`: Image { Image("tableRowsSplit", bundle: .module) }
+    public static var `tablet`: Image { Image("tablet", bundle: .module) }
+    public static var `tabletSmartphone`: Image { Image("tabletSmartphone", bundle: .module) }
+    public static var `tablets`: Image { Image("tablets", bundle: .module) }
+    public static var `tag`: Image { Image("tag", bundle: .module) }
+    public static var `tags`: Image { Image("tags", bundle: .module) }
+    public static var `tally1`: Image { Image("tally1", bundle: .module) }
+    public static var `tally2`: Image { Image("tally2", bundle: .module) }
+    public static var `tally3`: Image { Image("tally3", bundle: .module) }
+    public static var `tally4`: Image { Image("tally4", bundle: .module) }
+    public static var `tally5`: Image { Image("tally5", bundle: .module) }
+    public static var `tangent`: Image { Image("tangent", bundle: .module) }
+    public static var `target`: Image { Image("target", bundle: .module) }
+    public static var `telescope`: Image { Image("telescope", bundle: .module) }
+    public static var `tent`: Image { Image("tent", bundle: .module) }
+    public static var `tentTree`: Image { Image("tentTree", bundle: .module) }
+    public static var `terminal`: Image { Image("terminal", bundle: .module) }
+    public static var `testTube`: Image { Image("testTube", bundle: .module) }
+    public static var `testTubeDiagonal`: Image { Image("testTubeDiagonal", bundle: .module) }
+    public static var `testTubes`: Image { Image("testTubes", bundle: .module) }
+    public static var `textAlignCenter`: Image { Image("textAlignCenter", bundle: .module) }
+    public static var `textAlignEnd`: Image { Image("textAlignEnd", bundle: .module) }
+    public static var `textAlignJustify`: Image { Image("textAlignJustify", bundle: .module) }
+    public static var `textAlignStart`: Image { Image("textAlignStart", bundle: .module) }
+    public static var `textColor`: Image { Image("textColor", bundle: .module) }
+    public static var `textCursor`: Image { Image("textCursor", bundle: .module) }
+    public static var `textCursorInput`: Image { Image("textCursorInput", bundle: .module) }
+    public static var `textInitial`: Image { Image("textInitial", bundle: .module) }
+    public static var `textQuote`: Image { Image("textQuote", bundle: .module) }
+    public static var `textSearch`: Image { Image("textSearch", bundle: .module) }
+    public static var `textWrap`: Image { Image("textWrap", bundle: .module) }
+    public static var `theater`: Image { Image("theater", bundle: .module) }
+    public static var `thermometer`: Image { Image("thermometer", bundle: .module) }
+    public static var `thermometerSnowflake`: Image { Image("thermometerSnowflake", bundle: .module) }
+    public static var `thermometerSun`: Image { Image("thermometerSun", bundle: .module) }
+    public static var `thumbsDown`: Image { Image("thumbsDown", bundle: .module) }
+    public static var `thumbsDownSolid`: Image { Image("thumbsDownSolid", bundle: .module) }
+    public static var `thumbsUp`: Image { Image("thumbsUp", bundle: .module) }
+    public static var `thumbsUpSolid`: Image { Image("thumbsUpSolid", bundle: .module) }
+    public static var `ticket`: Image { Image("ticket", bundle: .module) }
+    public static var `ticketCheck`: Image { Image("ticketCheck", bundle: .module) }
+    public static var `ticketMinus`: Image { Image("ticketMinus", bundle: .module) }
+    public static var `ticketPercent`: Image { Image("ticketPercent", bundle: .module) }
+    public static var `ticketPlus`: Image { Image("ticketPlus", bundle: .module) }
+    public static var `ticketSlash`: Image { Image("ticketSlash", bundle: .module) }
+    public static var `ticketX`: Image { Image("ticketX", bundle: .module) }
+    public static var `tickets`: Image { Image("tickets", bundle: .module) }
+    public static var `ticketsPlane`: Image { Image("ticketsPlane", bundle: .module) }
+    public static var `timer`: Image { Image("timer", bundle: .module) }
+    public static var `timerOff`: Image { Image("timerOff", bundle: .module) }
+    public static var `timerReset`: Image { Image("timerReset", bundle: .module) }
+    public static var `title`: Image { Image("title", bundle: .module) }
+    public static var `toggleLeft`: Image { Image("toggleLeft", bundle: .module) }
+    public static var `toggleRight`: Image { Image("toggleRight", bundle: .module) }
+    public static var `toilet`: Image { Image("toilet", bundle: .module) }
+    public static var `toolCase`: Image { Image("toolCase", bundle: .module) }
+    public static var `toolbox`: Image { Image("toolbox", bundle: .module) }
+    public static var `tornado`: Image { Image("tornado", bundle: .module) }
+    public static var `torus`: Image { Image("torus", bundle: .module) }
+    public static var `touchpad`: Image { Image("touchpad", bundle: .module) }
+    public static var `touchpadOff`: Image { Image("touchpadOff", bundle: .module) }
+    public static var `towelRack`: Image { Image("towelRack", bundle: .module) }
+    public static var `towerControl`: Image { Image("towerControl", bundle: .module) }
+    public static var `toyBrick`: Image { Image("toyBrick", bundle: .module) }
+    public static var `tractor`: Image { Image("tractor", bundle: .module) }
+    public static var `trafficCone`: Image { Image("trafficCone", bundle: .module) }
+    public static var `trainFront`: Image { Image("trainFront", bundle: .module) }
+    public static var `trainFrontTunnel`: Image { Image("trainFrontTunnel", bundle: .module) }
+    public static var `trainTrack`: Image { Image("trainTrack", bundle: .module) }
+    public static var `tramFront`: Image { Image("tramFront", bundle: .module) }
+    public static var `transgender`: Image { Image("transgender", bundle: .module) }
+    public static var `trash`: Image { Image("trash", bundle: .module) }
+    public static var `trash2`: Image { Image("trash2", bundle: .module) }
+    public static var `treeDeciduous`: Image { Image("treeDeciduous", bundle: .module) }
+    public static var `treePalm`: Image { Image("treePalm", bundle: .module) }
+    public static var `treePine`: Image { Image("treePine", bundle: .module) }
+    public static var `trees`: Image { Image("trees", bundle: .module) }
+    public static var `trendingDown`: Image { Image("trendingDown", bundle: .module) }
+    public static var `trendingUp`: Image { Image("trendingUp", bundle: .module) }
+    public static var `trendingUpDown`: Image { Image("trendingUpDown", bundle: .module) }
+    public static var `triangle`: Image { Image("triangle", bundle: .module) }
+    public static var `triangleAlert`: Image { Image("triangleAlert", bundle: .module) }
+    public static var `triangleDashed`: Image { Image("triangleDashed", bundle: .module) }
+    public static var `triangleRight`: Image { Image("triangleRight", bundle: .module) }
+    public static var `trophy`: Image { Image("trophy", bundle: .module) }
+    public static var `truck`: Image { Image("truck", bundle: .module) }
+    public static var `truckElectric`: Image { Image("truckElectric", bundle: .module) }
+    public static var `turkishLira`: Image { Image("turkishLira", bundle: .module) }
+    public static var `turntable`: Image { Image("turntable", bundle: .module) }
+    public static var `turtle`: Image { Image("turtle", bundle: .module) }
+    public static var `tv`: Image { Image("tv", bundle: .module) }
+    public static var `tvMinimal`: Image { Image("tvMinimal", bundle: .module) }
+    public static var `tvMinimalPlay`: Image { Image("tvMinimalPlay", bundle: .module) }
+    public static var `type`: Image { Image("type", bundle: .module) }
+    public static var `typeOutline`: Image { Image("typeOutline", bundle: .module) }
+    public static var `umbrella`: Image { Image("umbrella", bundle: .module) }
+    public static var `umbrellaOff`: Image { Image("umbrellaOff", bundle: .module) }
+    public static var `underline`: Image { Image("underline", bundle: .module) }
+    public static var `undo`: Image { Image("undo", bundle: .module) }
+    public static var `undo2`: Image { Image("undo2", bundle: .module) }
+    public static var `undoDot`: Image { Image("undoDot", bundle: .module) }
+    public static var `unfoldHorizontal`: Image { Image("unfoldHorizontal", bundle: .module) }
+    public static var `unfoldVertical`: Image { Image("unfoldVertical", bundle: .module) }
+    public static var `ungroup`: Image { Image("ungroup", bundle: .module) }
+    public static var `university`: Image { Image("university", bundle: .module) }
+    public static var `unlink`: Image { Image("unlink", bundle: .module) }
+    public static var `unlink2`: Image { Image("unlink2", bundle: .module) }
+    public static var `unplug`: Image { Image("unplug", bundle: .module) }
+    public static var `upload`: Image { Image("upload", bundle: .module) }
+    public static var `usb`: Image { Image("usb", bundle: .module) }
+    public static var `user`: Image { Image("user", bundle: .module) }
+    public static var `userCheck`: Image { Image("userCheck", bundle: .module) }
+    public static var `userCog`: Image { Image("userCog", bundle: .module) }
+    public static var `userKey`: Image { Image("userKey", bundle: .module) }
+    public static var `userLock`: Image { Image("userLock", bundle: .module) }
+    public static var `userMinus`: Image { Image("userMinus", bundle: .module) }
+    public static var `userPen`: Image { Image("userPen", bundle: .module) }
+    public static var `userPlus`: Image { Image("userPlus", bundle: .module) }
+    public static var `userRound`: Image { Image("userRound", bundle: .module) }
+    public static var `userRoundArrowUp`: Image { Image("userRoundArrowUp", bundle: .module) }
+    public static var `userRoundBlackboard`: Image { Image("userRoundBlackboard", bundle: .module) }
+    public static var `userRoundCheck`: Image { Image("userRoundCheck", bundle: .module) }
+    public static var `userRoundCog`: Image { Image("userRoundCog", bundle: .module) }
+    public static var `userRoundKey`: Image { Image("userRoundKey", bundle: .module) }
+    public static var `userRoundLock`: Image { Image("userRoundLock", bundle: .module) }
+    public static var `userRoundMinus`: Image { Image("userRoundMinus", bundle: .module) }
+    public static var `userRoundPen`: Image { Image("userRoundPen", bundle: .module) }
+    public static var `userRoundPlus`: Image { Image("userRoundPlus", bundle: .module) }
+    public static var `userRoundSearch`: Image { Image("userRoundSearch", bundle: .module) }
+    public static var `userRoundX`: Image { Image("userRoundX", bundle: .module) }
+    public static var `userSearch`: Image { Image("userSearch", bundle: .module) }
+    public static var `userStar`: Image { Image("userStar", bundle: .module) }
+    public static var `userX`: Image { Image("userX", bundle: .module) }
+    public static var `users`: Image { Image("users", bundle: .module) }
+    public static var `usersRound`: Image { Image("usersRound", bundle: .module) }
+    public static var `utensils`: Image { Image("utensils", bundle: .module) }
+    public static var `utensilsCrossed`: Image { Image("utensilsCrossed", bundle: .module) }
+    public static var `utilityPole`: Image { Image("utilityPole", bundle: .module) }
+    public static var `van`: Image { Image("van", bundle: .module) }
+    public static var `variable`: Image { Image("variable", bundle: .module) }
+    public static var `vault`: Image { Image("vault", bundle: .module) }
+    public static var `vectorSquare`: Image { Image("vectorSquare", bundle: .module) }
+    public static var `vegan`: Image { Image("vegan", bundle: .module) }
+    public static var `venetianMask`: Image { Image("venetianMask", bundle: .module) }
+    public static var `venus`: Image { Image("venus", bundle: .module) }
+    public static var `venusAndMars`: Image { Image("venusAndMars", bundle: .module) }
+    public static var `vibrate`: Image { Image("vibrate", bundle: .module) }
+    public static var `vibrateOff`: Image { Image("vibrateOff", bundle: .module) }
+    public static var `video`: Image { Image("video", bundle: .module) }
+    public static var `videoOff`: Image { Image("videoOff", bundle: .module) }
+    public static var `videotape`: Image { Image("videotape", bundle: .module) }
+    public static var `view`: Image { Image("view", bundle: .module) }
+    public static var `voicemail`: Image { Image("voicemail", bundle: .module) }
+    public static var `volleyball`: Image { Image("volleyball", bundle: .module) }
+    public static var `volume`: Image { Image("volume", bundle: .module) }
+    public static var `volume1`: Image { Image("volume1", bundle: .module) }
+    public static var `volume2`: Image { Image("volume2", bundle: .module) }
+    public static var `volumeOff`: Image { Image("volumeOff", bundle: .module) }
+    public static var `volumeX`: Image { Image("volumeX", bundle: .module) }
+    public static var `vote`: Image { Image("vote", bundle: .module) }
+    public static var `wallet`: Image { Image("wallet", bundle: .module) }
+    public static var `walletCards`: Image { Image("walletCards", bundle: .module) }
+    public static var `walletMinimal`: Image { Image("walletMinimal", bundle: .module) }
+    public static var `wallpaper`: Image { Image("wallpaper", bundle: .module) }
+    public static var `wand`: Image { Image("wand", bundle: .module) }
+    public static var `wandSparkles`: Image { Image("wandSparkles", bundle: .module) }
+    public static var `warehouse`: Image { Image("warehouse", bundle: .module) }
+    public static var `washingMachine`: Image { Image("washingMachine", bundle: .module) }
+    public static var `watch`: Image { Image("watch", bundle: .module) }
+    public static var `waves`: Image { Image("waves", bundle: .module) }
+    public static var `wavesArrowDown`: Image { Image("wavesArrowDown", bundle: .module) }
+    public static var `wavesArrowUp`: Image { Image("wavesArrowUp", bundle: .module) }
+    public static var `wavesLadder`: Image { Image("wavesLadder", bundle: .module) }
+    public static var `waypoints`: Image { Image("waypoints", bundle: .module) }
+    public static var `webcam`: Image { Image("webcam", bundle: .module) }
+    public static var `webhook`: Image { Image("webhook", bundle: .module) }
+    public static var `webhookOff`: Image { Image("webhookOff", bundle: .module) }
+    public static var `weight`: Image { Image("weight", bundle: .module) }
+    public static var `weightTilde`: Image { Image("weightTilde", bundle: .module) }
+    public static var `wheat`: Image { Image("wheat", bundle: .module) }
+    public static var `wheatOff`: Image { Image("wheatOff", bundle: .module) }
+    public static var `wholeWord`: Image { Image("wholeWord", bundle: .module) }
+    public static var `wifi`: Image { Image("wifi", bundle: .module) }
+    public static var `wifiCog`: Image { Image("wifiCog", bundle: .module) }
+    public static var `wifiHigh`: Image { Image("wifiHigh", bundle: .module) }
+    public static var `wifiLow`: Image { Image("wifiLow", bundle: .module) }
+    public static var `wifiOff`: Image { Image("wifiOff", bundle: .module) }
+    public static var `wifiPen`: Image { Image("wifiPen", bundle: .module) }
+    public static var `wifiSync`: Image { Image("wifiSync", bundle: .module) }
+    public static var `wifiZero`: Image { Image("wifiZero", bundle: .module) }
+    public static var `wind`: Image { Image("wind", bundle: .module) }
+    public static var `windArrowDown`: Image { Image("windArrowDown", bundle: .module) }
+    public static var `wine`: Image { Image("wine", bundle: .module) }
+    public static var `wineOff`: Image { Image("wineOff", bundle: .module) }
+    public static var `workflow`: Image { Image("workflow", bundle: .module) }
+    public static var `worm`: Image { Image("worm", bundle: .module) }
+    public static var `wrench`: Image { Image("wrench", bundle: .module) }
+    public static var `x`: Image { Image("x", bundle: .module) }
+    public static var `xLineTop`: Image { Image("xLineTop", bundle: .module) }
+    public static var `zap`: Image { Image("zap", bundle: .module) }
+    public static var `zapOff`: Image { Image("zapOff", bundle: .module) }
+    public static var `zodiacAquarius`: Image { Image("zodiacAquarius", bundle: .module) }
+    public static var `zodiacAries`: Image { Image("zodiacAries", bundle: .module) }
+    public static var `zodiacCancer`: Image { Image("zodiacCancer", bundle: .module) }
+    public static var `zodiacCapricorn`: Image { Image("zodiacCapricorn", bundle: .module) }
+    public static var `zodiacGemini`: Image { Image("zodiacGemini", bundle: .module) }
+    public static var `zodiacLeo`: Image { Image("zodiacLeo", bundle: .module) }
+    public static var `zodiacLibra`: Image { Image("zodiacLibra", bundle: .module) }
+    public static var `zodiacOphiuchus`: Image { Image("zodiacOphiuchus", bundle: .module) }
+    public static var `zodiacPisces`: Image { Image("zodiacPisces", bundle: .module) }
+    public static var `zodiacSagittarius`: Image { Image("zodiacSagittarius", bundle: .module) }
+    public static var `zodiacScorpio`: Image { Image("zodiacScorpio", bundle: .module) }
+    public static var `zodiacTaurus`: Image { Image("zodiacTaurus", bundle: .module) }
+    public static var `zodiacVirgo`: Image { Image("zodiacVirgo", bundle: .module) }
+    public static var `zoomIn`: Image { Image("zoomIn", bundle: .module) }
+    public static var `zoomOut`: Image { Image("zoomOut", bundle: .module) }
 }
 
 extension Image.iui {
     internal static let all: [(name: String, image: Image)] = [
-        ("a11yLine", Image.iui.a11yLine),
-        ("a11ySolid", Image.iui.a11ySolid),
-        ("aIInfoLine", Image.iui.aIInfoLine),
-        ("aIInfoSolid", Image.iui.aIInfoSolid),
-        ("accessibility2Custom", Image.iui.accessibility2Custom),
-        ("addFolderLine", Image.iui.addFolderLine),
-        ("addFolderSolid", Image.iui.addFolderSolid),
-        ("addLine", Image.iui.addLine),
-        ("addMediaLine", Image.iui.addMediaLine),
-        ("addMediaSolid", Image.iui.addMediaSolid),
-        ("addSolid", Image.iui.addSolid),
-        ("addressBookLine", Image.iui.addressBookLine),
-        ("addressBookSolid", Image.iui.addressBookSolid),
-        ("adminLine", Image.iui.adminLine),
-        ("adminSolid", Image.iui.adminSolid),
-        ("adminToolsLine", Image.iui.adminToolsLine),
-        ("adminToolsSolid", Image.iui.adminToolsSolid),
-        ("aiColoredLine", Image.iui.aiColoredLine),
-        ("aiColoredSolid", Image.iui.aiColoredSolid),
-        ("aiInfoCustom", Image.iui.aiInfoCustom),
-        ("aiLine", Image.iui.aiLine),
-        ("aiSolid", Image.iui.aiSolid),
-        ("alertsLine", Image.iui.alertsLine),
-        ("alertsSolid", Image.iui.alertsSolid),
-        ("analyticsLine", Image.iui.analyticsLine),
-        ("analyticsSolid", Image.iui.analyticsSolid),
-        ("androidLine", Image.iui.androidLine),
-        ("androidSolid", Image.iui.androidSolid),
-        ("annotateLine", Image.iui.annotateLine),
-        ("annotateSolid", Image.iui.annotateSolid),
-        ("announcementLine", Image.iui.announcementLine),
-        ("announcementSolid", Image.iui.announcementSolid),
-        ("appleLine", Image.iui.appleLine),
-        ("appleSolid", Image.iui.appleSolid),
-        ("appsCustom", Image.iui.appsCustom),
-        ("arcLine", Image.iui.arcLine),
-        ("arcSolid", Image.iui.arcSolid),
-        ("archiveLine", Image.iui.archiveLine),
-        ("archiveSolid", Image.iui.archiveSolid),
-        ("arrowDoubleEndLine", Image.iui.arrowDoubleEndLine),
-        ("arrowDoubleEndSolid", Image.iui.arrowDoubleEndSolid),
-        ("arrowDoubleStartLine", Image.iui.arrowDoubleStartLine),
-        ("arrowDoubleStartSolid", Image.iui.arrowDoubleStartSolid),
-        ("arrowDownLine", Image.iui.arrowDownLine),
-        ("arrowDownSolid", Image.iui.arrowDownSolid),
-        ("arrowEndLine", Image.iui.arrowEndLine),
-        ("arrowEndSolid", Image.iui.arrowEndSolid),
-        ("arrowLeftLine", Image.iui.arrowLeftLine),
-        ("arrowLeftSolid", Image.iui.arrowLeftSolid),
-        ("arrowNestLine", Image.iui.arrowNestLine),
-        ("arrowNestSolid", Image.iui.arrowNestSolid),
-        ("arrowOpenDownLine", Image.iui.arrowOpenDownLine),
-        ("arrowOpenDownSolid", Image.iui.arrowOpenDownSolid),
-        ("arrowOpenEndLine", Image.iui.arrowOpenEndLine),
-        ("arrowOpenEndSolid", Image.iui.arrowOpenEndSolid),
-        ("arrowOpenLeftLine", Image.iui.arrowOpenLeftLine),
-        ("arrowOpenLeftSolid", Image.iui.arrowOpenLeftSolid),
-        ("arrowOpenRightLine", Image.iui.arrowOpenRightLine),
-        ("arrowOpenRightSolid", Image.iui.arrowOpenRightSolid),
-        ("arrowOpenStartLine", Image.iui.arrowOpenStartLine),
-        ("arrowOpenStartSolid", Image.iui.arrowOpenStartSolid),
-        ("arrowOpenUpLine", Image.iui.arrowOpenUpLine),
-        ("arrowOpenUpSolid", Image.iui.arrowOpenUpSolid),
-        ("arrowRightLine", Image.iui.arrowRightLine),
-        ("arrowRightSolid", Image.iui.arrowRightSolid),
-        ("arrowStartLine", Image.iui.arrowStartLine),
-        ("arrowStartSolid", Image.iui.arrowStartSolid),
-        ("arrowUpLine", Image.iui.arrowUpLine),
-        ("arrowUpSolid", Image.iui.arrowUpSolid),
-        ("assignmentLine", Image.iui.assignmentLine),
-        ("assignmentSolid", Image.iui.assignmentSolid),
-        ("attachMediaLine", Image.iui.attachMediaLine),
-        ("attachMediaSolid", Image.iui.attachMediaSolid),
-        ("audioLine", Image.iui.audioLine),
-        ("audioOffLine", Image.iui.audioOffLine),
-        ("audioOffSolid", Image.iui.audioOffSolid),
-        ("audioSolid", Image.iui.audioSolid),
-        ("awardLine", Image.iui.awardLine),
-        ("awardSolid", Image.iui.awardSolid),
-        ("backgroundColorCustom", Image.iui.backgroundColorCustom),
-        ("bankLine", Image.iui.bankLine),
-        ("bankSolid", Image.iui.bankSolid),
-        ("bellSolidCustom", Image.iui.bellSolidCustom),
-        ("blueprintLine", Image.iui.blueprintLine),
-        ("blueprintLockLine", Image.iui.blueprintLockLine),
-        ("blueprintLockSolid", Image.iui.blueprintLockSolid),
-        ("blueprintSolid", Image.iui.blueprintSolid),
-        ("boldLine", Image.iui.boldLine),
-        ("boldSolid", Image.iui.boldSolid),
-        ("bookmarkLine", Image.iui.bookmarkLine),
-        ("bookmarkSolid", Image.iui.bookmarkSolid),
-        ("bookmarkSolidCustom", Image.iui.bookmarkSolidCustom),
-        ("boxLine", Image.iui.boxLine),
-        ("boxSolid", Image.iui.boxSolid),
-        ("bulletListAlphaLine", Image.iui.bulletListAlphaLine),
-        ("bulletListAlphaSolid", Image.iui.bulletListAlphaSolid),
-        ("bulletListCircleOutlineLine", Image.iui.bulletListCircleOutlineLine),
-        ("bulletListCircleOutlineSolid", Image.iui.bulletListCircleOutlineSolid),
-        ("bulletListLine", Image.iui.bulletListLine),
-        ("bulletListRomanLine", Image.iui.bulletListRomanLine),
-        ("bulletListRomanSolid", Image.iui.bulletListRomanSolid),
-        ("bulletListSolid", Image.iui.bulletListSolid),
-        ("bulletListSquareLine", Image.iui.bulletListSquareLine),
-        ("bulletListSquareSolid", Image.iui.bulletListSquareSolid),
-        ("buttonAndIconMakerLine", Image.iui.buttonAndIconMakerLine),
-        ("buttonAndIconMakerSolid", Image.iui.buttonAndIconMakerSolid),
-        ("calculatorDesmosCustom", Image.iui.calculatorDesmosCustom),
-        ("calculatorDesmosLine", Image.iui.calculatorDesmosLine),
-        ("calculatorDesmosSolid", Image.iui.calculatorDesmosSolid),
-        ("calculatorLine", Image.iui.calculatorLine),
-        ("calculatorSolid", Image.iui.calculatorSolid),
-        ("calendarAddLine", Image.iui.calendarAddLine),
-        ("calendarAddSolid", Image.iui.calendarAddSolid),
-        ("calendarClockLine", Image.iui.calendarClockLine),
-        ("calendarClockSolid", Image.iui.calendarClockSolid),
-        ("calendarDayLine", Image.iui.calendarDayLine),
-        ("calendarDaySolid", Image.iui.calendarDaySolid),
-        ("calendarDaysLine", Image.iui.calendarDaysLine),
-        ("calendarDaysSolid", Image.iui.calendarDaysSolid),
-        ("calendarMonthLine", Image.iui.calendarMonthLine),
-        ("calendarMonthSolid", Image.iui.calendarMonthSolid),
-        ("calendarReservedLine", Image.iui.calendarReservedLine),
-        ("calendarReservedSolid", Image.iui.calendarReservedSolid),
-        ("canvasLogoCustom", Image.iui.canvasLogoCustom),
-        ("canvasLogoLine", Image.iui.canvasLogoLine),
-        ("canvasLogoSolid", Image.iui.canvasLogoSolid),
-        ("captionsSolidCustom", Image.iui.captionsSolidCustom),
-        ("certifiedLine", Image.iui.certifiedLine),
-        ("certifiedSolid", Image.iui.certifiedSolid),
-        ("chartLineLine", Image.iui.chartLineLine),
-        ("chartLineSolid", Image.iui.chartLineSolid),
-        ("chartPieLine", Image.iui.chartPieLine),
-        ("chartPieSolid", Image.iui.chartPieSolid),
-        ("chartScatterLine", Image.iui.chartScatterLine),
-        ("chartScatterSolid", Image.iui.chartScatterSolid),
-        ("chatLine", Image.iui.chatLine),
-        ("chatSolid", Image.iui.chatSolid),
-        ("checkDarkLine", Image.iui.checkDarkLine),
-        ("checkDarkSolid", Image.iui.checkDarkSolid),
-        ("checkLine", Image.iui.checkLine),
-        ("checkMarkIndeterminateLine", Image.iui.checkMarkIndeterminateLine),
-        ("checkMarkIndeterminateSolid", Image.iui.checkMarkIndeterminateSolid),
-        ("checkMarkLine", Image.iui.checkMarkLine),
-        ("checkMarkSolid", Image.iui.checkMarkSolid),
-        ("checkPlusLine", Image.iui.checkPlusLine),
-        ("checkPlusSolid", Image.iui.checkPlusSolid),
-        ("checkSolid", Image.iui.checkSolid),
-        ("circleAlphaCustom", Image.iui.circleAlphaCustom),
-        ("circleArrowDownLine", Image.iui.circleArrowDownLine),
-        ("circleArrowDownRightCustom", Image.iui.circleArrowDownRightCustom),
-        ("circleArrowDownSolid", Image.iui.circleArrowDownSolid),
-        ("circleArrowInLeftCustom", Image.iui.circleArrowInLeftCustom),
-        ("circleArrowInRightCustom", Image.iui.circleArrowInRightCustom),
-        ("circleArrowUpLine", Image.iui.circleArrowUpLine),
-        ("circleArrowUpRightCustom", Image.iui.circleArrowUpRightCustom),
-        ("circleArrowUpSolid", Image.iui.circleArrowUpSolid),
-        ("circleMuCustom", Image.iui.circleMuCustom),
-        ("circleSigmaCustom", Image.iui.circleSigmaCustom),
-        ("clearTextFormattingLine", Image.iui.clearTextFormattingLine),
-        ("clearTextFormattingSolid", Image.iui.clearTextFormattingSolid),
-        ("clockLine", Image.iui.clockLine),
-        ("clockSolid", Image.iui.clockSolid),
-        ("closedCaptionCheckCustom", Image.iui.closedCaptionCheckCustom),
-        ("closedCaptionSolidCustom", Image.iui.closedCaptionSolidCustom),
-        ("closedCaptionXCustom", Image.iui.closedCaptionXCustom),
-        ("closedCaptioningLine", Image.iui.closedCaptioningLine),
-        ("closedCaptioningOffLine", Image.iui.closedCaptioningOffLine),
-        ("closedCaptioningOffSolid", Image.iui.closedCaptioningOffSolid),
-        ("closedCaptioningOnLine", Image.iui.closedCaptioningOnLine),
-        ("closedCaptioningOnSolid", Image.iui.closedCaptioningOnSolid),
-        ("closedCaptioningSolid", Image.iui.closedCaptioningSolid),
-        ("cloudDownloadLine", Image.iui.cloudDownloadLine),
-        ("cloudDownloadSolid", Image.iui.cloudDownloadSolid),
-        ("cloudLockCustom", Image.iui.cloudLockCustom),
-        ("cloudLockLine", Image.iui.cloudLockLine),
-        ("cloudLockSolid", Image.iui.cloudLockSolid),
-        ("cloudUploadLine", Image.iui.cloudUploadLine),
-        ("cloudUploadSolid", Image.iui.cloudUploadSolid),
-        ("codeLine", Image.iui.codeLine),
-        ("codeSolid", Image.iui.codeSolid),
-        ("collapseLine", Image.iui.collapseLine),
-        ("collapseSolid", Image.iui.collapseSolid),
-        ("collectionLine", Image.iui.collectionLine),
-        ("collectionSaveLine", Image.iui.collectionSaveLine),
-        ("collectionSaveSolid", Image.iui.collectionSaveSolid),
-        ("collectionSolid", Image.iui.collectionSolid),
-        ("commentLine", Image.iui.commentLine),
-        ("commentSolid", Image.iui.commentSolid),
-        ("commentsOffLine", Image.iui.commentsOffLine),
-        ("commentsOffSolid", Image.iui.commentsOffSolid),
-        ("commentsOnLine", Image.iui.commentsOnLine),
-        ("commentsOnSolid", Image.iui.commentsOnSolid),
-        ("commonsCustom", Image.iui.commonsCustom),
-        ("commonsLine", Image.iui.commonsLine),
-        ("commonsSolid", Image.iui.commonsSolid),
-        ("compareCustom", Image.iui.compareCustom),
-        ("compareLine", Image.iui.compareLine),
-        ("compareSolid", Image.iui.compareSolid),
-        ("compassLine", Image.iui.compassLine),
-        ("compassSolid", Image.iui.compassSolid),
-        ("completeLine", Image.iui.completeLine),
-        ("completeSolid", Image.iui.completeSolid),
-        ("composeLine", Image.iui.composeLine),
-        ("composeSolid", Image.iui.composeSolid),
-        ("configureLine", Image.iui.configureLine),
-        ("configureSolid", Image.iui.configureSolid),
-        ("copyCourseLine", Image.iui.copyCourseLine),
-        ("copyCourseSolid", Image.iui.copyCourseSolid),
-        ("copyLine", Image.iui.copyLine),
-        ("copySolid", Image.iui.copySolid),
-        ("copyrightFairUseCustom", Image.iui.copyrightFairUseCustom),
-        ("copyrightObtainedPermissionCustom", Image.iui.copyrightObtainedPermissionCustom),
-        ("copyrightPublicDomainCustom", Image.iui.copyrightPublicDomainCustom),
-        ("coursesLine", Image.iui.coursesLine),
-        ("coursesSolid", Image.iui.coursesSolid),
-        ("cropLine", Image.iui.cropLine),
-        ("cropSolid", Image.iui.cropSolid),
-        ("dashboardLine", Image.iui.dashboardLine),
-        ("dashboardSolid", Image.iui.dashboardSolid),
-        ("deactivateUserLine", Image.iui.deactivateUserLine),
-        ("deactivateUserSolid", Image.iui.deactivateUserSolid),
-        ("discussionCheckLine", Image.iui.discussionCheckLine),
-        ("discussionCheckSolid", Image.iui.discussionCheckSolid),
-        ("discussionLine", Image.iui.discussionLine),
-        ("discussionNewLine", Image.iui.discussionNewLine),
-        ("discussionNewSolid", Image.iui.discussionNewSolid),
-        ("discussionReply2Line", Image.iui.discussionReply2Line),
-        ("discussionReply2Solid", Image.iui.discussionReply2Solid),
-        ("discussionReplyDarkLine", Image.iui.discussionReplyDarkLine),
-        ("discussionReplyDarkSolid", Image.iui.discussionReplyDarkSolid),
-        ("discussionReplyLine", Image.iui.discussionReplyLine),
-        ("discussionReplySolid", Image.iui.discussionReplySolid),
-        ("discussionSearchLine", Image.iui.discussionSearchLine),
-        ("discussionSearchSolid", Image.iui.discussionSearchSolid),
-        ("discussionSolid", Image.iui.discussionSolid),
-        ("discussionXLine", Image.iui.discussionXLine),
-        ("discussionXSolid", Image.iui.discussionXSolid),
-        ("documentLine", Image.iui.documentLine),
-        ("documentSolid", Image.iui.documentSolid),
-        ("downloadLine", Image.iui.downloadLine),
-        ("downloadSolid", Image.iui.downloadSolid),
-        ("dragHandleLine", Image.iui.dragHandleLine),
-        ("dragHandleSolid", Image.iui.dragHandleSolid),
-        ("dropDownLine", Image.iui.dropDownLine),
-        ("dropDownSolid", Image.iui.dropDownSolid),
-        ("duplicateLine", Image.iui.duplicateLine),
-        ("duplicateSolid", Image.iui.duplicateSolid),
-        ("editLine", Image.iui.editLine),
-        ("editSolid", Image.iui.editSolid),
-        ("educatorsLine", Image.iui.educatorsLine),
-        ("educatorsSolid", Image.iui.educatorsSolid),
-        ("elevateLogoCustom", Image.iui.elevateLogoCustom),
-        ("elevateLogoLine", Image.iui.elevateLogoLine),
-        ("elevateLogoSolid", Image.iui.elevateLogoSolid),
-        ("emailLine", Image.iui.emailLine),
-        ("emailSolid", Image.iui.emailSolid),
-        ("emptyLine", Image.iui.emptyLine),
-        ("emptySolid", Image.iui.emptySolid),
-        ("endLine", Image.iui.endLine),
-        ("endSolid", Image.iui.endSolid),
-        ("eportfolioLine", Image.iui.eportfolioLine),
-        ("eportfolioSolid", Image.iui.eportfolioSolid),
-        ("equationLine", Image.iui.equationLine),
-        ("equationSolid", Image.iui.equationSolid),
-        ("equellaLine", Image.iui.equellaLine),
-        ("equellaSolid", Image.iui.equellaSolid),
-        ("essayLine", Image.iui.essayLine),
-        ("essaySolid", Image.iui.essaySolid),
-        ("exitFullScreenLine", Image.iui.exitFullScreenLine),
-        ("exitFullScreenSolid", Image.iui.exitFullScreenSolid),
-        ("expandItemsLine", Image.iui.expandItemsLine),
-        ("expandItemsSolid", Image.iui.expandItemsSolid),
-        ("expandLeftLine", Image.iui.expandLeftLine),
-        ("expandLeftSolid", Image.iui.expandLeftSolid),
-        ("expandLine", Image.iui.expandLine),
-        ("expandSolid", Image.iui.expandSolid),
-        ("expandStartLine", Image.iui.expandStartLine),
-        ("expandStartSolid", Image.iui.expandStartSolid),
-        ("exportContentLine", Image.iui.exportContentLine),
-        ("exportContentSolid", Image.iui.exportContentSolid),
-        ("exportLine", Image.iui.exportLine),
-        ("exportSolid", Image.iui.exportSolid),
-        ("externalLinkLine", Image.iui.externalLinkLine),
-        ("externalLinkSolid", Image.iui.externalLinkSolid),
-        ("eyeLine", Image.iui.eyeLine),
-        ("eyeSolid", Image.iui.eyeSolid),
-        ("facebookBoxedLine", Image.iui.facebookBoxedLine),
-        ("facebookBoxedSolid", Image.iui.facebookBoxedSolid),
-        ("facebookLine", Image.iui.facebookLine),
-        ("facebookSolid", Image.iui.facebookSolid),
-        ("fastForwardLine", Image.iui.fastForwardLine),
-        ("fastForwardSolid", Image.iui.fastForwardSolid),
-        ("fastForwardSolidCustom", Image.iui.fastForwardSolidCustom),
-        ("feedbackLine", Image.iui.feedbackLine),
-        ("feedbackSolid", Image.iui.feedbackSolid),
-        ("fileLockedLine", Image.iui.fileLockedLine),
-        ("fileLockedSolid", Image.iui.fileLockedSolid),
-        ("filesCopyrightLine", Image.iui.filesCopyrightLine),
-        ("filesCopyrightSolid", Image.iui.filesCopyrightSolid),
-        ("filesCreativeCommonsLine", Image.iui.filesCreativeCommonsLine),
-        ("filesCreativeCommonsSolid", Image.iui.filesCreativeCommonsSolid),
-        ("filesFairUseLine", Image.iui.filesFairUseLine),
-        ("filesFairUseSolid", Image.iui.filesFairUseSolid),
-        ("filesObtainedPermissionLine", Image.iui.filesObtainedPermissionLine),
-        ("filesObtainedPermissionSolid", Image.iui.filesObtainedPermissionSolid),
-        ("filesPublicDomainLine", Image.iui.filesPublicDomainLine),
-        ("filesPublicDomainSolid", Image.iui.filesPublicDomainSolid),
-        ("filesXCustom", Image.iui.filesXCustom),
-        ("filmstripLine", Image.iui.filmstripLine),
-        ("filmstripSolid", Image.iui.filmstripSolid),
-        ("filterLine", Image.iui.filterLine),
-        ("filterSolid", Image.iui.filterSolid),
-        ("flagLine", Image.iui.flagLine),
-        ("flagSolid", Image.iui.flagSolid),
-        ("flagSolidCustom", Image.iui.flagSolidCustom),
-        ("folderLine", Image.iui.folderLine),
-        ("folderLockedLine", Image.iui.folderLockedLine),
-        ("folderLockedSolid", Image.iui.folderLockedSolid),
-        ("folderSolid", Image.iui.folderSolid),
-        ("forwardLine", Image.iui.forwardLine),
-        ("forwardSolid", Image.iui.forwardSolid),
-        ("fullScreenLine", Image.iui.fullScreenLine),
-        ("fullScreenSolid", Image.iui.fullScreenSolid),
-        ("githubLine", Image.iui.githubLine),
-        ("githubSolid", Image.iui.githubSolid),
-        ("giveAwardLine", Image.iui.giveAwardLine),
-        ("giveAwardSolid", Image.iui.giveAwardSolid),
-        ("gradebookExportLine", Image.iui.gradebookExportLine),
-        ("gradebookExportSolid", Image.iui.gradebookExportSolid),
-        ("gradebookImportLine", Image.iui.gradebookImportLine),
-        ("gradebookImportSolid", Image.iui.gradebookImportSolid),
-        ("gradebookLine", Image.iui.gradebookLine),
-        ("gradebookSolid", Image.iui.gradebookSolid),
-        ("gridViewLine", Image.iui.gridViewLine),
-        ("gridViewSolid", Image.iui.gridViewSolid),
-        ("groupDarkNewLine", Image.iui.groupDarkNewLine),
-        ("groupDarkNewSolid", Image.iui.groupDarkNewSolid),
-        ("groupLine", Image.iui.groupLine),
-        ("groupNewLine", Image.iui.groupNewLine),
-        ("groupNewSolid", Image.iui.groupNewSolid),
-        ("groupSolid", Image.iui.groupSolid),
-        ("hamburgerLine", Image.iui.hamburgerLine),
-        ("hamburgerSolid", Image.iui.hamburgerSolid),
-        ("headerLine", Image.iui.headerLine),
-        ("headerSolid", Image.iui.headerSolid),
-        ("heartLine", Image.iui.heartLine),
-        ("heartSolid", Image.iui.heartSolid),
-        ("heartSolidCustom", Image.iui.heartSolidCustom),
-        ("highlighterLine", Image.iui.highlighterLine),
-        ("highlighterSolid", Image.iui.highlighterSolid),
-        ("historyCheckCustom", Image.iui.historyCheckCustom),
-        ("historyXCustom", Image.iui.historyXCustom),
-        ("homeLine", Image.iui.homeLine),
-        ("homeSolid", Image.iui.homeSolid),
-        ("hourGlassLine", Image.iui.hourGlassLine),
-        ("hourGlassSolid", Image.iui.hourGlassSolid),
-        ("igniteaiLogoCustom", Image.iui.igniteaiLogoCustom),
-        ("imageLine", Image.iui.imageLine),
-        ("imageSolid", Image.iui.imageSolid),
-        ("immersiveReaderLine", Image.iui.immersiveReaderLine),
-        ("immersiveReaderSolid", Image.iui.immersiveReaderSolid),
-        ("impactLogoCustom", Image.iui.impactLogoCustom),
-        ("impactLogoLine", Image.iui.impactLogoLine),
-        ("impactLogoSolid", Image.iui.impactLogoSolid),
-        ("importContentLine", Image.iui.importContentLine),
-        ("importContentSolid", Image.iui.importContentSolid),
-        ("importLine", Image.iui.importLine),
-        ("importSolid", Image.iui.importSolid),
-        ("importantDatesLine", Image.iui.importantDatesLine),
-        ("importantDatesSolid", Image.iui.importantDatesSolid),
-        ("inboxLine", Image.iui.inboxLine),
-        ("inboxSolid", Image.iui.inboxSolid),
-        ("indent2Line", Image.iui.indent2Line),
-        ("indent2Solid", Image.iui.indent2Solid),
-        ("indentLine", Image.iui.indentLine),
-        ("indentSolid", Image.iui.indentSolid),
-        ("infoBorderlessLine", Image.iui.infoBorderlessLine),
-        ("infoBorderlessSolid", Image.iui.infoBorderlessSolid),
-        ("infoLine", Image.iui.infoLine),
-        ("infoSolid", Image.iui.infoSolid),
-        ("instructure1DotCustom", Image.iui.instructure1DotCustom),
-        ("instructure1DotLine", Image.iui.instructure1DotLine),
-        ("instructure1DotSolid", Image.iui.instructure1DotSolid),
-        ("instructure3DotCustom", Image.iui.instructure3DotCustom),
-        ("instructure3DotLine", Image.iui.instructure3DotLine),
-        ("instructure3DotSolid", Image.iui.instructure3DotSolid),
-        ("instructureCustom", Image.iui.instructureCustom),
-        ("instructureLine", Image.iui.instructureLine),
-        ("instructureLogoCustom", Image.iui.instructureLogoCustom),
-        ("instructureLogoLine", Image.iui.instructureLogoLine),
-        ("instructureLogoSolid", Image.iui.instructureLogoSolid),
-        ("instructureSolid", Image.iui.instructureSolid),
-        ("integrationsLine", Image.iui.integrationsLine),
-        ("integrationsSolid", Image.iui.integrationsSolid),
-        ("invitationLine", Image.iui.invitationLine),
-        ("invitationSolid", Image.iui.invitationSolid),
-        ("italicLine", Image.iui.italicLine),
-        ("italicSolid", Image.iui.italicSolid),
-        ("keyboardShortcutsLine", Image.iui.keyboardShortcutsLine),
-        ("keyboardShortcutsSolid", Image.iui.keyboardShortcutsSolid),
-        ("launchLine", Image.iui.launchLine),
-        ("launchSolid", Image.iui.launchSolid),
-        ("learnplatformLine", Image.iui.learnplatformLine),
-        ("learnplatformSolid", Image.iui.learnplatformSolid),
-        ("lifePreserverLine", Image.iui.lifePreserverLine),
-        ("lifePreserverSolid", Image.iui.lifePreserverSolid),
-        ("likeLine", Image.iui.likeLine),
-        ("likeSolid", Image.iui.likeSolid),
-        ("lineReaderCustom", Image.iui.lineReaderCustom),
-        ("lineReaderLine", Image.iui.lineReaderLine),
-        ("lineReaderSolid", Image.iui.lineReaderSolid),
-        ("linkLine", Image.iui.linkLine),
-        ("linkSolid", Image.iui.linkSolid),
-        ("linkedinLine", Image.iui.linkedinLine),
-        ("linkedinSolid", Image.iui.linkedinSolid),
-        ("listCircleCustom", Image.iui.listCircleCustom),
-        ("listDownCustom", Image.iui.listDownCustom),
-        ("listOrderedAlphaCustom", Image.iui.listOrderedAlphaCustom),
-        ("listOrderedRomanCustom", Image.iui.listOrderedRomanCustom),
-        ("listSquareCustom", Image.iui.listSquareCustom),
-        ("listUpCustom", Image.iui.listUpCustom),
-        ("listViewLine", Image.iui.listViewLine),
-        ("listViewSolid", Image.iui.listViewSolid),
-        ("lockLine", Image.iui.lockLine),
-        ("lockResetCustom", Image.iui.lockResetCustom),
-        ("lockSolid", Image.iui.lockSolid),
-        ("ltiLine", Image.iui.ltiLine),
-        ("ltiSolid", Image.iui.ltiSolid),
-        ("mailCircleCustom", Image.iui.mailCircleCustom),
-        ("markAsReadLine", Image.iui.markAsReadLine),
-        ("markAsReadSolid", Image.iui.markAsReadSolid),
-        ("markerLine", Image.iui.markerLine),
-        ("markerSolid", Image.iui.markerSolid),
-        ("masqueradeLine", Image.iui.masqueradeLine),
-        ("masqueradeSolid", Image.iui.masqueradeSolid),
-        ("masteryLogoCustom", Image.iui.masteryLogoCustom),
-        ("masteryLogoLine", Image.iui.masteryLogoLine),
-        ("masteryLogoSolid", Image.iui.masteryLogoSolid),
-        ("masteryPathsLine", Image.iui.masteryPathsLine),
-        ("masteryPathsSolid", Image.iui.masteryPathsSolid),
-        ("materialsRequiredLightLine", Image.iui.materialsRequiredLightLine),
-        ("materialsRequiredLightSolid", Image.iui.materialsRequiredLightSolid),
-        ("materialsRequiredLine", Image.iui.materialsRequiredLine),
-        ("materialsRequiredSolid", Image.iui.materialsRequiredSolid),
-        ("matureLightLine", Image.iui.matureLightLine),
-        ("matureLightSolid", Image.iui.matureLightSolid),
-        ("matureLine", Image.iui.matureLine),
-        ("matureSolid", Image.iui.matureSolid),
-        ("mediaAttachmentCustom", Image.iui.mediaAttachmentCustom),
-        ("mediaLine", Image.iui.mediaLine),
-        ("mediaPlusCustom", Image.iui.mediaPlusCustom),
-        ("mediaSolid", Image.iui.mediaSolid),
-        ("messageLine", Image.iui.messageLine),
-        ("messageSolid", Image.iui.messageSolid),
-        ("messageSquareCheckCustom", Image.iui.messageSquareCheckCustom),
-        ("messageSquareXCustom", Image.iui.messageSquareXCustom),
-        ("micLine", Image.iui.micLine),
-        ("micOffLine", Image.iui.micOffLine),
-        ("micOffSolid", Image.iui.micOffSolid),
-        ("micSolid", Image.iui.micSolid),
-        ("miniArrowDoubleLine", Image.iui.miniArrowDoubleLine),
-        ("miniArrowDoubleSolid", Image.iui.miniArrowDoubleSolid),
-        ("miniArrowDownLine", Image.iui.miniArrowDownLine),
-        ("miniArrowDownSolid", Image.iui.miniArrowDownSolid),
-        ("miniArrowEndLine", Image.iui.miniArrowEndLine),
-        ("miniArrowEndSolid", Image.iui.miniArrowEndSolid),
-        ("miniArrowLeftLine", Image.iui.miniArrowLeftLine),
-        ("miniArrowLeftSolid", Image.iui.miniArrowLeftSolid),
-        ("miniArrowRightLine", Image.iui.miniArrowRightLine),
-        ("miniArrowRightSolid", Image.iui.miniArrowRightSolid),
-        ("miniArrowStartLine", Image.iui.miniArrowStartLine),
-        ("miniArrowStartSolid", Image.iui.miniArrowStartSolid),
-        ("miniArrowUpLine", Image.iui.miniArrowUpLine),
-        ("miniArrowUpSolid", Image.iui.miniArrowUpSolid),
-        ("minimizeLine", Image.iui.minimizeLine),
-        ("minimizeSolid", Image.iui.minimizeSolid),
-        ("moduleLine", Image.iui.moduleLine),
-        ("moduleSolid", Image.iui.moduleSolid),
-        ("moreLine", Image.iui.moreLine),
-        ("moreSolid", Image.iui.moreSolid),
-        ("moveDownBottomLine", Image.iui.moveDownBottomLine),
-        ("moveDownBottomSolid", Image.iui.moveDownBottomSolid),
-        ("moveDownLine", Image.iui.moveDownLine),
-        ("moveDownSolid", Image.iui.moveDownSolid),
-        ("moveEndLine", Image.iui.moveEndLine),
-        ("moveEndSolid", Image.iui.moveEndSolid),
-        ("moveLeftLine", Image.iui.moveLeftLine),
-        ("moveLeftSolid", Image.iui.moveLeftSolid),
-        ("moveRightLine", Image.iui.moveRightLine),
-        ("moveRightSolid", Image.iui.moveRightSolid),
-        ("moveStartLine", Image.iui.moveStartLine),
-        ("moveStartSolid", Image.iui.moveStartSolid),
-        ("moveUpLine", Image.iui.moveUpLine),
-        ("moveUpSolid", Image.iui.moveUpSolid),
-        ("moveUpTopLine", Image.iui.moveUpTopLine),
-        ("moveUpTopSolid", Image.iui.moveUpTopSolid),
-        ("msExcelLine", Image.iui.msExcelLine),
-        ("msExcelSolid", Image.iui.msExcelSolid),
-        ("msPptLine", Image.iui.msPptLine),
-        ("msPptSolid", Image.iui.msPptSolid),
-        ("msWordLine", Image.iui.msWordLine),
-        ("msWordSolid", Image.iui.msWordSolid),
-        ("mutedLine", Image.iui.mutedLine),
-        ("mutedSolid", Image.iui.mutedSolid),
-        ("neutralLine", Image.iui.neutralLine),
-        ("neutralSolid", Image.iui.neutralSolid),
-        ("nextUnreadLine", Image.iui.nextUnreadLine),
-        ("nextUnreadSolid", Image.iui.nextUnreadSolid),
-        ("noLine", Image.iui.noLine),
-        ("noSolid", Image.iui.noSolid),
-        ("notGradedLine", Image.iui.notGradedLine),
-        ("notGradedSolid", Image.iui.notGradedSolid),
-        ("noteDarkLine", Image.iui.noteDarkLine),
-        ("noteDarkSolid", Image.iui.noteDarkSolid),
-        ("noteLightLine", Image.iui.noteLightLine),
-        ("noteLightSolid", Image.iui.noteLightSolid),
-        ("noteLine", Image.iui.noteLine),
-        ("noteSolid", Image.iui.noteSolid),
-        ("notepadLine", Image.iui.notepadLine),
-        ("notepadSolid", Image.iui.notepadSolid),
-        ("numberedListLine", Image.iui.numberedListLine),
-        ("numberedListSolid", Image.iui.numberedListSolid),
-        ("offLine", Image.iui.offLine),
-        ("offSolid", Image.iui.offSolid),
-        ("openFolderLine", Image.iui.openFolderLine),
-        ("openFolderSolid", Image.iui.openFolderSolid),
-        ("outcomesLine", Image.iui.outcomesLine),
-        ("outcomesSolid", Image.iui.outcomesSolid),
-        ("outdent2Line", Image.iui.outdent2Line),
-        ("outdent2Solid", Image.iui.outdent2Solid),
-        ("outdentLine", Image.iui.outdentLine),
-        ("outdentSolid", Image.iui.outdentSolid),
-        ("ovalHalfLine", Image.iui.ovalHalfLine),
-        ("ovalHalfSolid", Image.iui.ovalHalfSolid),
-        ("pageDownLine", Image.iui.pageDownLine),
-        ("pageDownSolid", Image.iui.pageDownSolid),
-        ("pageUpLine", Image.iui.pageUpLine),
-        ("pageUpSolid", Image.iui.pageUpSolid),
-        ("paintLine", Image.iui.paintLine),
-        ("paintSolid", Image.iui.paintSolid),
-        ("paperclipLine", Image.iui.paperclipLine),
-        ("paperclipSolid", Image.iui.paperclipSolid),
-        ("partialLine", Image.iui.partialLine),
-        ("partialSolid", Image.iui.partialSolid),
-        ("passwordResetLine", Image.iui.passwordResetLine),
-        ("passwordResetSolid", Image.iui.passwordResetSolid),
-        ("pauseLine", Image.iui.pauseLine),
-        ("pauseSolid", Image.iui.pauseSolid),
-        ("pauseSolidCustom", Image.iui.pauseSolidCustom),
-        ("pdfLine", Image.iui.pdfLine),
-        ("pdfSolid", Image.iui.pdfSolid),
-        ("peerGradedLine", Image.iui.peerGradedLine),
-        ("peerGradedSolid", Image.iui.peerGradedSolid),
-        ("peerReviewLine", Image.iui.peerReviewLine),
-        ("peerReviewSolid", Image.iui.peerReviewSolid),
-        ("pencilAnnotateCustom", Image.iui.pencilAnnotateCustom),
-        ("permissionsLine", Image.iui.permissionsLine),
-        ("permissionsSolid", Image.iui.permissionsSolid),
-        ("pinLine", Image.iui.pinLine),
-        ("pinSolid", Image.iui.pinSolid),
-        ("pinterestLine", Image.iui.pinterestLine),
-        ("pinterestSolid", Image.iui.pinterestSolid),
-        ("playLine", Image.iui.playLine),
-        ("playSolid", Image.iui.playSolid),
-        ("playSolidCustom", Image.iui.playSolidCustom),
-        ("plusLine", Image.iui.plusLine),
-        ("plusSolid", Image.iui.plusSolid),
-        ("postSisCustom", Image.iui.postSisCustom),
-        ("postToSisLine", Image.iui.postToSisLine),
-        ("postToSisSolid", Image.iui.postToSisSolid),
-        ("predictiveLine", Image.iui.predictiveLine),
-        ("predictiveSolid", Image.iui.predictiveSolid),
-        ("prerequisiteLine", Image.iui.prerequisiteLine),
-        ("prerequisiteSolid", Image.iui.prerequisiteSolid),
-        ("printerLine", Image.iui.printerLine),
-        ("printerSolid", Image.iui.printerSolid),
-        ("progressLine", Image.iui.progressLine),
-        ("progressSolid", Image.iui.progressSolid),
-        ("protractorCustom", Image.iui.protractorCustom),
-        ("protractorLine", Image.iui.protractorLine),
-        ("protractorSolid", Image.iui.protractorSolid),
-        ("publishLine", Image.iui.publishLine),
-        ("publishSolid", Image.iui.publishSolid),
-        ("questionLine", Image.iui.questionLine),
-        ("questionSolid", Image.iui.questionSolid),
-        ("quizInstructionsLine", Image.iui.quizInstructionsLine),
-        ("quizInstructionsSolid", Image.iui.quizInstructionsSolid),
-        ("quizLine", Image.iui.quizLine),
-        ("quizSolid", Image.iui.quizSolid),
-        ("quizStatsAvgLine", Image.iui.quizStatsAvgLine),
-        ("quizStatsAvgSolid", Image.iui.quizStatsAvgSolid),
-        ("quizStatsCronbachsAlphaLine", Image.iui.quizStatsCronbachsAlphaLine),
-        ("quizStatsCronbachsAlphaSolid", Image.iui.quizStatsCronbachsAlphaSolid),
-        ("quizStatsDeviationLine", Image.iui.quizStatsDeviationLine),
-        ("quizStatsDeviationSolid", Image.iui.quizStatsDeviationSolid),
-        ("quizStatsHighLine", Image.iui.quizStatsHighLine),
-        ("quizStatsHighSolid", Image.iui.quizStatsHighSolid),
-        ("quizStatsLowLine", Image.iui.quizStatsLowLine),
-        ("quizStatsLowSolid", Image.iui.quizStatsLowSolid),
-        ("quizStatsTimeLine", Image.iui.quizStatsTimeLine),
-        ("quizStatsTimeSolid", Image.iui.quizStatsTimeSolid),
-        ("quizTitleLine", Image.iui.quizTitleLine),
-        ("quizTitleSolid", Image.iui.quizTitleSolid),
-        ("recordLine", Image.iui.recordLine),
-        ("recordSolid", Image.iui.recordSolid),
-        ("redoLine", Image.iui.redoLine),
-        ("redoSolid", Image.iui.redoSolid),
-        ("refreshLine", Image.iui.refreshLine),
-        ("refreshSolid", Image.iui.refreshSolid),
-        ("removeBookmarkLine", Image.iui.removeBookmarkLine),
-        ("removeBookmarkSolid", Image.iui.removeBookmarkSolid),
-        ("removeFromCollectionLine", Image.iui.removeFromCollectionLine),
-        ("removeFromCollectionSolid", Image.iui.removeFromCollectionSolid),
-        ("removeLinkLine", Image.iui.removeLinkLine),
-        ("removeLinkSolid", Image.iui.removeLinkSolid),
-        ("repliedLine", Image.iui.repliedLine),
-        ("repliedSolid", Image.iui.repliedSolid),
-        ("reply2Line", Image.iui.reply2Line),
-        ("reply2Solid", Image.iui.reply2Solid),
-        ("replyAll2Line", Image.iui.replyAll2Line),
-        ("replyAll2Solid", Image.iui.replyAll2Solid),
-        ("replyLine", Image.iui.replyLine),
-        ("replySolid", Image.iui.replySolid),
-        ("resetLine", Image.iui.resetLine),
-        ("resetSolid", Image.iui.resetSolid),
-        ("restoreLine", Image.iui.restoreLine),
-        ("restoreSolid", Image.iui.restoreSolid),
-        ("reviewScreenLine", Image.iui.reviewScreenLine),
-        ("reviewScreenSolid", Image.iui.reviewScreenSolid),
-        ("rewindLine", Image.iui.rewindLine),
-        ("rewindSolid", Image.iui.rewindSolid),
-        ("rewindSolidCustom", Image.iui.rewindSolidCustom),
-        ("rocketSolidCustom", Image.iui.rocketSolidCustom),
-        ("rotateLeftLine", Image.iui.rotateLeftLine),
-        ("rotateLeftSolid", Image.iui.rotateLeftSolid),
-        ("rotateRightLine", Image.iui.rotateRightLine),
-        ("rotateRightSolid", Image.iui.rotateRightSolid),
-        ("rssAddLine", Image.iui.rssAddLine),
-        ("rssAddSolid", Image.iui.rssAddSolid),
-        ("rssLine", Image.iui.rssLine),
-        ("rssSolid", Image.iui.rssSolid),
-        ("rubricDarkLine", Image.iui.rubricDarkLine),
-        ("rubricDarkSolid", Image.iui.rubricDarkSolid),
-        ("rubricLine", Image.iui.rubricLine),
-        ("rubricSolid", Image.iui.rubricSolid),
-        ("rulerLine", Image.iui.rulerLine),
-        ("rulerSolid", Image.iui.rulerSolid),
-        ("saveLine", Image.iui.saveLine),
-        ("saveSolid", Image.iui.saveSolid),
-        ("screenCaptureLine", Image.iui.screenCaptureLine),
-        ("screenCaptureSolid", Image.iui.screenCaptureSolid),
-        ("searchAddressBookLine", Image.iui.searchAddressBookLine),
-        ("searchAddressBookSolid", Image.iui.searchAddressBookSolid),
-        ("searchAiCustom", Image.iui.searchAiCustom),
-        ("searchAiLine", Image.iui.searchAiLine),
-        ("searchAiSolid", Image.iui.searchAiSolid),
-        ("searchLine", Image.iui.searchLine),
-        ("searchSolid", Image.iui.searchSolid),
-        ("settings2Line", Image.iui.settings2Line),
-        ("settings2Solid", Image.iui.settings2Solid),
-        ("settingsLine", Image.iui.settingsLine),
-        ("settingsSolid", Image.iui.settingsSolid),
-        ("shapeOvalLine", Image.iui.shapeOvalLine),
-        ("shapeOvalSolid", Image.iui.shapeOvalSolid),
-        ("shapePolygonLine", Image.iui.shapePolygonLine),
-        ("shapePolygonSolid", Image.iui.shapePolygonSolid),
-        ("shapeRectangleLine", Image.iui.shapeRectangleLine),
-        ("shapeRectangleSolid", Image.iui.shapeRectangleSolid),
-        ("shareLine", Image.iui.shareLine),
-        ("shareSolid", Image.iui.shareSolid),
-        ("shoppingCartCheckCustom", Image.iui.shoppingCartCheckCustom),
-        ("sidebarRightHideLine", Image.iui.sidebarRightHideLine),
-        ("sidebarRightHideSolid", Image.iui.sidebarRightHideSolid),
-        ("sidebarRightShowLine", Image.iui.sidebarRightShowLine),
-        ("sidebarRightShowSolid", Image.iui.sidebarRightShowSolid),
-        ("singleMetricLine", Image.iui.singleMetricLine),
-        ("singleMetricSolid", Image.iui.singleMetricSolid),
-        ("sisImportedLine", Image.iui.sisImportedLine),
-        ("sisImportedSolid", Image.iui.sisImportedSolid),
-        ("sisNotSyncedLine", Image.iui.sisNotSyncedLine),
-        ("sisNotSyncedSolid", Image.iui.sisNotSyncedSolid),
-        ("sisSyncedLine", Image.iui.sisSyncedLine),
-        ("sisSyncedSolid", Image.iui.sisSyncedSolid),
-        ("skypeLine", Image.iui.skypeLine),
-        ("skypeSolid", Image.iui.skypeSolid),
-        ("sortLine", Image.iui.sortLine),
-        ("sortSolid", Image.iui.sortSolid),
-        ("speedGraderCustom", Image.iui.speedGraderCustom),
-        ("speedGraderLine", Image.iui.speedGraderLine),
-        ("speedGraderSolid", Image.iui.speedGraderSolid),
-        ("squareSolidCustom", Image.iui.squareSolidCustom),
-        ("squaresBlueprintCustom", Image.iui.squaresBlueprintCustom),
-        ("squaresBlueprintLockCustom", Image.iui.squaresBlueprintLockCustom),
-        ("standardsLine", Image.iui.standardsLine),
-        ("standardsSolid", Image.iui.standardsSolid),
-        ("starLightLine", Image.iui.starLightLine),
-        ("starLightSolid", Image.iui.starLightSolid),
-        ("starLine", Image.iui.starLine),
-        ("starSolid", Image.iui.starSolid),
-        ("starSolidCustom", Image.iui.starSolidCustom),
-        ("statsLine", Image.iui.statsLine),
-        ("statsSolid", Image.iui.statsSolid),
-        ("stopLine", Image.iui.stopLine),
-        ("stopSolid", Image.iui.stopSolid),
-        ("strikethroughLine", Image.iui.strikethroughLine),
-        ("strikethroughSolid", Image.iui.strikethroughSolid),
-        ("studentViewLine", Image.iui.studentViewLine),
-        ("studentViewSolid", Image.iui.studentViewSolid),
-        ("studioCustom", Image.iui.studioCustom),
-        ("studioLine", Image.iui.studioLine),
-        ("studioSolid", Image.iui.studioSolid),
-        ("subaccountsLine", Image.iui.subaccountsLine),
-        ("subaccountsSolid", Image.iui.subaccountsSolid),
-        ("subtitlesLine", Image.iui.subtitlesLine),
-        ("subtitlesSolid", Image.iui.subtitlesSolid),
-        ("syllabusLine", Image.iui.syllabusLine),
-        ("syllabusSolid", Image.iui.syllabusSolid),
-        ("table2CheckCustom", Image.iui.table2CheckCustom),
-        ("table2XCustom", Image.iui.table2XCustom),
-        ("tableCellSelectAllLine", Image.iui.tableCellSelectAllLine),
-        ("tableCellSelectAllSolid", Image.iui.tableCellSelectAllSolid),
-        ("tableCogCustom", Image.iui.tableCogCustom),
-        ("tableColumnCustom", Image.iui.tableColumnCustom),
-        ("tableColumnPlusLeftCustom", Image.iui.tableColumnPlusLeftCustom),
-        ("tableColumnPlusRightCustom", Image.iui.tableColumnPlusRightCustom),
-        ("tableColumnXCustom", Image.iui.tableColumnXCustom),
-        ("tableDeleteColumnLine", Image.iui.tableDeleteColumnLine),
-        ("tableDeleteColumnSolid", Image.iui.tableDeleteColumnSolid),
-        ("tableDeleteRowLine", Image.iui.tableDeleteRowLine),
-        ("tableDeleteRowSolid", Image.iui.tableDeleteRowSolid),
-        ("tableDeleteTableLine", Image.iui.tableDeleteTableLine),
-        ("tableDeleteTableSolid", Image.iui.tableDeleteTableSolid),
-        ("tableInsertColumnAfterLine", Image.iui.tableInsertColumnAfterLine),
-        ("tableInsertColumnAfterSolid", Image.iui.tableInsertColumnAfterSolid),
-        ("tableInsertColumnBeforeLine", Image.iui.tableInsertColumnBeforeLine),
-        ("tableInsertColumnBeforeSolid", Image.iui.tableInsertColumnBeforeSolid),
-        ("tableInsertRowAboveLine", Image.iui.tableInsertRowAboveLine),
-        ("tableInsertRowAboveSolid", Image.iui.tableInsertRowAboveSolid),
-        ("tableInsertRowAfterLine", Image.iui.tableInsertRowAfterLine),
-        ("tableInsertRowAfterSolid", Image.iui.tableInsertRowAfterSolid),
-        ("tableLeftHeaderLine", Image.iui.tableLeftHeaderLine),
-        ("tableLeftHeaderSolid", Image.iui.tableLeftHeaderSolid),
-        ("tableLine", Image.iui.tableLine),
-        ("tableMergeCellsLine", Image.iui.tableMergeCellsLine),
-        ("tableMergeCellsSolid", Image.iui.tableMergeCellsSolid),
-        ("tableRowCustom", Image.iui.tableRowCustom),
-        ("tableRowPlusBottomCustom", Image.iui.tableRowPlusBottomCustom),
-        ("tableRowPlusTopCustom", Image.iui.tableRowPlusTopCustom),
-        ("tableRowPropertiesLine", Image.iui.tableRowPropertiesLine),
-        ("tableRowPropertiesSolid", Image.iui.tableRowPropertiesSolid),
-        ("tableRowXCustom", Image.iui.tableRowXCustom),
-        ("tableSolid", Image.iui.tableSolid),
-        ("tableSplitCellsLine", Image.iui.tableSplitCellsLine),
-        ("tableSplitCellsSolid", Image.iui.tableSplitCellsSolid),
-        ("tableTopHeaderLine", Image.iui.tableTopHeaderLine),
-        ("tableTopHeaderSolid", Image.iui.tableTopHeaderSolid),
-        ("tagLine", Image.iui.tagLine),
-        ("tagSolid", Image.iui.tagSolid),
-        ("targetLine", Image.iui.targetLine),
-        ("targetSolid", Image.iui.targetSolid),
-        ("textBackgroundColorLine", Image.iui.textBackgroundColorLine),
-        ("textBackgroundColorSolid", Image.iui.textBackgroundColorSolid),
-        ("textCenteredLine", Image.iui.textCenteredLine),
-        ("textCenteredSolid", Image.iui.textCenteredSolid),
-        ("textColorCustom", Image.iui.textColorCustom),
-        ("textColorLine", Image.iui.textColorLine),
-        ("textColorSolid", Image.iui.textColorSolid),
-        ("textDirectionLtrLine", Image.iui.textDirectionLtrLine),
-        ("textDirectionLtrSolid", Image.iui.textDirectionLtrSolid),
-        ("textDirectionRtlLine", Image.iui.textDirectionRtlLine),
-        ("textDirectionRtlSolid", Image.iui.textDirectionRtlSolid),
-        ("textEndLine", Image.iui.textEndLine),
-        ("textEndSolid", Image.iui.textEndSolid),
-        ("textLeftLine", Image.iui.textLeftLine),
-        ("textLeftSolid", Image.iui.textLeftSolid),
-        ("textLine", Image.iui.textLine),
-        ("textRightLine", Image.iui.textRightLine),
-        ("textRightSolid", Image.iui.textRightSolid),
-        ("textSolid", Image.iui.textSolid),
-        ("textStartLine", Image.iui.textStartLine),
-        ("textStartSolid", Image.iui.textStartSolid),
-        ("textSubscriptLine", Image.iui.textSubscriptLine),
-        ("textSubscriptSolid", Image.iui.textSubscriptSolid),
-        ("textSuperscriptLine", Image.iui.textSuperscriptLine),
-        ("textSuperscriptSolid", Image.iui.textSuperscriptSolid),
-        ("textareaLine", Image.iui.textareaLine),
-        ("textareaSolid", Image.iui.textareaSolid),
-        ("thumbsDownSolidCustom", Image.iui.thumbsDownSolidCustom),
-        ("thumbsUpSolidCustom", Image.iui.thumbsUpSolidCustom),
-        ("timerLine", Image.iui.timerLine),
-        ("timerSolid", Image.iui.timerSolid),
-        ("titleCustom", Image.iui.titleCustom),
-        ("toggleEndLine", Image.iui.toggleEndLine),
-        ("toggleEndSolid", Image.iui.toggleEndSolid),
-        ("toggleLeftLine", Image.iui.toggleLeftLine),
-        ("toggleLeftSolid", Image.iui.toggleLeftSolid),
-        ("toggleRightLine", Image.iui.toggleRightLine),
-        ("toggleRightSolid", Image.iui.toggleRightSolid),
-        ("toggleStartLine", Image.iui.toggleStartLine),
-        ("toggleStartSolid", Image.iui.toggleStartSolid),
-        ("trashLine", Image.iui.trashLine),
-        ("trashSolid", Image.iui.trashSolid),
-        ("troubleLine", Image.iui.troubleLine),
-        ("troubleSolid", Image.iui.troubleSolid),
-        ("twitterBoxedLine", Image.iui.twitterBoxedLine),
-        ("twitterBoxedSolid", Image.iui.twitterBoxedSolid),
-        ("twitterLine", Image.iui.twitterLine),
-        ("twitterSolid", Image.iui.twitterSolid),
-        ("unarchiveLine", Image.iui.unarchiveLine),
-        ("unarchiveSolid", Image.iui.unarchiveSolid),
-        ("underlineLine", Image.iui.underlineLine),
-        ("underlineSolid", Image.iui.underlineSolid),
-        ("undoLine", Image.iui.undoLine),
-        ("undoSolid", Image.iui.undoSolid),
-        ("unlockLine", Image.iui.unlockLine),
-        ("unlockSolid", Image.iui.unlockSolid),
-        ("unmutedLine", Image.iui.unmutedLine),
-        ("unmutedSolid", Image.iui.unmutedSolid),
-        ("unpublishLine", Image.iui.unpublishLine),
-        ("unpublishSolid", Image.iui.unpublishSolid),
-        ("unpublishedLine", Image.iui.unpublishedLine),
-        ("unpublishedSolid", Image.iui.unpublishedSolid),
-        ("updownLine", Image.iui.updownLine),
-        ("updownSolid", Image.iui.updownSolid),
-        ("uploadLine", Image.iui.uploadLine),
-        ("uploadSolid", Image.iui.uploadSolid),
-        ("userAddLine", Image.iui.userAddLine),
-        ("userAddSolid", Image.iui.userAddSolid),
-        ("userAssignLine", Image.iui.userAssignLine),
-        ("userAssignSolid", Image.iui.userAssignSolid),
-        ("userLine", Image.iui.userLine),
-        ("userRoundArrowUpCustom", Image.iui.userRoundArrowUpCustom),
-        ("userRoundBlackboardCustom", Image.iui.userRoundBlackboardCustom),
-        ("userRoundLockCustom", Image.iui.userRoundLockCustom),
-        ("userSolid", Image.iui.userSolid),
-        ("videoCameraLine", Image.iui.videoCameraLine),
-        ("videoCameraOffLine", Image.iui.videoCameraOffLine),
-        ("videoCameraOffSolid", Image.iui.videoCameraOffSolid),
-        ("videoCameraSolid", Image.iui.videoCameraSolid),
-        ("videoLine", Image.iui.videoLine),
-        ("videoSolid", Image.iui.videoSolid),
-        ("warningBorderlessLine", Image.iui.warningBorderlessLine),
-        ("warningBorderlessSolid", Image.iui.warningBorderlessSolid),
-        ("warningLine", Image.iui.warningLine),
-        ("warningSolid", Image.iui.warningSolid),
-        ("windowsLine", Image.iui.windowsLine),
-        ("windowsSolid", Image.iui.windowsSolid),
-        ("wordpressLine", Image.iui.wordpressLine),
-        ("wordpressSolid", Image.iui.wordpressSolid),
-        ("xLine", Image.iui.xLine),
-        ("xSolid", Image.iui.xSolid),
-        ("zippedLine", Image.iui.zippedLine),
-        ("zippedSolid", Image.iui.zippedSolid),
-        ("zoomInLine", Image.iui.zoomInLine),
-        ("zoomInSolid", Image.iui.zoomInSolid),
-        ("zoomOutLine", Image.iui.zoomOutLine),
-        ("zoomOutSolid", Image.iui.zoomOutSolid),
+        ("aArrowDown", Image.iui.`aArrowDown`),
+        ("aArrowUp", Image.iui.`aArrowUp`),
+        ("aLargeSmall", Image.iui.`aLargeSmall`),
+        ("accessibility", Image.iui.`accessibility`),
+        ("accessibility2", Image.iui.`accessibility2`),
+        ("activity", Image.iui.`activity`),
+        ("aiInfo", Image.iui.`aiInfo`),
+        ("airVent", Image.iui.`airVent`),
+        ("airplay", Image.iui.`airplay`),
+        ("alarmClock", Image.iui.`alarmClock`),
+        ("alarmClockCheck", Image.iui.`alarmClockCheck`),
+        ("alarmClockMinus", Image.iui.`alarmClockMinus`),
+        ("alarmClockOff", Image.iui.`alarmClockOff`),
+        ("alarmClockPlus", Image.iui.`alarmClockPlus`),
+        ("alarmSmoke", Image.iui.`alarmSmoke`),
+        ("album", Image.iui.`album`),
+        ("alignCenterHorizontal", Image.iui.`alignCenterHorizontal`),
+        ("alignCenterVertical", Image.iui.`alignCenterVertical`),
+        ("alignEndHorizontal", Image.iui.`alignEndHorizontal`),
+        ("alignEndVertical", Image.iui.`alignEndVertical`),
+        ("alignHorizontalDistributeCenter", Image.iui.`alignHorizontalDistributeCenter`),
+        ("alignHorizontalDistributeEnd", Image.iui.`alignHorizontalDistributeEnd`),
+        ("alignHorizontalDistributeStart", Image.iui.`alignHorizontalDistributeStart`),
+        ("alignHorizontalJustifyCenter", Image.iui.`alignHorizontalJustifyCenter`),
+        ("alignHorizontalJustifyEnd", Image.iui.`alignHorizontalJustifyEnd`),
+        ("alignHorizontalJustifyStart", Image.iui.`alignHorizontalJustifyStart`),
+        ("alignHorizontalSpaceAround", Image.iui.`alignHorizontalSpaceAround`),
+        ("alignHorizontalSpaceBetween", Image.iui.`alignHorizontalSpaceBetween`),
+        ("alignStartHorizontal", Image.iui.`alignStartHorizontal`),
+        ("alignStartVertical", Image.iui.`alignStartVertical`),
+        ("alignVerticalDistributeCenter", Image.iui.`alignVerticalDistributeCenter`),
+        ("alignVerticalDistributeEnd", Image.iui.`alignVerticalDistributeEnd`),
+        ("alignVerticalDistributeStart", Image.iui.`alignVerticalDistributeStart`),
+        ("alignVerticalJustifyCenter", Image.iui.`alignVerticalJustifyCenter`),
+        ("alignVerticalJustifyEnd", Image.iui.`alignVerticalJustifyEnd`),
+        ("alignVerticalJustifyStart", Image.iui.`alignVerticalJustifyStart`),
+        ("alignVerticalSpaceAround", Image.iui.`alignVerticalSpaceAround`),
+        ("alignVerticalSpaceBetween", Image.iui.`alignVerticalSpaceBetween`),
+        ("ambulance", Image.iui.`ambulance`),
+        ("ampersand", Image.iui.`ampersand`),
+        ("ampersands", Image.iui.`ampersands`),
+        ("amphora", Image.iui.`amphora`),
+        ("anchor", Image.iui.`anchor`),
+        ("angry", Image.iui.`angry`),
+        ("annoyed", Image.iui.`annoyed`),
+        ("antenna", Image.iui.`antenna`),
+        ("anvil", Image.iui.`anvil`),
+        ("aperture", Image.iui.`aperture`),
+        ("appWindow", Image.iui.`appWindow`),
+        ("appWindowMac", Image.iui.`appWindowMac`),
+        ("apple", Image.iui.`apple`),
+        ("apps", Image.iui.`apps`),
+        ("archive", Image.iui.`archive`),
+        ("archiveRestore", Image.iui.`archiveRestore`),
+        ("archiveX", Image.iui.`archiveX`),
+        ("armchair", Image.iui.`armchair`),
+        ("arrowBigDown", Image.iui.`arrowBigDown`),
+        ("arrowBigDownDash", Image.iui.`arrowBigDownDash`),
+        ("arrowBigLeft", Image.iui.`arrowBigLeft`),
+        ("arrowBigLeftDash", Image.iui.`arrowBigLeftDash`),
+        ("arrowBigRight", Image.iui.`arrowBigRight`),
+        ("arrowBigRightDash", Image.iui.`arrowBigRightDash`),
+        ("arrowBigUp", Image.iui.`arrowBigUp`),
+        ("arrowBigUpDash", Image.iui.`arrowBigUpDash`),
+        ("arrowDown", Image.iui.`arrowDown`),
+        ("arrowDown01", Image.iui.`arrowDown01`),
+        ("arrowDown10", Image.iui.`arrowDown10`),
+        ("arrowDownAZ", Image.iui.`arrowDownAZ`),
+        ("arrowDownFromLine", Image.iui.`arrowDownFromLine`),
+        ("arrowDownLeft", Image.iui.`arrowDownLeft`),
+        ("arrowDownNarrowWide", Image.iui.`arrowDownNarrowWide`),
+        ("arrowDownRight", Image.iui.`arrowDownRight`),
+        ("arrowDownToDot", Image.iui.`arrowDownToDot`),
+        ("arrowDownToLine", Image.iui.`arrowDownToLine`),
+        ("arrowDownUp", Image.iui.`arrowDownUp`),
+        ("arrowDownWideNarrow", Image.iui.`arrowDownWideNarrow`),
+        ("arrowDownZA", Image.iui.`arrowDownZA`),
+        ("arrowLeft", Image.iui.`arrowLeft`),
+        ("arrowLeftFromLine", Image.iui.`arrowLeftFromLine`),
+        ("arrowLeftRight", Image.iui.`arrowLeftRight`),
+        ("arrowLeftToLine", Image.iui.`arrowLeftToLine`),
+        ("arrowRight", Image.iui.`arrowRight`),
+        ("arrowRightFromLine", Image.iui.`arrowRightFromLine`),
+        ("arrowRightLeft", Image.iui.`arrowRightLeft`),
+        ("arrowRightToLine", Image.iui.`arrowRightToLine`),
+        ("arrowUp", Image.iui.`arrowUp`),
+        ("arrowUp01", Image.iui.`arrowUp01`),
+        ("arrowUp10", Image.iui.`arrowUp10`),
+        ("arrowUpAZ", Image.iui.`arrowUpAZ`),
+        ("arrowUpDown", Image.iui.`arrowUpDown`),
+        ("arrowUpFromDot", Image.iui.`arrowUpFromDot`),
+        ("arrowUpFromLine", Image.iui.`arrowUpFromLine`),
+        ("arrowUpLeft", Image.iui.`arrowUpLeft`),
+        ("arrowUpNarrowWide", Image.iui.`arrowUpNarrowWide`),
+        ("arrowUpRight", Image.iui.`arrowUpRight`),
+        ("arrowUpToLine", Image.iui.`arrowUpToLine`),
+        ("arrowUpWideNarrow", Image.iui.`arrowUpWideNarrow`),
+        ("arrowUpZA", Image.iui.`arrowUpZA`),
+        ("arrowsUpFromLine", Image.iui.`arrowsUpFromLine`),
+        ("asterisk", Image.iui.`asterisk`),
+        ("atSign", Image.iui.`atSign`),
+        ("atom", Image.iui.`atom`),
+        ("audioLines", Image.iui.`audioLines`),
+        ("audioWaveform", Image.iui.`audioWaveform`),
+        ("award", Image.iui.`award`),
+        ("axe", Image.iui.`axe`),
+        ("axis3d", Image.iui.`axis3d`),
+        ("baby", Image.iui.`baby`),
+        ("backgroundColor", Image.iui.`backgroundColor`),
+        ("backpack", Image.iui.`backpack`),
+        ("badge", Image.iui.`badge`),
+        ("badgeAlert", Image.iui.`badgeAlert`),
+        ("badgeCent", Image.iui.`badgeCent`),
+        ("badgeCheck", Image.iui.`badgeCheck`),
+        ("badgeDollarSign", Image.iui.`badgeDollarSign`),
+        ("badgeEuro", Image.iui.`badgeEuro`),
+        ("badgeIndianRupee", Image.iui.`badgeIndianRupee`),
+        ("badgeInfo", Image.iui.`badgeInfo`),
+        ("badgeJapaneseYen", Image.iui.`badgeJapaneseYen`),
+        ("badgeMinus", Image.iui.`badgeMinus`),
+        ("badgePercent", Image.iui.`badgePercent`),
+        ("badgePlus", Image.iui.`badgePlus`),
+        ("badgePoundSterling", Image.iui.`badgePoundSterling`),
+        ("badgeQuestionMark", Image.iui.`badgeQuestionMark`),
+        ("badgeRussianRuble", Image.iui.`badgeRussianRuble`),
+        ("badgeSwissFranc", Image.iui.`badgeSwissFranc`),
+        ("badgeTurkishLira", Image.iui.`badgeTurkishLira`),
+        ("badgeX", Image.iui.`badgeX`),
+        ("baggageClaim", Image.iui.`baggageClaim`),
+        ("balloon", Image.iui.`balloon`),
+        ("ban", Image.iui.`ban`),
+        ("banana", Image.iui.`banana`),
+        ("bandage", Image.iui.`bandage`),
+        ("banknote", Image.iui.`banknote`),
+        ("banknoteArrowDown", Image.iui.`banknoteArrowDown`),
+        ("banknoteArrowUp", Image.iui.`banknoteArrowUp`),
+        ("banknoteX", Image.iui.`banknoteX`),
+        ("barcode", Image.iui.`barcode`),
+        ("barrel", Image.iui.`barrel`),
+        ("baseline", Image.iui.`baseline`),
+        ("bath", Image.iui.`bath`),
+        ("battery", Image.iui.`battery`),
+        ("batteryCharging", Image.iui.`batteryCharging`),
+        ("batteryFull", Image.iui.`batteryFull`),
+        ("batteryLow", Image.iui.`batteryLow`),
+        ("batteryMedium", Image.iui.`batteryMedium`),
+        ("batteryPlus", Image.iui.`batteryPlus`),
+        ("batteryWarning", Image.iui.`batteryWarning`),
+        ("beaker", Image.iui.`beaker`),
+        ("bean", Image.iui.`bean`),
+        ("beanOff", Image.iui.`beanOff`),
+        ("bed", Image.iui.`bed`),
+        ("bedDouble", Image.iui.`bedDouble`),
+        ("bedSingle", Image.iui.`bedSingle`),
+        ("beef", Image.iui.`beef`),
+        ("beefOff", Image.iui.`beefOff`),
+        ("beer", Image.iui.`beer`),
+        ("beerOff", Image.iui.`beerOff`),
+        ("bell", Image.iui.`bell`),
+        ("bellDot", Image.iui.`bellDot`),
+        ("bellElectric", Image.iui.`bellElectric`),
+        ("bellMinus", Image.iui.`bellMinus`),
+        ("bellOff", Image.iui.`bellOff`),
+        ("bellPlus", Image.iui.`bellPlus`),
+        ("bellRing", Image.iui.`bellRing`),
+        ("bellSolid", Image.iui.`bellSolid`),
+        ("betweenHorizontalEnd", Image.iui.`betweenHorizontalEnd`),
+        ("betweenHorizontalStart", Image.iui.`betweenHorizontalStart`),
+        ("betweenVerticalEnd", Image.iui.`betweenVerticalEnd`),
+        ("betweenVerticalStart", Image.iui.`betweenVerticalStart`),
+        ("bicepsFlexed", Image.iui.`bicepsFlexed`),
+        ("bike", Image.iui.`bike`),
+        ("binary", Image.iui.`binary`),
+        ("binoculars", Image.iui.`binoculars`),
+        ("biohazard", Image.iui.`biohazard`),
+        ("bird", Image.iui.`bird`),
+        ("birdhouse", Image.iui.`birdhouse`),
+        ("bitcoin", Image.iui.`bitcoin`),
+        ("blend", Image.iui.`blend`),
+        ("blinds", Image.iui.`blinds`),
+        ("blocks", Image.iui.`blocks`),
+        ("bluetooth", Image.iui.`bluetooth`),
+        ("bluetoothConnected", Image.iui.`bluetoothConnected`),
+        ("bluetoothOff", Image.iui.`bluetoothOff`),
+        ("bluetoothSearching", Image.iui.`bluetoothSearching`),
+        ("bold", Image.iui.`bold`),
+        ("bolt", Image.iui.`bolt`),
+        ("bomb", Image.iui.`bomb`),
+        ("bone", Image.iui.`bone`),
+        ("book", Image.iui.`book`),
+        ("bookA", Image.iui.`bookA`),
+        ("bookAlert", Image.iui.`bookAlert`),
+        ("bookAudio", Image.iui.`bookAudio`),
+        ("bookCheck", Image.iui.`bookCheck`),
+        ("bookCopy", Image.iui.`bookCopy`),
+        ("bookDashed", Image.iui.`bookDashed`),
+        ("bookDown", Image.iui.`bookDown`),
+        ("bookHeadphones", Image.iui.`bookHeadphones`),
+        ("bookHeart", Image.iui.`bookHeart`),
+        ("bookImage", Image.iui.`bookImage`),
+        ("bookKey", Image.iui.`bookKey`),
+        ("bookLock", Image.iui.`bookLock`),
+        ("bookMarked", Image.iui.`bookMarked`),
+        ("bookMinus", Image.iui.`bookMinus`),
+        ("bookOpen", Image.iui.`bookOpen`),
+        ("bookOpenCheck", Image.iui.`bookOpenCheck`),
+        ("bookOpenText", Image.iui.`bookOpenText`),
+        ("bookPlus", Image.iui.`bookPlus`),
+        ("bookSearch", Image.iui.`bookSearch`),
+        ("bookText", Image.iui.`bookText`),
+        ("bookType", Image.iui.`bookType`),
+        ("bookUp", Image.iui.`bookUp`),
+        ("bookUp2", Image.iui.`bookUp2`),
+        ("bookUser", Image.iui.`bookUser`),
+        ("bookX", Image.iui.`bookX`),
+        ("bookmark", Image.iui.`bookmark`),
+        ("bookmarkCheck", Image.iui.`bookmarkCheck`),
+        ("bookmarkMinus", Image.iui.`bookmarkMinus`),
+        ("bookmarkOff", Image.iui.`bookmarkOff`),
+        ("bookmarkPlus", Image.iui.`bookmarkPlus`),
+        ("bookmarkSolid", Image.iui.`bookmarkSolid`),
+        ("bookmarkX", Image.iui.`bookmarkX`),
+        ("boomBox", Image.iui.`boomBox`),
+        ("bot", Image.iui.`bot`),
+        ("botMessageSquare", Image.iui.`botMessageSquare`),
+        ("botOff", Image.iui.`botOff`),
+        ("bottleWine", Image.iui.`bottleWine`),
+        ("bowArrow", Image.iui.`bowArrow`),
+        ("box", Image.iui.`box`),
+        ("boxes", Image.iui.`boxes`),
+        ("braces", Image.iui.`braces`),
+        ("brackets", Image.iui.`brackets`),
+        ("brain", Image.iui.`brain`),
+        ("brainCircuit", Image.iui.`brainCircuit`),
+        ("brainCog", Image.iui.`brainCog`),
+        ("brickWall", Image.iui.`brickWall`),
+        ("brickWallFire", Image.iui.`brickWallFire`),
+        ("brickWallShield", Image.iui.`brickWallShield`),
+        ("briefcase", Image.iui.`briefcase`),
+        ("briefcaseBusiness", Image.iui.`briefcaseBusiness`),
+        ("briefcaseConveyorBelt", Image.iui.`briefcaseConveyorBelt`),
+        ("briefcaseMedical", Image.iui.`briefcaseMedical`),
+        ("bringToFront", Image.iui.`bringToFront`),
+        ("brush", Image.iui.`brush`),
+        ("brushCleaning", Image.iui.`brushCleaning`),
+        ("bubbles", Image.iui.`bubbles`),
+        ("bug", Image.iui.`bug`),
+        ("bugOff", Image.iui.`bugOff`),
+        ("bugPlay", Image.iui.`bugPlay`),
+        ("building", Image.iui.`building`),
+        ("building2", Image.iui.`building2`),
+        ("bus", Image.iui.`bus`),
+        ("busFront", Image.iui.`busFront`),
+        ("cable", Image.iui.`cable`),
+        ("cableCar", Image.iui.`cableCar`),
+        ("cake", Image.iui.`cake`),
+        ("cakeSlice", Image.iui.`cakeSlice`),
+        ("calculator", Image.iui.`calculator`),
+        ("calculatorDesmos", Image.iui.`calculatorDesmos`),
+        ("calendar", Image.iui.`calendar`),
+        ("calendar1", Image.iui.`calendar1`),
+        ("calendarArrowDown", Image.iui.`calendarArrowDown`),
+        ("calendarArrowUp", Image.iui.`calendarArrowUp`),
+        ("calendarCheck", Image.iui.`calendarCheck`),
+        ("calendarCheck2", Image.iui.`calendarCheck2`),
+        ("calendarClock", Image.iui.`calendarClock`),
+        ("calendarCog", Image.iui.`calendarCog`),
+        ("calendarDays", Image.iui.`calendarDays`),
+        ("calendarFold", Image.iui.`calendarFold`),
+        ("calendarHeart", Image.iui.`calendarHeart`),
+        ("calendarMinus", Image.iui.`calendarMinus`),
+        ("calendarMinus2", Image.iui.`calendarMinus2`),
+        ("calendarOff", Image.iui.`calendarOff`),
+        ("calendarPlus", Image.iui.`calendarPlus`),
+        ("calendarPlus2", Image.iui.`calendarPlus2`),
+        ("calendarRange", Image.iui.`calendarRange`),
+        ("calendarSearch", Image.iui.`calendarSearch`),
+        ("calendarSync", Image.iui.`calendarSync`),
+        ("calendarX", Image.iui.`calendarX`),
+        ("calendarX2", Image.iui.`calendarX2`),
+        ("calendars", Image.iui.`calendars`),
+        ("camera", Image.iui.`camera`),
+        ("cameraOff", Image.iui.`cameraOff`),
+        ("candy", Image.iui.`candy`),
+        ("candyCane", Image.iui.`candyCane`),
+        ("candyOff", Image.iui.`candyOff`),
+        ("cannabis", Image.iui.`cannabis`),
+        ("cannabisOff", Image.iui.`cannabisOff`),
+        ("canvasLogo", Image.iui.`canvasLogo`),
+        ("captions", Image.iui.`captions`),
+        ("captionsOff", Image.iui.`captionsOff`),
+        ("captionsSolid", Image.iui.`captionsSolid`),
+        ("car", Image.iui.`car`),
+        ("carFront", Image.iui.`carFront`),
+        ("carTaxiFront", Image.iui.`carTaxiFront`),
+        ("caravan", Image.iui.`caravan`),
+        ("cardSim", Image.iui.`cardSim`),
+        ("carrot", Image.iui.`carrot`),
+        ("caseLower", Image.iui.`caseLower`),
+        ("caseSensitive", Image.iui.`caseSensitive`),
+        ("caseUpper", Image.iui.`caseUpper`),
+        ("cassetteTape", Image.iui.`cassetteTape`),
+        ("cast", Image.iui.`cast`),
+        ("castle", Image.iui.`castle`),
+        ("cat", Image.iui.`cat`),
+        ("cctv", Image.iui.`cctv`),
+        ("cctvOff", Image.iui.`cctvOff`),
+        ("chartArea", Image.iui.`chartArea`),
+        ("chartBar", Image.iui.`chartBar`),
+        ("chartBarBig", Image.iui.`chartBarBig`),
+        ("chartBarDecreasing", Image.iui.`chartBarDecreasing`),
+        ("chartBarIncreasing", Image.iui.`chartBarIncreasing`),
+        ("chartBarStacked", Image.iui.`chartBarStacked`),
+        ("chartCandlestick", Image.iui.`chartCandlestick`),
+        ("chartColumn", Image.iui.`chartColumn`),
+        ("chartColumnBig", Image.iui.`chartColumnBig`),
+        ("chartColumnDecreasing", Image.iui.`chartColumnDecreasing`),
+        ("chartColumnIncreasing", Image.iui.`chartColumnIncreasing`),
+        ("chartColumnStacked", Image.iui.`chartColumnStacked`),
+        ("chartGantt", Image.iui.`chartGantt`),
+        ("chartLine", Image.iui.`chartLine`),
+        ("chartNetwork", Image.iui.`chartNetwork`),
+        ("chartNoAxesColumn", Image.iui.`chartNoAxesColumn`),
+        ("chartNoAxesColumnDecreasing", Image.iui.`chartNoAxesColumnDecreasing`),
+        ("chartNoAxesColumnIncreasing", Image.iui.`chartNoAxesColumnIncreasing`),
+        ("chartNoAxesCombined", Image.iui.`chartNoAxesCombined`),
+        ("chartNoAxesGantt", Image.iui.`chartNoAxesGantt`),
+        ("chartPie", Image.iui.`chartPie`),
+        ("chartScatter", Image.iui.`chartScatter`),
+        ("chartSpline", Image.iui.`chartSpline`),
+        ("check", Image.iui.`check`),
+        ("checkCheck", Image.iui.`checkCheck`),
+        ("checkLine", Image.iui.`checkLine`),
+        ("chefHat", Image.iui.`chefHat`),
+        ("cherry", Image.iui.`cherry`),
+        ("chessBishop", Image.iui.`chessBishop`),
+        ("chessKing", Image.iui.`chessKing`),
+        ("chessKnight", Image.iui.`chessKnight`),
+        ("chessPawn", Image.iui.`chessPawn`),
+        ("chessQueen", Image.iui.`chessQueen`),
+        ("chessRook", Image.iui.`chessRook`),
+        ("chevronDown", Image.iui.`chevronDown`),
+        ("chevronFirst", Image.iui.`chevronFirst`),
+        ("chevronLast", Image.iui.`chevronLast`),
+        ("chevronLeft", Image.iui.`chevronLeft`),
+        ("chevronRight", Image.iui.`chevronRight`),
+        ("chevronUp", Image.iui.`chevronUp`),
+        ("chevronsDown", Image.iui.`chevronsDown`),
+        ("chevronsDownUp", Image.iui.`chevronsDownUp`),
+        ("chevronsLeft", Image.iui.`chevronsLeft`),
+        ("chevronsLeftRight", Image.iui.`chevronsLeftRight`),
+        ("chevronsLeftRightEllipsis", Image.iui.`chevronsLeftRightEllipsis`),
+        ("chevronsRight", Image.iui.`chevronsRight`),
+        ("chevronsRightLeft", Image.iui.`chevronsRightLeft`),
+        ("chevronsUp", Image.iui.`chevronsUp`),
+        ("chevronsUpDown", Image.iui.`chevronsUpDown`),
+        ("church", Image.iui.`church`),
+        ("cigarette", Image.iui.`cigarette`),
+        ("cigaretteOff", Image.iui.`cigaretteOff`),
+        ("circle", Image.iui.`circle`),
+        ("circleAlert", Image.iui.`circleAlert`),
+        ("circleAlpha", Image.iui.`circleAlpha`),
+        ("circleArrowDown", Image.iui.`circleArrowDown`),
+        ("circleArrowDownRight", Image.iui.`circleArrowDownRight`),
+        ("circleArrowInLeft", Image.iui.`circleArrowInLeft`),
+        ("circleArrowInRight", Image.iui.`circleArrowInRight`),
+        ("circleArrowLeft", Image.iui.`circleArrowLeft`),
+        ("circleArrowOutDownLeft", Image.iui.`circleArrowOutDownLeft`),
+        ("circleArrowOutDownRight", Image.iui.`circleArrowOutDownRight`),
+        ("circleArrowOutUpLeft", Image.iui.`circleArrowOutUpLeft`),
+        ("circleArrowOutUpRight", Image.iui.`circleArrowOutUpRight`),
+        ("circleArrowRight", Image.iui.`circleArrowRight`),
+        ("circleArrowUp", Image.iui.`circleArrowUp`),
+        ("circleArrowUpRight", Image.iui.`circleArrowUpRight`),
+        ("circleCheck", Image.iui.`circleCheck`),
+        ("circleCheckBig", Image.iui.`circleCheckBig`),
+        ("circleChevronDown", Image.iui.`circleChevronDown`),
+        ("circleChevronLeft", Image.iui.`circleChevronLeft`),
+        ("circleChevronRight", Image.iui.`circleChevronRight`),
+        ("circleChevronUp", Image.iui.`circleChevronUp`),
+        ("circleDashed", Image.iui.`circleDashed`),
+        ("circleDivide", Image.iui.`circleDivide`),
+        ("circleDollarSign", Image.iui.`circleDollarSign`),
+        ("circleDot", Image.iui.`circleDot`),
+        ("circleDotDashed", Image.iui.`circleDotDashed`),
+        ("circleEllipsis", Image.iui.`circleEllipsis`),
+        ("circleEqual", Image.iui.`circleEqual`),
+        ("circleFadingArrowUp", Image.iui.`circleFadingArrowUp`),
+        ("circleFadingPlus", Image.iui.`circleFadingPlus`),
+        ("circleGauge", Image.iui.`circleGauge`),
+        ("circleMinus", Image.iui.`circleMinus`),
+        ("circleMu", Image.iui.`circleMu`),
+        ("circleOff", Image.iui.`circleOff`),
+        ("circleParking", Image.iui.`circleParking`),
+        ("circleParkingOff", Image.iui.`circleParkingOff`),
+        ("circlePause", Image.iui.`circlePause`),
+        ("circlePercent", Image.iui.`circlePercent`),
+        ("circlePile", Image.iui.`circlePile`),
+        ("circlePlay", Image.iui.`circlePlay`),
+        ("circlePlus", Image.iui.`circlePlus`),
+        ("circlePoundSterling", Image.iui.`circlePoundSterling`),
+        ("circlePower", Image.iui.`circlePower`),
+        ("circleQuestionMark", Image.iui.`circleQuestionMark`),
+        ("circleSigma", Image.iui.`circleSigma`),
+        ("circleSlash", Image.iui.`circleSlash`),
+        ("circleSlash2", Image.iui.`circleSlash2`),
+        ("circleSmall", Image.iui.`circleSmall`),
+        ("circleStar", Image.iui.`circleStar`),
+        ("circleStop", Image.iui.`circleStop`),
+        ("circleUser", Image.iui.`circleUser`),
+        ("circleUserRound", Image.iui.`circleUserRound`),
+        ("circleX", Image.iui.`circleX`),
+        ("circuitBoard", Image.iui.`circuitBoard`),
+        ("citrus", Image.iui.`citrus`),
+        ("clapperboard", Image.iui.`clapperboard`),
+        ("clipboard", Image.iui.`clipboard`),
+        ("clipboardCheck", Image.iui.`clipboardCheck`),
+        ("clipboardClock", Image.iui.`clipboardClock`),
+        ("clipboardCopy", Image.iui.`clipboardCopy`),
+        ("clipboardList", Image.iui.`clipboardList`),
+        ("clipboardMinus", Image.iui.`clipboardMinus`),
+        ("clipboardPaste", Image.iui.`clipboardPaste`),
+        ("clipboardPen", Image.iui.`clipboardPen`),
+        ("clipboardPenLine", Image.iui.`clipboardPenLine`),
+        ("clipboardPlus", Image.iui.`clipboardPlus`),
+        ("clipboardType", Image.iui.`clipboardType`),
+        ("clipboardX", Image.iui.`clipboardX`),
+        ("clock", Image.iui.`clock`),
+        ("clock1", Image.iui.`clock1`),
+        ("clock10", Image.iui.`clock10`),
+        ("clock11", Image.iui.`clock11`),
+        ("clock12", Image.iui.`clock12`),
+        ("clock2", Image.iui.`clock2`),
+        ("clock3", Image.iui.`clock3`),
+        ("clock4", Image.iui.`clock4`),
+        ("clock5", Image.iui.`clock5`),
+        ("clock6", Image.iui.`clock6`),
+        ("clock7", Image.iui.`clock7`),
+        ("clock8", Image.iui.`clock8`),
+        ("clock9", Image.iui.`clock9`),
+        ("clockAlert", Image.iui.`clockAlert`),
+        ("clockArrowDown", Image.iui.`clockArrowDown`),
+        ("clockArrowUp", Image.iui.`clockArrowUp`),
+        ("clockCheck", Image.iui.`clockCheck`),
+        ("clockFading", Image.iui.`clockFading`),
+        ("clockPlus", Image.iui.`clockPlus`),
+        ("closedCaption", Image.iui.`closedCaption`),
+        ("closedCaptionCheck", Image.iui.`closedCaptionCheck`),
+        ("closedCaptionSolid", Image.iui.`closedCaptionSolid`),
+        ("closedCaptionX", Image.iui.`closedCaptionX`),
+        ("cloud", Image.iui.`cloud`),
+        ("cloudAlert", Image.iui.`cloudAlert`),
+        ("cloudBackup", Image.iui.`cloudBackup`),
+        ("cloudCheck", Image.iui.`cloudCheck`),
+        ("cloudCog", Image.iui.`cloudCog`),
+        ("cloudDownload", Image.iui.`cloudDownload`),
+        ("cloudDrizzle", Image.iui.`cloudDrizzle`),
+        ("cloudFog", Image.iui.`cloudFog`),
+        ("cloudHail", Image.iui.`cloudHail`),
+        ("cloudLightning", Image.iui.`cloudLightning`),
+        ("cloudLock", Image.iui.`cloudLock`),
+        ("cloudMoon", Image.iui.`cloudMoon`),
+        ("cloudMoonRain", Image.iui.`cloudMoonRain`),
+        ("cloudOff", Image.iui.`cloudOff`),
+        ("cloudRain", Image.iui.`cloudRain`),
+        ("cloudRainWind", Image.iui.`cloudRainWind`),
+        ("cloudSnow", Image.iui.`cloudSnow`),
+        ("cloudSun", Image.iui.`cloudSun`),
+        ("cloudSunRain", Image.iui.`cloudSunRain`),
+        ("cloudSync", Image.iui.`cloudSync`),
+        ("cloudUpload", Image.iui.`cloudUpload`),
+        ("cloudy", Image.iui.`cloudy`),
+        ("clover", Image.iui.`clover`),
+        ("club", Image.iui.`club`),
+        ("code", Image.iui.`code`),
+        ("codeXml", Image.iui.`codeXml`),
+        ("coffee", Image.iui.`coffee`),
+        ("cog", Image.iui.`cog`),
+        ("coins", Image.iui.`coins`),
+        ("columns2", Image.iui.`columns2`),
+        ("columns3", Image.iui.`columns3`),
+        ("columns3Cog", Image.iui.`columns3Cog`),
+        ("columns4", Image.iui.`columns4`),
+        ("combine", Image.iui.`combine`),
+        ("command", Image.iui.`command`),
+        ("commons", Image.iui.`commons`),
+        ("compare", Image.iui.`compare`),
+        ("compass", Image.iui.`compass`),
+        ("component", Image.iui.`component`),
+        ("computer", Image.iui.`computer`),
+        ("conciergeBell", Image.iui.`conciergeBell`),
+        ("cone", Image.iui.`cone`),
+        ("construction", Image.iui.`construction`),
+        ("contact", Image.iui.`contact`),
+        ("contactRound", Image.iui.`contactRound`),
+        ("container", Image.iui.`container`),
+        ("contrast", Image.iui.`contrast`),
+        ("cookie", Image.iui.`cookie`),
+        ("cookingPot", Image.iui.`cookingPot`),
+        ("copy", Image.iui.`copy`),
+        ("copyCheck", Image.iui.`copyCheck`),
+        ("copyMinus", Image.iui.`copyMinus`),
+        ("copyPlus", Image.iui.`copyPlus`),
+        ("copySlash", Image.iui.`copySlash`),
+        ("copyX", Image.iui.`copyX`),
+        ("copyleft", Image.iui.`copyleft`),
+        ("copyright", Image.iui.`copyright`),
+        ("copyrightFairUse", Image.iui.`copyrightFairUse`),
+        ("copyrightObtainedPermission", Image.iui.`copyrightObtainedPermission`),
+        ("copyrightPublicDomain", Image.iui.`copyrightPublicDomain`),
+        ("cornerDownLeft", Image.iui.`cornerDownLeft`),
+        ("cornerDownRight", Image.iui.`cornerDownRight`),
+        ("cornerLeftDown", Image.iui.`cornerLeftDown`),
+        ("cornerLeftUp", Image.iui.`cornerLeftUp`),
+        ("cornerRightDown", Image.iui.`cornerRightDown`),
+        ("cornerRightUp", Image.iui.`cornerRightUp`),
+        ("cornerUpLeft", Image.iui.`cornerUpLeft`),
+        ("cornerUpRight", Image.iui.`cornerUpRight`),
+        ("cpu", Image.iui.`cpu`),
+        ("creativeCommons", Image.iui.`creativeCommons`),
+        ("creditCard", Image.iui.`creditCard`),
+        ("croissant", Image.iui.`croissant`),
+        ("crop", Image.iui.`crop`),
+        ("cross", Image.iui.`cross`),
+        ("crosshair", Image.iui.`crosshair`),
+        ("crown", Image.iui.`crown`),
+        ("cuboid", Image.iui.`cuboid`),
+        ("cupSoda", Image.iui.`cupSoda`),
+        ("currency", Image.iui.`currency`),
+        ("cylinder", Image.iui.`cylinder`),
+        ("dam", Image.iui.`dam`),
+        ("database", Image.iui.`database`),
+        ("databaseBackup", Image.iui.`databaseBackup`),
+        ("databaseSearch", Image.iui.`databaseSearch`),
+        ("databaseZap", Image.iui.`databaseZap`),
+        ("decimalsArrowLeft", Image.iui.`decimalsArrowLeft`),
+        ("decimalsArrowRight", Image.iui.`decimalsArrowRight`),
+        ("delete", Image.iui.`delete`),
+        ("dessert", Image.iui.`dessert`),
+        ("diameter", Image.iui.`diameter`),
+        ("diamond", Image.iui.`diamond`),
+        ("diamondMinus", Image.iui.`diamondMinus`),
+        ("diamondPercent", Image.iui.`diamondPercent`),
+        ("diamondPlus", Image.iui.`diamondPlus`),
+        ("dice1", Image.iui.`dice1`),
+        ("dice2", Image.iui.`dice2`),
+        ("dice3", Image.iui.`dice3`),
+        ("dice4", Image.iui.`dice4`),
+        ("dice5", Image.iui.`dice5`),
+        ("dice6", Image.iui.`dice6`),
+        ("dices", Image.iui.`dices`),
+        ("diff", Image.iui.`diff`),
+        ("disc", Image.iui.`disc`),
+        ("disc2", Image.iui.`disc2`),
+        ("disc3", Image.iui.`disc3`),
+        ("discAlbum", Image.iui.`discAlbum`),
+        ("divide", Image.iui.`divide`),
+        ("dna", Image.iui.`dna`),
+        ("dnaOff", Image.iui.`dnaOff`),
+        ("dock", Image.iui.`dock`),
+        ("dog", Image.iui.`dog`),
+        ("dollarSign", Image.iui.`dollarSign`),
+        ("donut", Image.iui.`donut`),
+        ("doorClosed", Image.iui.`doorClosed`),
+        ("doorClosedLocked", Image.iui.`doorClosedLocked`),
+        ("doorOpen", Image.iui.`doorOpen`),
+        ("dot", Image.iui.`dot`),
+        ("download", Image.iui.`download`),
+        ("draftingCompass", Image.iui.`draftingCompass`),
+        ("drama", Image.iui.`drama`),
+        ("drill", Image.iui.`drill`),
+        ("drone", Image.iui.`drone`),
+        ("droplet", Image.iui.`droplet`),
+        ("dropletOff", Image.iui.`dropletOff`),
+        ("droplets", Image.iui.`droplets`),
+        ("drum", Image.iui.`drum`),
+        ("drumstick", Image.iui.`drumstick`),
+        ("dumbbell", Image.iui.`dumbbell`),
+        ("ear", Image.iui.`ear`),
+        ("earOff", Image.iui.`earOff`),
+        ("earth", Image.iui.`earth`),
+        ("earthLock", Image.iui.`earthLock`),
+        ("eclipse", Image.iui.`eclipse`),
+        ("egg", Image.iui.`egg`),
+        ("eggFried", Image.iui.`eggFried`),
+        ("eggOff", Image.iui.`eggOff`),
+        ("elevateLogo", Image.iui.`elevateLogo`),
+        ("ellipse", Image.iui.`ellipse`),
+        ("ellipsis", Image.iui.`ellipsis`),
+        ("ellipsisVertical", Image.iui.`ellipsisVertical`),
+        ("equal", Image.iui.`equal`),
+        ("equalApproximately", Image.iui.`equalApproximately`),
+        ("equalNot", Image.iui.`equalNot`),
+        ("eraser", Image.iui.`eraser`),
+        ("ethernetPort", Image.iui.`ethernetPort`),
+        ("euro", Image.iui.`euro`),
+        ("evCharger", Image.iui.`evCharger`),
+        ("expand", Image.iui.`expand`),
+        ("externalLink", Image.iui.`externalLink`),
+        ("eye", Image.iui.`eye`),
+        ("eyeClosed", Image.iui.`eyeClosed`),
+        ("eyeOff", Image.iui.`eyeOff`),
+        ("factory", Image.iui.`factory`),
+        ("fan", Image.iui.`fan`),
+        ("fastForward", Image.iui.`fastForward`),
+        ("fastForwardSolid", Image.iui.`fastForwardSolid`),
+        ("feather", Image.iui.`feather`),
+        ("fence", Image.iui.`fence`),
+        ("ferrisWheel", Image.iui.`ferrisWheel`),
+        ("file", Image.iui.`file`),
+        ("fileArchive", Image.iui.`fileArchive`),
+        ("fileAxis3d", Image.iui.`fileAxis3d`),
+        ("fileBadge", Image.iui.`fileBadge`),
+        ("fileBox", Image.iui.`fileBox`),
+        ("fileBraces", Image.iui.`fileBraces`),
+        ("fileBracesCorner", Image.iui.`fileBracesCorner`),
+        ("fileChartColumn", Image.iui.`fileChartColumn`),
+        ("fileChartColumnIncreasing", Image.iui.`fileChartColumnIncreasing`),
+        ("fileChartLine", Image.iui.`fileChartLine`),
+        ("fileChartPie", Image.iui.`fileChartPie`),
+        ("fileCheck", Image.iui.`fileCheck`),
+        ("fileCheckCorner", Image.iui.`fileCheckCorner`),
+        ("fileClock", Image.iui.`fileClock`),
+        ("fileCode", Image.iui.`fileCode`),
+        ("fileCodeCorner", Image.iui.`fileCodeCorner`),
+        ("fileCog", Image.iui.`fileCog`),
+        ("fileDiff", Image.iui.`fileDiff`),
+        ("fileDigit", Image.iui.`fileDigit`),
+        ("fileDown", Image.iui.`fileDown`),
+        ("fileExclamationPoint", Image.iui.`fileExclamationPoint`),
+        ("fileHeadphone", Image.iui.`fileHeadphone`),
+        ("fileHeart", Image.iui.`fileHeart`),
+        ("fileImage", Image.iui.`fileImage`),
+        ("fileInput", Image.iui.`fileInput`),
+        ("fileKey", Image.iui.`fileKey`),
+        ("fileLock", Image.iui.`fileLock`),
+        ("fileMinus", Image.iui.`fileMinus`),
+        ("fileMinusCorner", Image.iui.`fileMinusCorner`),
+        ("fileMusic", Image.iui.`fileMusic`),
+        ("fileOutput", Image.iui.`fileOutput`),
+        ("filePen", Image.iui.`filePen`),
+        ("filePenLine", Image.iui.`filePenLine`),
+        ("filePlay", Image.iui.`filePlay`),
+        ("filePlus", Image.iui.`filePlus`),
+        ("filePlusCorner", Image.iui.`filePlusCorner`),
+        ("fileQuestionMark", Image.iui.`fileQuestionMark`),
+        ("fileScan", Image.iui.`fileScan`),
+        ("fileSearch", Image.iui.`fileSearch`),
+        ("fileSearchCorner", Image.iui.`fileSearchCorner`),
+        ("fileSignal", Image.iui.`fileSignal`),
+        ("fileSliders", Image.iui.`fileSliders`),
+        ("fileSpreadsheet", Image.iui.`fileSpreadsheet`),
+        ("fileStack", Image.iui.`fileStack`),
+        ("fileSymlink", Image.iui.`fileSymlink`),
+        ("fileTerminal", Image.iui.`fileTerminal`),
+        ("fileText", Image.iui.`fileText`),
+        ("fileType", Image.iui.`fileType`),
+        ("fileTypeCorner", Image.iui.`fileTypeCorner`),
+        ("fileUp", Image.iui.`fileUp`),
+        ("fileUser", Image.iui.`fileUser`),
+        ("fileVideoCamera", Image.iui.`fileVideoCamera`),
+        ("fileVolume", Image.iui.`fileVolume`),
+        ("fileX", Image.iui.`fileX`),
+        ("fileXCorner", Image.iui.`fileXCorner`),
+        ("files", Image.iui.`files`),
+        ("filesX", Image.iui.`filesX`),
+        ("film", Image.iui.`film`),
+        ("fingerprintPattern", Image.iui.`fingerprintPattern`),
+        ("fireExtinguisher", Image.iui.`fireExtinguisher`),
+        ("fish", Image.iui.`fish`),
+        ("fishOff", Image.iui.`fishOff`),
+        ("fishSymbol", Image.iui.`fishSymbol`),
+        ("fishingHook", Image.iui.`fishingHook`),
+        ("fishingRod", Image.iui.`fishingRod`),
+        ("flag", Image.iui.`flag`),
+        ("flagOff", Image.iui.`flagOff`),
+        ("flagSolid", Image.iui.`flagSolid`),
+        ("flagTriangleLeft", Image.iui.`flagTriangleLeft`),
+        ("flagTriangleRight", Image.iui.`flagTriangleRight`),
+        ("flame", Image.iui.`flame`),
+        ("flameKindling", Image.iui.`flameKindling`),
+        ("flashlight", Image.iui.`flashlight`),
+        ("flashlightOff", Image.iui.`flashlightOff`),
+        ("flaskConical", Image.iui.`flaskConical`),
+        ("flaskConicalOff", Image.iui.`flaskConicalOff`),
+        ("flaskRound", Image.iui.`flaskRound`),
+        ("flipHorizontal2", Image.iui.`flipHorizontal2`),
+        ("flipVertical2", Image.iui.`flipVertical2`),
+        ("flower", Image.iui.`flower`),
+        ("flower2", Image.iui.`flower2`),
+        ("focus", Image.iui.`focus`),
+        ("foldHorizontal", Image.iui.`foldHorizontal`),
+        ("foldVertical", Image.iui.`foldVertical`),
+        ("folder", Image.iui.`folder`),
+        ("folderArchive", Image.iui.`folderArchive`),
+        ("folderCheck", Image.iui.`folderCheck`),
+        ("folderClock", Image.iui.`folderClock`),
+        ("folderClosed", Image.iui.`folderClosed`),
+        ("folderCode", Image.iui.`folderCode`),
+        ("folderCog", Image.iui.`folderCog`),
+        ("folderDot", Image.iui.`folderDot`),
+        ("folderDown", Image.iui.`folderDown`),
+        ("folderGit", Image.iui.`folderGit`),
+        ("folderGit2", Image.iui.`folderGit2`),
+        ("folderHeart", Image.iui.`folderHeart`),
+        ("folderInput", Image.iui.`folderInput`),
+        ("folderKanban", Image.iui.`folderKanban`),
+        ("folderKey", Image.iui.`folderKey`),
+        ("folderLock", Image.iui.`folderLock`),
+        ("folderMinus", Image.iui.`folderMinus`),
+        ("folderOpen", Image.iui.`folderOpen`),
+        ("folderOpenDot", Image.iui.`folderOpenDot`),
+        ("folderOutput", Image.iui.`folderOutput`),
+        ("folderPen", Image.iui.`folderPen`),
+        ("folderPlus", Image.iui.`folderPlus`),
+        ("folderRoot", Image.iui.`folderRoot`),
+        ("folderSearch", Image.iui.`folderSearch`),
+        ("folderSearch2", Image.iui.`folderSearch2`),
+        ("folderSymlink", Image.iui.`folderSymlink`),
+        ("folderSync", Image.iui.`folderSync`),
+        ("folderTree", Image.iui.`folderTree`),
+        ("folderUp", Image.iui.`folderUp`),
+        ("folderX", Image.iui.`folderX`),
+        ("folders", Image.iui.`folders`),
+        ("footprints", Image.iui.`footprints`),
+        ("forklift", Image.iui.`forklift`),
+        ("form", Image.iui.`form`),
+        ("forward", Image.iui.`forward`),
+        ("frame", Image.iui.`frame`),
+        ("frown", Image.iui.`frown`),
+        ("fuel", Image.iui.`fuel`),
+        ("fullscreen", Image.iui.`fullscreen`),
+        ("funnel", Image.iui.`funnel`),
+        ("funnelPlus", Image.iui.`funnelPlus`),
+        ("funnelX", Image.iui.`funnelX`),
+        ("galleryHorizontal", Image.iui.`galleryHorizontal`),
+        ("galleryHorizontalEnd", Image.iui.`galleryHorizontalEnd`),
+        ("galleryThumbnails", Image.iui.`galleryThumbnails`),
+        ("galleryVertical", Image.iui.`galleryVertical`),
+        ("galleryVerticalEnd", Image.iui.`galleryVerticalEnd`),
+        ("gamepad", Image.iui.`gamepad`),
+        ("gamepad2", Image.iui.`gamepad2`),
+        ("gamepadDirectional", Image.iui.`gamepadDirectional`),
+        ("gauge", Image.iui.`gauge`),
+        ("gavel", Image.iui.`gavel`),
+        ("gem", Image.iui.`gem`),
+        ("georgianLari", Image.iui.`georgianLari`),
+        ("ghost", Image.iui.`ghost`),
+        ("gift", Image.iui.`gift`),
+        ("gitBranch", Image.iui.`gitBranch`),
+        ("gitBranchMinus", Image.iui.`gitBranchMinus`),
+        ("gitBranchPlus", Image.iui.`gitBranchPlus`),
+        ("gitCommitHorizontal", Image.iui.`gitCommitHorizontal`),
+        ("gitCommitVertical", Image.iui.`gitCommitVertical`),
+        ("gitCompare", Image.iui.`gitCompare`),
+        ("gitCompareArrows", Image.iui.`gitCompareArrows`),
+        ("gitFork", Image.iui.`gitFork`),
+        ("gitGraph", Image.iui.`gitGraph`),
+        ("gitMerge", Image.iui.`gitMerge`),
+        ("gitMergeConflict", Image.iui.`gitMergeConflict`),
+        ("gitPullRequest", Image.iui.`gitPullRequest`),
+        ("gitPullRequestArrow", Image.iui.`gitPullRequestArrow`),
+        ("gitPullRequestClosed", Image.iui.`gitPullRequestClosed`),
+        ("gitPullRequestCreate", Image.iui.`gitPullRequestCreate`),
+        ("gitPullRequestCreateArrow", Image.iui.`gitPullRequestCreateArrow`),
+        ("gitPullRequestDraft", Image.iui.`gitPullRequestDraft`),
+        ("glassWater", Image.iui.`glassWater`),
+        ("glasses", Image.iui.`glasses`),
+        ("globe", Image.iui.`globe`),
+        ("globeLock", Image.iui.`globeLock`),
+        ("globeOff", Image.iui.`globeOff`),
+        ("globeX", Image.iui.`globeX`),
+        ("goal", Image.iui.`goal`),
+        ("gpu", Image.iui.`gpu`),
+        ("graduationCap", Image.iui.`graduationCap`),
+        ("grape", Image.iui.`grape`),
+        ("grid2x2", Image.iui.`grid2x2`),
+        ("grid2x2Check", Image.iui.`grid2x2Check`),
+        ("grid2x2Plus", Image.iui.`grid2x2Plus`),
+        ("grid2x2X", Image.iui.`grid2x2X`),
+        ("grid3x2", Image.iui.`grid3x2`),
+        ("grid3x3", Image.iui.`grid3x3`),
+        ("grip", Image.iui.`grip`),
+        ("gripHorizontal", Image.iui.`gripHorizontal`),
+        ("gripVertical", Image.iui.`gripVertical`),
+        ("group", Image.iui.`group`),
+        ("guitar", Image.iui.`guitar`),
+        ("ham", Image.iui.`ham`),
+        ("hamburger", Image.iui.`hamburger`),
+        ("hammer", Image.iui.`hammer`),
+        ("hand", Image.iui.`hand`),
+        ("handCoins", Image.iui.`handCoins`),
+        ("handFist", Image.iui.`handFist`),
+        ("handGrab", Image.iui.`handGrab`),
+        ("handHeart", Image.iui.`handHeart`),
+        ("handHelping", Image.iui.`handHelping`),
+        ("handMetal", Image.iui.`handMetal`),
+        ("handPlatter", Image.iui.`handPlatter`),
+        ("handbag", Image.iui.`handbag`),
+        ("handshake", Image.iui.`handshake`),
+        ("hardDrive", Image.iui.`hardDrive`),
+        ("hardDriveDownload", Image.iui.`hardDriveDownload`),
+        ("hardDriveUpload", Image.iui.`hardDriveUpload`),
+        ("hardHat", Image.iui.`hardHat`),
+        ("hash", Image.iui.`hash`),
+        ("hatGlasses", Image.iui.`hatGlasses`),
+        ("haze", Image.iui.`haze`),
+        ("hd", Image.iui.`hd`),
+        ("hdmiPort", Image.iui.`hdmiPort`),
+        ("heading", Image.iui.`heading`),
+        ("heading1", Image.iui.`heading1`),
+        ("heading2", Image.iui.`heading2`),
+        ("heading3", Image.iui.`heading3`),
+        ("heading4", Image.iui.`heading4`),
+        ("heading5", Image.iui.`heading5`),
+        ("heading6", Image.iui.`heading6`),
+        ("headphoneOff", Image.iui.`headphoneOff`),
+        ("headphones", Image.iui.`headphones`),
+        ("headset", Image.iui.`headset`),
+        ("heart", Image.iui.`heart`),
+        ("heartCrack", Image.iui.`heartCrack`),
+        ("heartHandshake", Image.iui.`heartHandshake`),
+        ("heartMinus", Image.iui.`heartMinus`),
+        ("heartOff", Image.iui.`heartOff`),
+        ("heartPlus", Image.iui.`heartPlus`),
+        ("heartPulse", Image.iui.`heartPulse`),
+        ("heartSolid", Image.iui.`heartSolid`),
+        ("heater", Image.iui.`heater`),
+        ("helicopter", Image.iui.`helicopter`),
+        ("hexagon", Image.iui.`hexagon`),
+        ("highlighter", Image.iui.`highlighter`),
+        ("history", Image.iui.`history`),
+        ("historyCheck", Image.iui.`historyCheck`),
+        ("historyX", Image.iui.`historyX`),
+        ("hop", Image.iui.`hop`),
+        ("hopOff", Image.iui.`hopOff`),
+        ("hospital", Image.iui.`hospital`),
+        ("hotel", Image.iui.`hotel`),
+        ("hourglass", Image.iui.`hourglass`),
+        ("house", Image.iui.`house`),
+        ("houseHeart", Image.iui.`houseHeart`),
+        ("housePlug", Image.iui.`housePlug`),
+        ("housePlus", Image.iui.`housePlus`),
+        ("houseWifi", Image.iui.`houseWifi`),
+        ("iceCreamBowl", Image.iui.`iceCreamBowl`),
+        ("iceCreamCone", Image.iui.`iceCreamCone`),
+        ("idCard", Image.iui.`idCard`),
+        ("idCardLanyard", Image.iui.`idCardLanyard`),
+        ("igniteaiLogo", Image.iui.`igniteaiLogo`),
+        ("image", Image.iui.`image`),
+        ("imageDown", Image.iui.`imageDown`),
+        ("imageMinus", Image.iui.`imageMinus`),
+        ("imageOff", Image.iui.`imageOff`),
+        ("imagePlay", Image.iui.`imagePlay`),
+        ("imagePlus", Image.iui.`imagePlus`),
+        ("imageUp", Image.iui.`imageUp`),
+        ("imageUpscale", Image.iui.`imageUpscale`),
+        ("images", Image.iui.`images`),
+        ("impactLogo", Image.iui.`impactLogo`),
+        ("import", Image.iui.`import`),
+        ("inbox", Image.iui.`inbox`),
+        ("indianRupee", Image.iui.`indianRupee`),
+        ("infinity", Image.iui.`infinity`),
+        ("info", Image.iui.`info`),
+        ("inspectionPanel", Image.iui.`inspectionPanel`),
+        ("instructure", Image.iui.`instructure`),
+        ("instructure1Dot", Image.iui.`instructure1Dot`),
+        ("instructure3Dot", Image.iui.`instructure3Dot`),
+        ("instructureLogo", Image.iui.`instructureLogo`),
+        ("italic", Image.iui.`italic`),
+        ("iterationCcw", Image.iui.`iterationCcw`),
+        ("iterationCw", Image.iui.`iterationCw`),
+        ("japaneseYen", Image.iui.`japaneseYen`),
+        ("joystick", Image.iui.`joystick`),
+        ("kanban", Image.iui.`kanban`),
+        ("kayak", Image.iui.`kayak`),
+        ("key", Image.iui.`key`),
+        ("keyRound", Image.iui.`keyRound`),
+        ("keySquare", Image.iui.`keySquare`),
+        ("keyboard", Image.iui.`keyboard`),
+        ("keyboardMusic", Image.iui.`keyboardMusic`),
+        ("keyboardOff", Image.iui.`keyboardOff`),
+        ("lamp", Image.iui.`lamp`),
+        ("lampCeiling", Image.iui.`lampCeiling`),
+        ("lampDesk", Image.iui.`lampDesk`),
+        ("lampFloor", Image.iui.`lampFloor`),
+        ("lampWallDown", Image.iui.`lampWallDown`),
+        ("lampWallUp", Image.iui.`lampWallUp`),
+        ("landPlot", Image.iui.`landPlot`),
+        ("landmark", Image.iui.`landmark`),
+        ("languages", Image.iui.`languages`),
+        ("laptop", Image.iui.`laptop`),
+        ("laptopMinimal", Image.iui.`laptopMinimal`),
+        ("laptopMinimalCheck", Image.iui.`laptopMinimalCheck`),
+        ("lasso", Image.iui.`lasso`),
+        ("lassoSelect", Image.iui.`lassoSelect`),
+        ("laugh", Image.iui.`laugh`),
+        ("layers", Image.iui.`layers`),
+        ("layers2", Image.iui.`layers2`),
+        ("layersPlus", Image.iui.`layersPlus`),
+        ("layoutDashboard", Image.iui.`layoutDashboard`),
+        ("layoutGrid", Image.iui.`layoutGrid`),
+        ("layoutList", Image.iui.`layoutList`),
+        ("layoutPanelLeft", Image.iui.`layoutPanelLeft`),
+        ("layoutPanelTop", Image.iui.`layoutPanelTop`),
+        ("layoutTemplate", Image.iui.`layoutTemplate`),
+        ("leaf", Image.iui.`leaf`),
+        ("leafyGreen", Image.iui.`leafyGreen`),
+        ("lectern", Image.iui.`lectern`),
+        ("lensConcave", Image.iui.`lensConcave`),
+        ("lensConvex", Image.iui.`lensConvex`),
+        ("library", Image.iui.`library`),
+        ("libraryBig", Image.iui.`libraryBig`),
+        ("lifeBuoy", Image.iui.`lifeBuoy`),
+        ("ligature", Image.iui.`ligature`),
+        ("lightbulb", Image.iui.`lightbulb`),
+        ("lightbulbOff", Image.iui.`lightbulbOff`),
+        ("lineDotRightHorizontal", Image.iui.`lineDotRightHorizontal`),
+        ("lineReader", Image.iui.`lineReader`),
+        ("lineSquiggle", Image.iui.`lineSquiggle`),
+        ("lineStyle", Image.iui.`lineStyle`),
+        ("link", Image.iui.`link`),
+        ("link2", Image.iui.`link2`),
+        ("link2Off", Image.iui.`link2Off`),
+        ("list", Image.iui.`list`),
+        ("listCheck", Image.iui.`listCheck`),
+        ("listChecks", Image.iui.`listChecks`),
+        ("listChevronsDownUp", Image.iui.`listChevronsDownUp`),
+        ("listChevronsUpDown", Image.iui.`listChevronsUpDown`),
+        ("listCircle", Image.iui.`listCircle`),
+        ("listCollapse", Image.iui.`listCollapse`),
+        ("listDown", Image.iui.`listDown`),
+        ("listEnd", Image.iui.`listEnd`),
+        ("listFilter", Image.iui.`listFilter`),
+        ("listFilterPlus", Image.iui.`listFilterPlus`),
+        ("listIndentDecrease", Image.iui.`listIndentDecrease`),
+        ("listIndentIncrease", Image.iui.`listIndentIncrease`),
+        ("listMinus", Image.iui.`listMinus`),
+        ("listMusic", Image.iui.`listMusic`),
+        ("listOrdered", Image.iui.`listOrdered`),
+        ("listOrderedAlpha", Image.iui.`listOrderedAlpha`),
+        ("listOrderedRoman", Image.iui.`listOrderedRoman`),
+        ("listPlus", Image.iui.`listPlus`),
+        ("listRestart", Image.iui.`listRestart`),
+        ("listSquare", Image.iui.`listSquare`),
+        ("listStart", Image.iui.`listStart`),
+        ("listTodo", Image.iui.`listTodo`),
+        ("listTree", Image.iui.`listTree`),
+        ("listUp", Image.iui.`listUp`),
+        ("listVideo", Image.iui.`listVideo`),
+        ("listX", Image.iui.`listX`),
+        ("loader", Image.iui.`loader`),
+        ("loaderCircle", Image.iui.`loaderCircle`),
+        ("loaderPinwheel", Image.iui.`loaderPinwheel`),
+        ("locate", Image.iui.`locate`),
+        ("locateFixed", Image.iui.`locateFixed`),
+        ("locateOff", Image.iui.`locateOff`),
+        ("lock", Image.iui.`lock`),
+        ("lockKeyhole", Image.iui.`lockKeyhole`),
+        ("lockKeyholeOpen", Image.iui.`lockKeyholeOpen`),
+        ("lockOpen", Image.iui.`lockOpen`),
+        ("lockReset", Image.iui.`lockReset`),
+        ("logIn", Image.iui.`logIn`),
+        ("logOut", Image.iui.`logOut`),
+        ("logs", Image.iui.`logs`),
+        ("lollipop", Image.iui.`lollipop`),
+        ("luggage", Image.iui.`luggage`),
+        ("magnet", Image.iui.`magnet`),
+        ("mail", Image.iui.`mail`),
+        ("mailCheck", Image.iui.`mailCheck`),
+        ("mailCircle", Image.iui.`mailCircle`),
+        ("mailMinus", Image.iui.`mailMinus`),
+        ("mailOpen", Image.iui.`mailOpen`),
+        ("mailPlus", Image.iui.`mailPlus`),
+        ("mailQuestionMark", Image.iui.`mailQuestionMark`),
+        ("mailSearch", Image.iui.`mailSearch`),
+        ("mailWarning", Image.iui.`mailWarning`),
+        ("mailX", Image.iui.`mailX`),
+        ("mailbox", Image.iui.`mailbox`),
+        ("mails", Image.iui.`mails`),
+        ("map", Image.iui.`map`),
+        ("mapMinus", Image.iui.`mapMinus`),
+        ("mapPin", Image.iui.`mapPin`),
+        ("mapPinCheck", Image.iui.`mapPinCheck`),
+        ("mapPinCheckInside", Image.iui.`mapPinCheckInside`),
+        ("mapPinHouse", Image.iui.`mapPinHouse`),
+        ("mapPinMinus", Image.iui.`mapPinMinus`),
+        ("mapPinMinusInside", Image.iui.`mapPinMinusInside`),
+        ("mapPinOff", Image.iui.`mapPinOff`),
+        ("mapPinPen", Image.iui.`mapPinPen`),
+        ("mapPinPlus", Image.iui.`mapPinPlus`),
+        ("mapPinPlusInside", Image.iui.`mapPinPlusInside`),
+        ("mapPinSearch", Image.iui.`mapPinSearch`),
+        ("mapPinX", Image.iui.`mapPinX`),
+        ("mapPinXInside", Image.iui.`mapPinXInside`),
+        ("mapPinned", Image.iui.`mapPinned`),
+        ("mapPlus", Image.iui.`mapPlus`),
+        ("mars", Image.iui.`mars`),
+        ("marsStroke", Image.iui.`marsStroke`),
+        ("martini", Image.iui.`martini`),
+        ("masteryLogo", Image.iui.`masteryLogo`),
+        ("maximize", Image.iui.`maximize`),
+        ("maximize2", Image.iui.`maximize2`),
+        ("medal", Image.iui.`medal`),
+        ("mediaAttachment", Image.iui.`mediaAttachment`),
+        ("mediaPlus", Image.iui.`mediaPlus`),
+        ("megaphone", Image.iui.`megaphone`),
+        ("megaphoneOff", Image.iui.`megaphoneOff`),
+        ("meh", Image.iui.`meh`),
+        ("memoryStick", Image.iui.`memoryStick`),
+        ("menu", Image.iui.`menu`),
+        ("merge", Image.iui.`merge`),
+        ("messageCircle", Image.iui.`messageCircle`),
+        ("messageCircleCheck", Image.iui.`messageCircleCheck`),
+        ("messageCircleCode", Image.iui.`messageCircleCode`),
+        ("messageCircleDashed", Image.iui.`messageCircleDashed`),
+        ("messageCircleHeart", Image.iui.`messageCircleHeart`),
+        ("messageCircleMore", Image.iui.`messageCircleMore`),
+        ("messageCircleOff", Image.iui.`messageCircleOff`),
+        ("messageCirclePlus", Image.iui.`messageCirclePlus`),
+        ("messageCircleQuestionMark", Image.iui.`messageCircleQuestionMark`),
+        ("messageCircleReply", Image.iui.`messageCircleReply`),
+        ("messageCircleWarning", Image.iui.`messageCircleWarning`),
+        ("messageCircleX", Image.iui.`messageCircleX`),
+        ("messageSquare", Image.iui.`messageSquare`),
+        ("messageSquareCheck", Image.iui.`messageSquareCheck`),
+        ("messageSquareCheckCustom", Image.iui.`messageSquareCheckCustom`),
+        ("messageSquareCode", Image.iui.`messageSquareCode`),
+        ("messageSquareDashed", Image.iui.`messageSquareDashed`),
+        ("messageSquareDiff", Image.iui.`messageSquareDiff`),
+        ("messageSquareDot", Image.iui.`messageSquareDot`),
+        ("messageSquareHeart", Image.iui.`messageSquareHeart`),
+        ("messageSquareLock", Image.iui.`messageSquareLock`),
+        ("messageSquareMore", Image.iui.`messageSquareMore`),
+        ("messageSquareOff", Image.iui.`messageSquareOff`),
+        ("messageSquarePlus", Image.iui.`messageSquarePlus`),
+        ("messageSquareQuote", Image.iui.`messageSquareQuote`),
+        ("messageSquareReply", Image.iui.`messageSquareReply`),
+        ("messageSquareShare", Image.iui.`messageSquareShare`),
+        ("messageSquareText", Image.iui.`messageSquareText`),
+        ("messageSquareWarning", Image.iui.`messageSquareWarning`),
+        ("messageSquareX", Image.iui.`messageSquareX`),
+        ("messageSquareXCustom", Image.iui.`messageSquareXCustom`),
+        ("messagesSquare", Image.iui.`messagesSquare`),
+        ("metronome", Image.iui.`metronome`),
+        ("mic", Image.iui.`mic`),
+        ("micOff", Image.iui.`micOff`),
+        ("micVocal", Image.iui.`micVocal`),
+        ("microchip", Image.iui.`microchip`),
+        ("microscope", Image.iui.`microscope`),
+        ("microwave", Image.iui.`microwave`),
+        ("milestone", Image.iui.`milestone`),
+        ("milk", Image.iui.`milk`),
+        ("milkOff", Image.iui.`milkOff`),
+        ("minimize", Image.iui.`minimize`),
+        ("minimize2", Image.iui.`minimize2`),
+        ("minus", Image.iui.`minus`),
+        ("mirrorRectangular", Image.iui.`mirrorRectangular`),
+        ("mirrorRound", Image.iui.`mirrorRound`),
+        ("monitor", Image.iui.`monitor`),
+        ("monitorCheck", Image.iui.`monitorCheck`),
+        ("monitorCloud", Image.iui.`monitorCloud`),
+        ("monitorCog", Image.iui.`monitorCog`),
+        ("monitorDot", Image.iui.`monitorDot`),
+        ("monitorDown", Image.iui.`monitorDown`),
+        ("monitorOff", Image.iui.`monitorOff`),
+        ("monitorPause", Image.iui.`monitorPause`),
+        ("monitorPlay", Image.iui.`monitorPlay`),
+        ("monitorSmartphone", Image.iui.`monitorSmartphone`),
+        ("monitorSpeaker", Image.iui.`monitorSpeaker`),
+        ("monitorStop", Image.iui.`monitorStop`),
+        ("monitorUp", Image.iui.`monitorUp`),
+        ("monitorX", Image.iui.`monitorX`),
+        ("moon", Image.iui.`moon`),
+        ("moonStar", Image.iui.`moonStar`),
+        ("motorbike", Image.iui.`motorbike`),
+        ("mountain", Image.iui.`mountain`),
+        ("mountainSnow", Image.iui.`mountainSnow`),
+        ("mouse", Image.iui.`mouse`),
+        ("mouseLeft", Image.iui.`mouseLeft`),
+        ("mouseOff", Image.iui.`mouseOff`),
+        ("mousePointer", Image.iui.`mousePointer`),
+        ("mousePointer2", Image.iui.`mousePointer2`),
+        ("mousePointer2Off", Image.iui.`mousePointer2Off`),
+        ("mousePointerBan", Image.iui.`mousePointerBan`),
+        ("mousePointerClick", Image.iui.`mousePointerClick`),
+        ("mouseRight", Image.iui.`mouseRight`),
+        ("move", Image.iui.`move`),
+        ("move3d", Image.iui.`move3d`),
+        ("moveDiagonal", Image.iui.`moveDiagonal`),
+        ("moveDiagonal2", Image.iui.`moveDiagonal2`),
+        ("moveDown", Image.iui.`moveDown`),
+        ("moveDownLeft", Image.iui.`moveDownLeft`),
+        ("moveDownRight", Image.iui.`moveDownRight`),
+        ("moveHorizontal", Image.iui.`moveHorizontal`),
+        ("moveLeft", Image.iui.`moveLeft`),
+        ("moveRight", Image.iui.`moveRight`),
+        ("moveUp", Image.iui.`moveUp`),
+        ("moveUpLeft", Image.iui.`moveUpLeft`),
+        ("moveUpRight", Image.iui.`moveUpRight`),
+        ("moveVertical", Image.iui.`moveVertical`),
+        ("music", Image.iui.`music`),
+        ("music2", Image.iui.`music2`),
+        ("music3", Image.iui.`music3`),
+        ("music4", Image.iui.`music4`),
+        ("navigation", Image.iui.`navigation`),
+        ("navigation2", Image.iui.`navigation2`),
+        ("navigation2Off", Image.iui.`navigation2Off`),
+        ("navigationOff", Image.iui.`navigationOff`),
+        ("network", Image.iui.`network`),
+        ("newspaper", Image.iui.`newspaper`),
+        ("nfc", Image.iui.`nfc`),
+        ("nonBinary", Image.iui.`nonBinary`),
+        ("notebook", Image.iui.`notebook`),
+        ("notebookPen", Image.iui.`notebookPen`),
+        ("notebookTabs", Image.iui.`notebookTabs`),
+        ("notebookText", Image.iui.`notebookText`),
+        ("notepadText", Image.iui.`notepadText`),
+        ("notepadTextDashed", Image.iui.`notepadTextDashed`),
+        ("nut", Image.iui.`nut`),
+        ("nutOff", Image.iui.`nutOff`),
+        ("octagon", Image.iui.`octagon`),
+        ("octagonAlert", Image.iui.`octagonAlert`),
+        ("octagonMinus", Image.iui.`octagonMinus`),
+        ("octagonPause", Image.iui.`octagonPause`),
+        ("octagonX", Image.iui.`octagonX`),
+        ("omega", Image.iui.`omega`),
+        ("option", Image.iui.`option`),
+        ("orbit", Image.iui.`orbit`),
+        ("origami", Image.iui.`origami`),
+        ("package", Image.iui.`package`),
+        ("package2", Image.iui.`package2`),
+        ("packageCheck", Image.iui.`packageCheck`),
+        ("packageMinus", Image.iui.`packageMinus`),
+        ("packageOpen", Image.iui.`packageOpen`),
+        ("packagePlus", Image.iui.`packagePlus`),
+        ("packageSearch", Image.iui.`packageSearch`),
+        ("packageX", Image.iui.`packageX`),
+        ("paintBucket", Image.iui.`paintBucket`),
+        ("paintRoller", Image.iui.`paintRoller`),
+        ("paintbrush", Image.iui.`paintbrush`),
+        ("paintbrushVertical", Image.iui.`paintbrushVertical`),
+        ("palette", Image.iui.`palette`),
+        ("panda", Image.iui.`panda`),
+        ("panelBottom", Image.iui.`panelBottom`),
+        ("panelBottomClose", Image.iui.`panelBottomClose`),
+        ("panelBottomDashed", Image.iui.`panelBottomDashed`),
+        ("panelBottomOpen", Image.iui.`panelBottomOpen`),
+        ("panelLeft", Image.iui.`panelLeft`),
+        ("panelLeftClose", Image.iui.`panelLeftClose`),
+        ("panelLeftDashed", Image.iui.`panelLeftDashed`),
+        ("panelLeftOpen", Image.iui.`panelLeftOpen`),
+        ("panelLeftRightDashed", Image.iui.`panelLeftRightDashed`),
+        ("panelRight", Image.iui.`panelRight`),
+        ("panelRightClose", Image.iui.`panelRightClose`),
+        ("panelRightDashed", Image.iui.`panelRightDashed`),
+        ("panelRightOpen", Image.iui.`panelRightOpen`),
+        ("panelTop", Image.iui.`panelTop`),
+        ("panelTopBottomDashed", Image.iui.`panelTopBottomDashed`),
+        ("panelTopClose", Image.iui.`panelTopClose`),
+        ("panelTopDashed", Image.iui.`panelTopDashed`),
+        ("panelTopOpen", Image.iui.`panelTopOpen`),
+        ("panelsLeftBottom", Image.iui.`panelsLeftBottom`),
+        ("panelsRightBottom", Image.iui.`panelsRightBottom`),
+        ("panelsTopLeft", Image.iui.`panelsTopLeft`),
+        ("paperclip", Image.iui.`paperclip`),
+        ("parentheses", Image.iui.`parentheses`),
+        ("parkingMeter", Image.iui.`parkingMeter`),
+        ("partyPopper", Image.iui.`partyPopper`),
+        ("pause", Image.iui.`pause`),
+        ("pauseSolid", Image.iui.`pauseSolid`),
+        ("pawPrint", Image.iui.`pawPrint`),
+        ("pcCase", Image.iui.`pcCase`),
+        ("pen", Image.iui.`pen`),
+        ("penLine", Image.iui.`penLine`),
+        ("penOff", Image.iui.`penOff`),
+        ("penTool", Image.iui.`penTool`),
+        ("pencil", Image.iui.`pencil`),
+        ("pencilAnnotate", Image.iui.`pencilAnnotate`),
+        ("pencilLine", Image.iui.`pencilLine`),
+        ("pencilOff", Image.iui.`pencilOff`),
+        ("pencilRuler", Image.iui.`pencilRuler`),
+        ("pentagon", Image.iui.`pentagon`),
+        ("percent", Image.iui.`percent`),
+        ("personStanding", Image.iui.`personStanding`),
+        ("philippinePeso", Image.iui.`philippinePeso`),
+        ("phone", Image.iui.`phone`),
+        ("phoneCall", Image.iui.`phoneCall`),
+        ("phoneForwarded", Image.iui.`phoneForwarded`),
+        ("phoneIncoming", Image.iui.`phoneIncoming`),
+        ("phoneMissed", Image.iui.`phoneMissed`),
+        ("phoneOff", Image.iui.`phoneOff`),
+        ("phoneOutgoing", Image.iui.`phoneOutgoing`),
+        ("pi", Image.iui.`pi`),
+        ("piano", Image.iui.`piano`),
+        ("pickaxe", Image.iui.`pickaxe`),
+        ("pictureInPicture", Image.iui.`pictureInPicture`),
+        ("pictureInPicture2", Image.iui.`pictureInPicture2`),
+        ("piggyBank", Image.iui.`piggyBank`),
+        ("pilcrow", Image.iui.`pilcrow`),
+        ("pilcrowLeft", Image.iui.`pilcrowLeft`),
+        ("pilcrowRight", Image.iui.`pilcrowRight`),
+        ("pill", Image.iui.`pill`),
+        ("pillBottle", Image.iui.`pillBottle`),
+        ("pin", Image.iui.`pin`),
+        ("pinOff", Image.iui.`pinOff`),
+        ("pipette", Image.iui.`pipette`),
+        ("pizza", Image.iui.`pizza`),
+        ("plane", Image.iui.`plane`),
+        ("planeLanding", Image.iui.`planeLanding`),
+        ("planeTakeoff", Image.iui.`planeTakeoff`),
+        ("play", Image.iui.`play`),
+        ("playSolid", Image.iui.`playSolid`),
+        ("plug", Image.iui.`plug`),
+        ("plug2", Image.iui.`plug2`),
+        ("plugZap", Image.iui.`plugZap`),
+        ("plus", Image.iui.`plus`),
+        ("pocketKnife", Image.iui.`pocketKnife`),
+        ("podcast", Image.iui.`podcast`),
+        ("pointer", Image.iui.`pointer`),
+        ("pointerOff", Image.iui.`pointerOff`),
+        ("popcorn", Image.iui.`popcorn`),
+        ("popsicle", Image.iui.`popsicle`),
+        ("postSis", Image.iui.`postSis`),
+        ("poundSterling", Image.iui.`poundSterling`),
+        ("power", Image.iui.`power`),
+        ("powerOff", Image.iui.`powerOff`),
+        ("presentation", Image.iui.`presentation`),
+        ("printer", Image.iui.`printer`),
+        ("printerCheck", Image.iui.`printerCheck`),
+        ("printerX", Image.iui.`printerX`),
+        ("projector", Image.iui.`projector`),
+        ("proportions", Image.iui.`proportions`),
+        ("protractor", Image.iui.`protractor`),
+        ("puzzle", Image.iui.`puzzle`),
+        ("pyramid", Image.iui.`pyramid`),
+        ("qrCode", Image.iui.`qrCode`),
+        ("quote", Image.iui.`quote`),
+        ("rabbit", Image.iui.`rabbit`),
+        ("radar", Image.iui.`radar`),
+        ("radiation", Image.iui.`radiation`),
+        ("radical", Image.iui.`radical`),
+        ("radio", Image.iui.`radio`),
+        ("radioOff", Image.iui.`radioOff`),
+        ("radioReceiver", Image.iui.`radioReceiver`),
+        ("radioTower", Image.iui.`radioTower`),
+        ("radius", Image.iui.`radius`),
+        ("rainbow", Image.iui.`rainbow`),
+        ("rat", Image.iui.`rat`),
+        ("ratio", Image.iui.`ratio`),
+        ("receipt", Image.iui.`receipt`),
+        ("receiptCent", Image.iui.`receiptCent`),
+        ("receiptEuro", Image.iui.`receiptEuro`),
+        ("receiptIndianRupee", Image.iui.`receiptIndianRupee`),
+        ("receiptJapaneseYen", Image.iui.`receiptJapaneseYen`),
+        ("receiptPoundSterling", Image.iui.`receiptPoundSterling`),
+        ("receiptRussianRuble", Image.iui.`receiptRussianRuble`),
+        ("receiptSwissFranc", Image.iui.`receiptSwissFranc`),
+        ("receiptText", Image.iui.`receiptText`),
+        ("receiptTurkishLira", Image.iui.`receiptTurkishLira`),
+        ("rectangleCircle", Image.iui.`rectangleCircle`),
+        ("rectangleEllipsis", Image.iui.`rectangleEllipsis`),
+        ("rectangleGoggles", Image.iui.`rectangleGoggles`),
+        ("rectangleHorizontal", Image.iui.`rectangleHorizontal`),
+        ("rectangleVertical", Image.iui.`rectangleVertical`),
+        ("recycle", Image.iui.`recycle`),
+        ("redo", Image.iui.`redo`),
+        ("redo2", Image.iui.`redo2`),
+        ("redoDot", Image.iui.`redoDot`),
+        ("refreshCcw", Image.iui.`refreshCcw`),
+        ("refreshCcwDot", Image.iui.`refreshCcwDot`),
+        ("refreshCw", Image.iui.`refreshCw`),
+        ("refreshCwOff", Image.iui.`refreshCwOff`),
+        ("refrigerator", Image.iui.`refrigerator`),
+        ("regex", Image.iui.`regex`),
+        ("removeFormatting", Image.iui.`removeFormatting`),
+        ("repeat", Image.iui.`repeat`),
+        ("repeat1", Image.iui.`repeat1`),
+        ("repeat2", Image.iui.`repeat2`),
+        ("replace", Image.iui.`replace`),
+        ("replaceAll", Image.iui.`replaceAll`),
+        ("reply", Image.iui.`reply`),
+        ("replyAll", Image.iui.`replyAll`),
+        ("rewind", Image.iui.`rewind`),
+        ("rewindSolid", Image.iui.`rewindSolid`),
+        ("ribbon", Image.iui.`ribbon`),
+        ("road", Image.iui.`road`),
+        ("rocket", Image.iui.`rocket`),
+        ("rocketSolid", Image.iui.`rocketSolid`),
+        ("rockingChair", Image.iui.`rockingChair`),
+        ("rollerCoaster", Image.iui.`rollerCoaster`),
+        ("rose", Image.iui.`rose`),
+        ("rotate3d", Image.iui.`rotate3d`),
+        ("rotateCcw", Image.iui.`rotateCcw`),
+        ("rotateCcwKey", Image.iui.`rotateCcwKey`),
+        ("rotateCcwSquare", Image.iui.`rotateCcwSquare`),
+        ("rotateCw", Image.iui.`rotateCw`),
+        ("rotateCwSquare", Image.iui.`rotateCwSquare`),
+        ("route", Image.iui.`route`),
+        ("routeOff", Image.iui.`routeOff`),
+        ("router", Image.iui.`router`),
+        ("rows2", Image.iui.`rows2`),
+        ("rows3", Image.iui.`rows3`),
+        ("rows4", Image.iui.`rows4`),
+        ("rss", Image.iui.`rss`),
+        ("ruler", Image.iui.`ruler`),
+        ("rulerDimensionLine", Image.iui.`rulerDimensionLine`),
+        ("russianRuble", Image.iui.`russianRuble`),
+        ("sailboat", Image.iui.`sailboat`),
+        ("salad", Image.iui.`salad`),
+        ("sandwich", Image.iui.`sandwich`),
+        ("satellite", Image.iui.`satellite`),
+        ("satelliteDish", Image.iui.`satelliteDish`),
+        ("saudiRiyal", Image.iui.`saudiRiyal`),
+        ("save", Image.iui.`save`),
+        ("saveAll", Image.iui.`saveAll`),
+        ("saveOff", Image.iui.`saveOff`),
+        ("scale", Image.iui.`scale`),
+        ("scale3d", Image.iui.`scale3d`),
+        ("scaling", Image.iui.`scaling`),
+        ("scan", Image.iui.`scan`),
+        ("scanBarcode", Image.iui.`scanBarcode`),
+        ("scanEye", Image.iui.`scanEye`),
+        ("scanFace", Image.iui.`scanFace`),
+        ("scanHeart", Image.iui.`scanHeart`),
+        ("scanLine", Image.iui.`scanLine`),
+        ("scanQrCode", Image.iui.`scanQrCode`),
+        ("scanSearch", Image.iui.`scanSearch`),
+        ("scanText", Image.iui.`scanText`),
+        ("school", Image.iui.`school`),
+        ("scissors", Image.iui.`scissors`),
+        ("scissorsLineDashed", Image.iui.`scissorsLineDashed`),
+        ("scooter", Image.iui.`scooter`),
+        ("screenShare", Image.iui.`screenShare`),
+        ("screenShareOff", Image.iui.`screenShareOff`),
+        ("scroll", Image.iui.`scroll`),
+        ("scrollText", Image.iui.`scrollText`),
+        ("search", Image.iui.`search`),
+        ("searchAi", Image.iui.`searchAi`),
+        ("searchAlert", Image.iui.`searchAlert`),
+        ("searchCheck", Image.iui.`searchCheck`),
+        ("searchCode", Image.iui.`searchCode`),
+        ("searchSlash", Image.iui.`searchSlash`),
+        ("searchX", Image.iui.`searchX`),
+        ("section", Image.iui.`section`),
+        ("send", Image.iui.`send`),
+        ("sendHorizontal", Image.iui.`sendHorizontal`),
+        ("sendToBack", Image.iui.`sendToBack`),
+        ("separatorHorizontal", Image.iui.`separatorHorizontal`),
+        ("separatorVertical", Image.iui.`separatorVertical`),
+        ("server", Image.iui.`server`),
+        ("serverCog", Image.iui.`serverCog`),
+        ("serverCrash", Image.iui.`serverCrash`),
+        ("serverOff", Image.iui.`serverOff`),
+        ("settings", Image.iui.`settings`),
+        ("settings2", Image.iui.`settings2`),
+        ("shapes", Image.iui.`shapes`),
+        ("share", Image.iui.`share`),
+        ("share2", Image.iui.`share2`),
+        ("sheet", Image.iui.`sheet`),
+        ("shell", Image.iui.`shell`),
+        ("shelvingUnit", Image.iui.`shelvingUnit`),
+        ("shield", Image.iui.`shield`),
+        ("shieldAlert", Image.iui.`shieldAlert`),
+        ("shieldBan", Image.iui.`shieldBan`),
+        ("shieldCheck", Image.iui.`shieldCheck`),
+        ("shieldCog", Image.iui.`shieldCog`),
+        ("shieldCogCorner", Image.iui.`shieldCogCorner`),
+        ("shieldEllipsis", Image.iui.`shieldEllipsis`),
+        ("shieldHalf", Image.iui.`shieldHalf`),
+        ("shieldMinus", Image.iui.`shieldMinus`),
+        ("shieldOff", Image.iui.`shieldOff`),
+        ("shieldPlus", Image.iui.`shieldPlus`),
+        ("shieldQuestionMark", Image.iui.`shieldQuestionMark`),
+        ("shieldUser", Image.iui.`shieldUser`),
+        ("shieldX", Image.iui.`shieldX`),
+        ("ship", Image.iui.`ship`),
+        ("shipWheel", Image.iui.`shipWheel`),
+        ("shirt", Image.iui.`shirt`),
+        ("shoppingBag", Image.iui.`shoppingBag`),
+        ("shoppingBasket", Image.iui.`shoppingBasket`),
+        ("shoppingCart", Image.iui.`shoppingCart`),
+        ("shoppingCartCheck", Image.iui.`shoppingCartCheck`),
+        ("shovel", Image.iui.`shovel`),
+        ("showerHead", Image.iui.`showerHead`),
+        ("shredder", Image.iui.`shredder`),
+        ("shrimp", Image.iui.`shrimp`),
+        ("shrink", Image.iui.`shrink`),
+        ("shrub", Image.iui.`shrub`),
+        ("shuffle", Image.iui.`shuffle`),
+        ("sigma", Image.iui.`sigma`),
+        ("signal", Image.iui.`signal`),
+        ("signalHigh", Image.iui.`signalHigh`),
+        ("signalLow", Image.iui.`signalLow`),
+        ("signalMedium", Image.iui.`signalMedium`),
+        ("signalZero", Image.iui.`signalZero`),
+        ("signature", Image.iui.`signature`),
+        ("signpost", Image.iui.`signpost`),
+        ("signpostBig", Image.iui.`signpostBig`),
+        ("siren", Image.iui.`siren`),
+        ("skipBack", Image.iui.`skipBack`),
+        ("skipForward", Image.iui.`skipForward`),
+        ("skull", Image.iui.`skull`),
+        ("slash", Image.iui.`slash`),
+        ("slice", Image.iui.`slice`),
+        ("slidersHorizontal", Image.iui.`slidersHorizontal`),
+        ("slidersVertical", Image.iui.`slidersVertical`),
+        ("smartphone", Image.iui.`smartphone`),
+        ("smartphoneCharging", Image.iui.`smartphoneCharging`),
+        ("smartphoneNfc", Image.iui.`smartphoneNfc`),
+        ("smile", Image.iui.`smile`),
+        ("smilePlus", Image.iui.`smilePlus`),
+        ("snail", Image.iui.`snail`),
+        ("snowflake", Image.iui.`snowflake`),
+        ("soapDispenserDroplet", Image.iui.`soapDispenserDroplet`),
+        ("sofa", Image.iui.`sofa`),
+        ("solarPanel", Image.iui.`solarPanel`),
+        ("soup", Image.iui.`soup`),
+        ("space", Image.iui.`space`),
+        ("spade", Image.iui.`spade`),
+        ("sparkle", Image.iui.`sparkle`),
+        ("sparkles", Image.iui.`sparkles`),
+        ("speaker", Image.iui.`speaker`),
+        ("speech", Image.iui.`speech`),
+        ("speedGrader", Image.iui.`speedGrader`),
+        ("spellCheck", Image.iui.`spellCheck`),
+        ("spellCheck2", Image.iui.`spellCheck2`),
+        ("spline", Image.iui.`spline`),
+        ("splinePointer", Image.iui.`splinePointer`),
+        ("split", Image.iui.`split`),
+        ("spool", Image.iui.`spool`),
+        ("sportShoe", Image.iui.`sportShoe`),
+        ("spotlight", Image.iui.`spotlight`),
+        ("sprayCan", Image.iui.`sprayCan`),
+        ("sprout", Image.iui.`sprout`),
+        ("square", Image.iui.`square`),
+        ("squareActivity", Image.iui.`squareActivity`),
+        ("squareArrowDown", Image.iui.`squareArrowDown`),
+        ("squareArrowDownLeft", Image.iui.`squareArrowDownLeft`),
+        ("squareArrowDownRight", Image.iui.`squareArrowDownRight`),
+        ("squareArrowLeft", Image.iui.`squareArrowLeft`),
+        ("squareArrowOutDownLeft", Image.iui.`squareArrowOutDownLeft`),
+        ("squareArrowOutDownRight", Image.iui.`squareArrowOutDownRight`),
+        ("squareArrowOutUpLeft", Image.iui.`squareArrowOutUpLeft`),
+        ("squareArrowOutUpRight", Image.iui.`squareArrowOutUpRight`),
+        ("squareArrowRight", Image.iui.`squareArrowRight`),
+        ("squareArrowRightEnter", Image.iui.`squareArrowRightEnter`),
+        ("squareArrowRightExit", Image.iui.`squareArrowRightExit`),
+        ("squareArrowUp", Image.iui.`squareArrowUp`),
+        ("squareArrowUpLeft", Image.iui.`squareArrowUpLeft`),
+        ("squareArrowUpRight", Image.iui.`squareArrowUpRight`),
+        ("squareAsterisk", Image.iui.`squareAsterisk`),
+        ("squareBottomDashedScissors", Image.iui.`squareBottomDashedScissors`),
+        ("squareCenterlineDashedHorizontal", Image.iui.`squareCenterlineDashedHorizontal`),
+        ("squareCenterlineDashedVertical", Image.iui.`squareCenterlineDashedVertical`),
+        ("squareChartGantt", Image.iui.`squareChartGantt`),
+        ("squareCheck", Image.iui.`squareCheck`),
+        ("squareCheckBig", Image.iui.`squareCheckBig`),
+        ("squareChevronDown", Image.iui.`squareChevronDown`),
+        ("squareChevronLeft", Image.iui.`squareChevronLeft`),
+        ("squareChevronRight", Image.iui.`squareChevronRight`),
+        ("squareChevronUp", Image.iui.`squareChevronUp`),
+        ("squareCode", Image.iui.`squareCode`),
+        ("squareDashed", Image.iui.`squareDashed`),
+        ("squareDashedBottom", Image.iui.`squareDashedBottom`),
+        ("squareDashedBottomCode", Image.iui.`squareDashedBottomCode`),
+        ("squareDashedKanban", Image.iui.`squareDashedKanban`),
+        ("squareDashedMousePointer", Image.iui.`squareDashedMousePointer`),
+        ("squareDashedText", Image.iui.`squareDashedText`),
+        ("squareDashedTopSolid", Image.iui.`squareDashedTopSolid`),
+        ("squareDivide", Image.iui.`squareDivide`),
+        ("squareDot", Image.iui.`squareDot`),
+        ("squareEqual", Image.iui.`squareEqual`),
+        ("squareFunction", Image.iui.`squareFunction`),
+        ("squareKanban", Image.iui.`squareKanban`),
+        ("squareLibrary", Image.iui.`squareLibrary`),
+        ("squareM", Image.iui.`squareM`),
+        ("squareMenu", Image.iui.`squareMenu`),
+        ("squareMinus", Image.iui.`squareMinus`),
+        ("squareMousePointer", Image.iui.`squareMousePointer`),
+        ("squareParking", Image.iui.`squareParking`),
+        ("squareParkingOff", Image.iui.`squareParkingOff`),
+        ("squarePause", Image.iui.`squarePause`),
+        ("squarePen", Image.iui.`squarePen`),
+        ("squarePercent", Image.iui.`squarePercent`),
+        ("squarePi", Image.iui.`squarePi`),
+        ("squarePilcrow", Image.iui.`squarePilcrow`),
+        ("squarePlay", Image.iui.`squarePlay`),
+        ("squarePlus", Image.iui.`squarePlus`),
+        ("squarePower", Image.iui.`squarePower`),
+        ("squareRadical", Image.iui.`squareRadical`),
+        ("squareRoundCorner", Image.iui.`squareRoundCorner`),
+        ("squareScissors", Image.iui.`squareScissors`),
+        ("squareSigma", Image.iui.`squareSigma`),
+        ("squareSlash", Image.iui.`squareSlash`),
+        ("squareSolid", Image.iui.`squareSolid`),
+        ("squareSplitHorizontal", Image.iui.`squareSplitHorizontal`),
+        ("squareSplitVertical", Image.iui.`squareSplitVertical`),
+        ("squareSquare", Image.iui.`squareSquare`),
+        ("squareStack", Image.iui.`squareStack`),
+        ("squareStar", Image.iui.`squareStar`),
+        ("squareStop", Image.iui.`squareStop`),
+        ("squareTerminal", Image.iui.`squareTerminal`),
+        ("squareUser", Image.iui.`squareUser`),
+        ("squareUserRound", Image.iui.`squareUserRound`),
+        ("squareX", Image.iui.`squareX`),
+        ("squaresBlueprint", Image.iui.`squaresBlueprint`),
+        ("squaresBlueprintLock", Image.iui.`squaresBlueprintLock`),
+        ("squaresExclude", Image.iui.`squaresExclude`),
+        ("squaresIntersect", Image.iui.`squaresIntersect`),
+        ("squaresSubtract", Image.iui.`squaresSubtract`),
+        ("squaresUnite", Image.iui.`squaresUnite`),
+        ("squircle", Image.iui.`squircle`),
+        ("squircleDashed", Image.iui.`squircleDashed`),
+        ("squirrel", Image.iui.`squirrel`),
+        ("stamp", Image.iui.`stamp`),
+        ("star", Image.iui.`star`),
+        ("starHalf", Image.iui.`starHalf`),
+        ("starOff", Image.iui.`starOff`),
+        ("starSolid", Image.iui.`starSolid`),
+        ("stepBack", Image.iui.`stepBack`),
+        ("stepForward", Image.iui.`stepForward`),
+        ("stethoscope", Image.iui.`stethoscope`),
+        ("sticker", Image.iui.`sticker`),
+        ("stickyNote", Image.iui.`stickyNote`),
+        ("stone", Image.iui.`stone`),
+        ("store", Image.iui.`store`),
+        ("stretchHorizontal", Image.iui.`stretchHorizontal`),
+        ("stretchVertical", Image.iui.`stretchVertical`),
+        ("strikethrough", Image.iui.`strikethrough`),
+        ("studio", Image.iui.`studio`),
+        ("subscript", Image.iui.`subscript`),
+        ("sun", Image.iui.`sun`),
+        ("sunDim", Image.iui.`sunDim`),
+        ("sunMedium", Image.iui.`sunMedium`),
+        ("sunMoon", Image.iui.`sunMoon`),
+        ("sunSnow", Image.iui.`sunSnow`),
+        ("sunrise", Image.iui.`sunrise`),
+        ("sunset", Image.iui.`sunset`),
+        ("superscript", Image.iui.`superscript`),
+        ("swatchBook", Image.iui.`swatchBook`),
+        ("swissFranc", Image.iui.`swissFranc`),
+        ("switchCamera", Image.iui.`switchCamera`),
+        ("sword", Image.iui.`sword`),
+        ("swords", Image.iui.`swords`),
+        ("syringe", Image.iui.`syringe`),
+        ("table", Image.iui.`table`),
+        ("table2", Image.iui.`table2`),
+        ("table2Check", Image.iui.`table2Check`),
+        ("table2X", Image.iui.`table2X`),
+        ("tableCellsMerge", Image.iui.`tableCellsMerge`),
+        ("tableCellsSplit", Image.iui.`tableCellsSplit`),
+        ("tableCog", Image.iui.`tableCog`),
+        ("tableColumn", Image.iui.`tableColumn`),
+        ("tableColumnPlusLeft", Image.iui.`tableColumnPlusLeft`),
+        ("tableColumnPlusRight", Image.iui.`tableColumnPlusRight`),
+        ("tableColumnX", Image.iui.`tableColumnX`),
+        ("tableColumnsSplit", Image.iui.`tableColumnsSplit`),
+        ("tableOfContents", Image.iui.`tableOfContents`),
+        ("tableProperties", Image.iui.`tableProperties`),
+        ("tableRow", Image.iui.`tableRow`),
+        ("tableRowPlusBottom", Image.iui.`tableRowPlusBottom`),
+        ("tableRowPlusTop", Image.iui.`tableRowPlusTop`),
+        ("tableRowX", Image.iui.`tableRowX`),
+        ("tableRowsSplit", Image.iui.`tableRowsSplit`),
+        ("tablet", Image.iui.`tablet`),
+        ("tabletSmartphone", Image.iui.`tabletSmartphone`),
+        ("tablets", Image.iui.`tablets`),
+        ("tag", Image.iui.`tag`),
+        ("tags", Image.iui.`tags`),
+        ("tally1", Image.iui.`tally1`),
+        ("tally2", Image.iui.`tally2`),
+        ("tally3", Image.iui.`tally3`),
+        ("tally4", Image.iui.`tally4`),
+        ("tally5", Image.iui.`tally5`),
+        ("tangent", Image.iui.`tangent`),
+        ("target", Image.iui.`target`),
+        ("telescope", Image.iui.`telescope`),
+        ("tent", Image.iui.`tent`),
+        ("tentTree", Image.iui.`tentTree`),
+        ("terminal", Image.iui.`terminal`),
+        ("testTube", Image.iui.`testTube`),
+        ("testTubeDiagonal", Image.iui.`testTubeDiagonal`),
+        ("testTubes", Image.iui.`testTubes`),
+        ("textAlignCenter", Image.iui.`textAlignCenter`),
+        ("textAlignEnd", Image.iui.`textAlignEnd`),
+        ("textAlignJustify", Image.iui.`textAlignJustify`),
+        ("textAlignStart", Image.iui.`textAlignStart`),
+        ("textColor", Image.iui.`textColor`),
+        ("textCursor", Image.iui.`textCursor`),
+        ("textCursorInput", Image.iui.`textCursorInput`),
+        ("textInitial", Image.iui.`textInitial`),
+        ("textQuote", Image.iui.`textQuote`),
+        ("textSearch", Image.iui.`textSearch`),
+        ("textWrap", Image.iui.`textWrap`),
+        ("theater", Image.iui.`theater`),
+        ("thermometer", Image.iui.`thermometer`),
+        ("thermometerSnowflake", Image.iui.`thermometerSnowflake`),
+        ("thermometerSun", Image.iui.`thermometerSun`),
+        ("thumbsDown", Image.iui.`thumbsDown`),
+        ("thumbsDownSolid", Image.iui.`thumbsDownSolid`),
+        ("thumbsUp", Image.iui.`thumbsUp`),
+        ("thumbsUpSolid", Image.iui.`thumbsUpSolid`),
+        ("ticket", Image.iui.`ticket`),
+        ("ticketCheck", Image.iui.`ticketCheck`),
+        ("ticketMinus", Image.iui.`ticketMinus`),
+        ("ticketPercent", Image.iui.`ticketPercent`),
+        ("ticketPlus", Image.iui.`ticketPlus`),
+        ("ticketSlash", Image.iui.`ticketSlash`),
+        ("ticketX", Image.iui.`ticketX`),
+        ("tickets", Image.iui.`tickets`),
+        ("ticketsPlane", Image.iui.`ticketsPlane`),
+        ("timer", Image.iui.`timer`),
+        ("timerOff", Image.iui.`timerOff`),
+        ("timerReset", Image.iui.`timerReset`),
+        ("title", Image.iui.`title`),
+        ("toggleLeft", Image.iui.`toggleLeft`),
+        ("toggleRight", Image.iui.`toggleRight`),
+        ("toilet", Image.iui.`toilet`),
+        ("toolCase", Image.iui.`toolCase`),
+        ("toolbox", Image.iui.`toolbox`),
+        ("tornado", Image.iui.`tornado`),
+        ("torus", Image.iui.`torus`),
+        ("touchpad", Image.iui.`touchpad`),
+        ("touchpadOff", Image.iui.`touchpadOff`),
+        ("towelRack", Image.iui.`towelRack`),
+        ("towerControl", Image.iui.`towerControl`),
+        ("toyBrick", Image.iui.`toyBrick`),
+        ("tractor", Image.iui.`tractor`),
+        ("trafficCone", Image.iui.`trafficCone`),
+        ("trainFront", Image.iui.`trainFront`),
+        ("trainFrontTunnel", Image.iui.`trainFrontTunnel`),
+        ("trainTrack", Image.iui.`trainTrack`),
+        ("tramFront", Image.iui.`tramFront`),
+        ("transgender", Image.iui.`transgender`),
+        ("trash", Image.iui.`trash`),
+        ("trash2", Image.iui.`trash2`),
+        ("treeDeciduous", Image.iui.`treeDeciduous`),
+        ("treePalm", Image.iui.`treePalm`),
+        ("treePine", Image.iui.`treePine`),
+        ("trees", Image.iui.`trees`),
+        ("trendingDown", Image.iui.`trendingDown`),
+        ("trendingUp", Image.iui.`trendingUp`),
+        ("trendingUpDown", Image.iui.`trendingUpDown`),
+        ("triangle", Image.iui.`triangle`),
+        ("triangleAlert", Image.iui.`triangleAlert`),
+        ("triangleDashed", Image.iui.`triangleDashed`),
+        ("triangleRight", Image.iui.`triangleRight`),
+        ("trophy", Image.iui.`trophy`),
+        ("truck", Image.iui.`truck`),
+        ("truckElectric", Image.iui.`truckElectric`),
+        ("turkishLira", Image.iui.`turkishLira`),
+        ("turntable", Image.iui.`turntable`),
+        ("turtle", Image.iui.`turtle`),
+        ("tv", Image.iui.`tv`),
+        ("tvMinimal", Image.iui.`tvMinimal`),
+        ("tvMinimalPlay", Image.iui.`tvMinimalPlay`),
+        ("type", Image.iui.`type`),
+        ("typeOutline", Image.iui.`typeOutline`),
+        ("umbrella", Image.iui.`umbrella`),
+        ("umbrellaOff", Image.iui.`umbrellaOff`),
+        ("underline", Image.iui.`underline`),
+        ("undo", Image.iui.`undo`),
+        ("undo2", Image.iui.`undo2`),
+        ("undoDot", Image.iui.`undoDot`),
+        ("unfoldHorizontal", Image.iui.`unfoldHorizontal`),
+        ("unfoldVertical", Image.iui.`unfoldVertical`),
+        ("ungroup", Image.iui.`ungroup`),
+        ("university", Image.iui.`university`),
+        ("unlink", Image.iui.`unlink`),
+        ("unlink2", Image.iui.`unlink2`),
+        ("unplug", Image.iui.`unplug`),
+        ("upload", Image.iui.`upload`),
+        ("usb", Image.iui.`usb`),
+        ("user", Image.iui.`user`),
+        ("userCheck", Image.iui.`userCheck`),
+        ("userCog", Image.iui.`userCog`),
+        ("userKey", Image.iui.`userKey`),
+        ("userLock", Image.iui.`userLock`),
+        ("userMinus", Image.iui.`userMinus`),
+        ("userPen", Image.iui.`userPen`),
+        ("userPlus", Image.iui.`userPlus`),
+        ("userRound", Image.iui.`userRound`),
+        ("userRoundArrowUp", Image.iui.`userRoundArrowUp`),
+        ("userRoundBlackboard", Image.iui.`userRoundBlackboard`),
+        ("userRoundCheck", Image.iui.`userRoundCheck`),
+        ("userRoundCog", Image.iui.`userRoundCog`),
+        ("userRoundKey", Image.iui.`userRoundKey`),
+        ("userRoundLock", Image.iui.`userRoundLock`),
+        ("userRoundMinus", Image.iui.`userRoundMinus`),
+        ("userRoundPen", Image.iui.`userRoundPen`),
+        ("userRoundPlus", Image.iui.`userRoundPlus`),
+        ("userRoundSearch", Image.iui.`userRoundSearch`),
+        ("userRoundX", Image.iui.`userRoundX`),
+        ("userSearch", Image.iui.`userSearch`),
+        ("userStar", Image.iui.`userStar`),
+        ("userX", Image.iui.`userX`),
+        ("users", Image.iui.`users`),
+        ("usersRound", Image.iui.`usersRound`),
+        ("utensils", Image.iui.`utensils`),
+        ("utensilsCrossed", Image.iui.`utensilsCrossed`),
+        ("utilityPole", Image.iui.`utilityPole`),
+        ("van", Image.iui.`van`),
+        ("variable", Image.iui.`variable`),
+        ("vault", Image.iui.`vault`),
+        ("vectorSquare", Image.iui.`vectorSquare`),
+        ("vegan", Image.iui.`vegan`),
+        ("venetianMask", Image.iui.`venetianMask`),
+        ("venus", Image.iui.`venus`),
+        ("venusAndMars", Image.iui.`venusAndMars`),
+        ("vibrate", Image.iui.`vibrate`),
+        ("vibrateOff", Image.iui.`vibrateOff`),
+        ("video", Image.iui.`video`),
+        ("videoOff", Image.iui.`videoOff`),
+        ("videotape", Image.iui.`videotape`),
+        ("view", Image.iui.`view`),
+        ("voicemail", Image.iui.`voicemail`),
+        ("volleyball", Image.iui.`volleyball`),
+        ("volume", Image.iui.`volume`),
+        ("volume1", Image.iui.`volume1`),
+        ("volume2", Image.iui.`volume2`),
+        ("volumeOff", Image.iui.`volumeOff`),
+        ("volumeX", Image.iui.`volumeX`),
+        ("vote", Image.iui.`vote`),
+        ("wallet", Image.iui.`wallet`),
+        ("walletCards", Image.iui.`walletCards`),
+        ("walletMinimal", Image.iui.`walletMinimal`),
+        ("wallpaper", Image.iui.`wallpaper`),
+        ("wand", Image.iui.`wand`),
+        ("wandSparkles", Image.iui.`wandSparkles`),
+        ("warehouse", Image.iui.`warehouse`),
+        ("washingMachine", Image.iui.`washingMachine`),
+        ("watch", Image.iui.`watch`),
+        ("waves", Image.iui.`waves`),
+        ("wavesArrowDown", Image.iui.`wavesArrowDown`),
+        ("wavesArrowUp", Image.iui.`wavesArrowUp`),
+        ("wavesLadder", Image.iui.`wavesLadder`),
+        ("waypoints", Image.iui.`waypoints`),
+        ("webcam", Image.iui.`webcam`),
+        ("webhook", Image.iui.`webhook`),
+        ("webhookOff", Image.iui.`webhookOff`),
+        ("weight", Image.iui.`weight`),
+        ("weightTilde", Image.iui.`weightTilde`),
+        ("wheat", Image.iui.`wheat`),
+        ("wheatOff", Image.iui.`wheatOff`),
+        ("wholeWord", Image.iui.`wholeWord`),
+        ("wifi", Image.iui.`wifi`),
+        ("wifiCog", Image.iui.`wifiCog`),
+        ("wifiHigh", Image.iui.`wifiHigh`),
+        ("wifiLow", Image.iui.`wifiLow`),
+        ("wifiOff", Image.iui.`wifiOff`),
+        ("wifiPen", Image.iui.`wifiPen`),
+        ("wifiSync", Image.iui.`wifiSync`),
+        ("wifiZero", Image.iui.`wifiZero`),
+        ("wind", Image.iui.`wind`),
+        ("windArrowDown", Image.iui.`windArrowDown`),
+        ("wine", Image.iui.`wine`),
+        ("wineOff", Image.iui.`wineOff`),
+        ("workflow", Image.iui.`workflow`),
+        ("worm", Image.iui.`worm`),
+        ("wrench", Image.iui.`wrench`),
+        ("x", Image.iui.`x`),
+        ("xLineTop", Image.iui.`xLineTop`),
+        ("zap", Image.iui.`zap`),
+        ("zapOff", Image.iui.`zapOff`),
+        ("zodiacAquarius", Image.iui.`zodiacAquarius`),
+        ("zodiacAries", Image.iui.`zodiacAries`),
+        ("zodiacCancer", Image.iui.`zodiacCancer`),
+        ("zodiacCapricorn", Image.iui.`zodiacCapricorn`),
+        ("zodiacGemini", Image.iui.`zodiacGemini`),
+        ("zodiacLeo", Image.iui.`zodiacLeo`),
+        ("zodiacLibra", Image.iui.`zodiacLibra`),
+        ("zodiacOphiuchus", Image.iui.`zodiacOphiuchus`),
+        ("zodiacPisces", Image.iui.`zodiacPisces`),
+        ("zodiacSagittarius", Image.iui.`zodiacSagittarius`),
+        ("zodiacScorpio", Image.iui.`zodiacScorpio`),
+        ("zodiacTaurus", Image.iui.`zodiacTaurus`),
+        ("zodiacVirgo", Image.iui.`zodiacVirgo`),
+        ("zoomIn", Image.iui.`zoomIn`),
+        ("zoomOut", Image.iui.`zoomOut`),
     ]
 }

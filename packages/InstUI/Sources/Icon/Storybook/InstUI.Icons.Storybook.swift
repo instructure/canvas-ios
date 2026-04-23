@@ -49,7 +49,7 @@ public extension Image.iui {
             .navigationBarTitleDisplayMode(.large)
         }
     }
-}
+}   
 
 #Preview {
     NavigationStack {
