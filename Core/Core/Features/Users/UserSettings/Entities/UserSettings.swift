@@ -27,6 +27,7 @@ public final class UserSettings: NSManagedObject, WriteableModel {
     @NSManaged public var hideDashcardColorOverlays: Bool
     @NSManaged public var commentLibrarySuggestionsEnabled: Bool
 
+    @discardableResult
     public static func save(_ item: APIUserSettings, in context: NSManagedObjectContext) -> UserSettings {
         let model: UserSettings = context.fetch(nil).first ?? context.insert()
         model.manualMarkAsRead = item.manual_mark_as_read

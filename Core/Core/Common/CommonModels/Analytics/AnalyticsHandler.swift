@@ -36,6 +36,8 @@ public protocol AnalyticsHandler: AnyObject {
 
     func handleEvent(_ name: String, parameters: [String: Any]?)
 
+    func storePendoApiKey(_ apiKey: String)
+
     /// Checks `url` for Pendo Pairing Mode scheme.
     /// If that applies, enters the app into Pendo Pairing Mode, and returns true.
     /// Otherwise does nothing and returns false.
@@ -95,12 +97,26 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
         // Ensure pageview tracking is disabled (clears any leftover from previous user)
         PageViewEventController.instance.endTracking()
 
-        return isTrackingEnabled()
+        return getUserSettings(environment: environment)
+            .flatMap { [weak self] in
+                self?.isTrackingEnabled() ?? Publishers.typedEmpty()
+            }
             .receive(on: DispatchQueue.main)
             .map { [weak self] isEnabled in
                 self?.handleConsentChange(to: isEnabled, sessionStartCompletion: sessionStartCompletion)
             }
             .eraseToAnyPublisher()
+    }
+
+    /// This populates `analyticsTracker.pendoApiKey` directly.
+    private func getUserSettings(environment: AppEnvironment) -> AnyPublisher<Void, Error> {
+        ReactiveStore(
+            useCase: GetUserSettings(shouldSaveAnalyticsApiKey: true),
+            backgroundEnv: environment
+        )
+        .getEntities(ignoreCache: true)
+        .mapToVoid()
+        .eraseToAnyPublisher()
     }
 
     private func isTrackingEnabled() -> AnyPublisher<Bool, Error> {
@@ -169,6 +185,10 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
 
     public func handleEvent(_ name: String, parameters: [String: Any]?) {
         analyticsTracker.track(name, properties: parameters)
+    }
+
+    public func storePendoApiKey(_ apiKey: String) {
+        analyticsTracker.storeApiKey(apiKey)
     }
 
     public func handlePendoPairingModeUrl(url: URL) -> Bool {
