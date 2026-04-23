@@ -54,5 +54,4 @@ final class GetUnreadAnnouncementsCountRequestTests: XCTestCase {
 
         XCTAssertEqual(testee.unreadAnnouncementCount, 0)
     }
-
 }

@@ -52,34 +52,34 @@ final class GetUnreadCourseAnnouncementCountsUseCaseTests: StudentTestCase {
     }
 
     func test_write_shouldSaveOneEntityPerCourse() {
-        testee.write(response: .make(courses: [
+        testee.write(response: [
             .make(id: "c1"),
             .make(id: "c2")
-        ]), urlResponse: nil, to: databaseClient)
+        ], urlResponse: nil, to: databaseClient)
 
         let entities: [CDUnreadCourseAnnouncementCount] = databaseClient.fetch(scope: .all)
         XCTAssertEqual(entities.count, 2)
     }
 
     func test_write_shouldSaveCorrectUnreadCount() {
-        testee.write(response: .make(courses: [
+        testee.write(response: [
             .make(id: "c1", nodes: [
                 .make(id: "a1", read: false),
                 .make(id: "a2", read: true),
                 .make(id: "a3", read: false)
             ])
-        ]), urlResponse: nil, to: databaseClient)
+        ], urlResponse: nil, to: databaseClient)
 
         let entity = fetchEntity(courseId: "c1")
         XCTAssertEqual(entity?.unreadCount, 2)
     }
 
     func test_write_singleUnreadAnnouncementId() {
-        testee.write(response: .make(courses: [
+        testee.write(response: [
             .make(id: "c1", nodes: [.make(id: "a1", read: false)]),
             .make(id: "c2", nodes: [.make(id: "a2", read: false), .make(id: "a3", read: false)]),
             .make(id: "c3", nodes: [.make(id: "a4", read: true)])
-        ]), urlResponse: nil, to: databaseClient)
+        ], urlResponse: nil, to: databaseClient)
 
         // WHEN single unread
         // THEN id is set
@@ -92,6 +92,64 @@ final class GetUnreadCourseAnnouncementCountsUseCaseTests: StudentTestCase {
         // WHEN no unread
         // THEN id is nil
         XCTAssertEqual(fetchEntity(courseId: "c3")?.singleUnreadAnnouncementId, nil)
+    }
+
+    func test_write_whenSameCourseAppearsMultipleTimes_shouldUnionIds() {
+        testee.write(response: [
+            .make(id: "c1", nodes: [.make(id: "a1", read: false), .make(id: "a2", read: false)]),
+            .make(id: "c1", nodes: [.make(id: "a3", read: false)])
+        ], urlResponse: nil, to: databaseClient)
+
+        let entity = fetchEntity(courseId: "c1")
+        XCTAssertEqual(entity?.unreadCount, 3)
+        XCTAssertEqual(entity?.unreadAnnouncementIds, ["a1", "a2", "a3"])
+    }
+
+    func test_write_shouldClearStaleEntities() {
+        CDUnreadCourseAnnouncementCount.save(courseId: "stale", unreadAnnouncementIds: ["a1"], in: databaseClient)
+
+        testee.write(response: [
+            .make(id: "c1", nodes: [.make(id: "a2", read: false)])
+        ], urlResponse: nil, to: databaseClient)
+
+        XCTAssertEqual(fetchEntity(courseId: "stale"), nil)
+        XCTAssertNotNil(fetchEntity(courseId: "c1"))
+    }
+
+    // MARK: - makeRequest
+
+    func test_makeRequest_whenMultipleCoursesHaveMultiplePages_shouldAccumulateAllIds() {
+        api.mock(GetUnreadAnnouncementsCountRequest()) { _ in
+            (.make(courses: [
+                .make(id: "c1", nodes: [.make(id: "a1", read: false)], hasNextPage: true, endCursor: "cursorA"),
+                .make(id: "c2", nodes: [.make(id: "b1", read: false)], hasNextPage: true, endCursor: "cursorB")
+            ]), nil, nil)
+        }
+        api.mock(GetUnreadAnnouncementsCountRequest(cursor: "cursorA")) { _ in
+            (.make(courses: [
+                .make(id: "c1", nodes: [.make(id: "a2", read: false)], hasNextPage: false),
+                .make(id: "c2", nodes: [], hasNextPage: false)
+            ]), nil, nil)
+        }
+        api.mock(GetUnreadAnnouncementsCountRequest(cursor: "cursorB")) { _ in
+            (.make(courses: [
+                .make(id: "c1", nodes: [], hasNextPage: false),
+                .make(id: "c2", nodes: [.make(id: "b2", read: false)], hasNextPage: false)
+            ]), nil, nil)
+        }
+
+        let completionExpectation = expectation(description: "completion")
+        var capturedResponse: GetUnreadCourseAnnouncementCountsUseCase.Response?
+        testee.makeRequest(environment: env) { response, _, _ in
+            capturedResponse = response
+            completionExpectation.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+
+        testee.write(response: capturedResponse, urlResponse: nil, to: databaseClient)
+
+        XCTAssertEqual(fetchEntity(courseId: "c1")?.unreadAnnouncementIds, Set(["a1", "a2"]))
+        XCTAssertEqual(fetchEntity(courseId: "c2")?.unreadAnnouncementIds, Set(["b1", "b2"]))
     }
 
     // MARK: - Private helpers

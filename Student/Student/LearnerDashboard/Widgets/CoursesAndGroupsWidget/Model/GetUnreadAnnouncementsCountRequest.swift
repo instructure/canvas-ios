@@ -20,14 +20,29 @@ import Core
 import Foundation
 
 struct GetUnreadAnnouncementsCountRequest: APIGraphQLRequestable {
-    struct Variables: Codable, Equatable {}
+    private static let pageSize = 20
+
+    struct Variables: Codable, Equatable {
+        let pageSize: Int
+        let cursor: String?
+    }
     typealias Response = GetUnreadAnnouncementsCountResponse
 
+    let cursor: String?
+
+    init(cursor: String? = nil) {
+        self.cursor = cursor
+    }
+
     static let query = """
-    query GetUnreadAnnouncementsCount {
+    query GetUnreadAnnouncementsCount($pageSize: Int!, $cursor: String) {
       allCourses {
         _id
-        discussionsConnection(filter: {isAnnouncement: true}) {
+        discussionsConnection(filter: {isAnnouncement: true}, first: $pageSize, after: $cursor) {
+          pageInfo {
+            endCursor
+            hasNextPage
+          }
           nodes {
             _id
             participant {
@@ -39,7 +54,7 @@ struct GetUnreadAnnouncementsCountRequest: APIGraphQLRequestable {
     }
     """
 
-    var variables: Variables { Variables() }
+    var variables: Variables { Variables(pageSize: Self.pageSize, cursor: cursor) }
 }
 
 struct GetUnreadAnnouncementsCountResponse: Codable {
@@ -62,6 +77,7 @@ struct GetUnreadAnnouncementsCountResponse: Codable {
     }
 
     struct DiscussionsConnection: Codable {
+        let pageInfo: APIPageInfo?
         let nodes: [DiscussionNode]
     }
 
@@ -86,9 +102,14 @@ extension GetUnreadAnnouncementsCountResponse {
 extension GetUnreadAnnouncementsCountResponse.CourseData {
     static func make(
         id: String = "some id",
-        nodes: [GetUnreadAnnouncementsCountResponse.DiscussionNode] = []
+        nodes: [GetUnreadAnnouncementsCountResponse.DiscussionNode] = [],
+        hasNextPage: Bool = false,
+        endCursor: String? = nil
     ) -> GetUnreadAnnouncementsCountResponse.CourseData {
-        .init(_id: id, discussionsConnection: .init(nodes: nodes))
+        .init(_id: id, discussionsConnection: .init(
+            pageInfo: .make(endCursor: endCursor, hasNextPage: hasNextPage),
+            nodes: nodes
+        ))
     }
 }
 
