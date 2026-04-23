@@ -28,7 +28,7 @@ class DashboardViewModel {
 
     private(set) var hasUnreadNotification = false
     private(set) var hasUnreadInboxMessage = false
-    private(set) var isOfflineSyncVisible = true
+    private(set) var isOfflineSyncVisible = false
     private(set) var syncProgress: Double = 0
     private(set) var syncDownloadedSize: String = ""
     private(set) var syncTotalSize: String = ""
