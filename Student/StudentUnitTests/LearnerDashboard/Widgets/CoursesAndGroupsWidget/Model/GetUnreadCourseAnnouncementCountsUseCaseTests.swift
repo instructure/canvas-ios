@@ -51,6 +51,14 @@ final class GetUnreadCourseAnnouncementCountsUseCaseTests: StudentTestCase {
         XCTAssertEqual(entities.count, 0)
     }
 
+    func test_write_whenResponseIsNil_shouldPreserveExistingEntities() {
+        CDUnreadCourseAnnouncementCount.save(courseId: "c1", unreadAnnouncementIds: ["a1", "a2"], in: databaseClient)
+
+        testee.write(response: nil, urlResponse: nil, to: databaseClient)
+
+        XCTAssertEqual(fetchEntity(courseId: "c1")?.unreadCount, 2)
+    }
+
     func test_write_shouldSaveOneEntityPerCourse() {
         testee.write(response: [
             .make(id: "c1"),
@@ -119,21 +127,19 @@ final class GetUnreadCourseAnnouncementCountsUseCaseTests: StudentTestCase {
     // MARK: - makeRequest
 
     func test_makeRequest_whenMultipleCoursesHaveMultiplePages_shouldAccumulateAllIds() {
-        api.mock(GetUnreadAnnouncementsCountRequest()) { _ in
+        api.mock(GetUnreadCourseAnnouncementCountRequest()) { _ in
             (.make(courses: [
                 .make(id: "c1", nodes: [.make(id: "a1", read: false)], hasNextPage: true, endCursor: "cursorA"),
                 .make(id: "c2", nodes: [.make(id: "b1", read: false)], hasNextPage: true, endCursor: "cursorB")
             ]), nil, nil)
         }
-        api.mock(GetUnreadAnnouncementsCountRequest(cursor: "cursorA")) { _ in
+        api.mock(GetUnreadAnnouncementsCountPageRequest(courseId: "c1", cursor: "cursorA")) { _ in
             (.make(courses: [
-                .make(id: "c1", nodes: [.make(id: "a2", read: false)], hasNextPage: false),
-                .make(id: "c2", nodes: [], hasNextPage: false)
+                .make(id: "c1", nodes: [.make(id: "a2", read: false)], hasNextPage: false)
             ]), nil, nil)
         }
-        api.mock(GetUnreadAnnouncementsCountRequest(cursor: "cursorB")) { _ in
+        api.mock(GetUnreadAnnouncementsCountPageRequest(courseId: "c2", cursor: "cursorB")) { _ in
             (.make(courses: [
-                .make(id: "c1", nodes: [], hasNextPage: false),
                 .make(id: "c2", nodes: [.make(id: "b2", read: false)], hasNextPage: false)
             ]), nil, nil)
         }

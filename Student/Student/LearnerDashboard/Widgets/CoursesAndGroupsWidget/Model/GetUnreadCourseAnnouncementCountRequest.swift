@@ -19,24 +19,56 @@
 import Core
 import Foundation
 
-struct GetUnreadAnnouncementsCountRequest: APIGraphQLRequestable {
-    private static let pageSize = 20
+struct GetUnreadCourseAnnouncementCountRequest: APIGraphQLRequestable {
+    static let pageSize = 20
 
     struct Variables: Codable, Equatable {
         let pageSize: Int
-        let cursor: String?
     }
     typealias Response = GetUnreadAnnouncementsCountResponse
 
-    let cursor: String?
+    static let query = """
+    query GetUnreadAnnouncementsCount($pageSize: Int!) {
+      allCourses {
+        _id
+        discussionsConnection(filter: {isAnnouncement: true}, first: $pageSize) {
+          pageInfo {
+            endCursor
+            hasNextPage
+          }
+          nodes {
+            _id
+            participant {
+              read
+            }
+          }
+        }
+      }
+    }
+    """
 
-    init(cursor: String? = nil) {
+    var variables: Variables { Variables(pageSize: Self.pageSize) }
+}
+
+struct GetUnreadAnnouncementsCountPageRequest: APIGraphQLRequestable {
+    struct Variables: Codable, Equatable {
+        let courseId: String
+        let pageSize: Int
+        let cursor: String
+    }
+    typealias Response = GetUnreadAnnouncementsCountPageResponse
+
+    let courseId: String
+    let cursor: String
+
+    init(courseId: String, cursor: String) {
+        self.courseId = courseId
         self.cursor = cursor
     }
 
     static let query = """
-    query GetUnreadAnnouncementsCount($pageSize: Int!, $cursor: String) {
-      allCourses {
+    query GetUnreadAnnouncementsCountPage($courseId: ID!, $pageSize: Int!, $cursor: String!) {
+      courses(ids: [$courseId]) {
         _id
         discussionsConnection(filter: {isAnnouncement: true}, first: $pageSize, after: $cursor) {
           pageInfo {
@@ -54,7 +86,15 @@ struct GetUnreadAnnouncementsCountRequest: APIGraphQLRequestable {
     }
     """
 
-    var variables: Variables { Variables(pageSize: Self.pageSize, cursor: cursor) }
+    var variables: Variables { Variables(courseId: courseId, pageSize: GetUnreadCourseAnnouncementCountRequest.pageSize, cursor: cursor) }
+}
+
+struct GetUnreadAnnouncementsCountPageResponse: Codable {
+    let data: ResponseData
+
+    struct ResponseData: Codable {
+        let courses: [GetUnreadAnnouncementsCountResponse.CourseData]
+    }
 }
 
 struct GetUnreadAnnouncementsCountResponse: Codable {
@@ -96,6 +136,12 @@ struct GetUnreadAnnouncementsCountResponse: Codable {
 extension GetUnreadAnnouncementsCountResponse {
     static func make(courses: [CourseData] = []) -> GetUnreadAnnouncementsCountResponse {
         .init(data: .init(allCourses: courses))
+    }
+}
+
+extension GetUnreadAnnouncementsCountPageResponse {
+    static func make(courses: [GetUnreadAnnouncementsCountResponse.CourseData] = []) -> GetUnreadAnnouncementsCountPageResponse {
+        .init(data: .init(courses: courses))
     }
 }
 

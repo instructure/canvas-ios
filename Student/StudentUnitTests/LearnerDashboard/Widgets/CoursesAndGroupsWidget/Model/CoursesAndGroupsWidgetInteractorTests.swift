@@ -402,7 +402,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
 
     private func setupDefaultAPIMocks() {
         api.mock(GetUserSettingsRequest(userID: "self"), value: .make())
-        api.mock(GetUnreadAnnouncementsCountRequest(), value: GetUnreadAnnouncementsCountResponse(data: .init(allCourses: [])))
+        api.mock(GetUnreadCourseAnnouncementCountRequest(), value: GetUnreadAnnouncementsCountResponse(data: .init(allCourses: [])))
     }
 
     private func saveUnreadAnnouncementCount(courseId: String, unreadAnnouncementIds: [String]) {

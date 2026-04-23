@@ -21,6 +21,25 @@ import Core
 import CoreData
 import Foundation
 
+/// Fetches and persists unread announcement counts for all enrolled courses.
+///
+/// ## Fetching strategy
+///
+/// **Phase 1 — First page (`GetUnreadCourseAnnouncementCountRequest`):**
+/// A single `allCourses` query (no cursor) fetches the first page of announcements
+/// for every course simultaneously. Most courses with fewer than `pageSize` unread
+/// announcements are fully resolved here.
+///
+/// **Phase 2 — Subsequent pages (`GetUnreadAnnouncementsCountPageRequest`):**
+/// For each course that reports `hasNextPage: true`, a dedicated `courses(ids:)` query
+/// is fired with that course's own cursor. This ensures each cursor is applied only to
+/// the connection it belongs to. All per-course requests for a given round are fired in
+/// parallel; the process recurses until no course has a next page.
+///
+/// ## Persistence strategy
+///
+/// `write(response:urlResponse:to:)` upserts rather than replaces: it deletes only
+/// entities whose course is absent from the new response, and updates the rest in place.
 final class GetUnreadCourseAnnouncementCountsUseCase: UseCase {
     typealias Model = CDUnreadCourseAnnouncementCount
     typealias Response = [GetUnreadAnnouncementsCountResponse.CourseData]
@@ -50,14 +69,16 @@ final class GetUnreadCourseAnnouncementCountsUseCase: UseCase {
         urlResponse: URLResponse?,
         to client: NSManagedObjectContext
     ) {
-        let existing: [CDUnreadCourseAnnouncementCount] = client.fetch(scope: .all)
-        existing.forEach { client.delete($0) }
-
         guard let courses = response else { return }
 
         var idsByCourseId: [String: Set<String>] = [:]
         for course in courses {
             idsByCourseId[course._id, default: []].formUnion(course.unreadAnnouncementIds)
+        }
+
+        let existing: [CDUnreadCourseAnnouncementCount] = client.fetch(scope: .all)
+        for entity in existing where idsByCourseId[entity.courseId] == nil {
+            client.delete(entity)
         }
 
         for (courseId, ids) in idsByCourseId {
@@ -69,43 +90,53 @@ final class GetUnreadCourseAnnouncementCountsUseCase: UseCase {
         }
     }
 
+    /// Fetches the first page for all courses, then recursively fetches additional
+    /// pages for any course that has more results.
     private static func fetchAllPages(
         environment: AppEnvironment
     ) -> AnyPublisher<[GetUnreadAnnouncementsCountResponse.CourseData], Error> {
         environment.api
-            .makeRequest(GetUnreadAnnouncementsCountRequest())
+            .makeRequest(GetUnreadCourseAnnouncementCountRequest())
             .flatMap { response -> AnyPublisher<[GetUnreadAnnouncementsCountResponse.CourseData], Error> in
                 let firstPage = response.body.data.allCourses
-                let pendingCursors = firstPage.compactMap { $0.discussionsConnection.pageInfo?.nextCursor }
-                guard !pendingCursors.isEmpty else {
+                let pendingCourseCursors = firstPage.compactMap { course -> (courseId: String, cursor: String)? in
+                    guard let cursor = course.discussionsConnection.pageInfo?.nextCursor else { return nil }
+                    return (course._id, cursor)
+                }
+                guard !pendingCourseCursors.isEmpty else {
                     return Just(firstPage).setFailureType(to: Error.self).eraseToAnyPublisher()
                 }
-                return fetchCursorRound(pendingCursors, environment: environment)
+                return fetchCursorRound(pendingCourseCursors, environment: environment)
                     .map { firstPage + $0 }
                     .eraseToAnyPublisher()
             }
             .eraseToAnyPublisher()
     }
 
+    /// Fires one targeted request per (courseId, cursor) pair in parallel, then
+    /// recurses for any course that still has a next page.
     private static func fetchCursorRound(
-        _ cursors: [String],
+        _ courseCursors: [(courseId: String, cursor: String)],
         environment: AppEnvironment
     ) -> AnyPublisher<[GetUnreadAnnouncementsCountResponse.CourseData], Error> {
-        let publishers = cursors.map { cursor in
+        let publishers = courseCursors.map { courseId, cursor in
             environment.api
-                .makeRequest(GetUnreadAnnouncementsCountRequest(cursor: cursor))
-                .map { $0.body.data.allCourses }
+                .makeRequest(GetUnreadAnnouncementsCountPageRequest(courseId: courseId, cursor: cursor))
+                .map { $0.body.data.courses }
         }
 
         return Publishers.MergeMany(publishers)
             .collect()
             .map { $0.flatMap { $0 } }
             .flatMap { courses -> AnyPublisher<[GetUnreadAnnouncementsCountResponse.CourseData], Error> in
-                let nextCursors = courses.compactMap { $0.discussionsConnection.pageInfo?.nextCursor }
-                guard !nextCursors.isEmpty else {
+                let nextCourseCursors = courses.compactMap { course -> (courseId: String, cursor: String)? in
+                    guard let cursor = course.discussionsConnection.pageInfo?.nextCursor else { return nil }
+                    return (course._id, cursor)
+                }
+                guard !nextCourseCursors.isEmpty else {
                     return Just(courses).setFailureType(to: Error.self).eraseToAnyPublisher()
                 }
-                return fetchCursorRound(nextCursors, environment: environment)
+                return fetchCursorRound(nextCourseCursors, environment: environment)
                     .map { courses + $0 }
                     .eraseToAnyPublisher()
             }

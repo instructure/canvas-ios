@@ -19,7 +19,7 @@
 import XCTest
 @testable import Student
 
-final class GetUnreadAnnouncementsCountRequestTests: XCTestCase {
+final class GetUnreadCourseAnnouncementCountRequestTests: XCTestCase {
 
     // MARK: - unreadAnnouncementCount
 
@@ -47,7 +47,7 @@ final class GetUnreadAnnouncementsCountRequestTests: XCTestCase {
         XCTAssertEqual(testee.unreadAnnouncementCount, 2)
     }
 
-    func test_unreadAnnouncementCount_whenParticipantIsNil_shouldCountAsRead() {
+    func test_unreadAnnouncementCount_whenParticipantIsNil_shouldNotCountAsUnread() {
         let testee = GetUnreadAnnouncementsCountResponse.CourseData.make(nodes: [
             GetUnreadAnnouncementsCountResponse.DiscussionNode(_id: "a1", participant: nil)
         ])
