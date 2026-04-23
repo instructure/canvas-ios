@@ -26,7 +26,7 @@ import Foundation
 /// auto-registered. They must be explicitly registered with Core Text using
 /// `CTFontManagerRegisterFontsForURL` before any call to `Font.custom` can resolve them.
 ///
-/// Registration is triggered automatically the first time any `InstUI.Primitives.FontFamilies`
+/// Registration is triggered automatically the first time any `InstUI.Primitive.FontFamily`
 /// property is accessed, because each property is a `static let` whose closure calls this function.
 /// Swift guarantees that `static let` closures execute exactly once (thread-safe, lazy),
 /// so there is no need for an additional once-only guard here.

@@ -27,7 +27,6 @@ struct AssistChatMessageView: View {
         VStack(alignment: .leading, spacing: .zero) {
             messageContent
             citations
-            feedback
             suggestedResponses
         }
     }
@@ -57,13 +56,6 @@ struct AssistChatMessageView: View {
                     }
             }
             .padding(.top, .huiSpaces.space8)
-        }
-    }
-
-    @ViewBuilder
-    private var feedback: some View {
-        if let onFeedbackChange = message.onFeedbackChange {
-            AssistFeedbackView(onChange: onFeedbackChange)
         }
     }
 
@@ -97,18 +89,19 @@ struct AssistChatMessageView: View {
     @ViewBuilder
     private var suggestedResponses: some View {
         if message.chipOptions.isNotEmpty {
-            WrappingHStack(
-                models: message.chipOptions,
-                horizontalSpacing: .zero
-            ) { quickResponse in
-                HorizonUI.PrimaryButton(
-                    quickResponse.chip,
-                    type: .whiteOutline
-                ) {
-                    message.onTapChipOption?(quickResponse)
+            VStack(spacing: .huiSpaces.space12) {
+                ForEach(message.chipOptions) { option in
+                    Button {
+                        message.onTapChipOption?(option)
+                    } label: {
+                        Text(option.chip)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                            .foregroundStyle(Color.huiColors.text.surfaceColored)
+                            .huiTypography(.buttonTextLarge)
+                            .padding(.huiSpaces.space16)
+                            .huiBorder(level: .level1, color: Color.huiColors.text.surfaceColored, radius: 12)
+                    }
                 }
-                .padding(.vertical, .huiSpaces.space8)
-                .padding(.trailing, .huiSpaces.space8)
             }
             .padding(.top, .huiSpaces.space24)
             .frame(maxWidth: .infinity, alignment: .leading)

@@ -217,11 +217,20 @@ public struct GetWebSessionRequest: APIRequestable {
     public let path: String
 
     public var query: [APIQueryItem] {
-        guard let to else { return [] }
+        let mobileConsent = AppEnvironment.shared.userDefaults?.userProvidedAnalyticsConsent
+
+        return [
+            returnToUrl.map { .value("return_to", $0.absoluteString) },
+            mobileConsent.map { .value("mobile_consent", $0 ? "true" : "false") }
+        ].compactMap { $0 }
+    }
+
+    private var returnToUrl: URL? {
+        guard let to else { return nil }
 
         // Inline data content URLs need no extra query params
         if to.scheme == "data" {
-            return [ .value("return_to", to.absoluteString) ]
+            return to
         }
 
         var returnToUrlQueryItems = [
@@ -236,7 +245,8 @@ public struct GetWebSessionRequest: APIRequestable {
         returnToUrlQueryItems.forEach {
             returnToUrl = returnToUrl.appendingQueryItems($0)
         }
-        return [ .value("return_to", returnToUrl.absoluteString) ]
+
+        return returnToUrl
     }
 
     public init(to: URL?) {

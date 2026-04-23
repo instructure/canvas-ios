@@ -1,0 +1,449 @@
+{
+  "size": {
+    "interactive": {
+      "height": {
+        "xxs": {
+          "value": "{size.size20}",
+          "type": "sizing"
+        },
+        "xs": {
+          "value": "{size.size24}",
+          "type": "sizing"
+        },
+        "sm": {
+          "value": "{size.size32}",
+          "type": "sizing"
+        },
+        "md": {
+          "value": "{size.size40}",
+          "type": "sizing"
+        },
+        "lg": {
+          "value": "{size.size48}",
+          "type": "sizing"
+        }
+      }
+    },
+    "choiceControl": {
+      "height": {
+        "sm": {
+          "value": "{size.size24}",
+          "type": "sizing"
+        },
+        "md": {
+          "value": "{size.size24}",
+          "type": "sizing"
+        },
+        "lg": {
+          "value": "{size.size24}",
+          "type": "sizing"
+        }
+      }
+    },
+    "breakpoints": {
+      "xxs": {
+        "value": "8em",
+        "type": "sizing"
+      },
+      "xs": {
+        "value": "16em",
+        "type": "sizing"
+      },
+      "sm": {
+        "value": "30em",
+        "type": "sizing"
+      },
+      "md": {
+        "value": "48em",
+        "type": "sizing",
+        "description": "Tablet"
+      },
+      "lg": {
+        "value": "62em",
+        "type": "sizing"
+      },
+      "desktop": {
+        "value": "64em",
+        "type": "sizing"
+      },
+      "xl": {
+        "value": "75em",
+        "type": "sizing"
+      }
+    },
+    "media": {
+      "mediumMin": {
+        "value": "48em",
+        "type": "sizing"
+      },
+      "largeMin": {
+        "value": "62em",
+        "type": "sizing"
+      },
+      "xLargeMin": {
+        "value": "75em",
+        "type": "sizing"
+      }
+    }
+  },
+  "spacing": {
+    "space2xs": {
+      "value": "{size.size2}",
+      "type": "spacing"
+    },
+    "spaceXs": {
+      "value": "{size.size4}",
+      "type": "spacing"
+    },
+    "spaceSm": {
+      "value": "{size.size8}",
+      "type": "spacing"
+    },
+    "spaceMd": {
+      "value": "{size.size12}",
+      "type": "spacing"
+    },
+    "spaceLg": {
+      "value": "{size.size16}",
+      "type": "spacing"
+    },
+    "spaceXl": {
+      "value": "{size.size24}",
+      "type": "spacing"
+    },
+    "space2xl": {
+      "value": "{size.size32}",
+      "type": "spacing"
+    },
+    "gap": {
+      "sections": {
+        "value": "{size.size48}",
+        "type": "spacing"
+      },
+      "cards": {
+        "sm": {
+          "value": "{size.size16}",
+          "type": "spacing"
+        },
+        "md": {
+          "value": "{size.size24}",
+          "type": "spacing"
+        },
+        "lg": {
+          "value": "{size.size32}",
+          "type": "spacing"
+        }
+      },
+      "inputs": {
+        "horizontal": {
+          "value": "{size.size12}",
+          "type": "spacing"
+        },
+        "vertical": {
+          "value": "{size.size16}",
+          "type": "spacing"
+        }
+      },
+      "inputElements": {
+        "value": "{size.size8}",
+        "type": "spacing"
+      }
+    },
+    "padding": {
+      "container": {
+        "xxs": {
+          "value": "{size.size8}",
+          "type": "spacing"
+        },
+        "xs": {
+          "value": "{size.size12}",
+          "type": "spacing"
+        },
+        "sm": {
+          "value": "{size.size16}",
+          "type": "spacing"
+        },
+        "md": {
+          "value": "{size.size24}",
+          "type": "spacing"
+        },
+        "lg": {
+          "value": "{size.size32}",
+          "type": "spacing"
+        }
+      },
+      "interactive": {
+        "horizontal": {
+          "sm": {
+            "value": "{size.size8}",
+            "type": "spacing"
+          },
+          "md": {
+            "value": "{size.size12}",
+            "type": "spacing"
+          },
+          "lg": {
+            "value": "{size.size16}",
+            "type": "spacing"
+          },
+          "xl": {
+            "value": "{size.size20}",
+            "type": "spacing"
+          }
+        }
+      }
+    }
+  },
+  "borderRadius": {
+    "xs": {
+      "value": "{size.size2}",
+      "type": "borderRadius"
+    },
+    "sm": {
+      "value": "{size.size4}",
+      "type": "borderRadius"
+    },
+    "md": {
+      "value": "{size.size8}",
+      "type": "borderRadius"
+    },
+    "lg": {
+      "value": "{size.size12}",
+      "type": "borderRadius"
+    },
+    "xl": {
+      "value": "{size.size16}",
+      "type": "borderRadius"
+    },
+    "xxl": {
+      "value": "{size.size24}",
+      "type": "borderRadius"
+    },
+    "full": {
+      "value": "999rem",
+      "type": "borderRadius"
+    },
+    "container": {
+      "sm": {
+        "value": "{size.size8}",
+        "type": "borderRadius"
+      },
+      "md": {
+        "value": "{size.size16}",
+        "type": "borderRadius"
+      },
+      "lg": {
+        "value": "{size.size24}",
+        "type": "borderRadius"
+      },
+      "xl": {
+        "value": "{size.size32}",
+        "type": "borderRadius"
+      }
+    },
+    "interactive": {
+      "base": {
+        "value": "{size.size12}",
+        "type": "borderRadius"
+      }
+    }
+  },
+  "borderWidth": {
+    "sm": {
+      "value": "{size.size1}",
+      "type": "borderWidth"
+    },
+    "md": {
+      "value": "{size.size2}",
+      "type": "borderWidth"
+    },
+    "lg": {
+      "value": "{size.size4}",
+      "type": "borderWidth"
+    },
+    "interactive": {
+      "base": {
+        "value": "{size.size1}",
+        "type": "borderWidth"
+      },
+      "focus": {
+        "value": "{size.size2}",
+        "type": "borderWidth"
+      }
+    }
+  },
+  "fontFamily": {
+    "heading": {
+      "value": "{fontFamily.inclusiveSans}",
+      "type": "fontFamilies"
+    },
+    "base": {
+      "value": "{fontFamily.atkinson}",
+      "type": "fontFamilies"
+    },
+    "code": {
+      "value": "{fontFamily.menlo}",
+      "type": "fontFamilies"
+    }
+  },
+  "fontWeight": {
+    "body": {
+      "base": {
+        "value": "{fontWeight.regular}",
+        "type": "fontWeights"
+      },
+      "strong": {
+        "value": "{fontWeight.semiBold}",
+        "type": "fontWeights"
+      }
+    },
+    "heading": {
+      "base": {
+        "value": "{fontWeight.semiBold}",
+        "type": "fontWeights"
+      },
+      "strong": {
+        "value": "{fontWeight.bold}",
+        "type": "fontWeights"
+      }
+    },
+    "interactive": {
+      "value": "{fontWeight.medium}",
+      "type": "fontWeights"
+    }
+  },
+  "lineHeight": {
+    "paragraph": {
+      "textXs": {
+        "value": "{size.size20}",
+        "type": "lineHeights"
+      },
+      "textSm": {
+        "value": "{size.size20}",
+        "type": "lineHeights"
+      },
+      "textBase": {
+        "value": "{size.size24}",
+        "type": "lineHeights"
+      },
+      "base": {
+        "value": "150%",
+        "type": "lineHeights"
+      }
+    },
+    "standalone": {
+      "textXs": {
+        "value": "{size.size12}",
+        "type": "lineHeights"
+      },
+      "textSm": {
+        "value": "{size.size14}",
+        "type": "lineHeights"
+      },
+      "textBase": {
+        "value": "{size.size16}",
+        "type": "lineHeights"
+      },
+      "textLg": {
+        "value": "{size.size20}",
+        "type": "lineHeights"
+      },
+      "textXl": {
+        "value": "{size.size24}",
+        "type": "lineHeights"
+      },
+      "text2xl": {
+        "value": "{size.size28}",
+        "type": "lineHeights"
+      },
+      "text3xl": {
+        "value": "{size.size32}",
+        "type": "lineHeights"
+      },
+      "text4xl": {
+        "value": "{size.size36}",
+        "type": "lineHeights"
+      },
+      "base": {
+        "value": "125%",
+        "type": "lineHeights"
+      }
+    },
+    "heading": {
+      "textLg": {
+        "value": "{size.size28}",
+        "type": "lineHeights"
+      },
+      "textXl": {
+        "value": "{size.size32}",
+        "type": "lineHeights"
+      },
+      "text2xl": {
+        "value": "{size.size36}",
+        "type": "lineHeights"
+      },
+      "text3xl": {
+        "value": "{size.size40}",
+        "type": "lineHeights"
+      },
+      "base": {
+        "value": "125%",
+        "type": "lineHeights"
+      },
+      "loose": {
+        "value": "150%",
+        "type": "lineHeights"
+      }
+    },
+    "label": {
+      "base": {
+        "value": "1.125rem",
+        "type": "lineHeights"
+      }
+    }
+  },
+  "fontSize": {
+    "textXs": {
+      "value": "{size.size12}",
+      "type": "fontSizes"
+    },
+    "textSm": {
+      "value": "{size.size14}",
+      "type": "fontSizes"
+    },
+    "textBase": {
+      "value": "{size.size16}",
+      "type": "fontSizes"
+    },
+    "textLg": {
+      "value": "{size.size20}",
+      "type": "fontSizes"
+    },
+    "textXl": {
+      "value": "{size.size28}",
+      "type": "fontSizes"
+    },
+    "text2xl": {
+      "value": "{size.size40}",
+      "type": "fontSizes"
+    }
+  },
+  "visibleInCanvas": {
+    "value": "false",
+    "type": "boolean"
+  },
+  "visibleInRebrand": {
+    "value": "true",
+    "type": "boolean"
+  },
+  "opacity": {
+    "base": {
+      "value": "{opacity100}",
+      "type": "opacity"
+    },
+    "disabled": {
+      "value": "{opacity50}",
+      "type": "opacity"
+    }
+  }
+}

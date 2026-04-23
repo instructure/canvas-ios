@@ -33,7 +33,7 @@ class CoreTestCase: XCTestCase {
     var api: API { environment.api }
     var router: TestRouter!
     var logger: TestLogger!
-    var analytics = MockAnalyticsHandler()
+    var analytics: AnalyticsHandlerMock!
     var remoteLogHandler = MockRemoteLogHandler()
 
     lazy var environment = TestEnvironment()
@@ -89,7 +89,7 @@ class CoreTestCase: XCTestCase {
         MockUploadManager.reset()
         UUID.reset()
         ExperimentalFeature.allEnabled = false
-        Analytics.shared.handler = analytics
+        resetAnalytics()
         RemoteLogger.shared.handler = remoteLogHandler
         environment.app = .student
         environment.window = window
@@ -138,6 +138,11 @@ class CoreTestCase: XCTestCase {
         } while view == nil && count < 100
 
         return try XCTUnwrap(view)
+    }
+
+    func resetAnalytics() {
+        analytics = .init()
+        Analytics.shared.handler = analytics
     }
 
     private func resetBrandConfig() {

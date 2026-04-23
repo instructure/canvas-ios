@@ -63,6 +63,8 @@ struct AssistRequest: APIRequestable {
     var path: String {
         "assist"
     }
+
+    var query: [APIQueryItem] = [.value("studyToolsOnly", "true")]
     var method: APIMethod = .post
 
     private let prompt: String?

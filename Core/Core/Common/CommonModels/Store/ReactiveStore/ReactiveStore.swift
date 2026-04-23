@@ -45,6 +45,19 @@ public class ReactiveStore<U: UseCase> {
         self.environment = environment
     }
 
+    /// Convenience initializer which sets the context to the provided environment's background context.
+    /// (The naming is not ideal, but had to work around the existing init's parameter naming.)
+    public convenience init(
+        useCase: U,
+        backgroundEnv: AppEnvironment
+    ) {
+        self.init(
+            context: backgroundEnv.database.backgroundReadContext,
+            useCase: useCase,
+            environment: backgroundEnv
+        )
+    }
+
     /// Produces a list of entities for the given UseCase.
     /// When the device is connected to the internet and there's no valid cache, it makes a request to the API and saves the response to the database. If there's valid cache, it returns it.
     /// By default it downloads all pages, and validates cache unless specificied differently.

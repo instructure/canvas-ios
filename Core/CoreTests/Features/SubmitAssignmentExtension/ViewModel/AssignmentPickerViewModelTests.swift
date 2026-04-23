@@ -165,15 +165,13 @@ class AssignmentPickerViewModelTests: CoreTestCase {
     }
 
     func testReportsAssignmentSelectionToAnalytics() {
-        let analyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = analyticsHandler
-        XCTAssertEqual(analyticsHandler.totalEventCount, 0)
+        XCTAssertEqual(analytics.handleEventCallCount, 0)
 
         testee.assignmentSelected(.init(id: "", name: ""))
 
-        XCTAssertEqual(analyticsHandler.totalEventCount, 1)
-        XCTAssertEqual(analyticsHandler.lastEvent, "assignment_selected")
-        XCTAssertNil(analyticsHandler.lastEventParameters)
+        XCTAssertEqual(analytics.handleEventCallCount, 1)
+        XCTAssertEqual(analytics.handleEventInput?.name, "assignment_selected")
+        XCTAssertNil(analytics.handleEventInput?.parameters)
     }
 }
 

@@ -92,29 +92,26 @@ class SubmitAssignmentExtensionViewModelTests: CoreTestCase {
     }
 
     func testReportsCancelToAnalytics() {
-        let analyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = analyticsHandler
-        XCTAssertEqual(analyticsHandler.totalEventCount, 0)
+        resetAnalytics() // clear events tracked during testee init
+        XCTAssertEqual(analytics.handleEventCallCount, 0)
 
         testee.cancelTapped()
 
-        XCTAssertEqual(analyticsHandler.totalEventCount, 1)
-        XCTAssertEqual(analyticsHandler.lastEvent, "share_cancelled")
-        XCTAssertNil(analyticsHandler.lastEventParameters)
+        XCTAssertEqual(analytics.handleEventCallCount, 1)
+        XCTAssertEqual(analytics.handleEventInput?.name, "share_cancelled")
+        XCTAssertNil(analytics.handleEventInput?.parameters)
     }
 
     func testReportsSubmitToAnalytics() {
         testee.coursePickerViewModel.selectedCourse = .init(id: "", name: "")
         testee.assignmentPickerViewModel.assignmentSelected(.init(id: "", name: ""))
-        let analyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = analyticsHandler
-        XCTAssertEqual(analyticsHandler.totalEventCount, 0)
+        resetAnalytics() // clear events tracked during testee init
 
         testee.submitTapped()
 
-        XCTAssertEqual(analyticsHandler.totalEventCount, 1)
-        XCTAssertEqual(analyticsHandler.lastEvent, "submit_tapped")
-        XCTAssertNil(analyticsHandler.lastEventParameters)
+        XCTAssertEqual(analytics.handleEventCallCount, 1)
+        XCTAssertEqual(analytics.handleEventInput?.name, "submit_tapped")
+        XCTAssertNil(analytics.handleEventInput?.parameters)
     }
 
     private func makeExpectation() {
