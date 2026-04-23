@@ -53,13 +53,8 @@ struct GetUnreadAnnouncementsCountResponse: Codable {
         let _id: String
         let discussionsConnection: DiscussionsConnection
 
-        var unreadAnnouncementCount: Int {
-            unreadNodes.count
-        }
-
-        var singleUnreadAnnouncementId: String? {
-            unreadNodes.count == 1 ? unreadNodes.first?._id : nil
-        }
+        var unreadAnnouncementIds: [String] { unreadNodes.map { $0._id } }
+        var unreadAnnouncementCount: Int { unreadNodes.count }
 
         private var unreadNodes: [DiscussionNode] {
             discussionsConnection.nodes.filter { $0.participant?.read == false }

@@ -37,8 +37,7 @@ struct GetUnreadCourseAnnouncementCountsUseCase: APIUseCase {
         for course in response.data.allCourses {
             CDUnreadCourseAnnouncementCount.save(
                 courseId: course._id,
-                unreadCount: course.unreadAnnouncementCount,
-                singleUnreadAnnouncementId: course.singleUnreadAnnouncementId,
+                unreadAnnouncementIds: course.unreadAnnouncementIds,
                 in: client
             )
         }

@@ -583,8 +583,7 @@
     </entity>
     <entity name="CDUnreadCourseAnnouncementCount" representedClassName="Core.CDUnreadCourseAnnouncementCount" syncable="YES">
         <attribute name="courseId" attributeType="String"/>
-        <attribute name="singleUnreadAnnouncementId" optional="YES" attributeType="String"/>
-        <attribute name="unreadCount" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="unreadAnnouncementIdsRaw" attributeType="String" defaultValueString=""/>
         <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="unreadAnnouncementCount" inverseEntity="Course"/>
     </entity>
     <entity name="CDUserGroup" representedClassName="Core.CDUserGroup" syncable="YES">

@@ -286,7 +286,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
             allCourses: [saveCourse(id: testData.courseId1, name: testData.courseName1)],
             courseCards: [saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0)]
         )
-        saveUnreadAnnouncementCount(courseId: testData.courseId1, unreadCount: 2, singleUnreadAnnouncementId: nil)
+        saveUnreadAnnouncementCount(courseId: testData.courseId1, unreadAnnouncementIds: ["a1", "a2"])
         testee = makeInteractor()
 
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (courses, _) in
@@ -299,7 +299,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
             allCourses: [saveCourse(id: testData.courseId1, name: testData.courseName1)],
             courseCards: [saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0)]
         )
-        saveUnreadAnnouncementCount(courseId: testData.courseId1, unreadCount: 1, singleUnreadAnnouncementId: "a1")
+        saveUnreadAnnouncementCount(courseId: testData.courseId1, unreadAnnouncementIds: ["a1"])
         testee = makeInteractor()
 
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (courses, _) in
@@ -312,7 +312,7 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
             allCourses: [saveCourse(id: testData.courseId1, name: testData.courseName1)],
             courseCards: [saveDashboardCard(id: testData.courseId1, shortName: testData.courseName1, position: 0)]
         )
-        saveUnreadAnnouncementCount(courseId: testData.courseId1, unreadCount: 3, singleUnreadAnnouncementId: nil)
+        saveUnreadAnnouncementCount(courseId: testData.courseId1, unreadAnnouncementIds: ["a1", "a2", "a3"])
         testee = makeInteractor()
 
         XCTAssertFirstValue(testee.getCoursesAndGroups(ignoreCache: false, shouldForceCoursesRefresh: false), timeout: 5) { (courses, _) in
@@ -405,11 +405,10 @@ final class CoursesAndGroupsWidgetInteractorTests: StudentTestCase {
         api.mock(GetUnreadAnnouncementsCountRequest(), value: GetUnreadAnnouncementsCountResponse(data: .init(allCourses: [])))
     }
 
-    private func saveUnreadAnnouncementCount(courseId: String, unreadCount: Int, singleUnreadAnnouncementId: String?) {
+    private func saveUnreadAnnouncementCount(courseId: String, unreadAnnouncementIds: [String]) {
         CDUnreadCourseAnnouncementCount.save(
             courseId: courseId,
-            unreadCount: unreadCount,
-            singleUnreadAnnouncementId: singleUnreadAnnouncementId,
+            unreadAnnouncementIds: unreadAnnouncementIds,
             in: databaseClient
         )
     }

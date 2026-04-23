@@ -55,25 +55,4 @@ final class GetUnreadAnnouncementsCountRequestTests: XCTestCase {
         XCTAssertEqual(testee.unreadAnnouncementCount, 0)
     }
 
-    // MARK: - singleUnreadAnnouncementId
-
-    func test_singleUnreadAnnouncementId() {
-        // WHEN no unread nodes
-        var testee = GetUnreadAnnouncementsCountResponse.CourseData.make(nodes: [.make(id: "a1", read: true)])
-        // THEN
-        XCTAssertEqual(testee.singleUnreadAnnouncementId, nil)
-
-        // WHEN single unread node
-        testee = .make(nodes: [.make(id: "a1", read: false)])
-        // THEN
-        XCTAssertEqual(testee.singleUnreadAnnouncementId, "a1")
-
-        // WHEN multiple unread nodes
-        testee = .make(nodes: [
-            .make(id: "a1", read: false),
-            .make(id: "a2", read: false)
-        ])
-        // THEN
-        XCTAssertEqual(testee.singleUnreadAnnouncementId, nil)
-    }
 }
