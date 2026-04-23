@@ -20,8 +20,8 @@ import AVKit
 import Combine
 import Core
 import Firebase
-import FirebaseCrashlyticsSwift
-import FirebaseRemoteConfigSwift
+import FirebaseCrashlytics
+import FirebaseRemoteConfig
 import PSPDFKit
 import SafariServices
 import UIKit
