@@ -66,6 +66,8 @@ public struct AsyncStore<U: UseCase> {
     /// When the device is offline, it will read data from Core Data.
     ///
     /// - Parameters:
+    ///     - convert: A closure that transforms an `NSManagedObject` into a `Sendable` value.
+    ///       It is always called on the managed object context's queue, so it is safe to read the model's properties directly.
     ///     - ignoreCache: Indicates if the request should check the available cache first.
     ///       If it's set to **false**, it will validate the cache's expiration and return it if it's still valid.
     ///       If the cache has expired it will make a request to the API.
@@ -101,6 +103,8 @@ public struct AsyncStore<U: UseCase> {
     /// When the device is offline, it will read data from Core Data.
     ///
     /// - Parameters:
+    ///     - convert: A closure that transforms an `NSManagedObject` into a `Sendable` value.
+    ///       It is always called on the managed object context's queue, so it is safe to read the model's properties directly.
     ///     - ignoreCache: Indicates if the request should check the available cache first.
     ///       If it's set to **false**, it will validate the cache's expiration and return it if it's still valid.
     ///       If the cache has expired it will make a request to the API.
@@ -148,6 +152,8 @@ public struct AsyncStore<U: UseCase> {
     /// When the device is offline, it will read data from Core Data.
     ///
     /// - Parameters:
+    ///     - convert: A closure that transforms an `NSManagedObject` into a `Sendable` value.
+    ///       It is always called on the managed object context's queue, so it is safe to read the model's properties directly.
     ///     - ignoreCache: Indicates if the request should check the available cache first.
     ///       If it's set to **false**, it will validate the cache's expiration and return it if it's still valid.
     ///       If the cache has expired it will make a request to the API.
