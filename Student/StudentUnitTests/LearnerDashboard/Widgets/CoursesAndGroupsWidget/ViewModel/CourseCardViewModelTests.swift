@@ -66,7 +66,8 @@ final class CourseCardViewModelTests: StudentTestCase {
             unreadAnnouncementCount: 42
         ))
 
-        XCTAssertEqual(testee.id, testData.id)
+        XCTAssertEqual(testee.courseID, testData.id)
+        XCTAssertEqual(testee.id, testData.id + "false")
         XCTAssertEqual(testee.title, testData.title)
         XCTAssertEqual(testee.courseColor, testData.color)
         XCTAssertEqual(testee.imageUrl, testData.imageUrl)
@@ -81,14 +82,17 @@ final class CourseCardViewModelTests: StudentTestCase {
 
         // selection contains id
         env.userDefaults?.offlineSyncSelections = ["courses/\(testData.id)"]
+        XCTAssertEqual(testee.id, testData.id + "true")
         XCTAssertEqual(testee.isAvailableOffline, true)
 
         // selection does not contain id
         env.userDefaults?.offlineSyncSelections = ["courses/other_course"]
+        XCTAssertEqual(testee.id, testData.id + "false")
         XCTAssertEqual(testee.isAvailableOffline, false)
 
         // selection is empty
         env.userDefaults?.offlineSyncSelections = []
+        XCTAssertEqual(testee.id, testData.id + "false")
         XCTAssertEqual(testee.isAvailableOffline, false)
     }
 
