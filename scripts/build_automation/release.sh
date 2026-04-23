@@ -23,9 +23,10 @@ set -e
 # set -x
 
 printHelp() {
-	echo "yarn release <app name> <version> <bitrise app slug> <bitrise token>"
+	echo "yarn release <app name> <version> [--branch <branch>] <bitrise app slug> <bitrise token>"
 	echo "    app name - (i.e. Student, Teacher, Parent)"
 	echo "    version - version for the next release"
+	echo "    --branch - (optional) branch to start the release from (defaults to master)"
 	echo "    *bitrise slug - bitrise slug for app url"
 	echo "    *bitrise token - token from bitrise"
 	echo "    * optional if you have a release.config file with the slugs and tokens of each app"
@@ -43,6 +44,22 @@ if [ -z ${2} ]; then
     exit 1
 fi
 
+APP_NAME=$1
+VERSION=$2
+shift 2
+
+BRANCH="master"
+if [ "${1}" = "--branch" ]; then
+	if [ -z "${2}" ]; then
+		echo "branch name missing after --branch"
+		printHelp
+		exit 1
+	fi
+ 
+	BRANCH=$2
+	shift 2
+fi
+
 CONFIG_FILE="$(dirname "${BASH_SOURCE[0]}")/release.config"
 if [ -e $CONFIG_FILE ]
 then
@@ -51,36 +68,38 @@ then
 	TOKEN=$BITRISE_TOKEN
 
 else
-	if [ -z ${3} ]; then
+	if [ -z ${1} ]; then
 	    echo "bitrise slug missing"
 		printHelp
 	    exit 1
 	fi
 
-	if [ -z ${4} ]; then
+	if [ -z ${2} ]; then
 	    echo "bitrise token missing"
 		printHelp
 	    exit 1
 	fi
-	
-	SLUG=$3
-	TOKEN=$4
+
+	SLUG=$1
+	TOKEN=$2
 
 fi
 
+echo "Starting release for $APP_NAME $VERSION from branch '$BRANCH'"
+
 curl https://app.bitrise.io/app/$SLUG/build/start.json --data '{
     "build_params": {
-        "branch": "master",
+        "branch": "'"$BRANCH"'",
         "environments": [
             {
                 "is_expand": true,
                 "mapped_to": "APP_RELEASE_VERSION",
-                "value": "'"$2"'"
+                "value": "'"$VERSION"'"
             },
             {
                 "is_expand": true,
                 "mapped_to": "APP_RELEASE_TARGET",
-                "value": "'"$1"'"
+                "value": "'"$APP_NAME"'"
             }
         ],
         "workflow_id": "app-store-trigger"
