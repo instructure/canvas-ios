@@ -16,9 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
 import CoreData
-import Snapshots
 
 public enum AsyncStoreError: Error, Equatable {
     case noEntityFound
@@ -26,7 +24,8 @@ public enum AsyncStoreError: Error, Equatable {
 }
 
 /// Async store that returns custom Snapshots of models.
-public struct AsyncStore<U: UseCase, S: Snapshot<U.Model>> {
+public struct AsyncStore<U: UseCase> {
+    public typealias Model = U.Model
     private let useCase: U
     private let request: NSFetchRequest<U.Model>
 
@@ -34,20 +33,19 @@ public struct AsyncStore<U: UseCase, S: Snapshot<U.Model>> {
     private let offlineModeInteractor: OfflineModeInteractor?
     private let environment: AppEnvironment
 
-    private var isOfflineModeEnabled: Bool {
+    var isOfflineModeEnabled: Bool {
         offlineModeInteractor?.isOfflineModeEnabled() ?? false
     }
 
     public init(
         useCase: U,
-        returns: S.Type = S.self,
         context: NSManagedObjectContext = AppEnvironment.shared.database.backgroundReadContext,
         offlineModeInteractor: OfflineModeInteractor? = OfflineModeAssembly.make(),
         environment: AppEnvironment = .shared
     ) {
         self.useCase = useCase.modified(for: environment)
 
-        self.request = NSFetchRequest<U.Model>(entityName: String(describing: U.Model.self))
+        self.request = NSFetchRequest<U.Model>(entityName: String(describing: Model.self))
         let scope = useCase.scope
         request.predicate = scope.predicate
         request.sortDescriptors = scope.order
@@ -75,9 +73,13 @@ public struct AsyncStore<U: UseCase, S: Snapshot<U.Model>> {
     ///       Defaults to **false**.
     ///     - loadAllPages: Tells the request if it should load all the pages or just the first one. Defaults to **true**.
     /// - Returns: A list of entities.
-    public func getEntities(ignoreCache: Bool = false, loadAllPages: Bool = true) async throws -> [S] {
+    public func getEntities<Result: Sendable>(
+        convert: @escaping (Model) -> Result,
+        ignoreCache: Bool = false,
+        loadAllPages: Bool = true
+    ) async throws -> [Result] {
         if isOfflineModeEnabled {
-            return try await getEntitiesFromDatabase()
+            return try await getEntitiesFromDatabase(convert: convert)
         }
 
         let hasExpired = await useCase.hasCacheExpired(environment: environment)
@@ -86,7 +88,7 @@ public struct AsyncStore<U: UseCase, S: Snapshot<U.Model>> {
             try await fetchEntitiesFromAPI(loadAllPages: loadAllPages)
         }
 
-        return try await getEntitiesFromDatabase()
+        return try await getEntitiesFromDatabase(convert: convert)
     }
 
     /// Produces one non-optional entity for the given UseCase.
@@ -109,12 +111,13 @@ public struct AsyncStore<U: UseCase, S: Snapshot<U.Model>> {
     /// - Returns: The first fetched entity.
     /// - Throws: `AsyncStoreError.noEntityFound` if no entity is found.
     /// - Throws: `AsyncStoreError.moreThanOneEntityFound` if more than one entity is found and `assertOnlyOneEntityFound` is set to true.
-    public func getSingleEntity(
+    public func getSingleEntity<Result: Sendable>(
+        convert: @escaping (Model) -> Result,
         ignoreCache: Bool = false,
         loadAllPages: Bool = true,
         assertOnlyOneEntityFound: Bool = true
-    ) async throws -> S {
-        let entities = try await getEntities(ignoreCache: ignoreCache, loadAllPages: loadAllPages)
+    ) async throws -> Result {
+        let entities = try await getEntities(convert: convert, ignoreCache: ignoreCache, loadAllPages: loadAllPages)
 
         if assertOnlyOneEntityFound, entities.count > 1 {
             throw AsyncStoreError.moreThanOneEntityFound(entities.count)
@@ -127,9 +130,9 @@ public struct AsyncStore<U: UseCase, S: Snapshot<U.Model>> {
         return entity
     }
 
-    public func getEntitiesFromDatabase() async throws -> [S] {
+    public func getEntitiesFromDatabase<Result: Sendable>(convert: @escaping (Model) -> Result) async throws -> [Result] {
         try await AsyncFetchedResults(request: request, context: context)
-            .fetch()
+            .fetch(convert: convert)
     }
 
     // MARK: - Stream Entities
@@ -152,12 +155,13 @@ public struct AsyncStore<U: UseCase, S: Snapshot<U.Model>> {
     ///       Defaults to **false**.
     ///     - loadAllPages: Tells the request if it should load all the pages or just the first one. Defaults to **true**.
     /// - Returns: An async sequence of list of entities.
-    public func streamEntities(
+    public func streamEntities<Result: Sendable>(
+        convert: @escaping (Model) -> Result,
         ignoreCache: Bool = false,
         loadAllPages: Bool = true
-    ) async throws -> AsyncThrowingStream<[S], Error> {
+    ) async throws -> AsyncThrowingStream<[Result], Error> {
         if isOfflineModeEnabled {
-            return streamEntitiesFromDatabase()
+            return streamEntitiesFromDatabase(convert: convert)
         }
 
         let hasExpired = await useCase.hasCacheExpired(environment: environment)
@@ -166,13 +170,13 @@ public struct AsyncStore<U: UseCase, S: Snapshot<U.Model>> {
             try await fetchEntitiesFromAPI(loadAllPages: loadAllPages)
         }
 
-        return streamEntitiesFromDatabase()
+        return streamEntitiesFromDatabase(convert: convert)
     }
 
     /// - Warning: This stream **DOES NOT terminate**. Ensure proper cancellation of its consuming task.
-    private func streamEntitiesFromDatabase() -> AsyncThrowingStream<[S], Error> {
+    private func streamEntitiesFromDatabase<Result: Sendable>(convert: @escaping (Model) -> Result) -> AsyncThrowingStream<[Result], Error> {
         AsyncFetchedResults(request: request, context: context)
-            .stream()
+            .stream(convert: convert)
     }
 
     // MARK: - Force Refresh
@@ -213,6 +217,3 @@ public struct AsyncStore<U: UseCase, S: Snapshot<U.Model>> {
         try await fetchEntitiesFromAPI(getNextUseCase: nextPageUseCase, loadAllPages: true)
     }
 }
-
-/// Async store that works with Detachable models, returning their Snapshots.
-public typealias DetachableAsyncStore<U: UseCase> = AsyncStore<U, U.Model.Snapshot> where U.Model: Detachable, U.Model.Snapshot.Model == U.Model

@@ -46,9 +46,9 @@ public extension CustomSnapshot {
 }
 
 extension Array where Element: Detachable, Element == Element.Snapshot.Model {
-    public func snapshots() -> [Element.Snapshot] { map { $0.snapshot } }
+    public func snapshots() -> [Element.Snapshot] { map(Element.Snapshot.init) }
 }
 
 extension Set where Element: Detachable, Element == Element.Snapshot.Model {
-    public func snapshots() -> [Element.Snapshot] { map { $0.snapshot } }
+    public func snapshots() -> [Element.Snapshot] { map(Element.Snapshot.init) }
 }

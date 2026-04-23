@@ -16,32 +16,28 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-import Snapshots
 @preconcurrency import CoreData
 
-public final class AsyncFetchedResults<S: Snapshot> {
-    private let request: NSFetchRequest<S.Model>
+public struct AsyncFetchedResults<Model: NSManagedObject> {
+    private let request: NSFetchRequest<Model>
     private let context: NSManagedObjectContext
 
-    public init(
-        request: NSFetchRequest<S.Model>,
-        context: NSManagedObjectContext
-    ) {
+    public init(request: NSFetchRequest<Model>, context: NSManagedObjectContext) {
         self.request = request
         self.context = context
     }
 
-    public func fetch() async throws -> [S] {
-        try await context.fetch(request)
+    public func fetch<Result: Sendable>(convert: @escaping (Model) -> Result) async throws -> [Result] {
+        try await context.fetch(request, convert: convert)
     }
 
-    public func stream() -> AsyncThrowingStream<[S], Error> {
+    public func stream<Result: Sendable>(convert: @escaping (Model) -> Result) -> AsyncThrowingStream<[Result], Error> {
         AsyncThrowingStream { continuation in
             let observer = FetchedResultsObserver(
                 request: request,
                 context: context,
-                continuation: continuation
+                continuation: continuation,
+                convert: convert
             )
 
             continuation.onTermination = { _ in
@@ -51,18 +47,21 @@ public final class AsyncFetchedResults<S: Snapshot> {
     }
 }
 
-private final class FetchedResultsObserver<S: Snapshot>: NSObject, NSFetchedResultsControllerDelegate {
-    private var controller: NSFetchedResultsController<S.Model>?
-    private let continuation: AsyncThrowingStream<[S], Error>.Continuation
+private final class FetchedResultsObserver<Model: NSManagedObject, Result: Sendable>: NSObject, NSFetchedResultsControllerDelegate {
+    private var controller: NSFetchedResultsController<Model>?
+    private let continuation: AsyncThrowingStream<[Result], Error>.Continuation
     private let context: NSManagedObjectContext
+    private let convert: (Model) -> Result
 
     init(
-        request: NSFetchRequest<S.Model>,
+        request: NSFetchRequest<Model>,
         context: NSManagedObjectContext,
-        continuation: AsyncThrowingStream<[S], Error>.Continuation
+        continuation: AsyncThrowingStream<[Result], Error>.Continuation,
+        convert: @escaping (Model) -> Result
     ) {
         self.continuation = continuation
         self.context = context
+        self.convert = convert
         super.init()
 
         context.perform { [weak self] in
@@ -87,8 +86,9 @@ private final class FetchedResultsObserver<S: Snapshot>: NSObject, NSFetchedResu
 
     private func sendElement() {
         context.perform { [weak self] in
-            let entities = self?.controller?.fetchedObjects ?? []
-            self?.continuation.yield(entities.map(S.init))
+            guard let self else { return }
+            let entities = self.controller?.fetchedObjects ?? []
+            self.continuation.yield(entities.map(self.convert))
         }
     }
 
@@ -106,9 +106,12 @@ private final class FetchedResultsObserver<S: Snapshot>: NSObject, NSFetchedResu
 }
 
 extension NSManagedObjectContext {
-    public func fetch<S: Snapshot>(_ request: NSFetchRequest<S.Model>) async throws -> [S] {
+    public func fetch<Result: Sendable, Model: NSManagedObject>(
+        _ request: NSFetchRequest<Model>,
+        convert: @escaping (Model) -> Result
+    ) async throws -> [Result] {
         try await perform {
-            try self.fetch(request).map(S.init)
+            try self.fetch(request).map(convert)
         }
     }
 }
