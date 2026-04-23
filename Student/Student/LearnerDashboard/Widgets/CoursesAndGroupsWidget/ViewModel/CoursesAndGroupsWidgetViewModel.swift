@@ -143,11 +143,11 @@ extension CoursesAndGroupsWidgetViewModel: CourseCardOrderChangeDelegate {
 
     func orderDidChange(_ newOrder: [CourseCardDropToReorderDelegate.CardID]) {
         courseCards = newOrder.compactMap { id in
-            courseCards.first { $0.id == id }
+            courseCards.first { $0.courseID == id }
         }
     }
 
     func reorderDidFinish() {
-        interactor.reorderCourses(newOrder: courseCards.map(\.id))
+        interactor.reorderCourses(newOrder: courseCards.map(\.courseID))
     }
 }

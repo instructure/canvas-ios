@@ -68,20 +68,20 @@ struct CourseCardViewModel: Identifiable, Equatable {
 
     func didTapCard(from controller: WeakViewController) {
         // No need to add contextColor to the query, since at this point the contextColor is available via CoreData
-        let route = "/courses/\(id)"
+        let route = "/courses/\(courseID)"
 
         router.route(to: route, from: controller, options: .push)
     }
 
     func didTapManageOfflineContent(from controller: WeakViewController) {
-        let route = "/offline/sync_picker/\(id)"
+        let route = "/offline/sync_picker/\(courseID)"
 
         router.route(to: route, from: controller, options: .modal(isDismissable: false, embedInNav: true))
     }
 
     func didTapCustomize(showColorOverlay: Bool, from controller: WeakViewController) {
         let viewModel = CustomizeCourseViewModel(
-            courseId: id,
+            courseId: courseID,
             courseImage: imageUrl,
             courseColor: courseColor.uiColor,
             courseName: title,
@@ -100,7 +100,7 @@ struct CourseCardViewModel: Identifiable, Equatable {
     func didTapAnnouncements(from controller: WeakViewController) {
         if let announcementId = model.singleUnreadAnnouncementId {
             router.route(
-                to: "/courses/\(id)/announcements/\(announcementId)",
+                to: "/courses/\(courseID)/announcements/\(announcementId)",
                 from: controller,
                 options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
             )
@@ -112,7 +112,7 @@ struct CourseCardViewModel: Identifiable, Equatable {
             }
         } else {
             router.route(
-                to: "/courses/\(id)/announcements",
+                to: "/courses/\(courseID)/announcements",
                 from: controller,
                 options: .push
             )
