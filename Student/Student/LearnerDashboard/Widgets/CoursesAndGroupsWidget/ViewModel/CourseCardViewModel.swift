@@ -23,7 +23,8 @@ import SwiftUI
 
 struct CourseCardViewModel: Identifiable, Equatable {
 
-    let id: String
+    var id: String { courseID + isAvailableOffline.description }
+    let courseID: String
     let title: String
     let courseColor: Color
     let imageUrl: URL?
@@ -35,7 +36,7 @@ struct CourseCardViewModel: Identifiable, Equatable {
 
     var isAvailableOffline: Bool {
         guard let selections = AppEnvironment.shared.userDefaults?.offlineSyncSelections else { return false }
-        return selections.contains { $0.contains("courses/\(id)") }
+        return selections.contains { $0.contains("courses/\(courseID)") }
     }
 
     private let model: CoursesAndGroupsWidgetCourseItem
@@ -49,7 +50,7 @@ struct CourseCardViewModel: Identifiable, Equatable {
     ) {
         self.model = model
 
-        self.id = model.id
+        self.courseID = model.id
         self.title = model.title
         self.courseColor = model.color
         self.imageUrl = model.imageUrl
@@ -119,7 +120,7 @@ struct CourseCardViewModel: Identifiable, Equatable {
     }
 
     static func == (lhs: CourseCardViewModel, rhs: CourseCardViewModel) -> Bool {
-        lhs.model == rhs.model
+        lhs.model == rhs.model && lhs.isAvailableOffline == rhs.isAvailableOffline
     }
 }
 
