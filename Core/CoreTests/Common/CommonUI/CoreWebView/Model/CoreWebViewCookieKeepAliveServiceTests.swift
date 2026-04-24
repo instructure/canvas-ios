@@ -36,7 +36,7 @@ final class CoreWebViewCookieKeepAliveServiceTests: CoreTestCase {
     }
 
     override func tearDown() {
-        testee.stop()
+        MainActor.assumeIsolated { testee.stop() }
         testee = nil
         monitor = nil
         super.tearDown()
@@ -44,6 +44,7 @@ final class CoreWebViewCookieKeepAliveServiceTests: CoreTestCase {
 
     // MARK: - start
 
+    @MainActor
     func test_start_whenNoAccessToken_shouldNotMakeRequest() {
         environment.api = API(.make(accessToken: nil))
         let notCalledExpectation = expectation(description: "No request made")
@@ -58,6 +59,7 @@ final class CoreWebViewCookieKeepAliveServiceTests: CoreTestCase {
         wait(for: [notCalledExpectation], timeout: 0.5)
     }
 
+    @MainActor
     func test_start_whenAccessTokenPresent_shouldImmediatelyRenewCookies() {
         let requestExpectation = expectation(description: "Session request made")
         api.mock(GetWebSessionRequest(to: nil), dataHandler: { _ in
@@ -73,6 +75,7 @@ final class CoreWebViewCookieKeepAliveServiceTests: CoreTestCase {
         wait(for: [requestExpectation], timeout: 5)
     }
 
+    @MainActor
     func test_start_whenAlreadyRunning_shouldNotRestart() {
         let requestExpectation = expectation(description: "Session request made")
         requestExpectation.expectedFulfillmentCount = 1
@@ -93,6 +96,7 @@ final class CoreWebViewCookieKeepAliveServiceTests: CoreTestCase {
 
     // MARK: - stop
 
+    @MainActor
     func test_stop_shouldPreventFurtherRenewals() {
         let initialRequestExpectation = expectation(description: "Initial request")
         api.mock(GetWebSessionRequest(to: nil), dataHandler: { _ in
@@ -119,6 +123,7 @@ final class CoreWebViewCookieKeepAliveServiceTests: CoreTestCase {
 
     // MARK: - refresh
 
+    @MainActor
     func test_refresh_whenRunning_shouldRenewCookies() {
         var callCount = 0
         let firstCallExpectation = expectation(description: "First request")
@@ -142,6 +147,7 @@ final class CoreWebViewCookieKeepAliveServiceTests: CoreTestCase {
 
     // MARK: - Network status
 
+    @MainActor
     func test_start_whenNetworkComesOnline_shouldRenewCookies() {
         var callCount = 0
         let firstCallExpectation = expectation(description: "Initial renewal")
@@ -165,6 +171,7 @@ final class CoreWebViewCookieKeepAliveServiceTests: CoreTestCase {
         wait(for: [secondCallExpectation], timeout: 5)
     }
 
+    @MainActor
     func test_start_whenNetworkAlreadyConnected_shouldNotFireExtraRenewal() {
         monitor.updateHandler?(NWPathWrapper(status: .satisfied, isExpensive: false))
 
