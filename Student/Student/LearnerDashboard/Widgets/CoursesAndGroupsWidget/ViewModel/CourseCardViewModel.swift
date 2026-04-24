@@ -21,10 +21,10 @@ import Core
 import Foundation
 import SwiftUI
 
-struct CourseCardViewModel: Identifiable, Equatable, Hashable {
+@Observable
+final class CourseCardViewModel: Identifiable, Equatable {
 
-    var id: Int { self.hashValue }
-    let courseID: String
+    var id: String
     let title: String
     let courseColor: Color
     let imageUrl: URL?
@@ -34,14 +34,13 @@ struct CourseCardViewModel: Identifiable, Equatable, Hashable {
     let shouldShowAnnouncementsButton: Bool
     let openAnnouncementsA11yLabel: String
 
-    var isAvailableOffline: Bool {
-        guard let selections = AppEnvironment.shared.userDefaults?.offlineSyncSelections else { return false }
-        return selections.contains { $0.contains("courses/\(courseID)") }
-    }
+    // cannot capture id before this gets initialized, but it's needed for the initialization
+    var isAvailableOffline: Bool!
 
     private let model: CoursesAndGroupsWidgetCourseItem
     private let didSaveChanges: PassthroughSubject<Void, Never>
     private let router: Router
+    private var subscriptions = Set<AnyCancellable>()
 
     init(
         model: CoursesAndGroupsWidgetCourseItem,
@@ -50,7 +49,7 @@ struct CourseCardViewModel: Identifiable, Equatable, Hashable {
     ) {
         self.model = model
 
-        self.courseID = model.id
+        self.id = model.id
         self.title = model.title
         self.courseColor = model.color
         self.imageUrl = model.imageUrl
@@ -64,24 +63,27 @@ struct CourseCardViewModel: Identifiable, Equatable, Hashable {
 
         self.didSaveChanges = didSaveChanges
         self.router = router
+
+        updateOfflineAvailability()
+        observeUserDefaultsChanges()
     }
 
     func didTapCard(from controller: WeakViewController) {
         // No need to add contextColor to the query, since at this point the contextColor is available via CoreData
-        let route = "/courses/\(courseID)"
+        let route = "/courses/\(id)"
 
         router.route(to: route, from: controller, options: .push)
     }
 
     func didTapManageOfflineContent(from controller: WeakViewController) {
-        let route = "/offline/sync_picker/\(courseID)"
+        let route = "/offline/sync_picker/\(id)"
 
         router.route(to: route, from: controller, options: .modal(isDismissable: false, embedInNav: true))
     }
 
     func didTapCustomize(showColorOverlay: Bool, from controller: WeakViewController) {
         let viewModel = CustomizeCourseViewModel(
-            courseId: courseID,
+            courseId: id,
             courseImage: imageUrl,
             courseColor: courseColor.uiColor,
             courseName: title,
@@ -100,7 +102,7 @@ struct CourseCardViewModel: Identifiable, Equatable, Hashable {
     func didTapAnnouncements(from controller: WeakViewController) {
         if let announcementId = model.singleUnreadAnnouncementId {
             router.route(
-                to: "/courses/\(courseID)/announcements/\(announcementId)",
+                to: "/courses/\(id)/announcements/\(announcementId)",
                 from: controller,
                 options: .modal(isDismissable: true, embedInNav: true, addDoneButton: true)
             )
@@ -112,20 +114,34 @@ struct CourseCardViewModel: Identifiable, Equatable, Hashable {
             }
         } else {
             router.route(
-                to: "/courses/\(courseID)/announcements",
+                to: "/courses/\(id)/announcements",
                 from: controller,
                 options: .push
             )
         }
     }
 
-    static func == (lhs: CourseCardViewModel, rhs: CourseCardViewModel) -> Bool {
-        lhs.model == rhs.model && lhs.isAvailableOffline == rhs.isAvailableOffline
+    private func observeUserDefaultsChanges() {
+        NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)
+            .receive(on: DispatchQueue.main)
+            .compactMap { _ in AppEnvironment.shared.userDefaults?.offlineSyncSelections }
+            .removeDuplicates()
+            .sink { [weak self] _ in
+                self?.updateOfflineAvailability()
+            }
+            .store(in: &subscriptions)
     }
 
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(courseID)
-        hasher.combine(isAvailableOffline)
+    private func updateOfflineAvailability() {
+        if let selections = AppEnvironment.shared.userDefaults?.offlineSyncSelections {
+            isAvailableOffline = selections.contains { $0.contains("courses/\(self.id)") }
+        } else {
+            isAvailableOffline = false
+        }
+    }
+
+    static func == (lhs: CourseCardViewModel, rhs: CourseCardViewModel) -> Bool {
+        lhs.model == rhs.model
     }
 }
 

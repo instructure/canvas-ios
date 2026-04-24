@@ -104,15 +104,15 @@ struct CoursesAndGroupsWidgetView: View {
                     )
                     .contentShape(.dragPreview, RoundedRectangle(cornerRadius: AUI.Styles.Elevation.Shape.cardLarge.cornerRadius))
                     .onDrag {
-                        draggedCourseCardId = cardViewModel.courseID
+                        draggedCourseCardId = cardViewModel.id
                         return NSItemProvider(item: nil, typeIdentifier: CourseCardDropToReorderDelegate.DropID)
                     }
                     .onDrop(
                         of: [CourseCardDropToReorderDelegate.DropID],
                         delegate: CourseCardDropToReorderDelegate(
-                            receiverCardId: cardViewModel.courseID,
+                            receiverCardId: cardViewModel.id,
                             draggedCourseCardId: $draggedCourseCardId,
-                            order: courseCards.map { $0.courseID },
+                            order: courseCards.map { $0.id },
                             delegate: viewModel
                         )
                     )

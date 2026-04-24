@@ -222,9 +222,9 @@ final class CoursesAndGroupsWidgetViewModelTests: StudentTestCase {
         XCTAssertFinish(testee.refresh(ignoreCache: false))
 
         XCTAssertEqual(testee.courseCards.count, 2)
-        XCTAssertEqual(testee.courseCards.first?.courseID, testData.course1.id)
+        XCTAssertEqual(testee.courseCards.first?.id, testData.course1.id)
         XCTAssertEqual(testee.courseCards.first?.title, testData.course1.title)
-        XCTAssertEqual(testee.courseCards.last?.courseID, testData.course2.id)
+        XCTAssertEqual(testee.courseCards.last?.id, testData.course2.id)
         XCTAssertEqual(testee.courseCards.last?.title, testData.course2.title)
 
         XCTAssertEqual(testee.groupCards.count, 2)
@@ -243,7 +243,7 @@ final class CoursesAndGroupsWidgetViewModelTests: StudentTestCase {
 
         testee.orderDidChange(["course2", "course1"])
 
-        XCTAssertEqual(testee.courseCards.map(\.courseID), ["course2", "course1"])
+        XCTAssertEqual(testee.courseCards.map(\.id), ["course2", "course1"])
     }
 
     // MARK: - reorderDidFinish
