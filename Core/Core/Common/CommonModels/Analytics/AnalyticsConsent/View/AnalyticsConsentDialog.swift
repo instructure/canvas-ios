@@ -51,6 +51,7 @@ extension UIAlertController {
         alert.addAction(UIAlertAction(title: String(localized: "Allow", bundle: .core), style: .default) { _ in
             consentAction(true)
         })
+        alert.preferredAction = alert.actions.last
 
         return alert
     }

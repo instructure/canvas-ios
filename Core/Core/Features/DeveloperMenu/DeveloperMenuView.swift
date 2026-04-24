@@ -182,14 +182,8 @@ public struct DeveloperMenuView: View {
                 snackBarViewModel.showSnack("Refresh Token Invalidated")
             },
             DeveloperMenuItem("Clear analytics consent") {
-                guard let app = env.app else { return }
-                env.api.makeRequest(DeleteAnalyticsConsentRequest(namespace: app.consentNamespace)) { _, _, error in
-                    if error == nil {
-                        performUIUpdate {
-                            snackBarViewModel.showSnack("Analytics consent cleared. Restart the app!")
-                        }
-                    }
-                }
+                env.userDefaults?.userProvidedAnalyticsConsent = nil
+                snackBarViewModel.showSnack("Analytics consent cleared. Restart the app!")
             }
         ]
     }

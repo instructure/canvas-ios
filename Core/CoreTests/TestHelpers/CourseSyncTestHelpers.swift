@@ -17,19 +17,8 @@
 //
 
 import Foundation
+@testable import Core
 
-enum APIAnalyticsConsentRequestNamespace: String {
-    case student = "MOBILE_CANVAS_STUDENT_COOKIE_CONSENT"
-    case teacher = "MOBILE_CANVAS_TEACHER_COOKIE_CONSENT"
-    case parent = "MOBILE_CANVAS_PARENT_COOKIE_CONSENT"
-}
-
-extension AppEnvironment.App {
-    var consentNamespace: APIAnalyticsConsentRequestNamespace {
-        switch self {
-        case .student, .horizon: .student
-        case .teacher: .teacher
-        case .parent: .parent
-        }
-    }
+extension CourseSyncEntry.State {
+    static var downloaded: Self { .downloaded(isEmbeddedMediaComplete: true) }
 }

@@ -43,7 +43,6 @@ public final class PrivacySettingsViewModel {
     private let mainScheduler: AnySchedulerOf<DispatchQueue>
 
     private var subscriptions = Set<AnyCancellable>()
-    private var setConsentCancellable: AnyCancellable?
 
     public init(
         interactor: AnalyticsConsentInteractor,
@@ -56,7 +55,7 @@ public final class PrivacySettingsViewModel {
     func loadConsent() {
         state = .loading
 
-        interactor.getConsentIfRequired(ignoreConsentCache: false)
+        interactor.getConsentIfRequired(ignoreCache: false)
             .replaceError(with: nil)
             .compactMap { $0 } // consent value should exist already
             .receive(on: mainScheduler)
@@ -68,22 +67,14 @@ public final class PrivacySettingsViewModel {
     }
 
     private func setAnalyticsConsent(to value: Bool) {
-        setConsentCancellable = interactor.setConsent(value)
-            .receive(on: mainScheduler)
-            .sink(
-                receiveCompletion: { [weak self] completion in
-                    if completion.isFailure {
-                        withAnimation {
-                            self?.isAnalyticsEnabled.toggle()
-                        }
-                        self?.snackBar.showSnack(String(localized: "Failed to save setting", bundle: .core))
-                    }
-                },
-                receiveValue: {
-                    guard let handler = Analytics.shared.handler else { return }
-
-                    handler.handleConsentChange(to: value)
-                }
-            )
+        do {
+            try interactor.setConsent(value)
+            Analytics.shared.handler?.handleConsentChange(to: value)
+        } catch {
+            withAnimation {
+                isAnalyticsEnabled.toggle()
+            }
+            snackBar.showSnack(String(localized: "Failed to save setting", bundle: .core))
+        }
     }
 }

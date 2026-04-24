@@ -196,7 +196,7 @@ extension ProfileSettingsViewModel {
         let legalGroupView = SettingsGroupView(viewModel: groupViewModel)
 
         analyticsConsentInteractor
-            .getConsentIfRequired(ignoreConsentCache: false)
+            .getConsentIfRequired(ignoreCache: false)
             .replaceError(with: nil)
             .sink { isConsentRequired in
                 privacySettingsView.viewModel.isHidden = isConsentRequired == nil

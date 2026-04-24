@@ -93,6 +93,7 @@ extension View {
             // TODO: Replace with commented version after a11y issues are fixed (see comments for `NavigationBarTitleView`)
             self
                 .navigationBarTitleView(title: title, subtitle: subtitle)
+                .environment(\.toolbarTintColor, style.toolbarTintColor)
 //            if let subtitle {
 //                self
 //                    .navigationSubtitle(subtitle)

@@ -95,7 +95,7 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
         .map { [weak self] (coursesResult: CoursesResult, _, _) -> Model in
             let sortedCourseCards = coursesResult.courseCards.sortedForWidget()
             self?.currentDashboardCards = sortedCourseCards
-
+            let userID = self?.env.currentSession?.userID
             let courseItems = coursesResult.allCourses
                 .filterUsingDashboardCards(sortedCourseCards)
                 .map { course in
@@ -104,7 +104,7 @@ final class CoursesAndGroupsWidgetInteractorLive: CoursesAndGroupsWidgetInteract
                         title: course.name ?? "",
                         color: course.color.asColor,
                         imageUrl: course.imageDownloadURL,
-                        grade: course.hideTotalGrade ? nil : course.displayGradeForLearnerDashboard,
+                        grade: course.hideTotalGrade(userID: userID) ? nil : course.displayGradeForLearnerDashboard,
                         unreadAnnouncementCount: course.unreadAnnouncementCount?.unreadCount ?? 0,
                         singleUnreadAnnouncementId: course.unreadAnnouncementCount?.singleUnreadAnnouncementId
                     )

@@ -120,7 +120,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     }
 
     private func loadAnalyticsConsent(isForced: Bool) {
-        analyticsConsentInteractor.getConsentIfRequired(ignoreConsentCache: isForced)
+        analyticsConsentInteractor.getConsentIfRequired(ignoreCache: isForced)
             .replaceError(with: nil)
             .sink { [weak self] consentValue in
                 self?.isAnalyticsConsentRequired = consentValue != nil

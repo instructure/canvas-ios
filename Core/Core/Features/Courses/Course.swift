@@ -320,8 +320,9 @@ extension Course {
         return settings?.restrictQuantitativeData ?? false
     }
 
-    public var hideTotalGrade: Bool {
-        let enrollment = enrollments?.filter({ $0.isStudent }).first
+    public func hideTotalGrade(userID: String?) -> Bool {
+        let enrollment = enrollmentForGrades(userId: userID, includingCompleted: true)
+
         return hideFinalGrades == true || (
             enrollment?.multipleGradingPeriodsEnabled == true &&
             enrollment?.totalsForAllGradingPeriodsOption == false &&

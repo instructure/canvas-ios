@@ -103,8 +103,13 @@ final class CourseSyncProgressInteractorLive: CourseSyncProgressInteractor {
         return progressObserverInteractor
             .observeDownloadProgress()
             .first()
-            .flatMap {
-                unownedSelf.courseSyncListInteractor.getCourseSyncEntries(filter: .courseIds($0.courseIds))
+            .flatMap { progress in
+                unownedSelf
+                    .courseSyncListInteractor
+                    .getCourseSyncEntries(
+                        filter: .courseIds(progress.courseIds),
+                        progress: progress
+                    )
                     .handleEvents(
                         receiveOutput: {
                             unownedSelf.courseSyncEntries.send($0)
