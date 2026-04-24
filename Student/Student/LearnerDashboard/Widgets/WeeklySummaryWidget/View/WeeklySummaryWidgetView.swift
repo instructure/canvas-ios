@@ -86,6 +86,7 @@ struct WeeklySummaryWidgetView: View {
         }
         .buttonStyle(.pillTintFilled)
         .hidden(viewModel.isCurrentWeek)
+        .accessibilityHidden(viewModel.isCurrentWeek)
         .identifier("Dashboard.Forecast.currentWeekButton")
     }
 

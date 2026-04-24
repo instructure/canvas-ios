@@ -41,13 +41,13 @@ struct ToDoWidgetListView: View {
                 )
                 .identifier("Dashboard.Todo.TodoList.Item")
                 .paddingStyle(.leading, .standard)
-                .accessibilityFocused($isFirstItemFocused, when: item == viewModel.items.first)
 
                 AUI.Divider(.padded)
             }
         }
         .accessibilityElement(children: .contain)
         .accessibilityLabel(.format(accessibilityListCount: viewModel.items.count))
+        .accessibilityFocused($isFirstItemFocused)
     }
 
     private func isSwipingBinding(for item: TodoItemViewModel) -> Binding<Bool> {
