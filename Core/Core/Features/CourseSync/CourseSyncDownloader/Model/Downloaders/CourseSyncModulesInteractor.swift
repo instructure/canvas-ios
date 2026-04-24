@@ -22,6 +22,7 @@ import Foundation
 public protocol CourseSyncModulesInteractor {
     func getModuleItems(courseId: CourseSyncID) -> AnyPublisher<[ModuleItem], Error>
     func getAssociatedModuleItems(courseId: CourseSyncID, moduleItemTypes: Set<TabName>, moduleItems: [ModuleItem]) -> AnyPublisher<Void, Error>
+    func createStudioModulePlaceholders(courseId: CourseSyncID, moduleItems: [ModuleItem]) -> AnyPublisher<Void, Error>
 }
 
 public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor {
@@ -145,6 +146,33 @@ public final class CourseSyncModulesInteractorLive: CourseSyncModulesInteractor 
             .eraseToAnyPublisher()
     }
 
+    public func createStudioModulePlaceholders(
+        courseId: CourseSyncID,
+        moduleItems: [ModuleItem]
+    ) -> AnyPublisher<Void, Error> {
+        let studioItems = moduleItems.compactMap { item -> (ModuleItem, String)? in
+            guard let id = item.type?.studioMediaLTILaunchID else { return nil }
+            return (item, id)
+        }
+
+        return studioItems.publisher
+            .tryMap { [envResolver] (item, ltiLaunchID) in
+                let folderURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+                    sessionId: envResolver.sessionId(for: courseId),
+                    courseId: courseId.value,
+                    sectionName: OfflineFolderPrefix.studioModuleItems.rawValue,
+                    resourceId: item.id
+                )
+                let htmlURL = folderURL.appendingPathComponent("body.html")
+                let html = "<html><body><iframe src=\"/?custom_arc_media_id%3D\(ltiLaunchID)\"></iframe></body></html>"
+                try FileManager.default.createDirectory(at: folderURL, withIntermediateDirectories: true)
+                try html.write(to: htmlURL, atomically: true, encoding: .utf8)
+            }
+            .collect()
+            .mapToVoid()
+            .eraseToAnyPublisher()
+    }
+
     private func getModuleFiles(
         filesInteractor: CourseSyncFilesInteractor,
         courseId: CourseSyncID,
@@ -208,5 +236,10 @@ private extension ModuleItemType {
         } else {
             return nil
         }
+    }
+
+    var studioMediaLTILaunchID: String? {
+        guard case let .externalTool(_, url) = self else { return nil }
+        return url.queryValue(for: "custom_arc_media_id")
     }
 }

@@ -605,6 +605,10 @@ public final class CourseSyncInteractorLive: CourseSyncInteractor {
             downloaders.append(modulesDownloaders)
         }
 
+        downloaders.append(
+            modulesInteractor.createStudioModulePlaceholders(courseId: entry.syncID, moduleItems: moduleItems)
+        )
+
         return downloaders
     }
 
@@ -775,6 +779,8 @@ private extension Collection where Element == ModuleItem {
                 return false
             case .discussion:
                 return false
+            case .externalTool:
+                return true
             default:
                 return true
             }
