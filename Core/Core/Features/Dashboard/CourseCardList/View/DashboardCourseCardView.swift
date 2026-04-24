@@ -174,7 +174,7 @@ struct DashboardCourseCardView: View {
     private var gradePill: some View {
         if showGrade, let course = courseCard.course {
             HStack {
-                if course.hideTotalGrade {
+                if course.hideTotalGrade(userID: env.currentSession?.userID) {
                     Image.lockSolid.size(14)
                 } else {
                     Text(course.displayGrade).font(.semibold14)
