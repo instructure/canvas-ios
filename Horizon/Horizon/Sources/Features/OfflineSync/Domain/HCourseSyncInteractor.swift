@@ -54,7 +54,6 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
     private var downloadSubscription: AnyCancellable?
     private var modulesFetchSubscription: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
-    private let syncItemsQueue = DispatchQueue(label: "com.instructure.HCourseSyncInteractor.syncItems", attributes: .concurrent)
 
     // MARK: - Public
 
@@ -210,7 +209,7 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
     }
 
     private func appendSyncItems(_ newItems: [String]) {
-        syncItemsQueue.async(flags: .barrier) { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             guard let self else { return }
             session.horizonOfflineSyncItems += newItems
         }

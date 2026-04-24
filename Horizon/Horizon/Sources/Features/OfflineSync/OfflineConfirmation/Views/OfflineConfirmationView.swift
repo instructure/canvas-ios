@@ -97,9 +97,7 @@ struct OfflineConfirmationView: View {
                         onTapConfirmation()
                     }
                 }
-                .padding(.horizontal, .huiSpaces.space16)
-                .padding(.top, .huiSpaces.space12)
-                .padding(.horizontal, .huiSpaces.space16)
+                .padding(.horizontal, .huiSpaces.space24)
                 .padding(.top, .huiSpaces.space12)
             }
         }

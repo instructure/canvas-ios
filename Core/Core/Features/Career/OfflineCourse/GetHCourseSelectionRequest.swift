@@ -53,6 +53,7 @@ public struct GetHCourseSelectionRequest: APIGraphQLRequestable {
                                                 size
                                                 url
                                                 mimeClass
+                                                updatedAt
                                             }
                                         }
                                     }

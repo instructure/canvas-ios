@@ -183,6 +183,47 @@ final class OfflineCourseItemTests: HorizonTestCase {
         XCTAssertEqual(testee.files.first?.id, testData.subItemID1)
     }
 
+    func test_initFromEntity_whenCourseSyncedAtCourseLevel_filesNotInSyncItems_shouldMarkFilesSelected() {
+        let courseEntity: CDHCourseSelection = databaseClient.insert()
+        courseEntity.id = testData.courseID
+        courseEntity.name = testData.courseName
+        courseEntity.size = testData.courseSize
+
+        let fileEntity: CDHCourseSelectionFile = databaseClient.insert()
+        fileEntity.id = testData.subItemID1
+        fileEntity.courseID = testData.courseID
+        fileEntity.name = "file name 1"
+        fileEntity.size = "1 MB"
+        fileEntity.sizeInBytes = testData.subItemSizeInBytes1
+        courseEntity.files = [fileEntity]
+
+        let courseSyncPath = OfflineType.course(id: testData.courseID).path()
+        let testee = OfflineCourseItem(from: courseEntity, offlineSyncItems: [courseSyncPath])
+
+        XCTAssertEqual(testee.isSelected, true)
+        XCTAssertEqual(testee.files.first?.isSelected, true)
+    }
+
+    func test_initFromEntity_whenCourseNotSynced_filesFollowTheirOwnSyncState() {
+        let courseEntity: CDHCourseSelection = databaseClient.insert()
+        courseEntity.id = testData.courseID
+        courseEntity.name = testData.courseName
+        courseEntity.size = testData.courseSize
+
+        let fileEntity: CDHCourseSelectionFile = databaseClient.insert()
+        fileEntity.id = testData.subItemID1
+        fileEntity.courseID = testData.courseID
+        fileEntity.name = "file name 1"
+        fileEntity.size = "1 MB"
+        fileEntity.sizeInBytes = testData.subItemSizeInBytes1
+        courseEntity.files = [fileEntity]
+
+        let testee = OfflineCourseItem(from: courseEntity, offlineSyncItems: [])
+
+        XCTAssertEqual(testee.isSelected, false)
+        XCTAssertEqual(testee.files.first?.isSelected, false)
+    }
+
     // MARK: - Private helpers
 
     private func makeCourse(

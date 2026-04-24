@@ -30,7 +30,6 @@ public final class CDHCourseSelection: NSManagedObject, SizeStringConvertible {
     @discardableResult
     static func save(
         apiEntity: GetHCourseSelectionResponse.Enrollment,
-        isBugReport: Bool = false,
         in context: NSManagedObjectContext
     ) -> CDHCourseSelection {
 

@@ -40,7 +40,6 @@ final class ManageOfflineContentViewModel {
     }
 
     var selectedSizeCourse: String? {
-        let selectedCourses = courses.filter({ $0.selectionState == .checked || $0.selectionState == .partial })
         let size = selectedCourses.reduce(0) { $0 + $1.sizeToDownload }
         return size == 0 ? nil : Int(size).humanReadableFileSize
     }

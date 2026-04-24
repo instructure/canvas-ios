@@ -28,6 +28,7 @@ final class OfflineSubItemTests: HorizonTestCase {
         fileName: "file name 1",
         fileSize: "2 MB",
         fileSizeInBytes: Double(2_000_000),
+        fileMimeClass: "pdf",
         fileURL: URL(string: "https://example.com/file.pdf")
     )
     private lazy var testData = Self.testData
@@ -41,6 +42,7 @@ final class OfflineSubItemTests: HorizonTestCase {
         entity.name = testData.fileName
         entity.size = testData.fileSize
         entity.sizeInBytes = testData.fileSizeInBytes
+        entity.mimeClass = testData.fileMimeClass
         entity.url = testData.fileURL
 
         let testee = OfflineFileItem(from: entity, offlineSyncItems: [])
@@ -49,6 +51,7 @@ final class OfflineSubItemTests: HorizonTestCase {
         XCTAssertEqual(testee.name, testData.fileName)
         XCTAssertEqual(testee.size, testData.fileSize)
         XCTAssertEqual(testee.sizeInBytes, testData.fileSizeInBytes)
+        XCTAssertEqual(testee.mimeClass, testData.fileMimeClass)
         XCTAssertEqual(testee.url, testData.fileURL)
     }
 
@@ -63,6 +66,27 @@ final class OfflineSubItemTests: HorizonTestCase {
         let testee = OfflineFileItem(from: entity, offlineSyncItems: [])
 
         XCTAssertEqual(testee.isSelected, false)
+    }
+
+    // MARK: - toDic
+
+    func test_toDic_shouldContainAllExpectedKeysAndValues() {
+        let testee = OfflineFileItem(
+            id: testData.fileID,
+            name: testData.fileName,
+            size: testData.fileSize,
+            sizeInBytes: testData.fileSizeInBytes,
+            isSelected: true,
+            mimeClass: testData.fileMimeClass,
+            courseID: testData.courseID
+        )
+
+        let dic = testee.toDic()
+
+        XCTAssertEqual(dic["name"] as? String, testData.fileName)
+        XCTAssertEqual(dic["mimeClass"] as? String, testData.fileMimeClass)
+        XCTAssertEqual(dic["courseID"] as? String, testData.courseID)
+        XCTAssertEqual(dic["sizeInBytes"] as? Double, testData.fileSizeInBytes)
     }
 
     func test_initFromEntity_whenURLIsNil_shouldMapURLAsNil() {

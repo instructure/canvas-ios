@@ -28,7 +28,7 @@ final class GetHCourseSelectionUseCaseTests: CoreTestCase {
     func test_cacheKey() {
         let useCase = GetHCourseSelectionUseCase(userId: Self.userID)
 
-        XCTAssertEqual(useCase.cacheKey, "Get-Course-Selection")
+        XCTAssertEqual(useCase.cacheKey, "Get-Course-Selection-\(Self.userID)")
     }
 
     // MARK: - Request

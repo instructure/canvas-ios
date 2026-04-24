@@ -35,7 +35,7 @@ struct OfflineStorageView: View {
     }
 
     private var storageCard: some View {
-        VStack(alignment: .leading, spacing: 8) {
+        VStack(alignment: .leading, spacing: .huiSpaces.space8) {
             HStack {
                 Text("Storage", bundle: .horizon)
                     .huiTypography(.h4)
@@ -48,7 +48,7 @@ struct OfflineStorageView: View {
             storageBar
             storageLegend
         }
-        .padding(16)
+        .padding(.huiSpaces.space16)
         .background(HorizonUI.colors.surface.cardPrimary)
         .overlay(
             RoundedRectangle(cornerRadius: HorizonUI.CornerRadius.level3.attributes.radius)
@@ -81,7 +81,7 @@ struct OfflineStorageView: View {
     // MARK: - Storage Legend
 
     private var storageLegend: some View {
-        HStack(spacing: 10) {
+        HStack(spacing: .huiSpaces.space10) {
             legendItem(
                 color: HorizonUI.colors.primitives.blue82,
                 label: String(localized: "Other apps", bundle: .horizon)
@@ -98,7 +98,7 @@ struct OfflineStorageView: View {
     }
 
     private func legendItem(color: Color, label: String) -> some View {
-        HStack(spacing: 4) {
+        HStack(spacing: .huiSpaces.space8) {
             Circle()
                 .fill(color)
                 .frame(width: 8, height: 8)

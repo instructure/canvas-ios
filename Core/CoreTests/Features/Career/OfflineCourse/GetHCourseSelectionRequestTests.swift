@@ -99,6 +99,7 @@ final class GetHCourseSelectionRequestTests: CoreTestCase {
                                                         size
                                                         url
                                                         mimeClass
+                                                        updatedAt
                                                     }
                                                 }
                                             }

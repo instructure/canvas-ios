@@ -27,7 +27,7 @@ public final class GetHCourseSelectionUseCase: APIUseCase {
 
     // MARK: - Properties
 
-    public var cacheKey: String? { "Get-Course-Selection" }
+    public var cacheKey: String? { "Get-Course-Selection-\(userId)" }
     private let userId: String
     private let horizonCourses: Bool?
 

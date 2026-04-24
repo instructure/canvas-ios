@@ -26,14 +26,18 @@ final class ManageOfflineContentInteractorLiveTests: HorizonTestCase {
     private static let userID = "user 1"
 
     private var testee: ManageOfflineContentInteractorLive!
+    private var session: SessionDefaults!
 
     override func setUp() {
         super.setUp()
-        testee = ManageOfflineContentInteractorLive(userID: Self.userID, session: .fallback)
+        session = SessionDefaults(sessionID: Self.userID)
+        testee = ManageOfflineContentInteractorLive(userID: Self.userID, session: session)
     }
 
     override func tearDown() {
         testee = nil
+        session.reset()
+        session = nil
         super.tearDown()
     }
 

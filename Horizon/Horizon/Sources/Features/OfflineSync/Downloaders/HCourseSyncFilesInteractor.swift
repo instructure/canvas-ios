@@ -89,7 +89,7 @@ final class HCourseSyncFilesInteractorLive: HCourseSyncFilesInteractor, LocalFil
         return subject.eraseToAnyPublisher()
     }
 
-    public func downloadSingleFile(
+    private func downloadSingleFile(
         file: OfflineFileItem,
         sessionID: String
     ) -> AnyPublisher<Float, Error> {
@@ -104,25 +104,36 @@ final class HCourseSyncFilesInteractorLive: HCourseSyncFilesInteractor, LocalFil
             location: URL.Directories.documents
         )
 
-        return ReactiveStore(useCase: GetFile(context: .course(file.courseID), fileID: file.id))
-            .getEntities()
-            .tryMap { files -> URL in
-                guard let file = files.first,
-                      let remoteURL = file.url else {
-                    throw NSError.instructureError("Invalid file data")
+        if fileManager.fileExists(atPath: localURL.path), // File exists on the disk
+           let fileModificationDate = fileManager.fileModificationDate(url: localURL),
+           let updatedAt = file.updatedAt, // and
+           fileModificationDate >= updatedAt { // is up to date
+            return AnyPublisher<Float, Error>.create { subscriber in
+                subscriber.send(1)
+                subscriber.send(completion: .finished)
+                return AnyCancellable {}
+            }
+        } else {
+            return ReactiveStore(useCase: GetFile(context: .course(file.courseID), fileID: file.id))
+                .getEntities()
+                .tryMap { files -> URL in
+                    guard let file = files.first,
+                          let remoteURL = file.url else {
+                        throw NSError.instructureError("Invalid file data")
+                    }
+                    return remoteURL
                 }
-                return remoteURL
-            }
-            .flatMap { remoteURL -> AnyPublisher<Float, Error> in
-                return DownloadTaskPublisher(
-                    parameters: DownloadTaskParameters(
-                        remoteURL: remoteURL,
-                        localURL: localURL
+                .flatMap { remoteURL -> AnyPublisher<Float, Error> in
+                    return DownloadTaskPublisher(
+                        parameters: DownloadTaskParameters(
+                            remoteURL: remoteURL,
+                            localURL: localURL
+                        )
                     )
-                )
+                    .eraseToAnyPublisher()
+                }
                 .eraseToAnyPublisher()
-            }
-            .eraseToAnyPublisher()
+        }
     }
 
      func removeUnavailableFiles(
@@ -141,11 +152,9 @@ final class HCourseSyncFilesInteractorLive: HCourseSyncFilesInteractor, LocalFil
             .subtracting(Set(mappedNewFileIDs))
             .map { courseFolderURL.appendingPathComponent($0) }
 
-        unowned let unownedSelf = self
-
         return unavailableFileFolderURLs
             .publisher
-            .tryMap { try unownedSelf.fileManager.removeItem(at: $0) }
+            .tryMap { [unowned self] in try self.fileManager.removeItem(at: $0) }
             .collect()
             .map { _ in () }
             .eraseToAnyPublisher()
