@@ -168,11 +168,12 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
     public func handleConsentChange(to isAnalyticsEnabled: Bool, sessionStartCompletion: @escaping () -> Void) {
         if isAnalyticsEnabled {
             analyticsTracker.startSession(completion: sessionStartCompletion)
-            PageViewEventController.instance.startTracking()
         } else {
             analyticsTracker.endSession()
-            PageViewEventController.instance.endTracking()
         }
+
+        // This is internal-only tracking, it is always enabled
+        PageViewEventController.instance.startTracking()
     }
 
     public func handleEvent(_ name: String, parameters: [String: Any]?) {
