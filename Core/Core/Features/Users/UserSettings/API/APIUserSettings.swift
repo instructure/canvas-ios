@@ -23,6 +23,9 @@ public struct APIUserSettings: Codable, Equatable {
     let collapse_global_nav: Bool
     let hide_dashcard_color_overlays: Bool
     let comment_library_suggestions_enabled: Bool
+    let pendo_mobile_student_api_key: String?
+    let pendo_mobile_teacher_api_key: String?
+    let pendo_mobile_parent_api_key: String?
 }
 
 #if DEBUG
@@ -32,13 +35,19 @@ extension APIUserSettings {
         manual_mark_as_read: Bool = false,
         collapse_global_nav: Bool = false,
         hide_dashcard_color_overlays: Bool = false,
-        comment_library_suggestions_enabled: Bool = false
+        comment_library_suggestions_enabled: Bool = false,
+        pendo_mobile_student_api_key: String? = nil,
+        pendo_mobile_teacher_api_key: String? = nil,
+        pendo_mobile_parent_api_key: String? = nil
     ) -> APIUserSettings {
         APIUserSettings(
             manual_mark_as_read: manual_mark_as_read,
             collapse_global_nav: collapse_global_nav,
             hide_dashcard_color_overlays: hide_dashcard_color_overlays,
-            comment_library_suggestions_enabled: comment_library_suggestions_enabled
+            comment_library_suggestions_enabled: comment_library_suggestions_enabled,
+            pendo_mobile_student_api_key: pendo_mobile_student_api_key,
+            pendo_mobile_teacher_api_key: pendo_mobile_teacher_api_key,
+            pendo_mobile_parent_api_key: pendo_mobile_parent_api_key
         )
     }
 }

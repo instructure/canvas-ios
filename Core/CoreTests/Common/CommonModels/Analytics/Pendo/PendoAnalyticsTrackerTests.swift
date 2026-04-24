@@ -125,6 +125,24 @@ class PendoAnalyticsTrackerTests: XCTestCase {
         XCTAssertEqual(pendoManager.endSessionCallsCount, 1)
     }
 
+    // MARK: - storeApiKey
+
+    func test_storeApiKey_shouldOverwriteInitApiKeyForSetup() async throws {
+        testee.storeApiKey("some remote key")
+
+        try await testee.startSessionAsync()
+
+        XCTAssertEqual(pendoManager.setupInput, "some remote key")
+    }
+
+    func test_storeApiKey_whenEmpty_shouldPreventSetup() async throws {
+        testee.storeApiKey("")
+
+        try await testee.startSessionAsync()
+
+        XCTAssertEqual(pendoManager.setupCallsCount, 0)
+    }
+
     // MARK: - track
 
     func test_track_shouldCallPendoManagerMethod() async throws {

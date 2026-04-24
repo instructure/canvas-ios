@@ -31,6 +31,7 @@ final class AnalyticsHandlerLiveTests: CoreTestCase {
         super.setUp()
         pendoManager = .init()
         consentInteractor = .init()
+        api.mock(GetUserSettingsRequest(userID: "self"), value: .make())
         MainActor.assumeIsolated {
             testee = makeHandler()
         }
@@ -92,6 +93,31 @@ final class AnalyticsHandlerLiveTests: CoreTestCase {
         wait(for: [sessionStarted2], timeout: 2)
 
         XCTAssertEqual(pendoManager.setupCallsCount, 1)
+    }
+
+    @MainActor
+    func test_initializeTracking_shouldFetchUserSettings() {
+        consentInteractor.isTrackingEnabledResult = false
+        let userSettingsFetched = expectation(description: "GetUserSettings API called")
+        api.mock(GetUserSettingsRequest(userID: "self"), expectation: userSettingsFetched, value: .make())
+
+        XCTAssertFinish(testee.initializeTracking(environment: environment))
+
+        wait(for: [userSettingsFetched], timeout: 2)
+    }
+
+    // MARK: - storePendoApiKey
+
+    @MainActor
+    func test_storePendoApiKey_shouldUseStoredKeyToSetupPendo() {
+        testee.storePendoApiKey("some remote key")
+        consentInteractor.isTrackingEnabledResult = true
+
+        let sessionStarted = expectation(description: "session start")
+        XCTAssertFinish(testee.initializeTracking(environment: environment) { sessionStarted.fulfill() })
+        wait(for: [sessionStarted], timeout: 2)
+
+        XCTAssertEqual(pendoManager.setupInput, "some remote key")
     }
 
     // MARK: - handleConsentChange

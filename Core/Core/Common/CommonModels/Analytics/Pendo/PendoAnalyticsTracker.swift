@@ -36,7 +36,7 @@ public final class PendoAnalyticsTracker {
 
     private let interactor: AnalyticsMetadataInteractor
     private let pendoManager: PendoManagerWrapper
-    private let pendoApiKey: String?
+    private var pendoApiKey: String?
 
     private var isSetupCalled: Bool = false
     private var isSessionInProgress: Bool = false
@@ -55,6 +55,10 @@ public final class PendoAnalyticsTracker {
 
     public func initManager(with url: URL) {
         pendoManager.initWith(url)
+    }
+
+    public func storeApiKey(_ apiKey: String) {
+        pendoApiKey = apiKey.nilIfEmpty
     }
 
     // MARK: Publics

@@ -97,7 +97,7 @@ public class DashboardSettingsInteractorLive: DashboardSettingsInteractor {
             .dropFirst()
             .removeDuplicates()
             .sink { colorOverlay in
-                UpdateUserSettings(hide_dashcard_color_overlays: !colorOverlay).fetch()
+                UpdateUserSettings(hideDashcardColorOverlays: !colorOverlay).fetch()
             }
             .store(in: &subscriptions)
     }

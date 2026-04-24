@@ -21,10 +21,12 @@ import CoreData
 public struct GetUserSettings: APIUseCase {
     public typealias Model = UserSettings
 
-    public let userID: String
+    private let userID: String
+    private let shouldSaveAnalyticsApiKey: Bool
 
-    public init (userID: String = "self") {
+    public init(userID: String = "self", shouldSaveAnalyticsApiKey: Bool = false) {
         self.userID = userID
+        self.shouldSaveAnalyticsApiKey = shouldSaveAnalyticsApiKey
     }
 
     public var cacheKey: String? {
@@ -37,5 +39,27 @@ public struct GetUserSettings: APIUseCase {
 
     public var scope: Scope {
         return Scope(predicate: .all, order: [])
+    }
+
+    public func write(response: APIUserSettings?, urlResponse: URLResponse?, to client: NSManagedObjectContext) {
+        guard let response else { return }
+
+        UserSettings.save(response, in: client)
+
+        if shouldSaveAnalyticsApiKey, let pendoApiKey = response.pendoApiKey?.nilIfEmpty {
+            Analytics.shared.handler?.storePendoApiKey(pendoApiKey)
+        }
+    }
+}
+
+private extension APIUserSettings {
+    var pendoApiKey: String? {
+        guard let app = AppEnvironment.shared.app else { return nil }
+
+        return switch app {
+        case .student, .horizon: pendo_mobile_student_api_key
+        case .teacher: pendo_mobile_teacher_api_key
+        case .parent: pendo_mobile_parent_api_key
+        }
     }
 }
