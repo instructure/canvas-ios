@@ -21,9 +21,9 @@ import Core
 import Foundation
 import SwiftUI
 
-struct CourseCardViewModel: Identifiable, Equatable {
+struct CourseCardViewModel: Identifiable, Equatable, Hashable {
 
-    var id: String { courseID + isAvailableOffline.description }
+    var id: Int { self.hashValue }
     let courseID: String
     let title: String
     let courseColor: Color
@@ -108,7 +108,7 @@ struct CourseCardViewModel: Identifiable, Equatable {
             // Wait a little to allow the details screen to open,
             // and mark announcement as read before triggering a soft-refresh.
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                didSaveChanges.send()
+                self.didSaveChanges.send()
             }
         } else {
             router.route(
@@ -121,6 +121,11 @@ struct CourseCardViewModel: Identifiable, Equatable {
 
     static func == (lhs: CourseCardViewModel, rhs: CourseCardViewModel) -> Bool {
         lhs.model == rhs.model && lhs.isAvailableOffline == rhs.isAvailableOffline
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(courseID)
+        hasher.combine(isAvailableOffline)
     }
 }
 
