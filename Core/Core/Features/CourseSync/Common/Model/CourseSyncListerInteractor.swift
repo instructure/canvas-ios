@@ -21,7 +21,14 @@ import CombineSchedulers
 import Foundation
 
 public protocol CourseSyncListInteractor {
-    func getCourseSyncEntries(filter: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error>
+    func getCourseSyncEntries(filter: CourseSyncListFilter, progress: CourseSyncDownloadProgress?) -> AnyPublisher<[CourseSyncEntry], Error>
+}
+
+extension CourseSyncListInteractor {
+
+    public func getCourseSyncEntries(filter: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error> {
+        getCourseSyncEntries(filter: filter, progress: nil)
+    }
 }
 
 public class CourseSyncListInteractorLive: CourseSyncListInteractor {
@@ -39,7 +46,7 @@ public class CourseSyncListInteractorLive: CourseSyncListInteractor {
         self.scheduler = scheduler
     }
 
-    public func getCourseSyncEntries(filter: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error> {
+    public func getCourseSyncEntries(filter: CourseSyncListFilter, progress: CourseSyncDownloadProgress?) -> AnyPublisher<[CourseSyncEntry], Error> {
         let courseListStore: ReactiveStore<GetCourseSyncSelectorCourses>
 
         let shouldLimitResultsToCacheOnly = filter.shouldUseCache
@@ -93,7 +100,39 @@ public class CourseSyncListInteractorLive: CourseSyncListInteractor {
                 $0.applySelectionsFromPreviousSession(filter: filter,
                                                       sessionDefaults: &sessionDefaults)
             }
-            .map { shouldLimitResultsToCacheOnly ? $0.selectedEntries() : $0 }
+            .map { syncedEntries in
+
+                let limitedResults = shouldLimitResultsToCacheOnly ? syncedEntries.selectedEntries() : []
+
+                var entries: [CourseSyncEntry] = []
+                syncedEntries.forEach { entry in
+
+                    if shouldLimitResultsToCacheOnly {
+                        if let cleanedEntry = limitedResults[id: entry.id] {
+                            entries.append(cleanedEntry)
+                            return
+                        }
+
+                        if let progress, progress.embeddedContentErrorCourseIds.contains(entry.courseId) {
+                            var incompleteEntry = entry
+                            incompleteEntry.state = .downloaded(isEmbeddedMediaComplete: false)
+
+                            // Keep relevant selections
+                            incompleteEntry
+                                .tabs.removeAll(where: { $0.selectionState == .deselected })
+                            incompleteEntry
+                                .files.removeAll()
+
+                            entries.append(incompleteEntry)
+                        }
+
+                    } else {
+                        entries.append(entry)
+                    }
+                }
+
+                return entries
+            }
             .receive(on: scheduler)
             .eraseToAnyPublisher()
     }

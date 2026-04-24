@@ -125,16 +125,18 @@ class CourseSyncProgressViewModel: ObservableObject {
             interactor.observeDownloadProgress().setFailureType(to: Error.self),
             interactor.observeEntries()
         )
-        .map { ($0.0, $0.1.makeSyncProgressViewModelItems(interactor: interactor)) }
+        .map { ($0.0, $0.1.makeSyncProgressViewModelItems(interactor: interactor, downloadProgress: $0.0)) }
         .receive(on: DispatchQueue.main)
         .handleEvents(receiveOutput: { [unowned self] downloadProgress, entryProgressList in
             if entryProgressList.count > 0 {
                 state = .data
 
-                if downloadProgress.isFinished, downloadProgress.error != nil {
-                    state = .dataWithError
-                } else if downloadProgress.isFinished, downloadProgress.error == nil {
-                    isSyncFinished = true
+                if downloadProgress.isFinished {
+                    if downloadProgress.error != nil {
+                        state = .dataWithError
+                    } else {
+                        isSyncFinished = true
+                    }
                 }
             }
         }, receiveCompletion: { [unowned self] result in

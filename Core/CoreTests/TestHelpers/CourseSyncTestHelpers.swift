@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -17,29 +17,8 @@
 //
 
 import Foundation
+@testable import Core
 
-public struct CourseSyncID: Hashable, CustomStringConvertible {
-    let value: String
-    let apiBaseURL: URL?
-
-    var localID: String { value.localID }
-    var asContext: Context { .course(localID) }
-
-    init(value: String, apiBaseURL: URL? = nil) {
-        self.value = value
-        self.apiBaseURL = apiBaseURL
-    }
-
-    public var description: String { value }
+extension CourseSyncEntry.State {
+    static var downloaded: Self { .downloaded(isEmbeddedMediaComplete: true) }
 }
-
-#if DEBUG
-
-extension CourseSyncID: ExpressibleByStringLiteral {
-    public init(stringLiteral value: StringLiteralType) {
-        self.value = value
-        self.apiBaseURL = nil
-    }
-}
-
-#endif

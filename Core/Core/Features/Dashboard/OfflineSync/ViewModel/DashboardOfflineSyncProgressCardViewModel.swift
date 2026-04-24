@@ -29,6 +29,7 @@ public class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
 
         case progress(Progress, ProgressText)
         case error
+        case warning
         case hidden
 
         public var isHidden: Bool {
@@ -115,7 +116,9 @@ public class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
                 return Empty(completeImmediately: false).eraseToAnyPublisher()
             }
 
-            if downloadProgress.isFinished, downloadProgress.error != nil {
+            if downloadProgress.isFinished, downloadProgress.isEmbeddedContentError {
+                return Just(.warning).eraseToAnyPublisher()
+            } else if downloadProgress.isFinished, downloadProgress.error != nil {
                 return Just(.error).eraseToAnyPublisher()
             } else {
                 let format = String(localized: "d_courses_syncing", bundle: .core)
@@ -129,7 +132,9 @@ public class DashboardOfflineSyncProgressCardViewModel: ObservableObject {
     private func restorePreviousFailedState(_ downloadProgressPublisher: some DownloadProgressPublisher) {
         downloadProgressPublisher
             .flatMap { downloadProgress -> AnyPublisher<DashboardOfflineSyncProgressCardViewModel.ViewState, Never> in
-                if downloadProgress.isFinished, downloadProgress.error != nil {
+                if downloadProgress.isFinished, downloadProgress.isEmbeddedContentError {
+                    return Just(.warning).eraseToAnyPublisher()
+                } else if downloadProgress.isFinished, downloadProgress.error != nil {
                     return Just(.error).eraseToAnyPublisher()
                 } else {
                     return Empty(completeImmediately: true).eraseToAnyPublisher()
