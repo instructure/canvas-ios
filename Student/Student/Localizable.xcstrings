@@ -101871,6 +101871,12 @@
         }
       }
     },
+    "Move down disabled" : {
+
+    },
+    "Move up disabled" : {
+
+    },
     "Multiple Due Dates" : {
       "comment" : "Title of a link to show additional due dates customized for sections or groups.",
       "extractionState" : "manual",
