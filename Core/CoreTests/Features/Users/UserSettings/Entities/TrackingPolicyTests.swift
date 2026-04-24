@@ -47,4 +47,12 @@ final class TrackingPolicyTests: XCTestCase {
     func test_init_whenUnknown_shouldFallbackToTrackingDisabled() {
         XCTAssertEqual(TrackingPolicy(usageMetrics: "some_unknown_value"), .trackingDisabled)
     }
+
+    // MARK: - isPredefined
+
+    func test_isPredefined() {
+        XCTAssertEqual(TrackingPolicy.trackingEnabled.isPredefined, true)
+        XCTAssertEqual(TrackingPolicy.trackingDisabled.isPredefined, true)
+        XCTAssertEqual(TrackingPolicy.askForConsent.isPredefined, false)
+    }
 }

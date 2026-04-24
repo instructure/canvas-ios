@@ -55,11 +55,16 @@ public final class PrivacySettingsViewModel {
     func loadConsent() {
         state = .loading
 
-        interactor.getConsentIfRequired(ignoreCache: false)
+        interactor.getConsentIfRequired()
             .replaceError(with: nil)
-            .compactMap { $0 } // consent value should exist already
             .receive(on: mainScheduler)
             .sink { [weak self] value in
+                // consent value should exist already
+                guard let value else {
+                    self?.state = .error
+                    return
+                }
+
                 self?.isAnalyticsEnabled = value
                 self?.state = .data
             }

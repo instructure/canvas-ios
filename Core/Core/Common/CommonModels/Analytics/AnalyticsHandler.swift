@@ -99,7 +99,7 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
 
         return getUserSettings(environment: environment)
             .flatMap { [weak self] in
-                self?.isTrackingEnabled() ?? Publishers.typedEmpty()
+                self?.isTrackingEnabled() ?? Publishers.noInstanceFailure()
             }
             .receive(on: DispatchQueue.main)
             .map { [weak self] isEnabled in
@@ -128,17 +128,19 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
             return Publishers.typedJust(false)
         }
 
-        return consentInteractor.isTrackingEnabled()
+        return consentInteractor.getTrackingPolicy(ignoreCache: false)
             .receive(on: DispatchQueue.main)
-            .flatMap { [weak self] isEnabled -> AnyPublisher<Bool, Error> in
-                // If the user had already chosen or the feature flags enforce something
-                if let isEnabled {
-                    return Publishers.typedJust(isEnabled)
-                }
+            .flatMap { [weak self] trackingPolicy -> AnyPublisher<Bool, Error> in
+                guard let self else { return Publishers.noInstanceFailure() }
 
-                // If the user must be asked
-                return self?.showAndHandleConsentDialog()
-                    ?? Publishers.typedEmpty()
+                switch trackingPolicy {
+                case .trackingEnabled:
+                    return Publishers.typedJust(true)
+                case .trackingDisabled:
+                    return Publishers.typedJust(false)
+                case .askForConsent:
+                    return showAndHandleConsentDialog()
+                }
             }
             .eraseToAnyPublisher()
     }

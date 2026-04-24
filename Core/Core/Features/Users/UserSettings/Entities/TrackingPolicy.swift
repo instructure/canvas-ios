@@ -21,6 +21,13 @@ public enum TrackingPolicy: String {
     case trackingDisabled
     case askForConsent
 
+    var isPredefined: Bool {
+        switch self {
+        case .trackingEnabled, .trackingDisabled: true
+        case .askForConsent: false
+        }
+    }
+
     init?(usageMetrics: String?) {
         guard let usageMetrics else { return nil }
 

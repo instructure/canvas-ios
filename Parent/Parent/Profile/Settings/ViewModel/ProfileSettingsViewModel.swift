@@ -195,11 +195,10 @@ extension ProfileSettingsViewModel {
 
         let legalGroupView = SettingsGroupView(viewModel: groupViewModel)
 
-        analyticsConsentInteractor
-            .getConsentIfRequired(ignoreCache: false)
-            .replaceError(with: nil)
-            .sink { isConsentRequired in
-                privacySettingsView.viewModel.isHidden = isConsentRequired == nil
+        analyticsConsentInteractor.isConsentRequired(ignoreCache: false)
+            .replaceError(with: false)
+            .sink {
+                privacySettingsView.viewModel.isHidden = !$0
                 groupViewModel.itemViews = groupViewModel.itemViews
             }
             .store(in: &subscriptions)

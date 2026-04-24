@@ -30,7 +30,7 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     private var isAnalyticsConsentRequired: Bool = false
     private var offlineModeInteractor = OfflineModeAssembly.make()
     private lazy var inboxSettingsInteractor = InboxSettingsInteractorLive(environment: env)
-    private lazy var analyticsConsentInteractor = AnalyticsConsentInteractorLive(environment: env)
+    private lazy var analyticsConsentInteractor: AnalyticsConsentInteractor = .live(environment: env)
     private var subscriptions = Set<AnyCancellable>()
 
     private var landingPage: LandingPage {
@@ -120,10 +120,10 @@ public class ProfileSettingsViewController: ScreenViewTrackableViewController {
     }
 
     private func loadAnalyticsConsent(isForced: Bool) {
-        analyticsConsentInteractor.getConsentIfRequired(ignoreCache: isForced)
-            .replaceError(with: nil)
-            .sink { [weak self] consentValue in
-                self?.isAnalyticsConsentRequired = consentValue != nil
+        analyticsConsentInteractor.isConsentRequired(ignoreCache: isForced)
+            .replaceError(with: false)
+            .sink { [weak self] in
+                self?.isAnalyticsConsentRequired = $0
                 self?.reloadData()
             }
             .store(in: &subscriptions)

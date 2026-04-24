@@ -23,19 +23,27 @@ public final class AnalyticsConsentInteractorMock: AnalyticsConsentInteractor {
 
     public init() { }
 
-    // MARK: - isTrackingEnabled
+    // MARK: - getTrackingPolicy
 
-    public var isTrackingEnabledResult: Bool? = false
+    public var getTrackingPolicyResult: TrackingPolicy = .trackingDisabled
 
-    public func isTrackingEnabled() -> AnyPublisher<Bool?, Error> {
-        Publishers.typedJust(isTrackingEnabledResult)
+    public func getTrackingPolicy(ignoreCache: Bool) -> AnyPublisher<TrackingPolicy, Error> {
+        Publishers.typedJust(getTrackingPolicyResult)
+    }
+
+    // MARK: - isConsentRequired
+
+    public var isConsentRequiredResult: Bool = false
+
+    public func isConsentRequired(ignoreCache: Bool) -> AnyPublisher<Bool, Error> {
+        Publishers.typedJust(isConsentRequiredResult)
     }
 
     // MARK: - getConsentIfRequired
 
     public var getConsentIfRequiredResult: Bool?
 
-    public func getConsentIfRequired(ignoreCache: Bool) -> AnyPublisher<Bool?, Error> {
+    public func getConsentIfRequired() -> AnyPublisher<Bool?, Error> {
         Publishers.typedJust(getConsentIfRequiredResult)
     }
 
