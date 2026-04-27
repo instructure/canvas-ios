@@ -59,6 +59,8 @@ public class PageViewEventController: NSObject {
     }
 
     public func startTracking() {
+        guard !isTrackingEnabled else { return }
+
         isTrackingEnabled = true
         resetTracking()
     }

@@ -48,7 +48,7 @@ final class AnalyticsHandlerLiveTests: CoreTestCase {
 
     @MainActor
     func test_initializeTracking_whenTrackingIsEnabled_shouldStartSession() {
-        consentInteractor.isTrackingEnabledResult = true
+        consentInteractor.getTrackingPolicyResult = .trackingEnabled
 
         let sessionStarted = expectation(description: "session start completion called")
         XCTAssertFinish(testee.initializeTracking(environment: environment) {
@@ -62,7 +62,7 @@ final class AnalyticsHandlerLiveTests: CoreTestCase {
 
     @MainActor
     func test_initializeTracking_whenTrackingIsDisabled_shouldEndSession() {
-        consentInteractor.isTrackingEnabledResult = false
+        consentInteractor.getTrackingPolicyResult = .trackingDisabled
 
         XCTAssertFinish(testee.initializeTracking(environment: environment))
 
@@ -71,8 +71,8 @@ final class AnalyticsHandlerLiveTests: CoreTestCase {
     }
 
     @MainActor
-    func test_initializeTracking_whenConsentIsNil_shouldShowConsentDialogAndNotFinish() {
-        consentInteractor.isTrackingEnabledResult = nil
+    func test_initializeTracking_whenConsentNeeded_shouldShowConsentDialogAndNotFinish() {
+        consentInteractor.getTrackingPolicyResult = .askForConsent
 
         XCTAssertNoOutput(testee.initializeTracking(environment: environment))
 
@@ -82,7 +82,7 @@ final class AnalyticsHandlerLiveTests: CoreTestCase {
 
     @MainActor
     func test_initializeTracking_shouldSetupPendoManagerExactlyOnce() {
-        consentInteractor.isTrackingEnabledResult = true
+        consentInteractor.getTrackingPolicyResult = .trackingEnabled
 
         let sessionStarted = expectation(description: "first session start")
         XCTAssertFinish(testee.initializeTracking(environment: environment) { sessionStarted.fulfill() })
@@ -97,7 +97,7 @@ final class AnalyticsHandlerLiveTests: CoreTestCase {
 
     @MainActor
     func test_initializeTracking_shouldFetchUserSettings() {
-        consentInteractor.isTrackingEnabledResult = false
+        consentInteractor.getTrackingPolicyResult = .trackingDisabled
         let userSettingsFetched = expectation(description: "GetUserSettings API called")
         api.mock(GetUserSettingsRequest(userID: "self"), expectation: userSettingsFetched, value: .make())
 
@@ -111,7 +111,7 @@ final class AnalyticsHandlerLiveTests: CoreTestCase {
     @MainActor
     func test_storePendoApiKey_shouldUseStoredKeyToSetupPendo() {
         testee.storePendoApiKey("some remote key")
-        consentInteractor.isTrackingEnabledResult = true
+        consentInteractor.getTrackingPolicyResult = .trackingEnabled
 
         let sessionStarted = expectation(description: "session start")
         XCTAssertFinish(testee.initializeTracking(environment: environment) { sessionStarted.fulfill() })
@@ -214,7 +214,7 @@ final class AnalyticsHandlerLiveTests: CoreTestCase {
 
     @MainActor
     private func startTrackerSession() {
-        consentInteractor.isTrackingEnabledResult = true
+        consentInteractor.getTrackingPolicyResult = .trackingEnabled
         let sessionStarted = expectation(description: "session started")
         XCTAssertFinish(testee.initializeTracking(environment: environment) { sessionStarted.fulfill() })
         wait(for: [sessionStarted], timeout: 2)

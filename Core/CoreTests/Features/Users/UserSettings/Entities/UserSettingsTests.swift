@@ -36,4 +36,11 @@ class UserSettingsTests: CoreTestCase {
         XCTAssertTrue(settings.hideDashcardColorOverlays)
         XCTAssertTrue(settings.commentLibrarySuggestionsEnabled)
     }
+
+    // MARK: - trackingPolicy
+
+    func test_save_shouldPropagateUsageMetricsToTrackingPolicy() {
+        let testee = UserSettings.save(.make(usage_metrics: "ask_for_consent"), in: databaseClient)
+        XCTAssertEqual(testee.trackingPolicy, .askForConsent)
+    }
 }

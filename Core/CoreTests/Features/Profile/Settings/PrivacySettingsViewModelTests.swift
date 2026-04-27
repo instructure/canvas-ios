@@ -58,12 +58,12 @@ final class PrivacySettingsViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .data)
     }
 
-    func test_loadConsent_whenConsentIsNil_shouldNotTransitionToDataState() {
+    func test_loadConsent_whenConsentIsNil_shouldSetErrorState() {
         interactor.getConsentIfRequiredResult = nil
 
         testee.loadConsent()
 
-        XCTAssertEqual(testee.state, .loading)
+        XCTAssertEqual(testee.state, .error)
     }
 
     // MARK: - setAnalyticsConsent (via binding)

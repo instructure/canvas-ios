@@ -1559,6 +1559,7 @@
         <attribute name="commentLibrarySuggestionsEnabled" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="hideDashcardColorOverlays" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="manualMarkAsRead" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="trackingPolicyRaw" optional="YES" attributeType="String"/>
     </entity>
     <entity name="CDDashboardWeeklySummaryEntry" representedClassName="Core.CDDashboardWeeklySummaryEntry" syncable="YES">
         <attribute name="categoryRaw" attributeType="String"/>
