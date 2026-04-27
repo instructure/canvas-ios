@@ -20,7 +20,8 @@ import Core
 import Foundation
 
 struct GetUnreadCourseAnnouncementCountRequest: APIGraphQLRequestable {
-    static let pageSize = 20
+    // This is the max page size allowed by Canvas GraphQL, we want to avoid paging as much as possible
+    static let pageSize = 100
 
     struct Variables: Codable, Equatable {
         let pageSize: Int
@@ -86,7 +87,13 @@ struct GetUnreadAnnouncementsCountPageRequest: APIGraphQLRequestable {
     }
     """
 
-    var variables: Variables { Variables(courseId: courseId, pageSize: GetUnreadCourseAnnouncementCountRequest.pageSize, cursor: cursor) }
+    var variables: Variables {
+        Variables(
+            courseId: courseId,
+            pageSize: GetUnreadCourseAnnouncementCountRequest.pageSize,
+            cursor: cursor
+        )
+    }
 }
 
 struct GetUnreadAnnouncementsCountPageResponse: Codable {
