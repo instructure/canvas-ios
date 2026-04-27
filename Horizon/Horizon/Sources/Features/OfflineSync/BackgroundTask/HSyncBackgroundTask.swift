@@ -27,7 +27,7 @@ public final class HSyncBackgroundTask: BackgroundTask {
     private var subscriptions = Set<AnyCancellable>()
 
     public init(
-        syncableAccounts: any HSyncAccountsInteractor,
+        syncableAccounts: OfflineSyncAccountsInteractor,
         sessions: Set<LoginSession>,
         scheduleInteractor: any HSyncScheduleInteractor = HSyncScheduleInteractorLive()
     ) {

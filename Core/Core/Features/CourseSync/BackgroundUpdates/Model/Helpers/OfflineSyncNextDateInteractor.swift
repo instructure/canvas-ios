@@ -29,16 +29,26 @@ public class OfflineSyncNextDateInteractor {
         - sessionUniqueIDs: All session uniqueIDs currently logged into the app.
      */
     public func calculate(sessionUniqueIDs: [String]) -> Date? {
-        let dates: [Date] = sessionUniqueIDs.compactMap { sessionID in
-            let defaults = SessionDefaults(sessionID: sessionID)
-            guard defaults.isOfflineAutoSyncEnabled == true,
-                  !defaults.offlineSyncSelections.isEmpty,
-                  let nextSyncDate = defaults.offlineSyncNextDate
-            else {
-                return nil
-            }
-            return nextSyncDate
-        }
+        let dates: [Date] = sessionUniqueIDs.flatMap { nextSyncDates(for: $0) }
         return dates.min()
+    }
+
+    private func nextSyncDates(for sessionID: String) -> [Date] {
+        let defaults = SessionDefaults(sessionID: sessionID)
+        var dates: [Date] = []
+
+        if defaults.isOfflineAutoSyncEnabled == true,
+           !defaults.offlineSyncSelections.isEmpty,
+           let date = defaults.offlineSyncNextDate {
+            dates.append(date)
+        }
+
+        if defaults.isHorizonAutoSyncEnabled == true,
+           !defaults.horizonOfflineSyncItems.isEmpty,
+           let date = defaults.horizonSyncNextDate {
+            dates.append(date)
+        }
+
+        return dates
     }
 }

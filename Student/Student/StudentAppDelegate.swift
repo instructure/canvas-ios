@@ -65,13 +65,9 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
         BackgroundProcessingAssembly.register(scheduler: CoreTaskSchedulerLive(taskScheduler: .shared))
         BackgroundProcessingAssembly.register(taskID: OfflineSyncBackgroundTaskRequest.ID) {
-            CourseSyncBackgroundUpdatesAssembly.makeOfflineSyncBackgroundTask()
+            CompositeSyncBackgroundUpdatesAssembly.makeBackgroundTask()
         }
         BackgroundProcessingAssembly.resolveInteractor().register(taskID: OfflineSyncBackgroundTaskRequest.ID)
-        BackgroundProcessingAssembly.register(taskID: HSyncBackgroundTaskRequest.ID) {
-            HBackgroundUpdatesAssembly.makeBackgroundTask()
-        }
-        BackgroundProcessingAssembly.resolveInteractor().register(taskID: HSyncBackgroundTaskRequest.ID)
         setupFirebase()
         CacheManager.resetAppIfNecessary()
 
@@ -189,11 +185,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         CoreWebView.stopCookieKeepAlive()
         BackgroundVideoPlayer.shared.background()
         environment.refreshWidgets()
-        if AppEnvironment.shared.app == .horizon {
-            HSyncScheduleInteractorLive().scheduleNextSync()
-        } else {
-            OfflineSyncScheduleInteractor().scheduleNextSync()
-        }
+        OfflineSyncScheduleInteractor().scheduleNextSync()
 
         if LocalizationManager.needsRestart {
             exit(EXIT_SUCCESS)

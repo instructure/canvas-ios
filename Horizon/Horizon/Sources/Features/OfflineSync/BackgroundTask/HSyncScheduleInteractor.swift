@@ -28,7 +28,7 @@ public struct HSyncScheduleInteractorLive: HSyncScheduleInteractor {
     public init() {}
 
     public func scheduleNextSync() {
-        guard let task = HBackgroundUpdatesAssembly.makeTaskRequest() else {
+        guard let task = CourseSyncBackgroundUpdatesAssembly.makeTaskRequest() else {
             Logger.shared.log("Horizon: Skipping background sync schedule: no sessions to sync.")
             return
         }
