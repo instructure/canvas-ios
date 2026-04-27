@@ -76,7 +76,7 @@ struct LearnerDashboardScreen: View, ScreenViewTrackable {
                     isAnimationEnabled = true
                 }
             }
-            .onAppear {
+            .onNonFirstAppear {
                 // trigger a soft-refresh to apply any changes made on pushed screens
                 viewModel.refresh(ignoreCache: false)
             }

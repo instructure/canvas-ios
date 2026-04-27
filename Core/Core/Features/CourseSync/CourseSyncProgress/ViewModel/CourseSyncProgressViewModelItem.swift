@@ -71,7 +71,7 @@ extension Array where Element == CourseSyncEntry {
         interactor: CourseSyncProgressInteractor,
         downloadProgress: CourseSyncDownloadProgress
     ) -> [CourseSyncProgressViewModel.Cell] {
-        weak var interactor = interactor
+        weak let interactor = interactor
         let embeddedContentErrorCourseIds = Set(downloadProgress.embeddedContentErrorCourseIds)
 
         var cells: [CourseSyncProgressViewModel.Cell] = []
