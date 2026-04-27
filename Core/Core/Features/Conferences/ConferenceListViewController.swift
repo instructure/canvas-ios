@@ -19,6 +19,11 @@
 import UIKit
 
 public class ConferenceListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
+    private enum ConferenceItem: Hashable {
+        case conference(id: String)
+        case loading
+    }
+
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -31,6 +36,7 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
     public var color: UIColor?
     var context = Context.currentUser
     let env = AppEnvironment.shared
+    private var dataSource: UITableViewDiffableDataSource<String, ConferenceItem>!
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "\(context.pathComponent)/conferences"
     )
@@ -72,7 +78,10 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
         tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
+        tableView.selectionFollowsFocus = false
         tableView.registerHeaderFooterView(SectionHeaderView.self)
+
+        setupDataSource()
 
         colors.refresh()
         if context.contextType == .course {
@@ -85,13 +94,26 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let selected = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: selected, animated: true)
-        }
-
         if #unavailable(iOS 26) {
             navigationController?.navigationBar.useContextColor(color)
         }
+    }
+
+    private func setupDataSource() {
+        dataSource = UITableViewDiffableDataSource(tableView: tableView) { [weak self] tableView, indexPath, item in
+            guard let self else { return UITableViewCell() }
+            switch item {
+            case .conference(let id):
+                let cell = tableView.dequeue(ConferenceListCell.self, for: indexPath)
+                let conference = self.conferences.all.first(where: { $0.id == id })
+                cell.update(conference, color: self.color)
+                return cell
+            case .loading:
+                self.conferences.getNextPage()
+                return LoadingCell(style: .default, reuseIdentifier: nil)
+            }
+        }
+        tableView.delegate = self
     }
 
     func updateNavBar() {
@@ -115,7 +137,35 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
         spinnerView.isHidden = !conferences.pending || !conferences.isEmpty || conferences.error != nil || refreshControl.isRefreshing
         emptyView.isHidden = conferences.pending || !conferences.isEmpty || conferences.error != nil
         errorView.isHidden = conferences.error == nil
-        tableView.reloadData()
+        applySnapshot()
+    }
+
+    private func applySnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<String, ConferenceItem>()
+
+        for sectionIndex in 0..<conferences.numberOfSections {
+            guard let section = conferences.sections?[sectionIndex] else { continue }
+            snapshot.appendSections([section.name])
+            var items = (0..<section.numberOfObjects).compactMap { row -> ConferenceItem? in
+                guard let id = conferences[IndexPath(row: row, section: sectionIndex)]?.id else { return nil }
+                return .conference(id: id)
+            }
+            if conferences.hasNextPage, sectionIndex == conferences.numberOfSections - 1 {
+                items.append(.loading)
+            }
+            snapshot.appendItems(items, toSection: section.name)
+        }
+
+        let updatedIDs = Set(conferences.updatedObjects.map { $0.id })
+        let reconfigureItems = snapshot.itemIdentifiers.filter {
+            if case .conference(let id) = $0 { return updatedIDs.contains(id) }
+            return false
+        }
+        if !reconfigureItems.isEmpty {
+            snapshot.reconfigureItems(reconfigureItems)
+        }
+
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
 
     @objc func refresh() {
@@ -125,43 +175,21 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
     }
 }
 
-extension ConferenceListViewController: UITableViewDataSource, UITableViewDelegate {
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return conferences.sections?.count ?? 0
-    }
-
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count = conferences.sections?[section].numberOfObjects ?? 0
-        if conferences.hasNextPage, conferences.sections?.count == section + 1 {
-            count += 1
-        }
-        return count
-    }
-
+extension ConferenceListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = tableView.dequeueHeaderFooter(SectionHeaderView.self)
-        view.titleLabel?.text = conferences[IndexPath(row: 0, section: section)]?.isConcluded == true
-        ? String(localized: "Concluded Conferences", bundle: .core)
-        : String(localized: "New Conferences", bundle: .core)
-
+        let sectionIdentifiers = dataSource.snapshot().sectionIdentifiers
+        let isConcluded = section < sectionIdentifiers.count && sectionIdentifiers[section] == "1"
+        view.titleLabel?.text = isConcluded
+            ? String(localized: "Concluded Conferences", bundle: .core)
+            : String(localized: "New Conferences", bundle: .core)
         view.titleLabel?.accessibilityIdentifier = "ConferencesList.header-\(section)"
-
         return view
     }
 
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if conferences.hasNextPage && indexPath.row == conferences.sections?[indexPath.section].numberOfObjects {
-            conferences.getNextPage()
-            return LoadingCell(style: .default, reuseIdentifier: nil)
-        }
-        let cell = tableView.dequeue(ConferenceListCell.self, for: indexPath)
-        cell.update(conferences[indexPath], color: color)
-        return cell
-    }
-
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let conference = conferences[indexPath] else { return }
-        env.router.route(to: "/\(context.pathComponent)/conferences/\(conference.id)", from: self, options: .detail)
+        guard case .conference(let id) = dataSource.itemIdentifier(for: indexPath) else { return }
+        env.router.route(to: "/\(context.pathComponent)/conferences/\(id)", from: self, options: .detail)
     }
 }
 

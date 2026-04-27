@@ -33,6 +33,7 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
     var context = Context.currentUser
     private(set) var env = AppEnvironment.shared
     var selectedFirstTopic: Bool = false
+    private var dataSource: UITableViewDiffableDataSource<String, String>!
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "\(context.pathComponent)/discussion_topics"
     )
@@ -93,8 +94,11 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
+        tableView.selectionFollowsFocus = false
         tableView.backgroundColor = .backgroundLightest
         view.backgroundColor = .backgroundLightest
+
+        setupDataSource()
 
         colors.refresh()
         // We must force refresh because the GetCourses call deletes all existing Courses from the CoreData cache and since GetCourses response includes no permissions we lose that information.
@@ -105,8 +109,43 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
         navigationController?.navigationBar.useContextColor(color)
+    }
+
+    private func setupDataSource() {
+        dataSource = UITableViewDiffableDataSource(tableView: tableView) { [weak self] tableView, indexPath, topicID in
+            guard let self else { return UITableViewCell() }
+            let cell: DiscussionListCell = tableView.dequeue(for: indexPath)
+            let topic = self.topics.all.first(where: { $0.id == topicID })
+            cell.update(
+                topic: topic,
+                isTeacher: self.course?.first?.hasTeacherEnrollment == true,
+                color: self.color,
+                dateTextsProvider: self.dateTextsProvider
+            )
+            if topic?.anonymousState != nil && self.offlineModeInteractor?.isOfflineModeEnabled() == true {
+                cell.selectionStyle = .none
+                cell.contentView.alpha = 0.5
+                cell.dueDateLabel1.text = String(localized: "Not supported", bundle: .core)
+                cell.dueDateLabel1.isHidden = false
+                cell.dueDateLabel2.isHidden = true
+                cell.lastPostLabel.isHidden = true
+                cell.repliesLabel.isHidden = true
+                cell.repliesDot.isHidden = true
+                cell.unreadLabel.isHidden = true
+                cell.unreadDot.isHidden = true
+                cell.pointsLabel.isHidden = true
+                cell.pointsDot.isHidden = true
+                cell.isUserInteractionEnabled = false
+                cell.accessoryType = .none
+            }
+            if self.hideQuantitativeData {
+                cell.pointsLabel.isHidden = true
+                cell.pointsDot.isHidden = true
+            }
+            return cell
+        }
+        tableView.delegate = self
     }
 
     @objc func refresh() {
@@ -140,19 +179,40 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
         loadingView.isHidden = topics.state != .loading || refreshControl.isRefreshing
         emptyView.isHidden = topics.state != .empty
         errorView.isHidden = topics.state != .error
-        tableView.reloadData()
+        applySnapshot()
+    }
 
-        if !selectedFirstTopic, topics.state != .loading, let firstTopic = topics.first, let url = firstTopic.htmlURL {
+    private func applySnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<String, String>()
 
-            selectedFirstTopic = true
-            if splitViewController?.isCollapsed == false, !isInSplitViewDetail {
-                if firstTopic.anonymousState != nil {
-                    let emptyViewController = EmptyViewController(nibName: nil, bundle: nil)
-                    env.router.show(emptyViewController, from: self, options: .detail)
-                    return
-                }
-                env.router.route(to: url, from: self, options: .detail)
+        for sectionIndex in 0..<topics.numberOfSections {
+            guard let section = topics.sections?[sectionIndex] else { continue }
+            snapshot.appendSections([section.name])
+            let itemIDs = (0..<section.numberOfObjects).compactMap { row in
+                topics[IndexPath(row: row, section: sectionIndex)]?.id
             }
+            snapshot.appendItems(itemIDs, toSection: section.name)
+        }
+
+        let updatedIDs = topics.updatedObjects.compactMap { $0.id }
+        if !updatedIDs.isEmpty {
+            snapshot.reconfigureItems(updatedIDs)
+        }
+
+        dataSource.apply(snapshot, animatingDifferences: true)
+        selectFirstTopicIfNeeded()
+    }
+
+    private func selectFirstTopicIfNeeded() {
+        guard !selectedFirstTopic, topics.state != .loading, let firstTopic = topics.first, let url = firstTopic.htmlURL else { return }
+        selectedFirstTopic = true
+        if splitViewController?.isCollapsed == false, !isInSplitViewDetail {
+            if firstTopic.anonymousState != nil {
+                let emptyViewController = EmptyViewController(nibName: nil, bundle: nil)
+                env.router.show(emptyViewController, from: self, options: .detail)
+                return
+            }
+            env.router.route(to: url, from: self, options: .detail)
         }
     }
 
@@ -169,7 +229,10 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
     }
 
     func togglePinned(at indexPath: IndexPath, completionHandler: @escaping (Bool) -> Void) {
-        guard let topic = topics[indexPath] else { return completionHandler(false) }
+        guard let topicID = dataSource.itemIdentifier(for: indexPath),
+              let topic = topics.all.first(where: { $0.id == topicID }) else {
+            return completionHandler(false)
+        }
         let useCase = UpdateDiscussionTopic(context: context, topicID: topic.id, form: [
             .pinned: .bool(!topic.pinned)
         ])
@@ -180,7 +243,10 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
     }
 
     func toggleLocked(at indexPath: IndexPath, completionHandler: @escaping (Bool) -> Void) {
-        guard let topic = topics[indexPath] else { return completionHandler(false) }
+        guard let topicID = dataSource.itemIdentifier(for: indexPath),
+              let topic = topics.all.first(where: { $0.id == topicID }) else {
+            return completionHandler(false)
+        }
         let useCase = UpdateDiscussionTopic(context: context, topicID: topic.id, form: [
             .locked: .bool(!topic.locked)
         ])
@@ -191,7 +257,7 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
     }
 
     func deleteTopic(at indexPath: IndexPath, completionHandler: @escaping (Bool) -> Void) {
-        guard let topicID = topics[indexPath]?.id else { return completionHandler(false) }
+        guard let topicID = dataSource.itemIdentifier(for: indexPath) else { return completionHandler(false) }
         let alert = UIAlertController(
             title: String(localized: "Delete Discussion", bundle: .core),
             message: String(localized: "Are you sure you would like to delete this discussion?", bundle: .core),
@@ -209,15 +275,13 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
     }
 }
 
-extension DiscussionListViewController: UITableViewDataSource, UITableViewDelegate {
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return topics.numberOfSections
-    }
-
+extension DiscussionListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let sectionIdentifiers = dataSource.snapshot().sectionIdentifiers
+        guard section < sectionIdentifiers.count else { return nil }
 
         let key: String.LocalizationValue? = {
-            switch topics.sections?[section].name {
+            switch sectionIdentifiers[section] {
             case "0": "Pinned Discussions"
             case "1": "Discussions"
             case "2": "Closed for Comments"
@@ -229,52 +293,19 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
         return SectionHeaderView.create(title: .init(localized: key, bundle: .core), section: section)
     }
 
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return topics.sections?[section].numberOfObjects ?? 0
-    }
-
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: DiscussionListCell = tableView.dequeue(for: indexPath)
-        let topic = topics[indexPath]
-        cell.update(
-            topic: topic,
-            isTeacher: course?.first?.hasTeacherEnrollment == true,
-            color: color,
-            dateTextsProvider: dateTextsProvider
-        )
-        if topic?.anonymousState != nil && offlineModeInteractor?.isOfflineModeEnabled() == true {
-            cell.selectionStyle = .none
-            cell.contentView.alpha = 0.5
-            cell.dueDateLabel1.text = String(localized: "Not supported", bundle: .core)
-            cell.dueDateLabel1.isHidden = false
-            cell.dueDateLabel2.isHidden = true
-            cell.lastPostLabel.isHidden = true
-            cell.repliesLabel.isHidden = true
-            cell.repliesDot.isHidden = true
-            cell.unreadLabel.isHidden = true
-            cell.unreadDot.isHidden = true
-            cell.pointsLabel.isHidden = true
-            cell.pointsDot.isHidden = true
-            cell.isUserInteractionEnabled = false
-            cell.accessoryType = .none
-        }
-
-        if hideQuantitativeData {
-            cell.pointsLabel.isHidden = true
-            cell.pointsDot.isHidden = true
-        }
-
-        return cell
-    }
-
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let htmlURL = topics[indexPath]?.htmlURL else { return }
+        guard let topicID = dataSource.itemIdentifier(for: indexPath),
+              let htmlURL = topics.all.first(where: { $0.id == topicID })?.htmlURL else { return }
         env.router.route(to: htmlURL, from: self, options: .detail)
     }
 
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let topicID = dataSource.itemIdentifier(for: indexPath),
+              let topic = topics.all.first(where: { $0.id == topicID }) else {
+            return nil
+        }
         var actions: [UIContextualAction] = []
-        if topics[indexPath]?.canDelete == true {
+        if topic.canDelete {
             let action = UIContextualAction(style: .destructive, title: String(localized: "Delete", bundle: .core)) { [weak self] (_, _, handler) in
                 self?.deleteTopic(at: indexPath, completionHandler: handler)
             }
@@ -282,13 +313,13 @@ extension DiscussionListViewController: UITableViewDataSource, UITableViewDelega
             actions.append(action)
         }
         if course?.first?.hasTeacherEnrollment == true {
-            var title = topics[indexPath]?.locked == true ? String(localized: "Open", bundle: .core) : String(localized: "Close", bundle: .core)
+            var title = topic.locked ? String(localized: "Open", bundle: .core) : String(localized: "Close", bundle: .core)
             var action = UIContextualAction(style: .normal, title: title) { [weak self] (_, _, handler) in
                 self?.toggleLocked(at: indexPath, completionHandler: handler)
             }
             action.backgroundColor = .backgroundWarning
             actions.append(action)
-            title = topics[indexPath]?.pinned == true ? String(localized: "Unpin", bundle: .core) : String(localized: "Pin", bundle: .core)
+            title = topic.pinned ? String(localized: "Unpin", bundle: .core) : String(localized: "Pin", bundle: .core)
             action = UIContextualAction(style: .normal, title: title) { [weak self] (_, _, handler) in
                 self?.togglePinned(at: indexPath, completionHandler: handler)
             }

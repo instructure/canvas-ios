@@ -24,6 +24,8 @@ protocol PlannerListDelegate: UIScrollViewDelegate {
 }
 
 public class PlannerListViewController: UIViewController {
+    private enum Section: Hashable { case list }
+
     @IBOutlet weak var emptyStateHeader: UILabel!
     @IBOutlet weak var emptyStateSubHeader: UILabel!
     @IBOutlet weak var emptyStateView: UIView!
@@ -40,6 +42,7 @@ public class PlannerListViewController: UIViewController {
 
     private var selectedPlannableId: String?
     private var needsDetailsAccessibilityFocus: Bool = false
+    private var dataSource: UITableViewDiffableDataSource<Section, String>!
 
     var plannables: Store<GetPlannables>?
 
@@ -63,8 +66,12 @@ public class PlannerListViewController: UIViewController {
         spinnerView.color = nil
         tableView.refreshControl = refreshControl
         self.view.backgroundColor = .backgroundLightest
+
+        setupDataSource()
+
         tableView.tableFooterView = UIView(frame: .zero)
         tableViewBackgroundView.add(to: tableView)
+
         refresh()
     }
 
@@ -94,15 +101,35 @@ public class PlannerListViewController: UIViewController {
         plannables?.refresh(force: force)
     }
 
+    private func setupDataSource() {
+        dataSource = UITableViewDiffableDataSource(tableView: tableView) { [weak self] tableView, indexPath, plannableID in
+            guard let self else { return UITableViewCell() }
+            let cell: PlannerListCell = tableView.dequeue(for: indexPath)
+            let plannable = self.plannables?.all.first(where: { $0.id == plannableID })
+            cell.update(plannable)
+            return cell
+        }
+        tableView.delegate = self
+        tableView.selectionFollowsFocus = false
+    }
+
     private func updatePlannables() {
         guard plannables?.requested == true, plannables?.pending == false else { return }
         refreshControl.endRefreshing()
         spinnerView.isHidden = true
         emptyStateView.isHidden = plannables?.error != nil || plannables?.isEmpty != true
         errorView.isHidden = plannables?.error == nil
-        tableView.reloadData()
-        reselectRowAfterReload()
-        accessibilityFocusOnDetailsIfNeeded()
+        applySnapshot()
+    }
+
+    private func applySnapshot() {
+        let snapshot = plannables?.makeSnapshot(sectionID: Section.list, itemID: \.id) ?? NSDiffableDataSourceSnapshot()
+        let animating = dataSource.snapshot().itemIdentifiers.isNotEmpty
+
+        dataSource.apply(snapshot, animatingDifferences: animating) { [weak self] in
+            self?.reselectRowAfterReload()
+            self?.accessibilityFocusOnDetailsIfNeeded()
+        }
     }
 
     func setNeedsDetailsAccessibilityFocus() {
@@ -125,8 +152,6 @@ public class PlannerListViewController: UIViewController {
     }
 
     private func accessibilityFocusOnDefaultRow() {
-        /// Calling this on main queue with a duration to avoid any
-        /// possible interruption caused by cell reloading or selection
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
             guard let self else { return }
             let cell = tableView.cellForRow(at: indexPathForRowToFocusOn)
@@ -136,38 +161,24 @@ public class PlannerListViewController: UIViewController {
 
     private func reselectRowAfterReload() {
         guard let selectedPlannableId,
-              let index = plannables?.all.firstIndex(where: { $0.id == selectedPlannableId })
-        else {
-            return
-        }
-
-        let indexPath = IndexPath(row: index, section: 0)
+              let indexPath = dataSource.indexPath(for: selectedPlannableId)
+        else { return }
         tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
     }
 
     private var indexPathForRowToFocusOn: IndexPath {
         if let selectedPlannableId,
-           let index = plannables?.all.firstIndex(where: { $0.id == selectedPlannableId }) {
-            return IndexPath(row: index, section: 0)
+           let indexPath = dataSource.indexPath(for: selectedPlannableId) {
+            return indexPath
         }
         return IndexPath(row: 0, section: 0)
     }
 }
 
-extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return plannables?.count ?? 0
-    }
-
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: PlannerListCell = tableView.dequeue(for: indexPath)
-        let p = plannables?[indexPath]
-        cell.update(p)
-        return cell
-    }
-
+extension PlannerListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let plannable = plannables?[indexPath] else { return }
+        guard let id = dataSource.itemIdentifier(for: indexPath),
+              let plannable = plannables?.all.first(where: { $0.id == id }) else { return }
 
         selectedPlannableId = plannable.id
 
@@ -199,7 +210,6 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
 
     private func routeToPlannableDetailsAtUrl(_ url: URL?) {
         guard let url else { return }
-
         let to = url.appendingOrigin("calendar")
         env.router.route(to: to, from: self, options: .detail)
     }

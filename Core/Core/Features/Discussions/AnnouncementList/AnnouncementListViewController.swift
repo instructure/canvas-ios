@@ -19,6 +19,8 @@
 import UIKit
 
 public class AnnouncementListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController {
+    private enum Section: Hashable { case list }
+
     lazy var addButton = UIBarButtonItem(image: .addSolid, style: .plain, target: self, action: #selector(add))
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
@@ -35,6 +37,7 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(eventName: "\(context.pathComponent)/announcements")
 
     var selectedFirstTopic: Bool = false
+    private var dataSource: UITableViewDiffableDataSource<Section, String>!
 
     lazy var colors = env.subscribe(GetCustomColors()) { [weak self] in
         self?.updateNavBar()
@@ -78,8 +81,12 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
+        tableView.selectionFollowsFocus = false
         tableView.backgroundColor = .backgroundLightest
         view.backgroundColor = .backgroundLightest
+
+        setupDataSource()
+
         colors.refresh()
         // We must force refresh because the GetCourses call deletes all existing Courses from the CoreData cache and since GetCourses response includes no permissions we lose that information.
         course?.refresh(force: true)
@@ -95,8 +102,19 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
         navigationController?.navigationBar.useContextColor(color)
+    }
+
+    private func setupDataSource() {
+        dataSource = UITableViewDiffableDataSource(tableView: tableView) { [weak self] tableView, indexPath, topicID in
+            guard let self else { return UITableViewCell() }
+            let cell: AnnouncementListCell = tableView.dequeue(for: indexPath)
+            cell.accessibilityIdentifier = "announcements.list.announcement.row-\(indexPath.row)"
+            let topic = self.topics.all.first(where: { $0.id == topicID })
+            cell.update(topic: topic, isTeacher: self.course?.first?.hasTeacherEnrollment == true, color: self.color)
+            return cell
+        }
+        tableView.delegate = self
     }
 
     @objc func refresh() {
@@ -133,8 +151,16 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
         loadingView.isHidden = topics.state != .loading || refreshControl.isRefreshing
         emptyView.isHidden = topics.state != .empty
         errorView.isHidden = topics.state != .error
-        tableView.reloadData()
+        applySnapshot()
+    }
 
+    private func applySnapshot() {
+        let snapshot = topics.makeSnapshot(sectionID: Section.list, itemID: \.id)
+        dataSource.apply(snapshot, animatingDifferences: true)
+        selectFirstTopicIfNeeded()
+    }
+
+    private func selectFirstTopicIfNeeded() {
         if !selectedFirstTopic, topics.state != .loading, let id = topics.first?.id {
             let url = "/\(context.pathComponent)/announcements/\(id)"
             selectedFirstTopic = true
@@ -154,7 +180,7 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
     }
 
     func deleteTopic(at indexPath: IndexPath, completionHandler: @escaping (Bool) -> Void) {
-        guard let topicID = topics[indexPath]?.id else { return completionHandler(false) }
+        guard let topicID = dataSource.itemIdentifier(for: indexPath) else { return completionHandler(false) }
         let alert = UIAlertController(
             title: String(localized: "Delete Announcement", bundle: .core),
             message: String(localized: "Are you sure you would like to delete this announcement?", bundle: .core),
@@ -172,20 +198,9 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
     }
 }
 
-extension AnnouncementListViewController: UITableViewDataSource, UITableViewDelegate {
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return topics.count
-    }
-
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: AnnouncementListCell = tableView.dequeue(for: indexPath)
-        cell.accessibilityIdentifier = "announcements.list.announcement.row-\(indexPath.row)"
-        cell.update(topic: topics[indexPath], isTeacher: course?.first?.hasTeacherEnrollment == true, color: color)
-        return cell
-    }
-
+extension AnnouncementListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let id = topics[indexPath]?.id else { return }
+        guard let id = dataSource.itemIdentifier(for: indexPath) else { return }
         env.router.route(to: "/\(context.pathComponent)/announcements/\(id)", from: self, options: .detail)
     }
 

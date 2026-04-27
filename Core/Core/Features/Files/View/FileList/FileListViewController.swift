@@ -21,6 +21,13 @@ import Combine
 import CombineSchedulers
 
 public class FileListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
+    private enum Section: Hashable { case uploads, searchResults, folderItems }
+    private enum RowItem: Hashable {
+        case upload(id: String)
+        case searchResult(id: String)
+        case folderItem(id: String)
+    }
+
     @IBOutlet weak var emptyImageView: UIImageView!
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
@@ -101,6 +108,7 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
     private var subscriptions = Set<AnyCancellable>()
     private var isStudentAccessRestricted = false
     private var scheduler: AnySchedulerOf<DispatchQueue>!
+    private var dataSource: UITableViewDiffableDataSource<Section, RowItem>!
 
     public static func create(
         env: AppEnvironment,
@@ -161,6 +169,8 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
             .assign(to: \.isStudentAccessRestricted, on: self, ownership: .weak)
             .store(in: &subscriptions)
 
+        setupDataSource()
+
         colors.refresh()
         course?.refresh()
         group?.refresh()
@@ -170,7 +180,6 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
-        tableView.selectRow(at: nil, animated: true, scrollPosition: .none)
 
         if #unavailable(iOS 26) {
             if context.contextType == .user {
@@ -248,7 +257,7 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
         loadingView.isHidden = !items.pending || !items.isEmpty || items.error != nil || refreshControl.isRefreshing
         emptyView.isHidden = items.pending || !items.isEmpty || items.error != nil
         errorView.isHidden = items.error == nil
-        tableView.reloadData()
+        applySnapshot()
     }
 
     func delete(fileID: String, fileName: String) {
@@ -283,6 +292,69 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
         alert.addAction(AlertAction(String(localized: "Cancel", bundle: .core), style: .cancel))
         alert.addAction(AlertAction(String(localized: "Delete", bundle: .core), style: .default, handler: handler))
         env.router.show(alert, from: self, options: .modal())
+    }
+
+    private func setupDataSource() {
+        dataSource = UITableViewDiffableDataSource(tableView: tableView) { [weak self] tableView, indexPath, rowItem in
+            guard let self else { return UITableViewCell() }
+            let isOffline = self.offlineFileInteractor?.isOffline == true
+            switch rowItem {
+            case .upload(let id):
+                let cell: FileListUploadCell = tableView.dequeue(for: indexPath)
+                let file = self.uploads.all.first(where: { self.uploadID($0) == id })
+                cell.update(file)
+                return cell
+            case .searchResult(let id):
+                let cell: FileListCell = tableView.dequeue(for: indexPath)
+                cell.accessibilityIdentifier = "FileList.\(indexPath.row)"
+                cell.backgroundColor = .backgroundLightest
+                let result = self.results.first(where: { $0.id.value == id })
+                let isAvailable = self.offlineFileInteractor?.isItemAvailableOffline(courseID: self.course?.first?.id, fileID: id) == true
+                cell.update(result: result, isOffline: isOffline, isAvailable: isAvailable)
+                return cell
+            case .folderItem(let id):
+                let cell: FileListCell = tableView.dequeue(for: indexPath)
+                cell.accessibilityIdentifier = "FileList.\(indexPath.row)"
+                cell.backgroundColor = .backgroundLightest
+                let item = self.items?.all.first(where: { $0.id == id })
+                let isAvailable = self.offlineFileInteractor?.isItemAvailableOffline(courseID: self.course?.first?.id, fileID: item?.id) == true
+                cell.update(item: item, color: self.color, isOffline: isOffline, isAvailable: isAvailable)
+                return cell
+            }
+        }
+        tableView.delegate = self
+        tableView.selectionFollowsFocus = false
+    }
+
+    private func applySnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, RowItem>()
+        snapshot.appendSections([.uploads, .searchResults, .folderItems])
+
+        let uploadItems = uploads.all.map { RowItem.upload(id: uploadID($0)) }
+        snapshot.appendItems(uploadItems, toSection: .uploads)
+
+        let resultItems = results.map { RowItem.searchResult(id: $0.id.value) }
+        snapshot.appendItems(resultItems, toSection: .searchResults)
+
+        if searchTerm == nil {
+            let folderItems = (items?.all ?? []).map { RowItem.folderItem(id: $0.id) }
+            snapshot.appendItems(folderItems, toSection: .folderItems)
+        }
+
+        if !uploadItems.isEmpty {
+            snapshot.reconfigureItems(uploadItems)
+        }
+
+        let updatedFolderItems = (items?.updatedObjects ?? []).map { RowItem.folderItem(id: $0.id) }
+        if !updatedFolderItems.isEmpty {
+            snapshot.reconfigureItems(updatedFolderItems)
+        }
+
+        dataSource.apply(snapshot, animatingDifferences: true)
+    }
+
+    private func uploadID(_ file: File) -> String {
+        file.taskID ?? file.objectID.uriRepresentation().absoluteString
     }
 }
 
@@ -330,11 +402,11 @@ extension FileListViewController: UISearchBarDelegate {
 
     func search() {
         results = []
-        guard let searchTerm = searchTerm else { return tableView.reloadData() }
+        guard let searchTerm = searchTerm else { return applySnapshot() }
         loadingView.isHidden = false
         emptyView.isHidden = true
         errorView.isHidden = true
-        tableView.reloadData()
+        applySnapshot()
         env.api.makeRequest(GetFilesRequest(context: context, searchTerm: searchTerm)) { [weak self] files, _, error in performUIUpdate {
             guard self?.searchTerm == searchTerm else { return }
             self?.showResults(files ?? [], error: error)
@@ -346,7 +418,7 @@ extension FileListViewController: UISearchBarDelegate {
         loadingView.isHidden = true
         emptyView.isHidden = !results.isEmpty
         errorView.isHidden = error == nil
-        tableView.reloadData()
+        applySnapshot()
     }
 }
 
@@ -433,7 +505,7 @@ extension FileListViewController: FilePickerDelegate {
 
     func updateUploads() {
         let completes = uploads.filter { $0.url != nil && $0.uploadError == nil }
-        guard !completes.isEmpty else { return tableView.reloadData() }
+        guard !completes.isEmpty else { return applySnapshot() }
 
         let context = env.database.viewContext
         let ucontext = UploadManager.shared.viewContext
@@ -454,87 +526,65 @@ extension FileListViewController: FilePickerDelegate {
     }
 }
 
-extension FileListViewController: UITableViewDataSource, UITableViewDelegate {
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return 3
-    }
-
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0: return uploads.count
-        case 1: return results.count
-        default: return searchTerm != nil ? 0 : items?.count ?? 0
-        }
-    }
-
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let isOffline = offlineFileInteractor?.isOffline == true
-        if indexPath.section == 0 {
-            let cell: FileListUploadCell = tableView.dequeue(for: indexPath)
-            cell.update(uploads[indexPath.row])
-            return cell
-        }
-
-        let cell: FileListCell = tableView.dequeue(for: indexPath)
-        cell.accessibilityIdentifier = "FileList.\(indexPath.row)"
-        cell.backgroundColor = .backgroundLightest
-        if indexPath.section == 1 {
-            let result: APIFile? = results[indexPath.row]
-            let isAvailable = offlineFileInteractor?.isItemAvailableOffline(courseID: course?.first?.id, fileID: result?.id.value) == true
-            cell.update(result: result, isOffline: isOffline, isAvailable: isAvailable)
-        } else {
-            let item: FolderItem? = items?[indexPath.row]
-            let isAvailable = offlineFileInteractor?.isItemAvailableOffline(courseID: course?.first?.id, fileID: item?.id) == true
-            cell.update(item: item, color: color, isOffline: isOffline, isAvailable: isAvailable)
-        }
-
-        return cell
-    }
-
+extension FileListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0, let file = uploads[indexPath.row] {
-            filePicker.showOptions(for: file, from: self)
-        } else if indexPath.section == 1 {
-            let id = results[indexPath.row].id.value
+        guard let rowItem = dataSource.itemIdentifier(for: indexPath) else { return }
+        switch rowItem {
+        case .upload(let id):
+            let file = uploads.all.first(where: { uploadID($0) == id })
+            if let file {
+                filePicker.showOptions(for: file, from: self)
+            }
+        case .searchResult(let id):
             routeIfAvailable(fileID: id, indexPath: indexPath)
-        } else if let id = items?[indexPath.row]?.file?.id {
-            routeIfAvailable(fileID: id, indexPath: indexPath)
-        } else if let path = items?[indexPath.row]?.folder?.path.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
-            env.router.route(to: "/\(context.pathComponent)/files/folder/\(path)", from: self, options: .push)
+        case .folderItem(let id):
+            if let file = items?.all.first(where: { $0.id == id })?.file, let fileID = file.id {
+                routeIfAvailable(fileID: fileID, indexPath: indexPath)
+            } else if let path = items?.all.first(where: { $0.id == id })?.folder?.path.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) {
+                env.router.route(to: "/\(context.pathComponent)/files/folder/\(path)", from: self, options: .push)
+            }
         }
     }
 
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        guard let rowItem = dataSource.itemIdentifier(for: indexPath) else { return nil }
 
-        guard indexPath.section > 0,
-              folder.first?.forSubmissions == false,
-              context == .currentUser || course?.first?.hasTeacherEnrollment == true else {
+        switch rowItem {
+        case .upload:
             return nil
-        }
-
-        if indexPath.section == 2, let folder = items?[indexPath.row]?.folder,
-           folder.forSubmissions || folder.filesCount > 0 {
-            return nil
-        }
-
-        let deleteAction = UIContextualAction(style: .destructive, title: String(localized: "Delete", bundle: .core)) { [weak self] _, _, completion in
-            guard let self = self else { return }
-            if indexPath.section == 1 {
-                let file = self.results[indexPath.row]
-                self.delete(fileID: file.id.value, fileName: file.display_name)
-            } else if let file = self.items?[indexPath.row]?.file, let fileID = file.id, let fileName = file.displayName {
-                self.delete(fileID: fileID, fileName: fileName)
-            } else if let folder = self.items?[indexPath.row]?.folder {
-                self.delete(folder: folder)
+        case .searchResult(let id):
+            guard folder.first?.forSubmissions == false,
+                  context == .currentUser || course?.first?.hasTeacherEnrollment == true else { return nil }
+            let result = results.first(where: { $0.id.value == id })
+            let deleteAction = UIContextualAction(style: .destructive, title: String(localized: "Delete", bundle: .core)) { [weak self] _, _, completion in
+                if let file = result {
+                    self?.delete(fileID: file.id.value, fileName: file.display_name)
+                }
+                completion(true)
             }
-            completion(true)
+            deleteAction.backgroundColor = .backgroundDanger
+            let config = UISwipeActionsConfiguration(actions: [deleteAction])
+            config.performsFirstActionWithFullSwipe = false
+            return config
+        case .folderItem(let id):
+            guard folder.first?.forSubmissions == false,
+                  context == .currentUser || course?.first?.hasTeacherEnrollment == true else { return nil }
+            let item = items?.all.first(where: { $0.id == id })
+            if let folder = item?.folder, folder.forSubmissions || folder.filesCount > 0 { return nil }
+            let deleteAction = UIContextualAction(style: .destructive, title: String(localized: "Delete", bundle: .core)) { [weak self] _, _, completion in
+                guard let self else { return completion(true) }
+                if let file = item?.file, let fileID = file.id, let fileName = file.displayName {
+                    self.delete(fileID: fileID, fileName: fileName)
+                } else if let folder = item?.folder {
+                    self.delete(folder: folder)
+                }
+                completion(true)
+            }
+            deleteAction.backgroundColor = .backgroundDanger
+            let config = UISwipeActionsConfiguration(actions: [deleteAction])
+            config.performsFirstActionWithFullSwipe = false
+            return config
         }
-
-        deleteAction.backgroundColor = .backgroundDanger
-
-        let configuration = UISwipeActionsConfiguration(actions: [deleteAction])
-        configuration.performsFirstActionWithFullSwipe = false
-        return configuration
     }
 
     private func routeIfAvailable(fileID: String, indexPath: IndexPath) {

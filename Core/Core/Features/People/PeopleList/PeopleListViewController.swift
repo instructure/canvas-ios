@@ -19,6 +19,12 @@
 import UIKit
 
 public class PeopleListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
+    private enum Section: Hashable { case list }
+    private enum UserItem: Hashable {
+        case user(id: String)
+        case loading
+    }
+
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -39,6 +45,7 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
     }
     var keyboard: KeyboardTransitioning?
     var search: String?
+    private var dataSource: UITableViewDiffableDataSource<Section, UserItem>!
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "\(context.pathComponent)/users"
     )
@@ -97,7 +104,11 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
         tableView.backgroundColor = .backgroundLightest
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
+        tableView.selectionFollowsFocus = false
         tableView.registerHeaderFooterView(FilterHeaderView.self, fromNib: false)
+
+        setupDataSource()
+
         colors.refresh()
         customStatuses?.refresh()
         if context.contextType == .course {
@@ -122,9 +133,6 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
-        if let selected = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: selected, animated: true)
-        }
         navigationController?.navigationBar.useContextColor(color)
     }
 
@@ -133,6 +141,23 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
         DispatchQueue.main.async {
             self.tableView.contentOffset.y = self.searchBar.frame.height
         }
+    }
+
+    private func setupDataSource() {
+        dataSource = UITableViewDiffableDataSource(tableView: tableView) { [weak self] tableView, indexPath, item in
+            guard let self else { return UITableViewCell() }
+            switch item {
+            case .user(let id):
+                let cell = tableView.dequeue(PeopleListCell.self, for: indexPath)
+                cell.accessibilityIdentifier = "people-list-cell-row-\(indexPath.row)"
+                let user = self.users.all.first(where: { $0.id == id })
+                cell.update(user: user, color: self.color, isOffline: self.offlineModelInteractor?.isOfflineModeEnabled() == true)
+                return cell
+            case .loading:
+                return LoadingCell(style: .default, reuseIdentifier: nil)
+            }
+        }
+        tableView.delegate = self
     }
 
     func updateNavBar() {
@@ -154,11 +179,28 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
         spinnerView.isHidden = !users.pending || !users.isEmpty || users.error != nil || refreshControl.isRefreshing
         emptyView.isHidden = users.pending || !users.isEmpty || users.error != nil
         errorView.isHidden = users.error == nil
-        tableView.reloadData()
+        applySnapshot()
 
         if accessibilityFocusAfterReload != nil {
             UIAccessibility.post(notification: .screenChanged, argument: accessibilityFocusAfterReload)
         }
+    }
+
+    private func applySnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, UserItem>()
+        snapshot.appendSections([.list])
+        var items = users.all.map { UserItem.user(id: $0.id) }
+        if users.hasNextPage { items.append(.loading) }
+        snapshot.appendItems(items, toSection: .list)
+
+        let updatedIDs = Set(users.updatedObjects.map { $0.id })
+        let reconfigureItems = items.filter {
+            if case .user(let id) = $0 { return updatedIDs.contains(id) }
+            return false
+        }
+        if !reconfigureItems.isEmpty { snapshot.reconfigureItems(reconfigureItems) }
+
+        dataSource.apply(snapshot, animatingDifferences: true)
     }
 
     @objc func refresh() {
@@ -228,7 +270,7 @@ extension PeopleListViewController: UISearchBarDelegate {
     }
 }
 
-extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
+extension PeopleListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard context.contextType == .course else { return nil }
         let header: FilterHeaderView = tableView.dequeueHeaderFooter()
@@ -249,22 +291,9 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
         return UITableView.automaticDimension
     }
 
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.hasNextPage ? users.count + 1 : users.count
-    }
-
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if users.hasNextPage && indexPath.row == users.count {
-            return LoadingCell(style: .default, reuseIdentifier: nil)
-        }
-        let cell = tableView.dequeue(PeopleListCell.self, for: indexPath)
-        cell.accessibilityIdentifier = "people-list-cell-row-\(indexPath.row)"
-        cell.update(user: users[indexPath.row], color: color, isOffline: offlineModelInteractor?.isOfflineModeEnabled() == true)
-        return cell
-    }
-
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let user = users[indexPath.row] else { return }
+        guard case .user(let id) = dataSource.itemIdentifier(for: indexPath),
+              let user = users.all.first(where: { $0.id == id }) else { return }
         guard offlineModelInteractor?.isOfflineModeEnabled() == false else {
             return UIAlertController.showItemNotAvailableInOfflineAlert {
                 tableView.deselectRow(at: indexPath, animated: true)
@@ -274,12 +303,10 @@ extension PeopleListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if users.hasNextPage && indexPath.row == users.count {
-            // In case of a fast network the table view blinks once with the scroll indicator jumping and it's not clear what happened,
-            // so we delay the next page load thus the loading indicator can appear and users know what's happening.
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                self?.users.getNextPage()
-            }
+        guard case .loading = dataSource.itemIdentifier(for: indexPath) else { return }
+        // Delay next page load so the loading indicator can appear and users know what's happening.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
+            self?.users.getNextPage()
         }
     }
 }

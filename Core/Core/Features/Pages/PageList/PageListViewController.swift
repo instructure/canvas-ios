@@ -19,6 +19,13 @@
 import UIKit
 
 public class PageListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol {
+    private enum Section: Hashable { case frontPage, pages }
+    private enum PageItem: Hashable {
+        case frontPage(id: String)
+        case page(id: String)
+        case loading
+    }
+
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
     @IBOutlet weak var emptyView: UIView!
@@ -34,6 +41,7 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
     var context = Context.currentUser
     private(set) var env = AppEnvironment.shared
     var selectedFirstPage: Bool = false
+    private var dataSource: UITableViewDiffableDataSource<Section, PageItem>!
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "\(context.pathComponent)/pages"
     )
@@ -86,6 +94,9 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
         view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = refreshControl
+        tableView.selectionFollowsFocus = false
+
+        setupDataSource()
 
         colors.refresh()
         frontPage.refresh()
@@ -100,10 +111,27 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let selected = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: selected, animated: true)
-        }
         navigationController?.navigationBar.useContextColor(color)
+    }
+
+    private func setupDataSource() {
+        dataSource = UITableViewDiffableDataSource(tableView: tableView) { [weak self] tableView, indexPath, item in
+            guard let self else { return UITableViewCell() }
+            switch item {
+            case .frontPage:
+                let cell: PageListFrontPageCell = tableView.dequeue(for: indexPath)
+                cell.update(self.frontPage.first)
+                return cell
+            case .page(let id):
+                let cell: PageListCell = tableView.dequeue(for: indexPath)
+                let page = self.pages.all.first(where: { $0.id == id })
+                cell.update(page, indexPath: indexPath, color: self.color)
+                return cell
+            case .loading:
+                return LoadingCell(style: .default, reuseIdentifier: nil)
+            }
+        }
+        tableView.delegate = self
     }
 
     func updateNavBar() {
@@ -127,19 +155,47 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
         loadingView.isHidden = pages.error != nil || !isLoading || refreshControl.isRefreshing
         emptyView.isHidden = pages.error != nil || isLoading || !frontPage.isEmpty || !pages.isEmpty
         errorView.isHidden = pages.error == nil
-        let selected = tableView.indexPathForSelectedRow
-        tableView.reloadData()
-        tableView.selectRow(at: selected, animated: false, scrollPosition: .none) // preserve prior selection
+        applySnapshot()
+    }
 
-        if !selectedFirstPage, !isLoading, let url = frontPage.first?.htmlURL ?? pages.first?.htmlURL {
-            selectedFirstPage = true
-            if splitViewController?.isCollapsed == false, !isInSplitViewDetail {
-                env.router.route(
-                    to: url,
-                    from: self,
-                    options: .detail
-                )
+    private func applySnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<Section, PageItem>()
+
+        if !frontPage.isEmpty, let fp = frontPage.first {
+            snapshot.appendSections([.frontPage])
+            snapshot.appendItems([.frontPage(id: fp.id)], toSection: .frontPage)
+        }
+
+        snapshot.appendSections([.pages])
+        var pageItems = pages.all.map { PageItem.page(id: $0.id) }
+        if pages.hasNextPage {
+            pageItems.append(.loading)
+        }
+        snapshot.appendItems(pageItems, toSection: .pages)
+
+        let updatedFrontPageIDs = Set(frontPage.updatedObjects.map { $0.id })
+        let updatedPageIDs = Set(pages.updatedObjects.map { $0.id })
+        let reconfigureItems = snapshot.itemIdentifiers.filter { item in
+            switch item {
+            case .frontPage(let id): return updatedFrontPageIDs.contains(id)
+            case .page(let id): return updatedPageIDs.contains(id)
+            case .loading: return false
             }
+        }
+        if !reconfigureItems.isEmpty {
+            snapshot.reconfigureItems(reconfigureItems)
+        }
+
+        dataSource.apply(snapshot, animatingDifferences: true)
+        selectFirstPageIfNeeded()
+    }
+
+    private func selectFirstPageIfNeeded() {
+        let isLoading = !frontPage.requested || frontPage.pending || !pages.requested || pages.pending
+        guard !selectedFirstPage, !isLoading, let url = frontPage.first?.htmlURL ?? pages.first?.htmlURL else { return }
+        selectedFirstPage = true
+        if splitViewController?.isCollapsed == false, !isInSplitViewDetail {
+            env.router.route(to: url, from: self, options: .detail)
         }
     }
 
@@ -178,40 +234,20 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
     }
 }
 
-extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return frontPage.isEmpty ? 1 : 2
-    }
-
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if section == 0 && !frontPage.isEmpty {
-            return 1
-        }
-        return pages.hasNextPage ? pages.count + 1 : pages.count
-    }
-
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.section == 0 && !frontPage.isEmpty {
-            let cell: PageListFrontPageCell = tableView.dequeue(for: indexPath)
-            cell.update(frontPage.first)
-            return cell
-        }
-        if pages.hasNextPage, indexPath.row == pages.count {
-            return LoadingCell(style: .default, reuseIdentifier: nil)
-        }
-        let cell: PageListCell = tableView.dequeue(for: indexPath)
-        cell.update(pages[indexPath.row], indexPath: indexPath, color: color)
-        return cell
-    }
-
+extension PageListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let page = (indexPath.section == 0 && !frontPage.isEmpty) ? frontPage.first : pages[indexPath.row]
+        guard let item = dataSource.itemIdentifier(for: indexPath) else { return }
+        let page: Page?
+        switch item {
+        case .frontPage:
+            page = frontPage.first
+        case .page(let id):
+            page = pages.all.first(where: { $0.id == id })
+        case .loading:
+            return
+        }
         guard let url = page?.htmlURL else { return }
-        env.router.route(
-            to: url,
-            from: self,
-            options: .detail
-        )
+        env.router.route(to: url, from: self, options: .detail)
     }
 
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
@@ -227,14 +263,10 @@ extension PageListViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.section == 0 && !frontPage.isEmpty {
-            return UITableView.automaticDimension
-        } else if indexPath.row == pages.count {
-            // Loading cell height
+        if case .loading = dataSource.itemIdentifier(for: indexPath) {
             return 73
-        } else {
-            return UITableView.automaticDimension
         }
+        return UITableView.automaticDimension
     }
 }
 

@@ -80,9 +80,12 @@ class ActivityStreamViewController: ScreenViewTrackableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if navigationController?.navigationBar.backItem == nil {
+
+        if let navigationController,
+           navigationController.navigationBar.backItem == nil,
+           navigationController.viewControllers.count == 1 {
             navigationItem.leftBarButtonItem = profileButton
-            navigationController?.navigationBar.useGlobalNavStyle()
+            navigationController.navigationBar.useGlobalNavStyle()
         }
     }
 

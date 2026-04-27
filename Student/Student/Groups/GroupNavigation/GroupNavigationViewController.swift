@@ -52,6 +52,7 @@ class GroupNavigationViewController: ScreenViewTrackableTableViewController, Col
         }
 
         view.backgroundColor = .backgroundLightest
+        tableView.selectionFollowsFocus = false
         tableView.backgroundColor = .backgroundLightest
         tableView.registerCell(RightDetailTableViewCell.self)
         tableView.separatorInset = .zero

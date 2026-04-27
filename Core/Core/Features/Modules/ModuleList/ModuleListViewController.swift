@@ -20,6 +20,11 @@ import Combine
 import SafariServices
 
 public final class ModuleListViewController: ScreenViewTrackableViewController, ColoredNavViewProtocol, ErrorViewController {
+    private enum RowItem: Hashable {
+        case moduleItem(id: String)
+        case emptyModule(moduleID: String)
+    }
+
     private let refreshControl = UIRefreshControl()
     @IBOutlet weak var emptyMessageLabel: UILabel!
     @IBOutlet weak var emptyTitleLabel: UILabel!
@@ -60,6 +65,7 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
     }
     private lazy var publishInteractor = ModulesAssembly.publishInteractor(for: courseID, env: env)
     private var subscriptions = Set<AnyCancellable>()
+    private var dataSource: UITableViewDiffableDataSource<String, RowItem>!
 
     public static func create(env: AppEnvironment, courseID: String, moduleID: String? = nil) -> ModuleListViewController {
         let controller = loadFromStoryboard()
@@ -93,6 +99,7 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         view.backgroundColor = .backgroundLightest
         tableView.backgroundColor = .backgroundLightest
         tableView.refreshControl = refreshControl
+        tableView.selectionFollowsFocus = false
         tableView.registerCell(EmptyCell.self)
         tableView.registerHeaderFooterView(ModuleSectionHeaderView.self, fromNib: false)
         if let footer = tableView.tableFooterView as? UILabel {
@@ -100,6 +107,8 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
             footer.text = String(localized: "Loading more modules...", bundle: .core)
             tableView.contentInset.bottom = -footer.frame.height
         }
+
+        setupDataSource()
 
         NotificationCenter.default.addObserver(self, selector: #selector(moduleItemViewDidLoad), name: .moduleItemViewDidLoad, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(refresh), name: .moduleItemRequirementCompleted, object: nil)
@@ -112,12 +121,27 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: selectedIndexPath, animated: false)
-        }
         if #unavailable(iOS 26) {
             navigationController?.navigationBar.useContextColor(color)
         }
+    }
+
+    private func setupDataSource() {
+        dataSource = UITableViewDiffableDataSource(tableView: tableView) { [weak self] tableView, indexPath, item in
+            guard let self else { return UITableViewCell() }
+            switch item {
+            case .moduleItem(let id):
+                let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
+                if let module = self.modules[indexPath.section],
+                   let moduleItem = module.items.first(where: { $0.id == id }) {
+                    cell.update(moduleItem, indexPath: indexPath, color: self.color, publishInteractor: self.publishInteractor, host: self)
+                }
+                return cell
+            case .emptyModule:
+                return tableView.dequeue(for: indexPath) as EmptyCell
+            }
+        }
+        tableView.delegate = self
     }
 
     private func update() {
@@ -134,12 +158,29 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
             errorView.retryButton.isHidden = false
         }
         tableView.tableFooterView?.setNeedsLayout()
-        tableView.reloadData()
-        scrollToModule()
+
+        applySnapshot()
 
         if spinnerView.isHidden, emptyView.isHidden, errorView.isHidden {
             setupBulkPublishButtonInNavBar()
         }
+    }
+
+    private func applySnapshot() {
+        let snapshot: NSDiffableDataSourceSnapshot<String, RowItem>
+
+        if isPageDisabled {
+            snapshot = NSDiffableDataSourceSnapshot()
+        } else {
+            snapshot = modules.makeSnapshot(sectionID: \.id) { module in
+                guard self.collapsedIDs[self.courseID]?.contains(module.id) != true else { return [] }
+                if module.items.isEmpty { return [.emptyModule(moduleID: module.id)] }
+                return module.items.map { .moduleItem(id: $0.id) }
+            }
+        }
+
+        dataSource.apply(snapshot, animatingDifferences: true)
+        scrollToModule()
     }
 
     private func setupBulkPublishButtonInNavBar() {
@@ -211,6 +252,31 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
         }
     }
 
+    private func toggleSection(_ section: Int) {
+        guard let module = modules[section] else { return }
+        if isSectionExpanded(section) {
+            collapsedIDs[courseID]?.append(module.id)
+        } else {
+            collapsedIDs[courseID]?.removeAll { $0 == module.id }
+        }
+        applySnapshot()
+    }
+
+    private func showLockedMessage(module: Module) {
+        guard let message = module.lockedMessage else { return }
+        let alert = UIAlertController(
+            title: String(localized: "Locked", bundle: .core),
+            message: message,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(
+            title: String(localized: "OK", bundle: .core),
+            style: .default,
+            handler: nil
+        ))
+        env.router.show(alert, from: self)
+    }
+
     @objc private func moduleItemViewDidLoad(_ notification: Notification) {
         guard
             splitViewController?.isCollapsed == false,
@@ -238,11 +304,7 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
     }
 }
 
-extension ModuleListViewController: UITableViewDataSource {
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return isPageDisabled ? 0 : modules.count
-    }
-
+extension ModuleListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let module = modules[section] else { return nil }
         let header = tableView.dequeueHeaderFooter(ModuleSectionHeaderView.self)
@@ -255,50 +317,6 @@ extension ModuleListViewController: UITableViewDataSource {
         return header
     }
 
-    private func toggleSection(_ section: Int) {
-        guard let module = modules[section] else { return }
-        if isSectionExpanded(section) {
-            collapsedIDs[courseID]?.append(module.id)
-        } else {
-            collapsedIDs[courseID]?.removeAll { $0 == module.id }
-        }
-        tableView.reloadSections([section], with: .automatic)
-    }
-
-    private func showLockedMessage(module: Module) {
-        guard let message = module.lockedMessage else { return }
-        let alert = UIAlertController(
-            title: String(localized: "Locked", bundle: .core),
-            message: message,
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(
-            title: String(localized: "OK", bundle: .core),
-            style: .default,
-            handler: nil
-        ))
-        env.router.show(alert, from: self)
-    }
-
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard isSectionExpanded(section) else { return 0 }
-        return max(modules[section]?.items.count ?? 0, 1)
-    }
-
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let module = modules[indexPath.section]
-        if indexPath.row == module?.items.count {
-            return tableView.dequeue(for: indexPath) as EmptyCell
-        }
-        let cell: ModuleItemCell = tableView.dequeue(for: indexPath)
-        if let item = module?.items[indexPath.row] {
-            cell.update(item, indexPath: indexPath, color: color, publishInteractor: publishInteractor, host: self)
-        }
-        return cell
-    }
-}
-
-extension ModuleListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let module = modules[indexPath.section], module.items.count > indexPath.row else { return }
         let item = module.items[indexPath.row]

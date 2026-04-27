@@ -33,6 +33,7 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
     var courseID = ""
     private(set) var env: AppEnvironment = .shared
     var selectedFirstQuiz: Bool = false
+    private var dataSource: UITableViewDiffableDataSource<String, String>!
     public lazy var screenViewTrackingParameters = ScreenViewTrackingParameters(
         eventName: "courses/\(courseID)/quizzes"
     )
@@ -72,8 +73,11 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
 
         refreshControl.addTarget(self, action: #selector(refresh), for: .primaryActionTriggered)
         tableView.refreshControl = refreshControl
+        tableView.selectionFollowsFocus = false
         tableView.backgroundColor = .backgroundLightest
         view.backgroundColor = .backgroundLightest
+
+        setupDataSource()
 
         colors.refresh()
         course.refresh()
@@ -82,10 +86,21 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.selectRow(at: nil, animated: false, scrollPosition: .none)
         if #unavailable(iOS 26) {
             navigationController?.navigationBar.useContextColor(color)
         }
+    }
+
+    private func setupDataSource() {
+        dataSource = UITableViewDiffableDataSource(tableView: tableView) { [weak self] tableView, indexPath, quizID in
+            guard let self else { return UITableViewCell() }
+            let cell: QuizListCell = tableView.dequeue(for: indexPath)
+            let quiz = self.quizzes.all.first(where: { $0.id == quizID })
+            cell.update(quiz: quiz, isTeacher: self.course.first?.hasTeacherEnrollment == true, color: self.color)
+            cell.accessibilityIdentifier = "QuizListCell.\(indexPath.section).\(indexPath.row)"
+            return cell
+        }
+        tableView.delegate = self
     }
 
     @objc func refresh() {
@@ -111,40 +126,50 @@ public class QuizListViewController: ScreenViewTrackableViewController, ColoredN
         loadingView.isHidden = quizzes.state != .loading || refreshControl.isRefreshing
         emptyView.isHidden = quizzes.state != .empty
         errorView.isHidden = quizzes.state != .error
-        tableView.reloadData()
+        applySnapshot()
+    }
 
-        if !selectedFirstQuiz, quizzes.state != .loading, let url = quizzes.first?.htmlURL {
-            selectedFirstQuiz = true
-            if splitViewController?.isCollapsed == false, !isInSplitViewDetail {
-                env.router.route(to: url, from: self, options: .detail)
+    private func applySnapshot() {
+        var snapshot = NSDiffableDataSourceSnapshot<String, String>()
+
+        for sectionIndex in 0..<quizzes.numberOfSections {
+            guard let section = quizzes.sections?[sectionIndex] else { continue }
+            snapshot.appendSections([section.name])
+            let itemIDs = (0..<section.numberOfObjects).compactMap { row in
+                quizzes[IndexPath(row: row, section: sectionIndex)]?.id
             }
+            snapshot.appendItems(itemIDs, toSection: section.name)
+        }
+
+        let updatedIDs = quizzes.updatedObjects.compactMap { $0.id }
+        if !updatedIDs.isEmpty {
+            snapshot.reconfigureItems(updatedIDs)
+        }
+
+        dataSource.apply(snapshot, animatingDifferences: true)
+        selectFirstQuizIfNeeded()
+    }
+
+    private func selectFirstQuizIfNeeded() {
+        guard !selectedFirstQuiz, quizzes.state != .loading, let url = quizzes.first?.htmlURL else { return }
+        selectedFirstQuiz = true
+        if splitViewController?.isCollapsed == false, !isInSplitViewDetail {
+            env.router.route(to: url, from: self, options: .detail)
         }
     }
 }
 
-extension QuizListViewController: UITableViewDataSource, UITableViewDelegate {
-    public func numberOfSections(in tableView: UITableView) -> Int {
-        return quizzes.numberOfSections
-    }
-
+extension QuizListViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let typeRaw = quizzes.sections?[section].name, let type = QuizType(rawValue: typeRaw) else { return nil }
+        let sectionIdentifiers = dataSource.snapshot().sectionIdentifiers
+        guard section < sectionIdentifiers.count,
+              let type = QuizType(rawValue: sectionIdentifiers[section]) else { return nil }
         return SectionHeaderView.create(title: type.sectionTitle, section: section)
     }
 
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return quizzes.sections?[section].numberOfObjects ?? 0
-    }
-
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: QuizListCell = tableView.dequeue(for: indexPath)
-        cell.update(quiz: quizzes[indexPath], isTeacher: course.first?.hasTeacherEnrollment == true, color: color)
-        cell.accessibilityIdentifier = "QuizListCell.\(indexPath.section).\(indexPath.row)"
-        return cell
-    }
-
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let htmlURL = quizzes[indexPath]?.htmlURL else { return }
+        guard let quizID = dataSource.itemIdentifier(for: indexPath),
+              let htmlURL = quizzes.all.first(where: { $0.id == quizID })?.htmlURL else { return }
         env.router.route(to: htmlURL, from: self, options: .detail)
     }
 }
