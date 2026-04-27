@@ -80,13 +80,11 @@ final class CourseCardViewModelTests: StudentTestCase {
         testee = makeViewModel(model: .make(id: testData.id))
 
         env.userDefaults?.offlineSyncSelections = ["courses/\(testData.id)"]
-        waitUntil { testee.isAvailableOffline == true }
-        XCTAssertEqual(testee.isAvailableOffline, true)
+        waitUntil(5, shouldFail: true) { testee.isAvailableOffline == true }
 
         env.userDefaults?.offlineSyncSelections = ["courses/other_course"]
 
-        waitUntil { testee.isAvailableOffline == false }
-        XCTAssertEqual(testee.isAvailableOffline, false)
+        waitUntil(5, shouldFail: true) { testee.isAvailableOffline == false }
 
         env.userDefaults?.offlineSyncSelections = []
         XCTAssertEqual(testee.isAvailableOffline, false)
