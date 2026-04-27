@@ -79,13 +79,15 @@ final class CourseCardViewModelTests: StudentTestCase {
     func test_isAvailableOffline_shouldUseCurrentValue() {
         testee = makeViewModel(model: .make(id: testData.id))
 
+        // selection contains id
         env.userDefaults?.offlineSyncSelections = ["courses/\(testData.id)"]
         waitUntil(5, shouldFail: true) { testee.isAvailableOffline == true }
 
+        // selection does not contain id
         env.userDefaults?.offlineSyncSelections = ["courses/other_course"]
-
         waitUntil(5, shouldFail: true) { testee.isAvailableOffline == false }
 
+        // selection is empty
         env.userDefaults?.offlineSyncSelections = []
         XCTAssertEqual(testee.isAvailableOffline, false)
     }
