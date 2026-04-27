@@ -34,8 +34,7 @@ final class CourseCardViewModel: Identifiable, Equatable {
     let shouldShowAnnouncementsButton: Bool
     let openAnnouncementsA11yLabel: String
 
-    // cannot capture id before this gets initialized, but it's needed for the initialization
-    var isAvailableOffline: Bool!
+    var isAvailableOffline: Bool
 
     private let model: CoursesAndGroupsWidgetCourseItem
     private let didSaveChanges: PassthroughSubject<Void, Never>
@@ -54,6 +53,7 @@ final class CourseCardViewModel: Identifiable, Equatable {
         self.courseColor = model.color
         self.imageUrl = model.imageUrl
         self.grade = model.grade
+        self.isAvailableOffline = Self.isCourseAvailableOffline(id: model.id)
 
         self.unreadAnnouncementCount = model.unreadAnnouncementCount
         self.shouldShowAnnouncementsButton = model.unreadAnnouncementCount > 0
@@ -64,7 +64,6 @@ final class CourseCardViewModel: Identifiable, Equatable {
         self.didSaveChanges = didSaveChanges
         self.router = router
 
-        updateOfflineAvailability()
         observeUserDefaultsChanges()
     }
 
@@ -127,16 +126,17 @@ final class CourseCardViewModel: Identifiable, Equatable {
             .compactMap { _ in AppEnvironment.shared.userDefaults?.offlineSyncSelections }
             .removeDuplicates()
             .sink { [weak self] _ in
-                self?.updateOfflineAvailability()
+                guard let self else { return }
+                self.isAvailableOffline = Self.isCourseAvailableOffline(id: self.id)
             }
             .store(in: &subscriptions)
     }
 
-    private func updateOfflineAvailability() {
+    private static func isCourseAvailableOffline(id: String) -> Bool {
         if let selections = AppEnvironment.shared.userDefaults?.offlineSyncSelections {
-            isAvailableOffline = selections.contains { $0.contains("courses/\(self.id)") }
+            selections.contains { $0.contains("courses/\(id)") }
         } else {
-            isAvailableOffline = false
+            false
         }
     }
 
