@@ -1,0 +1,29 @@
+---
+targets:
+  NextGen:
+    type: framework
+    platform: iOS
+    transitivelyLinkDependencies: false
+    settings:
+      APPLICATION_EXTENSION_API_ONLY: false
+      SWIFT_EMIT_LOC_STRINGS: true
+      PRODUCT_BUNDLE_IDENTIFIER: com.instructure.nextgen
+      TARGETED_DEVICE_FAMILY: 1,2
+    sources:
+      - path: ./
+        excludes:
+          - ".swiftlint.yml"
+          - "nextgen.yml"
+    dependencies:
+      - target: Core/Core
+      - package: BusinessLogic
+      - package: InstUI
+    preBuildScripts:
+      - path: ../../scripts/xcode-build-phases/swiftLint.sh
+        name: SwiftLint
+        basedOnDependencyAnalysis: false
+schemes:
+  NextGen:
+    build:
+      targets:
+        NextGen: all

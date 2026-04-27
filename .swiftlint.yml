@@ -18,6 +18,7 @@ included: # paths to include during linting. `--path` is ignored if present.
   - Student
   - Teacher
   - Horizon
+  - NextGen
   - Parent
   - TestsFoundation
   - packages/HorizonUI/Sources/HorizonUI

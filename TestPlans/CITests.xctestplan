@@ -98,6 +98,13 @@
         "identifier" : "73B1A2AD90A7970B7DB39CDC",
         "name" : "CoreTests"
       }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:NextGen\/NextGen.xcodeproj",
+        "identifier" : "42119C763396499B7891C45E",
+        "name" : "NextGenUnitTests"
+      }
     }
   ],
   "version" : 1

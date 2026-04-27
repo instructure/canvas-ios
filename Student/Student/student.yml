@@ -30,6 +30,7 @@ targets:
       - target: SubmitAssignment
       - target: Widgets
       - target: Horizon/Horizon
+      - target: NextGen/NextGen
     preBuildScripts:
       - path: ../../scripts/xcode-build-phases/swiftLint.sh
         name: SwiftLint
@@ -60,4 +61,4 @@ schemes:
         - name: Core/CoreTester
           skipped: true
       gatherCoverageData: true
-      coverageTargets: [Core/Core, Horizon/Horizon, Student]
+      coverageTargets: [Core/Core, Horizon/Horizon, NextGen/NextGen, Student]

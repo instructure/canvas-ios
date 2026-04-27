@@ -1,0 +1,39 @@
+---
+name: NextGen
+attributes: {
+  LastUpgradeCheck: "2640"
+}
+options:
+  groupSortPosition: top
+  bundleIdPrefix: com.instructure.nextgen
+  deploymentTarget:
+    iOS: 18.0
+  createIntermediateGroups: true
+settings:
+  CODE_SIGN_STYLE: Automatic
+  DEVELOPMENT_TEAM: B6333T4PXQ
+  CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED: true
+  LOCALIZATION_PREFERS_STRING_CATALOGS: true
+  ENABLE_USER_SCRIPT_SANDBOXING: false
+  ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: false
+  STRING_CATALOG_GENERATE_SYMBOLS: false
+  CURRENT_PROJECT_VERSION: 0.0.1
+  MARKETING_VERSION: 0.0.1
+  platform: iOS
+  ENABLE_MODULE_VERIFIER: true
+  MODULE_VERIFIER_SUPPORTED_LANGUAGE_STANDARDS: 'gnu11 gnu++14'
+sources:
+  - path: ./
+    excludes:
+      - ".swiftlint.yml"
+include:
+  - NextGen/nextgen.yml
+  - NextGenUnitTests/nextgen-unit-tests.yml
+projectReferences:
+  Core:
+    path: ../Core/Core.xcodeproj
+packages:
+  BusinessLogic:
+    path: ../packages/BusinessLogic
+  InstUI:
+    path: ../packages/InstUI
