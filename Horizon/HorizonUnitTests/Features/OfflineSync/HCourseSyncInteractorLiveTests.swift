@@ -88,14 +88,25 @@ final class HCourseSyncInteractorLiveTests: HorizonTestCase {
         XCTAssertEqual(session.horizonOfflineSyncFileMetadata.isEmpty, true)
     }
 
-    // MARK: - downloadContent
+    func test_clear_shouldEmitEmptyDownloadItems() {
+        let course = makeCourse(id: testData.courseID1, isSelected: true)
+        testee.downloadContent(courses: [course], environment: environment)
+        var received: [[OfflineCourseItem]] = []
+        testee.downloadItems.sink { received.append($0) }.store(in: &subscriptions)
 
-    func test_downloadContent_shouldResetSessionSyncItems() {
-        session.horizonOfflineSyncItems = ["item 1"]
+        testee.clear()
 
-        testee.downloadContent(courses: [], environment: environment)
+        XCTAssertEqual(received.last?.isEmpty, true)
+    }
 
-        XCTAssertEqual(session.horizonOfflineSyncItems, [])
+    func test_clear_shouldEmitCompletedProgress() {
+        var received: [HOfflineSyncProgress] = []
+        testee.progressPublisher.sink { received.append($0) }.store(in: &subscriptions)
+
+        testee.clear()
+
+        XCTAssertEqual(received.last?.progress, 0)
+        XCTAssertEqual(received.last?.isComplete, true)
     }
 
     func test_downloadContent_withSelectedFiles_shouldUpdateFileMetadataInSession() {
@@ -103,6 +114,9 @@ final class HCourseSyncInteractorLiveTests: HorizonTestCase {
         let course = makeCourse(id: testData.courseID1, files: [file])
 
         testee.downloadContent(courses: [course], environment: environment)
+        var downloadedFile = file
+        downloadedFile.downloadState = .downloaded
+        filesInteractor.downloadFilesSubject.send([downloadedFile])
 
         XCTAssertNotNil(session.horizonOfflineSyncFileMetadata[testData.fileID1])
     }
@@ -111,7 +125,7 @@ final class HCourseSyncInteractorLiveTests: HorizonTestCase {
         let course1 = makeCourse(id: testData.courseID1, isSelected: true)
         let course2 = makeCourse(id: testData.courseID2, isSelected: true)
         var progressValues: [HOfflineSyncProgress] = []
-        testee.progressPublisher.dropFirst().sink { progressValues.append($0) }.store(in: &subscriptions)
+        testee.progressPublisher.dropFirst(2).sink { progressValues.append($0) }.store(in: &subscriptions)
 
         testee.downloadContent(courses: [course1, course2], environment: environment)
 
@@ -177,6 +191,80 @@ final class HCourseSyncInteractorLiveTests: HorizonTestCase {
         XCTAssertEqual(notificationCenter.requests.last?.identifier, "OfflineSyncFailed")
     }
 
+    // MARK: - cancelSync
+
+    func test_cancelSync_shouldEmitEmptyDownloadItems() {
+        let file = makeFile(id: testData.fileID1, courseID: testData.courseID1, isSelected: true)
+        let course = makeCourse(id: testData.courseID1, files: [file])
+        testee.downloadContent(courses: [course], environment: environment)
+        var received: [[OfflineCourseItem]] = []
+        testee.downloadItems.sink { received.append($0) }.store(in: &subscriptions)
+
+        testee.cancelSync()
+
+        XCTAssertEqual(received.last?.isEmpty, true)
+    }
+
+    func test_cancelSync_shouldEmitCompletedProgress() {
+        var received: [HOfflineSyncProgress] = []
+        testee.progressPublisher.sink { received.append($0) }.store(in: &subscriptions)
+
+        testee.cancelSync()
+
+        XCTAssertEqual(received.last?.isComplete, true)
+    }
+
+    func test_cancelSync_shouldDeleteNewlySelectedFiles() {
+        let file = makeFile(id: testData.fileID1, courseID: testData.courseID1, isSelected: true)
+        let course = makeCourse(id: testData.courseID1, files: [file])
+        testee.downloadContent(courses: [course], environment: environment)
+
+        testee.cancelSync()
+
+        XCTAssertEqual(filesInteractor.deletedFiles.map(\.id), [testData.fileID1])
+        XCTAssertEqual(filesInteractor.deletedSessionID, testData.sessionID)
+    }
+
+    func test_cancelSync_shouldNotDeleteAlreadySyncedFiles() {
+        let file = makeFile(id: testData.fileID1, courseID: testData.courseID1, isSelected: true)
+        let course = makeCourse(id: testData.courseID1, files: [file])
+        testee.downloadContent(courses: [course], environment: environment)
+        session.horizonOfflineSyncItems = [OfflineType.file(courseID: testData.courseID1, fileID: testData.fileID1).path()]
+
+        testee.cancelSync()
+
+        XCTAssertEqual(filesInteractor.deletedFiles.isEmpty, true)
+    }
+
+    // MARK: - downloadItems
+
+    func test_downloadContent_shouldSetLoadingStateOnCourses() {
+        let file = makeFile(id: testData.fileID1, courseID: testData.courseID1, isSelected: true)
+        let course = makeCourse(id: testData.courseID1, files: [file])
+        var received: [[OfflineCourseItem]] = []
+        testee.downloadItems.sink { received.append($0) }.store(in: &subscriptions)
+
+        testee.downloadContent(courses: [course], environment: environment)
+
+        XCTAssertEqual(received.last?.first?.downloadState, .loading)
+    }
+
+    // MARK: - errorPublisher
+
+    func test_errorPublisher_whenFileDownloadFails_shouldEmit() {
+        let file = makeFile(id: testData.fileID1, courseID: testData.courseID1, isSelected: true)
+        let course = makeCourse(id: testData.courseID1, files: [file])
+        var errorReceived = false
+        testee.errorPublisher.sink { errorReceived = true }.store(in: &subscriptions)
+
+        testee.downloadContent(courses: [course], environment: environment)
+        var failedFile = file
+        failedFile.downloadState = .failed("download error")
+        filesInteractor.downloadFilesSubject.send([failedFile])
+
+        XCTAssertEqual(errorReceived, true)
+    }
+
     // MARK: - Private helpers
 
     private func makeInteractor() -> HCourseSyncInteractorLive {
@@ -224,9 +312,21 @@ final class HCourseSyncInteractorLiveTests: HorizonTestCase {
 
 private final class HCourseSyncFilesInteractorMock: HCourseSyncFilesInteractor {
     let downloadFilesSubject = PassthroughSubject<[OfflineFileItem], Never>()
+    var cancelDownloadsCalled = false
+    var deletedFiles: [OfflineFileItem] = []
+    var deletedSessionID: String?
 
     func downloadFiles(files: [OfflineFileItem], sessionID: String) -> AnyPublisher<[OfflineFileItem], Never> {
         downloadFilesSubject.eraseToAnyPublisher()
+    }
+
+    func cancelDownloads() {
+        cancelDownloadsCalled = true
+    }
+
+    func deleteFiles(_ files: [OfflineFileItem], sessionID: String) {
+        deletedFiles = files
+        deletedSessionID = sessionID
     }
 
     func removeUnavailableFiles(courseId: String, newFileIDs: [String], sessionID: String) -> AnyPublisher<Void, Error> {

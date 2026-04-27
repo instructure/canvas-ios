@@ -26,6 +26,9 @@ protocol HCourseSyncFilesInteractor {
         sessionID: String
     ) -> AnyPublisher<[OfflineFileItem], Never>
 
+    func cancelDownloads()
+    func deleteFiles(_ files: [OfflineFileItem], sessionID: String)
+
      func removeUnavailableFiles(
         courseId: String,
         newFileIDs: [String],
@@ -48,6 +51,26 @@ final class HCourseSyncFilesInteractorLive: HCourseSyncFilesInteractor, LocalFil
     ) {
         self.offlineFileInteractor = offlineFileInteractor
         self.fileManager = fileManager
+    }
+
+    func cancelDownloads() {
+        subscriptions.removeAll()
+    }
+
+    func deleteFiles(_ files: [OfflineFileItem], sessionID: String) {
+        files.forEach { file in
+            let localURL = prepareLocalURL(
+                fileName: offlineFileInteractor.filePath(
+                    sessionID: sessionID,
+                    courseId: file.courseID,
+                    fileID: file.id,
+                    fileName: file.name
+                ),
+                mimeClass: file.mimeClass,
+                location: URL.Directories.documents
+            )
+            try? fileManager.removeItem(at: localURL.deletingLastPathComponent())
+        }
     }
 
     func downloadFiles(
@@ -77,7 +100,6 @@ final class HCourseSyncFilesInteractorLive: HCourseSyncFilesInteractor, LocalFil
                     }
                     .eraseToAnyPublisher()
             }
-            .receive(on: DispatchQueue.main)
             .sink { index, state in
                 var current = subject.value
                 guard current.indices.contains(index) else { return }

@@ -22,6 +22,21 @@ import Combine
 import Core
 
 final class HCourseSyncInteractorPreview: HCourseSyncInteractor {
+    var downloadItems: AnyPublisher<[OfflineCourseItem], Never> {
+        Just(
+            [
+                .init(
+                    id: "1",
+                    name: "Course 1",
+                    size: "10KB",
+                    isExpanded: false,
+                    isSelected: true,
+                    subItems: []
+                )
+            ]
+        ).eraseToAnyPublisher()
+    }
+
     private let progressSubject = CurrentValueSubject<HOfflineSyncProgress, Never>(
         HOfflineSyncProgress(progress: 0, downloadedSize: "", totalSize: "", isComplete: false)
     )
@@ -30,10 +45,22 @@ final class HCourseSyncInteractorPreview: HCourseSyncInteractor {
         progressSubject.eraseToAnyPublisher()
     }
 
-    func downloadContent(courses: [OfflineCourseItem], environment: AppEnvironment) {
-        progressSubject.send(HOfflineSyncProgress(progress: 0.5, downloadedSize: "50 MB", totalSize: "100 MB", isComplete: false))
+    var errorPublisher: AnyPublisher<Void, Never> {
+        Empty().eraseToAnyPublisher()
     }
 
+    func downloadContent(courses: [OfflineCourseItem], environment: AppEnvironment) {
+        progressSubject.send(
+            HOfflineSyncProgress(
+                progress: 0.5,
+                downloadedSize: "50 MB",
+                totalSize: "100 MB",
+                isComplete: false
+            )
+        )
+    }
+
+    func cancelSync() {}
     func clear() {}
 }
 

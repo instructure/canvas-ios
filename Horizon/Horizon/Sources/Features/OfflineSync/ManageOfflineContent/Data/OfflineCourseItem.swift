@@ -39,6 +39,7 @@ public struct OfflineCourseItem: Identifiable {
     let size: String?
     var isExpanded: Bool = false
     var isSelected: Bool = false
+    var downloadState: OfflineDownloadState = .idle
     var files: [OfflineFileItem]
     var hasSubItems: Bool { files.isNotEmpty }
 
@@ -78,10 +79,6 @@ public struct OfflineCourseItem: Identifiable {
         self.size = entity.size
         let isCourseSynced = offlineSyncItems.contains(OfflineType.course(id: entity.id).path())
         self.isSelected = isCourseSynced
-        self.files = entity.files.map {
-            var file = OfflineFileItem(from: $0, offlineSyncItems: offlineSyncItems)
-            if isCourseSynced { file.isSelected = true }
-            return file
-        }
+        self.files = entity.files.map { OfflineFileItem(from: $0, offlineSyncItems: offlineSyncItems) }
     }
 }

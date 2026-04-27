@@ -32,6 +32,7 @@ class DashboardViewModel {
     private(set) var syncProgress: Double = 0
     private(set) var syncDownloadedSize: String = ""
     private(set) var syncTotalSize: String = ""
+    private(set) var isSyncError = false
 
     // MARK: - Dependencies
 
@@ -44,6 +45,7 @@ class DashboardViewModel {
     // MARK: - Private variables
 
     private var subscriptions = Set<AnyCancellable>()
+    private var lastSyncedCourses: [OfflineCourseItem] = []
 
     // MARK: - Init
 
@@ -71,6 +73,8 @@ class DashboardViewModel {
             .compactMap { $0.object as? [OfflineCourseItem] }
             .sink { [weak self] courses in
                 self?.isOfflineSyncVisible = true
+                self?.isSyncError = false
+                self?.lastSyncedCourses = courses
                 self?.syncInteractor.downloadContent(courses: courses, environment: .shared)
             }
             .store(in: &subscriptions)
@@ -85,11 +89,15 @@ class DashboardViewModel {
                 if progress.isComplete {
                     self.scheduler.schedule(after: self.scheduler.now.advanced(by: .seconds(1))) {
                         self.isOfflineSyncVisible = false
-                        self.syncProgress = 0
-                        self.syncDownloadedSize = ""
-                        self.syncTotalSize = ""
                     }
                 }
+            }
+            .store(in: &subscriptions)
+
+        syncInteractor.errorPublisher
+            .receive(on: scheduler)
+            .sink { [weak self] in
+                self?.isSyncError = true
             }
             .store(in: &subscriptions)
     }
@@ -124,5 +132,16 @@ class DashboardViewModel {
 
     func reloadUnreadBadges() {
         setNotificationBadge()
+    }
+
+    func retrySyncDidTap() {
+        isSyncError = false
+        syncInteractor.downloadContent(courses: lastSyncedCourses, environment: .shared)
+    }
+
+    func offlineSyncDidTap(viewController: WeakViewController) {
+        guard !isSyncError else { return }
+        let vc = HOfflineDownloadStatusAssembly.makeViewController(syncInteractor: syncInteractor)
+        router.show(vc, from: viewController)
     }
 }

@@ -25,33 +25,49 @@ struct HDashboardOfflineSyncProgressCardView: View {
     private let progress: Double
     private let downloadedSize: String
     private let totalSize: String
+    private let isError: Bool
+    private let onRetry: () -> Void
 
     // MARK: - Init
 
     init(
         progress: Double,
         downloadedSize: String,
-        totalSize: String
+        totalSize: String,
+        isError: Bool = false,
+        onRetry: @escaping () -> Void = {}
     ) {
         self.progress = progress
         self.downloadedSize = downloadedSize
         self.totalSize = totalSize
+        self.isError = isError
+        self.onRetry = onRetry
     }
 
     var body: some View {
+        if isError {
+            errorContent
+        } else {
+            syncingContent
+        }
+    }
+
+    // MARK: - Syncing state
+
+    private var syncingContent: some View {
         VStack(spacing: .huiSpaces.space16) {
             HStack(spacing: .huiSpaces.space8) {
-                iconView
-                titleView
+                syncIconView
+                syncTitleView
             }
-            progressView
+            downloadProgressView
             HorizonUI.ProgressBar(
-                    progress: progress,
-                    progressColor: Color.huiColors.primitives.blue82,
-                    size: .small,
-                    numberPosition: .hidden,
-                    backgroundColor: Color.huiColors.primitives.blue12
-                )
+                progress: progress,
+                progressColor: Color.huiColors.primitives.blue82,
+                size: .small,
+                numberPosition: .hidden,
+                backgroundColor: Color.huiColors.primitives.blue12
+            )
         }
         .padding(.huiSpaces.space24)
         .background(Color.huiColors.surface.pageSecondary)
@@ -59,7 +75,7 @@ struct HDashboardOfflineSyncProgressCardView: View {
         .huiElevation(level: .level4)
     }
 
-    private var iconView: some View {
+    private var syncIconView: some View {
         Image.huiIcons.sync
             .padding(.huiSpaces.space4)
             .foregroundStyle(Color.huiColors.icon.default)
@@ -67,7 +83,7 @@ struct HDashboardOfflineSyncProgressCardView: View {
             .clipShape(.circle)
     }
 
-    private var titleView: some View {
+    private var syncTitleView: some View {
         Text("Syncing offline content")
             .frame(maxWidth: .infinity, alignment: .leading)
             .foregroundStyle(Color.huiColors.text.dataPoint)
@@ -75,21 +91,70 @@ struct HDashboardOfflineSyncProgressCardView: View {
     }
 
     @ViewBuilder
-    private var progressView: some View {
-        if !downloadedSize.isEmpty && !totalSize.isEmpty {
+    private var downloadProgressView: some View {
+        if downloadedSize.isNotEmpty, totalSize.isNotEmpty {
             Text(String(format: "Downloading %@ of %@", downloadedSize, totalSize))
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .foregroundStyle(Color.huiColors.text.dataPoint)
                 .huiTypography(.p3)
         }
     }
+
+    // MARK: - Error state
+
+    private var errorContent: some View {
+        VStack(alignment: .leading, spacing: .huiSpaces.space16) {
+            HStack(spacing: .huiSpaces.space8) {
+                errorIconView
+                errorTitleView
+            }
+            Text("Some content couldn't be downloaded.", bundle: .horizon)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .foregroundStyle(Color.huiColors.text.dataPoint)
+                .huiTypography(.p3)
+            HorizonUI.PrimaryButton(
+                String(localized: "Retry", bundle: .horizon),
+                type: .dangerOutline,
+                isSmall: true,
+                trailing: Image.huiIcons.restartAlt,
+                action: onRetry
+            )
+        }
+        .padding(.huiSpaces.space24)
+        .background(Color.huiColors.surface.pageSecondary)
+        .huiCornerRadius(level: .level5)
+        .huiElevation(level: .level4)
+    }
+
+    private var errorIconView: some View {
+        Image.huiIcons.error
+            .foregroundStyle(Color.huiColors.icon.error)
+    }
+
+    private var errorTitleView: some View {
+        Text("Sync failed", bundle: .horizon)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .foregroundStyle(Color.huiColors.icon.error)
+            .huiTypography(.labelMediumBold)
+    }
 }
 
-#Preview {
+#Preview("Syncing") {
     HDashboardOfflineSyncProgressCardView(
         progress: 0.3,
         downloadedSize: "12.7 MB",
         totalSize: "64 MB"
+    )
+    .padding()
+}
+
+#Preview("Error") {
+    HDashboardOfflineSyncProgressCardView(
+        progress: 0,
+        downloadedSize: "",
+        totalSize: "",
+        isError: true,
+        onRetry: {}
     )
     .padding()
 }
