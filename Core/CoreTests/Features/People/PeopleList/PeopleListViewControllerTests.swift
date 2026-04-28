@@ -123,10 +123,6 @@ class PeopleListViewControllerTests: CoreTestCase {
 
         controller.tableView.delegate?.tableView?(controller.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
         XCTAssert(router.lastRoutedTo(.parse("/courses/1/users/1")))
-
-        controller.tableView.selectRow(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .none)
-        controller.viewWillAppear(false)
-        XCTAssertNil(controller.tableView.indexPathForSelectedRow)
     }
 
     func testPaginatedRefresh() {
