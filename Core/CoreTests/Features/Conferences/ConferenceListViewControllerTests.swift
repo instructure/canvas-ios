@@ -101,8 +101,11 @@ class ConferenceListViewControllerTests: CoreTestCase {
         let tableView = controller.tableView!
         tableView.refreshControl?.sendActions(for: .valueChanged)
         XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 2)
-        let loading = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as? LoadingCell
+        let loadingIndexPath = IndexPath(row: 1, section: 0)
+        let loading = tableView.dataSource?.tableView(tableView, cellForRowAt: loadingIndexPath) as? LoadingCell
         XCTAssertNotNil(loading)
+        tableView.delegate?.tableView?(tableView, willDisplay: loading!, forRowAt: loadingIndexPath)
+        drainMainQueue()
         XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 2)
         let cell = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as! ConferenceListCell
         XCTAssertEqual(cell.titleLabel.text, "test conference")

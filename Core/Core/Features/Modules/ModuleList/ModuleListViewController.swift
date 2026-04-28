@@ -121,6 +121,9 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if let selected = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selected, animated: animated)
+        }
         if #unavailable(iOS 26) {
             navigationController?.navigationBar.useContextColor(color)
         }
@@ -179,7 +182,8 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
             }
         }
 
-        dataSource.apply(snapshot, animatingDifferences: true)
+        let shouldAnimate = !dataSource.snapshot().sectionIdentifiers.isEmpty
+        dataSource.apply(snapshot, animatingDifferences: shouldAnimate)
         scrollToModule()
     }
 

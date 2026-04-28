@@ -180,7 +180,9 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboard = KeyboardTransitioning(view: view, space: keyboardSpace)
-
+        if let selected = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selected, animated: animated)
+        }
         if #unavailable(iOS 26) {
             if context.contextType == .user {
                 navigationController?.navigationBar.useGlobalNavStyle()

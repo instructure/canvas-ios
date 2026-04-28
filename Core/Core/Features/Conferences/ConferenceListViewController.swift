@@ -94,6 +94,9 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if let selected = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selected, animated: animated)
+        }
         if #unavailable(iOS 26) {
             navigationController?.navigationBar.useContextColor(color)
         }
@@ -109,7 +112,6 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
                 cell.update(conference, color: self.color)
                 return cell
             case .loading:
-                self.conferences.getNextPage()
                 return LoadingCell(style: .default, reuseIdentifier: nil)
             }
         }
@@ -165,7 +167,8 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
             snapshot.reconfigureItems(reconfigureItems)
         }
 
-        dataSource.apply(snapshot, animatingDifferences: true)
+        let shouldAnimate = !dataSource.snapshot().sectionIdentifiers.isEmpty
+        dataSource.apply(snapshot, animatingDifferences: shouldAnimate)
     }
 
     @objc func refresh() {
@@ -185,6 +188,14 @@ extension ConferenceListViewController: UITableViewDelegate {
             : String(localized: "New Conferences", bundle: .core)
         view.titleLabel?.accessibilityIdentifier = "ConferencesList.header-\(section)"
         return view
+    }
+
+    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if cell is LoadingCell {
+            DispatchQueue.main.async { [weak self] in
+                self?.conferences.getNextPage()
+            }
+        }
     }
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

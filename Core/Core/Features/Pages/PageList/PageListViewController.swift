@@ -111,6 +111,9 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
 
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if let selected = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selected, animated: animated)
+        }
         navigationController?.navigationBar.useContextColor(color)
     }
 
@@ -186,7 +189,8 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
             snapshot.reconfigureItems(reconfigureItems)
         }
 
-        dataSource.apply(snapshot, animatingDifferences: true)
+        let shouldAnimate = !dataSource.snapshot().sectionIdentifiers.isEmpty
+        dataSource.apply(snapshot, animatingDifferences: shouldAnimate)
         selectFirstPageIfNeeded()
     }
 
@@ -252,7 +256,9 @@ extension PageListViewController: UITableViewDelegate {
 
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if cell is LoadingCell {
-            pages.getNextPage()
+            DispatchQueue.main.async { [weak self] in
+                self?.pages.getNextPage()
+            }
         }
 
         if #available(iOS 26, *) {

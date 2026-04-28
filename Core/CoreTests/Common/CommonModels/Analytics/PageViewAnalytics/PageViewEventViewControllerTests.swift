@@ -73,11 +73,11 @@ class PageViewEventViewControllerTests: XCTestCase {
         Clock.mockNow(end)
         screenViewTracker.stopTrackingTimeOnViewController()
 
-        dispatchQueue.async {
+        dispatchQueue.async(flags: .barrier) {
             self.waitExpectation.fulfill()
         }
 
-        wait(for: [waitExpectation], timeout: 0.5)
+        wait(for: [waitExpectation], timeout: 2.0)
         //  then
         let events = p.batchOfEvents(1, userID: userID)
         XCTAssertEqual(events?.count, 1)

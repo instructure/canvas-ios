@@ -142,8 +142,10 @@ class PageListViewControllerTests: CoreTestCase {
         let tableView = controller.tableView!
         tableView.refreshControl?.sendActions(for: .valueChanged)
         XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 2)
-        let loading = tableView.dataSource?.tableView(tableView, cellForRowAt: IndexPath(row: 1, section: 0)) as? LoadingCell
+        let loadingIndexPath = IndexPath(row: 1, section: 0)
+        let loading = tableView.dataSource?.tableView(tableView, cellForRowAt: loadingIndexPath) as? LoadingCell
         XCTAssertNotNil(loading)
+        tableView.delegate?.tableView?(tableView, willDisplay: loading!, forRowAt: loadingIndexPath)
         drainMainQueue() // Give some time for the loading cell to trigger the next page load and for the tableview to refresh
         XCTAssertEqual(tableView.dataSource?.tableView(tableView, numberOfRowsInSection: 0), 2)
 
