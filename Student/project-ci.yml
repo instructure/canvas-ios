@@ -34,6 +34,8 @@ projectReferences:
     path: ../Core/Core.xcodeproj
   Horizon:
     path: ../Horizon/Horizon.xcodeproj
+  NextGen:
+    path: ../NextGen/NextGen.xcodeproj
 packages:
   BusinessLogic:
     path: ../packages/BusinessLogic
