@@ -27,3 +27,7 @@ schemes:
     build:
       targets:
         NextGen: all
+    test:
+      testPlans:
+        - path: ../NextGenTests.xctestplan
+          defaultPlan: true

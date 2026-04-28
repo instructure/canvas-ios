@@ -31,6 +31,7 @@ public enum ExperimentalFeature: String, CaseIterable, Codable {
     case rebuiltCalendar = "rebuilt_calendar"
     case revertToOldStudentToDo = "revert_to_old_student_todo"
     case revertToOldStudentDashboard = "revert_to_old_student_dashboard"
+    case nextgenStudent = "nextgen_student"
 
     private static var sharedUserDefaults: UserDefaults {
         UserDefaults(suiteName: Bundle.main.appGroupID()) ?? .standard

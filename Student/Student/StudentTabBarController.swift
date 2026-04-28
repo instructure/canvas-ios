@@ -59,6 +59,11 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         reportScreenView(for: selectedIndex, viewController: viewControllers![selectedIndex])
         addSnackBar()
         registerForTraitChanges()
+
+        if AppEnvironment.shared.app == .nextgen {
+            viewControllers = Array(viewControllers?.prefix(1) ?? [])
+            tabBar.isHidden = true
+        }
     }
 
     override func viewIsAppearing(_ animated: Bool) {

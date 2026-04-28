@@ -26,6 +26,7 @@ import UIKit
 @Observable
 final class LearnerDashboardSettingsViewModel {
     var useNewLearnerDashboard: Bool
+    var isOptOutAllowed: Bool { environment.app != .nextgen }
     var mainColor: Color {
         didSet { didChangeColor(to: mainColor) }
     }

@@ -1,0 +1,25 @@
+{
+  "configurations" : [
+    {
+      "id" : "F3E9CFE8-317D-4085-9041-3C7270B2368E",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "language" : "en",
+    "region" : "US"
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:NextGen.xcodeproj",
+        "identifier" : "42119C763396499B7891C45E",
+        "name" : "NextGenUnitTests"
+      }
+    }
+  ],
+  "version" : 1
+}

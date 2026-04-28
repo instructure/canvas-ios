@@ -32,7 +32,9 @@ struct LearnerDashboardSettingsScreen: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
-                newDashboardToggle
+                if viewModel.isOptOutAllowed {
+                    newDashboardToggle
+                }
                 dashboardColorSelector
                 widgetsSection
                 feedbackSection

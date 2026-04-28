@@ -22,6 +22,7 @@ import Core
 import Firebase
 import Horizon
 import HorizonUI
+import NextGen
 import PSPDFKit
 import UIKit
 import UserNotifications
@@ -430,8 +431,10 @@ extension StudentAppDelegate {
     private func setTabBarControllerFor(experience: Experience, isStartup: Bool, session: LoginSession?) {
         switch experience {
         case .academic:
-            AppEnvironment.shared.app = .student
-            AppEnvironment.shared.router = academicRouter
+            AppEnvironment.shared.app = ExperimentalFeature.nextgenStudent.isEnabled ? .nextgen : .student
+            AppEnvironment.shared.router = AppEnvironment.shared.app == .nextgen
+                ? NextGenRoutes.makeRouter(academicRoutes: academicRouter.handlers)
+                : academicRouter
             guard let window else { return }
             let userInterfaceStyle = AppEnvironment.shared.userDefaults?.academicInterfaceStyle ?? AppEnvironment.shared.userDefaults?.interfaceStyle
             window.updateInterfaceStyleWithoutTransition(userInterfaceStyle)

@@ -105,7 +105,7 @@ open class Router {
 
     public var count: Int { handlers.count }
 
-    private let handlers: [RouteHandler]
+    public let handlers: [RouteHandler]
     private let fallback: FallbackHandler
 
     public init(

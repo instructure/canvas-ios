@@ -56,6 +56,22 @@ final class LearnerDashboardSettingsViewModelTests: StudentTestCase {
         XCTAssertEqual(testee.useNewLearnerDashboard, false)
     }
 
+    // MARK: - isOptOutAllowed
+
+    func test_isOptOutAllowed_whenAppIsStudent_shouldBeTrue() {
+        env.app = .student
+        testee = makeTestee()
+
+        XCTAssertEqual(testee.isOptOutAllowed, true)
+    }
+
+    func test_isOptOutAllowed_whenAppIsNextgen_shouldBeFalse() {
+        env.app = .nextgen
+        testee = makeTestee()
+
+        XCTAssertEqual(testee.isOptOutAllowed, false)
+    }
+
     // MARK: - Color change analytics
 
     func test_mainColor_whenChanged_shouldLogCustomizationEvent() {
