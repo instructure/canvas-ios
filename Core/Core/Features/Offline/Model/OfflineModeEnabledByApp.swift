@@ -21,7 +21,7 @@ extension Optional where Wrapped == AppEnvironment.App {
     var isOfflineModeEnabled: Bool {
         switch self {
         case .parent: return false
-        case .student: return true
+        case .student, .nextgen: return true
         case .teacher: return false
         case .horizon: return false
         case .none: return false

@@ -57,7 +57,7 @@ private extension APIUserSettings {
         guard let app = AppEnvironment.shared.app else { return nil }
 
         return switch app {
-        case .student, .horizon: pendo_mobile_student_api_key
+        case .student, .horizon, .nextgen: pendo_mobile_student_api_key
         case .teacher: pendo_mobile_teacher_api_key
         case .parent: pendo_mobile_parent_api_key
         }

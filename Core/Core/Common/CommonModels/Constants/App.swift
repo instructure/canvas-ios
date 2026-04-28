@@ -23,4 +23,5 @@ public enum App: String {
     case teacher
     case parent
     case horizon
+    case nextgen
 }

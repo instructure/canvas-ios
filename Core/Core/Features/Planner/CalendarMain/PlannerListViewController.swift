@@ -172,7 +172,7 @@ extension PlannerListViewController: UITableViewDataSource, UITableViewDelegate 
         selectedPlannableId = plannable.id
 
         switch env.app {
-        case .student, .teacher:
+        case .student, .teacher, .nextgen:
             switch plannable.plannableType {
             case .planner_note:
                 let vc = PlannerAssembly.makeToDoDetailsViewController(plannable: plannable)

@@ -199,7 +199,7 @@ private extension AppEnvironment {
         guard let app else { return nil }
 
         return switch app {
-        case .student, .horizon: Secret.studentPendoApiKey.string
+        case .student, .horizon, .nextgen: Secret.studentPendoApiKey.string
         case .teacher: Secret.teacherPendoApiKey.string
         case .parent: Secret.parentPendoApiKey.string
         }

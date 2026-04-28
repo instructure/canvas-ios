@@ -245,7 +245,7 @@ public enum PlannerAssembly {
         switch app {
         case .parent:
             return CalendarFilterEntryProviderParent(observedUserId: observedUserId)
-        case .student, .none:
+        case .student, .none, .nextgen:
             return CalendarFilterEntryProviderStudent()
         case .teacher:
             return CalendarFilterEntryProviderTeacher(purpose: forCreating ? .creating : .viewing)

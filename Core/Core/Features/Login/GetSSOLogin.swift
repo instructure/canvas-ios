@@ -38,7 +38,7 @@ public class GetSSOLogin {
 
     static func codeForApp(_ app: App) -> String {
         switch app {
-        case .student:
+        case .student, .nextgen:
             return "code"
         case .teacher:
             return "code_ios_teacher"
