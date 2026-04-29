@@ -25,7 +25,7 @@ public enum HBackgroundUpdatesAssembly {
         HSyncBackgroundTask(
             syncableAccounts: HSyncAccountsInteractorLive(),
             sessions: LoginSession.sessions,
-            courseSyncInteractor: HCourseSyncInteractorLive(session: AppEnvironment.shared.userDefaults ?? .fallback)
+            courseSyncInteractor: HCourseSyncInteractorAssembly.makeInteractor()
         )
     }
 

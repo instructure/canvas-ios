@@ -34,7 +34,7 @@ enum DashboardAssembly {
                 dashboardInteractor: makeDashboardInteractor(),
                 notificationInteractor: NotificationAssembly.makeInteractor(),
                 router: AppEnvironment.shared.router,
-                syncInteractor: HCourseSyncInteractorLive(session: AppEnvironment.shared.userDefaults ?? .fallback)
+                syncInteractor: HCourseSyncInteractorAssembly.makeInteractor()
             )
         )
     }
@@ -46,8 +46,8 @@ enum DashboardAssembly {
                 dashboardInteractor: dashboardInteractorPreview,
                 notificationInteractor: NotificationInteractorPreview(),
                 router: AppEnvironment.shared.router,
-                syncInteractor: HCourseSyncInteractorLive(session: AppEnvironment.shared.userDefaults ?? .fallback)
-            )
+                syncInteractor: HCourseSyncInteractorAssembly.makeInteractor()
+                )
             return DashboardView(viewModel: viewModel)
         }
     #endif

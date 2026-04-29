@@ -20,7 +20,15 @@ import Core
 import Combine
 import Foundation
 
-final class HOfflineSyncSessionManager {
+protocol HOfflineSyncSessionManager {
+    var sessionID: String { get }
+    var syncedItemPaths: [String] { get }
+    func clearSessionData()
+    func finalizeSync(courses: [OfflineCourseItem])
+    func saveCompletedSync(courses: [OfflineCourseItem], files: [OfflineFileItem])
+}
+
+final class HOfflineSyncSessionManagerLive: HOfflineSyncSessionManager {
     // MARK: - Private variables
 
     private var subscriptions = Set<AnyCancellable>()
@@ -34,15 +42,18 @@ final class HOfflineSyncSessionManager {
 
     private var session: SessionDefaults
     private let filesInteractor: HCourseSyncFilesInteractor
+    private let pagesInteractor: HCourseSyncPagesInteractor
 
     // MARK: - Init
 
     init(
         session: SessionDefaults,
-        filesInteractor: HCourseSyncFilesInteractor
+        filesInteractor: HCourseSyncFilesInteractor,
+        pagesInteractor: HCourseSyncPagesInteractor
     ) {
         self.session = session
         self.filesInteractor = filesInteractor
+        self.pagesInteractor = pagesInteractor
     }
 
     func clearSessionData() {
@@ -65,27 +76,27 @@ final class HOfflineSyncSessionManager {
         appendSyncItems(coursePaths + filePaths)
     }
 
-    func appendSyncItems(_ newItems: [String]) {
-        DispatchQueue.main.async { [weak self] in
-            self?.session.horizonOfflineSyncItems += newItems
-        }
-    }
-
     // MARK: - Private
+    private func appendSyncItems(_ newItems: [String]) {
+        session.horizonOfflineSyncItems.append(contentsOf: newItems)
+    }
 
     private func removeDeselectedCourseFolders(courses: [OfflineCourseItem]) {
         let sessionID = session.sessionID
         let newCourseIDs = Set(courses.map(\.id))
-        session.horizonOfflineSyncItems
+        let deselectedCourseIDs = session.horizonOfflineSyncItems
             .compactMap { OfflineType.parse(path: $0) }
             .compactMap { if case .course(let id) = $0 { return id } else { return nil } }
             .filter { !newCourseIDs.contains($0) }
-            .forEach { courseID in
-                let folderURL = URL.Directories.documents.appendingPathComponent(
-                    URL.Paths.Offline.courseFolder(sessionID: sessionID, courseId: courseID)
-                )
-                try? FileManager.default.removeItem(at: folderURL)
-            }
+
+        deselectedCourseIDs.forEach { courseID in
+            let folderURL = URL.Directories.documents.appendingPathComponent(
+                URL.Paths.Offline.courseFolder(sessionID: sessionID, courseId: courseID)
+            )
+            try? FileManager.default.removeItem(at: folderURL)
+        }
+
+        pagesInteractor.deletePages(courseIds: deselectedCourseIDs, sessionID: sessionID)
     }
 
     private func updateFileMetadata(courses: [OfflineCourseItem]) {

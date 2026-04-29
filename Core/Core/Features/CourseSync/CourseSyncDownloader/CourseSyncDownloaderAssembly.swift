@@ -76,7 +76,7 @@ public enum CourseSyncDownloaderAssembly {
         )
     }
 
-    private static func makeHTMLParser(
+    public static func makeHTMLParser(
         for section: OfflineFolderPrefix,
         envResolver: CourseSyncEnvironmentResolver,
         scheduler: AnySchedulerOf<DispatchQueue>
