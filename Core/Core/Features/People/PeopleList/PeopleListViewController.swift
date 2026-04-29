@@ -187,20 +187,13 @@ public class PeopleListViewController: ScreenViewTrackableViewController, Colore
     }
 
     private func applySnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<Section, UserItem>()
-        snapshot.appendSections([.list])
-        var items = users.all.map { UserItem.user(id: $0.id) }
-        if users.hasNextPage { items.append(.loading) }
-        snapshot.appendItems(items, toSection: .list)
+        var snapshot = users.makeSnapshot(sectionID: Section.list, itemID: { UserItem.user(id: $0.id) })
 
-        let updatedIDs = Set(users.updatedObjects.map { $0.id })
-        let reconfigureItems = items.filter {
-            if case .user(let id) = $0 { return updatedIDs.contains(id) }
-            return false
+        if users.hasNextPage {
+            snapshot.appendItems([.loading], toSection: .list)
         }
-        if !reconfigureItems.isEmpty { snapshot.reconfigureItems(reconfigureItems) }
 
-        dataSource.apply(snapshot, animatingDifferences: true)
+        dataSource.applySnapshot(snapshot)
     }
 
     @objc func refresh() {

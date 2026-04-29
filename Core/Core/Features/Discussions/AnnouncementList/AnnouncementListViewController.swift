@@ -156,7 +156,7 @@ public class AnnouncementListViewController: ScreenViewTrackableViewController, 
 
     private func applySnapshot() {
         let snapshot = topics.makeSnapshot(sectionID: Section.list, itemID: \.id)
-        dataSource.apply(snapshot, animatingDifferences: true)
+        dataSource.applySnapshot(snapshot)
         selectFirstTopicIfNeeded()
     }
 

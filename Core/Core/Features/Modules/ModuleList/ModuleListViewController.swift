@@ -182,8 +182,7 @@ public final class ModuleListViewController: ScreenViewTrackableViewController, 
             }
         }
 
-        let shouldAnimate = !dataSource.snapshot().sectionIdentifiers.isEmpty
-        dataSource.apply(snapshot, animatingDifferences: shouldAnimate)
+        dataSource.applySnapshot(snapshot)
         scrollToModule()
     }
 

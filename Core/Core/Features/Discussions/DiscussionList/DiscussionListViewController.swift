@@ -183,23 +183,8 @@ public class DiscussionListViewController: ScreenViewTrackableViewController, Co
     }
 
     private func applySnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<String, String>()
-
-        for sectionIndex in 0..<topics.numberOfSections {
-            guard let section = topics.sections?[sectionIndex] else { continue }
-            snapshot.appendSections([section.name])
-            let itemIDs = (0..<section.numberOfObjects).compactMap { row in
-                topics[IndexPath(row: row, section: sectionIndex)]?.id
-            }
-            snapshot.appendItems(itemIDs, toSection: section.name)
-        }
-
-        let updatedIDs = topics.updatedObjects.compactMap { $0.id }
-        if !updatedIDs.isEmpty {
-            snapshot.reconfigureItems(updatedIDs)
-        }
-
-        dataSource.apply(snapshot, animatingDifferences: true)
+        let snapshot = topics.makeSnapshot(coreSectionID: { $0 }, itemID: \.id)
+        dataSource.applySnapshot(snapshot)
         selectFirstTopicIfNeeded()
     }
 

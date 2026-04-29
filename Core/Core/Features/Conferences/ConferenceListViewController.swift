@@ -143,32 +143,16 @@ public class ConferenceListViewController: ScreenViewTrackableViewController, Co
     }
 
     private func applySnapshot() {
-        var snapshot = NSDiffableDataSourceSnapshot<String, ConferenceItem>()
+        var snapshot = conferences.makeSnapshot(
+            coreSectionID: { $0 },
+            itemID: { ConferenceItem.conference(id: $0.id) }
+        )
 
-        for sectionIndex in 0..<conferences.numberOfSections {
-            guard let section = conferences.sections?[sectionIndex] else { continue }
-            snapshot.appendSections([section.name])
-            var items = (0..<section.numberOfObjects).compactMap { row -> ConferenceItem? in
-                guard let id = conferences[IndexPath(row: row, section: sectionIndex)]?.id else { return nil }
-                return .conference(id: id)
-            }
-            if conferences.hasNextPage, sectionIndex == conferences.numberOfSections - 1 {
-                items.append(.loading)
-            }
-            snapshot.appendItems(items, toSection: section.name)
+        if conferences.hasNextPage, let lastSection = snapshot.sectionIdentifiers.last {
+            snapshot.appendItems([.loading], toSection: lastSection)
         }
 
-        let updatedIDs = Set(conferences.updatedObjects.map { $0.id })
-        let reconfigureItems = snapshot.itemIdentifiers.filter {
-            if case .conference(let id) = $0 { return updatedIDs.contains(id) }
-            return false
-        }
-        if !reconfigureItems.isEmpty {
-            snapshot.reconfigureItems(reconfigureItems)
-        }
-
-        let shouldAnimate = !dataSource.snapshot().sectionIdentifiers.isEmpty
-        dataSource.apply(snapshot, animatingDifferences: shouldAnimate)
+        dataSource.applySnapshot(snapshot)
     }
 
     @objc func refresh() {

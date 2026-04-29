@@ -124,9 +124,8 @@ public class PlannerListViewController: UIViewController {
 
     private func applySnapshot() {
         let snapshot = plannables?.makeSnapshot(sectionID: Section.list, itemID: \.id) ?? NSDiffableDataSourceSnapshot()
-        let animating = dataSource.snapshot().itemIdentifiers.isNotEmpty
 
-        dataSource.apply(snapshot, animatingDifferences: animating) { [weak self] in
+        dataSource.applySnapshot(snapshot) { [weak self] in
             self?.reselectRowAfterReload()
             self?.accessibilityFocusOnDetailsIfNeeded()
         }

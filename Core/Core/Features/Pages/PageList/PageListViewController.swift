@@ -167,30 +167,26 @@ public class PageListViewController: ScreenViewTrackableViewController, ColoredN
         if !frontPage.isEmpty, let fp = frontPage.first {
             snapshot.appendSections([.frontPage])
             snapshot.appendItems([.frontPage(id: fp.id)], toSection: .frontPage)
+
+            if frontPage.updatedObjects.contains(where: { $0.id == fp.id }) {
+                snapshot.reconfigureItems([.frontPage(id: fp.id)])
+            }
         }
 
         snapshot.appendSections([.pages])
-        var pageItems = pages.all.map { PageItem.page(id: $0.id) }
-        if pages.hasNextPage {
-            pageItems.append(.loading)
-        }
+        let pageItems = pages.all.map { PageItem.page(id: $0.id) }
         snapshot.appendItems(pageItems, toSection: .pages)
 
-        let updatedFrontPageIDs = Set(frontPage.updatedObjects.map { $0.id })
-        let updatedPageIDs = Set(pages.updatedObjects.map { $0.id })
-        let reconfigureItems = snapshot.itemIdentifiers.filter { item in
-            switch item {
-            case .frontPage(let id): return updatedFrontPageIDs.contains(id)
-            case .page(let id): return updatedPageIDs.contains(id)
-            case .loading: return false
-            }
-        }
-        if !reconfigureItems.isEmpty {
-            snapshot.reconfigureItems(reconfigureItems)
+        if pages.hasNextPage {
+            snapshot.appendItems([.loading], toSection: .pages)
         }
 
-        let shouldAnimate = !dataSource.snapshot().sectionIdentifiers.isEmpty
-        dataSource.apply(snapshot, animatingDifferences: shouldAnimate)
+        let updatedPageItems = pages.updatedObjects.map { PageItem.page(id: $0.id) }
+        if !updatedPageItems.isEmpty {
+            snapshot.reconfigureItems(updatedPageItems)
+        }
+
+        dataSource.applySnapshot(snapshot)
         selectFirstPageIfNeeded()
     }
 

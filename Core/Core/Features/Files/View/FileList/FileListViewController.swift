@@ -352,7 +352,7 @@ public class FileListViewController: ScreenViewTrackableViewController, ColoredN
             snapshot.reconfigureItems(updatedFolderItems)
         }
 
-        dataSource.apply(snapshot, animatingDifferences: true)
+        dataSource.applySnapshot(snapshot)
     }
 
     private func uploadID(_ file: File) -> String {
