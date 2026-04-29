@@ -85,6 +85,8 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     public var batchID = ""
     public var maxFileCount = Int.max
 
+    private var isUploadInProgress = false
+
     private var avPermissionViewModel: AVPermissionViewModel = .init()
 
     private var subscriptions = Set<AnyCancellable>()
@@ -155,7 +157,6 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         emptyView.isHidden = files.isEmpty == false
         updateProgressBar()
         updateBarButtons()
-        updateSourceButtons()
         tableView.reloadData()
     }
 
@@ -177,20 +178,23 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     func updateBarButtons() {
         let inProgress = files.first { $0.isUploading } != nil
         let failed = files.first { $0.uploadError != nil } != nil
-        if inProgress {
-            navigationController?.setToolbarHidden(false, animated: true)
+
+        // upload calls this method periodically and constantly updating the button causes tap events to get dropped
+        if inProgress && !isUploadInProgress {
+            isUploadInProgress = true
             navigationItem.leftBarButtonItems = []
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Dismiss", bundle: .core), style: .plain, target: self, action: #selector(close))
             navigationItem.rightBarButtonItem?.accessibilityIdentifier = "FilePicker.closeButton"
             let cancelButton = UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action: #selector(cancelClicked))
             cancelButton.accessibilityIdentifier = "FilePicker.cancelButton"
-            toolbarItems = [
+            let toolbarItems = [
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
                 cancelButton,
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
             ]
+
+            setToolbarItems(toolbarItems, animated: true)
         } else if failed {
-            navigationController?.setToolbarHidden(false, animated: true)
             navigationItem.leftBarButtonItems = []
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Done", bundle: .core), style: .plain, target: self, action: #selector(close))
             navigationItem.rightBarButtonItem?.accessibilityIdentifier = "FilePicker.closeButton"
@@ -198,13 +202,14 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             cancelButton.accessibilityIdentifier = "FilePicker.cancelButton"
             let retryButton = UIBarButtonItem(title: String(localized: "Retry", bundle: .core), style: .plain, target: self, action: #selector(retry))
             retryButton.accessibilityIdentifier = "FilePicker.retryButton"
-            toolbarItems = [
+            let toolbarItems = [
                 cancelButton,
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
                 retryButton
             ]
+
+            setToolbarItems(toolbarItems, animated: true)
         } else {
-            navigationController?.setToolbarHidden(true, animated: true)
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: String(localized: "Cancel", bundle: .core), style: .plain, target: self, action: #selector(cancelClicked))
             navigationItem.leftBarButtonItem?.accessibilityIdentifier = "FilePicker.cancelButton"
             let submitButton = UIBarButtonItem(title: submitButtonTitle, style: .done, target: self, action: #selector(submit))
@@ -212,13 +217,6 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             submitButton.accessibilityIdentifier = "FilePicker.submitButton"
             navigationItem.rightBarButtonItem = submitButton
         }
-    }
-
-    func updateSourceButtons() {
-        let inProgress = files.first { $0.isUploading } != nil
-        let failed = files.first { $0.uploadError != nil } != nil
-        let hideSourceButtons = inProgress || failed
-        navigationController?.setToolbarHidden(hideSourceButtons, animated: true)
     }
 
     @objc
