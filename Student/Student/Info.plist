@@ -21,7 +21,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>$(MARKETING_VERSION)</string>
+	<string>8.10.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleSpokenName</key>
@@ -68,7 +68,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>31225</string>
 	<key>FirebaseAutomaticScreenReportingEnabled</key>
 	<false/>
 	<key>ITSAppUsesNonExemptEncryption</key>
@@ -124,6 +124,8 @@
 		<string>com.instructure.icanvas.watchApp</string>
 		<string>com.instructure.siri.shortcut.getgrades</string>
 	</array>
+	<key>PRNumber</key>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Frameworks/Core.framework/lato_italic.ttf</string>
@@ -164,8 +166,6 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
-	<key>PRNumber</key>
-	<string></string>
 	<key>VersionName</key>
 	<string>Innovative Panda</string>
 </dict>
