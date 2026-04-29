@@ -2406,6 +2406,12 @@
             "value" : "%@ Elementer"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ elementer"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2472,6 +2478,12 @@
             "value" : "%@ éléments"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ éléments"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2526,7 +2538,19 @@
             "value" : "%@ ngā tūemi"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ item"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ elementer"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ elementer"
@@ -2572,6 +2596,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ föremål"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ objekt"
           }
         },
         "th" : {
@@ -4778,6 +4808,12 @@
             "value" : "%d anvendte filtre"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d anvendte filtre"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4844,6 +4880,12 @@
             "value" : "%d filtres appliqués"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d filtres appliqués"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -4898,7 +4940,19 @@
             "value" : "%d ngā tātari i whakamahia"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d penapis digunakan"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d filtre aktivert"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d filtre aktivert"
@@ -4941,6 +4995,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d filter tillämpade"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d filter tillämpade"
@@ -5005,6 +5065,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d timer"
+          }
+        },
+        "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d timer"
@@ -5076,6 +5142,12 @@
             "value" : "%d heures"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d hres"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5130,7 +5202,19 @@
             "value" : "%d ngā hāora"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d jam"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d timer"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d timer"
@@ -5173,6 +5257,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d timmar"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d timmar"
@@ -5237,6 +5327,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$d timer %2$d minutter"
+          }
+        },
+        "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$d timer %2$d minutter"
@@ -5314,6 +5410,12 @@
             "value" : "%1$d h %2$d min"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$d hres %2$d min"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5368,7 +5470,19 @@
             "value" : "%1$d ngā hāora %2$d meneti"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$d jam %2$d min"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$d t %2$d min"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$d t %2$d min"
@@ -5411,6 +5525,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$d timmar %2$d minuter"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$d timmar %2$d minuter"
@@ -5475,6 +5595,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d minutter"
+          }
+        },
+        "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d minutter"
@@ -5546,6 +5672,12 @@
             "value" : "%d min"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d minutes"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -5600,7 +5732,19 @@
             "value" : "%d min"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d minit"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d minutter"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d minutter"
@@ -5643,6 +5787,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d minuter"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d minuter"
@@ -5984,6 +6134,12 @@
             "value" : "%d enheder"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d enheder"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6050,6 +6206,12 @@
             "value" : "%d unités"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d unités"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6104,7 +6266,19 @@
             "value" : "%d ngā waeine"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d unit"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d enheter"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d enheter"
@@ -6147,6 +6321,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%d enheter"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%d enheter"
@@ -6218,6 +6398,12 @@
             "value" : "%lld"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6284,6 +6470,12 @@
             "value" : "%lld"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -6338,7 +6530,19 @@
             "value" : "%lld"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld"
@@ -6381,6 +6585,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%lld"
@@ -7723,6 +7933,12 @@
             "value" : "1 filter anvendt"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 filter anvendt"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7789,6 +8005,12 @@
             "value" : "1 filtre appliqué"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 filtre appliqué"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -7843,7 +8065,19 @@
             "value" : "1 tātari i whakamahia"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 penapis digunakan"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 filter aktivert"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1 filter aktivert"
@@ -7886,6 +8120,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "1 filter tillämpat"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "1 filter tillämpat"
@@ -7955,6 +8195,12 @@
             "value" : "Et næste trin efter  %@"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Et næste trin efter %@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8021,6 +8267,12 @@
             "value" : "Une étape suivante après %@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prochaine étape après %@"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -8075,7 +8327,19 @@
             "value" : "He taahiraa e whai ake nei i muri i %@"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Langkah seterusnya selepas %@"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Et neste trinn etter %@"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Et neste trinn etter %@"
@@ -8118,6 +8382,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ett nästa steg efter %@"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ett nästa steg efter %@"
@@ -10298,6 +10568,12 @@
             "value" : "Tilføj bogmærke"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilføj bogmærke"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10364,6 +10640,12 @@
             "value" : "Ajouter un signet"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter favori"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -10418,7 +10700,19 @@
             "value" : "Tāpirihia te tohuwāhi"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah penanda"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg til bokmerke"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Legg til bokmerke"
@@ -10461,6 +10755,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lägg till bokmärke"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lägg till bokmärke"
@@ -11320,6 +11620,12 @@
             "value" : "Tilføjet til bogmærker"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilføjet til bogmærker"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11386,6 +11692,12 @@
             "value" : "Ajouté aux signets"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouté aux favoris"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -11440,7 +11752,19 @@
             "value" : "Kua tāpirihia ki ngā tohuwāhi"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ditambah ke penanda"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg til bokmerker"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Legg til bokmerker"
@@ -11483,6 +11807,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillagt i bokmärken"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tillagt i bokmärken"
@@ -17619,6 +17949,12 @@
             "value" : "Enhver status"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enhver status"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17685,6 +18021,12 @@
             "value" : "Tout statut"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout statut"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17739,7 +18081,19 @@
             "value" : "Tetahi tūnga"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mana-mana status"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enhver status"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Enhver status"
@@ -17782,6 +18136,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valfri status"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Valfri status"
@@ -17853,6 +18213,12 @@
             "value" : "Enhver type"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enhver type"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17919,6 +18285,12 @@
             "value" : "N’importe quel type"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tout type"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -17973,7 +18345,19 @@
             "value" : "Tetahi momo"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mana-mana jenis"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alle typer"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Alle typer"
@@ -18016,6 +18400,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valfri typ"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Valfri typ"
@@ -18087,6 +18477,12 @@
             "value" : "Anvend filtre"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anvend filtre"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18153,6 +18549,12 @@
             "value" : "Appliquer les filtres"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appliquer les filtres."
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -18207,7 +18609,19 @@
             "value" : "Hoatu nga whiriwhiringa"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gunakan penapis"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bruk filtre"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bruk filtre"
@@ -18250,6 +18664,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tillämpa filter"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tillämpa filter"
@@ -19370,6 +19790,12 @@
             "value" : "Bedømmelse"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bedømmelse"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19436,6 +19862,12 @@
             "value" : "Évaluation"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Évaluation"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19490,7 +19922,19 @@
             "value" : "Aromatawai"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pentaksiran"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vurdering"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vurdering"
@@ -19533,6 +19977,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bedömning"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bedömning"
@@ -19604,6 +20054,12 @@
             "value" : "Vurderinger"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vurderinger"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19670,6 +20126,12 @@
             "value" : "Évaluations"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Évaluations"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19724,7 +20186,19 @@
             "value" : "Ngā aromatawai"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pentaksiran"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vurderinger"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vurderinger"
@@ -19767,6 +20241,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bedömningar"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bedömningar"
@@ -19838,6 +20318,12 @@
             "value" : "Opgave"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opgave"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19904,6 +20390,12 @@
             "value" : "Travail"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Travail"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -19958,7 +20450,19 @@
             "value" : "Taumahi"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tugasan"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oppgave"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Oppgave"
@@ -20001,6 +20505,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uppgift"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Uppgift"
@@ -21647,6 +22157,12 @@
             "value" : "Opgaver"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Opgaver"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21713,6 +22229,12 @@
             "value" : "Travaux"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Travaux"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21767,7 +22289,19 @@
             "value" : "Whakataunga"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tugasan"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Oppgaver"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Oppgaver"
@@ -21810,6 +22344,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uppgifter"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Uppgifter"
@@ -28710,6 +29250,12 @@
             "value" : "Bogmærket"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bogmærket"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28776,6 +29322,12 @@
             "value" : "Ajouté aux favoris"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Marqué d’un favori"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -28830,7 +29382,19 @@
             "value" : "Kua tohua"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ditandakan"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bokmerket"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bokmerket"
@@ -28873,6 +29437,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bokmärkta"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bokmärkta"
@@ -29730,6 +30300,12 @@
             "value" : "Gennemse"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gennemse"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29796,6 +30372,12 @@
             "value" : "Naviguer"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -29850,7 +30432,19 @@
             "value" : "Tirotiro"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semak seimbas"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bla gjennom"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bla gjennom"
@@ -29893,6 +30487,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bläddra"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Bläddra"
@@ -36005,6 +36605,12 @@
             "value" : "Nulstil filtre"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nulstil filtre"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36071,6 +36677,12 @@
             "value" : "Effacer les filtres"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Effacer les filtres"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36125,7 +36737,19 @@
             "value" : "Ūkui tātari"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kosongkan penapis"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tøm filtre"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Tøm filtre"
@@ -36168,6 +36792,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rensa filter"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rensa filter"
@@ -36765,6 +37395,12 @@
             "value" : "Samlinger"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Samlinger"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36831,6 +37467,12 @@
             "value" : "Collections"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Collections"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -36885,7 +37527,19 @@
             "value" : "Ngā Kohikohinga"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koleksi"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Samlinger"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Samlinger"
@@ -36928,6 +37582,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Samlingar"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Samlingar"
@@ -42534,6 +43194,12 @@
             "value" : "Antallet af synlige elementer er %d"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Antallet af synlige elementer er %d"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -42600,6 +43266,12 @@
             "value" : "Les éléments visibles sont au nombre de %d"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le nombre d’éléments visibles est de %d"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -42654,7 +43326,19 @@
             "value" : "Ko te maha o ngā tūemi e kitea ana ko %d"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bilangan item yang kelihatan adalah %d"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Antall synlige elementer er %d"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Antall synlige elementer er %d"
@@ -42697,6 +43381,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Antal synliga objekt är %d"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Antal synliga objekt är %d"
@@ -43030,6 +43720,12 @@
             "value" : "Fag"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fag"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -43096,6 +43792,12 @@
             "value" : "Cours"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cours"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -43150,10 +43852,22 @@
             "value" : "Akoranga"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kursus"
+          }
+        },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Emne"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fag"
           }
         },
         "nl" : {
@@ -43193,6 +43907,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kurs"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kurs"
@@ -47507,6 +48227,12 @@
             "value" : "Dato fra: %1$@, til: %2$@. "
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dato fra: %1$@, til: %2$@. "
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -47579,6 +48305,12 @@
             "value" : "Date de début : %1$@, au : %2$@. "
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Date de début : %1$@, à : %2$@. "
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -47633,7 +48365,19 @@
             "value" : "Te rā mai i: %1$@, ki: %2$@. "
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarikh dari: %1$@, hingga: %2$@. "
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dato fra: %1$@, til: %2$@. "
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dato fra: %1$@, til: %2$@. "
@@ -47676,6 +48420,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datum från: %1$@, till: %2$@. "
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Datum från: %1$@, till: %2$@. "
@@ -51437,6 +52187,12 @@
             "value" : "Dobbelttryk for at anvende filtre og lukke"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbelttryk for at anvende filtre og lukke"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -51503,6 +52259,12 @@
             "value" : "Appuyez deux fois pour appliquer les filtres et fermer"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez deux fois pour appliquer les filtres et fermer"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -51557,7 +52319,19 @@
             "value" : "Patohia rua hei whakamahi i ngā tātari me te kati"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik dua kali untuk menggunakan penapis dan tutup"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbeltklikk for å bruke filtre og lukke"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dobbeltklikk for å bruke filtre og lukke"
@@ -51600,6 +52374,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubbeltryck för att tillämpa filter och stäng"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dubbeltryck för att tillämpa filter och stäng"
@@ -52464,6 +53244,12 @@
             "value" : "Dobbelttryk for at rydde alle filtre"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbelttryk for at rydde alle filtre"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -52530,6 +53316,12 @@
             "value" : "Appuyez deux fois pour effacer tous les filtres"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez deux fois pour effacer tous les filtres"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -52584,7 +53376,19 @@
             "value" : "Patohia rua hei whakakore i ngā tātari katoa"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik dua kali untuk mengosongkan semua penapis"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbeltklikk for å fjerne alle filtre"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dobbeltklikk for å fjerne alle filtre"
@@ -52627,6 +53431,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubbeltryck för att rensa alla filter"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dubbeltryck för att rensa alla filter"
@@ -52698,6 +53508,12 @@
             "value" : "Dobbelttryk for at lukke filteret"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbelttryk for at lukke filteret"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -52764,6 +53580,12 @@
             "value" : "Appuyez deux fois pour fermer le filtre"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez deux fois pour fermer le filtre"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -52818,7 +53640,19 @@
             "value" : "Patohia rua hei kati i te tātari"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik dua kali untuk menutup penapis"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbeltklikk for å lukke filter"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dobbeltklikk for å lukke filter"
@@ -52861,6 +53695,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubbeltryck för att stänga filter"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dubbeltryck för att stänga filter"
@@ -52932,6 +53772,12 @@
             "value" : "Dobbelttryk for at skjule sektionen"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbelttryk for at skjule sektionen"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -52998,6 +53844,12 @@
             "value" : "Appuyez deux fois pour réduire la section"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez deux fois pour réduire la section"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -53052,7 +53904,19 @@
             "value" : "Pāwhiri rua hei whakakopa i te wāhanga"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik dua kali untuk meruntuhkan seksyen"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbeltklikk for å skjule delen"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dobbeltklikk for å skjule delen"
@@ -53095,6 +53959,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubbeltryck för att dölja sektionen"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dubbeltryck för att dölja sektionen"
@@ -54750,6 +55620,12 @@
             "value" : "Dobbelttryk for at tilmelde dig"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbelttryk for at tilmelde dig"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -54816,6 +55692,12 @@
             "value" : "Appuyez deux fois pour vous inscrire"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez deux fois pour vous inscrire"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -54870,7 +55752,19 @@
             "value" : "Patohia rua hei whakauru"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik dua kali untuk mendaftar"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbeltklikk for å melde deg på"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dobbeltklikk for å melde deg på"
@@ -54913,6 +55807,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubbeltryck för att registrera"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dubbeltryck för att registrera"
@@ -54984,6 +55884,12 @@
             "value" : "Dobbelttryk for at udvide sektionen"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbelttryk for at udvide sektionen"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55050,6 +55956,12 @@
             "value" : "Appuyez deux fois pour développer la section"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez deux fois pour développer la section"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -55104,7 +56016,19 @@
             "value" : "Patohia rua hei whakawhanui i te wāhanga"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik dua kali untuk mengembangkan seksyen"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbeltklikk for å vise delen"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dobbeltklikk for å vise delen"
@@ -55147,6 +56071,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubbeltryck för att visa sektionen"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dubbeltryck för att visa sektionen"
@@ -56274,6 +57204,12 @@
             "value" : "Dobbelttryk for at indlæse flere elementer"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbelttryk for at indlæse flere elementer"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -56340,6 +57276,12 @@
             "value" : "Appuyez deux fois pour charger plus d’éléments"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez deux fois pour charger plus d’éléments"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -56394,7 +57336,19 @@
             "value" : "Patohia rua hei uta atu i ngā tūemi"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik dua kali untuk memuatkan lebih banyak item"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbeltklikk for å laste inn flere elementer"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dobbeltklikk for å laste inn flere elementer"
@@ -56437,6 +57391,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubbeltryck för att läsa in fler objekt"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dubbeltryck för att läsa in fler objekt"
@@ -57563,6 +58523,12 @@
             "value" : "Dobbelttryk for at åbne filterindstillinger"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbelttryk for at åbne filterindstillinger"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -57629,6 +58595,12 @@
             "value" : "Appuyez deux fois pour ouvrir les options de filtre"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez deux fois pour ouvrir les options de filtrage"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -57683,7 +58655,19 @@
             "value" : "Patohia rua hei whakatuwhera i ngā kōwhiringa tātari"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik dua kali untuk membuka penapis pilihan"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbeltklikk for å åpne filteralternativer"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dobbeltklikk for å åpne filteralternativer"
@@ -57726,6 +58710,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubbeltryck för att öppna filteralternativ"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dubbeltryck för att öppna filteralternativ"
@@ -59381,6 +60371,12 @@
             "value" : "Dobbelttryk for at slå bogmærke til/fra"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbelttryk for at slå bogmærke til/fra"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -59447,6 +60443,12 @@
             "value" : "Appuyez deux fois pour ajouter/supprimer le signet"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez deux fois pour ajouter ou supprimer un favori"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -59501,7 +60503,19 @@
             "value" : "Patohia rua hei huri i te tohuwāhi"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik dua kali untuk menogol penanda buku"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbeltklikk for å slå bokmerke av/på"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dobbeltklikk for å slå bokmerke av/på"
@@ -59544,6 +60558,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubbeltryck för att växla bokmärke"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dubbeltryck för att växla bokmärke"
@@ -59615,6 +60635,12 @@
             "value" : "Dobbelttryk for at slå valg til/fra"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbelttryk for at slå valg til/fra"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -59681,6 +60707,12 @@
             "value" : "Appuyez deux fois pour sélectionner/désélectionner"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Appuyez deux fois pour sélectionner ou désélectionner"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -59735,7 +60767,19 @@
             "value" : "Patohia rua hei huri i te kōwhiringa"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ketik dua kali untuk menogol pilihan"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dobbeltklikk for å slå valg av/på"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dobbeltklikk for å slå valg av/på"
@@ -59778,6 +60822,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dubbeltryck för att växla urval"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dubbeltryck för att växla urval"
@@ -67472,6 +68522,12 @@
             "value" : "Tilmeld dig %@"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilmeld dig %@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -67538,6 +68594,12 @@
             "value" : "Inscrivez-vous à %@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S’inscrire à %@"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -67592,7 +68654,19 @@
             "value" : "Whakauru ki roto %@"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daftar dalam %@"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Meld deg på %@"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Meld deg på %@"
@@ -67635,6 +68709,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrera dig för %@"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Registrera dig för %@"
@@ -67706,6 +68786,12 @@
             "value" : "Tilmeld dig for at få adgang til faget og begynde at lære"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilmeld dig for at få adgang til faget og begynde at lære"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -67772,6 +68858,12 @@
             "value" : "Inscrivez-vous pour accéder au cours et commencer à étudier"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inscrivez-vous pour accéder au cours et commencer l’apprentissage."
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -67826,10 +68918,22 @@
             "value" : "Whakauruhia hei uru atu ki te akoranga me te tīmata ako"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daftarkan diri untuk mengakses kursus dan mula belajar"
+          }
+        },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Registrer deg for å få tilgang til emnet og begynne å lære"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrer deg for å få tilgang til faget og begynne å lære"
           }
         },
         "nl" : {
@@ -67869,6 +68973,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrera dig för att få åtkomst till kursen och börja lära"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Registrera dig för att få åtkomst till kursen och börja lära"
@@ -68466,6 +69576,12 @@
             "value" : "Tilmeldingen er gennemført"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilmeldingen er gennemført"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -68532,6 +69648,12 @@
             "value" : "Inscrit avec succès"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inscrit avec succès"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -68586,7 +69708,19 @@
             "value" : "Kua whakaurua angitu"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berjaya mendaftar"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrert"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Registrert"
@@ -68629,6 +69763,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Registrerad"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Registrerad"
@@ -70804,6 +71944,12 @@
             "value" : "Estimeret tid %@ minutter"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estimeret tid %@ minutter"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -70870,6 +72016,12 @@
             "value" : "Durée estimée à %@ minutes"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temps estimé %@ minutes"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -70924,7 +72076,19 @@
             "value" : "Te wā e whakaarohia ana %@ meneti"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Masa anggaran %@ minit"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Estimert tid %@ minutter"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Estimert tid %@ minutter"
@@ -70967,6 +72131,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beräknad tid %@ minuter"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Beräknad tid %@ minuter"
@@ -72094,6 +73264,12 @@
             "value" : "Eksternt link"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksternt link"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -72160,6 +73336,12 @@
             "value" : "Lien externe"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lien externe"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -72214,7 +73396,19 @@
             "value" : "Hononga a Waho"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pautan Luar"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ekstern lenke"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ekstern lenke"
@@ -72257,6 +73451,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Extern länk"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Extern länk"
@@ -72328,6 +73528,12 @@
             "value" : "Eksterne links"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksterne links"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -72394,6 +73600,12 @@
             "value" : "Liens externes"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liens externes"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -72448,7 +73660,19 @@
             "value" : "Hononga a waho"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pautan Luar"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksterne lenker"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eksterne lenker"
@@ -72491,6 +73715,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Externa länkar"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Externa länkar"
@@ -72824,6 +74054,12 @@
             "value" : "Eksternt værktøj"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksternt værktøj"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -72890,6 +74126,12 @@
             "value" : "Outil externe"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Outil externe"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -72944,7 +74186,19 @@
             "value" : "Taputapu waho"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alat Luar"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksternt verktøy"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eksternt verktøy"
@@ -72987,6 +74241,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Externt verktyg"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Externt verktyg"
@@ -73058,6 +74318,12 @@
             "value" : "Eksterne værktøjer"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksterne værktøjer"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -73124,6 +74390,12 @@
             "value" : "Outils externes"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Outils externes"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -73178,7 +74450,19 @@
             "value" : "Taputapu o Waho"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alat Luar"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Eksterne verktøy"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Eksterne verktøy"
@@ -73221,6 +74505,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Externa verktyg"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Externa verktyg"
@@ -73816,6 +75106,12 @@
             "value" : "Fil"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fil"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -73882,6 +75178,12 @@
             "value" : "Fichier"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fichier"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -73936,7 +75238,19 @@
             "value" : "Kōnae"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fail"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fil"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fil"
@@ -73979,6 +75293,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fil"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fil"
@@ -74840,6 +76160,12 @@
             "value" : "Filer"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filer"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -74906,6 +76232,12 @@
             "value" : "Fichiers"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fichiers"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -74960,7 +76292,19 @@
             "value" : "Ngā Kōnae"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fail"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filer"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Filer"
@@ -75003,6 +76347,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filer"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Filer"
@@ -75601,6 +76951,12 @@
             "value" : "Filtrer og sorter"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrer og sorter"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -75667,6 +77023,12 @@
             "value" : "Filtrer et trier"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtre et tri"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -75721,7 +77083,19 @@
             "value" : "Tātari me te whakaraupapa"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tapis dan isih"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrer og sorter"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Filtrer og sorter"
@@ -75764,6 +77138,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Filtrera och sortera"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Filtrera och sortera"
@@ -76621,6 +78001,12 @@
             "value" : "Fundet %d resultater"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fundet %d resultater"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -76687,6 +78073,12 @@
             "value" : "%d résultats trouvés"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trouvé %d résultats"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -76741,7 +78133,19 @@
             "value" : "I kitea %d ngā hua"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menemui %d hasil"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fant %d resultater"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fant %d resultater"
@@ -76784,6 +78188,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hittade %d resultat"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hittade %d resultat"
@@ -76848,6 +78258,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fundet 1 resultat"
+          }
+        },
+        "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fundet 1 resultat"
@@ -76919,6 +78335,12 @@
             "value" : "Un résultat trouvé"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trouvé 1 résultat"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -76973,7 +78395,19 @@
             "value" : "Kotahi te hua i kitea"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menemui 1 hasil"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fant 1 resultat"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fant 1 resultat"
@@ -77016,6 +78450,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hittade 1 resultat"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hittade 1 resultat"
@@ -77875,6 +79315,12 @@
             "value" : "Genereret baseret på din aktivitet og dine færdigheder."
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Genereret baseret på din aktivitet og dine færdigheder."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -77941,6 +79387,12 @@
             "value" : "Généré en fonction de votre activité et de vos compétences."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Généré en fonction de votre activité et de vos compétences."
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -77995,7 +79447,19 @@
             "value" : "I hangaia i runga i tō mahi me ō pūkenga."
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dijana berdasarkan aktiviti dan kemahiran anda."
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Generert basert på aktivitet og ferdigheter."
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Generert basert på aktivitet og ferdigheter."
@@ -78038,6 +79502,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Genererat baserat på din aktivitet och dina kunskaper."
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Genererat baserat på din aktivitet och dina kunskaper."
@@ -88657,6 +90127,12 @@
             "value" : "Elementtype"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elementtype"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -88723,6 +90199,12 @@
             "value" : "Type d’élément"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Type d’élément"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -88777,7 +90259,19 @@
             "value" : "Momo tūemi"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jenis item"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elementtype:"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elementtype:"
@@ -88820,6 +90314,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Objekttyp"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Objekttyp"
@@ -93084,6 +94584,12 @@
             "value" : "Seneste nylige"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seneste nylige"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -93150,6 +94656,12 @@
             "value" : "Moins récent"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Moins récents"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -93204,7 +94716,19 @@
             "value" : "Ngā mea hou rawa atu"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paling lama"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minst nylige"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Minst nylige"
@@ -93247,6 +94771,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Äldst"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Äldst"
@@ -104653,6 +106183,12 @@
             "value" : "Seneste"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seneste"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -104719,6 +106255,12 @@
             "value" : "Plus récent"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les plus récents"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -104773,7 +106315,19 @@
             "value" : "Ngā mea hou rawa atu"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paling baru"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nyest"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Nyest"
@@ -104816,6 +106370,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senaste"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Senaste"
@@ -105671,6 +107231,12 @@
             "value" : "Mit indhold"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mit indhold"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -105737,6 +107303,12 @@
             "value" : "Mon contenu"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mon Contenu"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -105791,7 +107363,19 @@
             "value" : "Taku Ihirangi"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kandungan saya"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mitt innhold"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mitt innhold"
@@ -105834,6 +107418,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mitt innehåll"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mitt innehåll"
@@ -107741,6 +109331,12 @@
             "value" : "Navn: A-Z"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navn: A-Z"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -107807,6 +109403,12 @@
             "value" : "Nom : A-Z"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nom : A-Z"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -107861,7 +109463,19 @@
             "value" : "Ingoa: A-Z"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama: A-Z"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navn: A–Z"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Navn: A–Z"
@@ -107904,6 +109518,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namn: A–Ö"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Namn: A–Ö"
@@ -107975,6 +109595,12 @@
             "value" : "Navn: Z-A"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navn: Z-A"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -108041,6 +109667,12 @@
             "value" : "Nom : Z-A"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nom : Z-A"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -108095,7 +109727,19 @@
             "value" : "Ingoa: Z-A"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nama: Z-A"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Navn: Z–A"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Navn: Z–A"
@@ -108138,6 +109782,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Namn: Ö–A"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Namn: Ö–A"
@@ -110842,6 +112492,12 @@
             "value" : "Ingen filtre anvendt"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen filtre anvendt"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -110908,6 +112564,12 @@
             "value" : "Aucun filtre appliqué"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun filtre appliqué"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -110962,7 +112624,19 @@
             "value" : "Kāore he tātari i whakamahia"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiada penapis digunakan"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen filtre aktivert"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ingen filtre aktivert"
@@ -111005,6 +112679,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inga filter har tillämpats"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inga filter har tillämpats"
@@ -111076,6 +112756,12 @@
             "value" : "Ingen elementer i denne samling"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen elementer i denne samling"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -111142,6 +112828,12 @@
             "value" : "Aucun élément dans cette collection"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun élément dans cette collection."
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -111196,7 +112888,19 @@
             "value" : "Kāore he tūemi i roto i tēnei kohinga"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiada item dalam koleksi ini"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen elementer i denne kolleksjonen"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ingen elementer i denne kolleksjonen"
@@ -111239,6 +112943,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inga objekt i den här samlingen"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inga objekt i den här samlingen"
@@ -111576,6 +113286,12 @@
             "value" : "Ingen resultater fundet"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der blev ikke fundet resultater"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -111642,6 +113358,12 @@
             "value" : "Aucun résultat trouvé"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun résultat trouvé"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -111696,7 +113418,19 @@
             "value" : "Kāore he hua i kitea"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiada hasil carian ditemui"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen resultater ble funnet"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ingen resultater ble funnet"
@@ -111739,6 +113473,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inga resultat hittades"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inga resultat hittades"
@@ -111810,6 +113550,12 @@
             "value" : "Ingen resultater fundet. Prøv at justere dine søgeord."
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen resultater fundet. Prøv at justere dine søgeord."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -111876,6 +113622,12 @@
             "value" : "Aucun résultat trouvé. Essayez d’affiner les termes de votre recherche."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun résultat trouvé Essayez d’adapter vos termes de recherche."
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -111930,7 +113682,19 @@
             "value" : "Kāore i kitea he hua. Ngāna ki te whakarerekē i ō kupu rapu."
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiada hasil ditemui. Cuba laraskan istilah carian anda."
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fant ingen resultater. Prøv å endre søkeordene dine."
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fant ingen resultater. Prøv å endre søkeordene dine."
@@ -111973,6 +113737,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inga resultat hittades. Prova att ändra söktermerna."
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inga resultat hittades. Prova att ändra söktermerna."
@@ -113360,6 +115130,12 @@
             "value" : "Ikke tilmeldt"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke tilmeldt"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -113426,6 +115202,12 @@
             "value" : "Pas inscrit"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non inscrit"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -113480,7 +115262,19 @@
             "value" : "Kaore i whakaurutia"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tidak didaftarkan"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke påmeldt"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ikke påmeldt"
@@ -113523,6 +115317,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ej registrerad"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ej registrerad"
@@ -113862,6 +115662,12 @@
             "value" : "Ikke nu"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke nu"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -113928,6 +115734,12 @@
             "value" : "Pas maintenant"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pas maintenant"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -113982,7 +115794,19 @@
             "value" : "Kāore i nāianei"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bukan sekarang"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke nå"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ikke nå"
@@ -114025,6 +115849,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inte nu"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inte nu"
@@ -117781,6 +119611,12 @@
             "value" : "Antal fag: %d . "
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Antal fag: %d . "
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -117847,6 +119683,12 @@
             "value" : "Nombre de cours : %d . "
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nombre de cours : %d . "
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -117901,10 +119743,22 @@
             "value" : "Te maha o ngā akoranga: %d . "
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bilangan kursus: %d . "
+          }
+        },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Antall emner: %d . "
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Antall fag: %d . "
           }
         },
         "nl" : {
@@ -117944,6 +119798,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Antal kurser: %d . "
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Antal kurser: %d . "
@@ -118279,6 +120139,12 @@
             "value" : "antal enheder %d"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "antal enheder %d"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -118345,6 +120211,12 @@
             "value" : "nombre d’unités %d"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "nombre d’unités %d"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -118399,7 +120271,19 @@
             "value" : "te maha o ngā waeine %d"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "bilangan unit %d"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "antall enheter %d"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "antall enheter %d"
@@ -118442,6 +120326,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "antal enheter %d"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "antal enheter %d"
@@ -123777,6 +125667,12 @@
             "value" : "Side"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Side"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -123843,6 +125739,12 @@
             "value" : "Page"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Page"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -123897,7 +125799,19 @@
             "value" : "Whārangi"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halaman"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Side"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Side"
@@ -123940,6 +125854,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sida"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sida"
@@ -124280,6 +126200,12 @@
             "value" : "Sider"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sider"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -124346,6 +126272,12 @@
             "value" : "Pages"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pages"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -124400,7 +126332,19 @@
             "value" : "Ngā Whārangi"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Halaman"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sider"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sider"
@@ -124443,6 +126387,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sidor"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sidor"
@@ -127146,6 +129096,12 @@
             "value" : "Populær blandt studerende i din organisation"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Populær blandt studerende i din organisation"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -127212,6 +129168,12 @@
             "value" : "Prisé par les apprenants de votre organisation"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Populaire auprès des apprenants de votre organisation."
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -127266,7 +129228,19 @@
             "value" : "He rongonui ki ngā ākonga i tō whakahaere"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Popular dalam kalangan pelajar di organisasi anda"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Populært blant elevene i organisasjonen din"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Populært blant elevene i organisasjonen din"
@@ -127309,6 +129283,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Populär hos studenter i din organisation"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Populär hos studenter i din organisation"
@@ -130021,6 +132001,12 @@
             "value" : "Program: %@. "
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Program: %@. "
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -130087,6 +132073,12 @@
             "value" : "Programme : %@. "
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Programme : %@. "
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -130141,7 +132133,19 @@
             "value" : "Kaupapa: %@. "
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Program: %@. "
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Program: %@. "
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Program: %@. "
@@ -130184,6 +132188,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Program-ID: %@. "
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Program-ID: %@. "
@@ -132881,6 +134891,12 @@
             "value" : "Klar til at deltage?"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klar til at deltage?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -132947,6 +134963,12 @@
             "value" : "Prêt à rejoindre le cours ?"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prêt à rejoindre?"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -133001,7 +135023,19 @@
             "value" : "Kua rite koe ki te whakauru mai?"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sedia untuk menyertai?"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Klar til å bli med?"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Klar til å bli med?"
@@ -133044,6 +135078,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Är du redo att gå med?"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Är du redo att gå med?"
@@ -133377,6 +135417,12 @@
             "value" : "Anbefalet"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anbefalet"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -133443,6 +135489,12 @@
             "value" : "Recommandé"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recommandé"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -133497,7 +135549,19 @@
             "value" : "E taunakitia ana"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disyorkan"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anbefalt"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anbefalt"
@@ -133543,6 +135607,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rekommenderat"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rekommenderad"
           }
         },
         "th" : {
@@ -133606,6 +135676,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anbefalet til dig"
+          }
+        },
+        "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anbefalet til dig"
@@ -133677,6 +135753,12 @@
             "value" : "Recommandé pour vous"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recommandé pour vous"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -133731,7 +135813,19 @@
             "value" : "E taunakitia ana māu"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disyorkan untuk anda"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anbefalt for deg"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Anbefalt for deg"
@@ -133774,6 +135868,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rekommenderat för dig"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Rekommenderat för dig"
@@ -134637,6 +136737,12 @@
             "value" : "Relateret til indhold, du er interesseret i"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relateret til indhold, du er interesseret i"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -134703,6 +136809,12 @@
             "value" : "En rapport avec le contenu qui vous intéresse"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Concernant le contenu qui vous intéresse"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -134757,7 +136869,19 @@
             "value" : "E pā ana ki ngā ihirangi e hiahia ana koe"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berkaitan dengan kandungan yang anda minati"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relatert til innhold du er interessert i"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Relatert til innhold du er interessert i"
@@ -134800,6 +136924,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Relaterat till innehåll som intresserar dig"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Relaterat till innehåll som intresserar dig"
@@ -134871,6 +137001,12 @@
             "value" : "Fjern bogmærke"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fjern bogmærke"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -134937,6 +137073,12 @@
             "value" : "Supprimer le signet"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retirer le favori"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -134991,7 +137133,19 @@
             "value" : "Tangohia te tohuwāhi"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Buang Penanda"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fjern bokmerke"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fjern bokmerke"
@@ -135034,6 +137188,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ta bort bokmärke"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ta bort bokmärke"
@@ -135105,6 +137265,12 @@
             "value" : "Fjernet fra bogmærker"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fjernet fra bogmærker"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -135171,6 +137337,12 @@
             "value" : "Supprimé des signets"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Retiré des favoris"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -135225,7 +137397,19 @@
             "value" : "Kua tangohia mai i ngā tohuwāhi"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dibuang dari penanda"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fjernet fra bokmerker"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Fjernet fra bokmerker"
@@ -135268,6 +137452,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Borttaget från bokmärken"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Borttaget från bokmärken"
@@ -140323,6 +142513,12 @@
             "value" : "Gem fag og ressourcer her, så du kan bruge dem senere."
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gem fag og ressourcer her, så du kan bruge dem senere."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -140389,6 +142585,12 @@
             "value" : "Enregistrer les cours et les ressources ici afin d’y revenir plus tard."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistrez ici des cours et des ressources pour les consulter plus tard."
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -140443,10 +142645,22 @@
             "value" : "Tiakihia ngā akoranga me ngā rauemi ki konei hei tirotiro anō i muri mai."
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Simpan kursus dan sumber di sini untuk melawatinya semula kemudian."
+          }
+        },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lagre emner og ressurser her for å se dem senere."
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lagre fag og ressurser her for å se dem senere."
           }
         },
         "nl" : {
@@ -140486,6 +142700,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spara kurser och resurser här för att återgå till dem senare."
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Spara kurser och resurser här för att återgå till dem senare."
@@ -140550,6 +142770,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gemt"
+          }
+        },
+        "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gemt"
@@ -140621,6 +142847,12 @@
             "value" : "Sauvegardé(e)"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enregistré"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -140675,7 +142907,19 @@
             "value" : "Kua Ora"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disimpan"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lagret"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lagret"
@@ -140718,6 +142962,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sparad"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sparad"
@@ -142364,6 +144614,12 @@
             "value" : "Søg"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Søg"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -142430,6 +144686,12 @@
             "value" : "Rechercher"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rechercher"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -142484,7 +144746,19 @@
             "value" : "Rapu"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cari"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Søk"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Søk"
@@ -142527,6 +144801,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sök"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Sök"
@@ -143392,6 +145672,12 @@
             "value" : "Vis mere læringsbibliotek"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vis mere læringsbibliotek"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -143458,6 +145744,12 @@
             "value" : "Afficher plus dans la bibliothèque de contenu pédagogique"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir plus de ressources d’apprentissage"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -143512,7 +145804,19 @@
             "value" : "Tirohia ētahi atu whare pukapuka ako"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat lebih banyak pustaka pembelajaran"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se mer i læringsbibliotek"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Se mer i læringsbibliotek"
@@ -143555,6 +145859,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se mer i lärandebiblioteket"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Se mer i lärandebiblioteket"
@@ -145735,6 +148045,12 @@
             "value" : "Valgt"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valgt"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -145801,6 +148117,12 @@
             "value" : "Sélectionné"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sélectionné"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -145855,7 +148177,19 @@
             "value" : "Kua tīpakohia"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dipilih"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valgt"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Valgt"
@@ -145901,6 +148235,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Valda"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Markerade"
           }
         },
         "th" : {
@@ -146498,6 +148838,12 @@
             "value" : "Det valgte filter er %@. Dobbelttryk for at vælge et andet filter."
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det valgte filter er %@. Dobbelttryk for at vælge et andet filter."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -146564,6 +148910,12 @@
             "value" : "Le filtre sélectionné est %@. Appuyez deux fois pour sélectionner un autre fichier."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le filtre sélectionné est %@. Taper à 2 reprises pour sélectionner un autre filtre"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -146618,7 +148970,19 @@
             "value" : "Ko te tātari kua tīpakohia ko %@. Patohia rua hei tīpako i tētahi atu tātari."
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penapis yang dipilih ialah %@. Ketik dua kali untuk memilih penapis lain."
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valgt filter er %@. Dobbeltklikk for å velge et annet filter."
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Valgt filter er %@. Dobbeltklikk for å velge et annet filter."
@@ -146661,6 +149025,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Valt filter är %@. Dubbeltryck för att välja ett annat filter."
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Valt filter är %@. Dubbeltryck för att välja ett annat filter."
@@ -164381,6 +166751,12 @@
             "value" : "Der er endnu ikke noget læringsbibliotek."
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der er endnu ikke noget læringsbibliotek."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -164447,6 +166823,12 @@
             "value" : "Il n’existe pas encore de bibliothèque de contenu pédagogique."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il n’y a pas encore de bibliothèque de ressources d’apprentissage."
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -164501,7 +166883,19 @@
             "value" : "Kāore anō kia wātea he whare pukapuka ako."
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Belum mempunyai pustaka pembelajaran."
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det er ikke noe læringsbibliotek ennå."
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Det er ikke noe læringsbibliotek ennå."
@@ -164544,6 +166938,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det finns inget lärandebibliotek än."
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Det finns inget lärandebibliotek än."
@@ -169360,6 +171760,12 @@
             "value" : "For at uddybe dine færdigheder inden for %@"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For at uddybe dine færdigheder inden for %@"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -169426,6 +171832,12 @@
             "value" : "Pour approfondir vos compétences en %@"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour approfondir vos compétences dans %@"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -169480,7 +171892,19 @@
             "value" : "Hei whakahōhonu ake i ō pūkenga ki %@"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untuk mendalami kemahiran anda dalam %@"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "For å fordype ferdighetene dine i %@"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "For å fordype ferdighetene dine i %@"
@@ -169523,6 +171947,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Så att du kan fördjupa dina kunskaper inom %@"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Så att du kan fördjupa dina kunskaper inom %@"
@@ -175913,6 +178343,12 @@
             "value" : "Ikke valgt"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke valgt"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -175979,6 +178415,12 @@
             "value" : "Non sélectionné"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non sélectionné"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -176033,7 +178475,19 @@
             "value" : "Kāore i tīpakohia"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nyahpilih"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke valgt"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ikke valgt"
@@ -176076,6 +178530,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Omarkerade"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Omarkerade"
@@ -177989,6 +180449,12 @@
             "value" : "Vis hele kollektionen"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vis hele kollektionen"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -178055,6 +180521,12 @@
             "value" : "Afficher la collection complète"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voir la collection complète"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -178109,7 +180581,19 @@
             "value" : "Tirohia te kohinga katoa"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lihat koleksi penuh"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vis fullstendig kolleksjon"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vis fullstendig kolleksjon"
@@ -178152,6 +180636,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visa fullständig samling"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Visa fullständig samling"
@@ -184809,6 +187299,12 @@
             "value" : "Du er ikke tilmeldt et fag i øjeblikket"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du er ikke tilmeldt et fag i øjeblikket"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -184875,6 +187371,12 @@
             "value" : "Vous n’êtes inscrit à aucun cours pour le moment"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous n’êtes pas encore inscrit(e) dans un cours"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -184929,10 +187431,22 @@
             "value" : "Kāore koe i te rēhita ki tētahi akoranga i tēnei wā"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anda tidak berdaftar dalam kursus buat masa ini"
+          }
+        },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Du er for øyeblikket ikke påmeldt i et emne"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du er for øyeblikket ikke påmeldt i et fag"
           }
         },
         "nl" : {
@@ -184972,6 +187486,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du är för närvarande inte registrerad i en kurs"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Du är för närvarande inte registrerad i en kurs"

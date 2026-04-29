@@ -35363,7 +35363,7 @@
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ajouter une tâche à accomplir"
+            "value" : "Ajouter une tâche à faire"
           }
         },
         "ga" : {
@@ -92939,6 +92939,9 @@
           }
         }
       }
+    },
+    "Could not load video from library." : {
+
     },
     "Could not save notification preference" : {
       "localizations" : {
@@ -328727,7 +328730,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vald"
+            "value" : "Markerade"
           }
         },
         "th" : {
