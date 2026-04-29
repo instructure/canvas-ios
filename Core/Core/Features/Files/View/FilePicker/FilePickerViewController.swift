@@ -179,8 +179,9 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         let inProgress = files.first { $0.isUploading } != nil
         let failed = files.first { $0.uploadError != nil } != nil
 
-        // upload calls this method periodically and constantly updating the button causes tap events to get dropped
-        if inProgress && !isUploadInProgress {
+        if inProgress {
+            // upload calls this method periodically and constantly updating the button causes tap events to get dropped
+            guard !isUploadInProgress else { return }
             isUploadInProgress = true
             navigationItem.leftBarButtonItems = []
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Dismiss", bundle: .core), style: .plain, target: self, action: #selector(close))
