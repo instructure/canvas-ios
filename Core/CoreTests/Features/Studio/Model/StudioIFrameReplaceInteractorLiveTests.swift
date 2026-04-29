@@ -133,6 +133,41 @@ class StudioIFrameReplaceInteractorLiveTests: CoreTestCase {
         )
     }
 
+    func test_replaceStudioIFrames_whenOneIframeHasNoMatchingOfflineVideo_shouldReplaceMatchedIframesAndThrow() throws {
+        let unmatchedIframeID = "unmatched-lti-id"
+        let unmatchedIframeHtml = "<iframe src=\"https://test.com/lti?id=\(unmatchedIframeID)\"></iframe>"
+        let htmlWithTwoIframes = "<p>\n\(StudioTestData.iframe)\n\(unmatchedIframeHtml)\n</p>"
+        try htmlWithTwoIframes.write(to: htmlFileURL, atomically: false, encoding: .utf8)
+
+        let matchedOfflineVideo = try StudioOfflineVideo(
+            ltiLaunchID: StudioTestData.ltiLaunchID,
+            videoLocation: testData.videoURL,
+            videoPosterLocation: nil,
+            videoMimeType: testData.mimeType,
+            captionLocations: [],
+            baseURL: workingDirectory
+        )
+        let unmatchedIframe = StudioIFrame(mediaLTILaunchID: unmatchedIframeID, sourceHtml: unmatchedIframeHtml)
+
+        XCTAssertThrowsError(
+            try StudioIFrameReplaceInteractorLive().replaceStudioIFrames(
+                inHtmlAtURL: htmlFileURL,
+                iframes: [testData.iframe, unmatchedIframe],
+                offlineVideos: [matchedOfflineVideo]
+            )
+        ) { error in
+            XCTAssertEqual(
+                (error as? StudioIFrameReplaceError)?.debugDescription,
+                StudioIFrameReplaceError.offlineVideoIDNotFound.debugDescription
+            )
+        }
+
+        let savedHtml = try String(contentsOf: htmlFileURL, encoding: .utf8)
+        XCTAssertFalse(savedHtml.contains(StudioTestData.iframe))
+        XCTAssertTrue(savedHtml.contains("<video"))
+        XCTAssertTrue(savedHtml.contains(unmatchedIframeHtml))
+    }
+
     func testErrorDescription() {
         XCTAssertEqual(
             StudioIFrameReplaceError.failedToConvertDataToString.debugDescription,

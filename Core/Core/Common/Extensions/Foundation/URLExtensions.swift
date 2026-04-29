@@ -317,3 +317,9 @@ public extension Array where Element == URL {
         }
     }
 }
+
+public extension URL {
+    var isStudioMediaLTILaunchURL: Bool {
+        path().hasSuffix("lti/launch") && queryValue(for: "custom_arc_media_id") != nil
+    }
+}

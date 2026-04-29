@@ -32,11 +32,6 @@ verifyInputs() {
 	    echo "variable APP_NAME must be set (i.e. Student, Parent, Teacher)"
 	    exit 1
 	fi
-
-	# if [[ $BITRISE_GIT_BRANCH != "master" ]]; then
-# 	    echo "run this job on master branch"
-# 	    exit 1
-# 	fi
 }
 
 checkoutReleaseBranch() {

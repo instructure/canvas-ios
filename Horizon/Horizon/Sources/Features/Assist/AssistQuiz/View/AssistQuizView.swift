@@ -21,6 +21,7 @@ import SwiftUI
 
 struct AssistQuizView: View {
     let viewModel: AssistQuizViewModel
+    @State private var showInfoView = false
     @Environment(\.viewController) private var viewController
 
     var body: some View {
@@ -53,6 +54,14 @@ struct AssistQuizView: View {
             .overlay { loaderView }
         }
         .applyHorizonGradient()
+        .bottomSheet(
+            isPresented: $showInfoView,
+            backgroundDismissible: true
+        ) {
+            AssistInfoView {
+                showInfoView = false
+            }
+        }
     }
 }
 
@@ -75,6 +84,8 @@ extension AssistQuizView {
     private var headerView: some View {
         AssistTitle(onBack: { viewModel.pop(controller: viewController) }) {
             viewModel.dismiss(controller: viewController)
+        } onTapInfo: {
+            showInfoView.toggle()
         }
     }
 

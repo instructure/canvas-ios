@@ -743,61 +743,6 @@ extension CoreWebView: WKUIDelegate {
     }
 }
 
-// MARK: - Cookie Keep-Alive
-
-extension CoreWebView {
-    static var cookieKeepAliveTimer: Timer?
-    static var cookieKeepAliveWebView = CoreWebView()
-    private static var injectionSubscription: AnyCancellable?
-
-    public static func keepCookieAlive(for env: AppEnvironment) {
-        guard env.api.loginSession?.accessToken != nil,
-              cookieKeepAliveTimer == nil
-        else { return }
-
-        injectionSubscription = CoreWebViewCrossCookieInjection()
-            .injectCrossSiteCookies(httpCookieStore: cookieKeepAliveWebView.configuration.websiteDataStore.httpCookieStore)
-            .sink()
-
-        performUIUpdate {
-            cookieKeepAliveTimer?.invalidate()
-            let interval: TimeInterval = 10 * 60 // ten minutes
-            cookieKeepAliveTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
-                let sessionTokenRequest = GetWebSessionRequest(to: nil)
-                env.api.makeRequest(sessionTokenRequest) { data, _, _ in performUIUpdate {
-                    guard let url = data?.session_url else { return }
-                    var keepAliveRequest = URLRequest(url: url)
-                    keepAliveRequest.httpMethod = "HEAD"
-                    cookieKeepAliveWebView.load(keepAliveRequest)
-                } }
-            }
-            refreshKeepAliveCookies()
-        }
-    }
-
-    public static func stopCookieKeepAlive() {
-        performUIUpdate {
-            cookieKeepAliveTimer?.invalidate()
-            cookieKeepAliveTimer = nil
-        }
-    }
-
-    /// Refreshes webview session cookies immediately outside of the scheduled renewal.
-    public static func refreshKeepAliveCookies() {
-        performUIUpdate {
-            cookieKeepAliveTimer?.fire()
-        }
-    }
-
-    public static func deleteAllCookies() -> AnyPublisher<Void, Never> {
-        cookieKeepAliveWebView
-            .configuration
-            .websiteDataStore
-            .httpCookieStore
-            .deleteAllCookies()
-    }
-}
-
 // MARK: - Input Accessory View For RCE Editor
 
 extension CoreWebView {

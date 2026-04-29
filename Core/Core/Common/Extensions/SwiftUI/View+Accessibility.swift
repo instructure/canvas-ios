@@ -29,4 +29,14 @@ extension View {
             self
         }
     }
+
+    /// `AccessibilityFocused` is only applied when the `condition` is true, otherwise it is ignored.
+    @ViewBuilder
+    public func accessibilityFocused(_ focusState: AccessibilityFocusState<Bool>.Binding, when condition: Bool) -> some View {
+        if condition {
+            self.accessibilityFocused(focusState)
+        } else {
+            self
+        }
+    }
 }

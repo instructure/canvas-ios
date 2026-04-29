@@ -23,6 +23,7 @@ struct ToDoWidgetListView: View {
     @Environment(\.viewController) private var viewController
 
     let viewModel: ToDoWidgetListViewModel
+    @AccessibilityFocusState var isFirstItemFocused: Bool
 
     @State private var swipingItemId: String?
 
@@ -40,9 +41,13 @@ struct ToDoWidgetListView: View {
                 )
                 .identifier("Dashboard.Todo.TodoList.Item")
                 .paddingStyle(.leading, .standard)
+
                 AUI.Divider(.padded)
             }
         }
+        .accessibilityElement(children: .contain)
+        .accessibilityLabel(.format(accessibilityListCount: viewModel.items.count))
+        .accessibilityFocused($isFirstItemFocused)
     }
 
     private func isSwipingBinding(for item: TodoItemViewModel) -> Binding<Bool> {

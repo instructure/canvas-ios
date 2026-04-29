@@ -21,14 +21,7 @@ import XCTest
 
 class CreateSubmissionTests: CoreTestCase {
 
-    private var testAnalyticsHandler: MockAnalyticsHandler!
     private var retrialState: SubmissionRetrialState!
-
-    override func setUp() {
-        super.setUp()
-        testAnalyticsHandler = MockAnalyticsHandler()
-        Analytics.shared.handler = testAnalyticsHandler
-    }
 
     override func tearDown() {
         retrialState = nil
@@ -117,8 +110,8 @@ class CreateSubmissionTests: CoreTestCase {
         let useCase = CreateSubmission(context: context, assignmentID: "2", userID: "3", submissionType: .online_text_entry)
         useCase.makeRequest(environment: environment) { _, _, _ in }
 
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_textEntry_succeeded")
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 2)
+        XCTAssertEqual(analytics.handleEventInput?.name, "submit_textEntry_succeeded")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["attempt"] as? Int, 2)
     }
 
     private func exhaustDatabaseClient() {
@@ -150,8 +143,8 @@ class CreateSubmissionTests: CoreTestCase {
         databaseClient.perform { exp.fulfill() }
         wait(for: [exp])
 
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_url_failed")
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 17)
+        XCTAssertEqual(analytics.handleEventInput?.name, "submit_url_failed")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["attempt"] as? Int, 17)
     }
 
     func test_analytics_retrial_state_multiple_failures() {
@@ -173,15 +166,15 @@ class CreateSubmissionTests: CoreTestCase {
         useCase.makeRequest(environment: environment) { _, _, _ in }
         exhaustDatabaseClient()
 
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_textEntry_failed")
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("retry"), 0)
+        XCTAssertEqual(analytics.handleEventInput?.name, "submit_textEntry_failed")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["retry"] as? Int, 0)
 
         // When
         useCase.makeRequest(environment: environment) { _, _, _ in }
         exhaustDatabaseClient()
 
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_textEntry_failed")
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("retry"), 1)
+        XCTAssertEqual(analytics.handleEventInput?.name, "submit_textEntry_failed")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["retry"] as? Int, 1)
 
         // When
         api.mock(request, value: .make(
@@ -192,9 +185,9 @@ class CreateSubmissionTests: CoreTestCase {
         useCase.makeRequest(environment: environment) { _, _, _ in }
         exhaustDatabaseClient()
 
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_textEntry_succeeded")
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("retry"), 1)
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 1)
+        XCTAssertEqual(analytics.handleEventInput?.name, "submit_textEntry_succeeded")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["retry"] as? Int, 1)
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["attempt"] as? Int, 1)
     }
 
     func test_analytics_retrial_state_success() {
@@ -218,9 +211,9 @@ class CreateSubmissionTests: CoreTestCase {
         useCase.makeRequest(environment: environment) { _, _, _ in }
         exhaustDatabaseClient()
 
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_textEntry_succeeded")
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("retry"), 0)
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 1)
+        XCTAssertEqual(analytics.handleEventInput?.name, "submit_textEntry_succeeded")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["retry"] as? Int, 0)
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["attempt"] as? Int, 1)
     }
 
     func test_analytics_media_recording_params() {
@@ -255,10 +248,10 @@ class CreateSubmissionTests: CoreTestCase {
 
         useCase.makeRequest(environment: environment) { _, _, _ in }
 
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_mediaRecording_succeeded")
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 6)
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("media_type"), "video")
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("media_source"), "camera")
+        XCTAssertEqual(analytics.handleEventInput?.name, "submit_mediaRecording_succeeded")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["attempt"] as? Int, 6)
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["media_type"] as? String, "video")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["media_source"] as? String, "camera")
     }
 
     func test_analytics_studio() {
@@ -290,7 +283,7 @@ class CreateSubmissionTests: CoreTestCase {
 
         useCase.makeRequest(environment: environment) { _, _, _ in }
 
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "submit_studio_succeeded")
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameter("attempt"), 13)
+        XCTAssertEqual(analytics.handleEventInput?.name, "submit_studio_succeeded")
+        XCTAssertEqual(analytics.handleEventInput?.parameters?["attempt"] as? Int, 13)
     }
 }

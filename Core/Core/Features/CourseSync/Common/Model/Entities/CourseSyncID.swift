@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct CourseSyncID: Hashable {
+public struct CourseSyncID: Hashable, CustomStringConvertible {
     let value: String
     let apiBaseURL: URL?
 
@@ -29,6 +29,8 @@ public struct CourseSyncID: Hashable {
         self.value = value
         self.apiBaseURL = apiBaseURL
     }
+
+    public var description: String { value }
 }
 
 #if DEBUG
@@ -38,10 +40,6 @@ extension CourseSyncID: ExpressibleByStringLiteral {
         self.value = value
         self.apiBaseURL = nil
     }
-}
-
-extension CourseSyncID: CustomStringConvertible {
-    public var description: String { value }
 }
 
 #endif

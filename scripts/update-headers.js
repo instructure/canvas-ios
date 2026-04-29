@@ -27,7 +27,7 @@ Run this script from the repo root directory
  yarn update-headers
 */
 const { execSync } = require('child_process')
-const program = require('commander')
+const { program } = require('commander')
 const { existsSync, readdirSync, readFileSync, writeFileSync } = require('fs')
 
 program
@@ -131,7 +131,7 @@ function check(files, skipWrite = true) {
 
 if (require.main === module) {
   program.parse(process.argv)
-  const { skipWrite = false, print = false } = program
+  const { skipWrite = false, print = false } = program.opts()
   const files = execSync('git ls-files -z', { encoding: 'utf8' }).split('\0')
   console.log(`Checking ${files.length} files...`)
   const { replaced, skipped, incompatible } = check(files, skipWrite)

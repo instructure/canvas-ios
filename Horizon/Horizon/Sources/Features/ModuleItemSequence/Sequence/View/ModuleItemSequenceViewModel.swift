@@ -50,7 +50,10 @@ final class ModuleItemSequenceViewModel {
     }
 
     var visibleButtons: [ModuleNavBarUtilityButtons] {
-        var buttons: [ModuleNavBarUtilityButtons] = [.chatBot(navigateToTutor)]
+        var buttons: [ModuleNavBarUtilityButtons] = []
+        if moduleItem?.type?.assetType == .file || moduleItem?.type?.assetType == .page {
+            buttons.append(.chatBot(navigateToTutor))
+        }
         if isAssignmentOptionsButtonVisible, moduleItem?.isQuizLTI == false {
             buttons.append(.assignmentMoreOptions(assignmentOptionsTapped, hasBadge: hasUnreadComments))
         } else if moduleItem?.type?.assetType == .page, isNotebookDisabled == false {

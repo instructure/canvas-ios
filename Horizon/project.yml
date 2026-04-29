@@ -45,13 +45,7 @@ packages:
     exactVersion: 3.12.0
   PSPDFKit:
     url: https://github.com/PSPDFKit/PSPDFKit-SP
-    exactVersion: 14.2.0
-  FirebaseCrashlytics:
+    exactVersion: 26.6.0
+  Firebase:
     url: https://github.com/firebase/firebase-ios-sdk.git
-    exactVersion: 10.23.1
-  FirebaseRemoteConfig:
-    url: https://github.com/firebase/firebase-ios-sdk.git
-    exactVersion: 10.23.1
-  FirebaseRemoteConfigSwift:
-    url: https://github.com/firebase/firebase-ios-sdk.git
-    exactVersion: 10.23.1
+    exactVersion: 12.11.0
