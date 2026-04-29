@@ -28,6 +28,7 @@ public final class PendoAnalyticsTracker {
     private var pendoApiKey: String?
 
     private var isSetupCalled: Bool = false
+    private var isApiKeyCurrent: Bool = false
     private var isSessionInProgress: Bool = false
 
     // MARK: Initialization
@@ -39,7 +40,11 @@ public final class PendoAnalyticsTracker {
     ) {
         self.interactor = interactor
         self.pendoManager = pendoManager
+
         self.pendoApiKey = pendoApiKey?.nilIfEmpty
+        if pendoApiKey?.nilIfEmpty != nil {
+            isApiKeyCurrent = true
+        }
     }
 
     // MARK: - Setup & Start Session
@@ -49,7 +54,15 @@ public final class PendoAnalyticsTracker {
     }
 
     public func storeApiKey(_ apiKey: String) {
-        pendoApiKey = apiKey.nilIfEmpty
+        if isSetupCalled && pendoApiKey != apiKey {
+            // This can happen after a new login with a different api key.
+            // It that case we should disable tracking,
+            // since we can't resetup pendo with the new api key.
+            isApiKeyCurrent = false
+        } else {
+            pendoApiKey = apiKey
+            isApiKeyCurrent = true
+        }
     }
 
     /// Start the session asynchronously.
@@ -62,7 +75,7 @@ public final class PendoAnalyticsTracker {
 
     // extracted for testing purposes
     internal func startSessionAsync() async throws {
-        guard let pendoApiKey else { return }
+        guard let pendoApiKey, isApiKeyCurrent else { return }
 
         await setupManagerIfNeeded(apiKey: pendoApiKey)
 
@@ -99,7 +112,7 @@ public final class PendoAnalyticsTracker {
 
     @MainActor
     public func endSession() {
-        guard let pendoApiKey else { return }
+        guard let pendoApiKey, isApiKeyCurrent else { return }
 
         setupManagerIfNeeded(apiKey: pendoApiKey)
 
