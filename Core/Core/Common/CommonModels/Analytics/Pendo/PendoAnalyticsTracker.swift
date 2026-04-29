@@ -19,17 +19,6 @@
 import Foundation
 import Pendo
 
-// This is only needed to make testing possible
-public protocol PendoManagerWrapper: AnyObject {
-    func initWith(_ url: URL)
-    func setup(_ appKey: String)
-    func startSession(_ visitorId: String?, accountId: String?, visitorData: [AnyHashable: Any]?, accountData: [AnyHashable: Any]?)
-    func endSession()
-    func track(_ event: String, properties: [AnyHashable: Any]?)
-}
-
-extension PendoManager: PendoManagerWrapper {}
-
 public final class PendoAnalyticsTracker {
 
     // MARK: Properties
@@ -53,6 +42,8 @@ public final class PendoAnalyticsTracker {
         self.pendoApiKey = pendoApiKey?.nilIfEmpty
     }
 
+    // MARK: - Setup & Start Session
+
     public func initManager(with url: URL) {
         pendoManager.initWith(url)
     }
@@ -61,33 +52,13 @@ public final class PendoAnalyticsTracker {
         pendoApiKey = apiKey.nilIfEmpty
     }
 
-    // MARK: Publics
-
-    /// Start the session asynchronously
+    /// Start the session asynchronously.
     public func startSession(completion: (() -> Void)? = nil) {
         Task { [weak self] in
             try? await self?.startSessionAsync()
             completion?()
         }
     }
-
-    @MainActor
-    public func endSession() {
-        guard let pendoApiKey else { return }
-
-        setupManagerIfNeeded(apiKey: pendoApiKey)
-
-        isSessionInProgress = false
-        pendoManager.endSession()
-    }
-
-    public func track(_ eventName: String, properties: [String: Any]?) {
-        guard isSessionInProgress else { return }
-
-        pendoManager.track(eventName, properties: properties)
-    }
-
-    // MARK: Internals & Privates
 
     // extracted for testing purposes
     internal func startSessionAsync() async throws {
@@ -122,5 +93,25 @@ public final class PendoAnalyticsTracker {
         )
 
         isSessionInProgress = true
+    }
+
+    // MARK: - End Session
+
+    @MainActor
+    public func endSession() {
+        guard let pendoApiKey else { return }
+
+        setupManagerIfNeeded(apiKey: pendoApiKey)
+
+        isSessionInProgress = false
+        pendoManager.endSession()
+    }
+
+    // MARK: - Track
+
+    public func track(_ eventName: String, properties: [String: Any]?) {
+        guard isSessionInProgress else { return }
+
+        pendoManager.track(eventName, properties: properties)
     }
 }
