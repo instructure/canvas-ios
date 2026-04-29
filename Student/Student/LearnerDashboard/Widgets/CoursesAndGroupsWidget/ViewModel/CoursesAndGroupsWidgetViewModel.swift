@@ -85,6 +85,7 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel, Dashboard
                 courseCards = courseItems.map { item in
                     CourseCardViewModel(
                         model: item,
+                        isAvailableOffline: self.isCourseAvailableOffline(courseID: item.id),
                         didSaveChanges: self.requestDashboardRefresh,
                         router: environment.router
                     )
@@ -109,6 +110,19 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel, Dashboard
 
     func didTapAllCourses(from controller: WeakViewController) {
         environment.router.route(to: "/courses", from: controller, options: .push)
+    }
+
+    func refreshOfflineAvailability() {
+        courseCards = courseCards.map { item in
+            CourseCardViewModel(
+                model: item.model,
+                isAvailableOffline: isCourseAvailableOffline(courseID: item.id),
+                didSaveChanges: item.didSaveChanges,
+                router: item.router
+            )
+        }
+
+        print(courseCards)
     }
 
     private func updateShowGrades(on subject: CurrentValueSubject<Bool, Never>) {
@@ -136,6 +150,14 @@ final class CoursesAndGroupsWidgetViewModel: DashboardWidgetViewModel, Dashboard
                 self?.favoritesDidChange = true
             }
             .store(in: &subscriptions)
+    }
+
+    func isCourseAvailableOffline(courseID: String) -> Bool {
+        if let selections = AppEnvironment.shared.userDefaults?.offlineSyncSelections {
+            selections.contains { $0.contains("courses/\(courseID)") }
+        } else {
+            false
+        }
     }
 }
 

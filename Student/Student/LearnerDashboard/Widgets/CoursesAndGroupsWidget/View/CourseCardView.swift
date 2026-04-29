@@ -65,7 +65,7 @@ struct CourseCardView: View {
                     .contentShape(Rectangle())
                     .offset(x: 2, y: 2)
             }
-            .animation(.dashboardWidget, value: viewModel)
+//            .animation(.dashboardWidget, value: viewModel)
             .accessibilityElement(children: .combine)
             .accessibilityLabel(a11yLabel)
             .identifier("Dashboard.Courses.CourseCard.cardButton")
@@ -259,6 +259,7 @@ extension CourseCardView {
         CourseCardView(
             viewModel: CourseCardViewModel(
                 model: CourseCardView.previewData[0],
+                isAvailableOffline: true,
                 didSaveChanges: .init(),
                 router: PreviewEnvironment().router
             ),
@@ -269,6 +270,7 @@ extension CourseCardView {
         CourseCardView(
             viewModel: CourseCardViewModel(
                 model: CourseCardView.previewData[1],
+                isAvailableOffline: false,
                 didSaveChanges: .init(),
                 router: PreviewEnvironment().router
             ),
@@ -279,6 +281,7 @@ extension CourseCardView {
         CourseCardView(
             viewModel: CourseCardViewModel(
                 model: CourseCardView.previewData[2],
+                isAvailableOffline: true,
                 didSaveChanges: .init(),
                 router: PreviewEnvironment().router
             ),
