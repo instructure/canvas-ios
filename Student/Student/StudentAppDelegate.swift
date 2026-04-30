@@ -431,8 +431,9 @@ extension StudentAppDelegate {
     private func setTabBarControllerFor(experience: Experience, isStartup: Bool, session: LoginSession?) {
         switch experience {
         case .academic:
-            AppEnvironment.shared.app = ExperimentalFeature.nextgenStudent.isEnabled ? .nextgen : .student
-            AppEnvironment.shared.router = AppEnvironment.shared.app == .nextgen
+            let app: AppEnvironment.App = ExperimentalFeature.nextgenStudent.isEnabled ? .nextgen : .student
+            AppEnvironment.shared.app = app
+            AppEnvironment.shared.router = (app == .nextgen)
                 ? NextGenRoutes.makeRouter(academicRoutes: academicRouter.handlers)
                 : academicRouter
             guard let window else { return }

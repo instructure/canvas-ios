@@ -30,7 +30,11 @@ public protocol AppEnvironmentDelegate {
 
 open class AppEnvironment {
     public enum App: String {
-        case parent, student, teacher, horizon, nextgen
+        case parent
+        case teacher
+        case student
+        case horizon // Student app experience
+        case nextgen // Student app experience
     }
 
     public internal(set) lazy var uploadManager = UploadManager(

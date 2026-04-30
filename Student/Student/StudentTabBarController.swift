@@ -60,6 +60,9 @@ class StudentTabBarController: UITabBarController, SnackBarProvider {
         addSnackBar()
         registerForTraitChanges()
 
+        // Placeholder until the nextgen navigation is figured out:
+        // - We only keep the first tab that is the dashboard
+        // - Hide the tab controller since we only have one tab and there's no point in showing it
         if AppEnvironment.shared.app == .nextgen {
             viewControllers = Array(viewControllers?.prefix(1) ?? [])
             tabBar.isHidden = true
