@@ -30,6 +30,7 @@ public class Tab: NSManagedObject {
     @NSManaged public var position: Int
     @NSManaged var typeRaw: String
     @NSManaged var visibilityRaw: String
+    @NSManaged public var course: CourseSyncSelectorCourse?
 
     public var context: Context {
         get { return Context(canvasContextID: contextRaw) ?? .currentUser }
@@ -70,5 +71,22 @@ public class Tab: NSManagedObject {
         type = item.type
         visibility = TabVisibility(rawValue: item.visibility) ?? .none
         hidden = item.hidden
+
+        setupCourseSyncRelationship(in: client)
+    }
+
+    private func setupCourseSyncRelationship(in client: NSManagedObjectContext) {
+        guard
+            let courseId = context.courseId,
+            let course: CourseSyncSelectorCourse = client
+            .first(
+                scope: .where(
+                    #keyPath(CourseSyncSelectorCourse.courseId),
+                    equals: courseId
+                )
+            )
+        else { return }
+
+        self.course = course
     }
 }

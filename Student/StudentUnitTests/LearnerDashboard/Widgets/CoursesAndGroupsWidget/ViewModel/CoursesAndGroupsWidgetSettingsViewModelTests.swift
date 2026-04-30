@@ -75,12 +75,7 @@ final class CoursesAndGroupsWidgetSettingsViewModelTests: StudentTestCase {
         testee = makeViewModel()
 
         let apiExpectation = expectation(description: "PUT users/self/settings called")
-        let request = PutUserSettingsRequest(
-            manual_mark_as_read: nil,
-            collapse_global_nav: nil,
-            hide_dashcard_color_overlays: true,
-            comment_library_suggestions_enabled: nil
-        )
+        let request = PutUserSettingsRequest(hide_dashcard_color_overlays: true)
         api.mock(request) { _ in
             apiExpectation.fulfill()
             return (nil, nil, nil)

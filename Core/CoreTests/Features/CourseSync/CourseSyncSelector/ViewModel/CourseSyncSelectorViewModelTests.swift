@@ -275,7 +275,7 @@ class CourseSyncInteractorMock: CourseSyncInteractor {
 class CourseSyncListInteractorMock: CourseSyncListInteractor {
     let courseSyncEntrySubject = PassthroughSubject<[CourseSyncEntry], Error>()
 
-    func getCourseSyncEntries(filter _: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error> {
+    func getCourseSyncEntries(filter: CourseSyncListFilter, progress: CourseSyncDownloadProgress?) -> AnyPublisher<[Core.CourseSyncEntry], any Error> {
         courseSyncEntrySubject.eraseToAnyPublisher()
     }
 }

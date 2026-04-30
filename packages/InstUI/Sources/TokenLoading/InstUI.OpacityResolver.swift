@@ -18,13 +18,17 @@
 
 extension InstUI {
     struct OpacityResolver {
-        private let primitivesByName: [TokenKey: Double]
+        private let map: [TokenKey: Double]
 
         init() {
-            primitivesByName = Dictionary(
+            map = Dictionary(
                 InstUI.Primitive.Opacity.all.map { ($0.name, $0.opacity) },
-                uniquingKeysWith: { first, _ in first }
+                uniquingKeysWith: { $1 }
             )
+        }
+
+        init(map: [TokenKey: Double]) {
+            self.map = map
         }
 
         func resolve(_ raw: String) throws -> Double {
@@ -32,7 +36,7 @@ extension InstUI {
                 throw InstUI.TokenLoadError.unknownPrimitive(raw)
             }
             let inner = String(raw.dropFirst().dropLast())
-            guard let opacity = primitivesByName[inner] else {
+            guard let opacity = map[inner] else {
                 throw InstUI.TokenLoadError.unknownPrimitive(inner)
             }
             return opacity

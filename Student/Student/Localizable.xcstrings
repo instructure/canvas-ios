@@ -2719,6 +2719,12 @@
             "value" : "%@ muligt"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ muligt"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2785,6 +2791,12 @@
             "value" : "%@ possible"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ possible"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -2839,7 +2851,19 @@
             "value" : "%@ ka taea"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ mungkin"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ mulig"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ mulig"
@@ -2882,6 +2906,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@ möjlig"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@ möjlig"
@@ -3214,6 +3244,12 @@
             "value" : "%@, markeret som færdig"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, markeret som færdig"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3280,6 +3316,12 @@
             "value" : "%@, marqué Terminé"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, marqué comme effectué"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3334,7 +3376,19 @@
             "value" : "%@, kua tohua hei kua oti"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, tanda sebagai siap"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, merket som ferdig"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@, merket som ferdig"
@@ -3377,6 +3431,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, har markerats som färdigt"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@, har markerats som färdigt"
@@ -3442,6 +3502,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, markeret som ikke færdig"
+          }
+        },
+        "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@, markeret som ikke færdig"
@@ -3513,6 +3579,12 @@
             "value" : "%@, marqué Non terminé"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, marqué comme non effectué"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -3567,7 +3639,19 @@
             "value" : "%@, kua tohua hei kāore anō kia oti"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, tanda sebagai belum siap"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, merket som ikke ferdig"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@, merket som ikke ferdig"
@@ -3610,6 +3694,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%@, har markerats som ej färdigt"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "%@, har markerats som ej färdigt"
@@ -21685,6 +21775,12 @@
             "value" : "Tilføj opgave"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilføj opgave"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21751,6 +21847,12 @@
             "value" : "Ajouter une tâche À Faire"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouter une tâche à faire"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -21805,7 +21907,19 @@
             "value" : "Tāpiri Mahi"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tambah Untuk Dilakukan"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg til gjøremål"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Legg til gjøremål"
@@ -21848,6 +21962,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lägg till att göra-uppgift"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lägg till att göra-uppgift"
@@ -46168,6 +46288,12 @@
             "value" : "Aktuel uge"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktuel uge"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -46234,6 +46360,12 @@
             "value" : "Semaine en cours"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Semaine en cours"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -46288,7 +46420,19 @@
             "value" : "Wiki o Nāianei"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Minggu Semasa"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gjeldende uke"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Gjeldende uke"
@@ -46331,6 +46475,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aktuell vecka"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Aktuell vecka"
@@ -47989,6 +48139,12 @@
             "value" : "Daglig opgaveliste"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daglig opgaveliste"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -48055,6 +48211,12 @@
             "value" : "À faire pour la journée"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tâches à faire quotidiennes"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -48109,7 +48271,19 @@
             "value" : "Ngā Mahi o ia Rā"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untuk Dilakukan Setiap Hari"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Daglige gjøremål"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Daglige gjøremål"
@@ -48152,6 +48326,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dagliga att göra-objekt"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Dagliga att göra-objekt"
@@ -67942,6 +68122,12 @@
             "value" : "Kunne ikke markere elementet som færdigt"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke markere elementet som færdigt"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -68008,6 +68194,12 @@
             "value" : "Impossible de marquer l’élément Terminé"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échec du marquage de l’élément comme effectué"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -68062,7 +68254,19 @@
             "value" : "Kāore i taea te tohu i te tūemi hei kua oti"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gagal menandakan item sebagai siap"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke merke element som ferdig"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kunne ikke merke element som ferdig"
@@ -68105,6 +68309,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gick inte att markera objektet som färdigt"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Det gick inte att markera objektet som färdigt"
@@ -68169,6 +68379,12 @@
           }
         },
         "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke markere elementet som ikke færdigt"
+          }
+        },
+        "da-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kunne ikke markere elementet som ikke færdigt"
@@ -68240,6 +68456,12 @@
             "value" : "Impossible de marquer l’élément Non terminé"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échec du marquage de l’élément comme non effectué"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -68294,7 +68516,19 @@
             "value" : "Kāore i taea te tohu i te tūemi hei kāore anō kia oti"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gagal menandakan item sebagai belum siap"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kunne ikke merke element som ikke ferdig"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Kunne ikke merke element som ikke ferdig"
@@ -68337,6 +68571,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det gick inte att markera objektet som inte färdigt"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Det gick inte att markera objektet som inte färdigt"
@@ -94459,6 +94699,12 @@
             "value" : "Det ser ud til, at du har fri denne dag.\nVil du tilføje noget til opgavelisten?"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det ser ud til, at du har fri denne dag.\nVil du tilføje noget til opgavelisten?"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -94525,6 +94771,12 @@
             "value" : "Il semble que vous êtes libre aujourd’hui.\nVoulez-vous ajouter des tâches À Faire ?"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "On dirait que vous êtes disponible pour cette journée.\nVoulez-vous ajouter des tâches à accomplir?"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -94579,7 +94831,19 @@
             "value" : "Te āhua nei kua wātea koe mō tēnei rā.\nKei te hiahia koe ki te tāpiri i ētahi mahi?"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nampaknya anda lapang hari ini.\nAnda ingin menambah senarai Untuk Dilakukan?"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det ser ut til at du er ledig i dag.\nVil du legge til noen gjøremål?"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Det ser ut til at du er ledig i dag.\nVil du legge til noen gjøremål?"
@@ -94622,6 +94886,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det ser ut som om du är ledig för dagen.\nVill du lägga till några att göra-uppgifter?"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Det ser ut som om du är ledig för dagen.\nVill du lägga till några att göra-uppgifter?"
@@ -101871,6 +102141,12 @@
         }
       }
     },
+    "Move down disabled" : {
+
+    },
+    "Move up disabled" : {
+
+    },
     "Multiple Due Dates" : {
       "comment" : "Title of a link to show additional due dates customized for sections or groups.",
       "extractionState" : "manual",
@@ -107517,6 +107793,12 @@
             "value" : "Ingen yderligere oplysninger tilgængelige."
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen yderligere oplysninger tilgængelige."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -107583,6 +107865,12 @@
             "value" : "Aucun détail supplémentaire disponible."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aucun détail supplémentaire n’est disponible."
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -107637,7 +107925,19 @@
             "value" : "Kāore he taipitopito atu e wātea ana."
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiada butiran tambahan tersedia."
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen ekstra detaljer tilgjengelig."
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ingen ekstra detaljer tilgjengelig."
@@ -107680,6 +107980,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ingen ytterligare information tillgänglig."
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ingen ytterligare information tillgänglig."
@@ -117045,6 +117351,10 @@
           }
         }
       }
+    },
+    "Offline Content Sync Incomplete" : {
+      "comment" : "Warning message displayed when some embedded media fails to download during offline content sync. Core content is still available offline.",
+      "isCommentAutoGenerated" : true
     },
     "Ok" : {
       "extractionState" : "manual",
@@ -140984,7 +141294,7 @@
         "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vald"
+            "value" : "Markerade"
           }
         },
         "th" : {
@@ -143170,6 +143480,12 @@
             "value" : "Vis afsluttet"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vis afsluttet"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -143236,6 +143552,12 @@
             "value" : "Afficher les tâches terminées"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afficher les points terminés"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -143290,7 +143612,19 @@
             "value" : "Whakaatuhia ngā Mea Kua Oti"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tunjukkan Selesai"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vis fullført"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vis fullført"
@@ -143333,6 +143667,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Visa slutförda"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Visa slutförda"
@@ -145503,6 +145843,10 @@
           }
         }
       }
+    },
+    "Some embedded media failed to download. Core content is still available offline." : {
+      "comment" : "Warning message displayed when some embedded media fails to download during an offline sync.",
+      "isCommentAutoGenerated" : true
     },
     "Some items could not be deleted" : {
       "comment" : "Message for an error popup",
@@ -184481,6 +184825,12 @@
             "value" : "Vi kunne ikke indlæse dine elementer på opgavelisten.\nPrøv igen, eller kom tilbage senere."
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vi kunne ikke indlæse dine elementer på opgavelisten.\nPrøv igen, eller kom tilbage senere."
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -184547,6 +184897,12 @@
             "value" : "Nous n’avons pas pu charger vos tâches À Faire.\nRéessayez ou revenez plus tard."
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nous n’avons pas pu charger vos tâches à accomplir.\nRéessayez ou revenez plus tard."
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -184601,10 +184957,22 @@
             "value" : "Kāore i taea e mātou te uta i ō Mahi.\nNgāna anō, me hoki mai anō ā muri ake nei."
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kami tidak dapat memuatkan senarai Untuk Dilakukan anda.\nCuba semula atau kembali kemudian."
+          }
+        },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Vi kunne ikke laste inn gjøremålene dine.\nPrøv igjen, eller kom tilbake senere."
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vi kunne ikke laste inn gjøremålene dine.\nPrøv igjen, eller kom tlbake senere."
           }
         },
         "nl" : {
@@ -184644,6 +185012,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det går inte att läsa in dina att göra-uppgifter.\nFörsök igen, eller kom tillbaka senare."
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Det går inte att läsa in dina att göra-uppgifter.\nFörsök igen, eller kom tillbaka senare."
@@ -192703,6 +193077,12 @@
             "value" : "Du er færdig for nu!"
           }
         },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du er færdig for nu!"
+          }
+        },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
@@ -192769,6 +193149,12 @@
             "value" : "Vous avez fini pour aujourd’hui !"
           }
         },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous avez terminé pour l’instant!"
+          }
+        },
         "ga" : {
           "stringUnit" : {
             "state" : "translated",
@@ -192823,7 +193209,19 @@
             "value" : "Kua oti katoa i a koe i nāianei!"
           }
         },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kerja anda sudah selesai buat masa ini!"
+          }
+        },
         "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du er ferdig for nå!"
+          }
+        },
+        "nb-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Du er ferdig for nå!"
@@ -192866,6 +193264,12 @@
           }
         },
         "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du är klar för tillfället!"
+          }
+        },
+        "sv-instk12" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Du är klar för tillfället!"
@@ -197642,5 +198046,5 @@
       }
     }
   },
-  "version" : "1.0"
+  "version" : "1.1"
 }

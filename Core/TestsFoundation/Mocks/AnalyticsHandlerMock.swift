@@ -54,6 +54,16 @@ public final class AnalyticsHandlerMock: AnalyticsHandler {
         handleEventCallCount += 1
     }
 
+    // MARK: - storePendoApiKey
+
+    public var storePendoApiKeyInput: String?
+    public var storePendoApiKeyCallCount = 0
+
+    public func storePendoApiKey(_ apiKey: String) {
+        storePendoApiKeyInput = apiKey
+        storePendoApiKeyCallCount += 1
+    }
+
     // MARK: - handlePendoPairingModeUrl
 
     public func handlePendoPairingModeUrl(url: URL) -> Bool { false }

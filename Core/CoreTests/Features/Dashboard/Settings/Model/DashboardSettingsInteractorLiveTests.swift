@@ -114,10 +114,7 @@ class DashboardSettingsInteractorLiveTests: CoreTestCase {
         let testee = DashboardSettingsInteractorLive(environment: environment, defaults: defaults)
 
         let apiExpectation = expectation(description: "Color overlay was uploaded to API")
-        let request = PutUserSettingsRequest(manual_mark_as_read: nil,
-                                             collapse_global_nav: nil,
-                                             hide_dashcard_color_overlays: false,
-                                             comment_library_suggestions_enabled: nil)
+        let request = PutUserSettingsRequest(hide_dashcard_color_overlays: false)
         api.mock(request) { _ in
             apiExpectation.fulfill()
             return (nil, nil, nil)

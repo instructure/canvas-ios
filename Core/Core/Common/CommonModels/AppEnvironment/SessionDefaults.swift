@@ -345,6 +345,9 @@ public struct SessionDefaults: Equatable {
 
     // MARK: - Analytics
 
+    /// Stores the user's analytics consent if any.
+    /// It's only supposed to have a value when consent is actualy required
+    /// and the user had already accepted/declined.
     public var userProvidedAnalyticsConsent: Bool? {
         get { self["userProvidedAnalyticsConsent"] as? Bool }
         set { self["userProvidedAnalyticsConsent"] = newValue }

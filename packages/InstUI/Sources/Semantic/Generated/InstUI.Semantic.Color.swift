@@ -28,6 +28,7 @@ extension InstUI.Semantic {
         public let icon: Icon
         public let dropShadow: DropShadow
         public let transparentColor: SwiftUI.Color
+        public let all: [(name: String, value: SwiftUI.Color)]
 
         public struct Background: Sendable {
             public let base: SwiftUI.Color
@@ -621,494 +622,490 @@ extension InstUI.Semantic {
 extension InstUI.Semantic.Color {
 
     static func build(_ token: (InstUI.TokenKey) throws -> SwiftUI.Color) throws -> InstUI.Semantic.Color {
-        try InstUI.Semantic.Color(
-            background: .init(
-                base: token("background.base"),
-                muted: token("background.muted"),
-                mutedHover: token("background.mutedHover"),
-                page: token("background.page"),
-                container: token("background.container"),
-                onColor: token("background.onColor"),
-                inverse: token("background.inverse"),
-                dark: token("background.dark"),
-                success: token("background.success"),
-                error: token("background.error"),
-                warning: token("background.warning"),
-                info: token("background.info"),
-                brand: token("background.brand"),
-                aiTopGradient: token("background.aiTopGradient"),
-                aiBottomGradient: token("background.aiBottomGradient"),
-                aiText: token("background.aiText"),
-                opacity: token("background.opacity"),
-                opacityOnColor: token("background.opacityOnColor"),
-                divider: .init(
-                    base: token("background.divider.base"),
-                    onColor: token("background.divider.onColor")
+        let background = try Background.init(
+            base: token("background.base"),
+            muted: token("background.muted"),
+            mutedHover: token("background.mutedHover"),
+            page: token("background.page"),
+            container: token("background.container"),
+            onColor: token("background.onColor"),
+            inverse: token("background.inverse"),
+            dark: token("background.dark"),
+            success: token("background.success"),
+            error: token("background.error"),
+            warning: token("background.warning"),
+            info: token("background.info"),
+            brand: token("background.brand"),
+            aiTopGradient: token("background.aiTopGradient"),
+            aiBottomGradient: token("background.aiBottomGradient"),
+            aiText: token("background.aiText"),
+            opacity: token("background.opacity"),
+            opacityOnColor: token("background.opacityOnColor"),
+            divider: .init(
+                base: token("background.divider.base"),
+                onColor: token("background.divider.onColor")
+            ),
+            interactive: .init(
+                input: .init(
+                    base: token("background.interactive.input.base"),
+                    hover: token("background.interactive.input.hover"),
+                    readonly: token("background.interactive.input.readonly"),
+                    disabled: token("background.interactive.input.disabled"),
+                    selected: token("background.interactive.input.selected")
                 ),
-                interactive: .init(
-                    input: .init(
-                        base: token("background.interactive.input.base"),
-                        hover: token("background.interactive.input.hover"),
-                        readonly: token("background.interactive.input.readonly"),
-                        disabled: token("background.interactive.input.disabled"),
-                        selected: token("background.interactive.input.selected")
+                action: .init(
+                    primary: .init(
+                        base: token("background.interactive.action.primary.base"),
+                        hover: token("background.interactive.action.primary.hover"),
+                        active: token("background.interactive.action.primary.active"),
+                        disabled: token("background.interactive.action.primary.disabled")
                     ),
-                    action: .init(
-                        primary: .init(
-                            base: token("background.interactive.action.primary.base"),
-                            hover: token("background.interactive.action.primary.hover"),
-                            active: token("background.interactive.action.primary.active"),
-                            disabled: token("background.interactive.action.primary.disabled")
-                        ),
+                    secondary: .init(
+                        base: token("background.interactive.action.secondary.base"),
+                        hover: token("background.interactive.action.secondary.hover"),
+                        active: token("background.interactive.action.secondary.active"),
+                        disabled: token("background.interactive.action.secondary.disabled")
+                    ),
+                    destructive: .init(
+                        base: token("background.interactive.action.destructive.base"),
+                        hover: token("background.interactive.action.destructive.hover"),
+                        active: token("background.interactive.action.destructive.active"),
+                        disabled: token("background.interactive.action.destructive.disabled"),
                         secondary: .init(
-                            base: token("background.interactive.action.secondary.base"),
-                            hover: token("background.interactive.action.secondary.hover"),
-                            active: token("background.interactive.action.secondary.active"),
-                            disabled: token("background.interactive.action.secondary.disabled")
+                            hover: token("background.interactive.action.destructive.secondary.hover"),
+                            active: token("background.interactive.action.destructive.secondary.active")
+                        )
+                    ),
+                    success: .init(
+                        base: token("background.interactive.action.success.base"),
+                        hover: token("background.interactive.action.success.hover"),
+                        active: token("background.interactive.action.success.active"),
+                        disabled: token("background.interactive.action.success.disabled"),
+                        secondary: .init(
+                            hover: token("background.interactive.action.success.secondary.hover"),
+                            active: token("background.interactive.action.success.secondary.active")
+                        )
+                    ),
+                    ai: .init(
+                        topGradient: .init(
+                            base: token("background.interactive.action.ai.topGradient.base"),
+                            hover: token("background.interactive.action.ai.topGradient.hover"),
+                            active: token("background.interactive.action.ai.topGradient.active")
                         ),
-                        destructive: .init(
-                            base: token("background.interactive.action.destructive.base"),
-                            hover: token("background.interactive.action.destructive.hover"),
-                            active: token("background.interactive.action.destructive.active"),
-                            disabled: token("background.interactive.action.destructive.disabled"),
-                            secondary: .init(
-                                hover: token("background.interactive.action.destructive.secondary.hover"),
-                                active: token("background.interactive.action.destructive.secondary.active")
-                            )
+                        bottomGradient: .init(
+                            base: token("background.interactive.action.ai.bottomGradient.base"),
+                            hover: token("background.interactive.action.ai.bottomGradient.hover"),
+                            active: token("background.interactive.action.ai.bottomGradient.active")
                         ),
-                        success: .init(
-                            base: token("background.interactive.action.success.base"),
-                            hover: token("background.interactive.action.success.hover"),
-                            active: token("background.interactive.action.success.active"),
-                            disabled: token("background.interactive.action.success.disabled"),
-                            secondary: .init(
-                                hover: token("background.interactive.action.success.secondary.hover"),
-                                active: token("background.interactive.action.success.secondary.active")
-                            )
+                        disabled: token("background.interactive.action.ai.disabled")
+                    ),
+                    aiSecondary: .init(
+                        base: token("background.interactive.action.aiSecondary.base"),
+                        disabled: token("background.interactive.action.aiSecondary.disabled"),
+                        hover: .init(
+                            topGradient: token("background.interactive.action.aiSecondary.hover.topGradient"),
+                            bottomGradient: token("background.interactive.action.aiSecondary.hover.bottomGradient")
                         ),
-                        ai: .init(
-                            topGradient: .init(
-                                base: token("background.interactive.action.ai.topGradient.base"),
-                                hover: token("background.interactive.action.ai.topGradient.hover"),
-                                active: token("background.interactive.action.ai.topGradient.active")
-                            ),
-                            bottomGradient: .init(
-                                base: token("background.interactive.action.ai.bottomGradient.base"),
-                                hover: token("background.interactive.action.ai.bottomGradient.hover"),
-                                active: token("background.interactive.action.ai.bottomGradient.active")
-                            ),
-                            disabled: token("background.interactive.action.ai.disabled")
-                        ),
-                        aiSecondary: .init(
-                            base: token("background.interactive.action.aiSecondary.base"),
-                            disabled: token("background.interactive.action.aiSecondary.disabled"),
-                            hover: .init(
-                                topGradient: token("background.interactive.action.aiSecondary.hover.topGradient"),
-                                bottomGradient: token("background.interactive.action.aiSecondary.hover.bottomGradient")
-                            ),
-                            active: .init(
-                                topGradient: token("background.interactive.action.aiSecondary.active.topGradient"),
-                                bottomGradient: token("background.interactive.action.aiSecondary.active.bottomGradient")
-                            )
-                        ),
-                        primaryOnColor: .init(
-                            base: token("background.interactive.action.primaryOnColor.base"),
-                            hover: token("background.interactive.action.primaryOnColor.hover"),
-                            active: token("background.interactive.action.primaryOnColor.active"),
-                            disabled: token("background.interactive.action.primaryOnColor.disabled")
-                        ),
-                        tertiary: .init(
-                            hover: token("background.interactive.action.tertiary.hover"),
-                            active: token("background.interactive.action.tertiary.active")
-                        ),
-                        disabled: token("background.interactive.action.disabled"),
-                        ghost: .init(
-                            onColor: .init(
-                                hover: token("background.interactive.action.ghost.onColor.hover")
-                            )
+                        active: .init(
+                            topGradient: token("background.interactive.action.aiSecondary.active.topGradient"),
+                            bottomGradient: token("background.interactive.action.aiSecondary.active.bottomGradient")
+                        )
+                    ),
+                    primaryOnColor: .init(
+                        base: token("background.interactive.action.primaryOnColor.base"),
+                        hover: token("background.interactive.action.primaryOnColor.hover"),
+                        active: token("background.interactive.action.primaryOnColor.active"),
+                        disabled: token("background.interactive.action.primaryOnColor.disabled")
+                    ),
+                    tertiary: .init(
+                        hover: token("background.interactive.action.tertiary.hover"),
+                        active: token("background.interactive.action.tertiary.active")
+                    ),
+                    disabled: token("background.interactive.action.disabled"),
+                    ghost: .init(
+                        onColor: .init(
+                            hover: token("background.interactive.action.ghost.onColor.hover")
                         )
                     )
-                ),
-                accent: .init(
-                    blue: token("background.accent.blue"),
-                    green: token("background.accent.green"),
-                    red: token("background.accent.red"),
-                    orange: token("background.accent.orange"),
-                    grey: token("background.accent.grey"),
-                    ash: token("background.accent.ash"),
-                    plum: token("background.accent.plum"),
-                    violet: token("background.accent.violet"),
-                    stone: token("background.accent.stone"),
-                    sky: token("background.accent.sky"),
-                    honey: token("background.accent.honey"),
-                    sea: token("background.accent.sea"),
-                    aurora: token("background.accent.aurora")
-                ),
-                elevatedSurface: .init(
-                    base: token("background.elevatedSurface.base"),
-                    inverse: token("background.elevatedSurface.inverse")
-                ),
-                overlay: .init(
-                    base: token("background.overlay.base"),
-                    dark: token("background.overlay.dark")
                 )
             ),
-            stroke: .init(
-                base: token("stroke.base"),
-                muted: token("stroke.muted"),
-                strong: token("stroke.strong"),
-                success: token("stroke.success"),
-                error: token("stroke.error"),
-                warning: token("stroke.warning"),
-                info: token("stroke.info"),
-                brand: token("stroke.brand"),
-                aiTopGradient: token("stroke.aiTopGradient"),
-                aiBottomGradient: token("stroke.aiBottomGradient"),
-                onColor: token("stroke.onColor"),
-                inverse: token("stroke.inverse"),
-                container: .init(
-                    base: token("stroke.container.base"),
-                    dark: token("stroke.container.dark")
-                ),
-                interactive: .init(
-                    focusRing: .init(
-                        base: token("stroke.interactive.focusRing.base"),
-                        onColor: token("stroke.interactive.focusRing.onColor")
-                    ),
-                    input: .init(
-                        base: token("stroke.interactive.input.base"),
-                        hover: token("stroke.interactive.input.hover"),
-                        readonly: token("stroke.interactive.input.readonly"),
-                        disabled: token("stroke.interactive.input.disabled"),
-                        selected: token("stroke.interactive.input.selected")
-                    ),
-                    action: .init(
-                        primary: .init(
-                            base: token("stroke.interactive.action.primary.base"),
-                            hover: token("stroke.interactive.action.primary.hover"),
-                            active: token("stroke.interactive.action.primary.active"),
-                            disabled: token("stroke.interactive.action.primary.disabled")
-                        ),
-                        secondary: .init(
-                            base: token("stroke.interactive.action.secondary.base"),
-                            hover: token("stroke.interactive.action.secondary.hover"),
-                            active: token("stroke.interactive.action.secondary.active"),
-                            disabled: token("stroke.interactive.action.secondary.disabled")
-                        ),
-                        destructive: .init(
-                            base: token("stroke.interactive.action.destructive.base"),
-                            hover: token("stroke.interactive.action.destructive.hover"),
-                            active: token("stroke.interactive.action.destructive.active"),
-                            disabled: token("stroke.interactive.action.destructive.disabled"),
-                            secondary: .init(
-                                base: token("stroke.interactive.action.destructive.secondary.base"),
-                                hover: token("stroke.interactive.action.destructive.secondary.hover"),
-                                active: token("stroke.interactive.action.destructive.secondary.active"),
-                                disabled: token("stroke.interactive.action.destructive.secondary.disabled")
-                            )
-                        ),
-                        success: .init(
-                            base: token("stroke.interactive.action.success.base"),
-                            hover: token("stroke.interactive.action.success.hover"),
-                            active: token("stroke.interactive.action.success.active"),
-                            disabled: token("stroke.interactive.action.success.disabled"),
-                            secondary: .init(
-                                base: token("stroke.interactive.action.success.secondary.base"),
-                                hover: token("stroke.interactive.action.success.secondary.hover"),
-                                active: token("stroke.interactive.action.success.secondary.active"),
-                                disabled: token("stroke.interactive.action.success.secondary.disabled")
-                            )
-                        ),
-                        ai: .init(
-                            topGradient: .init(
-                                base: token("stroke.interactive.action.ai.topGradient.base"),
-                                hover: token("stroke.interactive.action.ai.topGradient.hover"),
-                                active: token("stroke.interactive.action.ai.topGradient.active")
-                            ),
-                            bottomGradient: .init(
-                                base: token("stroke.interactive.action.ai.bottomGradient.base"),
-                                hover: token("stroke.interactive.action.ai.bottomGradient.hover"),
-                                active: token("stroke.interactive.action.ai.bottomGradient.active")
-                            ),
-                            disabled: token("stroke.interactive.action.ai.disabled")
-                        ),
-                        primaryOnColor: .init(
-                            base: token("stroke.interactive.action.primaryOnColor.base"),
-                            hover: token("stroke.interactive.action.primaryOnColor.hover"),
-                            active: token("stroke.interactive.action.primaryOnColor.active"),
-                            disabled: token("stroke.interactive.action.primaryOnColor.disabled")
-                        ),
-                        tertiary: .init(
-                            base: token("stroke.interactive.action.tertiary.base"),
-                            hover: token("stroke.interactive.action.tertiary.hover"),
-                            active: token("stroke.interactive.action.tertiary.active"),
-                            disabled: token("stroke.interactive.action.tertiary.disabled")
-                        ),
-                        disabled: token("stroke.interactive.action.disabled"),
-                        secondaryOnColor: .init(
-                            base: token("stroke.interactive.action.secondaryOnColor.base"),
-                            hover: token("stroke.interactive.action.secondaryOnColor.hover"),
-                            active: token("stroke.interactive.action.secondaryOnColor.active"),
-                            disabled: token("stroke.interactive.action.secondaryOnColor.disabled")
-                        ),
-                        aiSecondary: .init(
-                            disabled: token("stroke.interactive.action.aiSecondary.disabled")
-                        )
-                    )
-                ),
-                accent: .init(
-                    blue: token("stroke.accent.blue"),
-                    green: token("stroke.accent.green"),
-                    red: token("stroke.accent.red"),
-                    orange: token("stroke.accent.orange"),
-                    grey: token("stroke.accent.grey"),
-                    ash: token("stroke.accent.ash"),
-                    plum: token("stroke.accent.plum"),
-                    violet: token("stroke.accent.violet"),
-                    stone: token("stroke.accent.stone"),
-                    sky: token("stroke.accent.sky"),
-                    honey: token("stroke.accent.honey"),
-                    sea: token("stroke.accent.sea"),
-                    aurora: token("stroke.accent.aurora")
-                )
+            accent: .init(
+                blue: token("background.accent.blue"),
+                green: token("background.accent.green"),
+                red: token("background.accent.red"),
+                orange: token("background.accent.orange"),
+                grey: token("background.accent.grey"),
+                ash: token("background.accent.ash"),
+                plum: token("background.accent.plum"),
+                violet: token("background.accent.violet"),
+                stone: token("background.accent.stone"),
+                sky: token("background.accent.sky"),
+                honey: token("background.accent.honey"),
+                sea: token("background.accent.sea"),
+                aurora: token("background.accent.aurora")
             ),
-            text: .init(
-                base: token("text.base"),
-                muted: token("text.muted"),
-                success: token("text.success"),
-                error: token("text.error"),
-                warning: token("text.warning"),
-                info: token("text.info"),
-                aiColor: token("text.aiColor"),
-                dark: token("text.dark"),
-                onColor: token("text.onColor"),
-                inverse: token("text.inverse"),
-                interactive: .init(
-                    disabled: .init(
-                        base: token("text.interactive.disabled.base"),
-                        onColor: token("text.interactive.disabled.onColor")
-                    ),
-                    input: .init(
-                        base: token("text.interactive.input.base"),
-                        hover: token("text.interactive.input.hover"),
-                        readonly: token("text.interactive.input.readonly"),
-                        placeholder: token("text.interactive.input.placeholder"),
-                        disabled: token("text.interactive.input.disabled")
-                    ),
-                    navigation: .init(
-                        primary: .init(
-                            base: token("text.interactive.navigation.primary.base"),
-                            hover: token("text.interactive.navigation.primary.hover"),
-                            active: token("text.interactive.navigation.primary.active")
-                        ),
-                        primaryOnColor: .init(
-                            base: token("text.interactive.navigation.primaryOnColor.base"),
-                            hover: token("text.interactive.navigation.primaryOnColor.hover"),
-                            active: token("text.interactive.navigation.primaryOnColor.active")
-                        )
-                    ),
-                    action: .init(
-                        secondary: .init(
-                            base: token("text.interactive.action.secondary.base"),
-                            hover: token("text.interactive.action.secondary.hover"),
-                            active: token("text.interactive.action.secondary.active"),
-                            disabled: token("text.interactive.action.secondary.disabled")
-                        ),
-                        status: .init(
-                            base: token("text.interactive.action.status.base"),
-                            hover: token("text.interactive.action.status.hover"),
-                            active: token("text.interactive.action.status.active"),
-                            disabled: token("text.interactive.action.status.disabled")
-                        ),
-                        aiSecondary: .init(
-                            topGradient: .init(
-                                base: token("text.interactive.action.aiSecondary.topGradient.base")
-                            ),
-                            bottomGradient: .init(
-                                base: token("text.interactive.action.aiSecondary.bottomGradient.base")
-                            ),
-                            disabled: token("text.interactive.action.aiSecondary.disabled")
-                        ),
-                        primary: .init(
-                            base: token("text.interactive.action.primary.base"),
-                            hover: token("text.interactive.action.primary.hover"),
-                            active: token("text.interactive.action.primary.active"),
-                            disabled: token("text.interactive.action.primary.disabled")
-                        ),
-                        ai: .init(
-                            base: token("text.interactive.action.ai.base"),
-                            hover: token("text.interactive.action.ai.hover"),
-                            active: token("text.interactive.action.ai.active"),
-                            disabled: token("text.interactive.action.ai.disabled")
-                        ),
-                        primaryOnColor: .init(
-                            base: token("text.interactive.action.primaryOnColor.base"),
-                            hover: token("text.interactive.action.primaryOnColor.hover"),
-                            active: token("text.interactive.action.primaryOnColor.active"),
-                            disabled: token("text.interactive.action.primaryOnColor.disabled")
-                        ),
-                        tertiary: .init(
-                            base: token("text.interactive.action.tertiary.base"),
-                            hover: token("text.interactive.action.tertiary.hover"),
-                            active: token("text.interactive.action.tertiary.active"),
-                            disabled: token("text.interactive.action.tertiary.disabled")
-                        ),
-                        successSecondary: .init(
-                            base: token("text.interactive.action.successSecondary.base"),
-                            hover: token("text.interactive.action.successSecondary.hover"),
-                            active: token("text.interactive.action.successSecondary.active"),
-                            disabled: token("text.interactive.action.successSecondary.disabled")
-                        ),
-                        destructiveSecondary: .init(
-                            base: token("text.interactive.action.destructiveSecondary.base"),
-                            hover: token("text.interactive.action.destructiveSecondary.hover"),
-                            active: token("text.interactive.action.destructiveSecondary.active"),
-                            disabled: token("text.interactive.action.destructiveSecondary.disabled")
-                        ),
-                        secondaryOnColor: .init(
-                            base: token("text.interactive.action.secondaryOnColor.base"),
-                            hover: token("text.interactive.action.secondaryOnColor.hover"),
-                            active: token("text.interactive.action.secondaryOnColor.active"),
-                            disabled: token("text.interactive.action.secondaryOnColor.disabled")
-                        )
-                    )
-                ),
-                accent: .init(
-                    blue: token("text.accent.blue"),
-                    green: token("text.accent.green"),
-                    red: token("text.accent.red"),
-                    orange: token("text.accent.orange"),
-                    grey: token("text.accent.grey"),
-                    ash: token("text.accent.ash"),
-                    plum: token("text.accent.plum"),
-                    violet: token("text.accent.violet"),
-                    stone: token("text.accent.stone"),
-                    sky: token("text.accent.sky"),
-                    honey: token("text.accent.honey"),
-                    sea: token("text.accent.sea"),
-                    aurora: token("text.accent.aurora")
-                )
+            elevatedSurface: .init(
+                base: token("background.elevatedSurface.base"),
+                inverse: token("background.elevatedSurface.inverse")
             ),
-            icon: .init(
-                base: token("icon.base"),
-                muted: token("icon.muted"),
-                success: token("icon.success"),
-                error: token("icon.error"),
-                warning: token("icon.warning"),
-                info: token("icon.info"),
-                dark: token("icon.dark"),
-                onColor: token("icon.onColor"),
-                inverse: token("icon.inverse"),
-                brand: token("icon.brand"),
-                interactive: .init(
-                    action: .init(
-                        aiSecondary: .init(
-                            topGradient: .init(
-                                base: token("icon.interactive.action.aiSecondary.topGradient.base")
-                            ),
-                            bottomGradient: .init(
-                                base: token("icon.interactive.action.aiSecondary.bottomGradient.base")
-                            ),
-                            disabled: token("icon.interactive.action.aiSecondary.disabled")
-                        ),
-                        secondary: .init(
-                            base: token("icon.interactive.action.secondary.base"),
-                            hover: token("icon.interactive.action.secondary.hover"),
-                            active: token("icon.interactive.action.secondary.active"),
-                            disabled: token("icon.interactive.action.secondary.disabled")
-                        ),
-                        status: .init(
-                            base: token("icon.interactive.action.status.base"),
-                            hover: token("icon.interactive.action.status.hover"),
-                            active: token("icon.interactive.action.status.active"),
-                            disabled: token("icon.interactive.action.status.disabled")
-                        ),
-                        primary: .init(
-                            base: token("icon.interactive.action.primary.base"),
-                            hover: token("icon.interactive.action.primary.hover"),
-                            active: token("icon.interactive.action.primary.active"),
-                            disabled: token("icon.interactive.action.primary.disabled")
-                        ),
-                        primaryOnColor: .init(
-                            base: token("icon.interactive.action.primaryOnColor.base"),
-                            hover: token("icon.interactive.action.primaryOnColor.hover"),
-                            active: token("icon.interactive.action.primaryOnColor.active"),
-                            disabled: token("icon.interactive.action.primaryOnColor.disabled")
-                        ),
-                        ai: .init(
-                            base: token("icon.interactive.action.ai.base"),
-                            hover: token("icon.interactive.action.ai.hover"),
-                            active: token("icon.interactive.action.ai.active"),
-                            disabled: token("icon.interactive.action.ai.disabled")
-                        ),
-                        tertiary: .init(
-                            base: token("icon.interactive.action.tertiary.base"),
-                            hover: token("icon.interactive.action.tertiary.hover"),
-                            active: token("icon.interactive.action.tertiary.active"),
-                            disabled: token("icon.interactive.action.tertiary.disabled")
-                        ),
-                        successSecondary: .init(
-                            base: token("icon.interactive.action.successSecondary.base"),
-                            hover: token("icon.interactive.action.successSecondary.hover"),
-                            active: token("icon.interactive.action.successSecondary.active"),
-                            disabled: token("icon.interactive.action.successSecondary.disabled")
-                        ),
-                        destructiveSecondary: .init(
-                            base: token("icon.interactive.action.destructiveSecondary.base"),
-                            hover: token("icon.interactive.action.destructiveSecondary.hover"),
-                            active: token("icon.interactive.action.destructiveSecondary.active"),
-                            disabled: token("icon.interactive.action.destructiveSecondary.disabled")
-                        ),
-                        secondaryOnColor: .init(
-                            base: token("icon.interactive.action.secondaryOnColor.base"),
-                            hover: token("icon.interactive.action.secondaryOnColor.hover"),
-                            active: token("icon.interactive.action.secondaryOnColor.active"),
-                            disabled: token("icon.interactive.action.secondaryOnColor.disabled")
-                        )
-                    ),
-                    disabled: .init(
-                        base: token("icon.interactive.disabled.base"),
-                        onColor: token("icon.interactive.disabled.onColor")
-                    ),
-                    navigation: .init(
-                        primary: .init(
-                            base: token("icon.interactive.navigation.primary.base"),
-                            hover: token("icon.interactive.navigation.primary.hover"),
-                            active: token("icon.interactive.navigation.primary.active")
-                        ),
-                        primaryOnColor: .init(
-                            base: token("icon.interactive.navigation.primaryOnColor.base"),
-                            hover: token("icon.interactive.navigation.primaryOnColor.hover"),
-                            active: token("icon.interactive.navigation.primaryOnColor.active")
-                        )
-                    )
-                ),
-                accent: .init(
-                    blue: token("icon.accent.blue"),
-                    green: token("icon.accent.green"),
-                    red: token("icon.accent.red"),
-                    orange: token("icon.accent.orange"),
-                    grey: token("icon.accent.grey"),
-                    ash: token("icon.accent.ash"),
-                    plum: token("icon.accent.plum"),
-                    violet: token("icon.accent.violet"),
-                    stone: token("icon.accent.stone"),
-                    sky: token("icon.accent.sky"),
-                    honey: token("icon.accent.honey"),
-                    sea: token("icon.accent.sea"),
-                    aurora: token("icon.accent.aurora")
-                )
-            ),
-            dropShadow: .init(
-                shadowColor1: token("dropShadow.shadowColor1"),
-                shadowColor2: token("dropShadow.shadowColor2")
-            ),
-            transparentColor: token("transparentColor")
+            overlay: .init(
+                base: token("background.overlay.base"),
+                dark: token("background.overlay.dark")
+            )
         )
-    }
+        let stroke = try Stroke.init(
+            base: token("stroke.base"),
+            muted: token("stroke.muted"),
+            strong: token("stroke.strong"),
+            success: token("stroke.success"),
+            error: token("stroke.error"),
+            warning: token("stroke.warning"),
+            info: token("stroke.info"),
+            brand: token("stroke.brand"),
+            aiTopGradient: token("stroke.aiTopGradient"),
+            aiBottomGradient: token("stroke.aiBottomGradient"),
+            onColor: token("stroke.onColor"),
+            inverse: token("stroke.inverse"),
+            container: .init(
+                base: token("stroke.container.base"),
+                dark: token("stroke.container.dark")
+            ),
+            interactive: .init(
+                focusRing: .init(
+                    base: token("stroke.interactive.focusRing.base"),
+                    onColor: token("stroke.interactive.focusRing.onColor")
+                ),
+                input: .init(
+                    base: token("stroke.interactive.input.base"),
+                    hover: token("stroke.interactive.input.hover"),
+                    readonly: token("stroke.interactive.input.readonly"),
+                    disabled: token("stroke.interactive.input.disabled"),
+                    selected: token("stroke.interactive.input.selected")
+                ),
+                action: .init(
+                    primary: .init(
+                        base: token("stroke.interactive.action.primary.base"),
+                        hover: token("stroke.interactive.action.primary.hover"),
+                        active: token("stroke.interactive.action.primary.active"),
+                        disabled: token("stroke.interactive.action.primary.disabled")
+                    ),
+                    secondary: .init(
+                        base: token("stroke.interactive.action.secondary.base"),
+                        hover: token("stroke.interactive.action.secondary.hover"),
+                        active: token("stroke.interactive.action.secondary.active"),
+                        disabled: token("stroke.interactive.action.secondary.disabled")
+                    ),
+                    destructive: .init(
+                        base: token("stroke.interactive.action.destructive.base"),
+                        hover: token("stroke.interactive.action.destructive.hover"),
+                        active: token("stroke.interactive.action.destructive.active"),
+                        disabled: token("stroke.interactive.action.destructive.disabled"),
+                        secondary: .init(
+                            base: token("stroke.interactive.action.destructive.secondary.base"),
+                            hover: token("stroke.interactive.action.destructive.secondary.hover"),
+                            active: token("stroke.interactive.action.destructive.secondary.active"),
+                            disabled: token("stroke.interactive.action.destructive.secondary.disabled")
+                        )
+                    ),
+                    success: .init(
+                        base: token("stroke.interactive.action.success.base"),
+                        hover: token("stroke.interactive.action.success.hover"),
+                        active: token("stroke.interactive.action.success.active"),
+                        disabled: token("stroke.interactive.action.success.disabled"),
+                        secondary: .init(
+                            base: token("stroke.interactive.action.success.secondary.base"),
+                            hover: token("stroke.interactive.action.success.secondary.hover"),
+                            active: token("stroke.interactive.action.success.secondary.active"),
+                            disabled: token("stroke.interactive.action.success.secondary.disabled")
+                        )
+                    ),
+                    ai: .init(
+                        topGradient: .init(
+                            base: token("stroke.interactive.action.ai.topGradient.base"),
+                            hover: token("stroke.interactive.action.ai.topGradient.hover"),
+                            active: token("stroke.interactive.action.ai.topGradient.active")
+                        ),
+                        bottomGradient: .init(
+                            base: token("stroke.interactive.action.ai.bottomGradient.base"),
+                            hover: token("stroke.interactive.action.ai.bottomGradient.hover"),
+                            active: token("stroke.interactive.action.ai.bottomGradient.active")
+                        ),
+                        disabled: token("stroke.interactive.action.ai.disabled")
+                    ),
+                    primaryOnColor: .init(
+                        base: token("stroke.interactive.action.primaryOnColor.base"),
+                        hover: token("stroke.interactive.action.primaryOnColor.hover"),
+                        active: token("stroke.interactive.action.primaryOnColor.active"),
+                        disabled: token("stroke.interactive.action.primaryOnColor.disabled")
+                    ),
+                    tertiary: .init(
+                        base: token("stroke.interactive.action.tertiary.base"),
+                        hover: token("stroke.interactive.action.tertiary.hover"),
+                        active: token("stroke.interactive.action.tertiary.active"),
+                        disabled: token("stroke.interactive.action.tertiary.disabled")
+                    ),
+                    disabled: token("stroke.interactive.action.disabled"),
+                    secondaryOnColor: .init(
+                        base: token("stroke.interactive.action.secondaryOnColor.base"),
+                        hover: token("stroke.interactive.action.secondaryOnColor.hover"),
+                        active: token("stroke.interactive.action.secondaryOnColor.active"),
+                        disabled: token("stroke.interactive.action.secondaryOnColor.disabled")
+                    ),
+                    aiSecondary: .init(
+                        disabled: token("stroke.interactive.action.aiSecondary.disabled")
+                    )
+                )
+            ),
+            accent: .init(
+                blue: token("stroke.accent.blue"),
+                green: token("stroke.accent.green"),
+                red: token("stroke.accent.red"),
+                orange: token("stroke.accent.orange"),
+                grey: token("stroke.accent.grey"),
+                ash: token("stroke.accent.ash"),
+                plum: token("stroke.accent.plum"),
+                violet: token("stroke.accent.violet"),
+                stone: token("stroke.accent.stone"),
+                sky: token("stroke.accent.sky"),
+                honey: token("stroke.accent.honey"),
+                sea: token("stroke.accent.sea"),
+                aurora: token("stroke.accent.aurora")
+            )
+        )
+        let text = try TextTokens.init(
+            base: token("text.base"),
+            muted: token("text.muted"),
+            success: token("text.success"),
+            error: token("text.error"),
+            warning: token("text.warning"),
+            info: token("text.info"),
+            aiColor: token("text.aiColor"),
+            dark: token("text.dark"),
+            onColor: token("text.onColor"),
+            inverse: token("text.inverse"),
+            interactive: .init(
+                disabled: .init(
+                    base: token("text.interactive.disabled.base"),
+                    onColor: token("text.interactive.disabled.onColor")
+                ),
+                input: .init(
+                    base: token("text.interactive.input.base"),
+                    hover: token("text.interactive.input.hover"),
+                    readonly: token("text.interactive.input.readonly"),
+                    placeholder: token("text.interactive.input.placeholder"),
+                    disabled: token("text.interactive.input.disabled")
+                ),
+                navigation: .init(
+                    primary: .init(
+                        base: token("text.interactive.navigation.primary.base"),
+                        hover: token("text.interactive.navigation.primary.hover"),
+                        active: token("text.interactive.navigation.primary.active")
+                    ),
+                    primaryOnColor: .init(
+                        base: token("text.interactive.navigation.primaryOnColor.base"),
+                        hover: token("text.interactive.navigation.primaryOnColor.hover"),
+                        active: token("text.interactive.navigation.primaryOnColor.active")
+                    )
+                ),
+                action: .init(
+                    secondary: .init(
+                        base: token("text.interactive.action.secondary.base"),
+                        hover: token("text.interactive.action.secondary.hover"),
+                        active: token("text.interactive.action.secondary.active"),
+                        disabled: token("text.interactive.action.secondary.disabled")
+                    ),
+                    status: .init(
+                        base: token("text.interactive.action.status.base"),
+                        hover: token("text.interactive.action.status.hover"),
+                        active: token("text.interactive.action.status.active"),
+                        disabled: token("text.interactive.action.status.disabled")
+                    ),
+                    aiSecondary: .init(
+                        topGradient: .init(
+                            base: token("text.interactive.action.aiSecondary.topGradient.base")
+                        ),
+                        bottomGradient: .init(
+                            base: token("text.interactive.action.aiSecondary.bottomGradient.base")
+                        ),
+                        disabled: token("text.interactive.action.aiSecondary.disabled")
+                    ),
+                    primary: .init(
+                        base: token("text.interactive.action.primary.base"),
+                        hover: token("text.interactive.action.primary.hover"),
+                        active: token("text.interactive.action.primary.active"),
+                        disabled: token("text.interactive.action.primary.disabled")
+                    ),
+                    ai: .init(
+                        base: token("text.interactive.action.ai.base"),
+                        hover: token("text.interactive.action.ai.hover"),
+                        active: token("text.interactive.action.ai.active"),
+                        disabled: token("text.interactive.action.ai.disabled")
+                    ),
+                    primaryOnColor: .init(
+                        base: token("text.interactive.action.primaryOnColor.base"),
+                        hover: token("text.interactive.action.primaryOnColor.hover"),
+                        active: token("text.interactive.action.primaryOnColor.active"),
+                        disabled: token("text.interactive.action.primaryOnColor.disabled")
+                    ),
+                    tertiary: .init(
+                        base: token("text.interactive.action.tertiary.base"),
+                        hover: token("text.interactive.action.tertiary.hover"),
+                        active: token("text.interactive.action.tertiary.active"),
+                        disabled: token("text.interactive.action.tertiary.disabled")
+                    ),
+                    successSecondary: .init(
+                        base: token("text.interactive.action.successSecondary.base"),
+                        hover: token("text.interactive.action.successSecondary.hover"),
+                        active: token("text.interactive.action.successSecondary.active"),
+                        disabled: token("text.interactive.action.successSecondary.disabled")
+                    ),
+                    destructiveSecondary: .init(
+                        base: token("text.interactive.action.destructiveSecondary.base"),
+                        hover: token("text.interactive.action.destructiveSecondary.hover"),
+                        active: token("text.interactive.action.destructiveSecondary.active"),
+                        disabled: token("text.interactive.action.destructiveSecondary.disabled")
+                    ),
+                    secondaryOnColor: .init(
+                        base: token("text.interactive.action.secondaryOnColor.base"),
+                        hover: token("text.interactive.action.secondaryOnColor.hover"),
+                        active: token("text.interactive.action.secondaryOnColor.active"),
+                        disabled: token("text.interactive.action.secondaryOnColor.disabled")
+                    )
+                )
+            ),
+            accent: .init(
+                blue: token("text.accent.blue"),
+                green: token("text.accent.green"),
+                red: token("text.accent.red"),
+                orange: token("text.accent.orange"),
+                grey: token("text.accent.grey"),
+                ash: token("text.accent.ash"),
+                plum: token("text.accent.plum"),
+                violet: token("text.accent.violet"),
+                stone: token("text.accent.stone"),
+                sky: token("text.accent.sky"),
+                honey: token("text.accent.honey"),
+                sea: token("text.accent.sea"),
+                aurora: token("text.accent.aurora")
+            )
+        )
+        let icon = try Icon.init(
+            base: token("icon.base"),
+            muted: token("icon.muted"),
+            success: token("icon.success"),
+            error: token("icon.error"),
+            warning: token("icon.warning"),
+            info: token("icon.info"),
+            dark: token("icon.dark"),
+            onColor: token("icon.onColor"),
+            inverse: token("icon.inverse"),
+            brand: token("icon.brand"),
+            interactive: .init(
+                action: .init(
+                    aiSecondary: .init(
+                        topGradient: .init(
+                            base: token("icon.interactive.action.aiSecondary.topGradient.base")
+                        ),
+                        bottomGradient: .init(
+                            base: token("icon.interactive.action.aiSecondary.bottomGradient.base")
+                        ),
+                        disabled: token("icon.interactive.action.aiSecondary.disabled")
+                    ),
+                    secondary: .init(
+                        base: token("icon.interactive.action.secondary.base"),
+                        hover: token("icon.interactive.action.secondary.hover"),
+                        active: token("icon.interactive.action.secondary.active"),
+                        disabled: token("icon.interactive.action.secondary.disabled")
+                    ),
+                    status: .init(
+                        base: token("icon.interactive.action.status.base"),
+                        hover: token("icon.interactive.action.status.hover"),
+                        active: token("icon.interactive.action.status.active"),
+                        disabled: token("icon.interactive.action.status.disabled")
+                    ),
+                    primary: .init(
+                        base: token("icon.interactive.action.primary.base"),
+                        hover: token("icon.interactive.action.primary.hover"),
+                        active: token("icon.interactive.action.primary.active"),
+                        disabled: token("icon.interactive.action.primary.disabled")
+                    ),
+                    primaryOnColor: .init(
+                        base: token("icon.interactive.action.primaryOnColor.base"),
+                        hover: token("icon.interactive.action.primaryOnColor.hover"),
+                        active: token("icon.interactive.action.primaryOnColor.active"),
+                        disabled: token("icon.interactive.action.primaryOnColor.disabled")
+                    ),
+                    ai: .init(
+                        base: token("icon.interactive.action.ai.base"),
+                        hover: token("icon.interactive.action.ai.hover"),
+                        active: token("icon.interactive.action.ai.active"),
+                        disabled: token("icon.interactive.action.ai.disabled")
+                    ),
+                    tertiary: .init(
+                        base: token("icon.interactive.action.tertiary.base"),
+                        hover: token("icon.interactive.action.tertiary.hover"),
+                        active: token("icon.interactive.action.tertiary.active"),
+                        disabled: token("icon.interactive.action.tertiary.disabled")
+                    ),
+                    successSecondary: .init(
+                        base: token("icon.interactive.action.successSecondary.base"),
+                        hover: token("icon.interactive.action.successSecondary.hover"),
+                        active: token("icon.interactive.action.successSecondary.active"),
+                        disabled: token("icon.interactive.action.successSecondary.disabled")
+                    ),
+                    destructiveSecondary: .init(
+                        base: token("icon.interactive.action.destructiveSecondary.base"),
+                        hover: token("icon.interactive.action.destructiveSecondary.hover"),
+                        active: token("icon.interactive.action.destructiveSecondary.active"),
+                        disabled: token("icon.interactive.action.destructiveSecondary.disabled")
+                    ),
+                    secondaryOnColor: .init(
+                        base: token("icon.interactive.action.secondaryOnColor.base"),
+                        hover: token("icon.interactive.action.secondaryOnColor.hover"),
+                        active: token("icon.interactive.action.secondaryOnColor.active"),
+                        disabled: token("icon.interactive.action.secondaryOnColor.disabled")
+                    )
+                ),
+                disabled: .init(
+                    base: token("icon.interactive.disabled.base"),
+                    onColor: token("icon.interactive.disabled.onColor")
+                ),
+                navigation: .init(
+                    primary: .init(
+                        base: token("icon.interactive.navigation.primary.base"),
+                        hover: token("icon.interactive.navigation.primary.hover"),
+                        active: token("icon.interactive.navigation.primary.active")
+                    ),
+                    primaryOnColor: .init(
+                        base: token("icon.interactive.navigation.primaryOnColor.base"),
+                        hover: token("icon.interactive.navigation.primaryOnColor.hover"),
+                        active: token("icon.interactive.navigation.primaryOnColor.active")
+                    )
+                )
+            ),
+            accent: .init(
+                blue: token("icon.accent.blue"),
+                green: token("icon.accent.green"),
+                red: token("icon.accent.red"),
+                orange: token("icon.accent.orange"),
+                grey: token("icon.accent.grey"),
+                ash: token("icon.accent.ash"),
+                plum: token("icon.accent.plum"),
+                violet: token("icon.accent.violet"),
+                stone: token("icon.accent.stone"),
+                sky: token("icon.accent.sky"),
+                honey: token("icon.accent.honey"),
+                sea: token("icon.accent.sea"),
+                aurora: token("icon.accent.aurora")
+            )
+        )
+        let dropShadow = try DropShadow.init(
+            shadowColor1: token("dropShadow.shadowColor1"),
+            shadowColor2: token("dropShadow.shadowColor2")
+        )
+        let transparentColor = try token("transparentColor")
 
-    var all: [(name: String, value: SwiftUI.Color)] {
-        [
+        let all: [(name: String, value: SwiftUI.Color)] = [
             ("background.base", background.base),
             ("background.muted", background.muted),
             ("background.mutedHover", background.mutedHover),
@@ -1420,5 +1417,15 @@ extension InstUI.Semantic.Color {
             ("dropShadow.shadowColor2", dropShadow.shadowColor2),
             ("transparentColor", transparentColor),
         ]
+
+        return InstUI.Semantic.Color(
+            background: background,
+            stroke: stroke,
+            text: text,
+            icon: icon,
+            dropShadow: dropShadow,
+            transparentColor: transparentColor,
+            all: all
+        )
     }
 }

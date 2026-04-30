@@ -20,6 +20,7 @@ import SwiftUI
 
 public struct DocViewer: UIViewControllerRepresentable {
     @Environment(\.appEnvironment) private var env
+    @Environment(\.toolbarTintColor) private var toolbarTintColor
 
     public let filename: String
     public let previewURL: URL?
@@ -43,6 +44,7 @@ public struct DocViewer: UIViewControllerRepresentable {
                 previewURL: previewURL,
                 fallbackURL: fallbackURL
             )
+            next.annotationToolbarTintColor = toolbarTintColor
             next.isAnnotatable = true
             uiViewController.embed(next, in: uiViewController.view)
         }

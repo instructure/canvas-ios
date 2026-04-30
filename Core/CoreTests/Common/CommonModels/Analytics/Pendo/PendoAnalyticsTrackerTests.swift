@@ -37,6 +37,7 @@ class PendoAnalyticsTrackerTests: XCTestCase {
             pendoManager: pendoManager,
             pendoApiKey: "some api key"
         )
+        testee.storeApiKey("some api key")
     }
 
     override func tearDown() {
@@ -123,6 +124,46 @@ class PendoAnalyticsTrackerTests: XCTestCase {
         testee.endSession()
 
         XCTAssertEqual(pendoManager.endSessionCallsCount, 1)
+    }
+
+    // MARK: - storeApiKey
+
+    func test_storeApiKey_shouldOverwriteInitApiKeyForSetup() async throws {
+        testee.storeApiKey("some remote key")
+
+        try await testee.startSessionAsync()
+
+        XCTAssertEqual(pendoManager.setupInput, "some remote key")
+    }
+
+    func test_storeApiKey_whenCalledWithDifferentKeyAfterSetup_shouldDisableStartSession() async throws {
+        try await testee.startSessionAsync()
+        XCTAssertEqual(pendoManager.startSessionCallsCount, 1)
+
+        testee.storeApiKey("some other key")
+
+        try await testee.startSessionAsync()
+        XCTAssertEqual(pendoManager.startSessionCallsCount, 1)
+    }
+
+    @MainActor
+    func test_storeApiKey_whenCalledWithDifferentKeyAfterSetup_shouldDisableEndSession() async throws {
+        try await testee.startSessionAsync()
+
+        testee.storeApiKey("some other key")
+        testee.endSession()
+
+        XCTAssertEqual(pendoManager.endSessionCallsCount, 0)
+    }
+
+    func test_storeApiKey_whenCalledWithSameKeyAfterSetup_shouldKeepStartSessionEnabled() async throws {
+        try await testee.startSessionAsync()
+        XCTAssertEqual(pendoManager.startSessionCallsCount, 1)
+
+        testee.storeApiKey("some api key")
+
+        try await testee.startSessionAsync()
+        XCTAssertEqual(pendoManager.startSessionCallsCount, 2)
     }
 
     // MARK: - track

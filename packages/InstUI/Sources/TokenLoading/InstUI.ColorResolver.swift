@@ -25,7 +25,7 @@ extension InstUI {
         init() {
             primitivesByName = Dictionary(
                 InstUI.Primitive.Color.all.map { ($0.name, $0.color) },
-                uniquingKeysWith: { first, _ in first }
+                uniquingKeysWith: { $1 }
             )
         }
 
@@ -51,5 +51,8 @@ extension InstUI {
 
 private extension String {
     var isColorToken: Bool { hasPrefix("{") }
+}
+
+extension String {
     var isRGBAValue: Bool { lowercased().hasPrefix("rgba") }
 }

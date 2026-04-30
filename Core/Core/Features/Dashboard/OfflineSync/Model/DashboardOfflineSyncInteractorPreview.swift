@@ -56,7 +56,7 @@ public class DashboardOfflineSyncProgressWriterInteractorPreview: CourseSyncProg
 
     public func saveDownloadProgress(entries _: [CourseSyncEntry]) {}
 
-    public func saveDownloadResult(isFinished _: Bool, error _: String?) {}
+    public func saveDownloadResult(isFinished _: Bool, error _: String?, embeddedContentErrorCourseIds _: [String]) {}
 
     public func cleanUpPreviousDownloadProgress() {}
 

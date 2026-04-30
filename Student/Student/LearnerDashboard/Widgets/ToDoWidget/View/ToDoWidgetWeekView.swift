@@ -23,6 +23,8 @@ struct ToDoWidgetWeekView: View {
     let weekDays: [Date]
     let viewModel: ToDoWidgetViewModel
 
+    @AccessibilityFocusState private var isDayFocused
+
     var body: some View {
         ViewThatFits(in: .horizontal) {
             content(isCompact: false)
@@ -43,10 +45,14 @@ struct ToDoWidgetWeekView: View {
                         itemCount: viewModel.itemCountPerDay[day] ?? 0,
                         isCompact: isCompact
                     )
+                    .accessibilityFocused($isDayFocused, when: Date.now.isInSameDay(as: day))
                 }
                 .frame(maxWidth: .infinity)
                 .identifier("Dashboard.Todo.dayButton")
             }
+        }
+        .onChange(of: viewModel.isTodayFocused) {
+            isDayFocused = true
         }
     }
 }

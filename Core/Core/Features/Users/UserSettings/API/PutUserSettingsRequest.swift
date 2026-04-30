@@ -21,23 +21,19 @@ import Foundation
 // https://canvas.instructure.com/doc/api/users.html#method.users.settings
 public struct PutUserSettingsRequest: APIRequestable {
     public typealias Response = APIUserSettings
+
+    // Only these are supposed to be modifiable from mobile side at the moment.
     public struct Body: Encodable {
-        let manual_mark_as_read: Bool?
-        let collapse_global_nav: Bool?
         let hide_dashcard_color_overlays: Bool?
-        let comment_library_suggestions_enabled: Bool?
     }
 
     public let method = APIMethod.put
     public let path = "users/self/settings"
     public let body: Body?
 
-    init(manual_mark_as_read: Bool? = nil, collapse_global_nav: Bool? = nil, hide_dashcard_color_overlays: Bool? = nil, comment_library_suggestions_enabled: Bool? = nil) {
+    init(hide_dashcard_color_overlays: Bool? = nil) {
         body = Body(
-            manual_mark_as_read: manual_mark_as_read,
-            collapse_global_nav: collapse_global_nav,
             hide_dashcard_color_overlays: hide_dashcard_color_overlays,
-            comment_library_suggestions_enabled: comment_library_suggestions_enabled
         )
     }
 }

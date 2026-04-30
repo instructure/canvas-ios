@@ -1,0 +1,214 @@
+{
+  "text": {
+    "descriptionPage": {
+      "value": {
+        "fontFamily": "{fontFamily.base}",
+        "fontWeight": "{fontWeight.body.base}",
+        "fontSize": "{fontSize.textLg}",
+        "lineHeight": "{lineHeight.paragraph.base}"
+      },
+      "type": "typography",
+      "description": "Used for introductory or overview text that explains the purpose or context of an entire page."
+    },
+    "descriptionSection": {
+      "value": {
+        "fontFamily": "{fontFamily.base}",
+        "fontWeight": "{fontWeight.body.base}",
+        "fontSize": "{fontSize.textBase}",
+        "lineHeight": "{lineHeight.paragraph.base}"
+      },
+      "type": "typography",
+      "description": "Used for text that introduces or summarizes a specific section within a page."
+    },
+    "content": {
+      "value": {
+        "fontFamily": "{fontFamily.base}",
+        "fontWeight": "{fontWeight.body.base}",
+        "fontSize": "{fontSize.textBase}",
+        "lineHeight": "{lineHeight.paragraph.base}"
+      },
+      "type": "typography",
+      "description": "Used for standard descriptive body text that provides detailed information."
+    },
+    "contentImportant": {
+      "value": {
+        "fontFamily": "{fontFamily.base}",
+        "fontWeight": "{fontWeight.body.strong}",
+        "fontSize": "{fontSize.textBase}",
+        "lineHeight": "{lineHeight.paragraph.base}"
+      },
+      "type": "typography",
+      "description": "Used to highlight key statements or essential information within descriptive text."
+    },
+    "contentQuote": {
+      "value": {
+        "fontFamily": "{fontFamily.base}",
+        "fontWeight": "Medium Italic",
+        "fontSize": "{fontSize.textBase}",
+        "lineHeight": "{lineHeight.paragraph.base}"
+      },
+      "type": "typography",
+      "description": "Used to style quoted or referenced text distinct from the main content."
+    },
+    "contentSmall": {
+      "value": {
+        "fontFamily": "{fontFamily.base}",
+        "fontWeight": "{fontWeight.body.base}",
+        "fontSize": "{fontSize.textSm}",
+        "lineHeight": "{lineHeight.paragraph.base}"
+      },
+      "type": "typography",
+      "description": "Used for fine-print or secondary descriptions such as notes or disclaimers."
+    },
+    "legend": {
+      "value": {
+        "fontFamily": "{fontFamily.base}",
+        "fontWeight": "{fontWeight.body.base}",
+        "fontSize": "{fontSize.textXs}",
+        "lineHeight": "{lineHeight.paragraph.base}"
+      },
+      "type": "typography",
+      "description": "Used for short explanatory text accompanying data visualizations, icons, or UI elements."
+    },
+    "fontSizeXSmall": {
+      "value": "{fontSize.textXs}",
+      "type": "fontSizes"
+    },
+    "fontSizeSmall": {
+      "value": "{fontSize.textSm}",
+      "type": "fontSizes"
+    },
+    "fontSizeMedium": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontSizeLarge": {
+      "value": "{fontSize.textXl}",
+      "type": "fontSizes"
+    },
+    "fontSizeXLarge": {
+      "value": "{fontSize.text2xl}",
+      "type": "fontSizes"
+    },
+    "fontSizeXXLarge": {
+      "value": "2.375rem",
+      "type": "fontSizes"
+    },
+    "fontWeightLight": {
+      "value": "300",
+      "type": "fontWeights"
+    },
+    "fontWeightNormal": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "fontWeightBold": {
+      "value": "{fontWeight.body.strong}",
+      "type": "fontWeights"
+    },
+    "fontWeightImportant": {
+      "value": "{fontWeight.body.strong}",
+      "type": "fontWeights"
+    },
+    "fontWeightRegular": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "lineHeight": {
+      "value": "150%",
+      "type": "lineHeights"
+    },
+    "lineHeight100": {
+      "value": "100%",
+      "type": "lineHeights"
+    },
+    "lineHeight125": {
+      "value": "125%",
+      "type": "lineHeights"
+    },
+    "lineHeight150": {
+      "value": "150%",
+      "type": "lineHeights"
+    },
+    "lineHeightCondensed": {
+      "value": "125%",
+      "type": "lineHeights"
+    },
+    "lineHeightDouble": {
+      "value": "200%",
+      "type": "lineHeights"
+    },
+    "lineHeightFit": {
+      "value": "112.5%",
+      "type": "lineHeights"
+    },
+    "paragraphMargin": {
+      "value": "1.5rem 0rem",
+      "type": "paragraphSpacing"
+    },
+    "letterSpacingCondensed": {
+      "value": "-0.0625rem",
+      "type": "letterSpacing"
+    },
+    "letterSpacingExpanded": {
+      "value": "0.0625rem",
+      "type": "letterSpacing"
+    },
+    "letterSpacingNormal": {
+      "value": "0rem",
+      "type": "letterSpacing"
+    },
+    "aiBackgroundColor": {
+      "value": "{color.background.aiText}",
+      "type": "color"
+    },
+    "aiColor": {
+      "value": "{color.text.aiColor}",
+      "type": "color"
+    },
+    "primaryColor": {
+      "value": "{color.text.interactive.navigation.primary.base}",
+      "type": "color"
+    },
+    "errorColor": {
+      "value": "{color.text.error}",
+      "type": "color"
+    },
+    "baseColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "baseOnColor": {
+      "value": "{color.text.onColor}",
+      "type": "color"
+    },
+    "inverseColor": {
+      "value": "{color.text.inverse}",
+      "type": "color"
+    },
+    "mutedColor": {
+      "value": "{color.text.muted}",
+      "type": "color"
+    },
+    "mutedOnColor": {
+      "value": "{color.text.onColor}",
+      "type": "color"
+    },
+    "successColor": {
+      "value": "{color.text.success}",
+      "type": "color"
+    },
+    "warningColor": {
+      "value": "{color.text.warning}",
+      "type": "color"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontFamilyMonospace": {
+      "value": "{fontFamily.code}",
+      "type": "fontFamilies"
+    }
+  }
+}

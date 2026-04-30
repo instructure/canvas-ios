@@ -25,12 +25,12 @@ public extension InstUI.Semantic.FontFamily {
 
         public var body: some View {
             List {
-                ForEach(theme.fontFamilies.all, id: \.name) { family in
+                ForEach(theme.fontFamily.all, id: \.name) { family in
                     Section {
                         Text(verbatim: "weight")
                             .font(.system(size: 11, design: .monospaced))
                             .frame(width: 110, alignment: .leading)
-                        ForEach(theme.fontWeights.all, id: \.name) { weight in
+                        ForEach(theme.fontWeight.all, id: \.name) { weight in
                             HStack(spacing: 12) {
                                 Text(verbatim: (weight.name))
                                     .font(.system(size: 11, design: .monospaced))

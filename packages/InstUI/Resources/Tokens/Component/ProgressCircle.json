@@ -1,0 +1,184 @@
+{
+  "progressCircle": {
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.heading.base}",
+      "type": "fontWeights"
+    },
+    "lineHeight": {
+      "value": "{lineHeight.heading.base}",
+      "type": "lineHeights"
+    },
+    "xSmallSize": {
+      "value": "3em",
+      "type": "sizing"
+    },
+    "xSmallCircumference": {
+      "value": "6.25em",
+      "type": "sizing"
+    },
+    "xSmallTransform": {
+      "value": "1.5em",
+      "type": "sizing"
+    },
+    "xSmallStrokeWidth": {
+      "value": "0.2em",
+      "type": "borderWidth"
+    },
+    "smallSize": {
+      "value": "5em",
+      "type": "sizing"
+    },
+    "smallCircumference": {
+      "value": "11em",
+      "type": "sizing"
+    },
+    "smallTransform": {
+      "value": "2.5em",
+      "type": "sizing"
+    },
+    "smallStrokeWidth": {
+      "value": "0.5em",
+      "type": "borderWidth"
+    },
+    "mediumSize": {
+      "value": "7em",
+      "type": "sizing"
+    },
+    "mediumCircumference": {
+      "value": "17.25em",
+      "type": "sizing"
+    },
+    "mediumTransform": {
+      "value": "3.5em",
+      "type": "sizing"
+    },
+    "mediumStrokeWidth": {
+      "value": "0.625em",
+      "type": "borderWidth"
+    },
+    "largeSize": {
+      "value": "9em",
+      "type": "sizing"
+    },
+    "largeCircumference": {
+      "value": "22em",
+      "type": "sizing"
+    },
+    "largeTransform": {
+      "value": "4.5em",
+      "type": "sizing"
+    },
+    "largeStrokeWidth": {
+      "value": "0.875em",
+      "type": "borderWidth"
+    },
+    "color": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "colorInverse": {
+      "value": "{color.text.inverse}",
+      "type": "color"
+    },
+    "trackColor": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "trackColorInverse": {
+      "value": "{color.transparentColor}",
+      "type": "color"
+    },
+    "trackBorderColor": {
+      "value": "{color.stroke.base}",
+      "type": "color"
+    },
+    "trackBorderColorInverse": {
+      "value": "{color.stroke.inverse}",
+      "type": "color"
+    },
+    "meterColorAlert": {
+      "value": "{color.stroke.info}",
+      "type": "color"
+    },
+    "meterColorAlertInverse": {
+      "value": "{color.stroke.inverse}",
+      "type": "color"
+    },
+    "meterColorBrand": {
+      "value": "{color.stroke.brand}",
+      "type": "color"
+    },
+    "meterColorBrandInverse": {
+      "value": "{color.stroke.inverse}",
+      "type": "color"
+    },
+    "meterColorDanger": {
+      "value": "{color.stroke.error}",
+      "type": "color"
+    },
+    "meterColorDangerInverse": {
+      "value": "{color.stroke.inverse}",
+      "type": "color"
+    },
+    "meterColorInfo": {
+      "value": "{color.stroke.info}",
+      "type": "color"
+    },
+    "meterColorInfoInverse": {
+      "value": "{color.stroke.inverse}",
+      "type": "color"
+    },
+    "meterColorSuccess": {
+      "value": "{color.stroke.success}",
+      "type": "color"
+    },
+    "meterColorSuccessInverse": {
+      "value": "{color.stroke.inverse}",
+      "type": "color"
+    },
+    "meterColorWarning": {
+      "value": "{color.stroke.warning}",
+      "type": "color"
+    },
+    "meterColorWarningInverse": {
+      "value": "{color.stroke.inverse}",
+      "type": "color"
+    },
+    "xSmallRadius": {
+      "value": "1em",
+      "type": "borderRadius"
+    },
+    "smallRadius": {
+      "value": "1.8em",
+      "type": "borderRadius"
+    },
+    "mediumRadius": {
+      "value": "2.75em",
+      "type": "borderRadius"
+    },
+    "largeRadius": {
+      "value": "3.5em",
+      "type": "borderRadius"
+    },
+    "xSmallBorderOffset": {
+      "value": "0.94em",
+      "type": "spacing"
+    },
+    "smallBorderOffset": {
+      "value": "1.6125em",
+      "type": "spacing"
+    },
+    " mediumBorderOffset": {
+      "value": "2.5em",
+      "type": "spacing"
+    },
+    "largeBorderOffset": {
+      "value": "3.125em",
+      "type": "spacing"
+    }
+  }
+}

@@ -28,24 +28,21 @@ extension InstUI.Semantic {
         public let textLg: CGFloat
         public let textXl: CGFloat
         public let text2xl: CGFloat
+        public let all: [(name: String, value: CGFloat)]
     }
 }
 
 extension InstUI.Semantic.FontSize {
 
     static func build(_ token: (InstUI.TokenKey) throws -> CGFloat) throws -> InstUI.Semantic.FontSize {
-        try InstUI.Semantic.FontSize(
-            textXs: token("textXs"),
-            textSm: token("textSm"),
-            textBase: token("textBase"),
-            textLg: token("textLg"),
-            textXl: token("textXl"),
-            text2xl: token("text2xl")
-        )
-    }
+        let textXs = try token("textXs")
+        let textSm = try token("textSm")
+        let textBase = try token("textBase")
+        let textLg = try token("textLg")
+        let textXl = try token("textXl")
+        let text2xl = try token("text2xl")
 
-    var all: [(name: String, value: CGFloat)] {
-        [
+        let all: [(name: String, value: CGFloat)] = [
             ("textXs", textXs),
             ("textSm", textSm),
             ("textBase", textBase),
@@ -53,5 +50,15 @@ extension InstUI.Semantic.FontSize {
             ("textXl", textXl),
             ("text2xl", text2xl),
         ]
+
+        return InstUI.Semantic.FontSize(
+            textXs: textXs,
+            textSm: textSm,
+            textBase: textBase,
+            textLg: textLg,
+            textXl: textXl,
+            text2xl: text2xl,
+            all: all
+        )
     }
 }

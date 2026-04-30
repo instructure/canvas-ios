@@ -51,6 +51,7 @@ final public class Course: NSManagedObject, WriteableModel {
     @NSManaged public var syllabusBody: String?
     @NSManaged public var termName: String?
     @NSManaged public var settings: CourseSettings?
+    @NSManaged public var unreadAnnouncementCount: CDUnreadCourseAnnouncementCount?
     @NSManaged public var weeklySummaryEntries: Set<CDDashboardWeeklySummaryEntry>
     @NSManaged public var gradingSchemeRaw: Data?
     @NSManaged public var roles: String?
@@ -184,6 +185,10 @@ final public class Course: NSManagedObject, WriteableModel {
             entry.course = model
         }
 
+        if let unreadCount: CDUnreadCourseAnnouncementCount = context.fetch(scope: .where(#keyPath(CDUnreadCourseAnnouncementCount.courseId), equals: model.id)).first {
+            model.unreadAnnouncementCount = unreadCount
+        }
+
         model.roles = item.enrollments.roles
 
         if let apiTabs = item.tabs {
@@ -315,8 +320,9 @@ extension Course {
         return settings?.restrictQuantitativeData ?? false
     }
 
-    public var hideTotalGrade: Bool {
-        let enrollment = enrollments?.filter({ $0.isStudent }).first
+    public func hideTotalGrade(userID: String?) -> Bool {
+        let enrollment = enrollmentForGrades(userId: userID, includingCompleted: true)
+
         return hideFinalGrades == true || (
             enrollment?.multipleGradingPeriodsEnabled == true &&
             enrollment?.totalsForAllGradingPeriodsOption == false &&

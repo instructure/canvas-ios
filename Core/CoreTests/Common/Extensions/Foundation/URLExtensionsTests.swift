@@ -199,6 +199,23 @@ class DatabaseURLTests: XCTestCase {
                       testee.absoluteString)
     }
 
+    // MARK: - isStudioMediaLTILaunchURL
+
+    func test_isStudioMediaLTILaunchURL_whenPathEndsWithLtiLaunchAndHasMediaId_shouldBeTrue() {
+        let url = URL(string: "https://canvas.instructure.com/courses/1/lti/launch?custom_arc_media_id=media-1")!
+        XCTAssertEqual(url.isStudioMediaLTILaunchURL, true)
+    }
+
+    func test_isStudioMediaLTILaunchURL_whenPathEndsWithLtiLaunchButNoMediaId_shouldBeFalse() {
+        let url = URL(string: "https://canvas.instructure.com/courses/1/lti/launch")!
+        XCTAssertEqual(url.isStudioMediaLTILaunchURL, false)
+    }
+
+    func test_isStudioMediaLTILaunchURL_whenHasMediaIdButPathDoesNotEndWithLtiLaunch_shouldBeFalse() {
+        let url = URL(string: "https://canvas.instructure.com/courses/1/external_tools?custom_arc_media_id=media-1")!
+        XCTAssertEqual(url.isStudioMediaLTILaunchURL, false)
+    }
+
     private func match(_ url: URL, regex pattern: String) -> Bool {
         let string = url.absoluteString
         let regexp = try! NSRegularExpression(pattern: pattern)

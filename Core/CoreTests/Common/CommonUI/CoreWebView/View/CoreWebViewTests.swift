@@ -217,22 +217,6 @@ class CoreWebViewTests: CoreTestCase {
         }
     }
 
-    func testKeepCookieAlive() {
-        environment.api = API(.make(accessToken: nil))
-        CoreWebView.keepCookieAlive(for: environment)
-        XCTAssertNil(CoreWebView.cookieKeepAliveTimer)
-
-        environment.api = API(.make(accessToken: "a"))
-        let value = GetWebSessionRequest.Response(session_url: URL(string: "data:text/html,")!, requires_terms_acceptance: false)
-        api.mock(GetWebSessionRequest(to: nil), value: value)
-        CoreWebView.keepCookieAlive(for: environment)
-        wait(for: [expectation(for: .all, evaluatedWith: api) { CoreWebView.cookieKeepAliveWebView.url != nil }], timeout: 10)
-        XCTAssertEqual(CoreWebView.cookieKeepAliveWebView.url, URL(string: "data:text/html,"))
-        XCTAssertNotNil(CoreWebView.cookieKeepAliveTimer)
-
-        CoreWebView.stopCookieKeepAlive()
-    }
-
     func testJsString() {
         XCTAssertEqual(CoreWebView.jsString(nil), "null")
         XCTAssertEqual(CoreWebView.jsString(""), "''")

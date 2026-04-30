@@ -1,0 +1,164 @@
+{
+  "avatar": {
+    "backgroundColor": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "borderColor": {
+      "value": "{color.stroke.base}",
+      "type": "color"
+    },
+    "borderWidthSm": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "borderWidthMd": {
+      "value": "{borderWidth.md}",
+      "type": "borderWidth"
+    },
+    "boxShadow": {
+      "value": {
+        "x": "0",
+        "y": "0",
+        "blur": "1rem",
+        "spread": "0",
+        "color": "rgba(45,59,69,0.12)",
+        "type": "innerShadow"
+      },
+      "type": "boxShadow",
+      "color": {
+        "value": "rgba(45,59,69,0.12)",
+        "type": "color"
+      },
+      "description": "Do not use this for other components"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.heading.base}",
+      "type": "fontWeights"
+    },
+    "blueBackgroundColor": {
+      "value": "{color.background.accent.blue}",
+      "type": "color"
+    },
+    "blueTextColor": {
+      "value": "{color.text.accent.blue}",
+      "type": "color"
+    },
+    "greenBackgroundColor": {
+      "value": "{color.background.accent.green}",
+      "type": "color"
+    },
+    "greenTextColor": {
+      "value": "{color.text.accent.green}",
+      "type": "color"
+    },
+    "redBackgroundColor": {
+      "value": "{color.background.accent.red}",
+      "type": "color"
+    },
+    "redTextColor": {
+      "value": "{color.text.accent.red}",
+      "type": "color"
+    },
+    "orangeBackgroundColor": {
+      "value": "{color.background.accent.orange}",
+      "type": "color"
+    },
+    "orangeTextColor": {
+      "value": "{color.text.accent.orange}",
+      "type": "color"
+    },
+    "greyBackgroundColor": {
+      "value": "{color.background.accent.grey}",
+      "type": "color"
+    },
+    "greyTextColor": {
+      "value": "{color.text.accent.grey}",
+      "type": "color"
+    },
+    "ashBackgroundColor": {
+      "value": "{color.background.accent.ash}",
+      "type": "color"
+    },
+    "ashTextColor": {
+      "value": "{color.text.accent.ash}",
+      "type": "color"
+    },
+    "aiBottomGradientColor": {
+      "value": "{color.background.aiBottomGradient}",
+      "type": "color"
+    },
+    "aiTopGradientColor": {
+      "value": "{color.background.aiTopGradient}",
+      "type": "color"
+    },
+    "textOnColor": {
+      "value": "{color.text.onColor}",
+      "type": "color"
+    },
+    "size2xs": {
+      "value": "1.5rem",
+      "type": "sizing"
+    },
+    "sizeXs": {
+      "value": "2rem",
+      "type": "sizing"
+    },
+    "sizeSm": {
+      "value": "2.5rem",
+      "type": "sizing"
+    },
+    "sizeMd": {
+      "value": "3rem",
+      "type": "sizing"
+    },
+    "sizeLg": {
+      "value": "3.5rem",
+      "type": "sizing"
+    },
+    "sizeXl": {
+      "value": "4rem",
+      "type": "sizing"
+    },
+    "size2xl": {
+      "value": "5rem",
+      "type": "sizing"
+    },
+    "fontSize2xs": {
+      "value": "{fontSize.textXs}",
+      "type": "fontSizes"
+    },
+    "fontSizeXs": {
+      "value": "{fontSize.textXs}",
+      "type": "fontSizes"
+    },
+    "fontSizeSm": {
+      "value": "{fontSize.textSm}",
+      "type": "fontSizes"
+    },
+    "fontSizeMd": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontSizeLg": {
+      "value": "{fontSize.textLg}",
+      "type": "fontSizes"
+    },
+    "fontSizeXl": {
+      "value": "{fontSize.textXl}",
+      "type": "fontSizes"
+    },
+    "fontSize2xl": {
+      "value": "{fontSize.text2xl}",
+      "type": "fontSizes"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "rectangleRadius": {
+      "value": "{borderRadius.sm}",
+      "type": "borderRadius"
+    }
+  }
+}

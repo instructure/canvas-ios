@@ -18,9 +18,11 @@ targets:
           - ".swiftlint.yml"
     dependencies:      
       - target: Core/Core
-      - package: FirebaseCrashlytics
-      - package: FirebaseRemoteConfig
-      - package: FirebaseRemoteConfigSwift
+      - package: Firebase
+        products: 
+        - FirebaseCore
+        - FirebaseCrashlytics
+        - FirebaseRemoteConfig
 schemes:
   SubmitAssignment:
     build:

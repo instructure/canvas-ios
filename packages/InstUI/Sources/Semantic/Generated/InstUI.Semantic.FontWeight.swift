@@ -25,6 +25,7 @@ extension InstUI.Semantic {
         public let body: Body
         public let heading: Heading
         public let interactive: Font.Weight
+        public let all: [(name: String, value: Font.Weight)]
 
         public struct Body: Sendable {
             public let base: Font.Weight
@@ -40,26 +41,29 @@ extension InstUI.Semantic {
 extension InstUI.Semantic.FontWeight {
 
     static func build(_ token: (InstUI.TokenKey) throws -> Font.Weight) throws -> InstUI.Semantic.FontWeight {
-        try InstUI.Semantic.FontWeight(
-            body: .init(
-                base: token("body.base"),
-                strong: token("body.strong")
-            ),
-            heading: .init(
-                base: token("heading.base"),
-                strong: token("heading.strong")
-            ),
-            interactive: token("interactive")
+        let body = try Body.init(
+            base: token("body.base"),
+            strong: token("body.strong")
         )
-    }
+        let heading = try Heading.init(
+            base: token("heading.base"),
+            strong: token("heading.strong")
+        )
+        let interactive = try token("interactive")
 
-    var all: [(name: String, value: Font.Weight)] {
-        [
+        let all: [(name: String, value: Font.Weight)] = [
             ("body.base", body.base),
             ("body.strong", body.strong),
             ("heading.base", heading.base),
             ("heading.strong", heading.strong),
             ("interactive", interactive),
         ]
+
+        return InstUI.Semantic.FontWeight(
+            body: body,
+            heading: heading,
+            interactive: interactive,
+            all: all
+        )
     }
 }

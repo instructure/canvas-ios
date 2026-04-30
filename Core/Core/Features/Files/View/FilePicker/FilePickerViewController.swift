@@ -22,11 +22,42 @@ import MobileCoreServices
 import VisionKit
 import PDFKit
 import UniformTypeIdentifiers
+import PhotosUI
 
-public enum FilePickerSource: Int, CaseIterable {
-    case camera, library, files, audio, documentScan
+public enum FilePickerSource: CaseIterable, Comparable {
+    case audio, camera, library, files, documentScan
 
     static var defaults: [FilePickerSource] = [.camera, .library, .files, .documentScan]
+
+    var image: UIImage? {
+        switch self {
+        case .audio: .addAudioLine
+        case .camera: .addCameraLine
+        case .library: .addImageLine
+        case .files: .addDocumentLine
+        case .documentScan: UIImage(systemName: "doc.text.viewfinder")?.imageWithoutBaseline()
+        }
+    }
+
+    var title: String {
+        switch self {
+        case .audio: String(localized: "Audio", bundle: .core)
+        case .camera: String(localized: "Camera", bundle: .core)
+        case .library: String(localized: "Library", bundle: .core)
+        case .files: String(localized: "Files", bundle: .core)
+        case .documentScan: String(localized: "Scanner", bundle: .core)
+        }
+    }
+
+    var accessibilityIdentifier: String {
+        switch self {
+        case .audio: "FilePicker.audioButton"
+        case .camera: "FilePicker.cameraButton"
+        case .library: "FilePicker.libraryButton"
+        case .files: "FilePicker.filesButton"
+        case .documentScan: "FilePicker.scannerButton"
+        }
+    }
 }
 
 public protocol FilePickerControllerDelegate: AnyObject {
@@ -38,11 +69,9 @@ public protocol FilePickerControllerDelegate: AnyObject {
 
 open class FilePickerViewController: UIViewController, ErrorViewController {
     @IBOutlet weak var emptyView: EmptyView!
-    @IBOutlet weak var sourcesTabBar: UITabBar!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var progressView: FilePickerProgressView!
-    @IBOutlet weak var dividerView: UIView!
 
     public var submitButtonTitle = String(localized: "Submit", bundle: .core)
     /// The cancel button that shows while the files are being uploaded
@@ -55,6 +84,8 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     public var mediaTypes: [String] = [UTType.movie.identifier, UTType.image.identifier]
     public var batchID = ""
     public var maxFileCount = Int.max
+
+    private var isUploadInProgress = false
 
     private var avPermissionViewModel: AVPermissionViewModel = .init()
 
@@ -84,61 +115,35 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundLightest
-        sourcesTabBar.barTintColor = .backgroundLightest
         tableView.tableFooterView = UIView(frame: .zero)
         emptyView.titleText = String(localized: "Choose a File", bundle: .core)
         emptyView.bodyText = String(localized: "Attach files to your submission by tapping an option below.", bundle: .core)
+        navigationController?.setToolbarHidden(false, animated: true)
+        navigationController?.toolbar.tintColor = Brand.shared.linkColor
 
-        var tabBarItems: [UITabBarItem] = []
-        if sources.contains(.audio) {
-            let item = UITabBarItem(
-                title: String(localized: "Audio", bundle: .core),
-                image: .addAudioLine,
-                tag: FilePickerSource.audio.rawValue
-            )
-            item.accessibilityIdentifier = "FilePicker.audioButton"
-            tabBarItems.append(item)
-        }
-        if sources.contains(.camera) {
-            let item = UITabBarItem(
-                title: String(localized: "Camera", bundle: .core),
-                image: .addCameraLine,
-                tag: FilePickerSource.camera.rawValue
-            )
-            item.accessibilityIdentifier = "FilePicker.cameraButton"
-            tabBarItems.append(item)
-        }
-        if sources.contains(.library) {
-            let item = UITabBarItem(
-                title: String(localized: "Library", bundle: .core),
-                image: .addImageLine,
-                tag: FilePickerSource.library.rawValue
-            )
-            item.accessibilityIdentifier = "FilePicker.libraryButton"
-            tabBarItems.append(item)
-        }
-        if sources.contains(.files) {
-            let item = UITabBarItem(
-                title: String(localized: "Files", bundle: .core),
-                image: .addDocumentLine,
-                tag: FilePickerSource.files.rawValue
-            )
-            item.accessibilityIdentifier = "FilePicker.filesButton"
-            tabBarItems.append(item)
-        }
-        if sources.contains(.documentScan) {
-            let item = UITabBarItem(
-                title: String(localized: "Scanner", bundle: .core),
-                image: UIImage(systemName: "doc.text.viewfinder")?.imageWithoutBaseline(),
-                tag: FilePickerSource.documentScan.rawValue
-            )
-            item.accessibilityIdentifier = "FilePicker.scannerButton"
-            tabBarItems.append(item)
-        }
-        sourcesTabBar.items = tabBarItems
-        let linkColor = Brand.shared.linkColor
-        sourcesTabBar.tintColor = linkColor
-        sourcesTabBar.unselectedItemTintColor = linkColor
+        let items = {
+            let sortedSources = sources.sorted()
+
+            return sortedSources.flatMap { source in
+                let item = UIBarButtonItemWithCompletion(
+                    title: source.title,
+                    image: source.image,
+                ) {
+                    self.select(source: source)
+                }
+                item.accessibilityIdentifier = source.accessibilityIdentifier
+
+                // flexible spaces are neccessary on iOS 18 but on iOS 26 they create separate containers instead of one, so we only add them on iOS 18
+                if #available(iOS 26, *) {
+                    return [item]
+                } else {
+                    return source == sortedSources.last ? [item] : [item, .flexibleSpace()]
+                }
+            }
+        }()
+
+        setToolbarItems(items, animated: true)
+
         update()
         files.refresh()
     }
@@ -152,7 +157,6 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
         emptyView.isHidden = files.isEmpty == false
         updateProgressBar()
         updateBarButtons()
-        updateSourceButtons()
         tableView.reloadData()
     }
 
@@ -174,20 +178,24 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     func updateBarButtons() {
         let inProgress = files.first { $0.isUploading } != nil
         let failed = files.first { $0.uploadError != nil } != nil
+
         if inProgress {
-            navigationController?.setToolbarHidden(false, animated: true)
+            // upload calls this method periodically and constantly updating the button causes tap events to get dropped
+            guard !isUploadInProgress else { return }
+            isUploadInProgress = true
             navigationItem.leftBarButtonItems = []
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Dismiss", bundle: .core), style: .plain, target: self, action: #selector(close))
             navigationItem.rightBarButtonItem?.accessibilityIdentifier = "FilePicker.closeButton"
             let cancelButton = UIBarButtonItem(title: cancelButtonTitle, style: .plain, target: self, action: #selector(cancelClicked))
             cancelButton.accessibilityIdentifier = "FilePicker.cancelButton"
-            toolbarItems = [
+            let toolbarItems = [
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
                 cancelButton,
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
             ]
+
+            setToolbarItems(toolbarItems, animated: true)
         } else if failed {
-            navigationController?.setToolbarHidden(false, animated: true)
             navigationItem.leftBarButtonItems = []
             navigationItem.rightBarButtonItem = UIBarButtonItem(title: String(localized: "Done", bundle: .core), style: .plain, target: self, action: #selector(close))
             navigationItem.rightBarButtonItem?.accessibilityIdentifier = "FilePicker.closeButton"
@@ -195,13 +203,14 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             cancelButton.accessibilityIdentifier = "FilePicker.cancelButton"
             let retryButton = UIBarButtonItem(title: String(localized: "Retry", bundle: .core), style: .plain, target: self, action: #selector(retry))
             retryButton.accessibilityIdentifier = "FilePicker.retryButton"
-            toolbarItems = [
+            let toolbarItems = [
                 cancelButton,
                 UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil),
                 retryButton
             ]
+
+            setToolbarItems(toolbarItems, animated: true)
         } else {
-            navigationController?.setToolbarHidden(true, animated: true)
             navigationItem.leftBarButtonItem = UIBarButtonItem(title: String(localized: "Cancel", bundle: .core), style: .plain, target: self, action: #selector(cancelClicked))
             navigationItem.leftBarButtonItem?.accessibilityIdentifier = "FilePicker.cancelButton"
             let submitButton = UIBarButtonItem(title: submitButtonTitle, style: .done, target: self, action: #selector(submit))
@@ -209,14 +218,6 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
             submitButton.accessibilityIdentifier = "FilePicker.submitButton"
             navigationItem.rightBarButtonItem = submitButton
         }
-    }
-
-    func updateSourceButtons() {
-        let inProgress = files.first { $0.isUploading } != nil
-        let failed = files.first { $0.uploadError != nil } != nil
-        let hideSourceButtons = inProgress || failed
-        sourcesTabBar.isHidden = hideSourceButtons
-        dividerView.isHidden = hideSourceButtons
     }
 
     @objc
@@ -258,12 +259,8 @@ open class FilePickerViewController: UIViewController, ErrorViewController {
     func didReachMaxFileCount() {
         submit()
     }
-}
 
-extension FilePickerViewController: UITabBarDelegate {
-    public func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-        tabBar.selectedItem = nil
-        guard let source = FilePickerSource(rawValue: item.tag) else { return }
+    func select(source: FilePickerSource) {
         switch source {
         case .camera:
             guard UIImagePickerController.isSourceTypeAvailable(.camera) else { return }
@@ -277,11 +274,8 @@ extension FilePickerViewController: UITabBarDelegate {
                 self.env.router.show(cameraController, from: self, options: .modal())
             }
         case .library:
-            guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else { return }
-            let libraryController = UIImagePickerController()
+            let libraryController = PHPickerViewController(configuration: createPHPickerViewConfig())
             libraryController.delegate = self
-            libraryController.sourceType = .photoLibrary
-            libraryController.mediaTypes = mediaTypes
             env.router.show(libraryController, from: self, options: .modal())
         case .files:
             let documentTypes = utis.compactMap { $0.uttype }
@@ -343,6 +337,84 @@ extension FilePickerViewController: UIDocumentPickerDelegate {
 
     public func documentPicker(_ controller: UIDocumentPickerViewController, didPickDocumentsAt urls: [URL]) {
         for url in urls { add(url, source: .files) }
+    }
+}
+
+extension FilePickerViewController: PHPickerViewControllerDelegate {
+    public func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        for result in results {
+            let itemProvider = result.itemProvider
+            if itemProvider.canLoadObject(ofClass: UIImage.self) {
+                handlePickedImage(itemProvider)
+            } else if itemProvider.hasItemConformingToTypeIdentifier(UTType.movie.identifier) {
+                handlePickedVideo(itemProvider)
+            }
+        }
+    }
+
+    private func handlePickedImage(_ provider: NSItemProvider) {
+        provider.loadObject(ofClass: UIImage.self) { [weak self] image, error in
+            guard let self else { return }
+            if let error {
+                DispatchQueue.main.async {
+                    self.showError(error)
+                }
+                return
+            }
+            if let image = image as? UIImage {
+                DispatchQueue.main.async {
+                    do {
+                        self.add(try image.normalize().write(), source: .library)
+                    } catch {
+                        self.showError(error)
+                    }
+                }
+            }
+        }
+    }
+
+    private func handlePickedVideo(_ provider: NSItemProvider) {
+        provider.loadFileRepresentation(forTypeIdentifier: UTType.movie.identifier) { [weak self] url, error in
+            guard let self else { return }
+
+            if let error {
+                DispatchQueue.main.async { self.showError(error) }
+                return
+            }
+
+            guard let url else {
+                DispatchQueue.main.async {
+                    self.showError(message: String(localized: "Could not load video from library.", bundle: .core))
+                }
+                return
+            }
+
+            do {
+                let destination = URL
+                    .Directories
+                    .temporary
+                    .appendingPathComponent("videos", isDirectory: true)
+                    .appendingPathComponent(String(Clock.now.timeIntervalSince1970), isDirectory: true)
+                    .appendingPathExtension(url.pathExtension)
+                try url.copy(to: destination)
+                DispatchQueue.main.async {
+                    self.add(destination, source: .library)
+                }
+            } catch {
+                DispatchQueue.main.async {
+                    self.showError(error)
+                }
+            }
+        }
+    }
+
+    private func createPHPickerViewConfig() -> PHPickerConfiguration {
+        var config = PHPickerConfiguration(photoLibrary: .shared())
+        config.selectionLimit = maxFileCount
+        config.selection = .ordered
+        config.filter = .any(of: [.images, .videos])
+        return config
     }
 }
 

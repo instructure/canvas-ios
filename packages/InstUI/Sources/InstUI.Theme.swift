@@ -25,15 +25,16 @@ extension InstUI {
             try! InstUI.Theme()
         }()
 
-        public let colors: InstUI.Semantic.Color
+        public let color: InstUI.Semantic.Color
         public let size: InstUI.Semantic.Size
         public let spacing: InstUI.Semantic.Spacing
         public let borderRadius: InstUI.Semantic.BorderRadius
         public let borderWidth: InstUI.Semantic.BorderWidth
         public let fontSize: InstUI.Semantic.FontSize
         public let opacity: InstUI.Semantic.Opacity
-        public let fontWeights: InstUI.Semantic.FontWeight
-        public let fontFamilies: InstUI.Semantic.FontFamily
+        public let fontWeight: InstUI.Semantic.FontWeight
+        public let fontFamily: InstUI.Semantic.FontFamily
+        public let components: InstUI.Theme.Components
 
         public init() throws {
             try self.init(
@@ -46,16 +47,28 @@ extension InstUI {
             colorLoader: InstUI.Semantic.ColorLoader,
             layoutLoader: InstUI.Semantic.LayoutLoader
         ) throws {
-            self.colors = try colorLoader.load()
+            let color = try colorLoader.load()
             let layout = try layoutLoader.load()
+            self.color = color
             self.size = layout.size
             self.spacing = layout.spacing
             self.borderRadius = layout.borderRadius
             self.borderWidth = layout.borderWidth
             self.fontSize = layout.fontSize
             self.opacity = layout.opacity
-            self.fontWeights = layout.fontWeights
-            self.fontFamilies = layout.fontFamilies
+            self.fontWeight = layout.fontWeights
+            self.fontFamily = layout.fontFamilies
+            self.components = try .load(
+                colors: color,
+                size: layout.size,
+                spacing: layout.spacing,
+                borderRadius: layout.borderRadius,
+                borderWidth: layout.borderWidth,
+                fontSize: layout.fontSize,
+                opacity: layout.opacity,
+                fontWeights: layout.fontWeights,
+                fontFamilies: layout.fontFamilies
+            )
         }
     }
 }

@@ -27,4 +27,8 @@ public struct GetUserSettingsRequest: APIRequestable {
     public var path: String {
         return "users/\(userID)/settings"
     }
+
+    public let query: [APIQueryItem] = [
+        .include(["mobile_settings"])
+    ]
 }

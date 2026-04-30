@@ -20,6 +20,7 @@
 import TestsFoundation
 import VisionKit
 import XCTest
+import PhotosUI
 
 class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate {
     var cancelled = false
@@ -52,7 +53,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
         controller.viewWillAppear(false)
         XCTAssertEqual(controller.view.backgroundColor, .backgroundLightest)
         XCTAssertTrue(controller.progressView.isHidden)
-        XCTAssertEqual(controller.sourcesTabBar.items?.count, 4)
+        XCTAssertEqual(controller.toolbarItems?.count, 4)
         XCTAssertEqual(navigation.navigationBar.barTintColor, .backgroundLightest)
     }
 
@@ -62,8 +63,7 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
 
         controller.delegate = self
         controller.view.layoutIfNeeded()
-        let tabBar = controller.sourcesTabBar!
-        tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items![FilePickerSource.files.rawValue])
+        controller.select(source: .files)
         let picker = router.presented as! UIDocumentPickerViewController
         picker.delegate?.documentPicker?(picker, didPickDocumentsAt: [url])
 
@@ -112,28 +112,24 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
 
     func testImage() {
         controller.view.layoutIfNeeded()
-        let tabBar = controller.sourcesTabBar!
-        tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items![FilePickerSource.camera.rawValue])
+        controller.select(source: .camera)
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             XCTAssertEqual((router.presented as? UIImagePickerController)?.sourceType, .camera)
         } else {
             XCTAssertNil(router.presented)
         }
-        tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items![FilePickerSource.library.rawValue])
-        let picker = router.presented as! UIImagePickerController
-        picker.delegate?.imagePickerController?(MockImagePicker(), didFinishPickingMediaWithInfo: [
-            .originalImage: UIImage.instructureLine
-        ])
+        controller.select(source: .library)
+        XCTAssert(router.presented is PHPickerViewController)
+
+        // PHPickerResult has no public initializer, so we test through add(_:source:)
+        // which is the same path handlePickedImage ultimately calls
+        let url = try! UIImage.instructureLine.normalize().write()
+        controller.add(url, source: .library)
 
         let index = IndexPath(row: 0, section: 0)
         let row = controller.tableView.cellForRow(at: index) as? FilePickerCell
         XCTAssertEqual(row?.accessibilityIdentifier, "FilePickerListItem.0")
         XCTAssertEqual(row?.subtitleLabel.text?.contains(" KB"), true)
-
-        picker.delegate?.imagePickerController?(MockImagePicker(), didFinishPickingMediaWithInfo: [
-            .mediaURL: URL.Directories.temporary.appendingPathComponent("bogus")
-        ])
-        XCTAssert(router.presented is UIAlertController)
 
         UploadManager.shared.viewContext.performAndWait {
             let file = controller.files.first!
@@ -150,8 +146,8 @@ class FilePickerViewControllerTests: CoreTestCase, FilePickerControllerDelegate 
     func testDocumentScan() {
         controller.sources = [.documentScan]
         controller.view.layoutIfNeeded()
-        let tabBar = controller.sourcesTabBar!
-        tabBar.delegate?.tabBar?(tabBar, didSelect: tabBar.items!.first!)
+        controller.select(source: .documentScan)
+
         XCTAssertNil(router.presented)
     }
 
@@ -179,12 +175,4 @@ struct AVPermissionInteractorAlwaysGranted: AVPermissionInteractor {
     var isMicrophonePermitted: Bool? { true }
     func requestCameraPermission(_ response: @escaping (Bool) -> Void) { response(true) }
     func requestMicrophonePermission(_ response: @escaping (Bool) -> Void) { response(true) }
-}
-
-class MockImagePicker: UIImagePickerController {
-    var dismissed = false
-    override func dismiss(animated _: Bool, completion: (() -> Void)? = nil) {
-        dismissed = true
-        completion?()
-    }
 }

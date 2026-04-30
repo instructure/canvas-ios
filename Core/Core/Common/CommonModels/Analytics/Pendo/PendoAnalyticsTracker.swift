@@ -19,26 +19,16 @@
 import Foundation
 import Pendo
 
-// This is only needed to make testing possible
-public protocol PendoManagerWrapper: AnyObject {
-    func initWith(_ url: URL)
-    func setup(_ appKey: String)
-    func startSession(_ visitorId: String?, accountId: String?, visitorData: [AnyHashable: Any]?, accountData: [AnyHashable: Any]?)
-    func endSession()
-    func track(_ event: String, properties: [AnyHashable: Any]?)
-}
-
-extension PendoManager: PendoManagerWrapper {}
-
 public final class PendoAnalyticsTracker {
 
     // MARK: Properties
 
     private let interactor: AnalyticsMetadataInteractor
     private let pendoManager: PendoManagerWrapper
-    private let pendoApiKey: String?
+    private var pendoApiKey: String?
 
     private var isSetupCalled: Bool = false
+    private var isApiKeyCurrent: Bool = false
     private var isSessionInProgress: Bool = false
 
     // MARK: Initialization
@@ -50,16 +40,32 @@ public final class PendoAnalyticsTracker {
     ) {
         self.interactor = interactor
         self.pendoManager = pendoManager
+
         self.pendoApiKey = pendoApiKey?.nilIfEmpty
+        if pendoApiKey?.nilIfEmpty != nil {
+            isApiKeyCurrent = true
+        }
     }
+
+    // MARK: - Setup & Start Session
 
     public func initManager(with url: URL) {
         pendoManager.initWith(url)
     }
 
-    // MARK: Publics
+    public func storeApiKey(_ apiKey: String) {
+        if isSetupCalled && pendoApiKey != apiKey {
+            // This can happen after a new login with a different api key.
+            // It that case we should disable tracking,
+            // since we can't resetup pendo with the new api key.
+            isApiKeyCurrent = false
+        } else {
+            pendoApiKey = apiKey
+            isApiKeyCurrent = true
+        }
+    }
 
-    /// Start the session asynchronously
+    /// Start the session asynchronously.
     public func startSession(completion: (() -> Void)? = nil) {
         Task { [weak self] in
             try? await self?.startSessionAsync()
@@ -67,27 +73,9 @@ public final class PendoAnalyticsTracker {
         }
     }
 
-    @MainActor
-    public func endSession() {
-        guard let pendoApiKey else { return }
-
-        setupManagerIfNeeded(apiKey: pendoApiKey)
-
-        isSessionInProgress = false
-        pendoManager.endSession()
-    }
-
-    public func track(_ eventName: String, properties: [String: Any]?) {
-        guard isSessionInProgress else { return }
-
-        pendoManager.track(eventName, properties: properties)
-    }
-
-    // MARK: Internals & Privates
-
     // extracted for testing purposes
     internal func startSessionAsync() async throws {
-        guard let pendoApiKey else { return }
+        guard let pendoApiKey, isApiKeyCurrent else { return }
 
         await setupManagerIfNeeded(apiKey: pendoApiKey)
 
@@ -118,5 +106,25 @@ public final class PendoAnalyticsTracker {
         )
 
         isSessionInProgress = true
+    }
+
+    // MARK: - End Session
+
+    @MainActor
+    public func endSession() {
+        guard let pendoApiKey, isApiKeyCurrent else { return }
+
+        setupManagerIfNeeded(apiKey: pendoApiKey)
+
+        isSessionInProgress = false
+        pendoManager.endSession()
+    }
+
+    // MARK: - Track
+
+    public func track(_ eventName: String, properties: [String: Any]?) {
+        guard isSessionInProgress else { return }
+
+        pendoManager.track(eventName, properties: properties)
     }
 }

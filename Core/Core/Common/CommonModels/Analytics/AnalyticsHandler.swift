@@ -36,6 +36,8 @@ public protocol AnalyticsHandler: AnyObject {
 
     func handleEvent(_ name: String, parameters: [String: Any]?)
 
+    func storePendoApiKey(_ apiKey: String)
+
     /// Checks `url` for Pendo Pairing Mode scheme.
     /// If that applies, enters the app into Pendo Pairing Mode, and returns true.
     /// Otherwise does nothing and returns false.
@@ -95,12 +97,26 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
         // Ensure pageview tracking is disabled (clears any leftover from previous user)
         PageViewEventController.instance.endTracking()
 
-        return isTrackingEnabled()
+        return getUserSettings(environment: environment)
+            .flatMap { [weak self] in
+                self?.isTrackingEnabled() ?? Publishers.noInstanceFailure()
+            }
             .receive(on: DispatchQueue.main)
             .map { [weak self] isEnabled in
                 self?.handleConsentChange(to: isEnabled, sessionStartCompletion: sessionStartCompletion)
             }
             .eraseToAnyPublisher()
+    }
+
+    /// This populates `analyticsTracker.pendoApiKey` directly.
+    private func getUserSettings(environment: AppEnvironment) -> AnyPublisher<Void, Error> {
+        ReactiveStore(
+            useCase: GetUserSettings(shouldSaveAnalyticsApiKey: true),
+            backgroundEnv: environment
+        )
+        .getEntities(ignoreCache: true)
+        .mapToVoid()
+        .eraseToAnyPublisher()
     }
 
     private func isTrackingEnabled() -> AnyPublisher<Bool, Error> {
@@ -112,42 +128,34 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
             return Publishers.typedJust(false)
         }
 
-        return consentInteractor.isTrackingEnabled(ignoreConsentCache: true)
+        return consentInteractor.getTrackingPolicy(ignoreCache: false)
             .receive(on: DispatchQueue.main)
-            .flatMap { [weak self] isEnabled -> AnyPublisher<Bool, Error> in
-                // If the user had already chosen or the feature flags enforce something
-                if let isEnabled {
-                    return Publishers.typedJust(isEnabled)
-                }
+            .flatMap { [weak self] trackingPolicy -> AnyPublisher<Bool, Error> in
+                guard let self else { return Publishers.noInstanceFailure() }
 
-                // If the user must be asked
-                return self?.showAndHandleConsentDialog()
-                    ?? Publishers.typedEmpty()
+                switch trackingPolicy {
+                case .trackingEnabled:
+                    return Publishers.typedJust(true)
+                case .trackingDisabled:
+                    return Publishers.typedJust(false)
+                case .askForConsent:
+                    return showAndHandleConsentDialog()
+                }
             }
             .eraseToAnyPublisher()
     }
 
     private func showAndHandleConsentDialog() -> AnyPublisher<Bool, Error> {
-        Future { promise in
+        Future<Bool, Never> { promise in
             UIAlertController.showAnalyticsConsentDialog { consentFromDialog in
                 promise(.success(consentFromDialog))
             }
         }
-        .flatMap { [weak self] value in
-            self?.setConsent(value)
-                ?? Publishers.typedEmpty()
+        .tryMap { [weak self] value in
+            try self?.consentInteractor?.setConsent(value)
+            return value
         }
         .eraseToAnyPublisher()
-    }
-
-    private func setConsent(_ value: Bool) -> AnyPublisher<Bool, Error> {
-        guard let consentInteractor else {
-            return Publishers.typedJust(value)
-        }
-
-        return consentInteractor.setConsent(value)
-            .map { value }
-            .eraseToAnyPublisher()
     }
 
     @MainActor
@@ -160,15 +168,20 @@ public final class AnalyticsHandlerLive: @MainActor AnalyticsHandler {
     public func handleConsentChange(to isAnalyticsEnabled: Bool, sessionStartCompletion: @escaping () -> Void) {
         if isAnalyticsEnabled {
             analyticsTracker.startSession(completion: sessionStartCompletion)
-            PageViewEventController.instance.startTracking()
         } else {
             analyticsTracker.endSession()
-            PageViewEventController.instance.endTracking()
         }
+
+        // This is internal-only tracking, it is always enabled
+        PageViewEventController.instance.startTracking()
     }
 
     public func handleEvent(_ name: String, parameters: [String: Any]?) {
         analyticsTracker.track(name, properties: parameters)
+    }
+
+    public func storePendoApiKey(_ apiKey: String) {
+        analyticsTracker.storeApiKey(apiKey)
     }
 
     public func handlePendoPairingModeUrl(url: URL) -> Bool {

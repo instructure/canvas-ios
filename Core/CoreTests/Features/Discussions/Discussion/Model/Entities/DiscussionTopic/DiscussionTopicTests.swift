@@ -18,6 +18,7 @@
 
 import Foundation
 import XCTest
+import TestsFoundation
 @testable import Core
 
 class DiscussionTopicTests: CoreTestCase {
@@ -155,6 +156,19 @@ class DiscussionTopicTests: CoreTestCase {
         XCTAssertEqual(fetchedCheckpoints.count, 2)
         XCTAssertEqual(fetchedCheckpoints.first?.tag, "tag1")
         XCTAssertEqual(fetchedCheckpoints.last?.tag, "tag2")
+    }
+
+    // MARK: - markAsRead
+
+    func test_markAsRead_shouldSetReadStateToRead() {
+        _ = saveModel(.make(id: "d1"))
+
+        DiscussionTopic.markAsRead(id: "d1", database: environment.database)
+
+        waitUntil(shouldFail: true) {
+            let topic: DiscussionTopic? = databaseClient.fetch(scope: .all).first { $0.id == "d1" }
+            return topic?.readState == "read"
+        }
     }
 
     // MARK: - Private Helpers

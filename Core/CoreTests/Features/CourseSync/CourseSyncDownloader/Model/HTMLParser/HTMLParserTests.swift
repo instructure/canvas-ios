@@ -252,6 +252,7 @@ class HTMLParserTests: CoreTestCase {
         var envResolver: CourseSyncEnvironmentResolver = .mocked()
         var sessionId: String = "mockSessionId"
         var sectionName: String = "mockSectionName"
+        var embeddedContentFailurePublisher: AnyPublisher<CourseSyncID, Never> = Empty().eraseToAnyPublisher()
 
         var parsedContents: [String] = []
         var parsedAttachments: [URL] = []

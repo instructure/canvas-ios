@@ -1,0 +1,64 @@
+{
+  "colorContrast": {
+    "colorIndicatorRightMargin": {
+      "value": "0.75rem",
+      "type": "spacing"
+    },
+    "colorPreviewBottomMargin": {
+      "value": "0.75rem",
+      "type": "spacing"
+    },
+    "colorPreviewTopMargin": {
+      "value": "0.5rem",
+      "type": "spacing"
+    },
+    "failureColor": {
+      "value": "{color.background.error}",
+      "type": "color"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "labelBottomMargin": {
+      "value": "0.375rem",
+      "type": "spacing"
+    },
+    "lineHeight": {
+      "value": "{lineHeight.paragraph.textBase}",
+      "type": "lineHeights"
+    },
+    "pickedHexColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "smallBorder": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "statusWrapperBottomMargin": {
+      "value": "0.375rem",
+      "type": "spacing"
+    },
+    "successColor": {
+      "value": "{color.background.success}",
+      "type": "color"
+    },
+    "width": {
+      "value": "17rem",
+      "type": "sizing"
+    },
+    "colorIndicatorLabelColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    }
+  }
+}

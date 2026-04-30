@@ -34,6 +34,7 @@ public enum DiscussionsAssembly {
         // The actual mark-as-read request is sent by the Discussion Details webview.
         if isAnnouncement && !isAppOffline {
             DiscussionTopic.markAsRead(id: discussionId, database: environment.database)
+            CDUnreadCourseAnnouncementCount.removeAnnouncementId(discussionId, courseId: context.id, database: environment.database)
         }
 
         if context.contextType == .course, !url.originIsModuleItemDetails {
