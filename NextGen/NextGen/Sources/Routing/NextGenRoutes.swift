@@ -17,16 +17,27 @@
 //
 
 import Core
+import UIKit
 
 public enum NextGenRoutes {
     public static func makeRouter(
         academicRoutes: [RouteHandler],
-        nextgenRoutes: [RouteHandler] = NextGenRoutes.nextgenRoutes
+        nextgenRoutes: [RouteHandler] = NextGenRoutes.routes
     ) -> Router {
         let overriddenTemplates = Set(nextgenRoutes.map { $0.route.template })
         let mergedRoutes = nextgenRoutes + academicRoutes.filter { !overriddenTemplates.contains($0.route.template) }
         return Router(routes: mergedRoutes)
     }
 
-    public static var nextgenRoutes: [RouteHandler] { [] }
+    public static var routes: [RouteHandler] {
+        [
+            RouteHandler("/courses/:courseID", factory: makeCourseDetails),
+            RouteHandler("/courses/:courseID/tabs", factory: makeCourseDetails)
+        ]
+    }
+
+    private static func makeCourseDetails(_: URLComponents, params: [String: String], _: [String: Any]?) -> UIViewController? {
+        guard let courseID = params["courseID"] else { return nil }
+        return NGCourseDetailsAssembly.makeCourseDetailsViewController(courseID: courseID)
+    }
 }

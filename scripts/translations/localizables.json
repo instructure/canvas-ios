@@ -10,5 +10,6 @@
   "Student/SubmitAssignment/Localizable.xcstrings",
   "Student/Widgets/Resources/InfoPlist.xcstrings",
   "Student/Widgets/Resources/Localizable.xcstrings",
-  "Horizon/Horizon/Resources/Localizable.xcstrings"
+  "Horizon/Horizon/Resources/Localizable.xcstrings",
+  "NextGen/NextGen/Resources/Localizable.xcstrings"
 ]
