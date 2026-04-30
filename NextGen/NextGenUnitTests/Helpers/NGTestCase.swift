@@ -22,7 +22,7 @@ import XCTest
 @testable import Core
 @testable import NextGen
 
-class NextGenTestCase: XCTestCase {
+class NGTestCase: XCTestCase {
     var database: NSPersistentContainer { TestsFoundation.singleSharedTestDatabase }
     var databaseClient: NSManagedObjectContext { database.viewContext }
 

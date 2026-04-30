@@ -434,7 +434,7 @@ extension StudentAppDelegate {
             let app: AppEnvironment.App = ExperimentalFeature.nextgenStudent.isEnabled ? .nextgen : .student
             AppEnvironment.shared.app = app
             AppEnvironment.shared.router = (app == .nextgen)
-                ? NextGenRoutes.makeRouter(academicRoutes: academicRouter.handlers)
+                ? NGRoutes.makeRouter(academicRoutes: academicRouter.handlers)
                 : academicRouter
             guard let window else { return }
             let userInterfaceStyle = AppEnvironment.shared.userDefaults?.academicInterfaceStyle ?? AppEnvironment.shared.userDefaults?.interfaceStyle

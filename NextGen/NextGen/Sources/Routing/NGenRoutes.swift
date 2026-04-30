@@ -19,10 +19,10 @@
 import Core
 import UIKit
 
-public enum NextGenRoutes {
+public enum NGRoutes {
     public static func makeRouter(
         academicRoutes: [RouteHandler],
-        nextgenRoutes: [RouteHandler] = NextGenRoutes.routes
+        nextgenRoutes: [RouteHandler] = NGRoutes.routes
     ) -> Router {
         let overriddenTemplates = Set(nextgenRoutes.map { $0.route.template })
         let mergedRoutes = nextgenRoutes + academicRoutes.filter { !overriddenTemplates.contains($0.route.template) }

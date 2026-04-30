@@ -18,8 +18,8 @@
 
 import Foundation
 
-private class Placeholder {}
-
 extension Bundle {
     public static let nextgen = Bundle(for: Placeholder.self)
 }
+
+private class Placeholder {}

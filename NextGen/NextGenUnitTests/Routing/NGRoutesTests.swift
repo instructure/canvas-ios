@@ -20,7 +20,7 @@ import XCTest
 @testable import Core
 @testable import NextGen
 
-final class NextGenRoutesTests: NextGenTestCase {
+final class NGRoutesTests: NGTestCase {
 
     private static let testData = (
         route1: "/some/route/1",
@@ -36,7 +36,7 @@ final class NextGenRoutesTests: NextGenTestCase {
     func test_makeRouter_shouldUseAcademicRouteHandlers() {
         let academicRoutes = [RouteHandler(testData.route1) { _, _, _ in self.testData.academicVC }]
 
-        let router = NextGenRoutes.makeRouter(academicRoutes: academicRoutes, nextgenRoutes: [])
+        let router = NGRoutes.makeRouter(academicRoutes: academicRoutes, nextgenRoutes: [])
 
         XCTAssertIdentical(router.match(testData.route1), testData.academicVC)
     }
@@ -45,7 +45,7 @@ final class NextGenRoutesTests: NextGenTestCase {
         let academicRoutes = [RouteHandler(testData.route1) { _, _, _ in self.testData.academicVC }]
         let nextgenRoutes = [RouteHandler(testData.route1) { _, _, _ in self.testData.nextgenVC }]
 
-        let router = NextGenRoutes.makeRouter(academicRoutes: academicRoutes, nextgenRoutes: nextgenRoutes)
+        let router = NGRoutes.makeRouter(academicRoutes: academicRoutes, nextgenRoutes: nextgenRoutes)
 
         XCTAssertIdentical(router.match(testData.route1), testData.nextgenVC)
     }
@@ -57,7 +57,7 @@ final class NextGenRoutesTests: NextGenTestCase {
         ]
         let nextgenRoutes = [RouteHandler(testData.route1) { _, _, _ in self.testData.nextgenVC }]
 
-        let router = NextGenRoutes.makeRouter(academicRoutes: academicRoutes, nextgenRoutes: nextgenRoutes)
+        let router = NGRoutes.makeRouter(academicRoutes: academicRoutes, nextgenRoutes: nextgenRoutes)
 
         XCTAssertIdentical(router.match(testData.route2), testData.academicVC)
     }
