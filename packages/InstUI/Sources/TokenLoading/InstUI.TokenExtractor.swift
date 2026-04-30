@@ -66,7 +66,8 @@ extension InstUI {
             }
             var result: [String: String] = [:]
             func walk(_ dict: [String: Any], _ prefix: String) {
-                for (key, val) in dict {
+                for (rawKey, val) in dict {
+                    let key = rawKey.trimmingCharacters(in: .whitespaces)
                     let path = prefix.isEmpty ? key : "\(prefix).\(key)"
                     if let leaf = val as? [String: Any], let value = leaf["value"] as? String {
                         result[path] = value

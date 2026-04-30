@@ -23,7 +23,7 @@ public extension InstUI.Semantic.FontWeight {
     struct Storybook: View {
 
         public var body: some View {
-            List(InstUI.Theme.default.fontWeights.all, id: \.name) { entry in
+            List(InstUI.Theme.default.fontWeight.all, id: \.name) { entry in
                 HStack(spacing: 12) {
                     Text(verbatim: entry.name)
                         .font(.system(size: 12, design: .monospaced))

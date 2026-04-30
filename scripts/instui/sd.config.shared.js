@@ -70,7 +70,7 @@ function toTypeName(key) {
 // Returns a single string (multiline).
 // leafType: the Swift type for homogeneous leaves (e.g. 'Color', 'CGFloat').
 //   Pass null for heterogeneous component trees — each leaf then uses child.swiftType.
-function genStructBlock(structName, tree, indentLevel, leafType = 'Color') {
+function genStructBlock(structName, tree, indentLevel, leafType = 'Color', extraProperties = []) {
   const pad = '    '.repeat(indentLevel)
   const inner = '    '.repeat(indentLevel + 1)
   const lines = []
@@ -84,6 +84,9 @@ function genStructBlock(structName, tree, indentLevel, leafType = 'Color') {
     } else {
       lines.push(`${inner}public let ${key}: ${toTypeName(key)}`)
     }
+  }
+  for (const prop of extraProperties) {
+    lines.push(`${inner}${prop}`)
   }
 
   // 2. Nested struct definitions

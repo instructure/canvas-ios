@@ -1,0 +1,134 @@
+{
+  "menu": {
+    "maxWidth": {
+      "value": "16em",
+      "type": "sizing"
+    },
+    "minWidth": {
+      "value": "8em",
+      "type": "sizing"
+    }
+  },
+  "menuGroup": {
+    "background": {
+      "value": "{color.background.elevatedSurface.base}",
+      "type": "color"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.strong}",
+      "type": "fontWeights"
+    },
+    "color": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "paddingHorizontal": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "paddingVertical": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    }
+  },
+  "menuItem": {
+    "activeBackground": {
+      "value": "{color.background.interactive.action.primary.base}",
+      "type": "color"
+    },
+    "activeLabelColor": {
+      "value": "{color.text.interactive.action.primary.base}",
+      "type": "color"
+    },
+    "background": {
+      "value": "{color.background.elevatedSurface.base}",
+      "type": "color"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "iconPadding": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing",
+      "description": "code only token"
+    },
+    "labelColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "labelInfoColor": {
+      "value": "{color.text.muted}",
+      "type": "color"
+    },
+    "lineHeight": {
+      "value": "{lineHeight.paragraph.textSm}",
+      "type": "lineHeights"
+    },
+    "labelPadding": {
+      "value": "0rem",
+      "type": "spacing",
+      "description": "code only token"
+    },
+    "paddingVertical": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "paddingHorizontal": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "highlightedBackground": {
+      "value": "{color.background.interactive.action.tertiary.hover}",
+      "type": "color"
+    },
+    "selectedHighlightedBackground": {
+      "value": "{color.background.interactive.action.primary.hover}",
+      "type": "color"
+    },
+    "highlightedLabelColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "highlightedLabelInfoColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    }
+  },
+  "menuSeparator": {
+    "background": {
+      "value": "{color.stroke.muted}",
+      "type": "color"
+    },
+    "height": {
+      "value": "0.0625rem",
+      "type": "sizing"
+    },
+    "marginVertical": {
+      "value": "0rem",
+      "type": "sizing",
+      "description": "code only token"
+    },
+    "marginHorizontal": {
+      "value": "0.75rem",
+      "type": "sizing",
+      "description": "code only token"
+    }
+  }
+}

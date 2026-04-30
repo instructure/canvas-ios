@@ -1,6 +1,6 @@
 # InstUI
 
-A Swift Package that provides Instructure design-system tokens for use in SwiftUI and UIKit. Tokens are organized into two layers: **Primitives** (raw values) and **Semantic** (role-based, theme-aware values).
+A Swift Package that provides Instructure design-system tokens for use in SwiftUI and UIKit. Tokens are organized into three layers: **Component** (per-component typed token sets), **Semantic** (role-based, theme-aware values), and **Primitives** (raw values).
 
 Tokens originate from the [instructure-ui](https://github.com/instructure/instructure-ui) repository. Do not edit the generated Swift source files by hand.
 
@@ -10,105 +10,121 @@ Tokens originate from the [instructure-ui](https://github.com/instructure/instru
 
 ```
 ┌─────────────────────────────────────────────────┐
+│                 Component layer                 │
+│  Per-component token structs                    │
+│  (Badge, BaseButton, TextInput, …)              │
+│  Accessed via .iui.<component>.<token>          │
+└──────────────────────┬──────────────────────────┘
+                       │ references
+┌──────────────────────▼──────────────────────────┐
 │                  Semantic layer                 │
 │  Role-based tokens — runtime-loaded from JSON   │
 │  (colors, sizes, spacing, typography, …)        │
-│  Accessed via InstUI.Theme.default              │
+│  Accessed via .iuiSemantic / .iuiSemanticSize…  │
 └──────────────────────┬──────────────────────────┘
                        │ references
 ┌──────────────────────▼──────────────────────────┐
 │                 Primitives layer                │
 │  Raw design values — compile-time Swift consts  │
 │  (palette colors, size scale, font weights, …)  │
-│  Accessed via InstUI.Primitives.*               │
+│  Accessed via .iuiPrimitive / .iuiPrimitiveSize…│
 └─────────────────────────────────────────────────┘
 ```
 
-### Primitives
+### Component layer
 
-Raw, context-free design values. Every primitive is a typed Swift constant generated at build time from the instructure-ui token set. Primitives are the source of truth that semantic tokens reference.
+Per-component token structs that collect all design decisions for a single UI component into one typed value. Each component struct has properties of mixed types (`Color`, `CGFloat`, `Font.Weight`, `String`) derived from the component's token JSON. Component tokens reference semantic values, so they always resolve against the active theme.
 
-**Token types:**
+One Swift file is generated per component JSON. The set of files is kept in sync with upstream automatically: when `yarn build-instui` runs, the `Generated/` directory is wiped and rebuilt from whatever JSON files exist at the pinned `INSTUI_VERSION`, so any component removed upstream is also removed here.
 
-| Type | Swift type | Namespace |
-|---|---|---|
-| Colors | `Color` / `UIColor` | `InstUI.Primitives.Colors` |
-| Sizes | `CGFloat` | `InstUI.Primitives.Sizes` |
-| Font Weights | `Font.Weight` | `InstUI.Primitives.FontWeights` |
-| Font Families | `String` | `InstUI.Primitives.FontFamilies` |
-| Opacities | `Double` | `InstUI.Primitives.Opacities` |
+```swift
+struct CheckboxView: View {
+    var body: some View {
+        RoundedRectangle(cornerRadius: .iui.checkbox.borderRadius)
+            .stroke(.iui.checkbox.borderColor)
+            .frame(width: .iui.checkbox.size, height: .iui.checkbox.size)
+    }
+}
+```
+
+Direct access through the theme is also available:
+
+```swift
+let tokens = InstUI.Theme.default.components.checkbox
+```
 
 ### Semantic layer
 
 Role-based tokens that map design decisions onto primitives (e.g. "the interactive element height at medium size" or "the text color for a danger state"). Semantic tokens are loaded at runtime from versioned JSON files bundled in the package resources. This allows the token set to evolve independently of the Swift type definitions.
 
-**Token types:**
-
 | Type | Swift type | Theme property |
 |---|---|---|
-| Colors | `Color` | `theme.colors` |
+| Colors | `Color` | `theme.color` |
 | Size | `CGFloat` | `theme.size` |
 | Spacing | `CGFloat` | `theme.spacing` |
 | Border Radius | `CGFloat` | `theme.borderRadius` |
 | Border Width | `CGFloat` | `theme.borderWidth` |
 | Font Size | `CGFloat` | `theme.fontSize` |
 | Opacity | `Double` | `theme.opacity` |
-| Font Weights | `Font.Weight` | `theme.fontWeights` |
-| Font Families | `String` | `theme.fontFamilies` |
-
----
-
-## Using semantic tokens
-
-Semantic tokens are accessed through `InstUI.Theme.default`.
+| Font Weights | `Font.Weight` | `theme.fontWeight` |
+| Font Families | `String` | `theme.fontFamily` |
 
 ```swift
-import InstUI
-import SwiftUI
-
 struct MyView: View {
-    private let theme = InstUI.Theme.default
-
     var body: some View {
         Text("Hello")
-            .foregroundStyle(theme.colors.text.body)
-            .font(.system(size: theme.fontSize.textBase))
-            .padding(theme.spacing.spaceMd)
+            .foregroundStyle(.iuiSemantic.text.base)
+            .font(.system(size: .iuiSemanticFontSize.textBase))
+            .padding(.iuiSemanticSpacing.spaceMd)
     }
 }
 ```
 
----
-
-## Using primitive tokens
-
-Primitives are compile-time constants. Three access styles are available for the same value:
+Direct theme access is also available when you need to pass the full token group to a helper or inspect multiple values at once:
 
 ```swift
-// 1. Canonical — via the primitive namespace (preferred)
-let c: Color = InstUI.Primitives.Colors.blue100
-
-// 2. SwiftUI dot syntax — when the type is already known
-let c: Color = .InstUI.Primitives.blue100
-
-// 3. UIKit
-let c: UIColor = UIColor.InstUI.Primitives.blue100
+let theme = InstUI.Theme.default
+let color = theme.color.text.base
+let spacing = theme.spacing.spaceMd
 ```
 
-The same pattern applies to `CGFloat` (Sizes), `Font.Weight` (FontWeights), `Double` (Opacities), and `String` (FontFamilies).
+### Primitives
+
+Raw, context-free design values. Every primitive is a typed Swift constant generated at build time from the instructure-ui token set. Primitives are the source of truth that semantic tokens reference.
+
+| Type | Swift type | Namespace |
+|---|---|---|
+| Colors | `Color` / `UIColor` | `InstUI.Primitive.Color` |
+| Sizes | `CGFloat` | `InstUI.Primitive.Size` |
+| Font Weights | `Font.Weight` | `InstUI.Primitive.FontWeight` |
+| Font Families | `String` | `InstUI.Primitive.FontFamily` |
+| Opacities | `Double` | `InstUI.Primitive.Opacity` |
+
+```swift
+struct MyView: View {
+    var body: some View {
+        Text("Hello")
+            .foregroundStyle(.iuiPrimitive.blue100)
+            .padding(.iuiPrimitiveSize.size16)
+    }
+}
+```
+
+The `iuiPrimitive` typealias is available on `Color`, `UIColor`, `Font.Weight`, `Double` (as `iuiPrimitiveOpacity`), `CGFloat` (as `iuiPrimitiveSize`), and `String` (as `iuiPrimitiveFontFamily`).
 
 ---
 
 ## Code generation
 
-Both layers are generated by the `yarn build-instui` script. The script:
+All three layers are generated by the `yarn build-instui` script. The script:
 
 1. Fetches the token JSON from [instructure-ui](https://github.com/instructure/instructure-ui) at a pinned version.
-2. Generates the `Sources/Primitives/Generated/*.swift` files — typed Swift constants for each primitive token.
-3. Generates the `Sources/Semantic/Generated/*.swift` files — Swift structs that define the shape of each semantic token group, along with a `build(_:)` factory and an `all` property for enumeration.
-4. Writes the resolved token values into the JSON files under `Resources/Tokens/Semantic/` and updates the `InstUI_v{version}` (dots replaced with underscores, e.g. `InstUI_v11_7_1`) marker file in `Resources/`.
+2. Generates `Sources/Primitive/Generated/*.swift` — typed Swift constants for each primitive token.
+3. Generates `Sources/Semantic/Generated/*.swift` — Swift structs defining the shape of each semantic token group, with a `build(_:)` factory and an `all` property for enumeration.
+4. Generates `Sources/Component/Generated/*.swift` — one file per component containing typed accessor extensions (`.iui`, `.iuiSemantic`, etc.) followed by the backing struct and JSON-loading machinery. The `Generated/` directory is wiped before each run to stay in sync with upstream.
+5. Writes the resolved token values into the JSON files under `Resources/Tokens/` and updates the `InstUI_v{version}` marker file in `Resources/`.
 
-The generated Swift structs (Semantic layer) define the **shape** only — no values are hardcoded in Swift. Values are resolved at runtime by `ColorLoader` and `LayoutLoader`, which parse the bundled JSON and construct the typed structs via the generated `build(_:)` factories.
+The generated Swift structs define the **shape** only — no values are hardcoded in Swift. Values are resolved at runtime by the loaders, which parse the bundled JSON and construct the typed structs via the generated `build(_:)` factories.
 
 To update tokens:
 

@@ -52,7 +52,7 @@ public extension InstUI.Semantic.Color {
         }
 
         private var sections: [ColorSection] {
-            let grouped = Dictionary(grouping: InstUI.Theme.default.colors.all) { entry in
+            let grouped = Dictionary(grouping: InstUI.Theme.default.color.all) { entry in
                 entry.name.components(separatedBy: ".").first ?? entry.name
             }
             return grouped.keys.sorted().map { key in

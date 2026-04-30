@@ -1,0 +1,104 @@
+{
+  "textArea": {
+    "backgroundColor": {
+      "value": "{color.background.interactive.input.base}",
+      "type": "color"
+    },
+    "backgroundHoverColor": {
+      "value": "{color.background.interactive.input.hover}",
+      "type": "color"
+    },
+    "backgroundReadonlyColor": {
+      "value": "{color.background.interactive.input.readonly}",
+      "type": "color"
+    },
+    "backgroundDisabledColor": {
+      "value": "{color.background.interactive.input.disabled}",
+      "type": "color"
+    },
+    "borderColor": {
+      "value": "{color.stroke.interactive.input.base}",
+      "type": "color"
+    },
+    "borderHoverColor": {
+      "value": "{color.stroke.interactive.input.hover}",
+      "type": "color"
+    },
+    "borderReadonlyColor": {
+      "value": "{color.stroke.interactive.input.readonly}",
+      "type": "color"
+    },
+    "borderDisabledColor": {
+      "value": "{color.stroke.interactive.input.disabled}",
+      "type": "color"
+    },
+    "errorBorderColor": {
+      "value": "{color.stroke.interactive.action.destructive.base}",
+      "type": "color"
+    },
+    "successBorderColor": {
+      "value": "{color.stroke.interactive.action.success.secondary.base}",
+      "type": "color"
+    },
+    "borderRadius": {
+      "value": "{borderRadius.interactive.base}",
+      "type": "borderRadius"
+    },
+    "borderWidth": {
+      "value": "{borderWidth.interactive.base}",
+      "type": "borderWidth"
+    },
+    "textColor": {
+      "value": "{color.text.interactive.input.base}",
+      "type": "color"
+    },
+    "textReadonlyColor": {
+      "value": "{color.text.interactive.input.readonly}",
+      "type": "color"
+    },
+    "textDisabledColor": {
+      "value": "{color.text.interactive.input.disabled}",
+      "type": "color"
+    },
+    "placeholderColor": {
+      "value": "{color.text.interactive.input.placeholder}",
+      "type": "color"
+    },
+    "placeholderHoverColor": {
+      "value": "{color.text.interactive.input.hover}",
+      "type": "color"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "fontSizeSm": {
+      "value": "{fontSize.textSm}",
+      "type": "fontSizes"
+    },
+    "fontSizeMd": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontSizeLg": {
+      "value": "{fontSize.textLg}",
+      "type": "fontSizes"
+    },
+    "gapContent": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "padding": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "gapPrimitives": {
+      "value": "{spacing.gap.inputElements}",
+      "type": "spacing"
+    }
+  }
+}

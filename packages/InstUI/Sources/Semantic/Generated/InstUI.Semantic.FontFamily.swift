@@ -25,24 +25,28 @@ extension InstUI.Semantic {
         public let heading: String
         public let base: String
         public let code: String
+        public let all: [(name: String, value: String)]
     }
 }
 
 extension InstUI.Semantic.FontFamily {
 
     static func build(_ token: (InstUI.TokenKey) throws -> String) throws -> InstUI.Semantic.FontFamily {
-        try InstUI.Semantic.FontFamily(
-            heading: token("heading"),
-            base: token("base"),
-            code: token("code")
-        )
-    }
+        let heading = try token("heading")
+        let base = try token("base")
+        let code = try token("code")
 
-    var all: [(name: String, value: String)] {
-        [
+        let all: [(name: String, value: String)] = [
             ("heading", heading),
             ("base", base),
             ("code", code),
         ]
+
+        return InstUI.Semantic.FontFamily(
+            heading: heading,
+            base: base,
+            code: code,
+            all: all
+        )
     }
 }

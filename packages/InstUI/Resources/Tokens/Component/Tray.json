@@ -1,0 +1,66 @@
+{
+  "tray": {
+    "backgroundColor": {
+      "value": "{color.background.container}",
+      "type": "color"
+    },
+    "borderColor": {
+      "value": "{color.stroke.container.base}",
+      "type": "color"
+    },
+    "borderWidth": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "boxShadow": {
+      "value": [
+        {
+          "x": "{dropShadow.x.elevation4.dropshadow1}",
+          "y": "{dropShadow.y.elevation4.dropshadow1}",
+          "blur": "{dropShadow.blur.elevation4.dropshadow1}",
+          "spread": "{dropShadow.spread.elevation4.dropshadow1}",
+          "color": "{color.dropShadow.shadowColor2}",
+          "type": "dropShadow"
+        },
+        {
+          "x": "{dropShadow.x.elevation4.dropshadow2}",
+          "y": "{dropShadow.y.elevation4.dropshadow2}",
+          "blur": "{dropShadow.blur.elevation4.dropshadow2}",
+          "spread": "{dropShadow.spread.elevation4.dropshadow2}",
+          "color": "{color.dropShadow.shadowColor1}",
+          "type": "dropShadow"
+        }
+      ],
+      "type": "boxShadow",
+      "description": "Do not use this for other components"
+    },
+    "widthXs": {
+      "value": "16em",
+      "type": "sizing"
+    },
+    "widthSm": {
+      "value": "20em",
+      "type": "sizing"
+    },
+    "widthMd": {
+      "value": "30em",
+      "type": "sizing"
+    },
+    "widthLg": {
+      "value": "48em",
+      "type": "sizing"
+    },
+    "widthXl": {
+      "value": "62em",
+      "type": "sizing"
+    },
+    "padding": {
+      "value": "{spacing.padding.container.md}",
+      "type": "spacing"
+    },
+    "zIndex": {
+      "value": "9999",
+      "type": "number"
+    }
+  }
+}

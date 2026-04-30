@@ -21,5 +21,6 @@ extension InstUI {
         case missingFile(String)
         case missingToken(TokenKey)
         case unknownPrimitive(TokenKey)
+        case invalidValue(String)
     }
 }

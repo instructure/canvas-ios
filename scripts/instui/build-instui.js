@@ -43,12 +43,21 @@ Generated files (DO NOT EDIT manually):
   packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.FontWeight.swift
   packages/InstUI/Sources/Semantic/Generated/InstUI.Semantic.FontFamily.swift
 
-  Semantic token values (bundled JSON):
+  Component Swift types (one file per component, sync'd from upstream):
+  packages/InstUI/Sources/Component/Generated/InstUI.Component.<Name>.swift
+
+  Component collector (generated from the component list):
+  packages/InstUI/Sources/Component/Generated/InstUI.Theme.Components.swift
+
+  Token values (bundled JSON):
   packages/InstUI/Resources/Tokens/Semantic/Color/rebrandLight.json
   packages/InstUI/Resources/Tokens/Semantic/Color/rebrandDark.json
   packages/InstUI/Resources/Tokens/Semantic/Layout/default.json
+  packages/InstUI/Resources/Tokens/Component/<Name>.json
 
 To update to a newer version of instructure-ui, bump INSTUI_VERSION below and re-run.
+Components are sync'd automatically: the Generated/ directory is wiped and rebuilt on each
+run, so any component removed upstream will also be removed from this repo.
 */
 
 const https = require('https')
@@ -56,6 +65,7 @@ const fs = require('fs')
 const path = require('path')
 const buildPrimitivesConfig = require('./sd.config.primitives')
 const buildSemanticConfig = require('./sd.config.semantic')
+const { buildComponent: buildComponentConfig } = require('./sd.config.component')
 
 const INSTUI_VERSION = 'v11.7.1'
 const TOKENS_BASE_URL = `https://raw.githubusercontent.com/instructure/instructure-ui/${INSTUI_VERSION}/packages/ui-scripts/lib/build/tokensStudio`
@@ -72,6 +82,27 @@ function download(url) {
           reject(new Error(`HTTP ${res.statusCode} for ${url}`))
         } else {
           resolve(data)
+        }
+      })
+      res.on('error', reject)
+    })
+    req.setTimeout(DOWNLOAD_TIMEOUT_MS, () => {
+      req.destroy(new Error(`Timed out after ${DOWNLOAD_TIMEOUT_MS}ms: ${url}`))
+    })
+    req.on('error', reject)
+  })
+}
+
+function apiGet(url) {
+  return new Promise((resolve, reject) => {
+    const req = https.get(url, { headers: { 'Accept': 'application/vnd.github.v3+json', 'User-Agent': 'build-instui' } }, res => {
+      let data = ''
+      res.on('data', chunk => { data += chunk })
+      res.on('end', () => {
+        if (res.statusCode !== 200) {
+          reject(new Error(`GitHub API HTTP ${res.statusCode} for ${url}`))
+        } else {
+          resolve(JSON.parse(data))
         }
       })
       res.on('error', reject)
@@ -123,11 +154,35 @@ async function buildSemantic() {
 
   console.log('Building SwiftUI semantic types...')
   buildSemanticConfig(JSON.parse(light), JSON.parse(dark), JSON.parse(layout))
+  return tokensDir
+}
+
+async function buildComponents(tokensDir) {
+  const apiUrl = `https://api.github.com/repos/instructure/instructure-ui/contents/packages/ui-scripts/lib/build/tokensStudio/rebrand/component?ref=${INSTUI_VERSION}`
+  console.log('Fetching component token file listing...')
+  const entries = await apiGet(apiUrl)
+  const jsonFiles = entries.filter(e => e.type === 'file' && e.name.endsWith('.json'))
+
+  console.log(`Downloading ${jsonFiles.length} component token files...`)
+  const downloads = await Promise.all(jsonFiles.map(e => download(e.download_url).then(text => ({ name: e.name, text }))))
+
+  const componentDir = path.join(tokensDir, 'Component')
+  fs.mkdirSync(componentDir, { recursive: true })
+  for (const { name, text } of downloads) {
+    fs.writeFileSync(path.join(componentDir, name), text)
+  }
+  console.log(`Saved ${downloads.length} component JSONs to Resources/${path.basename(tokensDir)}/Component/`)
+
+  const outputDir = path.join(__dirname, '../../packages/InstUI/Sources/Component/Generated')
+  console.log('Building SwiftUI component types...')
+  buildComponentConfig(componentDir, outputDir)
+  console.log(`Generated ${downloads.length} component Swift files.`)
 }
 
 async function main() {
   await buildPrimitives()
-  await buildSemantic()
+  const tokensDir = await buildSemantic()
+  await buildComponents(tokensDir)
   console.log('Done.')
 }
 

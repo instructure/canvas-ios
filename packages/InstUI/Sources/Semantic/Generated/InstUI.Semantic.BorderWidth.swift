@@ -26,6 +26,7 @@ extension InstUI.Semantic {
         public let md: CGFloat
         public let lg: CGFloat
         public let interactive: Interactive
+        public let all: [(name: String, value: CGFloat)]
 
         public struct Interactive: Sendable {
             public let base: CGFloat
@@ -37,24 +38,28 @@ extension InstUI.Semantic {
 extension InstUI.Semantic.BorderWidth {
 
     static func build(_ token: (InstUI.TokenKey) throws -> CGFloat) throws -> InstUI.Semantic.BorderWidth {
-        try InstUI.Semantic.BorderWidth(
-            sm: token("sm"),
-            md: token("md"),
-            lg: token("lg"),
-            interactive: .init(
-                base: token("interactive.base"),
-                focus: token("interactive.focus")
-            )
+        let sm = try token("sm")
+        let md = try token("md")
+        let lg = try token("lg")
+        let interactive = try Interactive.init(
+            base: token("interactive.base"),
+            focus: token("interactive.focus")
         )
-    }
 
-    var all: [(name: String, value: CGFloat)] {
-        [
+        let all: [(name: String, value: CGFloat)] = [
             ("sm", sm),
             ("md", md),
             ("lg", lg),
             ("interactive.base", interactive.base),
             ("interactive.focus", interactive.focus),
         ]
+
+        return InstUI.Semantic.BorderWidth(
+            sm: sm,
+            md: md,
+            lg: lg,
+            interactive: interactive,
+            all: all
+        )
     }
 }

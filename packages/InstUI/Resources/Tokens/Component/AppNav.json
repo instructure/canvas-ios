@@ -1,0 +1,66 @@
+{
+  "appNav": {
+    "borderColor": {
+      "value": "{color.stroke.muted}",
+      "type": "color"
+    },
+    "borderStyle": {
+      "value": "solid",
+      "type": "other"
+    },
+    "borderWidth": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "height": {
+      "value": "3.75rem",
+      "type": "sizing"
+    },
+    "horizontalMargin": {
+      "value": "0.375rem",
+      "type": "spacing"
+    },
+    "menuTriggerWidth": {
+      "value": "7.5rem",
+      "type": "sizing"
+    }
+  },
+  "appNavItem": {
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "backgroundColor": {
+      "value": "{color.background.elevatedSurface.base}",
+      "type": "color"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.strong}",
+      "type": "fontWeights"
+    },
+    "height": {
+      "value": "2.25rem",
+      "type": "sizing"
+    },
+    "padding": {
+      "value": "{spacing.padding.container.xs}",
+      "type": "spacing"
+    },
+    "textColor": {
+      "value": "{color.text.accent.blue}",
+      "type": "color"
+    },
+    "textColorSelected": {
+      "value": "{color.text.accent.ash}",
+      "type": "color"
+    },
+    "fontSize": {
+      "value": "1.125rem",
+      "type": "fontSizes"
+    }
+  }
+}

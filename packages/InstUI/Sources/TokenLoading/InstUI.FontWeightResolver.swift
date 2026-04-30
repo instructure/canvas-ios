@@ -20,24 +20,29 @@ import SwiftUI
 
 extension InstUI {
     struct FontWeightResolver {
-        private let primitivesByName: [TokenKey: Font.Weight]
+        private let map: [TokenKey: Font.Weight]
 
         init() {
-            primitivesByName = Dictionary(
+            map = Dictionary(
                 InstUI.Primitive.FontWeight.all.map { ($0.name, $0.weight) },
-                uniquingKeysWith: { first, _ in first }
+                uniquingKeysWith: { $1 }
             )
         }
 
+        init(map: [TokenKey: Font.Weight]) {
+            self.map = map
+        }
+
         func resolve(_ raw: String) throws -> Font.Weight {
-            guard raw.hasPrefix("{") else {
-                throw InstUI.TokenLoadError.unknownPrimitive(raw)
+            if raw.hasPrefix("{") {
+                let inner = String(raw.dropFirst().dropLast())
+                guard let weight = map[inner] else {
+                    throw InstUI.TokenLoadError.unknownPrimitive(inner)
+                }
+                return weight
             }
-            let inner = String(raw.dropFirst().dropLast())
-            guard let weight = primitivesByName[inner] else {
-                throw InstUI.TokenLoadError.unknownPrimitive(inner)
-            }
-            return weight
+            if let numeric = Font.Weight(cssNumeric: raw) { return numeric }
+            throw InstUI.TokenLoadError.unknownPrimitive(raw)
         }
     }
 }
