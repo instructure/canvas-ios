@@ -22,6 +22,7 @@ import SwiftUI
 struct NGCourseDetailsView: View {
     @ObservedObject var viewModel: CourseDetailsViewModel
     @State private var selectedTab: Tab = .home
+    @State private var screenConfig: BaseScreenConfig = .init(backgroundColor: .backgroundLight)
 
     private var screenState: ScreenState {
         switch viewModel.state {
@@ -34,6 +35,7 @@ struct NGCourseDetailsView: View {
     var body: some View {
         BaseScreen(
             state: screenState,
+            config: screenConfig,
             refreshAction: { completion in
                 Task {
                     await viewModel.refresh()
@@ -62,10 +64,8 @@ struct NGCourseDetailsView: View {
                 .padding(.top, 8)
                 .padding(.bottom, 16)
 
-                Spacer()
                 Text(selectedTab.label)
-                    .foregroundColor(.textLight)
-                Spacer()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 16)
