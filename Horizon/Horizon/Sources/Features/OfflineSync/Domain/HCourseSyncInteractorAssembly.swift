@@ -16,19 +16,8 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import BackgroundTasks
-import Core
-
-public enum CompositeSyncBackgroundUpdatesAssembly {
-
-    public static func makeBackgroundTask() -> BackgroundTask {
-        CompositeBackgroundTask(
-            first: CourseSyncBackgroundUpdatesAssembly.makeOfflineSyncBackgroundTask(),
-            second: HBackgroundUpdatesAssembly.makeBackgroundTask()
-        )
-    }
-
-    public static func makeTaskRequest() -> BGProcessingTaskRequest? {
-        CourseSyncBackgroundUpdatesAssembly.makeTaskRequest()
+public enum HCourseSyncInteractorAssembly {
+    public static func makeInteractor() -> HCourseSyncInteractor {
+        HCourseSyncInteractorLive()
     }
 }

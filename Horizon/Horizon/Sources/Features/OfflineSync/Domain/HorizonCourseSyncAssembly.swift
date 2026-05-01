@@ -18,26 +18,8 @@
 
 import Core
 
-final class CompositeBackgroundTask: BackgroundTask {
-    private let first: BackgroundTask
-    private let second: BackgroundTask
-
-    init(
-        first: BackgroundTask,
-        second: BackgroundTask
-    ) {
-        self.first = first
-        self.second = second
-    }
-
-    func start(completion: @escaping () -> Void) {
-        first.start { [second] in
-            second.start(completion: completion)
-        }
-    }
-
-    func cancel() {
-        first.cancel()
-        second.cancel()
+public enum HorizonCourseSyncAssembly {
+    public static func makeInteractor() -> CourseSyncInteractor {
+        HCourseSyncInteractorAdapter(wrapped: HCourseSyncInteractorAssembly.makeInteractor())
     }
 }

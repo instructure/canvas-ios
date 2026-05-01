@@ -65,7 +65,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
         BackgroundProcessingAssembly.register(scheduler: CoreTaskSchedulerLive(taskScheduler: .shared))
         BackgroundProcessingAssembly.register(taskID: OfflineSyncBackgroundTaskRequest.ID) {
-            CompositeSyncBackgroundUpdatesAssembly.makeBackgroundTask()
+            CourseSyncBackgroundUpdatesAssembly.makeOfflineSyncBackgroundTask(
+                horizonSelectedItemsInteractor: HorizonCourseSyncSelectorInteractor(),
+                horizonSyncInteractor: HorizonCourseSyncAssembly.makeInteractor()
+            )
         }
         BackgroundProcessingAssembly.resolveInteractor().register(taskID: OfflineSyncBackgroundTaskRequest.ID)
         setupFirebase()
@@ -488,9 +491,6 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
         willPresent _: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        guard environment.app != .horizon else {
-            return
-        }
         completionHandler([.banner, .sound])
     }
 

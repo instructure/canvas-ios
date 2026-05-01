@@ -18,12 +18,16 @@
 
 import Core
 
-public enum HBackgroundUpdatesAssembly {
+public protocol HCourseSyncInteractor {
+    func downloadContent()
+    func cancelSync()
+}
 
-    public static func makeBackgroundTask() -> BackgroundTask {
-        HSyncBackgroundTask(
-            syncableAccounts: OfflineSyncAccountsInteractor(),
-            sessions: LoginSession.sessions
-        )
+public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
+    public func downloadContent() {
+
+    }
+    public func cancelSync() {
+
     }
 }

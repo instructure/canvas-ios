@@ -68,10 +68,10 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
                                                sessions: Set<LoginSession>([.make()]),
                                                syncScheduler: mockScheduler,
                                                networkAvailabilityService: networkAvailabilityMock(.connected(.wifi)),
-                                               selectedItemsInteractorFactory: { _ in
+                                               selectedItemsInteractorFactory: { _, _ in
                                                    mockSelectedItems
                                                },
-                                               syncInteractorFactory: {
+                                               syncInteractorFactory: { _ in
                                                     mockSyncInteractor
                                                })
         let completed = expectation(description: "Sync completed")
@@ -94,10 +94,10 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
         let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
                                                sessions: Set<LoginSession>([.make()]),
                                                networkAvailabilityService: networkAvailabilityMock(.connected(.wifi)),
-                                               selectedItemsInteractorFactory: { _ in
+                                               selectedItemsInteractorFactory: { _, _ in
                                                    mockSelectedItems
                                                },
-                                               syncInteractorFactory: {
+                                               syncInteractorFactory: { _ in
                                                     mockSyncInteractor
                                                })
         let completed = expectation(description: "Sync completed")
@@ -121,10 +121,10 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
         let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
                                                sessions: Set<LoginSession>([.make()]),
                                                networkAvailabilityService: networkAvailabilityMock(.connected(.wifi)),
-                                               selectedItemsInteractorFactory: { _ in
+                                               selectedItemsInteractorFactory: { _, _ in
                                                    mockSelectedItems
                                                },
-                                               syncInteractorFactory: {
+                                               syncInteractorFactory: { _ in
                                                     mockSyncInteractor
                                                })
 
@@ -158,10 +158,10 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
         let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
                                                sessions: Set<LoginSession>([user1, user2]),
                                                networkAvailabilityService: networkAvailabilityMock(.connected(.wifi)),
-                                               selectedItemsInteractorFactory: { _ in
+                                               selectedItemsInteractorFactory: { _, _ in
                                                    mockSelectedItems
                                                },
-                                               syncInteractorFactory: {
+                                               syncInteractorFactory: { _ in
                                                     mockSyncInteractor
                                                })
         let completed = expectation(description: "Sync completed")
@@ -195,10 +195,10 @@ class OfflineSyncBackgroundTaskTests: CoreTestCase {
         let testee = OfflineSyncBackgroundTask(syncableAccounts: mockSyncAccountsCalculator,
                                                sessions: Set<LoginSession>([session]),
                                                networkAvailabilityService: networkAvailabilityMock(.connected(.cellular)),
-                                               selectedItemsInteractorFactory: { _ in
+                                               selectedItemsInteractorFactory: { _, _ in
                                                    mockSelectedItems
                                                },
-                                               syncInteractorFactory: {
+                                               syncInteractorFactory: { _ in
                                                     mockSyncInteractor
                                                })
         let completed = expectation(description: "Sync completed")
