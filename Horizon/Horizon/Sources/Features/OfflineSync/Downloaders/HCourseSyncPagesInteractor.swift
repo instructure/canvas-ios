@@ -139,21 +139,17 @@ final class HCourseSyncPagesInteractorLive: HCourseSyncPagesInteractor {
             .map { completedCount in (courseId: courseId, pagesDownloaded: completedCount, totalPages: totalPageCount) }
             .eraseToAnyPublisher()
     }
-
-    /// Converts the accumulated per-course progress map into a single `HPageDownloadProgress` snapshot.
-    /// Computes course states and running size totals in one pass over the map.
+    
     private func buildDownloadProgress(from courseProgressMap: [String: CourseProgressEntry]) -> HPageDownloadProgress {
-        var totalSize = 0
-        var downloadedSize = 0
         let courseProgresses = courseProgressMap.map { courseID, progress -> HCoursePageProgress in
-            totalSize += progress.total * HPageDownloadProgress.bytesPerPage
-            downloadedSize += progress.downloaded * HPageDownloadProgress.bytesPerPage
             let state: HSyncCourseState =
                 (progress.total == 0 || progress.downloaded >= progress.total)
                 ? .downloaded
                 : .downloading
             return HCoursePageProgress(courseID: courseID, state: state)
         }
+        let totalSize = courseProgressMap.values.reduce(0) { $0 + $1.total * HPageDownloadProgress.bytesPerPage }
+        let downloadedSize = courseProgressMap.values.reduce(0) { $0 + $1.downloaded * HPageDownloadProgress.bytesPerPage }
         return HPageDownloadProgress(
             courseProgresses: courseProgresses,
             totalSize: totalSize,

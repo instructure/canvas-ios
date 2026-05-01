@@ -37,8 +37,7 @@ enum HCourseSyncInteractorAssembly {
         let filesInteractor = HCourseSyncFilesInteractorLive()
         return HCourseSyncInteractorLive(
             interactorFiles: filesInteractor,
-            pagesInteractor: makePageInteractor(),
-            session: session,
+            pagesInteractor: pageInteractor,
             sessionManager: HOfflineSyncSessionManagerLive(
                 session: session,
                 filesInteractor: filesInteractor,

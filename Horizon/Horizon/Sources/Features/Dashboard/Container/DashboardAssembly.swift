@@ -47,7 +47,7 @@ enum DashboardAssembly {
                 notificationInteractor: NotificationInteractorPreview(),
                 router: AppEnvironment.shared.router,
                 syncInteractor: HCourseSyncInteractorAssembly.makeInteractor()
-                )
+            )
             return DashboardView(viewModel: viewModel)
         }
     #endif

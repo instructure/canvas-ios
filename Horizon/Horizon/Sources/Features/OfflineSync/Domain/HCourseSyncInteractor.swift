@@ -43,7 +43,6 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
     private let progressSubject = CurrentValueSubject<HOfflineSyncProgress, Never>(.zero)
     private let downloadItemsSubject = CurrentValueSubject<[OfflineCourseItem], Never>([])
     private let errorSubject = PassthroughSubject<Void, Never>()
-    private let pagesProgressSubject = CurrentValueSubject<HPageDownloadProgress, Never>(.zero)
     private var downloadSubscription: AnyCancellable?
     private var modulesFetchSubscription: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
@@ -69,7 +68,6 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
         modulesInteractor: HCourseSyncModulesInteractor = HCourseSyncModulesInteractorLive(),
         pagesInteractor: HCourseSyncPagesInteractor,
         notificationsInteractor: LocalNotificationsInteractor = .init(),
-        session: SessionDefaults,
         sessionManager: HOfflineSyncSessionManager
     ) {
         self.interactorFiles = interactorFiles
@@ -96,9 +94,12 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
                 file.isSelected
                     && !previouslySyncedPaths.contains(OfflineType.file(courseID: file.courseID, fileID: file.id).path())
             }
+        let newSessionCourseIds = downloadItemsSubject.value
+            .map(\.id)
+            .filter { !previouslySyncedPaths.contains(OfflineType.course(id: $0).path()) }
         cancelActiveDownloads()
         interactorFiles.deleteFiles(newSessionFiles, sessionID: sessionManager.sessionID)
-        pagesInteractor.deletePages(courseIds: downloadItemsSubject.value.map(\.id), sessionID: sessionManager.sessionID)
+        pagesInteractor.deletePages(courseIds: newSessionCourseIds, sessionID: sessionManager.sessionID)
         downloadItemsSubject.send([])
         progressSubject.send(.completed)
     }
@@ -121,7 +122,6 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
         modulesFetchSubscription?.cancel()
         modulesFetchSubscription = nil
         subscriptions.removeAll()
-        pagesProgressSubject.send(.zero)
     }
 
     private func sendSuccessNotification(courses: [OfflineCourseItem]) {

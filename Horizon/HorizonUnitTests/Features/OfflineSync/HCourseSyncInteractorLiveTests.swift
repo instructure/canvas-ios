@@ -155,6 +155,16 @@ final class HCourseSyncInteractorLiveTests: HorizonTestCase {
         XCTAssertEqual(pagesInteractor.deletedSessionID, testData.sessionID)
     }
 
+    func test_cancelSync_shouldNotDeleteAlreadySyncedPages() {
+        let course = makeCourse(id: testData.courseID1, isSelected: true)
+        testee.downloadContent(courses: [course], environment: environment)
+        sessionManager.syncedItemPaths = [OfflineType.course(id: testData.courseID1).path()]
+
+        testee.cancelSync()
+
+        XCTAssertEqual(pagesInteractor.deletedCourseIDs.contains(testData.courseID1), false)
+    }
+
     // MARK: - downloadItems
 
     func test_downloadContent_shouldSetLoadingStateOnCourses() {
