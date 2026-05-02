@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,23 +16,11 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import BackgroundTasks
 import Core
 
-public enum HBackgroundUpdatesAssembly {
+public enum HorizonCourseSyncAssembly {
 
-    public static func makeBackgroundTask() -> BackgroundTask {
-        HSyncBackgroundTask(
-            syncableAccounts: HSyncAccountsInteractorLive(),
-            sessions: LoginSession.sessions,
-            courseSyncInteractor: HCourseSyncInteractorAssembly.makeInteractor()
-        )
-    }
-
-    public static func makeTaskRequest() -> BGProcessingTaskRequest? {
-        HSyncBackgroundTaskRequest(
-            nextSyncDate: HSyncNextDateInteractorLive(),
-            sessions: LoginSession.sessions
-        )
+    public static func makeInteractor() -> CourseSyncInteractor {
+        HCourseSyncInteractorAdapter(wrapped: HCourseSyncInteractorAssembly.makeInteractor())
     }
 }

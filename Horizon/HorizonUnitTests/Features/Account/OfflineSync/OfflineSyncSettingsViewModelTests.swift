@@ -140,18 +140,18 @@ final class OfflineSyncSettingsViewModelTests: HorizonTestCase {
 
         testee.isAutoSyncEnabled = true
 
-        XCTAssertEqual(storage.isHorizonAutoSyncEnabled, true)
-        XCTAssertEqual(storage.horizonSyncNextDate, testee.syncFrequency.nextSyncDate(from: now))
+        XCTAssertEqual(storage.isOfflineAutoSyncEnabled, true)
+        XCTAssertEqual(storage.offlineSyncNextDate, testee.syncFrequency.nextSyncDate(from: now))
     }
 
     func test_saveAutoSync_whenDisabled_shouldPersistDisabledAndClearNextDate() {
-        storage.horizonSyncNextDate = Date.make(year: 2026, month: 4, day: 7)
+        storage.offlineSyncNextDate = Date.make(year: 2026, month: 4, day: 7)
         testee = makeViewModel()
 
         testee.isAutoSyncEnabled = false
 
-        XCTAssertEqual(storage.isHorizonAutoSyncEnabled, false)
-        XCTAssertEqual(storage.horizonSyncNextDate, nil)
+        XCTAssertEqual(storage.isOfflineAutoSyncEnabled, false)
+        XCTAssertEqual(storage.offlineSyncNextDate, nil)
     }
 
     // MARK: - saveFrequency
@@ -161,29 +161,29 @@ final class OfflineSyncSettingsViewModelTests: HorizonTestCase {
 
         testee.syncFrequency = .weekly
 
-        XCTAssertEqual(storage.horizonSyncFrequency, .weekly)
+        XCTAssertEqual(storage.offlineSyncFrequency, .weekly)
     }
 
     func test_saveFrequency_whenAutoSyncEnabled_shouldUpdateNextSyncDate() {
         let now = Date.make(year: 2026, month: 4, day: 6)
         Clock.mockNow(now)
-        storage.isHorizonAutoSyncEnabled = true
+        storage.isOfflineAutoSyncEnabled = true
         testee = makeViewModel()
 
         testee.syncFrequency = .weekly
 
-        XCTAssertEqual(storage.horizonSyncNextDate, CourseSyncFrequency.weekly.nextSyncDate(from: now))
+        XCTAssertEqual(storage.offlineSyncNextDate, CourseSyncFrequency.weekly.nextSyncDate(from: now))
     }
 
     func test_saveFrequency_whenAutoSyncDisabled_shouldNotUpdateNextSyncDate() {
         let existingDate = Date.make(year: 2026, month: 4, day: 7)
-        storage.isHorizonAutoSyncEnabled = false
-        storage.horizonSyncNextDate = existingDate
+        storage.isOfflineAutoSyncEnabled = false
+        storage.offlineSyncNextDate = existingDate
         testee = makeViewModel()
 
         testee.syncFrequency = .weekly
 
-        XCTAssertEqual(storage.horizonSyncNextDate, existingDate)
+        XCTAssertEqual(storage.offlineSyncNextDate, existingDate)
     }
 
     // MARK: - Private helpers
