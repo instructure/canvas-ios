@@ -19,32 +19,31 @@
 import Foundation
 import CoreData
 
-public struct GetHSubmissionCommentsUseCase: APIUseCase {
+public struct GetHSubmissionCommentsUseCase: CollectionUseCase {
 
     // MARK: - Typealias
 
     public typealias Model = CDHSubmission
     public typealias Request = GetHSubmissionCommentsRequest
+    public typealias Response = [GetHSubmissionCommentsResponse]
 
     // MARK: - Properties
 
     public var cacheKey: String? {
-        return "Submission-\(assignmentId)-\(userId)-\(forAttempt)-\(beforeCursor ?? "")-Comments"
+        return "Submission-\(assignmentId)"
     }
 
     private let userId: String
     private let assignmentId: String
     private let forAttempt: Int
     private let beforeCursor: String?
-    private let last: Int?
 
     public var request: GetHSubmissionCommentsRequest {
         .init(
             assignmentId: assignmentId,
             userId: userId,
             forAttempt: forAttempt,
-            beforeCursor: beforeCursor,
-            last: last
+            beforeCursor: beforeCursor
         )
     }
 
@@ -54,41 +53,44 @@ public struct GetHSubmissionCommentsUseCase: APIUseCase {
         userId: String,
         assignmentId: String,
         forAttempt: Int,
-        beforeCursor: String? = nil,
-        last: Int? = nil
+        beforeCursor: String? = nil
     ) {
         self.userId = userId
         self.assignmentId = assignmentId
         self.forAttempt = forAttempt
         self.beforeCursor = beforeCursor
-        self.last = last
     }
 
     // MARK: - Functions
 
+    public func makeRequest(environment: AppEnvironment, completionHandler: @escaping RequestCallback) {
+        environment.api.exhaust(request, callback: completionHandler)
+    }
+
     public func write(
-        response: GetHSubmissionCommentsResponse?,
+        response: [GetHSubmissionCommentsResponse]?,
         urlResponse: URLResponse?,
         to client: NSManagedObjectContext
     ) {
-        guard let response else {
-            return
+        guard let responses = response else { return }
+        var pageID: String? = beforeCursor
+        for pageResponse in responses {
+            CDHSubmission.save(
+                pageResponse,
+                assignmentID: assignmentId,
+                attempt: forAttempt,
+                pageID: pageID,
+                in: client
+            )
+            pageID = pageResponse.data?.submission?.commentsConnection?.pageInfo?.startCursor
         }
-        CDHSubmission.save(
-            response,
-            assignmentID: assignmentId,
-            attempt: forAttempt,
-            pageID: beforeCursor,
-            in: client
-        )
     }
 
     public var scope: Scope {
         let predicate = NSCompoundPredicate(
             andPredicateWithSubpredicates: [
                 NSPredicate(format: "%K == %@", #keyPath(CDHSubmission.assignmentID), assignmentId),
-                NSPredicate(format: "%K == %@", #keyPath(CDHSubmission.attempt), forAttempt as NSNumber),
-                NSPredicate(format: "%K == %@", #keyPath(CDHSubmission.pageID), beforeCursor ?? "")
+                NSPredicate(format: "%K == %@", #keyPath(CDHSubmission.attempt), forAttempt as NSNumber)
             ]
         )
         return Scope(predicate: predicate, order: [])

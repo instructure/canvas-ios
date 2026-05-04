@@ -50,21 +50,16 @@ final class SubmissionCommentViewModel {
     private(set) var arePaginationButtonsVisible: Bool = false
     private(set) var isNextButtonEnabled: Bool = false
     private(set) var isPreviousButtonEnabled: Bool = false
-    private(set) var comments: [SubmissionComment] = [] {
-        didSet {
-            let lastComment = comments.last
-            isNextButtonEnabled = lastComment?.hasNextPage ?? false
-            isPreviousButtonEnabled = lastComment?.hasPreviousPage ?? false
-        }
-    }
+    private(set) var comments: [SubmissionComment] = []
     private(set) var fileState: FileDownloadStatus = .initial
 
     // MARK: - Private properties
 
+    private static let pageSize = 5
+
     private var subscriptions = Set<AnyCancellable>()
     private var fileSubscription: AnyCancellable?
-    private var paginatedComments: [Int: [SubmissionComment]] = [:]
-    private var ignoreCache = false
+    private var allComments: [SubmissionComment] = []
     private var currentPage = 0
 
     // MARK: - Init
@@ -94,9 +89,6 @@ final class SubmissionCommentViewModel {
 
     func postComment() {
         viewState = .postingComment
-
-        weak var weakSelf = self
-
         interactor.postComment(
             courseID: courseID,
             assignmentID: assignmentID,
@@ -104,12 +96,12 @@ final class SubmissionCommentViewModel {
             text: text
         )
         .sink(
-            receiveCompletion: { completion in
+            receiveCompletion: { [weak self] completion in
                 switch completion {
                 case .finished:
-                    weakSelf?.getComments(ignoreCache: true)
+                    self?.getComments(ignoreCache: true)
                 case .failure:
-                    weakSelf?.viewState = .error
+                    self?.viewState = .error
                 }
             },
             receiveValue: { _ in }
@@ -120,21 +112,20 @@ final class SubmissionCommentViewModel {
         guard let url = attachment.url, let name = attachment.displayName else {
             return
         }
-        weak var weakSelf = self
         fileState = .loading
         fileSubscription = fileInteractor.download(
             remoteURL: url,
             fileName: name
         )
         .sink(
-            receiveCompletion: {  completion in
+            receiveCompletion: { [weak self] completion in
                 if case let .failure(error) = completion {
-                    weakSelf?.fileState = .error(error.localizedDescription)
+                    self?.fileState = .error(error.localizedDescription)
                 }
             },
-            receiveValue: { url in
-                weakSelf?.fileState = .initial
-                weakSelf?.showShareSheet(fileURL: url, viewController: viewController)
+            receiveValue: { [weak self] url in
+                self?.fileState = .initial
+                self?.showShareSheet(fileURL: url, viewController: viewController)
             }
         )
     }
@@ -146,19 +137,17 @@ final class SubmissionCommentViewModel {
 
     func goNext() {
         currentPage -= 1
-        comments = paginatedComments[currentPage] ?? []
+        updateCurrentPageComments()
     }
 
     func goPrevious() {
         currentPage += 1
-        viewState = .initialLoading
-        getComments(ignoreCache: ignoreCache, beforeCursor: comments.last?.startCursor)
+        updateCurrentPageComments()
     }
 
     func refresh() async {
         await withCheckedContinuation { continuation in
-            getComments(ignoreCache: true) { [weak self] in
-                self?.ignoreCache = true
+            getComments(ignoreCache: true) {
                 continuation.resume()
             }
         }
@@ -166,17 +155,11 @@ final class SubmissionCommentViewModel {
 
     // MARK: - Private functions
 
-    private func getComments(
-        ignoreCache: Bool = false,
-        beforeCursor: String? = nil,
-        completionHandler: (() -> Void)? = nil
-    ) {
+    private func getComments(ignoreCache: Bool = false, completionHandler: (() -> Void)? = nil) {
         interactor.getComments(
             assignmentID: assignmentID,
             attempt: attempt ?? 0,
-            ignoreCache: ignoreCache,
-            beforeCursor: beforeCursor,
-            last: 5
+            ignoreCache: ignoreCache
         )
         .sink(
             receiveCompletion: { [weak self] completion in
@@ -189,17 +172,22 @@ final class SubmissionCommentViewModel {
                 guard let self else { return }
                 text = ""
                 viewState = .data
-                let lastFiveComments = Array(comments.suffix(5))
-                self.comments = lastFiveComments
-                paginatedComments[currentPage] = lastFiveComments
-                if let lastComment = lastFiveComments.last {
-                    arePaginationButtonsVisible = lastComment.hasNextPage || lastComment.hasPreviousPage
-                    isPreviousButtonEnabled = lastComment.hasPreviousPage
-                    isNextButtonEnabled = lastComment.hasNextPage
-                }
+                allComments = comments
+                currentPage = 0
+                updateCurrentPageComments()
             }
         )
         .store(in: &subscriptions)
+    }
+
+    private func updateCurrentPageComments() {
+        let total = allComments.count
+        let end = total - currentPage * Self.pageSize
+        let start = max(0, end - Self.pageSize)
+        comments = Array(allComments[start..<end])
+        arePaginationButtonsVisible = total > Self.pageSize
+        isNextButtonEnabled = currentPage > 0
+        isPreviousButtonEnabled = start > 0
     }
 
     private func showShareSheet(fileURL: URL, viewController: WeakViewController) {

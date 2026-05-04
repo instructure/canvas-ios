@@ -37,6 +37,7 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
     private let pagesInteractor: HCourseSyncPagesInteractor
     private let notificationsInteractor: LocalNotificationsInteractor
     private let sessionManager: HOfflineSyncSessionManager
+    private let assignmentsInteractor: HCourseSyncAssignmentsInteractor
 
     // MARK: - Private state
 
@@ -68,13 +69,15 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
         modulesInteractor: HCourseSyncModulesInteractor = HCourseSyncModulesInteractorLive(),
         pagesInteractor: HCourseSyncPagesInteractor,
         notificationsInteractor: LocalNotificationsInteractor = .init(),
-        sessionManager: HOfflineSyncSessionManager
+        sessionManager: HOfflineSyncSessionManager,
+        assignmentsInteractor: HCourseSyncAssignmentsInteractor
     ) {
         self.interactorFiles = interactorFiles
         self.modulesInteractor = modulesInteractor
         self.pagesInteractor = pagesInteractor
         self.notificationsInteractor = notificationsInteractor
         self.sessionManager = sessionManager
+        self.assignmentsInteractor = assignmentsInteractor
     }
 
     public func clear() {
@@ -99,7 +102,7 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
             .filter { !previouslySyncedPaths.contains(OfflineType.course(id: $0).path()) }
         cancelActiveDownloads()
         interactorFiles.deleteFiles(newSessionFiles, sessionID: sessionManager.sessionID)
-        pagesInteractor.deletePages(courseIds: newSessionCourseIds, sessionID: sessionManager.sessionID)
+        sessionManager.deleteCourseFolder(courseIds: newSessionCourseIds, sessionID: sessionManager.sessionID)
         downloadItemsSubject.send([])
         progressSubject.send(.completed)
     }
@@ -110,6 +113,9 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
         downloadItemsSubject.send(courses.map { var c = $0; c.downloadState = .loading; return c })
         prefetchModules(courses: courses)
         startFileDownload(courses: courses)
+        assignmentsInteractor.getContent(courseIds: courses.map(\.id), sessionID: sessionManager.sessionID)
+            .sink()
+            .store(in: &subscriptions)
     }
 
     // MARK: - Private helpers
@@ -117,6 +123,7 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
     private func cancelActiveDownloads() {
         interactorFiles.cancelDownloads()
         pagesInteractor.cancelDownloads()
+        assignmentsInteractor.cancelDownloads()
         downloadSubscription?.cancel()
         downloadSubscription = nil
         modulesFetchSubscription?.cancel()
@@ -158,15 +165,18 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
                 isComplete: false
             ))
         }
-        downloadSubscription = interactorFiles
-            .downloadFiles(courses: courses, sessionID: sessionManager.sessionID)
-            .combineLatest(prefetchPages(courses: courses))
-            .sink { [weak self] fileProgress, pageProgress in
+        let filePublisher = interactorFiles.downloadFiles(courses: courses, sessionID: sessionManager.sessionID)
+        let pagePublisher = prefetchPages(courses: courses).share()
+        let attachmentPublisher = assignmentsInteractor.attachmentProgressPublisher
+
+        downloadSubscription = filePublisher
+            .combineLatest(pagePublisher, attachmentPublisher)
+            .sink { [weak self] (fileProgress, pageProgress, attachmentProgress) in
                 guard let self else { return }
-                let totalSize = fileProgress.totalSize + Double(pageProgress.totalSize)
-                let downloadedSize = fileProgress.downloadedSize + Double(pageProgress.downloadedSize)
+                let totalSize = fileProgress.totalSize + Double(pageProgress.totalSize) + attachmentProgress.totalSize
+                let downloadedSize = fileProgress.downloadedSize + Double(pageProgress.downloadedSize) + attachmentProgress.downloadedSize
                 let pagesComplete = pageProgress.courseProgresses.allSatisfy { $0.state == .downloaded }
-                let isComplete = fileProgress.isComplete && pagesComplete
+                let isComplete = fileProgress.isComplete && pagesComplete && attachmentProgress.isComplete
 
                 let rawProgress: Double = isComplete ? 1.0 : (totalSize > 0 ? downloadedSize / totalSize : 0)
                 progressSubject.send(HOfflineSyncProgress(
@@ -175,11 +185,22 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
                     totalSize: Int(totalSize).humanReadableFileSize,
                     isComplete: isComplete
                 ))
-                downloadItemsSubject.send(Self.updatedCourses(from: courses, fileProgress: fileProgress, pageProgress: pageProgress))
+                var updatedCourses = Self.updatedCourses(
+                    from: courses,
+                    fileProgress: fileProgress,
+                    pageProgress: pageProgress,
+                    attachmentsComplete: attachmentProgress.isComplete
+                )
+                downloadItemsSubject.send(updatedCourses)
 
                 if isComplete {
-                    sendCompletionNotification(items: fileProgress.files, courses: courses)
-                    sessionManager.saveCompletedSync(courses: courses, files: fileProgress.files)
+                    for file in attachmentProgress.downloadedFiles {
+                        if let index = updatedCourses.firstIndex(where: { $0.id == file.courseID }) {
+                            updatedCourses[index].appFile(id: file.fileID, courseID: file.courseID)
+                        }
+                    }
+                    sendCompletionNotification(items: fileProgress.files, courses: updatedCourses)
+                    sessionManager.saveCompletedSync(courses: updatedCourses, files: fileProgress.files)
                 }
             }
     }
@@ -208,7 +229,8 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
     private static func updatedCourses(
         from courses: [OfflineCourseItem],
         fileProgress: HFileDownloadProgress,
-        pageProgress: HPageDownloadProgress
+        pageProgress: HPageDownloadProgress,
+        attachmentsComplete: Bool
     ) -> [OfflineCourseItem] {
         let filesByID = Dictionary(uniqueKeysWithValues: fileProgress.files.map { ($0.id, $0) })
         let fileStateByCourse = Dictionary(uniqueKeysWithValues: fileProgress.courseProgresses.map { ($0.courseID, $0.state) })
@@ -223,7 +245,7 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
             }
             let filesDownloaded = fileStateByCourse[course.id].map { $0 == .downloaded } ?? true
             let pagesDownloaded = pageStateByCourse[course.id].map { $0 == .downloaded } ?? true
-            updated.downloadState = (filesDownloaded && pagesDownloaded) ? .downloaded : .loading
+            updated.downloadState = (filesDownloaded && pagesDownloaded && attachmentsComplete) ? .downloaded : .loading
             return updated
         }
     }

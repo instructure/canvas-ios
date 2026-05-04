@@ -26,8 +26,7 @@ final class HCourseSyncPagesInteractorLiveTests: HorizonTestCase {
 
     private static let testData = (
         courseID1: "42",
-        courseID2: "99",
-        sessionID: "session 1"
+        courseID2: "99"
     )
     private lazy var testData = Self.testData
 
@@ -155,41 +154,6 @@ final class HCourseSyncPagesInteractorLiveTests: HorizonTestCase {
         XCTAssertEqual(lastProgress?.courseProgresses.first?.state, .downloaded)
         XCTAssertEqual(lastProgress?.totalSize, 1 * HPageDownloadProgress.bytesPerPage)
         XCTAssertEqual(lastProgress?.downloadedSize, 1 * HPageDownloadProgress.bytesPerPage)
-    }
-
-    // MARK: - deletePages
-
-    func test_deletePages_shouldRemovePagesFolder() {
-        let folderURL = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: testData.sessionID,
-            courseId: testData.courseID1,
-            sectionName: "pages"
-        )
-        try? FileManager.default.createDirectory(at: folderURL, withIntermediateDirectories: true)
-
-        testee.deletePages(courseIds: [testData.courseID1], sessionID: testData.sessionID)
-
-        XCTAssertEqual(FileManager.default.fileExists(atPath: folderURL.path), false)
-    }
-
-    func test_deletePages_withMultipleCourses_shouldRemoveAllPagesFolders() {
-        let folderURL1 = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: testData.sessionID,
-            courseId: testData.courseID1,
-            sectionName: "pages"
-        )
-        let folderURL2 = URL.Paths.Offline.courseSectionFolderURL(
-            sessionId: testData.sessionID,
-            courseId: testData.courseID2,
-            sectionName: "pages"
-        )
-        try? FileManager.default.createDirectory(at: folderURL1, withIntermediateDirectories: true)
-        try? FileManager.default.createDirectory(at: folderURL2, withIntermediateDirectories: true)
-
-        testee.deletePages(courseIds: [testData.courseID1, testData.courseID2], sessionID: testData.sessionID)
-
-        XCTAssertEqual(FileManager.default.fileExists(atPath: folderURL1.path), false)
-        XCTAssertEqual(FileManager.default.fileExists(atPath: folderURL2.path), false)
     }
 
     // MARK: - Private helpers

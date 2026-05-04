@@ -77,3 +77,8 @@ public struct GetHSubmissionCommentsResponse: Codable {
         }
     }
 }
+
+extension GetHSubmissionCommentsResponse: PagedResponse {
+    public typealias Page = [GetHSubmissionCommentsResponse]
+    public var page: [GetHSubmissionCommentsResponse] { [self] }
+}

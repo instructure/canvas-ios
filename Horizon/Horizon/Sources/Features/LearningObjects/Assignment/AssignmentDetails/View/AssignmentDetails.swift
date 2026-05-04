@@ -170,10 +170,15 @@ struct AssignmentDetails: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .huiTypography(.h3)
                     .foregroundStyle( Color.huiColors.text.title)
-                WebView(html: details, isScrollEnabled: false)
-                    .frameToFit()
-                    .padding(.horizontal, -16)
-                    .id(details)
+                WebView(
+                    offlineFilePath: viewModel.offlineIntoURL,
+                    content: details,
+                    originalBaseURL: nil,
+                    isScrollEnabled: false
+                )
+                .frameToFit()
+                .padding(.horizontal, -16)
+                .id(details)
             }
         }
     }

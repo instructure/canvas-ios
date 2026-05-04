@@ -18,7 +18,7 @@
 
 import Foundation
 
-public struct GetHSubmissionCommentsRequest: APIGraphQLRequestable {
+public struct GetHSubmissionCommentsRequest: APIGraphQLPagedRequestable {
     public typealias Response = GetHSubmissionCommentsResponse
     public let variables: Input
 
@@ -35,7 +35,7 @@ public struct GetHSubmissionCommentsRequest: APIGraphQLRequestable {
         userId: String,
         forAttempt: Int,
         beforeCursor: String? = nil,
-        last: Int? = nil
+        last: Int? = 100
     ) {
         variables = Input(
             userId: userId,
@@ -43,6 +43,19 @@ public struct GetHSubmissionCommentsRequest: APIGraphQLRequestable {
             forAttempt: forAttempt,
             beforeCursor: beforeCursor,
             last: last
+        )
+    }
+
+    public func nextPageRequest(from response: GetHSubmissionCommentsResponse) -> GetHSubmissionCommentsRequest? {
+        guard response.data?.submission?.commentsConnection?.pageInfo?.hasPreviousPage == true else {
+            return nil
+        }
+        return GetHSubmissionCommentsRequest(
+            assignmentId: variables.assignmentId,
+            userId: variables.userId,
+            forAttempt: variables.forAttempt,
+            beforeCursor: response.data?.submission?.commentsConnection?.pageInfo?.startCursor,
+            last: variables.last
         )
     }
 

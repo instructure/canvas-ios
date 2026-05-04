@@ -23,9 +23,7 @@ protocol SubmissionCommentInteractor {
     func getComments(
         assignmentID: String,
         attempt: Int,
-        ignoreCache: Bool,
-        beforeCursor: String?,
-        last: Int?
+        ignoreCache: Bool
     ) -> AnyPublisher<[SubmissionComment], Error>
 
     func postComment(
@@ -74,17 +72,13 @@ final class SubmissionCommentInteractorLive: SubmissionCommentInteractor {
     func getComments(
         assignmentID: String,
         attempt: Int,
-        ignoreCache: Bool,
-        beforeCursor: String?,
-        last: Int?
+        ignoreCache: Bool
     ) -> AnyPublisher<[SubmissionComment], Error> {
         let userID = sessionInteractor.getUserID() ?? ""
         let useCase = GetHSubmissionCommentsUseCase(
             userId: userID,
             assignmentId: assignmentID,
-            forAttempt: attempt,
-            beforeCursor: beforeCursor,
-            last: last
+            forAttempt: attempt
         )
 
         return ReactiveStore(useCase: useCase)

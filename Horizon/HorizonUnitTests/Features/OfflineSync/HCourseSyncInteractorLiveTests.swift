@@ -145,24 +145,24 @@ final class HCourseSyncInteractorLiveTests: HorizonTestCase {
         XCTAssertEqual(filesInteractor.deletedFiles.isEmpty, true)
     }
 
-    func test_cancelSync_shouldCallDeletePagesForDownloadingCourses() {
+    func test_cancelSync_shouldCallDeleteCourseFolderForDownloadingCourses() {
         let course = makeCourse(id: testData.courseID1, isSelected: true)
         testee.downloadContent(courses: [course], environment: environment)
 
         testee.cancelSync()
 
-        XCTAssertEqual(pagesInteractor.deletedCourseIDs.contains(testData.courseID1), true)
-        XCTAssertEqual(pagesInteractor.deletedSessionID, testData.sessionID)
+        XCTAssertEqual(sessionManager.deletedCourseIds.contains(testData.courseID1), true)
+        XCTAssertEqual(sessionManager.deletedSessionID, testData.sessionID)
     }
 
-    func test_cancelSync_shouldNotDeleteAlreadySyncedPages() {
+    func test_cancelSync_shouldNotDeleteAlreadySyncedCourseFolder() {
         let course = makeCourse(id: testData.courseID1, isSelected: true)
         testee.downloadContent(courses: [course], environment: environment)
         sessionManager.syncedItemPaths = [OfflineType.course(id: testData.courseID1).path()]
 
         testee.cancelSync()
 
-        XCTAssertEqual(pagesInteractor.deletedCourseIDs.contains(testData.courseID1), false)
+        XCTAssertEqual(sessionManager.deletedCourseIds.contains(testData.courseID1), false)
     }
 
     // MARK: - downloadItems
@@ -354,8 +354,8 @@ final class HCourseSyncInteractorLiveTests: HorizonTestCase {
             modulesInteractor: modulesInteractor,
             pagesInteractor: pagesInteractor,
             notificationsInteractor: LocalNotificationsInteractor(notificationCenter: notificationCenter),
-            session: SessionDefaults(sessionID: testData.sessionID),
-            sessionManager: sessionManager
+            sessionManager: sessionManager,
+            assignmentsInteractor: HCourseSyncAssignmentsInteractorMock()
         )
     }
 
@@ -410,13 +410,16 @@ final class HCourseSyncInteractorLiveTests: HorizonTestCase {
 
 // MARK: - Mocks
 
-private final class HCourseSyncFilesInteractorMock: HCourseSyncFilesInteractor {
+final class HCourseSyncFilesInteractorMock: HCourseSyncFilesInteractor {
     let downloadFilesSubject = PassthroughSubject<HFileDownloadProgress, Never>()
     var cancelDownloadsCalled = false
     var deletedFiles: [OfflineFileItem] = []
     var deletedSessionID: String?
-
-    func downloadFiles(courses: [OfflineCourseItem], sessionID: String) -> AnyPublisher<HFileDownloadProgress, Never> {
+    var removeUnavailableFilesCourseIDs: [String] = []
+    func downloadFiles(
+        courses: [OfflineCourseItem],
+        sessionID: String
+    ) -> AnyPublisher<HFileDownloadProgress, Never> {
         let hasSelectedFiles = courses.flatMap(\.selectedFiles).isNotEmpty
         if hasSelectedFiles {
             return downloadFilesSubject.eraseToAnyPublisher()
@@ -433,8 +436,21 @@ private final class HCourseSyncFilesInteractorMock: HCourseSyncFilesInteractor {
         deletedSessionID = sessionID
     }
 
-    func removeUnavailableFiles(courseId: String, newFileIDs: [String], sessionID: String) -> AnyPublisher<Void, Error> {
-        Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+    func removeUnavailableFiles(
+        courseId: String,
+        newFileIDs: [String],
+        sessionID: String
+    ) -> AnyPublisher<Void, Error> {
+        removeUnavailableFilesCourseIDs.append(courseId)
+        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
+
+    func download(
+        file: Core.File,
+        courseID: String,
+        sessionID: String
+    ) -> AnyPublisher<Float, Error> {
+        Just(0.0).setFailureType(to: Error.self).eraseToAnyPublisher()
     }
 }
 
@@ -444,10 +460,7 @@ private final class HCourseSyncModulesInteractorMock: HCourseSyncModulesInteract
     }
 }
 
-private final class HCourseSyncPagesInteractorMock: HCourseSyncPagesInteractor {
-    var deletedCourseIDs: [String] = []
-    var deletedSessionID: String?
-
+final class HCourseSyncPagesInteractorMock: HCourseSyncPagesInteractor {
     func getPages(courseIds: [String]) -> AnyPublisher<HPageDownloadProgress, Error> {
         let progresses = courseIds.map { HCoursePageProgress(courseID: $0, state: .downloaded) }
         return Just(HPageDownloadProgress(courseProgresses: progresses, totalSize: 0, downloadedSize: 0))
@@ -456,20 +469,18 @@ private final class HCourseSyncPagesInteractorMock: HCourseSyncPagesInteractor {
     }
 
     func cancelDownloads() {}
-
-    func deletePages(courseIds: [String], sessionID: String) {
-        deletedCourseIDs.append(contentsOf: courseIds)
-        deletedSessionID = sessionID
-    }
 }
 
 private final class HOfflineSyncSessionManagerMock: HOfflineSyncSessionManager {
+
     var sessionID: String
     var syncedItemPaths: [String] = []
     var clearSessionDataCalled = false
     var finalizeSyncCourses: [OfflineCourseItem]?
     var saveCompletedSyncCourses: [OfflineCourseItem]?
     var saveCompletedSyncFiles: [OfflineFileItem]?
+    var deletedCourseIds: [String] = []
+    var deletedSessionID: String?
 
     init(sessionID: String) {
         self.sessionID = sessionID
@@ -487,4 +498,31 @@ private final class HOfflineSyncSessionManagerMock: HOfflineSyncSessionManager {
         saveCompletedSyncCourses = courses
         saveCompletedSyncFiles = files
     }
+
+    func deleteCourseFolder(courseIds: [String], sessionID: String) {
+        deletedCourseIds.append(contentsOf: courseIds)
+        deletedSessionID = sessionID
+    }
+}
+
+private final class HCourseSyncAssignmentsInteractorMock: HCourseSyncAssignmentsInteractor {
+    var attachmentProgressPublisher: AnyPublisher<HAttachmentDownloadProgress, Never> {
+        Just(
+            HAttachmentDownloadProgress(
+                totalSize: 0,
+                downloadedSize: 0,
+                isComplete: true,
+                downloadedFiles: []
+            )
+        )
+            .eraseToAnyPublisher()
+    }
+
+    func getContent(courseIds: [String], sessionID: String) -> AnyPublisher<Void, Error> {
+        Just(())
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+    
+    func cancelDownloads() { }
 }

@@ -127,22 +127,31 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
         XCTAssertEqual(filesInteractor.removeUnavailableFilesCourseIDs, [testData.courseID1, testData.courseID2])
     }
 
-    func test_finalizeSync_shouldCallDeletePagesForDeselectedCourses() {
+    func test_finalizeSync_shouldDeleteCourseFolderForDeselectedCourses() {
         session.horizonOfflineSyncItems = [OfflineType.course(id: testData.courseID2).path()]
         let course1 = makeCourse(id: testData.courseID1)
+        let folderURL = URL.Directories.documents.appendingPathComponent(
+            URL.Paths.Offline.courseFolder(sessionID: testData.sessionID, courseId: testData.courseID2)
+        )
+        try? FileManager.default.createDirectory(at: folderURL, withIntermediateDirectories: true)
 
         testee.finalizeSync(courses: [course1])
 
-        XCTAssertEqual(pagesInteractor.deletedCourseIDs, [testData.courseID2])
+        XCTAssertEqual(FileManager.default.fileExists(atPath: folderURL.path), false)
     }
 
-    func test_finalizeSync_shouldNotDeletePagesForRetainedCourses() {
+    func test_finalizeSync_shouldNotDeleteCourseFolderForRetainedCourses() {
         session.horizonOfflineSyncItems = [OfflineType.course(id: testData.courseID1).path()]
         let course1 = makeCourse(id: testData.courseID1)
+        let folderURL = URL.Directories.documents.appendingPathComponent(
+            URL.Paths.Offline.courseFolder(sessionID: testData.sessionID, courseId: testData.courseID1)
+        )
+        try? FileManager.default.createDirectory(at: folderURL, withIntermediateDirectories: true)
+        defer { try? FileManager.default.removeItem(at: folderURL) }
 
         testee.finalizeSync(courses: [course1])
 
-        XCTAssertEqual(pagesInteractor.deletedCourseIDs, [])
+        XCTAssertEqual(FileManager.default.fileExists(atPath: folderURL.path), true)
     }
 
     // MARK: - saveCompletedSync
@@ -204,38 +213,5 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
             mimeClass: "pdf",
             courseID: courseID
         )
-    }
-}
-
-// MARK: - Mocks
-
-private final class HCourseSyncFilesInteractorMock: HCourseSyncFilesInteractor {
-    var removeUnavailableFilesCourseIDs: [String] = []
-
-    func downloadFiles(courses: [OfflineCourseItem], sessionID: String) -> AnyPublisher<HFileDownloadProgress, Never> {
-        Empty().eraseToAnyPublisher()
-    }
-
-    func cancelDownloads() {}
-
-    func deleteFiles(_ files: [OfflineFileItem], sessionID: String) {}
-
-    func removeUnavailableFiles(courseId: String, newFileIDs: [String], sessionID: String) -> AnyPublisher<Void, Error> {
-        removeUnavailableFilesCourseIDs.append(courseId)
-        return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
-    }
-}
-
-private final class HCourseSyncPagesInteractorMock: HCourseSyncPagesInteractor {
-    var deletedCourseIDs: [String] = []
-
-    func getPages(courseIds: [String]) -> AnyPublisher<HPageDownloadProgress, Error> {
-        Empty().eraseToAnyPublisher()
-    }
-
-    func cancelDownloads() {}
-
-    func deletePages(courseIds: [String], sessionID: String) {
-        deletedCourseIDs.append(contentsOf: courseIds)
     }
 }

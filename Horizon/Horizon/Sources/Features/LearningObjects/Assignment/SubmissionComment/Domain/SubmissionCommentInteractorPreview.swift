@@ -24,9 +24,7 @@ final class SubmissionCommentInteractorPreview: SubmissionCommentInteractor {
     func getComments(
         assignmentID: String,
         attempt: Int,
-        ignoreCache: Bool,
-        beforeCursor: String?,
-        last: Int?
+        ignoreCache: Bool
     ) -> AnyPublisher<[SubmissionComment], Error> {
         Just([
             SubmissionComment(

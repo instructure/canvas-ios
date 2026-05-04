@@ -38,7 +38,7 @@ final class AssignmentDetailsViewModel {
     var isOverlayToolsPresented = false
 
     // MARK: - Output
-
+    private(set) var offlineIntoURL: URL?
     private(set) var assignment: HAssignment?
     private(set) var isLoaderVisible = true
     private(set) var isMarkAsDoneLoaderVisible = false
@@ -105,6 +105,7 @@ final class AssignmentDetailsViewModel {
         self.dependency = dependency
         bindSubmissionAssignmentEvents()
         fetchAssignmentDetails()
+        getOfflineIntroURL()
     }
 
     // MARK: - Input Actions
@@ -218,9 +219,7 @@ final class AssignmentDetailsViewModel {
             return self.dependency.commentInteractor.getComments(
                 assignmentID: self.dependency.assignmentID,
                 attempt: firstAttempt,
-                ignoreCache: false,
-                beforeCursor: nil,
-                last: 5
+                ignoreCache: false
             )
             .replaceError(with: [])
             .map {(assignmentDetails, submissions, $0)}
@@ -288,9 +287,7 @@ final class AssignmentDetailsViewModel {
         dependency.commentInteractor.getComments(
             assignmentID: dependency.assignmentID,
             attempt: attempt,
-            ignoreCache: false,
-            beforeCursor: nil,
-            last: 5
+            ignoreCache: false
         )
         .replaceError(with: [])
         .receive(on: dependency.scheduler)
@@ -475,6 +472,17 @@ final class AssignmentDetailsViewModel {
         default:
             break
         }
+    }
+
+    private func getOfflineIntroURL() {
+        let basePath = URL.Paths.Offline.courseSectionFolderURL(
+            sessionId: AppEnvironment.shared.userDefaults?.sessionID ?? "",
+            courseId: dependency.courseID,
+            sectionName: "assignments"
+        )
+
+        let assignmentId = dependency.assignmentID
+        offlineIntoURL = basePath.appendingPathComponent("assignments-\(assignmentId)").appendingPathComponent("body.html")
     }
 }
 

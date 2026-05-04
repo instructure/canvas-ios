@@ -336,6 +336,39 @@ final class HCourseSyncFilesInteractorLiveTests: HorizonTestCase {
         XCTAssertEqual(contents.contains("file-\(testData.fileID2)"), false)
     }
 
+    // MARK: - download
+
+    func test_download_whenLocalFileExists_shouldEmitOneAndComplete() {
+        let coreFile = File.make(
+            from: APIFile.make(id: ID(testData.fileID1), display_name: "file name"),
+            in: databaseClient
+        )
+        createLocalFile(fileID: testData.fileID1, courseID: testData.courseID)
+
+        XCTAssertSingleOutput(
+            testee.download(file: coreFile, courseID: testData.courseID, sessionID: testData.sessionID)
+        ) { progress in
+            XCTAssertEqual(progress, Float(1))
+        }
+    }
+
+    func test_download_whenLocalFileDoesNotExist_shouldNotEmitSynchronously() {
+        let coreFile = File.make(
+            from: APIFile.make(id: ID(testData.fileID1), display_name: "file name"),
+            in: databaseClient
+        )
+        var receivedValues: [Float] = []
+
+        testee.download(
+            file: coreFile,
+            courseID: testData.courseID,
+            sessionID: testData.sessionID
+        )
+        .sink(receiveCompletion: { _ in }, receiveValue: { receivedValues.append($0) })
+        .store(in: &subscriptions)
+        XCTAssertEqual(receivedValues.isEmpty, true)
+    }
+
     // MARK: - Private helpers
 
     private func makeCourse(id: String, files: [OfflineFileItem]) -> OfflineCourseItem {

@@ -79,6 +79,21 @@ public struct WebView: UIViewRepresentable {
         self.configuration = configuration
     }
 
+    public init(
+        offlineFilePath: URL?,
+        content: String?,
+        originalBaseURL: URL?,
+        features: [CoreWebViewFeature] = [],
+        isScrollEnabled: Bool = true,
+        configuration: WKWebViewConfiguration = .defaultConfiguration
+    ) {
+        source = .offlineContent(filePath: offlineFilePath, content: content, originalBaseURL: originalBaseURL)
+        self.baseURL = nil
+        self.features = features
+        self.isScrollEnabled = isScrollEnabled
+        self.configuration = configuration
+    }
+
     // MARK: - View Modifiers
 
     public func onLink(_ handleLink: @escaping (URL) -> Bool) -> Self {
@@ -183,6 +198,7 @@ extension WebView {
     enum Source: Equatable {
         case html(String)
         case request(URLRequest)
+        case offlineContent(filePath: URL?, content: String?, originalBaseURL: URL?)
     }
 
     private struct FrameToFit: View {
@@ -242,6 +258,13 @@ extension WebView {
                     }
                 case .request(let request):
                     webView.load(request)
+                case .offlineContent(let filePath, let content, let originalBaseURL):
+                    webView.loadContent(
+                        isOffline: true,
+                        filePath: filePath,
+                        content: content,
+                        originalBaseURL: originalBaseURL
+                    )
                 case nil:
                     break
                 }

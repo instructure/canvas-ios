@@ -22,8 +22,8 @@ public struct CourseSyncID: Hashable {
     let value: String
     let apiBaseURL: URL?
 
-    var localID: String { value.localID }
-    var asContext: Context { .course(localID) }
+    public var localID: String { value.localID }
+    public var asContext: Context { .course(localID) }
 
     public init(value: String, apiBaseURL: URL? = nil) {
         self.value = value

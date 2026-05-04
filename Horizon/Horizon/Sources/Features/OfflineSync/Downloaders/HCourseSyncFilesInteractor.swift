@@ -55,6 +55,7 @@ protocol HCourseSyncFilesInteractor {
         newFileIDs: [String],
         sessionID: String
     ) -> AnyPublisher<Void, Error>
+    func download(file: File, courseID: String, sessionID: String) -> AnyPublisher<Float, Error>
 }
 
 final class HCourseSyncFilesInteractorLive: HCourseSyncFilesInteractor, LocalFileURLCreator {
@@ -237,5 +238,31 @@ final class HCourseSyncFilesInteractorLive: HCourseSyncFilesInteractor, LocalFil
             .collect()
             .map { _ in () }
             .eraseToAnyPublisher()
+    }
+
+    func download(file: File, courseID: String, sessionID: String) -> AnyPublisher<Float, Error> {
+        let localURL = prepareLocalURL(
+            fileName: offlineFileInteractor.filePath(
+                sessionID: sessionID,
+                courseId: courseID,
+                fileID: file.id ?? "",
+                fileName: file.displayName ?? ""
+            ),
+            mimeClass: file.mimeClass ?? "",
+            location: URL.Directories.documents
+        )
+        if self.fileManager.fileExists(atPath: localURL.path) {
+            return Just(Float(1))
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        } else {
+            return DownloadTaskPublisher(parameters:
+                DownloadTaskParameters(
+                    remoteURL: file.url!,
+                    localURL: localURL
+                )
+            )
+            .eraseToAnyPublisher()
+        }
     }
 }

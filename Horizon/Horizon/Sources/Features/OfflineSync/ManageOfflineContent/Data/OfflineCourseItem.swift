@@ -60,9 +60,9 @@ public struct OfflineCourseItem: Identifiable {
     init(
         id: String,
         name: String,
-        size: String?,
-        isExpanded: Bool,
-        isSelected: Bool,
+        size: String? = nil,
+        isExpanded: Bool = false,
+        isSelected: Bool = false,
         subItems: [OfflineFileItem]
     ) {
         self.id = id
@@ -80,5 +80,19 @@ public struct OfflineCourseItem: Identifiable {
         let isCourseSynced = offlineSyncItems.contains(OfflineType.course(id: entity.id).path())
         self.isSelected = isCourseSynced
         self.files = entity.files.map { OfflineFileItem(from: $0, offlineSyncItems: offlineSyncItems) }
+    }
+
+    mutating func appFile(id: String, courseID: String) {
+        files.append(
+            .init(
+                id: id,
+                name: "",
+                size: "",
+                sizeInBytes: 0,
+                isSelected: true,
+                mimeClass: "",
+                courseID: courseID
+            )
+        )
     }
 }

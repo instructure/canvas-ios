@@ -43,7 +43,6 @@ struct HPageDownloadProgress {
 protocol HCourseSyncPagesInteractor {
     func getPages(courseIds: [String]) -> AnyPublisher<HPageDownloadProgress, Error>
     func cancelDownloads()
-    func deletePages(courseIds: [String], sessionID: String)
 }
 
 final class HCourseSyncPagesInteractorLive: HCourseSyncPagesInteractor {
@@ -59,28 +58,15 @@ final class HCourseSyncPagesInteractorLive: HCourseSyncPagesInteractor {
     // MARK: - Dependencies
 
     private let htmlParser: HTMLParser
-    private let fileManager: FileManager
 
     // MARK: - Init
 
-    init(htmlParser: HTMLParser, fileManager: FileManager = .default) {
+    init(htmlParser: HTMLParser) {
         self.htmlParser = htmlParser
-        self.fileManager = fileManager
     }
 
     func cancelDownloads() {
         subscriptions.removeAll()
-    }
-
-    func deletePages(courseIds: [String], sessionID: String) {
-        courseIds.forEach { courseId in
-            let folderURL = URL.Paths.Offline.courseSectionFolderURL(
-                sessionId: sessionID,
-                courseId: courseId,
-                sectionName: "pages"
-            )
-            try? fileManager.removeItem(at: folderURL)
-        }
     }
 
     func getPages(courseIds: [String]) -> AnyPublisher<HPageDownloadProgress, Error> {
@@ -139,7 +125,7 @@ final class HCourseSyncPagesInteractorLive: HCourseSyncPagesInteractor {
             .map { completedCount in (courseId: courseId, pagesDownloaded: completedCount, totalPages: totalPageCount) }
             .eraseToAnyPublisher()
     }
-    
+
     private func buildDownloadProgress(from courseProgressMap: [String: CourseProgressEntry]) -> HPageDownloadProgress {
         let courseProgresses = courseProgressMap.map { courseID, progress -> HCoursePageProgress in
             let state: HSyncCourseState =

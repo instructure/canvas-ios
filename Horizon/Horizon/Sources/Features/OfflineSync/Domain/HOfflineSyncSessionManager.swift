@@ -26,6 +26,7 @@ protocol HOfflineSyncSessionManager {
     func clearSessionData()
     func finalizeSync(courses: [OfflineCourseItem])
     func saveCompletedSync(courses: [OfflineCourseItem], files: [OfflineFileItem])
+    func deleteCourseFolder(courseIds: [String], sessionID: String) 
 }
 
 final class HOfflineSyncSessionManagerLive: HOfflineSyncSessionManager {
@@ -43,17 +44,20 @@ final class HOfflineSyncSessionManagerLive: HOfflineSyncSessionManager {
     private var session: SessionDefaults
     private let filesInteractor: HCourseSyncFilesInteractor
     private let pagesInteractor: HCourseSyncPagesInteractor
+    private let fileManager: FileManager
 
     // MARK: - Init
 
     init(
         session: SessionDefaults,
         filesInteractor: HCourseSyncFilesInteractor,
-        pagesInteractor: HCourseSyncPagesInteractor
+        pagesInteractor: HCourseSyncPagesInteractor,
+        fileManager: FileManager = .default
     ) {
         self.session = session
         self.filesInteractor = filesInteractor
         self.pagesInteractor = pagesInteractor
+        self.fileManager = fileManager
     }
 
     func clearSessionData() {
@@ -76,7 +80,17 @@ final class HOfflineSyncSessionManagerLive: HOfflineSyncSessionManager {
         appendSyncItems(coursePaths + filePaths)
     }
 
+    func deleteCourseFolder(courseIds: [String], sessionID: String) {
+        courseIds.forEach { courseId in
+            let folderURL = URL.Directories.documents.appendingPathComponent(
+            "\(sessionID)/Offline/course-\(courseId)"
+            )
+            try? fileManager.removeItem(at: folderURL)
+        }
+    }
+
     // MARK: - Private
+
     private func appendSyncItems(_ newItems: [String]) {
         session.horizonOfflineSyncItems.append(contentsOf: newItems)
     }
@@ -95,8 +109,7 @@ final class HOfflineSyncSessionManagerLive: HOfflineSyncSessionManager {
             )
             try? FileManager.default.removeItem(at: folderURL)
         }
-
-        pagesInteractor.deletePages(courseIds: deselectedCourseIDs, sessionID: sessionID)
+        deleteCourseFolder(courseIds: deselectedCourseIDs, sessionID: sessionID)
     }
 
     private func updateFileMetadata(courses: [OfflineCourseItem]) {
