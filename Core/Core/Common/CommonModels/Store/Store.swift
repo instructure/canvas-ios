@@ -228,6 +228,7 @@ public class Store<U: UseCase>: NSObject, NSFetchedResultsControllerDelegate, Ob
             }
             return
         }
+
         self.next = nil
         let useCase = GetNextUseCase(parent: self.useCase, request: next)
         request(useCase, force: true, callback: callback)
