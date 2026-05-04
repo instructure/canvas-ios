@@ -21,7 +21,7 @@ import Core
 import Foundation
 import SwiftUI
 
-struct CourseCardViewModel: Identifiable /*, Equatable*/ {
+struct CourseCardViewModel: Identifiable, Equatable {
 
     var id: String
     let title: String
@@ -118,9 +118,11 @@ struct CourseCardViewModel: Identifiable /*, Equatable*/ {
         }
     }
 
-//    static func == (lhs: CourseCardViewModel, rhs: CourseCardViewModel) -> Bool {
-//        lhs.model == rhs.model && lhs.isAvailableOffline == rhs.isAvailableOffline
-//    }
+    static func == (lhs: CourseCardViewModel, rhs: CourseCardViewModel) -> Bool {
+        lhs.model == rhs.model &&
+        lhs.isAvailableOffline == rhs.isAvailableOffline &&
+        lhs.unreadAnnouncementCount == rhs.unreadAnnouncementCount
+    }
 }
 
 extension CourseCardViewModel {

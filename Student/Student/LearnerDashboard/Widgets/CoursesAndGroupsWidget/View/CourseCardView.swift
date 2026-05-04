@@ -65,7 +65,7 @@ struct CourseCardView: View {
                     .contentShape(Rectangle())
                     .offset(x: 2, y: 2)
             }
-//            .animation(.dashboardWidget, value: viewModel)
+            .animation(.dashboardWidget, value: viewModel)
             .accessibilityElement(children: .combine)
             .accessibilityLabel(a11yLabel)
             .identifier("Dashboard.Courses.CourseCard.cardButton")
