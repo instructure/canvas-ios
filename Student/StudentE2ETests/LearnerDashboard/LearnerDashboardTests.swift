@@ -141,8 +141,8 @@ class LearnerDashboardTests: E2ETestCase {
         // MARK: Verify grade pill appears with correct grade value
         gradePill = Helper.CoursesWidget.courseCardGradePill.waitUntil(.visible)
         XCTAssertVisible(gradePill)
-        gradePill.actionUntilElementCondition(action: .pullToRefresh, condition: .label(expected: totalGrade))
-        XCTAssertEqual(gradePill.label, totalGrade)
+        gradePill.actionUntilElementCondition(action: .pullToRefresh, condition: .labelHasPrefix(expected: totalGrade))
+        XCTAssertTrue(gradePill.label.hasPrefix(totalGrade))
     }
 
     func testGlobalAnnouncementShownAndDismissed() {

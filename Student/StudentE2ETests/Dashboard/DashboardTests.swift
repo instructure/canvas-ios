@@ -18,11 +18,16 @@
 
 import TestsFoundation
 import XCTest
+import Core
 
 class DashboardTests: E2ETestCase {
     typealias Helper = DashboardHelper
     typealias CourseInvitations = Helper.CourseInvitations
     typealias AccountNotifications = Helper.AccountNotifications
+
+    override var experimentalFeatures: [ExperimentalFeature] {
+        [.revertToOldStudentDashboard]
+    }
 
     func testDashboardFavoriteCourse() {
         // MARK: Seed the usual stuff

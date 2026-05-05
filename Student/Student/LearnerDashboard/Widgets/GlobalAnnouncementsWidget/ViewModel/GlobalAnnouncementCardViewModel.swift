@@ -31,6 +31,7 @@ final class GlobalAnnouncementCardViewModel: Identifiable, Equatable {
     // Including the whole model to ensure any change triggers a view update.
     // Using only `model.id` would make the ForEach ignore a title change upon a refresh.
     var id: GlobalAnnouncementsWidgetItem { model }
+    var accessibilityId: String { model.id }
 
     private let model: GlobalAnnouncementsWidgetItem
     private let onCardTap: (WeakViewController) -> Void
