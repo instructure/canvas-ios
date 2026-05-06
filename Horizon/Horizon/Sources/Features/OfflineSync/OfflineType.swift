@@ -57,7 +57,6 @@ enum OfflineType {
                 guard let fileID = components.first else { return nil }
                 return .file(courseID: courseID, fileID: fileID)
             }
-            // Old-format paths (pre-enrollmentID) have no 4th component; default to "".
             let enrollmentID = components.first ?? ""
             return .course(id: courseID, enrollmentID: enrollmentID)
 
