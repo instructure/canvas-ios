@@ -86,7 +86,7 @@ public struct OfflineCourseItem: Identifiable {
         self.files = entity.files.map { OfflineFileItem(from: $0, offlineSyncItems: offlineSyncItems) }
     }
 
-    mutating func appFile(id: String, courseID: String) {
+    mutating func appendFile(id: String, courseID: String) {
         files.append(
             .init(
                 id: id,

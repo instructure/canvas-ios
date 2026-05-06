@@ -188,6 +188,7 @@ final class OfflineCourseItemTests: HorizonTestCase {
         courseEntity.id = testData.courseID
         courseEntity.name = testData.courseName
         courseEntity.size = testData.courseSize
+        courseEntity.enrollmentID = "2121"
 
         let fileEntity: CDHCourseSelectionFile = databaseClient.insert()
         fileEntity.id = testData.subItemID1
@@ -198,7 +199,7 @@ final class OfflineCourseItemTests: HorizonTestCase {
         courseEntity.files = [fileEntity]
 
         let fileSyncPath = OfflineType.file(courseID: testData.courseID, fileID: testData.subItemID1).path()
-        let courseSyncPath = OfflineType.course(id: testData.courseID).path()
+        let courseSyncPath = OfflineType.course(id: testData.courseID, enrollmentID: "2121").path()
         let testee = OfflineCourseItem(from: courseEntity, offlineSyncItems: [fileSyncPath, courseSyncPath])
 
         XCTAssertEqual(testee.isSelected, true)

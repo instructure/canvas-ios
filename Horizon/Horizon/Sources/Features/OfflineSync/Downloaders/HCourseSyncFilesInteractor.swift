@@ -241,6 +241,9 @@ final class HCourseSyncFilesInteractorLive: HCourseSyncFilesInteractor, LocalFil
     }
 
     func download(file: File, courseID: String, sessionID: String) -> AnyPublisher<Float, Error> {
+        guard let url = file.url else {
+            return Just(0).setFailureType(to: Error.self).eraseToAnyPublisher()
+        }
         let localURL = prepareLocalURL(
             fileName: offlineFileInteractor.filePath(
                 sessionID: sessionID,
@@ -258,7 +261,7 @@ final class HCourseSyncFilesInteractorLive: HCourseSyncFilesInteractor, LocalFil
         } else {
             return DownloadTaskPublisher(parameters:
                 DownloadTaskParameters(
-                    remoteURL: file.url!,
+                    remoteURL: url,
                     localURL: localURL
                 )
             )

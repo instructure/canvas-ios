@@ -206,7 +206,7 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
                 if isComplete {
                     for file in attachmentProgress.downloadedFiles {
                         if let index = updatedCourses.firstIndex(where: { $0.id == file.courseID }) {
-                            updatedCourses[index].appFile(id: file.fileID, courseID: file.courseID)
+                            updatedCourses[index].appendFile(id: file.fileID, courseID: file.courseID)
                         }
                     }
                     sendCompletionNotification(items: fileProgress.files, courses: updatedCourses)

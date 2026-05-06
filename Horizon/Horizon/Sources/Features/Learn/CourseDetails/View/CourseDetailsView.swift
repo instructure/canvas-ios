@@ -214,7 +214,7 @@ private struct ContentView: View {
             }
             if let htmlString {
                 WebView(
-                    offlineFilePath: viewModel.offlineIntoURL,
+                    offlineFilePath: viewModel.offlineIntroURL,
                     content: htmlString,
                     originalBaseURL: nil,
                     isScrollEnabled: false

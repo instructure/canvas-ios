@@ -38,7 +38,7 @@ final class ScoresViewModel {
         }
     }
 
-    private(set) var viewState: ViewState = .data
+    private(set) var viewState: ViewState = .loading
     private(set) var scoreDetails: ScoreDetails?
 
     // MARK: - Dependencies

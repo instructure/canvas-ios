@@ -158,7 +158,7 @@ final class HCourseSyncInteractorLiveTests: HorizonTestCase {
     func test_cancelSync_shouldNotDeleteAlreadySyncedCourseFolder() {
         let course = makeCourse(id: testData.courseID1, isSelected: true)
         testee.downloadContent(courses: [course], environment: environment)
-        sessionManager.syncedItemPaths = [OfflineType.course(id: testData.courseID1).path()]
+        sessionManager.syncedItemPaths = [OfflineType.course(id: testData.courseID1, enrollmentID: "21").path()]
 
         testee.cancelSync()
 
@@ -368,7 +368,7 @@ final class HCourseSyncInteractorLiveTests: HorizonTestCase {
     ) -> OfflineCourseItem {
         OfflineCourseItem(
             id: id,
-            enrollmentID: "22",
+            enrollmentID: "21",
             name: "course name",
             size: nil,
             isExpanded: false,

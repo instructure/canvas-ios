@@ -52,11 +52,13 @@ enum OfflineType {
         switch type {
         case OfflinePathKey.course:
             guard let courseID = components.popFirst() else { return nil }
-            if let fileKeyword = components.popFirst(), fileKeyword == OfflinePathKey.file {
+            if components.first == OfflinePathKey.file {
+                components.removeFirst()
                 guard let fileID = components.first else { return nil }
                 return .file(courseID: courseID, fileID: fileID)
             }
-            guard let enrollmentID = components.first else { return nil }
+            // Old-format paths (pre-enrollmentID) have no 4th component; default to "".
+            let enrollmentID = components.first ?? ""
             return .course(id: courseID, enrollmentID: enrollmentID)
 
         case OfflinePathKey.program:

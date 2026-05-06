@@ -25,7 +25,7 @@ final class CourseDetailsViewModel {
     typealias ScoresViewModelBuilder = ((String, String) -> ScoresViewModel)
 
     // MARK: - Outputs
-    private(set) var offlineIntoURL: URL?
+    private(set) var offlineIntroURL: URL?
     private(set) var course: HCourse {
         didSet {
             if oldValue.id != course.id && course.id.isNotEmpty {
@@ -89,7 +89,7 @@ final class CourseDetailsViewModel {
         self.programName = programName
         self.scoresViewModelBuilder = scoresViewModelBuilder
         fetchData()
-        getOfflineOverviewURL()
+        getOfflineIntroURL()
         observeHeaderVisiablity()
     }
 
@@ -213,13 +213,13 @@ final class CourseDetailsViewModel {
         isLoaderVisible = false
     }
 
-    private func getOfflineOverviewURL() {
+    private func getOfflineIntroURL() {
         let basePath = URL.Paths.Offline.courseSectionFolderURL(
             sessionId: AppEnvironment.shared.userDefaults?.sessionID ?? "",
             courseId: courseID,
             sectionName: "pages"
         )
-       offlineIntoURL = basePath.appendingPathComponent("pages-\(courseID)").appendingPathComponent("body.html")
+        offlineIntroURL = basePath.appendingPathComponent("pages-\(courseID)").appendingPathComponent("body.html")
 
     }
 }

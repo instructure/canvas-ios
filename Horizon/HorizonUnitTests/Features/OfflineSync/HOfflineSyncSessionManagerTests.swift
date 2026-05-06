@@ -128,7 +128,7 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
     }
 
     func test_finalizeSync_shouldDeleteCourseFolderForDeselectedCourses() {
-        session.horizonOfflineSyncItems = [OfflineType.course(id: testData.courseID2).path()]
+        session.horizonOfflineSyncItems = [OfflineType.course(id: testData.courseID2, enrollmentID: "11").path()]
         let course1 = makeCourse(id: testData.courseID1)
         let folderURL = URL.Directories.documents.appendingPathComponent(
             URL.Paths.Offline.courseFolder(sessionID: testData.sessionID, courseId: testData.courseID2)
@@ -141,7 +141,7 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
     }
 
     func test_finalizeSync_shouldNotDeleteCourseFolderForRetainedCourses() {
-        session.horizonOfflineSyncItems = [OfflineType.course(id: testData.courseID1).path()]
+        session.horizonOfflineSyncItems = [OfflineType.course(id: testData.courseID1, enrollmentID: "11").path()]
         let course1 = makeCourse(id: testData.courseID1)
         let folderURL = URL.Directories.documents.appendingPathComponent(
             URL.Paths.Offline.courseFolder(sessionID: testData.sessionID, courseId: testData.courseID1)
@@ -163,7 +163,7 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
 
         testee.saveCompletedSync(courses: [course], files: [file])
 
-        let expectedCoursePath = OfflineType.course(id: testData.courseID1).path()
+        let expectedCoursePath = OfflineType.course(id: testData.courseID1, enrollmentID: "11").path()
         let expectedFilePath = OfflineType.file(courseID: testData.courseID1, fileID: testData.fileID1).path()
         XCTAssertEqual(session.horizonOfflineSyncItems.contains(expectedCoursePath), true)
         XCTAssertEqual(session.horizonOfflineSyncItems.contains(expectedFilePath), true)
@@ -180,14 +180,14 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
     }
 
     func test_saveCompletedSync_shouldAppendToExistingItems() {
-        session.horizonOfflineSyncItems = [OfflineType.course(id: testData.courseID1).path()]
+        session.horizonOfflineSyncItems = [OfflineType.course(id: testData.courseID1, enrollmentID: "12").path()]
         let course2 = makeCourse(id: testData.courseID2)
 
         testee.saveCompletedSync(courses: [course2], files: [])
 
         XCTAssertEqual(session.horizonOfflineSyncItems.count, 2)
-        XCTAssertEqual(session.horizonOfflineSyncItems.contains(OfflineType.course(id: testData.courseID1).path()), true)
-        XCTAssertEqual(session.horizonOfflineSyncItems.contains(OfflineType.course(id: testData.courseID2).path()), true)
+        XCTAssertEqual(session.horizonOfflineSyncItems.contains(OfflineType.course(id: testData.courseID1, enrollmentID: "12").path()), true)
+        XCTAssertEqual(session.horizonOfflineSyncItems.contains(OfflineType.course(id: testData.courseID2, enrollmentID: "11").path()), true)
     }
 
     // MARK: - Private helpers
