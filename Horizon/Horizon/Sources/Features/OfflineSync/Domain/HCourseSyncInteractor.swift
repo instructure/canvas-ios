@@ -104,11 +104,10 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
                     && !previouslySyncedPaths.contains(OfflineType.file(courseID: file.courseID, fileID: file.id).path())
             }
         let newSessionCourseIds = downloadItemsSubject.value
-            .map(\.id)
-            .filter { !previouslySyncedPaths.contains(OfflineType.course(id: $0).path()) }
+            .filter { !previouslySyncedPaths.contains(OfflineType.course(id: $0.id, enrollmentID: $0.enrollmentID).path()) }
         cancelActiveDownloads()
         interactorFiles.deleteFiles(newSessionFiles, sessionID: sessionManager.sessionID)
-        sessionManager.deleteCourseFolder(courseIds: newSessionCourseIds, sessionID: sessionManager.sessionID)
+        sessionManager.deleteCourseFolder(courseIds: newSessionCourseIds.map(\.id), sessionID: sessionManager.sessionID)
         downloadItemsSubject.send([])
         progressSubject.send(.completed)
     }

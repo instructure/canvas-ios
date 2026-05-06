@@ -81,7 +81,7 @@ public struct OfflineCourseItem: Identifiable {
         self.enrollmentID = entity.enrollmentID
         self.name = entity.name
         self.size = entity.size
-        let isCourseSynced = offlineSyncItems.contains(OfflineType.course(id: entity.id).path())
+        let isCourseSynced = offlineSyncItems.contains(OfflineType.course(id: entity.id, enrollmentID: entity.enrollmentID).path())
         self.isSelected = isCourseSynced
         self.files = entity.files.map { OfflineFileItem(from: $0, offlineSyncItems: offlineSyncItems) }
     }

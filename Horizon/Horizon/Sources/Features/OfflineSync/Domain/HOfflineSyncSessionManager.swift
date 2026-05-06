@@ -73,7 +73,7 @@ final class HOfflineSyncSessionManagerLive: HOfflineSyncSessionManager {
     }
 
     func saveCompletedSync(courses: [OfflineCourseItem], files: [OfflineFileItem]) {
-        let coursePaths = courses.map { OfflineType.course(id: $0.id).path() }
+        let coursePaths = courses.map { OfflineType.course(id: $0.id, enrollmentID: $0.enrollmentID).path() }
         let filePaths = files
             .filter { $0.downloadState == .downloaded }
             .map { OfflineType.file(courseID: $0.courseID, fileID: $0.id).path() }
@@ -100,7 +100,7 @@ final class HOfflineSyncSessionManagerLive: HOfflineSyncSessionManager {
         let newCourseIDs = Set(courses.map(\.id))
         let deselectedCourseIDs = session.horizonOfflineSyncItems
             .compactMap { OfflineType.parse(path: $0) }
-            .compactMap { if case .course(let id) = $0 { return id } else { return nil } }
+            .compactMap { if case .course(let id, _) = $0 { return id } else { return nil } }
             .filter { !newCourseIDs.contains($0) }
 
         deselectedCourseIDs.forEach { courseID in

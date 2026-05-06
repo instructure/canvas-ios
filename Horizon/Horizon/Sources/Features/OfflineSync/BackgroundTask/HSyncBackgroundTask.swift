@@ -106,12 +106,12 @@ public final class HSyncBackgroundTask: BackgroundTask {
         let fileMetadata = sessionDefaults.horizonOfflineSyncFileMetadata
 
         var courseFilesMap: [String: [String]] = [:]
-        var courseOnlyIDs: Set<String> = []
+        var courseEnrollmentMap: [String: String] = [:]
 
         for type in types {
             switch type {
-            case .course(let id):
-                courseOnlyIDs.insert(id)
+            case .course(let id, let enrollmentID):
+                courseEnrollmentMap[id] = enrollmentID
             case .file(let courseID, let fileID):
                 courseFilesMap[courseID, default: []].append(fileID)
             default:
@@ -119,7 +119,7 @@ public final class HSyncBackgroundTask: BackgroundTask {
             }
         }
 
-        return courseOnlyIDs.union(Set(courseFilesMap.keys)).map { courseID in
+        return Set(courseEnrollmentMap.keys).union(Set(courseFilesMap.keys)).map { courseID in
             let fileItems = (courseFilesMap[courseID] ?? []).compactMap { fileID -> OfflineFileItem? in
                 guard let info = fileMetadata[fileID] else { return nil }
                 return OfflineFileItem(
@@ -134,6 +134,7 @@ public final class HSyncBackgroundTask: BackgroundTask {
             }
             return OfflineCourseItem(
                 id: courseID,
+                enrollmentID: courseEnrollmentMap[courseID] ?? "",
                 name: "",
                 size: nil,
                 isExpanded: false,

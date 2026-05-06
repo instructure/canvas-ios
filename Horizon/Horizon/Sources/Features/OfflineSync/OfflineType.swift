@@ -17,7 +17,7 @@
 //
 
 enum OfflineType {
-    case course(id: String)
+    case course(id: String, enrollmentID: String)
     case file(courseID: String, fileID: String)
     case program(id: String)
     case learningLibrary(id: String)
@@ -32,8 +32,8 @@ enum OfflineType {
 
     func path() -> String {
         switch self {
-        case .course(let id):
-            return "\(OfflinePathKey.root)/\(OfflinePathKey.course)/\(id)"
+        case .course(let id, let enrollmentID):
+            return "\(OfflinePathKey.root)/\(OfflinePathKey.course)/\(id)/\(enrollmentID)"
 
         case .file(let courseID, let fileID):
             return "\(OfflinePathKey.root)/\(OfflinePathKey.course)/\(courseID)/\(OfflinePathKey.file)/\(fileID)"
@@ -56,7 +56,8 @@ enum OfflineType {
                 guard let fileID = components.first else { return nil }
                 return .file(courseID: courseID, fileID: fileID)
             }
-            return .course(id: courseID)
+            guard let enrollmentID = components.first else { return nil }
+            return .course(id: courseID, enrollmentID: enrollmentID)
 
         case OfflinePathKey.program:
             guard let id = components.first else { return nil }
