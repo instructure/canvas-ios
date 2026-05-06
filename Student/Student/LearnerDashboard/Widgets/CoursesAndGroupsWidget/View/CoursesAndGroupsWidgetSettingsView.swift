@@ -28,6 +28,7 @@ struct CoursesAndGroupsWidgetSettingsView: View {
             value: $viewModel.showGrades,
             dividerStyle: .padded
         )
+        .identifier("Dashboard.Settings.showGradesToggle")
         AUI.ToggleCell(
             label: Text("Show Color Overlay", bundle: .student),
             value: $viewModel.showColorOverlay,

@@ -68,7 +68,7 @@ struct CourseCardView: View {
             .animation(.dashboardWidget, value: viewModel)
             .accessibilityElement(children: .combine)
             .accessibilityLabel(a11yLabel)
-            .identifier("Dashboard.Courses.CourseCard.cardButton")
+            .identifier("Dashboard.Courses.CourseCard.cardButton.\(viewModel.id)")
     }
 
     // MARK: - Card

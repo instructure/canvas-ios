@@ -33,7 +33,7 @@ class LearnerDashboardTests: E2ETestCase {
         let coursesHeader = Helper.CoursesWidget.coursesHeader.waitUntil(.visible)
         XCTAssertVisible(coursesHeader)
 
-        let courseCard = Helper.CoursesWidget.courseCard(courseName: course.name).waitUntil(.visible)
+        let courseCard = Helper.CoursesWidget.courseCard(courseID: course.id).waitUntil(.visible)
         XCTAssertVisible(courseCard)
         XCTAssertContains(courseCard.label, course.name)
     }
@@ -94,7 +94,7 @@ class LearnerDashboardTests: E2ETestCase {
 
         // MARK: Open settings and toggle Courses & Groups widget off
         Helper.bottomSettingsButton.hit()
-        let coursesWidgetToggle = Helper.Settings.widgetToggle(title: "Courses & Groups").waitUntil(.visible)
+        let coursesWidgetToggle = Helper.Settings.widgetToggle(id: .coursesAndGroups).waitUntil(.visible)
         XCTAssertVisible(coursesWidgetToggle)
         XCTAssertEqual(coursesWidgetToggle.stringValue, "on")
 
@@ -112,17 +112,17 @@ class LearnerDashboardTests: E2ETestCase {
         // MARK: Seed the usual stuff with a graded assignment
         let student = seeder.createUser()
         let course = seeder.createCourse()
-        let pointsPossible = "10"
+        let pointsPossible: Float = 10
         let totalGrade = "100%"
         seeder.enrollStudent(student, in: course)
 
         let assignment = AssignmentsHelper.createAssignment(course: course, pointsPossible: Float(pointsPossible), gradingType: .percent)
         GradesHelper.submitAssignment(course: course, student: student, assignment: assignment)
-        GradesHelper.gradeAssignment(grade: pointsPossible, course: course, assignment: assignment, user: student)
+        GradesHelper.gradeAssignment(grade: String(pointsPossible), course: course, assignment: assignment, user: student)
 
         // MARK: Login and verify grade pill is not shown by default
         logInDSUser(student)
-        Helper.CoursesWidget.courseCard(courseName: course.name).waitUntil(.visible)
+        Helper.CoursesWidget.courseCard(courseID: course.id).waitUntil(.visible)
 
         var gradePill = Helper.CoursesWidget.courseCardGradePill.waitUntil(.vanish)
         XCTAssertTrue(gradePill.isVanished)

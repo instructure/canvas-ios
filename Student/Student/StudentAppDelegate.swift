@@ -128,7 +128,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                     .flatMap { unownedSelf.getFeatureFlags() }
                     .map { featureFlags in
                         unownedSelf.isLearnerDashboardEnabledOnInstance = featureFlags.isFeatureEnabled(.widget_dashboard)
-                        
+
                         if ProcessInfo.isUITest {
                             unownedSelf.isLearnerDashboardEnabledOnInstance = true
                         }

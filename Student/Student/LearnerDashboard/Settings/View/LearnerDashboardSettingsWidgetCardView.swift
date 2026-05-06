@@ -44,6 +44,7 @@ struct LearnerDashboardSettingsWidgetCardView: View {
                     localized: "\(config.id.settingsTitle(username: username)) widget visibility",
                     bundle: .student
                 ))
+                .identifier("Dashboard.Settings.widgetToggle.\(config.id.rawValue)")
             }
             .padding(.top, 12)
             .padding(.bottom, 14)

@@ -25,10 +25,17 @@ public class LearnerDashboardHelper: BaseHelper {
         public static var doneButton: XCUIElement { app.find(id: "DashboardSettings.doneButton", type: .button) }
         public static var newDashboardToggle: XCUIElement { app.find(id: "DashboardSettings.newDashboardToggle") }
         public static var feedbackButton: XCUIElement { app.find(id: "Dashboard.Settings.feedbackButton") }
-        public static var showGradesToggle: XCUIElement { app.find(label: "Show Grades") }
+        public static var showGradesToggle: XCUIElement { app.find(id: "Dashboard.Settings.showGradesToggle") }
 
-        public static func widgetToggle(title: String) -> XCUIElement {
-            app.find(label: "\(title) widget visibility")
+        public enum WidgetID: String {
+            case helloWidget
+            case coursesAndGroups
+            case weeklySummary
+            case todo
+        }
+
+        public static func widgetToggle(id: WidgetID) -> XCUIElement {
+            app.find(id: "Dashboard.Settings.widgetToggle.\(id.rawValue)")
         }
     }
 
@@ -40,8 +47,8 @@ public class LearnerDashboardHelper: BaseHelper {
         public static var courseCardCustomizeButton: XCUIElement { app.find(id: "Dashboard.Courses.CourseCard.customizeButton") }
         public static var courseCardAnnouncementsButton: XCUIElement { app.find(id: "Dashboard.Courses.CourseCard.announcementsButton") }
 
-        public static func courseCard(courseName: String) -> XCUIElement {
-            app.find(labelContaining: courseName, type: .button)
+        public static func courseCard(courseID: String) -> XCUIElement {
+            app.find(id: "Dashboard.Courses.CourseCard.cardButton.\(courseID)")
         }
     }
 
