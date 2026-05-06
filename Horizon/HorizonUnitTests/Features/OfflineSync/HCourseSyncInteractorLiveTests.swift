@@ -536,6 +536,5 @@ private final class HCourseSyncAssignmentsInteractorMock: HCourseSyncAssignments
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
-    
     func cancelDownloads() { }
 }

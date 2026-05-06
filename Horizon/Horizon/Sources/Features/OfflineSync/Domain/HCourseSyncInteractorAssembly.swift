@@ -33,11 +33,6 @@ enum HCourseSyncInteractorAssembly {
             envResolver: envResolver,
             scheduler: scheduler
         )
-        let calendarEventHtmlParser = CourseSyncDownloaderAssembly.makeHTMLParser(
-            for: .calendarEvents,
-            envResolver: envResolver,
-            scheduler: scheduler
-        )
         let pageInteractor = HCourseSyncPagesInteractorLive(htmlParser: pageHtmlParser)
         let filesInteractor = HCourseSyncFilesInteractorLive()
         let userId = AppEnvironment.shared.currentSession?.userID
