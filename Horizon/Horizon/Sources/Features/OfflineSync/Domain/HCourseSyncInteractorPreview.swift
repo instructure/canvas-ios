@@ -27,6 +27,7 @@ final class HCourseSyncInteractorPreview: HCourseSyncInteractor {
             [
                 .init(
                     id: "1",
+                    enrollmentID: "122",
                     name: "Course 1",
                     size: "10KB",
                     isExpanded: false,

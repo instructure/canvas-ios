@@ -35,6 +35,7 @@ public enum OfflineCheckboxState {
 
 public struct OfflineCourseItem: Identifiable {
     public let id: String
+    let enrollmentID: String
     let name: String
     let size: String?
     var isExpanded: Bool = false
@@ -59,6 +60,7 @@ public struct OfflineCourseItem: Identifiable {
 
     init(
         id: String,
+        enrollmentID: String,
         name: String,
         size: String? = nil,
         isExpanded: Bool = false,
@@ -67,6 +69,7 @@ public struct OfflineCourseItem: Identifiable {
     ) {
         self.id = id
         self.name = name
+        self.enrollmentID = enrollmentID
         self.size = size
         self.isExpanded = isExpanded
         self.isSelected = isSelected
@@ -75,6 +78,7 @@ public struct OfflineCourseItem: Identifiable {
 
     init(from entity: CDHCourseSelection, offlineSyncItems: [String]) {
         self.id = entity.id
+        self.enrollmentID = entity.enrollmentID
         self.name = entity.name
         self.size = entity.size
         let isCourseSynced = offlineSyncItems.contains(OfflineType.course(id: entity.id).path())

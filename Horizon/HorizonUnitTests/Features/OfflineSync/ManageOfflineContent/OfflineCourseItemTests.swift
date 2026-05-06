@@ -233,6 +233,7 @@ final class OfflineCourseItemTests: HorizonTestCase {
     ) -> OfflineCourseItem {
         OfflineCourseItem(
             id: testData.courseID,
+            enrollmentID: "122",
             name: testData.courseName,
             size: testData.courseSize,
             isExpanded: false,

@@ -196,7 +196,15 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
         id: String,
         files: [OfflineFileItem] = []
     ) -> OfflineCourseItem {
-        OfflineCourseItem(id: id, name: "course name", size: nil, isExpanded: false, isSelected: false, subItems: files)
+        OfflineCourseItem(
+            id: id,
+            enrollmentID: "11",
+            name: "course name",
+            size: nil,
+            isExpanded: false,
+            isSelected: false,
+            subItems: files
+        )
     }
 
     private func makeFile(

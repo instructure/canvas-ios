@@ -26,6 +26,7 @@ final class ManageOfflineContentInteractorPreview: ManageOfflineContentInteracto
             [
                 OfflineCourseItem(
                     id: "course1",
+                    enrollmentID: "2121",
                     name: "Mathematics 101",
                     size: "1.2 GB",
                     isExpanded: true,

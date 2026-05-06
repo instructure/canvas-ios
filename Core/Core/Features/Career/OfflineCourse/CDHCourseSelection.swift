@@ -21,6 +21,7 @@ import Foundation
 
 public final class CDHCourseSelection: NSManagedObject, SizeStringConvertible {
     @NSManaged public var id: String
+    @NSManaged public var enrollmentID: String
     @NSManaged public var name: String
     @NSManaged public var size: String?
     @NSManaged public var files: Set<CDHCourseSelectionFile>
@@ -42,7 +43,7 @@ public final class CDHCourseSelection: NSManagedObject, SizeStringConvertible {
 
         entity.id = course.id
         entity.name = course.name
-
+        entity.enrollmentID = apiEntity.id
         let files = extractFiles(from: course)
         entity.size = calculateFormattedSize(from: files)
 

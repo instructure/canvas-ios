@@ -297,6 +297,7 @@
         <attribute name="state" attributeType="String"/>
     </entity>
     <entity name="CDHCourseSelection" representedClassName=".CDHCourseSelection" syncable="YES">
+        <attribute name="enrollmentID" attributeType="String"/>
         <attribute name="id" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <attribute name="size" optional="YES" attributeType="String"/>

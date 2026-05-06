@@ -26,7 +26,7 @@ protocol HOfflineSyncSessionManager {
     func clearSessionData()
     func finalizeSync(courses: [OfflineCourseItem])
     func saveCompletedSync(courses: [OfflineCourseItem], files: [OfflineFileItem])
-    func deleteCourseFolder(courseIds: [String], sessionID: String) 
+    func deleteCourseFolder(courseIds: [String], sessionID: String)
 }
 
 final class HOfflineSyncSessionManagerLive: HOfflineSyncSessionManager {

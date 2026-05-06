@@ -23,21 +23,27 @@ enum HCourseSyncInteractorAssembly {
     static func makeInteractor() -> HCourseSyncInteractor {
         let scheduler = DispatchQueue(label: "com.instructure.horizon-sync").eraseToAnyScheduler()
         let envResolver = CourseSyncEnvironmentResolverLive()
-        let htmlParser = CourseSyncDownloaderAssembly.makeHTMLParser(
+        let pageHtmlParser = CourseSyncDownloaderAssembly.makeHTMLParser(
             for: .pages,
             envResolver: envResolver,
             scheduler: scheduler
         )
-        let pageInteractor = HCourseSyncPagesInteractorLive(htmlParser: htmlParser)
+        let assignmentHtmlParser = CourseSyncDownloaderAssembly.makeHTMLParser(
+            for: .assignments,
+            envResolver: envResolver,
+            scheduler: scheduler
+        )
+        let calendarEventHtmlParser = CourseSyncDownloaderAssembly.makeHTMLParser(
+            for: .calendarEvents,
+            envResolver: envResolver,
+            scheduler: scheduler
+        )
+        let pageInteractor = HCourseSyncPagesInteractorLive(htmlParser: pageHtmlParser)
         let filesInteractor = HCourseSyncFilesInteractorLive()
         let userId = AppEnvironment.shared.currentSession?.userID
         let session = AppEnvironment.shared.userDefaults ?? .fallback
         let assignmentsInteractor = HCourseSyncAssignmentsInteractorLive(
-            htmlParser: CourseSyncDownloaderAssembly.makeHTMLParser(
-                for: .assignments,
-                envResolver: envResolver,
-                scheduler: scheduler
-            ),
+            htmlParser: assignmentHtmlParser,
             filesInteractor: filesInteractor,
             userId: userId.defaultToEmpty
         )
@@ -48,7 +54,10 @@ enum HCourseSyncInteractorAssembly {
                 session: session,
                 filesInteractor: filesInteractor,
                 pagesInteractor: pageInteractor
-            ), assignmentsInteractor: assignmentsInteractor
+            ),
+            assignmentsInteractor: assignmentsInteractor,
+            syllabusInteractor: HCourseSyncSyllabusLive(htmlParser: pageHtmlParser),
+            scoresInteractor: HCourseSyncScoresLive(userId: userId.defaultToEmpty)
         )
     }
 }

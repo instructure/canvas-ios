@@ -355,7 +355,9 @@ final class HCourseSyncInteractorLiveTests: HorizonTestCase {
             pagesInteractor: pagesInteractor,
             notificationsInteractor: LocalNotificationsInteractor(notificationCenter: notificationCenter),
             sessionManager: sessionManager,
-            assignmentsInteractor: HCourseSyncAssignmentsInteractorMock()
+            assignmentsInteractor: HCourseSyncAssignmentsInteractorMock(),
+            syllabusInteractor: HCourseSyncSyllabusMock(),
+            scoresInteractor: HCourseSyncScoresMock()
         )
     }
 
@@ -366,6 +368,7 @@ final class HCourseSyncInteractorLiveTests: HorizonTestCase {
     ) -> OfflineCourseItem {
         OfflineCourseItem(
             id: id,
+            enrollmentID: "22",
             name: "course name",
             size: nil,
             isExpanded: false,
@@ -503,6 +506,16 @@ private final class HOfflineSyncSessionManagerMock: HOfflineSyncSessionManager {
         deletedCourseIds.append(contentsOf: courseIds)
         deletedSessionID = sessionID
     }
+}
+
+private final class HCourseSyncSyllabusMock: HCourseSyncSyllabus {
+    func getContent(courseIDs: [String]) {}
+    func cancelRequests() {}
+}
+
+private final class HCourseSyncScoresMock: HCourseSyncScores {
+    func getContent(courses: [OfflineCourseItem]) {}
+    func cancelRequests() {}
 }
 
 private final class HCourseSyncAssignmentsInteractorMock: HCourseSyncAssignmentsInteractor {

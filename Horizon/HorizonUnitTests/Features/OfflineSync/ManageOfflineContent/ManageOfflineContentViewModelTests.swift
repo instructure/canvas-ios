@@ -426,6 +426,7 @@ final class ManageOfflineContentViewModelTests: HorizonTestCase {
     ) -> OfflineCourseItem {
         OfflineCourseItem(
             id: id,
+            enrollmentID: "12",
             name: name,
             size: testData.courseSize,
             isExpanded: isExpanded,

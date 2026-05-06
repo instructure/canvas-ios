@@ -372,7 +372,15 @@ final class HCourseSyncFilesInteractorLiveTests: HorizonTestCase {
     // MARK: - Private helpers
 
     private func makeCourse(id: String, files: [OfflineFileItem]) -> OfflineCourseItem {
-        OfflineCourseItem(id: id, name: "course name", size: nil, isExpanded: false, isSelected: true, subItems: files)
+        OfflineCourseItem(
+            id: id,
+            enrollmentID: "111",
+            name: "course name",
+            size: nil,
+            isExpanded: false,
+            isSelected: true,
+            subItems: files
+        )
     }
 
     private func makeFile(

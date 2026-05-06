@@ -213,8 +213,13 @@ private struct ContentView: View {
                     .padding([.horizontal, .top], .huiSpaces.space24)
             }
             if let htmlString {
-                WebView(html: htmlString, isScrollEnabled: false)
-                    .frameToFit()
+                WebView(
+                    offlineFilePath: viewModel.offlineIntoURL,
+                    content: htmlString,
+                    originalBaseURL: nil,
+                    isScrollEnabled: false
+                )
+                .frameToFit()
             }
         }
         .background(Color.huiColors.surface.pageSecondary)

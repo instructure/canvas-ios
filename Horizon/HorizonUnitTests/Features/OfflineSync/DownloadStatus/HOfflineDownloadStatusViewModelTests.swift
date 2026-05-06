@@ -71,6 +71,7 @@ final class HOfflineDownloadStatusViewModelTests: HorizonTestCase {
     func test_courses_whenDownloadItemsPublished_shouldUpdateCourses() {
         let course = OfflineCourseItem(
             id: testData.courseID,
+            enrollmentID: "12",
             name: "course name",
             size: nil,
             isExpanded: false,
@@ -114,6 +115,7 @@ final class HOfflineDownloadStatusViewModelTests: HorizonTestCase {
     func test_retrySync_shouldCallDownloadContentWithCurrentCourses() {
         let course = OfflineCourseItem(
             id: testData.courseID,
+            enrollmentID: "33",
             name: "course name",
             size: nil,
             isExpanded: false,

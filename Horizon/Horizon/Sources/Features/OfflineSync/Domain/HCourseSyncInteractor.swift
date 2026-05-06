@@ -38,6 +38,8 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
     private let notificationsInteractor: LocalNotificationsInteractor
     private let sessionManager: HOfflineSyncSessionManager
     private let assignmentsInteractor: HCourseSyncAssignmentsInteractor
+    private let syllabusInteractor: HCourseSyncSyllabus
+    private let scoresInteractor: HCourseSyncScores
 
     // MARK: - Private state
 
@@ -70,7 +72,9 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
         pagesInteractor: HCourseSyncPagesInteractor,
         notificationsInteractor: LocalNotificationsInteractor = .init(),
         sessionManager: HOfflineSyncSessionManager,
-        assignmentsInteractor: HCourseSyncAssignmentsInteractor
+        assignmentsInteractor: HCourseSyncAssignmentsInteractor,
+        syllabusInteractor: HCourseSyncSyllabus,
+        scoresInteractor: HCourseSyncScores
     ) {
         self.interactorFiles = interactorFiles
         self.modulesInteractor = modulesInteractor
@@ -78,6 +82,8 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
         self.notificationsInteractor = notificationsInteractor
         self.sessionManager = sessionManager
         self.assignmentsInteractor = assignmentsInteractor
+        self.syllabusInteractor = syllabusInteractor
+        self.scoresInteractor = scoresInteractor
     }
 
     public func clear() {
@@ -116,6 +122,9 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
         assignmentsInteractor.getContent(courseIds: courses.map(\.id), sessionID: sessionManager.sessionID)
             .sink()
             .store(in: &subscriptions)
+
+        syllabusInteractor.getContent(courseIDs: courses.map(\.id))
+        scoresInteractor.getContent(courses: courses)
     }
 
     // MARK: - Private helpers
@@ -124,6 +133,8 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
         interactorFiles.cancelDownloads()
         pagesInteractor.cancelDownloads()
         assignmentsInteractor.cancelDownloads()
+        scoresInteractor.cancelRequests()
+        syllabusInteractor.cancelRequests()
         downloadSubscription?.cancel()
         downloadSubscription = nil
         modulesFetchSubscription?.cancel()
