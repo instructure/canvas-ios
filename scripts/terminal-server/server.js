@@ -27,6 +27,8 @@ const port = 4567;
 
 app.use(express.json());
 
+const SAFE_INPUT_PATTERN = /^[a-zA-Z0-9\s\.\/\-\_\/\"\'\=\:\@]+$/;
+
 app.listen(port, function(err) {
     if (err) {
         console.log("Error starting terminal server.");
@@ -36,8 +38,17 @@ app.listen(port, function(err) {
 });
 
 app.post("/terminal", (req, res) => {
-    const output = exec(req.body.command, req.query.async).toString("utf8").trim();
-    res.send(output);
+const command = req.body.command;
+    if (typeof command !== 'string' || !SAFE_INPUT_PATTERN.test(command)) {
+        return res.status(403).send("Error: Forbidden characters in command.");
+    }
+
+    try {
+        const output = exec(command, req.query.async).toString("utf8").trim();
+        res.send(output);
+    } catch (err) {
+        res.status(500).send(err.message);
+    }
 });
 
 function exec(command, async) {
