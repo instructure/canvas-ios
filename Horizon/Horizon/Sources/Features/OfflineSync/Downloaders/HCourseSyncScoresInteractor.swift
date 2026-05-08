@@ -20,12 +20,12 @@ import Core
 import Combine
 import CombineExt
 
-protocol HCourseSyncScores {
+protocol HCourseSyncScoresInteractor {
     func getContent(courses: [OfflineCourseItem])
     func cancelRequests()
 }
 
-final class HCourseSyncScoresLive: HCourseSyncScores {
+final class HCourseSyncScoresInteractorLive: HCourseSyncScoresInteractor {
     // MARK: - Private variables
 
     private var subscriptions = Set<AnyCancellable>()

@@ -20,12 +20,12 @@ import Combine
 import Core
 import CombineExt
 
-protocol HCourseSyncSyllabus {
+protocol HCourseSyncSyllabusInteractor {
     func getContent(courseIDs: [String])
     func cancelRequests()
 }
 
-final class HCourseSyncSyllabusLive: HCourseSyncSyllabus {
+final class HCourseSyncSyllabusInteractorLive: HCourseSyncSyllabusInteractor {
     // MARK: - Dependencies
 
     private let htmlParser: HTMLParser

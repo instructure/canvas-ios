@@ -38,7 +38,7 @@ final class AssignmentDetailsViewModel {
     var isOverlayToolsPresented = false
 
     // MARK: - Output
-    private(set) var offlineIntoURL: URL?
+    private(set) var offlineIntroURL: URL?
     private(set) var assignment: HAssignment?
     private(set) var isLoaderVisible = true
     private(set) var isMarkAsDoneLoaderVisible = false
@@ -482,7 +482,7 @@ final class AssignmentDetailsViewModel {
         )
 
         let assignmentId = dependency.assignmentID
-        offlineIntoURL = basePath.appendingPathComponent("assignments-\(assignmentId)").appendingPathComponent("body.html")
+        offlineIntroURL = basePath.appendingPathComponent("assignments-\(assignmentId)").appendingPathComponent("body.html")
     }
 }
 

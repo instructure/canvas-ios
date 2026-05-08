@@ -508,12 +508,12 @@ private final class HOfflineSyncSessionManagerMock: HOfflineSyncSessionManager {
     }
 }
 
-private final class HCourseSyncSyllabusMock: HCourseSyncSyllabus {
+private final class HCourseSyncSyllabusMock: HCourseSyncSyllabusInteractor {
     func getContent(courseIDs: [String]) {}
     func cancelRequests() {}
 }
 
-private final class HCourseSyncScoresMock: HCourseSyncScores {
+private final class HCourseSyncScoresMock: HCourseSyncScoresInteractor {
     func getContent(courses: [OfflineCourseItem]) {}
     func cancelRequests() {}
 }

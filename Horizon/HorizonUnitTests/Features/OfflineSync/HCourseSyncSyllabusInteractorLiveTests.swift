@@ -22,7 +22,7 @@ import Combine
 import XCTest
 import TestsFoundation
 
-final class HCourseSyncSyllabusLiveTests: HorizonTestCase {
+final class HCourseSyncSyllabusInteractorLiveTests: HorizonTestCase {
 
     private static let testData = (
         courseID1: "course 1",
@@ -31,12 +31,12 @@ final class HCourseSyncSyllabusLiveTests: HorizonTestCase {
     private lazy var testData = Self.testData
 
     private var htmlParser: SyllabusHTMLParserMock!
-    private var testee: HCourseSyncSyllabusLive!
+    private var testee: HCourseSyncSyllabusInteractorLive!
 
     override func setUp() {
         super.setUp()
         htmlParser = SyllabusHTMLParserMock()
-        testee = HCourseSyncSyllabusLive(htmlParser: htmlParser)
+        testee = HCourseSyncSyllabusInteractorLive(htmlParser: htmlParser)
     }
 
     override func tearDown() {

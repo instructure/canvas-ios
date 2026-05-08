@@ -171,7 +171,7 @@ struct AssignmentDetails: View {
                     .huiTypography(.h3)
                     .foregroundStyle( Color.huiColors.text.title)
                 WebView(
-                    offlineFilePath: viewModel.offlineIntoURL,
+                    offlineFilePath: viewModel.offlineIntroURL,
                     content: details,
                     originalBaseURL: nil,
                     isScrollEnabled: false

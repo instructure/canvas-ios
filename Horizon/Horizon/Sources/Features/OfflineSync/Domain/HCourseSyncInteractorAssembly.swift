@@ -51,8 +51,8 @@ enum HCourseSyncInteractorAssembly {
                 pagesInteractor: pageInteractor
             ),
             assignmentsInteractor: assignmentsInteractor,
-            syllabusInteractor: HCourseSyncSyllabusLive(htmlParser: pageHtmlParser),
-            scoresInteractor: HCourseSyncScoresLive(userId: userId.defaultToEmpty)
+            syllabusInteractor: HCourseSyncSyllabusInteractorLive(htmlParser: pageHtmlParser),
+            scoresInteractor: HCourseSyncScoresInteractorLive(userId: userId.defaultToEmpty)
         )
     }
 }

@@ -38,8 +38,8 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
     private let notificationsInteractor: LocalNotificationsInteractor
     private let sessionManager: HOfflineSyncSessionManager
     private let assignmentsInteractor: HCourseSyncAssignmentsInteractor
-    private let syllabusInteractor: HCourseSyncSyllabus
-    private let scoresInteractor: HCourseSyncScores
+    private let syllabusInteractor: HCourseSyncSyllabusInteractor
+    private let scoresInteractor: HCourseSyncScoresInteractor
 
     // MARK: - Private state
 
@@ -73,8 +73,8 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
         notificationsInteractor: LocalNotificationsInteractor = .init(),
         sessionManager: HOfflineSyncSessionManager,
         assignmentsInteractor: HCourseSyncAssignmentsInteractor,
-        syllabusInteractor: HCourseSyncSyllabus,
-        scoresInteractor: HCourseSyncScores
+        syllabusInteractor: HCourseSyncSyllabusInteractor,
+        scoresInteractor: HCourseSyncScoresInteractor
     ) {
         self.interactorFiles = interactorFiles
         self.modulesInteractor = modulesInteractor
@@ -122,6 +122,9 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
             .sink()
             .store(in: &subscriptions)
 
+        // Syllabus and scores are lightweight cache-only fetches; their completion is intentionally
+        // not tracked in the progress/isComplete signal. cancelActiveDownloads() calls cancelRequests()
+        // on each interactor, so they are cleaned up on cancel.
         syllabusInteractor.getContent(courseIDs: courses.map(\.id))
         scoresInteractor.getContent(courses: courses)
     }

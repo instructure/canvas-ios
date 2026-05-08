@@ -22,7 +22,7 @@ import Combine
 import XCTest
 import TestsFoundation
 
-final class HCourseSyncScoresLiveTests: HorizonTestCase {
+final class HCourseSyncScoresInteractorLiveTests: HorizonTestCase {
 
     private static let testData = (
         userID: "user 1",
@@ -33,12 +33,12 @@ final class HCourseSyncScoresLiveTests: HorizonTestCase {
     )
     private lazy var testData = Self.testData
 
-    private var testee: HCourseSyncScoresLive!
+    private var testee: HCourseSyncScoresInteractorLive!
     private var subscriptions = Set<AnyCancellable>()
 
     override func setUp() {
         super.setUp()
-        testee = HCourseSyncScoresLive(userId: testData.userID)
+        testee = HCourseSyncScoresInteractorLive(userId: testData.userID)
     }
 
     override func tearDown() {
