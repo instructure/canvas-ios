@@ -21,10 +21,27 @@ import HorizonUI
 import SwiftUI
 
 struct OfflineSyncSettingsView: View {
-    @State var viewModel: OfflineSyncSettingsViewModel
+    // MARK: - VO Properties
+
+    @State private var lastFocusedItemID: String?
+    @AccessibilityFocusState private var focusedItemID: String?
+    private let manageOfflineFocusedID = "manageOfflineFocusedID"
+
+    // MARK: - Properties
+
     @Environment(\.viewController) private var viewController
     @AccessibilityFocusState private var focusedElementID: String?
     private let syncFrequencyFilterID = "syncFrequencyFilterID"
+
+    // MARK: - Dependencies
+
+    @State private var viewModel: OfflineSyncSettingsViewModel
+
+    // MARK: - Init
+
+    init(viewModel: OfflineSyncSettingsViewModel) {
+        self._viewModel = State(wrappedValue: viewModel)
+    }
 
     var body: some View {
         ZStack {
@@ -46,6 +63,7 @@ struct OfflineSyncSettingsView: View {
             .background(Color.huiColors.surface.pageSecondary)
             .huiCornerRadius(level: .level5, corners: [.topLeft, .topRight])
         }
+        .toolbar(.hidden)
         .safeAreaInset(edge: .top, spacing: .zero) { navigationBar }
         .ignoresSafeArea(edges: .bottom)
         .background(Color.huiColors.surface.pagePrimary)
@@ -60,6 +78,12 @@ struct OfflineSyncSettingsView: View {
         } message: {
             Text(viewModel.wifiConfirmationMessage)
         }
+        .onAppear {
+            guard let lastFocusedItemID else { return }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                focusedItemID = lastFocusedItemID
+            }
+        }
     }
 
     private var manageAccountButton: some View {
@@ -68,8 +92,11 @@ struct OfflineSyncSettingsView: View {
             type: .black,
             fillsWidth: true,
             trailing: HorizonUI.icons.arrowForward,
-
-        ) {}
+        ) {
+            viewModel.navigateToManageOffline(viewController: viewController)
+            lastFocusedItemID = manageOfflineFocusedID
+        }
+        .accessibilityFocused($focusedItemID, equals: manageOfflineFocusedID)
     }
 
     private var autoSyncSection: some View {

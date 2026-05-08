@@ -30,7 +30,7 @@ public extension HorizonUI.Controls {
 
         @Binding private var isOn: Bool
         private let style: Style
-        private let title: String
+        private let title: String?
         private let description: String?
         private let errorMessage: String?
         private let isRequired: Bool
@@ -39,7 +39,7 @@ public extension HorizonUI.Controls {
         public init(
             isOn: Binding<Bool>,
             style: Style = .default,
-            title: String,
+            title: String? = nil,
             description: String? = nil,
             errorMessage: String? = nil,
             isRequired: Bool = false,

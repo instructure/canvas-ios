@@ -68,6 +68,9 @@ struct DashboardView: View {
         ) { _ in
             VStack(spacing: .zero) {
                 navigationBarHelperView
+                if viewModel.isOfflineSyncVisible {
+                    offlineSyncView
+                }
                 announcementWidgetView
                 courseListWidgetView
                 dataWidgetsView
@@ -173,6 +176,17 @@ struct DashboardView: View {
             timeSpentWidgetView: timeSpentWidgetView,
             completedWidgetView: completedWidgetView
         )
+    }
+
+    private var offlineSyncView: some View {
+        HDashboardOfflineSyncProgressCardView(
+            progress: viewModel.syncProgress,
+            downloadedSize: viewModel.syncDownloadedSize,
+            totalSize: viewModel.syncTotalSize
+        )
+        .padding(.horizontal, .huiSpaces.space24)
+        .padding(.bottom, .huiSpaces.space16)
+        .animation(.smooth, value: viewModel.isOfflineSyncVisible)
     }
 }
 

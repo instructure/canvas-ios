@@ -17,6 +17,7 @@
 //
 
 import Combine
+import CombineSchedulers
 import Core
 import Foundation
 import Observation
@@ -27,12 +28,18 @@ class DashboardViewModel {
 
     private(set) var hasUnreadNotification = false
     private(set) var hasUnreadInboxMessage = false
+    private(set) var isOfflineSyncVisible = false
+    private(set) var syncProgress: Double = 0
+    private(set) var syncDownloadedSize: String = ""
+    private(set) var syncTotalSize: String = ""
 
     // MARK: - Dependencies
 
     private let dashboardInteractor: DashboardInteractor
     private let notificationInteractor: NotificationInteractor
     private let router: Router
+    private let syncInteractor: HCourseSyncInteractor
+    private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Private variables
 
@@ -43,13 +50,48 @@ class DashboardViewModel {
     init(
         dashboardInteractor: DashboardInteractor,
         notificationInteractor: NotificationInteractor,
-        router: Router
+        router: Router,
+        syncInteractor: HCourseSyncInteractor,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main
     ) {
         self.dashboardInteractor = dashboardInteractor
         self.notificationInteractor = notificationInteractor
         self.router = router
+        self.syncInteractor = syncInteractor
+        self.scheduler = scheduler
 
         setNotificationBadge()
+        observeOfflineSync()
+    }
+
+    // MARK: - Private
+
+    private func observeOfflineSync() {
+        NotificationCenter.default.publisher(for: .OfflineSyncTriggered)
+            .compactMap { $0.object as? [OfflineCourseItem] }
+            .sink { [weak self] courses in
+                self?.isOfflineSyncVisible = true
+                self?.syncInteractor.downloadContent(courses: courses, environment: .shared)
+            }
+            .store(in: &subscriptions)
+
+        syncInteractor.progressPublisher
+            .receive(on: scheduler)
+            .sink { [weak self] progress in
+                guard let self else { return }
+                syncProgress = progress.progress
+                syncDownloadedSize = progress.downloadedSize
+                syncTotalSize = progress.totalSize
+                if progress.isComplete {
+                    self.scheduler.schedule(after: self.scheduler.now.advanced(by: .seconds(1))) {
+                        self.isOfflineSyncVisible = false
+                        self.syncProgress = 0
+                        self.syncDownloadedSize = ""
+                        self.syncTotalSize = ""
+                    }
+                }
+            }
+            .store(in: &subscriptions)
     }
 
     private func setNotificationBadge() {

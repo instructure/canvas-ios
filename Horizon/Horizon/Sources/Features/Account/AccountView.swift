@@ -35,6 +35,7 @@ struct AccountView: View {
     @AccessibilityFocusState private var focusedSettingID: String?
 
     @Bindable var viewModel: AccountViewModel
+    let onShowTabBar: (Bool) -> Void
     @Environment(\.viewController) private var viewController
 
     var body: some View {
@@ -65,6 +66,7 @@ struct AccountView: View {
             }
             .refreshable { await viewModel.refresh() }
             .toolbar(.hidden)
+            .onWillAppear { onShowTabBar(true) }
             .background(Color.huiColors.surface.pagePrimary)
             .onAppear {
                 guard let lastFocusedId else { return }
@@ -166,27 +168,35 @@ struct AccountView: View {
                 divider
                 AccountEntryRowView(
                     title: String(localized: "Advanced", bundle: .horizon),
+                    isLastItem: !viewModel.isOfflineModeEnabled,
                     didTapRow: {
                         lastFocusedId = SettingIDs.advanced.rawValue
                         viewModel.advancedDidTap(viewController: viewController)
                     }
                 )
                 .accessibilityFocused($focusedSettingID, equals: SettingIDs.advanced.rawValue)
-                divider
-                AccountEntryRowView(
-                    title: String(localized: "Offline settings", bundle: .horizon),
-                    isLastItem: true,
-                    didTapRow: {
-                        lastFocusedId = SettingIDs.offlineSync.rawValue
-                        viewModel.syncSettingsDidTap(viewController: viewController)
-                    }
-                )
-                .accessibilityFocused($focusedSettingID, equals: SettingIDs.offlineSync.rawValue)
+
+                if viewModel.isOfflineModeEnabled {
+                    divider
+                    offlineSettingsView
+                }
             }
         }
         .onAppear {
             viewModel.getUserName()
         }
+    }
+
+    private var offlineSettingsView: some View {
+        AccountEntryRowView(
+            title: String(localized: "Offline settings", bundle: .horizon),
+            isLastItem: true,
+            didTapRow: {
+                lastFocusedId = SettingIDs.offlineSync.rawValue
+                viewModel.syncSettingsDidTap(viewController: viewController)
+            }
+        )
+        .accessibilityFocused($focusedSettingID, equals: SettingIDs.offlineSync.rawValue)
     }
 
     private var divider: some View {

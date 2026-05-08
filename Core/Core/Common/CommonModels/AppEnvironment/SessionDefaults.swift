@@ -255,6 +255,37 @@ public struct SessionDefaults: Equatable {
         set { self["isOfflineWifiOnlySyncEnabled"] = newValue }
     }
 
+    public var horizonSyncFrequency: CourseSyncFrequency? {
+        get {
+            guard let raw = self["horizonSyncFrequency"] as? Int,
+                  let frequency = CourseSyncFrequency(rawValue: raw) else {
+                return nil
+            }
+            return frequency
+        }
+        set { self["horizonSyncFrequency"] = newValue?.rawValue }
+    }
+
+    public var horizonSyncNextDate: Date? {
+        get { self["horizonSyncNextDate"] as? Date }
+        set { self["horizonSyncNextDate"] = newValue }
+    }
+
+    public var isHorizonAutoSyncEnabled: Bool? {
+        get { self["isHorizonAutoSyncEnabled"] as? Bool }
+        set { self["isHorizonAutoSyncEnabled"] = newValue }
+    }
+
+    public var horizonOfflineSyncItems: [String] {
+        get { self["horizonOfflineSyncItems"] as? [String] ?? [] }
+        set { self["horizonOfflineSyncItems"] = newValue }
+    }
+
+    public var horizonOfflineSyncFileMetadata: [String: [String: Any]] {
+        get { self["horizonOfflineSyncFileMetadata"] as? [String: [String: Any]] ?? [:] }
+        set { self["horizonOfflineSyncFileMetadata"] = newValue }
+    }
+
     public var offlineSyncSelections: [CourseSyncItemSelection] {
         get {
             self["offlineSyncSelections"] as? [String] ?? []

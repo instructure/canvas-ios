@@ -28,6 +28,7 @@ final class AccountViewModelTests: HorizonTestCase {
     private var getUserInteractor: GetUserInteractorMock!
     private var experienceInteractor: ExperienceSummaryInteractorMock!
     private var careerHelpInteractor: CareerHelpInteractorMock!
+    private var offlineModeInteractor: OfflineModeInteractorMock!
 
     override func setUp() {
         super.setUp()
@@ -38,6 +39,7 @@ final class AccountViewModelTests: HorizonTestCase {
         getUserInteractor = GetUserInteractorMock(user: user)
         experienceInteractor = ExperienceSummaryInteractorMock()
         careerHelpInteractor = CareerHelpInteractorMock()
+        offlineModeInteractor = OfflineModeInteractorMock()
     }
 
     override func tearDown() {
@@ -45,6 +47,7 @@ final class AccountViewModelTests: HorizonTestCase {
         getUserInteractor = nil
         experienceInteractor = nil
         careerHelpInteractor = nil
+        offlineModeInteractor = nil
         super.tearDown()
     }
 
@@ -206,8 +209,9 @@ final class AccountViewModelTests: HorizonTestCase {
             getUserInteractor: getUserInteractor,
             appExperienceInteractor: experienceInteractor,
             careerHelpInteractor: careerHelpInteractor,
+            offlineModeInteractor: offlineModeInteractor,
             scheduler: .immediate
-        )
+        ) { _ in }
     }
 }
 

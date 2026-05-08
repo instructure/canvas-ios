@@ -22,7 +22,7 @@ extension HorizonUI.Controls {
     struct ToggleDescriptionView: View {
         // MARK: - Dependencies
 
-        let title: String
+        let title: String?
         let description: String?
         let errorMessage: String?
         let isRequired: Bool
@@ -30,7 +30,7 @@ extension HorizonUI.Controls {
         // MARK: - Init
 
         init(
-            title: String,
+            title: String?,
             description: String? = nil,
             errorMessage: String? = nil,
             isRequired: Bool = false
@@ -44,7 +44,9 @@ extension HorizonUI.Controls {
         var body: some View {
             VStack(alignment: .leading, spacing: .huiSpaces.space4) {
                 HStack(alignment: .top, spacing: .huiSpaces.space2) {
-                    Text(title)
+                    if let title {
+                        Text(title)
+                    }
                     if isRequired {
                         Text(verbatim: "*")
                     }

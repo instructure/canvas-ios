@@ -18,13 +18,13 @@
 
 import Foundation
 
-class CourseSyncDiskSpaceInfoViewModel: ObservableObject {
-    @Published private(set) var diskUsage: String
-    @Published private(set) var chart: (other: CGFloat, app: CGFloat, free: CGFloat)
+public class CourseSyncDiskSpaceInfoViewModel: ObservableObject {
+    @Published public private(set) var diskUsage: String
+    @Published public private(set) var chart: (other: CGFloat, app: CGFloat, free: CGFloat)
     public let appName: String
     public let a11yLabel: String
 
-    init(interactor: DiskSpaceInteractor, app: AppEnvironment.App) {
+    public init(interactor: DiskSpaceInteractor, app: AppEnvironment.App) {
         let diskSpace = interactor.getDiskSpace()
         let format = String(localized: "%@ of %@ Used", bundle: .core, comment: "42 GB of 64 GB Used")
         let diskUsage = String.localizedStringWithFormat(format,

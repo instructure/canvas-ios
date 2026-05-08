@@ -21,20 +21,26 @@ import UIKit
 
 final class AccountAssembly {
     static func makeView() -> AccountView {
-        AccountView(
+        let onShowTabBar: (Bool) -> Void = { isVisible in
+            AppEnvironment.shared.tabBar(isVisible: isVisible)
+        }
+        return AccountView(
             viewModel: AccountViewModel(
-                getUserInteractor: GetUserInteractorLive()
-            )
+                getUserInteractor: GetUserInteractorLive(),
+                offlineModeInteractor: OfflineModeAssembly.make(),
+                onShowTabBar: onShowTabBar,
+            ), onShowTabBar: onShowTabBar
         )
     }
 
-    #if DEBUG
+#if DEBUG
     static func makePreview() -> AccountView {
         let getUserInteractorPreview = GetUserInteractorPreview()
         let viewModel = AccountViewModel(
-            getUserInteractor: getUserInteractorPreview
-        )
-        return AccountView(viewModel: viewModel)
+            getUserInteractor: getUserInteractorPreview,
+            offlineModeInteractor: OfflineModeAssembly.make(),
+        ) { _ in }
+        return AccountView(viewModel: viewModel) { _ in }
     }
-    #endif
+#endif
 }

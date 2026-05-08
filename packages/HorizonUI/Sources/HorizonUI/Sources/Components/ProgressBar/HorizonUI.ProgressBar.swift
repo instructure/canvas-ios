@@ -67,6 +67,7 @@ public extension HorizonUI {
             HStack(spacing: .huiSpaces.space8) {
                 GeometryReader { geometry in
                     progressContentView(width: geometry.size.width * progress)
+                        .animation(.smooth, value: progress)
                 }
 
                 if numberPosition == .outside {

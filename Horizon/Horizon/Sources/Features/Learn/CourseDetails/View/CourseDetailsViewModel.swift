@@ -34,7 +34,6 @@ final class CourseDetailsViewModel {
         }
     }
     private(set) var isShowHeader = true
-    private(set) var courses: [LearnCourse] = []
     private(set) var courseTools: [ToolLinkItem] = []
     private(set) var isLoaderVisible: Bool = false
     private(set) var overviewDescription = ""
@@ -167,14 +166,12 @@ final class CourseDetailsViewModel {
     }
 
     private func fetchData() {
-        Publishers.CombineLatest3(
+        Publishers.CombineLatest(
             getCourse(for: courseID),
-            getCourses(),
             courseToolsInteractor.getTools(courseID: courseID, ignoreCache: false)
         )
-        .sink { [weak self] courseInfo, courses, tools in
+        .sink { [weak self] courseInfo, tools in
             guard let self else { return }
-            self.courses = courses
             self.courseTools = tools
             updateCourse(course: courseInfo.course, syllabus: courseInfo.syllabus)
         }

@@ -70,6 +70,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             )
         }
         BackgroundProcessingAssembly.resolveInteractor().register(taskID: OfflineSyncBackgroundTaskRequest.ID)
+        BackgroundProcessingAssembly.register(taskID: HSyncBackgroundTaskRequest.ID) {
+            HBackgroundUpdatesAssembly.makeBackgroundTask()
+        }
+        BackgroundProcessingAssembly.resolveInteractor().register(taskID: HSyncBackgroundTaskRequest.ID)
         setupFirebase()
         Analytics.shared.handler = analyticsHandler
         CacheManager.resetAppIfNecessary()

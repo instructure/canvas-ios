@@ -33,7 +33,8 @@ enum DashboardAssembly {
             viewModel: .init(
                 dashboardInteractor: makeDashboardInteractor(),
                 notificationInteractor: NotificationAssembly.makeInteractor(),
-                router: AppEnvironment.shared.router
+                router: AppEnvironment.shared.router,
+                syncInteractor: HCourseSyncInteractorLive(session: AppEnvironment.shared.userDefaults ?? .fallback)
             )
         )
     }
@@ -44,7 +45,8 @@ enum DashboardAssembly {
             let viewModel = DashboardViewModel(
                 dashboardInteractor: dashboardInteractorPreview,
                 notificationInteractor: NotificationInteractorPreview(),
-                router: AppEnvironment.shared.router
+                router: AppEnvironment.shared.router,
+                syncInteractor: HCourseSyncInteractorLive(session: AppEnvironment.shared.userDefaults ?? .fallback)
             )
             return DashboardView(viewModel: viewModel)
         }

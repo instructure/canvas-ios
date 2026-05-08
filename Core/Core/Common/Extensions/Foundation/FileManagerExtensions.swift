@@ -20,7 +20,7 @@ import Foundation
 import Combine
 
 extension FileManager {
-    func fileModificationDate(url: URL) -> Date? {
+    public func fileModificationDate(url: URL) -> Date? {
         do {
             let attr = try self.attributesOfItem(atPath: url.path)
             return attr[FileAttributeKey.modificationDate] as? Date

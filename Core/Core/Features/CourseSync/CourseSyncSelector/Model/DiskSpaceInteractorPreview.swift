@@ -20,8 +20,9 @@
 
 import Foundation
 
-class DiskSpaceInteractorPreview: DiskSpaceInteractor {
-    func getDiskSpace() -> DiskSpace {
+public class DiskSpaceInteractorPreview: DiskSpaceInteractor {
+    public init() {}
+    public func getDiskSpace() -> DiskSpace {
         let total = Double(64_000_000_000)
         return DiskSpace(total: Int64(total),
                          available: Int64(0.5 * total),

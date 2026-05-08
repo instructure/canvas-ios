@@ -33,6 +33,7 @@ final class AccountViewModel {
 
     private(set) var name: String = ""
     private(set) var helpItems: [HelpModel] = []
+    private(set) var isOfflineModeEnabled = false
     var isShowingLogoutConfirmationAlert = false
     var isExperienceSwitchAvailable = false
     var isLoading = false
@@ -43,6 +44,8 @@ final class AccountViewModel {
     private let getUserInteractor: GetUserInteractor
     private let appExperienceInteractor: ExperienceSummaryInteractor
     private let careerHelpInteractor: CareerHelpInteractor
+    private let offlineModeInteractor: OfflineModeInteractor
+    private let onShowTabBar: (Bool) -> Void
     private let scheduler: AnySchedulerOf<DispatchQueue>
 
     // MARK: - Private properties
@@ -64,13 +67,17 @@ final class AccountViewModel {
         appExperienceInteractor: ExperienceSummaryInteractor = ExperienceSummaryInteractorLive(),
         sessionInteractor: SessionInteractor = SessionInteractor(),
         careerHelpInteractor: CareerHelpInteractor = CareerHelpInteractorLive(),
-        scheduler: AnySchedulerOf<DispatchQueue> = .main
+        offlineModeInteractor: OfflineModeInteractor,
+        scheduler: AnySchedulerOf<DispatchQueue> = .main,
+        onShowTabBar: @escaping (Bool) -> Void
     ) {
         self.router = router
         self.getUserInteractor = getUserInteractor
         self.appExperienceInteractor = appExperienceInteractor
         self.scheduler = scheduler
         self.careerHelpInteractor = careerHelpInteractor
+        self.offlineModeInteractor = offlineModeInteractor
+        self.onShowTabBar = onShowTabBar
         getAccountHelpLinks()
         confirmLogoutViewModel.userConfirmation()
             .sink {
@@ -82,6 +89,8 @@ final class AccountViewModel {
             .isExperienceSwitchAvailable()
             .assign(to: \.isExperienceSwitchAvailable, on: self, ownership: .weak)
             .store(in: &subscriptions)
+
+        isOfflineModeEnabled = offlineModeInteractor.isFeatureFlagEnabled()
     }
 
     private func getAccountHelpLinks(ignoreCache: Bool = false, completion: (() -> Void)? = nil) {
@@ -136,6 +145,7 @@ final class AccountViewModel {
 
     func syncSettingsDidTap(viewController: WeakViewController) {
         if let url = URL(string: "/account/sync-settings") {
+            onShowTabBar(false)
             router.route(to: url, from: viewController)
         }
     }

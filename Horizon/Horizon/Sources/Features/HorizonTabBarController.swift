@@ -73,6 +73,7 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
         vc.tabBarItem.title = HorizonTabBarType.dashboard.title
         vc.tabBarItem.image = HorizonTabBarType.dashboard.image
         vc.tabBarItem.selectedImage = HorizonTabBarType.dashboard.selectedImage
+        vc.embedOfflineBanner()
         return vc
     }
 

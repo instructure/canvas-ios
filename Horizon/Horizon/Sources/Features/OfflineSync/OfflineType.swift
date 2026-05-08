@@ -17,20 +17,57 @@
 //
 
 enum OfflineType {
-    case course
-    case file(courseID: String)
-    case program
-    case learningLibrary
-    func path(for id: String) -> String {
+    case course(id: String)
+    case file(courseID: String, fileID: String)
+    case program(id: String)
+    case learningLibrary(id: String)
+
+    enum OfflinePathKey {
+        static let root = "offline"
+        static let course = "course"
+        static let file = "file"
+        static let program = "program"
+        static let learningLibrary = "learningLibrary"
+    }
+
+    func path() -> String {
         switch self {
-        case .course:
-            return "offline/course/\(id)"
-        case .file(let courseID):
-            return "offline/course/\(courseID)/file/\(id)"
-        case .program:
-            return "offline/program/\(id)"
-        case .learningLibrary:
-            return "offline/learningLibrary/\(id)"
+        case .course(let id):
+            return "\(OfflinePathKey.root)/\(OfflinePathKey.course)/\(id)"
+
+        case .file(let courseID, let fileID):
+            return "\(OfflinePathKey.root)/\(OfflinePathKey.course)/\(courseID)/\(OfflinePathKey.file)/\(fileID)"
+
+        case .program(let id):
+            return "\(OfflinePathKey.root)/\(OfflinePathKey.program)/\(id)"
+
+        case .learningLibrary(let id):
+            return "\(OfflinePathKey.root)/\(OfflinePathKey.learningLibrary)/\(id)"
+        }
+    }
+
+    static func parse(path: String) -> OfflineType? {
+        var components = path.split(separator: "/").map(String.init).dropFirst(1)
+        guard let type = components.popFirst() else { return nil }
+        switch type {
+        case OfflinePathKey.course:
+            guard let courseID = components.popFirst() else { return nil }
+            if let fileKeyword = components.popFirst(), fileKeyword == OfflinePathKey.file {
+                guard let fileID = components.first else { return nil }
+                return .file(courseID: courseID, fileID: fileID)
+            }
+            return .course(id: courseID)
+
+        case OfflinePathKey.program:
+            guard let id = components.first else { return nil }
+            return .program(id: id)
+
+        case OfflinePathKey.learningLibrary:
+            guard let id = components.first else { return nil }
+            return .learningLibrary(id: id)
+
+        default:
+            return nil
         }
     }
 }

@@ -29,14 +29,14 @@ final class HCourseSyncInteractorAdapter: CourseSyncInteractor {
     }
 
     func downloadContent(for entries: [CourseSyncEntry]) -> AnyPublisher<[CourseSyncEntry], Never> {
-        completionSubscription = wrapped
-            .downloadContent()
-            .sink(
-                receiveCompletion: { _ in
-                    NotificationCenter.default.post(name: .OfflineSyncCompleted, object: nil)
-                },
-                receiveValue: { _ in }
-            )
+//        completionSubscription = wrapped
+//            .downloadContent(courses: [], environment: AppEnvironment.shared)
+//            .sink(
+//                receiveCompletion: { _ in
+//                    NotificationCenter.default.post(name: .OfflineSyncCompleted, object: nil)
+//                },
+//                receiveValue: { _ in }
+//            )
         return Just(entries).eraseToAnyPublisher()
     }
 
@@ -46,6 +46,6 @@ final class HCourseSyncInteractorAdapter: CourseSyncInteractor {
 
     func cancel() {
         completionSubscription?.cancel()
-        wrapped.cancelSync()
+//        wrapped.cancelSync()
     }
 }

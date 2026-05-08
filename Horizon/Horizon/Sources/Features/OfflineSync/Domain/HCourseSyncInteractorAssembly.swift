@@ -16,8 +16,10 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Core
+
 public enum HCourseSyncInteractorAssembly {
     public static func makeInteractor() -> HCourseSyncInteractor {
-        HCourseSyncInteractorLive()
+        HCourseSyncInteractorLive(session: AppEnvironment.shared.userDefaults ?? .fallback)
     }
 }
