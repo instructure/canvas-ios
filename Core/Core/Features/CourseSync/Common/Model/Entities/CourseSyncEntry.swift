@@ -35,7 +35,7 @@ public struct CourseSyncEntry: Equatable {
      */
     let id: String
     let hasFrontPage: Bool
-   public var courseId: String { String(id.split(separator: "/").last ?? "") }
+    public var courseId: String { String(id.split(separator: "/").last ?? "") }
     var syncID: CourseSyncID { CourseSyncID(value: courseId, apiBaseURL: apiBaseURL) }
 
     /// List of available tabs coming from the API + a manually added tab named "Additional Content" that is responsible for tracking the download of hidden tabs and such.

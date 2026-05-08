@@ -27,13 +27,13 @@ public enum CourseSyncBackgroundUpdatesAssembly {
         OfflineSyncBackgroundTask(
             syncableAccounts: OfflineSyncAccountsInteractor(),
             sessions: LoginSession.sessions,
-            selectedItemsInteractorFactory: { isHorizon, sessionDefaults in
-                isHorizon
+            selectedItemsInteractorFactory: { sessionDefaults in
+                AppEnvironment.shared.app == .horizon
                     ? horizonSelectedItemsInteractor
-                    : OfflineSyncBackgroundTask.DefaultSelectedItemsFactory(false, sessionDefaults)
+                    : OfflineSyncBackgroundTask.DefaultSelectedItemsFactory(sessionDefaults)
             },
-            syncInteractorFactory: { isHorizon in
-                isHorizon
+            syncInteractorFactory: {
+                AppEnvironment.shared.app == .horizon
                     ? horizonSyncInteractor
                     : CourseSyncDownloaderAssembly.makeInteractor()
             }

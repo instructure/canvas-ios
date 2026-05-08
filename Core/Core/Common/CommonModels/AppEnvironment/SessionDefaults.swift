@@ -255,11 +255,6 @@ public struct SessionDefaults: Equatable {
         set { self["isOfflineWifiOnlySyncEnabled"] = newValue }
     }
 
-    public var horizonOfflineSyncFileMetadata: [String: [String: Any]] {
-        get { self["horizonOfflineSyncFileMetadata"] as? [String: [String: Any]] ?? [:] }
-        set { self["horizonOfflineSyncFileMetadata"] = newValue }
-    }
-
     public var offlineSyncSelections: [CourseSyncItemSelection] {
         get {
             self["offlineSyncSelections"] as? [String] ?? []

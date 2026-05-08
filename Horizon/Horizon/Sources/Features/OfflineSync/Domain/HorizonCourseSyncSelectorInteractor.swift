@@ -24,7 +24,11 @@ public final class HorizonCourseSyncSelectorInteractor: CourseSyncSelectorIntera
 
     public init() {}
 
-    required public init(courseID: String?, courseSyncListInteractor: CourseSyncListInteractor, sessionDefaults: SessionDefaults) {}
+    required public init(
+        courseID: String?,
+        courseSyncListInteractor: CourseSyncListInteractor,
+        sessionDefaults: SessionDefaults
+    ) {}
 
     public func getCourseSyncEntries() -> AnyPublisher<[CourseSyncEntry], Error> {
         Just([]).setFailureType(to: Error.self).eraseToAnyPublisher()

@@ -24,14 +24,14 @@ import Combine
  who have this turned on.
  */
 public class OfflineSyncBackgroundTask: BackgroundTask {
-    public typealias SelectedItemsFactory = (_ isHorizonUser: Bool, _ sessionDefaults: SessionDefaults) -> CourseSyncSelectorInteractor
-    public static let DefaultSelectedItemsFactory: SelectedItemsFactory = { _, sessionDefaults in
+    public typealias SelectedItemsFactory = (_ sessionDefaults: SessionDefaults) -> CourseSyncSelectorInteractor
+    public static let DefaultSelectedItemsFactory: SelectedItemsFactory = { sessionDefaults in
         let courseSyncListInteractor = CourseSyncListInteractorLive(sessionDefaults: sessionDefaults)
         return CourseSyncSelectorInteractorLive(courseSyncListInteractor: courseSyncListInteractor,
                                          sessionDefaults: sessionDefaults)
     }
-    public typealias SyncInteractorFactory = (_ isHorizonUser: Bool) -> CourseSyncInteractor
-    public static let DefaultSyncInteractorFactory: SyncInteractorFactory = { _ in
+    public typealias SyncInteractorFactory = () -> CourseSyncInteractor
+    public static let DefaultSyncInteractorFactory: SyncInteractorFactory = {
         CourseSyncDownloaderAssembly.makeInteractor()
     }
 
@@ -119,10 +119,10 @@ public class OfflineSyncBackgroundTask: BackgroundTask {
             return
         }
 
-        let syncInteractor = syncInteractorFactory(AppEnvironment.shared.app == .horizon)
+        let syncInteractor = syncInteractorFactory()
         syncingInteractor = syncInteractor
 
-        let selectedItemsInteractor = selectedItemsInteractorFactory(AppEnvironment.shared.app == .horizon, sessionDefaults)
+        let selectedItemsInteractor = selectedItemsInteractorFactory(sessionDefaults)
 
         selectedItemsInteractor
             .getSelectedCourseEntries()

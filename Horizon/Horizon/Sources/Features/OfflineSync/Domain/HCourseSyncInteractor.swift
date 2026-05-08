@@ -16,18 +16,20 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import Combine
 import Core
 
 public protocol HCourseSyncInteractor {
-    func downloadContent()
+    func downloadContent() -> AnyPublisher<Void, Never>
     func cancelSync()
 }
 
 public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
-    public func downloadContent() {
-
+    public func downloadContent() -> AnyPublisher<Void, Never> {
+        // TODO: CLXR-462 Implement Horizon course content download
+        Just(()).eraseToAnyPublisher()
     }
     public func cancelSync() {
-
+        // TODO: CLXR-462 Implement Horizon sync cancellation
     }
 }

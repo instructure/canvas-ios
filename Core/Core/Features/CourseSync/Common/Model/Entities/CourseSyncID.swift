@@ -19,7 +19,7 @@
 import Foundation
 
 public struct CourseSyncID: Hashable {
-   public let value: String
+    public let value: String
     let apiBaseURL: URL?
 
     var localID: String { value.localID }
