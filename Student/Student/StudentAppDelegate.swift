@@ -64,7 +64,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
         BackgroundProcessingAssembly.register(scheduler: CoreTaskSchedulerLive(taskScheduler: .shared))
         BackgroundProcessingAssembly.register(taskID: OfflineSyncBackgroundTaskRequest.ID) {
-            CourseSyncBackgroundUpdatesAssembly.makeOfflineSyncBackgroundTask()
+            CourseSyncBackgroundUpdatesAssembly.makeOfflineSyncBackgroundTask(
+                horizonSelectedItemsInteractorFactory: { HorizonCourseSyncSelectorInteractor() },
+                horizonSyncInteractorFactory: { HorizonCourseSyncAssembly.makeInteractor() }
+            )
         }
         BackgroundProcessingAssembly.resolveInteractor().register(taskID: OfflineSyncBackgroundTaskRequest.ID)
         setupFirebase()
@@ -188,7 +191,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         CoreWebView.stopCookieKeepAlive()
         BackgroundVideoPlayer.shared.background()
         environment.refreshWidgets()
-
         OfflineSyncScheduleInteractor().scheduleNextSync()
 
         if LocalizationManager.needsRestart {
@@ -491,9 +493,6 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
         willPresent _: UNNotification,
         withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void
     ) {
-        guard environment.app != .horizon else {
-            return
-        }
         completionHandler([.banner, .sound])
     }
 

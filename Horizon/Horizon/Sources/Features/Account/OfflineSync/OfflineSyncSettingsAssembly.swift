@@ -16,30 +16,29 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
+import Core
+import SwiftUI
 
-public struct CourseSyncID: Hashable, CustomStringConvertible {
-    public let value: String
-    let apiBaseURL: URL?
+final class OfflineSyncSettingsAssembly {
 
-    var localID: String { value.localID }
-    var asContext: Context { .course(localID) }
-
-    init(value: String, apiBaseURL: URL? = nil) {
-        self.value = value
-        self.apiBaseURL = apiBaseURL
+    static func makeViewController() -> UIViewController {
+        let sessionID = AppEnvironment.shared.currentSession?.uniqueID ?? ""
+        let router = AppEnvironment.shared.router
+        return CoreHostingController(
+            OfflineSyncSettingsView(
+                viewModel: OfflineSyncSettingsViewModel(router: router, sessionID: sessionID)
+            )
+        )
     }
 
-    public var description: String { value }
-}
-
-#if DEBUG
-
-extension CourseSyncID: ExpressibleByStringLiteral {
-    public init(stringLiteral value: StringLiteralType) {
-        self.value = value
-        self.apiBaseURL = nil
+    #if DEBUG
+    static func makePreview() -> OfflineSyncSettingsView {
+        OfflineSyncSettingsView(
+            viewModel: OfflineSyncSettingsViewModel(
+                router: AppEnvironment.shared.router,
+                sessionID: "sessionID"
+            )
+        )
     }
+    #endif
 }
-
-#endif

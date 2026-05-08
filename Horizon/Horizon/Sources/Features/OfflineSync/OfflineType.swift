@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,30 +16,21 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import Foundation
-
-public struct CourseSyncID: Hashable, CustomStringConvertible {
-    public let value: String
-    let apiBaseURL: URL?
-
-    var localID: String { value.localID }
-    var asContext: Context { .course(localID) }
-
-    init(value: String, apiBaseURL: URL? = nil) {
-        self.value = value
-        self.apiBaseURL = apiBaseURL
-    }
-
-    public var description: String { value }
-}
-
-#if DEBUG
-
-extension CourseSyncID: ExpressibleByStringLiteral {
-    public init(stringLiteral value: StringLiteralType) {
-        self.value = value
-        self.apiBaseURL = nil
+enum OfflineType {
+    case course
+    case file(courseID: String)
+    case program
+    case learningLibrary
+    func path(for id: String) -> String {
+        switch self {
+        case .course:
+            return "offline/course/\(id)"
+        case .file(let courseID):
+            return "offline/course/\(courseID)/file/\(id)"
+        case .program:
+            return "offline/program/\(id)"
+        case .learningLibrary:
+            return "offline/learningLibrary/\(id)"
+        }
     }
 }
-
-#endif

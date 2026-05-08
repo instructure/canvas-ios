@@ -29,6 +29,10 @@ public struct SessionDefaults: Equatable {
     public static let fallback = SessionDefaults(sessionID: "")
     public let sessionID: String
 
+    public init(sessionID: String) {
+        self.sessionID = sessionID
+    }
+
     /// The underlying UserDefaults instance used for storage.
     /// Automatically configured to use the app group suite for sharing data between app and extensions.
     public var userDefaults: UserDefaults {
