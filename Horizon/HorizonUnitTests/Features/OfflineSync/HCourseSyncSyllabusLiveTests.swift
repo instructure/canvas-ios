@@ -107,6 +107,10 @@ final class HCourseSyncSyllabusLiveTests: HorizonTestCase {
 // MARK: - Mocks
 
 private final class SyllabusHTMLParserMock: HTMLParser {
+    var embeddedContentFailurePublisher: AnyPublisher<Core.CourseSyncID, Never> {
+        Empty().eraseToAnyPublisher()
+    }
+
     var sectionName: String = "syllabus"
     var envResolver: CourseSyncEnvironmentResolver = CourseSyncEnvironmentResolverLive()
 

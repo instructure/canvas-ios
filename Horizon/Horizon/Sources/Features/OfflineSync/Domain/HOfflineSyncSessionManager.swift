@@ -61,7 +61,7 @@ final class HOfflineSyncSessionManagerLive: HOfflineSyncSessionManager {
     }
 
     func clearSessionData() {
-        session.horizonOfflineSyncItems = []
+        session.offlineSyncSelections = []
         session.horizonOfflineSyncFileMetadata = [:]
     }
 
@@ -69,7 +69,7 @@ final class HOfflineSyncSessionManagerLive: HOfflineSyncSessionManager {
         removeDeselectedCourseFolders(courses: courses)
         updateFileMetadata(courses: courses)
         removeUnavailableFiles(courses: courses)
-        session.horizonOfflineSyncItems = []
+        session.offlineSyncSelections = []
     }
 
     func saveCompletedSync(courses: [OfflineCourseItem], files: [OfflineFileItem]) {
@@ -92,13 +92,13 @@ final class HOfflineSyncSessionManagerLive: HOfflineSyncSessionManager {
     // MARK: - Private
 
     private func appendSyncItems(_ newItems: [String]) {
-        session.horizonOfflineSyncItems.append(contentsOf: newItems)
+        session.offlineSyncSelections.append(contentsOf: newItems)
     }
 
     private func removeDeselectedCourseFolders(courses: [OfflineCourseItem]) {
         let sessionID = session.sessionID
         let newCourseIDs = Set(courses.map(\.id))
-        let deselectedCourseIDs = session.horizonOfflineSyncItems
+        let deselectedCourseIDs = session.offlineSyncSelections
             .compactMap { OfflineType.parse(path: $0) }
             .compactMap { if case .course(let id, _) = $0 { return id } else { return nil } }
             .filter { !newCourseIDs.contains($0) }
