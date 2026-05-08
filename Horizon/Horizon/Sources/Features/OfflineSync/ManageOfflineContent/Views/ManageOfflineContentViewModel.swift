@@ -45,7 +45,7 @@ final class ManageOfflineContentViewModel {
     }
 
     var isRemoveButtonEnabled: Bool {
-        session.horizonOfflineSyncItems.isNotEmpty
+        session.offlineSyncSelections.isNotEmpty
     }
 
     // MARK: - Inputs / Outputs

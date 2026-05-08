@@ -217,6 +217,10 @@ final class HCourseSyncPagesInteractorLiveTests: HorizonTestCase {
 // MARK: - Mocks
 
 private final class HTMLParserMock: HTMLParser {
+    var embeddedContentFailurePublisher: AnyPublisher<CourseSyncID, Never> {
+        Empty().eraseToAnyPublisher()
+    }
+
     var sectionName: String = "pages"
     var envResolver: CourseSyncEnvironmentResolver = CourseSyncEnvironmentResolverLive()
 

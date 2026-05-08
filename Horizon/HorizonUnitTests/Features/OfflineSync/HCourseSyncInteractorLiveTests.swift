@@ -354,7 +354,6 @@ final class HCourseSyncInteractorLiveTests: HorizonTestCase {
             modulesInteractor: modulesInteractor,
             pagesInteractor: pagesInteractor,
             notificationsInteractor: LocalNotificationsInteractor(notificationCenter: notificationCenter),
-            session: SessionDefaults(sessionID: testData.sessionID),
             sessionManager: sessionManager
         )
     }

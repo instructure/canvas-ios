@@ -40,7 +40,7 @@ final class ManageOfflineContentInteractorLive: ManageOfflineContentInteractor {
         ReactiveStore(useCase: GetHCourseSelectionUseCase(userId: userID))
             .getEntities(ignoreCache: ignoreCache)
             .map { [session] courses in
-                courses.map { OfflineCourseItem(from: $0, offlineSyncItems: session.horizonOfflineSyncItems) }
+                courses.map { OfflineCourseItem(from: $0, offlineSyncItems: session.offlineSyncSelections) }
             }
             .eraseToAnyPublisher()
     }
