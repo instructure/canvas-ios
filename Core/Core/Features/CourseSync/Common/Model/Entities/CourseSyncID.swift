@@ -25,7 +25,7 @@ public struct CourseSyncID: Hashable, CustomStringConvertible {
     var localID: String { value.localID }
     var asContext: Context { .course(localID) }
 
-    init(value: String, apiBaseURL: URL? = nil) {
+    public init(value: String, apiBaseURL: URL? = nil) {
         self.value = value
         self.apiBaseURL = apiBaseURL
     }

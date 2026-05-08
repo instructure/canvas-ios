@@ -24,6 +24,7 @@ import Foundation
  */
 public class OfflineSyncAccountsInteractor {
 
+    public init() {}
     public func calculate(_ sessions: [LoginSession], date: Date) -> [LoginSession] {
         Logger.shared.log("Offline: Checking which accounts to sync")
         return sessions.reduce(into: []) { partialResult, session in

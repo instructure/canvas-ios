@@ -179,11 +179,18 @@ struct DashboardView: View {
     }
 
     private var offlineSyncView: some View {
-        HDashboardOfflineSyncProgressCardView(
-            progress: viewModel.syncProgress,
-            downloadedSize: viewModel.syncDownloadedSize,
-            totalSize: viewModel.syncTotalSize
-        )
+        Button {
+            viewModel.offlineSyncDidTap(viewController: viewController)
+        } label: {
+            HDashboardOfflineSyncProgressCardView(
+                progress: viewModel.syncProgress,
+                downloadedSize: viewModel.syncDownloadedSize,
+                totalSize: viewModel.syncTotalSize,
+                isError: viewModel.isSyncError,
+                onRetry: { viewModel.retrySyncDidTap() }
+            )
+        }
+        .buttonStyle(.plain)
         .padding(.horizontal, .huiSpaces.space24)
         .padding(.bottom, .huiSpaces.space16)
         .animation(.smooth, value: viewModel.isOfflineSyncVisible)

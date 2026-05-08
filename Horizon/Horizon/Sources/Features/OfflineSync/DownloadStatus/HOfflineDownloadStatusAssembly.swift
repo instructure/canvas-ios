@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,23 +16,16 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import BackgroundTasks
 import Core
+import UIKit
 
-public enum HBackgroundUpdatesAssembly {
-
-    public static func makeBackgroundTask() -> BackgroundTask {
-        HSyncBackgroundTask(
-            syncableAccounts: HSyncAccountsInteractorLive(),
-            sessions: LoginSession.sessions,
-            courseSyncInteractor: HCourseSyncInteractorLive(session: AppEnvironment.shared.userDefaults ?? .fallback)
-        )
-    }
-
-    public static func makeTaskRequest() -> BGProcessingTaskRequest? {
-        HSyncBackgroundTaskRequest(
-            nextSyncDate: HSyncNextDateInteractorLive(),
-            sessions: LoginSession.sessions
-        )
+enum HOfflineDownloadStatusAssembly {
+    static func makeViewController(syncInteractor: HCourseSyncInteractor) -> UIViewController {
+        let environment = AppEnvironment.shared
+        let onShowTabBar: (Bool) -> Void = { isVisible in
+            environment.tabBar(isVisible: isVisible)
+        }
+        let viewModel = HOfflineDownloadStatusViewModel(syncInteractor: syncInteractor)
+        return CoreHostingController(HOfflineDownloadStatusView(viewModel: viewModel, onShowTabBar: onShowTabBar))
     }
 }

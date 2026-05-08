@@ -26,14 +26,29 @@ final class HCourseSyncInteractorMock: HCourseSyncInteractor {
         progressSubject.eraseToAnyPublisher()
     }
 
+    var downloadItemsSubject = PassthroughSubject<[OfflineCourseItem], Never>()
+    var downloadItems: AnyPublisher<[OfflineCourseItem], Never> {
+        downloadItemsSubject.eraseToAnyPublisher()
+    }
+
+    var errorSubject = PassthroughSubject<Void, Never>()
+    var errorPublisher: AnyPublisher<Void, Never> {
+        errorSubject.eraseToAnyPublisher()
+    }
+
     var downloadContentCallCount = 0
     var lastDownloadedCourses: [OfflineCourseItem] = []
 
+    var cancelSyncCallCount = 0
     var clearCallCount = 0
 
     func downloadContent(courses: [OfflineCourseItem], environment: AppEnvironment) {
         downloadContentCallCount += 1
         lastDownloadedCourses = courses
+    }
+
+    func cancelSync() {
+        cancelSyncCallCount += 1
     }
 
     func clear() {

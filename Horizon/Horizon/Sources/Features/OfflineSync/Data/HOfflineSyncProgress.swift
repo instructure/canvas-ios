@@ -1,6 +1,6 @@
 //
 // This file is part of Canvas.
-// Copyright (C) 2025-present  Instructure, Inc.
+// Copyright (C) 2026-present  Instructure, Inc.
 //
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
@@ -16,19 +16,22 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-import BackgroundTasks
-import Core
+public struct HOfflineSyncProgress {
+    static let zero = HOfflineSyncProgress(
+        progress: 0,
+        downloadedSize: "",
+        totalSize: "",
+        isComplete: false
+    )
+    static let completed = HOfflineSyncProgress(
+        progress: 1,
+        downloadedSize: "",
+        totalSize: "",
+        isComplete: true
+    )
 
-public final class HSyncBackgroundTaskRequest: BGProcessingTaskRequest {
-    public static let ID = "com.instructure.icanvas.horizon-sync"
-
-    public init?(nextSyncDate: HSyncNextDateInteractor, sessions: Set<LoginSession>) {
-        guard let date = nextSyncDate.calculate(sessionUniqueIDs: sessions.map { $0.uniqueID }) else {
-            return nil
-        }
-        super.init(identifier: Self.ID)
-        requiresNetworkConnectivity = true
-        requiresExternalPower = false
-        earliestBeginDate = date
-    }
+    let progress: Double
+    let downloadedSize: String
+    let totalSize: String
+    let isComplete: Bool
 }

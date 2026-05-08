@@ -20,37 +20,29 @@ import Core
 import Combine
 import Foundation
 
-// MARK: - Progress Model
-
-public struct HOfflineSyncProgress {
-    let progress: Double
-    let downloadedSize: String
-    let totalSize: String
-    let isComplete: Bool
-}
-
-// MARK: - Protocol
-
 public protocol HCourseSyncInteractor {
     var progressPublisher: AnyPublisher<HOfflineSyncProgress, Never> { get }
+    var downloadItems: AnyPublisher<[OfflineCourseItem], Never> { get }
+    var errorPublisher: AnyPublisher<Void, Never> { get }
     func downloadContent(courses: [OfflineCourseItem], environment: AppEnvironment)
+    func cancelSync()
     func clear()
 }
-
-// MARK: - Live Implementation
 
 public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
     // MARK: - Dependencies
 
     private let interactorFiles: HCourseSyncFilesInteractor
     private let modulesInteractor: HCourseSyncModulesInteractor
+    private let pagesInteractor: HCourseSyncPagesInteractor
     private let notificationsInteractor: LocalNotificationsInteractor
-    private var session: SessionDefaults
+    private let sessionManager: HOfflineSyncSessionManager
+
     // MARK: - Private state
 
-    private let progressSubject = CurrentValueSubject<HOfflineSyncProgress, Never>(
-        HOfflineSyncProgress(progress: 0, downloadedSize: "", totalSize: "", isComplete: false)
-    )
+    private let progressSubject = CurrentValueSubject<HOfflineSyncProgress, Never>(.zero)
+    private let downloadItemsSubject = CurrentValueSubject<[OfflineCourseItem], Never>([])
+    private let errorSubject = PassthroughSubject<Void, Never>()
     private var downloadSubscription: AnyCancellable?
     private var modulesFetchSubscription: AnyCancellable?
     private var subscriptions = Set<AnyCancellable>()
@@ -61,86 +53,88 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
         progressSubject.eraseToAnyPublisher()
     }
 
+    public var downloadItems: AnyPublisher<[OfflineCourseItem], Never> {
+        downloadItemsSubject.eraseToAnyPublisher()
+    }
+
+    public var errorPublisher: AnyPublisher<Void, Never> {
+        errorSubject.eraseToAnyPublisher()
+    }
+
     // MARK: - Init
 
     init(
-        interactorFiles: HCourseSyncFilesInteractor = HCourseSyncFilesInteractorLive(),
+        interactorFiles: HCourseSyncFilesInteractor,
         modulesInteractor: HCourseSyncModulesInteractor = HCourseSyncModulesInteractorLive(),
+        pagesInteractor: HCourseSyncPagesInteractor,
         notificationsInteractor: LocalNotificationsInteractor = .init(),
-        session: SessionDefaults
+        sessionManager: HOfflineSyncSessionManager
     ) {
         self.interactorFiles = interactorFiles
         self.modulesInteractor = modulesInteractor
+        self.pagesInteractor = pagesInteractor
         self.notificationsInteractor = notificationsInteractor
-        self.session = session
+        self.sessionManager = sessionManager
     }
 
     public func clear() {
         cancelActiveDownloads()
-        let sessionID = session.sessionID
-        let offlineRoot = URL.Paths.Offline.rootURL(sessionID: sessionID)
+        let offlineRoot = URL.Paths.Offline.rootURL(sessionID: sessionManager.sessionID)
         try? FileManager.default.removeItem(at: offlineRoot)
-        session.horizonOfflineSyncItems = []
-        session.horizonOfflineSyncFileMetadata = [:]
+        sessionManager.clearSessionData()
+        downloadItemsSubject.send([])
+        progressSubject.send(.completed)
+    }
+
+    public func cancelSync() {
+        let previouslySyncedPaths = Set(sessionManager.syncedItemPaths)
+        let newSessionFiles = downloadItemsSubject.value
+            .flatMap(\.files)
+            .filter { file in
+                file.isSelected
+                    && !previouslySyncedPaths.contains(OfflineType.file(courseID: file.courseID, fileID: file.id).path())
+            }
+        let newSessionCourseIds = downloadItemsSubject.value
+            .map(\.id)
+            .filter { !previouslySyncedPaths.contains(OfflineType.course(id: $0).path()) }
+        cancelActiveDownloads()
+        interactorFiles.deleteFiles(newSessionFiles, sessionID: sessionManager.sessionID)
+        pagesInteractor.deletePages(courseIds: newSessionCourseIds, sessionID: sessionManager.sessionID)
+        downloadItemsSubject.send([])
+        progressSubject.send(.completed)
     }
 
     public func downloadContent(courses: [OfflineCourseItem], environment: AppEnvironment) {
+        progressSubject.send(.zero)
         cancelActiveDownloads()
-        removeDeselectedCourseFolders(courses: courses)
-        updateFileMetadata(courses: courses)
-        removeUnavailableFiles(courses: courses, environment: environment)
-        session.horizonOfflineSyncItems = []
-
-        let files = courses.flatMap(\.selectedFiles)
-        if files.isEmpty {
-            startNoFilesProgress(courses: courses)
-        } else {
-            prefetchModules(courses: courses)
-            startFileDownload(courses: courses, files: files)
-        }
+        downloadItemsSubject.send(courses.map { var c = $0; c.downloadState = .loading; return c })
+        prefetchModules(courses: courses)
+        startFileDownload(courses: courses)
     }
 
     // MARK: - Private helpers
 
     private func cancelActiveDownloads() {
+        interactorFiles.cancelDownloads()
+        pagesInteractor.cancelDownloads()
         downloadSubscription?.cancel()
+        downloadSubscription = nil
         modulesFetchSubscription?.cancel()
+        modulesFetchSubscription = nil
+        subscriptions.removeAll()
     }
 
-    private func removeDeselectedCourseFolders(courses: [OfflineCourseItem]) {
-        let sessionID = session.sessionID
-        let newCourseIDs = Set(courses.map(\.id))
-        session.horizonOfflineSyncItems
-            .compactMap { OfflineType.parse(path: $0) }
-            .compactMap { if case .course(let id) = $0 { return id } else { return nil } }
-            .filter { !newCourseIDs.contains($0) }
-            .forEach { courseID in
-                let folderURL = URL.Directories.documents.appendingPathComponent(
-                    URL.Paths.Offline.courseFolder(sessionID: sessionID, courseId: courseID)
-                )
-                try? FileManager.default.removeItem(at: folderURL)
-            }
+    private func sendSuccessNotification(courses: [OfflineCourseItem]) {
+        notificationsInteractor
+            .sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: courses.count)
+            .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
+            .store(in: &subscriptions)
     }
 
-    private func updateFileMetadata(courses: [OfflineCourseItem]) {
-        var metadata = session.horizonOfflineSyncFileMetadata
-        courses.flatMap(\.selectedFiles).forEach { file in
-            metadata[file.id] = file.toDic()
-        }
-        session.horizonOfflineSyncFileMetadata = metadata
-    }
-
-    private func removeUnavailableFiles(courses: [OfflineCourseItem], environment: AppEnvironment) {
-        courses.forEach { course in
-            interactorFiles
-                .removeUnavailableFiles(
-                    courseId: course.id,
-                    newFileIDs: course.selectedFiles.map(\.id),
-                    sessionID: session.sessionID
-                )
-                .sink()
-                .store(in: &subscriptions)
-        }
+    private func prefetchPages(courses: [OfflineCourseItem]) -> AnyPublisher<HPageDownloadProgress, Never> {
+        pagesInteractor.getPages(courseIds: courses.map(\.id))
+            .replaceError(with: .zero)
+            .eraseToAnyPublisher()
     }
 
     private func prefetchModules(courses: [OfflineCourseItem]) {
@@ -153,89 +147,44 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
             .sink()
     }
 
-    private func startNoFilesProgress(courses: [OfflineCourseItem]) {
-        guard !courses.isEmpty else { return }
-
-        let total = courses.count
-        var completedCount = 0
-
-        modulesFetchSubscription = courses.publisher
-            .flatMap { [modulesInteractor] course in
-                modulesInteractor.getModuleItems(courseId: course.id)
-                    .replaceError(with: [])
-                    .first()
-            }
-            .sink { [weak self] _ in
+    private func startFileDownload(courses: [OfflineCourseItem]) {
+        let files = courses.flatMap(\.selectedFiles)
+        let fileSizes = files.map(\.sizeInBytes).reduce(0, +)
+        if files.isNotEmpty {
+            progressSubject.send(HOfflineSyncProgress(
+                progress: .zero,
+                downloadedSize: 0.humanReadableFileSize,
+                totalSize: Int(fileSizes).humanReadableFileSize,
+                isComplete: false
+            ))
+        }
+        downloadSubscription = interactorFiles
+            .downloadFiles(courses: courses, sessionID: sessionManager.sessionID)
+            .combineLatest(prefetchPages(courses: courses))
+            .sink { [weak self] fileProgress, pageProgress in
                 guard let self else { return }
-                completedCount += 1
-                let progress = Double(completedCount) / Double(total)
-                let isComplete = completedCount == total
+                let totalSize = fileProgress.totalSize + Double(pageProgress.totalSize)
+                let downloadedSize = fileProgress.downloadedSize + Double(pageProgress.downloadedSize)
+                let pagesComplete = pageProgress.courseProgresses.allSatisfy { $0.state == .downloaded }
+                let isComplete = fileProgress.isComplete && pagesComplete
+
+                let rawProgress: Double = isComplete ? 1.0 : (totalSize > 0 ? downloadedSize / totalSize : 0)
                 progressSubject.send(HOfflineSyncProgress(
-                    progress: progress,
-                    downloadedSize: "",
-                    totalSize: "",
+                    progress: rawProgress,
+                    downloadedSize: Int(downloadedSize).humanReadableFileSize,
+                    totalSize: Int(totalSize).humanReadableFileSize,
                     isComplete: isComplete
                 ))
+                downloadItemsSubject.send(Self.updatedCourses(from: courses, fileProgress: fileProgress, pageProgress: pageProgress))
+
                 if isComplete {
-                    appendSyncItems(courses.map { OfflineType.course(id: $0.id).path() })
-                    notificationsInteractor
-                        .sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: courses.count)
-                        .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
-                        .store(in: &subscriptions)
+                    sendCompletionNotification(items: fileProgress.files, courses: courses)
+                    sessionManager.saveCompletedSync(courses: courses, files: fileProgress.files)
                 }
             }
     }
 
-    private func startFileDownload(courses: [OfflineCourseItem], files: [OfflineFileItem]) {
-        downloadSubscription = interactorFiles
-            .downloadFiles(files: files, sessionID: session.sessionID)
-            .sink { [weak self] items in
-                guard let self else { return }
-                let syncProgress = makeProgress(from: items)
-                progressSubject.send(syncProgress)
-                if syncProgress.isComplete {
-                    saveCompletedSync(courses: courses, files: items)
-                    sendCompletionNotification(items: items, coursesCount: courses.count)
-                }
-            }
-    }
-
-    private func saveCompletedSync(courses: [OfflineCourseItem], files: [OfflineFileItem]) {
-        let coursePaths = courses.map { OfflineType.course(id: $0.id).path() }
-        let filePaths = files
-            .filter { $0.downloadState == .downloaded }
-            .map { OfflineType.file(courseID: $0.courseID, fileID: $0.id).path() }
-        appendSyncItems(coursePaths + filePaths)
-    }
-
-    private func appendSyncItems(_ newItems: [String]) {
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            session.horizonOfflineSyncItems += newItems
-        }
-    }
-
-    private func makeProgress(from items: [OfflineFileItem]) -> HOfflineSyncProgress {
-        let total = items.reduce(0) { $0 + $1.sizeInBytes }
-        let downloaded = items.reduce(0.0) { sum, item in
-            switch item.downloadState {
-            case .downloaded:
-                return sum + item.sizeInBytes
-            case .downloading(let progress):
-                return sum + item.sizeInBytes * Double(progress)
-            default:
-                return sum
-            }
-        }
-        return HOfflineSyncProgress(
-            progress: total > 0 ? downloaded / total : 0,
-            downloadedSize: Int(downloaded).humanReadableFileSize,
-            totalSize: Int(total).humanReadableFileSize,
-            isComplete: items.allSatisfy(\.downloadState.isTerminal)
-        )
-    }
-
-    private func sendCompletionNotification(items: [OfflineFileItem], coursesCount: Int) {
+    private func sendCompletionNotification(items: [OfflineFileItem], courses: [OfflineCourseItem]) {
         let hasFailed = items.contains {
             switch $0.downloadState {
             case .failed: true
@@ -243,15 +192,39 @@ public final class HCourseSyncInteractorLive: HCourseSyncInteractor {
             }
         }
         if hasFailed {
+            errorSubject.send()
             notificationsInteractor
                 .sendOfflineSyncFailedNotification()
                 .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
                 .store(in: &subscriptions)
         } else {
-            notificationsInteractor
-                .sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: coursesCount)
-                .sink(receiveCompletion: { _ in }, receiveValue: { _ in })
-                .store(in: &subscriptions)
+            sessionManager.finalizeSync(courses: courses)
+            sendSuccessNotification(courses: courses)
+        }
+    }
+
+    // MARK: - Pure helpers (static)
+
+    private static func updatedCourses(
+        from courses: [OfflineCourseItem],
+        fileProgress: HFileDownloadProgress,
+        pageProgress: HPageDownloadProgress
+    ) -> [OfflineCourseItem] {
+        let filesByID = Dictionary(uniqueKeysWithValues: fileProgress.files.map { ($0.id, $0) })
+        let fileStateByCourse = Dictionary(uniqueKeysWithValues: fileProgress.courseProgresses.map { ($0.courseID, $0.state) })
+        let pageStateByCourse = Dictionary(uniqueKeysWithValues: pageProgress.courseProgresses.map { ($0.courseID, $0.state) })
+
+        return courses.map { course in
+            var updated = course
+            updated.files = course.files.map { file in
+                var updatedFile = file
+                updatedFile.downloadState = filesByID[file.id]?.downloadState ?? file.downloadState
+                return updatedFile
+            }
+            let filesDownloaded = fileStateByCourse[course.id].map { $0 == .downloaded } ?? true
+            let pagesDownloaded = pageStateByCourse[course.id].map { $0 == .downloaded } ?? true
+            updated.downloadState = (filesDownloaded && pagesDownloaded) ? .downloaded : .loading
+            return updated
         }
     }
 }

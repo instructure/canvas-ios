@@ -105,14 +105,28 @@ final class HCourseSyncInteractorAdapterTests: HorizonTestCase {
 // MARK: - Private helpers
 
 private final class MockHCourseSyncInteractor: HCourseSyncInteractor {
-    let downloadSubject = PassthroughSubject<Void, Never>()
-    private(set) var cancelSyncCalled = false
+    let downloadSubject = PassthroughSubject<HOfflineSyncProgress, Never>()
+    var cancelSyncCalled = false
 
-    func downloadContent() -> AnyPublisher<Void, Never> {
-        downloadSubject.eraseToAnyPublisher()
+    var progressPublisher: AnyPublisher<HOfflineSyncProgress, Never> {
+        downloadSubject
+            .append(Just(HOfflineSyncProgress(progress: 1, downloadedSize: "", totalSize: "", isComplete: true)))
+            .eraseToAnyPublisher()
     }
+
+    var downloadItems: AnyPublisher<[OfflineCourseItem], Never> {
+        Just([]).eraseToAnyPublisher()
+    }
+
+    var errorPublisher: AnyPublisher<Void, Never> {
+        Empty().eraseToAnyPublisher()
+    }
+
+    func downloadContent(courses: [OfflineCourseItem], environment: AppEnvironment) {}
 
     func cancelSync() {
         cancelSyncCalled = true
     }
+
+    func clear() {}
 }

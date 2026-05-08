@@ -20,13 +20,37 @@ import Core
 import Combine
 import Foundation
 
+struct HCourseFileProgress {
+    let courseID: String
+    let state: HSyncCourseState
+    let totalSize: Double
+    let downloadedSize: Double
+}
+
+struct HFileDownloadProgress {
+    let courseProgresses: [HCourseFileProgress]
+    let files: [OfflineFileItem]
+
+    var totalSize: Double { courseProgresses.reduce(0) { $0 + $1.totalSize } }
+    var downloadedSize: Double { courseProgresses.reduce(0) { $0 + $1.downloadedSize } }
+
+    var isComplete: Bool {
+        files.filter(\.isSelected).allSatisfy(\.downloadState.isTerminal)
+    }
+
+    static let zero = HFileDownloadProgress(courseProgresses: [], files: [])
+}
+
 protocol HCourseSyncFilesInteractor {
     func downloadFiles(
-        files: [OfflineFileItem],
+        courses: [OfflineCourseItem],
         sessionID: String
-    ) -> AnyPublisher<[OfflineFileItem], Never>
+    ) -> AnyPublisher<HFileDownloadProgress, Never>
 
-     func removeUnavailableFiles(
+    func cancelDownloads()
+    func deleteFiles(_ files: [OfflineFileItem], sessionID: String)
+
+    func removeUnavailableFiles(
         courseId: String,
         newFileIDs: [String],
         sessionID: String
@@ -44,49 +68,104 @@ final class HCourseSyncFilesInteractorLive: HCourseSyncFilesInteractor, LocalFil
 
     init(
         fileManager: FileManager = .default,
-        offlineFileInteractor: OfflineFileInteractor =  OfflineFileInteractorLive()
+        offlineFileInteractor: OfflineFileInteractor = OfflineFileInteractorLive()
     ) {
         self.offlineFileInteractor = offlineFileInteractor
         self.fileManager = fileManager
     }
 
+    func cancelDownloads() {
+        subscriptions.removeAll()
+    }
+
+    func deleteFiles(_ files: [OfflineFileItem], sessionID: String) {
+        files.forEach { file in
+            let localURL = prepareLocalURL(
+                fileName: offlineFileInteractor.filePath(
+                    sessionID: sessionID,
+                    courseId: file.courseID,
+                    fileID: file.id,
+                    fileName: file.name
+                ),
+                mimeClass: file.mimeClass,
+                location: URL.Directories.documents
+            )
+            try? fileManager.removeItem(at: localURL.deletingLastPathComponent())
+        }
+    }
+
     func downloadFiles(
-        files: [OfflineFileItem],
+        courses: [OfflineCourseItem],
         sessionID: String
-    ) -> AnyPublisher<[OfflineFileItem], Never> {
+    ) -> AnyPublisher<HFileDownloadProgress, Never> {
+        let files = courses.flatMap(\.selectedFiles)
+
+        guard !files.isEmpty else {
+            return Just(.zero).eraseToAnyPublisher()
+        }
 
         let subject = CurrentValueSubject<[OfflineFileItem], Never>(files)
 
         files.enumerated().publisher
-            .flatMap(maxPublishers: .max(6)) { [weak self] index, file -> AnyPublisher<(Int, OfflineDownloadState), Never> in
-
-                guard let self = self else {
-                    return Just((index, .failed(String(localized: "There was an unexpected error. Please try again.", bundle: .horizon))))
+            .flatMap(maxPublishers: .max(6)) { [weak self] index, file in
+                self?.fileDownloadPublisher(index: index, file: file, sessionID: sessionID)
+                    ?? Just((index, .failed(String(localized: "There was an unexpected error. Please try again.", bundle: .horizon))))
                         .eraseToAnyPublisher()
-                }
-
-                return self.downloadSingleFile(file: file, sessionID: sessionID)
-                    .map { progress -> (Int, OfflineDownloadState) in
-                        progress >= 1
-                        ? (index, .downloaded)
-                        : (index, .downloading(progress: progress))
-                    }
-                    .prepend((index, .loading))
-                    .catch { error in
-                        Just((index, .failed(error.localizedDescription)))
-                    }
-                    .eraseToAnyPublisher()
             }
-            .receive(on: DispatchQueue.main)
             .sink { index, state in
                 var current = subject.value
                 guard current.indices.contains(index) else { return }
-
                 current[index].downloadState = state
                 subject.send(current)
             }
             .store(in: &subscriptions)
-        return subject.eraseToAnyPublisher()
+
+        return subject
+            .map { [weak self] files in self?.makeProgress(from: files) ?? .zero }
+            .eraseToAnyPublisher()
+    }
+
+    private func fileDownloadPublisher(
+        index: Int,
+        file: OfflineFileItem,
+        sessionID: String
+    ) -> AnyPublisher<(Int, OfflineDownloadState), Never> {
+        downloadSingleFile(file: file, sessionID: sessionID)
+            .map { progress -> (Int, OfflineDownloadState) in
+                progress >= 1
+                    ? (index, .downloaded)
+                    : (index, .downloading(progress: progress))
+            }
+            .prepend((index, .loading))
+            .catch { error in Just((index, .failed(error.localizedDescription))) }
+            .eraseToAnyPublisher()
+    }
+
+    private func makeProgress(from files: [OfflineFileItem]) -> HFileDownloadProgress {
+        let selectedFiles = files.filter(\.isSelected)
+        let filesByCourse = Dictionary(grouping: selectedFiles, by: \.courseID)
+        let courseProgresses = filesByCourse.map { courseID, courseFiles in
+            makeCourseProgress(courseID: courseID, files: courseFiles)
+        }
+        return HFileDownloadProgress(courseProgresses: courseProgresses, files: files)
+    }
+
+    private func makeCourseProgress(courseID: String, files: [OfflineFileItem]) -> HCourseFileProgress {
+        let totalSize = files.reduce(0.0) { $0 + $1.sizeInBytes }
+        let downloadedSize = files.reduce(0.0) { sum, file in
+            switch file.downloadState {
+            case .downloaded: return sum + file.sizeInBytes
+            case .downloading(let p): return sum + file.sizeInBytes * Double(p)
+            default: return sum
+            }
+        }
+        let state: HSyncCourseState = files.allSatisfy(\.downloadState.isTerminal) ? .downloaded : .downloading
+        return HCourseFileProgress(
+            courseID: courseID,
+            state: state,
+            totalSize: totalSize,
+            downloadedSize: downloadedSize
+        )
     }
 
     private func downloadSingleFile(
@@ -104,10 +183,10 @@ final class HCourseSyncFilesInteractorLive: HCourseSyncFilesInteractor, LocalFil
             location: URL.Directories.documents
         )
 
-        if fileManager.fileExists(atPath: localURL.path), // File exists on the disk
+        if fileManager.fileExists(atPath: localURL.path),
            let fileModificationDate = fileManager.fileModificationDate(url: localURL),
-           let updatedAt = file.updatedAt, // and
-           fileModificationDate >= updatedAt { // is up to date
+           let updatedAt = file.updatedAt,
+           fileModificationDate >= updatedAt {
             return AnyPublisher<Float, Error>.create { subscriber in
                 subscriber.send(1)
                 subscriber.send(completion: .finished)
@@ -136,7 +215,7 @@ final class HCourseSyncFilesInteractorLive: HCourseSyncFilesInteractor, LocalFil
         }
     }
 
-     func removeUnavailableFiles(
+    func removeUnavailableFiles(
         courseId: String,
         newFileIDs: [String],
         sessionID: String

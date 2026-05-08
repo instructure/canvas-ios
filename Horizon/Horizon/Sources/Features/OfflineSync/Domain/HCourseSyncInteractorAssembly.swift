@@ -17,9 +17,32 @@
 //
 
 import Core
+import Foundation
 
-public enum HCourseSyncInteractorAssembly {
-    public static func makeInteractor() -> HCourseSyncInteractor {
-        HCourseSyncInteractorLive(session: AppEnvironment.shared.userDefaults ?? .fallback)
+enum HCourseSyncInteractorAssembly {
+    static private func makePageInteractor() -> HCourseSyncPagesInteractorLive {
+        let scheduler = DispatchQueue(label: "com.instructure.horizon.pages-sync").eraseToAnyScheduler()
+        let envResolver = CourseSyncEnvironmentResolverLive()
+        let htmlParser = CourseSyncDownloaderAssembly.makeHTMLParser(
+            for: .pages,
+            envResolver: envResolver,
+            scheduler: scheduler
+        )
+        return HCourseSyncPagesInteractorLive(htmlParser: htmlParser)
+    }
+
+    static func makeInteractor() -> HCourseSyncInteractor {
+        let session = AppEnvironment.shared.userDefaults ?? .fallback
+        let pageInteractor = makePageInteractor()
+        let filesInteractor = HCourseSyncFilesInteractorLive()
+        return HCourseSyncInteractorLive(
+            interactorFiles: filesInteractor,
+            pagesInteractor: pageInteractor,
+            sessionManager: HOfflineSyncSessionManagerLive(
+                session: session,
+                filesInteractor: filesInteractor,
+                pagesInteractor: pageInteractor
+            )
+        )
     }
 }
