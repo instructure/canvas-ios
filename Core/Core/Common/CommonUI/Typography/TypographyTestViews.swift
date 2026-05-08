@@ -57,7 +57,7 @@ struct LineHeightTestView: View {
                         Text(lineHeight.name)
                             .font(.bold15)
                             .padding(.bottom, 5)
-                        Text(InstUI.PreviewData.loremIpsumLong)
+                        Text(AUI.PreviewData.loremIpsumLong)
                             .font(.regular16, lineHeight: lineHeight)
                             .border(Color.black, width: 1)
                     }

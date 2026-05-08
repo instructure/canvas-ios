@@ -1,0 +1,48 @@
+//
+// This file is part of Canvas.
+// Copyright (C) 2026-present  Instructure, Inc.
+//
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+//
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <https://www.gnu.org/licenses/>.
+//
+
+import SwiftUI
+
+extension InstUI {
+    struct FontWeightResolver {
+        private let map: [TokenKey: Font.Weight]
+
+        init() {
+            map = Dictionary(
+                InstUI.Primitive.FontWeight.all.map { ($0.name, $0.weight) },
+                uniquingKeysWith: { $1 }
+            )
+        }
+
+        init(map: [TokenKey: Font.Weight]) {
+            self.map = map
+        }
+
+        func resolve(_ raw: String) throws -> Font.Weight {
+            if raw.hasPrefix("{") {
+                let inner = String(raw.dropFirst().dropLast())
+                guard let weight = map[inner] else {
+                    throw InstUI.TokenLoadError.unknownPrimitive(inner)
+                }
+                return weight
+            }
+            if let numeric = Font.Weight(cssNumeric: raw) { return numeric }
+            throw InstUI.TokenLoadError.unknownPrimitive(raw)
+        }
+    }
+}

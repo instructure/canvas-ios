@@ -1,0 +1,112 @@
+{
+  "sourceCodeEditor": {
+    "background": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "borderColor": {
+      "value": "{color.stroke.base}",
+      "type": "color"
+    },
+    "borderRadius": {
+      "value": "{borderRadius.md}",
+      "type": "borderRadius"
+    },
+    "borderWidth": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "color": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.code}",
+      "type": "fontFamilies"
+    },
+    "fontSize": {
+      "value": "{fontSize.textSm}",
+      "type": "fontSizes"
+    },
+    "gutterBackground": {
+      "value": "{color.background.muted}",
+      "type": "color"
+    },
+    "horizontalPadding": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "verticalPadding": {
+      "value": "0.375rem",
+      "type": "spacing"
+    },
+    "focusedSelectionBackgroundColor": {
+      "value": "rgba(90,75,227,0.2)",
+      "type": "color"
+    },
+    "placeholderBackgroundColor": {
+      "value": "{color.text.accent.stone}",
+      "type": "color"
+    },
+    "tagKeywordColor": {
+      "value": "{color.text.accent.violet}",
+      "type": "color"
+    },
+    "tagLiteralColor": {
+      "value": "{color.text.accent.green}",
+      "type": "color"
+    },
+    "tagStringColor": {
+      "value": "{color.text.accent.red}",
+      "type": "color"
+    },
+    "tagDefinitionVariableNameColor": {
+      "value": "{color.text.accent.blue}",
+      "type": "color"
+    },
+    "tagLocalVariableNameColor": {
+      "value": "{color.text.accent.sky}",
+      "type": "color"
+    },
+    "tagClassNameColor": {
+      "value": "{color.text.accent.sea}",
+      "type": "color"
+    },
+    "tagSpecialVariableNameColor": {
+      "value": "{color.text.accent.sea}",
+      "type": "color"
+    },
+    "tagDefinitionPropertyNameColor": {
+      "value": "{color.text.accent.blue}",
+      "type": "color"
+    },
+    "tagCommentColor": {
+      "value": "{color.text.accent.orange}",
+      "type": "color"
+    },
+    "tagMetaColor": {
+      "value": "{color.text.muted}",
+      "type": "color"
+    },
+    "tagRegExpColor": {
+      "value": "{color.text.accent.orange}",
+      "type": "color"
+    },
+    "tagTypeNameColor": {
+      "value": "{color.text.accent.aurora}",
+      "type": "color"
+    },
+    "tagInvalidColor": {
+      "value": "{color.text.error}",
+      "type": "color"
+    },
+    "tagAtomColor": {
+      "value": "{color.text.accent.blue}",
+      "type": "color"
+    },
+    "activeLineColor": {
+      "value": "#99999912",
+      "type": "color"
+    }
+  }
+}

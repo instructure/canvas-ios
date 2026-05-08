@@ -1,0 +1,128 @@
+{
+  "treeBrowser": {
+    "borderRadius": {
+      "value": "{borderRadius.md}",
+      "type": "borderRadius"
+    }
+  },
+  "treeBrowserTreeButton": {
+    "baseSpacingLarge": {
+      "value": "{spacing.spaceLg}",
+      "type": "spacing"
+    },
+    "baseSpacingMedium": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "baseSpacingSmall": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "borderColor": {
+      "value": "{color.stroke.strong}",
+      "type": "color"
+    },
+    "borderRadius": {
+      "value": "{borderRadius.md}",
+      "type": "borderRadius"
+    },
+    "borderWidth": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "descriptorFontSizeLarge": {
+      "value": "{fontSize.textSm}",
+      "type": "fontSizes"
+    },
+    "descriptorFontSizeMedium": {
+      "value": "{fontSize.textXs}",
+      "type": "fontSizes"
+    },
+    "descriptorFontSizeSmall": {
+      "value": "{fontSize.textXs}",
+      "type": "fontSizes"
+    },
+    "descriptorMarginTop": {
+      "value": "{spacing.space2xs}",
+      "type": "spacing"
+    },
+    "descriptorTextColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "hoverBackgroundColor": {
+      "value": "{color.background.brand}",
+      "type": "color"
+    },
+    "hoverTextColor": {
+      "value": "{color.text.inverse}",
+      "type": "color"
+    },
+    "nameFontSizeLarge": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "nameFontSizeMedium": {
+      "value": "{fontSize.textSm}",
+      "type": "fontSizes"
+    },
+    "nameFontSizeSmall": {
+      "value": "{fontSize.textXs}",
+      "type": "fontSizes"
+    },
+    "nameTextColor": {
+      "value": "{color.text.interactive.navigation.primary.base}",
+      "type": "color"
+    },
+    "selectedBackgroundColor": {
+      "value": "{color.background.accent.grey}",
+      "type": "color"
+    },
+    "selectedTextColor": {
+      "value": "{color.text.onColor}",
+      "type": "color"
+    },
+    "textLineHeight": {
+      "value": "{lineHeight.standalone.base}",
+      "type": "lineHeights"
+    },
+    "iconsMarginRightSmall": {
+      "value": "{spacing.spaceXs}",
+      "type": "spacing"
+    },
+    "iconsMarginRightMedium": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "iconsMarginRightLarge": {
+      "value": "{spacing.spaceLg}",
+      "type": "spacing"
+    }
+  },
+  "treeBrowserTreeCollection": {
+    "baseSpacingLarge": {
+      "value": "{spacing.spaceLg}",
+      "type": "spacing"
+    },
+    "baseSpacingMedium": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "baseSpacingSmall": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "borderColor": {
+      "value": "{color.stroke.strong}",
+      "type": "color"
+    },
+    "borderWidth": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    }
+  }
+}

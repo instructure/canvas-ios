@@ -74,7 +74,7 @@ public struct CourseDetailsCellView: View {
     private var accessoryIcon: some View {
         switch viewModel.accessoryIconType {
         case .disclosure:
-            InstUI.DisclosureIndicator()
+            AUI.DisclosureIndicator()
         case .externalLink:
             Image.externalLinkLine
                 .resizable()

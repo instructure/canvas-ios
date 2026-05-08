@@ -1,0 +1,672 @@
+{
+  "sharedTokens": {
+    "borderRadius": {
+      "xs": {
+        "value": "{borderRadius.xs}",
+        "type": "borderRadius"
+      },
+      "sm": {
+        "value": "{borderRadius.sm}",
+        "type": "borderRadius"
+      },
+      "md": {
+        "value": "{borderRadius.md}",
+        "type": "borderRadius"
+      },
+      "lg": {
+        "value": "{borderRadius.lg}",
+        "type": "borderRadius"
+      },
+      "xl": {
+        "value": "{borderRadius.xl}",
+        "type": "borderRadius"
+      },
+      "xxl": {
+        "value": "{borderRadius.xxl}",
+        "type": "borderRadius"
+      },
+      "full": {
+        "value": "999rem",
+        "type": "borderRadius"
+      },
+      "card": {
+        "sm": {
+          "value": "0.75rem",
+          "type": "borderRadius"
+        },
+        "md": {
+          "value": "{borderRadius.container.md}",
+          "type": "borderRadius"
+        },
+        "lg": {
+          "value": "{borderRadius.container.lg}",
+          "type": "borderRadius"
+        },
+        "nestedContainer": {
+          "sm": {
+            "value": "{borderRadius.sm}",
+            "type": "borderRadius"
+          },
+          "md": {
+            "value": "{borderRadius.sm}",
+            "type": "borderRadius"
+          },
+          "lg": {
+            "value": "{borderRadius.md}",
+            "type": "borderRadius"
+          }
+        }
+      }
+    },
+    "legacy": {
+      "spacing": {
+        "xxxSmall": {
+          "value": "0.125rem",
+          "type": "spacing"
+        },
+        "xxSmall": {
+          "value": "0.375rem",
+          "type": "spacing"
+        },
+        "xSmall": {
+          "value": "0.5rem",
+          "type": "spacing"
+        },
+        "small": {
+          "value": "0.75rem",
+          "type": "spacing"
+        },
+        "mediumSmall": {
+          "value": "1rem",
+          "type": "spacing"
+        },
+        "medium": {
+          "value": "1.5rem",
+          "type": "spacing"
+        },
+        "large": {
+          "value": "2.25rem",
+          "type": "spacing"
+        },
+        "xLarge": {
+          "value": "3rem",
+          "type": "spacing"
+        },
+        "xxLarge": {
+          "value": "3.75rem",
+          "type": "spacing"
+        },
+        "space0": {
+          "value": "0rem",
+          "type": "spacing"
+        },
+        "space2": {
+          "value": "0.125rem",
+          "type": "spacing"
+        },
+        "space4": {
+          "value": "0.25rem",
+          "type": "spacing"
+        },
+        "space8": {
+          "value": "0.5rem",
+          "type": "spacing"
+        },
+        "space12": {
+          "value": "0.75rem",
+          "type": "spacing"
+        },
+        "space16": {
+          "value": "1rem",
+          "type": "spacing"
+        },
+        "space24": {
+          "value": "1.5rem",
+          "type": "spacing"
+        },
+        "space36": {
+          "value": "2.25rem",
+          "type": "spacing"
+        },
+        "space48": {
+          "value": "3rem",
+          "type": "spacing"
+        },
+        "space60": {
+          "value": "3.75rem",
+          "type": "spacing"
+        },
+        "sections": {
+          "value": "2.25rem",
+          "type": "spacing"
+        },
+        "sectionElements": {
+          "value": "1.5em",
+          "type": "spacing"
+        },
+        "trayElements": {
+          "value": "1.5em",
+          "type": "spacing"
+        },
+        "modalElements": {
+          "value": "1.5em",
+          "type": "spacing"
+        },
+        "moduleElements": {
+          "value": "1em",
+          "type": "spacing"
+        },
+        "paddingCardLarge": {
+          "value": "1.5rem",
+          "type": "spacing"
+        },
+        "paddingCardMedium": {
+          "value": "1rem",
+          "type": "spacing"
+        },
+        "paddingCardSmall": {
+          "value": "0.75rem",
+          "type": "spacing"
+        },
+        "selects": {
+          "value": "1rem",
+          "type": "spacing"
+        },
+        "textareas": {
+          "value": "1rem",
+          "type": "spacing"
+        },
+        "inputFields": {
+          "value": "1rem",
+          "type": "spacing"
+        },
+        "checkboxes": {
+          "value": "1rem",
+          "type": "spacing"
+        },
+        "radios": {
+          "value": "1rem",
+          "type": "spacing"
+        },
+        "toggles": {
+          "value": "1rem",
+          "type": "spacing"
+        },
+        "buttons": {
+          "value": "0.75rem",
+          "type": "spacing"
+        },
+        "tags": {
+          "value": "0.75rem",
+          "type": "spacing"
+        },
+        "statusIndicators": {
+          "value": "0.75rem",
+          "type": "spacing"
+        },
+        "dataPoints": {
+          "value": "0.75rem",
+          "type": "spacing"
+        }
+      },
+      "radiusSmall": {
+        "value": "0.125rem",
+        "type": "borderRadius"
+      },
+      "radiusMedium": {
+        "value": "0.25rem",
+        "type": "borderRadius"
+      },
+      "radiusLarge": {
+        "value": "0.5rem",
+        "type": "borderRadius"
+      }
+    },
+    "boxShadow": {
+      "elevation1": {
+        "value": [
+          {
+            "x": "{dropShadow.x.elevation1.dropshadow1}",
+            "y": "{dropShadow.y.elevation1.dropshadow1}",
+            "blur": "{dropShadow.blur.elevation1.dropshadow1}",
+            "spread": "{dropShadow.spread.elevation1.dropshadow1}",
+            "color": "{color.dropShadow.shadowColor1}",
+            "type": "dropShadow"
+          },
+          {
+            "x": "{dropShadow.x.elevation1.dropshadow2}",
+            "y": "{dropShadow.y.elevation1.dropshadow2}",
+            "blur": "{dropShadow.blur.elevation1.dropshadow2}",
+            "spread": "{dropShadow.spread.elevation1.dropshadow2}",
+            "color": "{color.dropShadow.shadowColor2}",
+            "type": "dropShadow"
+          }
+        ],
+        "type": "boxShadow",
+        "description": "Elevated base surfaces: Persistent UI and everyday interactive surfaces like navigation, cards, inputs, and buttons."
+      },
+      "elevation2": {
+        "value": [
+          {
+            "x": "{dropShadow.x.elevation2.dropshadow1}",
+            "y": "{dropShadow.y.elevation2.dropshadow1}",
+            "blur": "{dropShadow.blur.elevation2.dropshadow1}",
+            "spread": "{dropShadow.spread.elevation2.dropshadow1}",
+            "color": "{color.dropShadow.shadowColor2}",
+            "type": "dropShadow"
+          },
+          {
+            "x": "{dropShadow.x.elevation2.dropshadow2}",
+            "y": "{dropShadow.y.elevation2.dropshadow2}",
+            "blur": "{dropShadow.blur.elevation2.dropshadow2}",
+            "spread": "{dropShadow.spread.elevation2.dropshadow2}",
+            "color": "{color.dropShadow.shadowColor1}",
+            "type": "dropShadow"
+          }
+        ],
+        "type": "boxShadow",
+        "description": "Menus & Popovers: Anchored, contextual layers such as dropdowns, popovers, and context menus."
+      },
+      "elevation3": {
+        "value": [
+          {
+            "x": "{dropShadow.x.elevation3.dropshadow1}",
+            "y": "{dropShadow.y.elevation3.dropshadow1}",
+            "blur": "{dropShadow.blur.elevation3.dropshadow1}",
+            "spread": "{dropShadow.spread.elevation3.dropshadow1}",
+            "color": "{color.dropShadow.shadowColor2}",
+            "type": "dropShadow"
+          },
+          {
+            "x": "{dropShadow.x.elevation3.dropshadow2}",
+            "y": "{dropShadow.y.elevation3.dropshadow2}",
+            "blur": "{dropShadow.blur.elevation3.dropshadow2}",
+            "spread": "{dropShadow.spread.elevation3.dropshadow2}",
+            "color": "{color.dropShadow.shadowColor1}",
+            "type": "dropShadow"
+          }
+        ],
+        "type": "boxShadow",
+        "description": "Floating UI: Detached, transient elements like tooltips, hover cards, and floating actions."
+      },
+      "elevation4": {
+        "value": [
+          {
+            "x": "{dropShadow.x.elevation4.dropshadow1}",
+            "y": "{dropShadow.y.elevation4.dropshadow1}",
+            "blur": "{dropShadow.blur.elevation4.dropshadow1}",
+            "spread": "{dropShadow.spread.elevation4.dropshadow1}",
+            "color": "{color.dropShadow.shadowColor2}",
+            "type": "dropShadow"
+          },
+          {
+            "x": "{dropShadow.x.elevation4.dropshadow2}",
+            "y": "{dropShadow.y.elevation4.dropshadow2}",
+            "blur": "{dropShadow.blur.elevation4.dropshadow2}",
+            "spread": "{dropShadow.spread.elevation4.dropshadow2}",
+            "color": "{color.dropShadow.shadowColor1}",
+            "type": "dropShadow"
+          }
+        ],
+        "type": "boxShadow",
+        "description": "Dialogs & Panels: Top-priority surfaces including modals, alerts, and side panels."
+      }
+    },
+    "spacing": {
+      "general": {
+        "space2xs": {
+          "value": "{spacing.space2xs}",
+          "type": "spacing"
+        },
+        "spaceXs": {
+          "value": "{spacing.spaceXs}",
+          "type": "spacing"
+        },
+        "spaceSm": {
+          "value": "{spacing.spaceSm}",
+          "type": "spacing"
+        },
+        "spaceMd": {
+          "value": "{spacing.spaceMd}",
+          "type": "spacing"
+        },
+        "spaceLg": {
+          "value": "{spacing.spaceLg}",
+          "type": "spacing"
+        },
+        "spaceXl": {
+          "value": "{spacing.spaceXl}",
+          "type": "spacing"
+        },
+        "space2xl": {
+          "value": "{spacing.space2xl}",
+          "type": "spacing"
+        },
+        "spaceNone": {
+          "value": "0rem",
+          "type": "spacing"
+        }
+      },
+      "gap": {
+        "sections": {
+          "value": "{spacing.gap.sections}",
+          "type": "spacing"
+        },
+        "buttons": {
+          "value": "{spacing.spaceMd}",
+          "type": "spacing"
+        },
+        "cards": {
+          "sm": {
+            "value": "{spacing.gap.cards.sm}",
+            "type": "spacing"
+          },
+          "md": {
+            "value": "{spacing.gap.cards.md}",
+            "type": "spacing"
+          },
+          "lg": {
+            "value": "{spacing.gap.cards.lg}",
+            "type": "spacing"
+          },
+          "nestedContainers": {
+            "sm": {
+              "value": "{spacing.spaceSm}",
+              "type": "spacing"
+            },
+            "md": {
+              "value": "{spacing.spaceMd}",
+              "type": "spacing"
+            },
+            "lg": {
+              "value": "{spacing.spaceLg}",
+              "type": "spacing"
+            }
+          }
+        },
+        "inputs": {
+          "horizontal": {
+            "value": "{spacing.gap.inputs.horizontal}",
+            "type": "spacing"
+          },
+          "vertical": {
+            "value": "{spacing.gap.inputs.vertical}",
+            "type": "spacing"
+          }
+        }
+      },
+      "padding": {
+        "card": {
+          "sm": {
+            "value": "{spacing.padding.container.xxs}",
+            "type": "spacing"
+          },
+          "md": {
+            "value": "{spacing.padding.container.xs}",
+            "type": "spacing"
+          },
+          "lg": {
+            "value": "{spacing.padding.container.sm}",
+            "type": "spacing"
+          }
+        }
+      }
+    },
+    "focusOutline": {
+      "offset": {
+        "value": "{spacing.space2xs}",
+        "type": "spacing"
+      },
+      "inset": {
+        "value": "0rem",
+        "type": "spacing"
+      },
+      "width": {
+        "value": "{borderWidth.md}",
+        "type": "borderWidth"
+      },
+      "infoColor": {
+        "value": "{color.stroke.interactive.focusRing.base}",
+        "type": "color"
+      },
+      "onColor": {
+        "value": "{color.stroke.interactive.focusRing.onColor}",
+        "type": "color"
+      },
+      "successColor": {
+        "value": "{color.stroke.interactive.action.success.base}",
+        "type": "color"
+      },
+      "dangerColor": {
+        "value": "{color.stroke.interactive.action.destructive.base}",
+        "type": "color"
+      },
+      "style": {
+        "value": "solid",
+        "type": "text"
+      }
+    },
+    "background": {
+      "containerColor": {
+        "value": "{color.background.container}",
+        "type": "color"
+      },
+      "baseColor": {
+        "value": "{color.background.base}",
+        "type": "color"
+      },
+      "pageColor": {
+        "value": "{color.background.page}",
+        "type": "color"
+      },
+      "mutedColor": {
+        "value": "{color.background.muted}",
+        "type": "color"
+      },
+      "brandColor": {
+        "value": "{color.background.brand}",
+        "type": "color"
+      },
+      "onColor": {
+        "value": "{color.background.onColor}",
+        "type": "color"
+      },
+      "inverseColor": {
+        "value": "{color.background.inverse}",
+        "type": "color"
+      },
+      "successColor": {
+        "value": "{color.background.success}",
+        "type": "color"
+      },
+      "errorColor": {
+        "value": "{color.background.error}",
+        "type": "color"
+      },
+      "infoColor": {
+        "value": "{color.background.info}",
+        "type": "color"
+      },
+      "warningColor": {
+        "value": "{color.background.warning}",
+        "type": "color"
+      },
+      "aiTopGradientColor": {
+        "value": "{color.background.aiTopGradient}",
+        "type": "color"
+      },
+      "aiBottomGradientColor": {
+        "value": "{color.background.aiBottomGradient}",
+        "type": "color"
+      },
+      "aiTextColor": {
+        "value": "{color.background.aiText}",
+        "type": "color"
+      },
+      "accentAsh": {
+        "value": "{color.background.accent.ash}",
+        "type": "color"
+      },
+      "accentAurora": {
+        "value": "{color.background.accent.aurora}",
+        "type": "color"
+      },
+      "accentBlue": {
+        "value": "{color.background.accent.blue}",
+        "type": "color"
+      },
+      "accentGreen": {
+        "value": "{color.background.accent.green}",
+        "type": "color"
+      },
+      "accentGrey": {
+        "value": "{color.background.accent.grey}",
+        "type": "color"
+      },
+      "accentHoney": {
+        "value": "{color.background.accent.honey}",
+        "type": "color"
+      },
+      "accentOrange": {
+        "value": "{color.background.accent.orange}",
+        "type": "color"
+      },
+      "accentPlum": {
+        "value": "{color.background.accent.plum}",
+        "type": "color"
+      },
+      "accentRed": {
+        "value": "{color.background.accent.red}",
+        "type": "color"
+      },
+      "accentSea": {
+        "value": "{color.background.accent.sea}",
+        "type": "color"
+      },
+      "accentSky": {
+        "value": "{color.background.accent.sky}",
+        "type": "color"
+      },
+      "accentStone": {
+        "value": "{color.background.accent.stone}",
+        "type": "color"
+      },
+      "accentViolet": {
+        "value": "{color.background.accent.violet}",
+        "type": "color"
+      }
+    },
+    "stroke": {
+      "baseColor": {
+        "value": "{color.stroke.base}",
+        "type": "color"
+      },
+      "mutedColor": {
+        "value": "{color.stroke.muted}",
+        "type": "color"
+      },
+      "strongColor": {
+        "value": "{color.stroke.strong}",
+        "type": "color"
+      },
+      "brandColor": {
+        "value": "{color.stroke.brand}",
+        "type": "color"
+      },
+      "successColor": {
+        "value": "{color.stroke.success}",
+        "type": "color"
+      },
+      "errorColor": {
+        "value": "{color.stroke.error}",
+        "type": "color"
+      },
+      "warningColor": {
+        "value": "{color.stroke.warning}",
+        "type": "color"
+      },
+      "infoColor": {
+        "value": "{color.stroke.info}",
+        "type": "color"
+      },
+      "aiTopGradientColor": {
+        "value": "{color.stroke.aiTopGradient}",
+        "type": "color"
+      },
+      "aiBottomGradientColor": {
+        "value": "{color.stroke.aiBottomGradient}",
+        "type": "color"
+      },
+      "accentAsh": {
+        "value": "{color.stroke.accent.ash}",
+        "type": "color"
+      },
+      "accentAurora": {
+        "value": "{color.stroke.accent.aurora}",
+        "type": "color"
+      },
+      "accentBlue": {
+        "value": "{color.stroke.accent.blue}",
+        "type": "color"
+      },
+      "accentGreen": {
+        "value": "{color.stroke.accent.green}",
+        "type": "color"
+      },
+      "accentGrey": {
+        "value": "{color.stroke.accent.grey}",
+        "type": "color"
+      },
+      "accentHoney": {
+        "value": "{color.stroke.accent.honey}",
+        "type": "color"
+      },
+      "accentOrange": {
+        "value": "{color.stroke.accent.orange}",
+        "type": "color"
+      },
+      "accentPlum": {
+        "value": "{color.stroke.accent.plum}",
+        "type": "color"
+      },
+      "accentRed": {
+        "value": "{color.stroke.accent.red}",
+        "type": "color"
+      },
+      "accentSea": {
+        "value": "{color.stroke.accent.sea}",
+        "type": "color"
+      },
+      "accentSky": {
+        "value": "{color.stroke.accent.sky}",
+        "type": "color"
+      },
+      "accentStone": {
+        "value": "{color.background.accent.stone}",
+        "type": "color"
+      },
+      "accentViolet": {
+        "value": "{color.background.accent.violet}",
+        "type": "color"
+      },
+      "visualSeparator": {
+        "value": "{color.background.container}",
+        "type": "color"
+      }
+    },
+    "strokeWidth": {
+      "sm": {
+        "value": "{borderWidth.sm}",
+        "type": "borderWidth"
+      },
+      "md": {
+        "value": "{borderWidth.md}",
+        "type": "borderWidth"
+      },
+      "lg": {
+        "value": "{borderWidth.lg}",
+        "type": "borderWidth"
+      }
+    }
+  }
+}

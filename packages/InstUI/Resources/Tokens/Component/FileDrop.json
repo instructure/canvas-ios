@@ -1,0 +1,36 @@
+{
+  "fileDrop": {
+    "acceptedColor": {
+      "value": "{color.stroke.brand}",
+      "type": "color"
+    },
+    "backgroundColor": {
+      "value": "{color.background.container}",
+      "type": "color"
+    },
+    "borderColor": {
+      "value": "{color.stroke.interactive.input.base}",
+      "type": "color"
+    },
+    "borderRadius": {
+      "value": "{borderRadius.container.md}",
+      "type": "borderRadius"
+    },
+    "borderStyle": {
+      "value": "dashed",
+      "type": "text"
+    },
+    "borderWidth": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "hoverBorderColor": {
+      "value": "{color.stroke.interactive.input.hover}",
+      "type": "color"
+    },
+    "rejectedColor": {
+      "value": "{color.stroke.interactive.action.destructive.secondary.base}",
+      "type": "color"
+    }
+  }
+}

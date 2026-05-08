@@ -212,7 +212,7 @@ struct NotebookListView: View {
                 Color.huiColors.surface.pageSecondary
                     .ignoresSafeArea()
                 HorizonUI.Spinner(size: .small, showBackground: true)
-                    .accessibilityLabel("Loading Notebooks")
+                    .accessibilityLabel(String(localized: "Loading Notebooks", bundle: .horizon))
             }
         }
     }

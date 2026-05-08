@@ -1,0 +1,50 @@
+{
+  "drawerLayoutContent": {
+    "duration": {
+      "value": "300ms",
+      "type": "other"
+    },
+    "overflowY": {
+      "value": "auto",
+      "type": "other"
+    }
+  },
+  "drawerLayoutTray": {
+    "background": {
+      "value": "{color.background.elevatedSurface.base}",
+      "type": "color"
+    },
+    "borderColor": {
+      "value": "{color.stroke.muted}",
+      "type": "color"
+    },
+    "borderStyle": {
+      "value": "solid",
+      "type": "other"
+    },
+    "borderWidth": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "boxShadow": {
+      "value": "0 0.375rem 0.4375rem rgba(0, 0, 0, 0.1), 0 0.625rem 1.75rem rgba(0, 0, 0, 0.25)",
+      "type": "other"
+    },
+    "contentOverflowY": {
+      "value": "auto",
+      "type": "other"
+    },
+    "overflowX": {
+      "value": "hidden",
+      "type": "other"
+    },
+    "overflowY": {
+      "value": "auto",
+      "type": "other"
+    },
+    "zIndex": {
+      "value": "9999",
+      "type": "other"
+    }
+  }
+}

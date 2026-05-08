@@ -274,19 +274,18 @@ public extension URL {
     }
 
     /// Returns an image of the first frame of the video located at this url.
-    func videoPreview() throws -> UIImage {
+    func videoPreview() async throws -> UIImage {
         let asset = AVURLAsset(url: self)
         let imageGenerator = AVAssetImageGenerator(asset: asset)
         imageGenerator.appliesPreferredTrackTransform = true
 
-        let cgImage = try imageGenerator.copyCGImage(at: .zero, actualTime: nil)
-
+        let (cgImage, _) = try await imageGenerator.image(at: .zero)
         return UIImage(cgImage: cgImage)
     }
 
     /// Writes the result of the `videoPreview()` method to the given url in png format.
-    func writeVideoPreview(to url: URL) throws {
-        let previewImage = try videoPreview()
+    func writeVideoPreview(to url: URL) async throws {
+        let previewImage = try await videoPreview()
         guard let imageData = previewImage.pngData() else {
             throw NSError.instructureError("Failed to convert preview data to png.")
         }
@@ -316,5 +315,11 @@ public extension Array where Element == URL {
         try filter { url in
             try url.resourceValues(forKeys: Set([.isDirectoryKey])).isDirectory == true
         }
+    }
+}
+
+public extension URL {
+    var isStudioMediaLTILaunchURL: Bool {
+        path().hasSuffix("lti/launch") && queryValue(for: "custom_arc_media_id") != nil
     }
 }

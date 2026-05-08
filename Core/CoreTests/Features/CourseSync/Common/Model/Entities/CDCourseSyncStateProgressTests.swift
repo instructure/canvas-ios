@@ -83,10 +83,16 @@ class CDCourseSyncStateProgressTests: CoreTestCase {
 
     func testDownloadedStateMapping() {
         let progress: CDCourseSyncStateProgress = databaseClient.insert()
-        progress.state = .downloaded
+        progress.state = .downloaded(isEmbeddedMediaComplete: true)
 
-        let testee: CDCourseSyncStateProgress = databaseClient.fetch().first!
-        XCTAssertEqual(testee.state, .downloaded)
+        var testee: CDCourseSyncStateProgress = databaseClient.fetch().first!
+        XCTAssertEqual(testee.state, .downloaded(isEmbeddedMediaComplete: true))
         XCTAssertEqual(testee.stateRaw, 2)
+
+        progress.state = .downloaded(isEmbeddedMediaComplete: false)
+        testee = databaseClient.fetch().first!
+
+        XCTAssertEqual(testee.state, .downloaded(isEmbeddedMediaComplete: false))
+        XCTAssertEqual(testee.stateRaw, 3)
     }
 }

@@ -193,9 +193,9 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
 
         var mockWidgets = testee.widgets.compactMap { $0 as? WidgetViewModelMock }
         guard mockWidgets.count == systemWidgetCount + 3 else { throw InvalidCountError() }
-        weak var todoWidget1 = mockWidgets[systemWidgetCount + 0]
-        weak var helloWidget1 = mockWidgets[systemWidgetCount + 1]
-        weak var courseWidget1 = mockWidgets[systemWidgetCount + 2]
+        weak let todoWidget1 = mockWidgets[systemWidgetCount + 0]
+        weak let helloWidget1 = mockWidgets[systemWidgetCount + 1]
+        weak let courseWidget1 = mockWidgets[systemWidgetCount + 2]
         XCTAssertEqual(todoWidget1?.id, todoId)
         XCTAssertEqual(helloWidget1?.id, helloId)
         XCTAssertEqual(courseWidget1?.id, courseId)
@@ -213,9 +213,9 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
         // THEN - returned widgets match the new list of configs
         mockWidgets = testee.widgets.compactMap { $0 as? WidgetViewModelMock }
         guard mockWidgets.count == systemWidgetCount + 3 else { throw InvalidCountError() }
-        weak var courseWidget2 = mockWidgets[systemWidgetCount + 0]
-        weak var weeklyWidget2 = mockWidgets[systemWidgetCount + 1]
-        weak var helloWidget2 = mockWidgets[systemWidgetCount + 2]
+        weak let courseWidget2 = mockWidgets[systemWidgetCount + 0]
+        weak let weeklyWidget2 = mockWidgets[systemWidgetCount + 1]
+        weak let helloWidget2 = mockWidgets[systemWidgetCount + 2]
         XCTAssertEqual(courseWidget2?.id, courseId)
         XCTAssertEqual(weeklyWidget2?.id, weeklyId)
         XCTAssertEqual(helloWidget2?.id, helloId)
@@ -310,7 +310,7 @@ final class LearnerDashboardViewModelTests: StudentTestCase {
 private class WidgetViewModelMock: DashboardWidgetViewModel {
     let id: String
     let isHiddenInEmptyState = false
-    let state: InstUI.ScreenState = .data
+    let state: ScreenState = .data
 
     var refreshCallCount = 0
     var refreshInput: Bool?

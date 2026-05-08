@@ -1,0 +1,68 @@
+{
+  "badge": {
+    "borderRadius": {
+      "value": "{borderRadius.full}",
+      "type": "borderRadius"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "color": {
+      "value": "{color.text.onColor}",
+      "type": "color"
+    },
+    "colorInverse": {
+      "value": "{color.text.dark}",
+      "type": "color"
+    },
+    "colorDanger": {
+      "value": "{color.background.error}",
+      "type": "color"
+    },
+    "colorSuccess": {
+      "value": "{color.background.success}",
+      "type": "color"
+    },
+    "colorPrimary": {
+      "value": "{color.background.info}",
+      "type": "color"
+    },
+    "fontSize": {
+      "value": "{fontSize.textSm}",
+      "type": "fontSizes"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.strong}",
+      "type": "fontWeights"
+    },
+    "sizeNotification": {
+      "value": "0.75rem",
+      "type": "sizing"
+    },
+    "size": {
+      "value": "1.25rem",
+      "type": "sizing"
+    },
+    "padding": {
+      "value": "{spacing.spaceXs}",
+      "type": "spacing"
+    },
+    "notificationOffset": {
+      "value": "0.125rem",
+      "type": "other"
+    },
+    "notificationZIndex": {
+      "value": "1",
+      "type": "number"
+    },
+    "pulseBorderThickness": {
+      "value": "0.125rem",
+      "type": "other"
+    },
+    "countOffset": {
+      "value": "0.5rem",
+      "type": "other"
+    }
+  }
+}

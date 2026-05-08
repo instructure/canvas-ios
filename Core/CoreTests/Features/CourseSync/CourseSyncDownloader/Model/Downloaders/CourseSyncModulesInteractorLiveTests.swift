@@ -129,6 +129,49 @@ class CourseSyncModulesInteractorLiveTests: CoreTestCase {
         subscription.cancel()
     }
 
+    // MARK: - createStudioModulePlaceholders
+
+    func test_createStudioModulePlaceholders_withStudioItem_shouldCreateHtmlFile() {
+        let mediaID = "media-1"
+        let studioURL = URL(string: "https://canvas.instructure.com/lti/launch?custom_arc_media_id=\(mediaID)")!
+        let moduleItem = ModuleItem.make(from: .make(id: "item-1", content: .externalTool("tool-1", studioURL)))
+        let sessionId = envResolver.sessionId(for: "course-1")
+        let folderURL = URL.Paths.Offline.courseSectionResourceFolderURL(
+            sessionId: sessionId,
+            courseId: "course-1",
+            sectionName: OfflineFolderPrefix.studioModuleItems.rawValue,
+            resourceId: "item-1"
+        )
+        defer { try? FileManager.default.removeItem(at: folderURL) }
+
+        XCTAssertFinish(testee.createStudioModulePlaceholders(courseId: "course-1", moduleItems: [moduleItem]))
+
+        let htmlFileURL = folderURL.appendingPathComponent("body.html")
+        let expectedHTML = "<html><body><iframe src=\"/?custom_arc_media_id%3D\(mediaID)\"></iframe></body></html>"
+        XCTAssertEqual(FileManager.default.fileExists(atPath: htmlFileURL.path), true)
+        XCTAssertEqual(try? String(contentsOf: htmlFileURL, encoding: .utf8), expectedHTML)
+    }
+
+    func test_createStudioModulePlaceholders_withNonStudioItems_shouldNotCreateFiles() {
+        let assignmentItem = ModuleItem.make(from: .make(id: "item-1", content: .assignment("assign-1")))
+        let externalToolWithoutMediaID = ModuleItem.make(
+            from: .make(id: "item-2", content: .externalTool("tool-1", URL(string: "https://canvas.instructure.com/lti/launch")!))
+        )
+
+        XCTAssertFinish(testee.createStudioModulePlaceholders(
+            courseId: "course-1",
+            moduleItems: [assignmentItem, externalToolWithoutMediaID]
+        ))
+
+        let sessionId = envResolver.sessionId(for: "course-1")
+        let sectionFolderURL = URL.Paths.Offline.courseSectionFolderURL(
+            sessionId: sessionId,
+            courseId: "course-1",
+            sectionName: OfflineFolderPrefix.studioModuleItems.rawValue
+        )
+        XCTAssertEqual(FileManager.default.fileExists(atPath: sectionFolderURL.path), false)
+    }
+
     private func mockModules() {
         api.mock(
             GetModulesRequest(courseID: "course-1"),

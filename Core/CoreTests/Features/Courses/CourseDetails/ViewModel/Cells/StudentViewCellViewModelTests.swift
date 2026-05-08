@@ -33,7 +33,7 @@ class StudentViewCellViewModelTests: CoreTestCase {
     }
 
     func testErrorOnStudentViewInitialiation() {
-        api.mock(GetStudentViewStudent(courseID: "1"), value: nil, response: nil, error: NSError.instructureError("Oops"))
+        api.mock(GetStudentViewStudentRequest(courseID: "1"), value: nil, response: nil, error: NSError.instructureError("Oops"))
         let course = Course.save(.make(), in: databaseClient)
         let testee = StudentViewCellViewModel(course: course)
 

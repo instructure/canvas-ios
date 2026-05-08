@@ -177,7 +177,7 @@ struct AssignmentSubmissionView: View {
     }
 
     private var rceEditor: some View {
-        InstUI.RichContentEditorCell(
+        AUI.RichContentEditorCell(
             placeholder: AssignmentLocalizedKeys.addSubmissionText.title,
             html: $viewModel.htmlContent,
             uploadParameters: uploadParameters

@@ -34,19 +34,20 @@ public class CourseSyncNotificationInteractor {
             .observeStateProgress()
             .first()
             .map { $0.filterToCourses().count }
-        let isSuccessfulSyncPublisher = progressInteractor
+        let downloadProgressPublisher = progressInteractor
             .observeDownloadProgress()
             .first()
-            .map { $0.error == nil }
 
         return Publishers
-            .CombineLatest(itemCountPublisher, isSuccessfulSyncPublisher)
+            .CombineLatest(itemCountPublisher, downloadProgressPublisher)
             .receive(on: RunLoop.main)
             .filter { _ in window.isSyncProgressNotOnScreen() }
             .filter { itemCount, _ in itemCount > 0 } // We want to avoid sending notifications about courses that have already ended.
-            .flatMap { [localNotifications] (itemCount, isSuccessful) in
-                if isSuccessful {
+            .flatMap { [localNotifications] (itemCount, downloadProgress) in
+                if downloadProgress.error == nil {
                     return localNotifications.sendOfflineSyncCompletedSuccessfullyNotification(syncedItemsCount: itemCount)
+                } else if downloadProgress.isEmbeddedContentError {
+                    return localNotifications.sendOfflineSyncEmbeddedContentWarningNotification()
                 } else {
                     return localNotifications.sendOfflineSyncFailedNotification()
                 }

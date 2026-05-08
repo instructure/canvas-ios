@@ -82,4 +82,39 @@ class APIOAuthTests: CoreTestCase {
             URLQueryItem(name: "return_to", value: "/?display=borderless&as_user_id=42")
         ])
     }
+
+    // MARK: - mobile_consent query param
+
+    func test_getWebSessionRequest_whenUserProvidedConsentIsTrue_shouldIncludeMobileConsentParam() {
+        environment.userDefaults?.userProvidedAnalyticsConsent = true
+
+        XCTAssertEqual(GetWebSessionRequest(to: nil).queryItems, [
+            URLQueryItem(name: "mobile_consent", value: "true")
+        ])
+        XCTAssertEqual(GetWebSessionRequest(to: URL(string: "/")).queryItems, [
+            URLQueryItem(name: "return_to", value: "/?display=borderless"),
+            URLQueryItem(name: "mobile_consent", value: "true")
+        ])
+    }
+
+    func test_getWebSessionRequest_whenUserProvidedConsentIsFalse_shouldIncludeMobileConsentParam() {
+        environment.userDefaults?.userProvidedAnalyticsConsent = false
+
+        XCTAssertEqual(GetWebSessionRequest(to: nil).queryItems, [
+            URLQueryItem(name: "mobile_consent", value: "false")
+        ])
+        XCTAssertEqual(GetWebSessionRequest(to: URL(string: "/")).queryItems, [
+            URLQueryItem(name: "return_to", value: "/?display=borderless"),
+            URLQueryItem(name: "mobile_consent", value: "false")
+        ])
+    }
+
+    func test_getWebSessionRequest_whenUserProvidedConsentIsNil_shouldNotIncludeMobileConsentParam() {
+        environment.userDefaults?.userProvidedAnalyticsConsent = nil
+
+        XCTAssertEqual(GetWebSessionRequest(to: nil).queryItems, [])
+        XCTAssertEqual(GetWebSessionRequest(to: URL(string: "/")).queryItems, [
+            URLQueryItem(name: "return_to", value: "/?display=borderless")
+        ])
+    }
 }

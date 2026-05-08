@@ -21,11 +21,11 @@ import XCTest
 import TestsFoundation
 
 class AnalyticsTests: XCTestCase {
-    private var testAnalyticsHandler: MockAnalyticsHandler!
+    private var testAnalyticsHandler: AnalyticsHandlerMock!
 
     override func setUp() {
         super.setUp()
-        testAnalyticsHandler = MockAnalyticsHandler()
+        testAnalyticsHandler = AnalyticsHandlerMock()
         Analytics.shared.handler = testAnalyticsHandler
     }
 
@@ -34,8 +34,8 @@ class AnalyticsTests: XCTestCase {
         let params = ["bar": "foo"]
         Analytics.shared.logEvent(name, parameters: params)
 
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, name)
-        XCTAssertEqual(testAnalyticsHandler.lastEventParameters?["bar"] as? String, "foo")
+        XCTAssertEqual(testAnalyticsHandler.handleEventInput?.name, name)
+        XCTAssertEqual(testAnalyticsHandler.handleEventInput?.parameters?["bar"] as? String, "foo")
     }
 
     func testLogSession() {
@@ -44,15 +44,15 @@ class AnalyticsTests: XCTestCase {
         defaults.reset()
 
         Analytics.shared.logSession(session)
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "auth_forever_token")
+        XCTAssertEqual(testAnalyticsHandler.handleEventInput?.name, "auth_forever_token")
 
-        testAnalyticsHandler.lastEvent = nil
+        testAnalyticsHandler.handleEventInput = nil
         Analytics.shared.logSession(session)
-        XCTAssertNil(testAnalyticsHandler.lastEvent)
+        XCTAssertNil(testAnalyticsHandler.handleEventInput?.name)
 
         session = LoginSession.make(expiresAt: Date())
         Analytics.shared.logSession(session)
-        XCTAssertEqual(testAnalyticsHandler.lastEvent, "auth_expiring_token")
+        XCTAssertEqual(testAnalyticsHandler.handleEventInput?.name, "auth_expiring_token")
 
         defaults.reset()
     }

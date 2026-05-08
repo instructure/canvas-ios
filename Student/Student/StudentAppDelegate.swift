@@ -55,9 +55,8 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     private lazy var gradeListWidgetRouter = WidgetRouter.createGradeListRouter()
     private lazy var courseGradeWidgetRouter = WidgetRouter.createCourseGradeRouter()
 
-    private lazy var analyticsTracker: PendoAnalyticsTracker = {
-        .init(environment: environment)
-    }()
+    private lazy var analyticsHandler: AnalyticsHandler = .live(environment: environment)
+
     private lazy var appExperienceInteractor = ExperienceSummaryInteractorLive(environment: environment)
 
     func application(_: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -72,6 +71,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         }
         BackgroundProcessingAssembly.resolveInteractor().register(taskID: OfflineSyncBackgroundTaskRequest.ID)
         setupFirebase()
+        Analytics.shared.handler = analyticsHandler
         CacheManager.resetAppIfNecessary()
 
         #if DEBUG
@@ -128,18 +128,22 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             .flatMap { list in
                 let userProfile = list.first
                 return unownedSelf.setupUserEnvironment()
-                    .flatMap { _ in unownedSelf.getFeatureFlags() }
+                    .flatMap { unownedSelf.getFeatureFlags() }
                     .map { featureFlags in
                         unownedSelf.isLearnerDashboardEnabledOnInstance = featureFlags.isFeatureEnabled(.widget_dashboard)
-                        unownedSelf.initializeTracking(environmentFeatureFlags: featureFlags)
                     }
-                    .map { _ in unownedSelf.requestNotificationAuthorizationForUITests() }
-                    .map { _ in unownedSelf.setK5StudentViewIfNeeded(userProfile: userProfile) }
-                    .flatMap { _ in unownedSelf.showLanguageAlertIfNeeded(locale: userProfile?.locale ?? session.locale) }
-                    .flatMap { _ in unownedSelf.getAndSetBrandTheme() }
+                    .flatMap {
+                        unownedSelf.analyticsHandler.initializeTracking(environment: unownedSelf.environment) {
+                            unownedSelf.checkForWidgetsPresence()
+                        }
+                    }
+                    .map { unownedSelf.requestNotificationAuthorizationForUITests() }
+                    .map { unownedSelf.setK5StudentViewIfNeeded(userProfile: userProfile) }
+                    .flatMap { unownedSelf.showLanguageAlertIfNeeded(locale: userProfile?.locale ?? session.locale) }
+                    .flatMap { unownedSelf.getAndSetBrandTheme() }
                     .eraseToAnyPublisher()
             }
-            .flatMap { _ in unownedSelf.getAppExperienceSummary() }
+            .flatMap { unownedSelf.getAppExperienceSummary() }
             .mapError { unownedSelf.mapSetupError(error: $0, session: session) }
             .sink(
                 receiveCompletion: { completion in
@@ -160,8 +164,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
     }
 
     func application(_: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        if url.scheme?.range(of: "pendo") != nil {
-            analyticsTracker.initManager(with: url)
+        if analyticsHandler.handlePendoPairingModeUrl(url: url) {
             return true
         }
 
@@ -272,7 +275,6 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
 extension StudentAppDelegate {
     private func setupUserEnvironment() -> AnyPublisher<Void, Error> {
-        PageViewEventController.instance.userDidChange()
         updateInterfaceStyle(for: window)
         CoreWebView.keepCookieAlive(for: environment)
         PushNotificationsInteractor.shared.userDidLogin(api: environment.api)
@@ -432,7 +434,7 @@ extension StudentAppDelegate {
         case .academic:
             AppEnvironment.shared.app = .student
             AppEnvironment.shared.router = academicRouter
-            guard let window = window else { return }
+            guard let window else { return }
             let userInterfaceStyle = AppEnvironment.shared.userDefaults?.academicInterfaceStyle ?? AppEnvironment.shared.userDefaults?.interfaceStyle
             window.updateInterfaceStyleWithoutTransition(userInterfaceStyle)
             let appearance = UINavigationBar.appearance(whenContainedInInstancesOf: [CoreNavigationController.self])
@@ -509,35 +511,6 @@ extension StudentAppDelegate: UNUserNotificationCenterDelegate {
     }
 }
 
-// MARK: - Usage Analytics
-
-extension StudentAppDelegate: Core.AnalyticsHandler {
-    func handleEvent(_ name: String, parameters: [String: Any]?) {
-        analyticsTracker.track(name, properties: parameters)
-
-        PageViewEventController.instance.logPageView(
-            name,
-            attributes: parameters
-        )
-    }
-
-    private func initializeTracking(environmentFeatureFlags: [FeatureFlag]) {
-        guard !ProcessInfo.isUITest else { return }
-
-        let isTrackingEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
-
-        if isTrackingEnabled {
-            analyticsTracker.startSession(completion: checkForWidgetsPresence)
-        } else {
-            analyticsTracker.endSession()
-        }
-    }
-
-    private func disableTracking() {
-        analyticsTracker.endSession()
-    }
-}
-
 // MARK: - Error Handling
 
 extension StudentAppDelegate {
@@ -570,7 +543,6 @@ extension StudentAppDelegate {
         if FirebaseOptions.defaultOptions()?.apiKey != nil {
             FirebaseApp.configure()
             configureRemoteConfig()
-            Core.Analytics.shared.handler = self
             RemoteLogger.shared.handler = self
         }
     }
@@ -691,7 +663,7 @@ extension StudentAppDelegate: LoginDelegate {
         shouldSetK5StudentView = false
         environment.k5.userDidLogout()
         guard let window, window.isShowingLoginStartViewController == false else { return }
-        disableTracking()
+        analyticsHandler.endTracking()
         LoginViewModel().showLoginView(on: window, loginDelegate: self, app: .student)
     }
 
@@ -722,10 +694,9 @@ extension StudentAppDelegate: LoginDelegate {
     }
 
     func userDidStopActing(as session: LoginSession) {
-        disableTracking()
+        analyticsHandler.endTracking()
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
-        PageViewEventController.instance.userDidChange()
         PushNotificationsInteractor.shared.unsubscribeFromCanvasPushNotifications()
         UNUserNotificationCenter.current().setBadgeCount(0)
         environment.userDidLogout(session: session)
@@ -734,7 +705,7 @@ extension StudentAppDelegate: LoginDelegate {
     }
 
     func userDidLogout(session: LoginSession) {
-        disableTracking()
+        analyticsHandler.endTracking()
         shouldSetK5StudentView = false
         let wasCurrent = environment.currentSession == session
         API(session).makeRequest(DeleteLoginOAuthRequest(), refreshToken: false) { _, _, _ in }

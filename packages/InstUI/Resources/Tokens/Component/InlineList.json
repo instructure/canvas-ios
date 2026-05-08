@@ -1,0 +1,84 @@
+{
+  "inlineListItem": {
+    "arrowSpacing": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "color": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "delimiterColor": {
+      "value": "{color.text.muted}",
+      "type": "color"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontSizeLarge": {
+      "value": "{fontSize.textLg}",
+      "type": "fontSizes"
+    },
+    "fontSizeMedium": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontSizeSmall": {
+      "value": "{fontSize.textSm}",
+      "type": "fontSizes"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "lineHeight": {
+      "value": "{lineHeight.standalone.base}",
+      "type": "lineHeights"
+    },
+    "noneSpacing": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "pipeSpacing": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "slashSpacing": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "spacingLarge": {
+      "value": "2.25rem",
+      "type": "spacing"
+    },
+    "spacingMedium": {
+      "value": "{spacing.spaceXl}",
+      "type": "spacing"
+    },
+    "spacingSmall": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "spacingXLarge": {
+      "value": "3rem",
+      "type": "spacing"
+    },
+    "spacingXSmall": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "spacingXXLarge": {
+      "value": "3.75rem",
+      "type": "spacing"
+    },
+    "spacingXXSmall": {
+      "value": "0.375rem",
+      "type": "spacing"
+    },
+    "spacingXXXSmall": {
+      "value": "{spacing.space2xs}",
+      "type": "spacing"
+    }
+  }
+}

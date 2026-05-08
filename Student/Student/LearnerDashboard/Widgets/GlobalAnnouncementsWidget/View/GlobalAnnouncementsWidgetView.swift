@@ -32,7 +32,7 @@ struct GlobalAnnouncementsWidgetView: View {
                     viewModel.widgetTitle,
                     customAccessibilityTitle: viewModel.widgetAccessibilityTitle
                 ) {
-                    VStack(spacing: InstUI.Styles.Padding.sectionHeaderVertical.rawValue) {
+                    VStack(spacing: AUI.Styles.Padding.sectionHeaderVertical.rawValue) {
                         HorizontalCarouselView(
                             items: viewModel.announcements,
                             currentPage: $currentPage,
@@ -43,7 +43,7 @@ struct GlobalAnnouncementsWidgetView: View {
                                 .identifier("Dashboard.Announcements.GlobalAnnouncement.Id.\(cardViewModel.id)")
                         }
 
-                        InstUI.PageIndicator(currentIndex: currentPage, count: totalPages)
+                        AUI.PageIndicator(currentIndex: currentPage, count: totalPages)
                     }
                 }
                 .animation(.dashboardWidget, value: viewModel.announcements)

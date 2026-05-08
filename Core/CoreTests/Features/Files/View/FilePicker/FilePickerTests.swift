@@ -135,3 +135,11 @@ class FilePickerTests: CoreTestCase, FilePickerDelegate {
         XCTAssertEqual((UploadManager.shared as? MockUploadManager)?.cancelWasCalled, true)
     }
 }
+
+class MockImagePicker: UIImagePickerController {
+    var dismissed = false
+    override func dismiss(animated _: Bool, completion: (() -> Void)? = nil) {
+        dismissed = true
+        completion?()
+    }
+}

@@ -44,7 +44,7 @@ class SpeedGraderSubmissionGradesViewModel: ObservableObject {
 
     // MARK: - Outputs
 
-    let state: InstUI.ScreenState
+    let state: ScreenState
 
     // Grading inputs
     @Published private(set) var gradeState: GradeState

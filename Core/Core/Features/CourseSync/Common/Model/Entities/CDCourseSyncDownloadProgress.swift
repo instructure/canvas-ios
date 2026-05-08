@@ -25,6 +25,7 @@ public final class CDCourseSyncDownloadProgress: NSManagedObject {
     @NSManaged public var isFinished: Bool
     @NSManaged public var error: String?
     @NSManaged public var courseIds: [String]
+    @NSManaged public var embeddedContentErrorCourseIds: [String]
 }
 
 public extension CDCourseSyncDownloadProgress {
@@ -43,6 +44,7 @@ public extension CDCourseSyncDownloadProgress {
         model.isFinished = isFinished
         model.error = error
         model.courseIds = courseIds
+        model.embeddedContentErrorCourseIds = []
         return model
     }
 }

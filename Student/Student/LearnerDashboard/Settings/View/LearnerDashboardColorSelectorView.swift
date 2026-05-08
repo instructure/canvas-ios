@@ -91,7 +91,7 @@ private struct PlainDisclosureGroupStyle: DisclosureGroupStyle {
                 HStack {
                     configuration.label
 
-                    InstUI.CollapseButtonIcon(isExpanded: configuration.$isExpanded)
+                    AUI.CollapseButtonIcon(isExpanded: configuration.$isExpanded)
                 }
             }
 

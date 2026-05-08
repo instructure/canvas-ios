@@ -126,7 +126,7 @@ class CourseListCell: UITableViewCell {
             return ""
         }
 
-        if course.hideTotalGrade {
+        if course.hideTotalGrade(userID: studentID) {
             // this condition also triggers when multipleGradingPeriodsEnabled is true, currentGradingPeriodID is nil and totalsForAllGradingPeriodsOption is false
             return course.hideFinalGrades ? "" : String(localized: "N/A", bundle: .parent)
         }

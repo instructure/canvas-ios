@@ -25,7 +25,15 @@ public struct CourseSyncEntry: Equatable {
         // loading = 0
         // error = 1
         // downloaded 2
-        case loading(Float?), error, downloaded
+        case loading(Float?), error, downloaded(isEmbeddedMediaComplete: Bool)
+
+        var isDownloaded: Bool {
+            if case .downloaded = self {
+                true
+            } else {
+                false
+            }
+        }
     }
 
     let name: String

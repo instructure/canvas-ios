@@ -1,0 +1,96 @@
+{
+  "colorPicker": {
+    "checkerboardBackgroundColor": {
+      "value": "{color.background.elevatedSurface.base}",
+      "type": "color"
+    },
+    "colorIndicatorBorderColor": {
+      "value": "{color.stroke.base}",
+      "type": "color"
+    },
+    "colorMixerButtonContainerLeftMargin": {
+      "value": "0.5rem",
+      "type": "spacing"
+    },
+    "errorIconsRightPadding": {
+      "value": "{spacing.padding.container.xs}",
+      "type": "spacing"
+    },
+    "hashMarkColor": {
+      "value": "{color.text.muted}",
+      "type": "color"
+    },
+    "hashMarkContainerLeftPadding": {
+      "value": "0.5rem",
+      "type": "spacing"
+    },
+    "hashMarkContainerLineHeight": {
+      "value": "{lineHeight.heading.textLg}",
+      "type": "lineHeights"
+    },
+    "hashMarkContainerRightPadding": {
+      "value": "{spacing.space2xs}",
+      "type": "spacing"
+    },
+    "labelRightMargin": {
+      "value": "0.375rem",
+      "type": "spacing"
+    },
+    "popoverContentBlockBorderWidth": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "popoverFooterTopBorderWidth": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "popoverContentPadding": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "popoverFooterPadding": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "popoverSeparatorColor": {
+      "value": "{color.stroke.muted}",
+      "type": "color"
+    },
+    "simpleColorContainerLeftPadding": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "successIconRightPadding": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "xLargeFontSize": {
+      "value": "{fontSize.textXl}",
+      "type": "fontSizes"
+    },
+    "xSmallSpacing": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "xxxSmallSpacing": {
+      "value": "{spacing.space2xs}",
+      "type": "spacing"
+    },
+    "popoverContentBlockBottomMargin": {
+      "value": "0.5rem",
+      "type": "spacing"
+    },
+    "popoverContentBlockTopMargin": {
+      "value": "0.5rem",
+      "type": "spacing"
+    },
+    "popoverContentBlockTopPadding": {
+      "value": "0.5rem",
+      "type": "spacing"
+    },
+    "popoverFooterColor": {
+      "value": "{color.background.elevatedSurface.base}",
+      "type": "color"
+    }
+  }
+}

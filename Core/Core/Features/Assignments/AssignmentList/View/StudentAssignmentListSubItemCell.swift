@@ -33,7 +33,7 @@ struct StudentAssignmentListSubItemCell: View {
     }
 
     var body: some View {
-        InstUI.ContextItemListSubItemCell(
+        AUI.ContextItemListSubItemCell(
             labels: {
                 titleLabel
                 dueDateLabel
@@ -56,7 +56,7 @@ struct StudentAssignmentListSubItemCell: View {
     @ViewBuilder
     private var scoreAndStatusLine: some View {
         if let score = model.score {
-            InstUI.JoinedSubtitleLabels(
+            AUI.JoinedSubtitleLabels(
                 label1: { scoreLabel(score) },
                 label2: { submissionStatusLabel }
             )
@@ -116,7 +116,7 @@ extension StudentAssignmentListSubItemCell: Equatable {
         ]
 
         ForEach(rows) { row in
-            InstUI.CollapsibleListRow(
+            AUI.CollapsibleListRow(
                 cell: StudentAssignmentListItemCell(model: row, isLastItem: nil) {},
                 isInitiallyExpanded: true
             ) {
@@ -124,7 +124,7 @@ extension StudentAssignmentListSubItemCell: Equatable {
                     StudentAssignmentListSubItemCell(model: subItem) {}
                 }
             }
-            InstUI.Divider()
+            AUI.Divider()
         }
     }
     .tint(.course10)

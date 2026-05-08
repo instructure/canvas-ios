@@ -1,0 +1,116 @@
+{
+  "tabs": {
+    "defaultBackground": {
+      "value": "{color.transparentColor}",
+      "type": "color"
+    },
+    "scrollFadeColor": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "scrollOverlayWidthDefault": {
+      "value": "5rem",
+      "type": "sizing"
+    },
+    "scrollOverlayWidthSecondary": {
+      "value": "3rem",
+      "type": "sizing"
+    },
+    "tabVerticalOffset": {
+      "value": "0.0625rem",
+      "type": "spacing"
+    },
+    "zIndex": {
+      "value": "1",
+      "type": "number"
+    }
+  },
+  "tabsPanel": {
+    "background": {
+      "value": "{color.transparentColor}",
+      "type": "color"
+    },
+    "borderColor": {
+      "value": "{color.stroke.base}",
+      "type": "color"
+    },
+    "textColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "borderWidth": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "defaultOverflowY": {
+      "value": "auto",
+      "type": "text"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "lineHeight": {
+      "value": "{lineHeight.paragraph.base}",
+      "type": "lineHeights"
+    }
+  },
+  "tabsTab": {
+    "defaultTextColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "defaultHoverBorderColor": {
+      "value": "{color.stroke.base}",
+      "type": "color"
+    },
+    "defaultSelectedBorderColor": {
+      "value": "{color.stroke.brand}",
+      "type": "color"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "lineHeight": {
+      "value": "{lineHeight.standalone.base}",
+      "type": "lineHeights"
+    },
+    "secondaryTextColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "secondarySelectedTextColor": {
+      "value": "{color.text.inverse}",
+      "type": "color"
+    },
+    "secondarySelectedBackground": {
+      "value": "{color.background.brand}",
+      "type": "color"
+    },
+    "secondarySelectedBorderColor": {
+      "value": "{color.stroke.brand}",
+      "type": "color"
+    },
+    "zIndex": {
+      "value": "1",
+      "type": "number"
+    }
+  }
+}

@@ -26,7 +26,7 @@ final class OfflineSyncProgressWidgetViewModel: DashboardWidgetViewModel {
     // MARK: - Protocol Properties
 
     let id: String = SystemWidgetIdentifier.offlineSyncProgress.rawValue
-    private(set) var state: InstUI.ScreenState = .empty
+    private(set) var state: ScreenState = .empty
     let isHiddenInEmptyState = true
 
     var layoutIdentifier: [AnyHashable] {
@@ -98,6 +98,13 @@ final class OfflineSyncProgressWidgetViewModel: DashboardWidgetViewModel {
                     self.backgroundColor = .backgroundDanger
                     self.title = String(localized: "Offline Content Sync Failed", bundle: .student)
                     self.subtitleText = String(localized: "We couldn't sync your content.\nTry again, or come back later.", bundle: .student)
+                case .warning:
+                    self.state = .error
+                    self.progress = 0
+                    self.progressText = ""
+                    self.backgroundColor = .backgroundWarning
+                    self.title = String(localized: "Offline Content Sync Incomplete", bundle: .student)
+                    self.subtitleText = String(localized: "Some embedded media failed to download. Core content is still available offline.", bundle: .student)
                 }
             }
             .store(in: &subscriptions)

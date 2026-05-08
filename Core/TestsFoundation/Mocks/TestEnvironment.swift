@@ -27,7 +27,9 @@ public class TestEnvironment: AppEnvironment {
 
     override public init() {
         super.init()
+
         let session = LoginSession.make()
+
         self.api = API(session)
         self.database = singleSharedTestDatabase
         self.globalDatabase = singleSharedTestDatabase
@@ -35,6 +37,8 @@ public class TestEnvironment: AppEnvironment {
         self.logger = TestLogger()
         self.currentSession = session
         self.userDefaults = SessionDefaults(sessionID: session.uniqueID)
+
+        userDefaults?.reset()
     }
 
     override public func subscribe<U>(_ useCase: U, _ callback: @escaping Store<U>.EventHandler = { }) -> Store<U> where U: UseCase {

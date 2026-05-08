@@ -78,7 +78,7 @@ struct AssignmentAssigneePicker: View {
                     .padding(.trailing, 12)
                 Text("Add Assignee", bundle: .core)
                 Spacer()
-                InstUI.DisclosureIndicator()
+                AUI.DisclosureIndicator()
             }) }
         } }
     }
