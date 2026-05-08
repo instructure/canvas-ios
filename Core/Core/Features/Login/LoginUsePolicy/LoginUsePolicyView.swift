@@ -37,7 +37,7 @@ struct LoginUsePolicyView: View {
                     Text("Acceptable Use Policy", bundle: .core)
                         .font(.semibold16).foregroundColor(.textDarkest)
                     Spacer()
-                    InstUI.DisclosureIndicator()
+                    AUI.DisclosureIndicator()
                 }
                 .padding()
                 .frame(height: 47)
@@ -46,7 +46,7 @@ struct LoginUsePolicyView: View {
             .buttonStyle(ContextButton(contextColor: Brand.shared.primary))
             Divider().padding(.zero)
             HStack {
-                InstUI.Toggle(isOn: $viewModel.isAccepted) {
+                AUI.Toggle(isOn: $viewModel.isAccepted) {
                     Text("I agree to the Acceptable Use Policy.", bundle: .core)
                         .font(.semibold16).foregroundColor(.textDarkest)
                         .fixedSize()

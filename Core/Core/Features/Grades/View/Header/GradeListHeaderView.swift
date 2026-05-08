@@ -37,7 +37,7 @@ struct GradeListHeaderView: View {
             .background(.backgroundLight)
             .overlay(alignment: .bottom) {
                 if !toggleViewIsVisible {
-                    InstUI.Divider()
+                    AUI.Divider()
                 }
             }
         }

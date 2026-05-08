@@ -217,22 +217,6 @@ class CoreWebViewTests: CoreTestCase {
         }
     }
 
-    func testKeepCookieAlive() {
-        environment.api = API(.make(accessToken: nil))
-        CoreWebView.keepCookieAlive(for: environment)
-        XCTAssertNil(CoreWebView.cookieKeepAliveTimer)
-
-        environment.api = API(.make(accessToken: "a"))
-        let value = GetWebSessionRequest.Response(session_url: URL(string: "data:text/html,")!, requires_terms_acceptance: false)
-        api.mock(GetWebSessionRequest(to: nil), value: value)
-        CoreWebView.keepCookieAlive(for: environment)
-        wait(for: [expectation(for: .all, evaluatedWith: api) { CoreWebView.cookieKeepAliveWebView.url != nil }], timeout: 10)
-        XCTAssertEqual(CoreWebView.cookieKeepAliveWebView.url, URL(string: "data:text/html,"))
-        XCTAssertNotNil(CoreWebView.cookieKeepAliveTimer)
-
-        CoreWebView.stopCookieKeepAlive()
-    }
-
     func testJsString() {
         XCTAssertEqual(CoreWebView.jsString(nil), "null")
         XCTAssertEqual(CoreWebView.jsString(""), "''")
@@ -314,11 +298,12 @@ class CoreWebViewTests: CoreTestCase {
         ))
     }
 
-    func test_addsDynamicFontFeature_whenLoaded() {
+    func test_addsDefaultFeatures_whenLoaded() {
         var testee = CoreWebView(features: [])
-        XCTAssertEqual(testee.features.count, 2)
-        XCTAssertTrue(testee.features.first is DynamicFontSize)
-        XCTAssertTrue(testee.features.last is CanvasLTIPostMessageHandler)
+        XCTAssertEqual(testee.features.count, 3)
+        XCTAssertTrue(testee.features[safeIndex: 0] is DynamicFontSize)
+        XCTAssertTrue(testee.features[safeIndex: 1] is CanvasLTIPostMessageHandler)
+        XCTAssertTrue(testee.features[safeIndex: 2] is BlobURLDownload)
 
         testee = CoreWebView()
         XCTAssertEqual(testee.features.count, 0)

@@ -37,10 +37,10 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
     }
 
     var body: some View {
-        InstUI.BaseScreen(state: viewModel.state, config: .notRefreshable) { geometry in
+        BaseScreen(state: viewModel.state, config: .notRefreshable) { geometry in
             VStack(alignment: .leading, spacing: 0) {
                 VStack(spacing: 0) {
-                    InstUI.TextFieldCell(
+                    AUI.TextFieldCell(
                         label: Text("Title", bundle: .core),
                         placeholder: String(localized: "Add title (required)", bundle: .core),
                         text: $viewModel.title
@@ -48,13 +48,13 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
                     .focused($focusedInput, equals: .title)
                     .identifier("Calendar.Todo.title")
 
-                    InstUI.DatePickerCell(
+                    AUI.DatePickerCell(
                         label: Text("Date", bundle: .core),
                         identifierGroup: "Calendar.Todo.datePicker",
                         date: $viewModel.date
                     )
 
-                    InstUI.LabelValueCell(
+                    AUI.LabelValueCell(
                         label: Text("Calendar", bundle: .core),
                         value: viewModel.calendarName,
                         action: {
@@ -63,7 +63,7 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
                     )
                     .identifier("Calendar.Todo.calendar")
 
-                    InstUI.TextEditorCell(
+                    AUI.TextEditorCell(
                         label: Text("Details", bundle: .core),
                         text: $viewModel.details
                     )
@@ -72,13 +72,13 @@ struct EditCalendarToDoScreen: View, ScreenViewTrackable {
                 }
                 // defocus inputs when otherwise non-tappable area is tapped
                 .background(
-                    InstUI.TapArea()
+                    AUI.TapArea()
                         .onTapGesture {
                             focusedInput = nil
                         }
                 )
                 // focus 'Details' input when tapped below last cell
-                InstUI.TapArea()
+                AUI.TapArea()
                     .layoutPriority(-1)
                     .onTapGesture {
                         focusedInput = .details

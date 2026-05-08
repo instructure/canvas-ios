@@ -1,0 +1,16 @@
+{
+  "breadcrumb": {
+    "gapSm": {
+      "value": "{spacing.space2xs}",
+      "type": "spacing"
+    },
+    "gapMd": {
+      "value": "{spacing.spaceXs}",
+      "type": "spacing"
+    },
+    "gapLg": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    }
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "radioInput": {
+    "backgroundColor": {
+      "value": "{color.background.interactive.input.base}",
+      "type": "color"
+    },
+    "backgroundHoverColor": {
+      "value": "{color.background.interactive.input.hover}",
+      "type": "color"
+    },
+    "backgroundReadonlyColor": {
+      "value": "{color.background.interactive.input.readonly}",
+      "type": "color"
+    },
+    "backgroundDisabledColor": {
+      "value": "{color.background.interactive.input.disabled}",
+      "type": "color"
+    },
+    "borderColor": {
+      "value": "{color.stroke.interactive.input.base}",
+      "type": "color"
+    },
+    "borderHoverColor": {
+      "value": "{color.stroke.interactive.input.hover}",
+      "type": "color"
+    },
+    "borderReadonlyColor": {
+      "value": "{color.stroke.interactive.input.readonly}",
+      "type": "color"
+    },
+    "borderDisabledColor": {
+      "value": "{color.stroke.interactive.input.disabled}",
+      "type": "color"
+    },
+    "borderSelectedColor": {
+      "value": "{color.stroke.interactive.input.selected}",
+      "type": "color"
+    },
+    "fontSizeSm": {
+      "value": "{fontSize.textSm}",
+      "type": "fontSizes"
+    },
+    "fontSizeMd": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontSizeLg": {
+      "value": "{fontSize.textLg}",
+      "type": "fontSizes"
+    },
+    "toggleSmallFontSize": {
+      "value": "{fontSize.textXs}",
+      "type": "fontSizes"
+    },
+    "toggleMediumFontSize": {
+      "value": "{fontSize.textSm}",
+      "type": "fontSizes"
+    },
+    "toggleLargeFontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "lineHeightSm": {
+      "value": "{lineHeight.paragraph.textSm}",
+      "type": "lineHeights"
+    },
+    "lineHeightMd": {
+      "value": "{lineHeight.paragraph.textBase}",
+      "type": "lineHeights"
+    },
+    "lineHeightLg": {
+      "value": "{lineHeight.paragraph.textBase}",
+      "type": "lineHeights"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "gap": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "borderWidth": {
+      "value": "{borderWidth.interactive.base}",
+      "type": "borderWidth"
+    },
+    "labelBaseColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "labelHoverColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "labelDisabledColor": {
+      "value": "{color.text.interactive.disabled.base}",
+      "type": "color"
+    },
+    "labelReadonlyColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "controlSizeSm": {
+      "value": "{size.choiceControl.height.sm}",
+      "type": "sizing"
+    },
+    "controlSizeMd": {
+      "value": "{size.choiceControl.height.md}",
+      "type": "sizing"
+    },
+    "controlSizeLg": {
+      "value": "{size.choiceControl.height.lg}",
+      "type": "sizing"
+    },
+    "checkedInsetSm": {
+      "value": "0.375rem",
+      "type": "sizing"
+    },
+    "checkedInsetMd": {
+      "value": "0.375rem",
+      "type": "sizing"
+    },
+    "checkedInsetLg": {
+      "value": "0.375rem",
+      "type": "sizing"
+    },
+    "toggleSmallHeight": {
+      "value": "{size.interactive.height.sm}",
+      "type": "sizing"
+    },
+    "toggleMediumHeight": {
+      "value": "{size.interactive.height.md}",
+      "type": "sizing"
+    },
+    "toggleLargeHeight": {
+      "value": "{size.interactive.height.lg}",
+      "type": "sizing"
+    },
+    "controlVerticalMargin": {
+      "value": "0rem",
+      "type": "spacing"
+    },
+    "toggleBackgroundDanger": {
+      "value": "{color.background.warning}",
+      "type": "color"
+    },
+    "toggleBackgroundOff": {
+      "value": "{color.background.success}",
+      "type": "color"
+    },
+    "toggleBackgroundSuccess": {
+      "value": "{color.background.success}",
+      "type": "color"
+    },
+    "toggleBackgroundWarning": {
+      "value": "{color.background.warning}",
+      "type": "color"
+    },
+    "toggleHandleText": {
+      "value": "{color.text.onColor}",
+      "type": "color"
+    },
+    "toggleBorderRadius": {
+      "value": "{borderRadius.sm}",
+      "type": "borderRadius"
+    },
+    "toggleBorderWidth": {
+      "value": "{borderWidth.lg}",
+      "type": "borderWidth"
+    },
+    "toggleShadow": {
+      "value": [
+        {
+          "x": "{dropShadow.x.elevation1.dropshadow1}",
+          "y": "{dropShadow.y.elevation1.dropshadow1}",
+          "blur": "{dropShadow.blur.elevation1.dropshadow1}",
+          "spread": "{dropShadow.spread.elevation1.dropshadow1}",
+          "color": "{color.dropShadow.shadowColor1}",
+          "type": "dropShadow"
+        },
+        {
+          "x": "{dropShadow.x.elevation1.dropshadow2}",
+          "y": "{dropShadow.y.elevation1.dropshadow2}",
+          "blur": "{dropShadow.blur.elevation1.dropshadow2}",
+          "spread": "{dropShadow.spread.elevation1.dropshadow2}",
+          "color": "{color.dropShadow.shadowColor2}",
+          "type": "innerShadow"
+        }
+      ],
+      "type": "boxShadow",
+      "description": "Do not use this for other components"
+    }
+  }
+}

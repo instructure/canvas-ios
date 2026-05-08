@@ -1,0 +1,112 @@
+{
+  "view": {
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "color": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "colorPrimaryInverse": {
+      "value": "{color.text.inverse}",
+      "type": "color"
+    },
+    "borderColorPrimary": {
+      "value": "{color.stroke.muted}",
+      "type": "color"
+    },
+    "borderColorSecondary": {
+      "value": "{color.stroke.base}",
+      "type": "color"
+    },
+    "borderColorSuccess": {
+      "value": "{color.stroke.success}",
+      "type": "color"
+    },
+    "borderColorBrand": {
+      "value": "{color.stroke.brand}",
+      "type": "color"
+    },
+    "borderColorInfo": {
+      "value": "{color.stroke.info}",
+      "type": "color"
+    },
+    "borderColorAlert": {
+      "value": "{color.stroke.info}",
+      "type": "color"
+    },
+    "borderColorWarning": {
+      "value": "{color.stroke.warning}",
+      "type": "color"
+    },
+    "borderColorDanger": {
+      "value": "{color.stroke.error}",
+      "type": "color"
+    },
+    "borderColorTransparent": {
+      "value": "#00000000",
+      "type": "color"
+    },
+    "debugOutlineColor": {
+      "value": "{color.stroke.error}",
+      "type": "color"
+    },
+    "backgroundPrimary": {
+      "value": "{color.background.elevatedSurface.base}",
+      "type": "color"
+    },
+    "backgroundSecondary": {
+      "value": "{color.background.muted}",
+      "type": "color"
+    },
+    "backgroundPrimaryInverse": {
+      "value": "{color.background.elevatedSurface.inverse}",
+      "type": "color"
+    },
+    "backgroundBrand": {
+      "value": "{color.background.brand}",
+      "type": "color"
+    },
+    "backgroundInfo": {
+      "value": "{color.background.info}",
+      "type": "color"
+    },
+    "backgroundAlert": {
+      "value": "{color.background.info}",
+      "type": "color"
+    },
+    "backgroundSuccess": {
+      "value": "{color.background.success}",
+      "type": "color"
+    },
+    "backgroundDanger": {
+      "value": "{color.background.error}",
+      "type": "color"
+    },
+    "backgroundWarning": {
+      "value": "{color.background.warning}",
+      "type": "color"
+    },
+    "stackingTopmost": {
+      "value": "9999",
+      "type": "number"
+    },
+    "stackingAbove": {
+      "value": "1",
+      "type": "number"
+    },
+    "stackingBelow": {
+      "value": "-1",
+      "type": "number"
+    },
+    "stackingDeepest": {
+      "value": "-9999",
+      "type": "number"
+    },
+    "borderStyle": {
+      "value": "solid",
+      "type": "text"
+    }
+  }
+}

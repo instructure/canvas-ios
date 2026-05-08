@@ -69,7 +69,7 @@ struct SimilarityScoreView: View {
             }
             if url != nil {
                 Spacer().frame(width: 8)
-                InstUI.DisclosureIndicator()
+                AUI.DisclosureIndicator()
             }
         }
             .padding(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))

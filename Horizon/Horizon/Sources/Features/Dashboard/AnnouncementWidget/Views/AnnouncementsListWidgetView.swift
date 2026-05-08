@@ -43,9 +43,8 @@ struct AnnouncementsListWidgetView: View {
         }
         .accessibilityElement(children: viewModel.state == .loading ? .ignore : .contain)
         .accessibilityLabel(
-            viewModel.state == .loading
-            ? Text(String(localized: "Loading announcements", bundle: .horizon))
-            : nil
+            String(localized: "Loading announcements", bundle: .horizon),
+            isEnabled: viewModel.state == .loading
         )
         .isSkeletonLoadActive(viewModel.state == .loading)
         .onWidgetReload { completion in

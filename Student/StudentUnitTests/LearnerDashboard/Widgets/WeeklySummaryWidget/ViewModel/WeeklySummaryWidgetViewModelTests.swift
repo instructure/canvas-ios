@@ -161,8 +161,8 @@ final class WeeklySummaryWidgetViewModelTests: StudentTestCase {
 
     func test_toggleFilter_shouldUpdateNamedFilterA11yStates() {
         let testee = makeViewModel()
-        let expandedState = InstUI.CollapseButtonExpandedState(isExpanded: true)
-        let collapsedState = InstUI.CollapseButtonExpandedState(isExpanded: false)
+        let expandedState = AUI.CollapseButtonExpandedState(isExpanded: true)
+        let collapsedState = AUI.CollapseButtonExpandedState(isExpanded: false)
 
         testee.toggleFilter(testee.missingFilter)
 

@@ -26,13 +26,20 @@ public class ProfileSettingsViewModel: ObservableObject {
 
     private let inboxSettingsInteractor: InboxSettingsInteractor
     private let offlineInteractor: OfflineModeInteractor
+    private let analyticsConsentInteractor: AnalyticsConsentInteractor
     private let environment: AppEnvironment
 
     private var subscriptions = Set<AnyCancellable>()
 
-    public init(inboxSettingsInteractor: InboxSettingsInteractor, offlineInteractor: OfflineModeInteractor, environment: AppEnvironment) {
+    public init(
+        inboxSettingsInteractor: InboxSettingsInteractor,
+        offlineInteractor: OfflineModeInteractor,
+        analyticsConsentInteractor: AnalyticsConsentInteractor,
+        environment: AppEnvironment
+    ) {
         self.inboxSettingsInteractor = inboxSettingsInteractor
         self.offlineInteractor = offlineInteractor
+        self.analyticsConsentInteractor = analyticsConsentInteractor
         self.environment = environment
 
         self.initGroups()
@@ -178,15 +185,41 @@ extension ProfileSettingsViewModel {
 // MARK: Legal Group
 extension ProfileSettingsViewModel {
     private func initLegalGroup() {
+        let privacySettingsView = initPrivacySettingsItem()
         let privacyPolicySettingView = initPrivacyPolicyItem()
         let termsOfUseSettingView = initTermsOfUseItem()
         let groupViewModel = SettingsGroupViewModel(
             title: String(localized: "Legal", bundle: .core),
-            itemViews: [privacyPolicySettingView, termsOfUseSettingView]
+            itemViews: [privacySettingsView, privacyPolicySettingView, termsOfUseSettingView]
         )
 
-        let inboxGroupView = SettingsGroupView(viewModel: groupViewModel)
-        self.settingsGroups.append(inboxGroupView)
+        let legalGroupView = SettingsGroupView(viewModel: groupViewModel)
+
+        analyticsConsentInteractor.isConsentRequired(ignoreCache: false)
+            .replaceError(with: false)
+            .sink {
+                privacySettingsView.viewModel.isHidden = !$0
+                groupViewModel.itemViews = groupViewModel.itemViews
+            }
+            .store(in: &subscriptions)
+
+        settingsGroups.append(legalGroupView)
+    }
+
+    private func initPrivacySettingsItem() -> SettingsGroupItemView {
+        let itemViewModel = SettingsGroupItemViewModel(
+            title: String(localized: "Privacy Settings", bundle: .core),
+            valueLabel: nil,
+            availableOffline: false,
+            isHidden: true
+        ) { [weak self] controller in
+            guard let self else { return }
+            let viewModel = PrivacySettingsViewModel(interactor: analyticsConsentInteractor)
+            let vc = CoreHostingController(PrivacySettingsScreen(viewModel: viewModel))
+            environment.router.show(vc, from: controller, options: .push)
+        }
+
+        return SettingsGroupItemView(viewModel: itemViewModel)
     }
 
     private func initPrivacyPolicyItem() -> SettingsGroupItemView {

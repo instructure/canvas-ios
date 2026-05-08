@@ -26,7 +26,7 @@ struct ToDoWidgetView: View {
     private let viewModel: ToDoWidgetViewModel
     @State private var weekPagerProxy = WeekPagerProxy()
 
-    @AccessibilityFocusState private var isTitleFocused: Bool
+    @AccessibilityFocusState private var isFirstItemFocused: Bool
 
     init(viewModel: ToDoWidgetViewModel) {
         self.viewModel = viewModel
@@ -46,7 +46,7 @@ struct ToDoWidgetView: View {
                             .alignmentGuide(.weekCenter) { $0[VerticalAlignment.center] }
                             .padding(.bottom, 8)
 
-                        InstUI.Divider()
+                        AUI.Divider()
 
                         dayContentView
                             .animation(.dashboardWidget, value: viewModel.layoutIdentifier)
@@ -78,16 +78,14 @@ struct ToDoWidgetView: View {
             .font(.regular14, lineHeight: .fit)
             .foregroundStyle(.textDarkest)
             .accessibilityAddTraits(.isHeader)
-            .accessibilityFocused($isTitleFocused)
     }
 
     private var todayButton: some View {
         Button {
-            isTitleFocused = true // TODO: focus on the day button
             viewModel.didTapTodayButton()
             weekPagerProxy.scrollToToday()
         } label: {
-            InstUI.PillContent(
+            AUI.PillContent(
                 title: String(localized: "Today", bundle: .student),
                 trailingIcon: .calendarTodayLine,
                 size: .height24
@@ -143,7 +141,7 @@ struct ToDoWidgetView: View {
         }
 
         private var showCompletedToggle: some View {
-            InstUI.Toggle(isOn: $showCompleted, labelAlignment: .trailing) {
+            AUI.Toggle(isOn: $showCompleted, labelAlignment: .trailing) {
                 Text("Show Completed", bundle: .student)
                     .font(.regular14)
                     .applyTint()
@@ -233,7 +231,7 @@ struct ToDoWidgetView: View {
         return VStack(spacing: 0) {
             ForEach(0..<count, id: \.self) { _ in
                 ToDoSkeletonCell()
-                InstUI.Divider(.padded)
+                AUI.Divider(.padded)
             }
         }
     }
@@ -259,7 +257,7 @@ struct ToDoWidgetView: View {
                 Button {
                     viewModel.didTapRetryButton()
                 } label: {
-                    InstUI.PillContent(
+                    AUI.PillContent(
                         title: String(localized: "Refresh", bundle: .student),
                         leadingIcon: .refreshLine,
                         size: .height30
@@ -272,14 +270,17 @@ struct ToDoWidgetView: View {
     }
 
     private var listDayView: some View {
-        ToDoWidgetListView(viewModel: viewModel.listViewModel)
+        ToDoWidgetListView(viewModel: viewModel.listViewModel, isFirstItemFocused: _isFirstItemFocused)
+            .onChange(of: viewModel.isFirstItemFocused) {
+                isFirstItemFocused = true
+            }
     }
 
     private var addToDoButton: some View {
         Button {
             viewModel.didTapAddButton(from: viewController)
         } label: {
-            InstUI.PillContent(
+            AUI.PillContent(
                 title: String(localized: "Add To-do", bundle: .student),
                 leadingIcon: .addLine,
                 size: .height30

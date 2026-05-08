@@ -1,0 +1,136 @@
+{
+  "options": {
+    "labelColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "labelFontWeight": {
+      "value": "{fontWeight.body.strong}",
+      "type": "fontWeights"
+    },
+    "nestedLabelPaddingVertical": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "nestedLabelPaddingHorizontal": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    }
+  },
+  "optionsItem": {
+    "afterLabelContentVOffset": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "background": {
+      "value": "{color.background.elevatedSurface.base}",
+      "type": "color"
+    },
+    "beforeLabelContentVOffset": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing",
+      "description": "code only token"
+    },
+    "color": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "descriptionColor": {
+      "value": "{color.text.muted}",
+      "type": "color"
+    },
+    "descriptionFontSize": {
+      "value": "{fontSize.textSm}",
+      "type": "fontSizes"
+    },
+    "descriptionFontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "descriptionLineHeight": {
+      "value": "{lineHeight.paragraph.base}",
+      "type": "lineHeights"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "fontWeightSelected": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "highlightedBackground": {
+      "value": "{color.background.interactive.action.tertiary.hover}",
+      "type": "color"
+    },
+    "highlightedLabelColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "iconPadding": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing",
+      "description": "code only token"
+    },
+    "lineHeight": {
+      "value": "{lineHeight.standalone.base}",
+      "type": "lineHeights"
+    },
+    "paddingHorizontal": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "paddingVertical": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "selectedBackground": {
+      "value": "{color.background.interactive.action.primary.base}",
+      "type": "color"
+    },
+    "selectedHighlightedBackground": {
+      "value": "{color.background.interactive.action.primary.hover}",
+      "type": "color"
+    },
+    "selectedLabelColor": {
+      "value": "{color.text.interactive.action.primary.base}",
+      "type": "color"
+    },
+    "descriptionPaddingStart": {
+      "value": "0rem",
+      "type": "spacing"
+    },
+    "nestedPadding": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    }
+  },
+  "optionsSeparator": {
+    "background": {
+      "value": "{color.stroke.base}",
+      "type": "color"
+    },
+    "marginVertical": {
+      "value": "0rem",
+      "type": "spacing",
+      "description": "code only token"
+    },
+    "height": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "marginHorizontal": {
+      "value": "0.75rem",
+      "type": "spacing",
+      "description": "code only token"
+    }
+  }
+}

@@ -55,9 +55,8 @@ struct TimeSpentWidgetView: View {
         .isSkeletonLoadActive(viewModel.state == .loading)
         .accessibilityElement(children: viewModel.state == .loading ? .ignore : .contain)
         .accessibilityLabel(
-            viewModel.state == .loading
-                            ? Text(String(localized: "Time Spent View is loading", bundle: .horizon))
-                            : nil
+            String(localized: "Time Spent View is loading", bundle: .horizon),
+            isEnabled: viewModel.state == .loading
         )
         .onWidgetReload { _ in
             viewModel.getTimeSpent(ignoreCache: true)

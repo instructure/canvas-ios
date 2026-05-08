@@ -34,6 +34,10 @@ struct DashboardOfflineSyncProgressCardView: View {
                 containerCard(backgroundColor: Color.textDanger) {
                     errorView
                 }
+            case .warning:
+                containerCard(backgroundColor: Color.backgroundWarning) {
+                    warningView
+                }
             case let .progress(progress, progressText):
                 containerCard(backgroundColor: Color.backgroundDarkest) {
                     progressView(progress, progressText)
@@ -106,6 +110,19 @@ struct DashboardOfflineSyncProgressCardView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.bottom, 2)
             Text("One or more items failed to sync. Please check your internet connection and retry syncing.", bundle: .core)
+                .font(.regular14, lineHeight: .fit)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .multilineTextAlignment(.leading)
+        }
+    }
+
+    private var warningView: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            Text("Offline Content Sync Incomplete", bundle: .core)
+                .font(.semibold16, lineHeight: .fit)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.bottom, 2)
+            Text("Some embedded media failed to download. Core content is still available offline.", bundle: .core)
                 .font(.regular14, lineHeight: .fit)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .multilineTextAlignment(.leading)

@@ -1,0 +1,64 @@
+{
+  "spinner": {
+    "color": {
+      "value": "{color.icon.info}",
+      "type": "color"
+    },
+    "inverseColor": {
+      "value": "{color.icon.onColor}",
+      "type": "color"
+    },
+    "trackColor": {
+      "value": "{color.background.opacity}",
+      "type": "color"
+    },
+    "strokeWidthXs": {
+      "value": "0.25em",
+      "type": "borderWidth"
+    },
+    "strokeWidthSm": {
+      "value": "0.375em",
+      "type": "borderWidth"
+    },
+    "strokeWidthMd": {
+      "value": "0.5em",
+      "type": "borderWidth"
+    },
+    "strokeWidthLg": {
+      "value": "0.75em",
+      "type": "borderWidth"
+    },
+    "containerSizeXs": {
+      "value": "1.5rem",
+      "type": "sizing"
+    },
+    "containerSizeSm": {
+      "value": "3rem",
+      "type": "sizing"
+    },
+    "containerSizeMd": {
+      "value": "5rem",
+      "type": "sizing"
+    },
+    "containerSizeLg": {
+      "value": "7rem",
+      "type": "sizing"
+    },
+    "spinnerSizeXs": {
+      "value": "1rem",
+      "type": "sizing"
+    },
+    "spinnerSizeSm": {
+      "value": "2rem",
+      "type": "sizing"
+    },
+    "spinnerSizeMd": {
+      "value": "3.5rem",
+      "type": "sizing"
+    },
+    "spinnerSizeLg": {
+      "value": "4.5rem",
+      "type": "sizing"
+    }
+  }
+}

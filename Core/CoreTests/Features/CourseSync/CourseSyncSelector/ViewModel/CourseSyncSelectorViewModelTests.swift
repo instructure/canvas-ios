@@ -190,15 +190,15 @@ class CourseSyncSelectorViewModelTests: XCTestCase {
     }
 
     func testLogsSyncButtonTap() {
-        let mockAnalytics = MockAnalyticsHandler()
+        let mockAnalytics = AnalyticsHandlerMock()
         Analytics.shared.handler = mockAnalytics
 
         // WHEN
         testee.syncButtonDidTap.accept(.init(UIViewController()))
 
         // THEN
-        XCTAssertEqual(mockAnalytics.lastEvent, "offline_sync_button_tapped")
-        XCTAssertEqual(mockAnalytics.totalEventCount, 1)
+        XCTAssertEqual(mockAnalytics.handleEventInput?.name, "offline_sync_button_tapped")
+        XCTAssertEqual(mockAnalytics.handleEventCallCount, 1)
     }
 }
 
@@ -275,7 +275,7 @@ class CourseSyncInteractorMock: CourseSyncInteractor {
 class CourseSyncListInteractorMock: CourseSyncListInteractor {
     let courseSyncEntrySubject = PassthroughSubject<[CourseSyncEntry], Error>()
 
-    func getCourseSyncEntries(filter _: CourseSyncListFilter) -> AnyPublisher<[CourseSyncEntry], Error> {
+    func getCourseSyncEntries(filter: CourseSyncListFilter, progress: CourseSyncDownloadProgress?) -> AnyPublisher<[Core.CourseSyncEntry], any Error> {
         courseSyncEntrySubject.eraseToAnyPublisher()
     }
 }

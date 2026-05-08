@@ -26,7 +26,7 @@ import SwiftUI
 final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     let id: String = EditableWidgetIdentifier.weeklySummary.rawValue
 
-    private(set) var state: InstUI.ScreenState = .loading
+    private(set) var state: ScreenState = .loading
     private(set) var isWeekLoading: Bool = false
     private(set) var config: DashboardWidgetConfig
     let isEditable = false
@@ -42,6 +42,7 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
     private(set) var missingFilter: WeeklySummaryWidgetFilterViewModel
     private(set) var dueFilter: WeeklySummaryWidgetFilterViewModel
     private(set) var newGradesFilter: WeeklySummaryWidgetFilterViewModel
+    private(set) var isWeekRangeFocused = false
 
     private var isMissingFilterSelected: Bool { expandedFilter?.id == missingFilter.id }
     private var isDueFilterSelected: Bool { expandedFilter?.id == dueFilter.id }
@@ -143,6 +144,11 @@ final class WeeklySummaryWidgetViewModel: DashboardWidgetViewModel {
         weekStartDate = Clock.now.startOfWeek()
         weekRangeText = Self.makeWeekRangeText(from: weekStartDate)
         beginWeekTransition()
+
+        Task {
+            try? await Task.sleep(for: .seconds(0.5))
+            isWeekRangeFocused = true
+        }
     }
 
     func navigateToPreviousWeek() {

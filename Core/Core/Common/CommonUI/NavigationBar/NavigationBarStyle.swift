@@ -23,3 +23,22 @@ public enum NavigationBarStyle: Equatable {
     case global
     case color(UIColor?)
 }
+
+// MARK: - Toolbar tint color
+
+extension NavigationBarStyle {
+
+    /// This is the same value as `navigationBar.barTintColor` set by
+    /// `navigationBar.useStyle(_:)` method.
+    var toolbarTintColor: UIColor? {
+        switch self {
+        case .modal:
+            return UIColor.backgroundLightest
+        case .global:
+            let isHorizon = AppEnvironment.shared.app == .horizon
+            return isHorizon ? .backgroundLightest : Brand.shared.navBackground
+        case .color(let color):
+            return color
+        }
+    }
+}

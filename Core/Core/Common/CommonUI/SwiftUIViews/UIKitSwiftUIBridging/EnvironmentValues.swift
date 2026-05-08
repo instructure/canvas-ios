@@ -64,5 +64,10 @@ extension EnvironmentValues {
     // Used for passing colors to NavigationBar components.
     @Entry var navBarColors: NavigationBarColorConfiguration = .init(style: .modal)
 
+    /// This is set in `navigationBar.useStyle(_:)` specifically for iOS 26, to allow
+    /// non-complaint views, like DocViewer, to customize the appearance of toolbars
+    /// without interfering with iOS 26 liquid glass look & feel
+    @Entry public internal(set) var toolbarTintColor: UIColor?
+
     @Entry public var offlineMode: OfflineMode = .init()
 }

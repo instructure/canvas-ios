@@ -72,21 +72,21 @@ public struct MultiSelectionView: View {
             .accessibilityLabel(viewModel.listLevelAccessibilityLabel)
         } header: {
             if hasAllSelectionButton {
-                InstUI.ListSectionHeader(
+                AUI.ListSectionHeader(
                     title: viewModel.title,
                     itemCount: viewModel.optionCount,
                     buttonLabel: Text(viewModel.allSelectionButtonTitle),
                     buttonAction: { viewModel.didTapAllSelectionButton.send() }
                 )
             } else {
-                InstUI.ListSectionHeader(title: viewModel.title, itemCount: viewModel.optionCount)
+                AUI.ListSectionHeader(title: viewModel.title, itemCount: viewModel.optionCount)
             }
         }
     }
 
     @ViewBuilder
     private func optionCell(with item: OptionItem) -> some View {
-        InstUI.CheckboxCell(
+        AUI.CheckboxCell(
             title: item.title,
             headerTitle: item.headerTitle,
             subtitle: item.subtitle,
@@ -110,7 +110,7 @@ public struct MultiSelectionView: View {
 
 #Preview {
     VStack(spacing: 0) {
-        InstUI.Divider()
+        AUI.Divider()
         MultiSelectionView(
             title: "Section 1 title",
             allOptions: [

@@ -23,7 +23,6 @@ import SwiftUI
 public final class HorizonTabBarController: UITabBarController, UITabBarControllerDelegate {
     // MARK: - Properties
 
-    private let horizonTabBar = HorizonTabBar()
     private let router = AppEnvironment.shared.router
 
     // MARK: - Life Cycle
@@ -31,29 +30,14 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
     public override func viewDidLoad() {
         super.viewDidLoad()
         delegate = self
-        setValue(horizonTabBar, forKey: "tabBar")
-
-        if #available(iOS 26.0, *) {
-            horizonTabBar.backgroundColor = .clear
-        } else {
-            horizonTabBar.backgroundColor = .backgroundLightest
-        }
-        horizonTabBar.isTranslucent = true
-
         viewControllers = [
             dashboardTab(),
             learnTab(),
-            chatBotTab(),
             skillspaceTab(),
             accountTab()
         ]
         tabBar.tintColor = .textDarkest
         UINavigationBar.appearance().tintColor = .textDarkest
-        guard let tabBar = tabBar as? HorizonTabBar else { return }
-
-        tabBar.didTapButton = { [weak self] in
-            self?.presentChatBot()
-        }
         setupTabBarAccessibility()
     }
 
@@ -69,12 +53,6 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
     }
 
     // MARK: - Functions
-
-    private func presentChatBot() {
-        let vc = AssistAssembly.makeAssistChatView()
-        vc.modalPresentationStyle = .pageSheet
-        router.show(vc, from: self, options: .modal(isDismissable: false))
-    }
 
     private func dashboardTab() -> UIViewController {
         let vc = CoreNavigationController(
@@ -109,16 +87,6 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
         return vc
     }
 
-    private func chatBotTab() -> UIViewController {
-        if shouldPresentChatBot {
-            let vc = UIViewController()
-            vc.tabBarItem.image = HorizonTabBarType.chatBot.image
-            return vc
-        } else {
-            return .init()
-        }
-    }
-
     private func skillspaceTab() -> UIViewController {
         let vc = CoreNavigationController(
             rootViewController: SkillSpaceAssembly.makeView()
@@ -138,28 +106,5 @@ public final class HorizonTabBarController: UITabBarController, UITabBarControll
         vc.tabBarItem.image = HorizonTabBarType.account.image
         vc.tabBarItem.selectedImage = HorizonTabBarType.account.selectedImage
         return vc
-    }
-}
-
-extension HorizonTabBarController {
-    public func tabBarController(
-        _ tabBarController: UITabBarController,
-        shouldSelect viewController: UIViewController
-    ) -> Bool {
-        guard let selectedIndex = tabBarController.viewControllers?.firstIndex(of: viewController) else {
-            return true
-        }
-        if selectedIndex == 2 {
-            presentChatBot()
-            return false
-        }
-        return true
-    }
-
-    private var shouldPresentChatBot: Bool {
-        if #available(iOS 18, *), UIDevice.current.userInterfaceIdiom == .pad {
-            return true
-        }
-        return false
     }
 }

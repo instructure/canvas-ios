@@ -53,9 +53,14 @@ public final class CourseSyncSelectorCourse: NSManagedObject {
                 )
                 let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [urlPredicate, contextPredicate])
                 let tab: Tab = context.fetch(predicate).first ?? context.insert()
-                tab.save(apiTab, in: context, context: .course(dbEntity.courseId))
+                tab.save(
+                    apiTab,
+                    in: context,
+                    context: .course(dbEntity.courseId)
+                )
                 return tab
             }
+
             dbEntity.tabs = Set(tabs)
         } else {
             dbEntity.tabs = []
