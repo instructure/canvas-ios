@@ -47,8 +47,8 @@ final class OfflineSyncSettingsViewModel {
         self.router = router
         let defaults = SessionDefaults(sessionID: sessionID)
         self.storage = defaults
-        self.syncFrequency = defaults.horizonSyncFrequency ?? .daily
-        self.isAutoSyncEnabled = defaults.isHorizonAutoSyncEnabled == true
+        self.syncFrequency = defaults.offlineSyncFrequency ?? .daily
+        self.isAutoSyncEnabled = defaults.isOfflineAutoSyncEnabled == true
         self.isWifiOnlySyncEnabled = defaults.isOfflineWifiOnlySyncEnabled ?? true
     }
 
@@ -93,18 +93,18 @@ final class OfflineSyncSettingsViewModel {
     // MARK: - Private
 
     private func saveAutoSync() {
-        storage.isHorizonAutoSyncEnabled = isAutoSyncEnabled
+        storage.isOfflineAutoSyncEnabled = isAutoSyncEnabled
         if isAutoSyncEnabled {
-            storage.horizonSyncNextDate = syncFrequency.nextSyncDate(from: Clock.now)
+            storage.offlineSyncNextDate = syncFrequency.nextSyncDate(from: Clock.now)
         } else {
-            storage.horizonSyncNextDate = nil
+            storage.offlineSyncNextDate = nil
         }
     }
 
     private func saveFrequency() {
-        storage.horizonSyncFrequency = syncFrequency
+        storage.offlineSyncFrequency = syncFrequency
         if isAutoSyncEnabled {
-            storage.horizonSyncNextDate = syncFrequency.nextSyncDate(from: Clock.now)
+            storage.offlineSyncNextDate = syncFrequency.nextSyncDate(from: Clock.now)
         }
     }
 }
