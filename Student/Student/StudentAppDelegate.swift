@@ -65,8 +65,8 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
         BackgroundProcessingAssembly.register(scheduler: CoreTaskSchedulerLive(taskScheduler: .shared))
         BackgroundProcessingAssembly.register(taskID: OfflineSyncBackgroundTaskRequest.ID) {
             CourseSyncBackgroundUpdatesAssembly.makeOfflineSyncBackgroundTask(
-                horizonSelectedItemsInteractor: HorizonCourseSyncSelectorInteractor(),
-                horizonSyncInteractor: HorizonCourseSyncAssembly.makeInteractor()
+                horizonSelectedItemsInteractorFactory: { HorizonCourseSyncSelectorInteractor() },
+                horizonSyncInteractorFactory: { HorizonCourseSyncAssembly.makeInteractor() }
             )
         }
         BackgroundProcessingAssembly.resolveInteractor().register(taskID: OfflineSyncBackgroundTaskRequest.ID)
