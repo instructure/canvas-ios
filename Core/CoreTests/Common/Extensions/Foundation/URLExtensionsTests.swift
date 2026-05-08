@@ -87,7 +87,7 @@ class URLExtensionsTests: XCTestCase {
         XCTAssertNoThrow(try new.move(to: existing, override: true))
         XCTAssertFalse(fs.fileExists(atPath: new.path))
         XCTAssertTrue(fs.fileExists(atPath: existing.path))
-        let result = try String(contentsOf: existing)
+        let result = try String(contentsOf: existing, encoding: .utf8)
         XCTAssertEqual(result, "new")
         try? fs.removeItem(at: new)
         try fs.removeItem(at: existing)
@@ -101,7 +101,7 @@ class URLExtensionsTests: XCTestCase {
         try source.move(to: destination, copy: true)
         XCTAssertTrue(fs.fileExists(atPath: source.path))
         XCTAssertTrue(fs.fileExists(atPath: destination.path))
-        let text = try String(contentsOf: destination)
+        let text = try String(contentsOf: destination, encoding: .utf8)
         XCTAssertEqual(text, "source")
         try fs.removeItem(at: source)
         try fs.removeItem(at: destination)
@@ -115,7 +115,7 @@ class URLExtensionsTests: XCTestCase {
         try source.copy(to: destination)
         XCTAssertTrue(fs.fileExists(atPath: source.path))
         XCTAssertTrue(fs.fileExists(atPath: destination.path))
-        let text = try String(contentsOf: destination)
+        let text = try String(contentsOf: destination, encoding: .utf8)
         XCTAssertEqual(text, "source")
         try fs.removeItem(at: source)
         try fs.removeItem(at: destination)
@@ -197,6 +197,23 @@ class DatabaseURLTests: XCTestCase {
         XCTAssertTrue(match(testee,
                             regex: #"\/Data\/Application\/[A-F0-9-]+\/Library\/Caches\/Database\.sqlite$"#),
                       testee.absoluteString)
+    }
+
+    // MARK: - isStudioMediaLTILaunchURL
+
+    func test_isStudioMediaLTILaunchURL_whenPathEndsWithLtiLaunchAndHasMediaId_shouldBeTrue() {
+        let url = URL(string: "https://canvas.instructure.com/courses/1/lti/launch?custom_arc_media_id=media-1")!
+        XCTAssertEqual(url.isStudioMediaLTILaunchURL, true)
+    }
+
+    func test_isStudioMediaLTILaunchURL_whenPathEndsWithLtiLaunchButNoMediaId_shouldBeFalse() {
+        let url = URL(string: "https://canvas.instructure.com/courses/1/lti/launch")!
+        XCTAssertEqual(url.isStudioMediaLTILaunchURL, false)
+    }
+
+    func test_isStudioMediaLTILaunchURL_whenHasMediaIdButPathDoesNotEndWithLtiLaunch_shouldBeFalse() {
+        let url = URL(string: "https://canvas.instructure.com/courses/1/external_tools?custom_arc_media_id=media-1")!
+        XCTAssertEqual(url.isStudioMediaLTILaunchURL, false)
     }
 
     private func match(_ url: URL, regex pattern: String) -> Bool {

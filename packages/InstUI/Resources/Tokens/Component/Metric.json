@@ -1,0 +1,52 @@
+{
+  "metric": {
+    "labelColor": {
+      "value": "{color.text.muted}",
+      "type": "color"
+    },
+    "labelFontSize": {
+      "value": "{fontSize.textXs}",
+      "type": "fontSizes"
+    },
+    "paddingHorizontal": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "valueColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "valueFontSize": {
+      "value": "{fontSize.textXl}",
+      "type": "fontSizes"
+    },
+    "gapTexts": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "labelLineHeight": {
+      "value": "{lineHeight.standalone.textXs}",
+      "type": "lineHeights"
+    },
+    "valueLineHeight": {
+      "value": "{lineHeight.standalone.text2xl}",
+      "type": "lineHeights"
+    },
+    "labelFontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "valueFontFamily": {
+      "value": "{fontFamily.heading}",
+      "type": "fontFamilies"
+    },
+    "labelFontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "valueFontWeight": {
+      "value": "{fontWeight.heading.base}",
+      "type": "fontWeights"
+    }
+  }
+}

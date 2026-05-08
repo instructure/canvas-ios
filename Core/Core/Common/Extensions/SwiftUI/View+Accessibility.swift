@@ -19,11 +19,7 @@
 import SwiftUI
 
 extension View {
-
-    // TODO: When removing iOS 17 support, we could update these methods, or even remove some,
-    // because iOS 18 has `accessibilityLabel(_:, isEnabled:)` variants. Same for Value.
-
-    /// This is a convenience overload of the `accessibilityLabel` method but this accepts an optional.
+    /// This is a convenience overload of the `accessibilityLabel` method but this accepts an optional `String`.
     /// If the passed `label` is nil this method does nothing.
     @ViewBuilder
     public func accessibilityLabel(_ label: String?) -> some View {
@@ -34,34 +30,11 @@ extension View {
         }
     }
 
-    /// This is a convenience overload of the `accessibilityLabel` method but this accepts an optional.
-    /// If the passed `label` is nil this method does nothing.
+    /// `AccessibilityFocused` is only applied when the `condition` is true, otherwise it is ignored.
     @ViewBuilder
-    public func accessibilityLabel(_ label: Text?) -> some View {
-        if let label {
-            self.accessibilityLabel(label)
-        } else {
-            self
-        }
-    }
-
-    /// This is a convenience overload of the `accessibilityValue` method but this accepts an optional.
-    /// If the passed `value` is nil this method does nothing.
-    @ViewBuilder
-    public func accessibilityValue(optional value: String?) -> some View {
-        if let value {
-            self.accessibilityValue(Text(value))
-        } else {
-            self
-        }
-    }
-
-    /// This is a convenience overload of the `accessibilityValue` method but this accepts an optional.
-    /// If the passed `value` is nil this method does nothing.
-    @ViewBuilder
-    public func accessibilityValue(optional value: Text?) -> some View {
-        if let value {
-            self.accessibilityValue(value)
+    public func accessibilityFocused(_ focusState: AccessibilityFocusState<Bool>.Binding, when condition: Bool) -> some View {
+        if condition {
+            self.accessibilityFocused(focusState)
         } else {
             self
         }

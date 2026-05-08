@@ -29,7 +29,7 @@ public struct CalendarFilterScreen: View, ScreenViewTrackable {
     }
 
     public var body: some View {
-        InstUI.BaseScreen(
+        BaseScreen(
             state: viewModel.state,
             refreshAction: viewModel.refresh
         ) { _ in

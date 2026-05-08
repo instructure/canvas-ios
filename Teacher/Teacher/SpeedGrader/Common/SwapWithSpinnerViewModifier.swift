@@ -69,7 +69,7 @@ private struct SwapWithSpinnerViewModifier: ViewModifier {
             ProgressView()
                 .tint(nil)
                 .opacity(isLoading ? 1 : 0)
-                .accessibilityValue(optional: isLoading ? accessibilityValue : nil)
+                .accessibilityValue(accessibilityValue, isEnabled: isLoading)
             content
                 .opacity(isLoading ? 0 : 1)
         }

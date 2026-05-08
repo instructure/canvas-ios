@@ -127,6 +127,27 @@ class DashboardOfflineSyncProgressCardViewModelTests: CoreTestCase {
         XCTAssertEqual(testee.state, .error)
     }
 
+    func testWarningStateOnEmbeddedContentFailure() {
+        // MARK: - GIVEN
+
+        let mockInteractor = CourseSyncProgressObserverInteractorMock(context: databaseClient)
+        let testee = DashboardOfflineSyncProgressCardViewModel(progressObserverInteractor: mockInteractor,
+                                                               progressWriterInteractor: CourseSyncProgressWriterInteractorMock(),
+                                                               offlineModeInteractor: MockOfflineModeInteractorEnabled(),
+                                                               router: router,
+                                                               scheduler: .immediate)
+
+        // MARK: - WHEN
+
+        NotificationCenter.default.post(name: .OfflineSyncTriggered, object: nil)
+        mockInteractor.mockEmbeddedContentFailedDownloadProgress()
+        mockInteractor.mockStateProgress()
+
+        // MARK: - THEN
+
+        XCTAssertEqual(testee.state, .warning)
+    }
+
     func testAutoDismissOnComplete() {
         // MARK: - GIVEN
 
@@ -265,7 +286,15 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
         bytesToDownload: Int(bytesToDownload),
         bytesDownloaded: Int(progressToReport * bytesToDownload),
         isFinished: true,
-        error: "Failed.",
+        error: CourseSyncDownloadProgress.fileErrorMessage,
+        courseIds: []
+    )
+
+    private lazy var downloadProgressEmbeddedContentErrorMock = CourseSyncDownloadProgress(
+        bytesToDownload: Int(bytesToDownload),
+        bytesDownloaded: Int(progressToReport * bytesToDownload),
+        isFinished: true,
+        error: CourseSyncDownloadProgress.embeddedContentErrorMessage,
         courseIds: []
     )
 
@@ -306,6 +335,10 @@ private class CourseSyncProgressObserverInteractorMock: CourseSyncProgressObserv
         downloadProgressPublisher.send(downloadProgressErrorMock)
     }
 
+    func mockEmbeddedContentFailedDownloadProgress() {
+        downloadProgressPublisher.send(downloadProgressEmbeddedContentErrorMock)
+    }
+
     func mockStateProgress() {
         stateProgressPublisher.send(stateProgressMock)
     }
@@ -320,7 +353,7 @@ class CourseSyncProgressWriterInteractorMock: CourseSyncProgressWriterInteractor
 
     func saveDownloadProgress(entries _: [CourseSyncEntry]) {}
 
-    func saveDownloadResult(isFinished _: Bool, error _: String?) {}
+    func saveDownloadResult(isFinished _: Bool, error _: String?, embeddedContentErrorCourseIds _: [String]) {}
 
     func cleanUpPreviousDownloadProgress() {
         expectation?.fulfill()

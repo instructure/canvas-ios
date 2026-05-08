@@ -32,7 +32,7 @@ struct GradeSlider: View {
         GeometryReader { geometry in
             Slider(value: value, in: 0...maxValue, onEditingChanged: onEditingChanged)
                 .overlay {
-                    InstUI.TapArea()
+                    AUI.TapArea()
                         .gesture(
                             DragGesture(minimumDistance: 0)
                                 .onChanged { changeValue in

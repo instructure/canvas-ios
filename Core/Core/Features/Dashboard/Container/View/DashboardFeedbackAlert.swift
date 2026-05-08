@@ -48,10 +48,10 @@ public struct DashboardFeedbackAlert: View {
             ScrollView {
                 VStack(spacing: 0) {
                     headerSection
-                    InstUI.Divider(.full)
+                    AUI.Divider(.full)
                     radioButtonsSection
                     feedbackSection
-                    InstUI.Divider(.full)
+                    AUI.Divider(.full)
                     actionButtons
                 }
                 .background(Color.backgroundLightest)
@@ -99,7 +99,7 @@ public struct DashboardFeedbackAlert: View {
             Button {
                 onLetUsKnow()
             } label: {
-                InstUI.PillContent(
+                AUI.PillContent(
                     title: String(localized: "Let us know!", bundle: .core),
                     trailingIcon: .externalLinkLine,
                     size: .height30
@@ -127,7 +127,7 @@ public struct DashboardFeedbackAlert: View {
             }
             .identifier("Dashboard.FeedbackAlert.skipButton")
 
-            InstUI.Divider(.full)
+            AUI.Divider(.full)
 
             Button {
                 if let selectedReason,

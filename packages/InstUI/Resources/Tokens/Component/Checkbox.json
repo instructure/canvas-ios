@@ -1,0 +1,124 @@
+{
+  "checkbox": {
+    "backgroundColor": {
+      "value": "{color.background.interactive.input.base}",
+      "type": "color"
+    },
+    "backgroundHoverColor": {
+      "value": "{color.background.interactive.input.hover}",
+      "type": "color"
+    },
+    "backgroundReadonlyColor": {
+      "value": "{color.background.interactive.input.readonly}",
+      "type": "color"
+    },
+    "backgroundDisabledColor": {
+      "value": "{color.background.interactive.input.disabled}",
+      "type": "color"
+    },
+    "backgroundCheckedColor": {
+      "value": "{color.background.interactive.input.selected}",
+      "type": "color"
+    },
+    "borderColor": {
+      "value": "{color.stroke.interactive.input.base}",
+      "type": "color"
+    },
+    "borderHoverColor": {
+      "value": "{color.stroke.interactive.input.hover}",
+      "type": "color"
+    },
+    "borderReadonlyColor": {
+      "value": "{color.stroke.interactive.input.readonly}",
+      "type": "color"
+    },
+    "borderDisabledColor": {
+      "value": "{color.stroke.interactive.input.disabled}",
+      "type": "color"
+    },
+    "errorBorderColor": {
+      "value": "{color.stroke.interactive.action.destructive.secondary.base}",
+      "type": "color"
+    },
+    "errorBorderHoverColor": {
+      "value": "{color.stroke.interactive.action.destructive.secondary.hover}",
+      "type": "color"
+    },
+    "asteriskColor": {
+      "value": "{color.text.error}",
+      "type": "color"
+    },
+    "borderCheckedColor": {
+      "value": "{color.stroke.interactive.input.selected}",
+      "type": "color"
+    },
+    "fontSizeSm": {
+      "value": "{fontSize.textSm}",
+      "type": "fontSizes"
+    },
+    "fontSizeMd": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontSizeLg": {
+      "value": "{fontSize.textLg}",
+      "type": "fontSizes"
+    },
+    "lineHeight": {
+      "value": "{lineHeight.standalone.base}",
+      "type": "lineHeights"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "gap": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "borderRadius": {
+      "value": "{borderRadius.sm}",
+      "type": "borderRadius"
+    },
+    "controlSizeSm": {
+      "value": "{size.choiceControl.height.sm}",
+      "type": "sizing"
+    },
+    "controlSizeMd": {
+      "value": "{size.choiceControl.height.md}",
+      "type": "sizing"
+    },
+    "controlSizeLg": {
+      "value": "{size.choiceControl.height.lg}",
+      "type": "sizing"
+    },
+    "borderWidth": {
+      "value": "{borderWidth.interactive.base}",
+      "type": "borderWidth"
+    },
+    "labelBaseColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "labelHoverColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "labelDisabledColor": {
+      "value": "{color.text.interactive.disabled.base}",
+      "type": "color"
+    },
+    "labelReadonlyColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "controlVerticalMargin": {
+      "value": "0rem",
+      "type": "spacing"
+    }
+  }
+}

@@ -22,6 +22,7 @@ import Combine
 public protocol HTMLParser {
     var sectionName: String { get }
     var envResolver: CourseSyncEnvironmentResolver { get }
+    var embeddedContentFailurePublisher: AnyPublisher<CourseSyncID, Never> { get }
 
     func sectionFolder(for courseId: CourseSyncID) -> URL
     func parse(_ content: String, resourceId: String, courseId: CourseSyncID, baseURL: URL?) -> AnyPublisher<String, Error>
@@ -37,6 +38,11 @@ public class HTMLParserLive: HTMLParser {
         interactor.envResolver
     }
 
+    public var embeddedContentFailurePublisher: AnyPublisher<CourseSyncID, Never> {
+        embeddedContentFailureSubject.eraseToAnyPublisher()
+    }
+
+    private let embeddedContentFailureSubject = PassthroughSubject<CourseSyncID, Never>()
     private let imageRegex: NSRegularExpression
     private let fileRegex: NSRegularExpression
     private let relativeURLRegex: NSRegularExpression
@@ -92,13 +98,13 @@ public class HTMLParserLive: HTMLParser {
                     return Just((url, url)).setFailureType(to: Error.self).eraseToAnyPublisher()
                 }
             }
-            .flatMap { [interactor] (fileURL, originalURL) in
+            .flatMap { [interactor, weak self] (fileURL, originalURL) in
                 return interactor.downloadFile(fileURL, courseId: courseId, resourceId: resourceId)
                     .map { urlPath -> (URL, String)? in
                         return (originalURL, urlPath)
                     }
+                    .catch { Self.handleDownloadError(self, courseId: courseId, error: $0) }
             }
-            .ignoreForbiddenNotFoundErrors(replacingWith: nil)
             .compactMap { $0 }
             .collect()
             .eraseToAnyPublisher()
@@ -122,7 +128,7 @@ public class HTMLParserLive: HTMLParser {
                     return Just((url, url)).setFailureType(to: Error.self).eraseToAnyPublisher()
                 }
             }
-            .flatMap { [interactor] (fileURL, originalURL) in // Download images to local Documents folder, return the (original link - local link) tuple
+            .flatMap { [interactor, weak self] (fileURL, originalURL) in // Download images to local Documents folder, return the (original link - local link) tuple
                 return interactor.download(
                     fileURL,
                     courseId: courseId,
@@ -132,7 +138,7 @@ public class HTMLParserLive: HTMLParser {
                 .map { url -> (URL, String)? in
                     return (originalURL, url)
                 }
-                .ignoreForbiddenNotFoundErrors(replacingWith: nil)
+                .catch { Self.handleDownloadError(self, courseId: courseId, error: $0) }
             }
             .compactMap { $0 }
             .collect() // Wait for all image download to finish and handle as an array
@@ -195,6 +201,23 @@ public class HTMLParserLive: HTMLParser {
             envResolver.folderDocumentsPath(forSection: sectionName, ofCourse: courseId)
         )
         .appendingPathComponent("\(sectionName)-\(resourceId)")
+    }
+
+    private static func handleDownloadError(
+        _ parser: HTMLParserLive?,
+        courseId: CourseSyncID,
+        error: Error
+    ) -> AnyPublisher<(URL, String)?, Error> {
+
+        parser?.embeddedContentFailureSubject.send(courseId)
+
+        // Non-blocking failure, Non-fatal errors, will get reported as warning
+        if error.isForbidden || error.isNotFound {
+            return Just(nil).setFailureType(to: Error.self).eraseToAnyPublisher()
+        }
+
+        // Blocking failure, will get reported as failure
+        return Fail(error: error).eraseToAnyPublisher()
     }
 }
 

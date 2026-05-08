@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="24512" systemVersion="25D125" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="24837" systemVersion="25E246" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="AccountNotification" representedClassName="Core.AccountNotification" syncable="YES">
         <attribute name="closed" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="endAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -216,6 +216,7 @@
         <attribute name="bytesDownloaded" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="bytesToDownload" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="courseIds" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="embeddedContentErrorCourseIds" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
         <attribute name="error" optional="YES" attributeType="String"/>
         <attribute name="isFinished" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
     </entity>
@@ -252,6 +253,9 @@
         <attribute name="calendarContextsLimitRaw" optional="YES" attributeType="Integer 64" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="disableInboxSignatureBlockForStudents" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="enableInboxSignatureBlock" attributeType="Boolean" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="CDAnalyticsConsent" representedClassName="Core.CDAnalyticsConsent" syncable="YES">
+        <attribute name="consentValueRaw" optional="YES" attributeType="Boolean" usesScalarValueType="NO"/>
     </entity>
     <entity name="CDExperienceSummary" representedClassName="Core.CDExperienceSummary" syncable="YES">
         <attribute name="availableAppsRaw" attributeType="Transformable" valueTransformerName="StringSetValueTransformer"/>
@@ -595,6 +599,11 @@
         <attribute name="userId" attributeType="String"/>
         <relationship name="submission" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Submission" inverseName="subAssignmentSubmissions" inverseEntity="Submission"/>
     </entity>
+    <entity name="CDUnreadCourseAnnouncementCount" representedClassName="Core.CDUnreadCourseAnnouncementCount" syncable="YES">
+        <attribute name="courseId" attributeType="String"/>
+        <attribute name="unreadAnnouncementIdsRaw" attributeType="String" defaultValueString=""/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Course" inverseName="unreadAnnouncementCount" inverseEntity="Course"/>
+    </entity>
     <entity name="CDUserGroup" representedClassName="Core.CDUserGroup" syncable="YES">
         <attribute name="id" attributeType="String"/>
         <attribute name="isDifferentiationTag" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
@@ -745,6 +754,7 @@
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseSection" inverseName="course" inverseEntity="CourseSection"/>
         <relationship name="settings" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSettings" inverseName="course" inverseEntity="CourseSettings"/>
         <relationship name="todos" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Todo" inverseName="course" inverseEntity="Todo"/>
+        <relationship name="unreadAnnouncementCount" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDUnreadCourseAnnouncementCount" inverseName="course" inverseEntity="CDUnreadCourseAnnouncementCount"/>
         <relationship name="weeklySummaryEntries" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CDDashboardWeeklySummaryEntry" inverseName="course" inverseEntity="CDDashboardWeeklySummaryEntry"/>
     </entity>
     <entity name="CourseSection" representedClassName="Core.CourseSection" syncable="YES">
@@ -1501,7 +1511,7 @@
         <attribute name="typeRaw" attributeType="String"/>
         <attribute name="url" optional="YES" attributeType="URI"/>
         <attribute name="visibilityRaw" attributeType="String"/>
-        <relationship name="course" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CourseSyncSelectorCourse" inverseName="tabs" inverseEntity="CourseSyncSelectorCourse"/>
+        <relationship name="course" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CourseSyncSelectorCourse" inverseName="tabs" inverseEntity="CourseSyncSelectorCourse"/>
     </entity>
     <entity name="Todo" representedClassName="Core.Todo" syncable="YES">
         <attribute name="contextRaw" attributeType="String"/>
@@ -1566,6 +1576,7 @@
         <attribute name="commentLibrarySuggestionsEnabled" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="hideDashcardColorOverlays" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="manualMarkAsRead" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="trackingPolicyRaw" optional="YES" attributeType="String"/>
     </entity>
     <entity name="CDDashboardWeeklySummaryEntry" representedClassName="Core.CDDashboardWeeklySummaryEntry" syncable="YES">
         <attribute name="categoryRaw" attributeType="String"/>

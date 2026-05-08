@@ -675,14 +675,7 @@ extension FileDetailsViewController: PDFViewControllerDelegate, FlexibleToolbarC
         controller.annotationToolbarController?.annotationToolbar.toolbarPosition = defaultToolbarPosition()
         controller.annotationToolbarController?.delegate = self
 
-        let appearance = UIToolbarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = navigationController?.navigationBar.barTintColor
-        controller.annotationToolbarController?.toolbar.standardAppearance = appearance
-
-        let annotationToolbarProxy = AnnotationToolbar.appearance()
-        annotationToolbarProxy.tintColor = navigationController?.navigationBar.tintColor
-
+        controller.annotationToolbarController?.annotationToolbar.tintColor = buttonsTintColor
         controller.delegate = self
         embed(controller, in: contentView)
         addPDFAnnotationChangeNotifications()
@@ -697,9 +690,31 @@ extension FileDetailsViewController: PDFViewControllerDelegate, FlexibleToolbarC
             annotate,
             search
         ]
+
+        if #available(iOS 26, *) {
+            navigationItem.rightBarButtonItems?.forEach { $0.tintColor = buttonsTintColor }
+        }
+
         NotificationCenter.default.post(name: .init("FileViewControllerBarButtonItemsDidChange"), object: nil)
 
         doneLoading()
+    }
+
+    private var buttonsTintColor: UIColor {
+        if let context,
+           let contextColor: ContextColor = env
+                .database
+                .viewContext
+                .first(
+                    scope: .where(
+                        #keyPath(ContextColor.canvasContextID),
+                        equals: context.canvasContextID
+                    )
+                ) {
+            return contextColor.color
+        }
+
+        return Brand.shared.primary
     }
 
     private func defaultToolbarPosition() -> FlexibleToolbar.Position {

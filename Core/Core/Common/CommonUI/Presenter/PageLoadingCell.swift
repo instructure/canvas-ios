@@ -92,7 +92,7 @@ public class PageLoadingCell: UITableViewCell {
     }
 
     private func setupAsButton() {
-        backgroundConfiguration = UIBackgroundConfiguration.listPlainCell()
+        backgroundConfiguration = UIBackgroundConfiguration.listCell()
         progressView.isHidden = true
         label.isHidden = false
     }

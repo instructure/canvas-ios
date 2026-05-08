@@ -24,6 +24,7 @@ public struct CourseSyncDownloadProgress {
     let isFinished: Bool
     let error: String?
     let courseIds: [String]
+    let embeddedContentErrorCourseIds: [String]
 
     var progress: Float {
         Float(bytesDownloaded) / Float(bytesToDownload)
@@ -34,13 +35,15 @@ public struct CourseSyncDownloadProgress {
         bytesDownloaded: Int,
         isFinished: Bool,
         error: String?,
-        courseIds: [String]
+        courseIds: [String],
+        embeddedContentErrorCourseIds: [String] = []
     ) {
         self.bytesToDownload = bytesToDownload
         self.bytesDownloaded = bytesDownloaded
         self.isFinished = isFinished
         self.error = error
         self.courseIds = courseIds
+        self.embeddedContentErrorCourseIds = embeddedContentErrorCourseIds
     }
 
     init(from entity: CDCourseSyncDownloadProgress) {
@@ -49,6 +52,16 @@ public struct CourseSyncDownloadProgress {
         isFinished = entity.isFinished
         error = entity.error
         courseIds = Array(entity.courseIds)
+        embeddedContentErrorCourseIds = Array(entity.embeddedContentErrorCourseIds)
+    }
+}
+
+extension CourseSyncDownloadProgress {
+    static let fileErrorMessage = String(localized: "File download failed.", bundle: .core)
+    static let embeddedContentErrorMessage = String(localized: "Embedded content download failed.", bundle: .core)
+
+    var isEmbeddedContentError: Bool {
+        error == Self.embeddedContentErrorMessage
     }
 }
 
@@ -58,14 +71,16 @@ extension CourseSyncDownloadProgress {
         bytesDownloaded: Int = 100,
         isFinished: Bool = false,
         error: String? = nil,
-        courseIds: [String] = []
+        courseIds: [String] = [],
+        embeddedContentErrorCourseIds: [String] = []
     ) -> CourseSyncDownloadProgress {
         .init(
             bytesToDownload: bytesToDownload,
             bytesDownloaded: bytesDownloaded,
             isFinished: isFinished,
             error: error,
-            courseIds: courseIds
+            courseIds: courseIds,
+            embeddedContentErrorCourseIds: embeddedContentErrorCourseIds
         )
     }
 }

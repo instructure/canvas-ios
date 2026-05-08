@@ -20,9 +20,24 @@ import BackgroundTasks
 
 public enum CourseSyncBackgroundUpdatesAssembly {
 
-    public static func makeOfflineSyncBackgroundTask() -> BackgroundTask {
-        OfflineSyncBackgroundTask(syncableAccounts: OfflineSyncAccountsInteractor(),
-                                  sessions: LoginSession.sessions)
+    public static func makeOfflineSyncBackgroundTask(
+        horizonSelectedItemsInteractorFactory: @escaping () -> CourseSyncSelectorInteractor,
+        horizonSyncInteractorFactory: @escaping () -> CourseSyncInteractor
+    ) -> BackgroundTask {
+        OfflineSyncBackgroundTask(
+            syncableAccounts: OfflineSyncAccountsInteractor(),
+            sessions: LoginSession.sessions,
+            selectedItemsInteractorFactory: { sessionDefaults in
+                AppEnvironment.shared.app == .horizon
+                    ? horizonSelectedItemsInteractorFactory()
+                    : OfflineSyncBackgroundTask.DefaultSelectedItemsFactory(sessionDefaults)
+            },
+            syncInteractorFactory: {
+                AppEnvironment.shared.app == .horizon
+                    ? horizonSyncInteractorFactory()
+                    : CourseSyncDownloaderAssembly.makeInteractor()
+            }
+        )
     }
 
     public static func makeTaskRequest() -> BGProcessingTaskRequest? {

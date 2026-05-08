@@ -31,8 +31,8 @@ struct StudentNotesView: View {
     var body: some View {
         let title = String(localized: "Student Notes", bundle: .teacher)
         let itemCount = viewModel.entries.count > 1 ? viewModel.entries.count : nil
-        InstUI.CollapsibleListSection(title: title, itemCount: itemCount, isExpanded: $isExpanded) {
-            VStack(spacing: InstUI.Styles.Padding.standard.rawValue) {
+        AUI.CollapsibleListSection(title: title, itemCount: itemCount, isExpanded: $isExpanded) {
+            VStack(spacing: AUI.Styles.Padding.standard.rawValue) {
                 ForEach(viewModel.entries) { entry in
                     StudentNotesEntryView(title: entry.title, content: entry.content)
                 }
@@ -54,7 +54,7 @@ struct StudentNotesEntryView: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: InstUI.Styles.Padding.textVertical.rawValue) {
+        VStack(alignment: .leading, spacing: AUI.Styles.Padding.textVertical.rawValue) {
             Text(title)
                 .font(.semibold16, lineHeight: .fit)
                 .foregroundStyle(Color.textDarkest)
@@ -74,7 +74,7 @@ struct StudentNotesEntryView: View {
 #if DEBUG
 
 #Preview {
-    InstUI.BaseScreen(state: .data) { _ in
+    BaseScreen(state: .data) { _ in
         let interactor = CustomGradebookColumnsInteractorPreview()
         return StudentNotesView(viewModel: .init(userId: "1", interactor: interactor))
     }

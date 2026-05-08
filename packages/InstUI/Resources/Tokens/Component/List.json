@@ -1,0 +1,94 @@
+{
+  "listItem": {
+    "color": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontSizeLarge": {
+      "value": "{fontSize.textLg}",
+      "type": "fontSizes"
+    },
+    "fontSizeMedium": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontSizeSmall": {
+      "value": "{fontSize.textSm}",
+      "type": "fontSizes"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "lineHeight": {
+      "value": "{lineHeight.paragraph.base}",
+      "type": "lineHeights"
+    },
+    "spacingXXXSmall": {
+      "value": "{spacing.space2xs}",
+      "type": "spacing"
+    },
+    "spacingXXSmall": {
+      "value": "0.375rem",
+      "type": "spacing"
+    },
+    "spacingXSmall": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "spacingSmall": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "spacingMedium": {
+      "value": "{spacing.spaceXl}",
+      "type": "spacing"
+    },
+    "spacingLarge": {
+      "value": "2.25rem",
+      "type": "spacing"
+    },
+    "spacingXLarge": {
+      "value": "3rem",
+      "type": "spacing"
+    },
+    "spacingXXLarge": {
+      "value": "3.75rem",
+      "type": "spacing"
+    },
+    "delimiterDashedBorder": {
+      "value": {
+        "color": "{color.stroke.muted}",
+        "width": "{borderWidth.sm}",
+        "style": "dashed"
+      },
+      "type": "border"
+    },
+    "delimiterSolidBorder": {
+      "value": {
+        "color": "{color.stroke.muted}",
+        "width": "{borderWidth.sm}",
+        "style": "solid"
+      },
+      "type": "border"
+    }
+  },
+  "list": {
+    "listPadding": {
+      "value": "2.25rem",
+      "type": "spacing"
+    },
+    "orderedNumberMargin": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "orderedNumberFontWeight": {
+      "value": "{fontWeight.body.strong}",
+      "type": "fontWeights"
+    }
+  }
+}

@@ -24,24 +24,36 @@ struct AssistTitle: View {
     typealias OnClose = () -> Void
 
     // MARK: - Private Properties
-    private var backOpacity: Double {
-        onBack == nil ? 0 : 1
-    }
+    private var isBackButtonVisible: Bool { onBack != nil }
     private let onBack: OnBack?
+    private let onTapInfo: OnBack?
     private let onClose: OnClose
 
     // MARK: - Init
-    init(onBack: OnBack? = nil, onClose: @escaping OnClose) {
+
+    init(
+        onBack: OnBack? = nil,
+        onClose: @escaping OnClose,
+        onTapInfo: OnBack? = nil
+    ) {
         self.onBack = onBack
         self.onClose = onClose
+        self.onTapInfo = onTapInfo
     }
 
     var body: some View {
         HStack(spacing: .huiSpaces.space8) {
+            if isBackButtonVisible { backButton }
             title
             Spacer()
-            back
-            close
+            Button {
+                onTapInfo?()
+            } label: {
+                Image.huiIcons.info
+                    .padding(.huiSpaces.space4)
+                    .foregroundStyle(Color.huiColors.icon.surfaceColored)
+            }
+            closeButton
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(.vertical, .huiSpaces.space16)
@@ -55,32 +67,31 @@ struct AssistTitle: View {
     }
 
     // MARK: - Private
-    private var back: some View {
+    private var backButton: some View {
         HorizonUI.IconButton(
             Image.huiIcons.arrowBack,
             type: .whiteOutline,
             isSmall: true,
             action: onBack ?? { }
         )
-        .opacity(backOpacity)
-        .animation(.easeInOut(duration: 0.2), value: backOpacity)
         .accessibilityLabel(String(localized: "Back"))
     }
 
-    private var close: some View {
-        HorizonUI.IconButton(
-            Image.huiIcons.close,
-            type: .whiteOutline,
-            isSmall: true,
-            action: onClose
-        )
+    private var closeButton: some View {
+        Button {
+            onClose()
+        } label: {
+            Image.huiIcons.close
+                .padding(.huiSpaces.space4)
+                .foregroundStyle(Color.huiColors.icon.surfaceColored)
+        }
     }
 
     private var title: some View {
         HStack {
             HorizonUI.icons.aiFilled
                 .accessibilityHidden(true)
-            Text(String(localized: "IgniteAI", bundle: .horizon))
+            Text(String(localized: "Study Tools", bundle: .horizon))
                 .huiTypography(.h4)
                 .accessibilityAddTraits(.isHeader)
         }

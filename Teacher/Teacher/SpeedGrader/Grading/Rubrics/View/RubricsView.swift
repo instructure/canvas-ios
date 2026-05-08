@@ -27,7 +27,7 @@ struct RubricsView: View {
 
     var body: some View {
         VStack {
-            InstUI.Divider()
+            AUI.Divider()
 
             Text("Rubric", bundle: .teacher)
                 .font(.semibold16)
@@ -50,7 +50,7 @@ struct RubricsView: View {
 
             Spacer().frame(height: 32)
 
-            InstUI.Divider()
+            AUI.Divider()
         }
         .background(Color.backgroundLight)
     }
@@ -168,7 +168,7 @@ struct RubricsView: View {
         return rubrics
     }()
 
-    InstUI.BaseScreen(
+    BaseScreen(
         state: .data,
         config: .init(
             refreshable: false,

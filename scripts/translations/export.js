@@ -17,7 +17,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-const program = require('commander')
+const { program } = require('commander')
 const { spawn } = require('child_process')
 const { createReadStream, readFileSync, writeFileSync } = require('fs')
 const S3 = require('aws-sdk/clients/s3')
@@ -38,8 +38,10 @@ program.on('--help', () => {
 })
 program.parse(process.argv)
 
+let programOpts = program.opts()
+
 if (
-  !program.skipPush &&
+  !programOpts.skipPush &&
   (!process.env.AWS_ACCESS_KEY_ID || !process.env.AWS_SECRET_ACCESS_KEY)
 ) {
   program.outputHelp()
@@ -56,12 +58,12 @@ function run(cmd, args, opts) {
     const command = spawn(cmd, args, opts)
     // If we don't read these xcodebuild just hangs
     command.stdout.on('data', (data) => {
-      if (program.verbose) {
+      if (programOpts.verbose) {
 	    console.log(`${data}`)
       }
 	})
     command.stderr.on('data', (data) => {
-      if (program.verbose) {
+      if (programOpts.verbose) {
 	    console.log(`${data}`)
       }
 	})
@@ -93,7 +95,7 @@ async function processNativeLocalizations(toUpload) {
 }
 
 async function pushToS3(toUpload) {
-  if (program.skipPush) {
+  if (programOpts.skipPush) {
     console.log(`Skipping S3 push of these entries:`)
     for (const entry of toUpload) {
 	  console.log(`${entry.from} -> ${entry.to}`)
@@ -118,8 +120,7 @@ async function exportLocalizations(outputPath) {
     '-sdk',
     'iphonesimulator',
     '-localizationPath',
-    outputPath,
-    '-n'
+    outputPath
   ])
 }
 

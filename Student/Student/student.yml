@@ -18,11 +18,14 @@ targets:
       - path: ../Settings.bundle
     dependencies:
       - package: BusinessLogic
+      - package: InstUI
       - package: PSPDFKit
       - package: Pendo
-      - package: FirebaseCrashlytics
-      - package: FirebaseRemoteConfig
-      - package: FirebaseRemoteConfigSwift
+      - package: Firebase
+        products: 
+        - FirebaseCore
+        - FirebaseCrashlytics
+        - FirebaseRemoteConfig
       - target: Core/Core
       - target: SubmitAssignment
       - target: Widgets

@@ -104,7 +104,7 @@ class OfflineListCellViewModel: ObservableObject {
 
     var accessibilityText: String {
         var titleText = title + " " + (subtitle ?? "")
-        if case .error(let error) = state, let error = error {
+        if case .error(let error, _) = state, let error = error {
             titleText.append("," + error)
         }
         var selectionText = ""

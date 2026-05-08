@@ -1,0 +1,125 @@
+{
+  "rangeInput": {
+    "handleBackground": {
+      "value": "{color.background.interactive.action.primary.base}",
+      "type": "color"
+    },
+    "handleHoverBackground": {
+      "value": "{color.background.interactive.action.primary.hover}",
+      "type": "color"
+    },
+    "handleFocusBackground": {
+      "value": "{color.background.info}",
+      "type": "color"
+    },
+    "handleFocusOutlineColor": {
+      "value": "{color.background.info}",
+      "type": "color",
+      "description": "Deprecated, remove with \"deprecated\" thumbVariant"
+    },
+    "handleShadowColor": {
+      "value": "{color.background.brand}",
+      "type": "color",
+      "description": "Deprecated, remove with \"deprecated\" thumbVariant\n"
+    },
+    "handleBorderColor": {
+      "value": "{color.stroke.brand}",
+      "type": "color"
+    },
+    "handleBorderSize": {
+      "value": "{borderWidth.md}",
+      "type": "borderWidth"
+    },
+    "handleFocusInset": {
+      "value": "{spacing.space2xs}",
+      "type": "spacing"
+    },
+    "trackBackground": {
+      "value": "{color.background.interactive.input.base}",
+      "type": "color"
+    },
+    "valueFontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "valueFontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "valueSmallFontSize": {
+      "value": "{fontSize.textSm}",
+      "type": "fontSizes"
+    },
+    "valueMediumFontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "valueLargeFontSize": {
+      "value": "{fontSize.textLg}",
+      "type": "fontSizes"
+    },
+    "valueSmallPadding": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "valueMediumPadding": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "valueLargePadding": {
+      "value": "{spacing.spaceLg}",
+      "type": "spacing"
+    },
+    "valueSmallLineHeight": {
+      "value": "1.75rem",
+      "type": "lineHeights"
+    },
+    "valueMediumLineHeight": {
+      "value": "2.375rem",
+      "type": "lineHeights"
+    },
+    "valueLargeLineHeight": {
+      "value": "3rem",
+      "type": "lineHeights"
+    },
+    "trackBorderColor": {
+      "value": "{color.stroke.interactive.input.base}",
+      "type": "color"
+    },
+    "minWidth": {
+      "value": "12.5rem",
+      "type": "sizing"
+    },
+    "handleSize": {
+      "value": "1.5rem",
+      "type": "sizing"
+    },
+    "boxShadow": {
+      "value": [
+        {
+          "x": "{dropShadow.x.elevation1.dropshadow1}",
+          "y": "{dropShadow.y.elevation1.dropshadow1}",
+          "blur": "{dropShadow.blur.elevation1.dropshadow1}",
+          "spread": "{dropShadow.spread.elevation1.dropshadow1}",
+          "color": "{color.dropShadow.shadowColor1}",
+          "type": "dropShadow"
+        },
+        {
+          "x": "{dropShadow.x.elevation1.dropshadow2}",
+          "y": "{dropShadow.y.elevation1.dropshadow2}",
+          "blur": "{dropShadow.blur.elevation1.dropshadow2}",
+          "spread": "{dropShadow.spread.elevation1.dropshadow2}",
+          "color": "{color.dropShadow.shadowColor2}",
+          "type": "dropShadow"
+        }
+      ],
+      "type": "boxShadow",
+      "description": "Do not use this for other components"
+    },
+    "handleFocusOutlineWidth": {
+      "value": "0.75em",
+      "type": "borderWidth",
+      "description": "Deprecated, remove with \"deprecated\" thumbVariant"
+    }
+  }
+}

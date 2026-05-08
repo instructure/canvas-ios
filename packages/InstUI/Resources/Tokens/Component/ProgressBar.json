@@ -1,0 +1,144 @@
+{
+  "progressBar": {
+    "borderRadius": {
+      "value": "{borderRadius.md}",
+      "type": "borderRadius"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "lineHeight": {
+      "value": "{lineHeight.heading.base}",
+      "type": "lineHeights"
+    },
+    "xSmallHeight": {
+      "value": "0.5rem",
+      "type": "sizing"
+    },
+    "smallHeight": {
+      "value": "1rem",
+      "type": "sizing"
+    },
+    "mediumHeight": {
+      "value": "1.5rem",
+      "type": "sizing"
+    },
+    "meterColorAlert": {
+      "value": "{color.background.brand}",
+      "type": "color"
+    },
+    "meterColorAlertInverse": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "meterColorBrand": {
+      "value": "{color.background.brand}",
+      "type": "color"
+    },
+    "meterColorBrandInverse": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "meterColorDanger": {
+      "value": "{color.background.brand}",
+      "type": "color"
+    },
+    "meterColorDangerInverse": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "meterColorInfo": {
+      "value": "{color.background.brand}",
+      "type": "color"
+    },
+    "meterColorInfoInverse": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "meterColorSuccess": {
+      "value": "{color.background.brand}",
+      "type": "color"
+    },
+    "meterColorSuccessInverse": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "meterColorWarning": {
+      "value": "{color.background.brand}",
+      "type": "color"
+    },
+    "meterColorWarningInverse": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "largeHeight": {
+      "value": "2rem",
+      "type": "sizing"
+    },
+    "trackBottomBorderColor": {
+      "value": "{color.transparentColor}",
+      "type": "color"
+    },
+    "trackBottomBorderColorInverse": {
+      "value": "{color.transparentColor}",
+      "type": "color"
+    },
+    "trackBottomBorderWidth": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "trackColor": {
+      "value": "{color.transparentColor}",
+      "type": "color"
+    },
+    "trackColorInverse": {
+      "value": "{color.transparentColor}",
+      "type": "color"
+    },
+    "valuePadding": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "textColor": {
+      "value": "{color.text.muted}",
+      "type": "color"
+    },
+    "textColorInverse": {
+      "value": "{color.text.inverse}",
+      "type": "color"
+    },
+    "xSmallValueFontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "smallValueFontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "mediumValueFontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "largeValueFontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "borderColor": {
+      "value": "{color.stroke.brand}",
+      "type": "color"
+    },
+    "borderColorInverse": {
+      "value": "{color.stroke.inverse}",
+      "type": "color"
+    }
+  }
+}

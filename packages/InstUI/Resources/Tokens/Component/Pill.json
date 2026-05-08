@@ -1,0 +1,92 @@
+{
+  "pill": {
+    "paddingHorizontal": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "height": {
+      "value": "24px",
+      "type": "sizing"
+    },
+    "backgroundColor": {
+      "value": "{color.background.base}",
+      "type": "color"
+    },
+    "textFontSize": {
+      "value": "{fontSize.textSm}",
+      "type": "fontSizes"
+    },
+    "textFontWeight": {
+      "value": "{fontWeight.body.strong}",
+      "type": "fontWeights"
+    },
+    "statusLabelFontWeight": {
+      "value": "{fontWeight.body.strong}",
+      "type": "fontWeights"
+    },
+    "maxWidth": {
+      "value": "240px",
+      "type": "sizing"
+    },
+    "baseTextColor": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "baseBorderColor": {
+      "value": "{color.stroke.base}",
+      "type": "color"
+    },
+    "infoTextColor": {
+      "value": "{color.text.info}",
+      "type": "color"
+    },
+    "infoBorderColor": {
+      "value": "{color.stroke.info}",
+      "type": "color"
+    },
+    "errorTextColor": {
+      "value": "{color.text.error}",
+      "type": "color"
+    },
+    "errorBorderColor": {
+      "value": "{color.stroke.error}",
+      "type": "color"
+    },
+    "successTextColor": {
+      "value": "{color.text.success}",
+      "type": "color"
+    },
+    "successBorderColor": {
+      "value": "{color.stroke.success}",
+      "type": "color"
+    },
+    "warningTextColor": {
+      "value": "{color.text.warning}",
+      "type": "color"
+    },
+    "warningBorderColor": {
+      "value": "{color.stroke.warning}",
+      "type": "color"
+    },
+    "borderRadius": {
+      "value": "{borderRadius.md}",
+      "type": "borderRadius"
+    },
+    "borderWidth": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "lineHeight": {
+      "value": "{lineHeight.standalone.textSm}",
+      "type": "lineHeights"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "borderStyle": {
+      "value": "solid",
+      "type": "text"
+    }
+  }
+}

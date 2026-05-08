@@ -34,7 +34,7 @@ struct StudentSubAssignmentsCardView: View {
         VStack(alignment: .leading, spacing: 0) {
             ForEach(viewModel.items) { item in
                 StudentSubAssignmentsCardItemCell(model: item)
-                InstUI.Divider(viewModel.items.last == item ? .hidden : .padded)
+                AUI.Divider(viewModel.items.last == item ? .hidden : .padded)
             }
         }
         .tint(contextColor)

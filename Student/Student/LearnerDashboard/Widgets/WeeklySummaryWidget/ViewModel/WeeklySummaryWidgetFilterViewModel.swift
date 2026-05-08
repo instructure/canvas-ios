@@ -36,7 +36,7 @@ struct WeeklySummaryWidgetFilterViewModel: Identifiable {
 
     func withExpandedState(_ isExpanded: Bool) -> WeeklySummaryWidgetFilterViewModel {
         var copy = self
-        let state = InstUI.CollapseButtonExpandedState(isExpanded: isExpanded)
+        let state = AUI.CollapseButtonExpandedState(isExpanded: isExpanded)
         copy.accessibilityValue = state.a11yValue
         copy.accessibilityHint = state.a11yHint
         return copy
@@ -56,7 +56,7 @@ extension WeeklySummaryWidgetFilterViewModel {
 extension WeeklySummaryWidgetFilterViewModel {
     static func missing(assignments: [WeeklySummaryWidgetAssignment]) -> WeeklySummaryWidgetFilterViewModel {
         let count = assignments.count
-        let expandedState = InstUI.CollapseButtonExpandedState(isExpanded: false)
+        let expandedState = AUI.CollapseButtonExpandedState(isExpanded: false)
         return WeeklySummaryWidgetFilterViewModel(
             id: missingId,
             label: String(localized: "Missing", bundle: .student),
@@ -73,7 +73,7 @@ extension WeeklySummaryWidgetFilterViewModel {
 
     static func due(assignments: [WeeklySummaryWidgetAssignment]) -> WeeklySummaryWidgetFilterViewModel {
         let count = assignments.count
-        let expandedState = InstUI.CollapseButtonExpandedState(isExpanded: false)
+        let expandedState = AUI.CollapseButtonExpandedState(isExpanded: false)
         return WeeklySummaryWidgetFilterViewModel(
             id: dueId,
             label: String(localized: "Due", bundle: .student),
@@ -90,7 +90,7 @@ extension WeeklySummaryWidgetFilterViewModel {
 
     static func newGrades(assignments: [WeeklySummaryWidgetAssignment]) -> WeeklySummaryWidgetFilterViewModel {
         let count = assignments.count
-        let expandedState = InstUI.CollapseButtonExpandedState(isExpanded: false)
+        let expandedState = AUI.CollapseButtonExpandedState(isExpanded: false)
         return WeeklySummaryWidgetFilterViewModel(
             id: newGradesId,
             label: String(localized: "New Grades", bundle: .student),

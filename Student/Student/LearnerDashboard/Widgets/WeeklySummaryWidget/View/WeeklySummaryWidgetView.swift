@@ -78,7 +78,7 @@ struct WeeklySummaryWidgetView: View {
                 viewModel.navigateToCurrentWeek()
             }
         } label: {
-            InstUI.PillContent(
+            AUI.PillContent(
                 title: String(localized: "Current Week", bundle: .student),
                 trailingIcon: .calendarTab,
                 size: .height24
@@ -86,6 +86,7 @@ struct WeeklySummaryWidgetView: View {
         }
         .buttonStyle(.pillTintFilled)
         .hidden(viewModel.isCurrentWeek)
+        .accessibilityHidden(viewModel.isCurrentWeek)
         .identifier("Dashboard.Forecast.currentWeekButton")
     }
 

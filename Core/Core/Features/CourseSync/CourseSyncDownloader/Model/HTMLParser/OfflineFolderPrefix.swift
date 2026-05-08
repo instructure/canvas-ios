@@ -25,4 +25,5 @@ public enum OfflineFolderPrefix: String {
     case discussions
     case quizzes
     case calendarEvents
+    case studioModuleItems
 }

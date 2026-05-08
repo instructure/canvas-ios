@@ -1,0 +1,44 @@
+{
+  "colorPreset": {
+    "popoverContentBlockBottomMargin": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "popoverContentBlockTopMargin": {
+      "value": "{spacing.spaceXl}",
+      "type": "spacing"
+    },
+    "popoverContentBlockTopPadding": {
+      "value": "{spacing.spaceXl}",
+      "type": "spacing"
+    },
+    "popoverDividerColor": {
+      "value": "{color.stroke.muted}",
+      "type": "color"
+    },
+    "popoverFooterColor": {
+      "value": "{color.background.elevatedSurface.base}",
+      "type": "color"
+    },
+    "selectedIndicatorBackgroundColor": {
+      "value": "{color.background.onColor}",
+      "type": "color"
+    },
+    "selectedIndicatorBorderColor": {
+      "value": "{color.stroke.container.dark}",
+      "type": "color"
+    },
+    "smallBorder": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "smallSpacing": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "xxSmallSpacing": {
+      "value": "0.375rem",
+      "type": "spacing"
+    }
+  }
+}

@@ -25,7 +25,15 @@ public struct CourseSyncEntry: Equatable {
         // loading = 0
         // error = 1
         // downloaded 2
-        case loading(Float?), error, downloaded
+        case loading(Float?), error, downloaded(isEmbeddedMediaComplete: Bool)
+
+        var isDownloaded: Bool {
+            if case .downloaded = self {
+                true
+            } else {
+                false
+            }
+        }
     }
 
     let name: String
@@ -35,7 +43,7 @@ public struct CourseSyncEntry: Equatable {
      */
     let id: String
     let hasFrontPage: Bool
-    var courseId: String { String(id.split(separator: "/").last ?? "") }
+    public var courseId: String { String(id.split(separator: "/").last ?? "") }
     var syncID: CourseSyncID { CourseSyncID(value: courseId, apiBaseURL: apiBaseURL) }
 
     /// List of available tabs coming from the API + a manually added tab named "Additional Content" that is responsible for tracking the download of hidden tabs and such.

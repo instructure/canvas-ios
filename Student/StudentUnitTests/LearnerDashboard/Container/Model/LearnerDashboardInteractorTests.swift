@@ -25,18 +25,14 @@ import XCTest
 final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
     private var testee: LearnerDashboardInteractorLive!
-    private var analytics: AnalyticsHandlerMock!
     private var subscriptions: Set<AnyCancellable>!
 
     override func setUp() {
         super.setUp()
-        analytics = .init()
-        Analytics.shared.handler = analytics
         subscriptions = []
     }
 
     override func tearDown() {
-        analytics = nil
         testee = nil
         subscriptions = nil
         super.tearDown()
@@ -121,15 +117,5 @@ final class LearnerDashboardInteractorLiveTests: StudentTestCase {
 
     private func makeInteractor() -> LearnerDashboardInteractorLive {
         LearnerDashboardInteractorLive(userDefaults: userDefaults)
-    }
-}
-
-private final class AnalyticsHandlerMock: AnalyticsHandler {
-    var handleEventInput: (name: String, parameters: [String: Any]?)?
-    var handleEventCallCount = 0
-
-    func handleEvent(_ name: String, parameters: [String: Any]?) {
-        handleEventInput = (name, parameters)
-        handleEventCallCount += 1
     }
 }

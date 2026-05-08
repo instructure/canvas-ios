@@ -44,7 +44,7 @@ struct GradeStatusView: View {
     }
 
     private var statusPickerCell: some View {
-        HStack(spacing: InstUI.Styles.Padding.cellAccessoryPadding.rawValue) {
+        HStack(spacing: AUI.Styles.Padding.cellAccessoryPadding.rawValue) {
             Text(String(localized: "Status", bundle: .teacher))
                 .font(.semibold16, lineHeight: .fit)
                 .foregroundColor(Color.textDarkest)
@@ -68,7 +68,7 @@ struct GradeStatusView: View {
     }
 
     private var statusDropDown: some View {
-        InstUI.PickerMenu(
+        AUI.PickerMenu(
             selectedOption: Binding(
                 get: { viewModel.selectedOption },
                 set: { newValue in

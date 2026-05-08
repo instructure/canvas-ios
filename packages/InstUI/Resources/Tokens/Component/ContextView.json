@@ -1,0 +1,32 @@
+{
+  "contextView": {
+    "arrowSize": {
+      "value": "0.5rem",
+      "type": "sizing"
+    },
+    "arrowBorderWidth": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "arrowBackgroundColor": {
+      "value": "{color.background.elevatedSurface.base}",
+      "type": "color"
+    },
+    "arrowBackgroundColorInverse": {
+      "value": "{color.background.elevatedSurface.inverse}",
+      "type": "color"
+    },
+    "arrowBorderColor": {
+      "value": "{color.stroke.muted}",
+      "type": "color"
+    },
+    "arrowBorderColorInverse": {
+      "value": "{color.transparentColor}",
+      "type": "color"
+    },
+    "borderRadius": {
+      "value": "{borderRadius.lg}",
+      "type": "borderRadius"
+    }
+  }
+}

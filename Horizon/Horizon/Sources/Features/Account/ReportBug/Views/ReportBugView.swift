@@ -38,7 +38,7 @@ struct ReportBugView: View {
     @State var viewModel: ReportBugViewModel
 
     var body: some View {
-        InstUI.BaseScreen(
+        BaseScreen(
             state: viewModel.state,
             config: .init(
                 refreshable: false,

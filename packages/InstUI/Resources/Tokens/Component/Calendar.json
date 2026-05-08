@@ -1,0 +1,94 @@
+{
+  "calendar": {
+    "background": {
+      "value": "{color.background.elevatedSurface.base}",
+      "type": "color"
+    },
+    "color": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.strong}",
+      "type": "fontWeights"
+    },
+    "navMargin": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "navWithYearMargin": {
+      "value": "{spacing.spaceSm}",
+      "type": "spacing"
+    },
+    "yearPickerMargin": {
+      "value": "{spacing.spaceLg}",
+      "type": "spacing"
+    },
+    "lineHeight": {
+      "value": "{lineHeight.paragraph.base}",
+      "type": "lineHeights"
+    },
+    "maxHeaderWidth": {
+      "value": "1.5rem",
+      "type": "sizing"
+    }
+  },
+  "calendarDay": {
+    "background": {
+      "value": "{color.background.elevatedSurface.base}",
+      "type": "color"
+    },
+    "color": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "outsideMonthColor": {
+      "value": "{color.text.muted}",
+      "type": "color"
+    },
+    "selectedBackground": {
+      "value": "{color.background.interactive.action.success.base}",
+      "type": "color"
+    },
+    "selectedColor": {
+      "value": "{color.text.onColor}",
+      "type": "color"
+    },
+    "todayColor": {
+      "value": "{color.text.inverse}",
+      "type": "color"
+    },
+    "todayBackground": {
+      "value": "{color.background.interactive.action.primary.base}",
+      "type": "color"
+    },
+    "fontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "height": {
+      "value": "{size.interactive.height.sm}",
+      "type": "sizing"
+    },
+    "minWidth": {
+      "value": "{size.interactive.height.sm}",
+      "type": "sizing"
+    },
+    "selectedBorderRadius": {
+      "value": "{borderRadius.lg}",
+      "type": "borderRadius"
+    },
+    "todayBorderRadius": {
+      "value": "{borderRadius.full}",
+      "type": "borderRadius"
+    }
+  }
+}
