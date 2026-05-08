@@ -24,7 +24,7 @@ import Combine
  who have this turned on.
  */
 public class OfflineSyncBackgroundTask: BackgroundTask {
-    public typealias SelectedItemsFactory = (SessionDefaults) -> CourseSyncSelectorInteractor
+    public typealias SelectedItemsFactory = (_ sessionDefaults: SessionDefaults) -> CourseSyncSelectorInteractor
     public static let DefaultSelectedItemsFactory: SelectedItemsFactory = { sessionDefaults in
         let courseSyncListInteractor = CourseSyncListInteractorLive(sessionDefaults: sessionDefaults)
         return CourseSyncSelectorInteractorLive(courseSyncListInteractor: courseSyncListInteractor,
