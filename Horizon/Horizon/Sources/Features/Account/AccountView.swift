@@ -25,6 +25,7 @@ struct AccountView: View {
         case profile
         case notifications
         case advanced
+        case offlineSync
         case reportBug
     }
 
@@ -165,13 +166,22 @@ struct AccountView: View {
                 divider
                 AccountEntryRowView(
                     title: String(localized: "Advanced", bundle: .horizon),
-                    isLastItem: true,
                     didTapRow: {
                         lastFocusedId = SettingIDs.advanced.rawValue
                         viewModel.advancedDidTap(viewController: viewController)
                     }
                 )
                 .accessibilityFocused($focusedSettingID, equals: SettingIDs.advanced.rawValue)
+                divider
+                AccountEntryRowView(
+                    title: String(localized: "Offline settings", bundle: .horizon),
+                    isLastItem: true,
+                    didTapRow: {
+                        lastFocusedId = SettingIDs.offlineSync.rawValue
+                        viewModel.syncSettingsDidTap(viewController: viewController)
+                    }
+                )
+                .accessibilityFocused($focusedSettingID, equals: SettingIDs.offlineSync.rawValue)
             }
         }
         .onAppear {

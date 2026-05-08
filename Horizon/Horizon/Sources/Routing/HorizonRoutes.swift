@@ -49,6 +49,9 @@ public enum HorizonRoutes {
             },
             RouteHandler("/account/advanced") { _, _, _ in
                 ProfileAdvancedAssembly.makeViewController()
+            },
+            RouteHandler("/account/sync-settings") { _, _, _ in
+                OfflineSyncSettingsAssembly.makeViewController()
             }
         ]
     }
