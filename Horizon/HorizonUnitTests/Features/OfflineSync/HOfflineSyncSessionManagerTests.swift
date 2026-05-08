@@ -34,18 +34,25 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
 
     private var session: SessionDefaults!
     private var filesInteractor: HCourseSyncFilesInteractorMock!
+    private var pagesInteractor: HCourseSyncPagesInteractorMock!
     private var testee: HOfflineSyncSessionManager!
 
     override func setUp() {
         super.setUp()
         session = SessionDefaults(sessionID: testData.sessionID)
         filesInteractor = HCourseSyncFilesInteractorMock()
-        testee = HOfflineSyncSessionManager(session: session, filesInteractor: filesInteractor)
+        pagesInteractor = HCourseSyncPagesInteractorMock()
+        testee = HOfflineSyncSessionManagerLive(
+            session: session,
+            filesInteractor: filesInteractor,
+            pagesInteractor: pagesInteractor
+        )
     }
 
     override func tearDown() {
         testee = nil
         filesInteractor = nil
+        pagesInteractor = nil
         session.reset()
         session = nil
         super.tearDown()
@@ -80,7 +87,7 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
 
         testee.clearSessionData()
 
-        XCTAssertTrue(session.horizonOfflineSyncFileMetadata.isEmpty)
+        XCTAssertEqual(session.horizonOfflineSyncFileMetadata.isEmpty, true)
     }
 
     // MARK: - finalizeSync
@@ -120,6 +127,24 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
         XCTAssertEqual(filesInteractor.removeUnavailableFilesCourseIDs, [testData.courseID1, testData.courseID2])
     }
 
+    func test_finalizeSync_shouldCallDeletePagesForDeselectedCourses() {
+        session.horizonOfflineSyncItems = [OfflineType.course(id: testData.courseID2).path()]
+        let course1 = makeCourse(id: testData.courseID1)
+
+        testee.finalizeSync(courses: [course1])
+
+        XCTAssertEqual(pagesInteractor.deletedCourseIDs, [testData.courseID2])
+    }
+
+    func test_finalizeSync_shouldNotDeletePagesForRetainedCourses() {
+        session.horizonOfflineSyncItems = [OfflineType.course(id: testData.courseID1).path()]
+        let course1 = makeCourse(id: testData.courseID1)
+
+        testee.finalizeSync(courses: [course1])
+
+        XCTAssertEqual(pagesInteractor.deletedCourseIDs, [])
+    }
+
     // MARK: - saveCompletedSync
 
     func test_saveCompletedSync_shouldAppendCourseAndDownloadedFilePaths() {
@@ -128,7 +153,6 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
         file.downloadState = .downloaded
 
         testee.saveCompletedSync(courses: [course], files: [file])
-        waitForMainDispatch()
 
         let expectedCoursePath = OfflineType.course(id: testData.courseID1).path()
         let expectedFilePath = OfflineType.file(courseID: testData.courseID1, fileID: testData.fileID1).path()
@@ -141,21 +165,20 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
         let file = makeFile(id: testData.fileID1, courseID: testData.courseID1, isSelected: true)
 
         testee.saveCompletedSync(courses: [course], files: [file])
-        waitForMainDispatch()
 
         let filePath = OfflineType.file(courseID: testData.courseID1, fileID: testData.fileID1).path()
         XCTAssertEqual(session.horizonOfflineSyncItems.contains(filePath), false)
     }
 
-    // MARK: - appendSyncItems
+    func test_saveCompletedSync_shouldAppendToExistingItems() {
+        session.horizonOfflineSyncItems = [OfflineType.course(id: testData.courseID1).path()]
+        let course2 = makeCourse(id: testData.courseID2)
 
-    func test_appendSyncItems_shouldAppendItemsToSession() {
-        session.horizonOfflineSyncItems = ["existing path"]
+        testee.saveCompletedSync(courses: [course2], files: [])
 
-        testee.appendSyncItems(["new path 1", "new path 2"])
-        waitForMainDispatch()
-
-        XCTAssertEqual(session.horizonOfflineSyncItems, ["existing path", "new path 1", "new path 2"])
+        XCTAssertEqual(session.horizonOfflineSyncItems.count, 2)
+        XCTAssertEqual(session.horizonOfflineSyncItems.contains(OfflineType.course(id: testData.courseID1).path()), true)
+        XCTAssertEqual(session.horizonOfflineSyncItems.contains(OfflineType.course(id: testData.courseID2).path()), true)
     }
 
     // MARK: - Private helpers
@@ -182,12 +205,6 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
             courseID: courseID
         )
     }
-
-    private func waitForMainDispatch() {
-        let exp = expectation(description: "main dispatch")
-        DispatchQueue.main.async { exp.fulfill() }
-        wait(for: [exp], timeout: 1)
-    }
 }
 
 // MARK: - Mocks
@@ -195,7 +212,7 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
 private final class HCourseSyncFilesInteractorMock: HCourseSyncFilesInteractor {
     var removeUnavailableFilesCourseIDs: [String] = []
 
-    func downloadFiles(files: [OfflineFileItem], sessionID: String) -> AnyPublisher<[OfflineFileItem], Never> {
+    func downloadFiles(courses: [OfflineCourseItem], sessionID: String) -> AnyPublisher<HFileDownloadProgress, Never> {
         Empty().eraseToAnyPublisher()
     }
 
@@ -206,5 +223,19 @@ private final class HCourseSyncFilesInteractorMock: HCourseSyncFilesInteractor {
     func removeUnavailableFiles(courseId: String, newFileIDs: [String], sessionID: String) -> AnyPublisher<Void, Error> {
         removeUnavailableFilesCourseIDs.append(courseId)
         return Just(()).setFailureType(to: Error.self).eraseToAnyPublisher()
+    }
+}
+
+private final class HCourseSyncPagesInteractorMock: HCourseSyncPagesInteractor {
+    var deletedCourseIDs: [String] = []
+
+    func getPages(courseIds: [String]) -> AnyPublisher<HPageDownloadProgress, Error> {
+        Empty().eraseToAnyPublisher()
+    }
+
+    func cancelDownloads() {}
+
+    func deletePages(courseIds: [String], sessionID: String) {
+        deletedCourseIDs.append(contentsOf: courseIds)
     }
 }

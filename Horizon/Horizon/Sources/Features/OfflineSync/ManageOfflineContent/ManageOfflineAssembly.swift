@@ -31,7 +31,7 @@ struct ManageOfflineAssembly {
             interactor: interact,
             router: AppEnvironment.shared.router,
             session: session,
-            courseSyncInteractor: HCourseSyncInteractorLive(session: session)
+            courseSyncInteractor: HCourseSyncInteractorAssembly.makeInteractor()
         ) {
             AppEnvironment.shared.switchToTab(at: HorizonTabBarType.dashboard.index)
         }

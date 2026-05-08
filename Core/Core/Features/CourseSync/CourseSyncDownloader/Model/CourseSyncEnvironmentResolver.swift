@@ -64,15 +64,15 @@ public extension CourseSyncEnvironmentResolver {
     }
 }
 
-class CourseSyncEnvironmentResolverLive: CourseSyncEnvironmentResolver {
+public class CourseSyncEnvironmentResolverLive: CourseSyncEnvironmentResolver {
 
-    var userId: String {
+    public var userId: String {
         AppEnvironment.shared.currentSession?.userID ?? "self"
     }
 
-    func targetEnvironment(for courseID: CourseSyncID) -> AppEnvironment {
+    public func targetEnvironment(for courseID: CourseSyncID) -> AppEnvironment {
         .resolved(for: courseID.apiBaseURL, contextShardID: courseID.value.shardID)
     }
 
-    init() {}
+    public init() {}
 }

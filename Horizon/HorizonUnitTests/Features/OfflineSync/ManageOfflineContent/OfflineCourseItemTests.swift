@@ -23,12 +23,12 @@ import XCTest
 final class OfflineCourseItemTests: HorizonTestCase {
 
     private static let testData = (
-        courseID: "course 1",
+        courseID: "course1",
         courseName: "course name 1",
         courseSize: "5 MB",
-        subItemID1: "file 1",
-        subItemID2: "file 2",
-        subItemID3: "file 3",
+        subItemID1: "file1",
+        subItemID2: "file2",
+        subItemID3: "file3",
         subItemSizeInBytes1: Double(1_000_000),
         subItemSizeInBytes2: Double(2_000_000)
     )
@@ -197,8 +197,9 @@ final class OfflineCourseItemTests: HorizonTestCase {
         fileEntity.sizeInBytes = testData.subItemSizeInBytes1
         courseEntity.files = [fileEntity]
 
+        let fileSyncPath = OfflineType.file(courseID: testData.courseID, fileID: testData.subItemID1).path()
         let courseSyncPath = OfflineType.course(id: testData.courseID).path()
-        let testee = OfflineCourseItem(from: courseEntity, offlineSyncItems: [courseSyncPath])
+        let testee = OfflineCourseItem(from: courseEntity, offlineSyncItems: [fileSyncPath, courseSyncPath])
 
         XCTAssertEqual(testee.isSelected, true)
         XCTAssertEqual(testee.files.first?.isSelected, true)
