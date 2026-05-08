@@ -31,7 +31,7 @@ struct SelectEventFrequencyScreen: View, ScreenViewTrackable {
     }
 
     var body: some View {
-        InstUI.BaseScreen(state: .data, config: .notRefreshable) { geometry in
+        BaseScreen(state: .data, config: .notRefreshable) { geometry in
             VStack(alignment: .leading, spacing: 0) {
                 ForEach(viewModel.presetViewModels) { presetVM in
                     FrequencyPresetCell(
@@ -69,7 +69,7 @@ private struct FrequencyPresetCell: View {
                             .foregroundStyle(Color.textDarkest)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         Spacer()
-                        InstUI.Icons.Checkmark()
+                        AUI.Icons.Checkmark()
                             .foregroundStyle(Color.textDarkest)
                             .layoutPriority(1)
                             .opacity(isSelected ? 1 : 0)
@@ -82,7 +82,7 @@ private struct FrequencyPresetCell: View {
             .contentShape(Rectangle())
             .accessibilityAddTraits(isSelected ? .isSelected : [])
 
-            InstUI.Divider()
+            AUI.Divider()
         }
     }
 }

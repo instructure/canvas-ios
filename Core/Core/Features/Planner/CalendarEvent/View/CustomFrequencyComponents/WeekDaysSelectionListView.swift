@@ -40,7 +40,7 @@ struct WeekDaysSelectionListView: View {
                                     .textStyle(.dropDownOption)
                                     .frame(maxWidth: .infinity, alignment: .leading)
                                 Spacer()
-                                InstUI.Icons.Checkmark()
+                                AUI.Icons.Checkmark()
                                     .foregroundStyle(Color.textDarkest)
                                     .layoutPriority(1)
                                     .hidden(isSelected == false)
@@ -52,7 +52,7 @@ struct WeekDaysSelectionListView: View {
                     .accessibilityAddTraits(isSelected ? .isSelected : [])
 
                     if Weekday.allCases.last != weekDay {
-                        InstUI.Divider()
+                        AUI.Divider()
                     }
                 }
             }

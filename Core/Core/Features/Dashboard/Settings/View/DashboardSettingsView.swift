@@ -116,7 +116,7 @@ public struct DashboardSettingsView: View {
     }
 
     private func toggle(text: Text, isOn: Binding<Bool>, a11yID: String) -> some View {
-        InstUI.Toggle(isOn: isOn) {
+        AUI.Toggle(isOn: isOn) {
             text
                 .font(.semibold16)
                 .foregroundColor(.textDarkest)

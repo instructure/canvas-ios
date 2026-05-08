@@ -32,10 +32,14 @@ public struct OfflineListCellView: View {
     }
 
     enum State {
+        static func error(_ message: String?) -> Self {
+            .error(message: message, isSecondary: false)
+        }
+
         case idle
         case loading(Float?)
         case downloaded
-        case error(String?)
+        case error(message: String?, isSecondary: Bool)
 
         var isError: Bool {
             switch self {
@@ -165,10 +169,10 @@ public struct OfflineListCellView: View {
 
     @ViewBuilder
     private var errorText: some View {
-        if case .error(let error) = viewModel.state {
-            Text(error ?? String(localized: "Unknown Error", bundle: .core))
+        if case let .error(message, isSecondary) = viewModel.state {
+            Text(message ?? String(localized: "Unknown Error", bundle: .core))
                 .lineLimit(1)
-                .foregroundColor(.textDanger)
+                .foregroundColor(isSecondary ? .textWarning : .textDanger)
                 .font(.regular14)
         }
     }

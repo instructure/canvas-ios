@@ -1,0 +1,92 @@
+{
+  "alert": {
+    "background": {
+      "value": "{color.background.elevatedSurface.base}",
+      "type": "color"
+    },
+    "borderRadius": {
+      "value": "{borderRadius.lg}",
+      "type": "borderRadius"
+    },
+    "borderStyle": {
+      "value": "solid",
+      "type": "other"
+    },
+    "borderWidth": {
+      "value": "{borderWidth.md}",
+      "type": "borderWidth"
+    },
+    "closeButtonMarginRight": {
+      "value": "0.5rem",
+      "type": "other"
+    },
+    "closeButtonMarginTop": {
+      "value": "0.5rem",
+      "type": "other"
+    },
+    "color": {
+      "value": "{color.text.base}",
+      "type": "color"
+    },
+    "contentFontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "contentFontSize": {
+      "value": "{fontSize.textBase}",
+      "type": "fontSizes"
+    },
+    "contentFontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "contentLineHeight": {
+      "value": "{lineHeight.standalone.base}",
+      "type": "lineHeights"
+    },
+    "dangerBorderColor": {
+      "value": "{color.stroke.error}",
+      "type": "color"
+    },
+    "dangerIconBackground": {
+      "value": "{color.background.error}",
+      "type": "color"
+    },
+    "iconColor": {
+      "value": "{color.icon.onColor}",
+      "type": "color"
+    },
+    "infoBorderColor": {
+      "value": "{color.stroke.info}",
+      "type": "color"
+    },
+    "infoIconBackground": {
+      "value": "{color.background.info}",
+      "type": "color"
+    },
+    "successBorderColor": {
+      "value": "{color.stroke.success}",
+      "type": "color"
+    },
+    "successIconBackground": {
+      "value": "{color.background.success}",
+      "type": "color"
+    },
+    "warningBorderColor": {
+      "value": "{color.stroke.warning}",
+      "type": "color"
+    },
+    "warningIconBackground": {
+      "value": "{color.background.warning}",
+      "type": "color"
+    },
+    "contentPaddingVertical": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "contentPaddingHorizontal": {
+      "value": "{spacing.spaceXl}",
+      "type": "spacing"
+    }
+  }
+}

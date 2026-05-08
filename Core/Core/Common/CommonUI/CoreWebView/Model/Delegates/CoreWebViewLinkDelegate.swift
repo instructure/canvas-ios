@@ -42,9 +42,27 @@ extension CoreWebViewLinkDelegate {
 // MARK: - Links Handling
 
 extension CoreWebViewLinkDelegate where Self: UIViewController {
+
     public func handleLink(_ url: URL) -> Bool {
         AppEnvironment.shared.router.route(to: url, from: routeLinksFrom)
         return true
     }
+
     public var routeLinksFrom: UIViewController { self }
+
+    public func coreWebView(_ webView: CoreWebView, didFinishAttachmentDownload attachment: CoreWebAttachment) {
+        guard attachment.originIsBlob else { return }
+
+        showShareSheet(for: attachment)
+    }
+
+    public func showShareSheet(for attachment: CoreWebAttachment) {
+        let shareSheet = UIActivityViewController(activityItems: [attachment.url], applicationActivities: nil)
+        if let popover = shareSheet.popoverPresentationController {
+            popover.sourceView = view
+            popover.sourceRect = CGRect(x: view.bounds.midX, y: view.bounds.midY, width: 0, height: 0)
+            popover.permittedArrowDirections = []
+        }
+        AppEnvironment.shared.router.show(shareSheet, from: self, options: .modal(.pageSheet, isDismissable: true))
+    }
 }

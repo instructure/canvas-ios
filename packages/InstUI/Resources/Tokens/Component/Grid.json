@@ -1,0 +1,68 @@
+{
+  "grid": {
+    "mediumMin": {
+      "value": "{size.media.mediumMin}",
+      "type": "sizing"
+    },
+    "largeMin": {
+      "value": "{size.media.largeMin}",
+      "type": "sizing"
+    },
+    "xLargeMin": {
+      "value": "{size.media.xLargeMin}",
+      "type": "sizing"
+    }
+  },
+  "gridCol": {
+    "mediumMin": {
+      "value": "{size.media.mediumMin}",
+      "type": "sizing"
+    },
+    "largeMin": {
+      "value": "{size.media.largeMin}",
+      "type": "sizing"
+    },
+    "xLargeMin": {
+      "value": "{size.media.xLargeMin}",
+      "type": "sizing"
+    },
+    "spacingLarge": {
+      "value": "2.25rem",
+      "type": "spacing"
+    },
+    "spacingMedium": {
+      "value": "{spacing.spaceXl}",
+      "type": "spacing"
+    },
+    "spacingSmall": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    }
+  },
+  "gridRow": {
+    "mediumMin": {
+      "value": "{size.media.mediumMin}",
+      "type": "sizing"
+    },
+    "largeMin": {
+      "value": "{size.media.largeMin}",
+      "type": "sizing"
+    },
+    "xLargeMin": {
+      "value": "{size.media.xLargeMin}",
+      "type": "sizing"
+    },
+    "spacingLarge": {
+      "value": "2.25rem",
+      "type": "spacing"
+    },
+    "spacingMedium": {
+      "value": "{spacing.spaceXl}",
+      "type": "spacing"
+    },
+    "spacingSmall": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    }
+  }
+}

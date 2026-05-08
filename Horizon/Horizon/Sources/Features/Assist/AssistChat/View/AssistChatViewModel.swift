@@ -37,7 +37,7 @@ final class AssistChatViewModel {
     private(set) var isLoaderVisible = false
     private(set) var isRetryButtonVisible = false
     private let scheduler: AnySchedulerOf<DispatchQueue>
-    private(set) var state: InstUI.ScreenState = .data
+    private(set) var state: ScreenState = .data
     var isDisableSendButton: Bool {
         message.trimmed().isEmpty || !canSendMessage
     }
@@ -160,7 +160,7 @@ final class AssistChatViewModel {
     /// handle the response from the interactor
     private func onMessage(_ response: AssistChatResponse) {
         guard let viewController = viewController else { return }
-        weak var weakSelf = self
+        weak let weakSelf = self
         self.chatMessages = response.history
         var newMessages: [AssistChatMessageViewModel] = []
 
@@ -214,7 +214,7 @@ final class AssistChatViewModel {
 
     /// add new messages to the list of messages
     private func add(newMessages: [AssistChatMessageViewModel]) {
-        weak var weakSelf = self
+        weak let weakSelf = self
         newMessages
             .filter { newMessage in
                 guard let self = weakSelf else { return false }

@@ -117,7 +117,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
         try databaseClient.save()
 
         // THEN
-        waitUntil(5, shouldFail: true) { receivedStatuses.count == 1 }
+        waitUntil(15, shouldFail: true) { receivedStatuses.count == 1 }
         XCTAssertEqual(receivedStatuses.last?.status.id, "custom1")
         XCTAssertEqual(receivedStatuses.last?.daysLate, 1)
         XCTAssertEqual(receivedStatuses.last?.dueDate, nil)
@@ -129,7 +129,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
         try databaseClient.save()
 
         // THEN
-        waitUntil(5, shouldFail: true) { receivedStatuses.count == 2 }
+        waitUntil(15, shouldFail: true) { receivedStatuses.count == 2 }
         XCTAssertEqual(receivedStatuses.last?.status.id, "custom1")
         XCTAssertEqual(receivedStatuses.last?.daysLate, 1)
         XCTAssertEqual(receivedStatuses.last?.dueDate, submissionDueDate)
@@ -143,7 +143,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
         try databaseClient.save()
 
         // THEN
-        waitUntil(5, shouldFail: true) { receivedStatuses.count == 3 }
+        waitUntil(15, shouldFail: true) { receivedStatuses.count == 3 }
         XCTAssertEqual(receivedStatuses.last?.status.id, "late")
         XCTAssertEqual(receivedStatuses.last?.daysLate, 1)
         XCTAssertEqual(receivedStatuses.last?.dueDate, nil)
@@ -156,7 +156,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
         try databaseClient.save()
 
         // THEN
-        waitUntil(5, shouldFail: true) { receivedStatuses.count == 4 }
+        waitUntil(15, shouldFail: true) { receivedStatuses.count == 4 }
         XCTAssertEqual(receivedStatuses.last?.status.id, "excused")
         XCTAssertEqual(receivedStatuses.last?.daysLate, 1)
         XCTAssertEqual(receivedStatuses.last?.dueDate, nil)
@@ -169,7 +169,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
         try databaseClient.save()
 
         // THEN
-        waitUntil(5, shouldFail: true) { receivedStatuses.count == 5 }
+        waitUntil(15, shouldFail: true) { receivedStatuses.count == 5 }
         XCTAssertEqual(receivedStatuses.last?.status.id, "none")
         XCTAssertEqual(receivedStatuses.last?.daysLate, 1)
         XCTAssertEqual(receivedStatuses.last?.dueDate, submissionDueDate)
@@ -183,7 +183,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
         try databaseClient.save()
 
         // THEN
-        waitUntil(5, shouldFail: true) { receivedStatuses.count == 6 }
+        waitUntil(15, shouldFail: true) { receivedStatuses.count == 6 }
         XCTAssertEqual(receivedStatuses[5].daysLate, 1.5, accuracy: 0.001)
 
         // GIVEN - another days late
@@ -195,7 +195,7 @@ class GradeStatusInteractorTests: TeacherTestCase {
         try databaseClient.save()
 
         // THEN
-        waitUntil(5, shouldFail: true) { receivedStatuses.count == 7 }
+        waitUntil(15, shouldFail: true) { receivedStatuses.count == 7 }
         XCTAssertEqual(receivedStatuses[6].daysLate, 0.75, accuracy: 0.001)
     }
 

@@ -31,7 +31,7 @@ struct HInboxView: View {
     @Bindable var viewModel: HInboxViewModel
 
     var body: some View {
-        InstUI.BaseScreen(
+        BaseScreen(
             state: viewModel.screenState,
             config: .init(refreshable: true),
             refreshAction: viewModel.refresh

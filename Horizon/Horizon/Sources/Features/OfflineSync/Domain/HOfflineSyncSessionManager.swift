@@ -37,7 +37,7 @@ final class HOfflineSyncSessionManagerLive: HOfflineSyncSessionManager {
     // MARK: - Public variables
 
     var sessionID: String { session.sessionID }
-    var syncedItemPaths: [String] { session.horizonOfflineSyncItems }
+    var syncedItemPaths: [String] { session.offlineSyncSelections }
 
     // MARK: - Dependencies
 

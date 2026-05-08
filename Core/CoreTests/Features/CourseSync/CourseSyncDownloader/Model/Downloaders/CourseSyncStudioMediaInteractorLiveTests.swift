@@ -155,12 +155,15 @@ class CourseSyncStudioMediaInteractorLiveTests: CoreTestCase {
         )
 
         // WHEN
-        XCTAssertFinish(testee.getContent(courseIDs: ["1"]))
+        var receivedFailedCourseIDs: [CourseSyncID]?
+        let subscription = testee.getContent(courseIDs: ["1"]).sink { receivedFailedCourseIDs = $0 }
 
         // THEN
+        XCTAssertNotNil(receivedFailedCourseIDs)
         XCTAssertEqual(remoteLogHandler.lastErrorName, "Studio Offline Sync Failed")
         XCTAssertEqual(remoteLogHandler.lastErrorReason, expectedError.debugDescription)
         XCTAssertEqual(remoteLogHandler.totalErrorCount, 1)
+        subscription.cancel()
     }
 }
 

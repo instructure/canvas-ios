@@ -37,7 +37,7 @@ protocol HTMLDownloadInteractor {
         _ url: URL,
         courseId: CourseSyncID,
         resourceId: String
-    ) -> AnyPublisher<String, Never>
+    ) -> AnyPublisher<String, Error>
 
     func saveBaseContent(
         content: String,
@@ -72,7 +72,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         _ url: URL,
         courseId: CourseSyncID,
         resourceId: String
-    ) -> AnyPublisher<String, Never> {
+    ) -> AnyPublisher<String, Error> {
         let fileID = url.pathComponents[(url.pathComponents.firstIndex(of: "files") ?? 0) + 1]
         return Just(url)
             .setFailureType(to: Error.self)
@@ -84,9 +84,7 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
                         environment: envResolver.targetEnvironment(for: courseId)
                     )
                     .getEntities(ignoreCache: false)
-                    .map { files in
-                        return files.first?.url ?? url
-                    }
+                    .extractUnlockedFileURL(defaultURL: url)
                     .eraseToAnyPublisher()
                 } else {
                     return Just(url).setFailureType(to: Error.self).eraseToAnyPublisher()
@@ -116,12 +114,11 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
                             envResolver: envResolver
                         )
                         .map { [sectionName] _ in
-                            "\(loginSession.baseURL)/courses/\(courseId)/files/\(sectionName)/\(resourceId)/\(fileID)/offline"
+                            "\(loginSession.baseURL)/courses/\(courseId.value)/files/\(sectionName)/\(resourceId)/\(fileID)/offline"
                         }
                     }
                     .eraseToAnyPublisher()
             }
-            .replaceError(with: "")
             .eraseToAnyPublisher()
     }
 
@@ -202,5 +199,26 @@ class HTMLDownloadInteractorLive: HTMLDownloadInteractor {
         } catch {
             return Result.Publisher(.failure(NSError.instructureError(String(localized: "Failed to save image", bundle: .core)))).eraseToAnyPublisher()
         }
+    }
+}
+
+// MARK: - Helpers
+
+private extension Publisher where Output == [File] {
+
+    func extractUnlockedFileURL(defaultURL: URL) -> some Publisher<URL, any Error> {
+        tryMap({ files in
+            if let file = files.first {
+                if file.locked {
+                    throw NSError.instructureError(
+                        "File is locked",
+                        code: HttpError.forbidden
+                    )
+                } else {
+                    return file.url ?? defaultURL
+                }
+            }
+            return defaultURL
+        })
     }
 }

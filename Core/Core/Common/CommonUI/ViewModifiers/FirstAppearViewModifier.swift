@@ -22,6 +22,10 @@ extension View {
     public func onFirstAppear(perform action: (() -> Void)? = nil) -> some View {
         modifier(FirstAppearViewModifier(action: action))
     }
+
+    public func onNonFirstAppear(perform action: (() -> Void)? = nil) -> some View {
+        modifier(NonFirstAppearViewModifier(action: action))
+    }
 }
 
 private struct FirstAppearViewModifier: ViewModifier {
@@ -38,6 +42,25 @@ private struct FirstAppearViewModifier: ViewModifier {
                 return
             }
             didAppearOnce = true
+            action?()
+        }
+    }
+}
+
+private struct NonFirstAppearViewModifier: ViewModifier {
+    @State private var didAppearOnce = false
+    private let action: (() -> Void)?
+
+    init(action: (() -> Void)? = nil) {
+        self.action = action
+    }
+
+    func body(content: Content) -> some View {
+        content.onAppear {
+            guard didAppearOnce else {
+                didAppearOnce = true
+                return
+            }
             action?()
         }
     }

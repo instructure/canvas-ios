@@ -32,7 +32,7 @@ public struct InboxSettingsView: View {
     }
 
     public var body: some View {
-        InstUI.BaseScreen(
+        BaseScreen(
             state: viewModel.state,
             config: .notRefreshable
         ) { geometry in
@@ -75,7 +75,7 @@ public struct InboxSettingsView: View {
 
             separator
 
-            InstUI.Toggle(isOn: $viewModel.useSignature) {
+            AUI.Toggle(isOn: $viewModel.useSignature) {
                 Text("Signature", bundle: .core)
                     .font(.semibold16, lineHeight: .condensed)
                     .foregroundColor(.textDarkest)
@@ -95,7 +95,7 @@ public struct InboxSettingsView: View {
                     .accessibilityHidden(true)
                     .padding(.vertical, defaultPadding)
 
-                InstUI.UITextViewWrapper(text: $viewModel.signature) { tv in
+                AUI.UITextViewWrapper(text: $viewModel.signature) { tv in
                     tv.placeholder = String(localized: "Write your signature here", bundle: .core)
                     tv.placeholderColor = .textPlaceholder
                     tv.isScrollEnabled = false

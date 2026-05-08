@@ -23,6 +23,7 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
     var courseID: String!
     var moduleID: String!
     var itemID: String!
+    var offlineModeInteractor: OfflineModeInteractor = OfflineModeAssembly.make()
 
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var errorView: ListErrorView!
@@ -51,6 +52,13 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
     private var item: ModuleItem? { store.first }
     private var observations: [NSKeyValueObservation]?
     private var isMarkingModule = false
+    private var isOfflineStudioItem: Bool {
+        guard
+            offlineModeInteractor.isNetworkOffline(),
+            case let .externalTool(_, url) = item?.type
+        else { return false }
+        return url.isStudioMediaLTILaunchURL
+    }
 
     public static func create(env: AppEnvironment, courseID: String, moduleID: String, itemID: String) -> Self {
         let controller = loadFromStoryboard()
@@ -110,7 +118,7 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
     private func updateNavBar() {
         // When embedded view controllers adapt course color for their own spinner view,
         // we should enable this line below.
-//        spinnerView.color = course.first?.color
+        // spinnerView.color = course.first?.color
         if #available(iOS 26, *) {
             navigationItem.subtitle = course.first?.name
         } else {
@@ -123,6 +131,8 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
             title = String(localized: "Assignment Details", bundle: .core)
         case .discussion:
             title = String(localized: "Discussion Details", bundle: .core)
+        case .externalTool where isOfflineStudioItem:
+            title = item?.title ?? String(localized: "External Tool", bundle: .core)
         case .externalTool:
             title = String(localized: "External Tool", bundle: .core)
         case .externalURL:
@@ -155,6 +165,16 @@ public final class ModuleItemDetailsViewController: UIViewController, ColoredNav
         case .externalURL(let url):
             return ExternalURLViewController.create(env: env, name: item.title, url: url, courseID: item.courseID)
         case let .externalTool(toolID, url):
+
+            if isOfflineStudioItem, let sessionID = env.currentSession?.uniqueID {
+                return StudioOfflineModuleItemViewController.create(
+                    sessionID: sessionID,
+                    courseID: courseID,
+                    moduleItemID: itemID,
+                    title: item.title
+                )
+            }
+
             let tools = LTITools(
                 context: .course(courseID),
                 id: toolID,

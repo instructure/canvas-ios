@@ -33,7 +33,7 @@ struct TeacherAssignmentListSubItemCell: View {
     }
 
     var body: some View {
-        InstUI.ContextItemListSubItemCell(
+        AUI.ContextItemListSubItemCell(
             labels: {
                 titleLabel
                 dueDateLabel
@@ -101,7 +101,7 @@ extension TeacherAssignmentListSubItemCell: Equatable {
         ]
 
         ForEach(rows) { row in
-            InstUI.CollapsibleListRow(
+            AUI.CollapsibleListRow(
                 cell: TeacherAssignmentListItemCell(model: row, isLastItem: nil) {},
                 isInitiallyExpanded: true
             ) {
@@ -109,7 +109,7 @@ extension TeacherAssignmentListSubItemCell: Equatable {
                     TeacherAssignmentListSubItemCell(model: subItem) {}
                 }
             }
-            InstUI.Divider()
+            AUI.Divider()
         }
     }
     .tint(.course10)

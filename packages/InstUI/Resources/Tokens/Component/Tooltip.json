@@ -1,0 +1,20 @@
+{
+  "tooltip": {
+    "padding": {
+      "value": "{spacing.spaceMd}",
+      "type": "spacing"
+    },
+    "fontFamily": {
+      "value": "{fontFamily.base}",
+      "type": "fontFamilies"
+    },
+    "fontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "fontSize": {
+      "value": "{fontSize.textSm}",
+      "type": "fontSizes"
+    }
+  }
+}

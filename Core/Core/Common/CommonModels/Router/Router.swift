@@ -372,7 +372,8 @@ open class Router {
         var url = url
         url.percentEncodedQuery = url.percentEncodedQuery?.replacingOccurrences(of: "+", with: "%20")
 
-        if url.path.isNotEmpty, url.path.hasPrefix("/") == false {
+        let isWebScheme = url.scheme == nil || url.scheme == "http" || url.scheme == "https"
+        if isWebScheme, url.path.isNotEmpty, url.path.hasPrefix("/") == false {
             url.path = "/" + url.path
         }
 

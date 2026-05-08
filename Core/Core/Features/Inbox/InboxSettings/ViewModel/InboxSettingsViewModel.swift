@@ -25,7 +25,7 @@ public class InboxSettingsViewModel: ObservableObject {
     @Published public var useSignature: Bool = false
     @Published public var signature: String = ""
     @Published public var enableSaveButton: Bool = false
-    @Published public var state: InstUI.ScreenState = .loading
+    @Published public var state: ScreenState = .loading
     @Published public var showFailedToSaveDialog: Bool = false
     @Published public var showFailedToLoadDialog: Bool = false
 

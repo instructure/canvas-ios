@@ -206,7 +206,7 @@ public struct ToggleRow: View {
     }
 
     public var body: some View {
-        InstUI.Toggle(isOn: $value) { label }
+        AUI.Toggle(isOn: $value) { label }
             .font(.semibold16).foregroundColor(.textDarkest)
             .padding(16)
             .background(Color.backgroundLightest)

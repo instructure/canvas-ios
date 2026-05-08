@@ -21,6 +21,7 @@ import SwiftUI
 
 struct WeeklySummaryWidgetWeekSelectorView: View {
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @AccessibilityFocusState private var isWeekRangeFocused: Bool
     var viewModel: WeeklySummaryWidgetViewModel
     @Binding var transitionOffset: CGFloat
 
@@ -48,6 +49,10 @@ struct WeeklySummaryWidgetWeekSelectorView: View {
                     insertion: .opacity.combined(with: .offset(x: transitionOffset)),
                     removal: .opacity.combined(with: .offset(x: -transitionOffset))
                 ))
+                .accessibilityFocused($isWeekRangeFocused)
+                .onChange(of: viewModel.isWeekRangeFocused) {
+                    isWeekRangeFocused = true
+                }
 
             Button {
                 transitionOffset = WeeklySummaryWidgetView.weekTransitionOffsetMagnitude

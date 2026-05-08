@@ -20,8 +20,8 @@ import AVKit
 import Combine
 import Core
 import Firebase
-import FirebaseCrashlyticsSwift
-import FirebaseRemoteConfigSwift
+import FirebaseCrashlytics
+import FirebaseRemoteConfig
 import PSPDFKit
 import SafariServices
 import UIKit
@@ -40,17 +40,15 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         env.window = window
         return env
     }()
-    private var environmentFeatureFlags: Store<GetEnvironmentFeatureFlags>?
     private var isK5User = false
 
-    private lazy var analyticsTracker: PendoAnalyticsTracker = {
-        .init(environment: environment)
-    }()
+    private lazy var analyticsHandler: AnalyticsHandler = .live(environment: environment)
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if NSClassFromString("XCTestCase") != nil { return true }
         LoginSession.migrateSessionsToBeAccessibleWhenDeviceIsLocked()
         setupFirebase()
+        Analytics.shared.handler = analyticsHandler
         CacheManager.resetAppIfNecessary()
         #if DEBUG
             UITestHelpers.setup(self)
@@ -76,61 +74,48 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         return true
     }
 
-    func setup(session: LoginSession, wasReload: Bool = false) {
+    func setup(session: LoginSession) {
         environment.userDidLogin(session: session)
 
-        let getProfile = GetUserProfileRequest(userID: "self")
-        environment.api.makeRequest(getProfile) { apiProfile, _, error in performUIUpdate {
-            PageViewEventController.instance.userDidChange()
+        unowned let unownedSelf = self
 
-            guard let apiProfile, error == nil else {
-                UIAlertController.showLoginErrorAlert(
-                    cancelAction: { [weak self] in
-                        self?.userDidLogout(session: session)
-                    },
-                    retryAction: { [weak self] in
-                        self?.setup(session: session)
+        ReactiveStore(useCase: GetUserProfile())
+            .getEntities(ignoreCache: true)
+            .flatMap { list in
+                let userProfile = list.first
+                return unownedSelf.setupUserEnvironment()
+                    .flatMap { unownedSelf.loadFeatureFlags() }
+                    .flatMap { unownedSelf.analyticsHandler.initializeTracking(environment: unownedSelf.environment) }
+                    .flatMap { unownedSelf.showLanguageAlertIfNeeded(locale: userProfile?.locale ?? session.locale) }
+                    .flatMap { unownedSelf.getAndSetBrandTheme() }
+                    .eraseToAnyPublisher()
+            }
+            .sink(
+                receiveCompletion: { completion in
+                    switch completion {
+                    case .finished:
+                        break
+                    case let .failure(error):
+                        unownedSelf.showErrorAlert(error: error, session: session)
                     }
-                )
-                return
-            }
-
-            self.environmentFeatureFlags = self.environment.subscribe(GetEnvironmentFeatureFlags(context: Context.currentUser))
-            self.environmentFeatureFlags?.refresh(force: true) { _ in
-                defer { self.environmentFeatureFlags = nil }
-                guard let envFlags = self.environmentFeatureFlags, envFlags.error == nil else { return }
-                self.initializeTracking(environmentFeatureFlags: envFlags.all)
-            }
-
-            self.updateInterfaceStyle(for: self.window)
-            CoreWebView.keepCookieAlive(for: self.environment)
-            PushNotificationsInteractor.shared.userDidLogin(api: self.environment.api)
-
-            self.isK5User = apiProfile.k5_user == true
-            Analytics.shared.logSession(session)
-
-            LocalizationManager.localizeForApp(UIApplication.shared, locale: apiProfile.locale) {
-                ReactiveStore(useCase: GetBrandVariables())
-                    .getEntities()
-                    .receive(on: RunLoop.main)
-                    .replaceError(with: [])
-                    .sink { [weak self] brandVars in
-                        brandVars.first?.applyBrandTheme()
-                        self?.setTabBarController()
-                    }
-                    .store(in: &self.subscriptions)
-            }
-        }}
+                },
+                receiveValue: {
+                    Analytics.shared.logSession(session)
+                    unownedSelf.setTabBarController()
+                }
+            )
+            .store(in: &subscriptions)
     }
 
     func setTabBarController() {
-        guard let window = self.window else { return }
+        guard let window else { return }
+
         let controller = TeacherTabBarController()
         controller.view.layoutIfNeeded()
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
             window.rootViewController = controller
-        }, completion: { _ in
-            self.environment.startupDidComplete()
+        }, completion: { [weak self] _ in
+            self?.environment.startupDidComplete()
             UIApplication.shared.registerForPushNotifications()
         })
     }
@@ -180,8 +165,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
-        if url.scheme?.range(of: "pendo") != nil {
-            analyticsTracker.initManager(with: url)
+        if analyticsHandler.handlePendoPairingModeUrl(url: url) {
             return true
         }
 
@@ -208,7 +192,71 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
     }
 }
 
+// MARK: - Setup User Environment
+
+extension TeacherAppDelegate {
+
+    private func setupUserEnvironment() -> AnyPublisher<Void, Error> {
+        updateInterfaceStyle(for: window)
+        CoreWebView.keepCookieAlive(for: environment)
+        PushNotificationsInteractor.shared.userDidLogin(api: environment.api)
+
+        return Publishers.typedJust()
+    }
+
+    private func loadFeatureFlags() -> AnyPublisher<Void, Error> {
+        ReactiveStore(
+            useCase: GetEnvironmentFeatureFlags(context: Context.currentUser)
+        )
+        .getEntities(ignoreCache: true)
+        .mapToVoid()
+        .eraseToAnyPublisher()
+    }
+
+    private func showLanguageAlertIfNeeded(locale: String?) -> AnyPublisher<Void, Error> {
+        LocalizationManager.localizeForApp(
+            UIApplication.shared,
+            locale: locale
+        )
+        .flatMap { [weak self] languageAlert -> AnyPublisher<Void, Error> in
+            if let languageAlert, let rootVC = self?.environment.window?.rootViewController {
+                if let presented = rootVC.presentedViewController { // QR login alert
+                    self?.environment.router.dismiss(presented) {
+                        self?.environment.router.show(languageAlert, from: rootVC, options: .modal())
+                    }
+                } else {
+                    self?.environment.router.show(languageAlert, from: rootVC, options: .modal())
+                }
+                return Publishers.typedEmpty()
+            } else {
+                return Publishers.typedJust()
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+
+    private func getAndSetBrandTheme() -> AnyPublisher<Void, Error> {
+        ReactiveStore(useCase: GetBrandVariables())
+            .getEntities(ignoreCache: true)
+            .compactMap { $0.first }
+            .map { $0.applyBrandTheme() }
+            .eraseToAnyPublisher()
+    }
+
+    private func showErrorAlert(error: Error, session: LoginSession) {
+        UIAlertController.showLoginErrorAlert(
+            cancelAction: { [weak self] in
+                self?.userDidLogout(session: session)
+            },
+            retryAction: { [weak self] in
+                self?.setup(session: session)
+            }
+        )
+    }
+}
+
 // MARK: PageView Logging
+
 extension TeacherAppDelegate {
     func setupPageViewLogging() {
         class BackgroundAppHelper: AppBackgroundHelperProtocol {
@@ -241,39 +289,12 @@ extension TeacherAppDelegate {
     }
 }
 
-// MARK: - Usage Analytics
-
-extension TeacherAppDelegate: AnalyticsHandler {
-    func handleEvent(_ name: String, parameters: [String: Any]?) {
-        analyticsTracker.track(name, properties: parameters)
-
-        PageViewEventController.instance.logPageView(
-            name,
-            attributes: parameters
-        )
-    }
-
-    private func initializeTracking(environmentFeatureFlags: [FeatureFlag]) {
-        guard !ProcessInfo.isUITest else { return }
-
-        let isTrackingEnabled = environmentFeatureFlags.isFeatureEnabled(.send_usage_metrics)
-
-        if isTrackingEnabled {
-            analyticsTracker.startSession()
-        } else {
-            analyticsTracker.endSession()
-        }
-    }
-
-    private func disableTracking() {
-        analyticsTracker.endSession()
-    }
-}
+// MARK: - Login Delegate
 
 extension TeacherAppDelegate: LoginDelegate {
     func changeUser() {
         guard let window = window, window.isShowingLoginStartViewController == false else { return }
-        disableTracking()
+        analyticsHandler.endTracking()
         LoginViewModel().showLoginView(on: window, loginDelegate: self, app: .teacher)
     }
 
@@ -308,10 +329,9 @@ extension TeacherAppDelegate: LoginDelegate {
     }
 
     func userDidStopActing(as session: LoginSession) {
-        disableTracking()
+        analyticsHandler.endTracking()
         LoginSession.remove(session)
         guard environment.currentSession == session else { return }
-        PageViewEventController.instance.userDidChange()
         PushNotificationsInteractor.shared.unsubscribeFromCanvasPushNotifications()
         UNUserNotificationCenter.current().setBadgeCount(0)
         environment.userDidLogout(session: session)
@@ -319,7 +339,7 @@ extension TeacherAppDelegate: LoginDelegate {
     }
 
     func userDidLogout(session: LoginSession) {
-        disableTracking()
+        analyticsHandler.endTracking()
         let wasCurrent = environment.currentSession == session
         API(session).makeRequest(DeleteLoginOAuthRequest(), refreshToken: false) { _, _, _ in }
         userDidStopActing(as: session)
@@ -400,7 +420,6 @@ extension TeacherAppDelegate {
         if FirebaseOptions.defaultOptions()?.apiKey != nil {
             FirebaseApp.configure()
             configureRemoteConfig()
-            Core.Analytics.shared.handler = self
             RemoteLogger.shared.handler = self
         }
     }

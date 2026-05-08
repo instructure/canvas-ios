@@ -18,7 +18,7 @@
         "cy" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ychwanegu Tasg i’w Gwneud"
+            "value" : "Ychwanegu Tasg i'w Gwneud"
           }
         },
         "da" : {
@@ -78,7 +78,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Agregar ítems Por hacer"
+            "value" : "Agregar ítem pendiente"
           }
         },
         "es-ES" : {
@@ -96,13 +96,13 @@
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ajouter une tâche À faire"
+            "value" : "Ajouter une tâche À Faire"
           }
         },
         "fr-CA" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ajouter une tâche à accomplir"
+            "value" : "Ajouter une tâche à faire"
           }
         },
         "ga" : {

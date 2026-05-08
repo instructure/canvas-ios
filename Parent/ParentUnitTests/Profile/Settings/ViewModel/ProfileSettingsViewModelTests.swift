@@ -24,6 +24,7 @@ import XCTest
 class ProfileSettingsViewModelTests: ParentTestCase {
     private let inboxSettingsInteractor = InboxSettingsInteractorMock()
     private let offlineInteractor = OfflineInteractorMock()
+    private let analyticsConsentInteractor = AnalyticsConsentInteractorMock()
 
     private var testee: ProfileSettingsViewModel!
 
@@ -33,6 +34,7 @@ class ProfileSettingsViewModelTests: ParentTestCase {
         testee = ProfileSettingsViewModel(
             inboxSettingsInteractor: inboxSettingsInteractor,
             offlineInteractor: offlineInteractor,
+            analyticsConsentInteractor: analyticsConsentInteractor,
             environment: env
         )
     }
@@ -56,13 +58,15 @@ class ProfileSettingsViewModelTests: ParentTestCase {
         XCTAssertEqual(testee.settingsGroups[1].viewModel.itemViews[0].viewModel.title, "Inbox Signature")
         XCTAssertEqual(testee.settingsGroups[1].viewModel.itemViews[0].viewModel.valueLabel, "Enabled")
 
-        XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews.count, 2)
-        XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[0].viewModel.title, "Privacy Policy")
+        XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews.count, 3)
+        XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[0].viewModel.title, "Privacy Settings")
         XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[0].viewModel.valueLabel, nil)
-        XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[0].viewModel.isLink, true)
-        XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[1].viewModel.title, "Terms of Use")
+        XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[1].viewModel.title, "Privacy Policy")
         XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[1].viewModel.valueLabel, nil)
-        XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[1].viewModel.isLink, false)
+        XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[1].viewModel.isLink, true)
+        XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[2].viewModel.title, "Terms of Use")
+        XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[2].viewModel.valueLabel, nil)
+        XCTAssertEqual(testee.settingsGroups[2].viewModel.itemViews[2].viewModel.isLink, false)
     }
 
     func testInboxStates() {

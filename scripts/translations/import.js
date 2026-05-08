@@ -17,7 +17,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
-const program = require('commander')
+const { program }  = require('commander')
 const { execSync, spawn } = require('child_process')
 const { createReadStream, readFileSync, writeFileSync, readdir } = require('fs')
 const mkdirp = require('mkdirp')
@@ -41,8 +41,10 @@ program.on('--help', () => {
 })
 program.parse(process.argv)
 
+let programOpts = program.opts()
+
 if (
-  !program.skipPull &&
+  !programOpts.skipPull &&
   (!process.env.AWS_ACCESS_KEY_ID || !process.env.AWS_SECRET_ACCESS_KEY)
 ) {
   program.outputHelp()
@@ -59,12 +61,12 @@ function run(cmd, args, opts) {
     const command = spawn(cmd, args, opts)
     // If we don't read these xcodebuild just hangs
     command.stdout.on('data', (data) => {
-      if (program.verbose) {
+      if (programOpts.verbose) {
 	    console.log(`${data}`)
       }
 	})
     command.stderr.on('data', (data) => {
-      if (program.verbose) {
+      if (programOpts.verbose) {
 	    console.log(`${data}`)
       }
 	})
@@ -77,11 +79,11 @@ function run(cmd, args, opts) {
 }
 
 async function importTranslations() {
-  if (!program.skipPull) {
+  if (!programOpts.skipPull) {
     await pullTranslationsFromS3()
   }
 
-  if (program.import) {
+  if (programOpts.import) {
     await importXcodeTranslations()
   }
   

@@ -26,7 +26,7 @@ class SubmissionCommentListViewModel: ObservableObject {
 
     // MARK: - Outputs
 
-    @Published private(set) var state: InstUI.ScreenState = .loading
+    @Published private(set) var state: ScreenState = .loading
     @Published private(set) var contextColor: Color = Color(Brand.shared.primary)
     @Published private(set) var cellViewModels: [SubmissionCommentListCellViewModel] = []
     @Published private(set) var isCommentLibraryEnabled: Bool = false

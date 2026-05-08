@@ -128,6 +128,7 @@ class PublisherExtensionsTests: XCTestCase {
         var parseCalled = false
         var attachmentParseCalled = false
         var envResolver: CourseSyncEnvironmentResolver = .mocked()
+        var embeddedContentFailurePublisher: AnyPublisher<CourseSyncID, Never> = Empty().eraseToAnyPublisher()
 
         func parse(_ content: String, resourceId: String, courseId: CourseSyncID, baseURL: URL?) -> AnyPublisher<String, Error> {
             parseCalled = true

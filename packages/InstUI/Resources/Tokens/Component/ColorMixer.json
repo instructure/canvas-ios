@@ -1,0 +1,96 @@
+{
+  "palette": {
+    "whiteColor": {
+      "value": "{color.background.elevatedSurface.base}",
+      "type": "color"
+    },
+    "indicatorBorderWidth": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "paletteBorderWidth": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "indicatorBorderColor": {
+      "value": "{color.stroke.base}",
+      "type": "color"
+    },
+    "paletteBorderRadius": {
+      "value": "{borderRadius.md}",
+      "type": "borderRadius"
+    },
+    "colorIndicatorBorderColor": {
+      "value": "{color.stroke.base}",
+      "type": "color"
+    },
+    "disabledOverlayZIndex": {
+      "value": "9999",
+      "type": "other"
+    },
+    "paletteOffset": {
+      "value": "0.5rem",
+      "type": "other"
+    }
+  },
+  "slider": {
+    "indicatorBorderWidth": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "sliderBorderWidth": {
+      "value": "{borderWidth.sm}",
+      "type": "borderWidth"
+    },
+    "indicatorBorderColor": {
+      "value": "{color.stroke.base}",
+      "type": "color"
+    },
+    "colorIndicatorBorderColor": {
+      "value": "{color.stroke.base}",
+      "type": "color"
+    },
+    "disabledOverlayZIndex": {
+      "value": "9999",
+      "type": "other"
+    },
+    "checkerboardBackgroundSize": {
+      "value": "0.5rem",
+      "type": "sizing"
+    },
+    "checkerboardBackgroundPosition": {
+      "value": "0 0, 0 .25rem, .25rem -0.25rem, -0.25rem 0px",
+      "type": "other"
+    },
+    "indicatorZIndex": {
+      "value": "1",
+      "type": "other"
+    },
+    "checkerboardBackgroundImage": {
+      "value": "linear-gradient(45deg, #E8EAEC 25%, transparent 25%), linear-gradient(-45deg, #E8EAEC 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #E8EAEC 75%), linear-gradient(-45deg, transparent 75%, #E8EAEC 75%)",
+      "type": "other"
+    }
+  },
+  "rgbaInput": {
+    "rgbaInputTopMargin": {
+      "value": "1.5rem",
+      "type": "spacing"
+    },
+    "inputContainerTopMargin": {
+      "value": "1.5rem",
+      "type": "spacing"
+    },
+    "tgbInputTopMargin": {
+      "value": "0.5rem",
+      "type": "spacing"
+    },
+    "labelFontWeight": {
+      "value": "{fontWeight.body.base}",
+      "type": "fontWeights"
+    },
+    "rgbaInputLabel": {
+      "value": "{color.text.base}",
+      "type": "color"
+    }
+  }
+}

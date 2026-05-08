@@ -29,7 +29,7 @@ public enum Secret {
     case studentPSPDFKitLicense, teacherPSPDFKitLicense
 
     /// The value passed to `PendoManager.shared().setup(:)`
-    case pendoApiKey
+    case studentPendoApiKey, teacherPendoApiKey, parentPendoApiKey
 
     /// Users for UI tests
     case testReadAdmin1, testReadStudent1, testReadStudent2, testReadStudentK5, testReadTeacher1, testReadParent1

@@ -32,7 +32,7 @@ final class HelloWidgetViewModel: DashboardWidgetViewModel {
     }
 
     // MARK: Outputs
-    private(set) var state: InstUI.ScreenState = .loading
+    private(set) var state: ScreenState = .loading
     private(set) var greeting: String = ""
     private(set) var message: String = ""
 

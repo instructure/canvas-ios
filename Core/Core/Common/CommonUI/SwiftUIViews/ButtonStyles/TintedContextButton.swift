@@ -54,30 +54,30 @@ public extension ButtonStyle where Self == TintedContextButton {
 
 #Preview {
     PreviewContainer {
-        InstUI.Divider()
+        AUI.Divider()
 
         Button { } label: {
-            InstUI.LabelCell(label: Text("Button 1"))
+            AUI.LabelCell(label: Text("Button 1"))
                 .contentShape(Rectangle())
         }
         .buttonStyle(.tintedContextButton)
-        InstUI.Divider()
+        AUI.Divider()
 
         Button { } label: {
-            InstUI.LabelCell(label: Text("Button 2 - Tint set directly"))
+            AUI.LabelCell(label: Text("Button 2 - Tint set directly"))
                 .contentShape(Rectangle())
         }
         .buttonStyle(.tintedContextButton)
         .tint(.green)
-        InstUI.Divider()
+        AUI.Divider()
 
         Button { } label: {
-            InstUI.LabelCell(label: Text("Button 3 - Always highlighted"))
+            AUI.LabelCell(label: Text("Button 3 - Always highlighted"))
                 .contentShape(Rectangle())
         }
         .buttonStyle(.tintedContextButton)
         .selected(when: true)
-        InstUI.Divider()
+        AUI.Divider()
     }
     .tint(.red)
 }

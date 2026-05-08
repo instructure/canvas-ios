@@ -67,7 +67,7 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
     // MARK: - syncedItemPaths
 
     func test_syncedItemPaths_shouldReturnSessionItems() {
-        session.horizonOfflineSyncItems = ["path 1", "path 2"]
+        session.offlineSyncSelections = ["path 1", "path 2"]
 
         XCTAssertEqual(testee.syncedItemPaths, ["path 1", "path 2"])
     }
@@ -75,11 +75,11 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
     // MARK: - clearSessionData
 
     func test_clearSessionData_shouldClearSyncItems() {
-        session.horizonOfflineSyncItems = ["path 1"]
+        session.offlineSyncSelections = ["path 1"]
 
         testee.clearSessionData()
 
-        XCTAssertEqual(session.horizonOfflineSyncItems, [])
+        XCTAssertEqual(session.offlineSyncSelections, [])
     }
 
     func test_clearSessionData_shouldClearFileMetadata() {
@@ -111,11 +111,11 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
     }
 
     func test_finalizeSync_shouldClearSyncItems() {
-        session.horizonOfflineSyncItems = ["path 1", "path 2"]
+        session.offlineSyncSelections = ["path 1", "path 2"]
 
         testee.finalizeSync(courses: [])
 
-        XCTAssertEqual(session.horizonOfflineSyncItems, [])
+        XCTAssertEqual(session.offlineSyncSelections, [])
     }
 
     func test_finalizeSync_shouldCallRemoveUnavailableFilesForEachCourse() {
@@ -163,10 +163,10 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
 
         testee.saveCompletedSync(courses: [course], files: [file])
 
-        let expectedCoursePath = OfflineType.course(id: testData.courseID1, enrollmentID: "11").path()
+        let expectedCoursePath = OfflineType.course(id: testData.courseID1).path()
         let expectedFilePath = OfflineType.file(courseID: testData.courseID1, fileID: testData.fileID1).path()
-        XCTAssertEqual(session.horizonOfflineSyncItems.contains(expectedCoursePath), true)
-        XCTAssertEqual(session.horizonOfflineSyncItems.contains(expectedFilePath), true)
+        XCTAssertEqual(session.offlineSyncSelections.contains(expectedCoursePath), true)
+        XCTAssertEqual(session.offlineSyncSelections.contains(expectedFilePath), true)
     }
 
     func test_saveCompletedSync_shouldNotIncludeNonDownloadedFiles() {
@@ -176,18 +176,18 @@ final class HOfflineSyncSessionManagerTests: HorizonTestCase {
         testee.saveCompletedSync(courses: [course], files: [file])
 
         let filePath = OfflineType.file(courseID: testData.courseID1, fileID: testData.fileID1).path()
-        XCTAssertEqual(session.horizonOfflineSyncItems.contains(filePath), false)
+        XCTAssertEqual(session.offlineSyncSelections.contains(filePath), false)
     }
 
     func test_saveCompletedSync_shouldAppendToExistingItems() {
-        session.horizonOfflineSyncItems = [OfflineType.course(id: testData.courseID1, enrollmentID: "12").path()]
+        session.offlineSyncSelections = [OfflineType.course(id: testData.courseID1).path()]
         let course2 = makeCourse(id: testData.courseID2)
 
         testee.saveCompletedSync(courses: [course2], files: [])
 
-        XCTAssertEqual(session.horizonOfflineSyncItems.count, 2)
-        XCTAssertEqual(session.horizonOfflineSyncItems.contains(OfflineType.course(id: testData.courseID1, enrollmentID: "12").path()), true)
-        XCTAssertEqual(session.horizonOfflineSyncItems.contains(OfflineType.course(id: testData.courseID2, enrollmentID: "11").path()), true)
+        XCTAssertEqual(session.offlineSyncSelections.count, 2)
+        XCTAssertEqual(session.offlineSyncSelections.contains(OfflineType.course(id: testData.courseID1).path()), true)
+        XCTAssertEqual(session.offlineSyncSelections.contains(OfflineType.course(id: testData.courseID2).path()), true)
     }
 
     // MARK: - Private helpers

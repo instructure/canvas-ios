@@ -124,7 +124,7 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
 
         HeaderView(assignment: assignment)
 
-        InstUI.Divider()
+        AUI.Divider()
 
         TeacherSubmissionBreakdownView(
             viewModel: AssignmentSubmissionBreakdownViewModel(
@@ -136,15 +136,15 @@ public struct TeacherAssignmentDetailsScreen: View, ScreenViewTrackable {
             )
         )
 
-        InstUI.Divider()
+        AUI.Divider()
 
         TeacherDateSection(viewModel: AssignmentDateSectionViewModel(assignment: assignment))
             .accessibility(identifier: "AssignmentDetails.due")
-        InstUI.Divider()
+        AUI.Divider()
 
         SubmissionTypesView(assignment: assignment)
 
-        InstUI.Divider()
+        AUI.Divider()
 
         DescriptionView(assignment: assignment)
 
@@ -229,7 +229,7 @@ private extension TeacherAssignmentDetailsScreen {
                     HStack {
                         types
                         Spacer()
-                        InstUI.DisclosureIndicator().padding(.trailing, 16)
+                        AUI.DisclosureIndicator().padding(.trailing, 16)
                     }
                 }
             ).disableWithOpacity(isLocked)
