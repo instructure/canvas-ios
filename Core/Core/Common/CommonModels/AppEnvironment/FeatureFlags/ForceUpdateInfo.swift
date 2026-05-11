@@ -16,6 +16,7 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 //
 
+import BusinessLogic
 import Foundation
 import UIKit.UIDevice
 
@@ -37,11 +38,13 @@ public struct ForceUpdateInfo: Codable {
     }
 
     public var shouldForceUpdate: Bool {
-        guard let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return false }
-        let systemVersion = UIDevice.current.systemVersion
-
-        return systemVersion.compare(minimumSystemVersion, options: .numeric) != .orderedAscending
-            && appVersion.compare(belowAppVersion, options: .numeric) == .orderedAscending
+        let forceUpdateLogic: BusinessLogic.ForceUpdate = .live
+        return forceUpdateLogic.shouldForceUpdate(
+            appVersion: Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String,
+            systemVersion: UIDevice.current.systemVersion,
+            minimumSystemVersion: minimumSystemVersion,
+            belowAppVersion: belowAppVersion
+        )
     }
 }
 

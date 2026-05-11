@@ -20,6 +20,8 @@ settings:
   STRING_CATALOG_GENERATE_SYMBOLS: false
   platform: iOS
 packages:
+  BusinessLogic:
+    path: ../packages/BusinessLogic
   CombineSchedulers:
     url: https://github.com/pointfreeco/combine-schedulers
     exactVersion: 1.1.0
@@ -45,6 +47,7 @@ targets:
     sources:
       - path: Core
     dependencies:
+      - package: BusinessLogic
       - package: CombineSchedulers
       - package: CombineExt
       - package: Lottie
