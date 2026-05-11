@@ -164,14 +164,23 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func showRootView() {
-        guard let window = self.window else { return }
-        let controller = ParentContainerNavigationController(rootViewController: DashboardViewController.create())
-        controller.view.layoutIfNeeded()
-        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
-            window.rootViewController = controller
-        }, completion: { _ in
-            self.environment.startupDidComplete()
-        })
+        let forceUpdateInfo = ForceUpdateInfo.fromUserDefaults()
+        if let forceUpdateInfo, forceUpdateInfo.shouldForceUpdate, !forceUpdateInfo.isDismissable {
+            setForceUpdateView()
+        } else {
+            guard let window = self.window else { return }
+            let controller = ParentContainerNavigationController(rootViewController: DashboardViewController.create())
+            controller.view.layoutIfNeeded()
+            UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
+                window.rootViewController = controller
+            }, completion: { _ in
+                self.environment.startupDidComplete()
+
+                if forceUpdateInfo?.shouldForceUpdate ?? false {
+                    self.showForceUpdateModal(on: controller)
+                }
+            })
+        }
     }
 
     static func getPreferences(env: AppEnvironment) -> AnyPublisher<APIUser, Error> {
@@ -196,6 +205,13 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             remoteConfig.activate { _, _ in
                 let keys = remoteConfig.allKeys(from: .remote)
                 for key in keys {
+                    if ForceUpdateInfo.isForceUpdateInfo(key) {
+                        let data = remoteConfig.configValue(forKey: key).dataValue
+                        let info = ForceUpdateInfo(data: data)
+                        info?.saveToUserDefaults()
+                        continue
+                    }
+
                     guard let feature = ExperimentalFeature(rawValue: key) else { continue }
                     let value = remoteConfig.configValue(forKey: key).boolValue
                     feature.isEnabled = value
@@ -204,6 +220,24 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
+    }
+
+    private func setForceUpdateView() {
+        guard let window = window else { return }
+        let controller = CoreHostingController(ForceUpdateView(appID: Bundle.studentAppID))
+        controller.view.layoutIfNeeded()
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight) {
+            window.rootViewController = controller
+        } completion: { [weak self] _ in
+            self?.environment.startupDidComplete()
+            UIApplication.shared.registerForPushNotifications()
+        }
+    }
+
+    private func showForceUpdateModal(on controller: UIViewController) {
+        let modal = CoreHostingController(ForceUpdateView(appID: Bundle.studentAppID, isDismissable: true))
+        modal.modalPresentationStyle = .overFullScreen
+        controller.present(modal, animated: true)
     }
 }
 

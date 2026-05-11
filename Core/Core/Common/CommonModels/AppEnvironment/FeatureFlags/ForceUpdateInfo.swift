@@ -32,11 +32,11 @@ public struct ForceUpdateInfo: Codable {
         }
     }
 
-    static func isForceUpdateInfo(_ key: String) -> Bool {
+    public static func isForceUpdateInfo(_ key: String) -> Bool {
         key == "force_update_info"
     }
 
-    var shouldForceUpdate: Bool {
+    public var shouldForceUpdate: Bool {
         guard let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String else { return false }
         let systemVersion = UIDevice.current.systemVersion
 
