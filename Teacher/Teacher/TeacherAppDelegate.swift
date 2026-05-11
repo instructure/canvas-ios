@@ -101,13 +101,19 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                 },
                 receiveValue: {
                     Analytics.shared.logSession(session)
-                    unownedSelf.setTabBarController()
+
+                    let forceUpdateInfo = ForceUpdateInfo.fromUserDefaults()
+                    if let forceUpdateInfo, forceUpdateInfo.shouldForceUpdate, !forceUpdateInfo.isDismissable {
+                        unownedSelf.setForceUpdateView()
+                    } else {
+                        unownedSelf.setTabBarController(shouldShowForceUpdateModal: forceUpdateInfo?.shouldForceUpdate ?? false)
+                    }
                 }
             )
             .store(in: &subscriptions)
     }
 
-    func setTabBarController() {
+    func setTabBarController(shouldShowForceUpdateModal: Bool) {
         guard let window else { return }
 
         let controller = TeacherTabBarController()
@@ -118,6 +124,10 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
             self?.environment.startupDidComplete()
             UIApplication.shared.registerForPushNotifications()
         })
+
+        if shouldShowForceUpdateModal {
+            showForceUpdateModal(on: controller)
+        }
     }
 
     func application(
@@ -189,6 +199,24 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                 }
             }
         }
+    }
+
+    private func setForceUpdateView() {
+        guard let window = window else { return }
+        let controller = CoreHostingController(ForceUpdateView(appID: Bundle.studentAppID))
+        controller.view.layoutIfNeeded()
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight) {
+            window.rootViewController = controller
+        } completion: { [weak self] _ in
+            self?.environment.startupDidComplete()
+            UIApplication.shared.registerForPushNotifications()
+        }
+    }
+
+    private func showForceUpdateModal(on controller: UIViewController) {
+        let modal = CoreHostingController(ForceUpdateView(appID: Bundle.studentAppID, isDismissable: true))
+        modal.modalPresentationStyle = .overFullScreen
+        controller.present(modal, animated: true)
     }
 }
 
