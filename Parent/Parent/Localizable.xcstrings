@@ -18612,7 +18612,266 @@
       }
     },
     "Privacy Settings" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إعدادات الخصوصية"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuració de privacitat"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gosodiadau Preifatrwydd"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privatlivsindstillinger"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privatlivsindstillinger"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Datenschutzeinstellungen"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Settings"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Settings"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Settings"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Settings"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Settings"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacy Settings"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuraciones de privacidad"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configuraciones de privacidad"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tietosuoja-asetukset"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paramètres de confidentialité"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paramètres de confidentialité"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Socruithe Príobháideachais"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गोपनीयता सेटिंग्स"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Paramèt Konfidansyalite"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengaturan Privasi"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Persónuverndarstillingar"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impostazioni di privacy"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "プライバシー設定"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "개인 정보 보호 설정"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tautuhinga Tūmataitinga"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tetapan Privasi"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personverninnstillinger"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personverninnstillinger"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Privacyinstellingen"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ustawienia poufności"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Definições de privacidade"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configurações de privacidade"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Параметры конфиденциальности"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nastavitve zasebnosti"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sekretessinställningar för innehåll"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sekretessinställningar"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ค่าปรับตั้งความเป็นส่วนตัว"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cài Đặt Quyền Riêng Tư"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隐私设置"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隐私设置"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隱私設定"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "隱私設定"
+          }
+        }
+      }
     },
     "Profile Menu" : {
       "localizations" : {

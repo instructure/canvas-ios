@@ -190651,7 +190651,266 @@
       }
     },
     "You don't have any active courses yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity." : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ليس لديك أي مساقات نشطة بعد؛ ولذلك لا يوجد أي نشاط هنا. بمجرد أن تسجل في فصل، ستتم تعبئة لوحة المعلومات الخاصة بك بالأنشطة الجديدة."
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encara no teniu cap assignatura activa, de manera que tot està una mica tranquil aquí. Un cop us hàgiu inscrit en una classe, el panell de control començarà a omplir-se d’activitats noves."
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Does gennych chi ddim cyrsiau gweithredol ar hyn o bryd –– felly mae hi’n dawel yma. Ar ôl i chi gofrestru ar gyfer dosbarth, bydd eich dangosfwrdd yn dechrau llenwi â gweithgarwch newydd."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ingen aktive fag endnu – så her er lidt stille. Når du tilmelder dig et fag, vil din oversigt begynde at fyldes med ny aktivitet."
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ingen aktive fag endnu – så her er lidt stille. Når du tilmelder dig et fag, vil din oversigt begynde at fyldes med ny aktivitet."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sie haben noch keine aktiven Kurse – hier ist es also noch etwas ruhig. Sobald Sie sich für einen Kurs angemeldet haben, wird sich Ihr Dashboard mit neuen Aktivitäten füllen."
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any active courses yet — so things are a bit quiet here. Once you enrol in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any active subjects yet — so things are a bit quiet here. Once you enrol in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any active courses yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any active modules yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any active courses yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any active modules yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No tiene cursos activos todavía, así que, por ahora, todo está un poco tranquilo por aquí. Una vez que se inscriba en una clase, su tablero comenzará a llenarse de nuevas actividades."
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todavía no tienes ninguna asignatura activa, así que todo está tranquilo por aquí. Cuando te inscribas en una clase, tu panel de control empezará a llenarse de nueva actividad."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sinulla ei ole vielä aktiivisia kursseja, joten täällä on vielä hieman hiljaista. Kun ilmoittaudut kurssille, koontinäyttösi alkaa täyttyä uusilla aktiviteeteilla."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous n’avez pas de cours actifs pour le moment. C’est pourquoi il ne se passe pas grand-chose ici. Après votre inscription à un cours, votre tableau de bord commencera à se remplir d’informations concernant vos nouvelles activités."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous n’avez pas encore de cours actifs - c’est donc un peu calme ici. Dès que vous vous inscrivez à un cours, votre tableau de bord se remplit de nouvelles activités."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon chúrsaí gníomhacha agat go fóill — mar sin tá rudaí beagáinín ciúin anseo. Nuair a rollaíonn tú i rang, tosóidh do phainéal ag líonadh le gníomhaíocht nua."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी आपके पास कोई सक्रिय कोर्स नहीं है, इसलिए यहां थोड़ा सन्नाटा है। एक बार जब आप किसी कक्षा में नामांकन कर ले लेते हैं, तो आपका डैशबोर्ड नई गतिविधियों से भरना शुरू हो जाएगा।"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ou poko gen okenn kou ki aktif — se sa k fè pa gen anpil aktivite isit la. Lè w fin enskri nan yon klas, tablodbò ou a ap kòmanse ranpli ak nouvo aktivite."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anda belum memiliki kursus aktif apa pun — jadi suasana agak sepi di sini. Setelah Anda mendaftar di kelas, dasbor Anda akan mulai terisi dengan aktivitas baru."
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Þú hefur engin virk námskeið enn, því er allt svolítið rólegt hér. Þegar þú hefur innritað þig í námskeið fer stjórnborðið að fyllast upp af nýrri virkni."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non hai ancora dei corsi attivi, quindi tutto è tranquillo qui. Una volta che ti iscrivi a un corso, la tua dashboard inizierà a riempirsi con le nuove attività."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "受講中のアクティブなコースはまだありません — そのため、ここは少し静かです。クラスに登録すると、ダッシュボードに新しい活動が表示され始めます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아직 활성 과목이 없어서 여기에 표시할 내용이 없습니다. 과목에 등록하면 대시보는 새 활동으로 채워지기 시작합니다."
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kāore anō kia whai akoranga hohe koe — nō reira he marino te āhua o konei. Kia rēhita koe ki tētahi akomanga, ka tīmata tō papatohu ki te whakakī i ngā mahi hou."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anda belum mempunyai apa-apa kursus aktif  — jadi suasana agak sunyi di sini. Setelah anda mendaftar dalam kelas, papan pemuka anda akan mula diisi dengan aktiviti baharu."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ingen aktive emner ennå – så det er litt stille her. Når du har meldt deg på et emne, begynner dashbordet ditt å fylles opp med ny aktivitet."
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ingen aktive fag ennå – så det er litt stille her. Når du har meldt deg på et emne, vil oversikten din begynne å fylles opp med ny aktivitet."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Je hebt nog geen actieve cursussen – het is hier dus nog een beetje rustig. Zodra je je inschrijft voor een klas, vult je dashboard zich met nieuwe activiteit."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie masz jeszcze aktywnych kursów, dlatego jest tu dość cicho. Gdy zapiszesz się na zajęcia, pulpit nawigacyjny zacznie wypełniać się nowymi aktywnościami."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ainda não tens nenhuma disciplina ativa — por isso, está tudo um pouco parado por aqui. Assim que se inscrever numa aula, o seu painel começará a encher-se de novas atividades."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você ainda não tem nenhum curso ativo — então as coisas estão um pouco paradas por aqui. Depois de se matricular em uma aula, seu painel começará a se encher de novas atividades."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "У вас пока нет ни одного активного курса, поэтому здесь ничего не происходит. Как только вы будете включены в курс, ваша панель управления начнет заполняться новой активностью."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaenkrat še nimate nobenega aktivnega predmeta – zato je tu še malo tiho. Ko se boste vpisali v predmet, se bo vaša nadzorna plošča začela polniti z novimi aktivnostmi."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ännu inte några aktiva kurser – så det är lite tyst här. När du har registrerat dig för en kurs kommer din översikt att fyllas med nya aktiviteter."
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ännu inte några aktiva kurser – så det är lite tyst här. När du har registrerat dig för en kurs kommer din översikt att fyllas med nya aktiviteter."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "คุณยังไม่มีบทเรียนใด ๆ ที่จัดไว้ในปัจจุบัน - ทุกอย่างยังนิ่งอยู่ หลังจากลงทะเบียนในชั้นเรียนแล้ว แผงข้อมูลของคุณจะเริ่มแจ้งกิจกรรมใหม่"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn chưa có bất kỳ khóa học nào đang hoạt động — vì vậy mà mọi thứ ở đây có vẻ hơi yên ắng. Khi bạn ghi danh vào một lớp học, bảng điều khiển sẽ bắt đầu lấp đầy với hoạt động mới."
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您还没有任何活跃课程，因此暂无消息。注册班级后，您的控制面板将开始出现新活动。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您还没有任何活跃课程，因此暂无消息。注册班级后，您的控制面板将开始出现新活动。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您目前還沒有任何啟用課程，所以這裡暫時比較安靜。一旦您註冊了課程，您的控制面板就會開始充滿新的活動。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您目前還沒有任何啟用課程，所以這裡暫時比較安靜。一旦您註冊了課程，您的控制面板就會開始充滿新的活動。"
+          }
+        }
+      }
     },
     "You don't have any courses yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity." : {
       "extractionState" : "stale",
