@@ -495,7 +495,7 @@ extension StudentAppDelegate {
         }
 
         if shouldShowForceUpdateModal {
-            showForceUpdateModal(on: controller)
+            showForceUpdateModal(of: .student, on: controller)
         }
     }
 
@@ -509,12 +509,6 @@ extension StudentAppDelegate {
             self?.environment.startupDidComplete()
             UIApplication.shared.registerForPushNotifications()
         }
-    }
-
-    private func showForceUpdateModal(on controller: UIViewController) {
-        let modal = CoreHostingController(ForceUpdateView(app: .student, isDismissable: true))
-        modal.modalPresentationStyle = .overFullScreen
-        controller.present(modal, animated: true)
     }
 }
 

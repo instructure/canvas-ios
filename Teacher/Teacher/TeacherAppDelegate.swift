@@ -104,7 +104,10 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
                     let forceUpdateInfo = ForceUpdateInfo.fromUserDefaults()
                     if let forceUpdateInfo, forceUpdateInfo.shouldForceUpdate, !forceUpdateInfo.isDismissable {
-                        unownedSelf.setForceUpdateView()
+                        unownedSelf.setForceUpdateView(window: unownedSelf.window) {
+                            unownedSelf.environment.startupDidComplete()
+                            UIApplication.shared.registerForPushNotifications()
+                        }
                     } else {
                         unownedSelf.setTabBarController(shouldShowForceUpdateModal: forceUpdateInfo?.shouldForceUpdate ?? false)
                     }
@@ -126,7 +129,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         })
 
         if shouldShowForceUpdateModal {
-            showForceUpdateModal(on: controller)
+            showForceUpdateModal(of: .teacher, on: controller)
         }
     }
 
@@ -206,24 +209,6 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
                 }
             }
         }
-    }
-
-    private func setForceUpdateView() {
-        guard let window = window else { return }
-        let controller = CoreHostingController(ForceUpdateView(app: .teacher, isDismissable: false))
-        controller.view.layoutIfNeeded()
-        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight) {
-            window.rootViewController = controller
-        } completion: { [weak self] _ in
-            self?.environment.startupDidComplete()
-            UIApplication.shared.registerForPushNotifications()
-        }
-    }
-
-    private func showForceUpdateModal(on controller: UIViewController) {
-        let modal = CoreHostingController(ForceUpdateView(app: .teacher, isDismissable: true))
-        modal.modalPresentationStyle = .overFullScreen
-        controller.present(modal, animated: true)
     }
 }
 

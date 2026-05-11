@@ -166,7 +166,10 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     func showRootView() {
         let forceUpdateInfo = ForceUpdateInfo.fromUserDefaults()
         if let forceUpdateInfo, forceUpdateInfo.shouldForceUpdate, !forceUpdateInfo.isDismissable {
-            setForceUpdateView()
+            setForceUpdateView(window: window) {
+                self.environment.startupDidComplete()
+                UIApplication.shared.registerForPushNotifications()
+            }
         } else {
             guard let window = self.window else { return }
             let controller = ParentContainerNavigationController(rootViewController: DashboardViewController.create())
@@ -177,7 +180,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
                 self.environment.startupDidComplete()
 
                 if forceUpdateInfo?.shouldForceUpdate ?? false {
-                    self.showForceUpdateModal(on: controller)
+                    self.showForceUpdateModal(of: .parent, on: controller)
                 }
             })
         }
@@ -220,24 +223,6 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-    }
-
-    private func setForceUpdateView() {
-        guard let window = window else { return }
-        let controller = CoreHostingController(ForceUpdateView(app: .parent, isDismissable: false))
-        controller.view.layoutIfNeeded()
-        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight) {
-            window.rootViewController = controller
-        } completion: { [weak self] _ in
-            self?.environment.startupDidComplete()
-            UIApplication.shared.registerForPushNotifications()
-        }
-    }
-
-    private func showForceUpdateModal(on controller: UIViewController) {
-        let modal = CoreHostingController(ForceUpdateView(app: .parent, isDismissable: true))
-        modal.modalPresentationStyle = .overFullScreen
-        controller.present(modal, animated: true)
     }
 }
 

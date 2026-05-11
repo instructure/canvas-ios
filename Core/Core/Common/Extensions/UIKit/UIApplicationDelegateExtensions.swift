@@ -23,4 +23,21 @@ extension UIApplicationDelegate {
     public func updateInterfaceStyle(for window: UIWindow?) {
         window?.updateInterfaceStyle(AppEnvironment.shared.userDefaults?.interfaceStyle)
     }
+
+    public func showForceUpdateModal(of app: AppEnvironment.App, on controller: UIViewController) {
+        let modal = CoreHostingController(ForceUpdateView(app: app, isDismissable: true))
+        modal.modalPresentationStyle = .overFullScreen
+        controller.present(modal, animated: true)
+    }
+
+    public func setForceUpdateView(window: UIWindow?, completion: @escaping () -> Void) {
+        guard let window = window else { return }
+        let controller = CoreHostingController(ForceUpdateView(app: .student, isDismissable: false))
+        controller.view.layoutIfNeeded()
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight) {
+            window.rootViewController = controller
+        } completion: { _ in
+            completion()
+        }
+    }
 }
