@@ -22,6 +22,14 @@ import UIKit
 
 class UIApplicationDelegateExtensionsTests: XCTestCase {
 
+    private class SpyViewController: UIViewController {
+        var presentedVC: UIViewController?
+        override func present(_ viewControllerToPresent: UIViewController, animated flag: Bool, completion: (() -> Void)? = nil) {
+            presentedVC = viewControllerToPresent
+            completion?()
+        }
+    }
+
     func testUpdateInterfaceStyle() {
         guard let appDelegate = UIApplication.shared.delegate else { return XCTFail() }
         AppEnvironment.shared.userDefaults?.interfaceStyle = .dark
@@ -33,5 +41,43 @@ class UIApplicationDelegateExtensionsTests: XCTestCase {
         AppEnvironment.shared.userDefaults?.interfaceStyle = .unspecified
         appDelegate.updateInterfaceStyle(for: appDelegate.window!)
         XCTAssertEqual(appDelegate.window!?.overrideUserInterfaceStyle, .unspecified)
+    }
+
+    // MARK: - showForceUpdateModal
+
+    func test_showForceUpdateModal_shouldPresentForceUpdateViewOverFullScreen() {
+        guard let appDelegate = UIApplication.shared.delegate else { return XCTFail() }
+        let controller = SpyViewController()
+
+        appDelegate.showForceUpdateModal(of: .student, on: controller)
+
+        XCTAssertNotNil(controller.presentedVC as? CoreHostingController<ForceUpdateView>)
+        XCTAssertEqual(controller.presentedVC?.modalPresentationStyle, .overFullScreen)
+    }
+
+    // MARK: - setForceUpdateView
+
+    func test_setForceUpdateView_whenWindowIsNil_shouldNotCallCompletion() {
+        guard let appDelegate = UIApplication.shared.delegate else { return XCTFail() }
+        var completionCalled = false
+
+        appDelegate.setForceUpdateView(window: nil) {
+            completionCalled = true
+        }
+
+        XCTAssertEqual(completionCalled, false)
+    }
+
+    func test_setForceUpdateView_whenWindowIsProvided_shouldSetRootViewControllerAndCallCompletion() {
+        guard let appDelegate = UIApplication.shared.delegate else { return XCTFail() }
+        let window = UIWindow()
+        let completionExpectation = expectation(description: "completion called")
+
+        appDelegate.setForceUpdateView(window: window) {
+            completionExpectation.fulfill()
+        }
+
+        waitForExpectations(timeout: 2)
+        XCTAssertNotNil(window.rootViewController as? CoreHostingController<ForceUpdateView>)
     }
 }
