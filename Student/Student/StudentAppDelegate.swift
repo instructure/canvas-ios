@@ -157,7 +157,10 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
 
                     let forceUpdateInfo = ForceUpdateInfo.fromUserDefaults()
                     if let forceUpdateInfo, forceUpdateInfo.shouldForceUpdate, !forceUpdateInfo.isDismissable {
-                        unownedSelf.setForceUpdateView()
+                        unownedSelf.setForceUpdateView(window: unownedSelf.window) {
+                            unownedSelf.environment.startupDidComplete()
+                            UIApplication.shared.registerForPushNotifications()
+                        }
                     } else {
                         unownedSelf.setTabBarControllerFor(
                             experience: experience,
@@ -496,18 +499,6 @@ extension StudentAppDelegate {
 
         if shouldShowForceUpdateModal {
             showForceUpdateModal(of: .student, on: controller)
-        }
-    }
-
-    private func setForceUpdateView() {
-        guard let window = window else { return }
-        let controller = CoreHostingController(ForceUpdateView(app: .student, isDismissable: false))
-        controller.view.layoutIfNeeded()
-        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight) {
-            window.rootViewController = controller
-        } completion: { [weak self] _ in
-            self?.environment.startupDidComplete()
-            UIApplication.shared.registerForPushNotifications()
         }
     }
 }
