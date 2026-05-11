@@ -205,7 +205,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
             remoteConfig.activate { _, _ in
                 let keys = remoteConfig.allKeys(from: .remote)
                 for key in keys {
-                    if ForceUpdateInfo.isForceUpdateInfo(key) {
+                    if ForceUpdateInfo.isForceUpdateInfo(of: .parent, key: key) {
                         let data = remoteConfig.configValue(forKey: key).dataValue
                         let info = ForceUpdateInfo(data: data)
                         info?.saveToUserDefaults()
@@ -224,7 +224,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
 
     private func setForceUpdateView() {
         guard let window = window else { return }
-        let controller = CoreHostingController(ForceUpdateView(appID: Bundle.studentAppID))
+        let controller = CoreHostingController(ForceUpdateView(app: .parent, isDismissable: false))
         controller.view.layoutIfNeeded()
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight) {
             window.rootViewController = controller
@@ -235,7 +235,7 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     private func showForceUpdateModal(on controller: UIViewController) {
-        let modal = CoreHostingController(ForceUpdateView(appID: Bundle.studentAppID, isDismissable: true))
+        let modal = CoreHostingController(ForceUpdateView(app: .parent, isDismissable: true))
         modal.modalPresentationStyle = .overFullScreen
         controller.present(modal, animated: true)
     }

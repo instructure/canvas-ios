@@ -26,9 +26,9 @@ public struct ForceUpdateView: View {
     let isDismissable: Bool
     let appID: String
 
-    public init(appID: String, isDismissable: Bool = false) {
+    public init(app: AppEnvironment.App, isDismissable: Bool) {
         self.isDismissable = isDismissable
-        self.appID = appID
+        self.appID = app.appID
     }
 
     public var body: some View {
@@ -74,5 +74,5 @@ public struct ForceUpdateView: View {
 }
 
 #Preview {
-    ForceUpdateView(appID: "", isDismissable: true)
+    ForceUpdateView(app: .student, isDismissable: true)
 }

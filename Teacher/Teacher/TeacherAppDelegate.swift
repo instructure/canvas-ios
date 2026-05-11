@@ -192,6 +192,13 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
             remoteConfig.activate { _, _ in
                 let keys = remoteConfig.allKeys(from: .remote)
                 for key in keys {
+                    if ForceUpdateInfo.isForceUpdateInfo(of: .teacher, key: key) {
+                        let data = remoteConfig.configValue(forKey: key).dataValue
+                        let info = ForceUpdateInfo(data: data)
+                        info?.saveToUserDefaults()
+                        continue
+                    }
+
                     guard let feature = ExperimentalFeature(rawValue: key) else { continue }
                     let value = remoteConfig.configValue(forKey: key).boolValue
                     feature.isEnabled = value
@@ -203,7 +210,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
 
     private func setForceUpdateView() {
         guard let window = window else { return }
-        let controller = CoreHostingController(ForceUpdateView(appID: Bundle.studentAppID))
+        let controller = CoreHostingController(ForceUpdateView(app: .teacher, isDismissable: false))
         controller.view.layoutIfNeeded()
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight) {
             window.rootViewController = controller
@@ -214,7 +221,7 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
     }
 
     private func showForceUpdateModal(on controller: UIViewController) {
-        let modal = CoreHostingController(ForceUpdateView(appID: Bundle.studentAppID, isDismissable: true))
+        let modal = CoreHostingController(ForceUpdateView(app: .teacher, isDismissable: true))
         modal.modalPresentationStyle = .overFullScreen
         controller.present(modal, animated: true)
     }

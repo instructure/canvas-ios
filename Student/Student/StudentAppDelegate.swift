@@ -250,7 +250,7 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             remoteConfig.activate { _, _ in
                 let keys = remoteConfig.allKeys(from: .remote)
                 for key in keys {
-                    if ForceUpdateInfo.isForceUpdateInfo(key) {
+                    if ForceUpdateInfo.isForceUpdateInfo(of: .student, key: key) {
                         let data = remoteConfig.configValue(forKey: key).dataValue
                         let info = ForceUpdateInfo(data: data)
                         info?.saveToUserDefaults()
@@ -496,7 +496,7 @@ extension StudentAppDelegate {
 
     private func setForceUpdateView() {
         guard let window = window else { return }
-        let controller = CoreHostingController(ForceUpdateView(appID: Bundle.studentAppID))
+        let controller = CoreHostingController(ForceUpdateView(app: .student, isDismissable: false))
         controller.view.layoutIfNeeded()
         UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight) {
             window.rootViewController = controller
@@ -507,7 +507,7 @@ extension StudentAppDelegate {
     }
 
     private func showForceUpdateModal(on controller: UIViewController) {
-        let modal = CoreHostingController(ForceUpdateView(appID: Bundle.studentAppID, isDismissable: true))
+        let modal = CoreHostingController(ForceUpdateView(app: .student, isDismissable: true))
         modal.modalPresentationStyle = .overFullScreen
         controller.present(modal, animated: true)
     }

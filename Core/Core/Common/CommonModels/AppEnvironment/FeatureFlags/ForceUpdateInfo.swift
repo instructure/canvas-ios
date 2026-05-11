@@ -32,8 +32,8 @@ public struct ForceUpdateInfo: Codable {
         }
     }
 
-    public static func isForceUpdateInfo(_ key: String) -> Bool {
-        key == "force_update_info"
+    public static func isForceUpdateInfo(of app: AppEnvironment.App, key: String) -> Bool {
+        app.forceUpdateRemoteConfigKey == key
     }
 
     public var shouldForceUpdate: Bool {
@@ -59,5 +59,23 @@ public extension ForceUpdateInfo {
     static func fromUserDefaults() -> ForceUpdateInfo? {
         guard let data = Self.sharedUserDefaults.data(forKey: userDefaultsKey) else { return nil }
         return ForceUpdateInfo(data: data)
+    }
+}
+
+public extension AppEnvironment.App {
+    var forceUpdateRemoteConfigKey: String {
+        switch self {
+        case .student, .horizon: "student_force_update_info"
+        case .parent: "parent_force_update_info"
+        case .teacher: "teacher_force_update_info"
+        }
+    }
+
+    var appID: String {
+        switch self {
+        case .student, .horizon: Bundle.studentAppID
+        case .parent: Bundle.parentAppID
+        case .teacher: Bundle.teacherAppID
+        }
     }
 }
