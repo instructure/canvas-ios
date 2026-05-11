@@ -28,6 +28,10 @@ public extension Bundle {
     static let parentBundleID = "com.instructure.parentapp"
     static let horizonBundleID = "com.instructure.horizon"
 
+    static let studentAppID = "480883488"
+    static let teacherAppID = "1257834464"
+    static let parentAppID = "1097996698"
+
     static let coreBundleID = "com.instructure.core"
 
     static let studentUITestsBundleID = "com.instructure.StudentUITests.xctrunner"

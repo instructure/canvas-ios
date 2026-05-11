@@ -154,7 +154,18 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
                 receiveValue: { experience in
                     unownedSelf.refreshNotificationTab()
                     Analytics.shared.logSession(session)
-                    unownedSelf.setTabBarControllerFor(experience: experience, isStartup: true, session: session)
+
+                    let forceUpdateInfo = ForceUpdateInfo.fromUserDefaults()
+                    if let forceUpdateInfo, forceUpdateInfo.shouldForceUpdate, !forceUpdateInfo.isDismissable {
+                        unownedSelf.setForceUpdateView()
+                    } else {
+                        unownedSelf.setTabBarControllerFor(
+                            experience: experience,
+                            isStartup: true,
+                            session: session,
+                            shouldShowForceUpdateModal: forceUpdateInfo?.shouldForceUpdate ?? false
+                        )
+                    }
                 }
             )
             .store(in: &subscriptions)
@@ -239,6 +250,13 @@ class StudentAppDelegate: UIResponder, UIApplicationDelegate, AppEnvironmentDele
             remoteConfig.activate { _, _ in
                 let keys = remoteConfig.allKeys(from: .remote)
                 for key in keys {
+                    if ForceUpdateInfo.isForceUpdateInfo(key) {
+                        let data = remoteConfig.configValue(forKey: key).dataValue
+                        let info = ForceUpdateInfo(data: data)
+                        info?.saveToUserDefaults()
+                        continue
+                    }
+
                     guard let feature = ExperimentalFeature(rawValue: key) else { continue }
                     let value = remoteConfig.configValue(forKey: key).boolValue
                     feature.isEnabled = value
@@ -427,7 +445,8 @@ extension StudentAppDelegate {
             .store(in: &subscriptions)
     }
 
-    private func setTabBarControllerFor(experience: Experience, isStartup: Bool, session: LoginSession?) {
+    private func setTabBarControllerFor(experience: Experience, isStartup: Bool, session: LoginSession?, shouldShowForceUpdateModal: Bool = false) {
+        var controller: UIViewController
         switch experience {
         case .academic:
             AppEnvironment.shared.app = .student
@@ -440,7 +459,7 @@ extension StudentAppDelegate {
             appearance.tintColor = nil
             appearance.titleTextAttributes = nil
 
-            let controller = StudentTabBarController(isLearnerDashboardEnabledOnInstance: isLearnerDashboardEnabledOnInstance)
+            controller = StudentTabBarController(isLearnerDashboardEnabledOnInstance: isLearnerDashboardEnabledOnInstance)
             controller.view.layoutIfNeeded()
             UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
                 window.rootViewController = controller
@@ -456,7 +475,7 @@ extension StudentAppDelegate {
             HorizonUI.setInstitutionColor(Brand.shared.primary)
             guard let window = window else { return }
             window.updateInterfaceStyleWithoutTransition(.light)
-            let controller = HorizonTabBarController()
+            controller = HorizonTabBarController()
             controller.view.layoutIfNeeded()
             UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
                 window.rootViewController = controller
@@ -469,6 +488,28 @@ extension StudentAppDelegate {
 //        case .careerLearningProvider:
 //            showIncorrectAppExperienceAlert(session: session)
         }
+
+        if shouldShowForceUpdateModal {
+            showForceUpdateModal(on: controller)
+        }
+    }
+
+    private func setForceUpdateView() {
+        guard let window = window else { return }
+        let controller = CoreHostingController(ForceUpdateView(appID: Bundle.studentAppID))
+        controller.view.layoutIfNeeded()
+        UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight) {
+            window.rootViewController = controller
+        } completion: { [weak self] _ in
+            self?.environment.startupDidComplete()
+            UIApplication.shared.registerForPushNotifications()
+        }
+    }
+
+    private func showForceUpdateModal(on controller: UIViewController) {
+        let modal = CoreHostingController(ForceUpdateView(appID: Bundle.studentAppID, isDismissable: true))
+        modal.modalPresentationStyle = .overFullScreen
+        controller.present(modal, animated: true)
     }
 }
 
