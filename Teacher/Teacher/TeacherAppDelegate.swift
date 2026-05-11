@@ -126,11 +126,11 @@ class TeacherAppDelegate: UIResponder, UIApplicationDelegate, UNUserNotification
         }, completion: { [weak self] _ in
             self?.environment.startupDidComplete()
             UIApplication.shared.registerForPushNotifications()
-        })
 
-        if shouldShowForceUpdateModal {
-            showForceUpdateModal(of: .teacher, on: controller)
-        }
+            if shouldShowForceUpdateModal {
+                self?.showForceUpdateModal(of: .teacher, on: controller)
+            }
+        })
     }
 
     func application(

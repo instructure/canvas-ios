@@ -168,7 +168,6 @@ class ParentAppDelegate: UIResponder, UIApplicationDelegate {
         if let forceUpdateInfo, forceUpdateInfo.shouldForceUpdate, !forceUpdateInfo.isDismissable {
             setForceUpdateView(window: window) {
                 self.environment.startupDidComplete()
-                UIApplication.shared.registerForPushNotifications()
             }
         } else {
             guard let window = self.window else { return }

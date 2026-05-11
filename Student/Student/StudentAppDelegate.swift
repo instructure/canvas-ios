@@ -454,7 +454,6 @@ extension StudentAppDelegate {
         session: LoginSession?,
         shouldShowForceUpdateModal: Bool = false
     ) {
-        var controller: UIViewController
         switch experience {
         case .academic:
             AppEnvironment.shared.app = .student
@@ -467,7 +466,7 @@ extension StudentAppDelegate {
             appearance.tintColor = nil
             appearance.titleTextAttributes = nil
 
-            controller = StudentTabBarController(isLearnerDashboardEnabledOnInstance: isLearnerDashboardEnabledOnInstance)
+            let controller = StudentTabBarController(isLearnerDashboardEnabledOnInstance: isLearnerDashboardEnabledOnInstance)
             controller.view.layoutIfNeeded()
             UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
                 window.rootViewController = controller
@@ -475,6 +474,9 @@ extension StudentAppDelegate {
                 if isStartup {
                     self?.environment.startupDidComplete()
                     UIApplication.shared.registerForPushNotifications()
+                }
+                if shouldShowForceUpdateModal {
+                    self?.showForceUpdateModal(of: .student, on: controller)
                 }
             })
         case .careerLearner, .careerLearningProvider:
@@ -483,7 +485,7 @@ extension StudentAppDelegate {
             HorizonUI.setInstitutionColor(Brand.shared.primary)
             guard let window = window else { return }
             window.updateInterfaceStyleWithoutTransition(.light)
-            controller = HorizonTabBarController()
+            let controller = HorizonTabBarController()
             controller.view.layoutIfNeeded()
             UIView.transition(with: window, duration: 0.5, options: .transitionFlipFromRight, animations: {
                 window.rootViewController = controller
@@ -492,13 +494,12 @@ extension StudentAppDelegate {
                     self?.environment.startupDidComplete()
                     UIApplication.shared.registerForPushNotifications()
                 }
+                if shouldShowForceUpdateModal {
+                    self?.showForceUpdateModal(of: .student, on: controller)
+                }
             })
 //        case .careerLearningProvider:
 //            showIncorrectAppExperienceAlert(session: session)
-        }
-
-        if shouldShowForceUpdateModal {
-            showForceUpdateModal(of: .student, on: controller)
         }
     }
 }
