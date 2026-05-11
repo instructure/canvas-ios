@@ -23,6 +23,8 @@ public struct ForceUpdateView: View {
     @Environment(\.viewController) private var viewController
     @Environment(\.dismiss) private var dismiss
 
+    @State private var isErrorAlertPresented = false
+
     let isDismissable: Bool
     let appID: String
 
@@ -60,15 +62,20 @@ public struct ForceUpdateView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
+        .alert("Failed to open the App Store", isPresented: $isErrorAlertPresented, actions: { })
     }
 
     private func loadAppStorePage() {
         Task {
-            let controller = SKStoreProductViewController()
-            let parameters = [SKStoreProductParameterITunesItemIdentifier: appID]
-            try await controller.loadProduct(withParameters: parameters)
+            do {
+                let controller = SKStoreProductViewController()
+                let parameters = [SKStoreProductParameterITunesItemIdentifier: appID]
+                try await controller.loadProduct(withParameters: parameters)
 
-            viewController.value.present(controller, animated: true)
+                viewController.value.present(controller, animated: true)
+            } catch {
+                isErrorAlertPresented = true
+            }
         }
     }
 }

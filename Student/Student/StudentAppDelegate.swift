@@ -445,7 +445,12 @@ extension StudentAppDelegate {
             .store(in: &subscriptions)
     }
 
-    private func setTabBarControllerFor(experience: Experience, isStartup: Bool, session: LoginSession?, shouldShowForceUpdateModal: Bool = false) {
+    private func setTabBarControllerFor(
+        experience: Experience,
+        isStartup: Bool,
+        session: LoginSession?,
+        shouldShowForceUpdateModal: Bool = false
+    ) {
         var controller: UIViewController
         switch experience {
         case .academic:
