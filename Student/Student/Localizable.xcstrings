@@ -102142,10 +102142,528 @@
       }
     },
     "Move down disabled" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تم تعطيل النقل لأسفل"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S’ha desactivat l’opció de desplaçar elements cap a baix"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘Symud i Lawr’ wedi’i analluogi"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flyt nedad deaktiveret"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flyt nedad deaktiveret"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach unten verschieben deaktiviert"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move down disabled"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move down disabled"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move down disabled"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move down disabled"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move down disabled"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move down disabled"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mover hacia abajo desactivado"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mover hacia abajo está deshabilitado"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siirrä alas -toiminto on poistettu käytöstä"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déplacement vers le bas désactivé"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déplacement vers le bas désactivé"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bog síos díchumasaithe"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नीचे ले जाना अक्षम है"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desann dezaktive"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pindah ke bawah dinonaktifkan"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Færa niður óvirkt"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spostamento verso il basso disabilitato"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "下に移動できません"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아래로 이동 사용 중지됨"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kua monoa te neke ki raro"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alih ke bawah dinyahdayakan"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flytt ned deaktivert"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flytt ned deaktivert"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naar beneden verplaatsen uitgeschakeld"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przesuwanie w dół wyłączone"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deslocar para baixo desativado"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Desativar a opção Mover para baixo"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перемещение вниз деактивировано"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premik navzdol onemogočen"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nedflyttning har inaktiverats"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nedflyttning har inaktiverats"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ปิดการเลื่อนลง"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã vô hiệu hóa di chuyển xuống"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已禁止下移"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已禁止下移"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向下移動功能已停用"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向下移動功能已停用"
+          }
+        }
+      }
     },
     "Move up disabled" : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تم تعطيل النقل لأعلى"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S’ha desactivat l’opció de desplaçar elements cap a dalt"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "‘Symud i Fyny’ wedi’i analluogi"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flyt opad deaktiveret"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flyt opad deaktiveret"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nach oben verschieben deaktiviert"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move up disabled"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move up disabled"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move up disabled"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move up disabled"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move up disabled"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Move up disabled"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mover hacia arriba desactivado"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mover hacia arriba está deshabilitado"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siirrä ylös ei käytössä"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déplacement vers le haut activé"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Déplacement vers le haut désactivé"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bog suas díchumasaithe"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऊपर ले जाना अक्षम है"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Monte dezaktive"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pindah ke atas dinonaktifkan"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Færa upp óvirkt"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spostamento verso l’alto disabilitato"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "上に移動できません"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위로 이동 사용 중지됨"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kua monoa te neke ki runga"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alih ke atas dinyahdayakan"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flytt opp deaktivert"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Flytt opp deaktivert"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Naar boven verplaatsen uitgeschakeld"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Przesuwanie w górę wyłączone"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Deslocar para cima desativado"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mover para cima desativado"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Перемещение вверх деактивировано"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Premik navzgor onemogočen"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uppflyttning har inaktiverats"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uppflyttning har inaktiverats"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ปิดการเลื่อนขึ้น"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã vô hiệu hóa di chuyển lên"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已禁止上移"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已禁止上移"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向上移動功能已停用"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "向上移動功能已停用"
+          }
+        }
+      }
     },
     "Multiple Due Dates" : {
       "comment" : "Title of a link to show additional due dates customized for sections or groups.",
@@ -117354,7 +117872,267 @@
     },
     "Offline Content Sync Incomplete" : {
       "comment" : "Warning message displayed when some embedded media fails to download during offline content sync. Core content is still available offline.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مزامنة المحتوى بدون اتصال غير مكتملة"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La sincronització del contingut sense connexió està incompleta"
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Proses Cysoni Cynnwys All-lein yn Anghyflawn"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synkronisering af offlineindhold ikke fuldført"
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synkronisering af offlineindhold ikke fuldført"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synchronisierung der Offline-Inhalte unvollständig"
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offline Content Sync Incomplete"
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offline Content Sync Incomplete"
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offline Content Sync Incomplete"
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offline Content Sync Incomplete"
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offline Content Sync Incomplete"
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offline Content Sync Incomplete"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincronización de contenido sin conexión incompleta"
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La sincronización del contenido sin conexión está incompleta"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Offline-sisällön synkronointi kesken"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synchronisation de contenu hors ligne non terminée"
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synchronisation du contenu hors ligne incomplète"
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sioncrónú Ábhar As Líne Neamhiomlán"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ऑफ़लाइन सामग्री सिंक अधूरा है"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Senkronizasyon Kontni San Koneksyon an Pa Fin Fèt"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sinkronisasi Konten Offline Tidak Lengkap"
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Samstilling efnis án nettengingar ófullnægjandi"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincronizzazione contenuto offline incompleta"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "オフラインコンテンツの同期が未完了"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "오프라인 콘텐츠 동기화 완료되지 않음"
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kāore i oti te tukutahi ihirangi tuimotu"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Penyegerakan Kandungan Luar Talian Tidak Lengkap"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synkronisering av frakoblet emneinnhold ufullstendig"
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synkronisering av frakoblet faginnhold er ikke fullført"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synchronisatie van offline inhoud onvoltooid"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie zakończono synchronizacji zawartości offline"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincronização de conteúdo offline incompleta"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sincronização de conteúdo offline incompleta"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Синхронизация автономного содержимого не завершено"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sinhronizacija vsebine brez povezave je nedokončana"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synkronisering av offlineinnehåll ej slutförd"
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Synkronisering av offlineinnehåll ej slutförd"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ซิงค์เนื้อหาออฟไลน์ไม่เสร็จสิ้น"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đồng Bộ Nội Dung Ngoại Tuyến Chưa Hoàn Tất"
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "离线内容同步未完成"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "离线内容同步未完成"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "離線內容同步未完成"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "離線內容同步未完成"
+          }
+        }
+      }
     },
     "Ok" : {
       "extractionState" : "manual",
@@ -145846,7 +146624,267 @@
     },
     "Some embedded media failed to download. Core content is still available offline." : {
       "comment" : "Warning message displayed when some embedded media fails to download during an offline sync.",
-      "isCommentAutoGenerated" : true
+      "isCommentAutoGenerated" : true,
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "فشل تنزيل بعض الوسائط المضمنة. لا يزال المحتوى الأساسي متاحًا بدون اتصال."
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No s’han pogut baixar alguns elements multimèdia integrats. El contingut bàsic encara està disponible sense connexió."
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wedi methu lawrlwytho rhywfaint o gyfryngau planedig. Mae cynnwys craidd yn dal i fod ar gael all-lein."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nogle integrerede medier kunne ikke downloades. Kerneindholdet er stadig tilgængeligt offline."
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nogle integrerede medier kunne ikke downloades. Kerneindholdet er stadig tilgængeligt offline."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Einige eingebettete Medien konnten nicht heruntergeladen werden. Die Kerninhalte sind weiterhin offline verfügbar."
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some embedded media failed to download. Core content is still available offline."
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some embedded media failed to download. Core content is still available offline."
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some embedded media failed to download. Core content is still available offline."
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some embedded media failed to download. Core content is still available offline."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some embedded media failed to download. Core content is still available offline."
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Some embedded media failed to download. Core content is still available offline."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Algunos medios integrados no se pudieron descargar. El contenido central sigue estando disponible sin conexión."
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se han podido descargar algunos contenidos multimedia incrustados. El contenido principal sigue disponible sin conexión."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Osa upotetuista tiedostoista ei latautunut. Keskeinen sisältö on edelleen käytettävissä offline-tilassa."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le téléchargement de certains médias imbriqués a échoué. Le contenu essentiel demeure disponible hors ligne."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Échec du téléchargement de certains médias intégrés. Le contenu principal demeure accessible hors ligne."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Theip ar íoslódáil roinnt meán leabaithe. Tá an t-ábhar lárnach fós ar fáil as líne."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "एम्बेड किया गया कुछ मीडिया डाउनलोड नहीं हो सका। मूल सामग्री अभी भी ऑफ़लाइन उपलब्ध है।"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kèk medya entegre pa t telechaje. Kontni debaz la toujou disponib san koneksyon."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beberapa media tertanam gagal diunduh. Konten inti masih tersedia secara offline."
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mistókst að hlaða niður sumt innfellt margmiðlunarefni. Kjarnaefnið er enn aðgengilegt án nettengingar."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossibile scaricare alcuni supporti multimediali incorporati. Il contenuto principale è ancora disponibile offline."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "一部の埋め込みメディアのダウンロードに失敗しました。主要なコンテンツはオフラインでも引き続き利用可能です。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "일부 포함된 미디어를 다운로드하지 못했습니다. 핵심 콘텐츠는 여전히 오프라인으로 사용 가능합니다."
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "I rahua te tango i ētahi pāpāho whakauru. Kei te wātea tonu ngā ihirangi matua tuimotu."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Beberapa media dibenamkan gagal dimuat turun. Kandungan teras masih tidak tersedia luar talian."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noen innebygde medier kunne ikke lastes ned. Kjerneinnhold er fortsatt tilgjengelig i frakoblet modus."
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noen innebygde medier kunne ikke lastes ned. Kjerneinnhold er fortsatt tilgjengelig i frakoblet modus."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sommige ingesloten media kon niet worden gedownload De kerninhoud is nog altijd offline beschikbaar."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie udało się pobrać części osadzonych multimediów Główna zawartość jest nadal dostępna offline."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A transferência de alguns conteúdos multimédia incorporados falhou. O conteúdo principal continua disponível offline."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alguns conteúdos multimídia incorporados não puderam ser baixados. O conteúdo principal ainda está disponível offline."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось загрузить некоторые встроенные медиафайлы. Основной контент по-прежнему доступен в автономном режиме."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Prenos nekaterih vdelanih medijev ni uspel. Osnovna vsebina je še vedno na voljo brez povezave."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nedladdningen av vissa mediefiler misslyckades. Kärninnehållet finns fortfarande tillgängligt offline."
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nedladdningen av vissa mediefiler misslyckades. Kärninnehållet finns fortfarande tillgängligt offline."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "มีเดียผนวกบางส่วนไม่สามารถดาวน์โหลดได้ เนื้อหาหลักยังสามารถใช้งานแบบออฟไลน์ได้"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một số nội dung nhúng tải xuống không thành công. Nội dung cốt lõi vẫn khả dụng ngoại tuyến."
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "部分嵌入式媒体下载失败。核心内容仍可离线获取。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "部分嵌入式媒体下载失败。核心内容仍可离线获取。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "部分嵌入式媒體無法下載。核心內容仍可離線使用。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "部分嵌入式媒體無法下載。核心內容仍可離線使用。"
+          }
+        }
+      }
     },
     "Some items could not be deleted" : {
       "comment" : "Message for an error popup",
@@ -190651,7 +191689,266 @@
       }
     },
     "You don't have any active courses yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity." : {
-
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ليس لديك أي مساقات نشطة بعد؛ ولذلك لا يوجد أي نشاط هنا. بمجرد أن تسجل في فصل، ستتم تعبئة لوحة المعلومات الخاصة بك بالأنشطة الجديدة."
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Encara no teniu cap assignatura activa, de manera que tot està una mica tranquil aquí. Un cop us hàgiu inscrit en una classe, el panell de control començarà a omplir-se d’activitats noves."
+          }
+        },
+        "cy" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Does gennych chi ddim cyrsiau gweithredol ar hyn o bryd –– felly mae hi’n dawel yma. Ar ôl i chi gofrestru ar gyfer dosbarth, bydd eich dangosfwrdd yn dechrau llenwi â gweithgarwch newydd."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ingen aktive fag endnu – så her er lidt stille. Når du tilmelder dig et fag, vil din oversigt begynde at fyldes med ny aktivitet."
+          }
+        },
+        "da-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ingen aktive fag endnu – så her er lidt stille. Når du tilmelder dig et fag, vil din oversigt begynde at fyldes med ny aktivitet."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sie haben noch keine aktiven Kurse – hier ist es also noch etwas ruhig. Sobald Sie sich für einen Kurs angemeldet haben, wird sich Ihr Dashboard mit neuen Aktivitäten füllen."
+          }
+        },
+        "en-AU" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any active courses yet — so things are a bit quiet here. Once you enrol in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "en-AU-unimelb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any active subjects yet — so things are a bit quiet here. Once you enrol in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "en-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any active courses yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "en-CY" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any active modules yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "en-GB" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any active courses yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "en-GB-instukhe" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "You don't have any active modules yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No tiene cursos activos todavía, así que, por ahora, todo está un poco tranquilo por aquí. Una vez que se inscriba en una clase, su tablero comenzará a llenarse de nuevas actividades."
+          }
+        },
+        "es-ES" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Todavía no tienes ninguna asignatura activa, así que todo está tranquilo por aquí. Cuando te inscribas en una clase, tu panel de control empezará a llenarse de nueva actividad."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sinulla ei ole vielä aktiivisia kursseja, joten täällä on vielä hieman hiljaista. Kun ilmoittaudut kurssille, koontinäyttösi alkaa täyttyä uusilla aktiviteeteilla."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous n’avez pas de cours actifs pour le moment. C’est pourquoi il ne se passe pas grand-chose ici. Après votre inscription à un cours, votre tableau de bord commencera à se remplir d’informations concernant vos nouvelles activités."
+          }
+        },
+        "fr-CA" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vous n’avez pas encore de cours actifs - c’est donc un peu calme ici. Dès que vous vous inscrivez à un cours, votre tableau de bord se remplit de nouvelles activités."
+          }
+        },
+        "ga" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Níl aon chúrsaí gníomhacha agat go fóill — mar sin tá rudaí beagáinín ciúin anseo. Nuair a rollaíonn tú i rang, tosóidh do phainéal ag líonadh le gníomhaíocht nua."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "अभी आपके पास कोई सक्रिय कोर्स नहीं है, इसलिए यहां थोड़ा सन्नाटा है। एक बार जब आप किसी कक्षा में नामांकन कर ले लेते हैं, तो आपका डैशबोर्ड नई गतिविधियों से भरना शुरू हो जाएगा।"
+          }
+        },
+        "ht" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ou poko gen okenn kou ki aktif — se sa k fè pa gen anpil aktivite isit la. Lè w fin enskri nan yon klas, tablodbò ou a ap kòmanse ranpli ak nouvo aktivite."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anda belum memiliki kursus aktif apa pun — jadi suasana agak sepi di sini. Setelah Anda mendaftar di kelas, dasbor Anda akan mulai terisi dengan aktivitas baru."
+          }
+        },
+        "is" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Þú hefur engin virk námskeið enn, því er allt svolítið rólegt hér. Þegar þú hefur innritað þig í námskeið fer stjórnborðið að fyllast upp af nýrri virkni."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non hai ancora dei corsi attivi, quindi tutto è tranquillo qui. Una volta che ti iscrivi a un corso, la tua dashboard inizierà a riempirsi con le nuove attività."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "受講中のアクティブなコースはまだありません — そのため、ここは少し静かです。クラスに登録すると、ダッシュボードに新しい活動が表示され始めます。"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "아직 활성 과목이 없어서 여기에 표시할 내용이 없습니다. 과목에 등록하면 대시보는 새 활동으로 채워지기 시작합니다."
+          }
+        },
+        "mi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kāore anō kia whai akoranga hohe koe — nō reira he marino te āhua o konei. Kia rēhita koe ki tētahi akomanga, ka tīmata tō papatohu ki te whakakī i ngā mahi hou."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anda belum mempunyai apa-apa kursus aktif  — jadi suasana agak sunyi di sini. Setelah anda mendaftar dalam kelas, papan pemuka anda akan mula diisi dengan aktiviti baharu."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ingen aktive emner ennå – så det er litt stille her. Når du har meldt deg på et emne, begynner dashbordet ditt å fylles opp med ny aktivitet."
+          }
+        },
+        "nb-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ingen aktive fag ennå – så det er litt stille her. Når du har meldt deg på et emne, vil oversikten din begynne å fylles opp med ny aktivitet."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Je hebt nog geen actieve cursussen – het is hier dus nog een beetje rustig. Zodra je je inschrijft voor een klas, vult je dashboard zich met nieuwe activiteit."
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie masz jeszcze aktywnych kursów, dlatego jest tu dość cicho. Gdy zapiszesz się na zajęcia, pulpit nawigacyjny zacznie wypełniać się nowymi aktywnościami."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ainda não tens nenhuma disciplina ativa — por isso, está tudo um pouco parado por aqui. Assim que se inscrever numa aula, o seu painel começará a encher-se de novas atividades."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Você ainda não tem nenhum curso ativo — então as coisas estão um pouco paradas por aqui. Depois de se matricular em uma aula, seu painel começará a se encher de novas atividades."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "У вас пока нет ни одного активного курса, поэтому здесь ничего не происходит. Как только вы будете включены в курс, ваша панель управления начнет заполняться новой активностью."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zaenkrat še nimate nobenega aktivnega predmeta – zato je tu še malo tiho. Ko se boste vpisali v predmet, se bo vaša nadzorna plošča začela polniti z novimi aktivnostmi."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ännu inte några aktiva kurser – så det är lite tyst här. När du har registrerat dig för en kurs kommer din översikt att fyllas med nya aktiviteter."
+          }
+        },
+        "sv-instk12" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du har ännu inte några aktiva kurser – så det är lite tyst här. När du har registrerat dig för en kurs kommer din översikt att fyllas med nya aktiviteter."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "คุณยังไม่มีบทเรียนใด ๆ ที่จัดไว้ในปัจจุบัน - ทุกอย่างยังนิ่งอยู่ หลังจากลงทะเบียนในชั้นเรียนแล้ว แผงข้อมูลของคุณจะเริ่มแจ้งกิจกรรมใหม่"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bạn chưa có bất kỳ khóa học nào đang hoạt động — vì vậy mà mọi thứ ở đây có vẻ hơi yên ắng. Khi bạn ghi danh vào một lớp học, bảng điều khiển sẽ bắt đầu lấp đầy với hoạt động mới."
+          }
+        },
+        "zh" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您还没有任何活跃课程，因此暂无消息。注册班级后，您的控制面板将开始出现新活动。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您还没有任何活跃课程，因此暂无消息。注册班级后，您的控制面板将开始出现新活动。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您目前還沒有任何啟用課程，所以這裡暫時比較安靜。一旦您註冊了課程，您的控制面板就會開始充滿新的活動。"
+          }
+        },
+        "zh-HK" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "您目前還沒有任何啟用課程，所以這裡暫時比較安靜。一旦您註冊了課程，您的控制面板就會開始充滿新的活動。"
+          }
+        }
+      }
     },
     "You don't have any courses yet — so things are a bit quiet here. Once you enroll in a class, your dashboard will start filling up with new activity." : {
       "extractionState" : "stale",
