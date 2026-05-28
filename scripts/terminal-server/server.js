@@ -20,14 +20,57 @@
 // on the /terminal path and executes the body of the request
 // as a command line statement.
 
-const process = require("child_process");
+const { spawn, spawnSync } = require("child_process");
 const express = require("express");
 const app = express();
 const port = 4567;
 
 app.use(express.json());
+const NETWORK_SERVICE_NAME_PATTERN = /^[^\0\r\n']{1,128}$/;
 
-const SAFE_INPUT_PATTERN = /^[a-zA-Z0-9\s\.\/\-\_\/\"\'\=\:\@]+$/;
+function parseAllowedCommand(command) {
+    if (command === "networksetup -listallnetworkservices") {
+        return {
+            cmd: "networksetup",
+            args: ["-listallnetworkservices"],
+            ignoreExitCode: false,
+        };
+    }
+
+    let match = command.match(/^networksetup -getnetworkserviceenabled '([^']+)'$/);
+    if (match) {
+        const service = match[1];
+
+        if (!NETWORK_SERVICE_NAME_PATTERN.test(service)) {
+            return null;
+        }
+
+        return {
+            cmd: "networksetup",
+            args: ["-getnetworkserviceenabled", service],
+            ignoreExitCode: false,
+        };
+    }
+
+    match = command.match(/^networksetup -setnetworkserviceenabled '([^']+)' (on|off) \|\| true$/);
+    if (match) {
+        const service = match[1];
+        const state = match[2];
+
+        if (!NETWORK_SERVICE_NAME_PATTERN.test(service)) {
+            return null;
+        }
+
+        return {
+            cmd: "networksetup",
+            args: ["-setnetworkserviceenabled", service, state],
+            ignoreExitCode: true,
+        };
+    }
+
+    return null;
+}
+
 
 app.listen(port, function(err) {
     if (err) {
@@ -38,24 +81,43 @@ app.listen(port, function(err) {
 });
 
 app.post("/terminal", (req, res) => {
-const command = req.body.command;
-    if (typeof command !== 'string' || !SAFE_INPUT_PATTERN.test(command)) {
-        return res.status(403).send("Error: Forbidden characters in command.");
+    const commandConfig = parseAllowedCommand(req.body.command);
+
+    if (!commandConfig) {
+        return res.status(403).send("Command is not allowed.");
     }
 
-    try {
-        const output = exec(command, req.query.async).toString("utf8").trim();
-        res.send(output);
-    } catch (err) {
-        res.status(500).send(err.message);
-    }
+    const output = exec(commandConfig, req.query.async).toString("utf8").trim();
+    res.send(output);
 });
 
-function exec(command, async) {
+function exec(commandConfig, async) {
     if (async === "true") {
-        return process.exec(command);
-    } else {
-        return process.execSync(command);
+        const child = spawn(commandConfig.cmd, commandConfig.args, {
+            shell: false,
+            windowsHide: true,
+            detached: true,
+            stdio: "ignore",
+        });
+
+        child.unref();
+        return Buffer.from("Command started.");
     }
+
+    const result = spawnSync(commandConfig.cmd, commandConfig.args, {
+        shell: false,
+        windowsHide: true,
+        encoding: "buffer",
+    });
+
+    if (result.error) {
+        throw result.error;
+    }
+
+    if (result.status !== 0 && !commandConfig.ignoreExitCode) {
+        return result.stderr;
+    }
+
+    return result.stdout;
 }
 
